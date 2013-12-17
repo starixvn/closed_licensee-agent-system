@@ -17,16 +17,12 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     /// </summary>
     public class UpdateDataSportsbookCustomer
     {
-        [Required]
         public CustomerInfo CustInfo { get; set; }
 
-        [Required]
         public CommissionSetting CommissionSetting { get; set; }
 
-        [Required]
         public IList<BettingLimit> BettingLimits { get; set; }
 
-        [Required]
         public IList<PositionTaking> PositionTakingSetting { get; set; }
     }
 }

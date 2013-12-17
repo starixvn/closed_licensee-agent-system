@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Login">
+    <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentSaltSel" SpName="Las_AgentSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminSaltSel" SpName="Las_AdminSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentCheckIn" SpName="Las_AgentCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentReCheckIn" SpName="Las_AgentReCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminCheckIn" SpName="Las_AdminCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminReCheckIn" SpName="Las_AdminReCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentUserLogout" SpName="Las_AgentUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminUserLogout" SpName="Las_AdminUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentChangePwd" SpName="Las_AgentChangePwd" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+  </Function>
+  <Function Name="Admin">
+    <Setting Key="Las_GetLicenseeList" SpName="Las_GetLicenseeList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_GetCurrencyOfLicensee" SpName="Las_GetCurrencyOfLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_LicenseeSelAgent" SpName="Las_LicenseeSelAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_GetAgentL0ByLicensee" SpName="Las_GetAgentL0ByLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_Agent_GetAgentDownline" SpName="Las_Agent_GetAgentDownline" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_InternalLoginAsUser" SpName="Las_InternalLoginAsUser" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+  </Function>
+  <Function Name="CustSetting">
+    <Setting Key="Las_LicenseeSportsbookSettingSel" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_LicenseeInsAgentAdvanceMode" SpName="Las_LicenseeInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentSportsbookSettingSel" SpName="Las_AgentSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentInsAgentAdvanceMode" SpName="Las_AgentInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentInsMemAdvanceMode" SpName="Las_AgentInsMemAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_CheckExistUserName" SpName="Las_CheckExistUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_LicenseeGetAgentSBSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentGetAgentSBSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberSBSettingForUpdate" SpName="Las_AgentGetMemberSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_LicenseeEditAgent" SpName="Las_LicenseeEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
+  <Function Name="Authorize">
+    <Setting Key="Las_CheckDownlineBelong" SpName="Las_CheckDownlineBelong" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
+  <Function Name="CustomerList">
+    <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_MemberGetByAgent" SpName="Las_MemberGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_SearchAgent" SpName="Las_SearchAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_SearchMember" SpName="Las_SearchMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_UpdateAgentAccStatus" SpName="Las_UpdateAgentAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_UpdateAgentBetStatus" SpName="Las_UpdateAgentBetStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_UpdateMemberAccStatus" SpName="Las_UpdateMemberAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_UpdateMemberBetStatus" SpName="Las_UpdateMemberBetStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentGetAutoCompleteUserName" SpName="Las_AgentGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
+
+  <Function Name="IpInformation">
+    <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="IPDB.IPEntities" Plain="0"  TimeOut="600"/>
+  </Function>
+</Functions>

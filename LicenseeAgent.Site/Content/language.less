@@ -1,0 +1,122 @@
+﻿@flagIconWidth: 24px;
+
+.flag(@index)
+{
+    background-position: -@index*@flagIconWidth 3px;
+}
+
+[class^="flag-"],[class*=" flag-"] {
+    display: inline-block;
+    width: @flagIconWidth;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: url(../images/flags.png) 0px 0px no-repeat;
+}
+
+.flag-en-US
+{
+    .flag(0);
+}
+
+.flag-zh-TW
+{
+    .flag(1);
+}
+
+.flag-zh-CN
+{
+    .flag(2);
+}
+
+.flag-ja-JP
+{
+    .flag(3);
+}
+
+.flag-ko-KR
+{
+    .flag(4);
+}
+
+.flag-th-TH
+{
+    .flag(5);
+}
+
+.flag-vi-VN
+{
+    .flag(6);
+}
+
+.language 
+{
+    height: 100%;
+
+    #nav 
+    {
+        margin: 0; 
+        padding: 0; 
+        padding-top: 20px;
+        line-height: normal;
+        height: 24px;
+        list-style: none;
+
+        li 
+        {
+            display: block; 
+            border: solid 1px white;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+
+            &.icon-arrow
+            {
+                background: url("../images/login/sprites.png") 32px 7px no-repeat;
+                width: 48px;
+                height: 24px;
+            }
+
+            a
+            {
+                display: block; 
+                margin-left: 5px;
+            }
+        }
+
+        ul
+        {
+            position:absolute; 
+            right:0; 
+            margin-top: 2px;
+            background-color: white;
+            border: solid 1px #bf4c4c;
+            display: none; 
+            padding: 0; 
+            list-style: none;
+
+            li
+            {
+                padding-left: 8px;
+                padding-right: 8px;
+
+                a 
+                {
+                    display: block;  
+                    text-decoration: none;
+                    white-space: nowrap;
+                    color: black;
+                }
+
+                &:hover
+                {
+                    background-color: #bf4c4c;
+                    a
+                    {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }  
+}

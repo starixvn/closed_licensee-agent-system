@@ -1,0 +1,27 @@
+﻿<script type="text/javascript">
+    var msg = {
+        OpenToCloseAgent: '@Las.ChangeStatusAgent',
+        OpenToCloseMember: '@Las.ChangeStatusMember',
+        CloseToOpenAgent: '@Las.ChangeCloseToOpenAgent',
+        CloseToOpenMember: '@Las.ChangeCloseToOpenMember',
+        IpInformation: '@Las.IpInformation'
+    };
+    var showItems =
+            {
+                "all": { name: "<span class='top-content'>@Las.All</span>", className: "box-top", callback: customerList.checkAll },
+                "none": { name: "<span class='top-content'>@Las.None</span>", className: "box-top", callback: customerList.uncheckAll },
+                "edit": { name: "<span class='top-content'>@Las.Edit</span>", className: "box-top", callback: customerList.editAll }
+            };
+    var actions =
+        {
+            Sportsbook: '@Las.Sportsbook',
+            NumberGame: '@Las.NumberGame',
+            Casino: '@Las.Casino',
+            VirtualSports: '@Las.VirtualSports',
+            EditInfo: '@Las.EditInfo',
+            AddDownline: '@Las.AddDownline',
+            Commission: '@Las.Commission',
+            Password: '@Las.Password',
+            SBBetSetting: '@Las.SBBetSetting'
+        };
+</script>

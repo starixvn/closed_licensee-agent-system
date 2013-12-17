@@ -1,0 +1,31 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+@model SettingContext
+@{
+    Layout = null;
+}
+<div class="instruction">
+    @Las.Commission
+    @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+    {
+        @RazorHelper.SectionInfo("licensee-commission-info-button")
+    }
+    else if (Model.TargetRoleId == (int)Role.Agent)
+    {
+        @RazorHelper.SectionInfo("agent-commission-info-button")
+    }
+    else
+    {
+        @RazorHelper.SectionInfo("member-commission-info-button")
+    }
+</div>
+<div class="container-box">
+    <div id="commission-current-scope" class="comm-setting" ng-controller="fanex.custsetting.commissioncontroller">
+        <div ng-show="settingContext.TargetRoleId ==1 ? true: false;">
+            <commission-setting-agent-edit-member></commission-setting-agent-edit-member>
+        </div>
+        <div ng-show="settingContext.TargetRoleId !=1 ? true: false;" ng-repeat="commissionSetting in viewModel.commissionSettingsViewModel">
+            <commission-setting-licensee-or-agent-edit-agent></commission-setting-licensee-or-agent-edit-agent>
+        </div>
+    </div>
+</div>

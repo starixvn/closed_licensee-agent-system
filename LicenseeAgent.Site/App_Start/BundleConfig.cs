@@ -1,0 +1,239 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="BundleConfig.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders.Le" date="2013.7.7">Created</change>
+// </history>
+
+namespace LicenseeAgent.Site
+{
+    using System.Web.Optimization;
+
+    /// <summary>
+    /// MVC Bundle Configuration.
+    /// </summary>
+    public static class BundleConfig
+    {
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            RegisterCore(bundles);
+            RegisterComponents(bundles);
+            RegisterCustomerSetting(bundles);
+            RegisterPages(bundles);
+            bundles.FileSetOrderList.Clear();
+        }
+
+        #region Core
+
+        /// <summary>
+        /// Registers the core.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterCore(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/core").Include(
+                "~/scripts/placeholder/jquery.placeholder.js",
+                "~/scripts/blockui/jquery.blockui.js",
+                "~/scripts/config.js",
+                "~/scripts/utils.js",
+                "~/scripts/language.js",
+                "~/scripts/core.js",
+                "~/scripts/popup.js"));
+
+            bundles.Add(new LessBundle("~/css/core").Include(
+                "~/content/sprite.less",
+                "~/content/core.less",
+                "~/content/header.less"));
+        }
+
+        #endregion Core
+
+        #region Components
+
+        /// <summary>
+        /// Registers the JAVASCRIPT component bundles.
+        /// </summary>
+        /// <param name="bundles">The bundle collection.</param>
+        private static void RegisterComponents(BundleCollection bundles)
+        {
+            // Jquery, Jquery-UI, Jquery Validation
+            RegisterJquery(bundles);
+
+            // Bootstrap, Bootstrap Datetimepicker.
+            RegisterBootstrap(bundles);
+
+            // Angular JS
+            bundles.Add(new ScriptBundle("~/js/angular").Include(
+                "~/scripts/angular/angular.js"));
+
+            // Moment JS
+            bundles.Add(new ScriptBundle("~/js/moment").Include(
+                "~/scripts/MomentJS/moment.js",
+                "~/scripts/MomentJS/moment-with-langs.js"));
+
+            // Datetimepicker
+            bundles.Add(new ScriptBundle("~/js/datetimepicker").Include(
+                "~/scripts/moment-datepicker/moment-datepicker.js"));
+            bundles.Add(new LessBundle("~/css/datetimepicker").Include(
+                "~/content/moment-datepicker/datepicker.css"));
+
+            // Fanex.Grid
+            bundles.Add(new ScriptBundle("~/js/fanexgrid").Include(
+                "~/scripts/fanexgrid/Fanex.Grid.js",
+                "~/scripts/fanexgrid/Fanex.Pagination.js"));
+            bundles.Add(new LessBundle("~/css/fanexgrid").Include(
+                "~/content/fanexgrid/Fanex.Grid.css",
+                "~/content/fanexgrid/Fanex.Pagination.css"));
+
+            // Dropdown
+            bundles.Add(new ScriptBundle("~/js/dropdown").Include(
+                "~/scripts/dropdown/jquery.dropdown.js"));
+            bundles.Add(new LessBundle("~/css/dropdown").Include(
+                "~/content/dropdown/jquery.dropdown.css"));
+
+            // Contex Menu
+            bundles.Add(new ScriptBundle("~/js/contexmenu").Include(
+                "~/scripts/contextmenu/jquery.contextMenu.js"));
+            bundles.Add(new LessBundle("~/css/contexmenu").Include(
+                "~/content/contextmenu/jquery.contextMenu.css"));
+        }
+
+        /// <summary>
+        /// Registers the JQUERY.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterJquery(BundleCollection bundles)
+        {
+            // Jquery & Jquery validation
+            bundles.Add(new ScriptBundle("~/js/jquery").Include(
+                "~/scripts/jquery/jquery.js",
+                "~/scripts/jquery-validate/jquery.validate.js",
+                "~/scripts/jquery-validate/jquery.validate.unobtrusive.js"));
+
+            // Jquery UI
+            bundles.Add(new ScriptBundle("~/js/jqueryui").Include(
+                "~/scripts/jquery-ui/jquery-ui.js",
+                "~/scripts/jquery-ui/jquery.ui.dropdownlist.js",
+                "~/scripts/clickout/jquery.clickout.js"));
+            bundles.Add(new LessBundle("~/css/jqueryui").Include(
+                "~/content/jquery-ui/jquery-ui.css"));
+        }
+
+        /// <summary>
+        /// Registers the Bootstrap.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterBootstrap(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/bootstrap").Include(
+                "~/scripts/bootstrap/bootstrap-dropdown.js",
+                "~/scripts/bootstrap/bootstrap-tab.js",
+                "~/scripts/bootstrap/bootstrap-switch.js",
+                "~/scripts/bootstrap/bootstrap-combobox.js"));
+            bundles.Add(new LessBundle("~/css/bootstrap").Include(
+                "~/content/bootstrap/bootstrap.less"));
+        }
+
+        #endregion Components
+
+        #region Pages
+
+        /// <summary>
+        /// Registers the pages.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterPages(BundleCollection bundles)
+        {
+            RegisterLoginPage(bundles);
+            RegisterHomePage(bundles);
+            RegisterAccountPage(bundles);
+            RegisterCustomerListPage(bundles);
+        }
+
+        /// <summary>
+        /// Registers the login page.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterLoginPage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/login").Include(
+                "~/scripts/login.js"));
+            bundles.Add(new LessBundle("~/css/login").Include(
+                "~/content/language.less",
+                "~/content/login.less"));
+            bundles.Add(new LessBundle("~/css/login/internal").Include(
+                "~/content/internal.less"));
+        }
+
+        /// <summary>
+        /// Registers the home page bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterHomePage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/home").Include(
+                "~/scripts/HeadJS/head.js",
+                "~/scripts/dotdotdot/jquery.dotdotdot.js",
+                "~/scripts/menu.js",
+                "~/scripts/header.js"));
+
+            bundles.Add(new ScriptBundle("~/js/home/internal").Include(
+                "~/Views/Internal/Resources/Header.js"));
+
+            bundles.Add(new LessBundle("~/css/home").Include(
+                "~/Views/Home/Resources/index.less"));
+        }
+
+        /// <summary>
+        /// Register customer setting bundle.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void RegisterCustomerSetting(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
+                "~/Views/Account/CustSetting/Resources/scripts", "*.js", true).Include(
+                "~/scripts/autoNumeric/autoNumeric.js").Include(
+                "~/scripts/poshytip/jquery.poshytip.js"));
+            bundles.Add(new LessBundle("~/css/customersetting").Include(
+                "~/Views/Account/Resources/MemberInfo.less").Include(
+                "~/content/poshytip/tip-twitter/tip-twitter.css"));
+
+            bundles.Add(new ScriptBundle("~/js/customersetting.sportsbook").IncludeDirectory(
+                "~/Views/Account/CustSetting/Sportsbook/scripts", "*.js", true));
+            bundles.Add(new LessBundle("~/css/customersetting.sportsbook").Include(
+                "~/Views/Account/CustSetting/Sportsbook/styles/fanex.sportsbookSetting.less"));
+        }
+
+        /// <summary>
+        /// Registers the account page bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterAccountPage(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/css/account").Include(
+                "~/Views/Account/Resources/account.less"));
+        }
+
+        /// <summary>
+        /// Registers the agent list page bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterCustomerListPage(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/css/customerlist").Include(
+                "~/Views/Customer/Resources/customerlist.less").Include(
+                "~/content/Select2/select2.css"));
+
+            bundles.Add(new ScriptBundle("~/js/customerlist").Include(
+                "~/Views/Customer/Resources/customerlist.js",
+                "~/scripts/Select2/select2.js"));
+        }
+        #endregion Pages
+    }
+}

@@ -1,0 +1,469 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="AccountController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.Account.Controllers
+{
+    using System;
+    using System.IO;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using Fanex.Common;
+    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Services;
+    using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.Account.ViewResults;
+    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Resources;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Core;
+    using LicenseeAgent.Web.Filters;
+
+    /// <summary>
+    /// Account controllers.
+    /// </summary>
+    public class AccountController : BaseController
+    {
+        private readonly IAccountService _accountService;
+
+        private readonly ICurrencyService _currencyService;
+
+        public AccountController(IAccountService accountService, ICurrencyService currencyService)
+        {
+            _accountService = accountService;
+            _currencyService = currencyService;
+        }
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Generate Captcha Image.
+        /// </summary>
+        /// <param name="noisy">Checking noise or not.</param>
+        /// <returns>Return image.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult CaptchaImage(bool noisy = true)
+        {
+            var captchaImage = new CaptchaImage
+            {
+                Width = 160,
+                Height = 32
+            };
+
+            using (var mem = new MemoryStream())
+            {
+                var img = captchaImage.RenderImage();
+                Session[Constants.AppSessionCaptcha] = captchaImage.Text;
+                img.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
+
+                return File(mem.GetBuffer(), "image/png");
+            }
+        }
+
+        /// <summary>
+        /// Sign-in page.
+        /// </summary>
+        /// <returns>Returns Sign-in HTML content.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SignIn()
+        {
+            if (AppSettings.IsInternal)
+            {
+                return RedirectToAction("SignIn", "Internal");
+            }
+
+            var model = new AgentSignInViewModel
+            {
+                Language = Language,
+                Captcha = Request.IsLocal ? "999999" : string.Empty
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Post SignIn Page.
+        /// </summary>
+        /// <param name="model">Input model.</param>
+        /// <returns>Redirect to home page.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn(AgentSignInViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var captcha = Session[Constants.AppSessionCaptcha] as string;
+                if (string.IsNullOrEmpty(captcha))
+                {
+                    ModelState.AddModelError("Captcha", "Session Error. Please contact the administrator");
+                }
+                else
+                {
+                    if ((Request.IsLocal && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, true) == 0)
+                    {
+                        var domainName = DomainMapper.GetDomain(Request.Url);
+                        if (string.IsNullOrEmpty(domainName))
+                        {
+                            ModelState.AddModelError(string.Empty, string.Format(Las.NoLicenseeDomainFound, Request.Url.Host));
+                        }
+                        else
+                        {
+                            if (AuthenticateUser(model, domainName))
+                            {
+                                return CheckAgentPasswordStatus(model);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, Las.IncorrectCaptchaMsg);
+                    }
+                }
+            }
+
+            // Always remove captcha value from input because it can't be reused.
+            if (!ModelState.IsValid && !Request.IsLocal)
+            {
+                ModelState.Remove("Captcha");
+                model.Captcha = string.Empty;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Checks the agent password status.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns view.</returns>
+        [NonAction]
+        public ActionResult CheckAgentPasswordStatus(AgentSignInViewModel model)
+        {
+            // check account password
+            var agentInfo = CurrentSession.AgentInfo;
+            var passwordStatus = PasswordRule.GetPasswordStatus(agentInfo, agentInfo.LastLoggedTime);
+            if (passwordStatus == PasswordStatus.Normal)
+            {
+                return Redirect(FormsAuthentication.DefaultUrl);
+            }
+            else
+            {
+                ViewBag.Result = new SignInViewResult
+                {
+                    IsConfirm = passwordStatus == PasswordStatus.Alert,
+                    Message = PasswordRule.GetStatusMessage(passwordStatus, agentInfo.PwdExpiry)
+                };
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <returns>Returns view.</returns>
+        [HttpGet]
+        [AppAuthorize(Users = Constants.AgentUserOnly, OnlyAuthorize = true)]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns a result.</returns>
+        [HttpPost]
+        [AppAuthorize(Users = Constants.AgentUserOnly, OnlyAuthorize = true)]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(AgentChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var oldPassword = Cryptography.CreateHash(model.CurrentPassword, CurrentSession.AgentInfo.UserSalt);
+                var newPassword = Cryptography.CreateHash(model.NewPassword, CurrentSession.AgentInfo.UserSalt);
+                var deviceDetection = new DeviceDetection();
+                var criteria = new AgentChangePwdCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    OldPwd = oldPassword,
+                    Pwd = newPassword,
+                    LoginIp = deviceDetection.ClientIp
+                };
+
+                _accountService.AgentChangePassword(criteria);
+                if (criteria.MsgId != 0)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrorMsg(criteria.MsgId));
+                }
+                else
+                {
+                    // after changing password successfully, re-update some status to not validate user password again.
+                    CurrentSession.AgentInfo.IsFirstLogin = false;
+                    CurrentSession.AgentInfo.PwdExpiry = DateTime.Today.AddDays(PasswordRule.PasswordExpiredTotalDays);
+                    ViewBag.Result = Las.UpdateSuccessfully;
+                }
+            }
+
+            return View();
+        }
+
+        /// <summary>
+        /// Post ReCheckIn.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
+        [HttpPost]
+        [AjaxOnly]
+        [AppAuthorize(OnlyAuthorize = true)]
+        public JsonResult ReCheckIn()
+        {
+            var result = false;
+            if (CurrentSession.AdminInfo != null)
+            {
+                result = AdminReCheckIn();
+            }
+            else
+            {
+                if (CurrentSession.AgentInfo != null)
+                {
+                    if (CurrentSession.IsInternalSignIn)
+                    {
+                        result = AgentReCheckIn();
+                    }
+                    else
+                    {
+                        result = AgentReCheckInLicensee();
+                        return Json(new
+                        {
+                            isInternal = true,
+                            isKickout = result
+                        });
+                    }
+                }
+            }
+
+            return Json(new
+            {
+                isKickout = result
+            });
+        }
+
+        [NonAction]
+        public bool AgentReCheckInLicensee()
+        {
+            var criteria = new AgentReCheckInLicenseeCriteria
+            {
+                OnAdminId = CurrentSession.InternalLoginInfo.OnAdminId,
+                LicenseeId = CurrentSession.InternalLoginInfo.LicenseeId
+            };
+
+            _accountService.AgentReCheckInLicensee(criteria);
+            return criteria.IsKickedOut;
+        }
+
+        /// <summary>
+        /// Agent re-check in on current session to kick out when having another login session behalf on current agent.
+        /// </summary>
+        /// <returns>Returns true whether having another login session.</returns>
+        [NonAction]
+        public bool AgentReCheckIn()
+        {
+            var criteria = new AgentReCheckInCriteria
+            {
+                OnAgentId = CurrentSession.OnUserId
+            };
+
+            _accountService.AgentReCheckIn(criteria);
+            return criteria.IsKickedOut;
+        }
+
+        /// <summary>
+        /// Admin re-check in on current session to kick out when having another login session behalf on current admin.
+        /// </summary>
+        /// <returns>Returns true whether having another login session.</returns>
+        [NonAction]
+        public bool AdminReCheckIn()
+        {
+            var criteria = new AdminReCheckInCriteria
+            {
+                OnAdminId = CurrentSession.OnUserId
+            };
+
+            _accountService.AdminReCheckIn(criteria);
+            return criteria.IsKickedOut;
+        }
+
+        /// <summary>
+        /// Sign out action.
+        /// </summary>
+        /// <returns>Redirect to Login Page.</returns>
+        [AppAuthorize(OnlyAuthorize = true)]
+        public ActionResult SignOut()
+        {
+            if (CurrentSession.AdminInfo != null)
+            {
+                if (CurrentSession.IsInternalSignIn)
+                {
+                    AdminUserLogout();
+                }
+            }
+            else
+            {
+                if (CurrentSession.AgentInfo != null && CurrentSession.IsInternalSignIn)
+                {
+                    AgentUserLogout();
+                }
+            }
+
+            FormsAuthentication.SignOut();
+            SessionManager.ClearAll();
+            return Redirect(FormsAuthentication.LoginUrl);
+        }
+
+        /// <summary>
+        /// Remove Agent Session.
+        /// </summary>
+        [NonAction]
+        public void AgentUserLogout()
+        {
+            var criteria = new AgentUserLogoutCriteria
+            {
+                OnAgentId = CurrentSession.OnUserId
+            };
+
+            _accountService.AgentUserLogout(criteria);
+        }
+
+        /// <summary>
+        /// Remove Admin Session.
+        /// </summary>
+        [NonAction]
+        public void AdminUserLogout()
+        {
+            var criteria = new AdminUserLogoutCriteria
+            {
+                OnAdminId = CurrentSession.OnUserId
+            };
+
+            _accountService.AdminUserLogout(criteria);
+        }
+
+        /// <summary>
+        /// Call to change language.
+        /// </summary>
+        /// <param name="language">The selected language.</param>
+        /// <returns>Returns action status.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ChangeLanguage(string language)
+        {
+            var result = false;
+            if (Language != language)
+            {
+                Language = language;
+                result = true;
+            }
+
+            return Json(new
+            {
+                isChanged = result
+            });
+        }
+
+        [HttpGet]
+        [AppAuthorize(OnlyAuthorize = true)]
+        public ActionResult Avatar()
+        {
+            var avatarImage = Path.Combine(SitePath.GlobalImagePath, "avatar.png");
+            var base64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(avatarImage));
+            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+            return Content(imgSrc);
+        }
+
+        /// <summary>
+        /// Validates the Agent user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="domainName">Name of the domain.</param>
+        /// <returns>
+        /// Returns true whether username/password is valid.
+        /// </returns>
+        private bool AuthenticateUser(AgentSignInViewModel model, string domainName)
+        {
+            var userSaltCriteria = new AgentSaltSelCriteria
+            {
+                UserName = model.Username,
+                LoginDomain = domainName
+            };
+
+            var userSalt = _accountService.GetAgentSalt(userSaltCriteria);
+            if (userSaltCriteria.MsgId != 0)
+            {
+                ModelState.AddModelError(string.Empty, GetErrorMsg(userSaltCriteria.MsgId));
+                return false;
+            }
+
+            var deviceDetection = new DeviceDetection();
+            var criteria = new AgentLoginCriteria
+            {
+                UserName = model.Username,
+                UserPwd = model.Password,
+                UserSalt = userSalt,
+                LoginIp = deviceDetection.ClientIp,
+                LoginDomain = domainName,
+                BrowserName = deviceDetection.BrowserName,
+                Platform = deviceDetection.Platform,
+                CountryCode = deviceDetection.CountryCode
+            };
+
+            var agentInfo = _accountService.AuthenticateAgent(criteria);
+            if (criteria.MsgId != 0)
+            {
+                var errorMessage = GetErrorMsg(criteria.MsgId);
+                errorMessage = string.Format(errorMessage, criteria.LastChangedPwdDate.ToShortDateString());
+                ModelState.AddModelError(string.Empty, errorMessage);
+                return false;
+            }
+            else
+            {
+                CheckIn(agentInfo, model.Language);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Store current user session.
+        /// </summary>
+        /// <param name="agentInfo">The agent information.</param>
+        /// <param name="language">The language.</param>
+        private void CheckIn(AgentInfo agentInfo, string language)
+        {
+            var deviceDetection = new DeviceDetection();
+            var criteria = new AgentCheckInCriteria
+            {
+                AgentId = agentInfo.AgentId,
+                Ip = deviceDetection.ClientIp,
+                ServerId = agentInfo.ServerId,
+                NetSessionId = Session.SessionID
+            };
+
+            _accountService.AgentCheckIn(criteria);
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
+            FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
+        }
+    }
+}

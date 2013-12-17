@@ -1,0 +1,213 @@
+﻿/* Place Holder */
+.placeholder {
+    color: #acacac;
+ }
+
+/* Popup */
+.ui-dialog
+{
+    z-index: 9999 !important;
+    .ui-dialog-content
+    {
+        overflow: hidden;
+        padding: 0px;
+        margin: 0.6em 0.6em;
+    }
+    .ui-dialog-titlebar
+    {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #d93b3c;
+        padding: 0.1em 0em;
+        margin: 0em 0.6em;
+        text-transform: uppercase;
+        .ui-dialog-title
+        {
+            height: 22px;
+            line-height: 22px;
+        }
+        .ui-dialog-titlebar-close
+        {
+            border: 0;
+            border-radius: 0;
+            right: 0;
+            height: 16px;
+            width: 16px;
+            background: transparent;
+            .ui-icon-closethick
+            {
+                height: 11px;
+                width: 11px;
+                margin-left: -5px;
+                margin-top: -5px;
+                background: url(../images/popup-close-icon.png) 0px 0px no-repeat;
+                &:hover
+                {
+                    background: url(../images/popup-close-icon.png) 0px -12px no-repeat;
+                }
+            }
+        }
+    }
+    .ui-dialog-buttonpane
+    {
+        border: 0;
+        padding: 0.3em 0;
+        .ui-button-text-only
+        {
+            border-radius: 2px;
+            background: #fd3c3d;
+            color: white;
+            border: 0;
+            &:hover
+            {
+                background: #ff5758
+            }
+        }
+    }
+    iframe.loading
+    {
+        background: black url(../images/ajax-loader.gif) center center no-repeat;
+    }
+}
+
+/* Tooltip */
+.ui-tooltip {
+    padding: 4px;
+    border: 0;
+    color:#fff;
+    background:#000;
+}
+
+/* Block loading */
+div.block-loading
+{
+    background: url(../images/loader.gif) no-repeat;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 100px;
+    height: 100px;
+    z-index: 10001;
+}
+div.blockOverlay
+{
+    background: transparent;
+    border: none;
+    background-color: #ffffff;
+    position: absolute;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    top: 0%;
+    left: 0%;
+    z-index: 10000;
+}
+
+/* Instruction */
+.instruction
+{
+    background-color: #908f8f;
+    height: 28px;
+    line-height: 28px;
+    color: white;
+    font-size: 13px;
+    padding-left: 15px;
+    .section-info 
+    {
+        background: url(../images/info-rhombus-icon.png) no-repeat 11px 8px;
+        cursor: pointer;
+        float: right;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 28px;
+        border-left: 1px solid white;
+    }
+}
+.infos
+{
+    .instruction-content
+    {
+        max-width: 800px;
+        padding: 0;
+        text-align: justify;
+        .note
+        {
+            color: #b50000;
+            text-decoration: underline;
+        }
+    }
+}
+
+/*dropdownlist*/
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+.custom-combobox-toggle {
+    height: 23px;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+    /* support: IE7 */
+    *height: 1.7em;
+    *top: 0.1em;
+}
+.custom-combobox-input {
+    margin: 0;
+    padding: 0.3em;
+}
+
+span.require:after
+{
+    color: red;
+    padding-right: 3px;
+    content: "*";
+}
+
+
+/* Page */
+#mainContainer
+{
+    margin: 10px;
+    display: inline-block;
+    &.popup
+    {
+        margin: 10px 0px;
+    }
+}
+
+// this is copied from bootstrap
+.legend
+{
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 28px;
+    color: #898989;
+    border: 0;
+    border-bottom: 1px solid #dedede;
+    margin-top: -10px;
+}
+
+.form-filter
+{
+    padding: 10px;
+    background: #F4F8FB;
+    border: 1px solid #ECEEED;
+    .controls-row
+    {
+        display: inline-block;
+        margin-right: 16px;
+        label
+        {
+            padding-right: 3px;
+        }
+    }
+}

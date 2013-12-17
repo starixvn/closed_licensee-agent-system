@@ -1,0 +1,48 @@
+﻿if (fanex.sportsbookSetting) {
+    var custInfoController = fanex.sportsbookSetting.controller('sportsbook.custInfoController',
+    ['$scope', '$http', '$filter', 'fanex.sportsbookSetting.custInfoService', function CustInfoController($scope, $http, $filter, custInfoService) {
+        $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
+
+        if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+            var isShowMaxCredit = true;
+            if (settingContext.TargetRoleId == fanex.sportsbookSetting.Role.AgentLevel1 &&
+            custInfo.MaxCredit == 0) {
+                isShowMaxCredit = false;
+            }
+            $scope.isShowLimitMaxCredit = isShowMaxCredit;
+            if ($scope.isShowLimitMaxCredit) {
+                $scope.$watch('custInfo.credit', function (newValue) {
+                    if (parseFloat(newValue) > $scope.custInfo.maxCredit) {
+                        $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit'].format($filter('number')($scope.custInfo.maxCredit, 0));
+                        $scope.formCustInfo.credit.$setValidity('', false);
+                    }
+                    else {
+                        $scope.formCustInfo.credit.hintMessage = '';
+                        $scope.formCustInfo.credit.$setValidity('', true);
+                    }
+                });
+            }
+            $scope.custInfo = {
+                userName: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                phone: '',
+                mobile: '',
+                fax: '',
+                credit: custInfo.Credit,
+                maxCredit: custInfo.MaxCredit,
+                status: custInfo.Status
+            };
+        }
+        else {
+            $scope.custInfo = {
+                userName: custInfo.UserName,
+                firstName: custInfo.FirstName,
+                lastName: custInfo.LastName,
+                credit: custInfo.Credit,
+                status: custInfo.Status
+            };
+        }
+    } ]);
+}

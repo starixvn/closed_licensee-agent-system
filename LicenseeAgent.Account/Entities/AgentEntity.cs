@@ -1,0 +1,52 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="AgentEntity.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.Account.Entities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class AgentEntity
+    {
+        public AgentEntity()
+        {
+            this.AgentLevel = 0;
+        }
+
+        public int ParentId { get; set; }
+
+        public string ParentUserName { get; set; }
+
+        public string UserName { get; set; }
+
+        public int AgentId { get; set; }
+
+        public bool HasAgentDownline { get; set; }
+
+        public byte AgentLevel { get; set; }
+
+        public byte Status { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public string IpLogin { get; set; }
+
+        public int NumberOfAgent { get; set; }
+
+        public int RowNumber { get; set; }
+
+        public int NumberAgentLevel { get; set; }
+    }
+}

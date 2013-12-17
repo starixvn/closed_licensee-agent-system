@@ -1,0 +1,397 @@
+﻿@layoutLeftWidth:       210px;
+@layoutTopHeight:       75px;
+@layoutMessageHeight:   28px;
+
+body
+{
+    padding-top: @layoutTopHeight;
+    .container
+    {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    #overlay
+    {
+        z-index: 1;
+        display: none;
+    }
+    .container-fluid
+    {
+        padding: 0;
+    }
+    .header-box
+    {
+        height: @layoutTopHeight;
+        .account-box
+        {
+            position: absolute;
+            width: @layoutLeftWidth;
+            height: 100%;
+            .media
+            {
+                height: 50px;
+                margin-top: 15px;
+                img
+                {
+                    border-radius: 25px;
+                    border: 1px solid #999;
+                    width: 39px;
+                    height: 39px;
+                }
+                .pull-left
+                {
+                    margin-left: 20px;
+                    margin-right: 10px;
+                }
+                .media-body
+                {
+                    .media-heading
+                    {
+                        padding: 5px 0px;
+                    }
+                    .username
+                    {
+                        float: left;
+                        word-wrap: break-word;
+                        max-width: 100px;
+                        height: 32px;
+                        overflow: hidden;
+                        padding-right: 5px;
+                    }
+                    i
+                    {
+                        cursor: pointer;
+                    }
+                    .dropdown
+                    {
+                        display: inline-block;
+                        *display: inline;
+                        .dropdown-menu
+                        {
+                            left: -14px;
+                            min-width: 120px;
+                            &:before
+                            {
+                                position: absolute;
+                                top: -7px;
+                                left: 12px;
+                                display: inline-block;
+                                border-right: 7px solid transparent;
+                                border-bottom: 7px solid #ccc;
+                                border-left: 7px solid transparent;
+                                border-bottom-color: rgba(0, 0, 0, 0.2);
+                                content: '';
+                            }
+                            &:after
+                            {
+                                position: absolute;
+                                top: -6px;
+                                left: 13px;
+                                display: inline-block;
+                                border-right: 6px solid transparent;
+                                border-bottom: 6px solid #ffffff;
+                                border-left: 6px solid transparent;
+                                content: '';
+                            }
+                            a
+                            {
+                                padding: 3px 15px;
+                                i
+                                {
+                                    margin-right: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .banner-box
+        {
+            position: absolute;
+            left: @layoutLeftWidth;
+            right: 0;
+            top: 0;
+            height: 100%;
+            color: #C41A1A;
+            .topmenu-box
+            {
+                background: url(images/bgheader.png) top center #F00;
+                height: @layoutTopHeight;
+                overflow: hidden;
+                ul.nav-pills
+                {
+                    /*background: none repeat scroll 0 0 rgba(104, 0, 0, 0.8) !important;
+                    background-color: #680000;*/
+                    padding: 0;
+                    margin: 0;
+                    li.active a
+                    {
+                        background-color: #a24d4d;
+                        color: #fff;
+                    }
+                    a
+                    {
+                        border: 0px;
+                        border-radius: 0px;
+                        padding: 7px 25px;
+                        color: #CCC;
+                        height: 100%;
+                    }
+                    a:hover, a:focus 
+                    {
+                      text-decoration: none;
+                      background-color: #A24D4D;
+                      color: #fff;
+                    }
+                }
+                #clock
+                {
+                    height: 28px;
+                    padding-right: 10px;
+                }
+            }
+            .message-box
+            {
+                margin-left: 1px;
+                overflow: hidden;
+                height: @layoutMessageHeight;
+                line-height: @layoutMessageHeight;
+                
+                .currentmessage
+                {
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    background-color: #E5E5E5;
+                    float: none; /* not needed, just for clarification */
+                    /* the next props are meant to keep this block independent from the other floated one */
+                    width: auto;
+                    height: 100%;
+                    overflow: hidden;
+                }
+                
+                .personalmessage
+                {
+                    padding: 0 10px;
+                    background-color: #D6D6D6;
+                    text-align: center;
+                    float: right;
+                }
+            }
+            
+            .after-box {
+                float: right;
+                
+                .item {
+                    height: 100%;
+                    line-height: 26px;
+                }   
+                
+                .drop-box
+                {
+                    background-color: #fff;
+                    border: 1px solid #BF4C4C;
+                    list-style: none outside none;
+                    position: absolute;
+                    z-index: 1000;
+                    margin: 0 -10px;
+                    display: none;
+            
+                    li {
+                        border: 1px solid #FFFFFF;
+                        padding: 0 8px;
+                        height: 20px;
+                        width: 110px;
+                        line-height: 20px;
+                        
+                        a {
+                            color: #000;
+                        }
+                
+                        &:hover 
+                        {
+                            background-color: #bf4c4c;
+                    
+                            a {
+                                color: #fff;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+
+                #agentName
+                {
+                    margin-bottom: 1px;
+                    padding: 2px 4px;
+                    width: 150px;
+                }
+                
+                #licensee 
+                {
+                    width: 112px;
+                }
+                    
+                #currency 
+                {
+                    width: 112px;
+                }
+                
+                input[type="text"]
+                {
+                    margin-bottom : 0;
+                }
+            }
+        }
+    }
+    .leftmenu-box
+    {
+        position: absolute;
+        left: 0;
+        top: @layoutTopHeight;
+        bottom: 0;
+        width: @layoutLeftWidth - 1;
+        overflow-y: auto;
+        border-right: 1px solid #DEDEDE;
+        ul.nav-tabs
+        {
+            a
+            {
+                border: 0;
+                margin: 0;
+                font-weight: bold;
+                color: #7a7a7a;
+                text-transform: uppercase;
+                padding: 5px 0px;
+                text-align: center;
+                &:hover
+                {
+                    border: 0;
+                    color: #d93b3c;
+                }
+                &:focus
+                {
+                    border: 0;
+                }
+                &#tabMainMenu
+                {
+                    width: 92px;
+                }
+                &#tabAccInfo
+                {
+                    width: 115px;
+                }
+            }
+            li
+            {
+                border-top: #dedede 1px solid;
+                border-bottom: #dedede 1px solid;
+                background: #ededed;
+                &.active
+                {
+                    border-top: #d93b3c 2px solid;
+                    border-left: #ededed 1px solid;
+                    border-right: #ededed 1px solid;
+                    border-bottom: 0;
+                }
+            }
+            label
+            {
+                color: white !important;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+        .tab-content
+        {
+            .tab-pane
+            {
+                font-size: 11px;
+            }
+            .nav-list
+            {
+                padding: 0px;
+                a
+                {
+                    margin: 0px;
+                    border: 0;
+                    padding: 6px 10px;
+                }
+                .nav-header
+                {
+                    border: 0px;
+                    margin: 0px;
+                    padding: 6px 15px;
+                    color: #000;
+                    font-weight: normal;
+                    cursor: pointer;
+                    &.active
+                    {
+                        background: #908f8f;
+                        color: #fff;
+                    }
+                    &:hover
+                    {
+                        background-color: #a24d4d;
+                        color: #ffffff;
+                    }
+                }
+                .divider
+                {
+                    margin: 0;
+                    height: 0;
+                    border-bottom: 1px #dedede solid;
+                }
+                .tree
+                {
+                    padding-left: 15px;
+                    a
+                    {
+                        color: #258fd2;
+                        font-weight: 100;
+                        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+                        background-color: transparent;
+                        background: #fff url(images/arrow.png) no-repeat left center;
+                        &:hover
+                        {
+                            color: #d62d2e;
+                            background: #fff url(images/arrow-hover.png) no-repeat left center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .main-box
+    {
+        position: absolute;
+        left: @layoutLeftWidth;
+        top: @layoutTopHeight + @layoutMessageHeight;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        background-color: white;
+        iframe
+        {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .popup {
+        
+        .treeview {
+            background: url("images/treeview-default-line.gif") no-repeat;
+        }
+    }
+}
+
+.nav
+{
+    margin-bottom: 0;
+}

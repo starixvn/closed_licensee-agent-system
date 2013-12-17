@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "_Header";
+}
+<div class="account-box">
+    @Html.Partial("_AccountBox")
+</div>
+<div class="banner-box">
+    <div class="row-fluid">
+        <div class="topmenu-box">
+            <div class="row-fluid top-header">
+                <div class="pull-right item">
+                    <i class="icon-question-sign"></i>&nbsp;&nbsp;<a href="@Url.Content("~/Home/Help")">@Las.Help</a>
+                </div>
+                <div class="pull-right item">
+                    <i class="icon-time"></i>&nbsp;&nbsp;<span id="clock">@DateTime.Now.ToString()</span>
+                </div>
+            </div>
+            <div class="row-fluid top-menu">
+                @Html.Partial("_TopMenu")
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="message-box">
+            <div class="personalmessage">
+                <i class="icon-envelope"></i>&nbsp;Personal Message <span class="badge">10</span>
+            </div>
+            <div class="currentmessage">
+                <marquee scrolldelay="200" id="currentMessage">This is an example message.</marquee>
+            </div>
+        </div>
+    </div>
+</div>

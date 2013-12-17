@@ -1,0 +1,22 @@
+﻿<div>
+    <div ng-if="$index % config.breakNewLine == 0" class="pt-header">
+        <div class="pt-box-title">
+        </div>
+        <div class="pt-box-header">
+            <span class="pt-box-header-text">{{language.memberPt}}</span>
+        </div>
+    </div>
+    <div class="pt">
+        <div class="pt-box-title" id="copy_sport_{{pt.SportId}}_bettype_{{pt.BetTypeId}}">
+            <span class="bettype-name">{{language["bettype_" + pt.BetTypeId]}}</span> <span ng-if="$index % config.breakNewLine == 0 && ptGroup.PositionTakings.length > 1"
+                class="icon-copy" ng-click="positionTakingService.copyPartial(pt, ptGroup, config.breakNewLine)"
+                title="{{$index==0 ? language.soccerHandicapCopyPtTooltip : language.soccerOnexTwoCopyPtTooltip}}">
+            </span>
+        </div>
+        <div class="pt-box">
+            <input class="value-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Value"
+                ng-change="pt.actions.onChangeValue()" />
+            <div class="range">[{{pt.MinRangeOfValue | number:config.decNumber}} - {{pt.MaxRangeOfValue | number:config.decNumber}}]</div>
+        </div>
+    </div>
+</div>

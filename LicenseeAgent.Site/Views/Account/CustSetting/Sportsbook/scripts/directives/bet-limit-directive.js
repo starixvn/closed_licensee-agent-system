@@ -1,0 +1,155 @@
+﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
+/// <reference path="../../../../libs/angular.js" />
+/// <reference path="../fanex.sports-book-setting.js" />
+
+
+if (fanex.sportsbookSetting) {
+
+    fanex.sportsbookSetting.bettingLimitActions =
+    {
+        actions: function (modelData, controller, inputControl, scope) {
+            var formatInputNumber = fanex.sportsbookSetting.betLimitService.formatInputNumber;
+
+            return {
+                isDataChanged: function () {
+                    return formatInputNumber(modelData.MinBet) != modelData.OldMinBet
+                    || formatInputNumber(modelData.MaxBet) != modelData.OldMaxBet
+                    || formatInputNumber(modelData.MaxPerMatch) != modelData.OldMaxPerMatch;
+                },
+                onChangeMinBet: function () {
+                    modelData.actions.validMinBet();
+                },
+                onChangeMaxBet: function () {
+                    modelData.actions.validMaxBet();
+                },
+                onChangeMaxPerMatch: function () {
+                    modelData.actions.validMaxPerMatch();
+                },
+                validMinBet: function () {
+                    var message = "";
+
+                    if (!fanex.sportsbookSetting.betLimitService.regIsDigit(modelData.MinBet)) {
+                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                    }
+                    else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
+                        message = scope.language["bettingLimit_Message_MinBetLessThanOrEqualMaxBet"];
+                    }
+                    else if (formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
+                        message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + modelData.MaxMinBet;
+                    }
+
+                    if (message != "") {
+                        fanex.sportsbookSetting.betLimitService.showInvalidMessage(inputControl[0], message);
+                        return false;
+                    }
+                    else {
+                        fanex.hideHint();
+                        return true;
+                    }
+                },
+                validMaxBet: function () {
+                    var message = "";
+
+                    if (!fanex.sportsbookSetting.betLimitService.regIsDigit(modelData.MaxBet)) {
+                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                    }
+                    else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
+                        message = scope.language["bettingLimit_Message_MaxBetMoreThanOrEqualMinBet"];
+                    }
+                    else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
+                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch"];
+                    }
+                    else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
+                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + modelData.MinMaxBet;
+                    }
+
+                    if (message != "") {
+                        fanex.sportsbookSetting.betLimitService.showInvalidMessage(inputControl[1], message);
+                        return false;
+                    }
+                    else {
+                        fanex.hideHint();
+                        return true;
+                    }
+                },
+                validMaxPerMatch: function () {
+                    var message = "";
+
+                    if (!fanex.sportsbookSetting.betLimitService.regIsDigit(modelData.MaxPerMatch)) {
+                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                    }
+                    else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
+                        message = scope.language["bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet"];
+                    }
+                    else if (formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
+                        message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + modelData.MinMaxPerMatch;
+                    }
+
+                    if (message != "") {
+                        fanex.sportsbookSetting.betLimitService.showInvalidMessage(inputControl[2], message);
+                        return false;
+                    }
+                    else {
+                        fanex.hideHint();
+                        return true;
+                    }
+                },
+                isValid: function () {
+                    return modelData.actions.validMinBet() && modelData.actions.validMaxBet() && modelData.actions.validMaxPerMatch();
+                }
+            };
+        }
+    };
+
+
+    // An agent edit another agent in the simple mode
+    fanex.sportsbookSetting.directive('bettingLimitSimpleMode', function ($parse) {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'fanex.custsetting.betlimitcontroller',
+            scope: {
+                modelData: '='
+            },
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode.html',
+            link: function (scope, element, attrs, controller) {
+                var modelData = scope.modelData;
+                modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
+                modelData.OldMinBet = modelData.MinBet;
+                modelData.OldMaxBet = modelData.MaxBet;
+                modelData.OldMaxPerMatch = modelData.MaxPerMatch;
+                modelData.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
+                modelData.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
+                modelData.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                var inputControl = element.find('.input');
+                modelData.actions = fanex.sportsbookSetting.bettingLimitActions.actions(modelData, controller, inputControl, scope);
+            }
+        }
+    });
+
+    fanex.sportsbookSetting.directive('bettingLimitAdvancedMode', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'fanex.custsetting.betlimitcontroller',
+            scope: {
+                bettingLimitsModel: '=',
+                betSetting : '=',
+                currentIndex: '='
+            },
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode.html',
+            link: function (scope, element, attrs, controller) {
+                var betSetting = scope.betSetting;
+                var inputControl = element.find('.input');
+                betSetting.actions = fanex.sportsbookSetting.bettingLimitActions.actions(betSetting, controller, inputControl, scope);
+                betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
+                betSetting.OldMinBet = betSetting.MinBet;
+                betSetting.OldMaxBet = betSetting.MaxBet;
+                betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+                betSetting.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
+                betSetting.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
+                betSetting.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+            }
+        }
+    });
+}

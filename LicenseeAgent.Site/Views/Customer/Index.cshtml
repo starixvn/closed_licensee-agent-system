@@ -1,0 +1,69 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.Core.Utils
+@model AgentBreadcrumViewModel
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+    if (pageContext.IsLastLevel)
+    {
+        ViewBag.Title = Las.MemberList;
+    }
+    else
+    {
+        ViewBag.Title = Las.AgentList;
+    }
+}
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/customerlist")
+    @Styles.Render("~/css/contexmenu")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm("Index", "Customer", FormMethod.Post, new { id = "ajax-form", @class = "hide" }))
+{
+    @Html.HiddenFor(m => m.AgentId, new { id = "newAgentId" })
+    @Html.HiddenFor(m => m.AgentName)
+    @Html.HiddenFor(m => m.AgentLevel)
+    @Html.HiddenFor(m => m.Breadcrumb)
+}
+@using (Html.BeginForm("GetCustomerList", "Customer", FormMethod.Post,
+    new { @class = "form-inline form-filter ", id = "search-form" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.AgentLevel)
+    <div class="controls-row">
+        @Html.Label("Username", Las.Username)
+        @Html.TextBox("Username", string.Empty, new { @class = "input-small", urlAutoSearch = @Url.Action("CustomerSearchAutoComplete", "Customer"), @autocomplete = "false" })
+    </div>
+    <div class="controls-row">
+        @Html.Label("Status", Las.Status)
+        @Html.DropDownList("Status", ModelSettings.StatusList)
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+}
+@Html.Partial("_Breadcrumb")
+@Html.Partial("_IpInformation")
+<div class="wrapper">
+    <div id="grid" class="freegrid" data-url-change-status=@(pageContext.IsLastLevel ? Url.Action("ChangeMemberStatus", "Customer") : Url.Action("ChangeAgentStatus", "Customer")) data-url-ip="@Url.Action("GetIpInformation", "Customer")" data-is-last-level=@(pageContext.IsLastLevel)>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/customerlist")
+    @Scripts.Render("~/js/contexmenu")
+    @Html.Partial("_Script")
+    @if (pageContext.IsLastLevel)
+    {
+        @Html.Partial("_MemberGrid")
+    }
+    else
+    {
+        @Html.Partial("_AgentGrid")
+    }
+}

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "_AccountBox";
+}
+<div class="media">
+    <img src="@Html.Action("Avatar", "Account")" alt="avatar" class="pull-left">
+    <div class="media-body">
+        <div class="media-heading">
+            @Las.Welcome,
+        </div>
+        <div class="username">
+            <b>@SessionManager.CurrentSession.UserName</b>
+        </div>
+        <div class="dropdown">
+            <a data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
+            <ul class="dropdown-menu">
+                @if (new SessionWrapper(SessionManager.CurrentSession).IsViewChangePassword)
+                {
+                    <li><a id="changePwd" data-href="@Url.Content("~/Account/ChangePassword")" href="#">
+                        <i class="icon-edit"></i>@Las.ChangePassword</a></li>
+                }
+                <li><a href="@Url.Content("~/Account/SignOut")"><i class="icon-off"></i>@Las.LogOut</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

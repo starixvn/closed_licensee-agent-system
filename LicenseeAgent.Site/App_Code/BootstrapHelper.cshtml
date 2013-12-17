@@ -1,0 +1,11 @@
+﻿@helper Menu(string text, string url, string id = null, bool isActive = false)
+    {
+        if (isActive)
+        {
+    <li class="active"><a id="@id" target="frmMain" href="@url">@text</a> </li>
+        }
+        else
+        {
+    <li><a id="@id" target="frmMain" href="@url">@text</a> </li>
+        }
+}

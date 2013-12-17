@@ -1,0 +1,35 @@
+@using LicenseeAgent.Core.Enumerations
+@model TopMenu
+@{
+    ViewBag.Title = Las.LasTitle;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="navbar navbar-fixed-top">
+    <div class="header-box">
+        @Html.Partial("_Header")
+    </div>
+</div>
+<div id="main" class="container">
+    <div class="leftmenu-box">
+        @Html.Partial("_LeftMenu")
+    </div>
+    <div class="main-box">
+        <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
+        </iframe>
+    </div>
+</div>
+<div id="overlay" class="container">
+</div>
+@section css
+{
+    @Styles.Render("~/css/home")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/home")
+    @if (AppSettings.IsInternal)
+    {
+        @Scripts.Render("~/js/home/internal")
+    }
+    @Scripts.Render("~/js/moment")
+}

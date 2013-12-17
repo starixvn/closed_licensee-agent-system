@@ -1,0 +1,69 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="ModelSettings.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Leo.Vo" date="2013.9.30">Created</change>
+// </history>
+
+namespace LicenseeAgent.Core.Configurations
+{
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Resources;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public static class ModelSettings
+    {
+        private static List<SelectListItem> _languages;
+
+        static ModelSettings()
+        {
+            _languages = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "English", Value = "en-US" },
+                new SelectListItem { Text = "繁體中文", Value = "zh-TW" },
+                new SelectListItem { Text = "简体中文", Value = "zh-CN" }
+            };
+        }
+
+        public static List<SelectListItem> Languages
+        {
+            get
+            {
+                return _languages;
+            }
+        }
+
+        public static List<SelectListItem> StatusList
+        {
+            get
+            {
+                var selectItemList = new List<SelectListItem> 
+                {
+                    new SelectListItem 
+                    {
+                        Text = Las.All,
+                        Value = "-1"
+                    },
+                    new SelectListItem 
+                    {
+                        Text = Las.Closed,
+                        Value = ((int)CustomerStatus.Closed).ToString()
+                    },
+                    new SelectListItem
+                    {
+                        Text = Las.Open,
+                        Value = ((int)CustomerStatus.Open).ToString()
+                    }
+                };
+
+                return selectItemList;
+            }
+        }
+    }
+}

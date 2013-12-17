@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LicenseeAgent.CustomerSetting</RootNamespace>
+    <AssemblyName>LicenseeAgent.CustomerSetting</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.62, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Core, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.NAP.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\SportsbookSettingController.cs" />
+    <Compile Include="Core\Constant.cs" />
+    <Compile Include="Core\SettingConfigurations.cs" />
+    <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Agent\AgentGetAgentSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Agent\AgentGetAgentSettingForInsertCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\UpdateCustomerCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Licensee\LicenseeUpdateAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Licensee\LicenseeGetAgentSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Licensee\LicenseeGetAgentSettingForInsertCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Agent\AgentInsertAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Licensee\LicenseeInsertAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Agent\AgentUpdateAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\LogCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\InsertCustomerCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Member\AgentGetMemberSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Member\AgentInsertMemberSettingCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Member\AgentUpdateMemberSettingCriteria.cs" />
+    <Compile Include="Entities\InsertResult.cs" />
+    <Compile Include="Entities\Sportsbook\BettingLimit.cs" />
+    <Compile Include="Entities\Sportsbook\CommissionItem.cs" />
+    <Compile Include="Entities\Sportsbook\CommissionSetting.cs" />
+    <Compile Include="Entities\Sportsbook\CustomerInfo.cs" />
+    <Compile Include="Entities\Sportsbook\FormType.cs" />
+    <Compile Include="Entities\Sportsbook\MemberInfo.cs" />
+    <Compile Include="Entities\Sportsbook\PositionTaking.cs" />
+    <Compile Include="Entities\Sportsbook\PositionTakingGroup.cs" />
+    <Compile Include="Entities\Sportsbook\SettingContext.cs" />
+    <Compile Include="Entities\Sportsbook\SportsbookCustomer.cs" />
+    <Compile Include="Entities\Sportsbook\UpdateDataSportsbookCustomer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\SportsbookSettingRepository.cs" />
+    <Compile Include="Repositories\ISportsbookSettingRepository.cs" />
+    <Compile Include="Services\CustomerSettingServiceBase.cs" />
+    <Compile Include="Services\SportsbookSettingService.cs" />
+    <Compile Include="Services\ISportsbookSettingService.cs" />
+    <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\EditMemberViewModel.cs" />
+    <Compile Include="ViewModels\GetSettingForUpdateViewModel.cs" />
+    <Compile Include="ViewModels\InsertCustomerViewModel.cs" />
+    <Compile Include="ViewModels\EditAgentViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
+      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Name>LicenseeAgent.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>LicenseeAgent.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>LicenseeAgent.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Web\LicenseeAgent.Web.csproj">
+      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
+      <Name>LicenseeAgent.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

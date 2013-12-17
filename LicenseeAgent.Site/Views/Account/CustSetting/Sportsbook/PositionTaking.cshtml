@@ -1,0 +1,64 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+@{
+    Layout = null;
+}
+<div id="positionTakingContainer" ng-controller="sportsbook.positionTakingController"
+    class="pt-setting">
+    <div class="container-box2" ng-show="!settingContext.IsSimpleMode">
+        <div class="instruction">
+            @Las.PositionTaking
+            @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+            {
+                @RazorHelper.SectionInfo("licensee-position-taking-info-button-adv")
+            }
+            else if (Model.TargetRoleId == (int)Role.Agent)
+            {
+                @RazorHelper.SectionInfo("agent-position-taking-info-button-adv")
+            }
+            else
+            {
+                @RazorHelper.SectionInfo("member-position-taking-info-button-adv")
+            }
+        </div>
+        <div ng-repeat="ptGroup in ptModel.ptGroups" ng-show="!settingContext.IsSimpleMode">
+            <div class="pt-group-conatiner" ng-style="ptGroup.WidthStyle">
+                <div ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
+                    <span ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
+                        {{ptGroup.Name}}</span> <span class="icon-copy" ng-if="$index == 0 || $index == 2"
+                            ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
+                            title="{{$index==0 ? language.soccerDeadballCopyPtTooltip : language.basketBallCopyPtTooltip}}">
+                        </span>
+                </div>
+                <div ng-repeat="pt in ptGroup.PositionTakings" class="pt-group" ng-show="ptGroup.Expand"
+                    ng-switch="settingContext.TargetRoleId">
+                    <licensee-edit-agent-one-pt-advanced-mode ng-switch-when="3"></licensee-edit-agent-one-pt-advanced-mode>
+                    <agent-edit-agent-pt-advanced-mode ng-switch-when="2"></agent-edit-agent-pt-advanced-mode>
+                    <agent-edit-member-pt-advanced-mode ng-switch-when="1"></agent-edit-member-pt-advanced-mode>
+                </div>
+            </div>
+            <div class="clearfix height-expand" ng-hide="$last">
+            </div>
+        </div>
+    </div>
+    <div class="pt-setting-simple-mode" ng-switch="settingContext.TargetRoleId" ng-show="settingContext.IsSimpleMode">
+        <div class="instruction">
+            @Las.PositionTakingSimpleModeHeader
+            @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+            {
+                @RazorHelper.SectionInfo("licensee-position-taking-info-button")
+            }
+            else if (Model.TargetRoleId == (int)Role.Agent)
+            {
+                @RazorHelper.SectionInfo("agent-position-taking-info-button")
+            }
+            else
+            {
+                @RazorHelper.SectionInfo("member-position-taking-info-button")
+            }
+        </div>
+        <licensee-edit-agent-one-pt-simple-mode ng-switch-when="3" pt-simple="ptModel.ptFirstData"></licensee-edit-agent-one-pt-simple-mode>
+        <agent-edit-agent-pt-simple-mode ng-switch-when="2" pt-simple="ptModel.ptFirstData"></agent-edit-agent-pt-simple-mode>
+        <agent-edit-member-pt-simple-mode ng-switch-when="1" pt-simple="ptModel.ptFirstData"></agent-edit-member-pt-simple-mode>
+    </div>
+</div>

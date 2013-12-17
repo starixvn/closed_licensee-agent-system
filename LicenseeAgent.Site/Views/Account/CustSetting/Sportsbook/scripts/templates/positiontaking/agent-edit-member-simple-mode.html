@@ -1,0 +1,15 @@
+﻿<div>
+    <div class="pt-header-simple">
+        <div class="pt-box-header-simple">
+            <span class="pt-box-header-text-simple">{{language.memberPt}}</span>
+        </div>
+    </div>
+    <div class="pt-simple">
+        <div class="pt-box-simple">
+            <input class="value-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Value"
+                ng-change="ptSimple.actions.onChangeValue()" />
+            <div class="range">[{{ptSimple.MinRangeOfValue | number:config.decNumber}} - {{ptSimple.MaxRangeOfValue
+                | number:config.decNumber}}]</div>
+        </div>
+    </div>
+</div>

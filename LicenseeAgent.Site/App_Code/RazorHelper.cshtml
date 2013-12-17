@@ -1,0 +1,28 @@
+﻿@using LicenseeAgent.Core.Configurations
+@using LicenseeAgent.Resources
+@functions
+{
+}
+@helper LanguageDropDown(string selectedLanguage = null)
+    {
+        var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
+        if (language == null)
+        {
+            language = ModelSettings.Languages.First();
+        }
+    <a href="javascript:void(0);"><span class="top-language @string.Format("flag-{0}", language.Value)">
+    </span>@language.Text
+    </a>
+    <span class="icon-arrow"></span>
+    <ul class="language-box">
+        @foreach (var item in ModelSettings.Languages)
+        {
+            <li><a href="javascript:void(0);" data-language="@item.Value"><i class="@string.Format("flag-{0}", item.Value)">
+            </i>@item.Text</a></li>
+        }
+    </ul>
+}
+@helper SectionInfo(string id)
+    {
+    <span class="section-info" title="@Las.ClickToViewInstructions" id="@id"></span>
+}

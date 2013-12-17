@@ -1,0 +1,167 @@
+/*.freegrid
+{
+    width: 1000px;
+}*/
+
+.wrapper 
+{
+    width: 1000px;
+}
+
+.combobox-container
+{
+    input[type="text"]
+    {
+        background-color: #ffffff;
+        border: 1px solid #E8E8E8;
+        width: 80px;
+    }
+            
+    .dropdown-menu
+    {
+        min-width: 115px;
+    }
+}
+        
+.downline 
+{
+    border: 1px solid #dbdcde;
+    border-radius: 3px;
+    width: 25px;
+    height: 15px;
+    color: #5a9edb;
+    display: block;
+    
+    a 
+    {
+        display: block;
+    }
+}
+
+.downline:hover 
+{
+    border: 1px solid #5a9edb;
+    border-radius: 3px;
+    background-color:#5a9edb;
+    color:#fff;
+}
+
+.box-top
+{
+    width: 40px;
+    height: 20px;
+}
+
+.cell-status {
+    cursor:pointer;
+}
+
+[class^="icon-"], [class*=" icon-"]
+{
+    background-image: url("images/icons.png");
+    background-repeat:no-repeat;
+    cursor:pointer;
+}
+
+.cust-status
+{
+    color:#fff;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform:uppercase;
+    line-height:17px;
+    
+    p {
+        font-size:9px;
+        padding-top:0;
+        padding-bottom:0;
+    }
+}
+
+.cust-status-none 
+{
+    cursor: default;
+}
+/****************optimize switch-change bootstrap********************************/
+
+.has-switch
+{
+    min-width: 160px;
+    
+    div 
+    {
+        width: 140%;
+    }
+    
+    label 
+    {
+         width: 2%;
+         background:none;
+    }
+    
+    span 
+    {
+        width: 33%;
+        cursor: default;
+    }
+}
+
+.has-switch > div.switch-on
+{
+    background: none;
+    border: none;
+}
+
+.has-switch > div.switch-off
+{
+    background: none;
+    border: none;
+}
+/*************************************************************************/
+.instruction-content 
+{   
+    display:none;
+    table 
+    {
+        width: 400px;
+        
+        .col-left
+        {
+            width: 100px;
+        }
+        .col-right
+        {
+            font-weight: bold;
+        }          
+    }
+}
+
+.infos 
+{
+    cursor:pointer;
+    color:#5a9edb;
+}
+
+#dialog-confirm
+{
+    display:none;
+}
+/*********optimize contex menu********************************************/
+.context-menu-list
+{
+    li.context-menu-item 
+    {
+        width: 100%;
+        padding-left: 5px;
+        
+        .top-content 
+        {
+            padding-left: 5px;
+        }
+        
+        .action-content >i
+        {
+            margin: 5px;  
+        }
+    }
+}

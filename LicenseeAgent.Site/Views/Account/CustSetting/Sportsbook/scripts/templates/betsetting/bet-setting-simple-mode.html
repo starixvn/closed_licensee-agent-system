@@ -1,0 +1,20 @@
+﻿<div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="modelData.MinBet" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMinBet();"}' />
+            <span>&gt;= {{modelData.MaxMinBet | number : 0}}</span></div>
+    </div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="modelData.MaxBet" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMaxBet();"}' />
+            <span>&lt;= {{modelData.MinMaxBet | number : 0}}</span></div>
+    </div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="modelData.MaxPerMatch" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMaxPerMatch();"}' />
+            <span>&lt;= {{modelData.MinMaxPerMatch | number : 0}}</span></div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="MsgId.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Leo.Vo" date="2013.11.7">Created</change>
+// </history>
+
+namespace LicenseeAgent.Core.Enumerations
+{
+    using System.Diagnostics.CodeAnalysis;
+
+    /// <summary>
+    /// Update later.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
+    public enum MsgId : int
+    {
+        /// <summary>
+        /// Min Bet should be less than or equal to Max Bet({@BetLimitSportType})
+        /// </summary>
+        Msg_1003 = 1003,
+
+        /// <summary>
+        /// Min Bet must be less than or equal to Max Per Match({@BetLimitSportType}).
+        /// </summary>
+        Msg_1004 = 1004,
+
+        /// <summary>
+        /// Max Bet should be less than or equal to Max Per Match({@BetLimitSportType})
+        /// </summary>
+        Msg_1005 = 1005,
+
+        /// <summary>
+        /// Min Bet must be equal to or greater than Parent Agent Min Bet({@BetLimitSportType})
+        /// </summary>
+        Msg_1006 = 1006,
+
+        /// <summary>
+        /// Max Bet must be equal to or less than Parent Agent Max Bet({@BetLimitSportType})
+        /// </summary>
+        Msg_1007 = 1007,
+
+        /// <summary>
+        /// Max Per Match must be equal to or less than Parent Agent Max Per Match({@BetLimitSportType})
+        /// </summary>
+        Msg_1008 = 1008,
+
+        /// <summary>
+        /// % PT must be equal or greater than zero ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1010 = 1010,
+
+        /// <summary>
+        /// % Min given PT must be equal to or less than % Max given PT ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1011 = 1011,
+
+        /// <summary>
+        /// % PT must be equal or less than Max PT of Licensee( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1012 = 1012,
+
+        /// <summary>
+        /// %Min is Invalid Value, You must in {@MinPTOutput} and {@MaxPTOutput}  ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1013 = 1013,
+
+        /// <summary>
+        /// %Max is Invalid Value, You must in  {@MinPTOutput} and {@MaxPTOutput}  ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1014 = 1014,
+
+        /// <summary>
+        ///   %Preset is Invalid Value, You must in  {@MinPTOutput} and {@MaxPTOutput}  ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1015 = 1015,
+
+        /// <summary>
+        /// Given credit must be between 0 to {@MaxCreditOutput}.
+        /// </summary>
+        Msg_1016 = 1016,
+
+        /// <summary>
+        /// %PT is Invalid Value, You must in {@MinPTOutput} and {@MaxPTOutput}  ( {@PTSportType} - {@PTBetType}).
+        /// </summary>
+        Msg_1021 = 1021
+    }
+}

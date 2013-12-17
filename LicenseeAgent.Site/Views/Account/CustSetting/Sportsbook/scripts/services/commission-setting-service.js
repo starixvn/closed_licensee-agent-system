@@ -1,0 +1,197 @@
+﻿/// <reference path="../../../../libs/angular.js" />
+/// <reference path="../../../../libs/jquery-1.10.2.js" />
+/// <reference path="../fanex.sports-book-setting.js" />
+
+if (fanex.sportsbookSetting) {
+    //// Helper
+
+    fanex.sportsbookSetting.commissionSettingService = {
+        config: {
+            maxInput: 5
+        },
+        showInvalidMessage: function (element, message) {
+            fanex.showHint(element, message);
+        },
+        isValidData: function (commissionSettings) {
+            for (var i = 0; i < commissionSettings.length; i++) {
+                if (!commissionSettings[i].actions.isValid()) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+        getCommissionSettingViewModel: function (commissionSettingModel, language, targetRoleId) {
+            if (targetRoleId != 1) {
+                var commissionSettingViewModel = [];
+
+                // GroupA
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[0].DiscountA,
+                    oldDiscount: commissionSettingModel[0].DiscountA,
+                    maxDiscount: commissionSettingModel[0].Upline.DiscountA,
+                    name: language['commissionSetting_GroupA']
+                });
+
+                // GroupC
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[0].DiscountC,
+                    oldDiscount: commissionSettingModel[0].DiscountC,
+                    maxDiscount: commissionSettingModel[0].Upline.DiscountC,
+                    name: language['commissionSetting_GroupC']
+                });
+
+                // 1x2 Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[1].DiscountA,
+                    oldDiscount: commissionSettingModel[1].DiscountA,
+                    maxDiscount: commissionSettingModel[1].Upline.DiscountA,
+                    name: language['commissionSetting_1x2Comm']
+                });
+
+                // GroupB
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[0].DiscountB,
+                    oldDiscount: commissionSettingModel[0].DiscountB,
+                    maxDiscount: commissionSettingModel[0].Upline.DiscountB,
+                    name: language['commissionSetting_GroupB']
+                });
+
+                // GroupD
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[0].DiscountD,
+                    oldDiscount: commissionSettingModel[0].DiscountD,
+                    maxDiscount: commissionSettingModel[0].Upline.DiscountD,
+                    name: language['commissionSetting_GroupD']
+                });
+
+                // Others Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[2].DiscountA,
+                    oldDiscount: commissionSettingModel[2].DiscountA,
+                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
+                    name: language['commissionSetting_OthersComm']
+                });
+
+                return commissionSettingViewModel;
+            }
+            else {
+                // Insert
+                if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    var commissionSettingViewModel = {
+                        selectedGroup: 'A',
+                        group: [{ name: 'A', agentCommission: commissionSettingModel[0].Upline.DiscountA, memberCommission: commissionSettingModel[0].DiscountA },
+                            { name: 'B', agentCommission: commissionSettingModel[0].Upline.DiscountB, memberCommission: commissionSettingModel[0].DiscountB },
+                            { name: 'C', agentCommission: commissionSettingModel[0].Upline.DiscountC, memberCommission: commissionSettingModel[0].DiscountC },
+                            { name: 'D', agentCommission: commissionSettingModel[0].Upline.DiscountD, memberCommission: commissionSettingModel[0].DiscountD}],
+                        // GroupA, GroupB, GroupC, GroupD
+                        line1: { name: language['commissionSetting_HDP_OU_OE_Comm'], agentCommission: commissionSettingModel[0].Upline.DiscountA, memberCommission: commissionSettingModel[0].DiscountA },
+                        // 1x2 Comm
+                        line2: { name: language['commissionSetting_1x2Comm'], agentCommission: commissionSettingModel[1].Upline.DiscountA, memberCommission: commissionSettingModel[1].DiscountA },
+                        // Others Comm
+                        line3: { name: language['commissionSetting_OthersComm'], agentCommission: commissionSettingModel[2].Upline.DiscountA, memberCommission: commissionSettingModel[2].DiscountA }
+                    };
+
+                    return commissionSettingViewModel;
+                }
+                // Edit
+                else {
+                    var commissionSettingViewModel = {
+                        selectedGroup: commissionSetting.UserGroup,
+                        group: [{ name: 'A', agentCommission: commissionSettingModel[0].Upline.DiscountA, memberCommission: (commissionSetting.UserGroup == 'A' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountA) },
+                            { name: 'B', agentCommission: commissionSettingModel[0].Upline.DiscountB, memberCommission: (commissionSetting.UserGroup == 'B' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountB) },
+                            { name: 'C', agentCommission: commissionSettingModel[0].Upline.DiscountC, memberCommission: (commissionSetting.UserGroup == 'C' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountC) },
+                            { name: 'D', agentCommission: commissionSettingModel[0].Upline.DiscountD, memberCommission: (commissionSetting.UserGroup == 'D' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountD)}],
+                        // GroupA, GroupB, GroupC, GroupD
+                        line1: { name: language['commissionSetting_HDP_OU_OE_Comm'], agentCommission: 0, memberCommission: 0 },
+                        // 1x2 Comm
+                        line2: { name: language['commissionSetting_1x2Comm'], agentCommission: commissionSettingModel[1].Upline.DiscountA, memberCommission: commissionSettingModel[1].Discount },
+                        // Others Comm
+                        line3: { name: language['commissionSetting_OthersComm'], agentCommission: commissionSettingModel[2].Upline.DiscountA, memberCommission: commissionSettingModel[2].Discount }
+                    };
+
+                    return this.changeViewModel(commissionSettingViewModel);
+                }
+            }
+        },
+        getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+            if (targetRoleId != 1 && settingContext.FormId != fanex.sportsbookSetting.FormType.Add && !this.isDataChanged(commissionSettingViewModel))
+                return null;
+
+            if (targetRoleId != 1) {
+                // GroupA
+                commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;
+                // GroupB
+                commissionSettingModel[0].DiscountB = commissionSettingViewModel[3].discount;
+                // GroupC
+                commissionSettingModel[0].DiscountC = commissionSettingViewModel[1].discount;
+                // GroupD
+                commissionSettingModel[0].DiscountD = commissionSettingViewModel[4].discount;
+                // 1x2 Comm
+                commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
+                // Others Comm
+                commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+            }
+            else {
+                commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
+                // 1x2 Comm
+                commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
+                // Others Comm
+                commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
+            }
+
+            return commissionSettingModel;
+        },
+        changeViewModel: function (commissionSettingViewModel) {
+            if (commissionSettingViewModel.selectedGroup == 'A') {
+                commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[0].agentCommission;
+                commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[0].memberCommission;
+            }
+            else if (commissionSettingViewModel.selectedGroup == 'B') {
+                commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[1].agentCommission;
+                commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[1].memberCommission;
+            }
+            else if (commissionSettingViewModel.selectedGroup == 'C') {
+                commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[2].agentCommission;
+                commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[2].memberCommission;
+            }
+            else if (commissionSettingViewModel.selectedGroup == 'D') {
+                commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[3].agentCommission;
+                commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[3].memberCommission;
+            }
+
+            return commissionSettingViewModel;
+        },
+        isDataChanged: function (commissionSettingViewModel) {
+            for (var i = 0; i < commissionSettingViewModel.length; i++) {
+                if (commissionSettingViewModel[i].discount != commissionSettingViewModel[i].oldDiscount)
+                    return true;
+            }
+
+            return false;
+        },
+        arrangeCommissionSettingModel: function (commissionSettingModel) {
+            var result = [];
+
+            for (var i = 0; i < commissionSettingModel.length; i++) {
+                if (commissionSettingModel[i].BetTypeId == 1) {
+                    result[0] = commissionSettingModel[i];
+                }
+                else if (commissionSettingModel[i].BetTypeId == 5) {
+                    result[1] = commissionSettingModel[i];
+                }
+                else if (commissionSettingModel[i].BetTypeId == 4) {
+                    result[2] = commissionSettingModel[i];
+                }
+            }
+
+            return result;
+        }
+    };
+}

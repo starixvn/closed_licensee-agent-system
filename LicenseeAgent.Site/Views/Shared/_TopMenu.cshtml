@@ -1,0 +1,21 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@model TopMenu
+@{
+    var sessionWrapper = new SessionWrapper(SessionManager.CurrentSession);
+}
+@if (SessionManager.CurrentSession.AgentInfo != null)
+{
+    <ul class="nav nav-pills">
+        @BootstrapHelper.Menu(Las.Home, Url.Action("Index", "Account"), "menuHome", Model == TopMenu.Home)
+        @if (sessionWrapper.IsViewChangePassword)
+        {
+            @BootstrapHelper.Menu(Las.Transfer, Url.Action("Transfer", "Account"), "menuTransfer", Model == TopMenu.Transfer)
+        }
+        @BootstrapHelper.Menu(Las.Security, Url.Action("ChangePassword", "Account"), "menuSecurity", Model == TopMenu.Security)
+        @BootstrapHelper.Menu(Las.ViewLog, Url.Action("Index", "ViewLog"), "menuViewlog", Model == TopMenu.ViewLog)
+    </ul>
+}
+@if (sessionWrapper.IsViewSelectMenu)
+{
+    @Html.Action("SelectMenu", "Internal")
+}

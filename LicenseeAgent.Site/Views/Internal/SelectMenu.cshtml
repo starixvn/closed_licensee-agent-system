@@ -1,0 +1,37 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@{
+    Layout = null;
+}
+@model LicenseeAgent.Account.ViewModels.LicenseeViewModel
+<div class="after-box">
+    <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
+        <a>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</a>
+        <span class="icon-arrow"></span>
+        <ul class="drop-box">
+            @foreach (var licensee in Model.Licensees)
+            {
+                <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
+            }
+        </ul>
+    </div>
+    <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
+        <a>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseCurrency : Model.CurrencyName)</a>
+        <span class="icon-arrow"></span>
+        @if (Model.Currencies != null)
+        {
+            <ul class="drop-box">
+                @foreach (var currency in Model.Currencies)
+                {
+                    <li><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="pull-left item">
+        @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
+    </div>
+    <div class="pull-left item">
+        <a id="submit" data-href="~/Internal/LoginAsUser" href="#">Submit</a>
+    </div>
+</div>
+@Html.Hidden("defaultCurrency", Las.ChooseCurrency)

@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDeniedMsg" xml:space="preserve">
+    <value>Sorry, You don't have permission to access this page.</value>
+  </data>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>Account Info</value>
+  </data>
+  <data name="AccountStatus" xml:space="preserve">
+    <value>Account status</value>
+    <comment>not</comment>
+  </data>
+  <data name="AccountWasStopped" xml:space="preserve">
+    <value>Your account was stopped!</value>
+    <comment>not</comment>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AdvancedMode" xml:space="preserve">
+    <value>Advanced Mode</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>Agent List</value>
+  </data>
+  <data name="AlertKickoutMessage" xml:space="preserve">
+    <value>... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you, please contact your upline!!!</value>
+  </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
+  <data name="BetSettingInstructions" xml:space="preserve">
+    <value>Bet Setting Instructions</value>
+    <comment>not</comment>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha</value>
+    <comment>not</comment>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="ChooseCurrency" xml:space="preserve">
+    <value>Choose currency</value>
+    <comment>not</comment>
+  </data>
+  <data name="ChooseLicensee" xml:space="preserve">
+    <value>Choose licensee</value>
+    <comment>not</comment>
+  </data>
+  <data name="ClickToViewInstructions" xml:space="preserve">
+    <value>Click to view instructions</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="CommissionSettingInstructions" xml:space="preserve">
+    <value>Commission Setting Instructions</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+    <comment>not</comment>
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Customer Information</value>
+    <comment>not</comment>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>General Information</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HOUL" xml:space="preserve">
+    <value>Handicap/Over Under/Live</value>
+  </data>
+  <data name="HttpError_403" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="HttpError_404" xml:space="preserve">
+    <value>Page not found, please check the address</value>
+  </data>
+  <data name="HttpError_Default" xml:space="preserve">
+    <value>Oops... you are here because of a system error, please notify the administrators</value>
+  </data>
+  <data name="IncorrectCaptchaMsg" xml:space="preserve">
+    <value>You have entered an incorrect answer for CAPTCHA.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="MaxCredit" xml:space="preserve">
+    <value>Max Credit</value>
+    <comment>not</comment>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobile Phone</value>
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>Money Line</value>
+  </data>
+  <data name="NewAgent" xml:space="preserve">
+    <value>New Agent</value>
+  </data>
+  <data name="NewMember" xml:space="preserve">
+    <value>New Member</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordHint" xml:space="preserve">
+    <value>&lt;span class='prewrap'&gt;Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>Score Map</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="PositionTakingSettingInstructions" xml:space="preserve">
+    <value>Position Taking Setting Instructions</value>
+    <comment>not</comment>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Simple Mode</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>Total Bets</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
+    <value>Your session has timed out or your request is not authorized</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Updated successfully!</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ViewLog" xml:space="preserve">
+    <value>View Log</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>Win Loss</value>
+  </data>
+  <data name="InsertCustomer" xml:space="preserve">
+    <value>Insert Customer</value>
+    <comment>not</comment>
+  </data>
+  <data name="LasTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordAlert" xml:space="preserve">
+    <value>Password Alert</value>
+    <comment>not</comment>
+  </data>
+  <data name="SimpleModeNote" xml:space="preserve">
+    <value>※Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.</value>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>Add new agent</value>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>Add new member</value>
+  </data>
+  <data name="MixSportsParlay" xml:space="preserve">
+    <value>MixSportsParlay</value>
+    <comment>not</comment>
+  </data>
+  <data name="AlertAdminLicenseeChanged" xml:space="preserve">
+    <value>The licensee was changed by admin, this session must be closed.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PositionTakingSimpleModeHeader" xml:space="preserve">
+    <value>Position Taking (Soccer Dead ball Handicap)</value>
+    <comment>not</comment>
+  </data>
+  <data name="OtherSports" xml:space="preserve">
+    <value>Other Sports</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Downline" xml:space="preserve">
+    <value>Downline</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="LoginIp" xml:space="preserve">
+    <value>Login IP</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>Member List</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="ChangeStatusAgent" xml:space="preserve">
+    <value>Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.</value>
+    <comment>not</comment>
+  </data>
+  <data name="ChangeStatusMember" xml:space="preserve">
+    <value>Are you sure you want to change Closed status for this member?</value>
+    <comment>not</comment>
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Change status</value>
+    <comment>not</comment>
+  </data>
+  <data name="ChangeCloseToOpenAgent" xml:space="preserve">
+    <value>Are you sure you want to change Open status for this agent?</value>
+    <comment>not</comment>
+  </data>
+  <data name="IpInformation" xml:space="preserve">
+    <value>Ip Information</value>
+    <comment>not</comment>
+  </data>
+  <data name="AddDownline" xml:space="preserve">
+    <value>Add Downline</value>
+    <comment>not</comment>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+  <data name="EditInfo" xml:space="preserve">
+    <value>Edit Info</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="SBBetSetting" xml:space="preserve">
+    <value>SB Bet Setting</value>
+    <comment>not</comment>
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Sportsbook</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
+  </data>
+  <data name="ChangeCloseToOpenMember" xml:space="preserve">
+    <value>Are you sure you want to change Open status for this member?</value>
+    <comment>not</comment>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="EditSportsbookAgent" xml:space="preserve">
+    <value>Edit Sportsbook Agent</value>
+  </data>
+  <data name="EditSportsbookMember" xml:space="preserve">
+    <value>Edit Sportsbook Member</value>
+  </data>
+  <data name="CaptchaLength" xml:space="preserve">
+    <value>Captcha must be 6 characters.</value>
+    <comment>not</comment>
+  </data>
+  <data name="CaptchaRequired" xml:space="preserve">
+    <value>You must enter validation code.</value>
+  </data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve">
+    <value>Please enter confirm password.</value>
+  </data>
+  <data name="CurrencyRequired" xml:space="preserve">
+    <value>Please select currency.</value>
+  </data>
+  <data name="CurrentPasswordRequired" xml:space="preserve">
+    <value>Please enter current password.</value>
+  </data>
+  <data name="HtmlDisallowed" xml:space="preserve">
+    <value>The content does not allow HTML.</value>
+  </data>
+  <data name="LanguageRequired" xml:space="preserve">
+    <value>Please select language.</value>
+  </data>
+  <data name="LicenseeRequired" xml:space="preserve">
+    <value>Please select licensee.</value>
+  </data>
+  <data name="NewPasswordRequired" xml:space="preserve">
+    <value>Please enter new password.</value>
+    <comment>not</comment>
+  </data>
+  <data name="NoLicenseeDomainFound" xml:space="preserve">
+    <value>No licensee belongs to domain {0}.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordExpired" xml:space="preserve">
+    <value>Your password has expired on {0}. You must change your password now.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordFirstUse" xml:space="preserve">
+    <value>This is your first login. You must change your password before continuing.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordMustNotSame" xml:space="preserve">
+    <value>New password must be different from old password.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>Your password and confirmation password do not match.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Please enter your password.</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordRuleInstruction" xml:space="preserve">
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)</value>
+    <comment>not</comment>
+  </data>
+  <data name="PasswordWillExpired" xml:space="preserve">
+    <value>Your password will expire on {0}. Do you want to change it now?</value>
+    <comment>not</comment>
+  </data>
+  <data name="UsernameMinimumLength" xml:space="preserve">
+    <value>Username must be at least 6 characters.</value>
+    <comment>not</comment>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Please enter your username.</value>
+    <comment>not</comment>
+  </data>
+</root>

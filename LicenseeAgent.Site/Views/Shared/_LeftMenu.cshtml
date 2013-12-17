@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "_Menu";
+}
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#MainMenu" id="tabMainMenu" data-toggle="tab">@Las.MainMenu</a></li>
+    <li><a href="#AccountInfo" id="tabAccInfo" data-toggle="tab">@Las.AccountInfo</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active in" id="MainMenu">
+        <ul class="nav nav-list">
+            <li><a class="tree-toggler nav-header">@Las.TotalBets
+            </a>
+                <ul class="nav nav-list tree" style="display: none">
+                    @BootstrapHelper.Menu(Las.HOUL, Url.Action("Example", "Home"))
+                    @BootstrapHelper.Menu(Las.MoneyLine, Url.Action("Index", "Account"))
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li><a class="tree-toggler nav-header">@Las.Forecast</a>
+                <ul class="nav nav-list tree" style="display: none">
+                    @BootstrapHelper.Menu(Las.HOUL, Url.Action("ChangePassword", "Account"))
+                    @BootstrapHelper.Menu(Las.ScoreMap, Url.Action("ChangePassword", "Account"))
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li><a class="tree-toggler nav-header">@Las.Reports</a>
+                <ul class="nav nav-list tree" style="display: none">
+                    @BootstrapHelper.Menu(Las.WinLoss, Url.Action("Index", "Account"))
+                    @BootstrapHelper.Menu(Las.Outstanding, Url.Action("Index", "Account"))
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li><a class="tree-toggler nav-header">@Las.CustomerInformation</a>
+                <ul class="nav nav-list tree" style="display: none">
+                    @if (SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+                    {
+                        @BootstrapHelper.Menu(Las.NewMember, Url.Action("InsertCustomer", "SportsbookSetting"))
+                        @BootstrapHelper.Menu(Las.MemberList, Url.Action("Index", "Customer"))
+                    }
+                    else
+                    {
+                        @BootstrapHelper.Menu(Las.NewAgent, Url.Action("InsertCustomer", "SportsbookSetting"))
+                        @BootstrapHelper.Menu(Las.AgentList, Url.Action("Index", "Customer"))
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+    @Html.Partial("_AccountInfo")
+</div>

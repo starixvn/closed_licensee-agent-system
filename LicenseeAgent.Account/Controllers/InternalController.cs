@@ -1,0 +1,425 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="InternalController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Lewis" date="2013.5.2">Created</change>
+//   <change who="Anders.Le" date="2013.6.12">Remove hardcode when checking captcha</change>
+//   <change who="Anders.Le" date="2013.6.27">Change the implementation of random string</change>
+// </history>
+
+namespace LicenseeAgent.Account
+{
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Entities;
+    using LicenseeAgent.Account.Services;
+    using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Filters;
+
+    /// <summary>
+    /// Internal Login Controller.
+    /// </summary>
+    [AppAuthorize(IsInternal = true)]
+    public class InternalController : BaseController
+    {
+        private readonly IAccountService _accountService;
+        private readonly ICurrencyService _currencyService;
+
+        public InternalController(IAccountService accountService, ICurrencyService currencyService)
+        {
+            _accountService = accountService;
+            _currencyService = currencyService;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            return this.RedirectToAction("SignIn");
+        }
+
+        /// <summary>
+        /// Signs in by IT/CSD.
+        /// </summary>
+        /// <param name="language">The selected language.</param>
+        /// <returns>Returns MVC View.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SignIn(string language)
+        {
+            var model = new AdminSignInViewModel
+            {
+                Language = Language
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// SignIn Action.
+        /// </summary>
+        /// <param name="model">The MVC model.</param>
+        /// <returns>Returns MVC View.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn(AdminSignInViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var domainName = Request.Url.Host;
+                if (AuthenticateUser(model, domainName))
+                {
+                    return Redirect(FormsAuthentication.DefaultUrl);
+                }
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Checks the user is valid before make a internal login.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON.</returns>
+        [HttpPost]
+        [SelectMenuActionFilter]
+        public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelJsonResult();
+            }
+
+            var criteria = new InternalLoginAsUserCriteria
+            {
+                LicenseeId = model.LicenseeId,
+                CurrencyId = model.CurrencyId,
+                UserName = model.UserName
+            };
+
+            _accountService.InternalLoginAsUser(criteria);
+            if (criteria.MsgId == 0)
+            {
+                var adminInternalLoginInfo = new AdminInternalLoginInfo
+                {
+                    LicenseeId = criteria.LicenseeId,
+                    LicenseeName = criteria.LicenseeName,
+                    CurrencyId = criteria.CurrencyId,
+                    CurrencyName = criteria.CurrencyName,
+                    UserName = model.UserName,
+                    Language = CurrentSession.Language,
+                    AdminId = CurrentSession.AdminInfo.UserId,
+                    OnAdminId = CurrentSession.OnUserId,
+                };
+
+                var agentInfo = criteria.CreateAgent();
+                if (agentInfo.IsLevel0)
+                {
+                    return AdminLoginAsAgent0(adminInternalLoginInfo, agentInfo);
+                }
+                else
+                {
+                    return AdminLoginAsAgent(adminInternalLoginInfo);
+                }
+            }
+
+            return JsonResult(criteria.MsgId);
+        }
+
+        /// <summary>
+        /// Admins the login as agent level 0.
+        /// </summary>
+        /// <param name="adminInternalLoginInfo">The admin internal login information.</param>
+        /// <param name="agentInfo">The agent information.</param>
+        /// <returns>Returns JSON result.</returns>
+        [NonAction]
+        public JsonResult AdminLoginAsAgent0(AdminInternalLoginInfo adminInternalLoginInfo, AgentInfo agentInfo)
+        {
+            // check in selected licensee
+            var criteria = new AdminCheckInLicenseeCriteria
+            {
+                OnAdminId = adminInternalLoginInfo.OnAdminId,
+                LicenseeId = adminInternalLoginInfo.LicenseeId
+            };
+
+            _accountService.AdminCheckInLicensee(criteria);
+            if (criteria.MsgId == 0)
+            {
+                CurrentSession.AgentInfo = agentInfo;
+                return Json(
+                    new
+                    {
+                        MsgId = 0
+                    });
+            }
+
+            return JsonResult(criteria.MsgId);
+        }
+
+        /// <summary>
+        /// Logins as agent level k > 0.
+        /// </summary>
+        /// <param name="adminInternalLoginInfo">The internal login information.</param>
+        /// <returns>
+        /// Returns JSON result.
+        /// </returns>
+        [NonAction]
+        public JsonResult AdminLoginAsAgent(AdminInternalLoginInfo adminInternalLoginInfo)
+        {
+            var reloadAdminSession = true;
+            if (CurrentSession.AgentInfo != null &&
+                CurrentSession.AgentInfo.LicenseeId != adminInternalLoginInfo.LicenseeId &&
+                CurrentSession.AgentInfo.CurrencyId != adminInternalLoginInfo.CurrencyId)
+            {
+                reloadAdminSession = false;
+            }
+
+            if (reloadAdminSession)
+            {
+                var criteria = new InternalLoginAsUserCriteria
+                {
+                    LicenseeId = adminInternalLoginInfo.LicenseeId,
+                    CurrencyId = adminInternalLoginInfo.CurrencyId
+                };
+                _accountService.InternalLoginAsUser(criteria);
+                if (criteria.MsgId == 0)
+                {
+                    var agentInfo = criteria.CreateAgent();
+
+                    // Recheck in new agent level 0
+                    AdminLoginAsAgent0(adminInternalLoginInfo, agentInfo);
+                }
+                else
+                {
+                    return JsonResult(criteria.MsgId);
+                }
+            }
+
+            var authKey = adminInternalLoginInfo.Save();
+            var ticket = new FormsAuthenticationTicket(
+                1,
+                CurrentSession.AdminInfo.UserName,
+                DateTime.Now,
+                DateTime.Now.AddSeconds(10),
+                false,
+                authKey);
+            var authTicket = FormsAuthentication.Encrypt(ticket);
+            var directUrl = string.Format("{0}/?authTicket={1}", Request.Url.AbsoluteUri, authTicket);
+            return Json(
+                new
+                {
+                    MsgId = 0,
+                    DirectUrl = directUrl
+                });
+        }
+
+        /// <summary>
+        /// Update user role.
+        /// </summary>
+        /// <param name="authTicket">The authentication ticket.</param>
+        /// <returns>
+        /// JSON null when update user role.
+        /// </returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult LoginAsUser(string authTicket)
+        {
+            if (string.IsNullOrEmpty(authTicket))
+            {
+                return Content("Ticket is not found");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(authTicket);
+            if (ticket.Expired)
+            {
+                return Content("Ticket is expired");
+            }
+
+            var adminInternalLoginInfo = AdminInternalLoginInfo.GetInfo(ticket.UserData);
+            if (adminInternalLoginInfo == null)
+            {
+                return Content("Data is invalid or it was used");
+            }
+
+            var criteria = new InternalLoginAsUserCriteria
+            {
+                LicenseeId = adminInternalLoginInfo.LicenseeId,
+                CurrencyId = adminInternalLoginInfo.CurrencyId,
+                UserName = adminInternalLoginInfo.UserName
+            };
+            _accountService.InternalLoginAsUser(criteria);
+            if (criteria.MsgId == 0)
+            {
+                var agentInfo = criteria.CreateAgent();
+                var internalLoginInfo = new InternalLoginInfo
+                {
+                    AdminId = adminInternalLoginInfo.AdminId,
+                    OnAdminId = adminInternalLoginInfo.OnAdminId,
+                    LicenseeId = adminInternalLoginInfo.LicenseeId,
+                    LicenseeName = adminInternalLoginInfo.LicenseeName,
+                    CurrencyId = adminInternalLoginInfo.CurrencyId,
+                    CurrencyName = adminInternalLoginInfo.CurrencyName,
+                    Language = adminInternalLoginInfo.Language
+                };
+
+                return AdminLoginAsAgent(internalLoginInfo, agentInfo);
+            }
+            else
+            {
+                return Content(ResourceManager.GetErrorMsg(criteria.MsgId));
+            }
+        }
+
+        [NonAction]
+        public ActionResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
+        {
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo.OnAdminId, internalLoginInfo.Language)
+            {
+                InternalLoginInfo = internalLoginInfo,
+                IsInternalSignIn = false
+            };
+
+            FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
+            return Redirect(FormsAuthentication.DefaultUrl);
+        }
+
+        /// <summary>
+        /// Show menu to select licensee and currency and agent name.
+        /// </summary>
+        /// <returns>Partial view model.</returns>
+        [ChildActionOnly]
+        [HttpGet]
+        [SelectMenuActionFilter]
+        public ActionResult SelectMenu()
+        {
+            var model = new LicenseeViewModel
+            {
+                Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria())
+            };
+
+            if (new SessionWrapper(CurrentSession).IsViewSelectMenu)
+            {
+                if (CurrentSession.AgentInfo != null)
+                {
+                    model.LicenseeId = CurrentSession.AgentInfo.LicenseeId;
+                    model.LicenseeName = model.Licensees.Where(x => x.LicenseeId == model.LicenseeId).Select(x => x.LicenseeName).FirstOrDefault();
+                    model.CurrencyId = CurrentSession.AgentInfo.CurrencyId;
+                    model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
+                    {
+                        LicenseeId = model.LicenseeId
+                    });
+                    model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
+                }
+            }
+
+            return PartialView(model);
+        }
+
+        /// <summary>
+        /// View data list currency.
+        /// </summary>
+        /// <param name="model">Get currency licensee criteria.</param>
+        /// <returns>JSON result.</returns>
+        [HttpPost]
+        [SelectMenuActionFilter]
+        public ActionResult GetCurrencies(CurrencyLicenseeViewModel model)
+        {
+            if (model.IsValid())
+            {
+                var criteria = new GetCurrencyOfLicenseeCriteria
+                {
+                    LicenseeId = model.LicenseeId
+                };
+
+                return Json(new
+                {
+                    MsgId = 0,
+                    List = _currencyService.GetCurrencyList(criteria)
+                });
+            }
+
+            return InvalidModelJsonResult();
+        }
+
+        /// <summary>
+        /// Validates the Admin user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="domainName">Name of the domain.</param>
+        /// <returns>
+        /// Returns true whether username/password is valid.
+        /// </returns>
+        private bool AuthenticateUser(AdminSignInViewModel model, string domainName)
+        {
+            var userSaltCriteria = new AdminSaltSelCriteria
+            {
+                UserName = model.Username
+            };
+
+            var userSalt = _accountService.GetAdminSalt(userSaltCriteria);
+            if (userSaltCriteria.MsgId != 0)
+            {
+                ModelState.AddModelError(string.Empty, GetErrorMsg(userSaltCriteria.MsgId));
+                return false;
+            }
+
+            var deviceDetection = new DeviceDetection();
+            var criteria = new AdminLoginCriteria
+            {
+                UserName = model.Username,
+                UserPwd = model.Password,
+                UserSalt = userSalt,
+                LoginIp = deviceDetection.ClientIp,
+                LoginDomain = domainName,
+                BrowserName = deviceDetection.BrowserName,
+                Platform = deviceDetection.Platform,
+                CountryCode = deviceDetection.CountryCode
+            };
+
+            var adminInfo = _accountService.AuthenticateAdmin(criteria);
+            if (criteria.MsgId != 0)
+            {
+                ModelState.AddModelError(string.Empty, GetErrorMsg(criteria.MsgId));
+                return false;
+            }
+            else
+            {
+                CheckIn(adminInfo, model.Language);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Save current user session.
+        /// </summary>
+        /// <param name="adminInfo">The admin information.</param>
+        /// <param name="language">The language.</param>
+        private void CheckIn(AdminInfo adminInfo, string language)
+        {
+            var deviceDetection = new DeviceDetection();
+            var criteria = new AdminCheckInCriteria
+            {
+                AdminId = adminInfo.UserId,
+                Ip = deviceDetection.ClientIp,
+                ServerId = adminInfo.ServerId,
+                NetSessionId = Session.SessionID
+            };
+
+            _accountService.AdminCheckIn(criteria);
+            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, language);
+            SessionManager.CurrentSession = currentSession;
+            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
+        }
+    }
+}

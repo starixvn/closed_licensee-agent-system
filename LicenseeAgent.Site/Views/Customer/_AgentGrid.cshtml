@@ -1,0 +1,56 @@
+﻿<script type="text/javascript">
+    var gridOption = {
+        columns: [
+                        {
+                            HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
+                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>",
+                            Width: 30, Name: "AgentId", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
+                            }
+                        },
+                        { HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center" },
+                        { HeaderText: "@Las.Action", Width: 30, Name: "AgentId", HeaderAlign: "center", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span class="cell-edit icon-edit cell-' + rowData.AgentId + '" onclick="customerList.editClick(' + rowData.AgentId + ');"></span>';
+                            }
+                        },
+                        { HeaderText: "@Las.Username", Width: 130, Name: "UserName", HeaderAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<a href="#">' + cell.Value + '</a>';
+                            }
+                        },
+                        { HeaderText: "@Las.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<div class="cust-status make-switch" data-id=' + rowData.AgentId + ' data-on-label="<i class=\'icon-open cust-status\'><p>Open</p></i>" data-off-label="<i class=\'icon-close cust-status\'><p>Closed</p></i>">' +
+                                            '<input type="checkbox" ' + customerList.getStatus(cell.Value) + ' />' +
+                                        '</div>';
+                            }
+                        },
+                        { HeaderText: "@Las.Downline", Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                if (cell.Value == 0) {
+                                    return '<span class="downline">' + cell.Value + '</span>';
+                                }
+                                return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:customerList.showAgent(\'' + rowData.AgentId + '\',\'' + rowData.UserName + '\',' + rowData.AgentLevel + ',' + rowData.NumberAgentLevel + ');">' + cell.Value + '</a></span>';
+                            }
+                        },
+                        { HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center" },
+                        { HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center" },
+                        { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: CORE.DATE_FORMAT_FULL },
+                        { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                if (cell.Value == null)
+                                    return '';
+                                return '<span id="' + rowData.AgentId + '" class="infos">' + cell.Value + '</span>';
+                            }
+                        }
+                   ],
+        showPager: true,
+        customPager: true,
+        allowTruncate: true,
+        gridExpandHeight: 100,
+        indexNumberColumn: 1,
+        bodyRowHeight: 29
+    };
+</script>

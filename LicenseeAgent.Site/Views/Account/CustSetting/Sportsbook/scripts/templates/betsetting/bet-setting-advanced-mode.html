@@ -1,0 +1,30 @@
+﻿<div>
+    <div class="betting-limit-header row-title">
+        <div class="betting-limit-inner-header">
+            <span>{{betSetting.sportTypeName}}</span> <span ng-click="betLimitService.copyPartial(betSetting, currentIndex, bettingLimitsModel)"
+                class="icon-copy" ng-if="currentIndex <= 1" title="{{currentIndex==0 ? language.bettingLimit_Soccer_Copy_Tooltip : language.bettingLimit_Basketball_Copy_Tooltip}}">
+            </span>
+        </div>
+    </div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.betSetting; modelData.actions.onChangeMinBet();"}'>
+            <span>&gt;= {{betSetting.MaxMinBet | number : 0}} </span>
+        </div>
+    </div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.betSetting; modelData.actions.onChangeMaxBet();"}'>
+            <span>&lt;= {{betSetting.MinMaxBet | number : 0}} </span>
+        </div>
+    </div>
+    <div class="betting-limit-item">
+        <div class="betting-limit-inner-item">
+            <input type="text" class="input" ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
+                auto-numeric-format='{"command":"var modelData = scope.betSetting; modelData.actions.onChangeMaxPerMatch();"}'>
+            <span>&lt;= {{betSetting.MinMaxPerMatch | number : 0}} </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @Styles.Render("~/css/jqueryui")
+    @Styles.Render("~/css/core")
+    @Styles.Render("~/css/login")
+    @RenderSection("css", false)
+</head>
+<body>
+    @RenderBody()
+    @Html.Hidden("AppRoot", Url.Content("~/"))
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/login")
+    @RenderSection("scripts", false)
+</body>
+</html>

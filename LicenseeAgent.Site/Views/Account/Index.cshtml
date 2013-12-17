@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section css
+{
+    @Styles.Render("~/css/account")
+}
+<div class="box-row">
+    @Html.Partial("_BalanceInfo")
+    @Html.Partial("_Statistics")
+</div>
+<div class="box-row">
+    @Html.Partial("_Announcement")
+</div>

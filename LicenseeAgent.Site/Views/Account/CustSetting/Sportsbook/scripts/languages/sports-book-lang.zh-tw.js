@@ -1,0 +1,85 @@
+﻿if (fanex.sportsbookSetting) {
+    fanex.sportsbookSetting.language = fanex.sportsbookSetting.language || {};
+    fanex.sportsbookSetting.language['zh-TW'] = {
+        // Common messages
+        message_ValueIsNotInRange: 'Invalid range, input must be in',
+        message_DataIsNotChanged: "Don't have any data changed",
+
+        // Commission setting messages
+        commissionSetting_SimpleModelHeader: 'Commission',
+        commissionSetting_GroupA: 'Group A (%)',
+        commissionSetting_GroupB: 'Group B (%)',
+        commissionSetting_GroupC: 'Group C (%)',
+        commissionSetting_GroupD: 'Group D (%)',
+        commissionSetting_1x2Comm: '1x2 Comm (%)',
+        commissionSetting_OthersComm: 'Others Comm (%)',
+        commissionSetting_CommissionGroup: 'Commission Group',
+        commissionSetting_AgentCommission: 'Agent Commission',
+        commissionSetting_MemberCommission: 'Member Commission',
+        commissionSetting_HDP_OU_OE_Comm: 'HDP, OU, OE (%)',
+
+        // Bet setting messages
+        bettingLimit_SimpleModelHeader: 'Bet Setting',
+        bettingLimit_MinBet: 'Min Bet',
+        bettingLimit_MaxBet: 'Max Bet',
+        bettingLimit_MaxPerMatch: 'Max Per Match',
+        bettingLimit_Soccer_Copy_Tooltip: 'Copy all below bet settings from Soccer',
+        bettingLimit_Basketball_Copy_Tooltip: 'Copy all below bet settings from Basketball',
+        sport_1_1: 'Soccer',
+        sport_2_1: 'Basketball',
+        sport_3_1: 'Football',
+        sport_5_1: 'Tennis',
+        sport_8_1: 'Baseball',
+        sport_10_1: 'Golf',
+        sport_11_1: 'Motor Sports',
+        sport_99_1: 'Other Sports',
+        sport_99_9: 'Mix Sports Parlay',
+        bettingLimit_Message_OnlyNumber: 'Only numbers , (,) inbetween number',
+        bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "Min Bet must be less than or equal to Max Bet",
+        bettingLimit_Message_MinBetMoreThanOrEqualTo: "Min Bet must be greater than or equal to ",
+        bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "Max Bet must be greater than or equal to Min Bet",
+        bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "Max Bet must be less than or equal to Max Per Match",
+        bettingLimit_Message_MaxBetLessThanOrEqualTo: "Max Bet must be less than or equal to ",
+        bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "Max Per Match must be greater than or equal to Max Bet",
+        bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "Max Per Match must be less than or equal to ",
+        customerInfo_Message_MaxCredit: 'Given credit must be between 0 and {0}',
+
+        // Position taking messages
+        sport_1_false_1: 'Soccer - Dead Ball',
+        sport_1_true_1: 'Soccer - Live',
+        sport_2_false_1: 'Basketball',
+        sport_3_false_1: 'Football',
+        sport_5_false_1: 'Tennis',
+        sport_8_false_1: 'Baseball',
+        sport_10_false_1: 'Golf',
+        sport_11_false_1: 'Motor Sports',
+        sport_99_false_1: 'Other Sports',
+        sport_99_false_9: 'Mix Sports Parlay',
+        bettype_1: 'Handicap',
+        bettype_2: 'Odd/Even',
+        bettype_3: 'Over/Under',
+        bettype_4: 'Correct Score',
+        bettype_5: '1 X 2',
+        bettype_6: 'Total Goal',
+        bettype_7: '1st Handicap',
+        bettype_8: '1st Over/Under',
+        bettype_9: 'Mix Parlay',
+        bettype_10: 'Outright',
+        bettype_20: 'Money Line',
+        maxPt: '% Max Downline',
+        minPt: '% Min Downline',
+        presetPt: '% Preset',
+        memberPt: '% on Member',
+        soccerDeadballCopyPtTooltip: 'Copy all below position taking settings from Soccer – Dead Ball Handicap',
+        basketBallCopyPtTooltip: 'Copy all below position taking settings from Basketball Handicap',
+        soccerHandicapCopyPtTooltip: 'Copy from Handicap',
+        soccerOnexTwoCopyPtTooltip: 'Copy from 1X2',
+        soccerHandicapCopyPt: 'Soccer – Dead Ball Handicap position taking setting is being applied to:',
+        basketballHandicapCopyPt: 'Basketball - Handicap position taking setting is being applied to:',
+        otherBettypeOfSoccer: 'Other bet types of Soccer',
+        otherBettypeOfBasketball: 'Other bet types of Basketball'
+    };
+}
+else {
+    alert("Missing fanex.sportsbookSetting in language");
+}

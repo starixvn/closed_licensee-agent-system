@@ -1,0 +1,136 @@
+﻿@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+
+body
+{
+    background: url('../images/login/bg-repeat.jpg') repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+
+    .container
+    {
+        margin: auto;
+        position: relative;
+        width: 1000px;
+        height: 800px;
+        background: url('../images/login/login-form.png') no-repeat;
+
+        .login-box
+        {
+            position: absolute;
+            top: 252px;
+            left: 280px;
+            width: 394px;
+            height: 298px;
+            margin: 0px 24px;
+
+            .header-box
+            {
+                width: 100%;
+                height: 61px;
+                line-height: 61px;
+                color: white;
+
+                .title
+                {
+                    float: left;
+                    font-size: 18pt;
+                }
+
+                .language
+                {
+                    float: right;
+                }
+            }
+
+            .content-box
+            {
+                margin-top: 27px;
+                margin-left: 10px;
+                .control-group
+                {
+                    padding-bottom: 28px;
+                    height: 42px;
+
+                    #Username, #Password
+                    {
+                        width: 342px;
+                        height: 26px;
+                    }
+
+                    #Captcha
+                    {
+                        width: 90px;
+                        float: left;
+                    }
+
+                    #img-captcha
+                    {
+                        float: left;
+                        width: 109px;
+                        padding-left: 6px;
+                        padding-right: 4px;
+                    }
+
+                    #reload
+                    {
+                        float: left;
+                        width: 24px;
+                        height: 32px;
+                        display: inline-block;
+                        background: url("../images/login/sprites.png") -11px 5px no-repeat;
+                        &:hover
+                        {
+                            background: url("../images/login/sprites.png") -30px 5px no-repeat;
+                        }
+                    }
+                }
+
+                #btnSubmit
+                {
+                    float: right;
+                    color: white;
+                    border: solid 1px #6e4c71;
+                    height: 32px;
+                    cursor: pointer;
+                    width: 100px;
+                    #gradient > .vertical(#bd4a4a, #b54040);
+                    &:hover
+                    {
+                        #gradient > .vertical(#b54040, #bd4a4a);
+                    }
+                }
+            }
+        }
+        .validation-summary-errors
+        {
+            position: absolute;
+            top: 540px;
+            width: 1000px;
+            text-align: center;
+            color: #fff600;
+            font-size: 14pt;
+            background: transparent;
+            border: 0;
+            ul
+            {
+                list-style: none;
+            }
+        }
+    }
+}
+
+input
+{
+    padding: 8px 0;
+    height: 16px;
+    color: #5c5c5c;
+    background-color:transparent;
+    border: 0px solid;
+    .placeholder(#acacac);
+}
+
+textarea:focus, input:focus
+{
+    outline: 0;
+}

@@ -12,7 +12,7 @@
             @BootstrapHelper.Menu(Las.Transfer, Url.Action("Transfer", "Account"), "menuTransfer", Model == TopMenu.Transfer)
         }
         @BootstrapHelper.Menu(Las.Security, Url.Action("ChangePassword", "Account"), "menuSecurity", Model == TopMenu.Security)
-        @BootstrapHelper.Menu(Las.ViewLog, Url.Action("Index", "ViewLog"), "menuViewlog", Model == TopMenu.ViewLog)
+        @BootstrapHelper.Menu(Las.ViewLog, Url.Action("Index", "Account"), "menuViewlog", Model == TopMenu.ViewLog)
     </ul>
 }
 @if (sessionWrapper.IsViewSelectMenu)

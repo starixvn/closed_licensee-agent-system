@@ -49,7 +49,10 @@
 @Html.Partial("_Breadcrumb")
 @Html.Partial("_IpInformation")
 <div class="wrapper">
-    <div id="grid" class="freegrid" data-url-change-status=@(pageContext.IsLastLevel ? Url.Action("ChangeMemberStatus", "Customer") : Url.Action("ChangeAgentStatus", "Customer")) data-url-ip="@Url.Action("GetIpInformation", "Customer")" data-is-last-level=@(pageContext.IsLastLevel)>
+    <div id="grid" class="freegrid"
+        data-url-change-status=@(pageContext.IsLastLevel ? Url.Action("ChangeMemberStatus", "Customer") : Url.Action("ChangeAgentStatus", "Customer"))
+        data-url-edit-sportsbook=@(pageContext.IsLastLevel ? Url.Action("EditMember", "SportsbookSetting") : Url.Action("EditAgent", "SportsbookSetting"))
+        data-url-ip="@Url.Action("GetIpInformation", "Customer")">
     </div>
 </div>
 @section scripts{

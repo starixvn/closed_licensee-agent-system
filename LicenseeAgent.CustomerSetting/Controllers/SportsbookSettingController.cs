@@ -22,6 +22,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// Sport books setting controller.
@@ -103,8 +104,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 model.SettingContext == null ||
                 model.UpdateDataSportsbookCustomer == null)
             {
-                var modelResult = new Result("Invalid Data");
-                return Json(modelResult);
+                return InvalidModelJsonResult();
             }
 
             model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
@@ -147,13 +147,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Returns view.
         /// </returns>
         [HttpGet]
-        public ActionResult EditAgent(EditAgentViewModel model)
+        [DirectDownline]
+        public ViewResult EditAgent(EditAgentViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return InvalidModelViewResult();
-            }
-
             var settingContext = new SettingContext(CurrentSession)
             {
                 FormId = FormType.Edit,
@@ -172,13 +168,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Returns view.
         /// </returns>
         [HttpGet]
-        public ActionResult EditMember(EditMemberViewModel model)
+        public ViewResult EditMember(EditMemberViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return InvalidModelViewResult();
-            }
-
             var settingContext = new SettingContext(CurrentSession)
             {
                 FormId = FormType.Edit,
@@ -199,11 +190,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult CheckExistUsername(CheckExistUserNameViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return InvalidModelJsonResult();
-            }
-
             var criteria = new CheckExistUserNameCriteria
             {
                 UserName = model.UserName,

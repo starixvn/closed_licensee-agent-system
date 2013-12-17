@@ -14,6 +14,9 @@
     var urlChangeStatus = $("#grid").data('url-change-status');
     var urlIpInformation = $("#grid").data('url-ip');
     var isLastLevel = $("#grid").data('is-last-level');
+    var editAgentId = 0;
+    var editAgentLevel = 0;
+    var editMemberId = 0;
 
     return {
         init: function () {
@@ -318,9 +321,21 @@
                 }
             });
         },
-        editClick: function (custId) {
+        editAgent: function (agentId, agentLevel) {
+            editAgentId = agentId;
+            editAgentLevel = agentLevel;
             $.contextMenu({
-                selector: '.cell-' + custId,
+                selector: '.cell-' + agentId,
+                items: customerList.getEditItems(),
+                trigger: "left",
+                ignoreRightClick: true,
+                autoHide: true
+            });
+        },
+        editMember: function (memberId) {
+            editMemberId = memberId;
+            $.contextMenu({
+                selector: '.cell-' + memberId,
                 items: customerList.getEditItems(),
                 trigger: "left",
                 ignoreRightClick: true,
@@ -331,24 +346,24 @@
             var editItems = {};
             var items = [];
             if (pageContext.IsLastLevel) {
-                items = [{ name: actions.Sportsbook, callback: customerList.editAgent },
-                        { name: actions.NumberGame, callback: customerList.editAgent },
-                        { name: actions.Casino, callback: customerList.editAgent },
-                        { name: actions.VirtualSports, callback: customerList.editAgent },
-                        { name: actions.EditInfo, callback: customerList.editAgent },
-                        { name: actions.SBBetSetting, callback: customerList.editAgent },
-                        { name: actions.Commission, callback: customerList.editAgent },
-                        { name: actions.Password, callback: customerList.editAgent}];
+                items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
+                        { name: actions.NumberGame, callback: customerList.editSetting },
+                        { name: actions.Casino, callback: customerList.editSetting },
+                        { name: actions.VirtualSports, callback: customerList.editSetting },
+                        { name: actions.EditInfo, callback: customerList.editSetting },
+                        { name: actions.SBBetSetting, callback: customerList.editSetting },
+                        { name: actions.Commission, callback: customerList.editSetting },
+                        { name: actions.Password, callback: customerList.editSetting}];
             }
             else {
-                items = [{ name: actions.Sportsbook, callback: customerList.editAgent },
-                        { name: actions.NumberGame, callback: customerList.editAgent },
-                        { name: actions.Casino, callback: customerList.editAgent },
-                        { name: actions.VirtualSports, callback: customerList.editAgent },
-                        { name: actions.EditInfo, callback: customerList.editAgent },
-                        { name: actions.AddDownline, callback: customerList.editAgent },
-                        { name: actions.Commission, callback: customerList.editAgent },
-                        { name: actions.Password, callback: customerList.editAgent}];
+                items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
+                        { name: actions.NumberGame, callback: customerList.editSetting },
+                        { name: actions.Casino, callback: customerList.editSetting },
+                        { name: actions.VirtualSports, callback: customerList.editSetting },
+                        { name: actions.EditInfo, callback: customerList.editSetting },
+                        { name: actions.AddDownline, callback: customerList.editSetting },
+                        { name: actions.Commission, callback: customerList.editSetting },
+                        { name: actions.Password, callback: customerList.editSetting}];
             }
 
             if (pageContext.IsDirectDownline) {
@@ -364,7 +379,18 @@
 
             return editItems;
         },
-        editAgent: function () {
+        editSportsbook: function () {
+            var url;
+            if (pageContext.IsLastLevel) {
+                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+            }
+            else {
+                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+            }
+            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+        },
+        editSetting: function () {
+            alert('test');
         }
     }
 } (jQuery);

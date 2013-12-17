@@ -152,18 +152,21 @@ namespace LicenseeAgent.Web.Controllers
         protected void HandleRequest(ActionExecutingContext filterContext)
         {
             var isHandled = false;
-            if (filterContext.IsAjaxRequest())
+            if (!filterContext.Controller.ViewData.ModelState.IsValid)
             {
-                if (!filterContext.Controller.ViewData.ModelState.IsValid)
+                if (filterContext.ActionDescriptor is ReflectedActionDescriptor)
                 {
-                    if (filterContext.ActionDescriptor is ReflectedActionDescriptor)
+                    var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
+                    var isAjaxRequest = filterContext.IsAjaxRequest();
+                    if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
                     {
-                        var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
-                        if (actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
-                        {
-                            filterContext.Result = InvalidModelJsonResult();
-                            isHandled = true;
-                        }
+                        filterContext.Result = InvalidModelJsonResult();
+                        isHandled = true;
+                    }
+                    else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ViewResult)))
+                    {
+                        filterContext.Result = InvalidModelViewResult();
+                        isHandled = true;
                     }
                 }
             }

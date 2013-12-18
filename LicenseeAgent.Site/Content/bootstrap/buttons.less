@@ -24,6 +24,8 @@
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
   border-bottom-color: darken(@btnBorder, 10%);
   .ie7-restore-left-whitespace(); // Give IE7 some love
+  .border-radius(@baseBorderRadius);
+  .box-sizing(border-box);
 
   // Hover/focus state
   &:hover,

@@ -58,6 +58,13 @@
     color: black;
     background: white;
     border: 1px solid #e8e8e8;
+    padding: 3px 8px;
+    &:hover
+    {
+        color: black;
+        background: white;
+        font-weight: normal;
+    }
 }
 
 .error .bootstrap-select .btn {
@@ -74,9 +81,7 @@
 }
 
 .bootstrap-select .btn:focus {
-    outline: thin dotted #333333 !important;
-    outline: 5px auto -webkit-focus-ring-color !important;
-    outline-offset: -2px;
+    outline: 0;
 }
 
 .bootstrap-select.btn-group .btn .filter-option {
@@ -90,8 +95,8 @@
 .bootstrap-select.btn-group .btn .caret {
     position: absolute;
     top: 50%;
-    right: 12px;
-    margin-top: -2px;
+    right: 8px;
+    margin-top: -4px;
     vertical-align: middle;
 }
 

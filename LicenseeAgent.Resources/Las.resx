@@ -554,4 +554,12 @@ If that is not you, please contact your upline!!!</value>
     <value>League</value>
     <comment>not</comment>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>not</comment>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>not</comment>
+  </data>
 </root>

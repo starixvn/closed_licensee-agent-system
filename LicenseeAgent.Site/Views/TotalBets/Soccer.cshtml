@@ -13,7 +13,7 @@
 {
 
 }
-@using (Html.BeginForm("GetCustomerList", "Customer", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
+@using (Html.BeginForm("GetLeagues", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
 {
     <div class="controls-row" ng-app = "SoccerApp">
         @{Html.RenderPartial("~/Views/TotalBets/Soccer.League.cshtml");}

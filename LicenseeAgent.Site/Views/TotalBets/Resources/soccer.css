@@ -1,7 +1,7 @@
 ﻿.select-league-area 
 {
     background-color: #cccccc;
-	display: block;
+	display: none;
 	position: absolute;
 	z-index:999;
 	box-shadow: 10px 10px 5px #888888;
@@ -11,7 +11,10 @@
 .select-league-area input#search-league {
 	width: 300px;
 }
-td.league-name {
+.select-league-area table tr td {
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+span.league-name {
+	
 }

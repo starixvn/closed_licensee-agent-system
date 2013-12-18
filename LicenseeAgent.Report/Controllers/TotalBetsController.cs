@@ -32,24 +32,28 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult Soccer()
         {
+            var model = new SoccerViewModel();
+            ViewBag.Leagues = GetLeagues();
+            return View(model);
+        }
+        
+        [HttpGet]
+        public JsonResult GetLeagues()
+        {
             var criteria = new SoccerLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1 };
             //var leagues = _soccerService.GetLeagues(criteria);
 
             IList<LeagueEntity> leagues = new List<LeagueEntity>();
-            leagues.Add(new LeagueEntity { LeagueId = 1 });
-            leagues.Add(new LeagueEntity { LeagueId = 2 });
+            leagues.Add(new LeagueEntity { LeagueId = 5 });
+            leagues.Add(new LeagueEntity { LeagueId = 6 });
             leagues.Add(new LeagueEntity { LeagueId = 3 });
             leagues.Add(new LeagueEntity { LeagueId = 4 });
 
-            ViewBag.Leagues = Json(new
+            return Json(new
             {
                 MsgId = Result.SuccessValue,
                 List = leagues
-            });
-
-            var model = new SoccerViewModel();
-
-            return View(model);
+            },JsonRequestBehavior.AllowGet);
         }
     }
 }

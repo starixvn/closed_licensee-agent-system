@@ -21,6 +21,7 @@ namespace LicenseeAgent.Site
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Mvc;
@@ -80,39 +81,66 @@ namespace LicenseeAgent.Site
             {
                 return;
             }
-            
-            var exception = Server.GetLastError().GetBaseException();
-            string message = exception.Message +
-                "\r\nSource: " + exception.Source +
-                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                "\r\nQueryString: " + Request.QueryString.ToString() +
-                "\r\nTargetSite: " + exception.TargetSite +
-                "\r\nStackTrace: " + exception.StackTrace;
-            LogService.Error(message);
 
-            var serverError = Server.GetLastError() as HttpException;
-            int errorCode = serverError != null ? serverError.GetHttpCode() : (int)HttpStatusCode.InternalServerError;
-            if (!Response.IsRequestBeingRedirected)
+            var exception = Server.GetLastError();
+            var antiForgeryException = exception as HttpAntiForgeryException;
+            var isAntiForgeryException = antiForgeryException != null;
+            var isLogging = !isAntiForgeryException;
+            if (isLogging)
             {
-                Response.Clear();
-                var httpContextWrapper = new HttpContextWrapper(HttpContext.Current);
-                if (Request.IsAjaxRequest())
-                {
-                    var jsonResult = new Result
-                    {
-                        MsgId = errorCode,
-                        MsgContent = AppHandler.GetHttpErrorMessage(errorCode)
-                    };
+                var baseException = exception.GetBaseException();
+                string message = baseException.Message +
+                    "\r\nSource: " + baseException.Source +
+                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                    "\r\nQueryString: " + Request.QueryString.ToString() +
+                    "\r\nTargetSite: " + baseException.TargetSite +
+                    "\r\nStackTrace: " + baseException.StackTrace;
+                LogService.Error(message);
+            }
 
-                    Response.WriteJson(jsonResult);
+            if (Response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
+            HandleException(exception);
+        }
+
+        /// <summary>
+        /// Handles the exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        private void HandleException(Exception exception)
+        {
+            var httpException = exception as HttpException;
+            var antiForgeryException = exception as HttpAntiForgeryException;
+            var isAntiForgeryException = antiForgeryException != null;
+            int errorCode = httpException != null ? httpException.GetHttpCode() : (int)HttpStatusCode.InternalServerError;
+            Response.Clear();
+            if (Request.IsAjaxRequest())
+            {
+                var msgContent = isAntiForgeryException ? Las.UnauthorizedMsg : AppHandler.GetHttpErrorMessage(errorCode);
+                var jsonResult = new Result
+                {
+                    MsgId = errorCode,
+                    MsgContent = msgContent
+                };
+
+                Response.WriteJson(jsonResult);
+            }
+            else
+            {
+                if (isAntiForgeryException)
+                {
+                    Response.Redirect(AppURLs.URLs.Unauthorized);
                 }
                 else
                 {
                     Response.Redirect(string.Format("{0}/{1}", AppURLs.URLs.Error, errorCode));
                 }
-
-                Server.ClearError();
             }
+
+            Server.ClearError();
         }
     }
 }

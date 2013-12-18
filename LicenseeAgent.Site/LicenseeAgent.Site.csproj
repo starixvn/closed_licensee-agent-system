@@ -241,7 +241,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
-    <Content Include="Content\bootstrap\bootstrap-select.less" />
+    <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
@@ -594,7 +594,7 @@
     <Content Include="Views\Account\_Announcement.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
-    <Content Include="Content\bootstrap\bootstrap-switch.less" />
+    <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
     <Content Include="Views\Customer\Resources\customerlist.less" />
     <Content Include="Views\Customer\_Breadcrumb.cshtml" />
     <Content Include="Views\Customer\_Link.cshtml" />

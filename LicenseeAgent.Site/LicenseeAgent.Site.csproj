@@ -474,6 +474,8 @@
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\menu.js" />
+    <Content Include="Views\TotalBets\Resources\soccer.css" />
+    <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -682,6 +684,8 @@
     <Content Include="Views\Customer\GetIpInformation.cshtml" />
     <Content Include="Views\Customer\_AgentGrid.cshtml" />
     <Content Include="Views\TotalBets\Indexl.cshtml" />
+    <Content Include="Views\TotalBets\Soccer.cshtml" />
+    <Content Include="Views\TotalBets\Soccer.League.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

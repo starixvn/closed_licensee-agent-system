@@ -56,4 +56,7 @@
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="IPDB.IPEntities" Plain="0"  TimeOut="600"/>
   </Function>
+  <Function Name="Report">
+    <Setting Key="LAS_TotalBet_GetLeagueBySportType" SpName="LAS_TotalBet_GetLeagueBySportType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
 </Functions>

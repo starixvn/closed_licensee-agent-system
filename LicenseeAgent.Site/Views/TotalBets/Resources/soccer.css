@@ -1,0 +1,17 @@
+﻿.select-league-area 
+{
+    background-color: #cccccc;
+	display: block;
+	position: absolute;
+	z-index:999;
+	box-shadow: 10px 10px 5px #888888;
+	width: 350px;
+	max-height: 300px;
+}
+.select-league-area input#search-league {
+	width: 300px;
+}
+td.league-name {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

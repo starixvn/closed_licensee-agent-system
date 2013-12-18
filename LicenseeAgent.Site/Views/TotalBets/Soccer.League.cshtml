@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<input type="text" readonly="readonly" id="select-league" />
+<span id="select-league-button" class="add-on btn dropdown-toggle" data-dropdown="dropdown">
+    <span class="caret"></span></span>
+<div class="select-league-area" ng-controller="LeagueCotroller">
+    <table>
+        <tr>
+            <td>
+                <input type="checkbox" id="all-league" data-id="0" /> 
+            </td>
+            <td class="league-name">
+                @Las.All @Las.League
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="text" id="search-league" ng-model="queryLeague.name" />
+            </td>
+        </tr>
+        <tr ng-repeat="league in leagues | filter:queryLeague | orderBy: league.name">
+            <td>
+                <input type="checkbox" id="league-{{league.id}}" data-id="{{league.id}}" />
+            </td>
+            <td class="league-name">
+                {{league.name}}
+            </td>
+        </tr>
+    </table>
+</div>

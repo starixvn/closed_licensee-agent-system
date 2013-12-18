@@ -546,4 +546,16 @@
     <value>Please enter your username.</value>
     <comment>not</comment>
   </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+    <comment>not</comment>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+    <comment>not</comment>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+    <comment>not</comment>
+  </data>
 </root>

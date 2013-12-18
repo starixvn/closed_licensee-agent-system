@@ -39,5 +39,10 @@ namespace LicenseeAgent.Core.Utils
                 return RefData.GetSportName(sportType.ToString(), LanguageManager.TwoLetterISOLanguageName);
             }
         }
+
+        public static string GetLeagueName(int leagueId)
+        {
+            return RefData.GetLeagueName(leagueId.ToString(), LanguageManager.TwoLetterISOLanguageName);
+        }
     }
 }

@@ -53,17 +53,12 @@
                 timeout: 120000
             })
             .done(function (result) {
-                if (result.isKickout) {
-                    if (result.isInternal) {
-                        alert(AppLang.AlertAdminLicenseeChanged);
-                    }
-                    else {
-                        alert(AppLang.AlertKickoutMessage);
-                    }
+                if (result.MsgId != 0) {
+                    alert(result.MsgContent);
                     HEADER.signOut();
                 }
                 else {
-                    setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                    setTimeout(function () { HEADER.reCheckIn(); }, 80000);
                 }
             });
         },

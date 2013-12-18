@@ -144,7 +144,9 @@
     <value>Agent List</value>
   </data>
   <data name="AlertKickoutMessage" xml:space="preserve">
-    <value>... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you, please contact your upline!!!</value>
+    <value>... Another session has been logged in ...
+Your session will be terminated!!!
+If that is not you, please contact your upline!!!</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
     <value>Bet Setting</value>

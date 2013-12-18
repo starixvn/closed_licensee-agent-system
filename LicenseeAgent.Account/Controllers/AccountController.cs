@@ -231,10 +231,10 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(OnlyAuthorize = true)]
         public JsonResult ReCheckIn()
         {
-            var result = false;
+            var isKickout = false;
             if (CurrentSession.AdminInfo != null)
             {
-                result = AdminReCheckIn();
+                isKickout = AdminReCheckIn();
             }
             else
             {
@@ -242,23 +242,19 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     if (CurrentSession.IsInternalSignIn)
                     {
-                        result = AgentReCheckIn();
+                        isKickout = AgentReCheckIn();
                     }
                     else
                     {
-                        result = AgentReCheckInLicensee();
-                        return Json(new
-                        {
-                            isInternal = true,
-                            isKickout = result
-                        });
+                        isKickout = AgentReCheckInLicensee();
                     }
                 }
             }
 
             return Json(new
             {
-                isKickout = result
+                MsgId = isKickout,
+                MsgContent = isKickout ? CurrentSession.IsInternalSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty
             });
         }
 

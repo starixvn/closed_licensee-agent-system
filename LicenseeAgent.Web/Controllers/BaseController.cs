@@ -21,6 +21,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
@@ -110,6 +111,31 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         /// <summary>
+        /// Called when a request matches this controller, but no method with the specified action name is found in the controller.
+        /// </summary>
+        /// <param name="actionName">The name of the attempted action.</param>
+        protected override void HandleUnknownAction(string actionName)
+        {
+            var sessionIsTimeout = CurrentSession == null || !CurrentSession.IsValid ? true : false;
+            if (sessionIsTimeout)
+            {
+                if (ControllerContext.IsAjaxRequest())
+                {
+                    var jsonResult = new Result(Las.UnauthorizedMsg);
+                    Json(jsonResult, JsonRequestBehavior.AllowGet).ExecuteResult(ControllerContext);
+                }
+                else
+                {
+                    Response.Redirect(AppURLs.URLs.Unauthorized);
+                }
+
+                return;
+            }
+
+            base.HandleUnknownAction(actionName);
+        }
+
+        /// <summary>
         /// Override base action executing function to set culture for every request.
         /// </summary>
         /// <param name="filterContext">Information about the current request and action.</param>
@@ -194,6 +220,12 @@ namespace LicenseeAgent.Web.Controllers
         protected JsonResult JsonResult(int msgId)
         {
             var result = new Result(msgId);
+            return JsonResult(result);
+        }
+
+        protected JsonResult JsonResult(string msgContent)
+        {
+            var result = new Result(msgContent);
             return JsonResult(result);
         }
 

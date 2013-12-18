@@ -80,12 +80,6 @@
             warn: function (msg) { CORE.console.write(msg, console.warn) },
             error: function (msg) { CORE.console.write(msg, console.error) }
         },
-        handleAjaxError: function (jqXHR, textStatus, errorThrown) {
-            CORE.alertGeneralError();
-        },
-        alertGeneralError: function () {
-            alert(generalErrorMsg);
-        },
         detectBrowser: function () {
             var matchedBrowser, browserDectect;
 
@@ -153,7 +147,6 @@
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-
                     (function () {
                         var rIndex = rowIndex;
                         var rowData = record;
@@ -246,6 +239,8 @@
 $(function () {
     CORE.init();
 });
-$(document).ajaxError(function (event, jqxhr, settings, exception) {
-    CORE.handleAjaxError(event, jqxhr, settings);
+$.ajaxSetup({
+    error: function (jqXHR, textStatus, errorThrown) {
+        alert(generalErrorMsg);
+    }
 });

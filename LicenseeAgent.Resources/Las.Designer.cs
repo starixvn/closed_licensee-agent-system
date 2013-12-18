@@ -178,7 +178,9 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you, please contact your upline!!!.
+        ///   Looks up a localized string similar to ... Another session has been logged in ...
+        ///Your session will be terminated!!!
+        ///If that is not you, please contact your upline!!!.
         /// </summary>
         public static string AlertKickoutMessage {
             get {

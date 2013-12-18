@@ -81,14 +81,18 @@ namespace LicenseeAgent.Site
                 return;
             }
 
-            var exception = Server.GetLastError().GetBaseException();
-            string message = exception.Message +
-                "\r\nSource: " + exception.Source +
-                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                "\r\nQueryString: " + Request.QueryString.ToString() +
-                "\r\nTargetSite: " + exception.TargetSite +
-                "\r\nStackTrace: " + exception.StackTrace;
-            LogService.Error(message);
+            var currentSession = SessionManager.CurrentSession;
+            if (currentSession != null && currentSession.IsValid)
+            {
+                var exception = Server.GetLastError().GetBaseException();
+                string message = exception.Message +
+                    "\r\nSource: " + exception.Source +
+                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                    "\r\nQueryString: " + Request.QueryString.ToString() +
+                    "\r\nTargetSite: " + exception.TargetSite +
+                    "\r\nStackTrace: " + exception.StackTrace;
+                LogService.Error(message);
+            }
 
             var serverError = Server.GetLastError() as HttpException;
             int errorCode = serverError != null ? serverError.GetHttpCode() : (int)HttpStatusCode.InternalServerError;

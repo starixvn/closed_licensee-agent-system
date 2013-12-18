@@ -20,7 +20,7 @@
 
     return {
         init: function () {
-            $('#Status').combobox();
+            $('.selectpicker').selectpicker();
 
             // breadcrum
             $('.breadcrumb a').click(function () {

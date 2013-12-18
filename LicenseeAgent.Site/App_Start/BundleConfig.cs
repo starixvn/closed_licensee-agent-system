@@ -91,16 +91,16 @@ namespace LicenseeAgent.Site
                 "~/content/fanexgrid/Fanex.Grid.css",
                 "~/content/fanexgrid/Fanex.Pagination.css"));
 
-            // Dropdown
-            bundles.Add(new ScriptBundle("~/js/dropdown").Include(
-                "~/scripts/dropdown/jquery.dropdown.js"));
-            bundles.Add(new LessBundle("~/css/dropdown").Include(
-                "~/content/dropdown/jquery.dropdown.css"));
+            // Combobox
+            bundles.Add(new ScriptBundle("~/js/bootstrap-select").Include(
+                "~/scripts/bootstrap-select/bootstrap-select.js"));
+            bundles.Add(new LessBundle("~/css/bootstrap-select").Include(
+                "~/content/bootstrap-select/bootstrap-select.css"));
 
             // Contex Menu
-            bundles.Add(new ScriptBundle("~/js/contexmenu").Include(
+            bundles.Add(new ScriptBundle("~/js/contextmenu").Include(
                 "~/scripts/contextmenu/jquery.contextMenu.js"));
-            bundles.Add(new LessBundle("~/css/contexmenu").Include(
+            bundles.Add(new LessBundle("~/css/contextmenu").Include(
                 "~/content/contextmenu/jquery.contextMenu.css"));
         }
 
@@ -119,7 +119,6 @@ namespace LicenseeAgent.Site
             // Jquery UI
             bundles.Add(new ScriptBundle("~/js/jqueryui").Include(
                 "~/scripts/jquery-ui/jquery-ui.js",
-                "~/scripts/jquery-ui/jquery.ui.dropdownlist.js",
                 "~/scripts/clickout/jquery.clickout.js"));
             bundles.Add(new LessBundle("~/css/jqueryui").Include(
                 "~/content/jquery-ui/jquery-ui.css"));
@@ -132,10 +131,9 @@ namespace LicenseeAgent.Site
         private static void RegisterBootstrap(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/bootstrap").Include(
-                "~/scripts/bootstrap/bootstrap-dropdown.js",
-                "~/scripts/bootstrap/bootstrap-tab.js",
-                "~/scripts/bootstrap/bootstrap-switch.js",
-                "~/scripts/bootstrap/bootstrap-combobox.js"));
+                "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
+                "~/scripts/bootstrap/bootstrap-select.js").Include(
+                "~/scripts/bootstrap/bootstrap-switch.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));
         }
@@ -227,12 +225,10 @@ namespace LicenseeAgent.Site
         private static void RegisterCustomerListPage(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/customerlist").Include(
-                "~/Views/Customer/Resources/customerlist.less").Include(
-                "~/content/Select2/select2.css"));
+                "~/Views/Customer/Resources/customerlist.less"));
 
             bundles.Add(new ScriptBundle("~/js/customerlist").Include(
-                "~/Views/Customer/Resources/customerlist.js",
-                "~/scripts/Select2/select2.js"));
+                "~/Views/Customer/Resources/customerlist.js"));
         }
         #endregion Pages
     }

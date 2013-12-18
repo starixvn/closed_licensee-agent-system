@@ -241,6 +241,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
+    <Content Include="Content\bootstrap\bootstrap-select.less" />
+    <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />
@@ -277,7 +279,6 @@
     <Content Include="Views\Home\Resources\images\arrow-hover.png" />
     <Content Include="Views\Home\Resources\images\arrow.png" />
     <Content Include="Views\Internal\Resources\Header.js" />
-    <Content Include="Content\bootstrap\combobox.less" />
     <Content Include="Content\contextmenu\context.standalone.css" />
     <Content Include="Content\contextmenu\jquery.contextMenu.css" />
     <Content Include="Content\sprite.less" />
@@ -333,7 +334,6 @@
     <Content Include="Content\fanexgrid\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\dropdown\jquery.dropdown.css" />
     <Content Include="Content\poshytip\tip-twitter\tip-twitter.css" />
     <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.gif" />
     <Content Include="Images\avatar.png" />
@@ -369,10 +369,8 @@
     <Content Include="Scripts\dotdotdot\jquery.dotdotdot.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
-    <Content Include="Scripts\dropdown\jquery.dropdown.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
-    <Content Include="Scripts\dropdown\jquery.dropdown.js" />
     <Content Include="Scripts\fanexgrid\moment.js" />
     <Content Include="Scripts\jquery-ui\jquery.ui.dropdownlist.js" />
     <Content Include="Scripts\language.js" />

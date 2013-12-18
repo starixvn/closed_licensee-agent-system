@@ -85,6 +85,41 @@ namespace LicenseeAgent.Core.Enumerations
         /// <summary>
         /// %PT is Invalid Value, You must in {@MinPTOutput} and {@MaxPTOutput}  ( {@PTSportType} - {@PTBetType}).
         /// </summary>
-        Msg_1021 = 1021
+        Msg_1021 = 1021,
+
+        /// <summary>
+        /// Fail to update agent's commission.
+        /// </summary>
+        Msg_1024 = 1024,
+
+        /// <summary>
+        /// Fail to update agent's bet setting.
+        /// </summary>
+        Msg_1025 = 1025,
+
+        /// <summary>
+        /// Fail to update agent's position taking.
+        /// </summary>
+        Msg_1026 = 1026,
+
+        /// <summary>
+        /// Fail to update member's commission.
+        /// </summary>
+        Msg_1027 = 1027,
+
+        /// <summary>
+        /// Fail to update member's betlimit.
+        /// </summary>
+        Msg_1028 = 1028,
+
+        /// <summary>
+        /// Fail to update member's position taking.
+        /// </summary>
+        Msg_1029 = 1029,
+
+        /// <summary>
+        /// You don't have permission to update this account settings.
+        /// </summary>
+        Msg_1030 = 1030
     }
 }

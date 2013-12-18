@@ -127,8 +127,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 model.SettingContext == null ||
                 model.UpdateDataSportsbookCustomer == null)
             {
-                var modelResult = new Result("Invalid Data");
-                return Json(modelResult);
+                return InvalidModelJsonResult();
             }
 
             model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;

@@ -48,7 +48,7 @@ namespace LicenseeAgent.Core.Configurations
                     new SelectListItem 
                     {
                         Text = Las.All,
-                        Value = "-1"
+                        Value = string.Empty
                     },
                     new SelectListItem 
                     {

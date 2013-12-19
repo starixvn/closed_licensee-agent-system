@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.Criterias
+namespace LicenseeAgent.TotalBets.Criterias
 {
     using Fanex.NAP.Framework.Data;
 

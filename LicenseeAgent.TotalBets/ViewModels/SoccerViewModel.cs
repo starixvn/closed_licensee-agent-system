@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.ViewModels
+namespace LicenseeAgent.TotalBets.ViewModels
 {
     /// <summary>
     /// TODO: Update summary.

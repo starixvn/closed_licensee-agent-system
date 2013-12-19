@@ -4,17 +4,20 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.Services
+namespace LicenseeAgent.TotalBets.Services
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Report.Criterias;
-    using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Entities;
+    using LicenseeAgent.TotalBets.Entities;
 
     /// <summary>
-    /// Interface Soccer Service.
+    /// ISoccer Service.
     /// </summary>
     public interface ISoccerService
     {
         IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria);
+
+        IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria);
     }
 }

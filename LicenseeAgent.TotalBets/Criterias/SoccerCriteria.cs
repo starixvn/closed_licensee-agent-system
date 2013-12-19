@@ -4,12 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.Criterias
+namespace LicenseeAgent.TotalBets.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Total Bets Soccer Criteria.
+    /// Soccer Criteria.
     /// </summary>
     public class SoccerCriteria : CriteriaBase
     {

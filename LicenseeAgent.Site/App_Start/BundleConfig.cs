@@ -244,7 +244,8 @@ namespace LicenseeAgent.Site
                 "~/Views/TotalBets/Resources/soccer.css"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
-                "~/Views/TotalBets/Resources/soccer.js"));
+                "~/Views/TotalBets/Resources/soccer.js").Include(
+                "~/Views/TotalBets/Resources/soccer-filter.js"));
         }
 
         #endregion Pages

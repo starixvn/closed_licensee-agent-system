@@ -4,11 +4,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.Services
+namespace LicenseeAgent.TotalBets.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Report.Criterias;
+    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.Report.Entities;
 
     /// <summary>
@@ -19,6 +20,11 @@ namespace LicenseeAgent.Report.Services
         public IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria)
         {
             return GetEntites<LeagueEntity>(criteria);
+        }
+
+        public IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria)
+        {
+            return GetEntites<EventEntity>(criteria);
         }
     }
 }

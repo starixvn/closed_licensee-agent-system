@@ -2,14 +2,14 @@
     Layout = null;
 }
 <div ng-controller="LeagueCotroller">
-<input type="text" readonly="readonly" id="select-league" />
+<input ng-click="loadLeague()" type="text" id="select-league-text" value="Select League"/>
 <span ng-click="loadLeague()" id="select-league-button" class="add-on btn dropdown-toggle" data-dropdown="dropdown">
     <span class="caret"></span></span>
 <div class="select-league-area" >
     <table>
         <tr>
             <td>
-                <input type="checkbox" class="check-all-league" id="league-0" data-id="0" />
+                <input type="checkbox" onclick="LeagueFilter.allCheckChanged()" class="check-all-league" id="league-0" data-id="0" />
             </td>
             <td class="league-name">
                 @Las.All @Las.League
@@ -24,7 +24,7 @@
         </tr>
         <tr ng-repeat="league in leagues | filter:queryLeague | orderBy: league.LeagueName">
             <td>
-                <input type="checkbox" ng-change="childChange()" class="check-child-league" id="league-{{league.LeagueId}}" data-id="{{league.LeagueId}}" /> 
+                <input type="checkbox" onclick="LeagueFilter.childCheckChanged()" class="check-child-league" data-id="{{league.LeagueId}}" /> 
             </td>
             <td><span class="league-name">
                 {{league.LeagueName}}></span> 

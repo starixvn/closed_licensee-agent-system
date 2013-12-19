@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Report.Entities
+namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utils;
 

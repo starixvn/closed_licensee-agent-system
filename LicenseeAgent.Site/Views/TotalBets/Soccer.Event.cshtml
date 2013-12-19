@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+<div ng-controller="EventCotroller">
+<input ng-click="loadEvent()" type="text" id="select-event-text" value="Select Events"/>
+<span ng-click="loadEvent()" id="select-event-button" class="add-on btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"></span></span>
+<div class="select-event-area" >
+    <table>
+        <tr>
+            <td>
+                <input type="checkbox" onclick="EventFilter.allCheckChanged()" class="check-all-event" id="event-0" data-id="0" />
+            </td>
+            <td class="event-name">
+                @Las.All @Las.Event
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="text" id="search-event" ng-model="queryEvent.MatchName" />
+            </td>
+        </tr>
+        <tr ng-repeat="event in events | filter:queryEvent | orderBy: event.MatchName">
+            <td>
+                <input type="checkbox" onclick="EventFilter.childCheckChanged()" class="check-child-event" data-id="{{event.MatchId}}" /> 
+            </td>
+            <td><span class="event-name">
+                {{event.MatchName}}</span> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td style="text-align: right;">
+                <button class="btn btn-primary" type="button" id="cancel-event-select">@Las.Cancel</button>
+                <button class="btn btn-primary" type="button" id="ok-event-select">@Las.OK</button>                
+            </td>
+        </tr>
+    </table>
+</div>
+</div>

@@ -1,10 +1,10 @@
 ﻿.select-league-area 
 {
-    background-color: #cccccc;
+    background-color: #dddddd;
 	display: none;
 	position: absolute;
 	z-index:999;
-	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 10px 10px 5px #aaaaaa;
 	width: 350px;
 	max-height: 300px;
 }
@@ -17,4 +17,45 @@
 }
 span.league-name {
 	
+}
+#select-league-text
+{
+    font-style: italic;
+	color: Gray;
+	
+}
+#select-league-text:hover {
+	cursor: hand !important;
+}
+
+/* --------------------- Event ------------*/
+
+.select-event-area 
+{
+    background-color: #dddddd;
+	display: none;
+	position: absolute;
+	z-index:999;
+	box-shadow: 10px 10px 5px #aaaaaa;
+	width: 350px;
+	max-height: 300px;
+}
+.select-event-area input#search-event {
+	width: 300px;
+}
+.select-event-area table tr td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+span.event-name {
+	
+}
+#select-event-text
+{
+    font-style: italic;
+	color: Gray;
+	
+}
+#select-event-text:hover {
+	cursor: hand !important;
 }

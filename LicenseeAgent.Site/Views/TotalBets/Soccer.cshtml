@@ -2,32 +2,32 @@
     ViewBag.Title = Las.TotalBets + " - " + Las.Soccer;
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-@model LicenseeAgent.Report.ViewModels.SoccerViewModel
+@model LicenseeAgent.TotalBets.ViewModels.SoccerViewModel
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/totalbets-soccer")
-    @Styles.Render("~/css/contexmenu")
 }
 <h3>@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</h3>
-@using (Html.BeginForm("Index", "Customer", FormMethod.Post, new { id = "ajax-form", @class = "hide" }))
+@using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { id = "ajax-form", @class = "hide" }))
 {
-
+   
 }
-@using (Html.BeginForm("GetLeagues", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
+@using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
 {
-    <div class="controls-row" ng-app = "SoccerApp">
-        @{Html.RenderPartial("~/Views/TotalBets/Soccer.League.cshtml");}
-    </div>
-    <div class="controls-row">
-        <input type="text" readonly="readonly" id="select-event" />
-        <span id="select-event-button" class="add-on btn dropdown-toggle" data-dropdown="dropdown">
-            <span class="caret"></span>
-        </span>
-    </div>
-    <div class="controls-row">
-        <button class="btn btn-primary" type="submit">
-            @Las.Submit
-        </button>
+    <input type="text" id="league-selected-string" />
+    <input type="text" id="event-selected-string" />
+    <div ng-app="SoccerApp">
+        <div class="controls-row">
+            @{Html.RenderPartial("~/Views/TotalBets/Soccer.League.cshtml");}
+        </div>
+        <div class="controls-row">
+            @{Html.RenderPartial("~/Views/TotalBets/Soccer.Event.cshtml");}
+        </div>
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
+        </div>
     </div>
 }
 @section scripts{
@@ -35,5 +35,4 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/totalbets-soccer")
-    @Scripts.Render("~/js/contexmenu")
 }

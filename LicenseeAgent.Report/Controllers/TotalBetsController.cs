@@ -6,16 +6,15 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Report.Criterias;
+    using LicenseeAgent.Report.Entities;
     using LicenseeAgent.Report.Services;
     using LicenseeAgent.Report.ViewModels;
     using LicenseeAgent.Web.Controllers;
-    using System.Collections;
-    using LicenseeAgent.Report.Entities;
-    using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
@@ -36,24 +35,28 @@ namespace LicenseeAgent.Report.Controllers
             ViewBag.Leagues = GetLeagues();
             return View(model);
         }
-        
+
+        /// <summary>
+        /// Gets the leagues.
+        /// </summary>
+        /// <returns>Returns JSON.</returns>
         [HttpGet]
         public JsonResult GetLeagues()
         {
             var criteria = new SoccerLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1 };
-            //var leagues = _soccerService.GetLeagues(criteria);
-
             IList<LeagueEntity> leagues = new List<LeagueEntity>();
             leagues.Add(new LeagueEntity { LeagueId = 5 });
             leagues.Add(new LeagueEntity { LeagueId = 6 });
             leagues.Add(new LeagueEntity { LeagueId = 3 });
             leagues.Add(new LeagueEntity { LeagueId = 4 });
 
-            return Json(new
-            {
-                MsgId = Result.SuccessValue,
-                List = leagues
-            },JsonRequestBehavior.AllowGet);
+            return Json(
+                new
+                {
+                    MsgId = Result.SuccessValue,
+                    List = leagues
+                },
+                JsonRequestBehavior.AllowGet);
         }
     }
 }

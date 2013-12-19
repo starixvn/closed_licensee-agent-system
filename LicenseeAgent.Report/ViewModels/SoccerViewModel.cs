@@ -11,6 +11,5 @@ namespace LicenseeAgent.Report.ViewModels
     /// </summary>
     public class SoccerViewModel
     {
-        
     }
 }

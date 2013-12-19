@@ -6,16 +6,13 @@
 
 namespace LicenseeAgent.Report.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Report.Entities;
     using LicenseeAgent.Report.Criterias;
+    using LicenseeAgent.Report.Entities;
 
     /// <summary>
-    /// SoccerService.
+    /// Soccer Service.
     /// </summary>
     public class SoccerService : QueryService, ISoccerService
     {

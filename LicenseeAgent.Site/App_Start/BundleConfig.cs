@@ -238,7 +238,7 @@ namespace LicenseeAgent.Site
         /// <summary>
         /// Registers the total bets pages bundles.
         /// </summary>
-        /// <param name="bundles">The bundles</param>
+        /// <param name="bundles">The bundles.</param>
         private static void RegisterTotalBetsPages(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/totalbets-soccer").Include(
@@ -247,6 +247,7 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
                 "~/Views/TotalBets/Resources/soccer.js"));
         }
+
         #endregion Pages
     }
 }

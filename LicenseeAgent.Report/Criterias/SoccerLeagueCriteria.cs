@@ -1,15 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SoccerLeagueCriteria.cs" company="">
-// SoccerLeagueCriteria.
+﻿// --------------------------------------------------------------------------
+// <copyright file="SoccerLeagueCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
 namespace LicenseeAgent.Report.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// SoccerLeagueCriteria.
+    /// Soccer League Criteria.
     /// </summary>
     public class SoccerLeagueCriteria : CriteriaBase
     {

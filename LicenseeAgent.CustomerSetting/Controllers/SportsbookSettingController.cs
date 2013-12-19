@@ -241,6 +241,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </summary>
         /// <param name="result">The result.</param>
         /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
+        /// <returns>Returns a list of result.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {

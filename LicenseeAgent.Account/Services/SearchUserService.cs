@@ -7,10 +7,6 @@
 
 namespace LicenseeAgent.Account.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Core.Services;
 
     /// <summary>
@@ -18,6 +14,5 @@ namespace LicenseeAgent.Account.Services
     /// </summary>
     public class SearchUserService : QueryService, ISearchUserService
     {
-
     }
 }

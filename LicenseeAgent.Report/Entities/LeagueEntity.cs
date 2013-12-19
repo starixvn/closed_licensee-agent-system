@@ -1,14 +1,15 @@
-﻿// -----------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="LeagueEntity.cs" company="Nexcel Solutions Vietnam">
-// LeagueEntity.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
-using LicenseeAgent.Core.Utils;
 namespace LicenseeAgent.Report.Entities
 {
+    using LicenseeAgent.Core.Utils;
+
     /// <summary>
-    /// LeagueEntity.
+    /// League Entity.
     /// </summary>
     public class LeagueEntity
     {

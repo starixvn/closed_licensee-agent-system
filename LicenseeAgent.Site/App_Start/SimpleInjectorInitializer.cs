@@ -43,6 +43,10 @@ namespace LicenseeAgent.Site.App_Start
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
 
+        /// <summary>
+        /// Initializes the container.
+        /// </summary>
+        /// <param name="container">The container.</param>
         private static void InitializeContainer(Container container)
         {
             container.Register<IAuthorizeService, AuthorizeService>();

@@ -1,8 +1,8 @@
-﻿// -----------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="ISoccerService.cs" company="Nexcel Solutions Vietnam">
-// ISoccerService.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
 namespace LicenseeAgent.Report.Services
 {
@@ -11,7 +11,7 @@ namespace LicenseeAgent.Report.Services
     using LicenseeAgent.Report.Entities;
 
     /// <summary>
-    /// ISoccerService.
+    /// Interface Soccer Service.
     /// </summary>
     public interface ISoccerService
     {

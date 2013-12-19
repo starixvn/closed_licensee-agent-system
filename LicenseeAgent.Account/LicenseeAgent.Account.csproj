@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binders\AgentBreadcrumModelBinder.cs" />
+    <Compile Include="Controllers\SearchUserController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="Core\Constants.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Services\ICurrencyService.cs" />
     <Compile Include="Services\IIpInformationService.cs" />
     <Compile Include="Services\IpInformationService.cs" />
+    <Compile Include="Services\ISearchUserService.cs" />
+    <Compile Include="Services\SearchUserService.cs" />
     <Compile Include="ViewModels\AdminSignInViewModel.cs" />
     <Compile Include="ViewModels\AgentChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\AgentBreadcrumViewModel.cs" />

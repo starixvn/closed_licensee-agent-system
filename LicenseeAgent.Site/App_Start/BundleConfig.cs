@@ -134,6 +134,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
                 "~/scripts/bootstrap/bootstrap-select.js").Include(
                 "~/scripts/bootstrap/bootstrap-switch.js"));
+                "~/scripts/bootstrap/bootstrap-combobox.js",
+                "~/scripts/bootstrap/bootstrap-paginator.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));
         }
@@ -180,13 +182,15 @@ namespace LicenseeAgent.Site
                 "~/scripts/HeadJS/head.js",
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/scripts/menu.js",
-                "~/scripts/header.js"));
+                "~/scripts/header.js",
+                "~/scripts/searchuser.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
                 "~/Views/Internal/Resources/Header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
-                "~/Views/Home/Resources/index.less"));
+                "~/Views/Home/Resources/index.less",
+                "~/Views/SearchUser/Resources/index.less"));
         }
 
         /// <summary>

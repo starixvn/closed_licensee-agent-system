@@ -1,13 +1,77 @@
-﻿<div class="tab-pane fade" id="accountinfo">
-    @using (Html.BeginForm("AccountInfo", "Customer"))
-    {
-        
-    }
-    <form method="get" action="/" class="form-inline">
-    <label>Input to search</label>
-    <input type="text">
-    <button type="submit" class="btn btn-primary">
-        <i class="icon-search icon-white"></i>
-    </button>
-    </form>
+﻿@using (Html.BeginForm("Index", "SearchUser", FormMethod.Post, new { @class = "form-search form-inline" }))
+{
+    <div class="input-append">
+        <input type="text" class="input-medium "/>
+        <span class="add-on"><i class="icon-search"></i></span>
+    </div>
+}
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>@Las.Upline</th>
+            <th>
+                <a>Agent3</a>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-mini btn-primary">more</button>
+                    <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini btn-primary"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><i class="icon-avatar"></i></td>
+            <td>First Name + Last Name</td>
+        </tr>
+        <tr>
+            <td><i class="icon-cellphone"></i></td>
+            <td>123456789</td>
+        </tr>
+        <tr>
+            <td><i class="icon-phone"></i></td>
+            <td>123456789</td>
+        </tr>
+        <tr>
+            <td><i class="icon-fax"></i></td>
+            <td>123456789</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="controls-row row-spacing">
+    <button class="btn btn-primary">@Las.MemberList</button>
+    <button class="btn btn-primary">@Las.Statement</button>
+</div>
+
+<div class="controls-row">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#balance" id="tabBalance" data-toggle="tab">@Las.BalanceInfo</a></li>
+        <li><a href="#downlineList" id="tabDownline" data-toggle="tab">@Las.DownlineList</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active in" id="balance">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Downline 1</a></li>
+                <li><a href="#">Downline 2</a></li>
+                <li><a href="#">Downline 3</a></li>
+                <li><a href="#">Downline 4</a></li>
+                <li><a href="#">Downline 5</a></li>
+                <li><a href="#">Downline 6</a></li>
+                <li><a href="#">Downline 7</a></li>
+                <li><a href="#">Downline 8</a></li>
+            </ul>
+            <div id="paging"></div>
+        </div>
+        <div class="tab-pane fade" id="downlineList">
+            
+        </div>
+    </div>
 </div>

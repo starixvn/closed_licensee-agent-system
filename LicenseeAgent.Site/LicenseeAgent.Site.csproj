@@ -242,6 +242,7 @@
     <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
+    <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
@@ -476,6 +477,8 @@
     <Content Include="Scripts\menu.js" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
+    <Content Include="Views\SearchUser\Resources\index.less" />
+    <Content Include="Scripts\searchuser.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -523,7 +526,6 @@
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\AccountInfo\Resources\" />
     <Folder Include="Views\Account\CustSetting\Sportsbook\scripts\filters\" />
     <Folder Include="Views\Account\Shared\" />
   </ItemGroup>

@@ -562,4 +562,16 @@ If that is not you, please contact your upline!!!</value>
     <value>OK</value>
     <comment>not</comment>
   </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>Balance Info</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Downline List</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>Statement</value>
+  </data>
+  <data name="Upline" xml:space="preserve">
+    <value>Upline</value>
+  </data>
 </root>

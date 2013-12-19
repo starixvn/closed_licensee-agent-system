@@ -53,6 +53,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<ISportsbookSettingService, SportsbookSettingService>();
             container.Register<ICustomerService, CustomerService>();
             container.Register<IIpInformationService, IpInformationService>();
+            container.Register<ISearchUserService, SearchUserService>();
         }
     }
 }

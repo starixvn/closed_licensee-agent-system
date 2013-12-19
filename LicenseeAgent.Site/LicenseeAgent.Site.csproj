@@ -687,6 +687,10 @@
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>LicenseeAgent.Account</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">
+      <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
+      <Name>LicenseeAgent.BetList</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
@@ -695,6 +699,10 @@
       <Project>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</Project>
       <Name>LicenseeAgent.CustomerSetting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Forecast\LicenseeAgent.Forecast.csproj">
+      <Project>{90224F27-06A4-4BEE-979D-4F085F6851C7}</Project>
+      <Name>LicenseeAgent.Forecast</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Report\LicenseeAgent.Report.csproj">
       <Project>{27E8A480-C746-450C-B00A-6DF69BC29149}</Project>
       <Name>LicenseeAgent.Report</Name>
@@ -702,6 +710,10 @@
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>LicenseeAgent.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.TotalBets\LicenseeAgent.TotalBets.csproj">
+      <Project>{803BF0FE-989A-4CB0-9267-3CC9D3763B65}</Project>
+      <Name>LicenseeAgent.TotalBets</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Web\LicenseeAgent.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>

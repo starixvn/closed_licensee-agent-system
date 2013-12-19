@@ -687,6 +687,7 @@
     <Content Include="Views\Customer\_AgentGrid.cshtml" />
     <Content Include="Views\TotalBets\Indexl.cshtml" />
     <Content Include="Views\TotalBets\Soccer.cshtml" />
+    <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.League.cshtml" />
   </ItemGroup>
   <ItemGroup>

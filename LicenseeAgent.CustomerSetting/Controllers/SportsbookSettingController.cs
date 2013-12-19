@@ -204,7 +204,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Re-update message content.
         /// </summary>
         /// <param name="result">The result.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage(
+            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
         private void UpdateInsertResult(InsertResult result)
         {
             var msgContent = result.MsgContent;

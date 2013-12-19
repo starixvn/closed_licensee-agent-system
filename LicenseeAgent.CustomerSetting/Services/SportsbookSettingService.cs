@@ -163,7 +163,8 @@ namespace LicenseeAgent.CustomerSetting.Service
             //// Build XML setting for insert new customer.
             var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
             var betLimitXmlStringData = BuildBetLimitSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.BettingLimits);
-            var positionTakingXmlStringData = BuildPositionTakingSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+            var positionTakingXmlStringData = BuildPositionTakingSettingXML(
+                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
             var discountXML = discountXmlStringData != string.Empty
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
@@ -214,7 +215,8 @@ namespace LicenseeAgent.CustomerSetting.Service
             // Build XML setting for update customer.
             var discountXmlStringData = this.BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
             var betLimitXmlStringData = this.BuildBetLimitSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.BettingLimits);
-            var positionTakingXmlStringData = this.BuildPositionTakingSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+            var positionTakingXmlStringData = this.BuildPositionTakingSettingXML(
+                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
             var discountXML = discountXmlStringData != string.Empty
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;

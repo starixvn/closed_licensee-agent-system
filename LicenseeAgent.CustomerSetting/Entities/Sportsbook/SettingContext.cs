@@ -37,7 +37,9 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
             LoginUserId = currentSession.LoginUserId;
             CustId = currentSession.AgentInfo.AgentId;
             RoleId = currentSession.AgentInfo.IsLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
-            TargetRoleId = currentSession.AgentInfo.IsLevel0 ? (int)Role.AgentLevel1 : currentSession.AgentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
+            TargetRoleId = currentSession.AgentInfo.IsLevel0
+                ? (int)Role.AgentLevel1
+                : currentSession.AgentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
             Language = currentSession.Language;
         }
 

@@ -14,7 +14,7 @@ namespace LicenseeAgent.TotalBets.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TotalBetsService
+    public class TotalBetsService : ITotalBetsService
     {
     }
 }

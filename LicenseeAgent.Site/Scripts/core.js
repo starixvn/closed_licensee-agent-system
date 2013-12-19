@@ -231,6 +231,9 @@
             }
             return gridOption;
         },
+        scrollTop:function() {
+            $("html, body").animate({ scrollTop: 0 }, "fast");
+        },
         parseBoolean: function (value) {
             return /^true$/i.test(value);
         }

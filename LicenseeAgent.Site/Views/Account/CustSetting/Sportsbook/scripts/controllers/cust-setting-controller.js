@@ -1,8 +1,10 @@
 ﻿if (fanex.sportsbookSetting) {
     var custSettingController = fanex.sportsbookSetting.controller('sportsbook.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
+        CORE.blockUI();
         if (typeof result != 'undefined') {
             $('#custSetting').html(result.MsgContent);
             $('#custSetting').show();
+            CORE.unblockUI();
             return;
         }
 
@@ -21,9 +23,6 @@
 
         $scope.settingMode = settingContext.IsSimpleMode;
         $scope.insertCustomer = function () {
-            $scope.MsgId = 0;
-            $scope.MsgContent = '';
-
             var custInfoScope = angular.element('#custInfoController').scope();
             if (custInfoScope.formCustInfo.$invalid) {
                 var keepGoing = true;
@@ -59,6 +58,8 @@
                 }
                 var positionTakingUpdated = positionTakingScope.saveData();
 
+                $scope.Messages = null;
+                CORE.blockUI();
                 $http({
                     method: 'POST',
                     url: CORE.resolveUrl($('#custSetting').data('href')),
@@ -77,15 +78,24 @@
                     }
                 }).
                 success(function (data, status, headers, config) {
-                    if (data.CustIdReturn > 0) {
-                        alert('Insert Success!');
+                    CORE.unblockUI();
+                    if (data.MsgId == 0) {
+                        if (angular.isDefined(data.Messages))
+                            if (data.Messages.length == 1 && data.Messages[0].MsgId == 0) {
+                                alert(data.Messages[0].MsgContent);
+                                return;
+                            }
+
+                        $scope.Messages = data.Messages;
+                        CORE.scrollTop();
                     }
                     else {
-                        $scope.MsgId = data.MsgId;
-                        $scope.MsgContent = data.MsgContent;
+                        alert(data.MsgContent);
                     }
                 }).
                 error(function (data, status, headers, config) {
+                    CORE.unblockUI();
+                    alert(data.MsgContent);
                 });
             }
         }
@@ -117,6 +127,8 @@
             }
             var positionTakingUpdated = positionTakingScope.saveData();
 
+            $scope.Messages = null;
+            CORE.blockUI();
             $http({
                 method: 'POST',
                 url: CORE.resolveUrl($('#custSetting').data('href')),
@@ -134,16 +146,21 @@
                         }
                 }
             }).
-                success(function (data, status, headers, config) {
-                    if (data.MsgId == 0) {
-                        alert('Updated Successfully!');
-                    }
-                    else {
-                        alert(data.MsgContent);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                });
+            success(function (data, status, headers, config) {
+                CORE.unblockUI();
+                if (data.MsgId == 0) {
+                    $scope.Messages = data.Messages;
+                    CORE.scrollTop();
+                    POPUP.close();
+                }
+                else {
+                    alert(data.MsgContent);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                CORE.unblockUI();
+                alert(data.MsgContent);
+            });
         }
 
         if (typeof settingContext == 'undefined') {
@@ -151,5 +168,6 @@
         }
 
         $('#custSetting').show();
+        CORE.unblockUI();
     } ]);
 }

@@ -80,18 +80,17 @@
 
 // MVC Validation
 .validation-summary-errors {
-  .alert;
-  .alert-error;
-
-  & > span:first-child {
-    #font > .sans-serif(14px, bold, @baseLineHeight);
-  }
-
-  & > p,
-  & > ul {
-    margin-bottom: 0;
-  }
-  & p + p {
-    margin-top: 5px;
-  }
+    border: 1px solid #d62d2e;
+    color: #d62d2e;
+    padding: 5px 0px;
+    margin-bottom: 16px;
+    .border-radius(@baseBorderRadius);
+    ul
+    {
+        margin-bottom: 0;
+        li
+        {
+            padding: 2px 0px;
+        }
+    }
 }

@@ -28,7 +28,7 @@
             <div class="range">[{{pt.MinRangeOfPreset | number:config.decNumber}} - {{pt.MaxRangeOfPreset | number:config.decNumber}}]</div>
         </div>
         <div class="pt-box" ng-show="settingContext.FormId != 0">
-            <label>
+            <label class="checkbox">
                 <input class="preset-input" type="checkbox" ng-model="pt.ApplyAll" />
                 {{language.applyForAllMembers}}
             </label>

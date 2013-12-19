@@ -27,49 +27,57 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div id="custSetting" style="display: none" data-ng-app="fanex.sportsbookSetting" class="fanex-sportbook-setting"
-    ng-controller="sportsbook.custSettingController" data-href="~/SportsbookSetting/UpdateCustomer">
-    <div class="alert alert-error" ng-show="MsgId > 0">
-        {{MsgContent}}
-    </div>
-    <div class="control-group" data-ng-hide="settingMode">
-        <button class="btn btn-primary" data-ng-click="updateCustomer()">
-            @Las.Update
-        </button>
-    </div>
-    @Html.Partial("~/Views/Account/CustSetting/Sportsbook/ViewCustomerInfo.cshtml")
-    <div class="container-box">
-        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/Commission.cshtml", Model)
-    </div>
+<div id="custSetting" style="display: none" data-ng-app="fanex.sportsbookSetting"
+    class="fanex-sportbook-setting" ng-controller="sportsbook.custSettingController"
+    data-href="~/SportsbookSetting/UpdateCustomer">
     <div class="clearfix">
-    </div>
-    <div class="container-mode">
-        <span class="mode-text">@Las.AdvancedMode</span>
-        <div class="make-switch switch-small" id="modeSwitcher">
-            <input type="checkbox" />
+        <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
+            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.MsgId == 0, 'error' : message.MsgId > 0}">
+                <i data-ng-class="{'icon-success': message.MsgId == 0, 'icon-error' : message.MsgId > 0}">
+                </i>{{message.MsgContent}}
+            </p>
         </div>
     </div>
     <div class="clearfix">
-    </div>
-    <div class="edit-setting-warning" data-ng-show="settingMode">
-        @Las.SimpleModeNote
+        <div class="control-group" data-ng-hide="settingMode">
+            <button class="btn btn-primary" data-ng-click="updateCustomer()">
+                @Las.Update
+            </button>
+        </div>
     </div>
     <div class="clearfix">
+        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/ViewCustomerInfo.cshtml")
     </div>
-    <div class="container-box">
+    <div class="clearfix">
+        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/Commission.cshtml", Model)
+    </div>
+    <div class="clearfix">
+        <div class="container-mode">
+            <span class="mode-text">@Las.AdvancedMode</span>
+            <div class="make-switch switch-small" id="modeSwitcher">
+                <input type="checkbox" />
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="edit-setting-warning" data-ng-show="settingMode">
+            @Las.SimpleModeNote
+        </div>
+    </div>
+    <div class="clearfix">
         @Html.Partial("~/Views/Account/CustSetting/Sportsbook/BetSetting.cshtml", Model)
     </div>
     <div class="clearfix">
+        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/PositionTaking.cshtml", Model)
     </div>
-    @Html.Partial("~/Views/Account/CustSetting/Sportsbook/PositionTaking.cshtml", Model)
     <div class="clearfix">
-    </div>
-    <div class="control-group">
-    </div>
-    <div class="control-group">
-        <button class="btn btn-primary" data-ng-click="updateCustomer()">
-            @Las.Update
-        </button>
+        <div class="control-group">
+        </div>
+        <div class="control-group">
+            <button class="btn btn-primary" data-ng-click="updateCustomer()">
+                @Las.Update
+            </button>
+        </div>
     </div>
 </div>
 @if (Model.TargetRoleId == (int)Role.AgentLevel1)
@@ -139,14 +147,14 @@ else if (Model.TargetRoleId == (int)Role.Agent)
 
     @Html.Action("Index", "Instruction", new
     {
-        key = "AgentPositionTakingSetting",
+        key = "AgentEditAgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
     @Html.Action("Index", "Instruction", new
     {
-        key = "AgentPositionTakingSettingAdv",
+        key = "AgentEditAgentPositionTakingSettingAdv",
         trigger = "agent-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions

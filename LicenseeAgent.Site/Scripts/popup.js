@@ -35,14 +35,15 @@
                 // update popup title
                 var popupTitle = popupDocument.title;
                 $('.ui-dialog-title').html(popupTitle);
-                // hide legend
-                $(popupDocument).find('.legend').hide();
                 // hide margin
                 $(popupDocument).find('#mainContainer').addClass("popup");
             });
             return POPUP.openDialog(frame, 'Loading ...', options);
         },
         closeDialog: function (target) {
+            if (target == undefined) {
+                target = currentOpenDialog;
+            }
             target.dialog("close");
         },
         resizeDialog: function (width, height) {
@@ -56,6 +57,16 @@
         openWindow: function (url) {
             window.open(url, '_blank');
             window.focus();
+        },
+        close: function (timeout) {
+            if (window.parent != null) {
+                if (timeout == undefined) {
+                    timeout = 2000;
+                }
+                setTimeout(function () {
+                    window.parent.POPUP.closeDialog();
+                }, timeout);
+            }
         }
     }
 } (jQuery);

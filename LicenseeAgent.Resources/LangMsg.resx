@@ -201,7 +201,7 @@
     <comment>not</comment>
   </data>
   <data name="Msg_1017" xml:space="preserve">
-    <value>The discount must be less than or equal to Parent Agent discount.</value>
+    <value>The commission must be less than or equal to Parent Agent commission.</value>
     <comment>not</comment>
   </data>
   <data name="Msg_1018" xml:space="preserve">

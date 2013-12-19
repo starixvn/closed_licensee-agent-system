@@ -10,7 +10,9 @@
 
 namespace LicenseeAgent.CustomerSetting.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using LicenseeAgent.Core.Entities;
@@ -21,6 +23,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.CustomerSetting.ViewModels;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
 
@@ -30,6 +33,31 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class SportsbookSettingController : BaseController
     {
+        private static MsgId[] betSettingMsgIds =
+        {
+            MsgId.Msg_1003,
+            MsgId.Msg_1004,
+            MsgId.Msg_1005,
+            MsgId.Msg_1006,
+            MsgId.Msg_1007,
+            MsgId.Msg_1008,
+            MsgId.Msg_1025,
+            MsgId.Msg_1028
+        };
+
+        private static MsgId[] positionTakingMsgIds =
+        {
+            MsgId.Msg_1010,
+            MsgId.Msg_1011,
+            MsgId.Msg_1012,
+            MsgId.Msg_1013,
+            MsgId.Msg_1014,
+            MsgId.Msg_1015,
+            MsgId.Msg_1021,
+            MsgId.Msg_1026,
+            MsgId.Msg_1029
+        };
+
         private readonly ISportsbookSettingService _customerSettingService;
 
         public SportsbookSettingController(ISportsbookSettingService customerSettingService)
@@ -45,7 +73,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </returns>
         public ActionResult GetSettingForInsert()
         {
-            var settingContext = new SettingContext(CurrentSession) 
+            var settingContext = new SettingContext(CurrentSession)
             {
                 FormId = FormType.Add
             };
@@ -111,8 +139,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.InsertCustomer(model);
-            UpdateInsertResult(result);
-            return Json(result);
+            var messages = GenerateMessages(result);
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                Messages = messages
+            });
         }
 
         /// <summary>
@@ -134,8 +166,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.UpdateCustomer(model);
-            UpdateInsertResult(result);
-            return Json(result);
+            var messages = GenerateMessages(result, true);
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                Messages = messages
+            });
         }
 
         /// <summary>
@@ -204,18 +240,33 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Re-update message content.
         /// </summary>
         /// <param name="result">The result.</param>
-        [SuppressMessage(
-            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-            "SP2101:MethodMustNotContainMoreLinesThan",
-            Justification = "Reviewed. Suppression is OK here.")]
-        private void UpdateInsertResult(InsertResult result)
+        /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {
-            var msgContent = result.MsgContent;
-
-            if (result.MsgId > 0)
+            var msgContents = new List<Result>();
+            if (result.MsgId == 0)
             {
+                msgContents.Add(new Result(Result.SuccessValue, isUpdate ? Las.UpdateSuccessfully : Las.InsertSuccessfully));
+            }
+            else
+            {
+                if (isUpdate)
+                {
+                    if (betSettingMsgIds.Contains((MsgId)result.MsgId))
+                    {
+                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
+                    }
+                    else if (positionTakingMsgIds.Contains((MsgId)result.MsgId))
+                    {
+                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
+                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateBetSettingSuccessfully));
+                    }
+                }
+
                 result.MinPTOutput = result.MinPTOutput / 10000;
                 result.MaxPTOutput = result.MaxPTOutput / 10000;
+                var msgContent = result.MsgContent;
                 switch (result.MsgId)
                 {
                     case (int)MsgId.Msg_1003:
@@ -274,9 +325,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         msgContent = ResourceManager.GetErrorMsg(result.MsgId);
                         break;
                 }
+
+                msgContents.Add(new Result(result.MsgId, msgContent));
             }
 
-            result.MsgContent = msgContent;
+            return msgContents;
         }
     }
 }

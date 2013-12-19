@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeniedMsg" xml:space="preserve">
-    <value>Sorry, You don't have permission to access this page.</value>
+    <value>Sorry, you do not have permission to access this page.</value>
   </data>
   <data name="AccountInfo" xml:space="preserve">
     <value>Account Info</value>
@@ -218,7 +218,7 @@ If that is not you, please contact your upline!!!</value>
     <value>Page not found, please check the address</value>
   </data>
   <data name="HttpError_Default" xml:space="preserve">
-    <value>Oops... you are here because of a system error, please notify the administrators</value>
+    <value>Oops... you are here because of a system error, please notify your administrator.</value>
   </data>
   <data name="IncorrectCaptchaMsg" xml:space="preserve">
     <value>You have entered an incorrect answer for CAPTCHA.</value>
@@ -310,7 +310,7 @@ If that is not you, please contact your upline!!!</value>
     <value>Under Maintenance</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Updated successfully!</value>
+    <value>Updated successfully.</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
@@ -541,6 +541,15 @@ If that is not you, please contact your upline!!!</value>
   <data name="UsernameRequired" xml:space="preserve">
     <value>Please enter your username.</value>
     <comment>not</comment>
+  </data>
+  <data name="UpdateBetSettingSuccessfully" xml:space="preserve">
+    <value>Updated bet setting successfully.</value>
+  </data>
+  <data name="UpdateCommissionSuccessfully" xml:space="preserve">
+    <value>Updated commission setting successfully.</value>
+  </data>
+  <data name="InsertSuccessfully" xml:space="preserve">
+    <value>Insert Successfully</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>Soccer</value>

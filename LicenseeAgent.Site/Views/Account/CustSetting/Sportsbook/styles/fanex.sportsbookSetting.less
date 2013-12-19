@@ -3,6 +3,19 @@
 @title-background-color: #908f8f;
 @row-height: 25px;
 
+.messages
+{
+    margin-bottom: 10px;
+    .success
+    {
+        color: #50C15C;
+    }
+    .error
+    {
+        color: #d62d2e;
+    }
+}
+
 .row-block()
 {
     height: @row-height;
@@ -131,24 +144,6 @@ input[type="text"], input[type="password"]
             overflow: hidden;
             white-space: nowrap;
         }
-    }
-
-    .invalid-icon, .valid-icon
-    {
-        margin-top: 3px;
-        background-repeat: no-repeat;
-        border-width: 0;
-        display: inline-block;
-        height: 16px;
-        width: 16px;
-    }
-    .invalid-icon
-    {
-        background: url(../images/invalid.gif);
-    }
-    .valid-icon
-    {
-        background: url(../images/valid.png);
     }
 }
 

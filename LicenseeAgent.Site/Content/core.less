@@ -67,7 +67,7 @@
     }
     iframe.loading
     {
-        background: black url(../images/ajax-loader.gif) center center no-repeat;
+        background: white url(../images/loader.gif) center center no-repeat;
     }
 }
 
@@ -155,6 +155,10 @@ span.require:after
     &.popup
     {
         margin: 0;
+        legend, .legend
+        {
+            display: none;
+        }
     }
 }
 
@@ -187,6 +191,17 @@ span.require:after
         label
         {
             padding-right: 3px;
+        }
+    }
+}
+
+.form-table
+{
+    table
+    {
+        td:not(:first-child)
+        {
+            padding-left: 20px;
         }
     }
 }

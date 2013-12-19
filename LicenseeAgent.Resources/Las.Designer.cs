@@ -61,7 +61,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, You don&apos;t have permission to access this page..
+        ///   Looks up a localized string similar to Sorry, you do not have permission to access this page..
         /// </summary>
         public static string AccessDeniedMsg {
             get {
@@ -630,7 +630,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops... you are here because of a system error, please notify the administrators.
+        ///   Looks up a localized string similar to Oops... you are here because of a system error, please notify your administrator..
         /// </summary>
         public static string HttpError_Default {
             get {
@@ -653,6 +653,15 @@ namespace LicenseeAgent.Resources {
         public static string InsertCustomer {
             get {
                 return ResourceManager.GetString("InsertCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Successfully.
+        /// </summary>
+        public static string InsertSuccessfully {
+            get {
+                return ResourceManager.GetString("InsertSuccessfully", resourceCulture);
             }
         }
         
@@ -1224,7 +1233,25 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated successfully!.
+        ///   Looks up a localized string similar to Updated bet setting successfully..
+        /// </summary>
+        public static string UpdateBetSettingSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdateBetSettingSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated commission setting successfully..
+        /// </summary>
+        public static string UpdateCommissionSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdateCommissionSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated successfully..
         /// </summary>
         public static string UpdateSuccessfully {
             get {

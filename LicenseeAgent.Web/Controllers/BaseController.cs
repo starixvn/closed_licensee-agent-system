@@ -229,6 +229,12 @@ namespace LicenseeAgent.Web.Controllers
             return JsonResult(result);
         }
 
+        protected JsonResult JsonResult(int msgId, string msgContent)
+        {
+            var result = new Result(msgId, msgContent);
+            return JsonResult(result);
+        }
+
         protected JsonResult InvalidModelJsonResult()
         {
             var result = new Result(GetModelErrorMessage());

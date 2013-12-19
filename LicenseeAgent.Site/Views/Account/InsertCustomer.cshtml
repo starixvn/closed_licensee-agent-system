@@ -31,8 +31,10 @@
     class="fanex-sportbook-setting" ng-controller="sportsbook.custSettingController"
     data-href="~/SportsbookSetting/InsertCustomer">
     <div class="clearfix">
-        <div class="alert alert-error" data-ng-show="MsgId > 0">
-            {{MsgContent}}
+        <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
+            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.MsgId == 0, 'error' : message.MsgId > 0}">
+                {{message.MsgContent}}
+            </p>
         </div>
     </div>
     <div class="clearfix">

@@ -9,7 +9,7 @@
     <table>
         <tr>
             <td>
-                <input type="checkbox" id="all-league" data-id="0" />
+                <input type="checkbox" class="check-all-league" id="league-0" data-id="0" />
             </td>
             <td class="league-name">
                 @Las.All @Las.League
@@ -24,7 +24,7 @@
         </tr>
         <tr ng-repeat="league in leagues | filter:queryLeague | orderBy: league.LeagueName">
             <td>
-                <input type="checkbox" id="league-{{league.LeagueId}}" data-id="{{league.LeagueId}}" /> 
+                <input type="checkbox" ng-change="childChange()" class="check-child-league" id="league-{{league.LeagueId}}" data-id="{{league.LeagueId}}" /> 
             </td>
             <td><span class="league-name">
                 {{league.LeagueName}}></span> 

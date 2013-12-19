@@ -1,6 +1,6 @@
 ﻿var TotalBetsSoccer = function ($) {
     return {
-        
+
         events: [],
 
         init: function () {
@@ -11,10 +11,18 @@
                 LeagueFilter.showFilter();
             });
             $("#cancel-league-select").click(function () {
-                LeagueFilter.hideFilter();                
+                LeagueFilter.hideFilter();
             });
             $("#ok-league-select").click(function () {
                 LeagueFilter.selectedLeagues();
+            });
+            $(".check-all-league").change(function () {
+                $('.check-child-league').prop('checked', $(".check-all-league").is(':checked'));
+            });
+            $(".check-child-league").change(function () {
+                
+                var leagueCount = $(".select-league-area .check-child-league").length();
+                alert(document.getElementById('league-6').attributes('className'));
             });
         }
     }
@@ -30,15 +38,12 @@ var LeagueFilter = function ($) {
 
         showFilter: function () {
             $(".select-league-area").slideDown();
-            LeagueFilter.loadLeagues();
         },
         hideFilter: function () {
             $(".select-league-area").hide();
         },
         selectedLeagues: function () {
             $(".select-league-area").slideUp();
-        },
-        loadLeagues: function () {            
         }
     }
 } (jQuery);
@@ -52,7 +57,9 @@ SoccerApp.controller('LeagueCotroller', function ($scope, $http) {
             $scope.leagues = data.List;
         });
     };
-
+    $scope.childChange = function () {
+        alert("a");
+    };
 });
 
 SoccerApp.controller('EventCotroller', function ($scope) {

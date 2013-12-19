@@ -133,8 +133,7 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/bootstrap").Include(
                 "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
                 "~/scripts/bootstrap/bootstrap-select.js").Include(
-                "~/scripts/bootstrap/bootstrap-switch.js"));
-                "~/scripts/bootstrap/bootstrap-combobox.js",
+                "~/scripts/bootstrap/bootstrap-switch.js",
                 "~/scripts/bootstrap/bootstrap-paginator.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));

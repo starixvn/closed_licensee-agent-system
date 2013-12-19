@@ -681,6 +681,7 @@
     <Content Include="Views\Customer\_MemberGrid.cshtml" />
     <Content Include="Views\Customer\GetIpInformation.cshtml" />
     <Content Include="Views\Customer\_AgentGrid.cshtml" />
+    <Content Include="Views\TotalBets\Indexl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

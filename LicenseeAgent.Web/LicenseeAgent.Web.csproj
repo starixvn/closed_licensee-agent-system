@@ -57,6 +57,7 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Entities\DownlineContext.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />

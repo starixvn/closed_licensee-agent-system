@@ -3,22 +3,19 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.1">Created</change>
-//   <change who="Ricky.Nguyen" date="2013.4.12">Update Simple Mode</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Class name.
     /// </summary>
-    public class SettingContext
+    public class SettingContext : DownlineContext
     {
         public SettingContext()
         {
@@ -45,8 +42,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public string UserName { get; set; }
 
-        public int TargetCustId { get; set; }
-
         public string TargetCustIds { get; set; }
 
         /// <summary>
@@ -63,8 +58,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public int RoleId { get; set; }
 
         public string SiteName { get; set; }
-
-        public int TargetRoleId { get; set; }
 
         public FormType FormId { get; set; }
 

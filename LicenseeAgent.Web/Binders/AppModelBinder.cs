@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.11.15">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Binders
 {
@@ -15,6 +12,7 @@ namespace LicenseeAgent.Web.Binders
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
@@ -31,6 +29,33 @@ namespace LicenseeAgent.Web.Binders
         public AppModelBinder()
         {
             _authorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
+        }
+
+        /// <summary>
+        /// Called when the model is updated.
+        /// </summary>
+        /// <param name="controllerContext">The context within which the controller operates.</param>
+        /// <param name="bindingContext">The context within which the model is bound.</param>
+        protected override void OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+            base.OnModelUpdated(controllerContext, bindingContext);
+            var downlineContext = bindingContext.Model as DownlineContext;
+            if (downlineContext != null)
+            {
+                if (downlineContext.TargetCustId == 0)
+                {
+                    return;
+                }
+
+                var criteria = new CheckDownlineBelongCriteria
+                {
+                    CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
+                    TargetCustId = downlineContext.TargetCustId,
+                    Type = downlineContext.TargetRoleId == (int)Role.Member ? (int)DownlineRole.Member : (int)DownlineRole.Agent
+                };
+
+                ValidateDownlineBelong(controllerContext, criteria);
+            }
         }
 
         /// <summary>
@@ -142,7 +167,7 @@ namespace LicenseeAgent.Web.Binders
                     Type = (int)downlineRole
                 };
 
-                return ValidateDownlineBelong(controllerContext, bindingContext, propertyDescriptor, criteria);
+                return ValidateDownlineBelong(controllerContext, criteria);
             }
 
             return true;
@@ -152,14 +177,12 @@ namespace LicenseeAgent.Web.Binders
         /// Validates the down-line belong.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
-        /// <param name="bindingContext">The binding context.</param>
-        /// <param name="propertyDescriptor">The property descriptor.</param>
         /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns boolean.</returns>
+        /// <returns>
+        /// Returns boolean.
+        /// </returns>
         protected bool ValidateDownlineBelong(
             ControllerContext controllerContext,
-            ModelBindingContext bindingContext,
-            PropertyDescriptor propertyDescriptor,
             CheckDownlineBelongCriteria criteria)
         {
             _authorizeService.CheckDownlineBelong(criteria);

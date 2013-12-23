@@ -153,6 +153,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON result.</returns>
         [HttpPost]
+        [DirectDownline]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             if (model == null ||

@@ -47,6 +47,7 @@ namespace LicenseeAgent.Web.Mvc
             if (controllerContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.UnauthorizedMsg));
+                response.End();
             }
             else
             {
@@ -70,6 +71,7 @@ namespace LicenseeAgent.Web.Mvc
             if (authorizationContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.UnauthorizedMsg));
+                response.End();
             }
             else
             {
@@ -116,6 +118,7 @@ namespace LicenseeAgent.Web.Mvc
             if (controllerContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.AccessDeniedMsg));
+                response.End();
             }
             else
             {

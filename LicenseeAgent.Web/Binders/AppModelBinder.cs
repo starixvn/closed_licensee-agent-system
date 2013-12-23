@@ -33,12 +33,6 @@ namespace LicenseeAgent.Web.Binders
             _authorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
         }
 
-        protected override PropertyDescriptorCollection GetModelProperties(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            var x = base.GetModelProperties(controllerContext, bindingContext);
-            return x;
-        }
-
         /// <summary>
         /// Called when the specified property is validating.
         /// </summary>

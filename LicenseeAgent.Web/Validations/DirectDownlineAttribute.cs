@@ -6,12 +6,12 @@
 
 namespace LicenseeAgent.Web.Filters
 {
-    using System.ComponentModel.DataAnnotations;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DirectDownlineAttribute : ValidationAttribute
+    public class DirectDownlineAttribute : Attribute
     {
     }
 }

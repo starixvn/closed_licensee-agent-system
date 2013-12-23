@@ -49,14 +49,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public string TargetCustIds { get; set; }
 
-        public int AgentId
-        {
-            get
-            {
-                return TargetCustId;
-            }
-        }
-
         /// <summary>
         /// Gets or sets the Admin ID.
         /// </summary>

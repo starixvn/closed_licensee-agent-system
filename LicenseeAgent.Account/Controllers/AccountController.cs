@@ -41,6 +41,7 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         [HttpGet]
+        [AppAuthorize(OnlyAuthorize = true)]
         public ActionResult Index()
         {
             return View();

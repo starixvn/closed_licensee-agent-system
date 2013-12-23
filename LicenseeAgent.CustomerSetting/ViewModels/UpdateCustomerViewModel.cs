@@ -11,6 +11,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.
@@ -18,6 +19,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     public class UpdateCustomerViewModel
     {
         [Required]
+        [DirectDownline]
         public SettingContext SettingContext { get; set; }
 
         [Required]

@@ -243,7 +243,8 @@ namespace LicenseeAgent.Web.Controllers
 
         protected ActionResult InvalidModelViewResult()
         {
-            return Content("Invalid Data");
+            var errorMessage = GetModelErrorMessage();
+            return Content(errorMessage);
         }
 
         /// <summary>

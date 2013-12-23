@@ -422,7 +422,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 Discount = discountXML,
                 BetLimit = betLimitXML,
                 PositionTaking = positionTakingXML,
-                Ip = !string.IsNullOrEmpty(model.SettingContext.IP) ? model.SettingContext.IP : string.Empty,
+                Ip = !string.IsNullOrEmpty(model.SettingContext.Ip) ? model.SettingContext.Ip : string.Empty,
                 Updater = model.SettingContext.LoginUserId
             };
 

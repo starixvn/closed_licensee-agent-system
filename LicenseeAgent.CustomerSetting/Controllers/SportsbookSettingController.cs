@@ -182,7 +182,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Returns view.
         /// </returns>
         [HttpGet]
-        [DirectDownline]
         public ViewResult EditAgent(EditAgentViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)

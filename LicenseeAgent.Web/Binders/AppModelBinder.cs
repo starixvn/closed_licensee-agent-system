@@ -11,12 +11,12 @@ namespace LicenseeAgent.Web.Binders
 {
     using System;
     using System.ComponentModel;
-    using System.Web;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
@@ -33,27 +33,10 @@ namespace LicenseeAgent.Web.Binders
             _authorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
         }
 
-        /// <summary>
-        /// Binds the model by using the specified controller context and binding context.
-        /// </summary>
-        /// <param name="controllerContext">The context within which the controller operates.
-        /// The context information includes the controller, HTTP content, request context, and route data.</param>
-        /// <param name="bindingContext">The context within which the model is bound.
-        /// The context includes information such as the model object, model name, model type, property filter, and value provider.</param>
-        /// <returns>
-        /// The bound object.
-        /// </returns>
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        protected override PropertyDescriptorCollection GetModelProperties(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            try
-            {
-                return base.BindModel(controllerContext, bindingContext);
-            }
-            catch (HttpRequestValidationException)
-            {
-                bindingContext.ModelState.AddModelError(string.Empty, Las.HtmlDisallowed);
-                return null;
-            }
+            var x = base.GetModelProperties(controllerContext, bindingContext);
+            return x;
         }
 
         /// <summary>
@@ -188,7 +171,7 @@ namespace LicenseeAgent.Web.Binders
             _authorizeService.CheckDownlineBelong(criteria);
             if (!criteria.IsBelongTo)
             {
-                bindingContext.ModelState.AddModelError(propertyDescriptor.Name, Las.HttpError_403);
+                controllerContext.ReturnAccessDenied();
                 return false;
             }
             else
@@ -201,7 +184,7 @@ namespace LicenseeAgent.Web.Binders
                 || controllerDescriptor.IsDefined(typeof(DirectDownlineAttribute), true);
                 if (isValidateDirectDownline && !_authorizeService.ValidateDirectDownline(criteria))
                 {
-                    bindingContext.ModelState.AddModelError(propertyDescriptor.Name, Las.HttpError_403);
+                    controllerContext.ReturnAccessDenied();
                     return false;
                 }
             }

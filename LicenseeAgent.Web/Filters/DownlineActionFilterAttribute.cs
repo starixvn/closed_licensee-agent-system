@@ -1,11 +1,8 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="DownlineAttribute.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DownlineActionFilterAttribute.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Filters
 {
@@ -18,11 +15,11 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownlineAttribute : BaseActionFilterAttribute
+    public class DownlineActionFilterAttribute : BaseActionFilterAttribute
     {
         private IAuthorizeService _authorizeService;
 
-        public DownlineAttribute()
+        public DownlineActionFilterAttribute()
         {
             _authorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
         }
@@ -57,7 +54,7 @@ namespace LicenseeAgent.Web.Filters
             _authorizeService.CheckDownlineBelong(criteria);
             if (!criteria.IsBelongTo)
             {
-                DoUnAuthorized(filterContext);
+                AccessDenied(filterContext);
             }
             else
             {
@@ -65,7 +62,7 @@ namespace LicenseeAgent.Web.Filters
                     || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(DirectDownlineAttribute), true);
                 if (!_authorizeService.ValidateDirectDownline(criteria))
                 {
-                    DoUnAuthorized(filterContext);
+                    AccessDenied(filterContext);
                 }
             }
         }

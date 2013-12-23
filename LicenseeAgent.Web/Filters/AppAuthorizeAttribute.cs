@@ -10,11 +10,11 @@
 namespace LicenseeAgent.Web.Filters
 {
     using System;
-    using System.Net;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
@@ -52,7 +52,7 @@ namespace LicenseeAgent.Web.Filters
             // Some controllers which have IsInternal = true must have AppSettings.IsInternal = true
             if (IsInternal && !AppSettings.IsInternal)
             {
-                DoUnAuthorized(filterContext);
+                filterContext.ReturnUnauthorized();
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace LicenseeAgent.Web.Filters
             var currentSession = SessionManager.CurrentSession;
             if (currentSession != null && !currentSession.IsValid)
             {
-                ClearAuthorization(filterContext);
+                filterContext.ReturnUnauthorized();
                 return;
             }
 
@@ -72,11 +72,20 @@ namespace LicenseeAgent.Web.Filters
                 var isAuthorized = AuthorizeCore(httpContext);
                 if (!isAuthorized)
                 {
-                    DoUnAuthorized(filterContext);
+                    filterContext.ReturnUnauthorized();
                 }
                 else if (!OnlyAuthorize)
                 {
-                    CheckingRequireAgentChangePassword(filterContext);
+                    if (currentSession.AgentInfo == null)
+                    {
+                        filterContext.ReturnAccessDenied();
+                        return;
+                    }
+
+                    if (!AppSettings.IsInternal && currentSession.IsInternalSignIn)
+                    {
+                        CheckingRequireAgentChangePassword(filterContext);
+                    }
                 }
             }
         }
@@ -142,18 +151,8 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="filterContext">The filter context.</param>
         private void CheckingRequireAgentChangePassword(AuthorizationContext filterContext)
         {
-            if (AppSettings.IsInternal)
-            {
-                return;
-            }
-
             // Only check the agent session.
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession.AdminInfo != null || currentSession.AgentInfo == null)
-            {
-                return;
-            }
-
             var httpContext = filterContext.HttpContext;
             if (filterContext.Result != null)
             {
@@ -167,40 +166,6 @@ namespace LicenseeAgent.Web.Filters
             {
                 filterContext.Result = new RedirectResult(AppURLs.URLs.ChangePassword);
             }
-        }
-
-        /// <summary>
-        /// Call to un-authorize current login user.
-        /// </summary>
-        /// <param name="filterContext">The filter context.</param>
-        private void DoUnAuthorized(AuthorizationContext filterContext)
-        {
-            var httpContext = filterContext.HttpContext;
-            var response = httpContext.Response;
-            if (filterContext.IsAjaxRequest())
-            {
-                response.Clear();
-                response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                response.StatusDescription = string.Empty;
-                filterContext.Result = new ContentResult
-                {
-                    Content = Las.UnauthorizedMsg
-                };
-
-                response.End();
-            }
-            else
-            {
-                filterContext.Result = new HttpUnauthorizedResult();
-            }
-        }
-
-        private void ClearAuthorization(AuthorizationContext filterContext)
-        {
-            FormsAuthentication.SignOut();
-            filterContext.HttpContext.Session.Abandon();
-            filterContext.HttpContext.Response.Cookies.Clear();
-            filterContext.Result = new RedirectResult(FormsAuthentication.LoginUrl);
         }
     }
 }

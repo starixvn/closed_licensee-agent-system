@@ -3,21 +3,12 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Mvc
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.Mvc.Html;
-    using System.Web.Routing;
     using Fanex.Common;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
@@ -80,32 +71,10 @@ namespace LicenseeAgent.Web.Mvc
             httpResponse.Write(Formatter.FormatJson(jsonResult));
         }
 
-        /// <summary>
-        /// Create a textbox with MAXLENGTH property.
-        /// </summary>
-        /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <typeparam name="TProperty">The type of the property.</typeparam>
-        /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="expression">The expression.</param>
-        /// <param name="htmlAttributes">The HTML attributes.</param>
-        /// <returns>Returns a MVC HTML String.</returns>
-        public static MvcHtmlString LasTextBoxFor<TModel, TProperty>(
-            this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression,
-            object htmlAttributes)
+        public static void WriteJson(this HttpResponseBase httpResponse, Result jsonResult)
         {
-            var member = expression.Body as MemberExpression;
-            var stringLength = member.Member
-                .GetCustomAttributes(typeof(StringLengthAttribute), false)
-                .FirstOrDefault() as StringLengthAttribute;
-
-            var attributes = (IDictionary<string, object>)new RouteValueDictionary(htmlAttributes);
-            if (stringLength != null)
-            {
-                attributes.Add("maxlength", stringLength.MaximumLength);
-            }
-
-            return htmlHelper.TextBoxFor(expression, attributes);
+            httpResponse.AddHeader("content-type", "application/json");
+            httpResponse.Write(Formatter.FormatJson(jsonResult));
         }
 
         private static bool IsAjaxRequestInternal(HttpRequestBase httpRequest)

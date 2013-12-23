@@ -19,6 +19,7 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web;
@@ -93,7 +94,7 @@ namespace LicenseeAgent.Account
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON.</returns>
         [HttpPost]
-        [SelectMenuActionFilter]
+        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
         public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
         {
             if (!ModelState.IsValid)
@@ -300,7 +301,7 @@ namespace LicenseeAgent.Account
         /// <returns>Partial view model.</returns>
         [ChildActionOnly]
         [HttpGet]
-        [SelectMenuActionFilter]
+        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
         public ActionResult SelectMenu()
         {
             var model = new LicenseeViewModel
@@ -332,7 +333,7 @@ namespace LicenseeAgent.Account
         /// <param name="model">Get currency licensee criteria.</param>
         /// <returns>JSON result.</returns>
         [HttpPost]
-        [SelectMenuActionFilter]
+        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
         public ActionResult GetCurrencies(CurrencyLicenseeViewModel model)
         {
             if (model.IsValid())

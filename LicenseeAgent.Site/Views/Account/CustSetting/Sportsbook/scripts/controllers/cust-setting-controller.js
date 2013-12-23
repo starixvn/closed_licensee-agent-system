@@ -151,7 +151,17 @@
                 if (data.MsgId == 0) {
                     $scope.Messages = data.Messages;
                     CORE.scrollTop();
-                    POPUP.close();
+                    var isSuccess = true;
+                    for (var i = 0; i < data.Messages.length; i++) {
+                        var message = data.Messages[i];
+                        if (message.MsgId != 0) {
+                            isSuccess = false;
+                            break;
+                        }
+                    }
+                    if (isSuccess) {
+                        POPUP.close();
+                    }
                 }
                 else {
                     alert(data.MsgContent);

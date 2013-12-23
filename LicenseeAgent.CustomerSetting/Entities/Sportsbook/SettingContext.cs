@@ -10,8 +10,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
-    using System.Diagnostics.CodeAnalysis;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.Web;
@@ -25,7 +23,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public SettingContext()
         {
             var deviceDetection = new DeviceDetection();
-            IP = deviceDetection.ClientIp;
+            Ip = deviceDetection.ClientIp;
             FormId = FormType.Add;
             IsSimpleMode = true;
             Language = Constant.DEFAULT_LANGUAGE;
@@ -45,13 +43,19 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public int CustId { get; set; }
 
-        public int AgentLevel { get; set; }
-
         public string UserName { get; set; }
 
         public int TargetCustId { get; set; }
 
         public string TargetCustIds { get; set; }
+
+        public int AgentId
+        {
+            get
+            {
+                return TargetCustId;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Admin ID.
@@ -74,7 +78,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public int FormSetting { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public string Language { get; set; }
 

@@ -44,7 +44,9 @@
             if (target == undefined) {
                 target = currentOpenDialog;
             }
-            target.dialog("close");
+            if (target != null) {
+                target.dialog("close");
+            }
         },
         resizeDialog: function (width, height) {
             if (currentOpenDialog && currentOpenDialog.dialog("isOpen")) {

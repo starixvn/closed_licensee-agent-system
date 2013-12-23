@@ -58,7 +58,7 @@
                     HEADER.signOut();
                 }
                 else {
-                    setTimeout(function () { HEADER.reCheckIn(); }, 80000);
+                    setTimeout(function () { HEADER.reCheckIn(); }, 30000);
                 }
             });
         },

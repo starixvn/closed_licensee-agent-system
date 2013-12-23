@@ -1,20 +1,24 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ITotalBetsService.cs" company="Microsoft">
-// TODO: Update copyright text.
+// <copyright file="ITotalBetsService.cs" company="Nexcel Solutions Vietnam">
+// ITotalBetsService.
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace LicenseeAgent.TotalBets.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Total bet service.
     /// </summary>
-    public class ITotalBetsService
+    public interface ITotalBetsService
     {
+        IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria);
+
+        IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria);
+
+        IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria);
     }
 }

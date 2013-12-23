@@ -2,37 +2,39 @@
     ViewBag.Title = Las.TotalBets + " - " + Las.Soccer;
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+@using LicenseeAgent.TotalBets.Entities;
 @model LicenseeAgent.TotalBets.ViewModels.SoccerViewModel
 @section css{
-    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/plugin")
     @Styles.Render("~/css/totalbets-soccer")
-}
-<h3>@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</h3>
-@using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { id = "ajax-form", @class = "hide" }))
-{
-   
-}
-@using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
-{
-    <input type="text" id="league-selected-string" />
-    <input type="text" id="event-selected-string" />
-    <div ng-app="SoccerApp">
-        <div class="controls-row">
-            @{Html.RenderPartial("~/Views/TotalBets/Soccer.League.cshtml");}
-        </div>
-        <div class="controls-row">
-            @{Html.RenderPartial("~/Views/TotalBets/Soccer.Event.cshtml");}
-        </div>
-        <div class="controls-row">
-            <button class="btn btn-primary" type="submit">
-                @Las.Submit
-            </button>
-        </div>
-    </div>
 }
 @section scripts{
     @Scripts.Render("~/js/angular")
-    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-soccer")
+    @Scripts.Render("~/js/totalbets-soccer")        
 }
+<h3>@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</h3>
+@using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
+{ }
+@using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+{   
+    <div class="controls-row">
+        <div id="league-multi-select"></div>
+        @Html.Hidden("League", Model.League)
+    </div>
+    <div class="controls-row">
+        <div id="event-multi-select"></div>
+        @Html.Hidden("Event",Model.Event)
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+    
+}
+<div class="wrapper">
+    <div id="grid" class="freegrid">
+    </div>
+</div>

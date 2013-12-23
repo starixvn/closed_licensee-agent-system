@@ -480,8 +480,11 @@
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\menu.js" />
+    <Content Include="Views\TotalBets\Resources\fanex.multiSelect.css" />
+    <Content Include="Views\TotalBets\Resources\fanex.multiSelect.js" />
+    <Content Include="Views\TotalBets\Resources\Images\ui-icons_2e83ff_256x240.png" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
-    <Content Include="Views\TotalBets\Resources\soccer-filter.js" />
+    <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\SearchUser\Resources\index.less" />
     <Content Include="Scripts\searchuser.js" />
     <Content Include="Web.config">
@@ -696,6 +699,7 @@
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.League.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Event.cshtml" />
+    <Content Include="Views\TotalBets\_SoccerGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

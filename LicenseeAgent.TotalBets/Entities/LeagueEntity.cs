@@ -21,6 +21,6 @@ namespace LicenseeAgent.TotalBets.Entities
             {
                 return DataRefWrapper.GetLeagueName(LeagueId);
             }
-        }
+        }        
     }
 }

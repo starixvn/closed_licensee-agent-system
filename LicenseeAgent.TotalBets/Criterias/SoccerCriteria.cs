@@ -15,11 +15,13 @@ namespace LicenseeAgent.TotalBets.Criterias
     {
         public int AgentId { get; set; }
 
-        public int MsgId { get; set; }
+        public string LeagueList { get; set; }
+
+        public string MatchList { get; set; }
 
         public override string GetSettingKey()
         {
-            return "Las_AgentGetByAgent";
+            return "LAS_TotalBet_Soccer_MajorBetType";
         }
 
         public override bool IsValid()

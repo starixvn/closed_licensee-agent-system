@@ -1,61 +1,19 @@
-﻿.select-league-area 
+﻿#totalbet-data-content {
+	border-top: 1px solid #cccccc;
+}
+#totalbet-data-content table
 {
-    background-color: #dddddd;
-	display: none;
-	position: absolute;
-	z-index:999;
-	box-shadow: 10px 10px 5px #aaaaaa;
-	width: 350px;
-	max-height: 300px;
-}
-.select-league-area input#search-league {
-	width: 300px;
-}
-.select-league-area table tr td {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-span.league-name {
-	
-}
-#select-league-text
-{
-    font-style: italic;
-	color: Gray;
-	
-}
-#select-league-text:hover {
-	cursor: hand !important;
+    width: 100%;
 }
 
-/* --------------------- Event ------------*/
-
-.select-event-area 
-{
-    background-color: #dddddd;
-	display: none;
-	position: absolute;
-	z-index:999;
-	box-shadow: 10px 10px 5px #aaaaaa;
-	width: 350px;
-	max-height: 300px;
+#totalbet-data-content table tr td{
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    height: 22px;
 }
-.select-event-area input#search-event {
-	width: 300px;
-}
-.select-event-area table tr td {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-span.event-name {
-	
-}
-#select-event-text
-{
-    font-style: italic;
-	color: Gray;
-	
-}
-#select-event-text:hover {
-	cursor: hand !important;
+#totalbet-data-content table tr.header-row {
+	text-align: center;
+	background-color: #908F8F;
+	font-weight: bold;
+	color: #FFFFFF;
 }

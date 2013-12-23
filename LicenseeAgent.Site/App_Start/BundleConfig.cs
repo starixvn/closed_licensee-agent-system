@@ -153,8 +153,9 @@ namespace LicenseeAgent.Site
             RegisterAccountPage(bundles);
             RegisterCustomerListPage(bundles);
             RegisterTotalBetsPages(bundles);
+            RegisterPluginControl(bundles);
         }
-
+        
         /// <summary>
         /// Registers the login page.
         /// </summary>
@@ -244,8 +245,20 @@ namespace LicenseeAgent.Site
                 "~/Views/TotalBets/Resources/soccer.css"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
-                "~/Views/TotalBets/Resources/soccer.js").Include(
-                "~/Views/TotalBets/Resources/soccer-filter.js"));
+                "~/Views/TotalBets/Resources/soccer.js"));
+        }
+
+        /// <summary>
+        /// Registers the plugin bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterPluginControl(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/css/plugin").Include(
+                "~/Views/TotalBets/Resources/fanex.multiSelect.css"));
+
+            bundles.Add(new ScriptBundle("~/js/plugin").Include(
+                "~/Views/TotalBets/Resources/fanex.multiSelect.js"));
         }
 
         #endregion Pages

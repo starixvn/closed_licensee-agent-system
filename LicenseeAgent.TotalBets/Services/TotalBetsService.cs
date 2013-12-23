@@ -6,15 +6,29 @@
 
 namespace LicenseeAgent.TotalBets.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using LicenseeAgent.Core.Services;
+    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TotalBetsService : ITotalBetsService
+    public class TotalBetsService : QueryService, ITotalBetsService
     {
+        public IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria)
+        {
+            return GetEntites<LeagueEntity>(criteria);
+        }
+
+        public IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria)
+        {
+            return GetEntites<EventEntity>(criteria);
+        }
+
+        public IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria)
+        {
+            return GetEntites<SoccerDataEntity>(criteria);
+        }
     }
 }

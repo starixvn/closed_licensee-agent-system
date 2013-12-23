@@ -6,10 +6,20 @@
 
 namespace LicenseeAgent.TotalBets.ViewModels
 {
+    using System.Collections.Generic;
+    using LicenseeAgent.TotalBets.Entities;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerViewModel
-    {
+    {        
+        public IEnumerable<LeagueEntity> LeagueList { get; set; }
+
+        public IEnumerable<EventEntity> EventList { get; set; }
+
+        public string League { get; set; }
+
+        public string Event { get; set; }
     }
 }

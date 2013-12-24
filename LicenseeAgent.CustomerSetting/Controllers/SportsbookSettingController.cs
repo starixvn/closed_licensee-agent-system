@@ -95,7 +95,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = FormType.Edit,
+                FormId = model.FormId == (int)FormType.Edit ? FormType.Edit : FormType.ReadOnly,
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId
             };
@@ -187,7 +187,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = FormType.Edit,
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1) ? FormType.Edit : FormType.ReadOnly,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent
             };

@@ -22,6 +22,7 @@
         });
 
         $scope.settingMode = settingContext.IsSimpleMode;
+        $scope.formId = settingContext.FormId;
         $scope.insertCustomer = function () {
             var custInfoScope = angular.element('#custInfoController').scope();
             if (custInfoScope.formCustInfo.$invalid) {

@@ -25,9 +25,9 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         Edit = 1,
 
         /// <summary>
-        /// Edit non direct customer.
+        /// ReadOnly form.
         /// </summary>
-        EditMemberNonDirect = 2,
+        ReadOnly = 2,
 
         /// <summary>
         /// Edit multiple member.

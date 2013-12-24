@@ -73,6 +73,21 @@ if (fanex.sportsbookSetting) {
         }
     });
 
+    fanex.sportsbookSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'fanex.custsetting.commissioncontroller',
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent-readonly.html',
+            link: function (scope, element, attrs, controller) {
+                var commissionSetting = scope.commissionSetting;
+                var inputControl = element.find('.input');
+                inputControl.preventSpecialCharacters("^[0-9.]+$");
+                commissionSetting.actions = fanex.sportsbookSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting, controller, inputControl, scope);
+            }
+        }
+    });
+
     fanex.sportsbookSetting.directive('commissionSettingAgentEditMember', function () {
         return {
             restrict: 'E',

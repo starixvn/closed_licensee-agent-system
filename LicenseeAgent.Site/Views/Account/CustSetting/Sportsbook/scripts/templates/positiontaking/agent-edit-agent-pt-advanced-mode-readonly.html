@@ -1,0 +1,44 @@
+﻿<div>
+    <div ng-if="$index % config.breakNewLine == 0" class="pt-header">
+        <div class="pt-box-title">
+        </div>
+        <div class="pt-box-header">
+            <span class="pt-box-header-text">{{language.presetPt}}</span>
+        </div>
+        <div class="pt-box-header" ng-show="settingContext.FormId != 0">
+            <span class="pt-box-header-text">&nbsp</span>
+        </div>
+        <div class="pt-box-header">
+            <span class="pt-box-header-text">{{language.maxPt}}</span>
+        </div>
+        <div class="pt-box-header">
+            <span class="pt-box-header-text">{{language.minPt}}</span>
+        </div>
+    </div>
+    <div class="pt">
+        <div class="pt-box-title" id="copy_sport_{{pt.SportId}}_bettype_{{pt.BetTypeId}}">
+            <span class="bettype-name">{{language["bettype_" + pt.BetTypeId]}}</span>
+        </div>
+        <div class="pt-box">
+            <input class="preset-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Preset"
+                ng-change="pt.actions.onChangePreset()" readonly="readonly" />
+            <div class="range">[{{pt.MinRangeOfPreset | number:config.decNumber}} - {{pt.MaxRangeOfPreset | number:config.decNumber}}]</div>
+        </div>
+        <div class="pt-box" ng-show="settingContext.FormId != 0">
+            <label class="checkbox">
+                <input class="preset-input" type="checkbox" ng-model="pt.ApplyAll" disabled="disabled" />
+                {{language.applyForAllMembers}}
+            </label>
+        </div>
+        <div class="pt-box">
+            <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Max"
+                ng-change="pt.actions.onChangeMax()" readonly="readonly" />
+            <div class="range">[{{pt.MinRangeOfMax | number:config.decNumber}} - {{pt.MaxRangeOfMax | number:config.decNumber}}]</div>
+        </div>
+        <div class="pt-box">
+            <input class="min-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Min"
+                ng-change="pt.actions.onChangeMin()" readonly="readonly" />
+            <div class="range">[{{pt.MinRangeOfMin | number:config.decNumber}} - {{pt.MaxRangeOfMin | number:config.decNumber}}]</div>
+        </div>
+    </div>
+</div>

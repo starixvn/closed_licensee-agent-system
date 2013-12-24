@@ -25,7 +25,8 @@
             <commission-setting-agent-edit-member></commission-setting-agent-edit-member>
         </div>
         <div ng-show="settingContext.TargetRoleId !=1 ? true: false;" ng-repeat="commissionSetting in viewModel.commissionSettingsViewModel">
-            <commission-setting-licensee-or-agent-edit-agent></commission-setting-licensee-or-agent-edit-agent>
+            <commission-setting-licensee-or-agent-edit-agent ng-show="settingContext.FormId != 2"></commission-setting-licensee-or-agent-edit-agent>
+            <commission-setting-licensee-or-agent-edit-agent-read-only ng-show="settingContext.FormId == 2"></commission-setting-licensee-or-agent-edit-agent-read-only>
         </div>
     </div>
 </div>

@@ -24,5 +24,8 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Required]
         [Range(1, Int32.MaxValue)]
         public int TargetRoleId { get; set; }
+
+        [Required]
+        public int FormId { get; set; }
     }
 }

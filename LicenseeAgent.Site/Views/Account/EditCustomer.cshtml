@@ -19,7 +19,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?targetCustId={0}&targetRoleId={1}", Model.TargetCustId, Model.TargetRoleId))></script>
+    <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?targetCustId={0}&targetRoleId={1}&formId={2}", Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId))></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting.sportsbook")
@@ -74,9 +74,12 @@
         <div class="control-group">
         </div>
         <div class="control-group">
-            <button class="btn btn-primary" data-ng-click="updateCustomer()">
-                @Las.Update
-            </button>
+            @if (Model.FormId == FormType.Edit)
+            {
+                <button class="btn btn-primary" data-ng-click="updateCustomer()">
+                    @Las.Update
+                </button>
+            }
         </div>
     </div>
 </div>

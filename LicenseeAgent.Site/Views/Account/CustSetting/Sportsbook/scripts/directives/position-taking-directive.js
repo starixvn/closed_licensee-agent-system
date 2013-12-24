@@ -235,6 +235,37 @@ if (fanex.sportsbookSetting) {
         }
     });
 
+    fanex.sportsbookSetting.directive('agentEditAgentPtAdvancedModeReadOnly', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'sportsbook.positionTakingController',
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
+            link: function (scope, element, attrs, controller) {
+                //// Cache Elements.
+                var presetInput = element.find('.preset-input');
+                var maxInput = element.find('.max-input');
+                var minInput = element.find('.min-input');
+                var currentPt = scope.pt;
+
+                presetInput.preventSpecialCharacters("^[0-9.]+$");
+                maxInput.preventSpecialCharacters("^[0-9.]+$");
+                minInput.preventSpecialCharacters("^[0-9.]+$");
+
+                //// Position taking Actions
+                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+
+                //// Init value
+                currentPt.OldMin = currentPt.Min;
+                currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
+                currentPt.MinRangeOfPreset = 0;
+                currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+                currentPt.actions.whenPresetChange();
+            }
+        }
+    });
+
     fanex.sportsbookSetting.directive('licenseeEditAgentOnePtAdvancedMode', function () {
         return {
             restrict: 'E',
@@ -297,6 +328,38 @@ if (fanex.sportsbookSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html',
+            link: function (scope, element, attrs, controller) {
+                //// Cache Elements.
+                var presetInput = element.find('.preset-input');
+                var maxInput = element.find('.max-input');
+                var minInput = element.find('.min-input');
+                var currentPt = scope.ptSimple;
+
+                presetInput.preventSpecialCharacters("^[0-9.]+$");
+                maxInput.preventSpecialCharacters("^[0-9.]+$");
+                minInput.preventSpecialCharacters("^[0-9.]+$");
+
+                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+                //// Init value
+                currentPt.OldMin = currentPt.Min;
+                currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
+                currentPt.MinRangeOfPreset = 0;
+                currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+                currentPt.actions.whenPresetChange();
+            }
+        }
+    });
+
+    fanex.sportsbookSetting.directive('agentEditAgentPtSimpleModeReadOnly', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'sportsbook.positionTakingController',
+            scope: {
+                ptSimple: '='
+            },
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');

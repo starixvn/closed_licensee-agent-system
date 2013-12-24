@@ -1,0 +1,45 @@
+﻿<div>
+    <div class="pt-header-simple">
+        <div class="pt-box-header-simple">
+            <span class="pt-box-header-text">{{language.presetPt}}</span>
+        </div>
+        <div class="pt-box-header-simple" ng-show="settingContext.FormId != 0">
+            <span class="pt-box-header-text">&nbsp</span>
+        </div>
+        <div class="pt-box-header-simple">
+            <span class="pt-box-header-text">{{language.maxPt}}</span>
+        </div>
+        <div class="pt-box-header-simple">
+            <span class="pt-box-header-text">{{language.minPt}}</span>
+        </div>
+    </div>
+    <div class="pt-simple">
+        <div class="pt-box-simple">
+            <input class="preset-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Preset"
+                ng-change="ptSimple.actions.onChangePreset()" readonly="readonly" />
+            <div class="range">
+                [{{ptSimple.MinRangeOfPreset | number:config.decNumber}} - {{ptSimple.MaxRangeOfPreset
+                | number:config.decNumber}}]</div>
+        </div>
+        <div class="pt-box-simple" ng-show="settingContext.FormId != 0">
+            <label class="checkbox">
+                <input class="preset-input" type="checkbox" ng-model="ptSimple.ApplyAll" disabled="disabled" />
+                {{language.applyForAllMembers}}
+            </label>
+        </div>
+        <div class="pt-box-simple">
+            <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Max"
+                ng-change="ptSimple.actions.onChangeMax()" readonly="readonly" />
+            <div class="range">
+                [{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
+                | number:config.decNumber}}]</div>
+        </div>
+        <div class="pt-box-simple">
+            <input class="min-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Min"
+                ng-change="ptSimple.actions.onChangeMin()" readonly="readonly" />
+            <div class="range">
+                [{{ptSimple.MinRangeOfMin | number:config.decNumber}} - {{ptSimple.MaxRangeOfMin
+                | number:config.decNumber}}]</div>
+        </div>
+    </div>
+</div>

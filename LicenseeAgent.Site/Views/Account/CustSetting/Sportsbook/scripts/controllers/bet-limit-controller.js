@@ -14,6 +14,7 @@ if (fanex.sportsbookSetting) {
             $scope.config = fanex.sportsbookSetting.betLimitService.config;
             $scope.settingContext = settingContext;
             $scope.betLimitService = fanex.sportsbookSetting.betLimitService;
+
             $scope.model = {
                 // For all sport types
                 bettingLimitsModel: fanex.cloneObject(betLimits),

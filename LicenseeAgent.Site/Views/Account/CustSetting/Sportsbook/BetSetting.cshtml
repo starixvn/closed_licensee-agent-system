@@ -6,16 +6,16 @@
 }
 @helper SectionInfoMode(string id, bool simpleMode)
     {
-    if (simpleMode)
-    {
+        if (simpleMode)
+        {
     <span class="section-info" title="@Las.ClickToViewInstructions" id="@id" ng-show="settingMode">
     </span>
-    }
-    else
-    {
+        }
+        else
+        {
     <span class="section-info" title="@Las.ClickToViewInstructions" id="@id" ng-hide="settingMode">
     </span>
-    }
+        }
 }
 <div class="instruction">
     @Las.BetSetting
@@ -52,7 +52,8 @@
                         <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
                 </div>
             </div>
-            <betting-limit-simple-mode model-data="model.firstRecord"></betting-limit-simple-mode>
+            <betting-limit-simple-mode model-data="model.firstRecord" ng-show="settingContext.FormId != 2"></betting-limit-simple-mode>
+            <betting-limit-simple-mode-read-only model-data="model.firstRecord" ng-show="settingContext.FormId == 2"></betting-limit-simple-mode-read-only>
         </div>
         <div ng-show="!settingContext.IsSimpleMode">
             <div>
@@ -75,7 +76,9 @@
             </div>
             <div ng-repeat="betSetting in model.bettingLimitsModel">
                 <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
-                    current-index="$index"></betting-limit-advanced-mode>
+                    current-index="$index" ng-show="settingContext.FormId != 2"></betting-limit-advanced-mode>
+                <betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
+                    current-index="$index" ng-show="settingContext.FormId == 2"></betting-limit-advanced-mode-read-only>
                 <div class="clearfix">
                 </div>
             </div>

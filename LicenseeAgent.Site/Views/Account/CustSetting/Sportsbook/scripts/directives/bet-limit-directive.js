@@ -127,6 +127,30 @@ if (fanex.sportsbookSetting) {
         }
     });
 
+    fanex.sportsbookSetting.directive('bettingLimitSimpleModeReadOnly', function ($parse) {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'fanex.custsetting.betlimitcontroller',
+            scope: {
+                modelData: '='
+            },
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html',
+            link: function (scope, element, attrs, controller) {
+                var modelData = scope.modelData;
+                modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
+                modelData.OldMinBet = modelData.MinBet;
+                modelData.OldMaxBet = modelData.MaxBet;
+                modelData.OldMaxPerMatch = modelData.MaxPerMatch;
+                modelData.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
+                modelData.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
+                modelData.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                var inputControl = element.find('.input');
+                modelData.actions = fanex.sportsbookSetting.bettingLimitActions.actions(modelData, controller, inputControl, scope);
+            }
+        }
+    });
+
     fanex.sportsbookSetting.directive('bettingLimitAdvancedMode', function () {
         return {
             restrict: 'E',
@@ -138,6 +162,32 @@ if (fanex.sportsbookSetting) {
                 currentIndex: '='
             },
             templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode.html',
+            link: function (scope, element, attrs, controller) {
+                var betSetting = scope.betSetting;
+                var inputControl = element.find('.input');
+                betSetting.actions = fanex.sportsbookSetting.bettingLimitActions.actions(betSetting, controller, inputControl, scope);
+                betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
+                betSetting.OldMinBet = betSetting.MinBet;
+                betSetting.OldMaxBet = betSetting.MaxBet;
+                betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+                betSetting.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
+                betSetting.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
+                betSetting.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+            }
+        }
+    });
+
+    fanex.sportsbookSetting.directive('bettingLimitAdvancedModeReadOnly', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: 'fanex.custsetting.betlimitcontroller',
+            scope: {
+                bettingLimitsModel: '=',
+                betSetting: '=',
+                currentIndex: '='
+            },
+            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');

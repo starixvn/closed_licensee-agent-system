@@ -10,7 +10,7 @@ fanex.sportsbookSetting = angular.module('fanex.sportsbookSetting', ['fanex.angu
 fanex.sportsbookSetting.FormType = {
     Add: 0,
     Edit: 1,
-    EditMemberNonDirect: 2,
+    ReadOnly: 2,
     ViewAllSetting: 3,
     ShadowViewSetting: 4,
     EditMultiple: 5

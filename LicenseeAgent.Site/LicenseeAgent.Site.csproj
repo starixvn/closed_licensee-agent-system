@@ -596,7 +596,6 @@
     <Content Include="Views\Instruction\en-US\LicenseeCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\Shared\_Layout.cshtml" />
-    <Content Include="Content\header.less" />
     <Content Include="Views\Internal\SelectMenu.cshtml" />
     <Content Include="Views\Account\_BalanceInfo.cshtml" />
     <Content Include="Views\Account\_Statistics.cshtml" />

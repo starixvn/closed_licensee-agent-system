@@ -26,6 +26,7 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// Internal Login Controller.
@@ -375,17 +376,17 @@ namespace LicenseeAgent.Account
                 return false;
             }
 
-            var deviceDetection = new DeviceDetection();
+            var clientInfo = Request.GetClientInfo();
             var criteria = new AdminLoginCriteria
             {
                 UserName = model.Username,
                 UserPwd = model.Password,
                 UserSalt = userSalt,
-                LoginIp = deviceDetection.ClientIp,
+                LoginIp = clientInfo.Ip,
                 LoginDomain = domainName,
-                BrowserName = deviceDetection.BrowserName,
-                Platform = deviceDetection.Platform,
-                CountryCode = deviceDetection.CountryCode
+                BrowserName = clientInfo.BrowserName,
+                Platform = clientInfo.Platform,
+                CountryCode = clientInfo.CountryCode
             };
 
             var adminInfo = _accountService.AuthenticateAdmin(criteria);
@@ -408,11 +409,10 @@ namespace LicenseeAgent.Account
         /// <param name="language">The language.</param>
         private void CheckIn(AdminInfo adminInfo, string language)
         {
-            var deviceDetection = new DeviceDetection();
             var criteria = new AdminCheckInCriteria
             {
                 AdminId = adminInfo.UserId,
-                Ip = deviceDetection.ClientIp,
+                Ip = Request.GetClientIp(),
                 ServerId = adminInfo.ServerId,
                 NetSessionId = Session.SessionID
             };

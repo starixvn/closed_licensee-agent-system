@@ -19,8 +19,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     {
         public SettingContext()
         {
-            var deviceDetection = new DeviceDetection();
-            Ip = deviceDetection.ClientIp;
             FormId = FormType.Add;
             IsSimpleMode = true;
             Language = Constant.DEFAULT_LANGUAGE;

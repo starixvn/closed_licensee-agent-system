@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Mvc
 {
+    using System.Net;
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Entities;
@@ -22,6 +23,10 @@ namespace LicenseeAgent.Web.Mvc
         /// <param name="filterContext">The filter context.</param>
         public static void ReturnUnauthorized(this ActionExecutingContext filterContext)
         {
+            var response = filterContext.HttpContext.Response;
+            response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.TrySkipIisCustomErrors = true;
             if (filterContext.IsAjaxRequest())
             {
                 filterContext.Result = new JsonResult
@@ -44,6 +49,8 @@ namespace LicenseeAgent.Web.Mvc
         {
             var response = controllerContext.HttpContext.Response;
             response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.TrySkipIisCustomErrors = true;
             if (controllerContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.UnauthorizedMsg));
@@ -68,6 +75,8 @@ namespace LicenseeAgent.Web.Mvc
         {
             var response = authorizationContext.HttpContext.Response;
             response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.TrySkipIisCustomErrors = true;
             if (authorizationContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.UnauthorizedMsg));
@@ -93,6 +102,10 @@ namespace LicenseeAgent.Web.Mvc
         /// <param name="filterContext">The filter context.</param>
         public static void ReturnAccessDenied(this ActionExecutingContext filterContext)
         {
+            var response = filterContext.HttpContext.Response;
+            response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
+            response.TrySkipIisCustomErrors = true;
             if (filterContext.IsAjaxRequest())
             {
                 filterContext.Result = new JsonResult
@@ -115,6 +128,8 @@ namespace LicenseeAgent.Web.Mvc
         {
             var response = controllerContext.HttpContext.Response;
             response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
+            response.TrySkipIisCustomErrors = true;
             if (controllerContext.IsAjaxRequest())
             {
                 response.WriteJson(new Result(Las.AccessDeniedMsg));

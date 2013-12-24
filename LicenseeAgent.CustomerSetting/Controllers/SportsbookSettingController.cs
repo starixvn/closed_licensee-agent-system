@@ -26,6 +26,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// Sport books setting controller.
@@ -75,8 +76,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = FormType.Add
+                FormId = FormType.Add,
+                Ip = Request.GetClientIp()
             };
+
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForInsert(settingContext);
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
                     settingContext,
@@ -97,8 +100,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 FormId = model.FormId == (int)FormType.Edit ? FormType.Edit : FormType.ReadOnly,
                 TargetCustId = model.TargetCustId,
-                TargetRoleId = model.TargetRoleId
+                TargetRoleId = model.TargetRoleId,
+                Ip = Request.GetClientIp()
             };
+
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
                     settingContext,
@@ -116,7 +121,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpGet]
         public ActionResult InsertCustomer()
         {
-            var settingContext = new SettingContext(CurrentSession);
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                Ip = Request.GetClientIp()
+            };
+
             return View("~/Views/Account/InsertCustomer.cshtml", settingContext);
         }
 
@@ -189,7 +198,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1) ? FormType.Edit : FormType.ReadOnly,
                 TargetCustId = model.AgentId,
-                TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent
+                TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
+                Ip = Request.GetClientIp()
             };
 
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);
@@ -209,7 +219,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 FormId = FormType.Edit,
                 TargetCustId = model.MemberId,
-                TargetRoleId = (int)Role.Member
+                TargetRoleId = (int)Role.Member,
+                Ip = Request.GetClientIp()
             };
 
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);

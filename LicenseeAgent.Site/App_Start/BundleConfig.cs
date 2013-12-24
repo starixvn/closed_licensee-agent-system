@@ -48,8 +48,7 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
-                "~/content/core.less",
-                "~/content/header.less"));
+                "~/content/core.less"));
         }
 
         #endregion Core

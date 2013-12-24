@@ -12,12 +12,9 @@ namespace LicenseeAgent.Web.Filters
     using System;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.Security;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
@@ -49,6 +46,14 @@ namespace LicenseeAgent.Web.Filters
         /// <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            var httpContext = filterContext.HttpContext;
+            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) ||
+                filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
+            if (skipAuthorization)
+            {
+                return;
+            }
+
             // Some controllers which have IsInternal = true must have AppSettings.IsInternal = true
             if (IsInternal && !AppSettings.IsInternal)
             {
@@ -58,34 +63,28 @@ namespace LicenseeAgent.Web.Filters
 
             // Validate current sesssion to kick out
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession != null && !currentSession.IsValid)
+            if (currentSession == null || !currentSession.IsValid)
             {
                 filterContext.ReturnUnauthorized();
                 return;
             }
 
-            var httpContext = filterContext.HttpContext;
-            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) ||
-                filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
-            if (!skipAuthorization)
+            var isAuthorized = AuthorizeCore(httpContext);
+            if (!isAuthorized)
             {
-                var isAuthorized = AuthorizeCore(httpContext);
-                if (!isAuthorized)
+                filterContext.ReturnAccessDenied();
+            }
+            else if (!OnlyAuthorize)
+            {
+                if (currentSession.AgentInfo == null)
                 {
-                    filterContext.ReturnUnauthorized();
+                    filterContext.ReturnAccessDenied();
+                    return;
                 }
-                else if (!OnlyAuthorize)
-                {
-                    if (currentSession.AgentInfo == null)
-                    {
-                        filterContext.ReturnAccessDenied();
-                        return;
-                    }
 
-                    if (!AppSettings.IsInternal && currentSession.IsInternalSignIn)
-                    {
-                        CheckingRequireAgentChangePassword(filterContext);
-                    }
+                if (!AppSettings.IsInternal && currentSession.IsInternalSignIn)
+                {
+                    CheckingRequireAgentChangePassword(filterContext);
                 }
             }
         }
@@ -102,10 +101,7 @@ namespace LicenseeAgent.Web.Filters
             // don't use base.AuthorizeCore,
             // see: http://stackoverflow.com/questions/3488348/overriding-authorizecore-in-custom-authorize-attribute-results-in-no-suitable-m
             var authorized = httpContext.Request.IsAuthenticated;
-            var validSession = SessionManager.CurrentSession != null;
-            return authorized && validSession
-                ? AuthorizeUsers()
-                : false;
+            return authorized ? AuthorizeUsers() : false;
         }
 
         /// <summary>

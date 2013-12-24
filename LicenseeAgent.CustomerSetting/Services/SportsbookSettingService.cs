@@ -33,6 +33,7 @@ namespace LicenseeAgent.CustomerSetting.Service
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Mvc;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -365,7 +366,6 @@ namespace LicenseeAgent.CustomerSetting.Service
             string positionTakingXML)
         {
             var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
-            var deviceDetection = new DeviceDetection();
             var criteriaBase = new InsertCustomerCriteria
             {
                 UserName = custInfo.UserName,
@@ -375,7 +375,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
                 Fax = custInfo.Fax,
-                Ip = deviceDetection.ClientIp,
+                Ip = model.SettingContext.Ip,
                 Creator = model.SettingContext.LoginUserId,
                 Credit = custInfo.Credit,
                 Status = custInfo.Status,
@@ -416,13 +416,12 @@ namespace LicenseeAgent.CustomerSetting.Service
             string positionTakingXML)
         {
             var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
-            var deviceDetection = new DeviceDetection();
             var criteriaBase = new UpdateCustomerCriteria
             {
                 Discount = discountXML,
                 BetLimit = betLimitXML,
                 PositionTaking = positionTakingXML,
-                Ip = !string.IsNullOrEmpty(model.SettingContext.Ip) ? model.SettingContext.Ip : string.Empty,
+                Ip = model.SettingContext.Ip,
                 Updater = model.SettingContext.LoginUserId
             };
 

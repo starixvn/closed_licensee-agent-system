@@ -54,7 +54,7 @@ namespace LicenseeAgent.Web.Binders
                     Type = downlineContext.TargetRoleId == (int)Role.Member ? (int)DownlineRole.Member : (int)DownlineRole.Agent
                 };
 
-                ValidateDownlineBelong(controllerContext, criteria);
+                ValidateDownlineBelong(controllerContext, bindingContext, criteria);
             }
         }
 
@@ -167,7 +167,7 @@ namespace LicenseeAgent.Web.Binders
                     Type = (int)downlineRole
                 };
 
-                return ValidateDownlineBelong(controllerContext, criteria);
+                return ValidateDownlineBelong(controllerContext, bindingContext, criteria);
             }
 
             return true;
@@ -177,17 +177,20 @@ namespace LicenseeAgent.Web.Binders
         /// Validates the down-line belong.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
+        /// <param name="bindingContext">The binding context.</param>
         /// <param name="criteria">The criteria.</param>
         /// <returns>
         /// Returns boolean.
         /// </returns>
         protected bool ValidateDownlineBelong(
             ControllerContext controllerContext,
+            ModelBindingContext bindingContext,
             CheckDownlineBelongCriteria criteria)
         {
             _authorizeService.CheckDownlineBelong(criteria);
             if (!criteria.IsBelongTo)
             {
+                bindingContext.ModelState.AddModelError(string.Empty, Las.AccessDeniedMsg);
                 controllerContext.ReturnAccessDenied();
                 return false;
             }
@@ -201,6 +204,7 @@ namespace LicenseeAgent.Web.Binders
                 || controllerDescriptor.IsDefined(typeof(DirectDownlineAttribute), true);
                 if (isValidateDirectDownline && !_authorizeService.ValidateDirectDownline(criteria))
                 {
+                    bindingContext.ModelState.AddModelError(string.Empty, Las.AccessDeniedMsg);
                     controllerContext.ReturnAccessDenied();
                     return false;
                 }

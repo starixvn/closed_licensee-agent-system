@@ -119,6 +119,25 @@ body
             top: 0;
             height: 100%;
             color: #C41A1A;
+
+            .item 
+            {
+                padding: 2px 8px;
+                margin-left: 1px;
+                color: #FFF;
+                font-size: 12px;
+                background: rgba(104, 0, 0, 0.8);
+    
+                a {
+                    color: #fff;
+                }
+    
+                a:hover {
+                    cursor: pointer;
+                    text-decoration: none;
+                }
+            }
+
             .topmenu-box
             {
                 background: url(images/bgheader.png) top center #F00;
@@ -126,13 +145,12 @@ body
                 overflow: hidden;
                 ul.nav-pills
                 {
-                    /*background: none repeat scroll 0 0 rgba(104, 0, 0, 0.8) !important;
-                    background-color: #680000;*/
+                    background: rgba(104, 0, 0, 0.8);
                     padding: 0;
                     margin: 0;
                     li.active a
                     {
-                        background-color: #a24d4d;
+                        background-color: #a65a5a;
                         color: #fff;
                     }
                     a
@@ -146,7 +164,7 @@ body
                     a:hover, a:focus 
                     {
                       text-decoration: none;
-                      background-color: #A24D4D;
+                      background-color: #a65a5a;
                       color: #fff;
                     }
                 }
@@ -154,6 +172,53 @@ body
                 {
                     height: 28px;
                     padding-right: 10px;
+                }
+                .top-header 
+                {
+                    margin-bottom: 22px;
+                    height: 24px;
+                    overflow: hidden;
+    
+                    .item 
+                    {
+                        height: 20px;
+                        line-height: 21px;
+        
+                        .language-box
+                        {
+                            background-color: #fff;
+                            border: 1px solid #BF4C4C;
+                            list-style: none outside none;
+                            position: absolute;
+                            z-index: 1000;
+                            margin: -2px 0 0 -10px;
+                            display: none;
+            
+                            li {
+                                border: 1px solid #FFFFFF;
+                                padding: 0 8px;
+                
+                                a {
+                                    color: #000;
+                                }
+                
+                                &:hover 
+                                {
+                                    background-color: #bf4c4c;
+                    
+                                    a {
+                                        color: #fff;
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+                        }
+        
+                        .top-language
+                        {
+                            margin-top : -2px;
+                        }
+                    }
                 }
             }
             .message-box
@@ -190,6 +255,11 @@ body
                 .item {
                     height: 100%;
                     line-height: 26px;
+                    .icon-arrow-white
+                    {
+                        float: right;
+                        margin-top: 5px;
+                    }
                 }   
                 
                 .drop-box
@@ -230,6 +300,9 @@ body
                     margin-bottom: 1px;
                     padding: 2px 4px;
                     width: 150px;
+                    background: transparent;
+                    border: 0;
+                    color: white;
                 }
                 
                 #licensee 
@@ -241,7 +314,7 @@ body
                 {
                     width: 112px;
                 }
-                
+
                 input[type="text"]
                 {
                     margin-bottom : 0;
@@ -337,7 +410,7 @@ body
                     }
                     &:hover
                     {
-                        background-color: #a24d4d;
+                        background-color: #a65a5a;
                         color: #ffffff;
                     }
                 }

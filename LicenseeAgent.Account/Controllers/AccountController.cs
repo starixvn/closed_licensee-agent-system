@@ -24,6 +24,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Core;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// Account controllers.
@@ -197,13 +198,12 @@ namespace LicenseeAgent.Account.Controllers
             {
                 var oldPassword = Cryptography.CreateHash(model.CurrentPassword, CurrentSession.AgentInfo.UserSalt);
                 var newPassword = Cryptography.CreateHash(model.NewPassword, CurrentSession.AgentInfo.UserSalt);
-                var deviceDetection = new DeviceDetection();
                 var criteria = new AgentChangePwdCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     OldPwd = oldPassword,
                     Pwd = newPassword,
-                    LoginIp = deviceDetection.ClientIp
+                    LoginIp = Request.GetClientIp()
                 };
 
                 _accountService.AgentChangePassword(criteria);
@@ -414,17 +414,17 @@ namespace LicenseeAgent.Account.Controllers
                 return false;
             }
 
-            var deviceDetection = new DeviceDetection();
+            var clientInfo = Request.GetClientInfo();
             var criteria = new AgentLoginCriteria
             {
                 UserName = model.Username,
                 UserPwd = model.Password,
                 UserSalt = userSalt,
-                LoginIp = deviceDetection.ClientIp,
+                LoginIp = clientInfo.Ip,
                 LoginDomain = domainName,
-                BrowserName = deviceDetection.BrowserName,
-                Platform = deviceDetection.Platform,
-                CountryCode = deviceDetection.CountryCode
+                BrowserName = clientInfo.BrowserName,
+                Platform = clientInfo.Platform,
+                CountryCode = clientInfo.CountryCode
             };
 
             var agentInfo = _accountService.AuthenticateAgent(criteria);
@@ -449,11 +449,10 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="language">The language.</param>
         private void CheckIn(AgentInfo agentInfo, string language)
         {
-            var deviceDetection = new DeviceDetection();
             var criteria = new AgentCheckInCriteria
             {
                 AgentId = agentInfo.AgentId,
-                Ip = deviceDetection.ClientIp,
+                Ip = Request.GetClientIp(),
                 ServerId = agentInfo.ServerId,
                 NetSessionId = Session.SessionID
             };

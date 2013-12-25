@@ -17,6 +17,7 @@ namespace LicenseeAgent.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using LicenseeAgent.Core;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
@@ -28,6 +29,7 @@ namespace LicenseeAgent.Web.Controllers
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login
     /// All non-anonymous controller MUST inherit from this base controller.
     /// </summary>
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
         protected ICurrentSession CurrentSession

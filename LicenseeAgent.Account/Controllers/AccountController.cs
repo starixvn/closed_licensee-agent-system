@@ -25,10 +25,12 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web.Core;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
+    using System.Web.SessionState;
 
     /// <summary>
     /// Account controllers.
     /// </summary>
+    [SessionState(SessionStateBehavior.Default)]
     public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;

@@ -14,7 +14,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
@@ -31,7 +30,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// <summary>
     /// Sport books setting controller.
     /// </summary>
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class SportsbookSettingController : BaseController
     {
         private static MsgId[] betSettingMsgIds =

@@ -8,7 +8,6 @@ namespace LicenseeAgent.Account.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using LicenseeAgent.Account.Binders;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
@@ -22,7 +21,6 @@ namespace LicenseeAgent.Account.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerController : BaseController
     {
         private readonly ICustomerService _agentService;

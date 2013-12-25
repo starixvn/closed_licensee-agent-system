@@ -15,6 +15,7 @@ namespace LicenseeAgent.Account
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
+    using System.Web.SessionState;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
@@ -32,6 +33,7 @@ namespace LicenseeAgent.Account
     /// Internal Login Controller.
     /// </summary>
     [AppAuthorize(IsInternal = true)]
+    [SessionState(SessionStateBehavior.Default)]
     public class InternalController : BaseController
     {
         private readonly IAccountService _accountService;

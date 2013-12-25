@@ -15,8 +15,9 @@
             $("#refresh-count-down").refreshCountDown({
                 listTimeInterval: [15, 30, 45, 60, 75],
                 timeIntervalName: "TimeInterval",
-                timeIntervalValue: $("#server-time-interval").val()
-            });            
+                timeIntervalValue: $("#server-time-interval").val(),
+                formName: "main-form"
+            });
 
             Soccer.initData();
         },
@@ -59,8 +60,13 @@
                 selectedText: '# selected leagues',
                 tooltipNoItem: 'There is no league selected.',
                 showParentSelectedText: false,
+                showFooter: true,
+                footerButtonText: 'OK',
                 onLeave: function () {
                     Soccer.selectedLeague();
+                },
+                onFooterButtonClick: function () {
+                    Soccer.selectedLeague(); 
                 }
             });
         },
@@ -104,9 +110,8 @@
                 selectedText: '# selected events',
                 tooltipNoItem: 'There is no event selected.',
                 showParentSelectedText: false,
-                onLeave: function () {
-                    Soccer.selectedEvent();
-                }
+                onLeave: function () { Soccer.selectedEvent(); }
+
             });
         },
 
@@ -118,7 +123,7 @@
         showAllBetType: function (context) {
             var matchId = $(context).attr("data-matchid");
             var matchName = $(context).attr("data-matchname");
-            var url = urlAjax + "/SoccerAllBetType?matchId=" + matchId + "&matchName=" + matchName;
+            var url = urlAjax + "/SoccerDetail?matchId=" + matchId + "&matchName=" + matchName;
             window.location.href = url;
         }
     }

@@ -1,0 +1,1078 @@
+﻿@{
+    ViewBag.Title = "SoccerAllBetType";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using LicenseeAgent.Core.Utils
+@model LicenseeAgent.TotalBets.ViewModels.SoccerDetailViewModel
+@section css{
+    @Styles.Render("~/css/totalbets-soccer")
+}
+<div class="controls-row">
+    <span class="match-name">@ViewBag.MatchName</span>
+    <div onclick="javascript:history.go(-1);" class="history-link">Back</div>
+</div>
+<div class="wrapper" id="detail-data-content">
+    <table class="detail-table">
+        <tr class="detail-header">
+            <td colspan="2" style="width: 33%">Odd / Even</td>
+            <td colspan="2" style="width: 33%">Money Line</td>
+            <td colspan="2" style="width: 34%">Draw / No Draw</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Odd</td>
+            <td class="total-bet-choice">
+                @{
+                    var item = Model.MainData.Where(x => x.BetType == 2 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Home</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 20 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 123 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Even</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 2 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 20 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">No Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 123 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="2">Home No Bet</td>
+            <td colspan="2">Away No Bet</td>
+            <td colspan="2">Draw No Bet</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 121 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Home</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 122 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Home</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Draw</td>
+            <td class="total-bet-choice">
+                 @{
+                    item = Model.MainData.Where(x => x.BetType == 121 && x.BetTeam == "x");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 122 && x.BetTeam == "x");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="2">Double Chance</td>
+            <td colspan="2">Both / One / Neither Team To Score</td>
+            <td colspan="2">3-Way Handicap</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Home or Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Both</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "b");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Home</td>
+            <td class="total-bet-choice">
+                 @{
+                    item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Home or Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "12");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">One</td>
+            <td class="total-bet-choice">
+                 @{
+                    item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "o");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "x");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Away or Draw</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "2x");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">No Goal</td>
+            <td class="total-bet-choice">
+                 @{
+                    item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "n");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="4">Clean Sheet</td>
+            <td colspan="2">To Win To Nil</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Home Yes</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "hy");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away Yes</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "ay");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Home</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 27 && x.BetTeam == "h");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">Home No</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "hn");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away No</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "an");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">Away</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 27 && x.BetTeam == "a");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="4">Total Goal</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">0-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 6 && x.BetTeam == "0-1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">4-6</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 6 && x.BetTeam == "4-6");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">2-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 6 && x.BetTeam == "2-3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">7 & Over</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 6 && x.BetTeam == "7-over");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+         <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="6">First Goal / Last Goal</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">HF</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">AF</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">NG</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">HL</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">AL</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice"></td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="6">Hafl Time / Full Time</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">HH</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">AH</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">DH</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">HD</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">AD</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">DD</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">HA</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">AA</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">DA</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="6">Correct Score</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">1-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "1:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">2-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "2:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "1:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">2-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "2:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "1:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">2-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "2:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "3:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">3-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "3:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "3:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "1:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">4-4</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "4:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "3:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">2-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "2:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">4-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "4:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-4</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">4-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "4:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-4</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "1:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">4-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "4:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">2-4</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "2:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">4-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "4:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">3-4</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "3:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">5-0 UP</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "5:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-5 UP</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 4 && x.BetTeam == "0:5");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice">
+                
+            </td>
+        </tr>        
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+        <tr class="detail-header">
+            <td colspan="6">HT Correct Score</td>
+        </tr>
+        <tr>
+            <td class="bet-choice">1-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "1:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "0:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "0:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">2-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "2:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "0:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "1:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">2-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "2:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "1:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">2-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "2:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-0</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "3:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "0:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">3-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "3:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-1</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "3:1");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">1-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "1:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice"></td>
+        </tr>
+        <tr>
+            <td class="bet-choice">3-2</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "3:2");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">2-3</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "2:3");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice"></td>
+        </tr>
+        <tr>
+            <td class="bet-choice">4-0 UP</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "4:0");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice">0-4 UP</td>
+            <td class="total-bet-choice">
+                @{
+                    item = Model.MainData.Where(x => x.BetType == 30 && x.BetTeam == "0:4");
+                    if (item.Any())
+                    {
+                        @item.FirstOrDefault().TotalBetsText
+                    }
+                }
+            </td>
+            <td class="bet-choice"></td>
+            <td class="total-bet-choice"></td>
+        </tr>
+        <tr class="break-line">
+            <td colspan="6"></td>
+        </tr>
+    </table>
+</div>

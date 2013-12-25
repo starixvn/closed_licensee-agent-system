@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TotalBetsController.cs" />
+    <Compile Include="Criterias\SoccerDetailCriteria.cs" />
     <Compile Include="Criterias\SoccerEventCriteria.cs" />
     <Compile Include="Criterias\SoccerCriteria.cs" />
     <Compile Include="Criterias\SoccerLeagueCriteria.cs" />
@@ -84,9 +85,11 @@
     <Compile Include="Entities\LeagueGroupEntity.cs" />
     <Compile Include="Entities\SoccerDataEntity.cs" />
     <Compile Include="Entities\MatchEntity.cs" />
+    <Compile Include="Entities\SoccerDetailEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITotalBetsService.cs" />
     <Compile Include="Services\TotalBetsService.cs" />
+    <Compile Include="ViewModels\SoccerDetailViewModel.cs" />
     <Compile Include="ViewModels\SoccerViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

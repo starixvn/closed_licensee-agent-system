@@ -20,5 +20,7 @@ namespace LicenseeAgent.TotalBets.Services
         IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria);
 
         IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria);
+
+        IEnumerable<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria);
     }
 }

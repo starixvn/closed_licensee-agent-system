@@ -45,18 +45,19 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         [HttpGet]
-        public ActionResult SoccerAllBetType(int matchId, string matchName)
+        public ActionResult SoccerDetail(int matchId, string matchName)
         {
-            ViewBag.Match = matchName;
-            return View();
+            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchID = matchId };
+            var dataList = _totalBetsService.GetSoccerDetailData(criteria);
+            ViewBag.MatchName = matchName;
+            var model = new SoccerDetailViewModel { MainData = dataList.ToList() };
+            return View(model);
         }
 
         [NonAction]
         public ActionResult GetSoccerData(SoccerViewModel model)
         {
-            ////var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
-
-            var criteria = new SoccerCriteria { AgentId = 1000000111, LeagueList = string.Empty, MatchList = string.Empty };
+            var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
             var dataList = _totalBetsService.GetSoccerData(criteria);
             model.MainData = GetMainData(dataList);
 
@@ -156,15 +157,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetLeagueList(string league)
         {
             var criteria = new SoccerLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1 };
-
-            ////var leagues = _totalBetsService.GetLeagues(criteria);
-
-            IList<LeagueEntity> leagues = new List<LeagueEntity>();
-            leagues.Add(new LeagueEntity { LeagueId = 5 });
-            leagues.Add(new LeagueEntity { LeagueId = 6 });
-            leagues.Add(new LeagueEntity { LeagueId = 3 });
-            leagues.Add(new LeagueEntity { LeagueId = 4 });
-
+            var leagues = _totalBetsService.GetLeagues(criteria);            
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)
@@ -196,14 +189,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetEventsByLeagues(string league, string @event)
         {
             var criteria = new SoccerEventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1, LeagueList = league };
-            ////var events = _totalBetsService.GetEventsByLeague(criteria);
-
-            IList<EventEntity> events = new List<EventEntity>();
-            events.Add(new EventEntity { HomeTeam = 5, AwayTeam = 6, LeagueId = 4, IsLive = true, MatchId = 1 });
-            events.Add(new EventEntity { HomeTeam = 7, AwayTeam = 10, LeagueId = 3, IsLive = true, MatchId = 2 });
-            events.Add(new EventEntity { HomeTeam = 8, AwayTeam = 11, LeagueId = 5, IsLive = false, MatchId = 3 });
-            events.Add(new EventEntity { HomeTeam = 9, AwayTeam = 12, LeagueId = 6, IsLive = true, MatchId = 4 });
-
+            var events = _totalBetsService.GetEventsByLeague(criteria);
             var eventIds = string.IsNullOrEmpty(@event) ? new List<string>() : @event.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();
             foreach (var item in events)

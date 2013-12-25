@@ -1,0 +1,40 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="SoccerDetailEntity.cs" company="Nexcel Solutions Vietnam">
+// SoccerDetailEntity.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.TotalBets.Entities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using LicenseeAgent.Core.Utils;
+
+    /// <summary>
+    /// Soccer Detail Entity.
+    /// </summary>
+    public class SoccerDetailEntity
+    {
+        public int BetType { get; set; }
+
+        public string BetTeam { get; set; }
+
+        public int TotalTrans { get; set; }
+
+        public decimal Stake { get; set; }
+
+        public string BetTypeName { get; set; }
+
+        public string BetTeamDesc { get; set; }
+
+        public string TotalBetsText
+        {
+            get
+            {
+                return "(" + Formatter.FormatInt(TotalTrans) + ") " + (Stake % 1 == 0 ? Formatter.FormatInt(Stake) : Formatter.FormatDecimal(Stake));
+            }
+        }
+    }
+}

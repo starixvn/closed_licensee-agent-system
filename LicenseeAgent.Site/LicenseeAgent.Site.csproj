@@ -701,7 +701,7 @@
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
-    <Content Include="Views\TotalBets\SoccerAllBetType.cshtml" />
+    <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

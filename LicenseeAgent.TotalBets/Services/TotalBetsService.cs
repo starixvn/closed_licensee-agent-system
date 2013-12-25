@@ -30,5 +30,10 @@ namespace LicenseeAgent.TotalBets.Services
         {
             return GetEntites<SoccerDataEntity>(criteria);
         }
+
+        public IEnumerable<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria)
+        {
+            return GetEntites<SoccerDetailEntity>(criteria);
+        }
     }
 }

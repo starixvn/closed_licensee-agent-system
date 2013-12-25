@@ -3,35 +3,39 @@
     Layout = null;
 }
 @model LicenseeAgent.Account.ViewModels.LicenseeViewModel
-<div class="after-box">
-    <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
-        <a>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</a>
-        <span class="icon-arrow-white"></span>
-        <ul class="drop-box">
-            @foreach (var licensee in Model.Licensees)
-            {
-                <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
-            }
-        </ul>
-    </div>
-    <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
-        <a>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseCurrency : Model.CurrencyName)</a>
-        <span class="icon-arrow-white"></span>
-        @if (Model.Currencies != null)
-        {
+@using (Html.BeginForm("LoginAsUser", "Internal", FormMethod.Post, new { id = "internal-form", name = "internal-form"}))
+{
+    <div class="select-box">
+        <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
+            <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>
+            <i class="icon-arrow-white"></i>
             <ul class="drop-box">
-                @foreach (var currency in Model.Currencies)
+                @foreach (var licensee in Model.Licensees)
                 {
-                    <li><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
+                    <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
                 }
             </ul>
-        }
+        </div>
+        <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
+            <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseCurrency : Model.CurrencyName)</span>
+            <i class="icon-arrow-white"></i>
+            @if (Model.Currencies != null)
+            {
+                <ul class="drop-box">
+                    @foreach (var currency in Model.Currencies)
+                    {
+                        <li><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="pull-left item">
+            @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
+        </div>
+        <div class="pull-left item">
+            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();"
+                class="icon-search-white"></a>
+        </div>
     </div>
-    <div class="pull-left item">
-        @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
-    </div>
-    <div class="pull-left item">
-        <a id="submit" data-href="~/Internal/LoginAsUser" href="#" class="icon-search-white"></a>
-    </div>
-</div>
+}
 @Html.Hidden("defaultCurrency", Las.ChooseCurrency)

@@ -1,4 +1,7 @@
-﻿@layoutLeftWidth:       251px;
+﻿@import "~/content/bootstrap/variables.less";
+@import "~/content/bootstrap/mixins.less";
+
+@layoutLeftWidth:       251px;
 @layoutTopHeight:       75px;
 @layoutMessageHeight:   28px;
 
@@ -19,6 +22,9 @@ body
     {
         z-index: 1;
         display: none;
+        background: white;
+        opacity: 0.7;
+        filter: alpha(opacity=70);
     }
     .container-fluid
     {
@@ -126,8 +132,8 @@ body
                 margin-left: 1px;
                 color: #FFF;
                 font-size: 12px;
+                background: rgb(104, 0, 0);
                 background: rgba(104, 0, 0, 0.8);
-    
                 a {
                     color: #fff;
                 }
@@ -143,9 +149,13 @@ body
                 background: url(images/bgheader.png) top center #F00;
                 height: @layoutTopHeight;
                 overflow: hidden;
+                .top-menu
+                {
+                    background: rgb(104, 0, 0);
+                    background: rgba(104, 0, 0, 0.8);
+                }
                 ul.nav-pills
                 {
-                    background: rgba(104, 0, 0, 0.8);
                     padding: 0;
                     margin: 0;
                     li.active a
@@ -205,7 +215,6 @@ body
                                 &:hover 
                                 {
                                     background-color: #bf4c4c;
-                    
                                     a {
                                         color: #fff;
                                         text-decoration: none;
@@ -249,46 +258,57 @@ body
                 }
             }
             
-            .after-box {
+            .select-box {
                 float: right;
                 
                 .item {
                     height: 100%;
                     line-height: 26px;
+                    background: inherit;
+                    border-left: 1px solid #d93b3c;
+                    margin: 0;
                     .icon-arrow-white
                     {
                         float: right;
-                        margin-top: 5px;
+                        margin-top: 6px;
                     }
-                }   
+                }
+
+                .item:last-child
+                {
+                    border: 0;
+                }
                 
                 .drop-box
                 {
-                    background-color: #fff;
-                    border: 1px solid #BF4C4C;
+                    background-color: white;
+                    border-left: 1px solid #ebebeb;
+                    border-right: 1px solid #ebebeb;
+                    border-bottom: 1px solid #ebebeb;
                     list-style: none outside none;
+                    .border-radius(3px);
+                    .box-shadow(0 5px 10px rgba(0,0,0,.2));
                     position: absolute;
                     z-index: 1000;
-                    margin: 0 -10px;
+                    margin: 0 -9px;
                     display: none;
             
                     li {
-                        border: 1px solid #FFFFFF;
-                        padding: 0 8px;
+                        padding: 2px 8px;
                         height: 20px;
-                        width: 110px;
+                        width: 114px;
                         line-height: 20px;
+                        cursor: pointer;
                         
                         a {
-                            color: #000;
+                            color: black;
                         }
                 
                         &:hover 
                         {
-                            background-color: #bf4c4c;
-                    
+                            background-color: #ebebeb;
                             a {
-                                color: #fff;
+                                color: #d93b3c;
                                 text-decoration: none;
                             }
                         }
@@ -297,22 +317,40 @@ body
 
                 #agentName
                 {
-                    margin-bottom: 1px;
                     padding: 2px 4px;
+                    margin-bottom: 2px;
                     width: 150px;
                     background: transparent;
                     border: 0;
                     color: white;
+                    .placeholder(#CC6E70);
+                    &::-webkit-input-placeholder
+                    {
+                        font-style: italic;
+                    }
+                    &::-moz-placeholder
+                    {
+                        font-style: italic;
+                    }
+                    &::-ms-input-placeholder
+                    {
+                        font-style: italic;
+                    }
                 }
                 
-                #licensee 
+                #licensee, #currency
                 {
-                    width: 112px;
-                }
-                    
-                #currency 
-                {
-                    width: 112px;
+                    width: 114px;
+                    &:hover
+                    {
+                        background: white;
+                        border-top: 1px solid #d93b3c;
+                        span
+                        {
+                            color: #d93b3c;
+                            cursor: default;
+                        }
+                    }
                 }
 
                 input[type="text"]
@@ -457,7 +495,6 @@ body
     }
 
     .popup {
-        
         .treeview {
             background: url("images/treeview-default-line.gif") no-repeat;
         }

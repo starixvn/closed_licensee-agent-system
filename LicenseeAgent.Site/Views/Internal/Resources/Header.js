@@ -16,9 +16,9 @@
                     newLicenseeId = $(this).children('a').data('id');
                     newCurrencyId = 0;
                     INTERNAL_HEADER.onChange();
-                    $('#licensee').find('a:first').html($(this).find('a').html());
+                    $('#licensee').find('span:first').html($(this).find('a').html());
                     $('#licensee').find('ul').hide();
-                    $("#currency").find("a:first").html($("#defaultCurrency").val());
+                    $("#currency").find("span:first").html($("#defaultCurrency").val());
                     INTERNAL_HEADER.loadCurrency(newLicenseeId);
                 });
             }
@@ -31,42 +31,46 @@
                 });
             }
 
-            $('#submit').click(function () {
-                if (newLicenseeId > 0 && newCurrencyId > 0) {
-                    var data = {
-                        licenseeid: newLicenseeId,
-                        currencyId: newCurrencyId,
-                        userName: $('#agentName').val()
-                    };
-                    var url = CORE.resolveUrl($(this).data('href'));
-                    $.ajax({
-                        url: url,
-                        type: 'post',
-                        data: data,
-                        beforeSend: function () {
-                            CORE.blockUI();
-                        },
-                        success: function (data) {
-                            if (data.MsgId != 0) {
-                                alert(data.MsgContent);
-                                return;
-                            }
-                            else {
-                                if (data.DirectUrl) {
-                                    POPUP.openWindow(data.DirectUrl);
-                                }
-                                location.reload();
-                            }
-                        },
-                        complete: function () {
-                            CORE.unblockUI();
-                        }
-                    });
-                }
+            $('#internal-form').submit(function (e) {
+                e.preventDefault();
+                INTERNAL_HEADER.submit();
             });
 
             if ($('#licensee').length > 0 && !licenseeId) {
                 INTERNAL_HEADER.unactiveMain();
+            }
+        },
+        submit: function () {
+            if (newLicenseeId > 0 && newCurrencyId > 0) {
+                var data = {
+                    licenseeid: newLicenseeId,
+                    currencyId: newCurrencyId,
+                    userName: $('#agentName').val()
+                };
+                var url = $('#internal-form').attr('action');
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: data,
+                    beforeSend: function () {
+                        CORE.blockUI();
+                    },
+                    success: function (data) {
+                        if (data.MsgId != 0) {
+                            alert(data.MsgContent);
+                            return;
+                        }
+                        else {
+                            if (data.DirectUrl) {
+                                POPUP.openWindow(data.DirectUrl);
+                            }
+                            location.reload();
+                        }
+                    },
+                    complete: function () {
+                        CORE.unblockUI();
+                    }
+                });
             }
         },
         onChange: function () {
@@ -78,11 +82,9 @@
             INTERNAL_HEADER.unactiveMain();
         },
         activeMain: function () {
-            $('#main').css({ 'opacity': 1 });
             $('#overlay').hide();
         },
         unactiveMain: function () {
-            $('#main').css({ 'opacity': 0.5 });
             $('#overlay').show();
         },
         loadCurrency: function (lsId) {
@@ -122,7 +124,7 @@
             $('#currency li').click(function () {
                 newCurrencyId = $(this).children('a').data('id');
                 INTERNAL_HEADER.onChange();
-                $('#currency').find('a:first').html($(this).find('a').html());
+                $('#currency').find('span:first').html($(this).find('a').html());
                 $('#currency').find('ul').hide();
             });
         }

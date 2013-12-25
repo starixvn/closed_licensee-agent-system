@@ -21,7 +21,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public class TotalBetsController : BaseController
+    public partial class TotalBetsController : BaseController
     {
         private readonly ITotalBetsService _totalBetsService;
 

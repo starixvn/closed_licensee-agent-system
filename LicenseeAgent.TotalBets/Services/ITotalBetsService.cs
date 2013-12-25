@@ -22,5 +22,7 @@ namespace LicenseeAgent.TotalBets.Services
         IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria);
 
         IEnumerable<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria);
+        
+        IEnumerable<TotalBetsEntity> GetBasketballData(BasketballCriteria criteria);
     }
 }

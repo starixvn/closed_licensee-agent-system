@@ -1,5 +1,4 @@
 ﻿var CORE = function ($) {
-    var generalErrorMsg = 'Your request is temporarily cannot be processed, please try again later!';
     return {
         pageSizes: [100, 200, 300, 400, 500],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -244,6 +243,6 @@ $(function () {
 });
 $.ajaxSetup({
     error: function (jqXHR, textStatus, errorThrown) {
-        alert(generalErrorMsg);
+        alert('Your request is temporarily cannot be processed, please try again later!');
     }
 });

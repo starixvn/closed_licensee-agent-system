@@ -55,6 +55,10 @@ namespace LicenseeAgent.BetList.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>Returns Index page.</returns>
         [HttpPost]
         public JsonResult Index()
         {
@@ -71,6 +75,10 @@ namespace LicenseeAgent.BetList.Controllers
             return Json(model.TicketTextList);
         }
 
+        /// <summary>
+        /// Get bet list detail.
+        /// </summary>
+        /// <returns>Returns detail page.</returns>
         [HttpGet]
         public ActionResult Details()
         {

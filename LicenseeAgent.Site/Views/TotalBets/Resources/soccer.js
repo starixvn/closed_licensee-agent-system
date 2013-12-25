@@ -1,13 +1,7 @@
 ﻿var Soccer = function ($) {
-
     var urlAjax = $('#search-form').attr('action');
     return {
-        init: function () {
-            // search
-            $('#search-form').submit(function (e) {
-
-            });
-
+        init: function () {            
             $(".more-link").click(function () {
                 Soccer.showAllBetType(this);
             });
@@ -37,13 +31,11 @@
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    //CORE.blockUI();
                 },
                 success: function (data) {
                     Soccer.initLeagueMultiSelect(data.List);
                 },
                 complete: function () {
-                    //CORE.unblockUI();
                 }
             });
         },

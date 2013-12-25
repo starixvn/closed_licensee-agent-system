@@ -31,7 +31,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         [HttpGet]
-        public ActionResult Soccer()
+        public ViewResult Soccer()
         {
             var model = new SoccerViewModel() { League = string.Empty, Event = string.Empty, TimeInterval = 15 };
 
@@ -39,13 +39,13 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         [HttpPost]
-        public ActionResult Soccer(SoccerViewModel model)
+        public ViewResult Soccer(SoccerViewModel model)
         {
             return GetSoccerData(model);
         }
 
         [HttpGet]
-        public ActionResult SoccerDetail(int matchId, string matchName)
+        public ViewResult SoccerDetail(int matchId, string matchName)
         {
             var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchID = matchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
@@ -55,7 +55,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         [NonAction]
-        public ActionResult GetSoccerData(SoccerViewModel model)
+        public ViewResult GetSoccerData(SoccerViewModel model)
         {
             var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
             var dataList = _totalBetsService.GetSoccerData(criteria);

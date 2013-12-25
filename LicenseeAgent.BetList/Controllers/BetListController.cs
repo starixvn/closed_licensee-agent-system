@@ -49,6 +49,11 @@ namespace LicenseeAgent.BetList.Controllers
         #endregion
 
         #region Actions
+        /// <summary>
+        /// Index page of Bet List.
+        /// </summary>
+        /// <param name="someQueryHere">Some Query string.</param>
+        /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult Index(string someQueryHere)
         {
@@ -56,9 +61,9 @@ namespace LicenseeAgent.BetList.Controllers
         }
 
         /// <summary>
-        /// Indexes this instance.
+        /// Index page of Bet List.
         /// </summary>
-        /// <returns>Returns Index page.</returns>
+        /// <returns>JSON object.</returns>
         [HttpPost]
         public JsonResult Index()
         {
@@ -76,9 +81,9 @@ namespace LicenseeAgent.BetList.Controllers
         }
 
         /// <summary>
-        /// Get bet list detail.
+        /// Bet List Details.
         /// </summary>
-        /// <returns>Returns detail page.</returns>
+        /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult Details()
         {

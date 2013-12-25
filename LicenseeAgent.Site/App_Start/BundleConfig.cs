@@ -60,7 +60,10 @@ namespace LicenseeAgent.Site
         /// Registers the JAVASCRIPT component bundles.
         /// </summary>
         /// <param name="bundles">The bundle collection.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage(
+            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
         private static void RegisterComponents(BundleCollection bundles)
         {
             // Jquery, Jquery-UI, Jquery Validation

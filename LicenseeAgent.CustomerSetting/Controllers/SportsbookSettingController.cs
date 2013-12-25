@@ -194,7 +194,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1) ? FormType.Edit : FormType.ReadOnly,
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1) 
+                    ? FormType.Edit 
+                    : FormType.ReadOnly,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
                 Ip = Request.GetClientIp()
@@ -251,7 +253,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="result">The result.</param>
         /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
         /// <returns>Returns a list of result.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage(
+            "StyleCop.CSharp.Nexcel.NexcelCustomRules", 
+            "SP2101:MethodMustNotContainMoreLinesThan", 
+            Justification = "Reviewed. Suppression is OK here.")]
         private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {
             var msgContents = new List<Result>();

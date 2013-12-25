@@ -82,6 +82,9 @@ app.controller('BetListController', function ($scope, $http) {
 
     $scope.SubmitForm = function () {
         CORE.blockUI();
+        var fromDate = $('spMonth').monPickr("getFromDate", "MM/dd/yyyy");
+        var toDate = $('spMonth').monPickr("getFromDate", "MM/dd/yyyy");
+
         $http({
             method: 'POST',
             url: "BetList/Index" + queryString(),

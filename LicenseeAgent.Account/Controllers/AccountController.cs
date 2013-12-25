@@ -10,6 +10,7 @@ namespace LicenseeAgent.Account.Controllers
     using System.IO;
     using System.Web.Mvc;
     using System.Web.Security;
+    using System.Web.SessionState;
     using Fanex.Common;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Services;
@@ -25,7 +26,6 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web.Core;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
-    using System.Web.SessionState;
 
     /// <summary>
     /// Account controllers.

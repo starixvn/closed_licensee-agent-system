@@ -21,5 +21,9 @@ namespace LicenseeAgent.TotalBets.ViewModels
         public string League { get; set; }
 
         public string Event { get; set; }
+
+        public int TimeInterval { get; set; }
+
+        public IList<LeagueGroupEntity> MainData { get; set; }
     }
 }

@@ -1,0 +1,52 @@
+﻿.refresh-count-down {
+	height: 20px;
+	width: 57px;
+	border: 1px solid #589CC9;
+	cursor: pointer;
+	
+}
+
+.refresh-count-down div{
+    width: 18px;
+	height: 18px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.refresh-count-down .timer {	
+	margin-top: 1px;
+}
+
+.refresh-count-down .refresh-button {	
+	margin-top: 1px;
+	background-color: #589CC9;
+	background-image: url(images/sprite.png);
+    background-position: 97.3% 0%;
+}
+
+.refresh-count-down .dropdown-button    
+{
+    margin-top: 1px;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+	background-color: #589CC9;
+	background-image: url(images/sprite.png);
+    background-position: 89.2% 0%;
+}
+
+.dropdown-time-list {
+	width:56px;
+	display: none;
+	position: absolute;
+	z-index: 99;
+	border: 1px solid #589CC9;
+	background-color: #F4F8FB;
+}
+.dropdown-time-list ul li
+{
+    cursor: pointer;
+}
+.dropdown-time-list ul li:hover {
+	background-color: #589CC9;
+}

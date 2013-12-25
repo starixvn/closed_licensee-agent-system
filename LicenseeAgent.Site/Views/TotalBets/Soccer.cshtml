@@ -32,9 +32,16 @@
             @Las.Submit
         </button>
     </div>
-    
-}
-<div class="wrapper">
-    <div id="grid" class="freegrid">
+    <div class="controls-row">        
+        <div class="refresh-count-down" id="refresh-count-down">
+            
+        </div>        
+        <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
     </div>
+}
+<div class="wrapper" id="totalbet-data-content">
+    <table>
+        @{Html.RenderPartial("~/Views/TotalBets/Soccer.Header.cshtml");}
+        @{Html.RenderPartial("~/Views/TotalBets/Soccer.Content.cshtml");}
+    </table>
 </div>

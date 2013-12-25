@@ -30,6 +30,11 @@ namespace LicenseeAgent.Core.Utils
             return string.Format(englishCultureInfo.NumberFormat, "{0:#,##0}", value);
         }
 
+        public static string FormatDecimal(object value)
+        {
+            return string.Format(englishCultureInfo.NumberFormat, "{0:#,##0.00}", value);
+        }
+
         public static string FormatPercent(object value)
         {
             return string.Format(englishCultureInfo.NumberFormat, "{0:P}", value);

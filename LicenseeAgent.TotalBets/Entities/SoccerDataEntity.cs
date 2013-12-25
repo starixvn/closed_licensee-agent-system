@@ -6,6 +6,8 @@
 
 namespace LicenseeAgent.TotalBets.Entities
 {
+    using System;
+
     /// <summary>
     /// Soccer Data Entity.
     /// </summary>
@@ -34,5 +36,7 @@ namespace LicenseeAgent.TotalBets.Entities
         public int TotalTrans { get; set; }
 
         public decimal Stake { get; set; }
+
+        public DateTime KickOffTime { get; set; }
     }
 }

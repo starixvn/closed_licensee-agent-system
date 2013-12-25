@@ -11,9 +11,65 @@
     border-bottom: 1px solid #cccccc;
     height: 22px;
 }
+#totalbet-data-content table tr td.text-field{
+    text-align: center;	
+}
+#totalbet-data-content table tr td{
+    text-align: right;	
+    padding-right: 2px;
+}
+#totalbet-data-content table tr.league-row td{
+    text-align: left;
+    background-color: #CCCCCC;	
+}
+#totalbet-data-content table tr td.team-name{
+    text-align: left;
+    border-bottom: 1px solid #FFFFFF;	
+    padding-left: 2px;
+    font-weight: bold;
+}
+#totalbet-data-content table tr td span.live{
+    color: #FF0000;
+}
+#totalbet-data-content table tr td.draw{
+    color: #908F8F;
+    text-align: left;	
+    padding-left: 2px;
+}
+#totalbet-data-content table tr td span.more-link{
+    color: #589CC9;
+    font-weight: bold;
+	cursor: pointer;	
+}
+
+#totalbet-data-content table tr td div.totalbets-item {
+	width: 20px;
+    height: 20px;
+    background-image: url(images/sprite.png);
+    background-position: 94.5% 0%;
+}
+
+/* Header row*/
 #totalbet-data-content table tr.header-row {
 	text-align: center;
 	background-color: #908F8F;
 	font-weight: bold;
 	color: #FFFFFF;
+}
+#totalbet-data-content table tr.header-row td {
+	text-align: center;
+}
+
+/* All bet type */
+.match-name {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 16px;
+}
+.history-link {
+	color: #0000FF;
+	float: right;
+	cursor: pointer;
+	padding-right: 10px;
+	text-decoration: underline;
 }

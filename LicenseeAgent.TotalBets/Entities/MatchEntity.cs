@@ -10,19 +10,40 @@ namespace LicenseeAgent.TotalBets.Entities
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using LicenseeAgent.Core.Utils;
 
     /// <summary>
     /// Match Entity.
     /// </summary>
     public class MatchEntity
     {
+        public int MatchId { get; set; }
+
         public bool IsLive { get; set; }
 
         public int Index { get; set; }
 
         public string Time { get; set; }
 
-        public string Event { get; set; }
+        public int HomeId { get; set; }
+
+        public string HomeName
+        {
+            get
+            {
+                return DataRefWrapper.GetTeamname(HomeId);
+            }
+        }
+
+        public int AwayId { get; set; }
+
+        public string AwayName
+        {
+            get
+            {
+                return DataRefWrapper.GetTeamname(AwayId);
+            }
+        }
 
         public string HomeFullTimeHandicap { get; set; }
 

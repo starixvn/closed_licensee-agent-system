@@ -583,4 +583,44 @@ If that is not you, please contact your upline!!!</value>
   <data name="Upline" xml:space="preserve">
     <value>Upline</value>
   </data>
+  <data name="Draw" xml:space="preserve">
+    <value>Draw</value>
+    <comment>not</comment>
+  </data>
+  <data name="FH1X2" xml:space="preserve">
+    <value>1H. 1X2</value>
+    <comment>not</comment>
+  </data>
+  <data name="FHHDP" xml:space="preserve">
+    <value>1H. HDP</value>
+    <comment>not</comment>
+  </data>
+  <data name="FHOU" xml:space="preserve">
+    <value>1H. O/U</value>
+    <comment>not</comment>
+  </data>
+  <data name="FT1X2" xml:space="preserve">
+    <value>FT. 1X2</value>
+    <comment>not</comment>
+  </data>
+  <data name="FTHDP" xml:space="preserve">
+    <value>FT. HDP</value>
+    <comment>not</comment>
+  </data>
+  <data name="FTOU" xml:space="preserve">
+    <value>FT. O/U</value>
+    <comment>not</comment>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+    <comment>not</comment>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+    <comment>not</comment>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+    <comment>not</comment>
+  </data>
 </root>

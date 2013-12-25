@@ -255,10 +255,12 @@ namespace LicenseeAgent.Site
         private static void RegisterPluginControl(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/plugin").Include(
-                "~/Views/TotalBets/Resources/fanex.multiSelect.css"));
+                "~/Views/TotalBets/Resources/fanex.multiSelect.css").Include(
+                "~/Views/TotalBets/Resources/plugin.refresh.countdown.css"));
 
             bundles.Add(new ScriptBundle("~/js/plugin").Include(
-                "~/Views/TotalBets/Resources/fanex.multiSelect.js"));
+                "~/Views/TotalBets/Resources/fanex.multiSelect.js").Include(
+                "~/Views/TotalBets/Resources/plugin.refresh.countdown.js"));
         }
 
         #endregion Pages

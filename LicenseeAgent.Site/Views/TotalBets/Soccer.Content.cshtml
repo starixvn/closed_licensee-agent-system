@@ -1,0 +1,106 @@
+﻿@model LicenseeAgent.TotalBets.ViewModels.SoccerViewModel
+@foreach (var league in Model.MainData)
+{
+    <tr class="league-row">
+        <td colspan="15">@league.LeagueName
+        </td>
+    </tr>
+    foreach (var match in league.MatchList)
+    {
+    <tr>
+        <td rowspan="3" class="text-field">@match.Index
+        </td>
+        <td rowspan="3" class="text-field">@Html.Raw(match.Time)
+        </td>
+        <td class="team-name">@match.HomeName
+        </td>
+        <td style="width: 10%">@match.HomeFullTimeHandicap
+        </td>
+        <td style="width: 2%" rowspan="2">
+            @if (!string.IsNullOrEmpty(match.HomeFullTimeHandicap) || !string.IsNullOrEmpty(match.AwayFullTimeHandicap))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+        <td style="width: 10%">@match.HomeFullTimeOverUnder
+        </td>
+        <td style="width: 2%" rowspan="2">
+        @if (!string.IsNullOrEmpty(match.HomeFullTimeOverUnder) || !string.IsNullOrEmpty(match.AwayFullTimeOverUnder))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+        <td style="width: 10%">@match.HomeFullTimeOneXTwo
+        </td>
+        <td style="width: 2%" rowspan="2">
+        @if (!string.IsNullOrEmpty(match.HomeFullTimeOneXTwo) || !string.IsNullOrEmpty(match.AwayFullTimeOneXTwo))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+        <td style="width: 10%">@match.HomeFirstHaflHandicap
+        </td>
+        <td style="width: 2%" rowspan="2">
+        @if (!string.IsNullOrEmpty(match.HomeFirstHaflHandicap) || !string.IsNullOrEmpty(match.AwayFirstHaflHandicap))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+        <td style="width: 10%">@match.HomeFirstHaflOverUnder
+        </td>
+        <td style="width: 2%" rowspan="2">
+        @if (!string.IsNullOrEmpty(match.HomeFirstHaflOverUnder) || !string.IsNullOrEmpty(match.AwayFirstHaflOverUnder))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+        <td style="width: 10%">@match.HomeFirstHaflOneXTwo
+        </td>
+        <td style="width: 2%" rowspan="2">
+        @if (!string.IsNullOrEmpty(match.HomeFirstHaflOneXTwo) || !string.IsNullOrEmpty(match.AwayFirstHaflOneXTwo))
+            {
+                <div class="totalbets-item">
+                </div>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="team-name">@match.AwayName
+        </td>
+        <td>@match.AwayFullTimeHandicap
+        </td>
+        <td>@match.AwayFullTimeOverUnder
+        </td>
+        <td>@match.AwayFullTimeOneXTwo
+        </td>
+        <td>@match.AwayFirstHaflHandicap
+        </td>
+        <td>@match.AwayFirstHaflOverUnder
+        </td>
+        <td>@match.AwayFirstHaflOneXTwo
+        </td>
+    </tr>
+    <tr>
+        <td class="draw">@Las.Draw
+        </td>
+        <td colspan="4" class="text-field">
+            <span class="more-link" data-matchid="@match.MatchId" data-matchname="@(match.HomeName + " -vs- " + match.AwayName)">@Las.More</span>
+        </td>
+        <td>@match.DrawFullTimeOneXTwo
+        </td>
+        <td>
+        </td>
+        <td colspan="4" class="text-field">
+        </td>
+        <td>@match.DrawFirstHaflOneXTwo
+        </td>
+        <td>
+        </td>
+    </tr>
+    }
+}

@@ -475,7 +475,7 @@ namespace LicenseeAgent.Resources {
                 return ResourceManager.GetString("Downline", resourceCulture);
             }
         }
-        
+      
         /// <summary>
         ///   Looks up a localized string similar to Downline List.
         /// </summary>
@@ -484,6 +484,17 @@ namespace LicenseeAgent.Resources {
                 return ResourceManager.GetString("DownlineList", resourceCulture);
             }
         }
+        
+       /// <summary>
+        ///   Looks up a localized string similar to Draw.
+        /// </summary>
+        public static string Draw {
+            get {
+                return ResourceManager.GetString("Draw", resourceCulture);
+            }
+        }
+        
+
         
         /// <summary>
         ///   Looks up a localized string similar to Edit.
@@ -540,6 +551,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1H. 1X2.
+        /// </summary>
+        public static string FH1X2 {
+            get {
+                return ResourceManager.GetString("FH1X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1H. HDP.
+        /// </summary>
+        public static string FHHDP {
+            get {
+                return ResourceManager.GetString("FHHDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1H. O/U.
+        /// </summary>
+        public static string FHOU {
+            get {
+                return ResourceManager.GetString("FHOU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
@@ -554,6 +592,33 @@ namespace LicenseeAgent.Resources {
         public static string Forecast {
             get {
                 return ResourceManager.GetString("Forecast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FT. 1X2.
+        /// </summary>
+        public static string FT1X2 {
+            get {
+                return ResourceManager.GetString("FT1X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FT. HDP.
+        /// </summary>
+        public static string FTHDP {
+            get {
+                return ResourceManager.GetString("FTHDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FT. O/U.
+        /// </summary>
+        public static string FTOU {
+            get {
+                return ResourceManager.GetString("FTOU", resourceCulture);
             }
         }
         
@@ -738,6 +803,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string Live {
+            get {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked.
         /// </summary>
         public static string Locked {
@@ -815,6 +889,15 @@ namespace LicenseeAgent.Resources {
         public static string MoneyLine {
             get {
                 return ResourceManager.GetString("MoneyLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string More {
+            get {
+                return ResourceManager.GetString("More", resourceCulture);
             }
         }
         
@@ -1184,6 +1267,15 @@ namespace LicenseeAgent.Resources {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
         

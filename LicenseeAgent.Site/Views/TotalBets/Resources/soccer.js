@@ -8,6 +8,21 @@
 
             });
 
+            $(".more-link").click(function () {
+                Soccer.showAllBetType(this);
+            });
+
+            $("#refresh-count-down").refreshCountDown({
+                listTimeInterval: [15, 30, 45, 60, 75],
+                timeIntervalName: "TimeInterval",
+                timeIntervalValue: $("#server-time-interval").val()
+            });            
+
+            Soccer.initData();
+        },
+
+        initData: function () {
+            CORE.blockUI();
             Soccer.getLeagueData();
             Soccer.getEventDataByLeague();
         },
@@ -21,13 +36,13 @@
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    //CORE.blockUI();
                 },
                 success: function (data) {
                     Soccer.initLeagueMultiSelect(data.List);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    //CORE.unblockUI();
                 }
             });
         },
@@ -41,7 +56,7 @@
                 checkAllText: 'All league.',
                 noItemText: 'No league seleted.',
                 noneSelectedText: 'Select league',
-                selectedText: '# selected',
+                selectedText: '# selected leagues',
                 tooltipNoItem: 'There is no league selected.',
                 showParentSelectedText: false,
                 onLeave: function () {
@@ -55,7 +70,7 @@
             $("#League").val(selectedLeagues);
             Soccer.getEventDataByLeague();
         },
-                
+
         getEventDataByLeague: function () {
             var params = {
                 League: $("#League").val(),
@@ -86,7 +101,7 @@
                 checkAllText: 'All event.',
                 noItemText: 'No event seleted.',
                 noneSelectedText: 'Select event',
-                selectedText: '# selected',
+                selectedText: '# selected events',
                 tooltipNoItem: 'There is no event selected.',
                 showParentSelectedText: false,
                 onLeave: function () {
@@ -98,6 +113,13 @@
         selectedEvent: function () {
             var selectedLeagues = $("#event-multi-select").fanexMultiSelect('getItems', true).join(',');
             $("#Event").val(selectedLeagues);
+        },
+
+        showAllBetType: function (context) {
+            var matchId = $(context).attr("data-matchid");
+            var matchName = $(context).attr("data-matchname");
+            var url = urlAjax + "/SoccerAllBetType?matchId=" + matchId + "&matchName=" + matchName;
+            window.location.href = url;
         }
     }
 } (jQuery);

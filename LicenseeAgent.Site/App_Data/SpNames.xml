@@ -62,4 +62,8 @@
     <Setting Key="LAS_TotalBet_Soccer_MajorBetType" SpName="LAS_TotalBet_Soccer_MajorBetType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_Soccer_AllBetType" SpName="LAS_TotalBet_Soccer_AllBetType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
+
+  <Function Name="BetList">
+    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember_xTest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
 </Functions>

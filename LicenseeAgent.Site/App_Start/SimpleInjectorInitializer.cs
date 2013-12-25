@@ -14,6 +14,7 @@ namespace LicenseeAgent.Site.App_Start
     using System.Reflection;
     using System.Web.Mvc;
     using LicenseeAgent.Account.Services;
+    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
@@ -58,6 +59,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<ICustomerService, CustomerService>();
             container.Register<IIpInformationService, IpInformationService>();
             container.Register<ISearchUserService, SearchUserService>();
+            container.Register<IBetListService, BetListService>();
         }
     }
 }

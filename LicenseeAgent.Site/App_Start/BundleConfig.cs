@@ -101,6 +101,21 @@ namespace LicenseeAgent.Site
                 "~/scripts/contextmenu/jquery.contextMenu.js"));
             bundles.Add(new LessBundle("~/css/contextmenu").Include(
                 "~/content/contextmenu/jquery.contextMenu.css"));
+
+            // Month Picker
+            bundles.Add(new ScriptBundle("~/js/monthpicker").Include(
+                "~/scripts/MonthPicker/monPickr-0.0.3.js"));
+            bundles.Add(new LessBundle("~/css/monthpicker").Include(
+                "~/scripts/MonthPicker/monPickr-0.0.3.css"));
+
+            // For Bet List
+            bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
+                "~/scripts/ng-grid/ng-grid.js",
+                "~/scripts/Angular/angular-sanitize.js"));
+            bundles.Add(new LessBundle("~/css/angulargrid").Include(
+                "~/content/ng-grid/ng-grid.css",
+                "~/content/betlist/betlist.core.css",
+                "~/content/betlist/betList.css"));
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ namespace LicenseeAgent.BetList.Utils
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using LicenseeAgent.Core.Utils;
 
     /// <summary>
     /// TODO: Update summary.
@@ -62,8 +63,38 @@ namespace LicenseeAgent.BetList.Utils
                     return statusNormalText;
 
                 default:
-                    return builder.BuildStatus(ticket, ticketHelper, ticketData, false);
+                    return builder.BuildStatus(ticket, ticketHelper, ticketData, true);
             }
+        }
+
+        /// <summary>
+        /// Get ticket Agent PT.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <returns>Ticket status text.</returns>
+        public static string BuildAgentPT(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket)
+        {
+            var agentPTHtmlStr = "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentPTPercent);
+            agentPTHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
+            return agentPTHtmlStr;
+        }
+
+        /// <summary>
+        /// Get ticket Agent Commission.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <returns>Ticket status text.</returns>
+        public static string BuildAgentComm(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket)
+        {
+            var agentCommHtmlStr = "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentCommPercent);
+            agentCommHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
+            return agentCommHtmlStr;
         }
 
         /// <summary>

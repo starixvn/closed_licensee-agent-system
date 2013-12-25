@@ -13,6 +13,7 @@ namespace LicenseeAgent.BetList.Services
     using Core.Entities;
     using Core.Services;
     using Criterias;
+    using DataAccess;
     using Entities;
 
     /// <summary>
@@ -20,6 +21,36 @@ namespace LicenseeAgent.BetList.Services
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
+        #region Fields
+
+        /// <summary>
+        /// Define Account DataAccess.
+        /// </summary>
+        private readonly IBetListDataAccess _betlistDataAccess;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BetListService" /> class.
+        /// </summary>
+        public BetListService()
+            : this(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BetListService" /> class.
+        /// </summary>
+        /// <param name="betlistDataAccess">Account data access.</param>
+        private BetListService(IBetListDataAccess betlistDataAccess)
+        {
+            _betlistDataAccess = betlistDataAccess ?? new BetListDataAccess();
+        }
+
+        #endregion Constructor
+
         #region BetList
 
         /// <summary>
@@ -29,7 +60,7 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         public TicketResult GetBetList(BetListCriteria criteria)
         {
-            return null;
+            return _betlistDataAccess.GetBetList(criteria);
         }
 
         /// <summary>

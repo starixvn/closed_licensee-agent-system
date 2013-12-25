@@ -119,7 +119,7 @@ namespace LicenseeAgent.BetList.Criterias
         /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            return "Aff_BetList";
+            return "LAS_Betlist_SelByMember";
         }
     }
 }

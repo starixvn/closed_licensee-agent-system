@@ -17,10 +17,10 @@ namespace LicenseeAgent.BetList.Entities
     /// </summary>
     public class LasTicket : Ticket
     {
-        public decimal AgentPT { get; set; }
+        public string ExternalId { get; set; }
 
-        public decimal AgentPTAmount { get; set; }
+        public decimal AgentPTPercent { get; set; }
 
-        public decimal AgentCommAmount { get; set; }
+        public decimal AgentCommPercent { get; set; }
     }
 }

@@ -241,9 +241,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
+    <Content Include="Content\BetList\betlist.core.css" />
+    <Content Include="Content\BetList\betList.css" />
+    <Content Include="Content\BetList\global.content.css" />
+    <Content Include="Content\BetList\images\bar-loader.gif" />
+    <Content Include="Content\BetList\images\bgHeader.jpg" />
+    <Content Include="Content\BetList\images\blank.gif" />
+    <Content Include="Content\BetList\images\firstGoal.gif" />
+    <Content Include="Content\BetList\images\lastGoal.gif" />
+    <Content Include="Content\BetList\images\link_14x14.png" />
+    <Content Include="Content\BetList\images\link_16x16.png" />
+    <Content Include="Content\BetList\images\note.png" />
+    <Content Include="Content\BetList\images\plus.png" />
+    <Content Include="Content\BetList\images\undo.png" />
+    <Content Include="Content\BetList\images\up.png" />
+    <Content Include="Content\BetList\rng-casino-hand-history.css" />
+    <Content Include="Content\BetList\systemparlaydetail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
+    <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
+    <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
+    <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
+    <Content Include="Scripts\ng-grid\ng-grid.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />
@@ -280,6 +300,7 @@
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
+    <Content Include="Views\BetList\Resources\BetListManager.js" />
     <Content Include="Views\Customer\Resources\customerlist.js" />
     <Content Include="Views\Customer\Resources\images\icons.png" />
     <Content Include="Views\Home\Resources\images\arrow-hover.png" />
@@ -701,6 +722,7 @@
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
+    <Content Include="Views\BetList\Details.cshtml" />
     <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>

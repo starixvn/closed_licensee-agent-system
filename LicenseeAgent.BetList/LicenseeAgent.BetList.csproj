@@ -12,6 +12,7 @@
     <AssemblyName>LicenseeAgent.BetList</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -54,12 +54,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,7 +83,13 @@
   <ItemGroup>
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Criterias\BetListCriteria.cs" />
+    <Compile Include="Criterias\BetListDetailsCriteria.cs" />
+    <Compile Include="DataAccess\BetListDataAccess.cs" />
+    <Compile Include="DataAccess\IBetListDataAccess.cs" />
+    <Compile Include="Entities\BetListCustomerInfo.cs" />
     <Compile Include="Entities\BetType.cs" />
+    <Compile Include="Entities\BetListDetails.cs" />
+    <Compile Include="Entities\BetListDetailsDTO.cs" />
     <Compile Include="Entities\LasTicket.cs" />
     <Compile Include="Entities\TicketResult.cs" />
     <Compile Include="Entities\TicketText.cs" />
@@ -78,10 +97,10 @@
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="Utils\LasBetListHtmlBuilder.cs" />
+    <Compile Include="ViewModels\BetListViewModel.cs" />
+    <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

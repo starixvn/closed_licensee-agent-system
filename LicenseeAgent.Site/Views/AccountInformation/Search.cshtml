@@ -1,8 +1,7 @@
 ﻿@using LicenseeAgent.Account.ViewResults
 @model SearchUserResultViewModel
 @{
-    Layout = null;
-    
+    Layout = null;    
     var pageContext = (PageContext)ViewBag.PageContext;
 }
 @if (pageContext != null)
@@ -44,7 +43,7 @@
     else if (!string.IsNullOrEmpty(result.MsgContent))
     {
         <script type="text/javascript">
-            accountInformation.showNoUserAlert(@result.MsgContent);
+            accountInformation.showNoUserAlert("@result.MsgContent");
         </script>
     }
     

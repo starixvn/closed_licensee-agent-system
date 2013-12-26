@@ -11,16 +11,16 @@
 <div class="controls-row">
     @if (pageContext.IsLastLevel)
     {
-        <button class="btn btn-inverse">@Las.MemberList</button>   
+        <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.MemberList</button>   
     }
     else
     {
-        <button class="btn btn-inverse">@Las.AgentList</button>   
+        <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.AgentList</button>   
     } 
 
     @if (pageContext.IsMember)
     {
-        <button class="btn btn-inverse">@Las.BetList</button>     
+        <button class="btn btn-inverse"  data-url="@Url.Action("BetList")">@Las.BetList</button>     
     }
     
     <button class="btn btn-inverse">@Las.Statement</button>

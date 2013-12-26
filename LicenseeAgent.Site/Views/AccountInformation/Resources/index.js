@@ -19,12 +19,13 @@
 
             //form submit
             $('#formSearch').submit(function (event) {
-                $(this).ajaxSubmit({
-                    target: '#searchResult',
-                    beforeSubmit: CORE.blockUI,
-                    success: accountInformation.searchResultBinding
-                });
-
+                if ($.trim($("#UserName").val()).length > lengthUsername) {
+                    $(this).ajaxSubmit({
+                        target: '#searchResult',
+                        beforeSubmit: CORE.blockUI,
+                        success: accountInformation.searchResultBinding
+                    });
+                }
                 event.preventDefault();
             });
 

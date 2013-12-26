@@ -187,19 +187,21 @@ namespace LicenseeAgent.Account.Controllers
 
             if (criteria.MsgId != 0)
             {
-                ViewBag.Result = new SearchUserViewResult 
+                ViewBag.Result = new SearchUserViewResult
                 {
                     MsgId = criteria.MsgId,
                     MsgContent = GetErrorMsg(criteria.MsgId)
                 };
             }
-
-            ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+            else
             {
-                IsDirectDownline = new SessionWrapper().IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                IsMember = customer.Level == Constants.MemberLevel
-            };
+                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                {
+                    IsDirectDownline = new SessionWrapper().IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
+                    IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                    IsMember = customer.Level == Constants.MemberLevel
+                };
+            }
 
             return View(new SearchUserResultViewModel
             {
@@ -247,12 +249,15 @@ namespace LicenseeAgent.Account.Controllers
 
                 ViewBag.Result = result;
             }
-
-            ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+            else
             {
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                IsMember = customer.Level == Constants.MemberLevel
-            };
+                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                {
+                    IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                    IsMember = customer.Level == Constants.MemberLevel
+                };
+
+            }
 
             return View(new SearchUserResultViewModel
             {

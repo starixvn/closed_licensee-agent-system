@@ -1,6 +1,7 @@
 ﻿@model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
+    var isNoDirectDonwline = pageContext.IsDirectDownline.HasValue && !pageContext.IsDirectDownline.Value;
 }
 <div class="controls-row">
     <ul class="nav nav-tabs">
@@ -12,14 +13,11 @@
         <div class="tab-pane fade" id="setting"></div>
         <div class="tab-pane active in" id="action">
             <ul class="nav nav-pills content">
-                @if (pageContext.IsDirectDownline.HasValue && !pageContext.IsDirectDownline.Value)
-                {
-                    <li><a href="#">@Las.ViewSportsbook</a></li>
-                }
-                else
-                {
-                    <li><a href="#">@Las.EditSportsbook</a></li>
-                }
+                <li>
+                    <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                        @(isNoDirectDonwline ? Las.ViewSportsbook : Las.EditSportsbook)
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -37,13 +37,13 @@
     if (result.IsChangeCurrency)
     {
         <script type="text/javascript">
-            searchUser.showCurrencyAlert(@result.CurrencyId,"@(string.Format(result.MsgContent, result.CurrencyName))","@LangMsg.Msg_1032");
+            accountInformation.showCurrencyAlert(@result.CurrencyId,"@(string.Format(result.MsgContent, result.CurrencyName))","@LangMsg.Msg_1032");
         </script>
     }
     else if (!string.IsNullOrEmpty(result.MsgContent))
     {
         <script type="text/javascript">
-            searchUser.showNoUserAlert(@result.MsgContent);
+            accountInformation.showNoUserAlert(@result.MsgContent);
         </script>
     }
     

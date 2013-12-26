@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binders\AgentBreadcrumModelBinder.cs" />
-    <Compile Include="Controllers\SearchUserController.cs" />
+    <Compile Include="Controllers\AccountInformationController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="Core\Constants.cs" />

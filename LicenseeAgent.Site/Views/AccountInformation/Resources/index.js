@@ -1,4 +1,4 @@
-﻿var searchUser = function ($) {
+﻿var accountInformation = function ($) {
     var isCalling = false
         , timerAutocomplete = null
         , preUserName
@@ -13,7 +13,7 @@
             // username suggestion
             $('#UserName').keyup(function (event) {
                 if (timerAutocomplete == null) {
-                    timerAutocomplete = setInterval(searchUser.autoComplete, 200);
+                    timerAutocomplete = setInterval(accountInformation.autoComplete, 200);
                 }
             });
 
@@ -22,7 +22,7 @@
                 $(this).ajaxSubmit({
                     target: '#searchResult',
                     beforeSubmit: CORE.blockUI,
-                    success: searchUser.searchResultBinding
+                    success: accountInformation.searchResultBinding
                 });
 
                 event.preventDefault();
@@ -49,7 +49,7 @@
                     totalPages: totalPages,
                     pageUrl: function () { return '#'; },
                     onPageClicked: function (e, originalEvent, type, page) {
-                        searchUser.getDownline(page);
+                        accountInformation.getDownline(page);
                     }
                 });
             }
@@ -64,13 +64,13 @@
         //suggest agent name
         autoComplete: function () {
             var userName = $('#UserName').val();
-            searchUser.clearTimer();
+            accountInformation.clearTimer();
             if ($.trim(userName).length >= lengthUsername) {
                 if (userName != preUserName) {
-                    timerAutocomplete = setInterval(searchUser.autoComplete, 200);
+                    timerAutocomplete = setInterval(accountInformation.autoComplete, 200);
                 }
                 else {
-                    searchUser.getAutoComplete(userName);
+                    accountInformation.getAutoComplete(userName);
                 }
             }
             preUserName = userName;
@@ -120,7 +120,7 @@
                 },
                 success: function (data) {
                     if (data.MsgId == 0) {
-                        searchUser.bindDownline(data.List);
+                        accountInformation.bindDownline(data.List);
                     }
                 },
                 complete: function () {
@@ -142,7 +142,7 @@
             buttons.push({
                 text: 'OK',
                 click: function () {
-                    searchUser.closeDialog();
+                    accountInformation.closeDialog();
                 }
             });
             $('#dialog-confirm').find('p').html(message);
@@ -160,14 +160,14 @@
             buttons.push({
                 text: 'YES',
                 click: function () {
-                    searchUser.changeCurrencyPage(currencyId);
-                    searchUser.closeDialog();
+                    accountInformation.changeCurrencyPage(currencyId);
+                    accountInformation.closeDialog();
                 }
             });
             buttons.push({
                 text: 'NO',
                 click: function () {
-                    searchUser.showNoUserAlert(msgAlert);
+                    accountInformation.showNoUserAlert(msgAlert);
                 }
             });
             $('#dialog-confirm').find('p').html(msgQuestion);
@@ -211,5 +211,5 @@
 } (jQuery);
 
 $(function () {
-    searchUser.init();
+    accountInformation.init();
 });

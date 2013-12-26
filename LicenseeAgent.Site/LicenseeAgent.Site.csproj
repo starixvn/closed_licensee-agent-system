@@ -511,8 +511,8 @@
     <Content Include="Views\TotalBets\Resources\Images\ui-icons_2e83ff_256x240.png" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
-    <Content Include="Views\SearchUser\Resources\index.less" />
-    <Content Include="Views\SearchUser\Resources\searchuser.js" />
+    <Content Include="Views\AccountInformation\Resources\index.less" />
+    <Content Include="Views\AccountInformation\Resources\index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -714,7 +714,7 @@
     <Content Include="Views\Customer\_Script.cshtml" />
     <Content Include="Views\Shared\_AccountInfo.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\SearchUser\Index.cshtml" />
+    <Content Include="Views\AccountInformation\Index.cshtml" />
     <Content Include="Views\Customer\_MemberGrid.cshtml" />
     <Content Include="Views\Customer\GetIpInformation.cshtml" />
     <Content Include="Views\Customer\_AgentGrid.cshtml" />
@@ -724,10 +724,10 @@
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
-    <Content Include="Views\SearchUser\Search.cshtml" />
-    <Content Include="Views\SearchUser\_SettingAction.cshtml" />
-    <Content Include="Views\SearchUser\_BalanceDownline.cshtml" />
-    <Content Include="Views\SearchUser\_AgentInfo.cshtml" />
+    <Content Include="Views\AccountInformation\Search.cshtml" />
+    <Content Include="Views\AccountInformation\_SettingAction.cshtml" />
+    <Content Include="Views\AccountInformation\_BalanceDownline.cshtml" />
+    <Content Include="Views\AccountInformation\_AgentInfo.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
     <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
   </ItemGroup>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="SearchUserController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AccountInformationController.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
@@ -22,15 +22,16 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SearchUserController : BaseController
+    public class AccountInformationController : BaseController
     {
         private readonly ISearchUserService _searchUserService;
 
-        public SearchUserController(ISearchUserService searchUserService)
+        public AccountInformationController(ISearchUserService searchUserService)
         {
             _searchUserService = searchUserService;
         }
@@ -40,6 +41,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>View action result.</returns>
         [HttpGet]
+        [AppAuthorize(OnlyAuthorize = true)]
         public ActionResult Index()
         {
             return View();

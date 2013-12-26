@@ -1,16 +1,26 @@
-#accountinfo 
+#accountInfo 
 {
     margin-left: 5px;
     margin-top: 10px;  
+    
+    form .input-append
+    {
+        border: 1px solid #AEAEAE; 
+        .add-on
+        {
+            background-color: #FFFFFF;
+        }   
+    }
     
     .input-medium
     {
         width: 200px;
     }
+    
     tr td:first-child,
     tr th:first-child {
         text-align:center;
-        width: 40px;
+        width: 30px;
     }
     
     .btn-group
@@ -21,6 +31,7 @@
         {
             border-bottom-left-radius: 4px;
             border-top-left-radius: 4px;
+            font-weight: bold;
         }
         .btn:last-child, 
         .dropdown-toggle
@@ -30,9 +41,11 @@
         }
     }
     
-    .row-spacing
+    .row-line
     {
+        margin-top: 10px;
         margin-bottom: 10px;
+        border-bottom: 1px solid #DEDEDE;
     }
     
     ul.nav-tabs a
@@ -47,9 +60,32 @@
         width: 115px;
     }
     
-    .tab-content ul.nav li
+    .tab-content 
     {
-        width: 50%;
-        float: left;
+        overflow: hidden;
+        
+        ul.nav li {
+            width: 50%;
+            float: left;
+        }
+        
+        .tab-pane > .content
+        {
+            height: 90px;
+            width: 100%;
+            overflow: auto;
+        }
+    }
+    
+    .tab-small
+    {
+        height: 140px;
+    }
+    
+    .caret 
+    {
+        background-position: -702px 0;
+        height: 10px;
+        width: 10px;
     }
 }

@@ -349,6 +349,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No information available!.
+        /// </summary>
+        public static string Msg_1032 {
+            get {
+                return ResourceManager.GetString("Msg_1032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The searched user belongs to currency {0}. Do you want to change all data to {0} currency?.
+        /// </summary>
+        public static string Msg_1033 {
+            get {
+                return ResourceManager.GetString("Msg_1033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no downline..
+        /// </summary>
+        public static string Msg_1034 {
+            get {
+                return ResourceManager.GetString("Msg_1034", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This user is not active..
         /// </summary>
         public static string Msg_200022 {

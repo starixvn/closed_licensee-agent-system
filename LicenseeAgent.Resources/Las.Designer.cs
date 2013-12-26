@@ -207,6 +207,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet List.
+        /// </summary>
+        public static string BetList {
+            get {
+                return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Setting.
         /// </summary>
         public static string BetSetting {
@@ -511,6 +520,15 @@ namespace LicenseeAgent.Resources {
         public static string EditInfo {
             get {
                 return ResourceManager.GetString("EditInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Sportsbook.
+        /// </summary>
+        public static string EditSportsbook {
+            get {
+                return ResourceManager.GetString("EditSportsbook", resourceCulture);
             }
         }
         
@@ -1181,6 +1199,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting.
+        /// </summary>
+        public static string Setting {
+            get {
+                return ResourceManager.GetString("Setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign In.
         /// </summary>
         public static string SignIn {
@@ -1393,6 +1420,15 @@ namespace LicenseeAgent.Resources {
         public static string ViewLog {
             get {
                 return ResourceManager.GetString("ViewLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Sportsbook.
+        /// </summary>
+        public static string ViewSportsbook {
+            get {
+                return ResourceManager.GetString("ViewSportsbook", resourceCulture);
             }
         }
         

@@ -219,6 +219,18 @@
     <value>This user's upline was closed. Cannot edit.</value>
     <comment>not</comment>
   </data>
+  <data name="Msg_1032" xml:space="preserve">
+    <value>No information available!</value>
+    <comment>not</comment>
+  </data>
+  <data name="Msg_1033" xml:space="preserve">
+    <value>The searched user belongs to currency 'ABC'. Do you want to change all data to ABC currency?</value>
+    <comment>not</comment>
+  </data>
+  <data name="Msg_1034" xml:space="preserve">
+    <value>There is no downline.</value>
+    <comment>not</comment>
+  </data>
   <data name="Msg_200022" xml:space="preserve">
     <value>此會員並不活躍!</value>
   </data>

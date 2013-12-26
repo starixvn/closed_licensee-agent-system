@@ -263,6 +263,8 @@
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
+    <Content Include="Scripts\jquery-form\jquery.form.min.js" />
+    <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
@@ -510,7 +512,7 @@
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\SearchUser\Resources\index.less" />
-    <Content Include="Scripts\searchuser.js" />
+    <Content Include="Views\SearchUser\Resources\searchuser.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -712,7 +714,7 @@
     <Content Include="Views\Customer\_Script.cshtml" />
     <Content Include="Views\Shared\_AccountInfo.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Shared\_AccountInfo.cshtml" />
+    <Content Include="Views\SearchUser\Index.cshtml" />
     <Content Include="Views\Customer\_MemberGrid.cshtml" />
     <Content Include="Views\Customer\GetIpInformation.cshtml" />
     <Content Include="Views\Customer\_AgentGrid.cshtml" />
@@ -722,6 +724,10 @@
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
+    <Content Include="Views\SearchUser\Search.cshtml" />
+    <Content Include="Views\SearchUser\_SettingAction.cshtml" />
+    <Content Include="Views\SearchUser\_BalanceDownline.cshtml" />
+    <Content Include="Views\SearchUser\_AgentInfo.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
     <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
   </ItemGroup>

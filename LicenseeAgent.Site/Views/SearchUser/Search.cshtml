@@ -1,0 +1,50 @@
+﻿@using LicenseeAgent.Account.ViewResults
+@model SearchUserResultViewModel
+@{
+    Layout = null;
+    
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+
+@Html.Partial("_AgentInfo", Model)
+
+<div class="controls-row">
+    @if (pageContext.IsLastLevel)
+    {
+        <button class="btn btn-inverse">@Las.MemberList</button>   
+    }
+    else
+    {
+        <button class="btn btn-inverse">@Las.AgentList</button>   
+    } 
+
+    @if (pageContext.IsMember)
+    {
+        <button class="btn btn-inverse">@Las.BetList</button>     
+    }
+    
+    <button class="btn btn-inverse">@Las.Statement</button>
+</div>
+
+<div class="row-line"></div>
+
+@Html.Partial("_BalanceDownline", Model)
+@Html.Partial("_SettingAction", Model)
+
+@if (ViewBag.Result != null)
+{
+    var result = (SearchUserViewResult)ViewBag.Result;
+    if (result.IsChangeCurrency)
+    {
+        <script type="text/javascript">
+            searchUser.showCurrencyAlert(@result.CurrencyId,"@(string.Format(result.MsgContent, result.CurrencyName))","@LangMsg.Msg_1032");
+        </script>
+    }
+    else if (!string.IsNullOrEmpty(result.MsgContent))
+    {
+        <script type="text/javascript">
+            searchUser.showNoUserAlert(@result.MsgContent);
+        </script>
+    }
+    
+}

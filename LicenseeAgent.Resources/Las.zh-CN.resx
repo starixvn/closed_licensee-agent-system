@@ -570,13 +570,31 @@
   <data name="Upline" xml:space="preserve">
     <value>Upline</value>
   </data>
-
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
     <comment>not</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+    <comment>not</comment>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="EditSportsbook" xml:space="preserve">
+    <value>Edit Sportsbook</value>
+    <comment>not</comment>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+    <comment>not</comment>
+  </data>
+  <data name="ViewSportsbook" xml:space="preserve">
+    <value>View Sportsbook</value>
+    <comment>not</comment>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Bet List</value>
     <comment>not</comment>
   </data>
   <data name="Draw" xml:space="preserve">

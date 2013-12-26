@@ -3,7 +3,7 @@
 }
 <ul class="nav nav-tabs">
     <li class="active"><a href="#MainMenu" id="tabMainMenu" data-toggle="tab">@Las.MainMenu</a></li>
-    <li><a href="#accountinfo" id="tabAccInfo" data-toggle="tab">@Las.AccountInfo</a></li>
+    <li><a href="#accountInfo" id="tabAccInfo" data-toggle="tab">@Las.AccountInfo</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane active in" id="MainMenu">
@@ -47,7 +47,7 @@
             </li>
         </ul>
     </div>
-    <div class="tab-pane fade" id="accountinfo">
-        @Html.Partial("_AccountInfo")
+    <div class="tab-pane fade" id="accountInfo">
+        @Html.Action("Index","SearchUser")
     </div>
 </div>

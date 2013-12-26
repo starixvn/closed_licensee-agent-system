@@ -265,4 +265,16 @@
     <value>This user's upline was closed. Cannot edit.</value>
     <comment>not</comment>
   </data>
+  <data name="Msg_1032" xml:space="preserve">
+    <value>No information available!</value>
+    <comment>not</comment>
+  </data>
+  <data name="Msg_1033" xml:space="preserve">
+    <value>The searched user belongs to currency {0}. Do you want to change all data to {0} currency?</value>
+    <comment>not</comment>
+  </data>
+  <data name="Msg_1034" xml:space="preserve">
+    <value>There is no downline.</value>
+    <comment>not</comment>
+  </data>
 </root>

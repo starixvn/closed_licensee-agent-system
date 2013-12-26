@@ -34,5 +34,7 @@ namespace LicenseeAgent.Core.Entities
         public string AgentName { get; set; }
 
         public bool? IsDirectDownline { get; set; }
+
+        public bool IsMember { get; set; }
     }
 }

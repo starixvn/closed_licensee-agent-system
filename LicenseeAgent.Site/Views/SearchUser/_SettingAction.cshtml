@@ -1,0 +1,26 @@
+﻿@model SearchUserResultViewModel
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+<div class="controls-row">
+    <ul class="nav nav-tabs">
+        <li><a href="#setting" id="tabSetting" data-toggle="tab">@Las.Setting</a></li>
+        <li class="active"><a href="#action" id="tabAction" data-toggle="tab">@Las.Action</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade" id="setting"></div>
+        <div class="tab-pane active in" id="action">
+            <ul class="nav nav-pills content">
+                @if (pageContext.IsDirectDownline.HasValue && !pageContext.IsDirectDownline.Value)
+                {
+                    <li><a href="#">@Las.ViewSportsbook</a></li>
+                }
+                else
+                {
+                    <li><a href="#">@Las.EditSportsbook</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

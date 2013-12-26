@@ -84,6 +84,45 @@ namespace LicenseeAgent.Core.Services
         }
 
         /// <summary>
+        /// Get entities.
+        /// </summary>
+        /// <typeparam name="T1">Type of data 1 wanted receipt.</typeparam>
+        /// <typeparam name="T2">Type of data 2 wanted receipt.</typeparam>
+        /// <typeparam name="T3">Type of data 3 wanted receipt.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns a list of object T.</returns>
+        public IDictionary<string, object> GetEntites<T1, T2, T3>(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+
+                    var result = new Dictionary<string, object>();
+
+                    using (var multiTable = objectDb.QueryMultiple(param))
+                    {
+                        result.Add(typeof(T1).Name, multiTable.Read<T1>());
+                        result.Add(typeof(T2).Name, multiTable.Read<T2>());
+                        result.Add(typeof(T3).Name, multiTable.Read<T3>());
+                    }
+
+                    UpdateOutput(objectDb, param, criteria);
+
+                    return result;
+                }
+            }
+            catch (Exception exception)
+            {
+                HandleException(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Executes the specified criteria.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
@@ -136,7 +175,7 @@ namespace LicenseeAgent.Core.Services
 
                         if (property.CanWrite && attributeName == outputParam)
                         {
-                            var value = param[outputParam];
+                            var value = outputParams[outputParam];
                             if (value == DBNull.Value)
                             {
                                 var type = property.GetType();

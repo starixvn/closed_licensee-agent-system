@@ -1,0 +1,56 @@
+﻿@model SearchUserResultViewModel
+
+@Html.HiddenFor(m => m.Customer.CustId, new { @id="AgentId" })
+<table class="table table-condensed">
+@if (Model.Uplines.Any())
+{
+    var firstUpline = Model.Uplines.First();
+    var numberUpline = Model.Uplines.Count();
+        
+    <thead>
+        <tr>
+            <th>@Las.Upline</th>
+            <th>
+                <a class="agent-inline" href="#" data-id="@(firstUpline.UplineCustId)">@firstUpline.UserName</a>
+                @if (numberUpline > 1)
+                {
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-mini btn-primary">@Las.More</button>
+                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini btn-primary">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @for (var upIndex = 1; upIndex < numberUpline; upIndex++)
+                            {
+                                var upline = Model.Uplines.ElementAt(upIndex);
+                                <li><a class="agent-inline" href="#" data-id="@(upline.UplineCustId)">@(upline.UserName)</a></li>    
+                            }
+                        </ul>
+                    </div>
+                }
+            </th>
+        </tr>
+    </thead>
+}
+@if (Model.Customer != null)
+{
+    <tbody>
+        <tr>
+            <td><i class="icon-avatar"></i></td>
+            <td>@Model.Customer.Name</td>
+        </tr>
+        <tr>
+            <td><i class="icon-cellphone"></i></td>
+            <td>@Model.Customer.Mobile</td>
+        </tr>
+        <tr>
+            <td><i class="icon-phone"></i></td>
+            <td>@Model.Customer.Phone</td>
+        </tr>
+        <tr>
+            <td><i class="icon-fax"></i></td>
+            <td>@Model.Customer.Fax</td>
+        </tr>
+    </tbody>
+}
+</table>

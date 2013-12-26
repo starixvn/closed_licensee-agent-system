@@ -33,6 +33,10 @@
   <ItemGroup>
     <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fanex.Data, Version=0.5.404.62, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
@@ -40,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -55,9 +60,16 @@
     <Compile Include="Core\ModelSettings.cs" />
     <Compile Include="Criterias\AdminCheckInCriteria.cs" />
     <Compile Include="Criterias\AdminCheckInLicenseeCriteria.cs" />
+    <Compile Include="Criterias\AdminGetMemberListCriteria.cs" />
+    <Compile Include="Criterias\AdminSuggestSearchMemberCriteria.cs" />
+    <Compile Include="Criterias\AgentGetMemberListCriteria.cs" />
     <Compile Include="Criterias\AgentReCheckInLicenseeCriteria.cs" />
     <Compile Include="Criterias\AgentGetByAgentCriteria.cs" />
     <Compile Include="Criterias\AgentAutoCompleteCriteria.cs" />
+    <Compile Include="Criterias\AgentSuggestSearchMemberCriteria.cs" />
+    <Compile Include="Criterias\GetAncestorListCriteria.cs" />
+    <Compile Include="Criterias\GetDirectFatherCriteria.cs" />
+    <Compile Include="Criterias\GetDownlineListCriteria.cs" />
     <Compile Include="Criterias\GetIpInformationCriteria.cs" />
     <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\GetAgentDownlineCriteria.cs" />
@@ -85,9 +97,14 @@
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\CurrencyEntity.cs" />
     <Compile Include="Entities\AdminInternalLoginInfo.cs" />
+    <Compile Include="Entities\CustomerEntity.cs" />
+    <Compile Include="Entities\DownlineEntity.cs" />
     <Compile Include="Entities\IpEntity.cs" />
     <Compile Include="Entities\LicenseeEntity.cs" />
     <Compile Include="Entities\MemberEntity.cs" />
+    <Compile Include="Entities\SearchUserResultEntity.cs" />
+    <Compile Include="Entities\SuggestionEntity.cs" />
+    <Compile Include="Entities\UplineEntity.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
@@ -108,13 +125,18 @@
     <Compile Include="ViewModels\AgentViewModel.cs" />
     <Compile Include="ViewModels\AgentSignInViewModel.cs" />
     <Compile Include="ViewModels\CurrencyLicenseeViewModel.cs" />
+    <Compile Include="ViewModels\DownlineViewModel.cs" />
     <Compile Include="ViewModels\IpInformationViewModel.cs" />
     <Compile Include="ViewModels\IpSearchViewModel.cs" />
     <Compile Include="ViewModels\LicenseeViewModel.cs" />
     <Compile Include="ViewModels\InternalLoginAsUserViewModel.cs" />
     <Compile Include="ViewModels\MemberStatusViewModel.cs" />
+    <Compile Include="ViewModels\SearchUserResultViewModel.cs" />
+    <Compile Include="ViewModels\SearchUserViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionViewModel.cs" />
     <Compile Include="ViewModels\ValidateSessionViewModel.cs" />
     <Compile Include="ViewModels\ViewAsLicenseeViewModel.cs" />
+    <Compile Include="ViewResults\SearchUserViewResult.cs" />
     <Compile Include="ViewResults\SignInViewResult.cs" />
   </ItemGroup>
   <ItemGroup>

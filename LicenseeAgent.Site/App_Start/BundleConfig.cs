@@ -133,7 +133,8 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/jquery").Include(
                 "~/scripts/jquery/jquery.js",
                 "~/scripts/jquery-validate/jquery.validate.js",
-                "~/scripts/jquery-validate/jquery.validate.unobtrusive.js"));
+                "~/scripts/jquery-validate/jquery.validate.unobtrusive.js",
+                "~/scripts/jquery-form/jquery.form.min.js"));
 
             // Jquery UI
             bundles.Add(new ScriptBundle("~/js/jqueryui").Include(
@@ -153,7 +154,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
                 "~/scripts/bootstrap/bootstrap-select.js").Include(
                 "~/scripts/bootstrap/bootstrap-switch.js",
-                "~/scripts/bootstrap/bootstrap-paginator.js"));
+                "~/scripts/bootstrap/bootstrap-paginator.js",
+                "~/scripts/bootstrap/bootstrap-tab.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));
         }
@@ -202,7 +204,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/scripts/menu.js",
                 "~/scripts/header.js",
-                "~/scripts/searchuser.js"));
+                "~/Views/SearchUser/Resources/searchuser.js",
+                "~/scripts/scroller/jquery.nicescroll.min.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
                 "~/Views/Internal/Resources/Header.js"));

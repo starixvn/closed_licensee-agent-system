@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-@using (Html.BeginForm("Search", "SearchUser", FormMethod.Post, new { @id="formSearch", @class = "form-search form-inline" }))
+@using (Html.BeginForm("Search", "AccountInformation", FormMethod.Post, new { @id = "formSearch", @class = "form-search form-inline" }))
 {
     <div class="input-append">
         @Html.TextBoxFor(m => m.UserName, new { @placeholder = Las.Username, @class = "input-medium", @maxlength = 50, @autocomplete = "off" })

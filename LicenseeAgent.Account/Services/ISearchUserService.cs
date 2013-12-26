@@ -10,6 +10,7 @@ namespace LicenseeAgent.Account.Services
     using System.Collections.Generic;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -21,6 +22,7 @@ namespace LicenseeAgent.Account.Services
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
         IEnumerable<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria);
+
         /// <summary>
         /// Suggest member by Agent.
         /// </summary>

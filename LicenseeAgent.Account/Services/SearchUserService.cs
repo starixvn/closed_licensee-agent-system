@@ -62,6 +62,7 @@ namespace LicenseeAgent.Account.Services
         {
             return GetEntites<T1, T2, T3>(criteria);
         }
+
         /// <summary>
         /// Get down line list.
         /// </summary>

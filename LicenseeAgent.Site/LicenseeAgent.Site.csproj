@@ -712,7 +712,6 @@
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\wells.less" />
     <Content Include="Views\Customer\_Script.cshtml" />
-    <Content Include="Views\Shared\_AccountInfo.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\AccountInformation\Index.cshtml" />
     <Content Include="Views\Customer\_MemberGrid.cshtml" />

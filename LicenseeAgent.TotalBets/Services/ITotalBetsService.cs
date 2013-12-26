@@ -7,7 +7,7 @@
 namespace LicenseeAgent.TotalBets.Services
 {
     using System.Collections.Generic;
-    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
 
     /// <summary>

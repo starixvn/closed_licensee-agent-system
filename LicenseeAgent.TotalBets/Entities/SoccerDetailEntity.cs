@@ -27,7 +27,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public string BetTypeName { get; set; }
 
-        public string BetTeamDesc { get; set; }
+        public string BetTeamDescription { get; set; }
 
         public string TotalBetsText
         {

@@ -24,6 +24,8 @@
         startCountDown: function (timeInterval, formName) {
             timer = setInterval(function () {
                 if (timeInterval <= 0) {
+                    clearInterval(timer);
+                    CORE.blockUI();
                     $("#" + formName).submit();
                 };
                 $(".refresh-count-down div.timer").html(timeInterval);

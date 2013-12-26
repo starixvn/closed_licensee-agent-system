@@ -45,32 +45,32 @@ namespace LicenseeAgent.TotalBets.Entities
             }
         }
 
-        public string HomeFullTimeHandicap { get; set; }
+        public string HomeFulltimeHandicap { get; set; }
 
-        public string AwayFullTimeHandicap { get; set; }
+        public string AwayFulltimeHandicap { get; set; }
 
-        public string HomeFullTimeOverUnder { get; set; }
+        public string HomeFulltimeOverUnder { get; set; }
 
-        public string AwayFullTimeOverUnder { get; set; }
+        public string AwayFulltimeOverUnder { get; set; }
 
-        public string HomeFullTimeOneXTwo { get; set; }
+        public string HomeFulltimeOneXTwo { get; set; }
 
-        public string AwayFullTimeOneXTwo { get; set; }
+        public string AwayFulltimeOneXTwo { get; set; }
 
-        public string DrawFullTimeOneXTwo { get; set; }
+        public string DrawFulltimeOneXTwo { get; set; }
 
-        public string HomeFirstHaflHandicap { get; set; }
+        public string HomeFirstHalfHandicap { get; set; }
 
-        public string AwayFirstHaflHandicap { get; set; }
+        public string AwayFirstHalfHandicap { get; set; }
 
-        public string HomeFirstHaflOverUnder { get; set; }
+        public string HomeFirstHalfOverUnder { get; set; }
 
-        public string AwayFirstHaflOverUnder { get; set; }
+        public string AwayFirstHalfOverUnder { get; set; }
 
-        public string HomeFirstHaflOneXTwo { get; set; }
+        public string HomeFirstHalfOneXTwo { get; set; }
 
-        public string AwayFirstHaflOneXTwo { get; set; }
+        public string AwayFirstHalfOneXTwo { get; set; }
 
-        public string DrawFirstHaflOneXTwo { get; set; }
+        public string DrawFirstHalfOneXTwo { get; set; }
     }
 }

@@ -37,6 +37,6 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public decimal Stake { get; set; }
 
-        public DateTime KickOffTime { get; set; }
+        public DateTime KickoffTime { get; set; }
     }
 }

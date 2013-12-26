@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.ViewModels;
@@ -41,13 +41,15 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public ViewResult Soccer(SoccerViewModel model)
         {
+            model.Event = model.Event ?? string.Empty;
+            model.League = model.League ?? string.Empty;
             return GetSoccerData(model);
         }
 
         [HttpGet]
         public ViewResult SoccerDetail(int matchId, string matchName)
         {
-            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchID = matchId };
+            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = matchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
             ViewBag.MatchName = matchName;
             var model = new SoccerDetailViewModel { MainData = dataList.ToList() };
@@ -76,7 +78,6 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
-            var eventTemp = "{0}<br /><br />{1}<br /><br />" + "<span class='draw'>" + Las.Draw + "</span>";
             var index = 0;
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
             var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
@@ -88,32 +89,32 @@ namespace LicenseeAgent.TotalBets.Controllers
                     matchsInLeague.Select(x => new { x.MatchId, x.IsLive, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
                 foreach (var matchGroup in matchGroupList)
                 {
-                    var matchs = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.IsLive == matchGroup.IsLive &&
+                    var matches = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.IsLive == matchGroup.IsLive &&
                         x.LiveHomeScore == matchGroup.LiveHomeScore 
                         && x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
                     var match = new MatchEntity
                     {
-                        MatchId = matchs.FirstOrDefault().MatchId,
+                        MatchId = matches.FirstOrDefault().MatchId,
                         Index = index++,
-                        Time = matchGroup.IsLive 
-                            ? string.Format(timeLiveTemp, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore) 
-                            : string.Format(timeDeadBallTemp, matchs.First().KickOffTime),
-                        HomeId = matchs.FirstOrDefault().HomeId,
-                        AwayId = matchs.FirstOrDefault().AwayId,
-                        HomeFullTimeHandicap = SetTotalBetsValues(matchs, 1, "h"),
-                        AwayFullTimeHandicap = SetTotalBetsValues(matchs, 1, "a"),
-                        HomeFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "h"),
-                        AwayFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "a"),
-                        HomeFullTimeOneXTwo = SetTotalBetsValues(matchs, 5, "1"),
-                        AwayFullTimeOneXTwo = SetTotalBetsValues(matchs, 5, "2"),
-                        DrawFullTimeOneXTwo = SetTotalBetsValues(matchs, 5, "x"),
-                        HomeFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "h"),
-                        AwayFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "a"),
-                        HomeFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "h"),
-                        AwayFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "a"),
-                        HomeFirstHaflOneXTwo = SetTotalBetsValues(matchs, 15, "1"),
-                        AwayFirstHaflOneXTwo = SetTotalBetsValues(matchs, 15, "2"),
-                        DrawFirstHaflOneXTwo = SetTotalBetsValues(matchs, 15, "x"),
+                        Time = matchGroup.IsLive
+                            ? string.Format(timeLiveTemp, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
+                            : string.Format(timeDeadBallTemp, matches.First().KickoffTime),
+                        HomeId = matches.FirstOrDefault().HomeId,
+                        AwayId = matches.FirstOrDefault().AwayId,
+                        HomeFulltimeHandicap = SetTotalBetsValues(matches, 1, "h"),
+                        AwayFulltimeHandicap = SetTotalBetsValues(matches, 1, "a"),
+                        HomeFulltimeOverUnder = SetTotalBetsValues(matches, 3, "h"),
+                        AwayFulltimeOverUnder = SetTotalBetsValues(matches, 3, "a"),
+                        HomeFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "1"),
+                        AwayFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "2"),
+                        DrawFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "x"),
+                        HomeFirstHalfHandicap = SetTotalBetsValues(matches, 7, "h"),
+                        AwayFirstHalfHandicap = SetTotalBetsValues(matches, 7, "a"),
+                        HomeFirstHalfOverUnder = SetTotalBetsValues(matches, 8, "h"),
+                        AwayFirstHalfOverUnder = SetTotalBetsValues(matches, 8, "a"),
+                        HomeFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "1"),
+                        AwayFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "2"),
+                        DrawFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "x"),
                     };
                     matchList.Add(match);
                 }
@@ -159,7 +160,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetLeagueList(string league)
         {
             var criteria = new SoccerLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1 };
-            var leagues = _totalBetsService.GetLeagues(criteria);            
+            var leagues = _totalBetsService.GetLeagues(criteria);
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)

@@ -14,55 +14,55 @@
         </td>
         <td class="team-name">@match.HomeName
         </td>
-        <td style="width: 10%">@match.HomeFullTimeHandicap
+        <td style="width: 10%">@match.HomeFulltimeHandicap
         </td>
         <td style="width: 2%" rowspan="2">
-            @if (!string.IsNullOrEmpty(match.HomeFullTimeHandicap) || !string.IsNullOrEmpty(match.AwayFullTimeHandicap))
+            @if (!string.IsNullOrEmpty(match.HomeFulltimeHandicap) || !string.IsNullOrEmpty(match.AwayFulltimeHandicap))
             {
                 <div class="totalbets-item">
                 </div>
             }
         </td>
-        <td style="width: 10%">@match.HomeFullTimeOverUnder
+        <td style="width: 10%">@match.HomeFulltimeOverUnder
         </td>
         <td style="width: 2%" rowspan="2">
-        @if (!string.IsNullOrEmpty(match.HomeFullTimeOverUnder) || !string.IsNullOrEmpty(match.AwayFullTimeOverUnder))
+        @if (!string.IsNullOrEmpty(match.HomeFulltimeOverUnder) || !string.IsNullOrEmpty(match.AwayFulltimeOverUnder))
             {
                 <div class="totalbets-item">
                 </div>
             }
         </td>
-        <td style="width: 10%">@match.HomeFullTimeOneXTwo
+        <td style="width: 10%">@match.HomeFulltimeOneXTwo
         </td>
         <td style="width: 2%" rowspan="2">
-        @if (!string.IsNullOrEmpty(match.HomeFullTimeOneXTwo) || !string.IsNullOrEmpty(match.AwayFullTimeOneXTwo))
+        @if (!string.IsNullOrEmpty(match.HomeFulltimeOneXTwo) || !string.IsNullOrEmpty(match.AwayFulltimeOneXTwo))
             {
                 <div class="totalbets-item">
                 </div>
             }
         </td>
-        <td style="width: 10%">@match.HomeFirstHaflHandicap
+        <td style="width: 10%">@match.HomeFirstHalfHandicap
         </td>
         <td style="width: 2%" rowspan="2">
-        @if (!string.IsNullOrEmpty(match.HomeFirstHaflHandicap) || !string.IsNullOrEmpty(match.AwayFirstHaflHandicap))
+        @if (!string.IsNullOrEmpty(match.HomeFirstHalfHandicap) || !string.IsNullOrEmpty(match.AwayFirstHalfHandicap))
             {
                 <div class="totalbets-item">
                 </div>
             }
         </td>
-        <td style="width: 10%">@match.HomeFirstHaflOverUnder
+        <td style="width: 10%">@match.HomeFirstHalfOverUnder
         </td>
         <td style="width: 2%" rowspan="2">
-        @if (!string.IsNullOrEmpty(match.HomeFirstHaflOverUnder) || !string.IsNullOrEmpty(match.AwayFirstHaflOverUnder))
+        @if (!string.IsNullOrEmpty(match.HomeFirstHalfOverUnder) || !string.IsNullOrEmpty(match.AwayFirstHalfOverUnder))
             {
                 <div class="totalbets-item">
                 </div>
             }
         </td>
-        <td style="width: 10%">@match.HomeFirstHaflOneXTwo
+        <td style="width: 10%">@match.HomeFirstHalfOneXTwo
         </td>
         <td style="width: 2%" rowspan="2">
-        @if (!string.IsNullOrEmpty(match.HomeFirstHaflOneXTwo) || !string.IsNullOrEmpty(match.AwayFirstHaflOneXTwo))
+        @if (!string.IsNullOrEmpty(match.HomeFirstHalfOneXTwo) || !string.IsNullOrEmpty(match.AwayFirstHalfOneXTwo))
             {
                 <div class="totalbets-item">
                 </div>
@@ -72,17 +72,17 @@
     <tr>
         <td class="team-name">@match.AwayName
         </td>
-        <td>@match.AwayFullTimeHandicap
+        <td>@match.AwayFulltimeHandicap
         </td>
-        <td>@match.AwayFullTimeOverUnder
+        <td>@match.AwayFulltimeOverUnder
         </td>
-        <td>@match.AwayFullTimeOneXTwo
+        <td>@match.AwayFulltimeOneXTwo
         </td>
-        <td>@match.AwayFirstHaflHandicap
+        <td>@match.AwayFirstHalfHandicap
         </td>
-        <td>@match.AwayFirstHaflOverUnder
+        <td>@match.AwayFirstHalfOverUnder
         </td>
-        <td>@match.AwayFirstHaflOneXTwo
+        <td>@match.AwayFirstHalfOneXTwo
         </td>
     </tr>
     <tr>
@@ -91,13 +91,13 @@
         <td colspan="4" class="text-field">
             <span class="more-link" data-matchid="@match.MatchId" data-matchname="@(match.HomeName + " -vs- " + match.AwayName)">@Las.More</span>
         </td>
-        <td>@match.DrawFullTimeOneXTwo
+        <td>@match.DrawFulltimeOneXTwo
         </td>
         <td>
         </td>
         <td colspan="4" class="text-field">
         </td>
-        <td>@match.DrawFirstHaflOneXTwo
+        <td>@match.DrawFirstHalfOneXTwo
         </td>
         <td>
         </td>

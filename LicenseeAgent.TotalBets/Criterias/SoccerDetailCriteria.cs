@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.TotalBets.Criterias
+namespace LicenseeAgent.TotalBets.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
@@ -15,7 +15,7 @@ namespace LicenseeAgent.TotalBets.Criterias
     {
         public int AgentId { get; set; }
 
-        public int MatchID { get; set; }
+        public int MatchId { get; set; }
 
         public override string GetSettingKey()
         {

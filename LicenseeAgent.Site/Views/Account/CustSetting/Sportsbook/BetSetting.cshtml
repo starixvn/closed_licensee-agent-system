@@ -52,8 +52,14 @@
                         <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
                 </div>
             </div>
-            <betting-limit-simple-mode model-data="model.firstRecord" ng-show="settingContext.FormId != 2"></betting-limit-simple-mode>
-            <betting-limit-simple-mode-read-only model-data="model.firstRecord" ng-show="settingContext.FormId == 2"></betting-limit-simple-mode-read-only>
+            @if (Model.FormId != FormType.ReadOnly)
+            {
+                <betting-limit-simple-mode model-data="model.firstRecord"></betting-limit-simple-mode>
+            }
+            else
+            {
+                <betting-limit-simple-mode-read-only model-data="model.firstRecord"></betting-limit-simple-mode-read-only>
+            }
         </div>
         <div ng-show="!settingContext.IsSimpleMode">
             <div>
@@ -75,10 +81,16 @@
                 </div>
             </div>
             <div ng-repeat="betSetting in model.bettingLimitsModel">
-                <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
-                    current-index="$index" ng-show="settingContext.FormId != 2"></betting-limit-advanced-mode>
-                <betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
-                    current-index="$index" ng-show="settingContext.FormId == 2"></betting-limit-advanced-mode-read-only>
+                @if (Model.FormId != FormType.ReadOnly)
+                {
+                    <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
+                        current-index="$index"></betting-limit-advanced-mode>
+                }
+                else
+                {
+                    <betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel"
+                        bet-setting="betSetting" current-index="$index"></betting-limit-advanced-mode-read-only>
+                }
                 <div class="clearfix">
                 </div>
             </div>

@@ -443,6 +443,9 @@ select:focus:invalid {
   .dropdown-menu,
   .popover {
     font-size: @baseFontSize;
+    padding: 4px;
+    border: 1px solid #acacac;
+    border-right: 0;
   }
 
   input,
@@ -463,14 +466,15 @@ select:focus:invalid {
     width: auto;
     height: @baseLineHeight;
     min-width: 16px;
-    padding: 3px 5px;
+    padding: 4px 5px;
     font-size: @baseFontSize;
     font-weight: normal;
     line-height: @baseLineHeight;
     text-align: center;
     text-shadow: 0 1px 0 @white;
-    background-color: @grayLighter;
-    border: 1px solid #e8e8e8;
+    background: white;
+    border: 1px solid #acacac;
+    border-left:0;
   }
   .add-on,
   .btn,
@@ -481,39 +485,6 @@ select:focus:invalid {
   .active {
     background-color: lighten(@green, 30);
     border-color: @green;
-  }
-}
-
-.input-prepend {
-  .add-on,
-  .btn {
-    margin-right: -1px;
-  }
-  .add-on:first-child,
-  .btn:first-child {
-    // FYI, `.btn:first-child` accounts for a button group that's prepended
-    .border-radius(@inputBorderRadius 0 0 @inputBorderRadius);
-  }
-}
-
-.input-append {
-  input,
-  select,
-  .uneditable-input {
-    .border-radius(@inputBorderRadius 0 0 @inputBorderRadius);
-    + .btn-group .btn:last-child {
-      .border-radius(0 @inputBorderRadius @inputBorderRadius 0);
-    }
-  }
-  .add-on,
-  .btn,
-  .btn-group {
-    margin-left: -1px;
-  }
-  .add-on:last-child,
-  .btn:last-child,
-  .btn-group:last-child > .dropdown-toggle {
-    .border-radius(0 @inputBorderRadius @inputBorderRadius 0);
   }
 }
 

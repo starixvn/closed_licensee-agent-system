@@ -11,7 +11,6 @@ namespace LicenseeAgent.Account.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Account.Core;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
@@ -19,7 +18,6 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -256,7 +254,6 @@ namespace LicenseeAgent.Account.Controllers
                     IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                     IsMember = customer.Level == Constants.MemberLevel
                 };
-
             }
 
             return View(new SearchUserResultViewModel

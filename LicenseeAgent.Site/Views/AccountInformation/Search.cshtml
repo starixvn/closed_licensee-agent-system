@@ -5,32 +5,33 @@
     
     var pageContext = (PageContext)ViewBag.PageContext;
 }
+@if (pageContext != null)
+{
+    @Html.Partial("_AgentInfo", Model)
 
-@Html.Partial("_AgentInfo", Model)
+    <div class="controls-row">
+        @if (pageContext.IsLastLevel)
+        {
+            <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.MemberList</button>   
+        }
+        else
+        {
+            <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.AgentList</button>   
+        } 
 
-<div class="controls-row">
-    @if (pageContext.IsLastLevel)
-    {
-        <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.MemberList</button>   
-    }
-    else
-    {
-        <button class="btn btn-inverse" data-url="@Url.Action("Customer")">@Las.AgentList</button>   
-    } 
-
-    @if (pageContext.IsMember)
-    {
-        <button class="btn btn-inverse"  data-url="@Url.Action("BetList")">@Las.BetList</button>     
-    }
+        @if (pageContext.IsMember)
+        {
+            <button class="btn btn-inverse"  data-url="@Url.Action("BetList")">@Las.BetList</button>     
+        }
     
-    <button class="btn btn-inverse">@Las.Statement</button>
-</div>
+        <button class="btn btn-inverse">@Las.Statement</button>
+    </div>
 
-<div class="row-line"></div>
+    <div class="row-line"></div>
 
-@Html.Partial("_BalanceDownline", Model)
-@Html.Partial("_SettingAction", Model)
-
+    @Html.Partial("_BalanceDownline", Model)
+    @Html.Partial("_SettingAction", Model)
+}
 @if (ViewBag.Result != null)
 {
     var result = (SearchUserViewResult)ViewBag.Result;

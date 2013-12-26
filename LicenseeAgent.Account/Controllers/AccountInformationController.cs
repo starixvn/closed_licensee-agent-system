@@ -18,6 +18,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -196,7 +197,7 @@ namespace LicenseeAgent.Account.Controllers
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
                     IsDirectDownline = new SessionWrapper().IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
-                    IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                    IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel
                 };
             }
@@ -251,7 +252,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
-                    IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                    IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel
                 };
             }

@@ -11,10 +11,13 @@
         </span>
     </div>
 }
-<div id="searchUrl" data-suggest="@Url.Action("Suggest", "AccountInformation")" data-downline="@Url.Action("GetDownlines", "AccountInformation")"
-                    data-currency="@Url.Action("LoginAsUser", "Internal")">
+<div class="error">@LangMsg.Msg_1032</div>
+<div id="searchUrl" data-suggest="@Url.Action("Suggest", "AccountInformation")" 
+                    data-downline="@Url.Action("GetDownlines", "AccountInformation")"
+                    data-currency="@Url.Action("LoginAsUser", "Internal")"
+                    data->
 </div>
 <div id="searchResult"></div>
-<div id="dialog-confirm" title="">
+<div id="dialog-confirm" title="@Las.Attention">
     <p></p>
 </div>

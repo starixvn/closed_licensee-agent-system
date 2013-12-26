@@ -6,12 +6,18 @@
     .input-medium
     {
         width: 200px;
+        border-radius: 0;
     }
     
     tr td:first-child,
     tr th:first-child {
         text-align:center;
         width: 30px;
+    }
+    
+    .table th, .table td
+    {
+        border-top: 1px dotted #E5E5E5;
     }
     
     .btn-group
@@ -57,13 +63,13 @@
         overflow: hidden;
         
         ul.nav li {
-            width: 50%;
+            width: 100%;
             float: left;
         }
         
         .tab-pane > .content
         {
-            height: 90px;
+            height: 200px;
             width: 100%;
             overflow: auto;
         }
@@ -71,6 +77,16 @@
     
     .tab-small
     {
-        height: 140px;
+        min-height: 40px;
+    }
+    
+    .no-info
+    {
+        text-align: center;
+    }
+    
+    .error
+    {
+        display:none;
     }
 }

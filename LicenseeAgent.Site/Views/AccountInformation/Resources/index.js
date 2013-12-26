@@ -10,6 +10,9 @@
 
     return {
         init: function () {
+            //scroll left menu
+            $(".leftmenu-box").niceScroll();
+
             // username suggestion
             $('#UserName').keyup(function (event) {
                 if (timerAutocomplete == null) {
@@ -19,7 +22,12 @@
 
             //form submit
             $('#formSearch').submit(function (event) {
-                if ($.trim($("#UserName").val()).length > lengthUsername) {
+                var userName = $.trim($("#UserName").val());
+
+                if (userName.length > lengthUsername) {
+
+                    $("#UserName").val(userName);
+
                     $(this).ajaxSubmit({
                         target: '#searchResult',
                         beforeSubmit: CORE.blockUI,
@@ -55,7 +63,15 @@
                 });
             }
 
-            $(".agent-inline").click(function () {
+            //add trigger event
+            $('.btn-inverse').click(function () {
+                $("#frmMain").attr("src", $(this).data("url"));
+            });
+
+            accountInformation.pagingBinding();
+        },
+        pagingBinding: function () {
+            $(".agent-inline").click(function (event) {
                 $("#UserName").val($(this).html());
                 $("#formSearch").submit();
 
@@ -136,6 +152,7 @@
                 downlineHtml += '<li><a class="agent-inline" href="#" data-id="' + downlines[index].DownlineCustId + '">' + downlines[index].UserName + '</a></li>';
             }
             $("#downlineContent ul").html(downlineHtml);
+            accountInformation.pagingBinding();
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {

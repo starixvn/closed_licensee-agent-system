@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\AdminSignInViewModel.cs" />
     <Compile Include="ViewModels\AgentChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\AgentBreadcrumViewModel.cs" />
+    <Compile Include="ViewModels\AgentInfoViewModel.cs" />
     <Compile Include="ViewModels\AgentStatusViewModel.cs" />
     <Compile Include="ViewModels\CustomerSearchAutoCompleteViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />

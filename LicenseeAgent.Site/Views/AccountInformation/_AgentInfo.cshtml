@@ -4,14 +4,14 @@
 <table class="table table-condensed">
 @if (Model.Uplines.Any())
 {
-    var firstUpline = Model.Uplines.First();
+    var directUpline = Model.Uplines.First();
     var numberUpline = Model.Uplines.Count();
         
     <thead>
         <tr>
             <th>@Las.Upline</th>
             <th>
-                <a class="agent-inline" href="#" data-id="@(firstUpline.UplineCustId)">@firstUpline.UserName</a>
+                <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)">@directUpline.UserName</a>
                 @if (numberUpline > 1)
                 {
                     <div class="btn-group pull-right">
@@ -37,7 +37,7 @@
     <tbody>
         <tr>
             <td><i class="icon-avatar"></i></td>
-            <td>@Model.Customer.Name</td>
+            <td>@Model.Customer.FullName</td>
         </tr>
         <tr>
             <td><i class="icon-cellphone"></i></td>

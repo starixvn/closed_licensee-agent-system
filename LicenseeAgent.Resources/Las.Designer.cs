@@ -198,6 +198,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attention.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Balance Info.
         /// </summary>
         public static string BalanceInfo {
@@ -484,7 +493,7 @@ namespace LicenseeAgent.Resources {
                 return ResourceManager.GetString("Downline", resourceCulture);
             }
         }
-      
+        
         /// <summary>
         ///   Looks up a localized string similar to Downline List.
         /// </summary>
@@ -494,7 +503,7 @@ namespace LicenseeAgent.Resources {
             }
         }
         
-       /// <summary>
+        /// <summary>
         ///   Looks up a localized string similar to Draw.
         /// </summary>
         public static string Draw {
@@ -502,8 +511,6 @@ namespace LicenseeAgent.Resources {
                 return ResourceManager.GetString("Draw", resourceCulture);
             }
         }
-        
-
         
         /// <summary>
         ///   Looks up a localized string similar to Edit.

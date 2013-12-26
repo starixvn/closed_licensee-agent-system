@@ -14,6 +14,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -36,22 +37,26 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Agent List.
         /// </summary>
-        /// <returns>
-        /// Action result.
-        /// </returns>
+        /// <param name="model">Agent information view model.</param>
+        /// <returns>Action result.</returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(AgentInfoViewModel model)
         {
-            var model = new AgentBreadcrumViewModel(
-                CurrentSession.AgentInfo.AgentId,
-                CurrentSession.AgentInfo.AgentName,
-                CurrentSession.AgentInfo.AgentLevel);
-            ViewBag.PageContext = new PageContext(model.AgentId, CurrentSession.AgentInfo.IsLastLevel)
+            var hasAgentModel = model.AgentId != 0;
+
+            var breadModel = new AgentBreadcrumViewModel(
+                hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
+                hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.AgentName,
+                hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
+
+            var isLastLevel = hasAgentModel ? ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel) : CurrentSession.AgentInfo.IsLastLevel;
+
+            ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
             {
                 IsDirectDownline = new SessionWrapper().IsDirectDownline(CurrentSession.AgentInfo.AgentLevel)
             };
 
-            return View(model);
+            return View(breadModel);
         }
 
         /// <summary>

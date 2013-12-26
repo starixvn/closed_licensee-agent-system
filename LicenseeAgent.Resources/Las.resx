@@ -636,12 +636,12 @@ If that is not you, please contact your upline!!!</value>
     <value>Live</value>
     <comment>not</comment>
   </data>
-  <data name="More" xml:space="preserve">
-    <value>More</value>
-    <comment>not</comment>
-  </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+    <comment>not</comment>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
     <comment>not</comment>
   </data>
 </root>

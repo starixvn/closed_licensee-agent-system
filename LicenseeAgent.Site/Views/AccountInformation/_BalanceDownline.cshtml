@@ -6,8 +6,7 @@
     </ul>
 
     <div class="tab-content tab-small">
-        <div class="tab-pane fade" id="balance">
-        </div>
+        <div class="tab-pane fade" id="balance"></div>
         <div class="tab-pane active in" id="downlineList">
             @if (Model.Downlines.Any())
             {
@@ -23,7 +22,7 @@
             }
             else
             {
-                <div>@LangMsg.Msg_1032</div>
+                <div class="no-info">@LangMsg.Msg_1032</div>
             }
         </div>
     </div>

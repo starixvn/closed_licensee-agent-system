@@ -1,32 +1,18 @@
 @{
     Layout = null;
-    ViewBag.Title = Las.UnauthorizedMsg;
+    ViewBag.Title = Las.AccessDeniedMsg;
 }
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewBag.Title</title>
-    <style type="text/css">
-        body
-        {
-            background: #fff;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI Light' , 'Segoe UI' , Arial, Sans-Serif;
-        }
-        h1
-        {
-            border: 1px dashed #333;
-            font-weight: normal;
-            text-align: center;
-            font-size: 2em;
-            margin: 50px auto;
-            padding-bottom: 10px;
-            width: 850px;
-        }
-    </style>
+    <title>Error</title>
+    <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
 </head>
 <body>
-    <h1>@ViewBag.Title</h1>
+    <div class="unauthorized-error-block">
+        <div class="block-text">
+            <span>@Las.AccessDeniedMsg</span>
+        </div>
+    </div>
 </body>
 </html>

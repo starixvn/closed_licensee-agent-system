@@ -12,8 +12,10 @@ namespace LicenseeAgent.Web.Controllers
     using System.Net;
     using System.Web.Mvc;
     using System.Web.Security;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// Rendering Error pages.
@@ -36,8 +38,10 @@ namespace LicenseeAgent.Web.Controllers
                 statusCode = (int)HttpStatusCode.InternalServerError;
             }
 
+            var url = statusCode.Value == (int)HttpStatusCode.InternalServerError ?
+                            "~/Views/Error/Error.cshtml" : "~/Views/Error/Index.cshtml";
             var message = AppHandler.GetHttpErrorMessage(statusCode.Value);
-            return View((object)message);
+            return View(url, (object)message);
         }
 
         /// <summary>
@@ -45,6 +49,7 @@ namespace LicenseeAgent.Web.Controllers
         /// </summary>
         /// <returns>Returns HTML content.</returns>
         [HttpGet]
+        [UnderMaintenance(Ignore = true)]
         public ActionResult UnderMaintenance()
         {
             var maintenanceService = new UnderMaintenanceService();

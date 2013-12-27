@@ -1,16 +1,18 @@
 @model string
 @{
-	Layout = null;
+    Layout = null;
 }
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Error</title>
-	<link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
+    <title>Error</title>
+    <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
 </head>
 <body>
-	<div class="err-block">
-		<h3>@Model</h3>
-	</div>
+    <div class="error-block">
+        <div class="block-text">
+            <span>@Model</span>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,13 +1,18 @@
 @{
     Layout = null;
-    string title = Las.HttpError_403;
+    ViewBag.Title = Las.AccessDeniedMsg;
 }
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>@title</title>
+    <title>Error</title>
+    <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
 </head>
 <body>
-    <h1>@Las.AccessDeniedMsg</h1>
+    <div class="unauthorized-error-block">
+        <div class="block-text">
+            <span>@Las.AccessDeniedMsg</span>
+        </div>
+    </div>
 </body>
 </html>

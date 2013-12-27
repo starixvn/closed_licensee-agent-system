@@ -66,6 +66,7 @@
     <EmbeddedResource Include="LangMsg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LangMsg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -76,8 +77,12 @@
       <LastGenOutput>Las.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Las.zh-CN.resx" />
-    <EmbeddedResource Include="Las.zh-TW.resx" />
+    <EmbeddedResource Include="Las.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Las.zh-TW.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Viewlog.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Viewlog.Designer.cs</LastGenOutput>

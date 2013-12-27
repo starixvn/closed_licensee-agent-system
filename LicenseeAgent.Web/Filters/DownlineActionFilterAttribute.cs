@@ -37,6 +37,7 @@ namespace LicenseeAgent.Web.Filters
             // Validation
             var invalidSession = currentSession == null || currentSession.AgentInfo == null;
             var invalidParameters = (agentId == -1 && memberId == -1) || (agentId > 0 && memberId > 0);
+
             if (invalidSession || invalidParameters)
             {
                 return;

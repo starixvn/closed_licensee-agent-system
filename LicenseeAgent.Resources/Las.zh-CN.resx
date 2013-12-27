@@ -637,4 +637,7 @@
     <value>Attention</value>
     <comment>not</comment>
   </data>
+  <data name="MessageUnderMaintenance" xml:space="preserve">
+    <value>We apologize for any inconvenience this may cause. If you have any query, please contact us at: Service Discruption Period - {0} {1}.</value>
+  </data>
 </root>

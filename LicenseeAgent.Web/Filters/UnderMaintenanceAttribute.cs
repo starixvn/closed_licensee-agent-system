@@ -19,6 +19,8 @@ namespace LicenseeAgent.Web.Filters
     /// </summary>
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
+        public bool Ignore { get; set; }
+
         private IUnderMaintenanceService _maintenanceService;
 
         public UnderMaintenanceAttribute()
@@ -32,12 +34,10 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
-            if (maintenanceInfo.Status)
+            if (!Ignore)
             {
-                var undermaintenanceUrl = UrlHelper.GenerateContentUrl(AppURLs.URLs.UnderMaintenance, filterContext.HttpContext);
-                var requestUrl = filterContext.RequestContext.HttpContext.Request.Url.ToString();
-                if (!requestUrl.Contains(undermaintenanceUrl))
+                var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+                if (maintenanceInfo.Status)
                 {
                     var isAjaxRequest = filterContext.IsAjaxRequest();
                     filterContext.Result = isAjaxRequest

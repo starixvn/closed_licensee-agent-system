@@ -19,14 +19,14 @@ namespace LicenseeAgent.Web.Filters
     /// </summary>
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
-        public bool Ignore { get; set; }
-
         private IUnderMaintenanceService _maintenanceService;
 
         public UnderMaintenanceAttribute()
         {
             _maintenanceService = DependencyResolver.Current.GetService<IUnderMaintenanceService>();
         }
+
+        public bool Ignore { get; set; }
 
         /// <summary>
         /// Override base action executing function to check maintenance before executing request.

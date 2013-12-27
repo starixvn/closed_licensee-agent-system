@@ -23,8 +23,6 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public int AwayId { get; set; }
 
-        public bool IsLive { get; set; }
-
         public int BetType { get; set; }
 
         public int LiveHomeScore { get; set; }
@@ -35,10 +33,10 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public string BetTeam { get; set; }
 
+        public string ShowTime { get; set; }
+
         public int TotalTrans { get; set; }
 
         public decimal Stake { get; set; }
-
-        public DateTime KickOffTime { get; set; }
     }
 }

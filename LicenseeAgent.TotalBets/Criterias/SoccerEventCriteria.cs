@@ -11,7 +11,7 @@ namespace LicenseeAgent.TotalBets.Criteria
     /// <summary>
     /// Soccer Event Criteria.
     /// </summary>
-    public class SoccerEventCriteria : CriteriaBase
+    public class EventCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

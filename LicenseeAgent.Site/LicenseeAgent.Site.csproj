@@ -503,6 +503,7 @@
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\menu.js" />
+    <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\Images\sprite.png" />
     <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.css" />
     <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.js" />
@@ -730,6 +731,8 @@
     <Content Include="Views\AccountInformation\_AgentInfo.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
     <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
+    <Content Include="Views\TotalBets\Basketball.cshtml" />
+    <Content Include="Views\TotalBets\Basketball.Script.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

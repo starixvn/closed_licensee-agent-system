@@ -16,12 +16,12 @@ namespace LicenseeAgent.TotalBets.Services
     /// </summary>
     public class TotalBetsService : QueryService, ITotalBetsService
     {
-        public IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria)
+        public IEnumerable<LeagueEntity> GetLeagues(LeagueCriteria criteria)
         {
             return GetEntites<LeagueEntity>(criteria);
         }
 
-        public IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria)
+        public IEnumerable<EventEntity> GetEventsByLeague(EventCriteria criteria)
         {
             return GetEntites<EventEntity>(criteria);
         }

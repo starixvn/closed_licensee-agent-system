@@ -1,6 +1,7 @@
 ﻿var CORE = function ($) {
     return {
         pageSizes: [100, 200, 300, 400, 500],
+        TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",
         DATE_FORMAT_FULL: "MM/DD/YYYY hh:mm:ss A",
         DATE_FORMAT_MONTH: "MM-YYYY",

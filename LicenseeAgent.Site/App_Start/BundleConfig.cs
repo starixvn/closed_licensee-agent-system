@@ -269,6 +269,9 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
                 "~/Views/TotalBets/Resources/soccer.js"));
+
+            bundles.Add(new ScriptBundle("~/js/totalbets-basketball").Include(
+                "~/Views/TotalBets/Resources/basketball.js"));
         }
 
         /// <summary>

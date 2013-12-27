@@ -15,9 +15,9 @@ namespace LicenseeAgent.TotalBets.Services
     /// </summary>
     public interface ITotalBetsService
     {
-        IEnumerable<LeagueEntity> GetLeagues(SoccerLeagueCriteria criteria);
+        IEnumerable<LeagueEntity> GetLeagues(LeagueCriteria criteria);
 
-        IEnumerable<EventEntity> GetEventsByLeague(SoccerEventCriteria criteria);
+        IEnumerable<EventEntity> GetEventsByLeague(EventCriteria criteria);
 
         IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria);
 

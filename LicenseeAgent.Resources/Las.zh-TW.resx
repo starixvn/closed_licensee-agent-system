@@ -643,4 +643,13 @@
   <data name="MessageUnderMaintenance" xml:space="preserve">
     <value>We apologize for any inconvenience this may cause. If you have any query, please contact us at: Service Discruption Period - {0} {1}.</value>
   </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>Basketball</value>
+  </data>
+  <data name="FHOE" xml:space="preserve">
+    <value>1H.OE</value>
+  </data>
+  <data name="FTOE" xml:space="preserve">
+    <value>1H.OE</value>
+  </data>
 </root>

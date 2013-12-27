@@ -26,15 +26,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpGet]
         public ActionResult Basketball()
         {
-            var model = new TotalBetsViewModel() { League = string.Empty, Event = string.Empty, TimeInterval = 15 };
-
-            return GetBasketballData(model);
-        }
-
-        [HttpPost]
-        public ActionResult Basketball(TotalBetsViewModel model)
-        {
-            return GetBasketballData(model);
+            return View();
         }
 
         [HttpGet]
@@ -44,16 +36,66 @@ namespace LicenseeAgent.TotalBets.Controllers
             return View();
         }
 
-        [NonAction]
-        public ActionResult GetBasketballData(TotalBetsViewModel model)
+        [HttpPost]
+        public JsonResult GetBasketballData(BasketballCriteria criteria)
         {
-            ////var criteria = new BasketballCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
 
-            var criteria = new BasketballCriteria { AgentId = 1000000111, LeagueList = string.Empty, MatchList = string.Empty };
             var dataList = _totalBetsService.GetBasketballData(criteria);
-            model.MainData = GetMainData(dataList);
 
-            return View(model);
+            return Json(new
+            {
+                List = GenerateBasketballData(dataList)
+            });
+        }
+
+        [NonAction]
+        public IList<LeagueGroupEntity> GenerateBasketballData(IEnumerable<TotalBetsEntity> dataList)
+        {
+            var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
+            var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
+            var eventTemp = "{0}<br /><br />{1}<br /><br />" + "<span class='draw'>" + Las.Draw + "</span>";
+            var index = 0;
+            IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
+            var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
+            foreach (var leagueId in leagueIdList)
+            {
+                var matchList = new List<MatchEntity>();
+                var matchsInLeague = dataList.Where(x => x.LeagueId == leagueId).ToList();
+                var matchGroupList = matchsInLeague.Select(x => new { x.MatchId, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
+
+                foreach (var matchGroup in matchGroupList)
+                {
+                    var matchs = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId &&
+                        x.LiveHomeScore == matchGroup.LiveHomeScore && x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
+                    var totalBet = matchs.FirstOrDefault();
+                    var match = new MatchEntity
+                    {
+                        MatchId = totalBet.MatchId,
+                        Index = index++,
+                        Time = totalBet.ShowTime,
+                        HomeId = totalBet.HomeId,
+                        AwayId = totalBet.AwayId,
+                        HomeFullTimeHandicap = SetTotalBetsValues(matchs, 1, "h"),
+                        AwayFullTimeHandicap = SetTotalBetsValues(matchs, 1, "a"),
+                        HomeFullTimeOddEven = SetTotalBetsValues(matchs, 2, "h"),
+                        AwayFullTimeOddEven = SetTotalBetsValues(matchs, 2, "a"),
+                        HomeFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "h"),
+                        AwayFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "a"),
+                        HomeFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "h"),
+                        AwayFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "a"),
+                        HomeFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "h"),
+                        AwayFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "a"),
+                        HomeFirstHaflOddEven = SetTotalBetsValues(matchs, 12, "h"),
+                        AwayFirstHaflOddEven = SetTotalBetsValues(matchs, 12, "a")
+                    };
+                    matchList.Add(match);
+                }
+
+                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList });
+            }
+
+            return result;
         }
     }
 }

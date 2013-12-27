@@ -3,7 +3,7 @@
 	width: 57px;
 	border: 1px solid #589CC9;
 	cursor: pointer;
-	
+	border-radius:5px;
 }
 
 .refresh-count-down div{
@@ -12,6 +12,7 @@
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
+	border-radius:3px;
 }
 
 .refresh-count-down .timer {	

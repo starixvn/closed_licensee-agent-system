@@ -7,7 +7,8 @@
     </tr>
     foreach (var match in league.MatchList)
     {
-    <tr>
+        var rowClass = match.IsLive ? "live-row" : "normal-row";
+    <tr class="@rowClass">
         <td rowspan="3" class="text-field">@match.Index
         </td>
         <td rowspan="3" class="text-field">@Html.Raw(match.Time)
@@ -69,7 +70,7 @@
             }
         </td>
     </tr>
-    <tr>
+    <tr class="@rowClass">
         <td class="team-name">@match.AwayName
         </td>
         <td>@match.AwayFulltimeHandicap
@@ -85,7 +86,7 @@
         <td>@match.AwayFirstHalfOneXTwo
         </td>
     </tr>
-    <tr>
+    <tr class="@rowClass">
         <td class="draw">@Las.Draw
         </td>
         <td colspan="4" class="text-field">

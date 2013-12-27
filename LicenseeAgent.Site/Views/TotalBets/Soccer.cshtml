@@ -14,7 +14,7 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/totalbets-soccer")        
 }
-<h3>@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</h3>
+<div class="legend">@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</div>
 @using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
 { }
 @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
@@ -32,7 +32,7 @@
             @Las.Submit
         </button>
     </div>
-    <div class="controls-row">        
+    <div class="controls-row refresh-count-down-area">        
         <div class="refresh-count-down" id="refresh-count-down">
             
         </div>        
@@ -40,8 +40,8 @@
     </div>
 }
 <div class="wrapper" id="totalbet-data-content">
-    <table>
+        <table>
         @{Html.RenderPartial("~/Views/TotalBets/Soccer.Header.cshtml");}
         @{Html.RenderPartial("~/Views/TotalBets/Soccer.Content.cshtml");}
-    </table>
+        </table>
 </div>

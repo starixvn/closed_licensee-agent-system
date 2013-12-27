@@ -78,7 +78,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
-            var index = 0;
+            var index = 1;
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
             var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
             foreach (var leagueId in leagueIdList)
@@ -95,6 +95,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     var match = new MatchEntity
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
+                        IsLive= matchGroup.IsLive,
                         Index = index++,
                         Time = matchGroup.IsLive
                             ? string.Format(timeLiveTemp, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)

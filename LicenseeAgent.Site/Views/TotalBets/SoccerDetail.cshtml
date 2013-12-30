@@ -14,12 +14,12 @@
 <div class="wrapper" id="detail-data-content">
     <table class="detail-table">
         <tr class="detail-header">
-            <td colspan="2" style="width: 33%">Odd / Even</td>
-            <td colspan="2" style="width: 33%">Money Line</td>
-            <td colspan="2" style="width: 34%">Draw / No Draw</td>
+            <td colspan="2" style="width: 33%">@Las.Odd / @Las.Even</td>
+            <td colspan="2" style="width: 33%">@Las.MoneyLine</td>
+            <td colspan="2" style="width: 34%">@Las.Draw / @Las.No @Las.Draw</td>
         </tr>
         <tr>
-            <td class="bet-choice">Odd</td>
+            <td class="bet-choice">@Las.Odd</td>
             <td class="total-bet-choice">
                 @{
                     var item = Model.MainData.Where(x => x.BetType == 2 && x.BetTeam == "h");
@@ -29,7 +29,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Home</td>
+            <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 20 && x.BetTeam == "h");
@@ -39,7 +39,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Draw</td>
+            <td class="bet-choice">@Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 123 && x.BetTeam == "h");
@@ -51,7 +51,7 @@
             </td>
         </tr>
         <tr>
-            <td class="bet-choice">Even</td>
+            <td class="bet-choice">@Las.Even</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 2 && x.BetTeam == "a");
@@ -61,7 +61,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Away</td>
+            <td class="bet-choice">@Las.Away</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 20 && x.BetTeam == "a");
@@ -71,7 +71,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">No Draw</td>
+            <td class="bet-choice">@Las.No @Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 123 && x.BetTeam == "a");
@@ -86,12 +86,12 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="2">Home No Bet</td>
-            <td colspan="2">Away No Bet</td>
-            <td colspan="2">Draw No Bet</td>
+            <td colspan="2">@Las.Home @Las.No @Las.Bet</td>
+            <td colspan="2">@Las.Away @Las.No @Las.Bet</td>
+            <td colspan="2">@Las.Draw @Las.No @Las.Bet</td>
         </tr>
         <tr>
-            <td class="bet-choice">Away</td>
+            <td class="bet-choice">@Las.Away</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 121 && x.BetTeam == "a");
@@ -101,7 +101,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Home</td>
+            <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 122 && x.BetTeam == "h");
@@ -111,7 +111,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Home</td>
+            <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "h");
@@ -123,7 +123,7 @@
             </td>
         </tr>
         <tr>
-            <td class="bet-choice">Draw</td>
+            <td class="bet-choice">@Las.Draw</td>
             <td class="total-bet-choice">
                  @{
                     item = Model.MainData.Where(x => x.BetType == 121 && x.BetTeam == "x");
@@ -133,7 +133,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Draw</td>
+            <td class="bet-choice">@Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 122 && x.BetTeam == "x");
@@ -143,7 +143,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Away</td>
+            <td class="bet-choice">@Las.Away</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "a");
@@ -158,12 +158,12 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="2">Double Chance</td>
-            <td colspan="2">Both / One / Neither Team To Score</td>
-            <td colspan="2">3-Way Handicap</td>
+            <td colspan="2">@Las.DoubleChance</td>
+            <td colspan="2">@Las.BothOneNeitherTeamToScore</td>
+            <td colspan="2">@Las.ThreeWayHandicap</td>
         </tr>
         <tr>
-            <td class="bet-choice">Home or Draw</td>
+            <td class="bet-choice">@Las.Home @Las.Or @Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "h");
@@ -173,7 +173,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Both</td>
+            <td class="bet-choice">@Las.Both</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "b");
@@ -183,7 +183,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Home</td>
+            <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                  @{
                     item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "h");
@@ -195,7 +195,7 @@
             </td>
         </tr>
         <tr>
-            <td class="bet-choice">Home or Away</td>
+            <td class="bet-choice">@Las.Home @Las.Or @Las.Away</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "12");
@@ -205,7 +205,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">One</td>
+            <td class="bet-choice">@Las.One</td>
             <td class="total-bet-choice">
                  @{
                     item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "o");
@@ -215,7 +215,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Draw</td>
+            <td class="bet-choice">@Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "x");
@@ -227,7 +227,7 @@
             </td>
         </tr>
         <tr>
-            <td class="bet-choice">Away or Draw</td>
+            <td class="bet-choice">@Las.Away @Las.Or @Las.Draw</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "2x");
@@ -237,7 +237,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">No Goal</td>
+            <td class="bet-choice">@Las.No @Las.Goal</td>
             <td class="total-bet-choice">
                  @{
                     item = Model.MainData.Where(x => x.BetType == 26 && x.BetTeam == "n");
@@ -262,11 +262,11 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="4">Clean Sheet</td>
-            <td colspan="2">To Win To Nil</td>
+            <td colspan="4">@Las.CleanSheet</td>
+            <td colspan="2">@Las.ToWinToNil</td>
         </tr>
         <tr>
-            <td class="bet-choice">Home Yes</td>
+            <td class="bet-choice">@Las.Home @Las.Yes</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "hy");
@@ -276,7 +276,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Away Yes</td>
+            <td class="bet-choice">@Las.Away @Las.Yes</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "ay");
@@ -286,7 +286,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Home</td>
+            <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 27 && x.BetTeam == "h");
@@ -298,7 +298,7 @@
             </td>
         </tr>
         <tr>
-            <td class="bet-choice">Home No</td>
+            <td class="bet-choice">@Las.Home @Las.No</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "hn");
@@ -308,7 +308,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Away No</td>
+            <td class="bet-choice">@Las.Away @Las.No</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 13 && x.BetTeam == "an");
@@ -318,7 +318,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">Away</td>
+            <td class="bet-choice">@Las.Away</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 27 && x.BetTeam == "a");
@@ -333,7 +333,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="4">Total Goal</td>
+            <td colspan="4">@Las.Total @Las.Goal</td>
         </tr>
         <tr>
             <td class="bet-choice">0-1</td>
@@ -368,7 +368,7 @@
                     }
                 }
             </td>
-            <td class="bet-choice">7 & Over</td>
+            <td class="bet-choice">7 & @Las.Over</td>
             <td class="total-bet-choice">
                 @{
                     item = Model.MainData.Where(x => x.BetType == 6 && x.BetTeam == "7-over");
@@ -383,7 +383,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="6">First Goal / Last Goal</td>
+            <td colspan="6">@Las.First @Las.Goal / @Las.Last @Las.Goal</td>
         </tr>
         <tr>
             <td class="bet-choice">HF</td>
@@ -445,7 +445,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="6">Hafl Time / Full Time</td>
+            <td colspan="6">@Las.HalfTime / @Las.Fulltime</td>
         </tr>
         <tr>
             <td class="bet-choice">HH</td>
@@ -547,7 +547,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="6">Correct Score</td>
+            <td colspan="6">@Las.CorrectScore</td>
         </tr>
         <tr>
             <td class="bet-choice">1-0</td>
@@ -869,7 +869,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="detail-header">
-            <td colspan="6">HT Correct Score</td>
+            <td colspan="6">HT @Las.CorrectScore</td>
         </tr>
         <tr>
             <td class="bet-choice">1-0</td>

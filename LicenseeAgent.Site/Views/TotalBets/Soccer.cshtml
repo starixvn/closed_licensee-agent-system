@@ -14,7 +14,7 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/totalbets-soccer")        
 }
-<div class="legend">@Las.Soccer.ToUpper() @Las.TotalBets.ToUpper()</div>
+<div class="legend">@Las.Soccer.ToUpper() - @Las.TotalBets.ToUpper()</div>
 @using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
 { }
 @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))

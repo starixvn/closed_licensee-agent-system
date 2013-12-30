@@ -656,4 +656,100 @@ If that is not you, please contact your upline!!!</value>
   <data name="FTOE" xml:space="preserve">
     <value>1H.OE</value>
   </data>
+  <data name="Away" xml:space="preserve">
+    <value>Away</value>
+    <comment>not</comment>
+  </data>
+  <data name="Bet" xml:space="preserve">
+    <value>Bet</value>
+    <comment>not</comment>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Both</value>
+    <comment>not</comment>
+  </data>
+  <data name="BothOneNeitherTeamToScore" xml:space="preserve">
+    <value>Both / One / Neither Team To Score</value>
+    <comment>not</comment>
+  </data>
+  <data name="CleanSheet" xml:space="preserve">
+    <value>CleanSheet</value>
+    <comment>not</comment>
+  </data>
+  <data name="CorrectScore" xml:space="preserve">
+    <value>Correct Score</value>
+    <comment>not</comment>
+  </data>
+  <data name="DoubleChance" xml:space="preserve">
+    <value>DoubleChance</value>
+    <comment>not</comment>
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
+    <value>DrawNoBet</value>
+    <comment>not</comment>
+  </data>
+  <data name="Even" xml:space="preserve">
+    <value>Even</value>
+    <comment>not</comment>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+    <comment>not</comment>
+  </data>
+  <data name="Fulltime" xml:space="preserve">
+    <value>Fulltime</value>
+    <comment>not</comment>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>Goal</value>
+    <comment>not</comment>
+  </data>
+  <data name="HalfTime" xml:space="preserve">
+    <value>Half Time</value>
+    <comment>not</comment>
+  </data>
+  <data name="HomeNoBet" xml:space="preserve">
+    <value>AwayNoBet</value>
+    <comment>not</comment>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+    <comment>not</comment>
+  </data>
+  <data name="NoDraw" xml:space="preserve">
+    <value>NoDraw</value>
+    <comment>not</comment>
+  </data>
+  <data name="Odd" xml:space="preserve">
+    <value>Odd</value>
+    <comment>not</comment>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>One</value>
+    <comment>not</comment>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>or</value>
+    <comment>not</comment>
+  </data>
+  <data name="Over" xml:space="preserve">
+    <value>Over</value>
+    <comment>not</comment>
+  </data>
+  <data name="ThreeWayHandicap" xml:space="preserve">
+    <value>3-Way Handicap</value>
+    <comment>not</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+    <comment>not</comment>
+  </data>
+  <data name="ToWinToNil" xml:space="preserve">
+    <value>To Win To Nil</value>
+    <comment>not</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>not</comment>
+  </data>
 </root>

@@ -8,6 +8,7 @@ namespace LicenseeAgent.WebService
 {
     using System;
     using System.Web.Services;
+    using Fanex.Common;
     using Fanex.Data;
     using Fanex.Logging;
 
@@ -36,12 +37,17 @@ namespace LicenseeAgent.WebService
                     SiteName = licenseeName
                 };
 
-                using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+                if (!criteria.IsValid())
+                {
+                    return false;
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     objDb.ExecuteReader(criteria.GetSpParams());
 
-                    var errorCode = objDb.GetParameterValue("ErrCode");
-                    if ((int)errorCode != 0)
+                    var errorCode = Converter.ToInt(objDb.GetParameterValue("ErrCode"));
+                    if (errorCode != 0)
                     {
                         return true;
                     }

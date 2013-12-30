@@ -40,9 +40,7 @@ namespace LicenseeAgent.Account.Criterias
         public override bool IsValid()
         {
             return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(UserPwd) &&
-                !string.IsNullOrEmpty(UserSalt) && !string.IsNullOrEmpty(LoginIp) &&
-                !string.IsNullOrEmpty(LoginDomain) && !string.IsNullOrEmpty(BrowserName) &&
-                !string.IsNullOrEmpty(Platform) && !string.IsNullOrEmpty(CountryCode);
+                !string.IsNullOrEmpty(UserSalt) && !string.IsNullOrEmpty(LoginIp);
         }
     }
 }

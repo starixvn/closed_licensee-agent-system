@@ -38,7 +38,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0 && !string.IsNullOrEmpty(UserName);
+            return AgentId > 0;
         }
     }
 }

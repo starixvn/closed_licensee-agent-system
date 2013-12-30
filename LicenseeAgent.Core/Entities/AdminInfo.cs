@@ -3,28 +3,19 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Entities
 {
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// CSD/IT sign-in information.
     /// </summary>
     [Serializable]
     public class AdminInfo
     {
-        public string UserName { get; set; }
-
-        public string UserSalt { get; set; }
-
         public int UserId { get; set; }
 
-        public string UserRole { get; set; }
-
-        public int ServerId { get; set; }
+        public string UserName { get; set; }
     }
 }

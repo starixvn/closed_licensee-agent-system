@@ -1,26 +1,24 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerStatus.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DownlineRole.cs" company="Nexcel">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.Core.Enumerations
+namespace LicenseeAgent.Web.Enumerations
 {
-    using System;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum CustomerStatus
+    public enum DownlineRole : byte
     {
         /// <summary>
-        /// Status is close.
+        /// Check agent belongs to agent.
         /// </summary>
-        Closed,
+        Agent = 1,
 
         /// <summary>
-        /// Status is open.
+        /// Check member belongs to agent.
         /// </summary>
-        Open
+        Member = 2
     }
 }

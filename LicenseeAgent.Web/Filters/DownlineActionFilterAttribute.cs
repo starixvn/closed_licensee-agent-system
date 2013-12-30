@@ -7,8 +7,8 @@
 namespace LicenseeAgent.Web.Filters
 {
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Enumerations;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 

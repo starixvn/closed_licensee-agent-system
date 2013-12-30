@@ -53,12 +53,12 @@ namespace LicenseeAgent.Core.Configurations
                     new SelectListItem 
                     {
                         Text = Las.Closed,
-                        Value = ((int)CustomerStatus.Closed).ToString()
+                        Value = ((int)AccountStatus.Closed).ToString()
                     },
                     new SelectListItem
                     {
                         Text = Las.Open,
-                        Value = ((int)CustomerStatus.Open).ToString()
+                        Value = ((int)AccountStatus.Open).ToString()
                     }
                 };
 

@@ -3,11 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Lewis" date="2013.5.2">Created</change>
-//   <change who="Anders.Le" date="2013.6.12">Remove hardcode when checking captcha</change>
-//   <change who="Anders.Le" date="2013.6.27">Change the implementation of random string</change>
-// </history>
 
 namespace LicenseeAgent.Account
 {
@@ -25,7 +20,6 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
 
@@ -100,11 +94,6 @@ namespace LicenseeAgent.Account
         [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
         public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return InvalidModelJsonResult();
-            }
-
             var criteria = new InternalLoginAsUserCriteria
             {
                 LicenseeId = model.LicenseeId,
@@ -115,26 +104,24 @@ namespace LicenseeAgent.Account
             _accountService.InternalLoginAsUser(criteria);
             if (criteria.MsgId == 0)
             {
-                var adminInternalLoginInfo = new AdminInternalLoginInfo
+                var internalLoginInfo = new InternalLoginInfo
                 {
                     LicenseeId = criteria.LicenseeId,
-                    LicenseeName = criteria.LicenseeName,
                     CurrencyId = criteria.CurrencyId,
-                    CurrencyName = criteria.CurrencyName,
-                    UserName = model.UserName,
+                    AgentName = model.UserName,
                     Language = CurrentSession.Language,
-                    AdminId = CurrentSession.AdminInfo.UserId,
-                    OnAdminId = CurrentSession.OnUserId,
+                    UserId = CurrentSession.AdminInfo.UserId,
+                    OnUserId = CurrentSession.OnUserId,
                 };
 
                 var agentInfo = criteria.CreateAgent();
                 if (agentInfo.IsLevel0)
                 {
-                    return AdminLoginAsAgent0(adminInternalLoginInfo, agentInfo);
+                    return AdminLoginAsAgent0(internalLoginInfo, agentInfo);
                 }
                 else
                 {
-                    return AdminLoginAsAgent(adminInternalLoginInfo);
+                    return AdminLoginAsAgent(internalLoginInfo);
                 }
             }
 
@@ -144,17 +131,17 @@ namespace LicenseeAgent.Account
         /// <summary>
         /// Admins the login as agent level 0.
         /// </summary>
-        /// <param name="adminInternalLoginInfo">The admin internal login information.</param>
+        /// <param name="internalLoginInfo">The admin internal login information.</param>
         /// <param name="agentInfo">The agent information.</param>
         /// <returns>Returns JSON result.</returns>
         [NonAction]
-        public JsonResult AdminLoginAsAgent0(AdminInternalLoginInfo adminInternalLoginInfo, AgentInfo agentInfo)
+        public JsonResult AdminLoginAsAgent0(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
         {
             // check in selected licensee
             var criteria = new AdminCheckInLicenseeCriteria
             {
-                OnAdminId = adminInternalLoginInfo.OnAdminId,
-                LicenseeId = adminInternalLoginInfo.LicenseeId
+                OnAdminId = internalLoginInfo.OnUserId,
+                LicenseeId = internalLoginInfo.LicenseeId
             };
 
             _accountService.AdminCheckInLicensee(criteria);
@@ -164,7 +151,7 @@ namespace LicenseeAgent.Account
                 return Json(
                     new
                     {
-                        MsgId = 0
+                        MsgId = Result.SuccessValue
                     });
             }
 
@@ -174,17 +161,17 @@ namespace LicenseeAgent.Account
         /// <summary>
         /// Logins as agent level k > 0.
         /// </summary>
-        /// <param name="adminInternalLoginInfo">The internal login information.</param>
+        /// <param name="internalLoginInfo">The internal login information.</param>
         /// <returns>
         /// Returns JSON result.
         /// </returns>
         [NonAction]
-        public JsonResult AdminLoginAsAgent(AdminInternalLoginInfo adminInternalLoginInfo)
+        public JsonResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo)
         {
             var reloadAdminSession = true;
             if (CurrentSession.AgentInfo != null &&
-                CurrentSession.AgentInfo.LicenseeId != adminInternalLoginInfo.LicenseeId &&
-                CurrentSession.AgentInfo.CurrencyId != adminInternalLoginInfo.CurrencyId)
+                CurrentSession.AgentInfo.LicenseeId != internalLoginInfo.LicenseeId &&
+                CurrentSession.AgentInfo.CurrencyId != internalLoginInfo.CurrencyId)
             {
                 reloadAdminSession = false;
             }
@@ -193,16 +180,16 @@ namespace LicenseeAgent.Account
             {
                 var criteria = new InternalLoginAsUserCriteria
                 {
-                    LicenseeId = adminInternalLoginInfo.LicenseeId,
-                    CurrencyId = adminInternalLoginInfo.CurrencyId
+                    LicenseeId = internalLoginInfo.LicenseeId,
+                    CurrencyId = internalLoginInfo.CurrencyId
                 };
                 _accountService.InternalLoginAsUser(criteria);
-                if (criteria.MsgId == 0)
+                if (criteria.MsgId == Result.SuccessValue)
                 {
                     var agentInfo = criteria.CreateAgent();
 
                     // Recheck in new agent level 0
-                    AdminLoginAsAgent0(adminInternalLoginInfo, agentInfo);
+                    AdminLoginAsAgent0(internalLoginInfo, agentInfo);
                 }
                 else
                 {
@@ -210,7 +197,7 @@ namespace LicenseeAgent.Account
                 }
             }
 
-            var authKey = adminInternalLoginInfo.Save();
+            var authKey = internalLoginInfo.Save();
             var ticket = new FormsAuthenticationTicket(
                 1,
                 CurrentSession.AdminInfo.UserName,
@@ -223,7 +210,7 @@ namespace LicenseeAgent.Account
             return Json(
                 new
                 {
-                    MsgId = 0,
+                    MsgId = Result.SuccessValue,
                     DirectUrl = directUrl
                 });
         }
@@ -250,33 +237,22 @@ namespace LicenseeAgent.Account
                 return Content("Ticket is expired");
             }
 
-            var adminInternalLoginInfo = AdminInternalLoginInfo.GetInfo(ticket.UserData);
-            if (adminInternalLoginInfo == null)
+            var internalLoginInfo = InternalLoginInfo.GetInfo(ticket.UserData);
+            if (internalLoginInfo == null)
             {
                 return Content("Data is invalid or it was used");
             }
 
             var criteria = new InternalLoginAsUserCriteria
             {
-                LicenseeId = adminInternalLoginInfo.LicenseeId,
-                CurrencyId = adminInternalLoginInfo.CurrencyId,
-                UserName = adminInternalLoginInfo.UserName
+                LicenseeId = internalLoginInfo.LicenseeId,
+                CurrencyId = internalLoginInfo.CurrencyId,
+                UserName = internalLoginInfo.AgentName
             };
             _accountService.InternalLoginAsUser(criteria);
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == Result.SuccessValue)
             {
                 var agentInfo = criteria.CreateAgent();
-                var internalLoginInfo = new InternalLoginInfo
-                {
-                    AdminId = adminInternalLoginInfo.AdminId,
-                    OnAdminId = adminInternalLoginInfo.OnAdminId,
-                    LicenseeId = adminInternalLoginInfo.LicenseeId,
-                    LicenseeName = adminInternalLoginInfo.LicenseeName,
-                    CurrencyId = adminInternalLoginInfo.CurrencyId,
-                    CurrencyName = adminInternalLoginInfo.CurrencyName,
-                    Language = adminInternalLoginInfo.Language
-                };
-
                 return AdminLoginAsAgent(internalLoginInfo, agentInfo);
             }
             else
@@ -288,9 +264,8 @@ namespace LicenseeAgent.Account
         [NonAction]
         public ActionResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
         {
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo.OnAdminId, internalLoginInfo.Language)
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo.OnUserId, internalLoginInfo.LicenseeId, internalLoginInfo.Language)
             {
-                InternalLoginInfo = internalLoginInfo,
                 IsDirectSignIn = false
             };
 
@@ -337,23 +312,18 @@ namespace LicenseeAgent.Account
         /// <returns>JSON result.</returns>
         [HttpPost]
         [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
-        public ActionResult GetCurrencies(CurrencyLicenseeViewModel model)
+        public JsonResult GetCurrencies(CurrencyLicenseeViewModel model)
         {
-            if (model.IsValid())
+            var criteria = new GetCurrencyOfLicenseeCriteria
             {
-                var criteria = new GetCurrencyOfLicenseeCriteria
-                {
-                    LicenseeId = model.LicenseeId
-                };
+                LicenseeId = model.LicenseeId
+            };
 
-                return Json(new
-                {
-                    MsgId = 0,
-                    List = _currencyService.GetCurrencyList(criteria)
-                });
-            }
-
-            return InvalidModelJsonResult();
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                List = _currencyService.GetCurrencyList(criteria)
+            });
         }
 
         /// <summary>
@@ -392,7 +362,7 @@ namespace LicenseeAgent.Account
             };
 
             var adminInfo = _accountService.AuthenticateAdmin(criteria);
-            if (criteria.MsgId != 0)
+            if (criteria.MsgId != Result.SuccessValue)
             {
                 ModelState.AddModelError(string.Empty, GetErrorMsg(criteria.MsgId));
                 return false;
@@ -415,7 +385,6 @@ namespace LicenseeAgent.Account
             {
                 AdminId = adminInfo.UserId,
                 Ip = Request.GetClientIp(),
-                ServerId = adminInfo.ServerId,
                 NetSessionId = Session.SessionID
             };
 

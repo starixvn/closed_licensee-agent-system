@@ -71,11 +71,8 @@ namespace LicenseeAgent.Account.Services
             {
                 result = new AdminInfo
                 {
-                    UserName = criteria.UserName,
-                    UserSalt = criteria.UserSalt,
                     UserId = criteria.UserId,
-                    UserRole = criteria.UserRole,
-                    ServerId = criteria.ServerId
+                    UserName = criteria.UserName
                 };
             }
 

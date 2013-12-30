@@ -550,7 +550,7 @@ If that is not you, please contact your upline!!!</value>
     <value>Updated commission setting successfully.</value>
   </data>
   <data name="InsertSuccessfully" xml:space="preserve">
-    <value>Insert Successfully</value>
+    <value>Insert Successfully.</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>Soccer</value>

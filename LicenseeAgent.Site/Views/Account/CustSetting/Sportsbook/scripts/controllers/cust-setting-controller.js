@@ -81,12 +81,6 @@
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
                     if (data.MsgId == 0) {
-                        if (angular.isDefined(data.Messages))
-                            if (data.Messages.length == 1 && data.Messages[0].MsgId == 0) {
-                                alert(data.Messages[0].MsgContent);
-                                return;
-                            }
-
                         $scope.Messages = data.Messages;
                         CORE.scrollTop();
                     }

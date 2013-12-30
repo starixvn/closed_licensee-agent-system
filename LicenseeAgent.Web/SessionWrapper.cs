@@ -45,6 +45,29 @@ namespace LicenseeAgent.Web
             }
         }
 
+        public string DisplayName
+        {
+            get
+            {
+                if (_currentSession.AgentInfo != null && !_currentSession.AgentInfo.IsLevel0)
+                {
+                    return _currentSession.AgentInfo.UserName;
+                }
+
+                if (_currentSession.AdminInfo != null)
+                {
+                    return _currentSession.AdminInfo.UserName;
+                }
+
+                if (_currentSession.LicenseeInfo != null)
+                {
+                    return _currentSession.LicenseeInfo.UserName;
+                }
+
+                return _currentSession.AgentInfo.UserName;
+            }
+        }
+
         public bool IsDirectDownline(int agentLevel)
         {
             return _currentSession.AgentInfo.IsLevel0

@@ -3,14 +3,11 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Services
 {
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.

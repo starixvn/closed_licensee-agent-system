@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.31">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {

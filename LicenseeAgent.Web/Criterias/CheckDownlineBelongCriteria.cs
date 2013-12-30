@@ -3,7 +3,7 @@
 namespace LicenseeAgent.Web.Criterias
 {
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Web.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.

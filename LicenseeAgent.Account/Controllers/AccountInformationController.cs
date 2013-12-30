@@ -59,7 +59,7 @@ namespace LicenseeAgent.Account.Controllers
                 InvalidModelViewResult();
             }
 
-            if (CurrentSession.IsAdmin)
+            if (CurrentSession.AgentInfo.IsLevel0)
             {
                 return SearchAdmin(model);
             }
@@ -77,7 +77,7 @@ namespace LicenseeAgent.Account.Controllers
         [HttpPost]
         public ActionResult Suggest(SuggestionViewModel model)
         {
-            if (CurrentSession.IsAdmin)
+            if (CurrentSession.AgentInfo.IsLevel0)
             {
                 return SuggestAdmin(model);
             }

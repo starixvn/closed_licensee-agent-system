@@ -76,8 +76,6 @@
     <Compile Include="Entities\UnderMaintenanceInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Enumerations\AccountType.cs" />
-    <Compile Include="Enumerations\CustomerStatus.cs" />
-    <Compile Include="Enumerations\DownlineRole.cs" />
     <Compile Include="Enumerations\TopMenu.cs" />
     <Compile Include="Enumerations\MsgId.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />

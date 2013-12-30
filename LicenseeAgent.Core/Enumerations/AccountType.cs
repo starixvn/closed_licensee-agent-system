@@ -3,35 +3,32 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Enumerations
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// List of account types in LAS system.
     /// </summary>
-    public enum AccountType
+    public enum AccountType : byte
     {
         /// <summary>
         /// Account type is admin.
         /// </summary>
-        Admin,
+        Admin = 1,
 
         /// <summary>
         /// Account type is Licensee.
         /// </summary>
-        Licensee,
+        Licensee = 2,
 
         /// <summary>
         /// Account type is Agent.
         /// </summary>
-        Agent,
+        Agent = 3,
 
         /// <summary>
         /// Account type is Member.
         /// </summary>
-        Member
+        Member = 4
     }
 }

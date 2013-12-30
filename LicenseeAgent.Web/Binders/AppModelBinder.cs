@@ -13,6 +13,7 @@ namespace LicenseeAgent.Web.Binders
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Enumerations;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;

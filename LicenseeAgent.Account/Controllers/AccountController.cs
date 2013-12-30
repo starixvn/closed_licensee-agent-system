@@ -266,8 +266,8 @@ namespace LicenseeAgent.Account.Controllers
         {
             var criteria = new AgentReCheckInLicenseeCriteria
             {
-                OnAdminId = CurrentSession.InternalLoginInfo.OnAdminId,
-                LicenseeId = CurrentSession.InternalLoginInfo.LicenseeId
+                OnAdminId = CurrentSession.OnUserId,
+                LicenseeId = CurrentSession.OnLicenseeId
             };
 
             _accountService.AgentReCheckInLicensee(criteria);
@@ -460,7 +460,7 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _accountService.AgentCheckIn(criteria);
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, agentInfo.LicenseeId, language);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
         }
     }

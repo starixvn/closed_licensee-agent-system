@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Filters
 {
@@ -24,7 +21,7 @@ namespace LicenseeAgent.Web.Filters
     public class AppAuthorizeAttribute : AuthorizeAttribute
     {
         /// <summary>
-        /// Gets or sets a value indicating whether [is internal].
+        /// Gets or sets a value indicating whether site is only allowed by admin.
         /// </summary>
         /// <value>
         ///   <c>true</c> if is internal login by CSD/IT, <c>false</c>.
@@ -32,7 +29,7 @@ namespace LicenseeAgent.Web.Filters
         public bool OnlyAdminSite { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether no checking agent to change password and more.
+        /// Gets or sets a value indicating whether validation is applied on agent information.
         /// </summary>
         /// <value>
         ///   <c>true</c> if [only authorize]; otherwise, <c>false</c>.
@@ -46,9 +43,8 @@ namespace LicenseeAgent.Web.Filters
         /// <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            var httpContext = filterContext.HttpContext;
-            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) ||
-                filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
+            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
+                || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
             if (skipAuthorization)
             {
                 return;
@@ -60,7 +56,6 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
-            // Validate current sesssion to kick out
             var currentSession = SessionManager.CurrentSession;
             if (currentSession == null || !currentSession.IsValid)
             {
@@ -68,24 +63,50 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
-            var isAuthorized = AuthorizeCore(httpContext);
+            var isAuthorized = AuthorizeCore(filterContext.HttpContext);
             if (!isAuthorized)
             {
                 filterContext.ReturnAccessDenied();
+                return;
             }
-            else if (!OnlyAuthorize)
-            {
-                if (currentSession.AgentInfo == null)
-                {
-                    filterContext.ReturnAccessDenied();
-                    return;
-                }
 
-                if (!AppSettings.IsAdminSite && currentSession.IsDirectSignIn)
+            if (OnlyAuthorize)
+            {
+                return;
+            }
+
+            if (!ValidateAgent(filterContext))
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Validates the agent information.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
+        /// <returns>Returns true if agent is valid.</returns>
+        protected bool ValidateAgent(AuthorizationContext filterContext)
+        {
+            var currentSession = SessionManager.CurrentSession;
+            if (currentSession.AgentInfo == null)
+            {
+                filterContext.ReturnAccessDenied();
+                return false;
+            }
+
+            if (!AppSettings.IsAdminSite && currentSession.IsDirectSignIn)
+            {
+                var passwordStatus = PasswordRule.GetPasswordStatus(currentSession.AgentInfo);
+                var passwordExpired = passwordStatus == PasswordStatus.Expired || passwordStatus == PasswordStatus.FirstLogin;
+                if (passwordExpired)
                 {
-                    CheckingRequireAgentChangePassword(filterContext);
+                    filterContext.Result = new RedirectResult(AppURLs.URLs.ChangePassword);
+                    return false;
                 }
             }
+
+            return true;
         }
 
         /// <summary>
@@ -138,29 +159,6 @@ namespace LicenseeAgent.Web.Filters
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Requires to change password for first login agents and expired password.
-        /// </summary>
-        /// <param name="filterContext">The filter context.</param>
-        private void CheckingRequireAgentChangePassword(AuthorizationContext filterContext)
-        {
-            // Only check the agent session.
-            var currentSession = SessionManager.CurrentSession;
-            var httpContext = filterContext.HttpContext;
-            if (filterContext.Result != null)
-            {
-                return;
-            }
-
-            var passwordStatus = PasswordRule.GetPasswordStatus(currentSession.AgentInfo);
-            var passwordExpired = passwordStatus == PasswordStatus.Expired || passwordStatus == PasswordStatus.FirstLogin;
-
-            if (passwordExpired)
-            {
-                filterContext.Result = new RedirectResult(AppURLs.URLs.ChangePassword);
-            }
         }
     }
 }

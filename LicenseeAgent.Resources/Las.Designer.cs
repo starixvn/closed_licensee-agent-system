@@ -901,7 +901,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Successfully.
+        ///   Looks up a localized string similar to Insert Successfully..
         /// </summary>
         public static string InsertSuccessfully {
             get {

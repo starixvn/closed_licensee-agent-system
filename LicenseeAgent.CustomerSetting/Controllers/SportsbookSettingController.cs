@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.9.18">Created</change>
-//   <change who="Ricky.Nguyen" date="2013.11.4">Update customer object</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Controllers
 {

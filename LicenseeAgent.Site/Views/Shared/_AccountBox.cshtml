@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "_AccountBox";
+    var sessionWrapper = new SessionWrapper(SessionManager.CurrentSession);
 }
 <div class="media">
     <img src="@Html.Action("Avatar", "Account")" alt="avatar" class="pull-left" />
@@ -8,7 +8,7 @@
             @Las.Welcome,
         </div>
         <div class="username">
-            <b>@SessionManager.CurrentSession.UserName</b>
+            <b>@sessionWrapper.DisplayName</b>
         </div>
         <div class="dropdown">
             <a data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>

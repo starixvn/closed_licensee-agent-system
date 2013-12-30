@@ -3,19 +3,21 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Entities
 {
+    using System;
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Licensee user information.
     /// </summary>
+    [Serializable]
     public class LicenseeInfo
     {
-        public int LicenseeId { get; set; }
+        public int UserId { get; set; }
 
-        public string LicenseeName { get; set; }
+        public string UserName { get; set; }
+
+        public int LicenseeId { get; set; }
     }
 }

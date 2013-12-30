@@ -11,11 +11,14 @@ namespace LicenseeAgent.TotalBets.Entities
 {
     using System;
 
+    /// <summary>
+    /// Total Bets Basketball Major Bet Type.
+    /// </summary>
     public class TotalBet_Basketball_MajorBetType
     {
-        public int? matchid { get; set; }
+        public int? MatchId { get; set; }
 
-        public short? bettype { get; set; }
+        public short? BetType { get; set; }
 
         public short? LiveHomeScore { get; set; }
 
@@ -29,13 +32,13 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public decimal? Stake { get; set; }
 
-        public int? leagueid { get; set; }
+        public int? LeagueId { get; set; }
 
-        public int? homeid { get; set; }
+        public int? HomeId { get; set; }
 
-        public int? awayid { get; set; }
+        public int? AwayId { get; set; }
 
-        public DateTime? kickofftime { get; set; }
+        public DateTime? KickOffTime { get; set; }
 
         public bool? IsLive { get; set; }
     }

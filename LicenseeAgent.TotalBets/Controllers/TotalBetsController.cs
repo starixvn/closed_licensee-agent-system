@@ -179,6 +179,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// Get All League.
         /// </summary>
         /// <param name="league">League value.</param>
+        /// <param name="sportType">Sport Type.</param>
         /// <returns>League list.</returns>
         [HttpPost]
         public JsonResult GetLeagueList(string league, int sportType = 1)
@@ -211,6 +212,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// </summary>
         /// <param name="league">League value.</param>
         /// <param name="event">Event value.</param>
+        /// <param name="sportType">Sport Type.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
         public JsonResult GetEventsByLeagues(string league, string @event, int sportType = 1)

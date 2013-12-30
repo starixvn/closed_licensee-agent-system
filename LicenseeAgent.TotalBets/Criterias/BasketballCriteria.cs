@@ -12,6 +12,9 @@ namespace LicenseeAgent.TotalBets.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Basketball Criteria.
+    /// </summary>
     public class BasketballCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

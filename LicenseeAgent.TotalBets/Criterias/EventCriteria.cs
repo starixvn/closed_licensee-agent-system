@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SoccerEventCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="EventCriteria.cs" company="Nexcel Solutions Vietnam">
 // SoccerEventCriteria.
 // </copyright>
 // -----------------------------------------------------------------------

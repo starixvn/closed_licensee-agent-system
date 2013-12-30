@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalBetsBasketballController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -9,14 +9,10 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Criteria;
-    using LicenseeAgent.TotalBets.Services;
-    using LicenseeAgent.TotalBets.ViewModels;
-    using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.TotalBets.Entities;
+    using LicenseeAgent.Web.Controllers;
 
     /// <summary>
     /// Account controllers.
@@ -49,13 +45,17 @@ namespace LicenseeAgent.TotalBets.Controllers
             });
         }
 
+        /// <summary>
+        /// Generate Basketball Data.
+        /// </summary>
+        /// <param name="dataList">List total bets entity.</param>
+        /// <returns>List League Group Entity.</returns>
         [NonAction]
         public IList<LeagueGroupEntity> GenerateBasketballData(IEnumerable<TotalBetsEntity> dataList)
         {
             var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
             var eventTemp = "{0}<br /><br />{1}<br /><br />" + "<span class='draw'>" + Las.Draw + "</span>";
-            //var index = 0;
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
             var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
             foreach (var leagueId in leagueIdList)
@@ -73,7 +73,6 @@ namespace LicenseeAgent.TotalBets.Controllers
                     {
                         MatchId = totalBet.MatchId,
                         LiveIndicator = totalBet.LiveIndicator,
-                        //Index = index++,
                         Time = totalBet.ShowTime,
                         HomeId = totalBet.HomeId,
                         AwayId = totalBet.AwayId,

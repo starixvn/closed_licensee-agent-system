@@ -22,9 +22,7 @@
         initData: function () {
             CORE.blockUI();
             Basketball.getLeagueData();
-            Basketball.getEventDataByLeague();
-            //Waiting 1 second for loading league and events
-            setTimeout("Basketball.reRenderAfterPaged();", 1000);
+            Basketball.getEventDataByLeague(true);
             CORE.unblockUI();
         },
 
@@ -75,7 +73,7 @@
             Basketball.getEventDataByLeague();
         },
 
-        getEventDataByLeague: function () {
+        getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
                 Event: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -91,6 +89,10 @@
                 },
                 success: function (data) {
                     Basketball.initEventMultiSelect(data.List);
+                    //Load data for the first time load page
+                    if (isLoadGrid) {
+                        Basketball.reRenderAfterPaged();
+                    }
                 },
                 complete: function () {
                     CORE.unblockUI();

@@ -12,6 +12,9 @@ namespace LicenseeAgent.TotalBets.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Total Bets Soccer Major Bet Type Criteria.
+    /// </summary>
     public class TotalBet_Soccer_MajorBetTypeCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

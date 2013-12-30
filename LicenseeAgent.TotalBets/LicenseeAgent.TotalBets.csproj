@@ -79,9 +79,9 @@
     <Compile Include="Controllers\TotalBetsController.cs" />
     <Compile Include="Criterias\SoccerDetailCriteria.cs" />
     <Compile Include="Criterias\BasketballCriteria.cs" />
-    <Compile Include="Criterias\SoccerEventCriteria.cs" />
+    <Compile Include="Criterias\EventCriteria.cs" />
     <Compile Include="Criterias\SoccerCriteria.cs" />
-    <Compile Include="Criterias\SoccerLeagueCriteria.cs" />
+    <Compile Include="Criterias\LeagueCriteria.cs" />
     <Compile Include="Entities\EventEntity.cs" />
     <Compile Include="Entities\LeagueEntity.cs" />
     <Compile Include="Entities\LeagueGroupEntity.cs" />

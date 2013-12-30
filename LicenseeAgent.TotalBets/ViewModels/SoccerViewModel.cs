@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SoccerViewModel.cs" company="Nexcel Solutions Vietnam">
 // SoccerViewModel.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TotalBetsViewModel
+    public class SoccerViewModel
     {        
         public IEnumerable<LeagueEntity> LeagueList { get; set; }
 

@@ -59,9 +59,9 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public string HomeFirstHalfHandicap { get; set; }
         
-        public string HomeFullTimeOddEven { get; set; }
+        public string HomeFulltimeOddEven { get; set; }
 
-        public string AwayFullTimeOddEven { get; set; }
+        public string AwayFulltimeOddEven { get; set; }
 
         public string HomeFirstHaflHandicap { get; set; }
 
@@ -77,8 +77,8 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public string DrawFirstHalfOneXTwo { get; set; }
 
-        public string HomeFirstHaflOddEven { get; set; }
+        public string HomeFirstHalfOddEven { get; set; }
 
-        public string AwayFirstHaflOddEven { get; set; }
+        public string AwayFirstHalfOddEven { get; set; }
     }
 }

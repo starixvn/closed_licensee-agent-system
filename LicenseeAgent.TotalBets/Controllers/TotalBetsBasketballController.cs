@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.TotalBets.Criterias;
+    using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
@@ -76,18 +76,18 @@ namespace LicenseeAgent.TotalBets.Controllers
                         Time = totalBet.ShowTime,
                         HomeId = totalBet.HomeId,
                         AwayId = totalBet.AwayId,
-                        HomeFullTimeHandicap = SetTotalBetsValues(matchs, 1, "h"),
-                        AwayFullTimeHandicap = SetTotalBetsValues(matchs, 1, "a"),
-                        HomeFullTimeOddEven = SetTotalBetsValues(matchs, 2, "h"),
-                        AwayFullTimeOddEven = SetTotalBetsValues(matchs, 2, "a"),
-                        HomeFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "h"),
-                        AwayFullTimeOverUnder = SetTotalBetsValues(matchs, 3, "a"),
-                        HomeFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "h"),
-                        AwayFirstHaflHandicap = SetTotalBetsValues(matchs, 7, "a"),
-                        HomeFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "h"),
-                        AwayFirstHaflOverUnder = SetTotalBetsValues(matchs, 8, "a"),
-                        HomeFirstHaflOddEven = SetTotalBetsValues(matchs, 12, "h"),
-                        AwayFirstHaflOddEven = SetTotalBetsValues(matchs, 12, "a")
+                        HomeFulltimeHandicap = SetTotalBetsValues(matchs, 1, "h"),
+                        AwayFulltimeHandicap = SetTotalBetsValues(matchs, 1, "a"),
+                        HomeFulltimeOddEven = SetTotalBetsValues(matchs, 2, "h"),
+                        AwayFulltimeOddEven = SetTotalBetsValues(matchs, 2, "a"),
+                        HomeFulltimeOverUnder = SetTotalBetsValues(matchs, 3, "h"),
+                        AwayFulltimeOverUnder = SetTotalBetsValues(matchs, 3, "a"),
+                        HomeFirstHalfHandicap = SetTotalBetsValues(matchs, 7, "h"),
+                        AwayFirstHalfHandicap = SetTotalBetsValues(matchs, 7, "a"),
+                        HomeFirstHalfOverUnder = SetTotalBetsValues(matchs, 8, "h"),
+                        AwayFirstHalfOverUnder = SetTotalBetsValues(matchs, 8, "a"),
+                        HomeFirstHalfOddEven = SetTotalBetsValues(matchs, 12, "h"),
+                        AwayFirstHalfOddEven = SetTotalBetsValues(matchs, 12, "a")
                     };
                     matchList.Add(match);
                 }

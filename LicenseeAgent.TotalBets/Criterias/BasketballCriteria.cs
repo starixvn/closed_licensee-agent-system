@@ -7,7 +7,7 @@
 //   <change who="Johnny.Trinh" date="2013.12.25">Created</change>
 // </history>
 
-namespace LicenseeAgent.TotalBets.Criterias
+namespace LicenseeAgent.TotalBets.Criteria
 {
     using System;
     using Fanex.NAP.Framework.Data;

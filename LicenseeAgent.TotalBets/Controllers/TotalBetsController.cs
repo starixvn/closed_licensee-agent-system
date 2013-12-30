@@ -60,8 +60,8 @@ namespace LicenseeAgent.TotalBets.Controllers
         public ViewResult GetSoccerData(SoccerViewModel model)
         {
             var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
-            var dataList = _totalBetsService.GetSoccerData(criteria).OrderByDescending(x=>x.LiveIndicator);
-            model.MainData = GetMainData(dataList).OrderBy(x=>x.LeagueName).ToList();
+            var dataList = _totalBetsService.GetSoccerData(criteria).OrderByDescending(x => x.LiveIndicator);
+            model.MainData = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList();
 
             return View(model);
         }
@@ -74,7 +74,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="dataList">Data list value.</param>
         /// <returns>Group league list view data.</returns>
         [NonAction]
-        public IList<LeagueGroupEntity> GetMainData(IEnumerable<SoccerDataEntity> dataList)
+        public IList<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<SoccerDataEntity> dataList)
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
@@ -86,8 +86,11 @@ namespace LicenseeAgent.TotalBets.Controllers
                 var matchGroupList = matchsInLeague.Select(x => new { x.MatchId, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
                 foreach (var matchGroup in matchGroupList)
                 {
-                    var matches = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.LiveHomeScore == matchGroup.LiveHomeScore 
-                        && x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
+                    var matches = matchsInLeague.Where(x =>
+                        x.MatchId == matchGroup.MatchId &&
+                        x.LiveHomeScore == matchGroup.LiveHomeScore &&
+                        x.LiveAwayScore == matchGroup.LiveAwayScore &&
+                        x.LiveIndicator == matchGroup.LiveIndicator).ToList();
                     var match = new MatchEntity
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
@@ -97,20 +100,20 @@ namespace LicenseeAgent.TotalBets.Controllers
                             : matches.FirstOrDefault().ShowTime,
                         HomeId = matches.FirstOrDefault().HomeId,
                         AwayId = matches.FirstOrDefault().AwayId,
-                        HomeFulltimeHandicap = SetTotalBetsValues(matches, 1, "h"),
-                        AwayFulltimeHandicap = SetTotalBetsValues(matches, 1, "a"),
-                        HomeFulltimeOverUnder = SetTotalBetsValues(matches, 3, "h"),
-                        AwayFulltimeOverUnder = SetTotalBetsValues(matches, 3, "a"),
-                        HomeFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "1"),
-                        AwayFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "2"),
-                        DrawFulltimeOneXTwo = SetTotalBetsValues(matches, 5, "x"),
-                        HomeFirstHalfHandicap = SetTotalBetsValues(matches, 7, "h"),
-                        AwayFirstHalfHandicap = SetTotalBetsValues(matches, 7, "a"),
-                        HomeFirstHalfOverUnder = SetTotalBetsValues(matches, 8, "h"),
-                        AwayFirstHalfOverUnder = SetTotalBetsValues(matches, 8, "a"),
-                        HomeFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "1"),
-                        AwayFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "2"),
-                        DrawFirstHalfOneXTwo = SetTotalBetsValues(matches, 15, "x"),
+                        HomeFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "h"),
+                        AwayFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "a"),
+                        HomeFulltimeOverUnder = SetTotalTransAndStakeValues(matches, 3, "h"),
+                        AwayFulltimeOverUnder = SetTotalTransAndStakeValues(matches, 3, "a"),
+                        HomeFulltimeOneXTwo = SetTotalTransAndStakeValues(matches, 5, "1"),
+                        AwayFulltimeOneXTwo = SetTotalTransAndStakeValues(matches, 5, "2"),
+                        DrawFulltimeOneXTwo = SetTotalTransAndStakeValues(matches, 5, "x"),
+                        HomeFirstHalfHandicap = SetTotalTransAndStakeValues(matches, 7, "h"),
+                        AwayFirstHalfHandicap = SetTotalTransAndStakeValues(matches, 7, "a"),
+                        HomeFirstHalfOverUnder = SetTotalTransAndStakeValues(matches, 8, "h"),
+                        AwayFirstHalfOverUnder = SetTotalTransAndStakeValues(matches, 8, "a"),
+                        HomeFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "1"),
+                        AwayFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "2"),
+                        DrawFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "x"),
                     };
                     matchList.Add(match);
                 }
@@ -122,14 +125,14 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Set total bet value.
+        /// Set total transaction and stake value.
         /// </summary>
         /// <param name="matchs">Match list.</param>
         /// <param name="betType">Bet type value.</param>
         /// <param name="betTeam">Bet team value.</param>
         /// <returns>Total bet string.</returns>
         [NonAction]
-        public string SetTotalBetsValues(IEnumerable<SoccerDataEntity> matchs, int betType, string betTeam)
+        public string SetTotalTransAndStakeValues(IEnumerable<SoccerDataEntity> matchs, int betType, string betTeam)
         {
             var matchByBet = matchs.Where(x => x.BetType == betType && x.BetTeam == betTeam);
             if (matchByBet.Any())

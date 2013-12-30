@@ -15,11 +15,11 @@
     <tr class="@rowClass">
         <td rowspan="3" class="text-field" style="width: 32px">@(index++)
         </td>
-        <td rowspan="3" class="text-field" style="width: 82px">@Html.Raw(match.Time)
+        <td rowspan="3" class="text-field" style="width: 72px">@Html.Raw(match.Time)
         </td>
-        <td class="team-name" style="width: 144px">@match.HomeName
+        <td class="team-name" style="width: 188px">@match.HomeName
         </td>
-        <td style="width: 100px">@match.HomeFulltimeHandicap
+        <td style="width: 95px">@match.HomeFulltimeHandicap
         </td>
         <td style="width: 20px" rowspan="2">
             @if (!string.IsNullOrEmpty(match.HomeFulltimeHandicap) || !string.IsNullOrEmpty(match.AwayFulltimeHandicap))
@@ -28,7 +28,7 @@
                 </div>
             }
         </td>
-        <td style="width: 100px">@match.HomeFulltimeOverUnder
+        <td style="width: 95px">@match.HomeFulltimeOverUnder
         </td>
         <td style="width: 20px" rowspan="2">
         @if (!string.IsNullOrEmpty(match.HomeFulltimeOverUnder) || !string.IsNullOrEmpty(match.AwayFulltimeOverUnder))
@@ -37,7 +37,7 @@
                 </div>
             }
         </td>
-        <td style="width: 100px">@match.HomeFulltimeOneXTwo
+        <td style="width: 95px">@match.HomeFulltimeOneXTwo
         </td>
         <td style="width: 20px" rowspan="2">
         @if (!string.IsNullOrEmpty(match.HomeFulltimeOneXTwo) || !string.IsNullOrEmpty(match.AwayFulltimeOneXTwo))
@@ -46,7 +46,7 @@
                 </div>
             }
         </td>
-        <td style="width: 100px">@match.HomeFirstHalfHandicap
+        <td style="width: 95px">@match.HomeFirstHalfHandicap
         </td>
         <td style="width: 20px" rowspan="2">
         @if (!string.IsNullOrEmpty(match.HomeFirstHalfHandicap) || !string.IsNullOrEmpty(match.AwayFirstHalfHandicap))
@@ -55,7 +55,7 @@
                 </div>
             }
         </td>
-        <td style="width: 100px">@match.HomeFirstHalfOverUnder
+        <td style="width: 95px">@match.HomeFirstHalfOverUnder
         </td>
         <td style="width: 20px" rowspan="2">
         @if (!string.IsNullOrEmpty(match.HomeFirstHalfOverUnder) || !string.IsNullOrEmpty(match.AwayFirstHalfOverUnder))
@@ -64,7 +64,7 @@
                 </div>
             }
         </td>
-        <td style="width: 100px">@match.HomeFirstHalfOneXTwo
+        <td style="width: 95px">@match.HomeFirstHalfOneXTwo
         </td>
         <td style="width: 20px" rowspan="2">
         @if (!string.IsNullOrEmpty(match.HomeFirstHalfOneXTwo) || !string.IsNullOrEmpty(match.AwayFirstHalfOneXTwo))

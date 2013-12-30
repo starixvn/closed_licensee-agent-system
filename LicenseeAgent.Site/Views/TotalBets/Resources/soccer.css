@@ -41,6 +41,7 @@
 }
 #totalbet-data-content table tr td{
     height: 22px;
+    font-size: 11px;
 }
 #totalbet-data-content table tr td.text-field{
     text-align: center;	
@@ -112,17 +113,27 @@
 
 /* detail: All bet type */
 .match-name {
-	color: #FF0000;
 	font-weight: bold;
 	font-size: 16px;
 }
-.history-link {
-	color: #0000FF;
+.history-link 
+{    
+	color: #258FD2;
 	float: right;
 	cursor: pointer;
-	padding-right: 10px;
-	text-decoration: underline;
+	margin-right: 20px;
 	height: 25px;
+	text-transform: none;	
+	font-size: 18px;
+}
+.history-image {
+	width: 16px;
+	height: 16px;
+	background-image: url(images/ui-icons_2e83ff_256x240.png);
+    background-position: 40% 20%;
+    position:absolute;
+    float:right;
+    right: 50px;
 }
 
 #detail-data-content .detail-table {

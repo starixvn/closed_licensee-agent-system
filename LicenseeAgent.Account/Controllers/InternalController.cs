@@ -145,7 +145,7 @@ namespace LicenseeAgent.Account
             };
 
             _accountService.AdminCheckInLicensee(criteria);
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == Result.SuccessValue)
             {
                 CurrentSession.AgentInfo = agentInfo;
                 return Json(

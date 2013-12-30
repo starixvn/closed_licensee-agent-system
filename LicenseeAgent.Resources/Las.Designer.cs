@@ -225,6 +225,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basketball.
+        /// </summary>
+        public static string Basketball {
+            get {
+                return ResourceManager.GetString("Basketball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet.
         /// </summary>
         public static string Bet {
@@ -240,17 +249,7 @@ namespace LicenseeAgent.Resources {
             get {
                 return ResourceManager.GetString("BetList", resourceCulture);
             }
-        }       
-         
-        /// <summary>
-        ///   Looks up a localized string similar to Basketball.
-        /// </summary>
-        public static string Basketball {
-            get {
-                return ResourceManager.GetString("Basketball", resourceCulture);
-            }
         }
-
         
         /// <summary>
         ///   Looks up a localized string similar to Bet Setting.
@@ -838,15 +837,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handicap/Over Under/Live.
-        /// </summary>
-        public static string HOUL {
-            get {
-                return ResourceManager.GetString("HOUL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The content does not allow HTML..
         /// </summary>
         public static string HtmlDisallowed {
@@ -1077,15 +1067,6 @@ namespace LicenseeAgent.Resources {
         public static string MobilePhone {
             get {
                 return ResourceManager.GetString("MobilePhone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Money Line.
-        /// </summary>
-        public static string MoneyLine {
-            get {
-                return ResourceManager.GetString("MoneyLine", resourceCulture);
             }
         }
         

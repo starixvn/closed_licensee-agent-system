@@ -8,8 +8,6 @@
             <li><a class="tree-toggler nav-header">@Las.TotalBets
             </a>
                 <ul class="nav nav-list tree" style="display: none">
-                    @BootstrapHelper.Menu(Las.HOUL, Url.Action("Example", "Home"))
-                    @BootstrapHelper.Menu(Las.MoneyLine, Url.Action("Index", "Account"))
                     @BootstrapHelper.Menu(Las.Soccer, Url.Action("Soccer", "TotalBets"))
                     @BootstrapHelper.Menu(Las.Basketball, Url.Action("Basketball", "TotalBets"))
                 </ul>
@@ -17,7 +15,6 @@
             <li class="divider"></li>
             <li><a class="tree-toggler nav-header">@Las.Forecast</a>
                 <ul class="nav nav-list tree" style="display: none">
-                    @BootstrapHelper.Menu(Las.HOUL, Url.Action("ChangePassword", "Account"))
                     @BootstrapHelper.Menu(Las.ScoreMap, Url.Action("ChangePassword", "Account"))
                 </ul>
             </li>

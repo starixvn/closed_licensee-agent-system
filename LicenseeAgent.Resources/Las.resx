@@ -208,9 +208,6 @@ If that is not you, please contact your upline!!!</value>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="HOUL" xml:space="preserve">
-    <value>Handicap/Over Under/Live</value>
-  </data>
   <data name="HttpError_403" xml:space="preserve">
     <value>Access denied</value>
   </data>
@@ -241,9 +238,6 @@ If that is not you, please contact your upline!!!</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
     <value>Mobile Phone</value>
-  </data>
-  <data name="MoneyLine" xml:space="preserve">
-    <value>Money Line</value>
   </data>
   <data name="NewAgent" xml:space="preserve">
     <value>New Agent</value>

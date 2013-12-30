@@ -83,6 +83,11 @@ namespace LicenseeAgent.Site
             }
 
             var exception = Server.GetLastError();
+            if (exception is HttpException)
+            {
+                return;
+            }
+
             var antiForgeryException = exception as HttpAntiForgeryException;
             var isAntiForgeryException = antiForgeryException != null;
             var isLogging = !isAntiForgeryException;

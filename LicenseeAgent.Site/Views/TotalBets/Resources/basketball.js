@@ -1,30 +1,31 @@
 ﻿var Basketball = function ($) {
     return {
-        sportType: 2, //Basketball sporttype
+        sportType: 1, //Basketball sporttype
         init: function () {
-            //alert(CORE.resolveUrl("/Totalbets/GetLeagueList"))
-            //            $("#refresh-count-down").refreshCountDown({
-            //                listTimeInterval: CORE.TimeInterval,
-            //                timeIntervalName: "TimeInterval",
-            //                timeIntervalValue: $("#server-time-interval").val(),
-            //                formName: "main-form"
-            //            });
+            Basketball.initData();
+
+            $("#refresh-count-down").refreshCountDown({
+                listTimeInterval: CORE.TimeInterval,
+                timeIntervalName: "TimeInterval",
+                timeIntervalValue: $("#server-time-interval").val(),
+                formName: "main-form"
+            });
 
             // search
             $('form').submit(function () {
                 Basketball.reRenderAfterPaged();
+                refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;
             });
-
-            Basketball.initData();
-            //Basketball.reRenderAfterPaged();
         },
 
         initData: function () {
-            //CORE.blockUI();
+            CORE.blockUI();
             Basketball.getLeagueData();
             Basketball.getEventDataByLeague();
-            //CORE.unblockUI();
+            //Waiting 1 second for loading league and events
+            setTimeout("Basketball.reRenderAfterPaged();", 1000);
+            CORE.unblockUI();
         },
 
         getLeagueData: function () {
@@ -59,7 +60,11 @@
                 tooltipNoItem: 'There is no league selected.',
                 showParentSelectedText: false,
                 showFooter: true,
+                footerButtonText: 'OK',
                 onLeave: function () {
+                    Basketball.getEventDataByLeague();
+                },
+                onFooterButtonClick: function () {
                     Basketball.getEventDataByLeague();
                 }
             });
@@ -82,14 +87,13 @@
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    //CORE.blockUI();
+                    CORE.blockUI();
                 },
                 success: function (data) {
                     Basketball.initEventMultiSelect(data.List);
-                    Basketball.reRenderAfterPaged();
                 },
                 complete: function () {
-                    //CORE.unblockUI();
+                    CORE.unblockUI();
                 }
             });
         },
@@ -107,14 +111,10 @@
                 tooltipNoItem: 'There is no event selected.',
                 showParentSelectedText: false,
                 onLeave: function () {
-                    Basketball.reRenderAfterPaged();
+                    //Basketball.reRenderAfterPaged();
                 }
 
             });
-        },
-
-        selectedEvent: function () {
-            var selectedLeagues = $("#event-multi-select").fanexMultiSelect('getItems', true).join(',');
         },
 
         reRenderAfterPaged: function () {
@@ -128,16 +128,14 @@
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    //CORE.blockUI();
+                    CORE.blockUI();
                 },
                 success: function (data) {
                     gridOption.bodyRows = Basketball.genGridRows(data.List, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
-                    //customerList.gridAfterBinding();
-                    //customerList.resizeBox();
                 },
                 complete: function () {
-                    //CORE.unblockUI();
+                    CORE.unblockUI();
                 }
             });
         },
@@ -158,15 +156,10 @@
                 //Push League row
                 bodyRows.push({
                     Columns: ([
-                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9 }
+                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9
+                            }
                         ]),
-                    CssClass: rowCssClass ? rowCssClass(rowIndex, league) : undefined,
-                    CustomCellRender: function (cell, cellFormated) {
-                        if (col.Formatter)
-                            return col.Formatter(rIndex, rowData, cell, cellFormated);
-                        else
-                            return cellFormated;
-                    }
+                    CssClass: "league-row"
                 });
 
                 //Push Match Row
@@ -180,60 +173,36 @@
                     //Home team
                     homeTeam.push(
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 2 },
-                        { Name: "Time", Value: match.Time, MergeRowNumber: 2 },
-                        { Name: "Event", Value: match.HomeName },
-                        { Name: "FTHDP", Value: match.HomeFullTimeHandicap },
-                        { Name: "FTOU", Value: match.HomeFullTimeOverUnder },
-                        { Name: "FTOE", Value: match.HomeFullTimeOddEven },
-                        { Name: "FHHDP", Value: match.HomeFirstHaflHandicap },
-                        { Name: "FHOU", Value: match.HomeFirstHaflOverUnder },
-                        { Name: "FHOE", Value: match.HomeFirstHaflOddEven }
+                        { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
+                        { Name: "Event", Value: match.HomeName, TdClass: "bold noborder" },
+                        { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                        { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                        { Name: "FTOE", Value: match.HomeFulltimeOddEven },
+                        { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                        { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                        { Name: "FHOE", Value: match.HomeFirstHalfOddEven }
                     );
 
                     var awayTeam = [];
                     //Away team
                     awayTeam.push(
-                        { Name: "Event", Value: match.AwayName },
-                        { Name: "FTHDP", Value: match.AwayFullTimeHandicap },
-                        { Name: "FTOU", Value: match.AwayFullTimeOverUnder },
-                        { Name: "FTOE", Value: match.AwayFullTimeOddEven },
-                        { Name: "FHHDP", Value: match.AwayFirstHaflHandicap },
-                        { Name: "FHOU", Value: match.AwayFirstHaflOverUnder },
-                        { Name: "FHOE", Value: match.AwayFirstHaflOddEven }
+                        { Name: "Event", Value: match.AwayName, CssClass: "bold" },
+                        { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
+                        { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
+                        { Name: "FTOE", Value: match.AwayFulltimeOddEven },
+                        { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
+                        { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
+                        { Name: "FHOE", Value: match.AwayFirstHalfOddEven }
                     );
 
                     bodyRows.push({
                         Columns: homeTeam,
-                        CssClass: rowCssClass ? rowCssClass(rowIndex, record) : undefined,
-                        RowHeight: rowHeight ? rowHeight(rowIndex, record) : undefined
+                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
                     });
                     bodyRows.push({
                         Columns: awayTeam,
-                        CssClass: rowCssClass ? rowCssClass(rowIndex, record) : undefined,
-                        RowHeight: rowHeight ? rowHeight(rowIndex, record) : undefined
+                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
                     });
-
-                    /*for (var k = 0; k < columns.length; k++) {
-
-                        (function () {
-                            var rIndex = rowIndex;
-                            var rowData = record;
-                            var col = columns[k];
-                            var colName = col.Name;
-
-                            dataRow.push({
-                                Name: colName,
-                                Value: (indexNumberColumn == k) ? rIndex + 1 : record[colName],
-                                CustomCellRender: function (cell, cellFormated) {
-                                    if (col.Formatter)
-                                        return col.Formatter(rIndex, rowData, cell, cellFormated);
-                                    else
-                                        return cellFormated;
-                                }
-                            });
-                        } ());
-                    }*/
-
                 }
             }
             return bodyRows;

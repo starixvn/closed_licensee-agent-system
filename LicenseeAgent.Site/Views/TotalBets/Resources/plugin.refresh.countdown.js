@@ -2,7 +2,7 @@
     var timeInterval = $("#time-interval").val();
     var timer = null;
 
-    return {        
+    return {
         showTimeList: function () {
             $(".dropdown-time-list").show();
         },
@@ -13,6 +13,7 @@
 
         onTimeSelected: function (context, formName) {
             var newInterval = $(context).html();
+            $("#server-time-interval").val(newInterval);
             $(".refresh-count-down div.timer").html(newInterval);
             $("#time-interval").val(newInterval);
             timeInterval = newInterval;
@@ -31,6 +32,12 @@
                 $(".refresh-count-down div.timer").html(timeInterval);
                 timeInterval -= 1;
             }, 1000);
+        },
+
+        resetCountDown: function (timeInterval, formName) {
+            window.clearInterval(timer);
+            refreshCountDownMethods.startCountDown(timeInterval, formName);
+
         }
     }
 } (jQuery);

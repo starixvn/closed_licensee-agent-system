@@ -171,3 +171,29 @@
 #detail-data-content .detail-table tr td {
 	padding: 2px;
 }
+
+tr.league-row td
+{
+    background-color: #CCC !important;
+    font-weight: bold;
+}
+tr.normal-row td
+{
+    background-color: #EDF0F0 !important;
+}
+tr.live-row td
+{
+    background-color: #FBFFE5 !important;
+}
+.bold
+{
+    font-weight: bold;
+}
+.noborder
+{
+    border-bottom: none !important;
+}
+font 
+{
+    clear: both;
+}

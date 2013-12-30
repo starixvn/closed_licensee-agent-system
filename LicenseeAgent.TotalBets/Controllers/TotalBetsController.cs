@@ -150,14 +150,40 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         /// <summary>
+        /// Set total bet value.
+        /// </summary>
+        /// <param name="matchs">Match list.</param>
+        /// <param name="betType">Bet type value.</param>
+        /// <param name="betTeam">Bet team value.</param>
+        /// <returns>Total bet string.</returns>
+        [NonAction]
+        public string SetTotalBetsValues(IEnumerable<TotalBetsEntity> matchs, int betType, string betTeam)
+        {
+            var matchByBet = matchs.Where(x => x.BetType == betType && x.BetTeam == betTeam);
+            if (matchByBet.Any())
+            {
+                var match = matchByBet.FirstOrDefault();
+                var template = "({0}) {1}";
+                var betCountString = Formatter.FormatInt(match.TotalTrans);
+                var stakeString = match.Stake % 1 == 0 ? Formatter.FormatInt(match.Stake) : Formatter.FormatDecimal(match.Stake);
+
+                return string.Format(template, betCountString, stakeString);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Get All League.
         /// </summary>
         /// <param name="league">League value.</param>
         /// <returns>League list.</returns>
         [HttpPost]
-        public JsonResult GetLeagueList(string league)
+        public JsonResult GetLeagueList(string league, int sportType = 1)
         {
-            var criteria = new SoccerLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1 };
+            var criteria = new LeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType };
             var leagues = _totalBetsService.GetLeagues(criteria);
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
@@ -187,9 +213,9 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="event">Event value.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
-        public JsonResult GetEventsByLeagues(string league, string @event)
+        public JsonResult GetEventsByLeagues(string league, string @event, int sportType = 1)
         {
-            var criteria = new SoccerEventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = 1, LeagueList = league };
+            var criteria = new EventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
             var events = _totalBetsService.GetEventsByLeague(criteria);
             var eventIds = string.IsNullOrEmpty(@event) ? new List<string>() : @event.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();

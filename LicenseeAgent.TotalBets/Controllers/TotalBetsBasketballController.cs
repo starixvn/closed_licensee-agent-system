@@ -45,7 +45,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                List = GenerateBasketballData(dataList)
+                List = GenerateBasketballData(dataList).OrderBy(x => x.LeagueName).ToList()
             });
         }
 
@@ -55,7 +55,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
             var eventTemp = "{0}<br /><br />{1}<br /><br />" + "<span class='draw'>" + Las.Draw + "</span>";
-            var index = 0;
+            //var index = 0;
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
             var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
             foreach (var leagueId in leagueIdList)
@@ -72,7 +72,8 @@ namespace LicenseeAgent.TotalBets.Controllers
                     var match = new MatchEntity
                     {
                         MatchId = totalBet.MatchId,
-                        Index = index++,
+                        LiveIndicator = totalBet.LiveIndicator,
+                        //Index = index++,
                         Time = totalBet.ShowTime,
                         HomeId = totalBet.HomeId,
                         AwayId = totalBet.AwayId,
@@ -92,7 +93,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     matchList.Add(match);
                 }
 
-                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList });
+                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList.OrderByDescending(m => m.LiveIndicator).ThenBy(n => n.MatchId).ToList() });
             }
 
             return result;

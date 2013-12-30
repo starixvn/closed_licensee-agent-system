@@ -14,6 +14,7 @@
             });
 
             Soccer.initData();
+            
         },
 
         initData: function () {
@@ -102,8 +103,12 @@
                 selectedText: '# selected events',
                 tooltipNoItem: 'There is no event selected.',
                 showParentSelectedText: false,
-                onLeave: function () { Soccer.selectedEvent(); }
-
+                showFooter: true,
+                footerButtonText: 'OK',
+                onLeave: function () { Soccer.selectedEvent(); },
+                onFooterButtonClick: function () {
+                    Soccer.selectedEvent(); 
+                }
             });
         },
 

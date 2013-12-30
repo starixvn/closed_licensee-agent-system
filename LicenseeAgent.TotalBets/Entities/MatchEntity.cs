@@ -19,9 +19,7 @@ namespace LicenseeAgent.TotalBets.Entities
     {
         public int MatchId { get; set; }
 
-        public bool IsLive { get; set; }
-
-        public int Index { get; set; }
+        public bool LiveIndicator { get; set; }
 
         public string Time { get; set; }
 

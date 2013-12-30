@@ -283,7 +283,8 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/plugin").Include(
                 "~/Views/TotalBets/Resources/fanex.multiSelect.js").Include(
-                "~/Views/TotalBets/Resources/plugin.refresh.countdown.js"));
+                "~/Views/TotalBets/Resources/plugin.refresh.countdown.js").Include(
+                "~/Views/TotalBets/Resources/scrolltable.js"));
         }
 
         #endregion Pages

@@ -514,6 +514,7 @@
     <Content Include="Views\TotalBets\Resources\fanex.multiSelect.css" />
     <Content Include="Views\TotalBets\Resources\fanex.multiSelect.js" />
     <Content Include="Views\TotalBets\Resources\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Views\TotalBets\Resources\scrolltable.js" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />

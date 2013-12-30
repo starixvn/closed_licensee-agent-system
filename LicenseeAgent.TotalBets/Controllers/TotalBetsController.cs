@@ -60,8 +60,8 @@ namespace LicenseeAgent.TotalBets.Controllers
         public ViewResult GetSoccerData(SoccerViewModel model)
         {
             var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
-            var dataList = _totalBetsService.GetSoccerData(criteria);
-            model.MainData = GetMainData(dataList);
+            var dataList = _totalBetsService.GetSoccerData(criteria).OrderByDescending(x=>x.LiveIndicator);
+            model.MainData = GetMainData(dataList).OrderBy(x=>x.LeagueName).ToList();
 
             return View(model);
         }
@@ -76,30 +76,25 @@ namespace LicenseeAgent.TotalBets.Controllers
         [NonAction]
         public IList<LeagueGroupEntity> GetMainData(IEnumerable<SoccerDataEntity> dataList)
         {
-            var timeLiveTemp = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
-            var timeDeadBallTemp = "<span class='live'>" + Las.Live + "!</span><br />{hh:mmtt}";
-            var index = 1;
+            var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
             var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
             foreach (var leagueId in leagueIdList)
             {
                 var matchList = new List<MatchEntity>();
                 var matchsInLeague = dataList.Where(x => x.LeagueId == leagueId).ToList();
-                var matchGroupList =
-                    matchsInLeague.Select(x => new { x.MatchId, x.IsLive, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
+                var matchGroupList = matchsInLeague.Select(x => new { x.MatchId, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
                 foreach (var matchGroup in matchGroupList)
                 {
-                    var matches = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.IsLive == matchGroup.IsLive &&
-                        x.LiveHomeScore == matchGroup.LiveHomeScore
+                    var matches = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.LiveHomeScore == matchGroup.LiveHomeScore 
                         && x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
                     var match = new MatchEntity
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
-                        IsLive = matchGroup.IsLive,
-                        Index = index++,
-                        Time = matchGroup.IsLive
-                            ? string.Format(timeLiveTemp, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
-                            : string.Format(timeDeadBallTemp, matches.First().KickoffTime),
+                        LiveIndicator = matchGroup.LiveIndicator,
+                        Time = matchGroup.LiveIndicator
+                            ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
+                            : matches.FirstOrDefault().ShowTime,
                         HomeId = matches.FirstOrDefault().HomeId,
                         AwayId = matches.FirstOrDefault().AwayId,
                         HomeFulltimeHandicap = SetTotalBetsValues(matches, 1, "h"),

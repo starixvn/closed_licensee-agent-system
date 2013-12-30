@@ -645,6 +645,6 @@ If that is not you, please contact your upline!!!</value>
     <comment>not</comment>
   </data>
   <data name="MessageUnderMaintenance" xml:space="preserve">
-    <value>We apologize for any inconvenience this may cause. If you have any query, please contact us at: Service Discruption Period - {0} {1}.</value>
+    <value>We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} {1}.</value>
   </data>
 </root>

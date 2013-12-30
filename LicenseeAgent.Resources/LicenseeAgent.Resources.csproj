@@ -74,8 +74,8 @@
     <EmbeddedResource Include="LangMsg.zh-TW.resx" />
     <EmbeddedResource Include="Las.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Las.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Las.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Las.zh-CN.resx">
       <SubType>Designer</SubType>

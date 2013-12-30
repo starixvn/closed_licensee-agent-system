@@ -23,7 +23,7 @@ namespace LicenseeAgent.Core.Entities
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
             StartTime = nowHour.ToShortTimeString();
             EndTime = nowHour.AddHours(1).ToShortTimeString();
-            UMDate = DateTime.Now.ToString("dd MMMM yyyy");
+            UMDate = DateTime.Now.ToString("MMMM dd,yyyy");
         }
 
         public bool Status { get; set; }

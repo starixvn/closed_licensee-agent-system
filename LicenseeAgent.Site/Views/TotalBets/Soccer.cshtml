@@ -5,18 +5,18 @@
 @using LicenseeAgent.TotalBets.Entities;
 @model LicenseeAgent.TotalBets.ViewModels.SoccerViewModel
 @section css{
+    @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
     @Styles.Render("~/css/totalbets-soccer")
 }
 @section scripts{
-    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-soccer")        
+    @Scripts.Render("~/js/totalbets-soccer")       
+    @Html.Partial("Soccer.Script") 
 }
 <div class="legend">@Las.Soccer.ToUpper() - @Las.TotalBets.ToUpper()</div>
-@using (Html.BeginForm("", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
-{ }
 @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
 {   
     <div class="controls-row">
@@ -39,11 +39,7 @@
         <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
     </div>
 }
-<div class="wrapper" id="totalbet-data-content">
-    <div class="scrolling-area">
-        <table>
-            @{Html.RenderPartial("~/Views/TotalBets/Soccer.Header.cshtml");}
-            @{Html.RenderPartial("~/Views/TotalBets/Soccer.Content.cshtml");}
-        </table>
+<div class="wrapper">
+    <div id="grid" class="freegrid">
     </div>
 </div>

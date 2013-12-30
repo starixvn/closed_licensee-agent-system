@@ -35,15 +35,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var model = new SoccerViewModel() { League = string.Empty, Event = string.Empty, TimeInterval = 15 };
 
-            return GetSoccerData(model);
-        }
-
-        [HttpPost]
-        public ViewResult Soccer(SoccerViewModel model)
-        {
-            model.Event = model.Event ?? string.Empty;
-            model.League = model.League ?? string.Empty;
-            return GetSoccerData(model);
+            return View(model);
         }
 
         [HttpGet]
@@ -55,14 +47,15 @@ namespace LicenseeAgent.TotalBets.Controllers
             return View(model);
         }
 
-        [NonAction]
-        public ViewResult GetSoccerData(SoccerViewModel model)
+        [HttpPost]
+        public JsonResult GetSoccerData(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria { AgentId = CurrentSession.AgentInfo.AgentId, LeagueList = model.League, MatchList = model.Event };
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var dataList = _totalBetsService.GetSoccerData(criteria).OrderByDescending(x => x.LiveIndicator);
-            model.MainData = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList();
-
-            return View(model);
+            return Json(new
+            {
+                List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
+            });
         }
 
         #region Ultilities

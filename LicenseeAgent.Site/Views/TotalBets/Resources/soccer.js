@@ -1,26 +1,26 @@
 ﻿var Soccer = function ($) {
-    var urlAjax = $('#search-form').attr('action');
     return {
-        init: function () {            
-            $(".more-link").click(function () {
-                Soccer.showAllBetType(this);
-            });
-
+        init: function () {
             $("#refresh-count-down").refreshCountDown({
-                listTimeInterval: [15, 30, 45, 60, 75],
+                listTimeInterval: CORE.TimeInterval,
                 timeIntervalName: "TimeInterval",
                 timeIntervalValue: $("#server-time-interval").val(),
                 formName: "main-form"
             });
 
             Soccer.initData();
-            
+
+            $('form').submit(function () {
+                Soccer.reRenderAfterPaged();
+                refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+                return false;
+            });
         },
 
         initData: function () {
             CORE.blockUI();
             Soccer.getLeagueData();
-            Soccer.getEventDataByLeague();
+            Soccer.getEventDataByLeague(true);
         },
 
         getLeagueData: function () {
@@ -28,7 +28,7 @@
                 League: $("#League").val()
             };
             $.ajax({
-                url: urlAjax + "/GetLeagueList",
+                url: CORE.resolveUrl("/Totalbets/GetLeagueList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -61,7 +61,7 @@
                     Soccer.selectedLeague();
                 },
                 onFooterButtonClick: function () {
-                    Soccer.selectedLeague(); 
+                    Soccer.selectedLeague();
                 }
             });
         },
@@ -72,13 +72,13 @@
             Soccer.getEventDataByLeague();
         },
 
-        getEventDataByLeague: function () {
+        getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#League").val(),
                 Event: $("#Event").val()
             };
             $.ajax({
-                url: urlAjax + "/GetEventsByLeagues",
+                url: CORE.resolveUrl("/Totalbets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -86,6 +86,11 @@
                 },
                 success: function (data) {
                     Soccer.initEventMultiSelect(data.List);
+
+                    // Load data for the first time load page
+                    if (isLoadGrid) {
+                        Soccer.reRenderAfterPaged();
+                    }
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -111,7 +116,7 @@
                 footerButtonText: 'OK',
                 onLeave: function () { Soccer.selectedEvent(); },
                 onFooterButtonClick: function () {
-                    Soccer.selectedEvent(); 
+                    Soccer.selectedEvent();
                 }
             });
         },
@@ -124,8 +129,111 @@
         showAllBetType: function (context) {
             var matchId = $(context).attr("data-matchid");
             var matchName = $(context).attr("data-matchname");
-            var url = urlAjax + "/SoccerDetail?matchId=" + matchId + "&matchName=" + matchName;
+            var url = CORE.resolveUrl("/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName;
             window.location.href = url;
+        },
+        reRenderAfterPaged: function () {
+            var params = {
+                LeagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                MatchList: $("#event-multi-select").fanexMultiSelect('getItems', true).join(',')
+            };
+
+            $.ajax({
+                url: CORE.resolveUrl("/Totalbets/GetSoccerData"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    gridOption.bodyRows = Soccer.genGridRows(data.List, gridOption);
+                    $('#grid').show().fanexGrid(gridOption);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+
+        genGridRows: function (list, options) {
+            var columns = options.columns;
+            var rowCssClass = options.rowCssClass; // custom option
+            var rowHeight = options.RowHeight;
+            var indexNumberColumn = options.indexNumberColumn; // custom option
+            var len = list.length;
+            var bodyRows = [];
+            var leagueId = 0;
+
+            for (var i = 0; i < len; i++) {//League
+                var rowIndex = 0;
+                var league = list[i];
+
+                //Push League row
+                bodyRows.push({
+                    Columns: ([
+                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9 }
+                        ]),
+                    CssClass: "league-row"
+                });
+
+                //Push Match Row
+                var matches = league.MatchList;
+                var numMatches = matches.length;
+
+                for (var j = 0; j < numMatches; j++) {
+                    var match = matches[j];
+                    var homeTeam = [];
+                    rowIndex++;
+                    //Home team
+                    homeTeam.push(
+                        { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
+                        { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
+                        { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
+                        { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                        { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                        { Name: "FTOE", Value: match.HomeFulltimeOddEven },
+                        { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                        { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                        { Name: "FHOE", Value: match.HomeFirstHalfOddEven }
+                    );
+
+                    var awayTeam = [];
+                    //Away team
+                    awayTeam.push(
+                        { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
+                        { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
+                        { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
+                        { Name: "FTOE", Value: match.AwayFulltimeOddEven },
+                        { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
+                        { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
+                        { Name: "FHOE", Value: match.AwayFirstHalfOddEven }
+                    );
+
+                    var moreLink = "<span class='more-link' onclick='Soccer.showAllBetType(this)' data-matchid='" + match.MatchId + "' data-matchname='" + match.HomeName + " -vs- " + match.AwayName + "'>More</span>";
+                    var drawTeam = [];
+                    drawTeam.push(
+                        { Name: "Event", Value: "Draw", TdClass: "draw" },
+                        { Name: "FTHDP", Value: moreLink, MergeColNumber: 2, CssClass: "c-align" },
+                        { Name: "FTOE", Value: match.DrawFulltimeOneXTwo },
+                        { Name: "FHHDP", Value: "", MergeColNumber: 2 },
+                        { Name: "FHOE", Value: match.DrawFirstHalfOneXTwo }
+                    );
+
+                    bodyRows.push({
+                        Columns: homeTeam,
+                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
+                    });
+                    bodyRows.push({
+                        Columns: awayTeam,
+                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
+                    });
+                    bodyRows.push({
+                        Columns: drawTeam,
+                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
+                    });
+                }
+            }
+            return bodyRows;
         }
     }
 } (jQuery);

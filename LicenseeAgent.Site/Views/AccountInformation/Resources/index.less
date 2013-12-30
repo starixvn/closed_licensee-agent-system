@@ -62,16 +62,21 @@
     {
         overflow: hidden;
         
-        ul.nav li {
-            width: 100%;
-            float: left;
-        }
-        
         .tab-pane > .content
         {
-            height: 200px;
+            min-height: 40px;
+            max-height: 200px;
             width: 100%;
             overflow: auto;
+            
+            .nav-list
+            {
+                padding-left:15px;
+                
+                a {
+                    padding: 6px 0;
+                }
+            }
         }
     }
     

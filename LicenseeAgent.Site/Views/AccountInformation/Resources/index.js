@@ -72,7 +72,7 @@
         },
         pagingBinding: function () {
             $(".agent-inline").click(function (event) {
-                $("#UserName").val($(this).html());
+                $("#UserName").val($(this).text());
                 $("#formSearch").submit();
 
                 event.preventDefault();

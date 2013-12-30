@@ -305,11 +305,6 @@
     <Content Include="Views\BetList\Resources\BetListManager.js" />
     <Content Include="Views\Customer\Resources\customerlist.js" />
     <Content Include="Views\Customer\Resources\images\icons.png" />
-    <Content Include="Views\Error\Resources\images\background.jpg" />
-    <Content Include="Views\Error\Resources\images\internal-error-page.png" />
-    <Content Include="Views\Error\Resources\images\page-not-found.png" />
-    <Content Include="Views\Error\Resources\images\unauthorized-access.png" />
-    <Content Include="Views\Error\Resources\images\Under-Maintenace.png" />
     <Content Include="Views\Home\Resources\images\arrow-hover.png" />
     <Content Include="Views\Home\Resources\images\arrow.png" />
     <Content Include="Views\Internal\Resources\Header.js" />
@@ -728,7 +723,6 @@
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
-    <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
     <Content Include="Views\AccountInformation\Search.cshtml" />
     <Content Include="Views\AccountInformation\_SettingAction.cshtml" />

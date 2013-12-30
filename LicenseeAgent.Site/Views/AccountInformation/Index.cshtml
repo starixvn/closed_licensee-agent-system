@@ -11,11 +11,12 @@
         </span>
     </div>
 }
-<div class="error">@LangMsg.Msg_1032</div>
+<div class="alert alert-info error">
+    @LangMsg.Msg_1032
+</div>
 <div id="searchUrl" data-suggest="@Url.Action("Suggest", "AccountInformation")" 
                     data-downline="@Url.Action("GetDownlines", "AccountInformation")"
-                    data-currency="@Url.Action("LoginAsUser", "Internal")"
-                    data->
+                    data-currency="@Url.Action("LoginAsUser", "Internal")">
 </div>
 <div id="searchResult"></div>
 <div id="dialog-confirm" title="@Las.Attention">

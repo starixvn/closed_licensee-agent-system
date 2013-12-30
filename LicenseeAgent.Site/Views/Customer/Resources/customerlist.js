@@ -347,22 +347,22 @@
             var items = [];
             if (pageContext.IsLastLevel) {
                 items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
-                        { name: actions.NumberGame, callback: customerList.editSetting },
+                        /*{ name: actions.NumberGame, callback: customerList.editSetting },
                         { name: actions.Casino, callback: customerList.editSetting },
                         { name: actions.VirtualSports, callback: customerList.editSetting },
                         { name: actions.EditInfo, callback: customerList.editSetting },
                         { name: actions.SBBetSetting, callback: customerList.editSetting },
-                        { name: actions.Commission, callback: customerList.editSetting },
+                        { name: actions.Commission, callback: customerList.editSetting },*/
                         { name: actions.Password, callback: customerList.editSetting}];
             }
             else {
                 items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
-                        { name: actions.NumberGame, callback: customerList.editSetting },
+                        /*{ name: actions.NumberGame, callback: customerList.editSetting },
                         { name: actions.Casino, callback: customerList.editSetting },
                         { name: actions.VirtualSports, callback: customerList.editSetting },
                         { name: actions.EditInfo, callback: customerList.editSetting },
                         { name: actions.AddDownline, callback: customerList.editSetting },
-                        { name: actions.Commission, callback: customerList.editSetting },
+                        { name: actions.Commission, callback: customerList.editSetting },*/
                         { name: actions.Password, callback: customerList.editSetting}];
             }
 

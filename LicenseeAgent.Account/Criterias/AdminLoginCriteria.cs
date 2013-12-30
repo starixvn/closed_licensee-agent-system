@@ -34,14 +34,6 @@ namespace LicenseeAgent.Account.Criterias
 
         public string UserRole { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Status { get; set; }
-
         public override string GetSettingKey()
         {
             return "Las_AdminLogin";

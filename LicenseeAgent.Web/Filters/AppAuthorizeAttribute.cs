@@ -29,7 +29,7 @@ namespace LicenseeAgent.Web.Filters
         /// <value>
         ///   <c>true</c> if is internal login by CSD/IT, <c>false</c>.
         /// </value>
-        public bool IsInternal { get; set; }
+        public bool OnlyAdminSite { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether no checking agent to change password and more.
@@ -54,8 +54,7 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
-            // Some controllers which have IsInternal = true must have AppSettings.IsInternal = true
-            if (IsInternal && !AppSettings.IsInternal)
+            if (OnlyAdminSite && !AppSettings.IsAdminSite)
             {
                 filterContext.ReturnUnauthorized();
                 return;
@@ -82,7 +81,7 @@ namespace LicenseeAgent.Web.Filters
                     return;
                 }
 
-                if (!AppSettings.IsInternal && currentSession.IsInternalSignIn)
+                if (!AppSettings.IsAdminSite && currentSession.IsDirectSignIn)
                 {
                     CheckingRequireAgentChangePassword(filterContext);
                 }

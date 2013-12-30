@@ -85,17 +85,17 @@ namespace LicenseeAgent.TotalBets.Controllers
             {
                 var matchList = new List<MatchEntity>();
                 var matchsInLeague = dataList.Where(x => x.LeagueId == leagueId).ToList();
-                var matchGroupList = 
+                var matchGroupList =
                     matchsInLeague.Select(x => new { x.MatchId, x.IsLive, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
                 foreach (var matchGroup in matchGroupList)
                 {
                     var matches = matchsInLeague.Where(x => x.MatchId == matchGroup.MatchId && x.IsLive == matchGroup.IsLive &&
-                        x.LiveHomeScore == matchGroup.LiveHomeScore 
+                        x.LiveHomeScore == matchGroup.LiveHomeScore
                         && x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
                     var match = new MatchEntity
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
-                        IsLive= matchGroup.IsLive,
+                        IsLive = matchGroup.IsLive,
                         Index = index++,
                         Time = matchGroup.IsLive
                             ? string.Format(timeLiveTemp, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)

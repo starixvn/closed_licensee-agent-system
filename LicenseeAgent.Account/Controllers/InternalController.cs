@@ -32,7 +32,7 @@ namespace LicenseeAgent.Account
     /// <summary>
     /// Internal Login Controller.
     /// </summary>
-    [AppAuthorize(IsInternal = true)]
+    [AppAuthorize(OnlyAdminSite = true)]
     [SessionState(SessionStateBehavior.Default)]
     public class InternalController : BaseController
     {
@@ -291,7 +291,7 @@ namespace LicenseeAgent.Account
             SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo.OnAdminId, internalLoginInfo.Language)
             {
                 InternalLoginInfo = internalLoginInfo,
-                IsInternalSignIn = false
+                IsDirectSignIn = false
             };
 
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);

@@ -28,7 +28,7 @@ namespace LicenseeAgent.Web
 
         string Language { get; set; }
 
-        bool IsInternalSignIn { get; }
+        bool IsDirectSignIn { get; }
 
         string UserName { get; }
 

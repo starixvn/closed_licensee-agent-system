@@ -24,14 +24,14 @@ namespace LicenseeAgent.Core.Configurations
             BeginTime = downTimes[0].Trim();
             EndTime = downTimes[1].Trim();
 
-            IsInternal = GetValue("IsInternal") == "1";
+            IsAdminSite = GetValue("IsAdminSite") == "1";
             UnderMaintenanceUrl = GetValue("UnderMaintenaceUrl");
             DisabledUnderMaintenanceAPI = GetValue("DisabledUnderMaintenanceAPI") == "1";
             LocalTest = GetValue("LocalTest") == "1";
             IsDownTime = GetValue("IsDownTime") == "1";
         }
 
-        public static bool IsInternal { get; private set; }
+        public static bool IsAdminSite { get; private set; }
 
         public static string UnderMaintenanceUrl { get; private set; }
 

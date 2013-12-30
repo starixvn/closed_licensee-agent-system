@@ -75,11 +75,7 @@ namespace LicenseeAgent.Account.Services
                     UserSalt = criteria.UserSalt,
                     UserId = criteria.UserId,
                     UserRole = criteria.UserRole,
-                    ServerId = criteria.ServerId,
-                    FirstName = criteria.FirstName,
-                    LastName = criteria.LastName,
-                    Email = criteria.Email,
-                    Status = criteria.Status
+                    ServerId = criteria.ServerId
                 };
             }
 

@@ -26,13 +26,5 @@ namespace LicenseeAgent.Core.Entities
         public string UserRole { get; set; }
 
         public int ServerId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Status { get; set; }
     }
 }

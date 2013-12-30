@@ -83,7 +83,7 @@ namespace LicenseeAgent.Account.Controllers
         [AllowAnonymous]
         public ActionResult SignIn()
         {
-            if (AppSettings.IsInternal)
+            if (AppSettings.IsAdminSite)
             {
                 return RedirectToAction("SignIn", "Internal");
             }
@@ -243,7 +243,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 if (CurrentSession.AgentInfo != null)
                 {
-                    if (CurrentSession.IsInternalSignIn)
+                    if (CurrentSession.IsDirectSignIn)
                     {
                         isKickout = AgentReCheckIn();
                     }
@@ -257,7 +257,7 @@ namespace LicenseeAgent.Account.Controllers
             return Json(new
             {
                 MsgId = isKickout,
-                MsgContent = isKickout ? CurrentSession.IsInternalSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty
+                MsgContent = isKickout ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty
             });
         }
 
@@ -315,14 +315,14 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (CurrentSession.AdminInfo != null)
             {
-                if (CurrentSession.IsInternalSignIn)
+                if (CurrentSession.IsDirectSignIn)
                 {
                     AdminUserLogout();
                 }
             }
             else
             {
-                if (CurrentSession.AgentInfo != null && CurrentSession.IsInternalSignIn)
+                if (CurrentSession.AgentInfo != null && CurrentSession.IsDirectSignIn)
                 {
                     AgentUserLogout();
                 }

@@ -32,7 +32,7 @@ namespace LicenseeAgent.Web
         {
             AgentInfo = agentInfo;
             AdminInfo = null;
-            IsInternalSignIn = true;
+            IsDirectSignIn = true;
             Language = language;
             OnUserId = checkinOnUserId;
         }
@@ -47,7 +47,7 @@ namespace LicenseeAgent.Web
         {
             AdminInfo = adminInfo;
             AgentInfo = null;
-            IsInternalSignIn = true;
+            IsDirectSignIn = true;
             Language = language;
             OnUserId = checkinOnUserId;
         }
@@ -68,7 +68,7 @@ namespace LicenseeAgent.Web
         /// <value>
         ///   <c>true</c> if sign-in directly; otherwise, <c>false (LRF, login as agent)</c>.
         /// </value>
-        public bool IsInternalSignIn { get; set; }
+        public bool IsDirectSignIn { get; set; }
 
         public int ServerId
         {
@@ -96,19 +96,19 @@ namespace LicenseeAgent.Web
                 }
 
                 // admin direct login
-                if (AdminInfo != null && IsInternalSignIn && !AppSettings.IsInternal)
+                if (AdminInfo != null && IsDirectSignIn && !AppSettings.IsAdminSite)
                 {
                     return false;
                 }
 
                 // agent direct login
-                if (AdminInfo == null && AgentInfo != null && IsInternalSignIn && AppSettings.IsInternal)
+                if (AdminInfo == null && AgentInfo != null && IsDirectSignIn && AppSettings.IsAdminSite)
                 {
                     return false;
                 }
 
                 // admin login as agent
-                if (AppSettings.IsInternal && !IsInternalSignIn && InternalLoginInfo == null)
+                if (AppSettings.IsAdminSite && !IsDirectSignIn && InternalLoginInfo == null)
                 {
                     return false;
                 }
@@ -135,7 +135,7 @@ namespace LicenseeAgent.Web
                 }
                 else
                 {
-                    if (IsInternalSignIn)
+                    if (IsDirectSignIn)
                     {
                         return AgentInfo.AgentId;
                     }

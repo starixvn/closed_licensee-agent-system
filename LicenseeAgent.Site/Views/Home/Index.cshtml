@@ -27,7 +27,7 @@
 @section scripts
 {
     @Scripts.Render("~/js/home")
-    @if (AppSettings.IsInternal)
+    @if (AppSettings.IsAdminSite)
     {
         @Scripts.Render("~/js/home/internal")
     }

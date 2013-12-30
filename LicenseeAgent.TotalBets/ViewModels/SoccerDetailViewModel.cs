@@ -14,6 +14,8 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// </summary>
     public class SoccerDetailViewModel
     {
+        public string MatchName { get; set; }
+
         public IList<SoccerDetailEntity> MainData { get; set; }
     }
 }

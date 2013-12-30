@@ -51,8 +51,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = matchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
-            ViewBag.MatchName = matchName;
-            var model = new SoccerDetailViewModel { MainData = dataList.ToList() };
+            var model = new SoccerDetailViewModel { MatchName = matchName, MainData = dataList.ToList() };
             return View(model);
         }
 

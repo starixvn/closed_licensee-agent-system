@@ -30,7 +30,7 @@
 
                     $(this).ajaxSubmit({
                         target: '#searchResult',
-                        beforeSubmit: CORE.blockUI,
+                        beforeSubmit: accountInformation.preSearchUser,
                         success: accountInformation.searchResultBinding
                     });
                 }
@@ -41,6 +41,10 @@
             $('#search').click(function () {
                 $("#formSearch").submit();
             });
+        },
+        preSearchUser: function () {
+            CORE.blockUI();
+            $("#searchAlert").hide();
         },
         searchResultBinding: function () {
             CORE.unblockUI();
@@ -156,21 +160,7 @@
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {
-            var buttons = new Array();
-            buttons.push({
-                text: 'OK',
-                click: function () {
-                    accountInformation.closeDialog();
-                }
-            });
-            $('#dialog-confirm').find('p').html(message);
-            $("#dialog-confirm").dialog({
-                resizable: false,
-                width: 400,
-                modal: true,
-                buttons: buttons,
-                close: function (event, ui) { }
-            });
+            $("#searchAlert").show();
         },
         //show alert when search username exist in another currency
         showCurrencyAlert: function (currencyId, msgQuestion, msgAlert) {

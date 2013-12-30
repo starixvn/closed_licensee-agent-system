@@ -54,7 +54,7 @@ namespace LicenseeAgent.Account.Controllers
         [HttpPost]
         public ActionResult Search(SearchUserViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 InvalidModelViewResult();
             }

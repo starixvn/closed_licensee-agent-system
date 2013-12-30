@@ -13,8 +13,6 @@ namespace LicenseeAgent.Account.Criterias
 
         public string NetSessionId { get; set; }
 
-        public int ServerId { get; set; }
-
         [SpParam(SqlParamName = "On_UserId")]
         public int OnUserId { get; set; }
 
@@ -27,8 +25,9 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0 && !string.IsNullOrEmpty(Ip) &&
-                ServerId > 0 && !string.IsNullOrEmpty(NetSessionId);
+            return AgentId > 0
+                && !string.IsNullOrEmpty(Ip)
+                && !string.IsNullOrEmpty(NetSessionId);
         }
     }
 }

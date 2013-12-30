@@ -41,7 +41,6 @@ namespace LicenseeAgent.Account.Services
                     AgentId = criteria.AgentId,
                     AgentLevel = criteria.AgentLevel,
                     NumberOfLevel = criteria.NumberOfLevel,
-                    ServerId = criteria.ServerId,
                     SubAccId = criteria.SubAccId,
                     CurrencyName = criteria.Currency,
                     CurrencyId = criteria.CurrencyId,

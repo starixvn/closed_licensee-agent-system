@@ -455,7 +455,6 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentId = agentInfo.AgentId,
                 Ip = Request.GetClientIp(),
-                ServerId = agentInfo.ServerId,
                 NetSessionId = Session.SessionID
             };
 

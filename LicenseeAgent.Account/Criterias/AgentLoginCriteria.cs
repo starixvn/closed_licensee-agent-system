@@ -27,8 +27,6 @@ namespace LicenseeAgent.Account.Criterias
 
         public string LoginIp { get; set; }
 
-        public int ServerId { get; set; }
-
         public string LoginDomain { get; set; }
 
         public string BrowserName { get; set; }

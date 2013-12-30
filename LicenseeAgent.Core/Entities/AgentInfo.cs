@@ -28,8 +28,6 @@ namespace LicenseeAgent.Core.Entities
 
         public int AgentId { get; set; }
 
-        public int ServerId { get; set; }
-
         public int CurrencyId { get; set; }
 
         public string CurrencyName { get; set; }

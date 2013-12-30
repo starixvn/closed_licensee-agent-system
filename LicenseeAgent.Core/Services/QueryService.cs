@@ -17,6 +17,7 @@ namespace LicenseeAgent.Core.Services
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using Fanex.NAP.Framework.Exceptions;
 
     /// <summary>
     /// This class encapsulate dynamic repository to provide
@@ -36,6 +37,11 @@ namespace LicenseeAgent.Core.Services
 
             try
             {
+                if (!criteria.IsValid())
+                {
+                    throw new NapDataAccessException();
+                }
+
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
@@ -64,17 +70,17 @@ namespace LicenseeAgent.Core.Services
 
             try
             {
-                if (criteria.IsValid())
+                if (!criteria.IsValid())
                 {
-                    using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        var param = criteria.GetSpParams();
-                        var result = objectDb.QueryEntity<T>(param);
-                        return result;
-                    }
+                    throw new NapDataAccessException();
                 }
 
-                return (T)new object();
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var result = objectDb.QueryEntity<T>(param);
+                    return result;
+                }
             }
             catch (Exception exception)
             {
@@ -97,6 +103,11 @@ namespace LicenseeAgent.Core.Services
 
             try
             {
+                if (!criteria.IsValid())
+                {
+                    throw new NapDataAccessException();
+                }
+
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
@@ -132,6 +143,11 @@ namespace LicenseeAgent.Core.Services
 
             try
             {
+                if (!criteria.IsValid())
+                {
+                    throw new NapDataAccessException();
+                }
+
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();

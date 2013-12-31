@@ -1,9 +1,9 @@
 ﻿@{
     ViewBag.Title = Las.TotalBets + " - " + Las.Soccer;
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 @using LicenseeAgent.TotalBets.Entities;
-@model LicenseeAgent.TotalBets.ViewModels.SoccerViewModel
+@using LicenseeAgent.TotalBets.ViewModels;
+@model SoccerViewModel
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
@@ -13,29 +13,32 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-soccer")       
-    @Html.Partial("Soccer.Script") 
+    @Scripts.Render("~/js/totalbets-soccer")
+    @Html.Partial("Soccer.Script")
 }
-<div class="legend">@Las.Soccer.ToUpper() - @Las.TotalBets.ToUpper()</div>
+<div class="legend">
+    @Las.Soccer - @Las.TotalBets
+</div>
 @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
 {   
     <div class="controls-row">
-        <div id="league-multi-select"></div>
+        <div id="league-multi-select">
+        </div>
         @Html.Hidden("League", Model.League)
     </div>
     <div class="controls-row">
-        <div id="event-multi-select"></div>
-        @Html.Hidden("Event",Model.Event)
+        <div id="event-multi-select">
+        </div>
+        @Html.Hidden("Event", Model.Event)
     </div>
     <div class="controls-row">
         <button class="btn btn-primary" type="submit">
             @Las.Submit
         </button>
     </div>
-    <div class="controls-row refresh-count-down-area">        
+    <div class="controls-row refresh-count-down-area">
         <div class="refresh-count-down" id="refresh-count-down">
-            
-        </div>        
+        </div>
         <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
     </div>
 }

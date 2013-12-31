@@ -18,7 +18,6 @@
         },
 
         initData: function () {
-            CORE.blockUI();
             Soccer.getLeagueData();
             Soccer.getEventDataByLeague(true);
         },
@@ -28,15 +27,17 @@
                 League: $("#League").val()
             };
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetLeagueList"),
+                url: CORE.resolveUrl("~/TotalBets/GetLeagueList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
+                    CORE.blockUI();
                 },
                 success: function (data) {
                     Soccer.initLeagueMultiSelect(data.List);
                 },
                 complete: function () {
+                    CORE.unblockUI();
                 }
             });
         },
@@ -78,7 +79,7 @@
                 Event: $("#Event").val()
             };
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetEventsByLeagues"),
+                url: CORE.resolveUrl("~/TotalBets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -129,7 +130,7 @@
         showAllBetType: function (context) {
             var matchId = $(context).attr("data-matchid");
             var matchName = $(context).attr("data-matchname");
-            var url = CORE.resolveUrl("/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName;
+            var url = CORE.resolveUrl("~/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName;
             window.location.href = url;
         },
         reRenderAfterPaged: function () {
@@ -139,7 +140,7 @@
             };
 
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetSoccerData"),
+                url: CORE.resolveUrl("~/Totalbets/GetSoccerData"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {

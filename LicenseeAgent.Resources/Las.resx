@@ -746,4 +746,10 @@ If that is not you, please contact your upline!!!</value>
     <value>Yes</value>
     <comment>not</comment>
   </data>
+  <data name="HOUL" xml:space="preserve">
+    <value>Handicap/Over Under/Live</value>
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>Money Line</value>
+  </data>
 </root>

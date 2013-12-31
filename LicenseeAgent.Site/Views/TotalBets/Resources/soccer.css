@@ -1,68 +1,62 @@
-﻿.legend {
-	font-size: 20px;
-	margin-left: 10px;	
-	margin-top: 0px;
-}
-#main-form {
-    margin-left: 10px;
-}
-.wrapper{
-margin-left: 10px;
-}
+﻿/* Overwrite fanex grid */
 
-.refresh-count-down-area {
-	float: right;
-	
-}
-
-/* Overwrite fanex grid */
-
-table tbody tr.league-row td{
+table tbody tr.league-row td
+{
     text-align: left;
-    background-color: #CCCCCC !important;	
+    background-color: #CCCCCC !important;
 }
 
-table tbody tr.normal-row td{
+table tbody tr.normal-row td
+{
     background-color: #edf0f0 !important;
 }
 
-table tbody tr.live-row td{
+table tbody tr.live-row td
+{
     background-color: #fbffe5 !important;
 }
-table tbody tr.normal-row td{
-	border-right: 1px solid #ffffff !important;
+table tbody tr.normal-row td
+{
+    border-right: 1px solid #ffffff !important;
     border-bottom: 1px solid #ffffff !important;
 }
 
-table tbody tr.live-row td{
-	border-right: 1px solid #e9e9e9 !important;
+table tbody tr.live-row td
+{
+    border-right: 1px solid #e9e9e9 !important;
     border-bottom: 1px solid #e9e9e9 !important;
 }
-table tbody tr td.team-name{
+table tbody tr td.team-name
+{
     text-align: left;
-    border-bottom: 1px solid #FFFFFF !important;	
+    border-bottom: 1px solid #FFFFFF !important;
     padding-left: 2px;
     font-weight: bold;
 }
-table tbody tr td span.live{
+table tbody tr td span.live
+{
     color: #FF0000;
 }
-table tbody tr td.draw{
+table tbody tr td.draw
+{
     color: #908F8F;
-    text-align: left;	
+    text-align: left;
     padding-left: 2px;
 }
-table tbody tr td .c-align {
-	text-align: center !important;
+table tbody tr td .c-align
+{
+    text-align: center !important;
 }
-table tbody tr td span.more-link{
+table tbody tr td span.more-link
+{
     color: #589CC9;
     font-weight: bold;
-	cursor: pointer;	
+    cursor: pointer;
 }
 
-table tr td div.totalbets-item {
-	width: 20px;
+table tr td div.totalbets-item
+{
+    width: 20px;
     height: 20px;
     background-image: url(images/sprite.png);
     background-position: 94.5% 0%;
@@ -70,75 +64,86 @@ table tr td div.totalbets-item {
 /* End Overwrite fanex grid */
 
 /* Header row*/
-table thead tr th {
-	text-align: center;
-	background-color: #908F8F;
-	font-weight: bold;
-	color: #FFFFFF;
-	border-right: 1px solid #ffffff;
+table thead tr th
+{
+    text-align: center;
+    background-color: #908F8F;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-right: 1px solid #ffffff;
 }
-table tr.header-row td {
-	text-align: center;
-	border-right: 1px solid #ffffff;
+table tr.header-row td
+{
+    text-align: center;
+    border-right: 1px solid #ffffff;
 }
 
 /* detail: All bet type */
-.match-name {
-	font-weight: bold;
-	font-size: 16px;
+.match-name
+{
+    font-weight: bold;
+    font-size: 16px;
 }
-.history-link 
-{    
-	color: #258FD2;
-	float: right;
-	cursor: pointer;
-	margin-right: 20px;
-	height: 25px;
-	text-transform: none;	
-	font-size: 16px;
+.history-link
+{
+    color: #258FD2;
+    float: right;
+    cursor: pointer;
+    margin-right: 20px;
+    height: 25px;
+    text-transform: none;
+    font-size: 16px;
 }
-.history-image {
-	width: 16px;
-	height: 16px;
-	background-image: url(images/ui-icons_2e83ff_256x240.png);
+.history-image
+{
+    width: 16px;
+    height: 16px;
+    background-image: url(images/ui-icons_2e83ff_256x240.png);
     background-position: 40% 20%;
-    position:absolute;
-    float:right;
+    position: absolute;
+    float: right;
     right: 50px;
 }
 
-#detail-data-content .detail-table {
-	width: 100%;
+#detail-data-content .detail-table
+{
+    width: 100%;
 }
 
-#detail-data-content .detail-header {
-	background-color: #908F8F;
-	color: #FFFFFF;
-	font-weight: bold;
+#detail-data-content .detail-header
+{
+    background-color: #908F8F;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
-#detail-data-content .detail-header td{
-	text-align: left;
-	border-right: 10px solid #FFFFFF;
+#detail-data-content .detail-header td
+{
+    text-align: left;
+    border-right: 10px solid #FFFFFF;
 }
 
-#detail-data-content .break-line td{
-	height: 5px;
+#detail-data-content .break-line td
+{
+    height: 5px;
 }
 
-#detail-data-content .detail-table td.bet-choice{
-	text-align: left;	
-	background-color: #edf0f0;
-	border-bottom: 1px solid #FFFFFF;
-	border-right: 1px solid #FFFFFF;
-	width: 15%;
+#detail-data-content .detail-table td.bet-choice
+{
+    text-align: left;
+    background-color: #edf0f0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    width: 15%;
 }
-#detail-data-content .detail-table td.total-bet-choice{
-	text-align: right;	
-	background-color: #edf0f0;
-	border-bottom: 1px solid #FFFFFF;
-	border-right: 10px solid #FFFFFF;
+#detail-data-content .detail-table td.total-bet-choice
+{
+    text-align: right;
+    background-color: #edf0f0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 10px solid #FFFFFF;
 }
-#detail-data-content .detail-table tr td {
-	padding: 2px;
+#detail-data-content .detail-table tr td
+{
+    padding: 2px;
 }

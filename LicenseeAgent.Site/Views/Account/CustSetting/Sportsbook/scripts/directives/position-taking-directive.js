@@ -113,8 +113,7 @@ if (fanex.sportsbookSetting) {
                                 || currentPt.Max != currentPt.OldMax;
                 },
                 onChangeMax: function () {
-                    currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2)
-                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2)
+                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
 
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
                     if (endCharacter != '.' && endCharacter != '0') {
@@ -124,6 +123,8 @@ if (fanex.sportsbookSetting) {
                     if (!currentPt.actions.validMax()) {
                         return;
                     }
+
+                    currentPt.Preset = fanex.roundNumber(100 - currentPt.Max, 2);
                     currentPt.MaxRangeOfMin = currentPt.Max;
                     fanex.hideHint();
                 },

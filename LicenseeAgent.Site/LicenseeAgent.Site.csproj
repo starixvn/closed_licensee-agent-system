@@ -600,7 +600,7 @@
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Views\Home\Popup.cshtml" />
     <Content Include="Content\core.less" />
-    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Home\_Layout.cshtml" />
     <Content Include="Views\Account\InsertCustomer.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\PositionTaking.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\Commission.cshtml" />

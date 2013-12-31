@@ -195,7 +195,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
-                    IsDirectDownline = new SessionWrapper().IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
+                    IsDirectDownline = new SessionWrapper().IsDirectDownline(customer.Level - 1),
                     IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel
                 };
@@ -251,6 +251,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
+                    IsDirectDownline = false,
                     IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel
                 };

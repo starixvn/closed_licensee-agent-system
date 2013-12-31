@@ -1,7 +1,7 @@
 ﻿@model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    var isNoDirectDonwline = pageContext.IsDirectDownline.HasValue && !pageContext.IsDirectDownline.Value;
+    var isDirectDonwline = pageContext.IsDirectDownline.Value;
 }
 <div class="controls-row">
     <ul class="nav nav-tabs">
@@ -16,7 +16,7 @@
                 <li>
                     <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                         <i class="icon-arrow3"></i>
-                        @(isNoDirectDonwline ? Las.ViewSportsbook : Las.EditSportsbook)
+                        @(isDirectDonwline ? Las.EditSportsbook : Las.ViewSportsbook)
                     </a>
                 </li>
             </ul>

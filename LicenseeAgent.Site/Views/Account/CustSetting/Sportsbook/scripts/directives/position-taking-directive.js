@@ -287,6 +287,7 @@ if (fanex.sportsbookSetting) {
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
                 currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
                 currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
                 currentPt.MinRangeOfMin = 0;
@@ -407,6 +408,7 @@ if (fanex.sportsbookSetting) {
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
                 currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
                 currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
                 currentPt.MinRangeOfMin = 0;

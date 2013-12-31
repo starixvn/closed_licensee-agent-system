@@ -9,7 +9,7 @@ if (fanex.sportsbookSetting) {
     {
         actions: function (modelData, controller, inputControl, scope) {
             var formatInputNumber = fanex.sportsbookSetting.betLimitService.formatInputNumber;
-
+            var reformatInputNumberForControl = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl;
             return {
                 isDataChanged: function () {
                     return formatInputNumber(modelData.MinBet) != modelData.OldMinBet
@@ -35,7 +35,7 @@ if (fanex.sportsbookSetting) {
                         message = scope.language["bettingLimit_Message_MinBetLessThanOrEqualMaxBet"];
                     }
                     else if (formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
-                        message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + modelData.MaxMinBet;
+                        message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + reformatInputNumberForControl(modelData.MaxMinBet);
                     }
 
                     if (message != "") {
@@ -60,7 +60,7 @@ if (fanex.sportsbookSetting) {
                         message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch"];
                     }
                     else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + modelData.MinMaxBet;
+                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxBet);
                     }
 
                     if (message != "") {
@@ -82,7 +82,7 @@ if (fanex.sportsbookSetting) {
                         message = scope.language["bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet"];
                     }
                     else if (formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + modelData.MinMaxPerMatch;
+                        message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerMatch);
                     }
 
                     if (message != "") {

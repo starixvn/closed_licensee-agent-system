@@ -34,6 +34,8 @@ namespace LicenseeAgent.Site
     /// </summary>
     public class MvcApplication : HttpApplication
     {
+        private const int ServerErrorCode = 500;
+
         protected void Application_BeginRequest()
         {
             // or any number of other checks, up to you
@@ -83,7 +85,7 @@ namespace LicenseeAgent.Site
             }
 
             var exception = Server.GetLastError();
-            if (exception is HttpException)
+            if (!IsInternalServerError(exception))
             {
                 return;
             }
@@ -146,6 +148,17 @@ namespace LicenseeAgent.Site
             }
 
             Server.ClearError();
+        }
+
+        private bool IsInternalServerError(Exception exception)
+        {
+            var httpException = exception as HttpException;
+            if (httpException == null)
+            {
+                return false;
+            }
+
+            return httpException.GetHttpCode() >= ServerErrorCode;
         }
     }
 }

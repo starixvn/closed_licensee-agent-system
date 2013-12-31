@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Criterias;
@@ -22,7 +21,6 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
-    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -64,6 +62,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <summary>
         /// Index page of Bet List.
         /// </summary>
+        /// <param name="criteria">Bet List By Member Criteria.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
         public JsonResult Index(BetListSelByMemberCriteria criteria)

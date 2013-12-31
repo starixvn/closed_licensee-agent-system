@@ -207,6 +207,7 @@ if (fanex.sportsbookSetting) {
                 if (currentPositionTaking.Min != updatedPt.Min
                     || currentPositionTaking.Max != updatedPt.Max
                     || currentPositionTaking.Preset != updatedPt.Preset
+                    || updatedPt.ApplyAll
                     || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: updatedPt.Min,
@@ -236,6 +237,7 @@ if (fanex.sportsbookSetting) {
                 if (currentPositionTaking.Min != currentPositionTaking.OldMin
                     || currentPositionTaking.Max != currentPositionTaking.OldMax
                     || currentPositionTaking.Preset != currentPositionTaking.OldPreset
+                    || currentPositionTaking.ApplyAll
                     || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: currentPositionTaking.Min,

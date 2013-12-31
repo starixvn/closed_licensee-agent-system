@@ -239,13 +239,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
     <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\BetList\betlist.core.css" />
@@ -273,7 +266,6 @@
     <Content Include="Scripts\jquery-form\jquery.form.min.js" />
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
-    <Content Include="Test.aspx" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />

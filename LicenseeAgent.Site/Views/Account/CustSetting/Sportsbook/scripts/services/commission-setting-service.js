@@ -104,6 +104,7 @@ if (fanex.sportsbookSetting) {
                 else {
                     var commissionSettingViewModel = {
                         selectedGroup: commissionSetting.UserGroup,
+                        oldSelectedGroup: commissionSetting.UserGroup,
                         group: [{ name: 'A', agentCommission: commissionSettingModel[0].Upline.DiscountA, memberCommission: (commissionSetting.UserGroup == 'A' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountA) },
                             { name: 'B', agentCommission: commissionSettingModel[0].Upline.DiscountB, memberCommission: (commissionSetting.UserGroup == 'B' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountB) },
                             { name: 'C', agentCommission: commissionSettingModel[0].Upline.DiscountC, memberCommission: (commissionSetting.UserGroup == 'C' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountC) },
@@ -121,32 +122,78 @@ if (fanex.sportsbookSetting) {
             }
         },
         getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
-            if (targetRoleId != 1 && settingContext.FormId != fanex.sportsbookSetting.FormType.Add && !this.isDataChanged(commissionSettingViewModel))
-                return null;
+            // Insert
+            if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                if (targetRoleId != 1) {
+                    // GroupA
+                    commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;
+                    // GroupB
+                    commissionSettingModel[0].DiscountB = commissionSettingViewModel[3].discount;
+                    // GroupC
+                    commissionSettingModel[0].DiscountC = commissionSettingViewModel[1].discount;
+                    // GroupD
+                    commissionSettingModel[0].DiscountD = commissionSettingViewModel[4].discount;
+                    // 1x2 Comm
+                    commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
+                    // Others Comm
+                    commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+                }
+                else {
+                    commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
+                    // 1x2 Comm
+                    commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
+                    // Others Comm
+                    commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
+                }
 
-            if (targetRoleId != 1) {
-                // GroupA
-                commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;
-                // GroupB
-                commissionSettingModel[0].DiscountB = commissionSettingViewModel[3].discount;
-                // GroupC
-                commissionSettingModel[0].DiscountC = commissionSettingViewModel[1].discount;
-                // GroupD
-                commissionSettingModel[0].DiscountD = commissionSettingViewModel[4].discount;
-                // 1x2 Comm
-                commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
-                // Others Comm
-                commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+                return commissionSettingModel;
             }
+            // Edit
             else {
-                commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
-                // 1x2 Comm
-                commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
-                // Others Comm
-                commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
-            }
+                var commissionSettings = [];
 
-            return commissionSettingModel;
+                if (targetRoleId != 1) {
+                    if (commissionSettingModel[0].DiscountA != commissionSettingViewModel[0].discount
+                    || commissionSettingModel[0].DiscountB != commissionSettingViewModel[3].discount
+                    || commissionSettingModel[0].DiscountC != commissionSettingViewModel[1].discount
+                    || commissionSettingModel[0].DiscountD != commissionSettingViewModel[4].discount) {
+                        commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;
+                        commissionSettingModel[0].DiscountB = commissionSettingViewModel[3].discount;
+                        commissionSettingModel[0].DiscountC = commissionSettingViewModel[1].discount;
+                        commissionSettingModel[0].DiscountD = commissionSettingViewModel[4].discount;
+                        commissionSettings.push(commissionSettingModel[0]);
+                    }
+                    // 1x2 Comm
+                    if (commissionSettingModel[1].DiscountA != commissionSettingViewModel[2].discount) {
+                        commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
+                        commissionSettings.push(commissionSettingModel[1]);
+                    }
+                    // Others Comm
+                    if (commissionSettingModel[2].DiscountA != commissionSettingViewModel[5].discount) {
+                        commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+                        commissionSettings.push(commissionSettingModel[2]);
+                    }
+                }
+                else {
+                    if (commissionSettingViewModel.selectedGroup != commissionSettingViewModel.oldSelectedGroup
+                    || (commissionSettingViewModel.selectedGroup == commissionSettingViewModel.oldSelectedGroup && commissionSettingModel[0].Discount != commissionSettingViewModel.line1.memberCommission)) {
+                        commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
+                        commissionSettings.push(commissionSettingModel[0]);
+                    }
+                    // 1x2 Comm
+                    if (commissionSettingModel[1].Discount != commissionSettingViewModel.line2.memberCommission) {
+                        commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
+                        commissionSettings.push(commissionSettingModel[1]);
+                    }
+                    // Others Comm
+                    if (commissionSettingModel[2].Discount != commissionSettingViewModel.line3.memberCommission) {
+                        commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
+                        commissionSettings.push(commissionSettingModel[2]);
+                    }
+                }
+
+                return commissionSettings;
+            }
         },
         changeViewModel: function (commissionSettingViewModel) {
             if (commissionSettingViewModel.selectedGroup == 'A') {
@@ -167,14 +214,6 @@ if (fanex.sportsbookSetting) {
             }
 
             return commissionSettingViewModel;
-        },
-        isDataChanged: function (commissionSettingViewModel) {
-            for (var i = 0; i < commissionSettingViewModel.length; i++) {
-                if (commissionSettingViewModel[i].discount != commissionSettingViewModel[i].oldDiscount)
-                    return true;
-            }
-
-            return false;
         },
         arrangeCommissionSettingModel: function (commissionSettingModel) {
             var result = [];

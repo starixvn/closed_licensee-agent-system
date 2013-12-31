@@ -23,10 +23,12 @@ if (fanex.sportsbookSetting) {
             };
 
             $scope.saveData = function (callBackFunction) {
-                return $scope.commissionSettingService.getCommissionSettingModel(
+                var temp =
+                 $scope.commissionSettingService.getCommissionSettingModel(
                                 commissionSetting.CommissionItems,
                                 $scope.viewModel.commissionSettingsViewModel,
                                 settingContext.TargetRoleId);
+                return temp;
             }
 
             $scope.commissionSettingsChangeViewModel = function () {

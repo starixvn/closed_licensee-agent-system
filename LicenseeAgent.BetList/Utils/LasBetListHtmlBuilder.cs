@@ -40,7 +40,7 @@ namespace LicenseeAgent.BetList.Utils
             LasTicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
-            BetListCriteria criteria,
+            BetListCriteriaBase criteria,
             int currencyID,
             string currencyName)
         {
@@ -105,7 +105,7 @@ namespace LicenseeAgent.BetList.Utils
         /// <param name="currencyID">Currency ID.</param>
         /// <param name="currencyName">Currency Name.</param>
         /// <returns>Parameter for Casino Hand History.</returns>
-        private static string GetCasinoHandHistoryParam(LasTicket ticket, BetListCriteria criteria, int currencyID, string currencyName)
+        private static string GetCasinoHandHistoryParam(LasTicket ticket, BetListCriteriaBase criteria, int currencyID, string currencyName)
         {
             var param = string.Empty;
             param += "?RefNo=" + ticket.RefNo;

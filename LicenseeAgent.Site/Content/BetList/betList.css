@@ -401,27 +401,27 @@ Format styles
     height: 680px;
 }
         
-.filterArea 
+.filter-area 
 {
     margin-bottom: 10px;
 }
         
-.filterArea * 
+.filter-area * 
 {
     vertical-align: middle;
 }
         
-.filterArea input[type='button']
+.filter-area input[type='button']
 {
     height: 25px;
     margin-left: 3px;
 }
-.filterArea select
+.filter-area select
 {
     width: 100px;
 }
         
-.txtMonth 
+.month 
 {
     margin: 7px;
 }

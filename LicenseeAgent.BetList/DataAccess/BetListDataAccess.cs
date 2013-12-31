@@ -11,17 +11,14 @@
 namespace LicenseeAgent.BetList.DataAccess
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using Criterias;
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
-    using ViewModels;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Account data access.
@@ -35,21 +32,21 @@ namespace LicenseeAgent.BetList.DataAccess
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetList(BetListCriteria criteria)
+        public TicketResult GetBetList(ICriteria criteria)
         {
             var result = new TicketResult();
 
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 // var param = criteria.GetSpParams();
-                var ds = objectDb.ExecuteDataSet();
+                var dataset = objectDb.ExecuteDataSet();
 
                 // Main ticket
-                var mainTable = ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
                 result.MainTicketList = this.ReadMainTicketData(mainTable, string.Empty);
 
                 // Reference ticket
-                var referenceTable = ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
+                var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
                 result.TicketDataList = this.ReadReferneceTicket(referenceTable, string.Empty);
             }
 

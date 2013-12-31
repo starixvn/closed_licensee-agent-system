@@ -15,6 +15,7 @@ namespace LicenseeAgent.BetList.Services
     using Criterias;
     using DataAccess;
     using Entities;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -58,7 +59,7 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetList(BetListCriteria criteria)
+        public TicketResult GetBetList(ICriteria criteria)
         {
             return _betlistDataAccess.GetBetList(criteria);
         }

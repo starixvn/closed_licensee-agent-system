@@ -65,7 +65,7 @@
   </Function>
 
   <Function Name="BetList">
-    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember_xTest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
 
   <Function Name="SearchUser">

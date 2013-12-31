@@ -23,10 +23,10 @@
 
 <div class="legend">Bet List</div>
 <div data-ng-app="betlist" data-ng-controller="BetListController">
-    <div id="filterArea" class="clearfix filterArea">
-        <div class="txtMonth pull-left">Month</div><div class="pull-left" id="spMonth"></div>
+    <div id="filter-area" class="clearfix filter-area">
+        <div class="month pull-left">Month</div><div class="pull-left" id="month-picker-control"></div>
         <div class="pull-left">Status 
-            <select id="spStatus"
+            <select id="status"
                     ng-model="selectedStatus"
                     ng-change="changeStatus(selectedStatus)"
                     ng-options="i.status for i in statusOptions">
@@ -34,7 +34,7 @@
         </div>
         <input type="button" title="Submit" id="btnSubmit" value="Submit" ng-click="SubmitForm()" />
     </div>
-    <div id="betlistArea" class="clearfix">
+    <div id="bet-list-area" class="clearfix">
         <div class="gridStyle" ng-grid="gridOptions">
         </div>
     </div>

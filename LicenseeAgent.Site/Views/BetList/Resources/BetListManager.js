@@ -5,8 +5,8 @@
 var renderDatePicker = function () {
     var lastdate = '';
     lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
-    $('#spMonth').monPickr({
-        plugInId: '#spMonth',
+    $('#month-picker-control').monPickr({
+        plugInId: '#month-picker-control',
         today: lastdate,
         maxDate: _today,
         minDate: _minDate,
@@ -82,8 +82,10 @@ app.controller('BetListController', function ($scope, $http) {
 
     $scope.SubmitForm = function () {
         CORE.blockUI();
-        var fromDate = $('spMonth').monPickr("getFromDate", "MM/dd/yyyy");
-        var toDate = $('spMonth').monPickr("getFromDate", "MM/dd/yyyy");
+        var fromDate = $('month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
+        var toDate = $('month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
+        var queryString = "FromDate=" + fromDate + "&";
+        queryString += "ToDate=" + fromDate + "&";
 
         $http({
             method: 'POST',

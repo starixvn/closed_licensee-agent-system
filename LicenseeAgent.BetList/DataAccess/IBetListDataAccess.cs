@@ -10,10 +10,8 @@
 
 namespace LicenseeAgent.BetList.DataAccess
 {
-    using System.Data;
-    using Criterias;
     using Entities;
-    using Fanex.BetList.Core.Entities;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Interface Account.
@@ -27,7 +25,7 @@ namespace LicenseeAgent.BetList.DataAccess
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetBetList(BetListCriteria criteria);
+        TicketResult GetBetList(ICriteria criteria);
 
         /// <summary>
         /// Get Bet List Parlay.

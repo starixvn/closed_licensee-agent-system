@@ -22,6 +22,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -65,9 +66,8 @@ namespace LicenseeAgent.BetList.Controllers
         /// </summary>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        public JsonResult Index()
+        public JsonResult Index(BetListSelByMemberCriteria criteria)
         {
-            var criteria = new BetListCriteria(); // no SP's inputs temporarily
             var ticketResults = _betlistService.GetBetList(criteria);
 
             var model = new BetListViewModel()
@@ -113,7 +113,7 @@ namespace LicenseeAgent.BetList.Controllers
         [NonAction]
         public List<TicketText> Ticket(
             TicketResult ticketResult,
-            BetListCriteria criteria,
+            BetListCriteriaBase criteria,
             decimal exchangeRate = 1,
             int startIndex = 1,
             bool showOdds = false)

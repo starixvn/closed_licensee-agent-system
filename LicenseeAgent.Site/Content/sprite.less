@@ -1,6 +1,10 @@
 ﻿@iconSpritePath: "../images/sprite.png";
 
-[class^="icon-"], [class*=" icon-"], .caret
+[class^="icon-"], [class*=" icon-"],
+.caret,
+.refresh-count-down .dropdown-button,
+.refresh-count-down .refresh-button,
+.fanex-multiselect-icon
 {
     display: inline-block;
     width: 14px;
@@ -240,7 +244,29 @@
     background-position: -702px 3px;
 }
 
-.icon-arrow3
+.icon-nav-arrow
 {
-    background-position: -523px 1px;
+    background-position: -522px 2px;
+}
+a:hover .icon-nav-arrow, li.active .icon-nav-arrow
+{
+    background-position: -522px -12px;
+}
+
+.refresh-count-down .dropdown-button
+{
+    background-position: -698px 4px;
+    width: 16px;
+    height: 16px;
+}
+.refresh-count-down .refresh-button
+{
+    background-position: -760px 0px;
+    width: 20px;
+    height: 16px;
+}
+
+.fanex-multiselect-icon
+{
+    background-position: -132px 1px;
 }

@@ -1,9 +1,7 @@
 ﻿@{
-    ViewBag.Title = Las.TotalBets + " - " + Las.Soccer;
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = Las.TotalBets + " - " + Las.Basketball;
 }
 @using LicenseeAgent.TotalBets.Entities;
-
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
@@ -13,33 +11,33 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-basketball")        
-    
+    @Scripts.Render("~/js/totalbets-basketball")
     @Html.Partial("Basketball.Script")
 }
-<h3>@Las.Basketball.ToUpper() - @Las.TotalBets.ToUpper()</h3>
-
+<div class="legend">
+    @ViewBag.Title
+</div>
 @using (Html.BeginForm("Basketball", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
 {   
     <div class="controls-row">
-        <div id="league-multi-select"></div>
+        <div id="league-multi-select">
+        </div>
     </div>
     <div class="controls-row">
-        <div id="event-multi-select"></div>
+        <div id="event-multi-select">
+        </div>
     </div>
     <div class="controls-row">
         <button class="btn btn-primary" type="submit" id="btnSubmit">
             @Las.Submit
         </button>
     </div>
-    <div class="controls-row refresh-count-down-area">        
+    <div class="controls-row refresh-count-down-area">
         <div class="refresh-count-down" id="refresh-count-down">
-            
-        </div>        
+        </div>
         <input type="hidden" value="15" id="server-time-interval" />
     </div>
 }
-
 <div class="wrapper">
     <div id="grid" class="freegrid">
     </div>

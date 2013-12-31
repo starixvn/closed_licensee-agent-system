@@ -105,23 +105,11 @@ important
     font-weight: bold !important;
 }
 
-.fanex-multiselect-icon
-{
-    width: 16px;
-    height: 19px;
-    background-image: url(images/ui-icons_2e83ff_256x240.png);
-}
-
 .fanex-multiselect-icon-dropdown
 {
     width: 18px;
     height: 14px;
     background-image: url(images/sprites.png);
-}
-
-.fanex-multiselect-icon-triangle-1-s
-{
-    background-position: -64px -15px;
 }
 
 .fanex-multiselect-icon-circle-close
@@ -294,12 +282,12 @@ Rad tree view css
 }
 
 .fanex-multiselect-treeview .fanex-multiselect-check-all {
-	color: #000;
+    color: #000;
 }
 
 .fanex-multiselect-treeview .fanex-multiselect-check-all:hover {
-	cursor: pointer;
-	color: #0062ad;
+    cursor: pointer;
+    color: #0062ad;
 }
 
 .fanex-multiselect-treeview .rtTop, .fanex-multiselect-treeview .rtMid, .fanex-multiselect-treeview .rtBot, .fanex-multiselect-treeview .rtUL

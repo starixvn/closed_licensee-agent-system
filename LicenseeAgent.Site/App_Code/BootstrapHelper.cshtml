@@ -1,4 +1,4 @@
-﻿@helper Menu(string text, string url, string id = null, bool isActive = false)
+﻿@helper TopMenu(string text, string url, string id = null, bool isActive = false)
     {
         if (isActive)
         {
@@ -6,6 +6,10 @@
         }
         else
         {
-    <li><a id="@id" target="frmMain" href="@url">@text</a> </li>
+    <li><a id="@id" target="frmMain" href="@url">@text</a></li>
         }
+}
+@helper LeftMenu(string text, string url)
+    {
+    <li><a target="frmMain" href="@url"><i class="icon-nav-arrow"></i>@text</a></li>
 }

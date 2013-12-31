@@ -17,7 +17,7 @@
     @Html.Partial("Soccer.Script")
 }
 <div class="legend">
-    @Las.Soccer - @Las.TotalBets
+    @ViewBag.Title
 </div>
 @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
 {   

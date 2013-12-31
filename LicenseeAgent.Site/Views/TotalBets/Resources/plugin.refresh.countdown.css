@@ -1,53 +1,58 @@
-﻿.refresh-count-down {
-	height: 20px;
-	width: 57px;
-	border: 1px solid #589CC9;
-	cursor: pointer;
-	border-radius:5px;
-}
-
-.refresh-count-down div{
-    width: 18px;
-	height: 18px;
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	border-radius:3px;
-}
-
-.refresh-count-down .timer {	
-	margin-top: 1px;
-}
-
-.refresh-count-down .refresh-button {	
-	margin-top: 1px;
-	background-color: #589CC9;
-	background-image: url(images/sprite.png);
-    background-position: 97.3% 0%;
-}
-
-.refresh-count-down .dropdown-button    
+﻿.refresh-count-down
 {
-    margin-top: 1px;
+    border: 1px solid #589CC9;
+    cursor: pointer;
+}
+
+.refresh-count-down .timer
+{
+    color: #589CC9;
+    font-weight: bold;
+    width: 20px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.refresh-count-down .refresh-button
+{
+    background-color: #589CC9;
+}
+
+.refresh-count-down .dropdown-button
+{
     border-left: 1px solid #FFFFFF;
     border-right: 1px solid #FFFFFF;
-	background-color: #589CC9;
-	background-image: url(images/sprite.png);
-    background-position: 89.2% 0%;
+    background-color: #589CC9;
 }
 
-.dropdown-time-list {
-	width:56px;
-	display: none;
-	position: absolute;
-	z-index: 99;
-	border: 1px solid #589CC9;
-	background-color: #F4F8FB;
+.dropdown-time-list
+{
+    width: 56px;
+    display: none;
+    position: absolute;
+    z-index: 99;
+    border: 1px solid #589CC9;
+    background-color: #F4F8FB;
 }
+
+.dropdown-time-list ul
+{
+    list-style-type: none;
+    margin: 0;
+}
+
 .dropdown-time-list ul li
 {
     cursor: pointer;
+    text-align: center;
+    padding: 1px;
 }
-.dropdown-time-list ul li:hover {
-	background-color: #589CC9;
+
+.dropdown-time-list ul li:hover
+{
+    background-color: #589CC9;
+    color: White;
 }

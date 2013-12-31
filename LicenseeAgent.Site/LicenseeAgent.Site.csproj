@@ -305,8 +305,6 @@
     <Content Include="Views\BetList\Resources\BetListManager.js" />
     <Content Include="Views\Customer\Resources\customerlist.js" />
     <Content Include="Views\Customer\Resources\images\icons.png" />
-    <Content Include="Views\Home\Resources\images\arrow-hover.png" />
-    <Content Include="Views\Home\Resources\images\arrow.png" />
     <Content Include="Views\Internal\Resources\Header.js" />
     <Content Include="Content\contextmenu\context.standalone.css" />
     <Content Include="Content\contextmenu\jquery.contextMenu.css" />
@@ -504,12 +502,10 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\menu.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
-    <Content Include="Views\TotalBets\Resources\Images\sprite.png" />
     <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.css" />
     <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.js" />
     <Content Include="Views\TotalBets\Resources\fanex.multiSelect.css" />
     <Content Include="Views\TotalBets\Resources\fanex.multiSelect.js" />
-    <Content Include="Views\TotalBets\Resources\Images\ui-icons_2e83ff_256x240.png" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />

@@ -11,6 +11,7 @@
             Soccer.initData();
 
             $('form').submit(function () {
+                return false;
                 Soccer.reRenderAfterPaged();
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;

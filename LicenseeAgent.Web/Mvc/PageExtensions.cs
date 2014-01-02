@@ -24,6 +24,11 @@ namespace LicenseeAgent.Web.Mvc
         public static void ReturnUnauthorized(this ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             response.Clear();
             response.StatusCode = (int)HttpStatusCode.Unauthorized;
             response.TrySkipIisCustomErrors = true;
@@ -48,6 +53,11 @@ namespace LicenseeAgent.Web.Mvc
         public static void ReturnUnauthorized(this ControllerContext controllerContext)
         {
             var response = controllerContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             response.Clear();
             response.StatusCode = (int)HttpStatusCode.Unauthorized;
             response.TrySkipIisCustomErrors = true;
@@ -58,11 +68,6 @@ namespace LicenseeAgent.Web.Mvc
             }
             else
             {
-                if (controllerContext.HttpContext.Response.IsRequestBeingRedirected)
-                {
-                    return;
-                }
-
                 response.Redirect(AppURLs.URLs.Unauthorized);
             }
         }
@@ -74,6 +79,11 @@ namespace LicenseeAgent.Web.Mvc
         public static void ReturnUnauthorized(this AuthorizationContext authorizationContext)
         {
             var response = authorizationContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             response.Clear();
             response.StatusCode = (int)HttpStatusCode.Unauthorized;
             response.TrySkipIisCustomErrors = true;
@@ -84,11 +94,6 @@ namespace LicenseeAgent.Web.Mvc
             }
             else
             {
-                if (authorizationContext.HttpContext.Response.IsRequestBeingRedirected)
-                {
-                    return;
-                }
-
                 FormsAuthentication.SignOut();
                 authorizationContext.HttpContext.Session.Abandon();
                 authorizationContext.HttpContext.Response.Cookies.Clear();
@@ -103,6 +108,11 @@ namespace LicenseeAgent.Web.Mvc
         public static void ReturnAccessDenied(this ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             response.Clear();
             response.StatusCode = (int)HttpStatusCode.Forbidden;
             response.TrySkipIisCustomErrors = true;
@@ -127,6 +137,11 @@ namespace LicenseeAgent.Web.Mvc
         public static void ReturnAccessDenied(this ControllerContext controllerContext)
         {
             var response = controllerContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             response.Clear();
             response.StatusCode = (int)HttpStatusCode.Forbidden;
             response.TrySkipIisCustomErrors = true;
@@ -137,11 +152,6 @@ namespace LicenseeAgent.Web.Mvc
             }
             else
             {
-                if (controllerContext.HttpContext.Response.IsRequestBeingRedirected)
-                {
-                    return;
-                }
-
                 response.Redirect(AppURLs.URLs.AccessDenied);
             }
         }

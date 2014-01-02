@@ -503,10 +503,10 @@
     <Content Include="Scripts\menu.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
-    <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.css" />
-    <Content Include="Views\TotalBets\Resources\plugin.refresh.countdown.js" />
-    <Content Include="Views\TotalBets\Resources\fanex.multiSelect.css" />
-    <Content Include="Views\TotalBets\Resources\fanex.multiSelect.js" />
+    <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
+    <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
+    <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
+    <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />

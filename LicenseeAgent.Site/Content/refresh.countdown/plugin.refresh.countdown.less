@@ -1,0 +1,55 @@
+﻿@color: #589CC9;
+
+.refresh-count-down
+{
+    border: 1px solid @color;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 1px;
+
+    .timer
+    {
+        color: @color;
+        font-weight: bold;
+        width: 18px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .buttons
+    {
+        display: inline-block;
+        border-radius: 2px;
+        background: @color;
+    }
+}
+
+.dropdown-time-list
+{
+    width: 56px;
+    display: none;
+    position: absolute;
+    z-index: 99;
+    border: 1px solid @color;
+    background-color: #F4F8FB;
+
+    ul
+    {
+        list-style-type: none;
+        margin: 0;
+
+        li
+        {
+            cursor: pointer;
+            text-align: center;
+            padding: 1px;
+
+            &:hover
+            {
+                background-color: @color;
+                color: white;
+            }
+        }
+    }
+}

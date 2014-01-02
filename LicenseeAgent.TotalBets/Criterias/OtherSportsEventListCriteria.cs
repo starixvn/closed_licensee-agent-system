@@ -12,6 +12,9 @@ namespace LicenseeAgent.TotalBets.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Other Sports Event List Criteria.
+    /// </summary>
     public class OtherSportsEventListCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

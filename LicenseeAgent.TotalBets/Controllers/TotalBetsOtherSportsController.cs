@@ -6,13 +6,13 @@
 
 namespace LicenseeAgent.TotalBets.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Account controllers.
@@ -60,14 +60,11 @@ namespace LicenseeAgent.TotalBets.Controllers
             return Json(new Result(Result.FailureValue));
         }
 
-
-
         /// <summary>
         /// Get All League.
         /// </summary>
-        /// <param name="league">League value.</param>
-        /// <param name="sportType">Sport Type.</param>
-        /// <returns>League list.</returns>
+        /// <param name="sportList">Sport List.</param>
+        /// <returns>JSON Result.</returns>
         [HttpPost]
         public JsonResult GetSportListOtherSports(string sportList)
         {
@@ -99,9 +96,9 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <summary>
         /// Get All League.
         /// </summary>
-        /// <param name="league">League value.</param>
-        /// <param name="sportType">Sport Type.</param>
-        /// <returns>League list.</returns>
+        /// <param name="sportList">Sport List.</param>
+        /// <param name="leagueList">League list.</param>
+        /// <returns>JSON Result.</returns>
         [HttpPost]
         public JsonResult GetLeagueListOtherSports(string sportList, string leagueList)
         {
@@ -131,9 +128,9 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <summary>
         /// Get events by leagues.
         /// </summary>
+        /// <param name="sportList">Sport Type List.</param>
         /// <param name="leagueList">League value.</param>
-        /// <param name="event">Event value.</param>
-        /// <param name="sportType">Sport Type.</param>
+        /// <param name="eventList">Event List value.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
         public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList)

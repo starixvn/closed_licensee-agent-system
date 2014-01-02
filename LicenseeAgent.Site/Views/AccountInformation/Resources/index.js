@@ -72,7 +72,7 @@
         },
         pagingBinding: function () {
             $(".agent-inline").click(function (event) {
-                $("#UserName").val($(this).text());
+                $("#UserName").val($(this).attr('title'));
                 $("#formSearch").submit();
 
                 event.preventDefault();
@@ -186,6 +186,7 @@
                 text: 'NO',
                 click: function () {
                     accountInformation.showNoUserAlert(msgAlert);
+                    accountInformation.closeDialog();
                 }
             });
             $('#dialog-confirm').find('p').html(msgQuestion);

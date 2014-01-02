@@ -101,7 +101,6 @@
     <Compile Include="Entities\IpEntity.cs" />
     <Compile Include="Entities\LicenseeEntity.cs" />
     <Compile Include="Entities\MemberEntity.cs" />
-    <Compile Include="Entities\SearchUserResultEntity.cs" />
     <Compile Include="Entities\SuggestionEntity.cs" />
     <Compile Include="Entities\UplineEntity.cs" />
     <Compile Include="Services\AccountService.cs" />

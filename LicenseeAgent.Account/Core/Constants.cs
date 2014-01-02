@@ -33,9 +33,11 @@ namespace LicenseeAgent.Account.Core
 
         public const int LogActionPositionTaking = 4;
 
-        public const int PageSize = 40;
+        public const int PageSize = 20;
 
         public const int MemberLevel = -1;
+
+        public const int LeftStringLength = 20;
 
         public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
         {

@@ -11,7 +11,7 @@
         <tr>
             <th>@Las.Upline</th>
             <th>
-                <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)">@directUpline.UserName</a>
+                <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">@directUpline.ShortUserName</a>
                 @if (numberUpline > 1)
                 {
                     <div class="btn-group pull-right">
@@ -20,10 +20,10 @@
                             <i class="icon-arrow2"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            @for (var upIndex = 1; upIndex < numberUpline; upIndex++)
+                            @for (var upIndex = numberUpline - 1; upIndex > 0; upIndex--)
                             {
                                 var upline = Model.Uplines.ElementAt(upIndex);
-                                <li><a class="agent-inline" href="#" data-id="@(upline.UplineCustId)">@(upline.UserName)</a></li>    
+                                <li><a class="agent-inline" href="#" data-id="@(upline.UplineCustId)" title="@upline.UserName">@(upline.ShortUserName)</a></li>    
                             }
                         </ul>
                     </div>

@@ -14,7 +14,7 @@
                     <ul class="nav nav-list">
                         @foreach (var donwline in Model.Downlines)
                         {
-                            <li><a class="agent-inline" href="#" data-id="@donwline.DownlineCustId"><i class="icon-arrow3"></i>@donwline.UserName</a></li>    
+                            <li><a class="agent-inline" href="#" data-id="@donwline.DownlineCustId" title="@donwline.UserName"><i class="icon-arrow3"></i>@donwline.UserName</a></li>    
                         }
                     </ul>
                 </div>

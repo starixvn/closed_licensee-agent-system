@@ -59,7 +59,6 @@ input[type="text"], input[type="password"]
 
 .container-box, .container-box2
 {
-    background-color: #EEEFF1;
     border-right: @border;
     border-bottom: @border;
     float: left;
@@ -73,6 +72,11 @@ input[type="text"], input[type="password"]
         height: @row-height;
         line-height: 23px;
     }
+}
+
+.container-box
+{
+    background: #EEEFF1;
 }
 
 .container-box2
@@ -330,11 +334,10 @@ input[type="text"], input[type="password"]
 
     .pt-setting {
         .height-expand {
-            height: 12px;
+            height: 1px;
         }
 
         .pt-group-conatiner {
-            border-top: @border;
             clear: both;
 
             .pt-group {
@@ -345,6 +348,7 @@ input[type="text"], input[type="password"]
                     text-align: right;
                     border-bottom: @border;
                     border-right: @border;
+                    background-color: #EEEFF1;
 
                     .pt-box-header-text {
                         display: inline-block;
@@ -356,6 +360,7 @@ input[type="text"], input[type="password"]
                     float: left;
                     border-bottom: @border;
                     border-right: @border;
+                    background: #EEEFF1;
                 }
 
                 .pt-box, .pt-box-header, .pt-box-title {

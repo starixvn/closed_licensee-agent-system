@@ -23,7 +23,7 @@ namespace LicenseeAgent.Account.Entities
         {
             get
             {
-                if(UserName.Length > Constants.LeftStringLength)
+                if (UserName.Length > Constants.LeftStringLength)
                 {
                     return UserName.Substring(0, Constants.LeftStringLength);
                 }

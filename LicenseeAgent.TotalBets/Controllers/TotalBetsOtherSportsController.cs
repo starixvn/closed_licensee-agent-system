@@ -135,7 +135,12 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList)
         {
-            var criteria = new OtherSportsEventListCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList, LeagueList = leagueList };
+            var criteria = new OtherSportsEventListCriteria()
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = sportList,
+                LeagueList = leagueList
+            };
 
             var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria);
             var eventIds = string.IsNullOrEmpty(eventList) ? new List<string>() : eventList.Split(',').ToList();

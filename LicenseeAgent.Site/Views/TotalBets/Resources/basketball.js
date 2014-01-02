@@ -1,6 +1,6 @@
 ﻿var Basketball = function ($) {
     return {
-        sportType: 1, //Basketball sporttype
+        sportType: 2, //Basketball sporttype
         init: function () {
             Basketball.initData();
 
@@ -23,7 +23,6 @@
             CORE.blockUI();
             Basketball.getLeagueData();
             Basketball.getEventDataByLeague(true);
-            CORE.unblockUI();
         },
 
         getLeagueData: function () {
@@ -32,13 +31,18 @@
                 sportType: Basketball.sportType
             };
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetLeagueList"),
+                url: CORE.resolveUrl("~/Totalbets/GetLeagueList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    Basketball.initLeagueMultiSelect(data.List);
+                    if (data.MsgId == 0) {
+                        Basketball.initLeagueMultiSelect(data.List);
+                    }
+                    else {
+                        alert(data.MsgContent);
+                    }
                 },
                 complete: function () {
                 }
@@ -81,21 +85,24 @@
             };
 
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetEventsByLeagues"),
+                url: CORE.resolveUrl("~/Totalbets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
                 },
                 success: function (data) {
-                    Basketball.initEventMultiSelect(data.List);
-                    //Load data for the first time load page
-                    if (isLoadGrid) {
-                        Basketball.reRenderAfterPaged();
+                    if (data.MsgId == 0) {
+                        Basketball.initEventMultiSelect(data.List);
+                        //Load data for the first time load page
+                        if (isLoadGrid) {
+                            Basketball.reRenderAfterPaged();
+                        }
+                    }
+                    else {
+                        alert(data.MsgContent);
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
                 }
             });
         },
@@ -126,15 +133,21 @@
             };
 
             $.ajax({
-                url: CORE.resolveUrl("/Totalbets/GetBasketballData"),
+                url: CORE.resolveUrl("~/Totalbets/GetBasketballData"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.bodyRows = Basketball.genGridRows(data.List, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
+                    if (data.MsgId == 0) {
+                        gridOption.bodyRows = Basketball.genGridRows(data.List, gridOption);
+                        $('#grid').show().fanexGrid(gridOption);
+
+                    }
+                    else {
+                        alert(data.MsgContent);
+                    }
                 },
                 complete: function () {
                     CORE.unblockUI();

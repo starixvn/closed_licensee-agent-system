@@ -51,7 +51,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetSoccerData(SoccerCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var dataList = _totalBetsService.GetSoccerData(criteria).OrderByDescending(x => x.LiveIndicator);
+            var dataList = _totalBetsService.GetSoccerData(criteria);
             return Json(new
             {
                 List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
@@ -66,7 +66,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="dataList">Data list value.</param>
         /// <returns>Group league list view data.</returns>
         [NonAction]
-        public IList<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<SoccerDataEntity> dataList)
+        public IList<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<TotalBetsEntity> dataList)
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
@@ -79,11 +79,9 @@ namespace LicenseeAgent.TotalBets.Controllers
                 foreach (var matchGroup in matchGroupList)
                 {
                     var matches = matchsInLeague.Where(x =>
-                        x.MatchId == matchGroup.MatchId &&
-                        x.LiveHomeScore == matchGroup.LiveHomeScore &&
-                        x.LiveAwayScore == matchGroup.LiveAwayScore &&
-                        x.LiveIndicator == matchGroup.LiveIndicator).ToList();
-                    var match = new MatchEntity
+                        x.MatchId == matchGroup.MatchId && x.LiveHomeScore == matchGroup.LiveHomeScore &&
+                        x.LiveAwayScore == matchGroup.LiveAwayScore && x.LiveIndicator == matchGroup.LiveIndicator).ToList();
+                    matchList.Add(new MatchEntity
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
                         LiveIndicator = matchGroup.LiveIndicator,
@@ -94,6 +92,8 @@ namespace LicenseeAgent.TotalBets.Controllers
                         AwayId = matches.FirstOrDefault().AwayId,
                         HomeFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "h"),
                         AwayFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "a"),
+                        HomeFulltimeOddEven = SetTotalTransAndStakeValues(matches, 2, "h"),
+                        AwayFulltimeOddEven = SetTotalTransAndStakeValues(matches, 2, "a"),
                         HomeFulltimeOverUnder = SetTotalTransAndStakeValues(matches, 3, "h"),
                         AwayFulltimeOverUnder = SetTotalTransAndStakeValues(matches, 3, "a"),
                         HomeFulltimeOneXTwo = SetTotalTransAndStakeValues(matches, 5, "1"),
@@ -103,14 +103,15 @@ namespace LicenseeAgent.TotalBets.Controllers
                         AwayFirstHalfHandicap = SetTotalTransAndStakeValues(matches, 7, "a"),
                         HomeFirstHalfOverUnder = SetTotalTransAndStakeValues(matches, 8, "h"),
                         AwayFirstHalfOverUnder = SetTotalTransAndStakeValues(matches, 8, "a"),
+                        HomeFirstHalfOddEven = SetTotalTransAndStakeValues(matches, 12, "h"),
+                        AwayFirstHalfOddEven = SetTotalTransAndStakeValues(matches, 12, "a"),
                         HomeFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "1"),
                         AwayFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "2"),
                         DrawFirstHalfOneXTwo = SetTotalTransAndStakeValues(matches, 15, "x"),
-                    };
-                    matchList.Add(match);
+                    });
                 }
 
-                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList });
+                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList.OrderByDescending(m => m.LiveIndicator).ThenBy(n => n.MatchId).ToList() });
             }
 
             return result;
@@ -124,33 +125,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="betTeam">Bet team value.</param>
         /// <returns>Total bet string.</returns>
         [NonAction]
-        public string SetTotalTransAndStakeValues(IEnumerable<SoccerDataEntity> matchs, int betType, string betTeam)
-        {
-            var matchByBet = matchs.Where(x => x.BetType == betType && x.BetTeam == betTeam);
-            if (matchByBet.Any())
-            {
-                var match = matchByBet.FirstOrDefault();
-                var template = "({0}) {1}";
-                var betCountString = Formatter.FormatInt(match.TotalTrans);
-                var stakeString = match.Stake % 1 == 0 ? Formatter.FormatInt(match.Stake) : Formatter.FormatDecimal(match.Stake);
-
-                return string.Format(template, betCountString, stakeString);
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Set total bet value.
-        /// </summary>
-        /// <param name="matchs">Match list.</param>
-        /// <param name="betType">Bet type value.</param>
-        /// <param name="betTeam">Bet team value.</param>
-        /// <returns>Total bet string.</returns>
-        [NonAction]
-        public string SetTotalBetsValues(IEnumerable<TotalBetsEntity> matchs, int betType, string betTeam)
+        public string SetTotalTransAndStakeValues(IEnumerable<TotalBetsEntity> matchs, int betType, string betTeam)
         {
             var matchByBet = matchs.Where(x => x.BetType == betType && x.BetTeam == betTeam);
             if (matchByBet.Any())

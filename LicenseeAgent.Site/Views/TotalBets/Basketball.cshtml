@@ -14,8 +14,9 @@
     @Scripts.Render("~/js/totalbets-basketball")
     @Html.Partial("Basketball.Script")
 }
-<div class="legend">
-    @ViewBag.Title
+
+<div class="legend" style="width: 873px;">
+    @Las.Basketball.ToUpper() - @Las.TotalBets.ToUpper()
 </div>
 @using (Html.BeginForm("Basketball", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
 {   

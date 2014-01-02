@@ -26,9 +26,9 @@ namespace LicenseeAgent.TotalBets.Services
             return GetEntites<EventEntity>(criteria);
         }
 
-        public IEnumerable<SoccerDataEntity> GetSoccerData(SoccerCriteria criteria)
+        public IEnumerable<TotalBetsEntity> GetSoccerData(SoccerCriteria criteria)
         {
-            return GetEntites<SoccerDataEntity>(criteria);
+            return GetEntites<TotalBetsEntity>(criteria);
         }
 
         public IEnumerable<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria)
@@ -39,6 +39,26 @@ namespace LicenseeAgent.TotalBets.Services
         public IEnumerable<TotalBetsEntity> GetBasketballData(BasketballCriteria criteria)
         {
             return GetEntites<TotalBetsEntity>(criteria);
+        }
+
+        public IEnumerable<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria)
+        {
+            return GetEntites<TotalBetsEntity>(criteria);
+        }
+
+        public IEnumerable<SportEntity> GetOtherSportsList(OtherSportsSportListCriteria criteria)
+        {
+            return GetEntites<SportEntity>(criteria);
+        }
+
+        public IEnumerable<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria)
+        {
+            return GetEntites<LeagueEntity>(criteria);
+        }
+
+        public IEnumerable<EventEntity> GetOtherSportsEventsByLeague(OtherSportsEventListCriteria criteria)
+        {
+            return GetEntites<EventEntity>(criteria);
         }
     }
 }

@@ -1,0 +1,165 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="TotalBetsOtherSportsController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.TotalBets.Controllers
+{
+    using System.Linq;
+    using System.Web.Mvc;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.ViewModels;
+    using LicenseeAgent.Web.Controllers;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Account controllers.
+    /// </summary>
+    public partial class TotalBetsController : BaseController
+    {
+        [HttpGet]
+        public ActionResult OtherSports()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult OtherSportsAllBetType(int matchId, string matchName)
+        {
+            ViewBag.Match = matchName;
+            return View();
+        }
+
+        /// <summary>
+        /// Get Other Sports Data.
+        /// </summary>
+        /// <param name="model">Other Sports View Model.</param>
+        /// <returns>JSON Result.</returns>
+        [HttpPost]
+        public JsonResult GetOtherSportsData(OtherSportsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                OtherSportsCriteria criteria = new OtherSportsCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    SportList = model.SportList,
+                    LeagueList = model.LeagueList,
+                    MatchList = model.MatchList
+                };
+                var dataList = _totalBetsService.GetOtherSportsData(criteria);
+                return Json(new
+                {
+                    MsgId = Result.SuccessValue,
+                    List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
+                });
+            }
+
+            return Json(new Result(Result.FailureValue));
+        }
+
+
+
+        /// <summary>
+        /// Get All League.
+        /// </summary>
+        /// <param name="league">League value.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <returns>League list.</returns>
+        [HttpPost]
+        public JsonResult GetSportListOtherSports(string sportList)
+        {
+            var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
+            
+            var sports = _totalBetsService.GetOtherSportsList(criteria);
+            var sportMultiItems = new List<dynamic>();
+            var sportIds = string.IsNullOrEmpty(sportList) ? new List<string>() : sportList.Split(',').ToList();
+
+            foreach (var item in sports)
+            {
+                sportMultiItems.Add(new
+                {
+                    id = item.SportType,
+                    value = item.SportType,
+                    text = item.SportName,
+                    @checked = string.IsNullOrEmpty(sportList) || sportIds.Contains(item.SportType.ToString()),
+                    enable = true
+                });
+            }
+
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                List = sportMultiItems
+            });
+        }
+
+        /// <summary>
+        /// Get All League.
+        /// </summary>
+        /// <param name="league">League value.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <returns>League list.</returns>
+        [HttpPost]
+        public JsonResult GetLeagueListOtherSports(string sportList, string leagueList)
+        {
+            var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
+            var leagues = _totalBetsService.GetOtherSportsLeagues(criteria);
+            var leagueIds = string.IsNullOrEmpty(leagueList) ? new List<string>() : leagueList.Split(',').ToList();
+            var leagueMultiItems = new List<dynamic>();
+            foreach (var item in leagues)
+            {
+                leagueMultiItems.Add(new
+                {
+                    id = item.LeagueId,
+                    value = item.LeagueId,
+                    text = item.LeagueName,
+                    @checked = string.IsNullOrEmpty(leagueList) || leagueIds.Contains(item.LeagueId.ToString()),
+                    enable = true
+                });
+            }
+
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                List = leagueMultiItems,
+            });
+        }
+
+        /// <summary>
+        /// Get events by leagues.
+        /// </summary>
+        /// <param name="leagueList">League value.</param>
+        /// <param name="event">Event value.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <returns>Events result.</returns>
+        [HttpPost]
+        public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList)
+        {
+            var criteria = new OtherSportsEventListCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList, LeagueList = leagueList };
+
+            var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria);
+            var eventIds = string.IsNullOrEmpty(eventList) ? new List<string>() : eventList.Split(',').ToList();
+            var eventMultiItems = new List<dynamic>();
+            foreach (var item in events)
+            {
+                eventMultiItems.Add(new
+                {
+                    id = item.MatchId,
+                    value = item.MatchId,
+                    text = item.MatchName,
+                    @checked = string.IsNullOrEmpty(eventList) || eventIds.Contains(item.MatchId.ToString()),
+                    enable = true
+                });
+            }
+
+            return Json(new
+            {
+                MsgId = Result.SuccessValue,
+                List = eventMultiItems,
+            });
+        }
+    }
+}

@@ -36,8 +36,7 @@
                 success: function (data) {
                     Soccer.initLeagueMultiSelect(data.List);
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function () {                    
                 }
             });
         },

@@ -95,17 +95,10 @@ table tr.header-row td
     text-transform: none;
     font-size: 16px;
 }
-.history-image
-{
-    width: 16px;
-    height: 16px;
-    background-image: url(images/ui-icons_2e83ff_256x240.png);
-    background-position: 40% 20%;
-    position: absolute;
-    float: right;
-    right: 50px;
-}
 
+#detail-data-content {
+	width: 970px;
+}
 #detail-data-content .detail-table
 {
     width: 100%;

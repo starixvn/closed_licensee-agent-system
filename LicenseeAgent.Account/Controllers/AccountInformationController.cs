@@ -203,7 +203,7 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     IsDirectDownline = isDirectDownline,
                     IsLastLevel = isLastLevel,
-                    IsMember = isMember
+                    IsMember = isMember,
                 };
             }
 

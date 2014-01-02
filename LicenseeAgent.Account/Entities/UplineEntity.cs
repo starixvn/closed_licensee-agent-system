@@ -25,7 +25,7 @@ namespace LicenseeAgent.Account.Entities
             {
                 if (UserName.Length > Constants.LeftStringLength)
                 {
-                    return UserName.Substring(0, Constants.LeftStringLength);
+                    return string.Format("{0}...", UserName.Substring(0, Constants.LeftStringLength));
                 }
 
                 return UserName;

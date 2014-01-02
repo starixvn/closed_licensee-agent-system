@@ -37,7 +37,7 @@ namespace LicenseeAgent.Account.Core
 
         public const int MemberLevel = -1;
 
-        public const int LeftStringLength = 20;
+        public const int LeftStringLength = 16;
 
         public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
         {

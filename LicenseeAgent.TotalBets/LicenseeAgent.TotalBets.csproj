@@ -92,7 +92,6 @@
     <Compile Include="Entities\EventEntity.cs" />
     <Compile Include="Entities\LeagueEntity.cs" />
     <Compile Include="Entities\LeagueGroupEntity.cs" />
-    <Compile Include="Entities\SoccerDataEntity.cs" />
     <Compile Include="Entities\MatchEntity.cs" />
     <Compile Include="Entities\SoccerDetailEntity.cs" />
     <Compile Include="Entities\TotalBetsEntity.cs" />

@@ -90,7 +90,7 @@
     <Compile Include="Entities\BetListCustomerInfo.cs" />
     <Compile Include="Entities\BetType.cs" />
     <Compile Include="Entities\BetListDetails.cs" />
-    <Compile Include="Entities\BetListDetailsDTO.cs" />
+    <Compile Include="Entities\RawBetListDetails.cs" />
     <Compile Include="Entities\LasTicket.cs" />
     <Compile Include="Entities\TicketResult.cs" />
     <Compile Include="Entities\TicketText.cs" />

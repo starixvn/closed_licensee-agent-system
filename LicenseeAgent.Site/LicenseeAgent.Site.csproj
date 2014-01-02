@@ -718,7 +718,7 @@
     <Content Include="Views\TotalBets\Soccer.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\BetList\Index.cshtml" />
+    <Content Include="Views\BetList\BetListSelByMember.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Header.cshtml" />
     <Content Include="Views\TotalBets\Soccer.Content.cshtml" />
     <Content Include="Views\AccountInformation\Search.cshtml" />

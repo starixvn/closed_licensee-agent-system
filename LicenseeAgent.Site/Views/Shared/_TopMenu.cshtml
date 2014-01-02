@@ -9,7 +9,7 @@
         {
             @BootstrapHelper.TopMenu(Las.Security, Url.Action("ChangePassword", "Account"), "menuSecurity", Model == TopMenu.Security)
         }
-        @BootstrapHelper.TopMenu(Las.ViewLog, Url.Action("Index", "BetList"), "menuViewlog", Model == TopMenu.ViewLog)
+        @BootstrapHelper.TopMenu(Las.ViewLog, Url.Action("BetListSelByMember", "BetList"), "menuViewlog", Model == TopMenu.ViewLog)
     </ul>
 }
 @if (SessionManager.CurrentSession.IsViewSelectMenu())

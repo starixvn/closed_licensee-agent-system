@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="BetListDetailsDTO.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="RawBetListDetails.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace LicenseeAgent.BetList.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BetListDetailsDTO
+    public class RawBetListDetails
     {
         public int AgentID { get; set; }
 

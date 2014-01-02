@@ -10,9 +10,9 @@ namespace LicenseeAgent.BetList.Criterias
     /// </summary>
     public class BetListSelByMemberCriteria : BetListCriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
-        public byte StatusID { get; set; }
+        public byte StatusId { get; set; }
 
         public DateTime MoveBetsDay { get; set; }
 
@@ -31,7 +31,7 @@ namespace LicenseeAgent.BetList.Criterias
 
         public override bool IsValid()
         {
-            return FromDate <= ToDate && AgentID > 0 && CustId > 0 && PageIndex > 0 && PageSize > 0;
+            return FromDate <= ToDate && AgentId > 0 && CustId > 0 && PageIndex > 0 && PageSize > 0;
         }
     }
 }

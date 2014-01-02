@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
+    <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Entities\LicenseeDomain.cs" />
@@ -81,6 +83,8 @@
     <Compile Include="Enumerations\MsgId.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
     <Compile Include="Enumerations\Role.cs" />
+    <Compile Include="Services\CoreService.cs" />
+    <Compile Include="Services\ICoreService.cs" />
     <Compile Include="Services\IUnderMaintenanceService.cs" />
     <Compile Include="Services\UnderMaintenanceService.cs" />
     <Compile Include="Utils\AppHandler.cs" />

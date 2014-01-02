@@ -38,8 +38,8 @@ namespace LicenseeAgent.BetList.DataAccess
 
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                // var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet();
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
                 // Main ticket
                 var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();

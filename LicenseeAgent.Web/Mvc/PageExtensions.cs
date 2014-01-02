@@ -151,7 +151,7 @@ namespace LicenseeAgent.Web.Mvc
                 response.End();
             }
             else
-            {
+            { 
                 response.Redirect(AppURLs.URLs.AccessDenied);
             }
         }

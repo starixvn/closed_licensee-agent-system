@@ -38,7 +38,6 @@ app.controller('BetListController', function ($scope, $http) {
     $scope.selectedStatus = statusData[0];
 
     $scope.changeStatus = function (selectedItem) {
-        //alert(selectedItem.status);
     }
 
     // GRID
@@ -82,14 +81,17 @@ app.controller('BetListController', function ($scope, $http) {
 
     $scope.SubmitForm = function () {
         CORE.blockUI();
-        var fromDate = $('month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
-        var toDate = $('month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
-        var queryString = "FromDate=" + fromDate + "&";
-        queryString += "ToDate=" + fromDate + "&";
+        var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
+        var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
+        var queryString = "FromDate=" + fromDate;
+        queryString += "&ToDate=" + toDate;
+        queryString += "&StatusId=" + $scope.selectedStatus.id;
+        queryString += "&PageIndex=" + $scope.pagingOptions.currentPage;
+        queryString += "&PageSize=" + $scope.pagingOptions.pageSize;
 
         $http({
             method: 'POST',
-            url: "BetList/Index" + queryString(),
+            url: CORE.resolveUrl("~/BetList/BetListSelByMember?") + queryString,
             headers: { 'Content-Type': 'application/json' }
         }).
         success(function (data, status, headers, config) {

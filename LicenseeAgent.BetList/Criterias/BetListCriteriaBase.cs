@@ -16,6 +16,7 @@ namespace LicenseeAgent.BetList.Criterias
 
         public DateTime ToDate { get; set; }
 
+        [SpParam(Ignored=true)]
         public string BaseCurrency { get; set; }
     }
 }

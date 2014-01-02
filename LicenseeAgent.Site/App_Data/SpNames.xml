@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
+
+  <Function Name="Core">
+    <Setting Key="LAS_SelBalanceUpDay" SpName="LAS_SelBalanceUpDay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+  </Function>
   <Function Name="Login">
     <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />

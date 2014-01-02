@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Criterias;
@@ -21,6 +22,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
+    using LicenseeAgent.Core.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,33 +30,42 @@ namespace LicenseeAgent.BetList.Controllers
     public class BetListController : BaseController
     {
         #region Constant
+
         private const string BetListCustomerInfo = "BetListCustomerInfo";
 
         private const int CacheDuration = 43200;
 
         private ICache _cacheInstance;
+
         #endregion
 
         #region Services
+
         private IBetListService _betlistService;
+
+        private ICoreService _coreService;
+
         #endregion
 
         #region Constructor
-        public BetListController(IBetListService betlistService)
+
+        public BetListController(IBetListService betlistService, ICoreService coreService)
         {
             _betlistService = betlistService;
+            _coreService = coreService;
             _cacheInstance = CacheService.CreateInstance(CacheType.MemoryCache);
         }
+
         #endregion
 
         #region Actions
+
         /// <summary>
         /// Index page of Bet List.
         /// </summary>
-        /// <param name="someQueryHere">Some Query string.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Index(string someQueryHere)
+        public ActionResult BetListSelByMember()
         {
             return View();
         }
@@ -65,8 +76,14 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="criteria">Bet List By Member Criteria.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        public JsonResult Index(BetListSelByMemberCriteria criteria)
+        public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
         {
+            var balanceUp = _coreService.GetBalanceUpDay();
+            criteria.AgentId = 1000000519;
+            criteria.CustId = 13467694;
+            criteria.MoveBetsDay = balanceUp.MoveBetDay;
+            criteria.BalanceUpDay = balanceUp.BalanceUpDay;
+
             var ticketResults = _betlistService.GetBetList(criteria);
 
             var model = new BetListViewModel()
@@ -75,7 +92,6 @@ namespace LicenseeAgent.BetList.Controllers
                 TicketResult = ticketResults
             };
 
-            var temp = Json(model.TicketTextList);
             return Json(model.TicketTextList);
         }
 

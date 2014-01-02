@@ -60,6 +60,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IIpInformationService, IpInformationService>();
             container.Register<ISearchUserService, SearchUserService>();
             container.Register<IBetListService, BetListService>();
+            container.Register<ICoreService, CoreService>();
         }
     }
 }

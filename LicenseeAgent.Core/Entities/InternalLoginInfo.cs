@@ -15,6 +15,7 @@ namespace LicenseeAgent.Core.Entities
     public class InternalLoginInfo
     {
         private const int Timeout = 60; // 1 minute
+
         private static ICache cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         public int LicenseeId { get; set; }

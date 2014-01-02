@@ -25,11 +25,14 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public int HomeId { get; set; }
 
+        public bool IsNeutral { get; set; }
+
         public string HomeName
         {
             get
             {
-                return DataRefWrapper.GetTeamname(HomeId);
+                var neutral = IsNeutral ? " (N)" : string.Empty;
+                return DataRefWrapper.GetTeamname(HomeId) + neutral;
             }
         }
 

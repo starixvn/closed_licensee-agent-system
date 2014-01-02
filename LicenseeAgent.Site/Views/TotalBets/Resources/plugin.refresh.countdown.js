@@ -37,6 +37,10 @@
             window.clearInterval(timer);
             refreshCountDownMethods.startCountDown(timeInterval, formName);
 
+        },
+
+        submitForm: function (formName) {
+            $("#" + formName).submit();
         }
     }
 } (jQuery);
@@ -55,9 +59,9 @@ $.fn.refreshCountDown = function (options) {
     timerList += '</ul></div>';
     timerList += '<input type="hidden" value="' + options.timeIntervalValue + '" name="' + options.timeIntervalName + '" id="time-interval" />';
 
-    $(this).append('<div class="timer"></div>').click(function () { refreshCountDownMethods.showTimeList(); });
-    $(this).append('<div class="refresh-button"></div>').click(function () { refreshCountDownMethods.showTimeList(); });
-    $(this).append('<div class="dropdown-button"></div>').click(function () { refreshCountDownMethods.showTimeList(); });
+    $(this).append('<div class="timer"></div>');
+    $(this).append('<div onclick="refreshCountDownMethods.submitForm(\'' + options.formName + '\');" class="refresh-button"></div>');
+    $(this).append('<div onclick="refreshCountDownMethods.showTimeList();" class="dropdown-button"></div>');
     $(this).after(timerList);
 
     refreshCountDownMethods.startCountDown(options.timeIntervalValue, options.formName); 

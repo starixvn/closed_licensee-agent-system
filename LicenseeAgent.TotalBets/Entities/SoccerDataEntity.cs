@@ -21,6 +21,8 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public int AwayId { get; set; }
 
+        public bool IsNeutral { get; set; }
+
         public int BetType { get; set; }
 
         public int LiveHomeScore { get; set; }

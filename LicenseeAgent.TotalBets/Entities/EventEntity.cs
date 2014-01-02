@@ -23,11 +23,14 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public bool IsLive { get; set; }
 
+        public bool IsNeutral { get; set; }
+
         public string MatchName
         {
             get
             {
-                var matchName = DataRefWrapper.GetTeamname(HomeTeam) + " -vs- " + DataRefWrapper.GetTeamname(AwayTeam);
+                var neutral = IsNeutral ? " (N)" : string.Empty;
+                var matchName = DataRefWrapper.GetTeamname(HomeTeam) + neutral + " -vs- " + DataRefWrapper.GetTeamname(AwayTeam);
                 return matchName;
             }
         }

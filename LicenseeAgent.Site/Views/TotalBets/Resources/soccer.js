@@ -192,10 +192,10 @@
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
                         { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
-                        { Name: "FTOE", Value: match.HomeFulltimeOddEven },
+                        { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
                         { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
                         { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
-                        { Name: "FHOE", Value: match.HomeFirstHalfOddEven }
+                        { Name: "FH1X2", Value: match.HomeFirstHalfOneXTwo }
                     );
 
                     var awayTeam = [];
@@ -204,10 +204,10 @@
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
                         { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
-                        { Name: "FTOE", Value: match.AwayFulltimeOddEven },
+                        { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
                         { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
                         { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
-                        { Name: "FHOE", Value: match.AwayFirstHalfOddEven }
+                        { Name: "FH1X2", Value: match.AwayFirstHalfOneXTwo }
                     );
 
                     var moreLink = "<span class='more-link' onclick='Soccer.showAllBetType(this)' data-matchid='" + match.MatchId + "' data-matchname='" + match.HomeName + " -vs- " + match.AwayName + "'>More</span>";
@@ -215,9 +215,9 @@
                     drawTeam.push(
                         { Name: "Event", Value: "Draw", TdClass: "draw" },
                         { Name: "FTHDP", Value: moreLink, MergeColNumber: 2, CssClass: "c-align" },
-                        { Name: "FTOE", Value: match.DrawFulltimeOneXTwo },
+                        { Name: "FT1X2", Value: match.DrawFulltimeOneXTwo },
                         { Name: "FHHDP", Value: "", MergeColNumber: 2 },
-                        { Name: "FHOE", Value: match.DrawFirstHalfOneXTwo }
+                        { Name: "FH1X2", Value: match.DrawFirstHalfOneXTwo }
                     );
 
                     bodyRows.push({

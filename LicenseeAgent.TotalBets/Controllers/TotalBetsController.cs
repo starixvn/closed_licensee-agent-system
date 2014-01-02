@@ -90,6 +90,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                             : matches.FirstOrDefault().ShowTime,
                         HomeId = matches.FirstOrDefault().HomeId,
                         AwayId = matches.FirstOrDefault().AwayId,
+                        IsNeutral = matches.FirstOrDefault().IsNeutral,
                         HomeFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "h"),
                         AwayFulltimeHandicap = SetTotalTransAndStakeValues(matches, 1, "a"),
                         HomeFulltimeOddEven = SetTotalTransAndStakeValues(matches, 2, "h"),

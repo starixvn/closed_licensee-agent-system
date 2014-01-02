@@ -12,14 +12,16 @@
     <div class="tab-content">
         <div class="tab-pane fade" id="setting"></div>
         <div class="tab-pane active in" id="action">
-            <ul class="nav nav-list content">
-                <li>
-                    <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
-                        <i class="icon-arrow3"></i>
-                        @(isDirectDonwline ? Las.EditSportsbook : Las.ViewSportsbook)
-                    </a>
-                </li>
-            </ul>
+            <div class="content">
+                <ul class="nav nav-list">
+                    <li>
+                        <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                            <i class="icon-arrow3"></i>
+                            @(isDirectDonwline ? Las.EditSportsbook : Las.ViewSportsbook)
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

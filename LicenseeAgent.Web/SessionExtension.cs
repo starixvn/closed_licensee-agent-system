@@ -32,6 +32,11 @@ namespace LicenseeAgent.Web
                 : false;
         }
 
+        /// <summary>
+        /// Displays the name.
+        /// </summary>
+        /// <param name="currentSession">The current session.</param>
+        /// <returns>Returns display name on home page.</returns>
         public static string DisplayName(this ICurrentSession currentSession)
         {
             if (currentSession.AgentInfo != null && !currentSession.AgentInfo.IsLevel0)

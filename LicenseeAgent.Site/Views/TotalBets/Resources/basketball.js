@@ -93,16 +93,15 @@
                 success: function (data) {
                     if (data.MsgId == 0) {
                         Basketball.initEventMultiSelect(data.List);
-                        //Load data for the first time load page
-                        if (isLoadGrid) {
-                            Basketball.reRenderAfterPaged();
-                        }
                     }
                     else {
                         alert(data.MsgContent);
                     }
                 },
                 complete: function () {
+                    //Load data for the first time load page
+                    if (isLoadGrid)
+                        Basketball.reRenderAfterPaged();
                 }
             });
         },
@@ -189,7 +188,7 @@
                     homeTeam.push(
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 2 },
                         { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
-                        { Name: "Event", Value: match.HomeName, TdClass: "bold noborder" },
+                        { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
                         { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
                         { Name: "FTOE", Value: match.HomeFulltimeOddEven },
@@ -201,7 +200,7 @@
                     var awayTeam = [];
                     //Away team
                     awayTeam.push(
-                        { Name: "Event", Value: match.AwayName, CssClass: "bold" },
+                        { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
                         { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
                         { Name: "FTOE", Value: match.AwayFulltimeOddEven },

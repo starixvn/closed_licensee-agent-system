@@ -10,14 +10,14 @@
                 <ul class="nav nav-list tree" style="display: none">
                     @BootstrapHelper.LeftMenu(Las.Soccer, Url.Action("Soccer", "TotalBets"))
                     @BootstrapHelper.LeftMenu(Las.Basketball, Url.Action("Basketball", "TotalBets"))
-                    @BootstrapHelper.Menu(Las.OtherSports, Url.Action("OtherSports", "TotalBets"))
+                    @BootstrapHelper.LeftMenu(Las.OtherSports, Url.Action("OtherSports", "TotalBets"))
                 </ul>
             </li>
             <li class="divider"></li>
             <li><a class="tree-toggler nav-header">@Las.Forecast</a>
                 <ul class="nav nav-list tree" style="display: none">
                     @BootstrapHelper.LeftMenu(Las.ScoreMap, Url.Action("ChangePassword", "Account"))
-                    @BootstrapHelper.Menu(Las.HOUL, Url.Action("ChangePassword", "Account"))
+                    @BootstrapHelper.LeftMenu(Las.HOUL, Url.Action("ChangePassword", "Account"))
                 </ul>
             </li>
             <li class="divider"></li>

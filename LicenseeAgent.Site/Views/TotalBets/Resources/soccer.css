@@ -4,6 +4,7 @@ table tbody tr.league-row td
 {
     text-align: left;
     background-color: #CCCCCC !important;
+    font-weight: bold;
 }
 
 table tbody tr.normal-row td

@@ -28,7 +28,7 @@ namespace LicenseeAgent.TotalBets.Criteria
 
         public override bool IsValid()
         {
-            throw new NotImplementedException();
+            return AgentId > 0;
         }
     }
 }

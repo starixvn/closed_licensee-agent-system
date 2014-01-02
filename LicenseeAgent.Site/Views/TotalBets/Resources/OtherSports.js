@@ -156,16 +156,16 @@
                                 OtherSports.reRenderAfterPaged();
                             }
                         });
-                        //Load data for the first time load page
-                        if (isLoadGrid) {
-                            setTimeout("OtherSports.reRenderAfterPaged();", 500);
-                        }
                     }
                     else {
                         alert(data.MsgContent);
                     }
                 },
                 complete: function () {
+                    //Load data for the first time load page
+                    if (isLoadGrid) {
+                        OtherSports.reRenderAfterPaged();
+                    }
                 }
             });
         },
@@ -233,7 +233,7 @@
                     homeTeam.push(
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
                         { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
-                        { Name: "Event", Value: match.HomeName, TdClass: "bold noborder" },
+                        { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
                         { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
                         { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
@@ -245,7 +245,7 @@
                     var awayTeam = [];
                     //Away team
                     awayTeam.push(
-                        { Name: "Event", Value: match.AwayName, CssClass: "bold" },
+                        { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
                         { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
                         { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
@@ -256,7 +256,7 @@
 
                     var drawRow = [];
                     drawRow.push(
-                        { Name: "Event", Value: "Draw", CssClass: "draw" },
+                        { Name: "Event", Value: "Draw", TdClass: "draw" },
                         { Name: "FTHDP", Value: "", MergeColNumber: 2 },
                         { Name: "FT1X2", Value: match.DrawFulltimeOneXTwo },
                         { Name: "FHHDP", Value: "", MergeColNumber: 2 },

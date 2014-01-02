@@ -253,7 +253,7 @@ namespace LicenseeAgent.Account
             if (criteria.MsgId == Result.SuccessValue)
             {
                 var agentInfo = criteria.CreateAgent();
-                return AdminLoginAsAgent(internalLoginInfo, agentInfo);
+                return AdminLoginAsAgent(agentInfo, internalLoginInfo);
             }
             else
             {
@@ -262,13 +262,9 @@ namespace LicenseeAgent.Account
         }
 
         [NonAction]
-        public ActionResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
+        public ActionResult AdminLoginAsAgent(AgentInfo agentInfo, InternalLoginInfo internalLoginInfo)
         {
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo.OnUserId, internalLoginInfo.LicenseeId, internalLoginInfo.Language)
-            {
-                IsDirectSignIn = false
-            };
-
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
             return Redirect(FormsAuthentication.DefaultUrl);
         }
@@ -287,7 +283,7 @@ namespace LicenseeAgent.Account
                 Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria())
             };
 
-            if (new SessionWrapper(CurrentSession).IsViewSelectMenu)
+            if (CurrentSession.IsViewSelectMenu())
             {
                 if (CurrentSession.AgentInfo != null)
                 {

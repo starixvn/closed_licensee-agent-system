@@ -19,16 +19,16 @@ namespace LicenseeAgent.Web
 
         AgentInfo AgentInfo { get; set; }
 
+        int LoginUserId { get; }
+
         int OnUserId { get; }
 
         int OnLicenseeId { get; }
 
         string Language { get; set; }
 
-        bool IsDirectSignIn { get; set; }
+        bool IsDirectSignIn { get; }
 
         bool IsValid { get; }
-
-        int LoginUserId { get; }
     }
 }

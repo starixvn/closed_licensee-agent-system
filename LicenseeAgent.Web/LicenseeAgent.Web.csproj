@@ -69,6 +69,7 @@
     <Compile Include="Filters\BaseActionFilterAttribute.cs" />
     <Compile Include="Filters\DownlineActionFilterAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
+    <Compile Include="SessionExtension.cs" />
     <Compile Include="Validations\DirectDownlineAttribute.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Mvc\RequestExtensions.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Services\IAuthorizeService.cs" />
     <Compile Include="Services\AuthorizeService.cs" />
     <Compile Include="SessionManager.cs" />
-    <Compile Include="SessionWrapper.cs" />
     <Compile Include="Validations\AppPasswordRuleAttribute.cs" />
     <Compile Include="Validations\NotEqualAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

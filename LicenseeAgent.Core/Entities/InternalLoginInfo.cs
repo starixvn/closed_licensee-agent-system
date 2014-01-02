@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Entities
+namespace LicenseeAgent.Core.Entities
 {
     using System;
     using Fanex.Caching;

@@ -96,7 +96,6 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\CurrencyEntity.cs" />
-    <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Entities\CustomerEntity.cs" />
     <Compile Include="Entities\DownlineEntity.cs" />
     <Compile Include="Entities\IpEntity.cs" />

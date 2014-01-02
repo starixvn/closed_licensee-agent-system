@@ -235,7 +235,7 @@ namespace LicenseeAgent.Account.Controllers
         public JsonResult ReCheckIn()
         {
             var isKickout = false;
-            if (CurrentSession.AdminInfo != null)
+            if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
             {
                 isKickout = AdminReCheckIn();
             }
@@ -313,19 +313,13 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(OnlyAuthorize = true)]
         public ActionResult SignOut()
         {
-            if (CurrentSession.AdminInfo != null)
+            if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
             {
-                if (CurrentSession.IsDirectSignIn)
-                {
-                    AdminUserLogout();
-                }
+                AdminUserLogout();
             }
-            else
+            else if (CurrentSession.AgentInfo != null && CurrentSession.IsDirectSignIn)
             {
-                if (CurrentSession.AgentInfo != null && CurrentSession.IsDirectSignIn)
-                {
-                    AgentUserLogout();
-                }
+                AgentUserLogout();
             }
 
             FormsAuthentication.SignOut();
@@ -459,7 +453,7 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _accountService.AgentCheckIn(criteria);
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, agentInfo.LicenseeId, language);
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
         }
     }

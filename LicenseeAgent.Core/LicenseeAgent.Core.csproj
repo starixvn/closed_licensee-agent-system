@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
+    <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Entities\LicenseeDomain.cs" />
     <Compile Include="Entities\LicenseeInfo.cs" />
     <Compile Include="Entities\PageContext.cs" />

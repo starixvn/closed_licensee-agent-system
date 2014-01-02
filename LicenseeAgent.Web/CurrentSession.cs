@@ -17,33 +17,65 @@ namespace LicenseeAgent.Web
     [Serializable]
     public class CurrentSession : ICurrentSession
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrentSession"/> class.
+        /// Admin direct login.
+        /// </summary>
+        /// <param name="adminInfo">The admin information.</param>
+        /// <param name="checkinOnUserId">The check-in on user identifier.</param>
+        /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = "en-US")
+            : this(adminInfo.UserId, checkinOnUserId, language)
         {
             AdminInfo = adminInfo;
-            AgentInfo = null;
-            Language = language;
-            OnUserId = checkinOnUserId;
-            IsDirectSignIn = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrentSession"/> class.
+        /// Licensee direct login from LRF.
+        /// </summary>
+        /// <param name="licenseeInfo">The licensee information.</param>
+        /// <param name="checkinOnUserId">The check-in on user identifier.</param>
+        /// <param name="language">The language.</param>
         public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = "en-US")
+            : this(licenseeInfo.UserId, checkinOnUserId, language)
         {
             LicenseeInfo = licenseeInfo;
-            AgentInfo = null;
-            Language = language;
-            OnUserId = checkinOnUserId;
-            IsDirectSignIn = true;
+            OnLicenseeId = licenseeInfo.LicenseeId;
         }
 
-        public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, int checkinOnLicenseeId = 0, string language = "en-US")
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrentSession"/> class.
+        /// Agent direct login.
+        /// </summary>
+        /// <param name="agentInfo">The agent information.</param>
+        /// <param name="checkinOnUserId">The check-in on user identifier.</param>
+        /// <param name="language">The language.</param>
+        public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = "en-US")
+            : this(agentInfo.AgentId, checkinOnUserId, language)
         {
-            AdminInfo = null;
-            LicenseeInfo = null;
             AgentInfo = agentInfo;
-            Language = language;
+            OnLicenseeId = agentInfo.LicenseeId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrentSession" /> class.
+        /// Agent indirect login.
+        /// </summary>
+        /// <param name="agentInfo">The agent information.</param>
+        /// <param name="internalLoginInfo">The internal login information.</param>
+        public CurrentSession(AgentInfo agentInfo, InternalLoginInfo internalLoginInfo)
+            : this(internalLoginInfo.UserId, internalLoginInfo.OnUserId, internalLoginInfo.Language)
+        {
+            AgentInfo = agentInfo;
+            OnLicenseeId = internalLoginInfo.LicenseeId;
+        }
+
+        protected CurrentSession(int loginUserId, int checkinOnUserId, string language)
+        {
+            LoginUserId = loginUserId;
             OnUserId = checkinOnUserId;
-            OnLicenseeId = checkinOnLicenseeId;
-            IsDirectSignIn = true;
+            Language = language;
         }
 
         public AdminInfo AdminInfo { get; private set; }
@@ -52,13 +84,26 @@ namespace LicenseeAgent.Web
 
         public AgentInfo AgentInfo { get; set; }
 
-        public bool IsDirectSignIn { get; set; }
-
         public string Language { get; set; }
+
+        public int LoginUserId { get; private set; }
 
         public int OnUserId { get; private set; }
 
         public int OnLicenseeId { get; private set; }
+
+        public bool IsDirectSignIn
+        {
+            get
+            {
+                if (AdminInfo != null || LicenseeInfo != null)
+                {
+                    return true;
+                }
+
+                return AgentInfo == null || AgentInfo.AgentId == LoginUserId ? true : false;
+            }
+        }
 
         public bool IsValid
         {
@@ -69,36 +114,22 @@ namespace LicenseeAgent.Web
                     return false;
                 }
 
-                if (!AppSettings.IsAdminSite && AdminInfo != null)
+                if (AdminInfo != null && !AppSettings.IsAdminSite)
                 {
                     return false;
                 }
 
-                if (AppSettings.IsAdminSite && LicenseeInfo != null)
+                if (LicenseeInfo != null && AppSettings.IsAdminSite)
+                {
+                    return false;
+                }
+
+                if (AgentInfo != null && AdminInfo == null && AppSettings.IsAdminSite == IsDirectSignIn)
                 {
                     return false;
                 }
 
                 return true;
-            }
-        }
-
-        public int LoginUserId
-        {
-            get
-            {
-                if (AdminInfo != null)
-                {
-                    return AdminInfo.UserId;
-                }
-                else if (LicenseeInfo != null)
-                {
-                    return LicenseeInfo.UserId;
-                }
-                else
-                {
-                    return AgentInfo.AgentId;
-                }
             }
         }
     }

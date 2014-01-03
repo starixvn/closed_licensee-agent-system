@@ -1,0 +1,27 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="LoginInfo.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace LicenseeAgent.API.LRF.Entities
+{
+    using System;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class LoginInfo
+    {
+        public LoginInfo()
+        {
+            Timeout = DateTime.Now.AddMinutes(30);
+        }
+
+        public int UserId { get; set; }
+
+        public int LicenseeId { get; set; }
+
+        public DateTime Timeout { get; private set; }
+    }
+}

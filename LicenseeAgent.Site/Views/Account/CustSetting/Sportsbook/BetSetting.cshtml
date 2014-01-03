@@ -17,29 +17,29 @@
     </span>
         }
 }
-<div class="instruction">
-    @Las.BetSetting
-    @if (Model.TargetRoleId == (int)Role.AgentLevel1)
-    {
-        @SectionInfoMode("licensee-bet-limit-info-button", true)
-        @SectionInfoMode("licensee-bet-limit-info-button-adv", false)
-    }
-    else if (Model.TargetRoleId == (int)Role.Agent)
-    {
-        @SectionInfoMode("agent-bet-limit-info-button", true)
-        @SectionInfoMode("agent-bet-limit-info-button-adv", false)
-    }
-    else
-    {
-        @SectionInfoMode("member-bet-limit-info-button", true)
-        @SectionInfoMode("member-bet-limit-info-button-adv", false)
-    }
-</div>
 <div class="container-box">
+    <div class="instruction">
+        @Las.BetSetting
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @SectionInfoMode("licensee-bet-limit-info-button", true)
+            @SectionInfoMode("licensee-bet-limit-info-button-adv", false)
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @SectionInfoMode("agent-bet-limit-info-button", true)
+            @SectionInfoMode("agent-bet-limit-info-button-adv", false)
+        }
+        else
+        {
+            @SectionInfoMode("member-bet-limit-info-button", true)
+            @SectionInfoMode("member-bet-limit-info-button-adv", false)
+        }
+    </div>
     <div id="betting-limit-current-scope" class="betting-limit" ng-controller="fanex.custsetting.betlimitcontroller">
         <div ng-show="settingContext.IsSimpleMode" class="simple-mode">
             <div>
-                <div class="betting-limit-header">
+                <div class="betting-limit-header simple-row-title">
                     <div class="betting-limit-header-text">
                         <span>{{language['bettingLimit_MinBet']}}</span></div>
                 </div>

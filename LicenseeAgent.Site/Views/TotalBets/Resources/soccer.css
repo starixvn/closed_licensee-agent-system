@@ -65,8 +65,8 @@ table tbody tr.sport-row td
 {
     width: 20px;
     height: 20px;
-    background-image: url(images/sprite.png);
-    background-position: 94.5% 0%;
+    background-image: url(/images/sprite.png);
+    background-position: -740px 0;
 }
 /* End Overwrite fanex grid */
 

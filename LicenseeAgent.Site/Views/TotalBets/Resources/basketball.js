@@ -174,7 +174,7 @@
                     //Push League row
                     bodyRows.push({
                         Columns: ([
-                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9
+                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 13
                             }
                         ]),
                         CssClass: "league-row"
@@ -195,10 +195,14 @@
                         { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                        { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                        { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FTOE", Value: match.HomeFulltimeOddEven },
                         { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                        { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                        { Name: "StatisticsFHOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FHOE", Value: match.HomeFirstHalfOddEven }
                     );
 

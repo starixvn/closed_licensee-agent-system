@@ -31,11 +31,5 @@ namespace LicenseeAgent.Account.ViewModels
         public byte? Status { get; set; }
 
         public string UserName { get; set; }
-
-        [Required]
-        public int PageIndex { get; set; }
-
-        [Required]
-        public int PageSize { get; set; }
     }
 }

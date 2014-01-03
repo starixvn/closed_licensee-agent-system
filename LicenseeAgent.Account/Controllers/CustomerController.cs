@@ -131,9 +131,7 @@ namespace LicenseeAgent.Account.Controllers
         {
             var criteria = new AgentGetByAgentCriteria
             {
-                AgentId = model.AgentId,
-                PageSize = model.PageSize,
-                PageIndex = model.PageIndex
+                AgentId = model.AgentId
             };
 
             var agents = _agentService.GetAgentList(criteria);
@@ -141,10 +139,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 MsgId = criteria.MsgId,
                 MsgContent = GetErrorMsg(criteria.MsgId),
-                List = agents,
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.TotalItems
+                List = agents
             });
         }
 
@@ -160,9 +155,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentId = model.AgentId,
                 UserName = model.UserName,
-                AccStatus = model.Status,
-                PageSize = model.PageSize,
-                PageIndex = model.PageIndex
+                AccStatus = model.Status
             };
 
             var agents = _agentService.SearchAgent(criteria);
@@ -170,10 +163,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 MsgId = criteria.MsgId,
                 MsgContent = GetErrorMsg(criteria.MsgId),
-                List = agents,
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.TotalItems
+                List = agents
             });
         }
 
@@ -187,9 +177,7 @@ namespace LicenseeAgent.Account.Controllers
         {
             var criteria = new MemberGetByAgentCriteria
             {
-                AgentId = model.AgentId,
-                PageSize = model.PageSize,
-                PageIndex = model.PageIndex
+                AgentId = model.AgentId
             };
 
             var members = _agentService.GetMemberList(criteria);
@@ -198,10 +186,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 MsgId = criteria.MsgId,
                 MsgContent = GetErrorMsg(criteria.MsgId),
-                List = members,
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.TotalItems
+                List = members
             });
         }
 
@@ -217,9 +202,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentId = model.AgentId,
                 UserName = model.UserName,
-                AccStatus = model.Status,
-                PageSize = model.PageSize,
-                PageIndex = model.PageIndex
+                AccStatus = model.Status
             };
 
             var members = _agentService.SearchMember(criteria);
@@ -227,10 +210,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 MsgId = criteria.MsgId,
                 MsgContent = GetErrorMsg(criteria.MsgId),
-                List = members,
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.TotalItems
+                List = members
             });
         }
 

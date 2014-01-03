@@ -17,6 +17,11 @@ namespace LicenseeAgent.Account.Criterias
     /// </summary>
     public class AgentGetByAgentCriteria : CriteriaBase
     {
+        public AgentGetByAgentCriteria()
+        {
+            PageSize = 1000;
+        }
+
         public int AgentId { get; set; }
 
         public int PageSize { get; set; }

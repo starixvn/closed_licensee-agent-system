@@ -32,7 +32,7 @@
 
             // search
             $('#search-form').submit(function (e) {
-                customerList.reRenderAfterPaged(0, CORE.pageSizes[0]);
+                customerList.reRenderAfterPaged();
                 e.preventDefault();
             });
 
@@ -46,7 +46,7 @@
             $(".combobox-container input[type=text]").attr('readonly', 'readonly');
 
             // get customer list
-            customerList.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            customerList.reRenderAfterPaged();
         },
         initSectionInfo: function () {
             $('.infos').each(function () {
@@ -92,19 +92,12 @@
             $('#AgentName').val(agentName);
             $("#ajax-form").submit();
         },
-        reRenderAfterPaged: function (currentPage, itemsPerPage) {
-            if (gridOption && gridOption.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage
-                                                : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
-            }
+        reRenderAfterPaged: function () {
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val() != -1 ? $.trim($("#Status").val()) : '',
                 agentId: $("#AgentId").val(),
-                agentLevel: $("#AgentLevel").val(),
-                pageIndex: currentPage,
-                pageSize: itemsPerPage
+                agentLevel: $("#AgentLevel").val()
             };
 
             $.ajax({
@@ -116,12 +109,15 @@
                 },
                 success: function (data) {
                     gridOption.pagerOption = {
-                        itemsPerPage: data.ItemsPerPage,
+                        itemsPerPage: CORE.pageSizes[0],
+                        currentPage: 0,
                         itemsPerPageArray: CORE.pageSizes,
-                        currentPage: data.CurrentPage,
-                        totalItem: data.TotalItem,
-                        pagerSelectCallBack: customerList.reRenderAfterPaged
+                        showDetail: true,
+                        afterPagedFunction: function () {
+                            customerList.gridAfterBinding();
+                        }
                     };
+
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
 
@@ -347,23 +343,23 @@
             var items = [];
             if (pageContext.IsLastLevel) {
                 items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
-                        /*{ name: actions.NumberGame, callback: customerList.editSetting },
-                        { name: actions.Casino, callback: customerList.editSetting },
-                        { name: actions.VirtualSports, callback: customerList.editSetting },
-                        { name: actions.EditInfo, callback: customerList.editSetting },
-                        { name: actions.SBBetSetting, callback: customerList.editSetting },
-                        { name: actions.Commission, callback: customerList.editSetting },*/
-                        { name: actions.Password, callback: customerList.editSetting}];
+                /*{ name: actions.NumberGame, callback: customerList.editSetting },
+                { name: actions.Casino, callback: customerList.editSetting },
+                { name: actions.VirtualSports, callback: customerList.editSetting },
+                { name: actions.EditInfo, callback: customerList.editSetting },
+                { name: actions.SBBetSetting, callback: customerList.editSetting },
+                { name: actions.Commission, callback: customerList.editSetting },*/
+                        {name: actions.Password, callback: customerList.editSetting}];
             }
             else {
                 items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
-                        /*{ name: actions.NumberGame, callback: customerList.editSetting },
-                        { name: actions.Casino, callback: customerList.editSetting },
-                        { name: actions.VirtualSports, callback: customerList.editSetting },
-                        { name: actions.EditInfo, callback: customerList.editSetting },
-                        { name: actions.AddDownline, callback: customerList.editSetting },
-                        { name: actions.Commission, callback: customerList.editSetting },*/
-                        { name: actions.Password, callback: customerList.editSetting}];
+                /*{ name: actions.NumberGame, callback: customerList.editSetting },
+                { name: actions.Casino, callback: customerList.editSetting },
+                { name: actions.VirtualSports, callback: customerList.editSetting },
+                { name: actions.EditInfo, callback: customerList.editSetting },
+                { name: actions.AddDownline, callback: customerList.editSetting },
+                { name: actions.Commission, callback: customerList.editSetting },*/
+                        {name: actions.Password, callback: customerList.editSetting}];
             }
 
             if (pageContext.IsDirectDownline) {

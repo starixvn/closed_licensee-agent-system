@@ -23,7 +23,7 @@
     <div class="row-line">
     </div>
     
-    @if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
+    if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
     {
         @Html.Partial("_BalanceDownline", Model)
         @Html.Partial("_SettingAction", Model)

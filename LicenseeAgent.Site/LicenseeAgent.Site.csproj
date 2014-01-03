@@ -508,6 +508,7 @@
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
     <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
+    <Content Include="Views\TotalBets\Resources\outright.js" />
     <Content Include="Views\TotalBets\Resources\soccer.css" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />
@@ -733,6 +734,8 @@
     <Content Include="Views\TotalBets\Soccer.Script.cshtml" />
     <Content Include="Views\TotalBets\OtherSports.cshtml" />
     <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
+    <Content Include="Views\TotalBets\Outright.cshtml" />
+    <Content Include="Views\TotalBets\Outright.Script.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

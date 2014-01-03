@@ -32,5 +32,13 @@ namespace LicenseeAgent.TotalBets.Services
         IEnumerable<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria);
 
         IEnumerable<EventEntity> GetOtherSportsEventsByLeague(OtherSportsEventListCriteria criteria);
+
+        IEnumerable<SportEntity> GetOutrightSports(OutrightSportCriteria criteria);
+
+        IEnumerable<LeagueEntity> GetOutrightLeagues(OutrightLeagueCriteria criteria);
+
+        IEnumerable<TeamEntity> GetOutrightTeam(OutrightTeamCriteria criteria);
+
+        IEnumerable<OutrightEntity> GetOutrightData(OutrightCriteria criteria);
     }
 }

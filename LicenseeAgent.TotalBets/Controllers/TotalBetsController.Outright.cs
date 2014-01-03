@@ -23,7 +23,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpGet]
         public ViewResult Outright()
         {
-            var model = new OutrightViewModel() { Sport = string.Empty, League = string.Empty, Team = string.Empty, TimeInterval = 15 };
+            var model = new OutrightViewModel() { TimeInterval = 15 };
 
             return View(model);
         }

@@ -60,7 +60,7 @@
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBTXNIP.IPDB.bodbDownlineNet" Plain="0"  TimeOut="600"/>
   </Function>
-  <Function Name="Report">
+  <Function Name="TotalBets">
     <Setting Key="LAS_TotalBet_GetLeagueBySportType" SpName="LAS_TotalBet_GetLeagueBySportType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_GetMatchBySportType" SpName="LAS_TotalBet_GetMatchBySportType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_Soccer_MajorBetType" SpName="LAS_TotalBet_Soccer_MajorBetType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
@@ -70,6 +70,10 @@
     <Setting Key="LAS_TotalBet_OtherSports_GetLeagueList" SpName="LAS_TotalBet_OtherSports_GetLeagueList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_OtherSports_GetMatchList" SpName="LAS_TotalBet_OtherSports_GetMatchList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_OtherSports_MajorBetType" SpName="LAS_TotalBet_OtherSports_MajorBetType" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_Outright_GetSportList" SpName="LAS_TotalBet_Outright_GetSportList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_Outright_GetLeagueList" SpName="LAS_TotalBet_Outright_GetLeagueList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_Outright_GetTeamList" SpName="LAS_TotalBet_Outright_GetTeamList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_Outright_SelBetData" SpName="LAS_TotalBet_Outright_SelBetData" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
 
   <Function Name="BetList">

@@ -60,5 +60,25 @@ namespace LicenseeAgent.TotalBets.Services
         {
             return GetEntites<EventEntity>(criteria);
         }
+
+        public IEnumerable<SportEntity> GetOutrightSports(OutrightSportCriteria criteria)
+        {
+            return GetEntites<SportEntity>(criteria);
+        }
+
+        public IEnumerable<LeagueEntity> GetOutrightLeagues(OutrightLeagueCriteria criteria)
+        {
+            return GetEntites<LeagueEntity>(criteria);
+        }
+
+        public IEnumerable<TeamEntity> GetOutrightTeam(OutrightTeamCriteria criteria)
+        {
+            return GetEntites<TeamEntity>(criteria);
+        }
+
+        public IEnumerable<OutrightEntity> GetOutrightData(OutrightCriteria criteria)
+        {
+            return GetEntites<OutrightEntity>(criteria);
+        }
     }
 }

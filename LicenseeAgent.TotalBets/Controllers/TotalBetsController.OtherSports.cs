@@ -11,6 +11,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Utils;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -53,7 +54,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 return Json(new
                 {
                     MsgId = Result.SuccessValue,
-                    List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
+                    List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
                 });
             }
 
@@ -69,7 +70,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetSportListOtherSports(string sportList)
         {
             var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            
+
             var sports = _totalBetsService.GetOtherSportsList(criteria);
             var sportMultiItems = new List<dynamic>();
             var sportIds = string.IsNullOrEmpty(sportList) ? new List<string>() : sportList.Split(',').ToList();

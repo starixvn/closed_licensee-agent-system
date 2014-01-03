@@ -14,16 +14,6 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// </summary>
     public class SoccerViewModel
     {        
-        public IEnumerable<LeagueEntity> LeagueList { get; set; }
-
-        public IEnumerable<EventEntity> EventList { get; set; }
-
-        public string League { get; set; }
-
-        public string Event { get; set; }
-
         public int TimeInterval { get; set; }
-
-        public IList<LeagueGroupEntity> MainData { get; set; }
     }
 }

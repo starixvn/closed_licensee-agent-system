@@ -76,19 +76,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\TotalBetsOutrightController.cs" />
-    <Compile Include="Controllers\TotalBetsOtherSportsController.cs" />
-    <Compile Include="Controllers\TotalBetsBasketballController.cs" />
-    <Compile Include="Controllers\TotalBetsSoccerController.cs" />
+    <Compile Include="Controllers\TotalBetsController.Basketball.cs" />
+    <Compile Include="Controllers\TotalBetsController.OtherSports.cs" />
+    <Compile Include="Controllers\TotalBetsController.Outright.cs" />
+    <Compile Include="Controllers\TotalBetsController.Soccer.cs" />
     <Compile Include="Criterias\OtherSportsCriteria.cs" />
     <Compile Include="Criterias\OtherSportsLeagueListCriteria.cs" />
     <Compile Include="Criterias\OtherSportsEventListCriteria.cs" />
     <Compile Include="Criterias\OtherSportsSportListCriteria.cs" />
+    <Compile Include="Criterias\OutrightCriteria.cs" />
+    <Compile Include="Criterias\OutrightLeagueCriteria.cs" />
+    <Compile Include="Criterias\OutrightSportCriteria.cs" />
+    <Compile Include="Criterias\OutrightTeamCriteria.cs" />
     <Compile Include="Criterias\SoccerDetailCriteria.cs" />
     <Compile Include="Criterias\BasketballCriteria.cs" />
     <Compile Include="Criterias\EventCriteria.cs" />
     <Compile Include="Criterias\SoccerCriteria.cs" />
     <Compile Include="Criterias\LeagueCriteria.cs" />
+    <Compile Include="Entities\OutrightEntity.cs" />
     <Compile Include="Entities\SportGroupEntity.cs" />
     <Compile Include="Entities\SportEntity.cs" />
     <Compile Include="Entities\EventEntity.cs" />
@@ -96,12 +101,14 @@
     <Compile Include="Entities\LeagueGroupEntity.cs" />
     <Compile Include="Entities\MatchEntity.cs" />
     <Compile Include="Entities\SoccerDetailEntity.cs" />
+    <Compile Include="Entities\TeamEntity.cs" />
     <Compile Include="Entities\TotalBetsEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITotalBetsService.cs" />
     <Compile Include="Services\TotalBetsService.cs" />
     <Compile Include="Utils\TotalBetsUtils.cs" />
     <Compile Include="ViewModels\OtherSportsViewModel.cs" />
+    <Compile Include="ViewModels\OutrightViewModel.cs" />
     <Compile Include="ViewModels\SoccerDetailViewModel.cs" />
     <Compile Include="ViewModels\TotalBetsViewModel.cs" />
     <Compile Include="ViewModels\SoccerViewModel.cs" />

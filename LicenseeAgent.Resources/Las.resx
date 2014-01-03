@@ -752,4 +752,20 @@ If that is not you, please contact your upline!!!</value>
   <data name="MoneyLine" xml:space="preserve">
     <value>Money Line</value>
   </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Outright</value>
+    <comment>not</comment>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+    <comment>not</comment>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Bet Count</value>
+    <comment>not</comment>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Team</value>
+    <comment>not</comment>
+  </data>
 </root>

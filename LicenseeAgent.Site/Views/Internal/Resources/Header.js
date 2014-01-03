@@ -31,6 +31,8 @@
                 });
             }
 
+            INTERNAL_HEADER.initCurrencyBox();
+
             $('#internal-form').submit(function (e) {
                 e.preventDefault();
                 INTERNAL_HEADER.submit();

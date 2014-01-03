@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="LRF\Entities\LoginInfo.cs" />
     <Compile Include="LRF\Integration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

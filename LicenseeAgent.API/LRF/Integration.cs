@@ -11,7 +11,7 @@ namespace LicenseeAgent.API
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Integration
+    public static class Integration
     {
         public static string GenerateLink(int userId, int licenseeId)
         {
@@ -21,7 +21,7 @@ namespace LicenseeAgent.API
                 LicenseeId = licenseeId
             };
 
-            return null;
+            return loginInfo.ToString();
         }
     }
 }

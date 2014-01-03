@@ -19,6 +19,8 @@ namespace LicenseeAgent.TotalBets.Entities
     {
         public int LeagueId { get; set; }
 
+        public bool LiveIndicator { get; set; }
+
         public string LeagueName
         {
             get

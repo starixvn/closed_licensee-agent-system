@@ -163,11 +163,11 @@
             var len = list.length;
             var bodyRows = [];
             var leagueId = 0;
+            var rowIndex = 0;
 
             for (var i = 0; i < len; i++) {//League
-                var rowIndex = 0;
+                
                 var league = list[i];
-
                 //Push League row
                 bodyRows.push({
                     Columns: ([

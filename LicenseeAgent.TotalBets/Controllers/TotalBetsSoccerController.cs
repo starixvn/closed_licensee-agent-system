@@ -54,7 +54,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             var dataList = _totalBetsService.GetSoccerData(criteria);
             return Json(new
             {
-                List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
+                List = MapTotalBetsMainData(dataList).OrderByDescending(x=> x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
             });
         }
 
@@ -70,11 +70,11 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             IList<LeagueGroupEntity> result = new List<LeagueGroupEntity>();
-            var leagueIdList = dataList.Select(x => x.LeagueId).Distinct().ToList();
-            foreach (var leagueId in leagueIdList)
+            var leagueGroupList = dataList.Select(x => new { x.LeagueId, x.LiveIndicator }).Distinct().ToList();
+            foreach (var league in leagueGroupList)
             {
                 var matchList = new List<MatchEntity>();
-                var matchsInLeague = dataList.Where(x => x.LeagueId == leagueId).ToList();
+                var matchsInLeague = dataList.Where(x => x.LeagueId == league.LeagueId && x.LiveIndicator == league.LiveIndicator).ToList();
                 var matchGroupList = matchsInLeague.Select(x => new { x.MatchId, x.LiveHomeScore, x.LiveAwayScore, x.LiveIndicator }).Distinct().ToList();
                 foreach (var matchGroup in matchGroupList)
                 {
@@ -112,7 +112,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     });
                 }
 
-                result.Add(new LeagueGroupEntity { LeagueId = leagueId, MatchList = matchList.OrderByDescending(m => m.LiveIndicator).ThenBy(n => n.MatchId).ToList() });
+                result.Add(new LeagueGroupEntity { LeagueId = league.LeagueId, LiveIndicator = league.LiveIndicator, MatchList = matchList });
             }
 
             return result;

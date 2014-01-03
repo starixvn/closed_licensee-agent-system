@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="Controllers\TotalBetsOtherSportsController.cs" />
     <Compile Include="Controllers\TotalBetsBasketballController.cs" />
-    <Compile Include="Controllers\TotalBetsController.cs" />
+    <Compile Include="Controllers\TotalBetsSoccerController.cs" />
     <Compile Include="Criterias\OtherSportsCriteria.cs" />
     <Compile Include="Criterias\OtherSportsLeagueListCriteria.cs" />
     <Compile Include="Criterias\OtherSportsEventListCriteria.cs" />

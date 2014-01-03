@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalBetsSoccerController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -54,7 +54,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             var dataList = _totalBetsService.GetSoccerData(criteria);
             return Json(new
             {
-                List = MapTotalBetsMainData(dataList).OrderByDescending(x=> x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
+                List = MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
             });
         }
 
@@ -154,7 +154,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetLeagueList(string league, int sportType = 1)
         {
             var criteria = new LeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType };
-            var leagues = _totalBetsService.GetLeagues(criteria);
+            var leagues = _totalBetsService.GetLeagues(criteria).OrderBy(x => x.LeagueName);
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)
@@ -187,7 +187,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetEventsByLeagues(string league, string @event, int sportType = 1)
         {
             var criteria = new EventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
-            var events = _totalBetsService.GetEventsByLeague(criteria);
+            var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);
             var eventIds = string.IsNullOrEmpty(@event) ? new List<string>() : @event.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();
             foreach (var item in events)

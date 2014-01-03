@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TotalBetsOutrightController.cs" />
     <Compile Include="Controllers\TotalBetsOtherSportsController.cs" />
     <Compile Include="Controllers\TotalBetsBasketballController.cs" />
     <Compile Include="Controllers\TotalBetsSoccerController.cs" />

@@ -11,6 +11,8 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Entities;
+    using LicenseeAgent.TotalBets.Utils;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -30,34 +32,6 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             ViewBag.Match = matchName;
             return View();
-        }
-
-        /// <summary>
-        /// Get Other Sports Data.
-        /// </summary>
-        /// <param name="model">Other Sports View Model.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult GetOtherSportsData(OtherSportsViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                OtherSportsCriteria criteria = new OtherSportsCriteria
-                {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
-                    SportList = model.SportList,
-                    LeagueList = model.LeagueList,
-                    MatchList = model.MatchList
-                };
-                var dataList = _totalBetsService.GetOtherSportsData(criteria);
-                return Json(new
-                {
-                    MsgId = Result.SuccessValue,
-                    List = MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
-                });
-            }
-
-            return Json(new Result(Result.FailureValue));
         }
 
         /// <summary>
@@ -162,6 +136,74 @@ namespace LicenseeAgent.TotalBets.Controllers
                 MsgId = Result.SuccessValue,
                 List = eventMultiItems,
             });
+        }
+
+        /// <summary>
+        /// Get Other Sports Data.
+        /// </summary>
+        /// <param name="model">Other Sports View Model.</param>
+        /// <returns>JSON Result.</returns>
+        [HttpPost]
+        public JsonResult GetOtherSportsData(OtherSportsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                OtherSportsCriteria criteria = new OtherSportsCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    SportList = model.SportList,
+                    LeagueList = model.LeagueList,
+                    MatchList = model.MatchList
+                };
+                var dataList = _totalBetsService.GetOtherSportsData(criteria);
+                return Json(new
+                {
+                    MsgId = Result.SuccessValue,
+                    List = MapTotalBetsOtherSportsData(dataList).ToList()
+                });
+            }
+
+            return Json(new Result(Result.FailureValue));
+        }
+
+        /// <summary>
+        /// Map Total Bets Other Sports Data.
+        /// </summary>
+        /// <param name="dataList">Data List from database.</param>
+        /// <returns>List Sport Group Entity.</returns>
+        private IList<SportGroupEntity> MapTotalBetsOtherSportsData(IEnumerable<TotalBetsEntity> dataList)
+        {
+            var liveEventsResult = new List<SportGroupEntity>();
+            var deadEventsResult = new List<SportGroupEntity>();
+
+            // Order by LiveIndicator.
+            var sportIdList = dataList.OrderByDescending(m => m.LiveIndicator).Select(x => x.SportType).Distinct().ToList();
+            foreach (var sportId in sportIdList)
+            {
+                var leaguesInSportLive = dataList.Where(m => m.SportType == sportId && m.LiveIndicator == true).ToList();
+                var leaguesInSportDead = dataList.Where(m => m.SportType == sportId && m.LiveIndicator == false).ToList();
+                if (leaguesInSportLive.Any())
+                {
+                    liveEventsResult.Add(new SportGroupEntity
+                    {
+                        SportType = sportId,
+                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportLive)
+                    });
+                }
+
+                if (leaguesInSportDead.Any())
+                {
+                    deadEventsResult.Add(new SportGroupEntity
+                    {
+                        SportType = sportId,
+                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportDead)
+                    });
+                }
+            }
+
+            // Add dead match to the end.
+            liveEventsResult.AddRange(deadEventsResult);
+            return liveEventsResult;
         }
     }
 }

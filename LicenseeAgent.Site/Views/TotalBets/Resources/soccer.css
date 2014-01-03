@@ -6,6 +6,12 @@
     background-color: #CCCCCC;
     font-weight: bold;
 }
+table tbody tr.sport-row td
+{
+    text-align: left;
+    background-color: #eecaca !important;
+    font-weight: bold;
+}
 
 .grid-fixed-table tbody tr.normal-row td
 {

@@ -34,6 +34,7 @@
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetSportListOtherSports"),
                 type: 'post',
+                async: false,
                 beforeSend: function () {
                 },
                 success: function (data) {
@@ -83,6 +84,7 @@
                 url: CORE.resolveUrl("~/Totalbets/GetLeagueListOtherSports"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                 },
                 success: function (data) {
@@ -204,79 +206,102 @@
             var rowCssClass = options.rowCssClass; // custom option
             var rowHeight = options.RowHeight;
             var indexNumberColumn = options.indexNumberColumn; // custom option
-            var len = list.length;
+            var lenSports = list.length;
             var bodyRows = [];
-            var leagueId = 0;
+            var oldSportId = 0;
+            var oldLeagueId = 0;
 
-            for (var i = 0; i < len; i++) {//League
-                var rowIndex = 0;
-                var league = list[i];
-
-                //Push League row
-                bodyRows.push({
-                    Columns: ([
-                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9
+            for (var k = 0; k < lenSports; k++) {//Sport
+                var sport = list[k];
+                //Push Sport row
+                if (oldSportId != sport.SportType) {
+                    oldSportId = sport.SportType;
+                    bodyRows.push({
+                        Columns: ([
+                            { Name: "RowID", Value: "<div align='left'>" + sport.SportName + "</div>", MergeColNumber: 10
                             }
                         ]),
-                    CssClass: "league-row"
-                });
-
-                //Push Match Row
-                var matches = league.MatchList;
-                var numMatches = matches.length;
-
-                for (var j = 0; j < numMatches; j++) {
-                    var match = matches[j];
-                    var homeTeam = [];
-                    rowIndex++;
-                    //Home team
-                    homeTeam.push(
-                        { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
-                        { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
-                        { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
-                        { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
-                        { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
-                        { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
-                        { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
-                        { Name: "FH1X2", Value: match.HomeFirstHalfOneXTwo }
-                    );
-
-                    var awayTeam = [];
-                    //Away team
-                    awayTeam.push(
-                        { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
-                        { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
-                        { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
-                        { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
-                        { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
-                        { Name: "FH1X2", Value: match.AwayFirstHalfOneXTwo }
-                    );
-
-                    var drawRow = [];
-                    drawRow.push(
-                        { Name: "Event", Value: "Draw", TdClass: "draw" },
-                        { Name: "FTHDP", Value: "", MergeColNumber: 2 },
-                        { Name: "FT1X2", Value: match.DrawFulltimeOneXTwo },
-                        { Name: "FHHDP", Value: "", MergeColNumber: 2 },
-                        { Name: "FT1X2", Value: match.DrawFirstHalfOneXTwo }
-                    );
-
-                    var cssRow = match.LiveIndicator ? "live-row" : "normal-row";
-
-                    bodyRows.push({
-                        Columns: homeTeam,
-                        CssClass: cssRow
+                        CssClass: "sport-row"
                     });
-                    bodyRows.push({
-                        Columns: awayTeam,
-                        CssClass: cssRow
-                    });
-                    bodyRows.push({
-                        Columns: drawRow,
-                        CssClass: cssRow
-                    });
+                }
+
+                //League in sport
+                var leagues = sport.LeagueList;
+                var len = leagues.length;
+                for (var i = 0; i < len; i++) {
+
+                    var rowIndex = 0;
+                    var league = leagues[i];
+                    //Push League row
+                    if (oldLeagueId != league.LeagueId) {
+                        oldLeagueId = league.LeagueId;
+                        bodyRows.push({
+                            Columns: ([
+                                { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 10
+                                }
+                            ]),
+                            CssClass: "league-row"
+                        });
+                    }
+
+                    //Push Match Row in League
+                    var matches = league.MatchList;
+                    var numMatches = matches.length;
+                    for (var j = 0; j < numMatches; j++) {
+                        var match = matches[j];
+                        var homeTeam = [];
+                        rowIndex++;
+                        //Home team
+                        homeTeam.push(
+                            { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
+                            { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
+                            { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
+                            { Name: "MoneyLine", Value: match.HomeFulltimeMoneyLine },
+                            { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                            { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                            { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
+                            { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                            { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                            { Name: "FH1X2", Value: match.HomeFirstHalfOneXTwo }
+                        );
+
+                        var awayTeam = [];
+                        //Away team
+                        awayTeam.push(
+                            { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
+                            { Name: "MoneyLine", Value: match.AwayFulltimeMoneyLine },
+                            { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
+                            { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
+                            { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
+                            { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
+                            { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
+                            { Name: "FH1X2", Value: match.AwayFirstHalfOneXTwo }
+                        );
+
+                        var drawRow = [];
+                        drawRow.push(
+                            { Name: "Event", Value: "Draw", TdClass: "draw" },
+                            { Name: "MoneyLine", Value: "", MergeColNumber: 3 },
+                            { Name: "FT1X2", Value: match.DrawFulltimeOneXTwo },
+                            { Name: "FHHDP", Value: "", MergeColNumber: 2 },
+                            { Name: "FT1X2", Value: match.DrawFirstHalfOneXTwo }
+                        );
+
+                        var cssRow = match.LiveIndicator ? "live-row" : "normal-row";
+
+                        bodyRows.push({
+                            Columns: homeTeam,
+                            CssClass: cssRow
+                        });
+                        bodyRows.push({
+                            Columns: awayTeam,
+                            CssClass: cssRow
+                        });
+                        bodyRows.push({
+                            Columns: drawRow,
+                            CssClass: cssRow
+                        });
+                    }
                 }
             }
             return bodyRows;

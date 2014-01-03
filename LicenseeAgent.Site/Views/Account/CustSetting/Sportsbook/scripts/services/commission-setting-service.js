@@ -13,15 +13,10 @@ if (fanex.sportsbookSetting) {
             fanex.showHint(element, message);
         },
         isValidData: function (commissionSettings) {
-            if (commissionSettings instanceof Array) {
-                for (var i = 0; i < commissionSettings.length; i++) {
-                    if (!commissionSettings[i].actions.isValid()) {
-                        return false;
-                    }
+            for (var i = 0; i < commissionSettings.length; i++) {
+                if (!commissionSettings[i].actions.isValid()) {
+                    return false;
                 }
-            }
-            else {
-                return commissionSettings.actions.isValid();
             }
 
             return true;

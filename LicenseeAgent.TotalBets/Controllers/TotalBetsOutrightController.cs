@@ -9,6 +9,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Utils;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -32,7 +33,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             var dataList = _totalBetsService.GetSoccerData(criteria);
             return Json(new
             {
-                List = MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
+                List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
             });
         }
 

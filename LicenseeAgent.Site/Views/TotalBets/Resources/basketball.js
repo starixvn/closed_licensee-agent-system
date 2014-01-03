@@ -34,6 +34,7 @@
                 url: CORE.resolveUrl("~/Totalbets/GetLeagueList"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                 },
                 success: function (data) {
@@ -161,20 +162,24 @@
             var indexNumberColumn = options.indexNumberColumn; // custom option
             var len = list.length;
             var bodyRows = [];
-            var leagueId = 0;
+            var oldLeagueId = 0;
 
             for (var i = 0; i < len; i++) {//League
                 var rowIndex = 0;
                 var league = list[i];
+                var newLeagueId = league.LeagueId;
 
-                //Push League row
-                bodyRows.push({
-                    Columns: ([
+                if (oldLeagueId != newLeagueId) {
+                    oldLeagueId = newLeagueId;
+                    //Push League row
+                    bodyRows.push({
+                        Columns: ([
                             { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 9
                             }
                         ]),
-                    CssClass: "league-row"
-                });
+                        CssClass: "league-row"
+                    });
+                }
 
                 //Push Match Row
                 var matches = league.MatchList;

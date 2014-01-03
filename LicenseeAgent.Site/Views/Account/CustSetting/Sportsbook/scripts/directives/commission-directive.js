@@ -37,9 +37,9 @@ if (fanex.sportsbookSetting) {
                     if (endCharacter != '.' && endCharacter != '0') {
                         modelData.memberCommission = fanex.roundNumber(modelData.memberCommission, 2);
                     }
-                    commissionSettingsViewModel.actions.isValidLine(modelData, controlId);
+                    commissionSettingsViewModel.actions.isValid(modelData, controlId);
                 },
-                isValidLine: function (modelData, controlId) {
+                isValid: function (modelData, controlId) {
                     var isValid = modelData.memberCommission >= 0 && modelData.memberCommission <= modelData.agentCommission;
                     if (!isValid) {
                         var inputControl = $('#' + controlId);
@@ -52,16 +52,6 @@ if (fanex.sportsbookSetting) {
                     }
 
                     return isValid;
-                },
-                isValid: function () {
-                    if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line1, 'line1'))
-                        return false;
-                    if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line2, 'line2'))
-                        return false;
-                    if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line3, 'line3'))
-                        return false;
-
-                    return true;
                 }
             };
         }

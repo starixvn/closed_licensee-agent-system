@@ -264,6 +264,7 @@
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
     <Content Include="Scripts\jquery-form\jquery.form.min.js" />
+    <Content Include="Scripts\ng-grid\ng-grid-flexible-height.js" />
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />

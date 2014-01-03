@@ -11,7 +11,7 @@
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/angulargrid")
     @Scripts.Render("~/js/monthpicker")
-    <script type="text/javascript" src=@Url.Content("~/Views/BetList/Resources/BetListManager.js")></script>
+    <script type="text/javascript" src="@Url.Content("~/Views/BetList/Resources/BetListManager.js")"></script>
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '@DateTime.Now.AddMonths(-2).ToShortDateString()';
@@ -35,7 +35,7 @@
         <input type="button" title="Submit" id="btnSubmit" value="Submit" ng-click="SubmitForm()" />
     </div>
     <div id="bet-list-area" class="clearfix">
-        <div class="gridStyle" ng-grid="gridOptions">
+        <div class="ng-grid" ng-grid="gridOptions">
         </div>
     </div>
 </div>

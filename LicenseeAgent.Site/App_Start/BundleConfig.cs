@@ -116,6 +116,7 @@ namespace LicenseeAgent.Site
             // For Bet List
             bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
                 "~/scripts/ng-grid/ng-grid.js",
+                "~/scripts/ng-grid/ng-grid-flexible-height.js",
                 "~/scripts/Angular/angular-sanitize.js"));
             bundles.Add(new LessBundle("~/css/angulargrid").Include(
                 "~/content/ng-grid/ng-grid.css",

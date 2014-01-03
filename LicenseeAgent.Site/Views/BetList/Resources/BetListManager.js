@@ -75,8 +75,9 @@ app.controller('BetListController', function ($scope, $http) {
                         { field: 'Status', displayName: 'Status', width: 100, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
                         { field: 'AgentPT', displayName: 'AgentPT', width: 80, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
                         { field: 'AgentComm', displayName: 'AgentComm', width: 80, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Feature', displayName: 'Feature', width: 60, cellTemplate: '<a href=\"javascript:;\" ng-click=\"ViewBetListDetails()\">Details</a>' }
-                    ]
+                        { field: 'Feature', displayName: 'Feature', width: 80, cellTemplate: '<a href=\"javascript:;\" ng-click=\"ViewBetListDetails()\">Details</a>' }
+                    ],
+        plugins: [new ngGridFlexibleHeightPlugin()]
     };
 
     $scope.SubmitForm = function () {

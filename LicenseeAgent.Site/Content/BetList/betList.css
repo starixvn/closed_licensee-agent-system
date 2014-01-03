@@ -394,11 +394,11 @@ Format styles
 }
 /********** ------------------ **************/
 /* From MNS */
-.gridStyle 
+.ng-grid 
 {
     border: 1px solid rgb(212,212,212);
-    width: 1000px; 
-    height: 680px;
+    width: 100%; 
+    max-height: 580px;
 }
         
 .filter-area 

@@ -1,0 +1,274 @@
+﻿var Outright = function ($) {
+    return {
+        init: function () {
+            $("#refresh-count-down").refreshCountDown({
+                listTimeInterval: CORE.TimeInterval,
+                timeIntervalName: "TimeInterval",
+                timeIntervalValue: $("#server-time-interval").val(),
+                formName: "main-form"
+            });
+
+            Outright.initData();
+
+            $('form').submit(function () {
+                Outright.reRenderAfterPaged();
+                refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+                return false;
+            });
+        },
+
+        initData: function () {
+            Outright.getSportData();
+            Outright.getLeagueDataBySport();
+            Outright.getTeamDataByLeague(true);
+        },
+
+        // ------------------------------------------------ Sport filter -----------------------------------------
+        getSportData: function () {
+            var params = {
+                Sport: $("#Sport").val()
+            };
+            $.ajax({
+                url: CORE.resolveUrl("~/TotalBets/GetSportList"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    Outright.initSportMultiSelect(data.List);
+                },
+                complete: function () {
+                }
+            });
+        },
+
+        initSportMultiSelect: function (sportList) {
+            $("#sport-multi-select").fanexMultiSelect({
+                listData: sportList,
+                showTooltip: true,
+                maxHeight: 500,
+                minWidth: 200,
+                checkAllText: 'All sports.',
+                noItemText: 'No sport seleted.',
+                noneSelectedText: 'Select sport',
+                selectedText: '# selected sports',
+                tooltipNoItem: 'There is no sport selected.',
+                useCustomCheckAllText: true,
+                customCheckAllText: 'All sports',
+                showParentSelectedText: false,
+                showFooter: true,
+                footerButtonText: 'OK',
+                onLeave: function () {
+                    Outright.selectedSport();
+                },
+                onFooterButtonClick: function () {
+                    Outright.selectedSport();
+                }
+            });
+        },
+
+        selectedSport: function () {
+            var selectedSports = $("#sport-multi-select").fanexMultiSelect('getItems', true).join(',');
+            $("#Sport").val(selectedSports);
+            Outright.getLeagueDataBySport();
+        },
+
+        // ------------------------------------------------ League filter -----------------------------------------
+        getLeagueDataBySport: function () {
+            var params = {
+                Sport: $("#Sport").val(),
+                League: $("#League").val()
+            };
+            $.ajax({
+                url: CORE.resolveUrl("~/TotalBets/GetLeaguesBySports"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    //CORE.blockUI();
+                },
+                success: function (data) {
+                    Outright.initLeagueMultiSelect(data.List);
+                },
+                complete: function () {
+                    //CORE.unblockUI();
+                }
+            });
+        },
+
+        initLeagueMultiSelect: function (leagueList) {
+            $("#league-multi-select").fanexMultiSelect({
+                listData: leagueList,
+                showTooltip: true,
+                maxHeight: 500,
+                minWidth: 350,
+                checkAllText: 'All leagues.',
+                noItemText: 'No league seleted.',
+                noneSelectedText: 'Select league',
+                selectedText: '# selected leagues',
+                tooltipNoItem: 'There is no league selected.',
+                useCustomCheckAllText: true,
+                customCheckAllText: 'All leagues',
+                showParentSelectedText: false,
+                showFooter: true,
+                footerButtonText: 'OK',
+                onLeave: function () {
+                    Outright.selectedLeague();
+                },
+                onFooterButtonClick: function () {
+                    Outright.selectedLeague();
+                }
+            });
+        },
+
+        selectedLeague: function () {
+            var selectedLeagues = $("#league-multi-select").fanexMultiSelect('getItems', true).join(',');
+            $("#League").val(selectedLeagues);
+            Outright.getTeamDataByLeague();
+        },
+
+        // ------------------------------------------------ Team filter -----------------------------------------
+        getTeamDataByLeague: function (isLoadGrid) {
+            var params = {
+                League: $("#League").val(),
+                Team: $("#Team").val()
+            };
+            $.ajax({
+                url: CORE.resolveUrl("~/TotalBets/GetTeamsByLeagues"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    Outright.initEventMultiSelect(data.List);
+
+                    // Load data for the first time load page
+                    if (isLoadGrid) {
+                        //Outright.reRenderAfterPaged();
+                    }
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+
+        initEventMultiSelect: function (eventList) {
+            $("#team-multi-select").fanexMultiSelect({
+                listData: eventList,
+                showTooltip: true,
+                maxHeight: 500,
+                minWidth: 200,
+                checkAllText: 'All teams.',
+                noItemText: 'No team seleted.',
+                noneSelectedText: 'Select team',
+                selectedText: '# selected teams',
+                tooltipNoItem: 'There is no team selected.',
+                useCustomCheckAllText: true,
+                customCheckAllText: 'All teams',
+                showParentSelectedText: false,
+                showFooter: true,
+                footerButtonText: 'OK',
+                onLeave: function () { Outright.selectedEvent(); },
+                onFooterButtonClick: function () {
+                    Outright.selectedEvent();
+                }
+            });
+        },
+
+        selectedEvent: function () {
+            var selectedLeagues = $("#team-multi-select").fanexMultiSelect('getItems', true).join(',');
+            $("#Team").val(selectedLeagues);
+        },
+
+        // ------------------------------------------------ Refresh data -----------------------------------------
+        reRenderAfterPaged: function () {
+            var params = {
+                Sports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
+                Leagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                Teams: $("#team-multi-select").fanexMultiSelect('getItems', true).join(',')
+            };
+
+            $.ajax({
+                url: CORE.resolveUrl("~/Totalbets/GetOutrightData"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    gridOption.bodyRows = Outright.genGridRows(data.List, gridOption);
+                    $('#grid').show().fanexGrid(gridOption);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+
+        genGridRows: function (list, options) {
+            var columns = options.columns;
+            var rowCssClass = options.rowCssClass; // custom option
+            var rowHeight = options.RowHeight;
+            var indexNumberColumn = options.indexNumberColumn; // custom option
+            var len = list.length;
+            var bodyRows = [];
+            var leagueId = 0;
+            var rowIndex = 0;
+
+            for (var k = 0; k < len; k++) { //Sport
+                var sport = list[k];
+
+                //Push Sport row
+                bodyRows.push({
+                    Columns: ([
+                            { Name: "RowID", Value: "<div align='left'>" + sport.SportName + "</div>", MergeColNumber: 5 }
+                        ]),
+                    CssClass: "sport-row"
+                });
+
+                var leagues = sport.LeagueList;
+                var numLeagues = leagues.length;
+                for (var i = 0; i < numLeagues; i++) {//League
+
+                    var league = list[i];
+                    //Push League row
+                    bodyRows.push({
+                        Columns: ([
+                            { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 5 }
+                        ]),
+                        CssClass: "league-row"
+                    });
+
+                    //Push Team Row
+                    var teams = league.TeamList;
+                    var numTeams = teams.length;
+
+                    for (var j = 0; j < numTeams; j++) {
+                        var match = teams[j];
+                        var teamRow = [];
+                        rowIndex++;
+                        //Home team
+                        teamRow.push(
+                            { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>"},
+                            { Name: "Team", Value: match.TeamName, CssClass: "bold" },
+                            { Name: "BetCount", Value: match.BetCount },
+                            { Name: "Balance", Value: match.Balance },
+                            { Name: "Forecast", Value: match.Forecast }
+                        );                        
+
+                        bodyRows.push({
+                            Columns: teamRow
+                        });
+                        
+                    }
+                }
+            }
+            return bodyRows;
+        }
+    }
+} (jQuery);
+$(function () {
+    Outright.init();
+});

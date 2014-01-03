@@ -131,6 +131,7 @@ if (fanex.sportsbookSetting) {
                 if (currentPtNeedCopy.actions.onChangeValue) {
                     currentPtNeedCopy.actions.onChangeValue();
                 }
+                currentPtNeedCopy.ApplyAll = pt.ApplyAll;
             }
         },
         showInvalidRangeMessage: function (element, message, minValue, maxValue) {

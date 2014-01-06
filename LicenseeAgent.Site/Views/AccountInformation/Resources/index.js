@@ -2,7 +2,7 @@
     var isCalling = false
         , timerAutocomplete = null
         , preUserName
-        , lengthUsername = 2;
+        , lengthUsername = 1;
 
     var urlSuggestion = $("#searchUrl").data("suggest");
     var urlDownline = $("#searchUrl").data("downline");
@@ -24,7 +24,7 @@
             $('#formSearch').submit(function (event) {
                 var userName = $.trim($("#UserName").val());
 
-                if (userName.length > lengthUsername) {
+                if (userName.length >= lengthUsername) {
 
                     $("#UserName").val(userName);
 
@@ -101,7 +101,7 @@
             timerAutocomplete = null;
         },
         getAutoComplete: function (userName) {
-            if ($.trim(userName).length <= lengthUsername) {
+            if ($.trim(userName).length < lengthUsername) {
                 return;
             }
             if (!isCalling) {
@@ -163,12 +163,12 @@
             $("#searchAlert").show();
         },
         //show alert when search username exist in another currency
-        showCurrencyAlert: function (currencyId, msgQuestion, msgAlert) {
+        showCurrencyAlert: function (currencyId, currencyName, msgQuestion, msgAlert) {
             var buttons = new Array();
             buttons.push({
                 text: 'YES',
                 click: function () {
-                    accountInformation.changeCurrencyPage(currencyId);
+                    accountInformation.changeCurrencyPage(currencyId, currencyName);
                     accountInformation.closeDialog();
                 }
             });
@@ -192,7 +192,7 @@
             $('#dialog-confirm').dialog('close');
         },
         //change currency site
-        changeCurrencyPage: function (currencyId) {
+        changeCurrencyPage: function (currencyId, currencyName) {
             var data = {
                 licenseeid: $("#licensee").data("licensee-id"),
                 currencyid: currencyId
@@ -209,7 +209,11 @@
                         alert(data.ErrMsg);
                         return;
                     }
-                    location.reload();
+                    if (INTERNAL_HEADER != undefined) {
+                        INTERNAL_HEADER.setCurrency(currencyId, currencyName);
+                    }
+                    $("#frmMain").contentWindow.location.reload(true);
+                    $("#formSearch").submit();
                 },
                 complete: function () {
                     CORE.unblockUI();

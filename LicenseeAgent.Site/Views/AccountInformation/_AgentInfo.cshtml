@@ -15,9 +15,9 @@
                 @if (numberUpline > 1)
                 {
                     <div class="btn-group pull-right">
-                        <button class="btn btn-mini btn-primary">@Las.More</button>
                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini btn-primary">
-                            <i class="icon-arrow2"></i>
+                            @Las.More
+                            <i class="icon-arrow4"></i>
                         </button>
                         <ul class="dropdown-menu">
                             @for (var upIndex = numberUpline - 1; upIndex > 0; upIndex--)

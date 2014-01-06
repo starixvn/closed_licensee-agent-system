@@ -127,6 +127,13 @@
                 $('#currency').find('span:first').html($(this).find('a').html());
                 $('#currency').find('ul').hide();
             });
+        },
+        setCurrency: function (switchedCurrencyId, switchedCurrencyName) {
+            newCurrencyId = switchedCurrencyId;
+            currencyId = switchedCurrencyId;
+            INTERNAL_HEADER.onChange();
+            $('#currency').data('currency-id', switchedCurrencyId);
+            $('#currency').find('span:first').html(switchedCurrencyName);
         }
     };
 } (jQuery);

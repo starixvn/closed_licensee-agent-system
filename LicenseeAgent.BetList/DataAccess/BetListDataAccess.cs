@@ -56,23 +56,20 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
+        /// <param name="agentId">Input agent ID.</param>
         /// <param name="transId">Input transaction ID.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetListParlay(long transId)
+        public TicketResult GetMixParlayDetails(int agentId, long transId)
         {
             var result = new TicketResult();
 
-            using (var objectDb = new ObjectDb("Aff_BetListParlay"))
+            using (var objectDb = new ObjectDb("LAS_Betlist_SelParlayDetail"))
             {
                 objectDb.AddInParameter("TransId", DbType.Int64, transId);
-                var ds = objectDb.ExecuteDataSet();
+                var dataset = objectDb.ExecuteDataSet();
 
-                var mainTable = ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
                 result.MainTicketList = this.ReadMainTicketData(mainTable, string.Empty);
-
-                // Reference ticket
-                var referenceTable = ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
-                result.TicketDataList = this.ReadReferneceTicket(referenceTable, string.Empty);
             }
 
             return result;

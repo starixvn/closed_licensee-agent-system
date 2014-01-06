@@ -67,11 +67,12 @@ namespace LicenseeAgent.BetList.Services
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
+        /// <param name="agentId">Input agent ID.</param>
         /// <param name="transId">Input transaction ID.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetListParlay(long transId)
+        public TicketResult GetMixParlayDetails(int agentId, long transId)
         {
-            return null;
+            return _betlistDataAccess.GetMixParlayDetails(agentId, transId);
         }
 
         #endregion

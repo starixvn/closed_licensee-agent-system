@@ -22,6 +22,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -92,6 +93,30 @@ namespace LicenseeAgent.BetList.Controllers
             };
 
             return Json(model.TicketTextList);
+        }
+
+        /// <summary>
+        /// Mix Parlay Details.
+        /// </summary>
+        /// <param name="transId">Transaction ID.</param>
+        /// <returns>Return a view.</returns>
+        [HttpGet]
+        public ActionResult MixParlayDetails(int transId)
+        {
+            var agentId = CurrentSession.AgentInfo.AgentId;
+            var ticketResult = _betlistService.GetMixParlayDetails(agentId, transId);
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper();
+            ticketHelper.IsShowOddsWithChoice = true;
+
+            var stringBuilder = new StringBuilder();
+            foreach (var ticket in ticketResult.MainTicketList)
+            {
+                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
+                stringBuilder.AppendFormat("<div>{0}</div><br/>", choice);
+            }
+
+            return Content(stringBuilder.ToString());
         }
 
         /// <summary>

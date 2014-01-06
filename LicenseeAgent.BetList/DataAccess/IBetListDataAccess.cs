@@ -30,9 +30,10 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
+        /// <param name="agentId">Input agent ID.</param>
         /// <param name="transId">Input transaction ID.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetBetListParlay(long transId);
+        TicketResult GetMixParlayDetails(int agentId, long transId);
 
         #endregion
     }

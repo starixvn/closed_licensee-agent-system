@@ -1,0 +1,33 @@
+﻿@model LicenseeAgent.BetList.ViewModels.BetListDetailsViewModel
+@{
+    ViewBag.Title = "Bet List - Details PT & Commission";
+}
+@section css{}
+@section scripts{}
+
+<table cellspacing="0" cellpadding="0" class="tblBetListDetails">
+    <thead>
+        <tr>
+            <th style="width: 100px">
+                Agent
+            </th>
+            <th style="width: 120px">
+                Position Taking
+            </th>
+            <th style="width: 120px">
+                Commission
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.MixParlayDetails)
+        {
+            <tr>
+                <td class="agentName">@Html.Raw(detail.Agent)
+                </td><td class="bl_underdog">@Html.Raw(detail.PositionTaking)
+                </td><td class="bl_underdog">@Html.Raw(detail.Commission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

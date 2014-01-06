@@ -52,7 +52,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 return Json(new
                 {
                     MsgId = Result.SuccessValue,
-                    List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderBy(x => x.LeagueName).ToList()
+                    List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
                 });
             }
 

@@ -8,6 +8,7 @@ namespace LicenseeAgent.TotalBets.Utils
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
     using LicenseeAgent.Core.Enumerations;
@@ -25,6 +26,10 @@ namespace LicenseeAgent.TotalBets.Utils
         /// </summary>
         /// <param name="dataList">Data list value.</param>
         /// <returns>Group league list view data.</returns>
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
         public static IList<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<TotalBetsEntity> dataList)
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
@@ -44,7 +49,9 @@ namespace LicenseeAgent.TotalBets.Utils
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
                         LiveIndicator = matchGroup.LiveIndicator,
-                        Time = matchGroup.LiveIndicator ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore) : matches.FirstOrDefault().ShowTime,
+                        Time = matchGroup.LiveIndicator
+                        ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
+                        : matches.FirstOrDefault().ShowTime,
                         HomeId = matches.FirstOrDefault().HomeId,
                         AwayId = matches.FirstOrDefault().AwayId,
                         IsNeutral = matches.FirstOrDefault().IsNeutral,

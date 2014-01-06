@@ -14,7 +14,10 @@
     showPager: true,
     customPager: true,
     gridExpandHeight: 100,
-    bodyRowHeight: 29
+    bodyRowHeight: 29,
+    pagerOption: {
+        itemsPerPageArray: [10, 20, 50, 100, 500]
+    }
 };
 
 function OpenIPInfo(ipstring)
@@ -29,12 +32,12 @@ var BETLIST = function ($) {
 
             // search
             $('#search-form').submit(function (e) {
-                BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+                BETLIST.reRenderAfterPaged(0, 10);
                 e.preventDefault();
             });
 
             // get bet list
-            BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            //BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOption && gridOption.pagerOption) {

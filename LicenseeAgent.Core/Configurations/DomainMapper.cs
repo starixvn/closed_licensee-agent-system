@@ -9,12 +9,12 @@ namespace LicenseeAgent.Core.Configurations
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Web;
     using System.Web.Mvc;
+    using Fanex.Logging;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using Fanex.Logging;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.

@@ -148,11 +148,6 @@ namespace LicenseeAgent.Account
             if (criteria.MsgId == Result.SuccessValue)
             {
                 CurrentSession.AgentInfo = agentInfo;
-                return Json(
-                    new
-                    {
-                        MsgId = Result.SuccessValue
-                    });
             }
 
             return JsonResult(criteria.MsgId);
@@ -210,7 +205,7 @@ namespace LicenseeAgent.Account
             return Json(
                 new
                 {
-                    MsgId = Result.SuccessValue,
+                    ErrCode = Result.SuccessValue,
                     DirectUrl = directUrl
                 });
         }
@@ -257,7 +252,7 @@ namespace LicenseeAgent.Account
             }
             else
             {
-                return Content(ResourceManager.GetErrorMsg(criteria.MsgId));
+                return Content(ResourceManager.GetErrMsg(criteria.MsgId));
             }
         }
 
@@ -317,7 +312,7 @@ namespace LicenseeAgent.Account
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = _currencyService.GetCurrencyList(criteria)
             });
         }
@@ -340,7 +335,7 @@ namespace LicenseeAgent.Account
             var userSalt = _accountService.GetAdminSalt(userSaltCriteria);
             if (userSaltCriteria.MsgId != 0)
             {
-                ModelState.AddModelError(string.Empty, GetErrorMsg(userSaltCriteria.MsgId));
+                ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.MsgId));
                 return false;
             }
 
@@ -360,7 +355,7 @@ namespace LicenseeAgent.Account
             var adminInfo = _accountService.AuthenticateAdmin(criteria);
             if (criteria.MsgId != Result.SuccessValue)
             {
-                ModelState.AddModelError(string.Empty, GetErrorMsg(criteria.MsgId));
+                ModelState.AddModelError(string.Empty, GetErrMsg(criteria.MsgId));
                 return false;
             }
             else

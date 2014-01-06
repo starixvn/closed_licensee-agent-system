@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Entities
 {
@@ -26,24 +23,24 @@ namespace LicenseeAgent.Core.Entities
         {
         }
 
-        public Result(string msgContent)
-            : this(FailureValue, msgContent)
+        public Result(string errMsg)
+            : this(FailureValue, errMsg)
         {
         }
 
-        public Result(int msgId)
-            : this(msgId, ResourceManager.GetErrorMsg(msgId))
+        public Result(int errCode)
+            : this(errCode, ResourceManager.GetErrMsg(errCode))
         {
         }
 
-        public Result(int msgId, string msgContent)
+        public Result(int errCode, string errMsg)
         {
-            MsgId = msgId;
-            MsgContent = msgContent;
+            ErrCode = errCode;
+            ErrMsg = errMsg;
         }
 
-        public int MsgId { get; set; }
+        public int ErrCode { get; set; }
 
-        public string MsgContent { get; set; }
+        public string ErrMsg { get; set; }
     }
 }

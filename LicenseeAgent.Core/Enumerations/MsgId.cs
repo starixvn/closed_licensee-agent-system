@@ -15,7 +15,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// Update later.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
-    public enum MsgId : int
+    public enum ErrCode : int
     {
         /// <summary>
         /// Min Bet should be less than or equal to Max Bet({@BetLimitSportType})

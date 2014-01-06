@@ -115,7 +115,7 @@
                         isCalling = true;
                     },
                     success: function (data) {
-                        if (data.MsgId == 0) {
+                        if (data.ErrCode == 0) {
                             $("#UserName").autocomplete({
                                 source: data.List
                             });
@@ -140,7 +140,7 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         accountInformation.bindDownline(data.List);
                     }
                 },
@@ -205,8 +205,8 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId != 0) {
-                        alert(data.MsgContent);
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     location.reload();

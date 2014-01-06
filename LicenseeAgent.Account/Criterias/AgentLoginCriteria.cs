@@ -27,8 +27,6 @@ namespace LicenseeAgent.Account.Criterias
 
         public string LoginIp { get; set; }
 
-        public string LoginDomain { get; set; }
-
         public string BrowserName { get; set; }
 
         public string Platform { get; set; }
@@ -51,7 +49,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public DateTime LastChangedPwdDate { get; set; }
 
-        public int MsgId { get; set; }
+        public int ErrCode { get; set; }
 
         public bool IsNickName { get; set; }
 

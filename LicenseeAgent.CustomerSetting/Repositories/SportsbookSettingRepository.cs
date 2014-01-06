@@ -290,7 +290,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 objDb.ExecuteNonQuery(parameters);
                 return new InsertResult
                 {
-                    MsgId = Converter.ToInt(parameters["msgid"]),
+                    ErrCode = Converter.ToInt(parameters["msgid"]),
                     MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
                     MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
                     MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
@@ -322,7 +322,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 objDb.ExecuteNonQuery(parameters);
                 return new InsertResult
                 {
-                    MsgId = Converter.ToInt(parameters["msgid"]),
+                    ErrCode = Converter.ToInt(parameters["msgid"]),
                     MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
                     MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
                     BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),

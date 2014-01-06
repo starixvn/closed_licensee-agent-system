@@ -35,14 +35,14 @@
     if (result.IsChangeCurrency)
     {
     <script type="text/javascript">
-        var alertMessage = '@string.Format(result.MsgContent, result.CurrencyName)';
+        var alertMessage = '@string.Format(result.ErrMsg, result.CurrencyName)';
         accountInformation.showCurrencyAlert('@result.CurrencyId', alertMessage, "@LangMsg.Msg_1032");
     </script>
     }
-    else if (!string.IsNullOrEmpty(result.MsgContent))
+    else if (!string.IsNullOrEmpty(result.ErrMsg))
     {
     <script type="text/javascript">
-        accountInformation.showNoUserAlert('@result.MsgContent');
+        accountInformation.showNoUserAlert('@result.ErrMsg');
     </script>
     }
 

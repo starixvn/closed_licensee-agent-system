@@ -137,8 +137,8 @@ namespace LicenseeAgent.Account.Controllers
             var agents = _agentService.GetAgentList(criteria);
             return Json(new
             {
-                MsgId = criteria.MsgId,
-                MsgContent = GetErrorMsg(criteria.MsgId),
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
                 List = agents
             });
         }
@@ -161,8 +161,8 @@ namespace LicenseeAgent.Account.Controllers
             var agents = _agentService.SearchAgent(criteria);
             return Json(new
             {
-                MsgId = criteria.MsgId,
-                MsgContent = GetErrorMsg(criteria.MsgId),
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
                 List = agents
             });
         }
@@ -184,8 +184,8 @@ namespace LicenseeAgent.Account.Controllers
 
             return Json(new
             {
-                MsgId = criteria.MsgId,
-                MsgContent = GetErrorMsg(criteria.MsgId),
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
                 List = members
             });
         }
@@ -208,8 +208,8 @@ namespace LicenseeAgent.Account.Controllers
             var members = _agentService.SearchMember(criteria);
             return Json(new
             {
-                MsgId = criteria.MsgId,
-                MsgContent = GetErrorMsg(criteria.MsgId),
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
                 List = members
             });
         }
@@ -290,7 +290,7 @@ namespace LicenseeAgent.Account.Controllers
             var agents = _agentService.GetAgentAutoComplete(criteria);
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = agents.Select(m => m.UserName).ToArray()
             });
         }
@@ -312,7 +312,7 @@ namespace LicenseeAgent.Account.Controllers
             var members = _agentService.GetMemberAutoComplete(criteria);
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = members.Select(m => m.UserName).ToArray()
             });
         }

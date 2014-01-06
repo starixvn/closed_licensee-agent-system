@@ -30,12 +30,12 @@ if (fanex.sportsbookSetting) {
                             if (currentValue == ctrl.$modelValue) {
                                 var promise = custInfoService.checkUsername(value);
                                 promise.then(function (data) {
-                                    if (data.MsgId == 0) {
+                                    if (data.ErrCode == 0) {
                                         ctrl.hintMessage = '';
                                         setValidity(true);
                                     }
                                     else {
-                                        ctrl.hintMessage = data.MsgContent;
+                                        ctrl.hintMessage = data.ErrMsg;
                                         setValidity(false);
                                     }
                                 }, function (reason) {

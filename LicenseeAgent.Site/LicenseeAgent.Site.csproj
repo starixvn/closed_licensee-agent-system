@@ -239,7 +239,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="App_Data\Domains.xml" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\BetList\betlist.core.css" />
     <Content Include="Content\BetList\betList.css" />

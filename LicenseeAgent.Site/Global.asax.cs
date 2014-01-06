@@ -129,8 +129,8 @@ namespace LicenseeAgent.Site
                 var msgContent = isAntiForgeryException ? Las.UnauthorizedMsg : AppHandler.GetHttpErrorMessage(errorCode);
                 var jsonResult = new Result
                 {
-                    MsgId = errorCode,
-                    MsgContent = msgContent
+                    ErrCode = errorCode,
+                    ErrMsg = msgContent
                 };
 
                 Response.WriteJson(jsonResult);

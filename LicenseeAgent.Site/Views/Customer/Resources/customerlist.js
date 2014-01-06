@@ -146,8 +146,8 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId != 0)
-                        alert(data.MsgContent);
+                    if (data.ErrCode != 0)
+                        alert(data.ErrMsg);
                     else {
                         if (statusId == 0) {
                             target.find('div:first').removeClass("switch-on");
@@ -243,7 +243,7 @@
                         isCalling = true;
                     },
                     success: function (data) {
-                        if (data.MsgId == 0) {
+                        if (data.ErrCode == 0) {
                             $("#Username").autocomplete({
                                 source: data.List
                             });

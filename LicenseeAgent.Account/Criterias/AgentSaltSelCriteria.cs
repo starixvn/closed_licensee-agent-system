@@ -11,11 +11,11 @@ namespace LicenseeAgent.Account.Criterias
     {
         public string UserName { get; set; }
 
-        public string LoginDomain { get; set; }
-
-        public int MsgId { get; set; }
+        public int LicenseeId { get; set; }
 
         public string UserSalt { get; set; }
+
+        public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {
@@ -24,7 +24,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(LoginDomain);
+            return !string.IsNullOrEmpty(UserName);
         }
     }
 }

@@ -58,16 +58,14 @@
                         CORE.blockUI();
                     },
                     success: function (data) {
-                        if (data.MsgId != 0) {
-                            alert(data.MsgContent);
+                        if (data.ErrCode != 0) {
+                            alert(data.ErrMsg);
                             return;
                         }
-                        else {
-                            if (data.DirectUrl) {
-                                POPUP.openWindow(data.DirectUrl);
-                            }
-                            location.reload();
+                        if (data.DirectUrl) {
+                            POPUP.openWindow(data.DirectUrl);
                         }
+                        location.reload();
                     },
                     complete: function () {
                         CORE.unblockUI();
@@ -99,8 +97,8 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId != 0) {
-                        alert(data.MsgContent);
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     INTERNAL_HEADER.parseCurrency(data.List);

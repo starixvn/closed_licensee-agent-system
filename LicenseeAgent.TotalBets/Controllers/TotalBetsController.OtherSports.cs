@@ -62,7 +62,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = sportMultiItems
             });
         }
@@ -94,7 +94,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = leagueMultiItems,
             });
         }
@@ -133,7 +133,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = eventMultiItems,
             });
         }
@@ -158,7 +158,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 var dataList = _totalBetsService.GetOtherSportsData(criteria);
                 return Json(new
                 {
-                    MsgId = Result.SuccessValue,
+                    ErrCode = Result.SuccessValue,
                     List = MapTotalBetsOtherSportsData(dataList).ToList()
                 });
             }

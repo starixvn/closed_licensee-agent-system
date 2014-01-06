@@ -118,14 +118,14 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     if ((Request.IsLocal && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, true) == 0)
                     {
-                        var domainName = DomainMapper.GetDomain(Request.Url);
-                        if (string.IsNullOrEmpty(domainName))
+                        var licenseeId = DomainMapper.GetLicenseeId(Request);
+                        if (licenseeId == null)
                         {
                             ModelState.AddModelError(string.Empty, string.Format(Las.NoLicenseeDomainFound, Request.Url.Host));
                         }
                         else
                         {
-                            if (AuthenticateUser(model, domainName))
+                            if (AuthenticateUser(model, licenseeId.Value))
                             {
                                 return CheckAgentPasswordStatus(model);
                             }
@@ -211,7 +211,7 @@ namespace LicenseeAgent.Account.Controllers
                 _accountService.AgentChangePassword(criteria);
                 if (criteria.MsgId != 0)
                 {
-                    ModelState.AddModelError(string.Empty, GetErrorMsg(criteria.MsgId));
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.MsgId));
                 }
                 else
                 {
@@ -234,10 +234,10 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(OnlyAuthorize = true)]
         public JsonResult ReCheckIn()
         {
-            var isKickout = false;
+            var errCode = Result.SuccessValue;
             if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
             {
-                isKickout = AdminReCheckIn();
+                errCode = AdminReCheckIn();
             }
             else
             {
@@ -245,24 +245,21 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     if (CurrentSession.IsDirectSignIn)
                     {
-                        isKickout = AgentReCheckIn();
+                        errCode = AgentReCheckIn();
                     }
                     else
                     {
-                        isKickout = AgentReCheckInLicensee();
+                        errCode = AgentReCheckInLicensee();
                     }
                 }
             }
 
-            return Json(new
-            {
-                MsgId = isKickout,
-                MsgContent = isKickout ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty
-            });
+            var result = new Result(errCode, errCode != Result.SuccessValue ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty);
+            return Json(result);
         }
 
         [NonAction]
-        public bool AgentReCheckInLicensee()
+        public int AgentReCheckInLicensee()
         {
             var criteria = new AgentReCheckInLicenseeCriteria
             {
@@ -271,7 +268,7 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _accountService.AgentReCheckInLicensee(criteria);
-            return criteria.IsKickedOut;
+            return criteria.ErrCode;
         }
 
         /// <summary>
@@ -279,7 +276,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>Returns true whether having another login session.</returns>
         [NonAction]
-        public bool AgentReCheckIn()
+        public int AgentReCheckIn()
         {
             var criteria = new AgentReCheckInCriteria
             {
@@ -287,7 +284,7 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _accountService.AgentReCheckIn(criteria);
-            return criteria.IsKickedOut;
+            return criteria.ErrCode;
         }
 
         /// <summary>
@@ -295,7 +292,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>Returns true whether having another login session.</returns>
         [NonAction]
-        public bool AdminReCheckIn()
+        public int AdminReCheckIn()
         {
             var criteria = new AdminReCheckInCriteria
             {
@@ -303,7 +300,7 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _accountService.AdminReCheckIn(criteria);
-            return criteria.IsKickedOut;
+            return criteria.ErrCode;
         }
 
         /// <summary>
@@ -391,22 +388,22 @@ namespace LicenseeAgent.Account.Controllers
         /// Validates the Agent user.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name="domainName">Name of the domain.</param>
+        /// <param name="licenseeId">Name of the domain.</param>
         /// <returns>
         /// Returns true whether username/password is valid.
         /// </returns>
-        private bool AuthenticateUser(AgentSignInViewModel model, string domainName)
+        private bool AuthenticateUser(AgentSignInViewModel model, int licenseeId)
         {
             var userSaltCriteria = new AgentSaltSelCriteria
             {
                 UserName = model.Username,
-                LoginDomain = domainName
+                LicenseeId = licenseeId
             };
 
             var userSalt = _accountService.GetAgentSalt(userSaltCriteria);
-            if (userSaltCriteria.MsgId != 0)
+            if (userSaltCriteria.ErrCode != 0)
             {
-                ModelState.AddModelError(string.Empty, GetErrorMsg(userSaltCriteria.MsgId));
+                ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.ErrCode));
                 return false;
             }
 
@@ -417,16 +414,16 @@ namespace LicenseeAgent.Account.Controllers
                 UserPwd = model.Password,
                 UserSalt = userSalt,
                 LoginIp = clientInfo.Ip,
-                LoginDomain = domainName,
+                LicenseeId = licenseeId,
                 BrowserName = clientInfo.BrowserName,
                 Platform = clientInfo.Platform,
                 CountryCode = clientInfo.CountryCode
             };
 
             var agentInfo = _accountService.AuthenticateAgent(criteria);
-            if (criteria.MsgId != 0)
+            if (criteria.ErrCode != 0)
             {
-                var errorMessage = GetErrorMsg(criteria.MsgId);
+                var errorMessage = GetErrMsg(criteria.ErrCode);
                 errorMessage = string.Format(errorMessage, criteria.LastChangedPwdDate.ToShortDateString());
                 ModelState.AddModelError(string.Empty, errorMessage);
                 return false;

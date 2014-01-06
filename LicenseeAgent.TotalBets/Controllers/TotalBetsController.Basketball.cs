@@ -51,7 +51,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 var dataList = _totalBetsService.GetBasketballData(criteria);
                 return Json(new
                 {
-                    MsgId = Result.SuccessValue,
+                    ErrCode = Result.SuccessValue,
                     List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
                 });
             }

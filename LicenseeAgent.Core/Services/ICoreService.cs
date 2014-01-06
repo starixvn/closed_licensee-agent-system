@@ -3,16 +3,16 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-// </history>
 
 namespace LicenseeAgent.Core.Services
 {
-    using System;
+    using System.Collections.Generic;
     using LicenseeAgent.Core.Entities;
 
     public interface ICoreService
     {
         SelBalanceUpDay GetBalanceUpDay();
+
+        IEnumerable<LicenseeDomain> GetLicenseeDomains();
     }
 }

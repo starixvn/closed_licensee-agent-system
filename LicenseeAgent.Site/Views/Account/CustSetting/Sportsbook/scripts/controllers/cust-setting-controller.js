@@ -2,7 +2,7 @@
     var custSettingController = fanex.sportsbookSetting.controller('sportsbook.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
         CORE.blockUI();
         if (typeof result != 'undefined') {
-            $('#custSetting').html(result.MsgContent);
+            $('#custSetting').html(result.ErrMsg);
             $('#custSetting').show();
             CORE.unblockUI();
             return;
@@ -80,24 +80,24 @@
                 }).
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         $scope.Messages = data.Messages;
                         CORE.scrollTop();
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 }).
                 error(function (data, status, headers, config) {
                     CORE.unblockUI();
-                    alert(data.MsgContent);
+                    alert(data.ErrMsg);
                 });
             }
         }
 
         $scope.updateCustomer = function () {
-            $scope.MsgId = 0;
-            $scope.MsgContent = '';
+            $scope.ErrCode = 0;
+            $scope.ErrMsg = '';
 
             var custInfoScope = angular.element('[ng-controller="sportsbook.custInfoController"]').scope();
 
@@ -143,13 +143,13 @@
             }).
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
-                if (data.MsgId == 0) {
+                if (data.ErrCode == 0) {
                     $scope.Messages = data.Messages;
                     CORE.scrollTop();
                     var isSuccess = true;
                     for (var i = 0; i < data.Messages.length; i++) {
                         var message = data.Messages[i];
-                        if (message.MsgId != 0) {
+                        if (message.ErrCode != 0) {
                             isSuccess = false;
                             break;
                         }
@@ -159,12 +159,12 @@
                     }
                 }
                 else {
-                    alert(data.MsgContent);
+                    alert(data.ErrMsg);
                 }
             }).
             error(function (data, status, headers, config) {
                 CORE.unblockUI();
-                alert(data.MsgContent);
+                alert(data.ErrMsg);
             });
         }
 

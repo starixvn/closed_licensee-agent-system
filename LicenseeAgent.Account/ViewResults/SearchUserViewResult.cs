@@ -17,9 +17,9 @@ namespace LicenseeAgent.Account.ViewResults
     /// </summary>
     public class SearchUserViewResult
     {
-        public int MsgId { get; set; }
+        public int ErrCode { get; set; }
 
-        public string MsgContent { get; set; }
+        public string ErrMsg { get; set; }
 
         public bool IsChangeCurrency { get; set; }
 

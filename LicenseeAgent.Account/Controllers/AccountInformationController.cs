@@ -105,7 +105,7 @@ namespace LicenseeAgent.Account.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = downlines
             });
         }
@@ -130,7 +130,7 @@ namespace LicenseeAgent.Account.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = users.Select(m => m.UserName).ToArray()
             });
         }
@@ -155,7 +155,7 @@ namespace LicenseeAgent.Account.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = users.Select(m => m.UserName).ToArray()
             });
         }
@@ -187,8 +187,8 @@ namespace LicenseeAgent.Account.Controllers
             {
                 ViewBag.Result = new SearchUserViewResult
                 {
-                    MsgId = criteria.MsgId,
-                    MsgContent = GetErrorMsg(criteria.MsgId)
+                    ErrCode = criteria.MsgId,
+                    ErrMsg = GetErrMsg(criteria.MsgId)
                 };
             }
             else
@@ -244,8 +244,8 @@ namespace LicenseeAgent.Account.Controllers
             {
                 var result = new SearchUserViewResult
                 {
-                    MsgId = criteria.MsgId,
-                    MsgContent = GetErrorMsg(criteria.MsgId),
+                    ErrCode = criteria.MsgId,
+                    ErrMsg = GetErrMsg(criteria.MsgId),
                     IsChangeCurrency = criteria.AgentCurrency != 0,
                     CurrencyId = criteria.AgentCurrency,
                     CurrencyName = criteria.AgentCurrencyName

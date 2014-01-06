@@ -53,8 +53,8 @@
                 timeout: 120000
             })
             .done(function (result) {
-                if (result.MsgId != 0) {
-                    alert(result.MsgContent);
+                if (result.ErrCode != 0) {
+                    alert(result.ErrMsg);
                     HEADER.signOut();
                 }
                 else {

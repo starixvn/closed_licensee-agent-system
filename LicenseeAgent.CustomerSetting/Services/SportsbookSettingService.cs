@@ -106,7 +106,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             return new SportsbookCustomer
             {
-                Result = new Result(msgId, ResourceManager.GetErrorMsg(msgId))
+                Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
         }
 
@@ -148,7 +148,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             return new SportsbookCustomer
             {
-                Result = new Result(msgId, ResourceManager.GetErrorMsg(msgId))
+                Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
         }
 
@@ -200,7 +200,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             return new InsertResult
             {
-                MsgId = Constant.ERROR_CODE_DEFAULT
+                ErrCode = Constant.ERROR_CODE_DEFAULT
             };
         }
 
@@ -252,7 +252,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             return new InsertResult
             {
-                MsgId = Constant.ERROR_CODE_DEFAULT
+                ErrCode = Constant.ERROR_CODE_DEFAULT
             };
         }
 
@@ -276,7 +276,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             JsonSerializerSettings jsonSetting = GetJsonSetting();
             var settingScript = new StringBuilder();
-            if (result != null && result.MsgId != 0)
+            if (result != null && result.ErrCode != 0)
             {
                 settingScript.Append(string.Format("var result = {0}; \n", JsonConvert.SerializeObject(result, jsonSetting)));
             }

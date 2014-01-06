@@ -38,11 +38,11 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         Basketball.initLeagueMultiSelect(data.List);
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -92,11 +92,11 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         Basketball.initEventMultiSelect(data.List);
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -140,13 +140,13 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         gridOption.bodyRows = Basketball.genGridRows(data.List, gridOption);
                         $('#grid').show().fanexGrid(gridOption);
 
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {

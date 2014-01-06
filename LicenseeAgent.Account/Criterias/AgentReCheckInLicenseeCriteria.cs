@@ -13,7 +13,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public int LicenseeId { get; set; }
 
-        public bool IsKickedOut { get; set; }
+        public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {

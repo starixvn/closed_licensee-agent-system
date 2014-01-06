@@ -38,11 +38,11 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         OtherSports.initSportMultiSelect(data.List);
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -88,11 +88,11 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         OtherSports.initLeagueMultiSelect(data.List);
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -142,7 +142,7 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         $("#event-multi-select").fanexMultiSelect({
                             listData: data.List,
                             showTooltip: true,
@@ -160,7 +160,7 @@
                         });
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -187,12 +187,12 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.MsgId == 0) {
+                    if (data.ErrCode == 0) {
                         gridOption.bodyRows = OtherSports.genGridRows(data.List, gridOption);
                         $('#grid').show().fanexGrid(gridOption);
                     }
                     else {
-                        alert(data.MsgContent);
+                        alert(data.ErrMsg);
                     }
                 },
                 complete: function () {

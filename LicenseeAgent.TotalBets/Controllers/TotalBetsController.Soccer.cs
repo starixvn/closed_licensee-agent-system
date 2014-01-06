@@ -101,7 +101,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = leagueMultiItems,
             });
         }
@@ -134,7 +134,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 List = eventMultiItems,
             });
         }

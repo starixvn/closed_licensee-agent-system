@@ -28,29 +28,29 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// </summary>
     public class SportsbookSettingController : BaseController
     {
-        private static MsgId[] betSettingMsgIds =
+        private static ErrCode[] betSettingErrCodes =
         {
-            MsgId.Msg_1003,
-            MsgId.Msg_1004,
-            MsgId.Msg_1005,
-            MsgId.Msg_1006,
-            MsgId.Msg_1007,
-            MsgId.Msg_1008,
-            MsgId.Msg_1025,
-            MsgId.Msg_1028
+            ErrCode.Msg_1003,
+            ErrCode.Msg_1004,
+            ErrCode.Msg_1005,
+            ErrCode.Msg_1006,
+            ErrCode.Msg_1007,
+            ErrCode.Msg_1008,
+            ErrCode.Msg_1025,
+            ErrCode.Msg_1028
         };
 
-        private static MsgId[] positionTakingMsgIds =
+        private static ErrCode[] positionTakingErrCodes =
         {
-            MsgId.Msg_1010,
-            MsgId.Msg_1011,
-            MsgId.Msg_1012,
-            MsgId.Msg_1013,
-            MsgId.Msg_1014,
-            MsgId.Msg_1015,
-            MsgId.Msg_1021,
-            MsgId.Msg_1026,
-            MsgId.Msg_1029
+            ErrCode.Msg_1010,
+            ErrCode.Msg_1011,
+            ErrCode.Msg_1012,
+            ErrCode.Msg_1013,
+            ErrCode.Msg_1014,
+            ErrCode.Msg_1015,
+            ErrCode.Msg_1021,
+            ErrCode.Msg_1026,
+            ErrCode.Msg_1029
         };
 
         private readonly ISportsbookSettingService _customerSettingService;
@@ -145,7 +145,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var messages = GenerateMessages(result);
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 Messages = messages
             });
         }
@@ -173,7 +173,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var messages = GenerateMessages(result, true);
             return Json(new
             {
-                MsgId = Result.SuccessValue,
+                ErrCode = Result.SuccessValue,
                 Messages = messages
             });
         }
@@ -256,7 +256,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {
             var msgContents = new List<Result>();
-            if (result.MsgId == 0)
+            if (result.ErrCode == 0)
             {
                 msgContents.Add(new Result(Result.SuccessValue, isUpdate ? Las.UpdateSuccessfully : Las.InsertSuccessfully));
             }
@@ -264,11 +264,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 if (isUpdate)
                 {
-                    if (betSettingMsgIds.Contains((MsgId)result.MsgId))
+                    if (betSettingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
                         msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
                     }
-                    else if (positionTakingMsgIds.Contains((MsgId)result.MsgId))
+                    else if (positionTakingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
                         msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
                         msgContents.Add(new Result(Result.SuccessValue, Las.UpdateBetSettingSuccessfully));
@@ -277,67 +277,67 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
                 result.MinPTOutput = result.MinPTOutput / 10000;
                 result.MaxPTOutput = result.MaxPTOutput / 10000;
-                var msgContent = result.MsgContent;
-                switch (result.MsgId)
+                var msgContent = result.ErrMsg;
+                switch (result.ErrCode)
                 {
-                    case (int)MsgId.Msg_1003:
-                    case (int)MsgId.Msg_1004:
-                    case (int)MsgId.Msg_1005:
+                    case (int)ErrCode.Msg_1003:
+                    case (int)ErrCode.Msg_1004:
+                    case (int)ErrCode.Msg_1005:
                         msgContent = string.Format(
-                            ResourceManager.GetErrorMsg(result.MsgId),
+                            ResourceManager.GetErrMsg(result.ErrCode),
                             DataRefWrapper.GetSportName(result.BetLimitSportType, result.BetLimitBetType));
                         break;
 
-                    case (int)MsgId.Msg_1006:
-                    case (int)MsgId.Msg_1007:
-                    case (int)MsgId.Msg_1008:
+                    case (int)ErrCode.Msg_1006:
+                    case (int)ErrCode.Msg_1007:
+                    case (int)ErrCode.Msg_1008:
                         msgContent = string.Format(
-                            ResourceManager.GetErrorMsg(result.MsgId),
+                            ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatInt(result.BetLimitOutput),
                             DataRefWrapper.GetSportName(result.BetLimitSportType, result.BetLimitBetType));
                         break;
 
-                    case (int)MsgId.Msg_1010:
-                    case (int)MsgId.Msg_1011:
-                    case (int)MsgId.Msg_1012:
+                    case (int)ErrCode.Msg_1010:
+                    case (int)ErrCode.Msg_1011:
+                    case (int)ErrCode.Msg_1012:
                         msgContent = string.Format(
-                        ResourceManager.GetErrorMsg(result.MsgId),
+                        ResourceManager.GetErrMsg(result.ErrCode),
                             DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
-                    case (int)MsgId.Msg_1015:
+                    case (int)ErrCode.Msg_1015:
                         msgContent = string.Format(
-                            ResourceManager.GetErrorMsg(result.MsgId),
+                            ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
                             DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
-                    case (int)MsgId.Msg_1013:
-                    case (int)MsgId.Msg_1014:
-                    case (int)MsgId.Msg_1021:
+                    case (int)ErrCode.Msg_1013:
+                    case (int)ErrCode.Msg_1014:
+                    case (int)ErrCode.Msg_1021:
                         msgContent = string.Format(
-                            ResourceManager.GetErrorMsg(result.MsgId),
+                            ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
                             DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
-                    case (int)MsgId.Msg_1016:
+                    case (int)ErrCode.Msg_1016:
                         msgContent = string.Format(
-                            ResourceManager.GetErrorMsg(result.MsgId),
+                            ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatInt(result.MaxCreditOutput));
                         break;
 
                     default:
-                        msgContent = ResourceManager.GetErrorMsg(result.MsgId);
+                        msgContent = ResourceManager.GetErrMsg(result.ErrCode);
                         break;
                 }
 
-                msgContents.Add(new Result(result.MsgId, msgContent));
+                msgContents.Add(new Result(result.ErrCode, msgContent));
             }
 
             return msgContents;

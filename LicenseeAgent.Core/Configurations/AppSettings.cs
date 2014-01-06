@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Terry.Nguyen" date="2013.6.12">Created</change>
-//   <change who="Anders.Le" date="2013.6.12">Change IsMultipleSignOn to IsAllowMultipleSignIn</change>
-// </history>
 
 namespace LicenseeAgent.Core.Configurations
 {
@@ -28,6 +24,7 @@ namespace LicenseeAgent.Core.Configurations
             UnderMaintenanceUrl = GetValue("UnderMaintenaceUrl");
             DisabledUnderMaintenanceAPI = GetValue("DisabledUnderMaintenanceAPI") == "1";
             LocalTest = GetValue("LocalTest") == "1";
+            LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
             IsDownTime = GetValue("IsDownTime") == "1";
         }
 
@@ -44,6 +41,8 @@ namespace LicenseeAgent.Core.Configurations
         public static string EndTime { get; private set; }
 
         public static bool LocalTest { get; private set; }
+
+        public static int LocalLicenseeId { get; private set; }
 
         /// <summary>
         /// Gets the value.

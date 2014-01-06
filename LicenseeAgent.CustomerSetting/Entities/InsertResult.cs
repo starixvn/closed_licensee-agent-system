@@ -23,8 +23,8 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public InsertResult(int msgId, string msgContent)
         {
-            MsgId = msgId;
-            MsgContent = msgContent;
+            ErrCode = msgId;
+            ErrMsg = msgContent;
         }
 
         public int CustIdReturn { get; set; }

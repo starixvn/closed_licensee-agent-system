@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Utils
 {
@@ -17,20 +14,20 @@ namespace LicenseeAgent.Core.Utils
     /// </summary>
     public static class ResourceManager
     {
-        public static string GetErrorMsg(int msgId)
+        public static string GetErrMsg(int errorCode)
         {
-            if (msgId != 0)
+            if (errorCode != 0)
             {
-                var key = string.Format("Msg_{0}", msgId);
+                var key = string.Format("Msg_{0}", errorCode);
                 return LangMsg.ResourceManager.GetString(key);
             }
 
             return string.Empty;
         }
 
-        public static string GetErrorMsg(MsgId msgId)
+        public static string GetErrMsg(ErrCode msgId)
         {
-            return GetErrorMsg((int)msgId);
+            return GetErrMsg((int)msgId);
         }
     }
 }

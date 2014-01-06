@@ -12,7 +12,7 @@ namespace LicenseeAgent.Account.Criterias
         [SpParam(SqlParamName = "On_AgentId")]
         public int OnAgentId { get; set; }
 
-        public bool IsKickedOut { get; set; }
+        public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {

@@ -205,35 +205,35 @@ namespace LicenseeAgent.Web.Controllers
             }
         }
 
-        protected string GetErrorMsg(int msgId)
+        protected string GetErrMsg(int errCode)
         {
-            return ResourceManager.GetErrorMsg(msgId);
+            return ResourceManager.GetErrMsg(errCode);
         }
 
         protected JsonResult JsonResult(Result result)
         {
             return Json(new
             {
-                MsgId = result.MsgId,
-                MsgContent = result.MsgContent
+                ErrCode = result.ErrCode,
+                ErrMsg = result.ErrMsg
             });
         }
 
-        protected JsonResult JsonResult(int msgId)
+        protected JsonResult JsonResult(int errCode)
         {
-            var result = new Result(msgId);
+            var result = new Result(errCode);
             return JsonResult(result);
         }
 
-        protected JsonResult JsonResult(string msgContent)
+        protected JsonResult JsonResult(string errMsg)
         {
-            var result = new Result(msgContent);
+            var result = new Result(errMsg);
             return JsonResult(result);
         }
 
-        protected JsonResult JsonResult(int msgId, string msgContent)
+        protected JsonResult JsonResult(int errCode, string errMsg)
         {
-            var result = new Result(msgId, msgContent);
+            var result = new Result(errCode, errMsg);
             return JsonResult(result);
         }
 

@@ -11,6 +11,7 @@
 namespace LicenseeAgent.BetList.Controllers
 {
     using System.Collections.Generic;
+    using System.Text;
     using System.Web.Mvc;
     using Criterias;
     using Entities;
@@ -22,7 +23,6 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.

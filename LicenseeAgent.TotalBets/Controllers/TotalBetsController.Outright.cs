@@ -50,15 +50,15 @@ namespace LicenseeAgent.TotalBets.Controllers
         public IList<dynamic> MapOutrightMainData(IEnumerable<OutrightEntity> dataList)
         {
             IList<dynamic> sportItems = new List<dynamic>();
-            var sports = dataList.Select(s => new { s.SportType, s.SportName }).Distinct().OrderBy(s => s.SportName);
+            var sports = dataList.Select(s => new { s.SportType, s.SportName }).Distinct().OrderBy(s => s.SportName).ToList();
             foreach (var sport in sports)
             {
-                var allLeagueData = dataList.Where(l => l.SportType == sport.SportType);
-                var leaguesInSport = allLeagueData.Select(l => new { l.LeagueId, l.LeagueName }).Distinct().OrderBy(l => l.LeagueName);
+                var allLeagueData = dataList.Where(l => l.SportType == sport.SportType).ToList();
+                var leaguesInSport = allLeagueData.Select(l => new { l.LeagueId, l.LeagueName }).Distinct().OrderBy(l => l.LeagueName).ToList();
                 var leagueItems = new List<dynamic>();
                 foreach (var league in leaguesInSport)
                 {
-                    var teamsInLeague = allLeagueData.Where(t => t.LeagueId == league.LeagueId);
+                    var teamsInLeague = allLeagueData.Where(t => t.LeagueId == league.LeagueId).ToList();
                     var leagueItem = new { LeagueId = league.LeagueId, LeagueName = league.LeagueName, TeamList = teamsInLeague };
                     leagueItems.Add(leagueItem);
                 }

@@ -210,6 +210,7 @@
             var bodyRows = [];
             var oldSportId = 0;
             var oldLeagueId = 0;
+            var rowIndex = 0;
 
             for (var k = 0; k < lenSports; k++) {//Sport
                 var sport = list[k];
@@ -230,10 +231,10 @@
                 var len = leagues.length;
                 for (var i = 0; i < len; i++) {
 
-                    var rowIndex = 0;
                     var league = leagues[i];
                     //Push League row
                     if (oldLeagueId != league.LeagueId) {
+                        rowIndex = 0;
                         oldLeagueId = league.LeagueId;
                         bodyRows.push({
                             Columns: ([

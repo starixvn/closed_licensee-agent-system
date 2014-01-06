@@ -163,13 +163,14 @@
             var len = list.length;
             var bodyRows = [];
             var oldLeagueId = 0;
+            var rowIndex = 0;
 
             for (var i = 0; i < len; i++) {//League
-                var rowIndex = 0;
                 var league = list[i];
                 var newLeagueId = league.LeagueId;
 
                 if (oldLeagueId != newLeagueId) {
+                    rowIndex = 0;
                     oldLeagueId = newLeagueId;
                     //Push League row
                     bodyRows.push({

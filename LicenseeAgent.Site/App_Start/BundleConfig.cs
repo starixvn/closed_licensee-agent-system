@@ -106,7 +106,6 @@ namespace LicenseeAgent.Site
                 "~/scripts/contextmenu/jquery.contextMenu.js"));
             bundles.Add(new LessBundle("~/css/contextmenu").Include(
                 "~/content/contextmenu/jquery.contextMenu.css"));
-                "~/scripts/ng-grid/ng-grid-flexible-height.js",
         }
 
         /// <summary>

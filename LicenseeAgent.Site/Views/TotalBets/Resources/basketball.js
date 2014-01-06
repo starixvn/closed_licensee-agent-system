@@ -62,6 +62,8 @@
                 selectedText: '# selected leagues',
                 tooltipNoItem: 'There is no league selected.',
                 showParentSelectedText: false,
+                useCustomCheckAllText: true,
+                customCheckAllText: 'All leagues',
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
@@ -118,6 +120,8 @@
                 noneSelectedText: 'Select event',
                 selectedText: '# selected events',
                 tooltipNoItem: 'There is no event selected.',
+                useCustomCheckAllText: true,
+                customCheckAllText: 'All events',
                 showParentSelectedText: false,
                 onLeave: function () {
                     //Basketball.reRenderAfterPaged();

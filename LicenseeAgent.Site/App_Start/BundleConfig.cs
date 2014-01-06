@@ -106,22 +106,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/contextmenu/jquery.contextMenu.js"));
             bundles.Add(new LessBundle("~/css/contextmenu").Include(
                 "~/content/contextmenu/jquery.contextMenu.css"));
-
-            // Month Picker
-            bundles.Add(new ScriptBundle("~/js/monthpicker").Include(
-                "~/scripts/MonthPicker/monPickr-0.0.3.js"));
-            bundles.Add(new LessBundle("~/css/monthpicker").Include(
-                "~/scripts/MonthPicker/monPickr-0.0.3.css"));
-
-            // For Bet List
-            bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
-                "~/scripts/ng-grid/ng-grid.js",
                 "~/scripts/ng-grid/ng-grid-flexible-height.js",
-                "~/scripts/Angular/angular-sanitize.js"));
-            bundles.Add(new LessBundle("~/css/angulargrid").Include(
-                "~/content/ng-grid/ng-grid.css",
-                "~/content/betlist/betlist.core.css",
-                "~/content/betlist/betList.css"));
         }
 
         /// <summary>
@@ -175,6 +160,7 @@ namespace LicenseeAgent.Site
             RegisterHomePage(bundles);
             RegisterAccountPage(bundles);
             RegisterCustomerListPage(bundles);
+            RegisterBetListPage(bundles);
             RegisterTotalBetsPages(bundles);
             RegisterPluginControl(bundles);
         }
@@ -257,6 +243,26 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/customerlist").Include(
                 "~/Views/Customer/Resources/customerlist.js"));
+        }
+
+        /// <summary>
+        /// Registers the bet list page bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterBetListPage(BundleCollection bundles)
+        {
+            // Month Picker
+            bundles.Add(new ScriptBundle("~/js/monthpicker").Include(
+                "~/scripts/MonthPicker/monPickr-0.0.3.js"));
+            bundles.Add(new LessBundle("~/css/monthpicker").Include(
+                "~/scripts/MonthPicker/monPickr-0.0.3.css"));
+
+            // For Bet List
+            bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
+                "~/scripts/Angular/angular-sanitize.js"));
+            bundles.Add(new LessBundle("~/css/angulargrid").Include(
+                "~/content/betlist/betlist.core.css",
+                "~/content/betlist/betList.css"));
         }
 
         /// <summary>

@@ -4,14 +4,19 @@
 @section css
 {
     @Styles.Render("~/css/angulargrid")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap-select")
     @Styles.Render("~/css/monthpicker")
 }
 @section scripts
 {
     @Scripts.Render("~/js/angular")
-    @Scripts.Render("~/js/angulargrid")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/bootstrap-select")
     @Scripts.Render("~/js/monthpicker")
-    <script type="text/javascript" src="@Url.Content("~/Views/BetList/Resources/BetListManager.js")"></script>
+
+    <script type="text/javascript" src=@Url.Content("~/Views/BetList/Resources/BetListManager.js")></script>
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '@DateTime.Now.AddMonths(-2).ToShortDateString()';
@@ -20,22 +25,45 @@
         var lastYear = '@DateTime.Now.AddMonths(-1).Year';
     </script>
 }
-
+<style>
+    .monpickr-super-wrapper 
+    {
+        display: inline-block;
+        margin-top: 3px;
+        font-size: 10px;
+    }
+    
+    .filter-area 
+    {
+        margin-bottom: 0;
+    }
+    
+    .gridWrapper
+    {
+        width: 1010px;
+    }
+</style>
 <div class="legend">Bet List</div>
-<div data-ng-app="betlist" data-ng-controller="BetListController">
-    <div id="filter-area" class="clearfix filter-area">
-        <div class="month pull-left">Month</div><div class="pull-left" id="month-picker-control"></div>
-        <div class="pull-left">Status 
-            <select id="status"
-                    ng-model="selectedStatus"
-                    ng-change="changeStatus(selectedStatus)"
-                    ng-options="i.status for i in statusOptions">
-            </select>
+<div>
+    @using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
+        new { @class = "form-inline form-filter ", id = "search-form" }))
+    {
+        <div id="filter-area" class="clearfix filter-area">
+            <div class="controls-row">
+                <div class="month pull-left">Month</div>
+                <div class="pull-left controls-row" id="month-picker-control"></div>
+            </div>
+            <div class="controls-row">
+                @Html.Label("Status", "Status")
+                @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
+            </div>
+            <div class="controls-row">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
         </div>
-        <input type="button" title="Submit" id="btnSubmit" value="Submit" ng-click="SubmitForm()" />
-    </div>
-    <div id="bet-list-area" class="clearfix">
-        <div class="ng-grid" ng-grid="gridOptions">
+    }
+    <div class="gridWrapper">
+        <div id="BetListGrid" class="freegrid content-grid">
         </div>
     </div>
 </div>

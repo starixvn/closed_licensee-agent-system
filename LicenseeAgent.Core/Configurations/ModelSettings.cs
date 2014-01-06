@@ -21,6 +21,8 @@ namespace LicenseeAgent.Core.Configurations
     {
         private static List<SelectListItem> _languages;
 
+        private static List<SelectListItem> _betlistStatuses;
+
         static ModelSettings()
         {
             _languages = new List<SelectListItem>
@@ -29,6 +31,14 @@ namespace LicenseeAgent.Core.Configurations
                 new SelectListItem { Text = "繁體中文", Value = "zh-TW" },
                 new SelectListItem { Text = "简体中文", Value = "zh-CN" }
             };
+
+            _betlistStatuses = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "All", Value = "0" },
+                new SelectListItem { Text = "Won", Value = "1" },
+                new SelectListItem { Text = "Lose", Value = "2" },
+                new SelectListItem { Text = "Draw", Value = "3" }
+            };
         }
 
         public static List<SelectListItem> Languages
@@ -36,6 +46,14 @@ namespace LicenseeAgent.Core.Configurations
             get
             {
                 return _languages;
+            }
+        }
+
+        public static List<SelectListItem> BetListStatuses
+        {
+            get
+            {
+                return _betlistStatuses;
             }
         }
 

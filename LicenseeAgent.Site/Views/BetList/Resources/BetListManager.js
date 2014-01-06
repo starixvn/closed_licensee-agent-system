@@ -1,121 +1,123 @@
-﻿$(document).ready(function () {
-    renderDatePicker();
-});
-
-var renderDatePicker = function () {
-    var lastdate = '';
-    lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
-    $('#month-picker-control').monPickr({
-        plugInId: '#month-picker-control',
-        today: lastdate,
-        maxDate: _today,
-        minDate: _minDate,
-        showDateRange: true,
-        fromDayId: 'spFrom',
-        toDayId: 'spTo',
-        fromDayLabel: 'From',
-        toDayLabel: 'To',
-        log: function (msg) {
-            console.warn(msg);
-        }
-    });
+﻿var gridOption = {
+    columns: [
+                { HeaderText: "No.", Width: 30, Name: "Index", CellAlign: "center" },
+                { HeaderText: "TransTime", Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "Choice", Width: 350, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Odds", Width: 40, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Stake", Width: 60, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Winloss", Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Status", Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "AgentPT", Width: 80, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "AgentComm", Width: 80, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Feature", Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+            ],
+    showPager: true,
+    customPager: true,
+    gridExpandHeight: 100,
+    bodyRowHeight: 29
 };
 
-function OpenIPInfo(ipString) {
-    alert(ipString);
-    var url = "Customer/GetIpInformation?IpAddress=" + ipString;
-    POPUP.openDialogFrame(url, { width: 360, height: 300 });
+function OpenIPInfo(ipstring)
+{
+    BETLIST.getIpInformation(ipstring);
 };
 
-var app = angular.module('betlist', ['ngGrid', 'ngSanitize']);
-app.controller('BetListController', function ($scope, $http) {
-    // STATUS
-    var statusData = [{ "id": 0, "status": "All" },
-                        { "id": 1, "status": "Won" },
-                        { "id": 2, "status": "Lose" },
-                        { "id": 3, "status": "Draw"}];
-    $scope.statusOptions = statusData;
-    $scope.selectedStatus = statusData[0];
+var BETLIST = function ($) {
+    return {
+        init: function () {
+            BETLIST.renderDatePicker();
 
-    $scope.changeStatus = function (selectedItem) {
-    }
+            // search
+            $('#search-form').submit(function (e) {
+                BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+                e.preventDefault();
+            });
 
-    // GRID
-    $scope.betlistData = null;
-    $scope.totalServerItems = 0;
-    $scope.pagingOptions = {
-        pageSizes: [100, 200, 500],
-        pageSize: 100,
-        currentPage: 1
-    };
-    $scope.setPagingData = function (data, page, pageSize) {
-        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-        $scope.myData = pagedData;
-        $scope.totalServerItems = data.length;
-        if (!$scope.$$phase) {
-            $scope.$apply();
+            // get bet list
+            BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+        },
+        reRenderAfterPaged: function (currentPage, itemsPerPage) {
+            if (gridOption && gridOption.pagerOption) {
+                currentPage = currentPage >= 0 ? currentPage
+                                                : gridOption.pagerOption.currentPage;
+                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
+            }
+
+            var urlGetBetList = $('#search-form').attr('action');
+            var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
+            var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
+            var params = {
+                FromDate: fromDate,
+                ToDate: toDate,
+                StatusId: $("#Status").val() != -1 ? $.trim($("#Status").val()) : '',
+                PageIndex: currentPage,
+                PageSize: itemsPerPage
+            };
+
+            $.ajax({
+                url: urlGetBetList,
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    gridOption.pagerOption = {
+                        itemsPerPage: data.ItemsPerPage,
+                        itemsPerPageArray: CORE.pageSizes,
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
+                        pagerSelectCallBack: BETLIST.reRenderAfterPaged
+                    };
+                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                    $('#BetListGrid').show().fanexGrid(gridOption);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+        getIpInformation: function (ipAddress) {
+            $.ajax({ url: "Customer/GetIpInformation",
+                type: 'post',
+                data: { IpAddress: ipAddress },
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data != null) {
+                        $('#instruction').html(data);
+                        var dialog = POPUP.openDialog($('#instruction'), msg.IpInformation, { modal: false, clickout: true, openid: $(this).attr('id') });
+                        $('.ui-tooltip').remove();
+                    }
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+        renderDatePicker: function () {
+            var lastdate = '';
+            lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
+            $('#month-picker-control').monPickr({
+                plugInId: '#month-picker-control',
+                today: lastdate,
+                maxDate: _today,
+                minDate: _minDate,
+                showDateRange: true,
+                fromDayId: 'spFrom',
+                toDayId: 'spTo',
+                fromDayLabel: 'From',
+                toDayLabel: 'To',
+                log: function (msg) {
+                    console.warn(msg);
+                }
+            });
         }
-    };
-
-    $scope.gridOptions = {
-        data: 'betlistData',
-        rowHeight: 65,
-        enablePaging: true,
-        showFooter: true,
-        totalServerItems: 'totalServerItems',
-        pagingOptions: $scope.pagingOptions,
-        multiSelect: false,
-        columnDefs: [
-                        { field: 'Index', displayName: 'No.', width: 30 },
-                        { field: 'TransTime', displayName: 'TransTime', width: 120, style: 'class=\"alignRight\"', cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Choice', displayName: 'Choice', width: 370, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Odds', displayName: 'Odds', width: 40, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Stake', displayName: 'Stake', width: 60, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'WinLoss', displayName: 'Winloss', width: 60, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Status', displayName: 'Status', width: 100, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'AgentPT', displayName: 'AgentPT', width: 80, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'AgentComm', displayName: 'AgentComm', width: 80, cellTemplate: '<div ng-bind-html=\"row.getProperty(col.field)\"></div>' },
-                        { field: 'Feature', displayName: 'Feature', width: 80, cellTemplate: '<a href=\"javascript:;\" ng-click=\"ViewBetListDetails()\">Details</a>' }
-                    ],
-        plugins: [new ngGridFlexibleHeightPlugin()]
-    };
-
-    $scope.SubmitForm = function () {
-        CORE.blockUI();
-        var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
-        var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
-        var queryString = "FromDate=" + fromDate;
-        queryString += "&ToDate=" + toDate;
-        queryString += "&StatusId=" + $scope.selectedStatus.id;
-        queryString += "&PageIndex=" + $scope.pagingOptions.currentPage;
-        queryString += "&PageSize=" + $scope.pagingOptions.pageSize;
-
-        $http({
-            method: 'POST',
-            url: CORE.resolveUrl("~/BetList/BetListSelByMember?") + queryString,
-            headers: { 'Content-Type': 'application/json' }
-        }).
-        success(function (data, status, headers, config) {
-            $scope.betlistData = data;
-            CORE.unblockUI();
-        }).
-        error(function (data, status, headers, config) {
-            alert("Error");
-        });
-    };
-
-    $scope.ViewBetListDetails = function () {
-        var url = "BetList/Details" + queryString();
-        POPUP.openDialogFrame(url, { width: 360, height: 300 });
     }
+} (jQuery);
 
-    var queryString = function () {
-        return "";
-    };
+$(function () {
+    BETLIST.init();
 
-    $scope.OpenIPInfo = function (ipString) {
-        alert(ipString);
-        var url = "Customer/GetIpInformation?IpAddress=" + ipString;
-        POPUP.openDialogFrame(url, { width: 360, height: 300 });
-    };
 });

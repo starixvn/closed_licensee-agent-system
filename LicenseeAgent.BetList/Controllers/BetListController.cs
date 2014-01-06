@@ -80,9 +80,9 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var balanceUp = _coreService.GetBalanceUpDay();
             criteria.AgentId = 1000000519;
-            criteria.CustId = 13467694;
-            criteria.MoveBetsDay = balanceUp.MoveBetDay;
-            criteria.BalanceUpDay = balanceUp.BalanceUpDay;
+            criteria.CustId = 13467695;
+            criteria.MoveBetsDay = System.DateTime.Parse("2013-01-01"); // balanceUp.MoveBetDay;
+            criteria.BalanceUpDay = System.DateTime.Parse("2013-01-01"); // balanceUp.BalanceUpDay;
 
             var ticketResults = _betlistService.GetBetList(criteria);
 
@@ -92,7 +92,13 @@ namespace LicenseeAgent.BetList.Controllers
                 TicketResult = ticketResults
             };
 
-            return Json(model.TicketTextList);
+            return Json(new 
+            {
+                List = model.TicketTextList,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalRows
+            });
         }
 
         /// <summary>
@@ -198,8 +204,9 @@ namespace LicenseeAgent.BetList.Controllers
                     WinLoss = string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate)
                 };
 
-                ticketText.Status = ticketText.Status.Replace("onclick", "ng-click");
-
+                ticketText.Feature = "<a class=\"iplink\" href=\"javascript:void(0);\" onclick=\"javascript: POPUP.openDialogFrame('BetList/Details?";
+                ticketText.Feature += "SomeParamShouldBeHere=1', { width: 360, height: 280 }); \">Feature</a>";
+                
                 ticketTextList.Add(ticketText);
             }
 

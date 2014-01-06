@@ -166,7 +166,7 @@
             <td class="bet-choice">@Las.Home @Las.Or @Las.Draw</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "h");
+                    item = Model.MainData.Where(x => x.BetType == 24 && x.BetTeam == "1x");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -186,7 +186,7 @@
             <td class="bet-choice">@Las.Home</td>
             <td class="total-bet-choice">
                  @{
-                    item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "h");
+                    item = Model.MainData.Where(x => x.BetType == 28 && x.BetTeam == "1");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -198,7 +198,7 @@
             <td class="bet-choice">@Las.Home @Las.Or @Las.Away</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "12");
+                    item = Model.MainData.Where(x => x.BetType == 24 && x.BetTeam == "12");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -230,7 +230,7 @@
             <td class="bet-choice">@Las.Away @Las.Or @Las.Draw</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 25 && x.BetTeam == "2x");
+                    item = Model.MainData.Where(x => x.BetType == 24 && x.BetTeam == "2x");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -451,7 +451,7 @@
             <td class="bet-choice">HH</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:1");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "1:1");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -461,7 +461,7 @@
             <td class="bet-choice">AH</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:1");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "2:1");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -471,7 +471,7 @@
             <td class="bet-choice">DH</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:1");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "0:1");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -483,7 +483,7 @@
             <td class="bet-choice">HD</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:0");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "1:0");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -493,7 +493,7 @@
             <td class="bet-choice">AD</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:0");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "2:0");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -503,7 +503,7 @@
             <td class="bet-choice">DD</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:0");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "0:0");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -515,7 +515,7 @@
             <td class="bet-choice">HA</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "1:2");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "1:2");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -525,7 +525,7 @@
             <td class="bet-choice">AA</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "2:2");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "2:2");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText
@@ -535,7 +535,7 @@
             <td class="bet-choice">DA</td>
             <td class="total-bet-choice">
                 @{
-                    item = Model.MainData.Where(x => x.BetType == 14 && x.BetTeam == "0:2");
+                    item = Model.MainData.Where(x => x.BetType == 16 && x.BetTeam == "0:2");
                     if (item.Any())
                     {
                         @item.FirstOrDefault().TotalBetsText

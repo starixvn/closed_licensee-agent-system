@@ -145,7 +145,7 @@
 
                     // Load data for the first time load page
                     if (isLoadGrid) {
-                        //Outright.reRenderAfterPaged();
+                        Outright.reRenderAfterPaged();
                     }
                 },
                 complete: function () {
@@ -185,9 +185,9 @@
         // ------------------------------------------------ Refresh data -----------------------------------------
         reRenderAfterPaged: function () {
             var params = {
-                Sports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
-                Leagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                Teams: $("#team-multi-select").fanexMultiSelect('getItems', true).join(',')
+                SportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
+                LeagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                TeamList: $("#team-multi-select").fanexMultiSelect('getItems', true).join(',')
             };
 
             $.ajax({
@@ -232,7 +232,7 @@
                 var numLeagues = leagues.length;
                 for (var i = 0; i < numLeagues; i++) {//League
 
-                    var league = list[i];
+                    var league = leagues[i];
                     //Push League row
                     bodyRows.push({
                         Columns: ([

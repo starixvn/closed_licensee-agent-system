@@ -15,11 +15,11 @@ namespace LicenseeAgent.TotalBets.Criteria
     {
         public int AgentId { get; set; }
 
-        public string Sports { get; set; }
+        public string SportList { get; set; }
 
-        public string Leagues { get; set; }
+        public string LeagueList { get; set; }
 
-        public string Teams { get; set; }
+        public string TeamList { get; set; }
 
         public override string GetSettingKey()
         {

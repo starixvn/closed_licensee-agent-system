@@ -53,7 +53,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             var sports = dataList.Select(s => new { s.SportType, s.SportName }).Distinct().OrderBy(s => s.SportName);
             foreach (var sport in sports)
             {
-                var allLeagueData = dataList.Where(le => le.SportType == sport.SportType);
+                var allLeagueData = dataList.Where(l => l.SportType == sport.SportType);
                 var leaguesInSport = allLeagueData.Select(l => new { l.LeagueId, l.LeagueName }).Distinct().OrderBy(l => l.LeagueName);
                 var leagueItems = new List<dynamic>();
                 foreach (var league in leaguesInSport)

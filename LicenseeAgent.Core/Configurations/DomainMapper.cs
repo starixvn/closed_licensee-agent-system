@@ -13,6 +13,8 @@ namespace LicenseeAgent.Core.Configurations
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
+    using Fanex.Logging;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,8 +25,11 @@ namespace LicenseeAgent.Core.Configurations
 
         static DomainMapper()
         {
-            ICoreService coreService = DependencyResolver.Current.GetService<ICoreService>();
-            _licenseeDomains = coreService.GetLicenseeDomains();
+            if (!AppSettings.IsAdminSite)
+            {
+                ICoreService coreService = DependencyResolver.Current.GetService<ICoreService>();
+                _licenseeDomains = coreService.GetLicenseeDomains();
+            }
         }
 
         /// <summary>
@@ -36,15 +41,20 @@ namespace LicenseeAgent.Core.Configurations
         /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
+            if (AppSettings.IsAdminSite)
+            {
+                return null;
+            }
+
             if (request.IsLocal)
             {
                 return AppSettings.LocalLicenseeId;
             }
 
-            var licensee = _licenseeDomains.Where(x => x.DomainName.Equals(request.Url.Authority, StringComparison.OrdinalIgnoreCase));
-            if (licensee.Count() == 1)
+            var licenseeDomains = _licenseeDomains.Where(x => x.DomainName.Equals(request.Url.Authority, StringComparison.OrdinalIgnoreCase));
+            if (licenseeDomains.Count() == 1)
             {
-                return licensee.First().LicenseeId;
+                return licenseeDomains.First().LicenseeId;
             }
 
             return null;

@@ -11,7 +11,7 @@ namespace LicenseeAgent.Core.Criterias
     {
         public override string GetSettingKey()
         {
-            return "LAS_SelBalanceUpDay";
+            return "Las_GetLicenseeDomain";
         }
 
         public override bool IsValid()

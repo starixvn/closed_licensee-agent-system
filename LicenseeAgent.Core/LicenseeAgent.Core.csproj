@@ -82,7 +82,7 @@
     <Compile Include="Enumerations\AccountType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Enumerations\TopMenu.cs" />
-    <Compile Include="Enumerations\MsgId.cs" />
+    <Compile Include="Enumerations\ErrCode.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
     <Compile Include="Enumerations\Role.cs" />
     <Compile Include="Services\CoreService.cs" />

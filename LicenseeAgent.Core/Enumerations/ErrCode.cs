@@ -1,11 +1,8 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MsgId.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ErrCode.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.11.7">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Enumerations
 {

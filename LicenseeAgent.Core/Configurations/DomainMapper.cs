@@ -30,8 +30,10 @@ namespace LicenseeAgent.Core.Configurations
         /// <summary>
         /// Gets licensee id by URL.
         /// </summary>
-        /// <param name="url">The request URL.</param>
-        /// <returns>Returns domain name.</returns>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// Returns domain name.
+        /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
             if (request.IsLocal)

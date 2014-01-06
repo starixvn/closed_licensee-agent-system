@@ -254,7 +254,9 @@ namespace LicenseeAgent.Account.Controllers
                 }
             }
 
-            var result = new Result(errCode, errCode != Result.SuccessValue ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty);
+            var result = new Result(
+                errCode, 
+                errCode != Result.SuccessValue ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty);
             return Json(result);
         }
 

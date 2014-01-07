@@ -16,7 +16,10 @@
     gridExpandHeight: 100,
     bodyRowHeight: 29,
     pagerOption: {
-        itemsPerPageArray: [10, 20, 50, 100, 500]
+        itemsPerPage: 10,
+        currentPage: 0,
+        itemsPerPageArray: [10, 20, 50, 100, 500],
+        showDetail: true
     }
 };
 
@@ -32,12 +35,12 @@ var BETLIST = function ($) {
 
             // search
             $('#search-form').submit(function (e) {
-                BETLIST.reRenderAfterPaged(0, 10);
+                BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
                 e.preventDefault();
             });
 
             // get bet list
-            //BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOption && gridOption.pagerOption) {

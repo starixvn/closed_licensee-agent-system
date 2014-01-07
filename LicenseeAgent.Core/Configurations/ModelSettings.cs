@@ -34,10 +34,15 @@ namespace LicenseeAgent.Core.Configurations
 
             _betlistStatuses = new List<SelectListItem>
             {
-                new SelectListItem { Text = "All", Value = "0" },
-                new SelectListItem { Text = "Won", Value = "1" },
-                new SelectListItem { Text = "Lose", Value = "2" },
-                new SelectListItem { Text = "Draw", Value = "3" }
+                new SelectListItem { Text = "All", Value = "-1" },
+                new SelectListItem { Text = "Waiting", Value = "1" },
+                new SelectListItem { Text = "Running", Value = "0" },
+                new SelectListItem { Text = "Won", Value = "112" },
+                new SelectListItem { Text = "Lose", Value = "113" },
+                new SelectListItem { Text = "Draw", Value = "111" },
+                new SelectListItem { Text = "Void", Value = "102" },
+                new SelectListItem { Text = "Reject", Value = "101" },
+                new SelectListItem { Text = "Refund", Value = "103" },
             };
         }
 

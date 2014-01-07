@@ -12,7 +12,7 @@ namespace LicenseeAgent.BetList.Criterias
     {
         public int AgentId { get; set; }
 
-        public byte StatusId { get; set; }
+        public byte? StatusId { get; set; }
 
         public DateTime MoveBetsDay { get; set; }
 

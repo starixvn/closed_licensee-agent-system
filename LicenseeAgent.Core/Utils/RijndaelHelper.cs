@@ -95,6 +95,12 @@ namespace LicenseeAgent.Core.Utils
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             if (_rijndael != null)
             {
                 _rijndael.Dispose();

@@ -183,7 +183,7 @@ namespace LicenseeAgent.Account.Controllers
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
             var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
 
-            if (criteria.MsgId != 0)
+            if (criteria.MsgId != 0 || customer == null)
             {
                 ViewBag.Result = new SearchUserViewResult
                 {
@@ -240,7 +240,7 @@ namespace LicenseeAgent.Account.Controllers
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
             var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
 
-            if (criteria.MsgId != 0)
+            if (criteria.MsgId != 0 || customer == null)
             {
                 var result = new SearchUserViewResult
                 {

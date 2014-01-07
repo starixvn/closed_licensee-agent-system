@@ -652,4 +652,8 @@
   <data name="FTOE" xml:space="preserve">
     <value>FT.OE</value>
   </data>
+  <data name="NoDownline" xml:space="preserve">
+    <value>There is no downline</value>
+    <comment>not</comment>
+  </data>
 </root>

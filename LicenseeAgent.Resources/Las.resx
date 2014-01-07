@@ -768,4 +768,8 @@ If that is not you, please contact your upline!!!</value>
     <value>Team</value>
     <comment>not</comment>
   </data>
+  <data name="NoDownline" xml:space="preserve">
+    <value>There is no downline</value>
+    <comment>not</comment>
+  </data>
 </root>

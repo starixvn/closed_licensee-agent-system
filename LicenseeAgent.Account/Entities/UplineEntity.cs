@@ -23,9 +23,22 @@ namespace LicenseeAgent.Account.Entities
         {
             get
             {
-                if (UserName.Length > Constants.LeftStringLength)
+                if (UserName.Length > Constants.ShortStringLength)
                 {
-                    return string.Format("{0}...", UserName.Substring(0, Constants.LeftStringLength));
+                    return string.Format("{0}...", UserName.Substring(0, Constants.ShortStringLength));
+                }
+
+                return UserName;
+            }
+        }
+
+        public string MediumUserName
+        {
+            get
+            {
+                if (UserName.Length > Constants.MediumStringLength)
+                {
+                    return string.Format("{0}...", UserName.Substring(0, Constants.MediumStringLength));
                 }
 
                 return UserName;

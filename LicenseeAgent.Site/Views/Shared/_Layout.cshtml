@@ -29,10 +29,18 @@
             @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
         </script>
     }
+    
+    <script type="text/javascript">
+        var _page = {
+            lang: '@System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag'
+        };
+    </script>
+
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
     @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/language")
     @RenderSection("scripts", false)
     <div class="block-loading" style="display: none;">
     </div>

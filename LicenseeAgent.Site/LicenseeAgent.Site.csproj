@@ -265,6 +265,21 @@
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
     <Content Include="Scripts\jquery-form\jquery.form.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid-flexible-height.js" />
+    <Content Include="Scripts\ResourcesJs\Las.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Las.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\Las.zh-CN.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Las.zh-CN.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Las.zh-TW.tt</DependentUpon>
+    </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
@@ -734,6 +749,18 @@
     <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
     <Content Include="Views\TotalBets\Outright.cshtml" />
     <Content Include="Views\TotalBets\Outright.Script.cshtml" />
+    <None Include="Scripts\ResourcesJs\Las.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Las.js</LastGenOutput>
+    </None>
+    <None Include="Scripts\ResourcesJs\Las.zh-CN.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Las.zh-CN.js</LastGenOutput>
+    </None>
+    <None Include="Scripts\ResourcesJs\Las.zh-TW.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Las.zh-TW.js</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
@@ -776,6 +803,9 @@
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

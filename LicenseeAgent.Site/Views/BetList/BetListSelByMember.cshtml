@@ -41,7 +41,24 @@
     .gridWrapper
     {
         width: 1010px;
+        height: 500px;
     }
+    
+    .instruction-content table
+    {
+        width: 400px;
+    }
+    
+    .instruction-content table .col-left
+    {
+        width: 100px;
+    }
+    
+    .instruction-content table .col-right
+    {
+        font-weight: bold;
+    }
+    
 </style>
 <div class="legend">Bet List</div>
 <div>
@@ -63,7 +80,9 @@
         </div>
     }
     <div class="gridWrapper">
-        <div id="BetListGrid" class="freegrid content-grid">
+        <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "Customer")">
         </div>
     </div>
+</div>
+<div id="instruction" class="instruction-content">
 </div>

@@ -6,21 +6,14 @@
                 { HeaderText: "Odds", Width: 40, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Stake", Width: 60, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Winloss", Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Status", Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "AgentPT", Width: 80, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "AgentComm", Width: 80, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Status", Width: 100, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "AgentPT", Width: 70, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "AgentComm", Width: 70, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Feature", Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    customPager: true,
     gridExpandHeight: 100,
-    bodyRowHeight: 29,
-    pagerOption: {
-        itemsPerPage: 10,
-        currentPage: 0,
-        itemsPerPageArray: [10, 20, 50, 100, 500],
-        showDetail: true
-    }
+    bodyRowHeight: 29
 };
 
 function OpenIPInfo(ipstring) {
@@ -64,7 +57,7 @@ var BETLIST = function ($) {
             var params = {
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusId: $("#Status").val() != -1 ? $.trim($("#Status").val()) : ''
+                StatusId: $("#Status").val() != 255 ? $.trim($("#Status").val()) : ''
             };
 
             $.ajax({
@@ -76,11 +69,10 @@ var BETLIST = function ($) {
                 },
                 success: function (data) {
                     gridOption.pagerOption = {
-                        itemsPerPage: data.ItemsPerPage,
+                        itemsPerPage: CORE.pageSizes[0],
                         itemsPerPageArray: CORE.pageSizes,
-                        currentPage: data.CurrentPage,
-                        totalItem: data.TotalItem,
-                        pagerSelectCallBack: BETLIST.reRenderAfterPaged
+                        currentPage: 0,
+                        showDetail: true
                     };
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                     $('#BetListGrid').show().fanexGrid(gridOption);
@@ -91,7 +83,8 @@ var BETLIST = function ($) {
             });
         },
         getIpInformation: function (ipAddress) {
-            $.ajax({ url: "Customer/GetIpInformation",
+            var urlIpInformation = $("#BetListGrid").data('url-ip');
+            $.ajax({ url: urlIpInformation,
                 type: 'post',
                 data: { IpAddress: ipAddress },
                 beforeSend: function () {
@@ -100,7 +93,7 @@ var BETLIST = function ($) {
                 success: function (data) {
                     if (data != null) {
                         $('#instruction').html(data);
-                        var dialog = POPUP.openDialog($('#instruction'), msg.IpInformation, { modal: false, clickout: true, openid: $(this).attr('id') });
+                        var dialog = POPUP.openDialog($('#instruction'), "IP Information", { modal: false, clickout: true, openid: $(this).attr('id') });
                         $('.ui-tooltip').remove();
                     }
                 },

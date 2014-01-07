@@ -34,7 +34,7 @@ namespace LicenseeAgent.Core.Configurations
 
             _betlistStatuses = new List<SelectListItem>
             {
-                new SelectListItem { Text = "All", Value = "-1" },
+                new SelectListItem { Text = "All", Value = "255" },
                 new SelectListItem { Text = "Waiting", Value = "1" },
                 new SelectListItem { Text = "Running", Value = "0" },
                 new SelectListItem { Text = "Won", Value = "112" },

@@ -772,4 +772,7 @@ If that is not you, please contact your upline!!!</value>
     <value>There is no downline</value>
     <comment>not</comment>
   </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>Dead Ball</value>
+  </data>
 </root>

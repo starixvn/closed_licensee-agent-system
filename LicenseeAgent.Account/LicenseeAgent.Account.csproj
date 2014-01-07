@@ -139,6 +139,10 @@
     <Compile Include="ViewResults\SignInViewResult.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LicenseeAgent.API\LicenseeAgent.API.csproj">
+      <Project>{52B801D3-8D5C-4127-8F59-B7FD2800C150}</Project>
+      <Name>LicenseeAgent.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>

@@ -84,6 +84,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
 
         public int PTBetType { get; set; }
 
+        public bool IsLiveOutput { get; set; }
+
         public override bool IsValid()
         {
             return !string.IsNullOrEmpty(UserName) &&

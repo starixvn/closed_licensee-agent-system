@@ -25,11 +25,8 @@ namespace LicenseeAgent.Core.Configurations
 
         static DomainMapper()
         {
-            if (!AppSettings.IsAdminSite)
-            {
-                ICoreService coreService = DependencyResolver.Current.GetService<ICoreService>();
-                _licenseeDomains = coreService.GetLicenseeDomains();
-            }
+            ICoreService coreService = DependencyResolver.Current.GetService<ICoreService>();
+            _licenseeDomains = coreService.GetLicenseeDomains();
         }
 
         /// <summary>
@@ -41,11 +38,6 @@ namespace LicenseeAgent.Core.Configurations
         /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
-            if (AppSettings.IsAdminSite)
-            {
-                return null;
-            }
-
             if (request.IsLocal)
             {
                 return AppSettings.LocalLicenseeId;

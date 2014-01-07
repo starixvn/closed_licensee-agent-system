@@ -43,9 +43,19 @@
                     }
                 </ul>
             </li>
+            @if (AppSettings.LocalTest && AppSettings.IsAdminSite)
+            {
+                <li class="divider"></li>
+                <li><a class="tree-toggler nav-header">Integration</a>
+                    <ul class="nav nav-list tree" style="display: none">
+                        <li><a target="_blank" href="@LicenseeAgent.API.LRF.Integration.GenerateLink(10, 25)">
+                            <i class="icon-nav-arrow"></i>LRF</a></li>
+                    </ul>
+                </li>
+            }
         </ul>
     </div>
     <div class="tab-pane fade" id="accountInfo">
-        @Html.Action("Index","AccountInformation")
+        @Html.Action("Index", "AccountInformation")
     </div>
 </div>

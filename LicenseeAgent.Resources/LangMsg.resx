@@ -185,15 +185,15 @@
     <comment>not</comment>
   </data>
   <data name="Msg_1013" xml:space="preserve">
-    <value>%Min is invalid, it must be between {0:p} and {1:p} ( {2} - {3} ).</value>
+    <value>%Min is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>
     <comment>not</comment>
   </data>
   <data name="Msg_1014" xml:space="preserve">
-    <value>%Max is invalid, it must be between {0} and {1} ( {2} - {3} ).</value>
+    <value>%Max is invalid, it must be between {0} and {1} ({2} - {3}).</value>
     <comment>not</comment>
   </data>
   <data name="Msg_1015" xml:space="preserve">
-    <value>%Preset is invalid, it must be between {0:p} and {1:p} ( {2} - {3} ).</value>
+    <value>%Preset is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>
     <comment>not</comment>
   </data>
   <data name="Msg_1016" xml:space="preserve">
@@ -220,7 +220,7 @@
     <comment>not</comment>
   </data>
   <data name="Msg_1021" xml:space="preserve">
-    <value>%PT is invalid, it must be between {0:p} and {1:p}  ( {2} - {3} )</value>
+    <value>%PT is invalid, it must be between {0:p} and {1:p} ({2} - {3})</value>
     <comment>not</comment>
   </data>
   <data name="Msg_80009" xml:space="preserve">

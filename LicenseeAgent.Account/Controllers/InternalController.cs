@@ -12,9 +12,9 @@ namespace LicenseeAgent.Account
     using System.Web.Security;
     using System.Web.SessionState;
     using LicenseeAgent.Account.Criterias;
-    using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.API.LRF;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
@@ -83,6 +83,13 @@ namespace LicenseeAgent.Account
             }
 
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Lrf(string authKey)
+        {
+            var loginInfo = Integration.Decrypt(authKey);
+            return Redirect(FormsAuthentication.DefaultUrl);
         }
 
         /// <summary>

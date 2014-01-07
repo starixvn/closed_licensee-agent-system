@@ -11,6 +11,7 @@ namespace LicenseeAgent.API.LRF.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [Serializable]
     public class LoginInfo
     {
         public LoginInfo()
@@ -28,7 +29,7 @@ namespace LicenseeAgent.API.LRF.Entities
         {
             get
             {
-                return Timeout > DateTime.Now;
+                return DateTime.Now > Timeout;
             }
         }
     }

@@ -59,6 +59,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
 
         public decimal BetLimitOutput { get; set; }
 
+        public bool IsLiveOutput { get; set; }
+
         public override bool IsValid()
         {
             return true;

@@ -37,6 +37,8 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public decimal BetLimitOutput { get; set; }
 
+        public bool IsLiveOutput { get; set; }
+
         public int BetLimitSportType { get; set; }
 
         public int BetLimitBetType { get; set; }

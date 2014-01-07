@@ -190,8 +190,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1) 
-                    ? FormType.Edit 
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
+                    ? FormType.Edit
                     : FormType.ReadOnly,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
@@ -250,8 +250,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
         /// <returns>Returns a list of result.</returns>
         [SuppressMessage(
-            "StyleCop.CSharp.Nexcel.NexcelCustomRules", 
-            "SP2101:MethodMustNotContainMoreLinesThan", 
+            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {
@@ -302,7 +302,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1012:
                         msgContent = string.Format(
                         ResourceManager.GetErrMsg(result.ErrCode),
-                            DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
+                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
@@ -311,7 +311,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                             ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
-                            DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
+                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
@@ -322,7 +322,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                             ResourceManager.GetErrMsg(result.ErrCode),
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
-                            DataRefWrapper.GetSportName(result.PTSportType, result.PTBetType),
+                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
                             DataRefWrapper.GetBetTypeName(result.PTBetType));
                         break;
 
@@ -341,6 +341,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return msgContents;
+        }
+
+        private string GetSportName(int sportType, int betType, bool isLive)
+        {
+            var sportName = DataRefWrapper.GetSportName(sportType, betType);
+            return sportType == (int)SportType.Soccer
+                ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
+                : sportName;
         }
     }
 }

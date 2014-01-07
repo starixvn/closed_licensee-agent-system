@@ -27,7 +27,7 @@
     <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>
-  <Function Name="CustSetting">
+  <Function Name="CustomerSetting">
     <Setting Key="Las_LicenseeSportsbookSettingSel" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_LicenseeInsAgentAdvanceMode" SpName="Las_LicenseeInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentSportsbookSettingSel" SpName="Las_AgentSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

@@ -4,16 +4,26 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.API
+namespace LicenseeAgent.API.LRF
 {
+    using System.Web;
     using LicenseeAgent.API.LRF.Entities;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Utils;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public static class Integration
     {
+        private static byte[] aesKey =
+        {
+            123, 217, 19, 11, 24, 26, 85, 45, 114, 184, 27, 162, 37,
+            112, 222, 209, 241, 24, 175, 144, 173, 53, 196, 29, 24, 26, 17, 218, 131, 236, 53, 209
+        };
+
+        private static byte[] aesVector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 221, 112, 79, 32, 114, 156 };
+
         /// <summary>
         /// Generates the link.
         /// </summary>
@@ -22,8 +32,8 @@ namespace LicenseeAgent.API
         /// <returns>Returns URL for internal login from LRF.</returns>
         public static string GenerateLink(int userId, int licenseeId)
         {
-            var licenseeDomain = DomainMapper.GetDomain(licenseeId);
-            if (string.IsNullOrEmpty(licenseeDomain))
+            var domain = DomainMapper.GetDomain(licenseeId);
+            if (string.IsNullOrEmpty(domain))
             {
                 return null;
             }
@@ -34,7 +44,19 @@ namespace LicenseeAgent.API
                 LicenseeId = licenseeId
             };
 
-            return loginInfo.ToString();
+            using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
+            {
+                var authKey = HttpUtility.UrlEncode(rijndaelHelper.EncryptObject(loginInfo));
+                return string.Format("{0}/internal/lrf?authkey={1}", domain, authKey);
+            }
+        }
+
+        public static LoginInfo Decrypt(string authKey)
+        {
+            using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
+            {
+                return rijndaelHelper.DecryptObject<LoginInfo>(authKey);
+            }
         }
     }
 }

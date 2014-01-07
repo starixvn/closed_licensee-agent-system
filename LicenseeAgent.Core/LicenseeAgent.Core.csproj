@@ -81,6 +81,11 @@
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Enumerations\AccountType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
+    <Compile Include="Enumerations\SportType.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportType.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\TopMenu.cs" />
     <Compile Include="Enumerations\ErrCode.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
@@ -108,6 +113,7 @@
     <Compile Include="Utils\ObjectSerializer.cs" />
     <Compile Include="Utils\PasswordRule.cs" />
     <Compile Include="Utils\ResourceManager.cs" />
+    <Compile Include="Utils\RijndaelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
@@ -119,7 +125,14 @@
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Enumerations\SportType.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SportType.generated.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

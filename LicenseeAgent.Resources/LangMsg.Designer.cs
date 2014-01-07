@@ -178,7 +178,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Min is invalid, it must be between {0:p} and {1:p} ( {2} - {3} )..
+        ///   Looks up a localized string similar to %Min is invalid, it must be between {0:p} and {1:p} ({2} - {3})..
         /// </summary>
         public static string Msg_1013 {
             get {
@@ -187,7 +187,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Max is invalid, it must be between {0} and {1} ( {2} - {3} )..
+        ///   Looks up a localized string similar to %Max is invalid, it must be between {0} and {1} ({2} - {3})..
         /// </summary>
         public static string Msg_1014 {
             get {
@@ -196,7 +196,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Preset is invalid, it must be between {0:p} and {1:p} ( {2} - {3} )..
+        ///   Looks up a localized string similar to %Preset is invalid, it must be between {0:p} and {1:p} ({2} - {3})..
         /// </summary>
         public static string Msg_1015 {
             get {
@@ -250,7 +250,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %PT is invalid, it must be between {0:p} and {1:p}  ( {2} - {3} ).
+        ///   Looks up a localized string similar to %PT is invalid, it must be between {0:p} and {1:p} ({2} - {3}).
         /// </summary>
         public static string Msg_1021 {
             get {

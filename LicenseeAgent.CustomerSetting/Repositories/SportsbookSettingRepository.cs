@@ -299,6 +299,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                     BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
                     PTSportType = Converter.ToInt(parameters["ptsporttype"]),
                     PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
                     CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
                 };
             }
@@ -330,6 +331,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                     BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
                     PTSportType = Converter.ToInt(parameters["ptsporttype"]),
                     PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
                     CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
                 };
             }

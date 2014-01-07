@@ -12,6 +12,7 @@ namespace LicenseeAgent.BetList.DataAccess
 {
     using Entities;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.BetList.Criterias;
 
     /// <summary>
     /// Interface Account.
@@ -30,10 +31,9 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
-        /// <param name="agentId">Input agent ID.</param>
-        /// <param name="transId">Input transaction ID.</param>
+        /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetMixParlayDetails(int agentId, long transId);
+        TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
 
         #endregion
     }

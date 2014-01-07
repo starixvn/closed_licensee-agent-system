@@ -64,6 +64,7 @@
                 $http({
                     method: 'POST',
                     url: CORE.resolveUrl($('#custSetting').data('href')),
+                    headers: { 'Content-Type': 'application/json' },
                     data: {
                         settingContext: settingContext,
                         updateDataSportsbookCustomer:

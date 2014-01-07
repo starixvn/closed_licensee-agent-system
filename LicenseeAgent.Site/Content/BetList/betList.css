@@ -222,7 +222,6 @@ tr#tr_footer {
 }
 
 .line {
-    border-top: #999 dashed 1px;
     height: 10px;
     margin-top: 3px;
 }

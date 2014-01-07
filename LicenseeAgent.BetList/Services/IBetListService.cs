@@ -12,6 +12,7 @@ namespace LicenseeAgent.BetList.Services
 {
     using Entities;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.BetList.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,13 +28,12 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         TicketResult GetBetList(ICriteria criteria);
 
-        /// <summary>
+       /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
-        /// <param name="agentId">Input agent ID.</param>
-        /// <param name="transId">Input transaction ID.</param>
+        /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetMixParlayDetails(int agentId, long transId);
+        TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
 
         #endregion
     }

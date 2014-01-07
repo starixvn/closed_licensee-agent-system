@@ -19,6 +19,7 @@ namespace LicenseeAgent.BetList.DataAccess
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.BetList.Criterias;
 
     /// <summary>
     /// Account data access.
@@ -52,21 +53,19 @@ namespace LicenseeAgent.BetList.DataAccess
 
             return result;
         }
-
+        
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
-        /// <param name="agentId">Input agent ID.</param>
-        /// <param name="transId">Input transaction ID.</param>
+        /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetMixParlayDetails(int agentId, long transId)
+        public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
             var result = new TicketResult();
-
-            using (var objectDb = new ObjectDb("LAS_Betlist_SelParlayDetail"))
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                objectDb.AddInParameter("TransId", DbType.Int64, transId);
-                var dataset = objectDb.ExecuteDataSet();
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
                 var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
                 result.MainTicketList = this.ReadMainTicketData(mainTable, string.Empty);

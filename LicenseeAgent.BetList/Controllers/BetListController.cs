@@ -80,7 +80,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var balanceUp = _coreService.GetBalanceUpDay();
             criteria.AgentId = 1000000519;
-            criteria.CustId = 13467695;
+            criteria.CustId = 13467694;
             criteria.MoveBetsDay = balanceUp.MoveBetDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
             criteria.StatusId = criteria.StatusId == -1 ? null : criteria.StatusId;
@@ -106,19 +106,19 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="transId">Transaction ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult MixParlayDetails(int transId)
+        public ActionResult MixParlayDetails(long transId)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
-            var ticketResult = _betlistService.GetMixParlayDetails(agentId, transId);
+            var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
+            var ticketResult = _betlistService.GetMixParlayDetails(criteria);
             var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper();
-            ticketHelper.IsShowOddsWithChoice = true;
+            var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
 
             var stringBuilder = new StringBuilder();
             foreach (var ticket in ticketResult.MainTicketList)
             {
                 var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
-                stringBuilder.AppendFormat("<div>{0}</div><br/>", choice);
+                stringBuilder.AppendFormat("<div>{0}</div><div class='line'></div>", choice);
             }
 
             return Content(stringBuilder.ToString());

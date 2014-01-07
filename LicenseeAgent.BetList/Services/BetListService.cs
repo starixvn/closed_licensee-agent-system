@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.BetList.Services
 {
-    using Core.Entities;
     using Core.Services;
     using Criterias;
     using DataAccess;
@@ -67,12 +66,11 @@ namespace LicenseeAgent.BetList.Services
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
-        /// <param name="agentId">Input agent ID.</param>
-        /// <param name="transId">Input transaction ID.</param>
+        /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetMixParlayDetails(int agentId, long transId)
+        public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
-            return _betlistDataAccess.GetMixParlayDetails(agentId, transId);
+            return _betlistDataAccess.GetMixParlayDetails(criteria);
         }
 
         #endregion

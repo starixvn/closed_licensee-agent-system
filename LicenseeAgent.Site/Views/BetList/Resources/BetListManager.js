@@ -23,9 +23,18 @@
     }
 };
 
-function OpenIPInfo(ipstring)
-{
+function OpenIPInfo(ipstring) {
     BETLIST.getIpInformation(ipstring);
+};
+
+function showMP(transId) {
+    var divEvent = $('#divEvent_' + transId);
+    BETLIST.showMixParlayDetail(transId, divEvent);
+};
+
+function showCombMP(transId, index) {
+    var divEvent = $('#divEvent_' + transId + "" + index);
+    BETLIST.showMixParlayDetail(transId, divEvent);
 };
 
 var BETLIST = function ($) {
@@ -117,7 +126,34 @@ var BETLIST = function ($) {
                     console.warn(msg);
                 }
             });
+        },
+        showMixParlayDetail: function (transId, divEvent) {
+            var loadMixParlayDetail = function (transId) {
+                var url = "~/BetList/MixParlayDetails?transid=" + transId;
+                $.ajax({
+                    type: "GET",
+                    contentType: 'application/json',
+                    dataType: "text",
+                    cache: false,
+                    url: CORE.resolveUrl(url),
+                    error: function (xhRequest, errorText, thrownError) {
+                        alert(errorText);
+                    },
+                    success: function (response) {
+                        divEvent.html(response);
+                        $(".line:last", divEvent).remove();
+                    }
+                });
+            };
+
+            var dataExisted = $("#divEvent_5325904317").text().length > 0;
+            if (!dataExisted) {
+                loadMixParlayDetail(transId);
+            }
+
+            divEvent.toggle();
         }
+
     }
 } (jQuery);
 

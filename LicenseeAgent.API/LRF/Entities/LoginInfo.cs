@@ -23,5 +23,13 @@ namespace LicenseeAgent.API.LRF.Entities
         public int LicenseeId { get; set; }
 
         public DateTime Timeout { get; private set; }
+
+        public bool IsExpired
+        {
+            get
+            {
+                return Timeout > DateTime.Now;
+            }
+        }
     }
 }

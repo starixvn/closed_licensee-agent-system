@@ -75,11 +75,9 @@
     <Setting Key="LAS_TotalBet_Outright_GetTeamList" SpName="LAS_TotalBet_Outright_GetTeamList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_Outright_SelBetData" SpName="LAS_TotalBet_Outright_SelBetData" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
-
   <Function Name="BetList">
     <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
-
   <Function Name="SearchUser">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_SuggestSearchMember_Agent" SpName="Las_SuggestSearchMember_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
@@ -88,5 +86,8 @@
     <Setting Key="Las_GetDirectFather" SpName="Las_GetDirectFather" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_GetDownlineList" SpName="Las_GetDownlineList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_GetAncestorList" SpName="Las_GetAncestorList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
+  <Function Name="LRF">
+    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>
 </Functions>

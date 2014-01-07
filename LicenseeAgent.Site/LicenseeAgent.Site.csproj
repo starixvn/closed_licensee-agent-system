@@ -739,6 +739,10 @@
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>LicenseeAgent.Account</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.API\LicenseeAgent.API.csproj">
+      <Project>{52B801D3-8D5C-4127-8F59-B7FD2800C150}</Project>
+      <Name>LicenseeAgent.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">
       <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
       <Name>LicenseeAgent.BetList</Name>

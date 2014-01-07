@@ -59,5 +59,16 @@ namespace LicenseeAgent.Core.Configurations
 
             return null;
         }
+
+        public static string GetDomain(int licenseeId)
+        {
+            var licenseeDomains = _licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId));
+            if (licenseeDomains.Count() == 1)
+            {
+                return licenseeDomains.First().DomainName;
+            }
+
+            return null;
+        }
     }
 }

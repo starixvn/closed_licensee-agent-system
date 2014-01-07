@@ -71,7 +71,7 @@
                 <div class="pull-left controls-row" id="month-picker-control"></div>
             </div>
             <div class="controls-row">
-                @Html.Label("Status", "Status")
+                @Html.Label("Status", "Status", new { @class = "month" })
                 @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
             <div class="controls-row">

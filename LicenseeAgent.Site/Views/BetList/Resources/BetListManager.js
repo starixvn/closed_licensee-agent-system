@@ -33,6 +33,8 @@ function showCombMP(transId, index) {
 var BETLIST = function ($) {
     return {
         init: function () {
+            $('.selectpicker').selectpicker();
+
             BETLIST.renderDatePicker();
 
             // search

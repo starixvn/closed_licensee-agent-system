@@ -422,7 +422,7 @@ Format styles
         
 .month 
 {
-    margin: 7px;
+    margin: 10px 7px 7px;
 }
         
 .monpickr-selected-month  
@@ -433,7 +433,7 @@ Format styles
 .monpickr-label 
 {
     font-size: 12px !important;
-    margin: 7px;
+    margin: 7px 7px 7px !important;
 }
         
 .ngHeaderText

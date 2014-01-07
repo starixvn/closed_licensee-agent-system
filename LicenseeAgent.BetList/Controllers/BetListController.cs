@@ -80,7 +80,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var balanceUp = _coreService.GetBalanceUpDay();
             criteria.AgentId = 1000000519;
-            criteria.CustId = 13467694;
+            criteria.CustId = 13467695;
             criteria.MoveBetsDay = balanceUp.MoveBetDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
             criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;
@@ -204,7 +204,7 @@ namespace LicenseeAgent.BetList.Controllers
                 };
 
                 ticketText.Feature = "<a class=\"iplink\" href=\"javascript:void(0);\" onclick=\"javascript: POPUP.openDialogFrame('BetList/Details?";
-                ticketText.Feature += "SomeParamShouldBeHere=1', { width: 360, height: 280 }); \">Feature</a>";
+                ticketText.Feature += "SomeParamShouldBeHere=1', { width: 360, height: 280 }); \">Details</a>";
 
                 ticketTextList.Add(ticketText);
             }

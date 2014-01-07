@@ -260,6 +260,7 @@
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
+    <Content Include="Scripts\fanexgrid\numeral.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
     <Content Include="Scripts\jquery-form\jquery.form.min.js" />

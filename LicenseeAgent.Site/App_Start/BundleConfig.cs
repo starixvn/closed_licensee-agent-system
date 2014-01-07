@@ -94,6 +94,10 @@ namespace LicenseeAgent.Site
             bundles.Add(new LessBundle("~/css/fanexgrid").Include(
                 "~/content/fanexgrid/Fanex.Grid.css",
                 "~/content/fanexgrid/Fanex.Pagination.css"));
+            
+            // Numeral
+            bundles.Add(new ScriptBundle("~/js/numeral").Include(
+                "~/scripts/fanexgrid/numeral.js"));
 
             // Combobox
             bundles.Add(new ScriptBundle("~/js/bootstrap-select").Include(

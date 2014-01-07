@@ -18,10 +18,6 @@ namespace LicenseeAgent.BetList.Criterias
 
         public DateTime BalanceUpDay { get; set; }
 
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
         public int TotalRows { get; set; }
 
         public override string GetSettingKey()
@@ -31,7 +27,7 @@ namespace LicenseeAgent.BetList.Criterias
 
         public override bool IsValid()
         {
-            return FromDate <= ToDate && AgentId > 0 && CustId > 0 && PageIndex > 0 && PageSize > 0;
+            return FromDate <= ToDate && AgentId > 0 && CustId > 0;
         }
     }
 }

@@ -52,9 +52,7 @@ var BETLIST = function ($) {
             var params = {
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusId: $("#Status").val() != -1 ? $.trim($("#Status").val()) : '',
-                PageIndex: currentPage,
-                PageSize: itemsPerPage
+                StatusId: $("#Status").val() != -1 ? $.trim($("#Status").val()) : ''
             };
 
             $.ajax({

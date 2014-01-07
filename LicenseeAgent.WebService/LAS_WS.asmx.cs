@@ -18,7 +18,7 @@ namespace LicenseeAgent.WebService
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    public class Customer : WebService
+    public class LAS_WS : WebService
     {
         /// <summary>
         /// Check Username.

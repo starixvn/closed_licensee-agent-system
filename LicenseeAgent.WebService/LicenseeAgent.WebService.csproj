@@ -65,7 +65,7 @@
     <Content Include="App_Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Customer.asmx" />
+    <Content Include="LAS_WS.asmx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -76,8 +76,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.asmx.cs">
-      <DependentUpon>Customer.asmx</DependentUpon>
+    <Compile Include="LAS_WS.asmx.cs">
+      <DependentUpon>LAS_WS.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomerCriteria.cs" />

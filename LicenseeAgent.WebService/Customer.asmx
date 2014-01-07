@@ -1,1 +1,0 @@
-﻿<%@ WebService Language="C#" CodeBehind="Customer.asmx.cs" Class="LicenseeAgent.WebService.Customer" %>

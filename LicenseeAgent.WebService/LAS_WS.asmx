@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="LAS_WS.asmx.cs" Class="LicenseeAgent.WebService.LAS_WS" %>

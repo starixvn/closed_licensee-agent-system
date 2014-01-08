@@ -19,11 +19,11 @@ namespace LicenseeAgent.BetList.Controllers
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Caching;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Web.Filters;
     using Services;
     using Utils;
     using ViewModels;
     using Web.Controllers;
-    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.

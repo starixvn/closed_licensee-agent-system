@@ -23,6 +23,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Utils;
     using ViewModels;
     using Web.Controllers;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.
@@ -106,6 +107,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="transId">Transaction ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
+        [DownLineTransaction]
         public ActionResult MixParlayDetails(long transId)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
@@ -129,6 +131,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// </summary>
         /// <returns>Return a view.</returns>
         [HttpGet]
+        [DownLineTransaction]
         public ActionResult Details()
         {
             var fakeData = new BetListDetailsViewModel();

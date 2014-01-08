@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Services
 {
+    using Fanex.Data;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
@@ -53,6 +54,21 @@ namespace LicenseeAgent.Web.Services
             Execute(criteria);
 
             return criteria.IsBelongTo;
+        }
+
+        /// <summary>
+        /// Check if the ticket is belong to current user.
+        /// </summary>
+        /// <param name="criteria">Ticket down line criteria.</param>
+        /// <returns>Return boolean value indicating the down line value.</returns>
+        public bool IsDownlineTicket(TicketDownLineCriteria criteria)
+        {
+            criteria.AgentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var param = criteria.GetSpParams();
+                return (bool)objectDb.ExecuteScalar(param);
+            }
         }
     }
 }

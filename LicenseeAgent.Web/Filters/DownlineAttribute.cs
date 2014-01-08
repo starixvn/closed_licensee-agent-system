@@ -132,6 +132,11 @@ namespace LicenseeAgent.Web.Filters
                 reader.Close();
             }
 
+            if (string.IsNullOrWhiteSpace(requestText))
+            {
+                return -1;
+            }
+
             foreach (var name in parameterNames)
             {
                 var pattern = string.Format("\"{0}\":(\\d+)", name);

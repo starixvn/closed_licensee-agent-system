@@ -15,6 +15,11 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public class AuthorizeService : QueryService, IAuthorizeService
     {
+        /// <summary>
+        /// Check if the target user is direct child of current user.
+        /// </summary>
+        /// <param name="criteria">Down line criteria.</param>
+        /// <returns>Return boolean value indicating the direct down line value.</returns>
         public bool IsDirectDownline(CheckDownlineBelongCriteria criteria)
         {
             var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
@@ -31,6 +36,11 @@ namespace LicenseeAgent.Web.Services
                 : criteria.IsBelongTo && SessionManager.CurrentSession.AgentInfo.IsLastLevel;
         }
 
+        /// <summary>
+        /// Check if the target user is child of current user.
+        /// </summary>
+        /// <param name="criteria">Down line criteria.</param>
+        /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownline(CheckDownlineBelongCriteria criteria)
         {
             var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;

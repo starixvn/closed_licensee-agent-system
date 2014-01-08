@@ -9,6 +9,8 @@ namespace LicenseeAgent.Account.Criterias
     /// </summary>
     public class GetCurrencyOfLicenseeCriteria : CriteriaBase
     {
+        public int UserId { get; set; }
+
         public int LicenseeId { get; set; }
 
         public override string GetSettingKey()

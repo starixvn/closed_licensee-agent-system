@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Quinn.Vo" date="2013.4.8">Created</change>
-//   <change who="Lewis.Le" date="2013.4.18">Added GetCommissionToMember, GetCommissionToAgent</change>
-// </history>
 
 namespace LicenseeAgent.Account.Services
 {
@@ -66,7 +62,7 @@ namespace LicenseeAgent.Account.Services
             var result = new AdminInfo();
             criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
             Execute(criteria);
-            if (criteria.MsgId == 0)
+            if (criteria.ErrCode == 0)
             {
                 result = new AdminInfo
                 {
@@ -146,6 +142,11 @@ namespace LicenseeAgent.Account.Services
         }
 
         public void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria)
         {
             Execute(criteria);
         }

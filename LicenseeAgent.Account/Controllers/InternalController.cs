@@ -15,8 +15,8 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.API.LRF;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -26,7 +26,6 @@ namespace LicenseeAgent.Account
     /// <summary>
     /// Internal Login Controller.
     /// </summary>
-    [AppAuthorize(OnlyAdminSite = true)]
     [SessionState(SessionStateBehavior.Default)]
     public class InternalController : BaseController
     {
@@ -51,6 +50,7 @@ namespace LicenseeAgent.Account
         /// </summary>
         /// <param name="language">The selected language.</param>
         /// <returns>Returns MVC View.</returns>
+        [AdminSite]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult SignIn(string language)
@@ -68,6 +68,7 @@ namespace LicenseeAgent.Account
         /// </summary>
         /// <param name="model">The MVC model.</param>
         /// <returns>Returns MVC View.</returns>
+        [AdminSite]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -75,8 +76,7 @@ namespace LicenseeAgent.Account
         {
             if (ModelState.IsValid)
             {
-                var domainName = Request.Url.Host;
-                if (AuthenticateUser(model, domainName))
+                if (AuthenticateUser(model))
                 {
                     return Redirect(FormsAuthentication.DefaultUrl);
                 }
@@ -85,10 +85,46 @@ namespace LicenseeAgent.Account
             return View(model);
         }
 
+        /// <summary>
+        /// Internal login from LRF.
+        /// </summary>
+        /// <param name="authKey">The authentication key.</param>
+        /// <returns>Returns a page after login.</returns>
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Lrf(string authKey)
         {
             var loginInfo = Integration.Decrypt(authKey);
+            if (loginInfo.IsExpired)
+            {
+                return Content("Session is expired");
+            }
+
+            var clientInfo = Request.GetClientInfo();
+            var criteria = new LicenseeAdminLoginCriteria
+            {
+                LicenseeId = loginInfo.LicenseeId,
+                UserId = loginInfo.UserId,
+                LoginIp = clientInfo.Ip,
+                BrowserName = clientInfo.BrowserName,
+                Platform = clientInfo.Platform,
+                CountryCode = clientInfo.CountryCode
+            };
+            _accountService.LicenseeAdminLogin(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
+            {
+                return Content(GetErrMsg(criteria.ErrCode));
+            }
+
+            var licenseeInfo = new LicenseeInfo
+            {
+                LicenseeId = criteria.LicenseeId,
+                UserId = criteria.UserId,
+                UserName = criteria.UserName
+            };
+            var currentSession = new CurrentSession(licenseeInfo, loginInfo.OnUserId, loginInfo.Language);
+            SessionManager.CurrentSession = currentSession;
+            FormsAuthentication.SetAuthCookie(licenseeInfo.UserName, true);
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
@@ -98,7 +134,7 @@ namespace LicenseeAgent.Account
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON.</returns>
         [HttpPost]
-        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
+        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
         public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
         {
             var criteria = new InternalLoginAsUserCriteria
@@ -117,7 +153,7 @@ namespace LicenseeAgent.Account
                     CurrencyId = criteria.CurrencyId,
                     AgentName = model.UserName,
                     Language = CurrentSession.Language,
-                    UserId = CurrentSession.AdminInfo.UserId,
+                    UserId = CurrentSession.LoginUserId,
                     OnUserId = CurrentSession.OnUserId,
                 };
 
@@ -224,6 +260,7 @@ namespace LicenseeAgent.Account
         /// <returns>
         /// JSON null when update user role.
         /// </returns>
+        [AdminSite]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult LoginAsUser(string authTicket)
@@ -277,16 +314,21 @@ namespace LicenseeAgent.Account
         /// <returns>Partial view model.</returns>
         [ChildActionOnly]
         [HttpGet]
-        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
+        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
         public ActionResult SelectMenu()
         {
-            var model = new LicenseeViewModel
+            if (!CurrentSession.IsViewSelectMenu())
             {
-                Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria())
-            };
+                return Content("Error");
+            }
 
-            if (CurrentSession.IsViewSelectMenu())
+            var model = new LicenseeViewModel();
+            if (CurrentSession.AdminInfo != null)
             {
+                model.Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria
+                {
+                    UserId = CurrentSession.LoginUserId
+                });
                 if (CurrentSession.AgentInfo != null)
                 {
                     model.LicenseeId = CurrentSession.AgentInfo.LicenseeId;
@@ -294,8 +336,23 @@ namespace LicenseeAgent.Account
                     model.CurrencyId = CurrentSession.AgentInfo.CurrencyId;
                     model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
                     {
+                        UserId = CurrentSession.LoginUserId,
                         LicenseeId = model.LicenseeId
                     });
+                    model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
+                }
+            }
+            else if (CurrentSession.LicenseeInfo != null)
+            {
+                model.LicenseeId = CurrentSession.LicenseeInfo.LicenseeId;
+                model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
+                {
+                    UserId = CurrentSession.LoginUserId,
+                    LicenseeId = model.LicenseeId
+                });
+                if (CurrentSession.AgentInfo != null)
+                {
+                    model.CurrencyId = CurrentSession.AgentInfo.CurrencyId;
                     model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
                 }
             }
@@ -309,11 +366,12 @@ namespace LicenseeAgent.Account
         /// <param name="model">Get currency licensee criteria.</param>
         /// <returns>JSON result.</returns>
         [HttpPost]
-        [AppAuthorize(Users = Constants.AdminUserOnly, OnlyAuthorize = true)]
+        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
         public JsonResult GetCurrencies(CurrencyLicenseeViewModel model)
         {
             var criteria = new GetCurrencyOfLicenseeCriteria
             {
+                UserId = CurrentSession.LoginUserId,
                 LicenseeId = model.LicenseeId
             };
 
@@ -328,11 +386,10 @@ namespace LicenseeAgent.Account
         /// Validates the Admin user.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name="domainName">Name of the domain.</param>
         /// <returns>
         /// Returns true whether username/password is valid.
         /// </returns>
-        private bool AuthenticateUser(AdminSignInViewModel model, string domainName)
+        private bool AuthenticateUser(AdminSignInViewModel model)
         {
             var userSaltCriteria = new AdminSaltSelCriteria
             {
@@ -353,16 +410,15 @@ namespace LicenseeAgent.Account
                 UserPwd = model.Password,
                 UserSalt = userSalt,
                 LoginIp = clientInfo.Ip,
-                LoginDomain = domainName,
                 BrowserName = clientInfo.BrowserName,
                 Platform = clientInfo.Platform,
                 CountryCode = clientInfo.CountryCode
             };
 
             var adminInfo = _accountService.AuthenticateAdmin(criteria);
-            if (criteria.MsgId != Result.SuccessValue)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
-                ModelState.AddModelError(string.Empty, GetErrMsg(criteria.MsgId));
+                ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 return false;
             }
             else

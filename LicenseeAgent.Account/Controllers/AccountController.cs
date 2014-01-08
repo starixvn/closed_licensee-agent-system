@@ -44,7 +44,7 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         [HttpGet]
-        [AppAuthorize(OnlyAuthorize = true)]
+        [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
             return View();
@@ -180,7 +180,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>Returns view.</returns>
         [HttpGet]
-        [AppAuthorize(Users = Constants.AgentUserOnly, OnlyAuthorize = true)]
+        [AppAuthorize(Role = AccountType.Agent, IsValidateAgent = false)]
         public ActionResult ChangePassword()
         {
             return View();
@@ -192,7 +192,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns a result.</returns>
         [HttpPost]
-        [AppAuthorize(Users = Constants.AgentUserOnly, OnlyAuthorize = true)]
+        [AppAuthorize(Role = AccountType.Agent, IsValidateAgent = false)]
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(AgentChangePasswordViewModel model)
         {
@@ -231,13 +231,17 @@ namespace LicenseeAgent.Account.Controllers
         /// <returns>Return true or false.</returns>
         [HttpPost]
         [AjaxOnly]
-        [AppAuthorize(OnlyAuthorize = true)]
+        [AppAuthorize(IsValidateAgent = false)]
         public JsonResult ReCheckIn()
         {
             var errCode = Result.SuccessValue;
             if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
             {
                 errCode = AdminReCheckIn();
+            }
+            else if (CurrentSession.LicenseeInfo != null && CurrentSession.IsDirectSignIn)
+            {
+                errCode = AppSettings.LocalTest ? Result.SuccessValue : AdminReCheckIn();
             }
             else
             {
@@ -255,7 +259,7 @@ namespace LicenseeAgent.Account.Controllers
             }
 
             var result = new Result(
-                errCode, 
+                errCode,
                 errCode != Result.SuccessValue ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty);
             return Json(result);
         }
@@ -309,7 +313,7 @@ namespace LicenseeAgent.Account.Controllers
         /// Sign out action.
         /// </summary>
         /// <returns>Redirect to Login Page.</returns>
-        [AppAuthorize(OnlyAuthorize = true)]
+        [AppAuthorize(IsValidateAgent = false)]
         public ActionResult SignOut()
         {
             if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
@@ -377,7 +381,7 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         [HttpGet]
-        [AppAuthorize(OnlyAuthorize = true)]
+        [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Avatar()
         {
             var avatarImage = Path.Combine(SitePath.GlobalImagePath, "avatar.png");

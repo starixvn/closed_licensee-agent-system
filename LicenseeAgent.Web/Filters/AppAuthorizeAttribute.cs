@@ -20,13 +20,11 @@ namespace LicenseeAgent.Web.Filters
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public class AppAuthorizeAttribute : AuthorizeAttribute
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether site is only allowed by admin.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if is internal login by CSD/IT, <c>false</c>.
-        /// </value>
-        public bool OnlyAdminSite { get; set; }
+        public AppAuthorizeAttribute()
+        {
+            IsValidateAgent = true;
+            Role = AccountType.All;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether validation is applied on agent information.
@@ -34,7 +32,9 @@ namespace LicenseeAgent.Web.Filters
         /// <value>
         ///   <c>true</c> if [only authorize]; otherwise, <c>false</c>.
         /// </value>
-        public bool OnlyAuthorize { get; set; }
+        public bool IsValidateAgent { get; set; }
+
+        public AccountType Role { get; set; }
 
         /// <summary>
         /// Called when a process requests authorization.
@@ -50,14 +50,9 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
-            if (OnlyAdminSite && !AppSettings.IsAdminSite)
-            {
-                filterContext.ReturnUnauthorized();
-                return;
-            }
-
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession == null || !currentSession.IsValid)
+            if (currentSession == null ||
+                (!AppSettings.LocalTest && !currentSession.IsValid))
             {
                 filterContext.ReturnUnauthorized();
                 return;
@@ -70,12 +65,7 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
-            if (OnlyAuthorize)
-            {
-                return;
-            }
-
-            if (!ValidateAgent(filterContext))
+            if (IsValidateAgent && !ValidateAgent(filterContext))
             {
                 return;
             }
@@ -121,7 +111,7 @@ namespace LicenseeAgent.Web.Filters
             // don't use base.AuthorizeCore,
             // see: http://stackoverflow.com/questions/3488348/overriding-authorizecore-in-custom-authorize-attribute-results-in-no-suitable-m
             var authorized = httpContext.Request.IsAuthenticated;
-            return authorized ? AuthorizeUsers() : false;
+            return authorized ? AuthorizeRole() : false;
         }
 
         /// <summary>
@@ -130,35 +120,38 @@ namespace LicenseeAgent.Web.Filters
         /// </summary>
         /// <returns>True if the user has permission; otherwise, false.</returns>
         /// <exception cref="System.Exception">Please implement here.</exception>
-        private bool AuthorizeUsers()
+        private bool AuthorizeRole()
         {
-            if (!string.IsNullOrEmpty(Users))
+            var currentSession = SessionManager.CurrentSession;
+            switch (Role)
             {
-                var currentSession = SessionManager.CurrentSession;
-                switch (Users)
-                {
-                    case Constants.AgentUserOnly:
-                        if (currentSession.AgentInfo == null)
-                        {
-                            return false;
-                        }
+                case AccountType.All:
+                    return true;
 
-                        break;
+                case AccountType.Admin:
+                    return currentSession.AdminInfo != null || currentSession.LicenseeInfo != null ? true : false;
 
-                    case Constants.AdminUserOnly:
-                        if (currentSession.AdminInfo == null)
-                        {
-                            return false;
-                        }
+                case AccountType.CSD_IT:
+                    return currentSession.AdminInfo != null ? true : false;
 
-                        break;
+                case AccountType.Licensee:
+                    return currentSession.LicenseeInfo != null ? true : false;
 
-                    default:
-                        throw new Exception("Please implement here.");
-                }
+                case AccountType.Agent:
+                    return currentSession.IsAgentView() ? true : false;
+
+                case AccountType.AgentLevel0:
+                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLevel0 ? true : false;
+
+                case AccountType.AgentLevel1:
+                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLevel1 ? true : false;
+
+                case AccountType.AgentLeveln:
+                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLastLevel ? true : false;
+
+                default:
+                    throw new Exception("Please implement here");
             }
-
-            return true;
         }
     }
 }

@@ -18,19 +18,15 @@ namespace LicenseeAgent.Account.Criterias
 
         public string LoginIp { get; set; }
 
-        public string LoginDomain { get; set; }
-
         public string BrowserName { get; set; }
 
         public string Platform { get; set; }
 
         public string CountryCode { get; set; }
 
-        public int MsgId { get; set; }
+        public int ErrCode { get; set; }
 
         public int UserId { get; set; }
-
-        public string UserRole { get; set; }
 
         public override string GetSettingKey()
         {

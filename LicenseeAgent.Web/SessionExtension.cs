@@ -6,11 +6,6 @@
 
 namespace LicenseeAgent.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -61,6 +56,13 @@ namespace LicenseeAgent.Web
         {
             return currentSession.AgentInfo.IsLevel0
                 || agentLevel == currentSession.AgentInfo.AgentLevel;
+        }
+
+        public static bool IsAgentView(this ICurrentSession currentSession)
+        {
+            return currentSession.AdminInfo == null && currentSession.LicenseeInfo == null && currentSession.AgentInfo != null
+                ? true
+                : false;
         }
     }
 }

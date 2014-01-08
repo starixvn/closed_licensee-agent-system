@@ -12,10 +12,10 @@ namespace LicenseeAgent.Web.Controllers
     using System.Net;
     using System.Web.Mvc;
     using System.Web.Security;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// Rendering Error pages.
@@ -41,7 +41,11 @@ namespace LicenseeAgent.Web.Controllers
             var url = statusCode.Value == (int)HttpStatusCode.InternalServerError ?
                             "~/Views/Error/Error.cshtml" : "~/Views/Error/Index.cshtml";
             var message = AppHandler.GetHttpErrorMessage(statusCode.Value);
-            return View(url, (object)message);
+            var model = new ErrorViewModel
+            {
+                ErrMsg = message
+            };
+            return View(url, model);
         }
 
         /// <summary>

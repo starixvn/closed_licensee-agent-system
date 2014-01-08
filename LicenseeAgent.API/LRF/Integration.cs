@@ -28,9 +28,13 @@ namespace LicenseeAgent.API.LRF
         /// Generates the link.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
+        /// <param name="checkinUserId">The on user identifier.</param>
         /// <param name="licenseeId">The licensee identifier.</param>
-        /// <returns>Returns URL for internal login from LRF.</returns>
-        public static string GenerateLink(int userId, int licenseeId)
+        /// <param name="language">The language.</param>
+        /// <returns>
+        /// Returns URL for internal login from LRF.
+        /// </returns>
+        public static string GenerateLink(int userId, int checkinUserId, int licenseeId, string language)
         {
             var domain = DomainMapper.GetDomain(licenseeId);
             if (string.IsNullOrEmpty(domain))
@@ -41,7 +45,9 @@ namespace LicenseeAgent.API.LRF
             var loginInfo = new LoginInfo
             {
                 UserId = userId,
-                LicenseeId = licenseeId
+                OnUserId = checkinUserId,
+                LicenseeId = licenseeId,
+                Language = language
             };
 
             using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))

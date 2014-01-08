@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Quinn.Vo" date="2013.4.8">Created</change>
-//   <change who="Lewis.Le" date="2013.4.18">Added GetCommissionToMember, GetCommissionToAgent</change>
-// </history>
 
 namespace LicenseeAgent.Account.Services
 {
@@ -48,5 +44,7 @@ namespace LicenseeAgent.Account.Services
         void AdminCheckInLicensee(AdminCheckInLicenseeCriteria criteria);
 
         void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria);
+
+        void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria);
     }
 }

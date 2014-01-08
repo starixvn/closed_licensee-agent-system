@@ -277,4 +277,7 @@
     <value>There is no downline.</value>
     <comment>not</comment>
   </data>
+  <data name="Msg_1036" xml:space="preserve">
+    <value>Sorry, you do not have permission to access this page.</value>
+  </data>
 </root>

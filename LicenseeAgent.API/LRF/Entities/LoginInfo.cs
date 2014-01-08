@@ -21,7 +21,11 @@ namespace LicenseeAgent.API.LRF.Entities
 
         public int UserId { get; set; }
 
+        public int OnUserId { get; set; }
+
         public int LicenseeId { get; set; }
+
+        public string Language { get; set; }
 
         public DateTime Timeout { get; private set; }
 

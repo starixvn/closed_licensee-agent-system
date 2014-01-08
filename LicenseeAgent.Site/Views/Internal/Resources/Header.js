@@ -5,7 +5,7 @@
     var newCurrencyId = currencyId;
     return {
         init: function () {
-            if (("#licensee").length > 0) {
+            if ($("#licensee").length > 0) {
                 $('#licensee').hover(function () {
                     $(this).find('.drop-box').show();
                 }, function () {
@@ -23,7 +23,7 @@
                 });
             }
 
-            if (("#currency").length > 0) {
+            if ($("#currency").length > 0) {
                 $('#currency').hover(function () {
                     $(this).find('.drop-box').show();
                 }, function () {
@@ -38,7 +38,7 @@
                 INTERNAL_HEADER.submit();
             });
 
-            if ($('#licensee').length > 0 && !licenseeId) {
+            if ($('#licensee').length > 0 && (!licenseeId || !currencyId)) {
                 INTERNAL_HEADER.unactiveMain();
             }
         },

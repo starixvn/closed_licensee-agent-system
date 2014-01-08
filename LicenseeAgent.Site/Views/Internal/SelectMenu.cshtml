@@ -1,23 +1,29 @@
 ﻿@using LicenseeAgent.Core.Enumerations
-@{
-    Layout = null;
-}
-@model LicenseeAgent.Account.ViewModels.LicenseeViewModel
-@using (Html.BeginForm("LoginAsUser", "Internal", FormMethod.Post, new { id = "internal-form", name = "internal-form"}))
+@using LicenseeAgent.Account.ViewModels;
+@model LicenseeViewModel
+@using (Html.BeginForm("LoginAsUser", "Internal", FormMethod.Post, new { id = "internal-form", name = "internal-form" }))
 {
     <div class="select-box">
-        <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
-            <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>
-            <i class="icon-arrow-white"></i>
-            <ul class="drop-box">
-                @foreach (var licensee in Model.Licensees)
-                {
-                    <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
-                }
-            </ul>
-        </div>
+        @if (SessionManager.CurrentSession.AdminInfo != null)
+        {
+            <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
+                <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>
+                <i class="icon-arrow-white"></i>
+                <ul class="drop-box">
+                    @foreach (var licensee in Model.Licensees)
+                    {
+                        <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        { 
+            <div class="hide" id="licensee" data-licensee-id="@Model.LicenseeId">
+            </div>
+        }
         <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
-            <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseCurrency : Model.CurrencyName)</span>
+            <span>@(Model.CurrencyId != 0 ? Model.CurrencyName : Las.ChooseCurrency)</span>
             <i class="icon-arrow-white"></i>
             @if (Model.Currencies != null)
             {
@@ -33,8 +39,8 @@
             @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
         </div>
         <div class="pull-left item">
-            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();"
-                class="icon-search-white"></a>
+            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();" class="icon-search-white">
+            </a>
         </div>
     </div>
 }

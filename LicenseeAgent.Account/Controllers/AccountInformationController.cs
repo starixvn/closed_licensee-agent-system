@@ -39,7 +39,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>View action result.</returns>
         [HttpGet]
-        [AppAuthorize(OnlyAuthorize = true)]
+        [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
             return View();

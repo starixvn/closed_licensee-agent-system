@@ -19,10 +19,6 @@ namespace LicenseeAgent.Core.Configurations
         public const string AppSessionCaptcha = "LasCaptcha";
         public const string AppSessionLanguage = "LasLanguage";
 
-        public const string AdminUserOnly = "Admin";
-        public const string AgentUserOnly = "Agent";
-        public const string LicenseeUserOnly = "Licensee";
-
         public const int CaptchaWidth = 110;
         public const int CaptchaHeight = 32;
         public static readonly Color CaptchaBackColor = Color.FromArgb(240, 238, 240);

@@ -9,6 +9,8 @@ namespace LicenseeAgent.Account.Criterias
     /// </summary>
     public class GetLicenseeListCriteria : CriteriaBase
     {
+        public int UserId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_GetLicenseeList";

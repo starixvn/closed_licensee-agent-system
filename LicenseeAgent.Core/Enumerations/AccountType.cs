@@ -12,48 +12,53 @@ namespace LicenseeAgent.Core.Enumerations
     public enum AccountType : byte
     {
         /// <summary>
+        /// Used in Authorization.
+        /// </summary>
+        All,
+
+        /// <summary>
         /// Account type is CSD/IT or Licensee.
         /// </summary>
-        Admin = 1,
+        Admin,
 
         /// <summary>
         /// Account type is CSD/IT.
         /// </summary>
-        CSD_IT = 2,
+        CSD_IT,
 
         /// <summary>
         /// Account type is Licensee.
         /// </summary>
-        Licensee = 3,
+        Licensee,
 
         /// <summary>
         /// Account type is Agent (any levels).
         /// </summary>
-        Agent = 4,
+        Agent,
 
         /// <summary>
         /// The agent level is 0.
         /// </summary>
-        AgentLevel0 = 5,
+        AgentLevel0,
 
         /// <summary>
         /// The agent level is 1.
         /// </summary>
-        AgentLevel1 = 6,
+        AgentLevel1,
 
         /// <summary>
         /// The agent level is k.
         /// </summary>
-        AgentLevelk = 7,
+        AgentLevelk,
 
         /// <summary>
-        /// The agent level is n.
+        /// The agent last level.
         /// </summary>
-        AgentLeveln = 8,
+        AgentLeveln,
 
         /// <summary>
         /// Account type is Member.
         /// </summary>
-        Member = 9
+        Member
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Criterias\AgentReCheckInCriteria.cs" />
     <Compile Include="Criterias\AgentSaltSelCriteria.cs" />
     <Compile Include="Criterias\AgentUserLogoutCriteria.cs" />
+    <Compile Include="Criterias\LicenseeAdminLoginCriteria.cs" />
     <Compile Include="Criterias\MemberAutoCompleteCriteria.cs" />
     <Compile Include="Criterias\MemberGetByAgentCriteria.cs" />
     <Compile Include="Criterias\SearchAgentCriteria.cs" />

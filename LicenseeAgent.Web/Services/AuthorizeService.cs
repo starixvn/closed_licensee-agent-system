@@ -17,7 +17,13 @@ namespace LicenseeAgent.Web.Services
     {
         public bool IsDirectDownline(CheckDownlineBelongCriteria criteria)
         {
-            criteria.CustId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            if (agentId == criteria.TargetCustId)
+            {
+                return true;
+            }
+
+            criteria.CustId = agentId;
             Execute(criteria);
 
             return criteria.Type == (int)DownlineRole.Agent
@@ -27,7 +33,13 @@ namespace LicenseeAgent.Web.Services
 
         public bool IsDownline(CheckDownlineBelongCriteria criteria)
         {
-            criteria.CustId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            if (agentId == criteria.TargetCustId)
+            {
+                return true;
+            }
+
+            criteria.CustId = agentId;
             Execute(criteria);
 
             return criteria.IsBelongTo;

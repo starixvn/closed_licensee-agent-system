@@ -22,7 +22,7 @@ namespace LicenseeAgent.Web.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
-            var memberId = GetDownlineParameter(filterContext, MemberIdParameterNames);
+            var memberId = GetDownLineParameter(filterContext, MemberIdParameterNames);
 
             // Validation
             var invalidSession = currentSession == null || currentSession.AgentInfo == null;

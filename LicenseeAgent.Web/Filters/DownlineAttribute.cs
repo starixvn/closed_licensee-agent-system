@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
@@ -41,8 +42,8 @@ namespace LicenseeAgent.Web.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
-            var agentId = GetDownlineParameter(filterContext, AgentIdParameterNames);
-            var memberId = GetDownlineParameter(filterContext, MemberIdParameterNames);
+            var agentId = GetDownLineParameter(filterContext, AgentIdParameterNames);
+            var memberId = GetDownLineParameter(filterContext, MemberIdParameterNames);
 
             // Validation
             var invalidSession = currentSession == null || currentSession.AgentInfo == null;
@@ -62,30 +63,57 @@ namespace LicenseeAgent.Web.Filters
                 Type = (int)downlineRole
             };
 
-            AuthorizeService.IsDownline(criteria);
-            if (!criteria.IsBelongTo)
+            if (!AuthorizeService.IsDownline(criteria))
             {
                 AccessDenied(filterContext);
             }
         }
 
         /// <summary>
-        /// Try to get parameter value in action parameters.
+        /// Try to get parameter value in action parameters and input stream.
         /// </summary>
         /// <param name="filterContext">Action executing context.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static long GetDownlineParameter(ActionExecutingContext filterContext, string[] parameterNames)
+        protected static long GetDownLineParameter(ActionExecutingContext filterContext, string[] parameterNames)
         {
-            var httpRequest = filterContext.HttpContext.Request;
-
-            var value = GetDownlineParameter(filterContext, parameterNames);
+            var value = GetDownLineParameter(filterContext.ActionParameters, parameterNames);
             if (value > 0)
             {
                 return value;
             }
 
-            return GetDownlineParameter(filterContext.HttpContext.Request.InputStream, parameterNames);
+            return GetDownLineParameter(filterContext.HttpContext.Request.InputStream, parameterNames);
+        }
+
+        /// <summary>
+        /// Try to get parameter value in action parameters.
+        /// </summary>
+        /// <param name="actionParameters">Action parameters.</param>
+        /// <param name="parameterNames">Parameter name array.</param>
+        /// <returns>Long value.</returns>
+        protected static long GetDownLineParameter(IDictionary<string, object> actionParameters, string[] parameterNames)
+        {
+            foreach (var name in parameterNames)
+            {
+                if (!actionParameters.ContainsKey(name) || actionParameters[name] == null)
+                {
+                    continue;
+                }
+
+                var value = actionParameters[name];
+                if (value.GetType() == typeof(long) && (long)value > 0)
+                {
+                    return (long)value;
+                }
+
+                if (value.GetType() == typeof(int) && (int)value > 0)
+                {
+                    return (long)value;
+                }
+            }
+
+            return -1;
         }
 
         /// <summary>
@@ -94,7 +122,7 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="stream">Request input stream.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static long GetDownlineParameter(Stream stream, string[] parameterNames)
+        protected static long GetDownLineParameter(Stream stream, string[] parameterNames)
         {
             var requestText = string.Empty;
             stream.Seek(0, SeekOrigin.Begin);

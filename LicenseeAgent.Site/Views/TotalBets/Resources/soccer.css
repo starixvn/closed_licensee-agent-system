@@ -1,5 +1,5 @@
 ﻿/* Overwrite fanex grid */
-
+/*
 .grid-fixed-table tbody tr.league-row td
 {
     text-align: left;
@@ -68,9 +68,12 @@ table tbody tr.sport-row td
     background-image: url(/images/sprite.png);
     background-position: -740px 0;
 }
+*/
 /* End Overwrite fanex grid */
 
 /* Header row*/
+
+/*
 .grid-fixed-table thead tr th
 {
     text-align: center;
@@ -84,7 +87,7 @@ table tbody tr.sport-row td
     text-align: center;
     border-right: 1px solid #ffffff;
 }
-
+*/
 /* detail: All bet type */
 .match-name
 {
@@ -103,7 +106,7 @@ table tbody tr.sport-row td
 }
 
 #detail-data-content {
-	width: 970px;
+    width: 970px;
 }
 #detail-data-content .detail-table
 {
@@ -113,14 +116,14 @@ table tbody tr.sport-row td
 #detail-data-content .detail-header
 {
     background-color: #908F8F;
-    color: #FFFFFF;
+    color: #FFF;
     font-weight: bold;
 }
 
 #detail-data-content .detail-header td
 {
     text-align: left;
-    border-right: 10px solid #FFFFFF;
+    border-right: 10px solid #FFF;
 }
 
 #detail-data-content .break-line td
@@ -132,16 +135,16 @@ table tbody tr.sport-row td
 {
     text-align: left;
     background-color: #edf0f0;
-    border-bottom: 1px solid #FFFFFF;
-    border-right: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFF;
+    border-right: 1px solid #FFF;
     width: 15%;
 }
 #detail-data-content .detail-table td.total-bet-choice
 {
     text-align: right;
     background-color: #edf0f0;
-    border-bottom: 1px solid #FFFFFF;
-    border-right: 10px solid #FFFFFF;
+    border-bottom: 1px solid #FFF;
+    border-right: 10px solid #FFF;
 }
 #detail-data-content .detail-table tr td
 {

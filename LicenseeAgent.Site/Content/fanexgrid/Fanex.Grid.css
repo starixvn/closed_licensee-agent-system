@@ -1,16 +1,10 @@
-﻿body
-{
-    margin: 0;
-    padding: 0;
-}
-
-.freegrid
+﻿.freegrid
 {
     overflow: hidden;
     position: relative;
     z-index: 0;
-    border-radius: 2px;
-    font-size: 11pxm;
+    border: solid 1px #c5c5c5;
+    font-size: 0.9em;
 }
 .freegrid .grid-toolbox input[type='button']:hover
 {
@@ -21,7 +15,7 @@
 
 .grid-title .btnExcel
 {
-    background: url("images/fanexgrid/excel-icon.png") 0px -26px no-repeat;
+    background: url("images/excel-icon.png") 0px -26px no-repeat;
     border: 0 solid red;
     cursor: pointer;
     font-size: 11px;
@@ -34,12 +28,12 @@
 }
 .grid-title .btnExcel:hover
 {
-    background: url("images/fanexgrid/excel-icon.png") 0px 0px no-repeat;
+    background: url("images/excel-icon.png") 0px 0px no-repeat;
 }
 
 .grid-title .btnBack
 {
-    background: url("images/fanexgrid/back-icon.png") 0px -27px no-repeat;
+    background: url("images/back-icon.png") 0px -27px no-repeat;
     border: 0 solid red;
     cursor: pointer;
     font-size: 11px;
@@ -53,12 +47,12 @@
 
 .grid-title .btnBack:hover
 {
-    background: url("images/fanexgrid/back-icon.png") 0px -1px no-repeat;
+    background: url("images/back-icon.png") 0px -1px no-repeat;
 }
 
 .grid-title .btnSendMail
 {
-    background: url("images/fanexgrid/send-mail.png") 0px 20px;
+    background: url("images/send-mail.png") 0px 20px;
     border: 0 solid red;
     cursor: pointer;
     font-size: 11px;
@@ -90,7 +84,7 @@
 
 .grid-title .expanded
 {
-    background: url("images/fanexgrid/expand-icon.png") 0px -27px;
+    background: url("images/expand-icon.png") 0px -27px;
     border: 0 solid red;
     cursor: pointer;
     font-size: 11px;
@@ -109,100 +103,22 @@
 
 .grid-title .collapsed
 {
-    background: url("images/fanexgrid/collapse-icon.png") 0px -27px;
+    background: url("images/collapse-icon.png") 0px -27px;
 }
 
 .grid-title .collapsed:hover
 {
-    background: url("images/fanexgrid/collapse-icon.png") 0px -1px;
-}
-
-.grid-title .btnAdd
-{
-    background: url("images/fanexgrid/more_buttons.png") no-repeat;
-    background-position: -22px -17px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    height: 12px;
-    margin: 4px 2px;
-    overflow: visible;
-    padding: 6px;
-    width: 14px;
-}
-
-.grid-title .btnAdd:hover
-{
-    background-position: -22px 0;
-}
-
-.grid-title .btnDelete
-{
-    background: url("images/fanexgrid/more_buttons.png") 0px 0 no-repeat;
-    background-position: -40px -17px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    height: 12px;
-    margin: 4px 2px;
-    overflow: visible;
-    padding-left: 6px;
-    padding-right: 6px;
-    width: 14px;
-}
-
-.grid-title .btnDelete:hover
-{
-    background-position: -40px 0;
-}
-
-.grid-title .btnRefresh
-{
-    background: url("images/fanexgrid/more_buttons.png") no-repeat;
-    background-position: -65px -17px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    height: 12px;
-    margin: 4px 2px;
-    overflow: visible;
-    padding: 6px;
-    width: 14px;
-}
-
-.grid-title .btnRefresh:hover
-{
-    background-position: -65px 0;
-}
-
-.grid-title .btnUpdate
-{
-    background: url("images/fanexgrid/more_buttons.png") 0px 0 no-repeat;
-    background-position: -64px -17px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    height: 12px;
-    margin: 4px 2px;
-    overflow: visible;
-    padding-left: 6px;
-    padding-right: 6px;
-    width: 14px;
-}
-
-.grid-title .btnUpdate:hover
-{
-    background-position: -64px 0;
+    background: url("images/collapse-icon.png") 0px -1px;
 }
 
 .grid-title
 {
-    border: solid 1px #d6d6d6;
-    background: #e0e0e0;
-    background: -moz-linear-gradient(#f2f2f2, #e0e0e0);
-    background: -webkit-linear-gradient(#f2f2f2, #e0e0e0);
+    border: solid 1px #d2b24d;
+    background: #ffcc33;
+    background: -moz-linear-gradient(#ffcc33, #ffcc35);
+    background: -webkit-linear-gradient(#ffcc33, #ffcc35);
     height: 25px;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
     vertical-align: middle;
 }
 
@@ -216,7 +132,7 @@
 .grid-title .grid-title-label
 {
     color: #4a4b4f;
-    font-size: 12px;
+    font-size: 0.9em;
     float: left;
     height: 18px;
     padding-left: 4px;
@@ -290,10 +206,13 @@
     z-index: 4;
 }
 
-.freegrid .y-scrollbar-fix-width
-{
-    width: 17.5px !important;
-}
+.freegrid .y-scrollbar-fix-width {
+        width: 17.1px !important;
+    }
+
+.freegrid .x-scrollbar-fix-height {
+        height: 17.1px !important;
+    }
 
 .freegrid .x-scrollbar
 {
@@ -377,20 +296,22 @@
 }
 .freegrid .free-top-left table thead th, .freegrid .col_header table thead th
 {
-    background: #8a8889;
-    background: -moz-linear-gradient(#8a8889, #8a8889) #8a8889;
-    background: -webkit-linear-gradient(#8a8889, #8a8889) #8a8889;
+    background: #3c5ea5;
+    background: -moz-linear-gradient(#3c5ea5, #3c5ea5) #3c5ea5;
+    background: -webkit-linear-gradient(#3c5ea5, #3c5ea5) #3c5ea5;
     color: #fff;
 }
 
 .freegrid .row_footer table thead th, .freegrid .col_footer table thead th
 {
-    background: #fee1c3 !important;
+    background: #dce2bc !important;
+    background: -moz-linear-gradient(#dce2bc, #dbe1bb) #dbe1bb !important;
+    background: -webkit-linear-gradient(#dce2bc, #dbe1bb) #dbe1bb !important;
     color: #4F4F4F;
 }
 
 .freegrid .free-bottom-right table thead th, .freegrid .free-top-right table thead th {
-    background-color: #F1F1F1;
+	background-color: #F1F1F1;
 }
 
 .freegrid .col_header_content th, .freegrid .col_body_content th, .freegrid .grid-fixed-table thead th
@@ -443,7 +364,7 @@
 {
     border-top: 1px solid #ff6600;
     overflow: hidden;
-    background-color: #fee0c3;
+    background: none repeat scroll 0 0 #dce2bc;
     position: absolute;
     z-index: 2;
 }
@@ -458,8 +379,8 @@
     border: 0;
     border-top: solid 1px #c5c5c5;
     background: #f2f2f2;
-    background: -moz-linear-gradient(#fff, #f2f2f2) #e6e6e6;
-    background: -webkit-linear-gradient(#fff, #f2f2f2) #e6e6e6;
+    background: -moz-linear-gradient(#f1f1f1, #f2f2f2) #e6e6e6;
+    background: -webkit-linear-gradient(#f1f1f1, #f2f2f2) #e6e6e6;
     height: 28px;
     vertical-align: middle;
     position: absolute;
@@ -501,10 +422,10 @@
 /* Add for Fanex.Grid */
 /*div.divSorter
 {
-    background-image: url(images/fanexgrid/sort-icon.png);
+    background-image: url(images/sort-icon.png);
     background-repeat: no-repeat ;
     background-position: right 10px top -15px;
-    cursor: pointer;
+	cursor: pointer;
     display: inline-block;
     float: right;
     height: 16px;
@@ -513,17 +434,17 @@
 }
 div.divSorter.asc
 {
-    background-image: url(images/fanexgrid/sort-icon.png);
+    background-image: url(images/sort-icon.png);
     background-position: right 10px top -5px;
 }
 
 div.divSorter.desc
 {
-    background-image: url(images/fanexgrid/sort-icon.png);
+    background-image: url(images/sort-icon.png);
     background-position: right 10px top 7px ;
 }*/
 .freegrid div.divSorter {
-    background-image: url("images/fanexgrid/sort-icon-new3.png") !important;
+    background-image: url("images/sort-icon-new3.png") !important;
     background-position: 0 -5px;
     background-repeat: no-repeat !important;
     cursor: pointer;
@@ -573,20 +494,20 @@ div.divSorter.desc {
 
 
 .freegrid span.grid-expand {
-    background: url("images/fanexgrid/expand-small.png") no-repeat scroll 4px center transparent;
+    background: url("images/expand-small.png") no-repeat scroll 4px center transparent;
     padding: 8px;
 }
 
 .freegrid span.grid-collapse{
-    padding:8px;
-    background: url(images/fanexgrid/collapse-small.png) 4px center no-repeat;
+	padding:8px;
+	background: url(images/collapse-small.png) 4px center no-repeat;
 }
 .freegrid span.grid-collapse-expand-noitem{
-    padding:8px;
+	padding:8px;
 }
 .freegrid .freegrid-even td 
 {
-     background-color: #F5F6FA;
+     background-color: #E4F2FD;
 }
 
 .freegrid .display-inline-block {
@@ -594,52 +515,52 @@ div.divSorter.desc {
 }
 
 .freegrid .no-data-not-frozen {
-    color: red;
+	color: red;
     font-weight: bold;
     text-align: center !important;
-    
+	
 }
 
 .freegrid .no-data-frozen {
-    color: red;
+	color: red;
     font-weight: bold;
     /*margin-left: 35px;*/
     text-align: left !important;
 }
 
 .freegrid .grid-show-hide-column {
-    display:none;
+	display:none;
 }
 
 .freegrid .highlight-row {
-    
+	
 }
 
 
 .freegrid tr.highlight-row:hover td {
-     background-color: #E2FFFF;
+	 background-color: #E2FFFF;
 }
 
 .freegrid .mousehoverbeyond td {
-        background-color: #E2FFFF !important;
+    	background-color: #E2FFFF !important;
 }
 
 .freegrid .border-right-highlight {
-     border-right-width: 2px !important;
+	 border-right-width: 2px !important;
 }
 
 .freegrid .colSorter {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .freegrid .format-negative, .freegrid .format-positive {
-    color: Red;
+	color: Red;
 }
 
 .freegrid .column-truncate {
-    display: inline-block;
-    position: relative;    
-    word-wrap: break-word;
+	display: inline-block;
+    position: relative;
+    white-space: pre;
 }
 .freegrid .freegrid-active-row td 
 {
@@ -650,79 +571,79 @@ div.divSorter.desc {
 
 ::-webkit-scrollbar
 {
-    height: 18px;
-    overflow: visible;
-    width: 18px;
+	height: 18px;
+	overflow: visible;
+	width: 18px;
 }
 ::-webkit-scrollbar-button
 {
-    height: 0;
-    width: 0;
+	height: 0;
+	width: 0;
 }
 
 ::-webkit-scrollbar-track
 {
-    background-clip: padding-box;
-    border: solid transparent;
-    border-width: 0 0 0 1px;
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 1px;
 }
 ::-webkit-scrollbar:vertical
 {
-    width: 18px;
+	width: 18px;
 }
 ::-webkit-scrollbar:horizontal
 {
-    height: 18px;
+	height: 18px;
 }
 ::-webkit-scrollbar-track:horizontal
 {
-    border-width: 1px 0 0;
+	border-width: 1px 0 0;
 }
 ::-webkit-scrollbar-track:hover
 {
-    background-color: rgba(0,0,0,.05);
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.1);
+	background-color: rgba(0,0,0,.05);
+	box-shadow: inset 1px 0 0 rgba(0,0,0,.1);
 }
 ::-webkit-scrollbar-track:horizontal:hover
 {
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
+	box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 }
 ::-webkit-scrollbar-track:active
 {
-    background-color: rgba(0,0,0,.05);
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
+	background-color: rgba(0,0,0,.05);
+	box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
 }
 ::-webkit-scrollbar-track:horizontal:active
 {
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.14),inset 0 -1px 0 rgba(0,0,0,.07);
+	box-shadow: inset 0 1px 0 rgba(0,0,0,.14),inset 0 -1px 0 rgba(0,0,0,.07);
 }
 ::-webkit-scrollbar-thumb
 {
-    background-color: rgba(0,0,0,.2);
-    background-clip: padding-box;
-    border: solid transparent;
-    border-width: 3px 1px 1px 3px;
-    min-height: 28px;
-    padding: 100px 0 0;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+	background-color: rgba(0,0,0,.2);
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 3px 1px 1px 3px;
+	min-height: 28px;
+	padding: 100px 0 0;
+	box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
 }
 ::-webkit-scrollbar-thumb:horizontal
 {
-    border-width: 3px 1px 1px;
-    padding: 0 0 0 100px;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset -1px 0 0 rgba(0,0,0,.07);
+	border-width: 3px 1px 1px;
+	padding: 0 0 0 100px;
+	box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset -1px 0 0 rgba(0,0,0,.07);
 }
 ::-webkit-scrollbar-thumb:hover
 {
-    background-color: rgba(0,0,0,.4);
-    box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+	background-color: rgba(0,0,0,.4);
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
 }
 ::-webkit-scrollbar-thumb:active
 {
-    background-color: rgba(0,0,0,0.5);
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.35);
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: inset 1px 1px 3px rgba(0,0,0,0.35);
 }
 ::-webkit-scrollbar-corner
 {
-    background: transparent;
+	background: transparent;
 }

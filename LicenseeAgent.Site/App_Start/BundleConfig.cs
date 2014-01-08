@@ -102,7 +102,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/fanexgrid/Fanex.Pagination.js"));
             bundles.Add(new LessBundle("~/css/fanexgrid").Include(
                 "~/content/fanexgrid/Fanex.Grid.css",
-                "~/content/fanexgrid/Fanex.Pagination.css"));
+                "~/content/fanexgrid/Fanex.Pagination.css",
+                "~/content/customizeFanexGrid.less"));
             
             // Numeral
             bundles.Add(new ScriptBundle("~/js/numeral").Include(

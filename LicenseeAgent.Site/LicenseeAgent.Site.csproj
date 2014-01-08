@@ -681,6 +681,7 @@
     <Content Include="Views\Instruction\zh-TW\MemberBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSetting.cshtml" />
+    <None Include="Content\customizeFanexGrid.less" />
     <None Include="Scripts\bootstrap\.jshintrc" />
     <Content Include="Content\bootstrap\accordion.less" />
     <Content Include="Content\bootstrap\alerts.less" />

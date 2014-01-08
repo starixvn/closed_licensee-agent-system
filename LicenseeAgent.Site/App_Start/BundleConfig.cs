@@ -44,6 +44,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/config.js",
                 "~/scripts/utils.js",
                 "~/scripts/language.js",
+                "~/scripts/HeadJS/head.js",
                 "~/scripts/core.js",
                 "~/scripts/popup.js",
                 "~/scripts/ResourcesJs/Las.js",

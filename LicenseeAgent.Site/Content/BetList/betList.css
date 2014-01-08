@@ -422,7 +422,7 @@ Format styles
         
 .month 
 {
-    margin: 10px 7px 7px;
+    margin: 9px 7px 7px;
 }
         
 .monpickr-selected-month  
@@ -432,10 +432,14 @@ Format styles
         
 .monpickr-label 
 {
-    font-size: 12px !important;
-    margin: 7px 7px 7px !important;
+    font-size: 12px;
+    margin: 6px 7px 7px 7px;
 }
-        
+
+.monpickr-super-wrapper {
+    float: left;
+}
+
 .ngHeaderText
 {
     text-align: center !important;
@@ -451,4 +455,25 @@ Format styles
 {
     display: inherit !important;
     text-align: center;
+    width: 100%;
+    float: left;
 }
+
+
+/* Month */
+
+.eq-ie10  .month {
+    margin-top: 7px;
+}
+
+.eq-ie10 .monpickr-label 
+{
+    margin-top: 5px;
+}
+
+.eq-ie10 .monpickr-arrows input.monpickr-input,
+.eq-ie10 .monpickr-arrows.daypickr input.monpickr-input {
+    padding-top: 1px !important;
+    padding-bottom: 4px !important;
+}
+

@@ -60,7 +60,6 @@
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
-    <Compile Include="Entities\DownlineContext.cs" />
     <Compile Include="Enumerations\DownlineRole.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />

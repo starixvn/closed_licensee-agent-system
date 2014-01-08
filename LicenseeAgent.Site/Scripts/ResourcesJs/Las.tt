@@ -69,6 +69,6 @@ var _language_en_US={
         {
             var pattern = "{0}:\"{1}\"{2}";
             var se = isLast ?  ",":string.Empty;
-            return string.Format(pattern, name, SecurityElement.Escape(value.Trim()), se);
+            return string.Format(pattern, name, SecurityElement.Escape(value.Trim().Replace("\n", " ")), se);
         }
 #>

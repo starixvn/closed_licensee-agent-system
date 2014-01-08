@@ -775,4 +775,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="DeadBall" xml:space="preserve">
     <value>Dead Ball</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
 </root>

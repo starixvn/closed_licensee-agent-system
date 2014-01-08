@@ -342,24 +342,32 @@
             var editItems = {};
             var items = [];
             if (pageContext.IsLastLevel) {
-                items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
+                items = [
+                    { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
+                    { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
+                    { name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline },
+                    { name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
                 { name: actions.VirtualSports, callback: customerList.editSetting },
-                { name: actions.EditInfo, callback: customerList.editSetting },
                 { name: actions.SBBetSetting, callback: customerList.editSetting },
                 { name: actions.Commission, callback: customerList.editSetting },*/
-                        {name: actions.Password, callback: customerList.editSetting}];
+                    {name: CORE.getSingleResource("Password"), callback: customerList.editSetting }
+                ];
             }
             else {
-                items = [{ name: actions.Sportsbook, callback: customerList.editSportsbook },
+                items = [
+                    { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
+                    { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
+                    { name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline },
+                    { name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
                 { name: actions.VirtualSports, callback: customerList.editSetting },
-                { name: actions.EditInfo, callback: customerList.editSetting },
                 { name: actions.AddDownline, callback: customerList.editSetting },
                 { name: actions.Commission, callback: customerList.editSetting },*/
-                        {name: actions.Password, callback: customerList.editSetting}];
+                    {name: CORE.getSingleResource("Password"), callback: customerList.editSetting }
+                ];
             }
 
             if (pageContext.IsDirectDownline) {
@@ -387,6 +395,42 @@
         },
         editSetting: function () {
             alert('test');
+        },
+        editInfo: function () {
+            alert("Edit Info");
+            return;
+            var url;
+            if (pageContext.IsLastLevel) {
+                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+            }
+            else {
+                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+            }
+            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+        },
+        addDownline: function () {
+            alert("Add Downline");
+            return;
+            var url;
+            if (pageContext.IsLastLevel) {
+                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+            }
+            else {
+                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+            }
+            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+        },
+        resetPassword: function () {
+            alert("Reset Password");
+            return;
+            var url;
+            if (pageContext.IsLastLevel) {
+                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+            }
+            else {
+                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+            }
+            POPUP.openDialogFrame(url, { width: 960, height: 680 });
         }
     }
 } (jQuery);

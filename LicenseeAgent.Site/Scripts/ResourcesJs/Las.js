@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/7/2014 1:18:08 PM
+// Lasted generated date: 1/8/2014 2:47:32 PM
 // </history>
 
 var _language_en_US={
@@ -123,6 +123,8 @@ var _language_en_US={
                      CurrentPasswordRequired:"Please enter current password.",
 				 	
                      CustomerInformation:"Customer Information",
+				 	
+                     DeadBall:"Dead Ball",
 				 	
                      DoubleChance:"DoubleChance",
 				 	
@@ -256,6 +258,8 @@ var _language_en_US={
 				 	
                      No:"No",
 				 	
+                     NoDownline:"There is no downline",
+				 	
                      NoDraw:"NoDraw",
 				 	
                      NoLicenseeDomainFound:"No licensee belongs to domain {0}.",
@@ -311,6 +315,8 @@ var _language_en_US={
                      PositionTakingSimpleModeHeader:"Position Taking (Soccer Dead ball Handicap)",
 				 	
                      Reports:"Reports",
+				 	
+                     ResetPassword:"Reset Password",
 				 	
                      SBBetSetting:"SB Bet Setting",
 				 	

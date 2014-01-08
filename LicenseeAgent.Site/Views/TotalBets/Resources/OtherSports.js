@@ -270,7 +270,7 @@
                             { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                             { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
                             { Name: "Statistics1X2", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FTOE", Value: match.HomeFirstHalfOddEven },
+                            { Name: "FTOE", Value: match.HomeFulltimeOddEven },
                             { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
                             { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                             { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
@@ -285,7 +285,7 @@
                             { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
                             { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
                             { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
-                            { Name: "FTOE", Value: match.AwayFirstHalfOddEven },
+                            { Name: "FTOE", Value: match.AwayFulltimeOddEven },
                             { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
                             { Name: "FHOU", Value: match.AwayFirstHalfOverUnder }
                         );

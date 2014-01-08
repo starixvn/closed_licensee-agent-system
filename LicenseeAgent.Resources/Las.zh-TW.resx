@@ -656,4 +656,7 @@
     <value>There is no downline</value>
     <comment>not</comment>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
 </root>

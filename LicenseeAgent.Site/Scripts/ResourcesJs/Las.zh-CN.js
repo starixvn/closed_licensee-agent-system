@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/7/2014 9:18:21 AM
+// Lasted generated date: 1/8/2014 2:42:26 PM
 // </history>
 
 var _language_zh_CN={
@@ -216,6 +216,8 @@ var _language_zh_CN={
 				 	
                      No:"无",
 				 	
+                     NoDownline:"There is no downline",
+				 	
                      NoLicenseeDomainFound:"No licensee belongs to domain {0}.",
 				 	
                      None:"無",
@@ -238,7 +240,7 @@ var _language_zh_CN={
 				 	
                      PasswordFirstUse:"This is your first login. You must change your password before continuing.",
 				 	
-                     PasswordHint:"&lt;span class=&apos;prewrap&apos;&gt;密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•特殊字符 （!、 @、 # 等。。)&lt;br/&gt;&lt;br/&gt;例如： 59D7!4$h, 493abcDE&lt;br/&gt;注意： 您的密码需有大小写&lt;/span&gt;",
+                     PasswordHint:"&lt;span class=&apos;prewrap&apos;&gt;密码必须至少 8 个字符没有空格和包含至少 3个 以下： &lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•大写字母 [A-Z]  &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•小写字母 [a-z]  &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•数字 [0-9]  &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;•特殊字符 （!、 @、 # 等。。) &lt;br/&gt; &lt;br/&gt;例如： 59D7!4$h, 493abcDE &lt;br/&gt;注意： 您的密码需有大小写 &lt;/span&gt;",
 				 	
                      PasswordMustNotSame:"New password must be different from old password.",
 				 	
@@ -259,6 +261,8 @@ var _language_zh_CN={
                      PositionTakingSimpleModeHeader:"Position Taking (Soccer Dead ball Handicap)",
 				 	
                      Reports:"报告",
+				 	
+                     ResetPassword:"Reset Password",
 				 	
                      SBBetSetting:"SB Bet Setting",
 				 	

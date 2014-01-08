@@ -47,7 +47,7 @@ namespace LicenseeAgent.API.LRF
             using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
             {
                 var authKey = HttpUtility.UrlEncode(rijndaelHelper.EncryptObject(loginInfo));
-                return string.Format("{0}/internal/lrf?authkey={1}", domain, authKey);
+                return string.Format("http://{0}/internal/lrf?authkey={1}", domain, authKey);
             }
         }
 

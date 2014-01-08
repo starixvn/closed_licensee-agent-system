@@ -4,38 +4,39 @@
 @{
     Layout = null;
 }
-@helper SectionInfoMode(string id, bool simpleMode)
+@helper RenderInstruction(string text, string id, bool simpleMode)
     {
         if (simpleMode)
         {
-    <span class="section-info" title="@Las.ClickToViewInstructions" id="@id" ng-show="settingMode">
-    </span>
+    <div class="instruction" ng-show="settingMode">
+        @text
+        <span class="icon-instruction" title="@Las.ClickToViewInstructions" id="@id"></span>
+    </div>
         }
         else
         {
-    <span class="section-info" title="@Las.ClickToViewInstructions" id="@id" ng-hide="settingMode">
-    </span>
+    <div class="instruction" ng-hide="settingMode">
+        @text
+        <span class="icon-instruction" title="@Las.ClickToViewInstructions" id="@id"></span>
+    </div>
         }
 }
 <div class="container-box">
-    <div class="instruction">
-        @Las.BetSetting
-        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
-        {
-            @SectionInfoMode("licensee-bet-limit-info-button", true)
-            @SectionInfoMode("licensee-bet-limit-info-button-adv", false)
-        }
-        else if (Model.TargetRoleId == (int)Role.Agent)
-        {
-            @SectionInfoMode("agent-bet-limit-info-button", true)
-            @SectionInfoMode("agent-bet-limit-info-button-adv", false)
-        }
-        else
-        {
-            @SectionInfoMode("member-bet-limit-info-button", true)
-            @SectionInfoMode("member-bet-limit-info-button-adv", false)
-        }
-    </div>
+    @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+    {
+        @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button", true)
+        @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button-adv", false)
+    }
+    else if (Model.TargetRoleId == (int)Role.Agent)
+    {
+        @RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button", true)
+        @RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button-adv", false)
+    }
+    else
+    {
+        @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button", true)
+        @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv", false)
+    }
     <div id="betting-limit-current-scope" class="betting-limit" ng-controller="fanex.custsetting.betlimitcontroller">
         <div ng-show="settingContext.IsSimpleMode" class="simple-mode">
             <div>

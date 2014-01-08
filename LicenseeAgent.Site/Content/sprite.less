@@ -1,6 +1,7 @@
 ﻿@iconSpritePath: "../images/sprite.png";
 
 [class^="icon-"], [class*=" icon-"],
+[class^="ui-icon-"], [class*=" ui-icon-"],
 .caret,
 .refresh-count-down .dropdown-button,
 .refresh-count-down .refresh-button,
@@ -11,7 +12,7 @@
     height: 14px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("@{iconSpritePath}");
+    background-image: url("@{iconSpritePath}") !important;
     background-position: 0px 0px;
     background-repeat: no-repeat;
     margin-top: 1px;
@@ -281,4 +282,22 @@ li.active .icon-nav-arrow
 .icon-arrow4
 {
     background-position: -823px 0;
+}
+
+.icon-instruction
+{
+    width: 25px;
+    height: 27px;
+    background-position: -458px 5px;
+}
+
+.ui-icon-closethick
+{
+    width: 15px;
+    height: 15px;
+    background-position: -863px 1px;
+    &:hover
+    {
+        background-position: -863px -17px;
+    }
 }

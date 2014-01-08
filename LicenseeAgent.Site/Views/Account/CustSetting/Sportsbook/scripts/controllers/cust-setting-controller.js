@@ -8,7 +8,7 @@
             return;
         }
 
-        CORE.initSectionInfo();
+        CORE.initInstruction();
         // init tooltip
         $(document).tooltip();
 

@@ -48,15 +48,15 @@
             // get customer list
             customerList.reRenderAfterPaged();
         },
-        initSectionInfo: function () {
-            $('.infos').each(function () {
+        initInstruction: function () {
+            $('.instruction-container').each(function () {
                 $(this).click(function () {
                     customerList.getIpInformation($(this).html());
                 });
             });
         },
         gridAfterBinding: function () {
-            customerList.initSectionInfo();
+            customerList.initInstruction();
 
             $('.make-switch')['bootstrapSwitch']();
             $('.cust-status').on('switch-change', function (e) {

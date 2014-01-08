@@ -119,7 +119,7 @@ namespace LicenseeAgent.Core.Utils
 
         private T ByteArrayToObject<T>(byte[] arrBytes)
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            var binaryFormatter = new BinaryFormatter();
             using (var stream = new MemoryStream())
             {
                 stream.Write(arrBytes, 0, arrBytes.Length);

@@ -5,21 +5,18 @@
     Layout = null;
 }
 <div class="container-box">
-    <div class="instruction">
-        @Las.Commission
-        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
-        {
-            @RazorHelper.SectionInfo("licensee-commission-info-button")
-        }
-        else if (Model.TargetRoleId == (int)Role.Agent)
-        {
-            @RazorHelper.SectionInfo("agent-commission-info-button")
-        }
-        else
-        {
-            @RazorHelper.SectionInfo("member-commission-info-button")
-        }
-    </div>
+    @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+    {
+        @RazorHelper.RenderInstruction(Las.Commission, "licensee-commission-info-button")
+    }
+    else if (Model.TargetRoleId == (int)Role.Agent)
+    {
+        @RazorHelper.RenderInstruction(Las.Commission, "agent-commission-info-button")
+    }
+    else
+    {
+        @RazorHelper.RenderInstruction(Las.Commission, "member-commission-info-button")
+    }
     <div id="commission-current-scope" class="comm-setting" ng-controller="fanex.custsetting.commissioncontroller">
         <div ng-show="settingContext.TargetRoleId ==1 ? true: false;">
             <commission-setting-agent-edit-member></commission-setting-agent-edit-member>

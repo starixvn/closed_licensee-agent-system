@@ -6,21 +6,18 @@
 <div id="positionTakingContainer" ng-controller="sportsbook.positionTakingController"
     class="pt-setting">
     <div class="container-box2" ng-show="!settingContext.IsSimpleMode">
-        <div class="instruction">
-            @Las.PositionTaking
-            @if (Model.TargetRoleId == (int)Role.AgentLevel1)
-            {
-                @RazorHelper.SectionInfo("licensee-position-taking-info-button-adv")
-            }
-            else if (Model.TargetRoleId == (int)Role.Agent)
-            {
-                @RazorHelper.SectionInfo("agent-position-taking-info-button-adv")
-            }
-            else
-            {
-                @RazorHelper.SectionInfo("member-position-taking-info-button-adv")
-            }
-        </div>
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTaking, "licensee-position-taking-info-button-adv")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTaking, "agent-position-taking-info-button-adv")
+        }
+        else
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTaking, "member-position-taking-info-button-adv")
+        }
         <div ng-repeat="ptGroup in ptModel.ptGroups" ng-show="!settingContext.IsSimpleMode">
             <div class="pt-group-container" ng-style="ptGroup.WidthStyle">
                 <div ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
@@ -49,21 +46,18 @@
         </div>
     </div>
     <div class="pt-setting-simple-mode" ng-switch="settingContext.TargetRoleId" ng-show="settingContext.IsSimpleMode">
-        <div class="instruction">
-            @Las.PositionTakingSimpleModeHeader
-            @if (Model.TargetRoleId == (int)Role.AgentLevel1)
-            {
-                @RazorHelper.SectionInfo("licensee-position-taking-info-button")
-            }
-            else if (Model.TargetRoleId == (int)Role.Agent)
-            {
-                @RazorHelper.SectionInfo("agent-position-taking-info-button")
-            }
-            else
-            {
-                @RazorHelper.SectionInfo("member-position-taking-info-button")
-            }
-        </div>
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "agent-position-taking-info-button")
+        }
+        else
+        {
+            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "member-position-taking-info-button")
+        }
         <licensee-edit-agent-one-pt-simple-mode ng-switch-when="3" pt-simple="ptModel.ptFirstData"></licensee-edit-agent-one-pt-simple-mode>
         @if (Model.FormId != FormType.ReadOnly)
         {

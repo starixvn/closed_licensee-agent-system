@@ -14,6 +14,6 @@
 	trigger = string.IsNullOrWhiteSpace(trigger) ? "page-info" : trigger + "-info";
 }
 	
-<div id="@trigger" class="infos" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
+<div id="@trigger" class="instruction-container" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
 	@RenderBody()
 </div>

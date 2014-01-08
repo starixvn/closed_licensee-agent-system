@@ -27,10 +27,9 @@
                 moment.lang(selectedLanguageCode);
             }
         },
-        initSectionInfo: function () {
-            var infos = $('.infos');
-
-            infos.each(function () {
+        initInstruction: function () {
+            var containers = $('.instruction-container');
+            containers.each(function () {
                 var $this = $(this),
                         thisId = $this.attr('id'),
                         title = $this.attr('title'),

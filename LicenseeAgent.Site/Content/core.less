@@ -35,18 +35,6 @@
             height: 16px;
             width: 16px;
             background: transparent;
-            .ui-icon-closethick
-            {
-                height: 11px;
-                width: 11px;
-                margin-left: -5px;
-                margin-top: -5px;
-                background: url(../images/popup-close-icon.png) 0px 0px no-repeat;
-                &:hover
-                {
-                    background: url(../images/popup-close-icon.png) 0px -12px no-repeat;
-                }
-            }
         }
     }
     .ui-dialog-buttonpane
@@ -113,19 +101,13 @@ div.blockOverlay
     color: white;
     font-size: 13px;
     padding-left: 15px;
-    .section-info 
+    .icon-instruction
     {
-        background: url(../images/info-rhombus-icon.png) no-repeat 11px 8px;
-        cursor: pointer;
         float: right;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        width: 28px;
         border-left: 1px solid white;
     }
 }
-.infos
+.instruction-container
 {
     .instruction-content
     {
@@ -146,6 +128,9 @@ span.require:after
     padding-right: 3px;
     content: "*";
 }
+
+/* Information */
+
 
 /* Page */
 #mainContainer

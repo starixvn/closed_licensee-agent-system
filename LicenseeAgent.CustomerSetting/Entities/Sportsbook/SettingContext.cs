@@ -15,7 +15,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     /// <summary>
     /// Class name.
     /// </summary>
-    public class SettingContext : DownlineContext
+    public class SettingContext
     {
         public SettingContext()
         {
@@ -41,6 +41,10 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public string UserName { get; set; }
 
         public string TargetCustIds { get; set; }
+
+        public int TargetCustId { get; set; }
+
+        public int TargetRoleId { get; set; }
 
         /// <summary>
         /// Gets or sets the Admin ID.

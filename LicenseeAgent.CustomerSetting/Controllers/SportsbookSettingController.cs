@@ -26,6 +26,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// <summary>
     /// Sport books setting controller.
     /// </summary>
+    [DownLine]
     public class SportsbookSettingController : BaseController
     {
         private static ErrCode[] betSettingErrCodes =
@@ -156,7 +157,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON result.</returns>
         [HttpPost]
-        [DirectDownline]
+        [DirectDownLineMember]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             if (model == null ||
@@ -186,6 +187,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Returns view.
         /// </returns>
         [HttpGet]
+        [DirectDownLineAgent]
         public ViewResult EditAgent(EditAgentViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)

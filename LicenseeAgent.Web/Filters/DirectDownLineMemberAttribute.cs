@@ -1,0 +1,47 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="DirectDownLineMemberAttribute.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.Web.Filters
+{
+    using System.Web.Mvc;
+    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Enumerations;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class DirectDownLineMemberAttribute : DownLineAttribute
+    {
+        /// <summary>
+        /// Check down line is belong.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var currentSession = SessionManager.CurrentSession;
+            var memberId = GetDownlineParameter(filterContext, MemberIdParameterNames);
+
+            // Validation
+            var invalidSession = currentSession == null || currentSession.AgentInfo == null;
+            if (invalidSession || memberId<=0)
+            {
+                return;
+            }
+
+            // Authorize
+            var criteria = new CheckDownlineBelongCriteria
+            {
+                TargetCustId = (int)memberId,
+                Type = (int)DownlineRole.Member
+            };
+
+            if (!AuthorizeService.IsDirectDownline(criteria))
+            {
+                AccessDenied(filterContext);
+            }
+        }
+    }
+}

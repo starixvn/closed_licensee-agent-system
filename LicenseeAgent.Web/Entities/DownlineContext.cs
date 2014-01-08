@@ -11,8 +11,6 @@ namespace LicenseeAgent.Web.Entities
     /// </summary>
     public class DownlineContext
     {
-        public int TargetCustId { get; set; }
-
-        public int TargetRoleId { get; set; }
+        
     }
 }

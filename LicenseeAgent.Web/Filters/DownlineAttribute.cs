@@ -16,9 +16,9 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownlineAttribute : BaseActionFilterAttribute
+    public class DownLineAttribute : BaseActionFilterAttribute
     {
-        public DownlineAttribute()
+        public DownLineAttribute()
         {
             AuthorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
             AgentIdParameterNames = new[] { "AgentId", "CustId" };

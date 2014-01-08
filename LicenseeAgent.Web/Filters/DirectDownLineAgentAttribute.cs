@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DirectDownlineAttribute.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DirectDownLineAgentAttribute.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DirectDownlineAttribute : DownlineAttribute
+    public class DirectDownLineAgentAttribute : DownLineAttribute
     {
         /// <summary>
         /// Check down line is belong.
@@ -23,23 +23,19 @@ namespace LicenseeAgent.Web.Filters
         {
             var currentSession = SessionManager.CurrentSession;
             var agentId = GetDownlineParameter(filterContext, AgentIdParameterNames);
-            var memberId = GetDownlineParameter(filterContext, MemberIdParameterNames);
 
             // Validation
             var invalidSession = currentSession == null || currentSession.AgentInfo == null;
-            var invalidParameters = (agentId == -1 && memberId == -1) || (agentId > 0 && memberId > 0);
-            if (invalidSession || invalidParameters)
+            if (invalidSession || agentId <= 0)
             {
                 return;
             }
 
             // Authorize
-            var targetCustId = agentId > 0 ? agentId : memberId;
-            var downlineRole = agentId > 0 ? DownlineRole.Agent : DownlineRole.Member;
             var criteria = new CheckDownlineBelongCriteria
             {
-                TargetCustId = (int)targetCustId,
-                Type = (int)downlineRole
+                TargetCustId = (int)agentId,
+                Type = (int)DownlineRole.Agent
             };
 
             if (!AuthorizeService.IsDirectDownline(criteria))

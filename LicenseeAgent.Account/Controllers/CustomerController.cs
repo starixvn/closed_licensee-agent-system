@@ -220,7 +220,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Agent status view model.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        [DirectDownline]
+        [DirectDownLineAgent]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
             var criteria = new UpdateAgentAccStatusCriteria
@@ -240,7 +240,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Member status view model.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        [DirectDownline]
+        [DirectDownLineMember]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
             var criteria = new UpdateMemberAccStatusCriteria

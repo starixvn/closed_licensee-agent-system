@@ -6,6 +6,8 @@
 
 namespace LicenseeAgent.Account.Entities
 {
+    using LicenseeAgent.Account.Core;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -28,5 +30,57 @@ namespace LicenseeAgent.Account.Entities
         public int Level { get; set; }
 
         public int NumberOfLevel { get; set; }
+
+        public string LargeFullName
+        {
+            get
+            {
+                if (FullName.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", FullName.Substring(0, Constants.LargeStringLength));
+                }
+
+                return FullName;
+            }
+        }
+
+        public string LargePhone
+        {
+            get
+            {
+                if (Phone.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", Phone.Substring(0, Constants.LargeStringLength));
+                }
+
+                return Phone;
+            }
+        }
+
+        public string LargeMobile
+        {
+            get
+            {
+                if (Mobile.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", Mobile.Substring(0, Constants.LargeStringLength));
+                }
+
+                return Mobile;
+            }
+        }
+
+        public string LargeFax
+        {
+            get
+            {
+                if (Fax.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", Fax.Substring(0, Constants.LargeStringLength));
+                }
+
+                return Fax;
+            }
+        }
     }
 }

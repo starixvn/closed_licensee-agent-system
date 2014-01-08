@@ -41,6 +41,8 @@
     <Setting Key="Las_LicenseeEditAgent" SpName="Las_LicenseeEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentSelMemIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirect" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckDownlineBelong" SpName="Las_CheckDownlineBelong" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

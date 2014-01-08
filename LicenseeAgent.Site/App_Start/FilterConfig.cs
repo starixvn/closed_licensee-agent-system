@@ -21,7 +21,6 @@ namespace LicenseeAgent.Site
         {
             filters.Add(new AppAuthorizeAttribute());
             filters.Add(new UnderMaintenanceAttribute());
-            filters.Add(new DownlineActionFilterAttribute());
         }
     }
 }

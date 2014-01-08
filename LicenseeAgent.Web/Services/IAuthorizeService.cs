@@ -14,12 +14,8 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public interface IAuthorizeService
     {
-        void CheckDownlineBelong(CheckDownlineBelongCriteria criteria);
+        bool IsDirectDownline(CheckDownlineBelongCriteria criteria);
 
-        bool IsDownlineBelong(int custId, int targetCustId, DownlineRole downlineRole);
-
-        bool IsDownlineBelong(int targetCustId, DownlineRole downlineRole);
-
-        bool ValidateDirectDownline(CheckDownlineBelongCriteria criteria);
+        bool IsDownline(CheckDownlineBelongCriteria criteria);
     }
 }

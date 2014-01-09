@@ -1,0 +1,102 @@
+﻿/* Overwrite fanex grid */
+
+.freegrid {
+    border-color: #fff;
+    border-radius: 2px;
+
+    .free-top-left table thead th, .col_header table thead th {
+        background: #8a8a8a;
+        height: 26px;
+    }
+
+    .y-scrollbar {
+        border-left-color: #fff !important;
+    }
+
+    .grid-fixed-table {
+        tbody tr {
+            &.league-row td, &.league-row.freegrid-even td {
+                text-align: left;
+                background-color: #dedede;
+                font-weight: bold;
+                border-bottom-color: #fff;
+                border-right: none;
+            }
+
+            &.live-row td, &.live-row.freegrid-even td {
+                background-color: #fbffe5;
+            }
+
+            &.normal-row td, &.normal-row.freegrid-even td {
+                border-right-color: #fff;
+                border-bottom-color: #fff;
+                background-color: #edf0f0;
+            }
+
+            &.live-row td {
+                border-right: 1px solid #e9e9e9;
+                border-bottom: 1px solid #e9e9e9;
+            }
+
+            & td.team-name {
+                text-align: left;
+                border-bottom: 1px solid #FFF;
+                padding-left: 2px;
+                font-weight: bold;
+            }
+
+            &.header-row td {
+                text-align: center;
+                border-right: 1px solid #fff;
+            }
+
+            &.freegrid-even td {
+                background: #f5f6fa;
+            }
+
+            td  {
+                background: #edf0f0;
+
+                span.live {
+                    color: #FF0000;
+                }
+
+                &.draw {
+                    color: #908F8F;
+                    text-align: left;
+                    padding-left: 2px;
+                }
+
+                .c-align {
+                    text-align: center;
+                }
+
+                span.more-link {
+                    color: #589CC9;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        tr td div.totalbets-item {
+            width: 20px;
+            height: 20px;
+            background-image: url(/images/sprite.png);
+            background-position: -740px 0;
+        }
+    }
+
+    table tbody tr.sport-row td {
+        text-align: left;
+        background-color: #eecaca;
+        font-weight: bold;
+    }
+
+    .free-bottom-right table thead th, .free-top-right table thead th {
+        background: #8a8a8a;
+    }
+}
+
+
+/* End Overwrite fanex grid */

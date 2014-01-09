@@ -76,7 +76,8 @@ namespace LicenseeAgent.BetList.Controllers
         public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-            criteria.AgentId = CurrentSession.AdminInfo.UserId;
+            criteria.CustId = CurrentSession.AdminInfo.UserId;
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.MoveBetsDay = balanceUp.MoveBetDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
             criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;

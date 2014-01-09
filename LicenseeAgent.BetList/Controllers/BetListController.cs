@@ -60,6 +60,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <summary>
         /// Index page of Bet List.
         /// </summary>
+        /// <param name="custId">Customer ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult BetListSelByMember(int custId)

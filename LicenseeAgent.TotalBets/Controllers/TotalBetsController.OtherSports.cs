@@ -44,7 +44,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
 
-            var sports = _totalBetsService.GetOtherSportsList(criteria);
+            var sports = _totalBetsService.GetOtherSportsList(criteria).OrderBy(x => x.SportName);
             var sportMultiItems = new List<dynamic>();
             var sportIds = string.IsNullOrEmpty(sportList) ? new List<string>() : sportList.Split(',').ToList();
 
@@ -77,7 +77,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         public JsonResult GetLeagueListOtherSports(string sportList, string leagueList)
         {
             var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
-            var leagues = _totalBetsService.GetOtherSportsLeagues(criteria);
+            var leagues = _totalBetsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
             var leagueIds = string.IsNullOrEmpty(leagueList) ? new List<string>() : leagueList.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)
@@ -116,7 +116,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 LeagueList = leagueList
             };
 
-            var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria);
+            var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName);
             var eventIds = string.IsNullOrEmpty(eventList) ? new List<string>() : eventList.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();
             foreach (var item in events)

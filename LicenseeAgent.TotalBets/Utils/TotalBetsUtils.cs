@@ -49,9 +49,9 @@ namespace LicenseeAgent.TotalBets.Utils
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
                         LiveIndicator = matchGroup.LiveIndicator,
-                        Time = matchGroup.LiveIndicator
-                        ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
-                        : matches.FirstOrDefault().ShowTime,
+                        Time = matchGroup.LiveIndicator ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore) : matches.FirstOrDefault().ShowTime,
+                        LiveHomeScore = matchGroup.LiveHomeScore,
+                        LiveAwayScore = matchGroup.LiveAwayScore,
                         HomeId = matches.FirstOrDefault().HomeId,
                         AwayId = matches.FirstOrDefault().AwayId,
                         IsNeutral = matches.FirstOrDefault().IsNeutral,
@@ -78,7 +78,7 @@ namespace LicenseeAgent.TotalBets.Utils
                     });
                 }
 
-                result.Add(new LeagueGroupEntity { LeagueId = league.LeagueId, LiveIndicator = league.LiveIndicator, MatchList = matchList });
+                result.Add(new LeagueGroupEntity { LeagueId = league.LeagueId, LiveIndicator = league.LiveIndicator, MatchList = matchList.OrderByDescending(x => x.LiveHomeScore).ThenByDescending(a => a.LiveAwayScore).ToList() });
             }
 
             return result;

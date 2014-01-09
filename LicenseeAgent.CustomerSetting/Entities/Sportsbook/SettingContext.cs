@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.Web;
@@ -34,6 +35,18 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
                 ? (int)Role.AgentLevel1
                 : currentSession.AgentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
             Language = currentSession.Language;
+        }
+
+        public SettingContext(AgentInfo agentInfo)
+            : this()
+        {
+            LoginUserId = SessionManager.CurrentSession.LoginUserId;
+            CustId = agentInfo.AgentId;
+            RoleId = agentInfo.IsLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
+            TargetRoleId = agentInfo.IsLevel0
+                ? (int)Role.AgentLevel1
+                : agentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
+            Language = SessionManager.CurrentSession.Language;
         }
 
         public int CustId { get; set; }

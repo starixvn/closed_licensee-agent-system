@@ -69,6 +69,9 @@
     <div id="grid" class="freegrid"
         data-url-change-status=@(pageContext.IsLastLevel ? Url.Action("ChangeMemberStatus", "Customer") : Url.Action("ChangeAgentStatus", "Customer"))
         data-url-edit-sportsbook=@(pageContext.IsLastLevel ? Url.Action("EditMember", "SportsbookSetting") : Url.Action("EditAgent", "SportsbookSetting"))
-        data-url-ip="@Url.Action("GetIpInformation", "Customer")">
+        data-url-add-downline=@Url.Action("InsertCustomer", "SportsbookSetting")
+        data-url-ip="@Url.Action("GetIpInformation", "Customer")"
+        data-is-last-level=@pageContext.IsLastLevel
+        data-is-level0=@pageContext.IsLevel0>
     </div>
 </div>

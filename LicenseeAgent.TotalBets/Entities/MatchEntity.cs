@@ -27,6 +27,10 @@ namespace LicenseeAgent.TotalBets.Entities
 
         public bool IsNeutral { get; set; }
 
+        public int LiveHomeScore { get; set; }
+
+        public int LiveAwayScore { get; set; }
+
         public string HomeName
         {
             get

@@ -10,6 +10,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
+    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Services;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
@@ -55,9 +57,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly ISportsbookSettingService _customerSettingService;
 
-        public SportsbookSettingController(ISportsbookSettingService customerSettingService)
+        private readonly IAccountService _accountService;
+
+        public SportsbookSettingController(ISportsbookSettingService customerSettingService, IAccountService accountService)
         {
             _customerSettingService = customerSettingService;
+            _accountService = accountService;
         }
 
         /// <summary>
@@ -110,12 +115,21 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <summary>
         /// Inserts the customer.
         /// </summary>
-        /// <returns>
-        /// Returns view.
-        /// </returns>
+        /// <param name="agentUsername">Agent Username.</param>
+        /// <returns>Action Result.</returns>
         [HttpGet]
-        public ActionResult InsertCustomer()
+        public ActionResult InsertCustomer(string agentUsername = "")
         {
+            agentUsername = string.IsNullOrEmpty(agentUsername) ? CurrentSession.AgentInfo.UserName : agentUsername;
+            var criteria = new InternalLoginAsUserCriteria
+            {
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                UserName = agentUsername
+            };
+            _accountService.InternalLoginAsUser(criteria);
+            var agentInfo = criteria.CreateAgent();
+
             var settingContext = new SettingContext(CurrentSession)
             {
                 Ip = Request.GetClientIp()

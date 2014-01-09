@@ -53,7 +53,8 @@ namespace LicenseeAgent.Account.Controllers
 
             ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(CurrentSession.AgentInfo.AgentLevel)
+                IsDirectDownline = CurrentSession.IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
+                IsLevel0 = CurrentSession.AgentInfo.IsLevel0
             };
 
             return View(breadModel);

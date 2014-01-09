@@ -89,8 +89,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public bool CanEditComGroup { get; set; }
 
-        public bool IsUpdateMember { get; set; }
-
-        public bool IsChangePositionTaking { get; set; }
+        public bool IsOnlyUpdatePT { get; set; }
     }
 }

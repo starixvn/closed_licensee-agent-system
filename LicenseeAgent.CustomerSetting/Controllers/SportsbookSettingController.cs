@@ -21,6 +21,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
@@ -215,9 +216,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 FormId = FormType.Edit,
                 TargetCustId = model.MemberId,
                 TargetRoleId = (int)Role.Member,
-                Ip = Request.GetClientIp()
+                Ip = Request.GetClientIp(),
+                IsOnlyUpdatePT = CurrentSession.AdminInfo == null 
+                                && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             };
-
+            
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);
         }
 

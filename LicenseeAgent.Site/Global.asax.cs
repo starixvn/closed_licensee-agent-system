@@ -81,8 +81,10 @@ namespace LicenseeAgent.Site
             {
                 return;
             }
-
+            
             var exception = Server.GetLastError();
+            HandleException(exception);
+
             if (!IsInternalServerError(exception))
             {
                 return;
@@ -102,13 +104,6 @@ namespace LicenseeAgent.Site
                     "\r\nStackTrace: " + baseException.StackTrace;
                 LogService.Error(message);
             }
-
-            if (Response.IsRequestBeingRedirected)
-            {
-                return;
-            }
-
-            HandleException(exception);
         }
 
         /// <summary>
@@ -117,6 +112,11 @@ namespace LicenseeAgent.Site
         /// <param name="exception">The exception.</param>
         private void HandleException(Exception exception)
         {
+            if (Response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
             var httpException = exception as HttpException;
             var antiForgeryException = exception as HttpAntiForgeryException;
             var isAntiForgeryException = antiForgeryException != null;

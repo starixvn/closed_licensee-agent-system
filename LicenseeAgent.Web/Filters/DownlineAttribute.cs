@@ -6,10 +6,13 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
     using LicenseeAgent.Web.Services;
@@ -77,13 +80,17 @@ namespace LicenseeAgent.Web.Filters
         /// <returns>Long value.</returns>
         protected static long GetDownLineParameter(ActionExecutingContext filterContext, string[] parameterNames)
         {
-            var value = GetDownLineParameter(filterContext.ActionParameters, parameterNames);
-            if (value > 0)
+            var actionParameters = GetActionParameter(filterContext.ActionParameters, parameterNames);
+            var jsonParameters = GetJsonParameter(filterContext.HttpContext.Request.InputStream, parameterNames);
+            var allParameters = actionParameters.Union(jsonParameters).ToArray();
+
+            if (allParameters.Length > 1)
             {
-                return value;
+                var exceptionMessage = string.Format(Las.TooManyDownLineParameters, string.Join(",", parameterNames));
+                throw new ArgumentException("There is too many parameters with name {0}", exceptionMessage);
             }
 
-            return GetDownLineParameter(filterContext.HttpContext.Request.InputStream, parameterNames);
+            return allParameters.Length == 1 ? allParameters[0] : -1;
         }
 
         /// <summary>
@@ -92,7 +99,7 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="actionParameters">Action parameters.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static long GetDownLineParameter(IDictionary<string, object> actionParameters, string[] parameterNames)
+        protected static IEnumerable<long> GetActionParameter(IDictionary<string, object> actionParameters, string[] parameterNames)
         {
             foreach (var name in parameterNames)
             {
@@ -104,16 +111,14 @@ namespace LicenseeAgent.Web.Filters
                 var value = actionParameters[name];
                 if (value.GetType() == typeof(long) && (long)value > 0)
                 {
-                    return (long)value;
+                    yield return (long)value;
                 }
 
                 if (value.GetType() == typeof(int) && (int)value > 0)
                 {
-                    return (long)value;
+                    yield return (long)value;
                 }
             }
-
-            return -1;
         }
 
         /// <summary>
@@ -122,40 +127,47 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="stream">Request input stream.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static long GetDownLineParameter(Stream stream, string[] parameterNames)
+        protected static IEnumerable<long> GetJsonParameter(Stream stream, string[] parameterNames)
         {
-            var requestText = string.Empty;
-            stream.Seek(0, SeekOrigin.Begin);
-            using (var reader = new StreamReader(stream))
+            if (stream.Length == 0)
             {
-                requestText = reader.ReadToEnd();
-                reader.Close();
+                yield break;
             }
 
-            if (string.IsNullOrWhiteSpace(requestText))
-            {
-                return -1;
-            }
-
+            var requestText = ReadString(stream);
             foreach (var name in parameterNames)
             {
                 var pattern = string.Format("\"{0}\":(\\d+)", name);
                 var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                var match = regex.Match(requestText);
-                if (match.Groups.Count != 2)
+                var values = regex.Matches(requestText)
+                                   .Cast<Match>()
+                                   .Where(m => m.Groups.Count == 2)
+                                   .Select(m => m.Groups[1].Value)
+                                   .Select(m => long.Parse(m));
+                foreach (var value in values)
                 {
-                    continue;
-                }
-
-                long value = 0;
-                var parseResult = long.TryParse(match.Groups[1].Value, out value);
-                if (parseResult && value > 0)
-                {
-                    return value;
+                    yield return value;
                 }
             }
+        }
 
-            return -1;
+        /// <summary>
+        /// Read text from stream.
+        /// Seek to begin of stream before reading.
+        /// </summary>
+        /// <param name="stream">Input stream.</param>
+        /// <returns>Return text in stream.</returns>
+        private static string ReadString(Stream stream)
+        {
+            var text = string.Empty;
+            stream.Seek(0, SeekOrigin.Begin);
+            using (var reader = new StreamReader(stream))
+            {
+                text = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            return text;
         }
     }
 }

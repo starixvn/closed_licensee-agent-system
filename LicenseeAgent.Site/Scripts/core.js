@@ -26,6 +26,16 @@
                 var selectedLanguageCode = LANGUAGE.getSelectedLanguageCode();
                 moment.lang(selectedLanguageCode);
             }
+
+            // Override the fanexGrid
+            var fanexGridOrigin = jQuery.fn.fanexGrid;
+            if (fanexGridOrigin != undefined) {
+                jQuery.fn.fanexGrid = function () {
+                    $("#mainContainer").css("overflow-x", "hidden");
+                    jQuery.fn.fanexGrid = fanexGridOrigin;
+                    return fanexGridOrigin.apply(this, arguments);
+                };
+            }
         },
         initInstruction: function () {
             var containers = $('.instruction-container');
@@ -230,7 +240,7 @@
             }
             return gridOption;
         },
-        scrollTop:function() {
+        scrollTop: function () {
             $("html, body").animate({ scrollTop: 0 }, "fast");
         },
         parseBoolean: function (value) {
@@ -245,7 +255,7 @@
             if (enghlishName == null || enghlishName == undefined) return enghlishName;
             var keyName = "_language_" + _page.lang.replace("-", "_");
 
-            var resources = window[keyName];            
+            var resources = window[keyName];
             if (!resources) {
                 resources = _language_en_US;
             }

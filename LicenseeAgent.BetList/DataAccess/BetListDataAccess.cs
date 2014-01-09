@@ -75,6 +75,8 @@ namespace LicenseeAgent.BetList.DataAccess
             return result;
         }
 
+        #region Utilities - Bet List
+        
         /// <summary>
         /// Get system parlay result data.
         /// </summary>
@@ -299,6 +301,8 @@ namespace LicenseeAgent.BetList.DataAccess
 
             return false;
         }
+        
+        #endregion
 
         #endregion
     }

@@ -158,25 +158,23 @@ namespace LicenseeAgent.BetList.Controllers
         /// <summary>
         /// Bet List Details.
         /// </summary>
+        /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
         [DownLineTransaction]
-        public ActionResult Details()
+        public ActionResult Details(BetListDetailsCriteria criteria)
         {
-            var fakeData = new BetListDetailsViewModel();
-            fakeData.BetListDetails.Add(new BetListDetails
-                {
-                    Agent = "MNS",
-                    PositionTaking = "<div>20%</div><div>100.00</div>",
-                    Commission = "<div>5%</div><div>7.00</div>"
-                });
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
+            var viewModel = new BetListDetailsViewModel();
+            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails);
 
-            return View(fakeData);
+            return View(viewModel);
         }
 
         #endregion
 
-        #region Utilities
+        #region Utilities - Bet List
         /// <summary>
         /// Generate ticket text.
         /// </summary>
@@ -232,13 +230,46 @@ namespace LicenseeAgent.BetList.Controllers
                 };
 
                 ticketText.Feature = "<a class=\"iplink\" href=\"javascript:void(0);\" onclick=\"javascript: POPUP.openDialogFrame('BetList/Details?";
-                ticketText.Feature += "SomeParamShouldBeHere=1', { width: 360, height: 280 }); \">Details</a>";
+                ticketText.Feature += "TransId=" + ticket.TransId + "', { width: 360, height: 280 }); \">Details</a>";
 
                 ticketTextList.Add(ticketText);
             }
 
             return ticketTextList;
         }
+        #endregion
+
+        #region Utilities - Bet List Details
+
+        /// <summary>
+        /// Format raw bet list details.
+        /// </summary>
+        /// <param name="originalData">List of raw bet list details.</param>
+        /// <returns>List of formatted bet list details.</returns>
+        public List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData)
+        {
+            var formattedData = new List<BetListDetails>();
+            foreach (var item in originalData)
+            {
+                formattedData.Add(new BetListDetails
+                {
+                    Agent = item.AgentName,
+                    PositionTaking = GenerateHtmlStringForAgent(item.AgentPTPercent, item.AgentPT),
+                    Commission = GenerateHtmlStringForAgent(item.AgentCommPercent, item.AgentComm)
+                });
+            }
+
+            return formattedData;
+        }
+
+        public string GenerateHtmlStringForAgent(decimal percentage, decimal value)
+        {
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage);
+            htmlString += "%</div><div>" + string.Format("{0:#,##0.00}", value) + "</div>";
+
+            return htmlString;
+        }
+
         #endregion
     }
 }

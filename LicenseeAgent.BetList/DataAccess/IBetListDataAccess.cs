@@ -42,7 +42,7 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <param name="criteria">System parlay result criteria.</param>
         /// <returns>System Parlay Data.</returns>
         SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria);
-
+        
         #endregion
     }
 }

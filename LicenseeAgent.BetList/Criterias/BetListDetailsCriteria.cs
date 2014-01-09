@@ -18,7 +18,9 @@ namespace LicenseeAgent.BetList.Criterias
     /// </summary>
     public class BetListDetailsCriteria : CriteriaBase
     {
-        // Parameter should be here
+        public int AgentId { get; set; }
+
+        public long TransId { get; set; }
 
         /// <summary>
         /// Get SP name.
@@ -26,7 +28,12 @@ namespace LicenseeAgent.BetList.Criterias
         /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            return string.Empty;
+            return "LAS_Betlist_SelAgentPTComm";
+        }
+
+        public override bool IsValid()
+        {
+            return AgentId > 0 && TransId > 0;
         }
     }
 }

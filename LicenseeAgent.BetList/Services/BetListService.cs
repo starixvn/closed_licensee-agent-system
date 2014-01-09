@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.BetList.Services
 {
+    using System.Collections.Generic;
     using Core.Services;
     using Criterias;
     using DataAccess;
@@ -83,6 +84,17 @@ namespace LicenseeAgent.BetList.Services
         {
             return _betlistDataAccess.GetSystemParlayResult(criteria);
         }
+        
+        /// <summary>
+        /// Get Bet List Details.
+        /// </summary>
+        /// <param name="criteria">Bet List Details Criteria.</param>
+        /// <returns>A list of bet list details.</returns>
+        public IEnumerable<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria)
+        {
+            return GetEntites<RawBetListDetails>(criteria);
+        }
+
 
         #endregion
     }

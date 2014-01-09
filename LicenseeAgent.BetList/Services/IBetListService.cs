@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.BetList.Services
 {
+    using System.Collections.Generic;
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
@@ -43,6 +44,13 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>System Parlay Data.</returns>
         SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria);
 
+        /// <summary>
+        /// Get Bet List Details.
+        /// </summary>
+        /// <param name="criteria">Bet List Details Criteria.</param>
+        /// <returns>A list of bet list details.</returns>
+        IEnumerable<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria);
+     
         #endregion
     }
 }

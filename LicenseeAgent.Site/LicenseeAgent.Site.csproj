@@ -438,7 +438,6 @@
     <Content Include="App_Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Global.asax" />
     <Content Include="Content\jquery-ui\jquery-ui.css" />
     <Content Include="Content\jquery-ui\jquery.ui.accordion.css" />
@@ -573,6 +572,7 @@
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CodeAnalysis\" />
     <Folder Include="Views\Account\CustSetting\Sportsbook\scripts\filters\" />
     <Folder Include="Views\Account\Shared\" />
   </ItemGroup>

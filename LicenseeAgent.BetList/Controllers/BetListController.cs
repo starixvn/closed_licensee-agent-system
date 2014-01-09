@@ -62,8 +62,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// </summary>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult BetListSelByMember()
+        public ActionResult BetListSelByMember(int custId)
         {
+            ViewBag.CustId = custId;
             return View();
         }
 
@@ -76,7 +77,6 @@ namespace LicenseeAgent.BetList.Controllers
         public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-            criteria.CustId = CurrentSession.AdminInfo.UserId;
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.MoveBetsDay = balanceUp.MoveBetDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;

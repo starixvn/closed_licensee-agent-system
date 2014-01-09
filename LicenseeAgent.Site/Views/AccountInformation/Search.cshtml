@@ -11,7 +11,7 @@
     <div class="controls-row">
         @if (pageContext.IsMember)
         {
-            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList")">@Las.BetList</button>     
+            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { custId = Model.Customer.CustId })">@Las.BetList</button>     
         }
         else
         {

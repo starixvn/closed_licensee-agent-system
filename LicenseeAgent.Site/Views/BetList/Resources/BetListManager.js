@@ -58,6 +58,7 @@ var BETLIST = function ($) {
             var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
             var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
             var params = {
+                CustId: custId,
                 FromDate: fromDate,
                 ToDate: toDate,
                 StatusId: $("#Status").val() != 255 ? $.trim($("#Status").val()) : ''

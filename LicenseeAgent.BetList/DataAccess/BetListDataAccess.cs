@@ -14,6 +14,7 @@ namespace LicenseeAgent.BetList.DataAccess
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
@@ -53,7 +54,7 @@ namespace LicenseeAgent.BetList.DataAccess
 
             return result;
         }
-        
+
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
@@ -72,6 +73,30 @@ namespace LicenseeAgent.BetList.DataAccess
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get system parlay result data.
+        /// </summary>
+        /// <param name="criteria">System parlay result criteria.</param>
+        /// <returns>System Parlay Data.</returns>
+        public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
+        {
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
+                {
+                    var ticketList = multipleQuery.Read<ISystemParlayTicket>();
+                    var serialList = multipleQuery.Read<ISystemParlaySerial>();
+                    var outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["Outstanding"]);
+                    return new SystemParlayData
+                    {
+                        TicketList = ticketList.ToList(),
+                        SerialList = serialList.ToList(),
+                        Outstanding = outstanding
+                    };
+                }
+            }
         }
 
         /// <summary>

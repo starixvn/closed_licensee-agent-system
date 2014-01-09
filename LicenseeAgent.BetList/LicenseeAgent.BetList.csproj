@@ -85,6 +85,7 @@
     <Compile Include="Criterias\BetListDetailsCriteria.cs" />
     <Compile Include="Criterias\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criterias\BetListCriteriaBase.cs" />
+    <Compile Include="Criterias\SystemParlayResultCriteria.cs" />
     <Compile Include="Criterias\MixParlayDetailsCriteria.cs" />
     <Compile Include="DataAccess\BetListDataAccess.cs" />
     <Compile Include="DataAccess\IBetListDataAccess.cs" />

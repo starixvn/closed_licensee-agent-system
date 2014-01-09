@@ -14,6 +14,7 @@ namespace LicenseeAgent.BetList.Services
     using Criterias;
     using DataAccess;
     using Entities;
+    using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -71,6 +72,16 @@ namespace LicenseeAgent.BetList.Services
         public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
             return _betlistDataAccess.GetMixParlayDetails(criteria);
+        }
+
+        /// <summary>
+        /// Get system parlay result data.
+        /// </summary>
+        /// <param name="criteria">System parlay result criteria.</param>
+        /// <returns>System Parlay Data.</returns>
+        public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
+        {
+            return _betlistDataAccess.GetSystemParlayResult(criteria);
         }
 
         #endregion

@@ -80,8 +80,7 @@ namespace LicenseeAgent.BetList.Controllers
         public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-            criteria.AgentId = 1000000519;
-            criteria.CustId = 13467695;
+            criteria.AgentId = CurrentSession.AdminInfo.UserId;
             criteria.MoveBetsDay = balanceUp.MoveBetDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
             criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;
@@ -127,6 +126,36 @@ namespace LicenseeAgent.BetList.Controllers
         }
 
         /// <summary>
+        /// System Parlay Result action.
+        /// </summary>
+        /// <param name="refNo">Reference number of transaction.</param>
+        /// <param name="custId">Customer ID.</param>
+        /// <returns>String content.</returns>
+        [HttpGet]
+        [DownLine]
+        public ActionResult SystemParlayResult(long refNo, int custId)
+        {
+            var agentId = CurrentSession.AgentInfo.AgentId;
+            var balanceUp = _coreService.GetBalanceUpDay();
+
+            var criteria = new SystemParlayResultCriteria
+            {
+                AgentId = agentId,
+                RefNo = refNo,
+                CustId = custId,
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                MoveBetsDay = balanceUp.MoveBetDay
+            };
+
+            var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper();
+            var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
+
+            return Content(systemParlayText);
+        }
+
+        /// <summary>
         /// Bet List Details.
         /// </summary>
         /// <returns>Return a view.</returns>
@@ -168,23 +197,19 @@ namespace LicenseeAgent.BetList.Controllers
             var builder = new BetListHTMLBuilder();
             var ticketTextList = new List<TicketText>();
             var ticketHelper = new TicketHelper();
-            var baseCurrency = criteria == null ? string.Empty : criteria.BaseCurrency;
 
             foreach (var ticket in ticketResult.MainTicketList)
             {
                 if (ticket.BetTypeId == (int)BetType.CombinationMixParlay)
                 {
-                    var custid = ticket.CustId != 0 ? ticket.CustId : criteria.CustId;
-                    var formatDetail = @"showCombMPDetail({0},{1},{2},{3},&quot;{4}&quot;,&quot;{5}&quot;)";
+                    var custId = ticket.CustId != 0 ? ticket.CustId : criteria.CustId;
                     var betTeam = ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
+                    var formatDetail = @"BETLIST.showSystemParlayResult({0},{1},'{2}')";
                     ticketHelper.ClientDetailSystemParlayFunction = string.Format(
                         formatDetail,
-                        ticket.TransId,
                         ticket.RefNo,
-                        ticket.BetId,
-                        custid,
-                        betTeam,
-                        baseCurrency);
+                        custId,
+                        betTeam);
                 }
 
                 ticketHelper.IsShowOddsWithChoice = showOdds;

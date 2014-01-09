@@ -80,6 +80,7 @@
     <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelParlayDetail" SpName="LAS_Betlist_SelParlayDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_Ticket_CheckBelonging" SpName="Las_Ticket_CheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
   <Function Name="SearchUser">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

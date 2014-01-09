@@ -147,6 +147,25 @@ var BETLIST = function ($) {
             }
 
             divEvent.toggle();
+        },
+        showSystemParlayResult: function (refNo, custId, betTeam) {
+
+            var url = "~/BetList/MixParlayDetails?refNo=" + refNo + "&custId=" + custId;
+            $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                dataType: "text",
+                cache: false,
+                url: CORE.resolveUrl(url),
+                error: function (xhRequest, errorText, thrownError) {
+                    alert(errorText);
+                },
+                success: function (response) {
+                    var height = 450;
+                    var width = 750;
+                    POPUP.openDialog(response, betTeam, { width: width, height: height });
+                }
+            });
         }
 
     }

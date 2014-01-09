@@ -20,7 +20,7 @@ namespace LicenseeAgent.BetList.DataAccess
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.BetList.Criterias;
+    using LicenseeAgent.BetList.Criteria;
 
     /// <summary>
     /// Account data access.
@@ -45,11 +45,11 @@ namespace LicenseeAgent.BetList.DataAccess
 
                 // Main ticket
                 var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = this.ReadMainTicketData(mainTable, string.Empty);
+                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
 
                 // Reference ticket
                 var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
-                result.TicketDataList = this.ReadReferneceTicket(referenceTable, string.Empty);
+                result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
             }
 
             return result;
@@ -69,7 +69,7 @@ namespace LicenseeAgent.BetList.DataAccess
                 var dataset = objectDb.ExecuteDataSet(param);
 
                 var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = this.ReadMainTicketData(mainTable, string.Empty);
+                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
             }
 
             return result;
@@ -111,7 +111,7 @@ namespace LicenseeAgent.BetList.DataAccess
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        public IList<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
+        private static IList<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
         {
             var playerCommCol = "playercomm" + baseCurrency;
             var commCol = "comm" + baseCurrency;
@@ -247,7 +247,7 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <param name="data">Data Parameter value.</param>
         /// <param name="baseCurrency"> Parameter value.</param>
         /// <returns>Result value.</returns>
-        public List<ITicketData> ReadReferneceTicket(DataTable data, string baseCurrency)
+        private static List<ITicketData> ReadReferenceTicket(DataTable data, string baseCurrency)
         {
             var result = new List<ITicketData>();
 
@@ -282,7 +282,7 @@ namespace LicenseeAgent.BetList.DataAccess
         /// </summary>
         /// <param name="value"> Parameter value.</param>
         /// <returns>Result value.</returns>
-        public bool ReadBoolean(object value)
+        private static bool ReadBoolean(object value)
         {
             if (value == null || value == Convert.DBNull)
             {

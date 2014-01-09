@@ -8,11 +8,11 @@
 //   <change who="" date=""></change>
 // </history>
 
-namespace LicenseeAgent.BetList.Utils
+namespace LicenseeAgent.BetList.Utilities
 {
     using System;
     using System.Collections.Generic;
-    using Criterias;
+    using Criteria;
     using Entities;
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;

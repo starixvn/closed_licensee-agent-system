@@ -8,7 +8,7 @@
 //   <change who="" date=""></change>
 // </history>
 
-namespace LicenseeAgent.BetList.Criterias
+namespace LicenseeAgent.BetList.Criteria
 {
     using System;
     using Fanex.NAP.Framework.Data;

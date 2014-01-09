@@ -14,7 +14,7 @@ namespace LicenseeAgent.BetList.Services
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.BetList.Criterias;
+    using LicenseeAgent.BetList.Criteria;
 
     /// <summary>
     /// TODO: Update summary.

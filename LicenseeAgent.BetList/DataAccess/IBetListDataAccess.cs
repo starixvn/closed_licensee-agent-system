@@ -13,7 +13,7 @@ namespace LicenseeAgent.BetList.DataAccess
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.BetList.Criterias;
+    using LicenseeAgent.BetList.Criteria;
 
     /// <summary>
     /// Interface Account.

@@ -157,11 +157,8 @@
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Folder Include="CodeAnalysis\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

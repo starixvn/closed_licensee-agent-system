@@ -13,15 +13,14 @@ namespace LicenseeAgent.BetList.Controllers
     using System.Collections.Generic;
     using System.Text;
     using System.Web.Mvc;
-    using Criterias;
     using Entities;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.Caching;
+    using LicenseeAgent.BetList.Criteria;
+    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Filters;
     using Services;
-    using Utils;
     using ViewModels;
     using Web.Controllers;
 
@@ -35,8 +34,6 @@ namespace LicenseeAgent.BetList.Controllers
         private const string BetListCustomerInfo = "BetListCustomerInfo";
 
         private const int CacheDuration = 43200;
-
-        private ICache _cacheInstance;
 
         #endregion
 
@@ -54,7 +51,6 @@ namespace LicenseeAgent.BetList.Controllers
         {
             _betlistService = betlistService;
             _coreService = coreService;
-            _cacheInstance = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 
         #endregion
@@ -175,6 +171,7 @@ namespace LicenseeAgent.BetList.Controllers
         #endregion
 
         #region Utilities - Bet List
+
         /// <summary>
         /// Generate ticket text.
         /// </summary>
@@ -185,7 +182,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="showOdds">Show Odds or not.</param>
         /// <returns>Result value.</returns>
         [NonAction]
-        public List<TicketText> Ticket(
+        private static List<TicketText> Ticket(
             TicketResult ticketResult,
             BetListCriteriaBase criteria,
             decimal exchangeRate = 1,
@@ -246,7 +243,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// </summary>
         /// <param name="originalData">List of raw bet list details.</param>
         /// <returns>List of formatted bet list details.</returns>
-        public List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData)
+        private static List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData)
         {
             var formattedData = new List<BetListDetails>();
             foreach (var item in originalData)
@@ -262,7 +259,7 @@ namespace LicenseeAgent.BetList.Controllers
             return formattedData;
         }
 
-        public string GenerateHtmlStringForAgent(decimal percentage, decimal value)
+        private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
         {
             var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage);
             htmlString += "%</div><div>" + string.Format("{0:#,##0.00}", value) + "</div>";

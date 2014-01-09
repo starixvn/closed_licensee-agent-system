@@ -12,11 +12,11 @@ namespace LicenseeAgent.BetList.Services
 {
     using System.Collections.Generic;
     using Core.Services;
-    using Criterias;
     using DataAccess;
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.BetList.Criteria;
 
     /// <summary>
     /// TODO: Update summary.

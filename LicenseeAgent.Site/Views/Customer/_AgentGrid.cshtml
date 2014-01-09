@@ -22,9 +22,9 @@
                         },
                         { HeaderText: "@Las.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
-                                return '<div class="cust-status make-switch" data-id=' + rowData.AgentId + ' data-on-label="<i class=\'icon-open cust-status\'><p>Open</p></i>" data-off-label="<i class=\'icon-close cust-status\'><p>Closed</p></i>">' +
-                                            '<input type="checkbox" ' + customerList.getStatus(cell.Value) + ' />' +
-                                        '</div>';
+                                return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
+                                    + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
+                                    + '</div>';
                             }
                         },
                         { HeaderText: "@Las.Downline", Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", Formatter:

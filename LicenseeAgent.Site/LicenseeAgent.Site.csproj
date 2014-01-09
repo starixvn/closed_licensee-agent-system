@@ -522,7 +522,7 @@
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
     <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
     <Content Include="Views\TotalBets\Resources\outright.js" />
-    <Content Include="Views\TotalBets\Resources\soccer.css" />
+    <Content Include="Views\TotalBets\Resources\total-bets.less" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />
     <Content Include="Views\AccountInformation\Resources\index.js" />

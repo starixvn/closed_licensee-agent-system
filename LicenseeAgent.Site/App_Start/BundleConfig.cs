@@ -284,8 +284,8 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">The bundles.</param>
         private static void RegisterTotalBetsPages(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/totalbets-soccer").Include(
-                "~/Views/TotalBets/Resources/soccer.css"));
+            bundles.Add(new LessBundle("~/css/totalbets").Include(
+                "~/Views/TotalBets/Resources/total-bets.less"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
                 "~/Views/TotalBets/Resources/soccer.js"));

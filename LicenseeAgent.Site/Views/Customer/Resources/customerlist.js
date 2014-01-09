@@ -58,25 +58,6 @@
         gridAfterBinding: function () {
             customerList.initInstruction();
 
-            $('.make-switch')['bootstrapSwitch']();
-            $('.cust-status').on('switch-change', function (e) {
-                var status = statusObj.All;
-                if ($(this).find('div:first').hasClass("switch-off")) {
-                    $(this).find('div:first').removeClass("switch-off");
-                    $(this).find('div:first').addClass("switch-on");
-                    status = statusObj.Close;
-                }
-                else {
-                    $(this).find('div:first').removeClass("switch-on");
-                    $(this).find('div:first').addClass("switch-off");
-                    status = statusObj.Open;
-                }
-                if (!pageContext.IsDirectDownline) {
-                    return;
-                }
-                customerList.showAlert(true, $(this), $(this).data('id'), status);
-            });
-
             if (!pageContext.IsDirectDownline) {
                 $(".cust-status").addClass('cust-status-none');
             }
@@ -84,7 +65,6 @@
         resizeBox: function () {
             $("#boxsearch").width($("#grid").width());
             $("#breadcrumb").width($("#grid").width());
-            $(".legend").width($("#grid").width());
         },
         showAgent: function (agentId, agentName, agentLevel) {
             $('#newAgentId').val(agentId);
@@ -129,7 +109,15 @@
                 }
             });
         },
-        changeStatus: function (target, custId, statusId, url) {
+        changeStatus: function (target, custId) {
+            if (!pageContext.IsDirectDownline) {
+                return;
+            }
+            var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
+            var newStatus = currentStatus == 0 ? 1 : 0;
+            customerList.showAlert(true, target, custId, newStatus);
+        },
+        updateStatus: function (target, custId, statusId, url) {
             var params;
             if (pageContext.IsLastLevel) {
                 params = { memberid: custId, status: statusId };
@@ -146,29 +134,21 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0)
+                    if (data.ErrCode != 0) {
                         alert(data.ErrMsg);
+                        return;
+                    }
+                    if (statusId == 0) {
+                        $(target).find('.icon-status-open').addClass('icon-status-closed').removeClass('icon-status-open').find('span').text('Closed');
+                    }
                     else {
-                        if (statusId == 0) {
-                            target.find('div:first').removeClass("switch-on");
-                            target.find('div:first').addClass("switch-off");
-                        }
-                        else {
-                            target.find('div:first').removeClass("switch-off");
-                            target.find('div:first').addClass("switch-on");
-                        }
+                        $(target).find('.icon-status-closed').addClass('icon-status-open').removeClass('icon-status-closed').find('span').text('Open');
                     }
                 },
                 complete: function () {
                     CORE.unblockUI();
                 }
             });
-        },
-        getStatus: function (statusId) {
-            if (statusId == 0) {
-                return '';
-            }
-            return 'checked';
         },
         onShowTop: function () {
             $.contextMenu({
@@ -261,7 +241,7 @@
                 text: 'YES',
                 click: function () {
                     customerList.closeDialog();
-                    customerList.changeStatus(target, custId, statusId);
+                    customerList.updateStatus(target, custId, statusId);
                 }
             });
             buttons.push({

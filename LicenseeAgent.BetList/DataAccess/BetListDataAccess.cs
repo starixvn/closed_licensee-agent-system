@@ -88,13 +88,13 @@ namespace LicenseeAgent.BetList.DataAccess
             {
                 using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    var ticketList = multipleQuery.Read<ISystemParlayTicket>();
-                    var serialList = multipleQuery.Read<ISystemParlaySerial>();
+                    var ticketList = multipleQuery.Read<SystemParlayTicket>();
+                    var serialList = multipleQuery.Read<SystemParlaySerial>();
                     var outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["Outstanding"]);
                     return new SystemParlayData
                     {
-                        TicketList = ticketList.ToList(),
-                        SerialList = serialList.ToList(),
+                        TicketList = ticketList.Cast<ISystemParlayTicket>().ToList(),
+                        SerialList = serialList.Cast<ISystemParlaySerial>().ToList(),
                         Outstanding = outstanding
                     };
                 }

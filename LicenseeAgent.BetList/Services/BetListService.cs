@@ -94,8 +94,7 @@ namespace LicenseeAgent.BetList.Services
         {
             return GetEntites<RawBetListDetails>(criteria);
         }
-
-
+        
         #endregion
     }
 }

@@ -522,7 +522,8 @@ If that is not you, please contact your upline!!!</value>
     <comment>not</comment>
   </data>
   <data name="PasswordRuleInstruction" xml:space="preserve">
-    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)</value>
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following: 
+Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special character (!,@,#,etc..).</value>
     <comment>not</comment>
   </data>
   <data name="PasswordWillExpired" xml:space="preserve">
@@ -781,5 +782,11 @@ If that is not you, please contact your upline!!!</value>
   <data name="TooManyDownLineParameters" xml:space="preserve">
     <value>There is too many parameters with name {0}</value>
     <comment>not - Add by jacob, for down line validation</comment>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
   </data>
 </root>

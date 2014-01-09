@@ -164,6 +164,18 @@ span.require:after
     margin-top: -10px;
 }
 
+.note
+{
+    border: 1px solid #68A6CE;
+    padding: 5px;
+    border-radius: 2px;
+    .text
+    {
+        color: #68A6CE;
+        font-weight: bold;
+    }
+}
+
 .form-filter
 {
     padding: 10px;
@@ -184,9 +196,30 @@ span.require:after
 {
     table
     {
-        td:not(:first-child)
+        background: #EEEFF1;
+        margin-bottom: 10px;
+        td
         {
-            padding-left: 20px;
+            padding: 5px;
+            border-top: 1px solid white;
+            border-left: 1px solid white;
+            &:first-child
+            {
+                text-align: right;
+            }
+
+            input, label
+            {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .button-group
+    {
+        margin-bottom: 10px;
+        .btn
+        {
+            margin-left: 5px;
         }
     }
 }

@@ -72,7 +72,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             });
         }
 
-        #region Ultilities
+        #region Utilities
 
         /// <summary>
         /// Get All League.
@@ -139,6 +139,6 @@ namespace LicenseeAgent.TotalBets.Controllers
             });
         }
 
-        #endregion Ultilities
+        #endregion Utilities
     }
 }

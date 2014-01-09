@@ -171,7 +171,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// </summary>
         /// <param name="dataList">Data List from database.</param>
         /// <returns>List Sport Group Entity.</returns>
-        private IList<SportGroupEntity> MapTotalBetsOtherSportsData(IEnumerable<TotalBetsEntity> dataList)
+        private static IList<SportGroupEntity> MapTotalBetsOtherSportsData(IEnumerable<TotalBetsEntity> dataList)
         {
             var liveEventsResult = new List<SportGroupEntity>();
             var deadEventsResult = new List<SportGroupEntity>();

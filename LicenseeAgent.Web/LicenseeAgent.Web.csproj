@@ -65,7 +65,7 @@
     <Compile Include="Criterias\TicketDownLineCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
-    <Compile Include="Enumerations\DownlineRole.cs" />
+    <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />

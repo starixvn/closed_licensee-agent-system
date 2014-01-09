@@ -35,7 +35,7 @@ namespace LicenseeAgent.Web.Filters
             var criteria = new CheckDownlineBelongCriteria
             {
                 TargetCustId = (int)agentId,
-                Type = (int)DownlineRole.Agent
+                Type = (int)DownLineRole.Agent
             };
 
             if (!AuthorizeService.IsDirectDownline(criteria))

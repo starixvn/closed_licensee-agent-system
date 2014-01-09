@@ -32,7 +32,7 @@ namespace LicenseeAgent.Web.Services
             criteria.CustId = agentId;
             Execute(criteria);
 
-            return criteria.Type == (int)DownlineRole.Agent
+            return criteria.Type == (int)DownLineRole.Agent
                 ? criteria.IsDirectDownLine
                 : criteria.IsBelongTo && SessionManager.CurrentSession.AgentInfo.IsLastLevel;
         }

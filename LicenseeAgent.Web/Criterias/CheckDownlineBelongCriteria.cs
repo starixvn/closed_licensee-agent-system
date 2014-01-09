@@ -29,7 +29,7 @@ namespace LicenseeAgent.Web.Criterias
         {
             return CustId > 0
                 && TargetCustId > 0
-                && (Type == (int)DownlineRole.Agent || Type == (int)DownlineRole.Member);
+                && (Type == (int)DownLineRole.Agent || Type == (int)DownLineRole.Member);
         }
     }
 }

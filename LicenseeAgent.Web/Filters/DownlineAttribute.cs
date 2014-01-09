@@ -59,7 +59,7 @@ namespace LicenseeAgent.Web.Filters
 
             // Authorize
             var targetCustId = agentId > 0 ? agentId : memberId;
-            var downlineRole = agentId > 0 ? DownlineRole.Agent : DownlineRole.Member;
+            var downlineRole = agentId > 0 ? DownLineRole.Agent : DownLineRole.Member;
             var criteria = new CheckDownlineBelongCriteria
             {
                 TargetCustId = (int)targetCustId,

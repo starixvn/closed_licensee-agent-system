@@ -9,8 +9,13 @@ namespace LicenseeAgent.Web.Enumerations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum DownlineRole : byte
+    public enum DownLineRole : byte
     {
+        /// <summary>
+        /// None value.
+        /// </summary>
+        None = 0,
+
         /// <summary>
         /// Check agent belongs to agent.
         /// </summary>

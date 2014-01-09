@@ -14,12 +14,12 @@ namespace LicenseeAgent.Web.Filters
     /// </summary>
     public abstract class BaseActionFilterAttribute : ActionFilterAttribute
     {
-        protected void Unauthorized(ActionExecutingContext filterContext)
+        protected static void Unauthorized(ActionExecutingContext filterContext)
         {
             filterContext.ReturnUnauthorized();
         }
 
-        protected void AccessDenied(ActionExecutingContext filterContext)
+        protected static void AccessDenied(ActionExecutingContext filterContext)
         {
             filterContext.ReturnAccessDenied();
         }

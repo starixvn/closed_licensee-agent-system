@@ -76,7 +76,7 @@ namespace LicenseeAgent.Web.Filters
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         /// <returns>Returns true if agent is valid.</returns>
-        protected bool ValidateAgent(AuthorizationContext filterContext)
+        protected static bool ValidateAgent(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
             if (currentSession.AgentInfo == null)

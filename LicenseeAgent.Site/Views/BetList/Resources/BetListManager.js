@@ -33,6 +33,9 @@ function showCombMP(transId, index) {
 var BETLIST = function ($) {
     return {
         init: function () {
+
+            $("#mainContainer").css("overflow-x", "hidden");
+
             $('.selectpicker').selectpicker();
 
             BETLIST.renderDatePicker();

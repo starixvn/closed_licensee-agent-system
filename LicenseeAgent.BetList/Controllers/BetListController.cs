@@ -180,7 +180,6 @@ namespace LicenseeAgent.BetList.Controllers
         /// </summary>
         /// <param name="ticketResult">Ticket result Parameter value.</param>
         /// <param name="criteria"> Parameter value.</param>
-        /// <param name="exchangeRate">Exchange rate value.</param>
         /// <param name="startIndex">Start index Parameter value.</param>
         /// <param name="showOdds">Show Odds or not.</param>
         /// <returns>Result value.</returns>
@@ -188,7 +187,6 @@ namespace LicenseeAgent.BetList.Controllers
         private static List<TicketText> Ticket(
             TicketResult ticketResult,
             BetListCriteriaBase criteria,
-            decimal exchangeRate = 1,
             int startIndex = 1,
             bool showOdds = false)
         {
@@ -211,8 +209,6 @@ namespace LicenseeAgent.BetList.Controllers
                 }
 
                 ticketHelper.IsShowOddsWithChoice = showOdds;
-                ticket.Stake *= exchangeRate;
-                ticket.ActualStake *= exchangeRate;
                 var ticketText = new TicketText
                 {
                     Index = startIndex++,
@@ -227,8 +223,8 @@ namespace LicenseeAgent.BetList.Controllers
                     AgentPT = builder.BuildAgentPT(ticket),
                     AgentComm = builder.BuildAgentComm(ticket),
                     WinLoss = ticket.Winlost >= 0
-                        ? string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate)
-                        : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate) + "</div>"
+                        ? string.Format("{0:#,##0.00}", ticket.Winlost)
+                        : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>"
                 };
 
                 var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);

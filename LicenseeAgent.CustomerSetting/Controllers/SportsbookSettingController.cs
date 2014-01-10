@@ -101,6 +101,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp(),
                 IsOnlyUpdatePT = CurrentSession.AdminInfo == null
                                 && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+                                && model.TargetRoleId == (int)Role.Member
             };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);

@@ -383,7 +383,7 @@
         },
         editInfo: function () {
             var url;
-            if (isLastLevel) {
+            if (pageContext.IsLastLevel) {
                 url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
             }
             else {

@@ -187,7 +187,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     liveEventsResult.Add(new SportGroupEntity
                     {
                         SportType = sportId,
-                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportLive)
+                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportLive).ToList()
                     });
                 }
 
@@ -196,7 +196,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     deadEventsResult.Add(new SportGroupEntity
                     {
                         SportType = sportId,
-                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportDead)
+                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportDead).ToList()
                     });
                 }
             }

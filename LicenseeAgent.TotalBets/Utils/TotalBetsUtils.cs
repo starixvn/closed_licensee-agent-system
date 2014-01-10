@@ -30,7 +30,7 @@ namespace LicenseeAgent.TotalBets.Utils
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",
            Justification = "Reviewed. Suppression is OK here.")]
-        public static IList<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<TotalBetsEntity> dataList)
+        public static IEnumerable<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<TotalBetsEntity> dataList)
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
             var result = new List<LeagueGroupEntity>();
@@ -78,10 +78,17 @@ namespace LicenseeAgent.TotalBets.Utils
                     });
                 }
 
-                result.Add(new LeagueGroupEntity { LeagueId = league.LeagueId, LiveIndicator = league.LiveIndicator, MatchList = matchList.OrderByDescending(x => x.LiveHomeScore).ThenByDescending(a => a.LiveAwayScore).ToList() });
+                var orderedMatchList = matchList
+                        .OrderByDescending(x => x.LiveHomeScore)
+                        .ThenByDescending(a => a.LiveAwayScore)
+                        .ToList();
+                yield return new LeagueGroupEntity
+                {
+                    LeagueId = league.LeagueId,
+                    LiveIndicator = league.LiveIndicator,
+                    MatchList = orderedMatchList
+                };
             }
-
-            return result;
         }
 
         /// <summary>

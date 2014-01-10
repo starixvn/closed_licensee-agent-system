@@ -49,10 +49,15 @@ namespace LicenseeAgent.TotalBets.Controllers
                     MatchList = model.MatchList
                 };
                 var dataList = _totalBetsService.GetBasketballData(criteria);
+                var orderedDataList = TotalBetsUtils.MapTotalBetsMainData(dataList)
+                    .OrderByDescending(x => x.LiveIndicator)
+                    .ThenBy(x => x.LeagueName)
+                    .ToList();
+
                 return Json(new
                 {
                     ErrCode = Result.SuccessValue,
-                    List = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList()
+                    List = orderedDataList
                 });
             }
 

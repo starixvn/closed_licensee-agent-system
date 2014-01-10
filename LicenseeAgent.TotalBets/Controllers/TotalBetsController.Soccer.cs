@@ -55,7 +55,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var dataList = _totalBetsService.GetSoccerData(criteria);
-            var mapData = TotalBetsUtils.MapTotalBetsMainData(dataList).OrderByDescending(x => x.LiveIndicator).ThenBy(x => x.LeagueName).ToList();
+            var mapData = TotalBetsUtils.MapTotalBetsMainData(dataList)
+                .OrderByDescending(x => x.LiveIndicator)
+                .ThenBy(x => x.LeagueName)
+                .ToList();
             if (mapData.Count == 2 && mapData[0].LeagueId == mapData[1].LeagueId)
             {
                 foreach (var match in mapData[1].MatchList)

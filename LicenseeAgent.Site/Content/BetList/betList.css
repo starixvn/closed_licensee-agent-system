@@ -21,10 +21,11 @@
 .bet-list-details td
 {
     vertical-align: top;
-    border: solid 1px #BABABA;
+    border: solid 1px #FFF;
     background: #EDF0F0;
     text-align: right;
     padding: 2px 2px 0 2px;
+    color: #6d6d6d;
 }
 
 .bet-list-details .even-row td
@@ -46,7 +47,7 @@
 .iplink
 {
     cursor: pointer;
-    color: #3B5998;
+    color: #2b88d8;
 }
 
 .iplink:hover
@@ -239,7 +240,7 @@ Format styles
 /* Choice */
 .favorite
 {
-    color: #B50000;
+    color: #ff2d2d;
     font-weight: bold;
 }
 .handicap
@@ -248,12 +249,12 @@ Format styles
 }
 .bettype
 {
-    color: #003399;
+    color: #5fa8d9;
     font-weight: bold;
 }
 .sport
 {
-    color: #0066CC;
+    color: #5fa8d9;
 }
 /* Odds */
 .oddstype
@@ -261,6 +262,10 @@ Format styles
     color: #586985;
 }
 
+.underdog font
+{
+    color: #ff2d2d !important;
+}
 /* Status */
 .status
 {
@@ -270,7 +275,7 @@ Format styles
 
 .combinationLink a
 {
-    color: #0000FF;
+    color: #2b88d8;
 }
 
 .tblBetList tr td a
@@ -405,3 +410,14 @@ Format styles
     padding-bottom: 4px !important;
 }
 
+
+/* Grid override */
+.freegrid .grid-fixed-table tbody tr.freegrid-even td
+{
+    background: none repeat scroll 0 0 #f5f6fa !important;
+}
+
+.freegrid .grid-fixed-table td
+{
+    border-color: #FFF !important;
+}

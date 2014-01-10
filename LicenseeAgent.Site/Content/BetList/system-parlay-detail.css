@@ -21,13 +21,12 @@
     text-align: center;
     padding: 2px 2px 0 2px;
     height: 33px;
-    font-weight: bold;
 }
 
 .system-parlay-detail td
 {
-    background-color: #FFFFFF;
-    border-color: #C5C5C5;
+    background-color: #EDF0F0;
+    border-color: #FFFFFF;
     border-style: solid;
     border-width: 0 1px 1px 0;
     font-size: 1em;
@@ -36,23 +35,22 @@
     padding: 2px;
     vertical-align: middle;
     white-space: normal;
+    color: #6d6d6d;
 }
 
-.system-parlay-outstanding
+.system-parlay-outstanding td
 {
-    background-color: #F8F1A0;
-    color: #003333;
-    font-weight: bold !important;
+    background-color: #ffe4bf;
     margin: 5px 0;
     text-align: right;
 }
 
-.system-parlay-subtotal
+.system-parlay-subtotal td
 {
-    background-color: #FFA07A;
+    background-color: #ffe6d6;
 }
 
-.system-parlay-total
+.system-parlay-total td
 {
-    background-color: #B2DFEF;
+    background-color: #ffd0b2;
 }

@@ -13,7 +13,7 @@
 }
 .underdog
 {
-    color: #01122B;
+    color: #6d6d6d;
     font-weight: bold !important;
     white-space: normal;
 }
@@ -70,7 +70,7 @@ div.match + div.league
 }
 .match
 {
-    color: #000000;
+    color: #6d6d6d;
     font-weight: normal;
     line-height: 15px;
     text-align: right;
@@ -87,7 +87,7 @@ div.match + div.league
 }
 .colorHandicap, .handicap
 {
-    color: #606060;
+    color: #6d6d6d;
 }
 .handicap.custom
 {
@@ -144,7 +144,7 @@ div.match + div.league
 
 .status
 {
-    color: #606060;
+    color: #6d6d6d;
     font-size: 11px;
     font-weight: bold;
     text-transform: capitalize;
@@ -152,7 +152,7 @@ div.match + div.league
 
 .result
 {
-    color: #1BA4ED;
+    color: #2b88d8;
     cursor: pointer;
 }
 

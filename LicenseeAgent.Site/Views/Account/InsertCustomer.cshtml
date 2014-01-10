@@ -19,7 +19,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content("~/SportsbookSetting/GetSettingForInsert")></script>
+    <script type="text/javascript" src=@Url.Content("~/SportsbookSetting/GetSettingForInsert?agentUsername=" + Model.UserName)></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting.sportsbook")

@@ -66,18 +66,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         }
 
         /// <summary>
-        /// Get Setting for insert new customer.
+        /// Get Setting Context For Insert.
         /// </summary>
-        /// <returns>
-        /// JAVASCRIPT string object.
-        /// </returns>
-        public ActionResult GetSettingForInsert()
+        /// <param name="agentUsername">Agent Username.</param>
+        /// <returns>Action Result.</returns>
+        public ActionResult GetSettingForInsert(string agentUsername = "")
         {
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                FormId = FormType.Add,
-                Ip = Request.GetClientIp()
-            };
+            var settingContext = GetSettingContext(agentUsername);
+            settingContext.FormId = FormType.Add;
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForInsert(settingContext);
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
@@ -120,21 +116,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpGet]
         public ActionResult InsertCustomer(string agentUsername = "")
         {
-            agentUsername = string.IsNullOrEmpty(agentUsername) ? CurrentSession.AgentInfo.UserName : agentUsername;
-            var criteria = new InternalLoginAsUserCriteria
-            {
-                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                UserName = agentUsername
-            };
-            _accountService.InternalLoginAsUser(criteria);
-            var agentInfo = criteria.CreateAgent();
-
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                Ip = Request.GetClientIp()
-            };
-
+            var settingContext = GetSettingContext(agentUsername);
             return View("~/Views/Account/InsertCustomer.cshtml", settingContext);
         }
 
@@ -153,7 +135,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
-            model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
+            model.SettingContext.CustId = model.SettingContext.CustId;
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.InsertCustomer(model);
@@ -366,6 +348,43 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return sportType == (int)SportType.Soccer
                 ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
                 : sportName;
+        }
+
+        /// <summary>
+        /// Get Setting Context by Username.
+        /// </summary>
+        /// <param name="agentUsername">Agent Username.</param>
+        /// <returns>Setting Context.</returns>
+        private SettingContext GetSettingContext(string agentUsername)
+        {
+            var isLastLevel = false;
+            var isLevel0 = false;
+            var agentId = 0;
+            if (!string.IsNullOrEmpty(agentUsername))
+            {
+                var criteria = new InternalLoginAsUserCriteria
+                {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                    UserName = agentUsername
+                };
+                _accountService.InternalLoginAsUser(criteria);
+                var agentInfo = criteria.CreateAgent();
+                isLastLevel = agentInfo.IsLastLevel;
+                isLevel0 = agentInfo.IsLevel0;
+                agentId = agentInfo.AgentId;
+            }
+
+            SettingContext settingContext = string.IsNullOrEmpty(agentUsername)
+                                ? new SettingContext(CurrentSession)
+                                : new SettingContext(isLastLevel, isLevel0)
+                                {
+                                    CustId = agentId,
+                                    UserName = agentUsername
+                                };
+            settingContext.Ip = Request.GetClientIp();
+
+            return settingContext;
         }
     }
 }

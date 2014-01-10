@@ -12,7 +12,7 @@
                         { HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center" },
                         { HeaderText: "@Las.Action", Width: 30, Name: "AgentId", HeaderAlign: "center", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-edit icon-customer-edit cell-' + rowData.AgentId + '" onclick="customerList.editAgent(' + rowData.AgentId + ',' + rowData.AgentLevel + ');"></span>';
+                                return "<span class='cell-edit icon-edit cell-" + rowData.AgentId + "' onclick='customerList.editAgent(" + rowData.AgentId + "," + rowData.AgentLevel + ",\"" + rowData.UserName + "\");'></span>";
                             }
                         },
                         { HeaderText: "@Las.Username", Width: 130, Name: "UserName", HeaderAlign: "center", Formatter:

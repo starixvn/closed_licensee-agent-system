@@ -37,15 +37,14 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
             Language = currentSession.Language;
         }
 
-        public SettingContext(AgentInfo agentInfo)
+        public SettingContext(bool isLastLevel, bool isLevel0)
             : this()
         {
             LoginUserId = SessionManager.CurrentSession.LoginUserId;
-            CustId = agentInfo.AgentId;
-            RoleId = agentInfo.IsLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
-            TargetRoleId = agentInfo.IsLevel0
+            RoleId = isLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
+            TargetRoleId = isLevel0
                 ? (int)Role.AgentLevel1
-                : agentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
+                : isLastLevel ? (int)Role.Member : (int)Role.Agent;
             Language = SessionManager.CurrentSession.Language;
         }
 

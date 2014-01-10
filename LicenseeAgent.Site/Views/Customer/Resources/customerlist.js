@@ -15,6 +15,7 @@
     var urlAddDownline = $("#grid").data('url-add-downline');
     var urlIpInformation = $("#grid").data('url-ip');
     var editAgentId = 0;
+    var editAgentUsername = '';
     var editAgentLevel = 0;
     var editMemberId = 0;
 
@@ -28,7 +29,7 @@
                 var agentName = $(this).text();
                 customerList.showAgent(agentId, agentName, agentLevel);
             });
-            
+
             // search
             $('#search-form').submit(function (e) {
                 customerList.reRenderAfterPaged();
@@ -296,9 +297,10 @@
                 }
             });
         },
-        editAgent: function (agentId, agentLevel) {
+        editAgent: function (agentId, agentLevel, agentUsername) {
             editAgentId = agentId;
             editAgentLevel = agentLevel;
+            editAgentUsername = agentUsername;
             $.contextMenu({
                 selector: '.cell-' + agentId,
                 items: customerList.getEditItems(),
@@ -349,7 +351,7 @@
                 ];
             }
 
-            if (pageContext.IsLevel0) {
+            if (pageContext.IsLevel0 && !pageContext.IsMember) {
                 items.push({ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline });
             }
 
@@ -391,7 +393,7 @@
         },
         addDownline: function () {
             var url;
-            url = "SportsbookSetting/InsertCustomer";
+            url = "SportsbookSetting/InsertCustomer?agentUsername={0}".format(editAgentUsername);
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
         resetPassword: function () {

@@ -388,8 +388,7 @@
     <Content Include="Images\login\bg-repeat.jpg" />
     <Content Include="Images\login\login-form-noncaptcha.png" />
     <Content Include="Images\login\login-form.png" />
-    <Content Include="Images\login\signin.png" />
-    <Content Include="Images\login\sprites.png" />
+    <Content Include="Images\login\sprite.png" />
     <Content Include="Images\sprite.png" />
     <Content Include="Scripts\Angular\angular-animate.js" />
     <Content Include="Scripts\Angular\angular-cookies.js" />

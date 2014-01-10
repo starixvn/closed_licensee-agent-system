@@ -15,13 +15,12 @@
                 <div class="title">@Las.SignIn</div>
                 <div class="language">
                     <ul id="nav">
-                        <li class="icon-arrow">
-                        <a href="#" class="@string.Format("flag-{0}", Model.Language)">
+                        <li class="icon-language-arrow"><a href="#" class="@string.Format("icon-flag-{0}", Model.Language)">
                         </a>
                             <ul id="languages">
                                 @foreach (var language in ModelSettings.Languages)
                                 {
-                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("flag-{0}", language.Value)">
+                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("icon-flag-{0}", language.Value)">
                                     </i>
                                         @language.Text
                                     </a></li>

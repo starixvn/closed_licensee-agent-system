@@ -75,13 +75,21 @@ body
                     #reload
                     {
                         float: left;
-                        width: 24px;
-                        height: 32px;
-                        display: inline-block;
-                        background: url("../images/login/sprites.png") -11px 5px no-repeat;
+                        .icon-captcha-reload
+                        {
+                            width: 24px;
+                            height: 32px;
+                            display: inline-block;
+                            background-image: url("../images/login/sprite.png");
+                            background-repeat: no-repeat;
+                            background-position: -11px 5px;
+                        }
                         &:hover
                         {
-                            background: url("../images/login/sprites.png") -30px 5px no-repeat;
+                            .icon-captcha-reload
+                            {
+                                background-position: -30px 5px;
+                            }
                         }
                     }
                 }

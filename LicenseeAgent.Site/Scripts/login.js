@@ -9,7 +9,7 @@
             }
 
             $('#reload').click(function () {
-                var captchaUrl = CORE.resolveUrl($(this).attr('data-href')) + "?" + Date.now();
+                var captchaUrl = CORE.resolveUrl('~/Account/CaptchaImage') + "?" + Date.now();
                 $('#img-captcha').attr('src', captchaUrl);
             });
         },

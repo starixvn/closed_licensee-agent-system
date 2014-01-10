@@ -11,12 +11,12 @@
                 <div class="title">@Las.SignIn</div>
                 <div class="language">
                     <ul id="nav">
-                        <li class="icon-arrow"><a href="#" class="@string.Format("flag-{0}", Model.Language)">
+                        <li class="icon-language-arrow"><a href="#" class="@string.Format("icon-flag-{0}", Model.Language)">
                         </a>
                             <ul id="languages">
                                 @foreach (var language in ModelSettings.Languages)
                                 {
-                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("flag-{0}", language.Value)">
+                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("icon-flag-{0}", language.Value)">
                                     </i>
                                         @language.Text
                                     </a></li>
@@ -38,7 +38,8 @@
                 <div class="control-group">
                     @Html.TextBoxFor(m => m.Captcha, new { @class = "input-captcha", autocomplete = "off", placeholder = Las.Captcha, maxlength = "6" })
                     <img src="@Url.Action("CaptchaImage")" id="img-captcha" alt="Captcha" />
-                    <a id="reload" href="#" data-href="@Url.Action("CaptchaImage")"></a>
+                    <a id="reload" href="#"><i class="icon-captcha-reload">
+                    </i></a>
                     <input id="btnSubmit" type="submit" value="@Las.Submit" />
                 </div>
             </div>
@@ -56,7 +57,6 @@
     </div>
 }
 @section scripts{
-    
     @if (ViewBag.Result != null)
     {
         var result = (LicenseeAgent.Account.ViewResults.SignInViewResult)ViewBag.Result;

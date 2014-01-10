@@ -5,46 +5,48 @@
     background-position: -@index*@flagIconWidth 3px;
 }
 
-[class^="flag-"],[class*=" flag-"] {
+[class^="icon-flag-"],[class*=" icon-flag-"] {
     display: inline-block;
     width: @flagIconWidth;
     height: 24px;
     margin-right: 5px;
     vertical-align: middle;
-    background: url(../images/flags.png) 0px 0px no-repeat;
+    background: url(../images/flags.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
 }
 
-.flag-en-US
+.icon-flag-en-US
 {
     .flag(0);
 }
 
-.flag-zh-TW
+.icon-flag-zh-TW
 {
     .flag(1);
 }
 
-.flag-zh-CN
+.icon-flag-zh-CN
 {
     .flag(2);
 }
 
-.flag-ja-JP
+.icon-flag-ja-JP
 {
     .flag(3);
 }
 
-.flag-ko-KR
+.icon-flag-ko-KR
 {
     .flag(4);
 }
 
-.flag-th-TH
+.icon-flag-th-TH
 {
     .flag(5);
 }
 
-.flag-vi-VN
+.icon-flag-vi-VN
 {
     .flag(6);
 }
@@ -70,9 +72,11 @@
             z-index: 10;
             cursor: pointer;
 
-            &.icon-arrow
+            &.icon-language-arrow
             {
-                background: url("../images/login/sprites.png") 32px 7px no-repeat;
+                background-image: url("../images/login/sprite.png") !important;
+                background-position: 32px 7px;
+                background-repeat: no-repeat;
                 width: 48px;
                 height: 24px;
             }

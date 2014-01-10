@@ -26,6 +26,7 @@
     text-align: right;
     padding: 2px 2px 0 2px;
     color: #6d6d6d;
+    font-weight: bold;
 }
 
 .bet-list-details .even-row td
@@ -33,10 +34,11 @@
     background: #F5F6FA;
 }
 
-.agent-name
+td.agent-name
 {
-    text-align: center !important;
-    font-weight: bold !important;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
 .b
@@ -344,52 +346,53 @@ Format styles
     float: left;
 }
 
-.monpickr-super-wrapper 
+.monpickr-super-wrapper
 {
     display: inline-block;
     margin-top: 3px;
     font-size: 10px;
 }
-    
-.filter-area 
+
+.filter-area
 {
     margin-bottom: 0;
 }
-    
+
 .gridWrapper
 {
     width: 1010px;
     height: 500px;
 }
-    
+
 .instruction-content table
 {
     width: 400px;
 }
-    
+
 .instruction-content table .col-left
 {
     width: 100px;
 }
-    
+
 .instruction-content table .col-right
 {
     font-weight: bold;
 }
 
-.result 
+.result
 {
-	display: none;
+    display: none;
 }
 
-.free-grid-td-5 
+.free-grid-td-5
 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
-.red-text {
-	color: #B50000;
-	font-weight: bold;
+.red-text
+{
+    color: #B50000;
+    font-weight: bold;
 }
 
 /* Month Picker*/

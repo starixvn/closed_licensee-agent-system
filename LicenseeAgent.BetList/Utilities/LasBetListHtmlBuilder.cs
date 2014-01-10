@@ -77,7 +77,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            var agentPTHtmlStr = "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentPTPercent);
+            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.AgentPTPercent * 100);
             agentPTHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
             return agentPTHtmlStr;
         }
@@ -92,7 +92,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            var agentCommHtmlStr = "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentCommPercent);
+            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.AgentCommPercent * 100);
             agentCommHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
             return agentCommHtmlStr;
         }

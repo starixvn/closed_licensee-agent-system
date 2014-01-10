@@ -263,7 +263,7 @@ namespace LicenseeAgent.BetList.Controllers
 
         private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
         {
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage);
+            var htmlString = "<div>" + string.Format("{0:#,##0}", percentage * 100);
             htmlString += "%</div><div>" + string.Format("{0:#,##0.00}", value) + "</div>";
 
             return htmlString;

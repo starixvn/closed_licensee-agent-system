@@ -72,7 +72,7 @@ if (fanex.sportsbookSetting) {
                     return currentPt.actions.validPreset() && currentPt.actions.validMax() && currentPt.actions.validMin();
                 },
                 validPreset: function () {
-                    var isValid = currentPt.Preset >= currentPt.MinRangeOfPreset && currentPt.Preset <= currentPt.MaxRangeOfPreset;
+                    var isValid = fanex.roundNumber(currentPt.Preset) >= fanex.roundNumber(currentPt.MinRangeOfPreset) && fanex.roundNumber(currentPt.Preset) <= fanex.roundNumber(currentPt.MaxRangeOfPreset);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             presetInput,
@@ -83,7 +83,7 @@ if (fanex.sportsbookSetting) {
                     return isValid;
                 },
                 validMax: function () {
-                    var isValid = currentPt.Max >= currentPt.MinRangeOfMax && currentPt.Max <= currentPt.MaxRangeOfMax;
+                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
@@ -94,7 +94,7 @@ if (fanex.sportsbookSetting) {
                     return isValid;
                 },
                 validMin: function () {
-                    var isValid = currentPt.Min >= currentPt.MinRangeOfMin && currentPt.Min <= currentPt.MaxRangeOfMin;
+                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
@@ -146,7 +146,7 @@ if (fanex.sportsbookSetting) {
                     return currentPt.actions.validMax() && currentPt.actions.validMin();
                 },
                 validMax: function () {
-                    var isValid = currentPt.Max >= currentPt.MinRangeOfMax && currentPt.Max <= currentPt.MaxRangeOfMax;
+                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
@@ -157,7 +157,7 @@ if (fanex.sportsbookSetting) {
                     return isValid;
                 },
                 validMin: function () {
-                    var isValid = currentPt.Min >= currentPt.MinRangeOfMin && currentPt.Min <= currentPt.MaxRangeOfMin;
+                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
@@ -189,7 +189,7 @@ if (fanex.sportsbookSetting) {
                     return currentPt.actions.validValue();
                 },
                 validValue: function () {
-                    var isValid = currentPt.Value >= currentPt.MinRangeOfValue && currentPt.Value <= currentPt.MaxRangeOfValue;
+                    var isValid = fanex.roundNumber(currentPt.Value) >= fanex.roundNumber(currentPt.MinRangeOfValue) && fanex.roundNumber(currentPt.Value) <= fanex.roundNumber(currentPt.MaxRangeOfValue);
                     if (!isValid) {
                         fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
                             valueInput,

@@ -1,5 +1,7 @@
 ﻿var HEADER = function ($) {
     var currentTime = Date.now;
+    var licenseeId = $('#licensee').data('licensee-id');
+    var currencyId = $('#currency').data('currency-id');
     return {
         init: function () {
             currentTime = moment($('#clock').html());
@@ -45,8 +47,13 @@
             });
         },
         reCheckIn: function () {
+            var param = {
+                licenseeId: licenseeId,
+                currencyId: currencyId
+            };
             $.ajax({
                 type: "POST",
+                data: param,
                 url: CORE.resolveUrl("~/Account/ReCheckIn"),
                 dataType: "json",
                 async: false,
@@ -54,6 +61,11 @@
             })
             .done(function (result) {
                 if (result.ErrCode != 0) {
+                    if (result.Reload) {
+                        location.reload();
+                        return;
+                    }
+
                     alert(result.ErrMsg);
                     HEADER.signOut();
                 }

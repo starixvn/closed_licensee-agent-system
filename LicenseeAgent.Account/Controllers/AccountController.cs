@@ -228,19 +228,33 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Post ReCheckIn.
         /// </summary>
-        /// <returns>Return true or false.</returns>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <param name="currencyId">The currency identifier.</param>
+        /// <returns>
+        /// Return true or false.
+        /// </returns>
         [HttpPost]
         [AjaxOnly]
         [AppAuthorize(IsValidateAgent = false)]
-        public JsonResult ReCheckIn()
+        public JsonResult ReCheckIn(int licenseeId, int currencyId)
         {
-            var errCode = Result.SuccessValue;
-            if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
+            var errCode = Result.FailureValue;
+            if ((CurrentSession.AdminInfo != null || CurrentSession.LicenseeInfo != null) && CurrentSession.IsDirectSignIn)
             {
-                errCode = AdminReCheckIn();
-            }
-            else if (CurrentSession.LicenseeInfo != null && CurrentSession.IsDirectSignIn)
-            {
+                if (CurrentSession.AgentInfo != null)
+                {
+                    var isValidLicensee = licenseeId == 0 ? true : licenseeId == CurrentSession.AgentInfo.LicenseeId;
+                    var isValidCurrency = currencyId == 0 ? true : currencyId == CurrentSession.AgentInfo.CurrencyId;
+                    if (!isValidLicensee || !isValidCurrency)
+                    {
+                        return Json(new
+                        {
+                            ErrCode = errCode,
+                            Reload = true
+                        });
+                    }
+                }
+
                 errCode = AppSettings.LocalTest ? Result.SuccessValue : AdminReCheckIn();
             }
             else
@@ -296,7 +310,9 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Admin re-check in on current session to kick out when having another login session behalf on current admin.
         /// </summary>
-        /// <returns>Returns true whether having another login session.</returns>
+        /// <returns>
+        /// Returns true whether having another login session.
+        /// </returns>
         [NonAction]
         public int AdminReCheckIn()
         {

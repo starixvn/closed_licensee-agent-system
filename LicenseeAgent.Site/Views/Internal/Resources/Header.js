@@ -1,10 +1,14 @@
 ﻿var INTERNAL_HEADER = function ($) {
+    var isSelected = $('#is-selected').val() == "True";
     var licenseeId = $('#licensee').data('licensee-id');
     var newLicenseeId = licenseeId;
     var currencyId = $('#currency').data('currency-id');
     var newCurrencyId = currencyId;
     return {
         init: function () {
+            if (!isSelected) {
+                INTERNAL_HEADER.enableSearch(false);
+            }
             if ($("#licensee").length > 0) {
                 $('#licensee').hover(function () {
                     $(this).find('.drop-box').show();
@@ -42,6 +46,14 @@
                 INTERNAL_HEADER.unactiveMain();
             }
         },
+        enableSearch: function (enabled) {
+            if (enabled) {
+                $('#submit').removeClass('disabled');
+            }
+            else {
+                $('#submit').addClass('disabled');
+            }
+        },
         submit: function () {
             if (newLicenseeId > 0 && newCurrencyId > 0) {
                 var data = {
@@ -74,8 +86,14 @@
             }
         },
         onChange: function () {
+            if (newCurrencyId > 0 && newCurrencyId > 0) {
+                INTERNAL_HEADER.enableSearch(true);
+            }
+            else {
+                INTERNAL_HEADER.enableSearch(false);
+            }
+
             if (licenseeId == newLicenseeId && currencyId == newCurrencyId) {
-                INTERNAL_HEADER.activeMain();
                 return;
             }
 
@@ -131,7 +149,6 @@
         setCurrency: function (switchedCurrencyId, switchedCurrencyName) {
             newCurrencyId = switchedCurrencyId;
             currencyId = switchedCurrencyId;
-            INTERNAL_HEADER.onChange();
             $('#currency').data('currency-id', switchedCurrencyId);
             $('#currency').find('span:first').html(switchedCurrencyName);
         }

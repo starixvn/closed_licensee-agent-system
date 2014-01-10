@@ -14,7 +14,7 @@
     background-position: 0px 0px;
     background-repeat: no-repeat;
     margin-top: 1px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .caret
@@ -97,6 +97,12 @@
     background-position: -396px -2px;
     width: 16px;
     height: 16px;
+
+    &.disabled
+    {
+        background-position: -396px -39px;
+        cursor: default;
+    }
 }
 
 .dropdown-menu a

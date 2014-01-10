@@ -7,16 +7,19 @@
         <div class="username">
             <b>@SessionManager.CurrentSession.DisplayName()</b>
         </div>
-        <div class="dropdown">
-            <a data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
-            <ul class="dropdown-menu">
-                @if (SessionManager.CurrentSession.IsViewChangePassword())
-                {
-                    <li><a id="changePwd" data-href="@Url.Content("~/Account/ChangePassword")" href="#">
-                        <i class="icon-customer-edit"></i>@Las.ChangePassword</a></li>
-                }
-                <li><a href="@Url.Content("~/Account/SignOut")"><i class="icon-account-logout"></i>@Las.LogOut</a></li>
-            </ul>
-        </div>
+        @if (!SessionManager.CurrentSession.IsLicenseeView())
+        {
+            <div class="dropdown">
+                <a data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
+                <ul class="dropdown-menu">
+                    @if (SessionManager.CurrentSession.IsViewChangePassword())
+                    {
+                        <li><a id="changePwd" data-href="@Url.Content("~/Account/ChangePassword")" href="#">
+                            <i class="icon-customer-edit"></i>@Las.ChangePassword</a></li>
+                    }
+                    <li><a href="@Url.Content("~/Account/SignOut")"><i class="icon-account-logout"></i>@Las.LogOut</a></li>
+                </ul>
+            </div>
+        }
     </div>
 </div>

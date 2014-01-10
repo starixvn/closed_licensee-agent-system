@@ -18,7 +18,7 @@
             </div>
         }
         else
-        { 
+        {
             <div class="hide" id="licensee" data-licensee-id="@Model.LicenseeId">
             </div>
         }
@@ -39,9 +39,10 @@
             @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
         </div>
         <div class="pull-left item">
-            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();" class="icon-licensee-searchagent">
+            <a id="submit" onclick="INTERNAL_HEADER.submit();" class="icon-licensee-searchagent">
             </a>
         </div>
     </div>
 }
 @Html.Hidden("defaultCurrency", Las.ChooseCurrency)
+@Html.Hidden("is-selected", SessionManager.CurrentSession.AgentInfo != null ? true : false)

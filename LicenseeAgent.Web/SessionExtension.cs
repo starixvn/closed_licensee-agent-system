@@ -64,5 +64,10 @@ namespace LicenseeAgent.Web
                 ? true
                 : false;
         }
+
+        public static bool IsLicenseeView(this ICurrentSession currentSession)
+        {
+            return currentSession.LicenseeInfo != null ? true : false;
+        }
     }
 }

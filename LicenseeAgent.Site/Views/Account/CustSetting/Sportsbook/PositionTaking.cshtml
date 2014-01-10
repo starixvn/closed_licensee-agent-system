@@ -22,7 +22,7 @@
             <div class="pt-group-container" ng-style="ptGroup.WidthStyle">
                 <div ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
                     <span ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
-                        {{ptGroup.Name}}</span> <span class="icon-copy" ng-if="$index == 0 || $index == 2"
+                        {{ptGroup.Name}}</span> <span class="icon-setting-copy" ng-if="$index == 0 || $index == 2"
                             ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
                             title="{{$index==0 ? language.soccerDeadballCopyPtTooltip : language.basketBallCopyPtTooltip}}"
                             ng-show="settingContext.FormId != 2"></span>

@@ -8,7 +8,7 @@
         {
             <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
                 <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>
-                <i class="icon-arrow-white"></i>
+                <i class="icon-licensee-arrow"></i>
                 <ul class="drop-box">
                     @foreach (var licensee in Model.Licensees)
                     {
@@ -24,7 +24,7 @@
         }
         <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
             <span>@(Model.CurrencyId != 0 ? Model.CurrencyName : Las.ChooseCurrency)</span>
-            <i class="icon-arrow-white"></i>
+            <i class="icon-licensee-arrow"></i>
             @if (Model.Currencies != null)
             {
                 <ul class="drop-box">
@@ -39,7 +39,7 @@
             @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
         </div>
         <div class="pull-left item">
-            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();" class="icon-search-white">
+            <a id="submit" href="#" onclick="INTERNAL_HEADER.submit();" class="icon-licensee-searchagent">
             </a>
         </div>
     </div>

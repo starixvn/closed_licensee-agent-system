@@ -11,7 +11,7 @@
                         { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
                         { HeaderText: "@Las.Action", Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-edit icon-edit cell-' + rowData.CustId + '" onclick="customerList.editMember(' + rowData.CustId + ');"></span>';
+                                return '<span class="cell-edit icon-customer-edit cell-' + rowData.CustId + '" onclick="customerList.editMember(' + rowData.CustId + ');"></span>';
                             }
                         },
                         { HeaderText: "@Las.Username", Width: 120, Name: "UserName", HeaderAlign: "center", Formatter:

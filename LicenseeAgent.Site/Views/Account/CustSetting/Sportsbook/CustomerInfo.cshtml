@@ -18,7 +18,7 @@
                     required data-ng-minlength="6" unique-user-name hint-validator="@Las.UsernameMinimumLength" data-href="~/SportsbookSetting/CheckExistUsername" />
             </div>
             <div class="pull-left">
-                <span data-ng-class="{'icon-invalid': formCustInfo.userName.$dirty && formCustInfo.userName.$invalid, 'icon-valid' : formCustInfo.userName.$dirty && formCustInfo.userName.$valid}">
+                <span data-ng-class="{'icon-input-invalid': formCustInfo.userName.$dirty && formCustInfo.userName.$invalid, 'icon-input-valid' : formCustInfo.userName.$dirty && formCustInfo.userName.$valid}">
                     &nbsp;</span>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     maxlength="16" style="position: relative;" data-ng-model="custInfo.password" password-rule hint-validator="@Las.PasswordHint" />
             </div>
             <div class="pull-left">
-                <span data-ng-class="{'icon-invalid': formCustInfo.password.$dirty && formCustInfo.password.$invalid, 'icon-valid' : formCustInfo.password.$dirty && formCustInfo.password.$valid}">
+                <span data-ng-class="{'icon-input-invalid': formCustInfo.password.$dirty && formCustInfo.password.$invalid, 'icon-input-valid' : formCustInfo.password.$dirty && formCustInfo.password.$valid}">
                     &nbsp;</span>
             </div>
         </div>

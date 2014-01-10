@@ -33,7 +33,7 @@
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
-                <i data-ng-class="{'icon-success': message.ErrCode == 0, 'icon-error' : message.ErrCode != 0}">
+                <i data-ng-class="{'icon-message-success': message.ErrCode == 0, 'icon-message-error' : message.ErrCode != 0}">
                 </i>{{message.ErrMsg}}
             </p>
         </div>

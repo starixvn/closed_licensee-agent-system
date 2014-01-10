@@ -355,12 +355,12 @@
 
             if (pageContext.IsDirectDownline) {
                 for (var index = 0; index < items.length; index++) {
-                    editItems[index] = { name: "<span class='action-content'><i class='icon-canedit'></i>" + items[index].name + "</span>", callback: items[index].callback };
+                    editItems[index] = { name: "<span class='action-content'><i class='icon-customer-canedit'></i>" + items[index].name + "</span>", callback: items[index].callback };
                 }
             }
             else {
                 for (var index = 0; index < items.length; index++) {
-                    editItems[index] = { name: "<span class='action-content'><i class='icon-canview'></i>" + items[index].name + "</span>", callback: items[index].callback };
+                    editItems[index] = { name: "<span class='action-content'><i class='icon-customer-canview'></i>" + items[index].name + "</span>", callback: items[index].callback };
                 }
             }
 

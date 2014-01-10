@@ -12,7 +12,7 @@
     <div class="pt">
         <div class="pt-box-title" id="copy_sport_{{pt.SportId}}_bettype_{{pt.BetTypeId}}">
             <span class="bettype-name">{{language["bettype_" + pt.BetTypeId]}}</span> <span ng-if="$index % config.breakNewLine == 0 && ptGroup.PositionTakings.length > 1"
-                class="icon-copy" ng-click="positionTakingService.copyPartial(pt, ptGroup, config.breakNewLine)"
+                class="icon-setting-copy" ng-click="positionTakingService.copyPartial(pt, ptGroup, config.breakNewLine)"
                 title="{{$index==0 ? language.soccerHandicapCopyPtTooltip : language.soccerOnexTwoCopyPtTooltip}}">
             </span>
         </div>

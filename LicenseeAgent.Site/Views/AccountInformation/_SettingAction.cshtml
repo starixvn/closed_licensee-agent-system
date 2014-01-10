@@ -16,7 +16,7 @@
                 <ul class="nav nav-list">
                     <li>
                         <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
-                            <i class="icon-arrow3"></i>
+                            <i class="icon-downline-arrow"></i>
                             @(isDirectDonwline ? Las.EditSportsbook : Las.ViewSportsbook)
                         </a>
                     </li>

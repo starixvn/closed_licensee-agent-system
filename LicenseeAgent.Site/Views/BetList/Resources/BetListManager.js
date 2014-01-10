@@ -169,9 +169,10 @@ var BETLIST = function ($) {
                     alert(errorText);
                 },
                 success: function (response) {
-                    var height = 450;
+                    var height = 550;
                     var width = 750;
-                    POPUP.openDialog(response, betTeam, { width: width, height: height });
+                    var details = '<div><div class="system-parlay-detail-wrapper">' + response + '</div></div>';
+                    POPUP.openDialog(details, betTeam, { width: width, height: height });
                 },
                 beforeSend: function () {
                     CORE.blockUI();

@@ -241,7 +241,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\BetList\betlist.core.css" />
-    <Content Include="Content\BetList\betList.css" />
+    <Content Include="Content\BetList\betlist.css" />
     <Content Include="Content\BetList\global.content.css" />
     <Content Include="Content\BetList\images\bar-loader.gif" />
     <Content Include="Content\BetList\images\bgHeader.jpg" />
@@ -257,7 +257,7 @@
     <Content Include="Content\BetList\images\undo.png" />
     <Content Include="Content\BetList\images\up.png" />
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
-    <Content Include="Content\BetList\systemparlaydetail.css" />
+    <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
@@ -390,7 +390,8 @@
     <Content Include="Images\login\bg-repeat.jpg" />
     <Content Include="Images\login\login-form-noncaptcha.png" />
     <Content Include="Images\login\login-form.png" />
-    <Content Include="Images\login\sprite.png" />
+    <Content Include="Images\login\signin.png" />
+    <Content Include="Images\login\sprites.png" />
     <Content Include="Images\sprite.png" />
     <Content Include="Scripts\Angular\angular-animate.js" />
     <Content Include="Scripts\Angular\angular-cookies.js" />

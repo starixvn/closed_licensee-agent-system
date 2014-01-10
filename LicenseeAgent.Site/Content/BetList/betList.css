@@ -1,12 +1,14 @@
-﻿.tblBetListDetails {
+﻿.bet-list-details
+{
     border-collapse: collapse;
     text-align: left;
     font-size: 11px;
     min-width: 200px;
 }
 
-.tblBetListDetails th {
-    background: #0d94c3;
+.bet-list-details th
+{
+    background: #8a8a8a;
     border: solid 1px #BABABA;
     border-top: 0;
     font-size: 11px;
@@ -16,49 +18,45 @@
     height: 33px;
 }
 
-.tblBetListDetails td {
+.bet-list-details td
+{
     vertical-align: top;
     border: solid 1px #BABABA;
+    background: #EDF0F0;
     text-align: right;
     padding: 2px 2px 0 2px;
 }
 
-.tblBetList2 td {
-    vertical-align: top;
-    border-left: solid 1px #BABABA;
-    border-bottom: solid 1px #BABABA;
-    text-align: right;
-    padding: 2px 2px 0 2px;
+.bet-list-details .even-row td
+{
+    background: #F5F6FA;
 }
 
-.w-order {
-    color: #7D7D7D;
-    font-weight: normal;
-    text-align: right;
-    width: 20px;
-}
-
-.agentName {
+.agent-name
+{
     text-align: center !important;
     font-weight: bold !important;
 }
 
-.rngcasino_alignleft {
+.rngcasino_alignleft
+{
     text-align: left !important;
 }
 
-.rngcasino_group {
+.rngcasino_group
+{
     text-align: left !important;
     background: #F8E4D4;
     font-weight: bold;
 }
 
-.rngcasino_subtotal {
+.rngcasino_subtotal
+{
     background: #B2DFEF;
     font-weight: bold;
 }
 
-.rngcasino_headerlabel 
+.rngcasino_headerlabel
 {
     text-align: left !important;
     background: #F8E4D4;
@@ -73,66 +71,79 @@
     width: 978px !important;
 }
 
-.rngcasino_headerlabel input[type="checkbox"] {
+.rngcasino_headerlabel input[type="checkbox"]
+{
     margin: 0px 0 0 !important;
 }
 
-.bl_btype {
+.bl_btype
+{
     color: #003399;
     font-weight: 600;
 }
 
-.b {
+.b
+{
     font-weight: bold;
 }
 
-.bl_time {
+.bl_time
+{
     color: #434343;
     font-size: 7pt;
     font-weight: normal;
     text-align: center;
 }
 
-.iplink {
+.iplink
+{
     cursor: pointer;
     color: #3B5998;
 }
 
-.iplink:hover {
+.iplink:hover
+{
     text-decoration: underline;
 }
 
-.bl_ip {
+.bl_ip
+{
     color: #434343;
     font-size: 7pt;
     font-weight: normal;
     text-align: center;
 }
 
-.strike_through {
+.strike_through
+{
     text-decoration: line-through;
     color: #333;
 }
 
-.bl_evt {
+.bl_evt
+{
     color: #FFFFFF;
     font-size: 11px;
 }
 
-.c {
+.c
+{
     text-align: center !important;
 }
 
-.r {
+.r
+{
     text-align: right !important;
 }
 
-.bl_favorite {
+.bl_favorite
+{
     color: #B50000;
     font-weight: bold;
 }
 
-.firstGoal {
+.firstGoal
+{
     background: url(images/first-goal.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
@@ -140,7 +151,8 @@
     width: 14px;
 }
 
-.lastGoal {
+.lastGoal
+{
     background: url(images/last-goal.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
@@ -148,85 +160,101 @@
     width: 14px;
 }
 
-.bl_match {
+.bl_match
+{
     color: #000000;
     font-weight: normal;
     line-height: 15px;
 }
 
-.bl_underdog {
+.bl_underdog
+{
     color: #01122B;
     font-weight: bold;
 }
 
-.bl_oddtype {
+.bl_oddtype
+{
     color: #586985;
 }
 
-.bl_status {
+.bl_status
+{
     color: #606060;
     font-size: 11px;
     font-weight: bold;
 }
 
-.bl_status b {
+.bl_status b
+{
     color: #01122B;
 }
 
-.hand {
+.hand
+{
     cursor: pointer;
 }
 
-.link {
+.link
+{
     color: #0066CC;
     text-decoration: none;
     white-space: nowrap;
 }
 
-a {
+a
+{
     text-decoration: none;
 }
 
-.bl_lname {
+.bl_lname
+{
     color: #666666;
     line-height: 15px;
 }
-.bl_footertotal {
+.bl_footertotal
+{
     color: #333;
     font-weight: bold;
     background-color: #F3F5BE;
 }
 
-tr#tr_footer {
-
+tr#tr_footer
+{
     height: 25px;
     border-top: 2px solid #FF6600;
     vertical-align: middle;
 }
 
-.blue {
+.blue
+{
     color: #2673CE;
 }
 
-.bl_stype {
+.bl_stype
+{
     color: #0066CC;
 }
 
-.div_pt {
+.div_pt
+{
     background: none repeat scroll 0 0 rgb(245, 227, 227);
 }
 
-.div_result {
+.div_result
+{
     cursor: pointer;
     color: rgb(27, 164, 237);
 }
 
-.line {
+.line
+{
     height: 10px;
     margin-top: 3px;
 }
 
-.mixParlayLoader {
+.mixParlayLoader
+{
     background: transparent url(images/bar-loader.gif) no-repeat;
     display: none;
     float: right;
@@ -235,45 +263,54 @@ tr#tr_footer {
     margin-right: 8px;
 }
 
-.tblBetList a.btnExpand {
+.tblBetList a.btnExpand
+{
     float: right;
 }
 
-.tblBetList a.plus {
+.tblBetList a.plus
+{
     background: transparent url(images/plus.png) no-repeat 0 -13px;
     padding-left: 15px;
 }
 
-.tblBetList a.plus:hover {
+.tblBetList a.plus:hover
+{
     background: transparent url(images/plus.png) no-repeat 0 -39px;
 }
 
-.tblBetList a.minus {
+.tblBetList a.minus
+{
     background: transparent url(images/plus.png) no-repeat 0 0;
     padding-left: 15px;
 }
 
-.tblBetList a.minus:hover {
+.tblBetList a.minus:hover
+{
     background: transparent url(images/plus.png) no-repeat 0 -27px;
 }
 
 /***************************
 Combination Mix Parlay
 */
-.tblBetList .combParlayRow .home-team {
+.tblBetList .combParlayRow .home-team
+{
     color: #8C3732;
 }
 
-.tblBetList .combParlayRow .away-team {
+.tblBetList .combParlayRow .away-team
+{
     color: #637F57;
 }
 
-.tblBetList .actual-stake {
+.tblBetList .actual-stake
+{
     position: relative;
     cursor: default;
 }
 
-.tblBetList .tip {
+.tblBetList .tip
+{
     position: absolute;
     top: -5px;
     right: -100px;
@@ -289,63 +326,71 @@ Combination Mix Parlay
     display: none;
 }
 
-.tblBetList tr.combParlayLoseRow td {
+.tblBetList tr.combParlayLoseRow td
+{
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.tblBetList tr.total-winloss td {
+.tblBetList tr.total-winloss td
+{
     background-color: #F3F5BE;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
 }
 
-.tblBetList tr.combParlayOutstandingRow td {
+.tblBetList tr.combParlayOutstandingRow td
+{
     background-color: #DBE2BB;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
 }
 
-.tblBetList .btnCollapseWrp {
+.tblBetList .btnCollapseWrp
+{
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.tblBetList .btnCollapseWrp a {
+.tblBetList .btnCollapseWrp a
+{
     background: transparent url(images/up.png) no-repeat 0 0;
     padding-left: 15px;
 }
 
-.tblBetList .btnCollapseWrp a:hover {
+.tblBetList .btnCollapseWrp a:hover
+{
     background: transparent url(images/up.png) no-repeat 0 -18px;
 }
 
-.tblBetList .btnCombParlayDetailWrp {
-    /*border: 1px solid #333;
-    -moz-border-radius: 13px;
-    border-radius: 13px;*/
+.tblBetList .btnCombParlayDetailWrp
+{
+    /*border: 1px solid #333;     -moz-border-radius: 13px;     border-radius: 13px;*/
     float: right;
     margin-bottom: 5px;
     padding: 5px 0;
     text-align: center;
 }
 
-.tblBetList a.btnCombParlayDetail {
+.tblBetList a.btnCombParlayDetail
+{
     background: transparent url(images/link_14x14.png) no-repeat 0 0;
     padding: 0 0 2px 18px;
 }
 
-.tblBetList a.btnCombParlayDetail:hover {
+.tblBetList a.btnCombParlayDetail:hover
+{
     background: transparent url(images/link_14x14.png) no-repeat 0 -16px;
 }
 
 /***************************
 Format styles
 */
-.over-under-no {
-    color: #555;    
+.over-under-no
+{
+    color: #555;
 }
 
 /********** Betlist core style **************/
@@ -393,23 +438,23 @@ Format styles
 }
 /********** ------------------ **************/
 /* From MNS */
-.ng-grid 
+.ng-grid
 {
     border: 1px solid rgb(212,212,212);
-    width: 100%; 
+    width: 100%;
     max-height: 580px;
 }
-        
-.filter-area 
+
+.filter-area
 {
     margin-bottom: 10px;
 }
-        
-.filter-area * 
+
+.filter-area *
 {
     vertical-align: middle;
 }
-        
+
 .filter-area input[type='button']
 {
     height: 25px;
@@ -419,24 +464,25 @@ Format styles
 {
     width: 100px;
 }
-        
-.month 
+
+.month
 {
     margin: 9px 7px 7px;
 }
-        
-.monpickr-selected-month  
+
+.monpickr-selected-month
 {
     width: 107px !important;
 }
-        
-.monpickr-label 
+
+.monpickr-label
 {
     font-size: 12px;
     margin: 6px 7px 7px 7px;
 }
 
-.monpickr-super-wrapper {
+.monpickr-super-wrapper
+{
     float: left;
 }
 
@@ -444,13 +490,13 @@ Format styles
 {
     text-align: center !important;
 }
-        
+
 .ng-binding
 {
     padding-right: 2px;
     text-align: right;
 }
-        
+
 .ip
 {
     display: inherit !important;
@@ -462,17 +508,18 @@ Format styles
 
 /* Month */
 
-.eq-ie10  .month {
+.eq-ie10 .month
+{
     margin-top: 7px;
 }
 
-.eq-ie10 .monpickr-label 
+.eq-ie10 .monpickr-label
 {
     margin-top: 5px;
 }
 
-.eq-ie10 .monpickr-arrows input.monpickr-input,
-.eq-ie10 .monpickr-arrows.daypickr input.monpickr-input {
+.eq-ie10 .monpickr-arrows input.monpickr-input, .eq-ie10 .monpickr-arrows.daypickr input.monpickr-input
+{
     padding-top: 1px !important;
     padding-bottom: 4px !important;
 }

@@ -9,8 +9,7 @@
 @section scripts
 {
 }
-
-<table cellspacing="0" cellpadding="0" class="tblBetListDetails">
+<table cellspacing="0" cellpadding="0" class="bet-list-details">
     <thead>
         <tr>
             <th style="width: 100px">
@@ -25,14 +24,19 @@
         </tr>
     </thead>
     <tbody>
+        @{var rowIndex = 1;}
         @foreach (var detail in Model.BetListDetails)
         {
-            <tr>
-                <td class="agentName">@Html.Raw(detail.Agent)
-                </td><td class="bl_underdog">@Html.Raw(detail.PositionTaking)
-                </td><td class="bl_underdog">@Html.Raw(detail.Commission)
+            <tr class="@(rowIndex % 2 == 0 ? "even-row" : "")">
+                <td class="agent-name">@Html.Raw(detail.Agent)
+                </td>
+                <td class="bl_underdog">@Html.Raw(detail.PositionTaking)
+                </td>
+                <td class="bl_underdog">@Html.Raw(detail.Commission)
                 </td>
             </tr>
+            
+            rowIndex++;
         }
     </tbody>
 </table>

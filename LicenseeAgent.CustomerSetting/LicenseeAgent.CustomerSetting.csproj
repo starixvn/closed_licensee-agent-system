@@ -70,8 +70,8 @@
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
     <Compile Include="Criteria\Sportsbook\Agent\AgentGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\Sportsbook\Agent\AgentGetAgentSettingForInsertCriteria.cs" />
-    <Compile Include="Criteria\Sportsbook\Member\AgentGetAutoCompleteUserNameCriteria.cs" />
-    <Compile Include="Criteria\Sportsbook\Member\MemberGetAutoCompleteUserNameCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Member\AgentSelMemIndirectForUpdateCriteria.cs" />
+    <Compile Include="Criteria\Sportsbook\Member\AgentEditMemIndirectCriteria.cs" />
     <Compile Include="Criteria\Sportsbook\UpdateCustomerCriteria.cs" />
     <Compile Include="Criteria\Sportsbook\Licensee\LicenseeUpdateAgentSettingCriteria.cs" />
     <Compile Include="Criteria\Sportsbook\Licensee\LicenseeGetAgentSettingForUpdateCriteria.cs" />

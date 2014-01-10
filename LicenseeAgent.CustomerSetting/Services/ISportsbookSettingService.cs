@@ -29,6 +29,8 @@ namespace LicenseeAgent.CustomerSetting.Service
 
         InsertResult UpdateCustomer(UpdateCustomerViewModel model);
 
+        InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model);
+
         string FormatJavascriptReturn(
             SettingContext settingContext,
             SportsbookCustomer sportsBookCustomer);

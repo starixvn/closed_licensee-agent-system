@@ -98,7 +98,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 FormId = model.FormId == (int)FormType.Edit ? FormType.Edit : FormType.ReadOnly,
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId,
-                Ip = Request.GetClientIp()
+                Ip = Request.GetClientIp(),
+                IsOnlyUpdatePT = CurrentSession.AdminInfo == null
+                                && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
@@ -169,6 +171,34 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.UpdateCustomer(model);
+            var messages = GenerateMessages(result, true);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Messages = messages
+            });
+        }
+
+        /// <summary>
+        /// Update indirect customer.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON result.</returns>
+        [HttpPost]
+        [DownLine]
+        public JsonResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
+        {
+            if (model == null ||
+                model.SettingContext == null ||
+                model.UpdateDataSportsbookCustomer == null)
+            {
+                return InvalidModelJsonResult();
+            }
+
+            model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
+            model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
+            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
+            var result = _customerSettingService.UpdateIndirectCustomer(model);
             var messages = GenerateMessages(result, true);
             return Json(new
             {

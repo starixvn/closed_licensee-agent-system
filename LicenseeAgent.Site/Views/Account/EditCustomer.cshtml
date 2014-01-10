@@ -29,7 +29,7 @@
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.sportsbookSetting"
     class="fanex-sportbook-setting" ng-controller="sportsbook.custSettingController"
-    data-href="~/SportsbookSetting/UpdateCustomer">
+    data-href="@(Model.IsOnlyUpdatePT ? "~/SportsbookSetting/UpdateIndirectCustomer" : "~/SportsbookSetting/UpdateCustomer")">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
@@ -42,7 +42,7 @@
         <div class="control-group" data-ng-hide="settingMode">
         @if (Model.FormId == FormType.Edit)
         {
-            <button class="btn btn-primary" data-ng-click="updateCustomer()">
+            <button class="btn btn-primary" data-ng-click="@(Model.IsOnlyUpdatePT ? "updateIndirectCustomer()" : "updateCustomer()")">
                 @Las.Update
             </button>
         }
@@ -85,7 +85,7 @@
         <div class="control-group">
             @if (Model.FormId == FormType.Edit)
             {
-                <button class="btn btn-primary" data-ng-click="updateCustomer()">
+                <button class="btn btn-primary" data-ng-click="@(Model.IsOnlyUpdatePT ? "updateIndirectCustomer()" : "updateCustomer()")">
                     @Las.Update
                 </button>
             }

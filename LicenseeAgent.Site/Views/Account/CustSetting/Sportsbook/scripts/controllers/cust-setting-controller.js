@@ -170,6 +170,61 @@
             });
         }
 
+        $scope.updateIndirectCustomer = function () {
+            $scope.ErrCode = 0;
+            $scope.ErrMsg = '';
+
+            var custInfoScope = angular.element('[ng-controller="sportsbook.custInfoController"]').scope();
+
+            // position taking
+            var positionTakingScope = angular.element('[ng-controller="sportsbook.positionTakingController"]').scope();
+            if (!positionTakingScope.isValidData()) {
+                return;
+            }
+            var positionTakingUpdated = positionTakingScope.saveData();
+
+            $scope.Messages = null;
+            CORE.blockUI();
+            $http({
+                method: 'POST',
+                url: CORE.resolveUrl($('#custSetting').data('href')),
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    settingContext: settingContext,
+                    updateDataSportsbookCustomer:
+                        {
+                            PositionTakingSetting: positionTakingUpdated,
+                            CustInfo: custInfoScope.custInfo
+                        }
+                }
+            }).
+            success(function (data, status, headers, config) {
+                CORE.unblockUI();
+                if (data.ErrCode == 0) {
+                    $scope.Messages = data.Messages;
+                    CORE.scrollTop();
+                    var isSuccess = true;
+                    for (var i = 0; i < data.Messages.length; i++) {
+                        var message = data.Messages[i];
+                        if (message.ErrCode != 0) {
+                            isSuccess = false;
+                            break;
+                        }
+                    }
+                    if (isSuccess) {
+                        POPUP.close();
+                    }
+                }
+                else {
+                    alert(data.ErrMsg);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                CORE.unblockUI();
+                alert(data.ErrMsg);
+            });
+        }
+
         if (typeof settingContext == 'undefined') {
             $('#custSetting').html("It has a problem about data.");
         }

@@ -257,6 +257,46 @@ namespace LicenseeAgent.CustomerSetting.Service
         }
 
         /// <summary>
+        /// Insert customer setting.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Status of insert command.
+        /// </returns>
+        public InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
+        {
+            // Build XML setting for update customer.
+            var positionTakingXmlStringData = this.BuildPositionTakingSettingXML(
+                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+            var positionTakingXML = positionTakingXmlStringData != string.Empty
+                ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
+                : string.Empty;
+
+            try
+            {
+                return UpdateIndirectCustomerData(model, positionTakingXML);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = BuildLogErrorDetail(
+                    ex.Message,
+                    model.SettingContext.TargetRoleId != (int)Role.Member,
+                    model.SettingContext.CustId,
+                    model.SettingContext.FormId == FormType.EditMultiple ? model.SettingContext.TargetCustIds : model.SettingContext.TargetCustId.ToString(),
+                    model.SettingContext.LoginUserId,
+                    string.Empty,
+                    string.Empty,
+                    positionTakingXML);
+                HandleException(errorMessage, ex);
+            }
+
+            return new InsertResult
+            {
+                ErrCode = Constant.ERROR_CODE_DEFAULT
+            };
+        }
+
+        /// <summary>
         /// Format JSON return to client.
         /// </summary>
         /// <param name="settingContext">Current Setting Context.</param>
@@ -352,6 +392,22 @@ namespace LicenseeAgent.CustomerSetting.Service
         }
 
         /// <summary>
+        /// Edit customer to database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="positionTakingXML">Position taking setting XML data.</param>
+        /// <returns>
+        /// Insert status and customer id.
+        /// </returns>
+        private InsertResult UpdateIndirectCustomerData(
+            UpdateCustomerViewModel model,
+            string positionTakingXML)
+        {
+            var criteria = this.CreateUpdateCustomerCriteria(model, string.Empty, string.Empty, positionTakingXML);
+            return _customerSettingRepository.UpdateIndirectCustomer(criteria);
+        }
+
+        /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>
         /// <param name="model">The model.</param>
@@ -427,7 +483,14 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                return this.CreateAgentUpdateMemberCriteria(criteriaBase, model);
+                if (model.SettingContext.IsOnlyUpdatePT)
+                {
+                    return this.CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model);
+                }
+                else
+                {
+                    return this.CreateAgentUpdateMemberCriteria(criteriaBase, model);
+                }
             }
             else
             {
@@ -470,6 +533,28 @@ namespace LicenseeAgent.CustomerSetting.Service
             {
                 CustId = model.SettingContext.TargetCustId,
                 UGroup = model.UpdateDataSportsbookCustomer.CommissionSetting.UserGroup,
+            };
+
+            return criteria;
+        }
+
+        /// <summary>
+        /// Creates the agent update member criteria.
+        /// </summary>
+        /// <param name="criteriaBase">The criteria base.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>The criteria for agent update member.</returns>
+        private ICriteria CreateAgentUpdateIndirectMemberCriteria(
+            UpdateCustomerCriteria criteriaBase,
+            UpdateCustomerViewModel model)
+        {
+            var criteria = new AgentEditMemIndirectCriteria()
+            {
+                CustId = model.SettingContext.TargetCustId,
+                AgentId = model.SettingContext.CustId,
+                Updater = model.SettingContext.LoginUserId,
+                PositionTaking = criteriaBase.PositionTaking,
+                Ip = criteriaBase.Ip
             };
 
             return criteria;
@@ -566,10 +651,21 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                getAgentSettingCriteria = new AgentGetMemberSettingForUpdateCriteria
+                if (settingContext.IsOnlyUpdatePT)
                 {
-                    CustId = settingContext.TargetCustId
-                };
+                    getAgentSettingCriteria = new AgentSelMemIndirectForUpdateCriteria
+                    {
+                        CustId = settingContext.TargetCustId,
+                        AgentId = settingContext.LoginUserId
+                    };
+                }
+                else
+                {
+                    getAgentSettingCriteria = new AgentGetMemberSettingForUpdateCriteria
+                    {
+                        CustId = settingContext.TargetCustId
+                    };
+                }
             }
             else if (settingContext.TargetRoleId == (int)Role.Agent)
             {

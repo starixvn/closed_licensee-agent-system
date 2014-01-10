@@ -36,6 +36,8 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 
         InsertResult UpdateCustomer(ICriteria criteria);
 
+        InsertResult UpdateIndirectCustomer(ICriteria criteria);
+
         void GetSettingForInsert(
             ICriteria criteria,
             SettingContext settingContext,

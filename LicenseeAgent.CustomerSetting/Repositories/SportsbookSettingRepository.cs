@@ -338,6 +338,34 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         }
 
         /// <summary>
+        /// Insert agent.
+        /// </summary>
+        /// <param name="criteria">Insert information.</param>
+        /// <returns>Result and output parameters.</returns>
+        public InsertResult UpdateIndirectCustomer(ICriteria criteria)
+        {
+            if (!criteria.IsValid())
+            {
+                throw new NapDataAccessException();
+            }
+
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var parameters = criteria.GetSpParams();
+                objDb.ExecuteNonQuery(parameters);
+                return new InsertResult
+                {
+                    ErrCode = Converter.ToInt(parameters["msgid"]),
+                    MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                    MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                    PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                    PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
+                };
+            }
+        }
+
+        /// <summary>
         /// Update Com, Bet or PT Setting.
         /// </summary>
         /// <param name="criteria">Criteria for updating data.</param>
@@ -680,21 +708,24 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 ReaderAgentInfoData(custInfo, reader);
             }
 
-            if (reader.NextResult())
+            if (!settingContext.IsOnlyUpdatePT)
             {
-                if (settingContext.TargetRoleId == (int)Role.Member)
+                if (reader.NextResult())
                 {
-                    this.ReadMemberCommissionSettingData(commissionSetting.CommissionItems, reader);
+                    if (settingContext.TargetRoleId == (int)Role.Member)
+                    {
+                        this.ReadMemberCommissionSettingData(commissionSetting.CommissionItems, reader);
+                    }
+                    else
+                    {
+                        this.ReadAgentCommissionData(commissionSetting.CommissionItems, reader, true);
+                    }
                 }
-                else
-                {
-                    this.ReadAgentCommissionData(commissionSetting.CommissionItems, reader, true);
-                }
-            }
 
-            if (reader.NextResult())
-            {
-                ReadBetLimitData(bettingLimits, reader, true);
+                if (reader.NextResult())
+                {
+                    ReadBetLimitData(bettingLimits, reader, true);
+                }
             }
 
             if (reader.NextResult())

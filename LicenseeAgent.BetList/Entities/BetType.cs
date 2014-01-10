@@ -24,7 +24,7 @@ namespace LicenseeAgent.BetList.Entities
         FirstHalfHandicap = 7,
         FirstHalfOverUnder = 8,
         MixParlay = 9,
-        CombinationMixParlay = 29,
+        SystemParlay = 29,
         Outright = 10,
         TotalCorners = 11,
         FirstHalfOddEven = 12,

@@ -31,9 +31,9 @@
             var fanexGridOrigin = jQuery.fn.fanexGrid;
             if (fanexGridOrigin != undefined) {
                 jQuery.fn.fanexGrid = function () {
-                    $("#mainContainer").css("overflow-x", "hidden");
                     jQuery.fn.fanexGrid = fanexGridOrigin;
                     return fanexGridOrigin.apply(this, arguments);
+                    $("#mainContainer").css("overflow-x", "hidden");
                 };
             }
         },

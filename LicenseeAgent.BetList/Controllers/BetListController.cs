@@ -130,7 +130,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="custId">Customer ID.</param>
         /// <returns>String content.</returns>
         [HttpGet]
-        [DownLine]
+        [DownLineMember]
         public ActionResult SystemParlayResult(long refNo, int custId)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
@@ -197,11 +197,11 @@ namespace LicenseeAgent.BetList.Controllers
 
             foreach (var ticket in ticketResult.MainTicketList)
             {
-                if (ticket.BetTypeId == (int)BetType.CombinationMixParlay)
+                if (ticket.BetTypeId == (int)BetType.SystemParlay)
                 {
                     var custId = ticket.CustId != 0 ? ticket.CustId : criteria.CustId;
                     var betTeam = ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
-                    var formatDetail = @"BETLIST.showSystemParlayResult({0},{1},'{2}')";
+                    var formatDetail = "BETLIST.showSystemParlayResult({0},{1},\"{2}\")";
                     ticketHelper.ClientDetailSystemParlayFunction = string.Format(
                         formatDetail,
                         ticket.RefNo,

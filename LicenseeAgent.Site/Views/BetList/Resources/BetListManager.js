@@ -152,7 +152,7 @@ var BETLIST = function ($) {
         },
         showSystemParlayResult: function (refNo, custId, betTeam) {
 
-            var url = "~/BetList/MixParlayDetails?refNo=" + refNo + "&custId=" + custId;
+            var url = "~/BetList/SystemParlayResult?refNo=" + refNo + "&custId=" + custId;
             $.ajax({
                 type: "GET",
                 contentType: 'application/json',

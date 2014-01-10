@@ -246,12 +246,14 @@
     <Content Include="Content\BetList\images\bar-loader.gif" />
     <Content Include="Content\BetList\images\bgHeader.jpg" />
     <Content Include="Content\BetList\images\blank.gif" />
-    <Content Include="Content\BetList\images\firstGoal.gif" />
-    <Content Include="Content\BetList\images\lastGoal.gif" />
+    <Content Include="Content\BetList\images\first-goal.gif" />
+    <Content Include="Content\BetList\images\last-goal.gif" />
     <Content Include="Content\BetList\images\link_14x14.png" />
     <Content Include="Content\BetList\images\link_16x16.png" />
     <Content Include="Content\BetList\images\note.png" />
     <Content Include="Content\BetList\images\plus.png" />
+    <Content Include="Content\BetList\images\system-parlay-detail-hover.png" />
+    <Content Include="Content\BetList\images\system-parlay-detail.png" />
     <Content Include="Content\BetList\images\undo.png" />
     <Content Include="Content\BetList\images\up.png" />
     <Content Include="Content\BetList\rng-casino-hand-history.css" />

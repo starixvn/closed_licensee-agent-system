@@ -22,12 +22,16 @@ namespace LicenseeAgent.Web.Filters
     /// </summary>
     public class DownLineAttribute : BaseActionFilterAttribute
     {
-        public DownLineAttribute()
+        static DownLineAttribute()
         {
-            AuthorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
             AgentIdParameterNames = new[] { "AgentId", "CustId" };
             MemberIdParameterNames = new[] { "MemberId", "TargetCustId" };
             TransIdParameterNames = new[] { "TransId" };
+        }
+
+        public DownLineAttribute()
+        {
+            AuthorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
         }
 
         protected static string[] AgentIdParameterNames { get; private set; }
@@ -49,10 +53,10 @@ namespace LicenseeAgent.Web.Filters
             var memberId = GetDownLineParameter(filterContext, MemberIdParameterNames);
 
             // Validation
-            var invalidSession = currentSession == null || currentSession.AgentInfo == null;
-            var invalidParameters = (agentId == -1 && memberId == -1) || (agentId > 0 && memberId > 0);
+            var validSession = currentSession != null && currentSession.AgentInfo != null;
+            var validParameters = (agentId > 0) ^ (memberId > 0);
 
-            if (invalidSession || invalidParameters)
+            if (!validSession || !validParameters)
             {
                 return;
             }
@@ -116,7 +120,7 @@ namespace LicenseeAgent.Web.Filters
 
                 if (value.GetType() == typeof(int) && (int)value > 0)
                 {
-                    yield return (long)value;
+                    yield return (long)(int)value;
                 }
             }
         }

@@ -38,7 +38,7 @@ namespace LicenseeAgent.Site
         protected void Application_BeginRequest()
         {
             // or any number of other checks, up to you
-            if (Request.IsLocal)
+            if (AppSettings.LocalTest)
             {
                 // MiniProfiler.Start();
             }
@@ -47,7 +47,7 @@ namespace LicenseeAgent.Site
         protected void Application_EndRequest()
         {
             // stop as early as you can, even earlier with MvcMiniProfiler.MiniProfiler.Stop(discardResults: true);
-            if (Request.IsLocal)
+            if (AppSettings.LocalTest)
             {
                 // MiniProfiler.Stop();
             }

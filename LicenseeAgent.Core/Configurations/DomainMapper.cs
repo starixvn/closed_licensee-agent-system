@@ -38,7 +38,7 @@ namespace LicenseeAgent.Core.Configurations
         /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
-            if (request.IsLocal)
+            if (AppSettings.LocalTest)
             {
                 return AppSettings.LocalLicenseeId;
             }

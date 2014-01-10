@@ -91,7 +91,7 @@ namespace LicenseeAgent.Account.Controllers
             var model = new AgentSignInViewModel
             {
                 Language = Language,
-                Captcha = Request.IsLocal ? "999999" : string.Empty
+                Captcha = AppSettings.LocalTest ? "999999" : string.Empty
             };
 
             return View(model);
@@ -116,7 +116,7 @@ namespace LicenseeAgent.Account.Controllers
                 }
                 else
                 {
-                    if ((Request.IsLocal && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, true) == 0)
+                    if ((AppSettings.LocalTest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, true) == 0)
                     {
                         var licenseeId = DomainMapper.GetLicenseeId(Request);
                         if (licenseeId == null)
@@ -139,7 +139,7 @@ namespace LicenseeAgent.Account.Controllers
             }
 
             // Always remove captcha value from input because it can't be reused.
-            if (!ModelState.IsValid && !Request.IsLocal)
+            if (!ModelState.IsValid && !AppSettings.LocalTest)
             {
                 ModelState.Remove("Captcha");
                 model.Captcha = string.Empty;

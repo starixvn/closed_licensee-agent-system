@@ -242,7 +242,6 @@
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\BetList\betlist.core.css" />
     <Content Include="Content\BetList\betlist.css" />
-    <Content Include="Content\BetList\global.content.css" />
     <Content Include="Content\BetList\images\bar-loader.gif" />
     <Content Include="Content\BetList\images\bgHeader.jpg" />
     <Content Include="Content\BetList\images\blank.gif" />

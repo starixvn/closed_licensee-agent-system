@@ -38,61 +38,9 @@
     font-weight: bold !important;
 }
 
-.rngcasino_alignleft
-{
-    text-align: left !important;
-}
-
-.rngcasino_group
-{
-    text-align: left !important;
-    background: #F8E4D4;
-    font-weight: bold;
-}
-
-.rngcasino_subtotal
-{
-    background: #B2DFEF;
-    font-weight: bold;
-}
-
-.rngcasino_headerlabel
-{
-    text-align: left !important;
-    background: #F8E4D4;
-    font-weight: bold;
-    border-left: solid 1px #BABABA;
-    border-bottom: solid 1px #BABABA;
-    border-right: solid 1px #BABABA;
-    height: 30px !important;
-    padding-top: 7px;
-    padding-left: 2px;
-    text-align: left !important;
-    width: 978px !important;
-}
-
-.rngcasino_headerlabel input[type="checkbox"]
-{
-    margin: 0px 0 0 !important;
-}
-
-.bl_btype
-{
-    color: #003399;
-    font-weight: 600;
-}
-
 .b
 {
     font-weight: bold;
-}
-
-.bl_time
-{
-    color: #434343;
-    font-size: 7pt;
-    font-weight: normal;
-    text-align: center;
 }
 
 .iplink
@@ -106,24 +54,10 @@
     text-decoration: underline;
 }
 
-.bl_ip
-{
-    color: #434343;
-    font-size: 7pt;
-    font-weight: normal;
-    text-align: center;
-}
-
 .strike_through
 {
     text-decoration: line-through;
     color: #333;
-}
-
-.bl_evt
-{
-    color: #FFFFFF;
-    font-size: 11px;
 }
 
 .c
@@ -134,12 +68,6 @@
 .r
 {
     text-align: right !important;
-}
-
-.bl_favorite
-{
-    color: #B50000;
-    font-weight: bold;
 }
 
 .firstGoal
@@ -158,93 +86,6 @@
     height: 10px;
     padding: 0 4px;
     width: 14px;
-}
-
-.bl_match
-{
-    color: #000000;
-    font-weight: normal;
-    line-height: 15px;
-}
-
-.bl_underdog
-{
-    color: #01122B;
-    font-weight: bold;
-}
-
-.bl_oddtype
-{
-    color: #586985;
-}
-
-.bl_status
-{
-    color: #606060;
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.bl_status b
-{
-    color: #01122B;
-}
-
-.hand
-{
-    cursor: pointer;
-}
-
-.link
-{
-    color: #0066CC;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-a
-{
-    text-decoration: none;
-}
-
-.bl_lname
-{
-    color: #666666;
-    line-height: 15px;
-}
-.bl_footertotal
-{
-    color: #333;
-    font-weight: bold;
-    background-color: #F3F5BE;
-}
-
-tr#tr_footer
-{
-    height: 25px;
-    border-top: 2px solid #FF6600;
-    vertical-align: middle;
-}
-
-.blue
-{
-    color: #2673CE;
-}
-
-.bl_stype
-{
-    color: #0066CC;
-}
-
-.div_pt
-{
-    background: none repeat scroll 0 0 rgb(245, 227, 227);
-}
-
-.div_result
-{
-    cursor: pointer;
-    color: rgb(27, 164, 237);
 }
 
 .line
@@ -438,13 +279,6 @@ Format styles
 }
 /********** ------------------ **************/
 /* From MNS */
-.ng-grid
-{
-    border: 1px solid rgb(212,212,212);
-    width: 100%;
-    max-height: 580px;
-}
-
 .filter-area
 {
     margin-bottom: 10px;
@@ -505,8 +339,55 @@ Format styles
     float: left;
 }
 
+.monpickr-super-wrapper 
+{
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 10px;
+}
+    
+.filter-area 
+{
+    margin-bottom: 0;
+}
+    
+.gridWrapper
+{
+    width: 1010px;
+    height: 500px;
+}
+    
+.instruction-content table
+{
+    width: 400px;
+}
+    
+.instruction-content table .col-left
+{
+    width: 100px;
+}
+    
+.instruction-content table .col-right
+{
+    font-weight: bold;
+}
 
-/* Month */
+.result 
+{
+	display: none;
+}
+
+.free-grid-td-5 
+{
+	font-weight: bold;
+}
+
+.red-text {
+	color: #B50000;
+	font-weight: bold;
+}
+
+/* Month Picker*/
 
 .eq-ie10 .month
 {

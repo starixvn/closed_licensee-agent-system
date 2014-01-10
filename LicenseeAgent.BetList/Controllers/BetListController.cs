@@ -226,7 +226,9 @@ namespace LicenseeAgent.BetList.Controllers
                     Stake = builder.BuildStake(ticket),
                     AgentPT = builder.BuildAgentPT(ticket),
                     AgentComm = builder.BuildAgentComm(ticket),
-                    WinLoss = string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate)
+                    WinLoss = ticket.Winlost >= 0
+                        ? string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate)
+                        : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate) + "</div>"
                 };
 
                 var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);
@@ -267,8 +269,9 @@ namespace LicenseeAgent.BetList.Controllers
 
         private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
         {
+            var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
             var htmlString = "<div>" + string.Format("{0:#,##0}", percentage * 100);
-            htmlString += "%</div><div>" + string.Format("{0:#,##0.00}", value) + "</div>";
+            htmlString += "%</div><div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
 
             return htmlString;
         }

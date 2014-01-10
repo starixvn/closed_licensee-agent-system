@@ -77,8 +77,9 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
+            var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
             var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.AgentPTPercent * 100);
-            agentPTHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
+            agentPTHtmlStr += "%</div><div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
             return agentPTHtmlStr;
         }
 

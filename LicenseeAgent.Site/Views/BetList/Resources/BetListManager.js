@@ -123,6 +123,7 @@ var BETLIST = function ($) {
                     console.warn(msg);
                 }
             });
+            $('#month-picker-control').monPickr("setFromDay", lastDay);
         },
         showBetListDetails: function (transId) {
             var url = "~/BetList/Details?transId=" + transId;
@@ -214,5 +215,4 @@ var BETLIST = function ($) {
 
 $(function () {
     BETLIST.init();
-
 });

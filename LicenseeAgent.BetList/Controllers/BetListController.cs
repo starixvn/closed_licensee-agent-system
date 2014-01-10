@@ -19,6 +19,7 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Filters;
     using Services;
     using ViewModels;
@@ -228,8 +229,11 @@ namespace LicenseeAgent.BetList.Controllers
                     WinLoss = string.Format("{0:#,##0.00}", ticket.Winlost * exchangeRate)
                 };
 
-                ticketText.Feature = "<a class=\"iplink\" href=\"javascript:void(0);\" onclick=\"javascript: POPUP.openDialogFrame('BetList/Details?";
-                ticketText.Feature += "TransId=" + ticket.TransId + "', { width: 360, height: 280 }); \">Details</a>";
+                var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);
+                ticketText.Feature = string.Format(
+                        "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>",
+                        clickFunction,
+                        Las.Details);
 
                 ticketTextList.Add(ticketText);
             }

@@ -46,10 +46,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/language.js",
                 "~/scripts/HeadJS/head.js",
                 "~/scripts/core.js",
-                "~/scripts/popup.js",
-                "~/scripts/ResourcesJs/Las.js",
-                "~/scripts/ResourcesJs/Las.zh-CN.js",
-                "~/scripts/ResourcesJs/Las.zh-TW.js"));
+                "~/scripts/popup.js"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
                 "~/scripts/ResourcesJs/Las.js",

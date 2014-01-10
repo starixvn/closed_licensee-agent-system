@@ -270,6 +270,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet List - Details - PT and Commission.
+        /// </summary>
+        public static string BetListDetails {
+            get {
+                return ResourceManager.GetString("BetListDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Setting.
         /// </summary>
         public static string BetSetting {
@@ -572,6 +581,15 @@ namespace LicenseeAgent.Resources {
         public static string DeadBall {
             get {
                 return ResourceManager.GetString("DeadBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         

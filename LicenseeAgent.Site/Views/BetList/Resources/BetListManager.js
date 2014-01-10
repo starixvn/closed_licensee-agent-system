@@ -124,6 +124,32 @@ var BETLIST = function ($) {
                 }
             });
         },
+        showBetListDetails: function (transId) {
+            var url = "~/BetList/Details?transId=" + transId;
+            $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                dataType: "text",
+                cache: false,
+                url: CORE.resolveUrl(url),
+                error: function (xhRequest, errorText, thrownError) {
+                    alert(errorText);
+                },
+                success: function (response) {
+                    var height = 280;
+                    var width = 360;
+                    var details = '<div>' + response + '</div>';
+                    var title = CORE.getSingleResource("BetListDetails");
+                    POPUP.openDialog(details, title, { width: width, height: height });
+                },
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
         showMixParlayDetail: function (transId, divEvent) {
             var loadMixParlayDetail = function (transId) {
                 var url = "~/BetList/MixParlayDetails?transid=" + transId;

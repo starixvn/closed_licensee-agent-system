@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/8/2014 2:47:32 PM
+// Lasted generated date: 1/10/2014 2:38:39 PM
 // </history>
 
 var _language_en_US={
@@ -57,6 +57,8 @@ var _language_en_US={
                      BetCount:"Bet Count",
 				 	
                      BetList:"Bet List",
+				 	
+                     BetListDetails:"Bet List - Details - PT and Commission",
 				 	
                      BetSetting:"Bet Setting",
 				 	
@@ -125,6 +127,8 @@ var _language_en_US={
                      CustomerInformation:"Customer Information",
 				 	
                      DeadBall:"Dead Ball",
+				 	
+                     Details:"Details",
 				 	
                      DoubleChance:"DoubleChance",
 				 	
@@ -266,6 +270,8 @@ var _language_en_US={
 				 	
                      None:"None",
 				 	
+                     Note:"Note",
+				 	
                      NumberGame:"Number Game",
 				 	
                      Odd:"Odd",
@@ -302,7 +308,7 @@ var _language_en_US={
 				 	
                      PasswordRequired:"Please enter your password.",
 				 	
-                     PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)",
+                     PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:  Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special character (!,@,#,etc..).",
 				 	
                      PasswordWillExpired:"Your password will expire on {0}. Do you want to change it now?",
 				 	
@@ -315,6 +321,8 @@ var _language_en_US={
                      PositionTakingSimpleModeHeader:"Position Taking (Soccer Dead ball Handicap)",
 				 	
                      Reports:"Reports",
+				 	
+                     Reset:"Reset",
 				 	
                      ResetPassword:"Reset Password",
 				 	
@@ -353,6 +361,8 @@ var _language_en_US={
                      ThreeWayHandicap:"3-Way Handicap",
 				 	
                      Time:"Time",
+				 	
+                     TooManyDownLineParameters:"There is too many parameters with name {0}",
 				 	
                      Total:"Total",
 				 	

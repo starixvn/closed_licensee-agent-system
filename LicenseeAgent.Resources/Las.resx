@@ -789,4 +789,12 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
   <data name="Note" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+    <comment>not</comment>
+  </data>
+  <data name="BetListDetails" xml:space="preserve">
+    <value>Bet List - Details - PT and Commission</value>
+    <comment>not</comment>
+  </data>
 </root>

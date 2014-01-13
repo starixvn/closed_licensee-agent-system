@@ -78,10 +78,12 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="league">League Type.</param>
         /// <returns>League list.</returns>
         [HttpPost]
-        public JsonResult GetLeaguesBySports(string sport, string league)
+        public JsonResult GetLeaguesBySports(string sport, string league, bool isFirstLoad)
         {
-            var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            var leagues = _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName);
+            var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport };
+            var leagues = string.IsNullOrEmpty(sport) && !isFirstLoad
+                ? new List<LeagueEntity>()
+                : _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)
@@ -110,10 +112,12 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="team">Team Type.</param>
         /// <returns>Team list.</returns>
         [HttpPost]
-        public JsonResult GetTeamsByLeagues(string league, string team)
+        public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool isFirstLoad)
         {
-            var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            var teams = _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName);
+            var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport, LeagueList = league };
+            var teams = (string.IsNullOrEmpty(sport) || string.IsNullOrEmpty(league)) && !isFirstLoad
+                ? new List<TeamEntity>()
+                : _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
             var teamIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var teamMultiItems = new List<dynamic>();
             foreach (var item in teams)

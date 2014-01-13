@@ -19,8 +19,8 @@
 
         initData: function () {
             Outright.getSportData();
-            Outright.getLeagueDataBySport();
-            Outright.getTeamDataByLeague(true);
+            Outright.getLeagueDataBySport(true);
+            Outright.getTeamDataByLeague(true, true);
         },
 
         // ------------------------------------------------ Sport filter -----------------------------------------
@@ -71,14 +71,15 @@
         selectedSport: function () {
             var selectedSports = $("#sport-multi-select").fanexMultiSelect('getItems', true).join(',');
             $("#Sport").val(selectedSports);
-            Outright.getLeagueDataBySport();
+            Outright.getLeagueDataBySport(false);
         },
 
         // ------------------------------------------------ League filter -----------------------------------------
-        getLeagueDataBySport: function () {
+        getLeagueDataBySport: function (isFirstLoad) {
             var params = {
-                Sport: $("#Sport").val(),
-                League: $("#League").val()
+                Sport: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
+                League: $("#League").val(),
+                IsFirstLoad: isFirstLoad
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetLeaguesBySports"),
@@ -124,14 +125,16 @@
         selectedLeague: function () {
             var selectedLeagues = $("#league-multi-select").fanexMultiSelect('getItems', true).join(',');
             $("#League").val(selectedLeagues);
-            Outright.getTeamDataByLeague();
+            Outright.getTeamDataByLeague(false);
         },
 
         // ------------------------------------------------ Team filter -----------------------------------------
-        getTeamDataByLeague: function (isLoadGrid) {
+        getTeamDataByLeague: function (isFirstLoad, isLoadGrid) {
             var params = {
-                League: $("#League").val(),
-                Team: $("#Team").val()
+                Sport: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
+                League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                Team: $("#Team").val(),
+                IsFirstLoad: isFirstLoad
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetTeamsByLeagues"),

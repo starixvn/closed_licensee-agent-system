@@ -78,15 +78,14 @@ namespace LicenseeAgent.TotalBets.Utils
                     });
                 }
 
-                var orderedMatchList = matchList
+                var orderedMatchList = matchList                        
                         .OrderByDescending(x => x.LiveHomeScore)
-                        .ThenByDescending(a => a.LiveAwayScore)
-                        .ToList();
+                        .ThenByDescending(a => a.LiveAwayScore);
                 yield return new LeagueGroupEntity
                 {
                     LeagueId = league.LeagueId,
                     LiveIndicator = league.LiveIndicator,
-                    MatchList = orderedMatchList
+                    MatchList = orderedMatchList.OrderBy(h => h.HomeName).ToList()
                 };
             }
         }

@@ -15,7 +15,7 @@
                     @if (SessionManager.CurrentSession.IsViewChangePassword())
                     {
                         <li><a id="changePwd" data-href="@Url.Content("~/Account/ChangePassword")" href="#">
-                            <i class="icon-customer-edit"></i>@Las.ChangePassword</a></li>
+                            <i class="icon-account-changepassword"></i>@Las.ChangePassword</a></li>
                     }
                     <li><a href="@Url.Content("~/Account/SignOut")"><i class="icon-account-logout"></i>@Las.LogOut</a></li>
                 </ul>

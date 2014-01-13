@@ -84,6 +84,9 @@
                     if (data.ErrCode == 0) {
                         $scope.Messages = data.Messages;
                         CORE.scrollTop();
+                        if (window.parent.customerList)
+                            window.parent.customerList.reRenderAfterPaged();
+                        POPUP.close();
                     }
                     else {
                         alert(data.ErrMsg);

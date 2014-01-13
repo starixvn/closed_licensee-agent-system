@@ -297,36 +297,35 @@
                 }
             });
         },
-        editAgent: function (agentId, agentLevel, agentUsername) {
+        editAgent: function (agentId, agentLevel, agentUsername, status) {
             editAgentId = agentId;
             editAgentLevel = agentLevel;
             editAgentUsername = agentUsername;
             $.contextMenu({
                 selector: '.cell-' + agentId,
-                items: customerList.getEditItems(),
+                items: customerList.getEditItems(status),
                 trigger: "left",
                 ignoreRightClick: true,
                 autoHide: true
             });
         },
-        editMember: function (memberId) {
+        editMember: function (memberId, status) {
             editMemberId = memberId;
             $.contextMenu({
                 selector: '.cell-' + memberId,
-                items: customerList.getEditItems(),
+                items: customerList.getEditItems(status),
                 trigger: "left",
                 ignoreRightClick: true,
                 autoHide: true
             });
         },
-        getEditItems: function () {
+        getEditItems: function (status) {
             var editItems = {};
             var items = [];
             if (pageContext.IsLastLevel) {
                 items = [
                     { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
                     { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
-                //{ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline },
                     {name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
@@ -340,7 +339,6 @@
                 items = [
                     { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
                     { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
-                //{ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline },
                     {name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
@@ -351,7 +349,7 @@
                 ];
             }
 
-            if (pageContext.IsAdmin) {
+            if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
                 items.push({ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline });
             }
 

@@ -69,14 +69,20 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <summary>
         /// Get Setting Context For Insert.
         /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="roleId">The role identifier.</param>
+        /// <param name="targetCustId">The target customer identifier.</param>
         /// <param name="targetRoleId">The target role identifier.</param>
         /// <returns>
         /// Action Result.
         /// </returns>
-        public ActionResult GetSettingForInsert(int targetRoleId)
+        public ActionResult GetSettingForInsert(int custId, int roleId, int targetCustId, int targetRoleId)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
+                CustId = custId,
+                RoleId = roleId,
+                TargetCustId = targetCustId,
                 TargetRoleId = targetRoleId
             };
 
@@ -135,6 +141,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             if (agentId != null && agentLevel != null)
             {
                 settingContext.CustId = agentId.Value;
+                settingContext.RoleId = (int)Role.Agent;
                 settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentLevel.Value)
                     ? (int)Role.Member
                     : (int)Role.Agent;

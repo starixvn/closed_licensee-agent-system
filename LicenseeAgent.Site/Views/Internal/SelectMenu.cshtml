@@ -12,7 +12,7 @@
                 <ul class="drop-box">
                     @foreach (var licensee in Model.Licensees)
                     {
-                        <li><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
+                        <li class="@(licensee.LicenseeId == Model.LicenseeId ? "selected" : "")"><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a></li>
                     }
                 </ul>
             </div>
@@ -30,7 +30,7 @@
                 <ul class="drop-box">
                     @foreach (var currency in Model.Currencies)
                     {
-                        <li><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
+                        <li class="@(currency.Currency == Model.CurrencyId ? "selected" : "")"><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
                     }
                 </ul>
             }
@@ -44,5 +44,4 @@
         </div>
     </div>
 }
-@Html.Hidden("defaultCurrency", Las.ChooseCurrency)
 @Html.Hidden("is-selected", SessionManager.CurrentSession.AgentInfo != null ? true : false)

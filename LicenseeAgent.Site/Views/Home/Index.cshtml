@@ -26,6 +26,12 @@
 }
 @section scripts
 {
+    <script type="text/javascript">
+        var _page = {
+            lang: '@System.Globalization.CultureInfo.CurrentUICulture.Name'
+        };
+    </script>
+    @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/home")
     @if (AppSettings.IsAdminSite)
     {

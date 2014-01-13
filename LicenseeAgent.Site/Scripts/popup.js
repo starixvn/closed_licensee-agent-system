@@ -63,7 +63,7 @@
         close: function (timeout) {
             if (window.parent != null) {
                 if (timeout == undefined) {
-                    timeout = 2000;
+                    timeout = 3000;
                 }
                 setTimeout(function () {
                     window.parent.POPUP.closeDialog();

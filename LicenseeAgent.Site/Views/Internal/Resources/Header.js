@@ -17,12 +17,14 @@
                 });
 
                 $('#licensee li').click(function () {
+                    $(this).parent().find('li').removeClass('selected');
+                    $(this).addClass('selected');
                     newLicenseeId = $(this).children('a').data('id');
                     newCurrencyId = 0;
                     INTERNAL_HEADER.onChange();
                     $('#licensee').find('span:first').html($(this).find('a').html());
                     $('#licensee').find('ul').hide();
-                    $("#currency").find("span:first").html($("#defaultCurrency").val());
+                    $("#currency").find("span:first").html(CORE.getSingleResource('ChooseCurrency'));
                     INTERNAL_HEADER.loadCurrency(newLicenseeId);
                 });
             }
@@ -140,6 +142,8 @@
         },
         initCurrencyBox: function () {
             $('#currency li').click(function () {
+                $(this).parent().find('li').removeClass('selected');
+                $(this).addClass('selected');
                 newCurrencyId = $(this).children('a').data('id');
                 INTERNAL_HEADER.onChange();
                 $('#currency').find('span:first').html($(this).find('a').html());

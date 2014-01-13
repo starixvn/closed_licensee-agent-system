@@ -245,8 +245,6 @@
     <Content Include="Content\BetList\images\bar-loader.gif" />
     <Content Include="Content\BetList\images\bgHeader.jpg" />
     <Content Include="Content\BetList\images\blank.gif" />
-    <Content Include="Content\BetList\images\first-goal.gif" />
-    <Content Include="Content\BetList\images\last-goal.gif" />
     <Content Include="Content\BetList\images\link_14x14.png" />
     <Content Include="Content\BetList\images\link_16x16.png" />
     <Content Include="Content\BetList\images\note.png" />

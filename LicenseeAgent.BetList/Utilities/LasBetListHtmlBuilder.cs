@@ -73,12 +73,25 @@ namespace LicenseeAgent.BetList.Utilities
         /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket status text.</returns>
+        public static string BuildLasStake(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket)
+        {
+            return "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.Stake) + "</div>" ;
+        }
+
+        /// <summary>
+        /// Get ticket Agent PT.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <returns>Ticket status text.</returns>
         public static string BuildAgentPT(
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
             var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
-            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.AgentPTPercent * 100);
+            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100);
             agentPTHtmlStr += "%</div><div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
             return agentPTHtmlStr;
         }
@@ -93,7 +106,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.AgentCommPercent * 100);
+            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100);
             agentCommHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
             return agentCommHtmlStr;
         }

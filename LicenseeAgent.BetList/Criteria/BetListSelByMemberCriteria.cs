@@ -27,7 +27,8 @@ namespace LicenseeAgent.BetList.Criteria
 
         public override bool IsValid()
         {
-            return FromDate <= ToDate && AgentId > 0 && CustId > 0;
+            return FromDate <= ToDate && AgentId > 0 && CustId > 0
+                && (FromDate.Year == ToDate.Year && FromDate.Month == ToDate.Month);
         }
     }
 }

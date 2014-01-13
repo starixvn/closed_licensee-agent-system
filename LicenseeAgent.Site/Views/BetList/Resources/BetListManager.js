@@ -1,18 +1,18 @@
 ﻿var gridOption = {
     columns: [
-                { HeaderText: "No.", Width: 30, Name: "Index", CellAlign: "center" },
+                { HeaderText: "No.", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: "TransTime", Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Choice", Width: 350, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Odds", Width: 40, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Choice", Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Odds", Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Stake", Width: 60, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Winloss", Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Status", Width: 100, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "AgentPT", Width: 70, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "AgentComm", Width: 70, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Status", Width: 95, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "Agent PT", Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Agent Comm", Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Feature", Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    gridExpandHeight: 100,
+    gridExpandHeight: 85,
     bodyRowHeight: 29
 };
 
@@ -140,7 +140,7 @@ var BETLIST = function ($) {
                     var height = 280;
                     var width = 360;
                     var details = '<div>' + response + '</div>';
-                    var title = CORE.getSingleResource("BetListDetails");
+                    var title = CORE.getSingleResource("BetListDetails") + transId;
                     POPUP.openDialog(details, title, { width: width, height: height });
                 },
                 beforeSend: function () {

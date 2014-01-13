@@ -12,6 +12,8 @@
 
 .monpickr {
 	font-size: 11px;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: 0 none;
 }
 
 .monpickr-arrows {
@@ -20,8 +22,8 @@
 }
 
 .monpickr-arrows input.monpickr-input {
-	height: 1.1em;
-	margin: 0 2px 0 20px;
+	height: 18px;
+	margin: -1px 2px 0 0;
 	padding: 2px;
 	text-align: center;
 }
@@ -33,7 +35,8 @@
 }
 
 .monpickr-arrows .monpickr-prev {
-	left: 2px;
+	left: 8px;
+	top: 4px;
 }
 
 .monpickr-arrows .monpickr-next, .monpickr-arrows .monpickr-down {
@@ -108,14 +111,16 @@
 
 .daypickr {
 	width: 56px;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: 0 none;
 }
 
 .daypickr.monpickr-arrows input.monpickr-input {
-	
-	margin: 0 2px 0 0;
-	padding: 2px;
-	width: 25px;
-	text-align: center;
+	height: 18px;
+	margin: -1px 0 0 -3px;
+	padding: 2px 2px 2px 12px;
+	width: 45px;
+	text-align: left;
 }
 
 .daypickr-dropdown {

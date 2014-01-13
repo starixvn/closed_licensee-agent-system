@@ -57,8 +57,8 @@ var _language_en_US={
                      BetCount:"Bet Count",
 				 	
                      BetList:"Bet List",
-				 	
-                     BetListDetails:"Bet List - Details - PT and Commission",
+
+                     BetListDetails: "Details - Refno: ",
 				 	
                      BetSetting:"Bet Setting",
 				 	

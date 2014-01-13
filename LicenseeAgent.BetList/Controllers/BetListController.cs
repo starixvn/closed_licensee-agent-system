@@ -219,7 +219,7 @@ namespace LicenseeAgent.BetList.Controllers
                         ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
                     Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
-                    Stake = builder.BuildStake(ticket),
+                    Stake = builder.BuildLasStake(ticket),
                     AgentPT = builder.BuildAgentPT(ticket),
                     AgentComm = builder.BuildAgentComm(ticket),
                     WinLoss = ticket.Winlost >= 0
@@ -266,7 +266,7 @@ namespace LicenseeAgent.BetList.Controllers
         private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
         {
             var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0}", percentage * 100);
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100);
             htmlString += "%</div><div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
 
             return htmlString;

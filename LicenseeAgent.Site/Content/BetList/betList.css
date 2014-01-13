@@ -75,7 +75,7 @@ td.agent-name
 
 .firstGoal
 {
-    background: url(images/first-goal.gif) no-repeat scroll center center transparent;
+    background: url(../../Images/sprite.png) no-repeat -786px -1px;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -84,7 +84,7 @@ td.agent-name
 
 .lastGoal
 {
-    background: url(images/last-goal.gif) no-repeat scroll center center transparent;
+    background: url(../../Images/sprite.png) no-repeat -807px -1px;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -311,11 +311,6 @@ Format styles
     margin: 9px 7px 7px;
 }
 
-.monpickr-selected-month
-{
-    width: 107px !important;
-}
-
 .monpickr-label
 {
     font-size: 12px;
@@ -362,6 +357,7 @@ Format styles
 {
     width: 1010px;
     height: 500px;
+    margin-top: -15px
 }
 
 .instruction-content table
@@ -391,7 +387,7 @@ Format styles
 
 .red-text
 {
-    color: #B50000;
+    color: #FF2D2D;
     font-weight: bold;
 }
 
@@ -405,6 +401,10 @@ Format styles
 .eq-ie10 .monpickr-label
 {
     margin-top: 5px;
+}
+
+.ui-icon-circle-triangle-e {
+    margin: 4px 0 0 -20px;
 }
 
 .eq-ie10 .monpickr-arrows input.monpickr-input, .eq-ie10 .monpickr-arrows.daypickr input.monpickr-input

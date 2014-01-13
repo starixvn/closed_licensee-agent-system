@@ -794,7 +794,7 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
     <comment>not</comment>
   </data>
   <data name="BetListDetails" xml:space="preserve">
-    <value>Bet List - Details - PT and Commission</value>
+    <value>Details - Refno: </value>
     <comment>not</comment>
   </data>
 </root>

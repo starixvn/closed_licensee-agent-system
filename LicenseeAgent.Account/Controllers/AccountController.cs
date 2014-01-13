@@ -236,7 +236,7 @@ namespace LicenseeAgent.Account.Controllers
         [HttpPost]
         [AjaxOnly]
         [AppAuthorize(IsValidateAgent = false)]
-        public JsonResult ReCheckIn(int licenseeId, int currencyId)
+        public JsonResult ReCheckIn(int? licenseeId, int? currencyId)
         {
             var errCode = Result.FailureValue;
             if ((CurrentSession.AdminInfo != null || CurrentSession.LicenseeInfo != null) && CurrentSession.IsDirectSignIn)

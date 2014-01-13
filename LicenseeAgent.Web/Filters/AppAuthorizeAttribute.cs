@@ -51,8 +51,7 @@ namespace LicenseeAgent.Web.Filters
             }
 
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession == null ||
-                (!AppSettings.LocalTest && !currentSession.IsValid))
+            if (currentSession == null || !currentSession.IsValid)
             {
                 filterContext.ReturnUnauthorized();
                 return;

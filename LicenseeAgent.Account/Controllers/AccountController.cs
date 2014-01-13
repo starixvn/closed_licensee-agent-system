@@ -255,7 +255,7 @@ namespace LicenseeAgent.Account.Controllers
                     }
                 }
 
-                errCode = AppSettings.LocalTest ? Result.SuccessValue : AdminReCheckIn();
+                errCode = AdminReCheckIn();
             }
             else
             {

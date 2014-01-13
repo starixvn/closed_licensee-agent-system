@@ -351,7 +351,7 @@
                 ];
             }
 
-            if (pageContext.IsAdmin && !pageContext.IsMember) {
+            if (pageContext.IsAdmin) {
                 items.push({ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline });
             }
 
@@ -393,7 +393,7 @@
         },
         addDownline: function () {
             var url;
-            url = "SportsbookSetting/InsertCustomer?agentUsername={0}".format(editAgentUsername);
+            url = "SportsbookSetting/InsertCustomer?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
         resetPassword: function () {

@@ -82,7 +82,8 @@ namespace LicenseeAgent.Account.Controllers
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel)
+                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
+                IsAdmin = CurrentSession.IsAdmin
             };
 
             return View(model);

@@ -69,12 +69,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <summary>
         /// Get Setting Context For Insert.
         /// </summary>
-        /// <param name="agentUsername">Agent Username.</param>
-        /// <returns>Action Result.</returns>
-        public ActionResult GetSettingForInsert(string agentUsername = "")
+        /// <param name="targetRoleId">The target role identifier.</param>
+        /// <returns>
+        /// Action Result.
+        /// </returns>
+        public ActionResult GetSettingForInsert(int targetRoleId)
         {
-            var settingContext = GetSettingContext(agentUsername);
-            settingContext.FormId = FormType.Add;
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                TargetRoleId = targetRoleId
+            };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForInsert(settingContext);
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
@@ -115,12 +119,27 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <summary>
         /// Inserts the customer.
         /// </summary>
-        /// <param name="agentUsername">Agent Username.</param>
-        /// <returns>Action Result.</returns>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <param name="agentLevel">The agent level.</param>
+        /// <returns>
+        /// Action Result.
+        /// </returns>
         [HttpGet]
-        public ActionResult InsertCustomer(string agentUsername = "")
+        public ActionResult InsertCustomer(int? agentId, int? agentLevel)
         {
-            var settingContext = GetSettingContext(agentUsername);
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                Ip = Request.GetClientIp()
+            };
+
+            if (agentId != null && agentLevel != null)
+            {
+                settingContext.CustId = agentId.Value;
+                settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentLevel.Value)
+                    ? (int)Role.Member
+                    : (int)Role.Agent;
+            }
+
             return View("~/Views/Account/InsertCustomer.cshtml", settingContext);
         }
 
@@ -382,43 +401,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return sportType == (int)SportType.Soccer
                 ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
                 : sportName;
-        }
-
-        /// <summary>
-        /// Get Setting Context by Username.
-        /// </summary>
-        /// <param name="agentUsername">Agent Username.</param>
-        /// <returns>Setting Context.</returns>
-        private SettingContext GetSettingContext(string agentUsername)
-        {
-            var isLastLevel = false;
-            var isLevel0 = false;
-            var agentId = 0;
-            if (!string.IsNullOrEmpty(agentUsername))
-            {
-                var criteria = new InternalLoginAsUserCriteria
-                {
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                    UserName = agentUsername
-                };
-                _accountService.InternalLoginAsUser(criteria);
-                var agentInfo = criteria.CreateAgent();
-                isLastLevel = agentInfo.IsLastLevel;
-                isLevel0 = agentInfo.IsLevel0;
-                agentId = agentInfo.AgentId;
-            }
-
-            SettingContext settingContext = string.IsNullOrEmpty(agentUsername)
-                                ? new SettingContext(CurrentSession)
-                                : new SettingContext(isLastLevel, isLevel0)
-                                {
-                                    CustId = agentId,
-                                    UserName = agentUsername
-                                };
-            settingContext.Ip = Request.GetClientIp();
-
-            return settingContext;
         }
     }
 }

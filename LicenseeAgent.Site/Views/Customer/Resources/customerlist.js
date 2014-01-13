@@ -351,7 +351,7 @@
                 ];
             }
 
-            if (pageContext.IsLevel0 && !pageContext.IsMember) {
+            if (pageContext.IsAdmin && !pageContext.IsMember) {
                 items.push({ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline });
             }
 

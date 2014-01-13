@@ -132,5 +132,13 @@ namespace LicenseeAgent.Web
                 return true;
             }
         }
+
+        public bool IsAdmin
+        {
+            get
+            {
+                return AgentInfo.IsLevel0;
+            }
+        }
     }
 }

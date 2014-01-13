@@ -30,5 +30,7 @@ namespace LicenseeAgent.Web
         bool IsDirectSignIn { get; }
 
         bool IsValid { get; }
+
+        bool IsAdmin { get; }
     }
 }

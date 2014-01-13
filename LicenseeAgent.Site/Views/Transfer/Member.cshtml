@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = @Las.Transfer;
+}
+@section css
+{
+    @Styles.Render("~/css/account")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm("GetCustomerList", "Customer", FormMethod.Post,
+    new { @class = "form-inline form-filter ", id = "search-form" }))
+{
+    <div class="controls-row">
+        @Html.Label("Username", Las.Username)
+        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, urlAutoSearch = @Url.Action("CustomerSearchAutoComplete", "Customer"), @autocomplete = "false" })
+    </div>
+    <div class="controls-row">
+        @Html.Label("Status", Las.Status)
+        @Html.DropDownList("Status", ModelSettings.StatusList, new { @class = "selectpicker w100" })
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+}

@@ -759,6 +759,10 @@
       <LastGenOutput>Las.zh-TW.js</LastGenOutput>
     </None>
     <Content Include="Views\Transfer\Index.cshtml" />
+    <Content Include="Views\Transfer\Agent.cshtml" />
+    <Content Include="Views\Transfer\AgentList.cshtml" />
+    <Content Include="Views\Transfer\MemberList.cshtml" />
+    <Content Include="Views\Transfer\Member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

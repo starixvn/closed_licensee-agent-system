@@ -25,6 +25,9 @@ if (fanex.sportsbookSetting) {
                 onChangeMaxPerMatch: function () {
                     modelData.actions.validMaxPerMatch();
                 },
+                isUnlimited: function () {
+                    return formatInputNumber(modelData.MinBet) == 0 && formatInputNumber(modelData.MaxBet) == 0 && formatInputNumber(modelData.MaxPerMatch) == 0;
+                },
                 validMinBet: function () {
                     var message = "";
 
@@ -95,6 +98,8 @@ if (fanex.sportsbookSetting) {
                     }
                 },
                 isValid: function () {
+                    if (modelData.actions.isUnlimited())
+                        return true;
                     return modelData.actions.validMinBet() && modelData.actions.validMaxBet() && modelData.actions.validMaxPerMatch();
                 }
             };

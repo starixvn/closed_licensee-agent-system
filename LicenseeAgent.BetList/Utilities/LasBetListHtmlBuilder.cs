@@ -77,7 +77,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            return "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.Stake) + "</div>" ;
+            return "<div class=\"stake\">" + string.Format("{0:#,##0}", ticket.Stake) + "</div>";
         }
 
         /// <summary>

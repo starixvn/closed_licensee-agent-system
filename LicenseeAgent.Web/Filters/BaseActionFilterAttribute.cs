@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System.IO;
     using System.Web.Mvc;
     using LicenseeAgent.Web.Mvc;
 
@@ -22,6 +23,24 @@ namespace LicenseeAgent.Web.Filters
         protected static void AccessDenied(ActionExecutingContext filterContext)
         {
             filterContext.ReturnAccessDenied();
+        }
+
+        /// <summary>
+        /// Read text from request input stream.
+        /// Seek to begin of stream before reading.
+        /// </summary>
+        /// <param name="filterContext">Action executing context.</param>
+        /// <returns>Return text in stream.</returns>
+        protected static string ReadRequestInputStream(ActionExecutingContext filterContext)
+        {
+            var stream = filterContext.HttpContext.Request.InputStream;
+            stream.Seek(0, SeekOrigin.Begin);
+            using (var reader = new StreamReader(stream))
+            {
+                var text = reader.ReadToEnd();
+                reader.Close();
+                return text;
+            }
         }
     }
 }

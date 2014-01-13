@@ -23,6 +23,7 @@ namespace LicenseeAgent.Site
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Mvc;
 
     //// Note: For instructions on enabling IIS6 or IIS7 classic mode,
@@ -63,6 +64,7 @@ namespace LicenseeAgent.Site
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
+            ModelBinders.Binders.DefaultBinder = new AppModelBinder();
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());

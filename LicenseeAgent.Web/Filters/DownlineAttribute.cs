@@ -85,7 +85,7 @@ namespace LicenseeAgent.Web.Filters
         protected static long GetDownLineParameter(ActionExecutingContext filterContext, string[] parameterNames)
         {
             var actionParameters = GetActionParameter(filterContext.ActionParameters, parameterNames);
-            var jsonParameters = GetJsonParameter(filterContext.HttpContext.Request.InputStream, parameterNames);
+            var jsonParameters = GetJsonParameter(filterContext, parameterNames);
             var allParameters = actionParameters.Union(jsonParameters).ToArray();
 
             if (allParameters.Length > 1)
@@ -128,17 +128,17 @@ namespace LicenseeAgent.Web.Filters
         /// <summary>
         /// If data is submitted with JSON, try to get down line parameter in input stream.
         /// </summary>
-        /// <param name="stream">Request input stream.</param>
+        /// <param name="filterContext">Action executing context.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static IEnumerable<long> GetJsonParameter(Stream stream, string[] parameterNames)
+        protected static IEnumerable<long> GetJsonParameter(ActionExecutingContext filterContext, string[] parameterNames)
         {
-            if (stream.Length == 0)
+            if (filterContext.HttpContext.Request.InputStream.Length == 0)
             {
                 yield break;
             }
 
-            var requestText = ReadString(stream);
+            var requestText = ReadRequestInputStream(filterContext);
             foreach (var name in parameterNames)
             {
                 var pattern = string.Format("\"{0}\":(\\d+)", name);
@@ -153,25 +153,6 @@ namespace LicenseeAgent.Web.Filters
                     yield return value;
                 }
             }
-        }
-
-        /// <summary>
-        /// Read text from stream.
-        /// Seek to begin of stream before reading.
-        /// </summary>
-        /// <param name="stream">Input stream.</param>
-        /// <returns>Return text in stream.</returns>
-        private static string ReadString(Stream stream)
-        {
-            var text = string.Empty;
-            stream.Seek(0, SeekOrigin.Begin);
-            using (var reader = new StreamReader(stream))
-            {
-                text = reader.ReadToEnd();
-                reader.Close();
-            }
-
-            return text;
         }
     }
 }

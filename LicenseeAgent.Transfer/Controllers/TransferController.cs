@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Transfer.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Transfer.Services;
@@ -38,12 +39,20 @@ namespace LicenseeAgent.Transfer.Controllers
             });
         }
 
+        /// <summary>
+        /// Agents the specified agent identifier.
+        /// </summary>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>Returns agent transfer page.</returns>
         [HttpGet]
         public ViewResult Agent(int agentId)
         {
             var model = new TransferAgentViewModel
             {
-                AgentId = agentId
+                AgentId = agentId,
+                Amount = 10,
+                MinAmount = 0,
+                MaxAmount = 100
             };
 
             return View(model);
@@ -58,12 +67,23 @@ namespace LicenseeAgent.Transfer.Controllers
             });
         }
 
+        /// <summary>
+        /// Members the specified member identifier.
+        /// </summary>
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns>Returns member transfer page.</returns>
         [HttpGet]
         public ViewResult Member(int memberId)
         {
             var model = new TransferMemberViewModel
             {
-                MemberId = memberId
+                MemberId = memberId,
+                BetCredit = 12345.678m,
+                LastLogin = DateTime.Now,
+                LastTransaction = DateTime.Now,
+                Amount = 10,
+                MinAmount = 0,
+                MaxAmount = 100
             };
 
             return View(model);

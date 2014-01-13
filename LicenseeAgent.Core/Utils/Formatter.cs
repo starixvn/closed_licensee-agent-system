@@ -40,6 +40,11 @@ namespace LicenseeAgent.Core.Utils
             return string.Format(englishCultureInfo.NumberFormat, "{0:P}", value);
         }
 
+        public static string FormatDateTime(object value)
+        {
+            return string.Format(englishCultureInfo.NumberFormat, "{0:MM/dd/yyyy h:mm:ss tt}", value);
+        }
+
         public static string FormatJson(string jsonName, object value)
         {
             return string.Format("var {0} = {1};\n", jsonName, JsonConvert.SerializeObject(value, jsonSerializerSettings));

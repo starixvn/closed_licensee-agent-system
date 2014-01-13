@@ -1,4 +1,5 @@
-﻿@model LicenseeAgent.Transfer.ViewModels.TransferAgentViewModel
+﻿@using LicenseeAgent.Core.Utils
+@model LicenseeAgent.Transfer.ViewModels.TransferAgentViewModel
 @{
     ViewBag.Title = @Las.Transfer;
 }
@@ -37,8 +38,8 @@
                             @Html.LabelFor(m => m.Amount)
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.Amount)
-                            <span>@string.Format("[{0}; {1}]", Model.MinAmount, Model.MaxAmount)</span>
+                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160" })
+                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal(Model.MinAmount), Formatter.FormatDecimal(Model.MaxAmount))</span>
                         </td>
                     </tr>
                 </tbody>

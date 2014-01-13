@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Transfer.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,6 +20,7 @@ namespace LicenseeAgent.Transfer.ViewModels
         public string AgentName { get; set; }
 
         [Required]
+        [Display(Name = "Amount", ResourceType = typeof(Las))]
         public decimal Amount { get; set; }
 
         public decimal MinAmount { get; set; }

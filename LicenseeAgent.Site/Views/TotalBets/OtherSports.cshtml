@@ -18,7 +18,7 @@
 }
 
 <div class="legend">
-    @Las.OtherSports.ToUpper() - @Las.TotalBets.ToUpper()
+    @ViewBag.Title
 </div>
 
 @using (Html.BeginForm("OtherSports", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))

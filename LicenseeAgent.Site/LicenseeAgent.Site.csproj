@@ -760,6 +760,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Las.zh-TW.js</LastGenOutput>
     </None>
+    <Content Include="Views\Transfer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
@@ -793,6 +794,10 @@
     <ProjectReference Include="..\LicenseeAgent.TotalBets\LicenseeAgent.TotalBets.csproj">
       <Project>{803BF0FE-989A-4CB0-9267-3CC9D3763B65}</Project>
       <Name>LicenseeAgent.TotalBets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Transfer\LicenseeAgent.Transfer.csproj">
+      <Project>{9BE1E4F6-146E-4A68-AAD5-30B93EAD6FC2}</Project>
+      <Name>LicenseeAgent.Transfer</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Web\LicenseeAgent.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>

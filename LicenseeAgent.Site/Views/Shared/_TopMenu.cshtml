@@ -4,7 +4,7 @@
 {
     <ul class="nav nav-pills">
         @BootstrapHelper.TopMenu(Las.Home, Url.Action("Index", "Account"), "menuHome", Model == TopMenu.Home)
-        @BootstrapHelper.TopMenu(Las.Transfer, Url.Action("Index", "Account"), "menuTransfer", Model == TopMenu.Transfer)
+        @BootstrapHelper.TopMenu(Las.Transfer, Url.Action("Index", "Transfer"), "menuTransfer", Model == TopMenu.Transfer)
         @if (SessionManager.CurrentSession.IsViewChangePassword())
         {
             @BootstrapHelper.TopMenu(Las.Security, Url.Action("ChangePassword", "Account"), "menuSecurity", Model == TopMenu.Security)

@@ -76,6 +76,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// </summary>
         /// <param name="sport">Sport value.</param>
         /// <param name="league">League Type.</param>
+        /// <param name="isFirstLoad">Is first load.</param>
         /// <returns>League list.</returns>
         [HttpPost]
         public JsonResult GetLeaguesBySports(string sport, string league, bool isFirstLoad)
@@ -108,8 +109,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <summary>
         /// Get teams by leagues.
         /// </summary>
+        /// <param name="sport">Sport value.</param>
         /// <param name="league">League value.</param>
         /// <param name="team">Team Type.</param>
+        /// <param name="isFirstLoad">Is first load.</param>
         /// <returns>Team list.</returns>
         [HttpPost]
         public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool isFirstLoad)

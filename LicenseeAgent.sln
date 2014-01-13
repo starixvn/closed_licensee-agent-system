@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.API", "Licens
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Transfer", "LicenseeAgent.Transfer\LicenseeAgent.Transfer.csproj", "{9BE1E4F6-146E-4A68-AAD5-30B93EAD6FC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Taiwan", "LicenseeAgent.Taiwan\LicenseeAgent.Taiwan.csproj", "{0AA1A19E-A3FB-49C1-9AEF-738122579250}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

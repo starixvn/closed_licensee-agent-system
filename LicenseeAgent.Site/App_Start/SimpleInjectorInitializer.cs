@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.11.6">Created</change>
-// </history>
-
 [assembly: WebActivator.PreApplicationStartMethod(typeof(LicenseeAgent.Site.App_Start.SimpleInjectorInitializer), "Initialize")]
 
 namespace LicenseeAgent.Site.App_Start
@@ -18,6 +14,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Web.Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web.Mvc;
@@ -61,6 +58,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<ISearchUserService, SearchUserService>();
             container.Register<IBetListService, BetListService>();
             container.Register<ICoreService, CoreService>();
+            container.Register<ITransferService, TransferService>();
         }
     }
 }

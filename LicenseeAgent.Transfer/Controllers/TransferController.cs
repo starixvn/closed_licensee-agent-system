@@ -8,6 +8,7 @@ namespace LicenseeAgent.Transfer.Controllers
 {
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -16,6 +17,13 @@ namespace LicenseeAgent.Transfer.Controllers
     /// </summary>
     public class TransferController : BaseController
     {
+        private readonly ITransferService _transferService;
+
+        public TransferController(ITransferService transferService)
+        {
+            _transferService = transferService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -30,9 +38,15 @@ namespace LicenseeAgent.Transfer.Controllers
             });
         }
 
+        [HttpGet]
         public ViewResult Agent(int agentId)
         {
-            return View();
+            var model = new TransferAgentViewModel
+            {
+                AgentId = agentId
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -44,9 +58,15 @@ namespace LicenseeAgent.Transfer.Controllers
             });
         }
 
+        [HttpGet]
         public ViewResult Member(int memberId)
         {
-            return View();
+            var model = new TransferMemberViewModel
+            {
+                MemberId = memberId
+            };
+
+            return View(model);
         }
 
         [HttpPost]

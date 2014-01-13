@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TransferService.cs" />
+    <Compile Include="Services\ITransferService.cs" />
     <Compile Include="ViewModels\TransferMemberViewModel.cs" />
     <Compile Include="ViewModels\TransferAgentViewModel.cs" />
     <Compile Include="ViewModels\TransferSearchViewModel.cs" />
@@ -65,7 +67,6 @@
   <ItemGroup>
     <Folder Include="Criteria\" />
     <Folder Include="Entities\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -16,7 +16,13 @@ namespace LicenseeAgent.Transfer.ViewModels
         [Required]
         public int AgentId { get; set; }
 
+        public string AgentName { get; set; }
+
         [Required]
         public decimal Amount { get; set; }
+
+        public decimal MinAmount { get; set; }
+
+        public decimal MaxAmount { get; set; }
     }
 }

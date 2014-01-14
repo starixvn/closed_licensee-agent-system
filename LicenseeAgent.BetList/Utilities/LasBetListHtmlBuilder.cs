@@ -72,12 +72,32 @@ namespace LicenseeAgent.BetList.Utilities
         /// </summary>
         /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket status text.</returns>
+        /// <returns>Ticket Stake text.</returns>
         public static string BuildLasStake(
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
             return "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.Stake) + "</div>";
+        }
+
+        /// <summary>
+        /// Get ticket Win loss.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <returns>Ticket win loss text.</returns>
+        public static string BuildLasWinloss(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket)
+        {
+            if(ticket.Winlost == 0)
+            {
+                return "-";
+            }
+
+            return ticket.Winlost >= 0
+                ? string.Format("{0:#,##0.00}", ticket.Winlost)
+                : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
         }
 
         /// <summary>

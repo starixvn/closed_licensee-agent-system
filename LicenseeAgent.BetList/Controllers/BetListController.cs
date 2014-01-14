@@ -222,9 +222,7 @@ namespace LicenseeAgent.BetList.Controllers
                     Stake = builder.BuildLasStake(ticket),
                     AgentPT = builder.BuildAgentPT(ticket),
                     AgentComm = builder.BuildAgentComm(ticket),
-                    WinLoss = ticket.Winlost >= 0
-                        ? string.Format("{0:#,##0.00}", ticket.Winlost)
-                        : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>"
+                    WinLoss = builder.BuildLasWinloss(ticket)
                 };
 
                 var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);

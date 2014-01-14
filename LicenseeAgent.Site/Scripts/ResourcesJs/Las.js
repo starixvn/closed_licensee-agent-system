@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/10/2014 2:38:39 PM
+// Lasted generated date: 1/14/2014 4:37:34 PM
 // </history>
 
 var _language_en_US={
@@ -34,13 +34,19 @@ var _language_en_US={
 				 	
                      AdvancedMode:"Advanced Mode",
 				 	
+                     AgentComm:"Agent Comm",
+				 	
                      AgentList:"Agent List",
+				 	
+                     AgentPT:"Agent PT",
 				 	
                      AlertAdminLicenseeChanged:"The licensee was changed by admin, this session must be closed.",
 				 	
                      AlertKickoutMessage:"... Another session has been logged in ... Your session will be terminated!!! If that is not you, please contact your upline!!!",
 				 	
                      All:"All",
+				 	
+                     Amount:"Amount",
 				 	
                      Attention:"Attention",
 				 	
@@ -56,9 +62,11 @@ var _language_en_US={
 				 	
                      BetCount:"Bet Count",
 				 	
+                     BetCredit:"Bet Credit",
+				 	
                      BetList:"Bet List",
-
-                     BetListDetails: "Details - Refno: ",
+				 	
+                     BetListDetails:"Details - Refno:",
 				 	
                      BetSetting:"Bet Setting",
 				 	
@@ -89,6 +97,8 @@ var _language_en_US={
                      ChangeStatusAgent:"Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.",
 				 	
                      ChangeStatusMember:"Are you sure you want to change Closed status for this member?",
+				 	
+                     Choice:"Choice",
 				 	
                      ChooseCurrency:"Choose currency",
 				 	
@@ -156,6 +166,8 @@ var _language_en_US={
 				 	
                      Fax:"Fax",
 				 	
+                     Feature:"Feature",
+				 	
                      FH1X2:"1H. 1X2",
 				 	
                      FHHDP:"1H. HDP",
@@ -181,6 +193,8 @@ var _language_en_US={
                      Fulltime:"Fulltime",
 				 	
                      GeneralInformation:"General Information",
+				 	
+                     GivenCredit:"Given Credit",
 				 	
                      Goal:"Goal",
 				 	
@@ -222,7 +236,11 @@ var _language_en_US={
 				 	
                      LasTitle:"Home",
 				 	
+                     LastLogin:"Last Login",
+				 	
                      LastName:"Last Name",
+				 	
+                     LastTransaction:"Last Transaction",
 				 	
                      League:"League",
 				 	
@@ -276,6 +294,8 @@ var _language_en_US={
 				 	
                      Odd:"Odd",
 				 	
+                     Odds:"Odds",
+				 	
                      OK:"OK",
 				 	
                      One:"One",
@@ -326,6 +346,8 @@ var _language_en_US={
 				 	
                      ResetPassword:"Reset Password",
 				 	
+                     Results:"Results",
+				 	
                      SBBetSetting:"SB Bet Setting",
 				 	
                      ScoreMap:"Score Map",
@@ -348,6 +370,8 @@ var _language_en_US={
 				 	
                      Sportsbook:"Sportsbook",
 				 	
+                     Stake:"Stake",
+				 	
                      Statement:"Statement",
 				 	
                      Status:"Status",
@@ -366,11 +390,21 @@ var _language_en_US={
 				 	
                      Total:"Total",
 				 	
+                     TotalBalance:"Total Balance",
+				 	
                      TotalBets:"Total Bets",
+				 	
+                     TotalCash:"Total Cash",
 				 	
                      ToWinToNil:"To Win To Nil",
 				 	
                      Transfer:"Transfer",
+				 	
+                     TransferMemberWarning:"Warning: If balance is full transfered, the &lt;span class=&quot;text-highlighted&quot;&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit.",
+				 	
+                     TransferTimeWarning:"You can only transfer from 12pm to 11:59pm (GMT-4).",
+				 	
+                     TransTime:"Trans.Time",
 				 	
                      UnauthorizedMsg:"Your session has timed out or your request is not authorized",
 				 	
@@ -385,6 +419,8 @@ var _language_en_US={
                      UpdateSuccessfully:"Updated successfully.",
 				 	
                      Upline:"Upline",
+				 	
+                     UsedCredit:"Used Credit",
 				 	
                      Username:"Username",
 				 	
@@ -402,7 +438,11 @@ var _language_en_US={
 				 	
                      WinLoss:"Win Loss",
 				 	
-                     Yes:"Yes"
+                     Yes:"Yes",
+				 	
+                     YesterdayBalance:"Yesterday Balance",
+				 	
+                     YesterdayCash:"Yesterday Cash"
 				 	
              
 	 

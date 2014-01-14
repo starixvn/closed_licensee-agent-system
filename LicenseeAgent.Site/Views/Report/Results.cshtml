@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = Las.PageTitle_Report_Results;
+}
+@section css
+{
+}
+@section scripts
+{
+    <script type="text/javascript" src='@Url.Content("~/Views/Report/Resources/ReportManager.js")'></script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div id="filter-tabs">
+    <ul>
+        <li><a href="#filter-tab-match">Tab 1</a></li>
+        <li><a href="#filter-tab-outright">Tab 2</a></li>
+    </ul>
+    <div id="filter-tab-match">
+        Content 1
+    </div>
+    <div id="filter-tab-outright">
+        Content 2
+    </div>
+</div>

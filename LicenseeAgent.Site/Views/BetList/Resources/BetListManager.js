@@ -1,15 +1,15 @@
 ﻿var gridOption = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: "Trans.Time", Width: 95, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Choice", Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Odds", Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Stake", Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Win Loss", Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Status", Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Agent PT", Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Agent Comm", Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Feature", Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: LANGUAGE.getString("TransTime"), Width: 95, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 85,

@@ -160,7 +160,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AgentComm.
+        ///   Looks up a localized string similar to Agent Comm.
         /// </summary>
         public static string AgentComm {
             get {
@@ -1413,6 +1413,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LAS&apos;s Bet List.
+        /// </summary>
+        public static string PageTitle_BetList {
+            get {
+                return ResourceManager.GetString("PageTitle_BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        public static string PageTitle_Report_Results {
+            get {
+                return ResourceManager.GetString("PageTitle_Report_Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -1563,6 +1581,15 @@ namespace LicenseeAgent.Resources {
         public static string ResetPassword {
             get {
                 return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
             }
         }
         
@@ -1801,15 +1828,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trans.Time.
-        /// </summary>
-        public static string TransTime {
-            get {
-                return ResourceManager.GetString("TransTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Warning: If balance is full transfered, the &lt;span class=&quot;text-highlighted&quot;&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit..
         /// </summary>
         public static string TransferMemberWarning {
@@ -1824,6 +1842,15 @@ namespace LicenseeAgent.Resources {
         public static string TransferTimeWarning {
             get {
                 return ResourceManager.GetString("TransferTimeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trans.Time.
+        /// </summary>
+        public static string TransTime {
+            get {
+                return ResourceManager.GetString("TransTime", resourceCulture);
             }
         }
         

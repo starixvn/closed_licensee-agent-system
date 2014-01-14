@@ -680,4 +680,7 @@
   <data name="TransTime" xml:space="preserve">
     <value>Trans.Time</value>
   </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
 </root>

@@ -834,7 +834,7 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
     <value>Yesterday Cash</value>
   </data>
   <data name="AgentComm" xml:space="preserve">
-    <value>AgentComm</value>
+    <value>Agent Comm</value>
   </data>
   <data name="AgentPT" xml:space="preserve">
     <value>Agent PT</value>
@@ -854,5 +854,13 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
   <data name="TransTime" xml:space="preserve">
     <value>Trans.Time</value>
   </data>
-
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="PageTitle_BetList" xml:space="preserve">
+    <value>LAS's Bet List</value>
+  </data>
+  <data name="PageTitle_Report_Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
 </root>

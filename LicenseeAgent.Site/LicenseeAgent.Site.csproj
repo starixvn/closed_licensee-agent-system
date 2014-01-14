@@ -320,7 +320,6 @@
     <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
     <Content Include="Views\BetList\Resources\BetListManager.js" />
     <Content Include="Views\Customer\Resources\customerlist.js" />
-    <Content Include="Views\Customer\Resources\images\icons.png" />
     <Content Include="Views\Internal\Resources\Header.js" />
     <Content Include="Content\contextmenu\context.standalone.css" />
     <Content Include="Content\contextmenu\jquery.contextMenu.css" />

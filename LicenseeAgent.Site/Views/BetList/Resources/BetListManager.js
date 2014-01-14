@@ -1,10 +1,10 @@
 ﻿var gridOption = {
     columns: [
                 { HeaderText: "No.", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: "TransTime", Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "TransTime", Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "Choice", Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Odds", Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Stake", Width: 60, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Stake", Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Winloss", Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Status", Width: 95, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "Agent PT", Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },

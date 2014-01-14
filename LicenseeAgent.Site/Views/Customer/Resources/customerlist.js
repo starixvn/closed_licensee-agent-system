@@ -15,7 +15,6 @@
     var urlAddDownline = $("#grid").data('url-add-downline');
     var urlIpInformation = $("#grid").data('url-ip');
     var editAgentId = 0;
-    var editAgentUsername = '';
     var editAgentLevel = 0;
     var editMemberId = 0;
 
@@ -297,10 +296,9 @@
                 }
             });
         },
-        editAgent: function (agentId, agentLevel, agentUsername, status) {
+        editAgent: function (agentId, agentLevel, status) {
             editAgentId = agentId;
             editAgentLevel = agentLevel;
-            editAgentUsername = agentUsername;
             $.contextMenu({
                 selector: '.cell-' + agentId,
                 items: customerList.getEditItems(status),

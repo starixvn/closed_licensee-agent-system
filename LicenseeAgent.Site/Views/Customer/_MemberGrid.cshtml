@@ -3,23 +3,23 @@
         columns: [
                         {
                             HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
-                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>", Width: 30, Name: "CustId", CellAlign: "center", Formatter:
+                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>", Width: 30, Name: "Select", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
                                 return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
                             }
                         },
                         { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
-                        { HeaderText: "@Las.Action", Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center", Formatter:
+                        { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
                                 return '<span class="cell-edit icon-customer-edit cell-' + rowData.CustId + '" onclick="customerList.editMember(' + rowData.CustId + ', ' + rowData.Status + ');"></span>';
                             }
                         },
-                        { HeaderText: "@Las.Username", Width: 120, Name: "UserName", HeaderAlign: "center", Formatter:
+                        { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
                                 return '<a href="#">' + cell.Value + '</a>';
                             }
                         },
-                        { HeaderText: "@Las.Status", Width: 100, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
+                        { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
                             function (rowIndex, rowData, cell, cellFormated) {
                                 return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
                                     + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')

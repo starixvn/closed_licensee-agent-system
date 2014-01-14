@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.BetList.Utilities
 {
-    using System;
     using System.Collections.Generic;
     using Criteria;
     using Entities;

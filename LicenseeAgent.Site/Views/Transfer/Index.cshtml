@@ -3,12 +3,18 @@
 }
 @section css
 {
-    @Styles.Render("~/css/account")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/transfer")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/transfer")
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("GetCustomerList", "Customer", FormMethod.Post,
+@using (Html.BeginForm("Search", null, FormMethod.Post,
     new { @class = "form-inline form-filter ", id = "search-form" }))
 {
     <div class="controls-row">
@@ -24,4 +30,25 @@
             @Las.Submit
         </button>
     </div>
+}
+<ul class="bullet-star">
+    <li>
+        @Las.TransferTimeWarning
+    </li>
+    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+    {
+        <li class="text-warning">
+            @Html.Raw(Las.TransferMemberWarning)
+        </li>
+    }
+</ul>
+<div id="grid" class="freegrid">
+</div>
+@if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+{
+    @Html.Partial("MemberList")
+}
+else
+{
+    @Html.Partial("AgentList")
 }

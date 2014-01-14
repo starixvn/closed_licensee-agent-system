@@ -16,26 +16,12 @@
     </div>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
-    @Html.Partial("_AppLang")
-    @if (ViewBag.PageLang != null)
-    {
-        <script type="text/javascript">
-            @Html.Raw(Formatter.FormatJson("pageLang", ViewBag.PageLang))
-        </script>
-    }
     @if (ViewBag.PageContext != null)
     {
         <script type="text/javascript">
             @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
         </script>
     }
-    
-    <script type="text/javascript">
-        var _page = {
-            lang: '@System.Globalization.CultureInfo.CurrentUICulture.Name'
-        };
-    </script>
-
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")

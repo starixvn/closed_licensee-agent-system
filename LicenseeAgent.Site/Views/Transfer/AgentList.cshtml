@@ -1,1 +1,65 @@
-﻿<h2>AgentList</h2>
+﻿<script type="text/javascript">
+    var gridOption = {
+        columns: [
+                        {
+                            HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
+                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>",
+                            Width: 30, Name: "Select", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
+                            }
+                        },
+                        { HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center" },
+                        { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<a href="#">' + cell.Value + '</a>';
+                            }
+                        },
+                        { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return cell.Value == 1 ? '<div class="account-status-open">{0}</div>'.format('@Las.Open') : '<div class="account-status-closed">{0}</div>'.format('@Las.Closed')
+                            }
+                        },
+                        { HeaderText: "@Las.YesterdayBalance", Width: 60, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.TotalBalance", Width: 60, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.YesterdayCash", Width: 60, Name: "YesterdayCash", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.TotalCash", Width: 60, Name: "TotalCash", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.Outstanding", Width: 60, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.GivenCredit", Width: 60, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        },
+                        { HeaderText: "@Las.UsedCredit", Width: 60, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", Formatter:
+                            function (rowIndex, rowData, cell, cellFormated) {
+                                return '<span>' + cell.Value + '</span>';
+                            }
+                        }
+                   ],
+        showPager: true,
+        allowTruncate: true,
+        gridExpandHeight: 100,
+        indexNumberColumn: 1,
+        bodyRowHeight: 29
+    };
+</script>

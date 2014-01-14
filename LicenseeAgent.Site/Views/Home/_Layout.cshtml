@@ -13,7 +13,6 @@
     @RenderBody()
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
-    @Html.Partial("_AppLang")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")

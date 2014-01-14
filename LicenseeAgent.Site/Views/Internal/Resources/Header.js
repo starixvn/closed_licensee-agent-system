@@ -24,7 +24,7 @@
                     INTERNAL_HEADER.onChange();
                     $('#licensee').find('span:first').html($(this).find('a').html());
                     $('#licensee').find('ul').hide();
-                    $("#currency").find("span:first").html(CORE.getSingleResource('ChooseCurrency'));
+                    $("#currency").find("span:first").html(LANGUAGE.getString('ChooseCurrency'));
                     INTERNAL_HEADER.loadCurrency(newLicenseeId);
                 });
             }

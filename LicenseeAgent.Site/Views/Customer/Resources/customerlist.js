@@ -322,33 +322,33 @@
             var items = [];
             if (pageContext.IsLastLevel) {
                 items = [
-                    { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
-                    { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
-                    {name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
+                    { name: LANGUAGE.getString("Sportsbook"), callback: customerList.editSportsbook },
+                    { name: LANGUAGE.getString("EditInfo"), callback: customerList.editInfo },
+                    { name: LANGUAGE.getString("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
                 { name: actions.VirtualSports, callback: customerList.editSetting },
                 { name: actions.SBBetSetting, callback: customerList.editSetting },
                 { name: actions.Commission, callback: customerList.editSetting },*/
-                    {name: CORE.getSingleResource("Password"), callback: customerList.editSetting }
+                    {name: LANGUAGE.getString("Password"), callback: customerList.editSetting }
                 ];
             }
             else {
                 items = [
-                    { name: CORE.getSingleResource("Sportsbook"), callback: customerList.editSportsbook },
-                    { name: CORE.getSingleResource("EditInfo"), callback: customerList.editInfo },
-                    {name: CORE.getSingleResource("ResetPassword"), callback: customerList.resetPassword },
+                    { name: LANGUAGE.getString("Sportsbook"), callback: customerList.editSportsbook },
+                    { name: LANGUAGE.getString("EditInfo"), callback: customerList.editInfo },
+                    { name: LANGUAGE.getString("ResetPassword"), callback: customerList.resetPassword },
                 /*{ name: actions.NumberGame, callback: customerList.editSetting },
                 { name: actions.Casino, callback: customerList.editSetting },
                 { name: actions.VirtualSports, callback: customerList.editSetting },
                 { name: actions.AddDownline, callback: customerList.editSetting },
                 { name: actions.Commission, callback: customerList.editSetting },*/
-                    {name: CORE.getSingleResource("Password"), callback: customerList.editSetting }
+                    {name: LANGUAGE.getString("Password"), callback: customerList.editSetting }
                 ];
             }
 
             if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
-                items.push({ name: CORE.getSingleResource("AddDownline"), callback: customerList.addDownline });
+                items.push({ name: LANGUAGE.getString("AddDownline"), callback: customerList.addDownline });
             }
 
             if (pageContext.IsDirectDownline) {

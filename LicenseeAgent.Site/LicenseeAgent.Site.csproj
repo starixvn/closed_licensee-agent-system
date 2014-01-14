@@ -257,6 +257,7 @@
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\ng-grid\ng-grid.css" />
+    <Content Include="Images\bullet-star.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
@@ -522,6 +523,8 @@
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />
     <Content Include="Views\AccountInformation\Resources\index.js" />
+    <Content Include="Views\Transfer\Resources\Transfer.less" />
+    <Content Include="Views\Transfer\Resources\Transfer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -597,7 +600,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.sitemap" />
-    <Content Include="Views\Shared\_AppLang.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />

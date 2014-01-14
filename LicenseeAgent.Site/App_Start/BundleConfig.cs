@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Anders.Le" date="2013.7.7">Created</change>
-// </history>
 
 namespace LicenseeAgent.Site
 {
@@ -101,7 +98,7 @@ namespace LicenseeAgent.Site
                 "~/content/fanexgrid/Fanex.Grid.css",
                 "~/content/fanexgrid/Fanex.Pagination.css",
                 "~/content/customizeFanexGrid.less"));
-            
+
             // Numeral
             bundles.Add(new ScriptBundle("~/js/numeral").Include(
                 "~/scripts/fanexgrid/numeral.js"));
@@ -172,6 +169,7 @@ namespace LicenseeAgent.Site
             RegisterCustomerListPage(bundles);
             RegisterBetListPage(bundles);
             RegisterTotalBetsPages(bundles);
+            RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
         }
 
@@ -311,6 +309,15 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/plugin").Include(
                 "~/scripts/fanex.multiSelect/fanex.multiSelect.js").Include(
                 "~/scripts/refresh.countdown/plugin.refresh.countdown.js"));
+        }
+
+        private static void RegisterTransferPage(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/css/transfer").Include(
+                "~/views/transfer/resources/transfer.less"));
+
+            bundles.Add(new ScriptBundle("~/js/transfer").Include(
+                "~/views/transfer/resources/transfer.js"));
         }
 
         #endregion Pages

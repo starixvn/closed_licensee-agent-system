@@ -140,7 +140,7 @@ var BETLIST = function ($) {
                     var height = 280;
                     var width = 360;
                     var details = '<div>' + response + '</div>';
-                    var title = CORE.getSingleResource("BetListDetails") + transId;
+                    var title = LANGUAGE.getString("BetListDetails") + transId;
                     POPUP.openDialog(details, title, { width: width, height: height });
                 },
                 beforeSend: function () {

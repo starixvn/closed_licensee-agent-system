@@ -846,6 +846,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given Credit.
+        /// </summary>
+        public static string GivenCredit {
+            get {
+                return ResourceManager.GetString("GivenCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goal.
         /// </summary>
         public static string Goal {
@@ -1693,11 +1702,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Balance.
+        /// </summary>
+        public static string TotalBalance {
+            get {
+                return ResourceManager.GetString("TotalBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Bets.
         /// </summary>
         public static string TotalBets {
             get {
                 return ResourceManager.GetString("TotalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Cash.
+        /// </summary>
+        public static string TotalCash {
+            get {
+                return ResourceManager.GetString("TotalCash", resourceCulture);
             }
         }
         
@@ -1716,6 +1743,24 @@ namespace LicenseeAgent.Resources {
         public static string Transfer {
             get {
                 return ResourceManager.GetString("Transfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning: If balance is full transfered, the &lt;span class=&quot;text-highlighted&quot;&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit..
+        /// </summary>
+        public static string TransferMemberWarning {
+            get {
+                return ResourceManager.GetString("TransferMemberWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can only transfer from 12pm to 11:59pm (GMT-4)..
+        /// </summary>
+        public static string TransferTimeWarning {
+            get {
+                return ResourceManager.GetString("TransferTimeWarning", resourceCulture);
             }
         }
         
@@ -1779,6 +1824,15 @@ namespace LicenseeAgent.Resources {
         public static string Upline {
             get {
                 return ResourceManager.GetString("Upline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used Credit.
+        /// </summary>
+        public static string UsedCredit {
+            get {
+                return ResourceManager.GetString("UsedCredit", resourceCulture);
             }
         }
         
@@ -1860,6 +1914,24 @@ namespace LicenseeAgent.Resources {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday Balance.
+        /// </summary>
+        public static string YesterdayBalance {
+            get {
+                return ResourceManager.GetString("YesterdayBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday Cash.
+        /// </summary>
+        public static string YesterdayCash {
+            get {
+                return ResourceManager.GetString("YesterdayCash", resourceCulture);
             }
         }
     }

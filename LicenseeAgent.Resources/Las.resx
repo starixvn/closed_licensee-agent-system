@@ -809,4 +809,28 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="TransferMemberWarning" xml:space="preserve">
+    <value>Warning: If balance is full transfered, the &lt;span class="text-highlighted"&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit.</value>
+  </data>
+  <data name="TransferTimeWarning" xml:space="preserve">
+    <value>You can only transfer from 12pm to 11:59pm (GMT-4).</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>Given Credit</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Total Balance</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Total Cash</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Used Credit</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>Yesterday Balance</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Yesterday Cash</value>
+  </data>
 </root>

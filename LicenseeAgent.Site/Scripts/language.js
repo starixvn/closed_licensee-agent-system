@@ -46,6 +46,40 @@
                 selectedLanguageCode = selectedLanguage;
             }
             return selectedLanguageCode;
+        },
+        getString: function (enghlishName) {
+            if (enghlishName == null || enghlishName == undefined) return enghlishName;
+            var keyName = "_language_" + LANGUAGE.getSelectedLanguage().replace("-", "_");
+
+            var resources = window[keyName];
+            if (!resources) {
+                resources = _language_en_US;
+            }
+
+            var mapResource = function (key) {
+                var item = resources[key];
+                if (item == undefined) {
+                    item = _language_en_US[key];
+                    return item != undefined ? item : key;
+                } else {
+                    return item;
+                }
+            };
+            if (enghlishName.indexOf("@") > -1) {
+                var keys = enghlishName.match(/\@{1}\[{1}[a-zA-Z\d\_]+\]{1}/g);
+                if (keys != null) {
+                    var temp = enghlishName;
+                    for (var i = 0; i < keys.length; i++) {
+                        var realKey = keys[i].replace("@[", "").replace("]", "");
+                        temp = temp.replace(keys[i], mapResource(realKey));
+                    }
+                    return temp;
+                }
+                return mapResource(enghlishName);
+            }
+            else {
+                return mapResource(enghlishName);
+            }
         }
     };
 } (jQuery);

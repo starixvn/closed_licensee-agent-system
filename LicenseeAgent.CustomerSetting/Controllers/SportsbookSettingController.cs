@@ -223,7 +223,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
-            model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
+            model.SettingContext.LoginUserId = CurrentSession.AgentInfo.AgentId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.UpdateIndirectCustomer(model);
             var messages = GenerateMessages(result, true);

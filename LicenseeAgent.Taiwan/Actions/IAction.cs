@@ -1,11 +1,11 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="Contants.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IAction.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan
+namespace LicenseeAgent.Taiwan.Actions
 {
     using System;
     using System.Collections.Generic;
@@ -15,8 +15,8 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    internal class Contants
+    public interface IAction
     {
-
+        string GetActionName();
     }
 }

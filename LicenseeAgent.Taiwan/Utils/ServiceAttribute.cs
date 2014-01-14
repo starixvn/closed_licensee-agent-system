@@ -15,8 +15,9 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ServiceAttribute
+    [AttributeUsage(AttributeTargets.Method)]
+    public class ServiceAttribute : Attribute
     {
-
+        public string Name { get; set; }
     }
 }

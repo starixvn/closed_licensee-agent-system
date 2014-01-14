@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="Mapper.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ServiceSetting.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
@@ -15,7 +15,16 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Mapper
+    public static class ServiceSetting
     {
+        public const string UrlAction = "{0}/{1}";
+
+        public const string Method = "POST";
+
+        public const string ContentType = "application/x-www-form-urlencoded";
+
+        public const string ParamFormat = "{0}={1}&";
+
+        public const string HttpError = "Server error (HTTP {0}: {1}).";
     }
 }

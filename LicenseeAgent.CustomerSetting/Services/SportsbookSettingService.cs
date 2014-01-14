@@ -656,7 +656,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     getAgentSettingCriteria = new AgentSelMemIndirectForUpdateCriteria
                     {
                         CustId = settingContext.TargetCustId,
-                        AgentId = settingContext.LoginUserId
+                        AgentId = settingContext.CustId
                     };
                 }
                 else

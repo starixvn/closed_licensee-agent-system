@@ -1,11 +1,11 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="Actions.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateStatusResult.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan
+namespace LicenseeAgent.Taiwan.Results
 {
     using System;
     using System.Collections.Generic;
@@ -15,8 +15,10 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum Actions
+    public class UpdateStatusResult
     {
-        CheckUserName = "CheckUserName"
+        public int IBCCustId { get; set; }
+
+        public string Result { get; set; }
     }
 }

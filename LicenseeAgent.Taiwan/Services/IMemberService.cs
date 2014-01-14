@@ -7,16 +7,26 @@
 
 namespace LicenseeAgent.Taiwan.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public interface IMemberService
     {
-        //bool CheckUsername();
+        bool CheckUserName(IAction action);
+
+        bool InsertNewMember(IAction action);
+
+        bool ResetPassword(IAction action);
+
+        bool UpdateMemberInfo(IAction action);
+
+        bool UpdateMemberStatus(IAction action);
+
+        T GetMemberInformation<T>(T memberEntity, IAction action);
+
+        IList<T> GetMemberInformations<T>(IList<T> memberEntitys, IAction action);
     }
 }

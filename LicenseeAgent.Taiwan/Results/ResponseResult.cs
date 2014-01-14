@@ -10,10 +10,12 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    internal class ResponseResult
+    public class ResponseResult
     {
         public int ErrorCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        public string Data { get; set; }
     }
 }

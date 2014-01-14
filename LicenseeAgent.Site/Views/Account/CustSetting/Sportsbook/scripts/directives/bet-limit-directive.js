@@ -37,7 +37,7 @@ if (fanex.sportsbookSetting) {
                     else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
                         message = scope.language["bettingLimit_Message_MinBetLessThanOrEqualMaxBet"];
                     }
-                    else if (formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
+                    else if (!modelData.IsUnlimited && formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
                         message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + reformatInputNumberForControl(modelData.MaxMinBet);
                     }
 
@@ -62,7 +62,7 @@ if (fanex.sportsbookSetting) {
                     else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
                         message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch"];
                     }
-                    else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
+                    else if (!modelData.IsUnlimited && formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
                         message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxBet);
                     }
 
@@ -84,7 +84,7 @@ if (fanex.sportsbookSetting) {
                     else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
                         message = scope.language["bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet"];
                     }
-                    else if (formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
+                    else if (!modelData.IsUnlimited && formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
                         message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerMatch);
                     }
 
@@ -126,6 +126,7 @@ if (fanex.sportsbookSetting) {
                 modelData.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
                 modelData.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                modelData.IsUnlimited = fanex.sportsbookSetting.betLimitService.isUnlimited(modelData.MaxMinBet, modelData.MinMaxBet, modelData.MinMaxPerMatch);
                 var inputControl = element.find('.input');
                 modelData.actions = fanex.sportsbookSetting.bettingLimitActions.actions(modelData, controller, inputControl, scope);
             }
@@ -150,6 +151,7 @@ if (fanex.sportsbookSetting) {
                 modelData.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
                 modelData.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                modelData.IsUnlimited = fanex.sportsbookSetting.betLimitService.isUnlimited(modelData.MaxMinBet, modelData.MinMaxBet, modelData.MinMaxPerMatch);
                 var inputControl = element.find('.input');
                 modelData.actions = fanex.sportsbookSetting.bettingLimitActions.actions(modelData, controller, inputControl, scope);
             }
@@ -178,6 +180,7 @@ if (fanex.sportsbookSetting) {
                 betSetting.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
                 betSetting.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
                 betSetting.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+                betSetting.IsUnlimited = fanex.sportsbookSetting.betLimitService.isUnlimited(betSetting.MaxMinBet, betSetting.MinMaxBet, betSetting.MinMaxPerMatch);
             }
         }
     });
@@ -204,6 +207,7 @@ if (fanex.sportsbookSetting) {
                 betSetting.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
                 betSetting.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
                 betSetting.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+                betSetting.IsUnlimited = fanex.sportsbookSetting.betLimitService.isUnlimited(betSetting.MaxMinBet, betSetting.MinMaxBet, betSetting.MinMaxPerMatch);
             }
         }
     });

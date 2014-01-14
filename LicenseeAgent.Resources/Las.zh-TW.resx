@@ -659,4 +659,25 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="AgentComm" xml:space="preserve">
+    <value>AgentComm</value>
+  </data>
+  <data name="AgentPT" xml:space="preserve">
+    <value>Agent PT</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="Odds" xml:space="preserve">
+    <value>Odds</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="TransTime" xml:space="preserve">
+    <value>Trans.Time</value>
+  </data>
 </root>

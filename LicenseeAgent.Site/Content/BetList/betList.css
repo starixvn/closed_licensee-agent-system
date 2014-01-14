@@ -238,30 +238,43 @@ Format styles
 }
 
 /********** Betlist core style **************/
+/* Time */
+.time {
+	margin: 3px 0 0;
+}
 
 /* Choice */
 .favorite
 {
     color: #ff2d2d;
-    font-weight: bold;
+    font-weight: normal;
 }
 .handicap
 {
-    color: #606060;
+    color: #6D6D6D;
 }
 .bettype
 {
     color: #5fa8d9;
     font-weight: bold;
+    line-height: 24px;
 }
 .sport
 {
     color: #5fa8d9;
 }
+.underdog {
+	color: #303030;
+}
+.match{
+    line-height: 24px;
+}
+
 /* Odds */
 .oddstype
 {
-    color: #586985;
+    color: #6D6D6D;
+    font-weight: normal;
 }
 
 .underdog font
@@ -271,7 +284,8 @@ Format styles
 /* Status */
 .status
 {
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -423,4 +437,12 @@ Format styles
 .freegrid .grid-fixed-table td
 {
     border-color: #FFF !important;
+}
+
+.freegrid .table-cell {
+	padding-right: 1px;
+}
+
+.freegrid td, .freegrid .grid-fixed-table td {
+	padding: 10px 3px 10px 0 !important;
 }

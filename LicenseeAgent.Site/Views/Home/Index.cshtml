@@ -23,19 +23,16 @@
 @section css
 {
     @Styles.Render("~/css/home")
+    @Styles.Render("~/css/home/accountinfo")
 }
 @section scripts
 {
-    <script type="text/javascript">
-        var _page = {
-            lang: '@System.Globalization.CultureInfo.CurrentUICulture.Name'
-        };
-    </script>
+    @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/home")
+    @Scripts.Render("~/js/home/accountinfo")
     @if (AppSettings.IsAdminSite)
     {
         @Scripts.Render("~/js/home/internal")
     }
-    @Scripts.Render("~/js/moment")
 }

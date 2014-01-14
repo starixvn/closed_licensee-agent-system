@@ -8,8 +8,6 @@
     };
 
     return {
-        init: function () {
-        },
         openDialog: function (target, title, options) {
             options = options || {};
             if (title) options.title = title;

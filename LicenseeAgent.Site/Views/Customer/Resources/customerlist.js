@@ -9,11 +9,9 @@
         , lengthUsername = 2
         , statusObj = { All: -1, Close: 0, Open: 1 };
 
-    var urlGetCustomerList = $('#search-form').attr('action');
     var urlCustomerSearchAutoComplete = $("#Username").attr('urlautosearch');
     var urlChangeStatus = $("#grid").data('url-change-status');
     var urlAddDownline = $("#grid").data('url-add-downline');
-    var urlIpInformation = $("#grid").data('url-ip');
     var editAgentId = 0;
     var editAgentLevel = 0;
     var editMemberId = 0;
@@ -80,7 +78,7 @@
             };
 
             $.ajax({
-                url: urlGetCustomerList,
+                url: $('#search-form').attr('action'),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -125,8 +123,9 @@
                 params = { agentid: custId, status: statusId };
             }
 
+            var url = pageContext.IsLastLevel ? "~/Customer/ChangeMemberStatus" : "~/Customer/ChangeAgentStatus";
             $.ajax({
-                url: urlChangeStatus,
+                url: CORE.resolveUrl(url),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -211,7 +210,7 @@
             }
             if (!isCalling) {
                 $.ajax({
-                    url: urlCustomerSearchAutoComplete,
+                    url: CORE.resolveUrl('~/Customer/CustomerSearchAutoComplete'),
                     type: 'post',
                     data: {
                         text: userName,
@@ -278,7 +277,8 @@
             $('#dialog-confirm').dialog('close');
         },
         getIpInformation: function (ipAddress) {
-            $.ajax({ url: urlIpInformation,
+            $.ajax({ 
+            url: CORE.resolveUrl('~/Customer/GetIpInformation'),
                 type: 'post',
                 data: { IpAddress: ipAddress },
                 beforeSend: function () {

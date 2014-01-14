@@ -259,6 +259,7 @@
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\login\sprite.png" />
+    <Content Include="Scripts\ui.js" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />
@@ -380,7 +381,7 @@
     <Content Include="Content\poshytip\tip-twitter\tip-twitter.css" />
     <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.gif" />
     <Content Include="Images\avatar.png" />
-    <Content Include="Views\Home\Resources\images\bgheader.png" />
+    <Content Include="Views\Home\Resources\Images\bgheader.png" />
     <Content Include="Content\poshytip\tip-yellowsimple\tip-yellowsimple.css" />
     <Content Include="Content\poshytip\tip-yellowsimple\tip-yellowsimple_arrows.gif" />
     <Content Include="Content\Select2\select2.css" />
@@ -509,9 +510,9 @@
     <Content Include="Views\Error\Resources\Unauthorized.js" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
-    <Content Include="Scripts\header.js" />
+    <Content Include="Views\Home\Resources\header.js" />
     <Content Include="Scripts\login.js" />
-    <Content Include="Scripts\menu.js" />
+    <Content Include="Views\Home\Resources\menu.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
@@ -591,7 +592,7 @@
     <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
-    <Content Include="Views\Home\Resources\Index.less" />
+    <Content Include="Views\Home\Resources\home.less" />
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Web.AppSettings.config">
       <SubType>Designer</SubType>

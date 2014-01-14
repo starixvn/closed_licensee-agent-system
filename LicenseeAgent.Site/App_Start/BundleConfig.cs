@@ -195,19 +195,23 @@ namespace LicenseeAgent.Site
         private static void RegisterHomePage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/home").Include(
-                "~/scripts/HeadJS/head.js",
+                "~/scripts/headjs/head.js",
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
-                "~/scripts/menu.js",
-                "~/scripts/header.js",
-                "~/Views/AccountInformation/Resources/index.js",
-                "~/scripts/scroller/jquery.nicescroll.min.js"));
+                "~/views/home/resources/menu.js",
+                "~/views/home/resources/header.js"));
+
+            bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
+                "~/scripts/scroller/jquery.nicescroll.min.js",
+                "~/views/accountinformation/resources/index.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
                 "~/Views/Internal/Resources/Header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
-                "~/Views/Home/Resources/index.less",
-                "~/Views/AccountInformation/Resources/index.less"));
+                "~/views/home/resources/home.less"));
+
+            bundles.Add(new LessBundle("~/css/home/accountinfo").Include(
+                "~/views/accountinformation/resources/index.less"));
         }
 
         /// <summary>
@@ -216,18 +220,17 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">Bundle collection.</param>
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
-                "~/Views/Account/CustSetting/Resources/scripts", "*.js", true).Include(
-                "~/scripts/autoNumeric/autoNumeric.js").Include(
-                "~/scripts/poshytip/jquery.poshytip.js"));
+            bundles.Add(new ScriptBundle("~/js/customersetting").Include(
+                "~/scripts/poshytip/jquery.poshytip.js").IncludeDirectory(
+                "~/views/account/custsetting/resources/scripts", "*.js", true).Include(
+                "~/scripts/autonumeric/autonumeric.js"));
             bundles.Add(new LessBundle("~/css/customersetting").Include(
-                "~/Views/Account/Resources/MemberInfo.less").Include(
                 "~/content/poshytip/tip-twitter/tip-twitter.css"));
 
-            bundles.Add(new ScriptBundle("~/js/customersetting.sportsbook").IncludeDirectory(
-                "~/Views/Account/CustSetting/Sportsbook/scripts", "*.js", true));
-            bundles.Add(new LessBundle("~/css/customersetting.sportsbook").Include(
-                "~/Views/Account/CustSetting/Sportsbook/styles/fanex.sportsbookSetting.less"));
+            bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
+                "~/views/account/custsetting/sportsbook/scripts", "*.js", true));
+            bundles.Add(new LessBundle("~/css/customersetting/sportsbook").Include(
+                "~/views/account/custSetting/sportsbook/styles/fanex.sportsbookSetting.less"));
         }
 
         /// <summary>

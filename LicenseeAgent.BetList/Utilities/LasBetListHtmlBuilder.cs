@@ -24,9 +24,9 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public static class LasBetListHtmlBuilder
     {
-        private const int BETLIST_TICKETSTATUS_RUNNING = 0;
+        private const string BETLISTTICKETSTATUSRUNNING = "running";
 
-        private const int BETLIST_TICKETSTATUS_WAITING = 1;
+        private const string BETLISTTICKETSTATUSWAITING = "waiting";
 
         /// <summary>
         /// Get ticket status.
@@ -94,7 +94,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            if(ticket.StatusId == BETLIST_TICKETSTATUS_RUNNING || ticket.StatusId == BETLIST_TICKETSTATUS_WAITING)
+            if (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
             {
                 return "-";
             }

@@ -24,6 +24,10 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public static class LasBetListHtmlBuilder
     {
+        private const int BETLIST_TICKETSTATUS_RUNNING = 0;
+
+        private const int BETLIST_TICKETSTATUS_WAITING = 1;
+
         /// <summary>
         /// Get ticket status.
         /// </summary>
@@ -90,12 +94,12 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            if(ticket.Winlost == 0)
+            if(ticket.StatusId == BETLIST_TICKETSTATUS_RUNNING || ticket.StatusId == BETLIST_TICKETSTATUS_WAITING)
             {
                 return "-";
             }
 
-            return ticket.Winlost >= 0
+            return ticket.Winlost > 0
                 ? string.Format("{0:#,##0.00}", ticket.Winlost)
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
         }

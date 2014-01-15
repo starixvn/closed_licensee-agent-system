@@ -50,7 +50,7 @@
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4926.30115, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fanex.BetList.Core, Version=1.0.5128.26121, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
@@ -513,7 +513,7 @@
     <Content Include="Views\Home\Resources\header.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Views\Home\Resources\menu.js" />
-    <Content Include="Views\Report\Resources\ReportManager.js" />
+    <Content Include="Views\Report\Resources\ResultsReportManager.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />

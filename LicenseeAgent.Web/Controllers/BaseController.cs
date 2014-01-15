@@ -16,6 +16,7 @@
 namespace LicenseeAgent.Web.Controllers
 {
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using LicenseeAgent.Core;
@@ -247,6 +248,26 @@ namespace LicenseeAgent.Web.Controllers
         {
             var errorMessage = GetModelErrorMessage();
             return Content(errorMessage);
+        }
+
+        /// <summary>
+        /// Override JSON for larger max JSON length.
+        /// </summary>
+        /// <param name="data">Original data.</param>
+        /// <param name="contentType">Content type.</param>
+        /// <param name="contentEncoding">Content Encoding.</param>
+        /// <param name="behavior">Behavior value.</param>
+        /// <returns>JSON object.</returns>
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = int.MaxValue
+            };
         }
 
         /// <summary>

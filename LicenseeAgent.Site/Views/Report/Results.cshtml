@@ -3,32 +3,45 @@
 }
 @section css
 {
+    @Styles.Render("~/css/fanexgrid")
 }
 @section scripts
 {
-    <script type="text/javascript" src='@Url.Content("~/Views/Report/Resources/ReportManager.js")'></script>
+    @Scripts.Render("~/js/fanexgrid")
+    <script type="text/javascript" src='@Url.Content("~/Views/Report/Resources/ResultsReportManager.js")'></script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-<div id="filter-tabs">
-    <ul>
-        <li><a href="#filter-tab-match"> @Las.MatchResults</a></li>
-        <li><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
-    </ul>
-    <div id="filter-tab-match">
-        <div class="controls-row">
-            <span>Date</span>
-            <button class="btn btn-primary" type="submit">@Las.Submit</button>
-            <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
-            <button class="btn btn-primary" type="submit">@Las.Today</button>
+@using (Html.BeginForm("Results", "Report", FormMethod.Post,
+    new { @class = "form-inline form-filter ", id = "search-form" }))
+ {
+    <div id="filter-tabs">
+        <ul>
+            <li><a href="#filter-tab-match"> @Las.MatchResults</a></li>
+            <li><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
+        </ul>
+        <div id="filter-tab-match">
+            <div class="controls-row">
+                <span>Date</span>
+                <button class="btn btn-primary" type="submit">@Las.Submit</button>
+                <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
+                <button class="btn btn-primary" type="submit">@Las.Today</button>
+            </div>
+            <div class="controls-row">
+                <span>Sport</span>
+                <div id="sport-multi-select">
+                </div>
+                @Html.Hidden("Sport", "")
+
+                <span>League</span>
+                <div id="league-multi-select">
+                </div>
+                @Html.Hidden("League", "")
+            </div>
         </div>
-        <div class="controls-row">
-            <span>Sport</span>
-            <span>League</span>
+        <div id="filter-tab-outright">
+            Content 2
         </div>
     </div>
-    <div id="filter-tab-outright">
-        Content 2
-    </div>
-</div>
+}

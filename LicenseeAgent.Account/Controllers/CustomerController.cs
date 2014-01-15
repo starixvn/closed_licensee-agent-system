@@ -10,6 +10,7 @@ namespace LicenseeAgent.Account.Controllers
     using System.Web.Mvc;
     using Fanex.Common;
     using LicenseeAgent.Account.Binders;
+    using LicenseeAgent.Account.Core;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
@@ -20,7 +21,6 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
-    using LicenseeAgent.Account.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -372,8 +372,8 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (ModelState.IsValid)
             {
-                var criteria = new ResetPasswordCriteria 
-                { 
+                var criteria = new ResetPasswordCriteria
+                {
                     AgentId = model.CustId,
                     Password = model.Password,
                     UserId = CurrentSession.AgentInfo.AgentId,

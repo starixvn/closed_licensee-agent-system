@@ -113,10 +113,6 @@ if (fanex.sportsbookSetting) {
             }
 
             return result;
-        },
-        isUnlimited: function (maxMinBet, minMaxBet, minMaxPerMatch) {
-            var self = this;
-            return self.formatInputNumber(maxMinBet) == 0 && self.formatInputNumber(minMaxBet) == 0 && self.formatInputNumber(minMaxPerMatch) == 0;
         }
     };
 }

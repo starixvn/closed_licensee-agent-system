@@ -3,18 +3,18 @@
         <div class="betting-limit-inner-item">
             <input type="text" class="input" ng-model="modelData.MinBet" maxlength="{{config.maxInput}}"
                 auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMinBet();"}' />
-            <span ng-show="!modelData.IsUnlimited">&gt;= {{modelData.MaxMinBet | number : 0}}</span></div>
+            <span ng-show="modelData.MaxMinBet > 0">&gt;= {{modelData.MaxMinBet | number : 0}}</span></div>
     </div>
     <div class="betting-limit-item">
         <div class="betting-limit-inner-item">
             <input type="text" class="input" ng-model="modelData.MaxBet" maxlength="{{config.maxInput}}"
                 auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMaxBet();"}' />
-            <span ng-show="!modelData.IsUnlimited">&lt;= {{modelData.MinMaxBet | number : 0}}</span></div>
+            <span ng-show="modelData.MinMaxBet > 0">&lt;= {{modelData.MinMaxBet | number : 0}}</span></div>
     </div>
     <div class="betting-limit-item">
         <div class="betting-limit-inner-item">
             <input type="text" class="input" ng-model="modelData.MaxPerMatch" maxlength="{{config.maxInput}}"
                 auto-numeric-format='{"command":"var modelData = scope.modelData; modelData.actions.onChangeMaxPerMatch();"}' />
-            <span ng-show="!modelData.IsUnlimited">&lt;= {{modelData.MinMaxPerMatch | number : 0}}</span></div>
+            <span ng-show="modelData.MinMaxPerMatch > 0">&lt;= {{modelData.MinMaxPerMatch | number : 0}}</span></div>
     </div>
 </div>

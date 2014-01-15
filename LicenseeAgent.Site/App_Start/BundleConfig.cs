@@ -111,9 +111,7 @@ namespace LicenseeAgent.Site
 
             // Contex Menu
             bundles.Add(new ScriptBundle("~/js/contextmenu").Include(
-                "~/scripts/contextmenu/jquery.contextMenu.js"));
-            bundles.Add(new LessBundle("~/css/contextmenu").Include(
-                "~/content/contextmenu/jquery.contextMenu.css"));
+                "~/scripts/contextmenu/context.js"));
         }
 
         /// <summary>

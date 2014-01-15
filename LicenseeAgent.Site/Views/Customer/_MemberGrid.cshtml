@@ -1,43 +1,44 @@
 ﻿<script type="text/javascript">
     var gridOption = {
-        columns: [
-                        {
-                            HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
-                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>", Width: 30, Name: "Select", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
-                            }
-                        },
-                        { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
-                        { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-edit icon-customer-edit cell-' + rowData.CustId + '" onclick="customerList.editMember(' + rowData.CustId + ', ' + rowData.Status + ');"></span>';
-                            }
-                        },
-                        { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return '<a href="#">' + cell.Value + '</a>';
-                            }
-                        },
-                        { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
-                                    + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
-                                    + '</div>';
-                            }
-                        },
-                        { HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center" },
-                        { HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center" },
-                        { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: CORE.DATE_FORMAT_FULL },
-                        { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                if (cell.Value == null)
-                                    return '';
-                                return '<span id="' + rowData.CustId + '" class="instruction-container">' + cell.Value + '</span>';
-                            }
-                        }
-                   ],
+        columns:
+            [
+                {
+                    HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
+                                "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>", Width: 30, Name: "Select", CellAlign: "center", Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
+                    }
+                },
+                { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
+                { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return '<i class="icon-customer-edit data-memberid={0}"></span>'.format(rowData.CustId);
+                    }
+                },
+                { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return '<a href="#">' + cell.Value + '</a>';
+                    }
+                },
+                { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
+                            + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
+                            + '</div>';
+                    }
+                },
+                { HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center" },
+                { HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center" },
+                { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: CORE.DATE_FORMAT_FULL },
+                { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        if (cell.Value == null)
+                            return '';
+                        return '<span id="' + rowData.CustId + '" class="instruction-container">' + cell.Value + '</span>';
+                    }
+                }
+            ],
         showPager: true,
         allowTruncate: true,
         gridExpandHeight: 100,

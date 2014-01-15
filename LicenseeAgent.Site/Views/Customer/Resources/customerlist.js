@@ -9,9 +9,6 @@
         , lengthUsername = 2
         , statusObj = { All: -1, Close: 0, Open: 1 };
 
-    var urlCustomerSearchAutoComplete = $("#Username").attr('urlautosearch');
-    var urlChangeStatus = $("#grid").data('url-change-status');
-    var urlAddDownline = $("#grid").data('url-add-downline');
     var editAgentId = 0;
     var editAgentLevel = 0;
     var editMemberId = 0;
@@ -19,6 +16,26 @@
     return {
         init: function () {
             $('.selectpicker').selectpicker();
+
+            // create action context menu
+            context.init({
+                preventDoubleContext: false,
+                beforeShow: customerList.updateActionMenus
+            });
+            context.attach('.icon-customer-edit', [
+                { id: 'menuSportsbook', icon: 'icon-account-logout', text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
+                { id: 'menuEditInfo', icon: 'icon-account-logout', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
+                { id: 'menuAddDownline', icon: 'icon-account-logout', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }
+            ]);
+
+            // create select context menu
+            context.init({
+                preventDoubleContext: false
+            });
+            context.attach('#select-dropdown', [
+                { text: LANGUAGE.getString('All'), href: '#', action: customerList.checkAll },
+                { text: LANGUAGE.getString('None'), href: '#', action: customerList.uncheckAll }
+            ]);
 
             // breadcrum
             $('.breadcrumb a').click(function () {
@@ -52,6 +69,16 @@
                     customerList.getIpInformation($(this).html());
                 });
             });
+        },
+        updateActionMenus: function (target) {
+            if (pageContext.IsLastLevel) {
+                editMemberId = $(target).data('memberid');
+            }
+            else {
+                editAgentId = $(target).data('agentid');
+                editAgentLevel = $(target).data('agentlevel');
+            }
+            $('#menuSportsbook').hide();
         },
         gridAfterBinding: function () {
             customerList.initInstruction();
@@ -147,22 +174,6 @@
                 complete: function () {
                     CORE.unblockUI();
                 }
-            });
-        },
-        onShowTop: function () {
-//            $("#contextMenu").css({
-//                display: "block",
-//                left: e.pageX,
-//                top: e.pageY
-//            });
-//            return;
-
-            $.contextMenu({
-                selector: '.icon-arrow',
-                items: showItems,
-                trigger: "left",
-                ignoreRightClick: true,
-                autoHide: true
             });
         },
         checkAllItem: function (itemAll) {
@@ -302,23 +313,6 @@
                 complete: function () {
                     CORE.unblockUI();
                 }
-            });
-        },
-        editAgent: function (agentId, agentLevel, status) {
-            editAgentId = agentId;
-            editAgentLevel = agentLevel;
-            $("#contextMenu").css({
-                display: "block",
-                left: event.pageX,
-                top: event.pageY
-            });
-            return;
-            $.contextMenu({
-                selector: '.cell-' + agentId,
-                items: customerList.getEditItems(status),
-                trigger: "left",
-                ignoreRightClick: true,
-                autoHide: true
             });
         },
         editMember: function (memberId, status) {

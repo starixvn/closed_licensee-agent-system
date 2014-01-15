@@ -2,44 +2,56 @@
     var gridOption = {
         columns: [
                         {
-                            HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
-                                        "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>",
-                            Width: 30, Name: "Select", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
+                            HeaderText: '<i class="icon-uncheck-all" onclick="customerList.checkAllItem(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+                            Width: 30, Name: "Select", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
                             }
                         },
-                        { HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center" },
-                        { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-edit icon-customer-edit cell-' + rowData.AgentId + '" onclick="customerList.editAgent(' + rowData.AgentId + ',' + rowData.AgentLevel + ',' + rowData.Status + ');"></span>';
+                        {
+                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
+                        },
+                        {
+                            HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                                return '<i class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}"></i>'.format(rowData.AgentId, rowData.AgentLevel);
                             }
                         },
-                        { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
+                        {
+                            HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<a href="#">' + cell.Value + '</a>';
                             }
                         },
-                        { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
+                        {
+                            HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
                                     + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
                                     + '</div>';
                             }
                         },
-                        { HeaderText: "@Las.Downline", Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
+                        {
+                            HeaderText: "@Las.Downline", Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 if (cell.Value == 0) {
                                     return '<span class="downline">' + cell.Value + '</span>';
                                 }
                                 return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:customerList.showAgent(\'' + rowData.AgentId + '\',\'' + rowData.UserName + '\',' + rowData.AgentLevel + ',' + rowData.NumberAgentLevel + ');">' + cell.Value + '</a></span>';
                             }
                         },
-                        { HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center" },
-                        { HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center" },
-                        { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: CORE.DATE_FORMAT_FULL },
-                        { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
+                        {
+                            HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center"
+                        },
+                        {
+                            HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center"
+                        },
+                        {
+                            HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: CORE.DATE_FORMAT_FULL
+                        },
+                        {
+                            HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 if (cell.Value == null)
                                     return '';
                                 return '<span id="' + rowData.AgentId + '" class="instruction-container">' + cell.Value + '</span>';

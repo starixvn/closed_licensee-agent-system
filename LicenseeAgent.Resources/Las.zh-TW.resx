@@ -683,4 +683,19 @@
   <data name="Results" xml:space="preserve">
     <value>Results</value>
   </data>
+  <data name="MatchResults" xml:space="preserve">
+    <value>Match Results</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>Outright Results</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
 </root>

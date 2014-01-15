@@ -95,7 +95,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <summary>
         /// Get list member information.
         /// </summary>
-        /// <typeparam name="T">Type object response</typeparam>
+        /// <typeparam name="T">Type object response.</typeparam>
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>

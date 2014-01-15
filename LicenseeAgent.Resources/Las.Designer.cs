@@ -1161,6 +1161,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Match Results.
+        /// </summary>
+        public static string MatchResults {
+            get {
+                return ResourceManager.GetString("MatchResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Credit.
         /// </summary>
         public static string MaxCredit {
@@ -1391,6 +1400,15 @@ namespace LicenseeAgent.Resources {
         public static string Outright {
             get {
                 return ResourceManager.GetString("Outright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outright Results.
+        /// </summary>
+        public static string OutrightResults {
+            get {
+                return ResourceManager.GetString("OutrightResults", resourceCulture);
             }
         }
         
@@ -1684,6 +1702,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sport.
+        /// </summary>
+        public static string Sport {
+            get {
+                return ResourceManager.GetString("Sport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sportsbook.
         /// </summary>
         public static string Sportsbook {
@@ -1761,6 +1788,15 @@ namespace LicenseeAgent.Resources {
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
             }
         }
         
@@ -2004,6 +2040,15 @@ namespace LicenseeAgent.Resources {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
         

@@ -8,6 +8,8 @@ namespace LicenseeAgent.Account.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using LicenseeAgent.Resources;
+    using LicenseeAgent.Web.Validations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -16,10 +18,19 @@ namespace LicenseeAgent.Account.ViewModels
     {
         public int CustId { get; set; }
 
-        [Required]
+        [AllowHtml]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceName = "NewPasswordRequired", ErrorMessageResourceType = typeof(Las))]
+        [AppPasswordRule]
+        [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordRuleInstruction", ErrorMessageResourceType = typeof(Las))]
+        [Display(Name = "ResetPassword", ResourceType = typeof(Las))]
         public string Password { get; set; }
 
-        [Compare("Password")]
+        [AllowHtml]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceName = "ConfirmPasswordRequired", ErrorMessageResourceType = typeof(Las))]
+        [Compare("Password", ErrorMessageResourceName = "PasswordNotMatch", ErrorMessageResourceType = typeof(Las))]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Las))]
         public string ConfirmPassword { get; set; }
     }
 }

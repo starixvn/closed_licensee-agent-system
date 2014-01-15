@@ -73,12 +73,15 @@
         updateActionMenus: function (target) {
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'));
+                $('#menuAddDownline').hide();
             }
             else {
                 editAgentId = parseInt($(target).data('agentid'));
                 editAgentLevel = parseInt($(target).data('agentlevel'));
             }
-            //$('#menuSportsbook').hide();
+            alert(target);
+            if ($(target).data('status') == 0)
+                $('#menuAddDownline').hide();
         },
         gridAfterBinding: function () {
             customerList.initInstruction();
@@ -170,6 +173,7 @@
                     else {
                         $(target).find('.icon-status-closed').addClass('icon-status-open').removeClass('icon-status-closed').find('span').text('Open');
                     }
+                    $('#' + custId).attr('data-status', statusId);
                 },
                 complete: function () {
                     CORE.unblockUI();

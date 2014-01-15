@@ -353,7 +353,8 @@ namespace LicenseeAgent.Account.Controllers
             {
                 IsDirectDownline = true,
                 IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
-                IsMember = customer.Level == Constants.MemberLevel
+                IsMember = customer.Level == Constants.MemberLevel,
+                IsAdmin = CurrentSession.IsAdmin
             };
 
             return View(new ResetPasswordViewModel
@@ -368,7 +369,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult ResetPasswordAgent(ResetPasswordViewModel model)
+        public JsonResult ResetPasswordAgent(ResetPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -376,24 +377,17 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     AgentId = model.CustId,
                     Password = model.Password,
-                    UserId = CurrentSession.AgentInfo.AgentId,
+                    UserId = CurrentSession.LoginUserId,
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserSalt = Cryptography.CreateSalt()
                 };
 
                 _agentService.ResetPassword(criteria);
 
-                if (criteria.ErrCode != 0)
-                {
-                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
-                }
-                else
-                {
-                    ViewBag.Result = Las.UpdateSuccessfully;
-                }
+                return Json(new Result(criteria.ErrCode));
+                
             }
-
-            return View(model);
+            return Json(new Result(Result.FailureValue));
         }
 
         /// <summary>

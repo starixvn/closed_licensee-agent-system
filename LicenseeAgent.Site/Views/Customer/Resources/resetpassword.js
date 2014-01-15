@@ -1,36 +1,31 @@
 ﻿var resetPassword = function ($) {
     return {
         init: function () {
+            $('form').submit(function () {
+                resetPassword.updatePassword();
+                return false;
+            });
+            alert("hehe");
         },
         updatePassword: function () {
             var params = {
-                sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
-                leagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(',')
+                CustId: $("#CustId").val(),
+                Password: $("#Password").val(),
+                ConfirmPassword: $("#ConfirmPassword").val()
+
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Customer/ResetPassword"),
+                url: CORE.resolveUrl("~/Customer/ResetPasswordAgent"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        currentPage: 0,
-                        itemsPerPageArray: CORE.pageSizes,
-                        showDetail: true,
-                        afterPagedFunction: function () {
-                            customerList.gridAfterBinding();
-                        }
-                    };
-
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
-
-                    customerList.gridAfterBinding();
-                    customerList.resizeBox();
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                    }
                 },
                 complete: function () {
                     CORE.unblockUI();

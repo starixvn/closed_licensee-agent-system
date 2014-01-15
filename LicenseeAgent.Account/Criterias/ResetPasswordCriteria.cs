@@ -36,7 +36,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            throw new NotImplementedException();
+            return UserId > 0 && !string.IsNullOrEmpty(Password);
         }
     }
 }

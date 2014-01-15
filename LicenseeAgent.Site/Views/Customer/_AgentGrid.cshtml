@@ -14,7 +14,7 @@
                         {
                             HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}"></i>'.format(rowData.AgentId, rowData.AgentLevel);
+                                return '<i id="{0}" class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}" data-status="{2}"></i>'.format(rowData.AgentId, rowData.AgentLevel, rowData.Status);
                             }
                         },
                         {

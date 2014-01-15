@@ -10,6 +10,7 @@ namespace LicenseeAgent.Account.Services
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Fanex.Common;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Services;
@@ -103,6 +104,7 @@ namespace LicenseeAgent.Account.Services
         /// <param name="criteria">Reset Password Criteria.</param>
         public void ResetPassword(ResetPasswordCriteria criteria)
         {
+            criteria.Password = Cryptography.CreateHash(criteria.Password, criteria.UserSalt);
             Execute(criteria);
         }
     }

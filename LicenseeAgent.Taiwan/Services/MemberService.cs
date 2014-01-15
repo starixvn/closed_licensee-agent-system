@@ -82,7 +82,7 @@ namespace LicenseeAgent.Taiwan.Services
         {
             var response = ServiceWrapper.GetResponseData(action);
 
-            if (response.ErrorCode == 0)
+            if (response.ErrCode == 0)
             {
                 var memberResult = JsonConvert.DeserializeObject<MemberResult>(response.Data);
 
@@ -103,7 +103,7 @@ namespace LicenseeAgent.Taiwan.Services
         {
             var response = ServiceWrapper.GetResponseData(action);
 
-            if (response.ErrorCode == 0)
+            if (response.ErrCode == 0)
             {
                 var memberResults = JsonConvert.DeserializeObject<IList<MemberResult>>(response.Data);
 

@@ -426,11 +426,6 @@ namespace LicenseeAgent.CustomerSetting.Service
             {
                 UserName = custInfo.UserName,
                 UserPwd = custInfo.Password,
-                Phone = custInfo.Phone,
-                Mobile = custInfo.Mobile,
-                FirstName = custInfo.FirstName,
-                LastName = custInfo.LastName,
-                Fax = custInfo.Fax,
                 Ip = model.SettingContext.Ip,
                 Creator = model.SettingContext.LoginUserId,
                 Credit = custInfo.Credit,

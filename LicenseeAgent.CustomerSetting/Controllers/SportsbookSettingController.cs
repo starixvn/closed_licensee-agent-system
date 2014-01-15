@@ -193,14 +193,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     Phone = model.UpdateDataSportsbookCustomer.CustInfo.Phone,
                     OtherPhone = model.UpdateDataSportsbookCustomer.CustInfo.Mobile,
                     Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax,
-                    SiteName = CurrentSession.LicenseeInfo.UserName,
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
                     Currency = CurrentSession.AgentInfo.CurrencyId
                 });
-                if (serviceResult.ErrorCode != 0)
+                if (serviceResult.ErrCode != 0)
                 {
                     return Json(new
                     {
-                        ErrCode = serviceResult.ErrorCode,
+                        ErrCode = serviceResult.ErrCode,
                         Messages = serviceResult.ErrMsg
                     });
                 }

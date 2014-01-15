@@ -28,11 +28,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         {
             UserName = criteria.UserName;
             UserPwd = criteria.UserPwd;
-            FirstName = criteria.FirstName;
-            LastName = criteria.LastName;
-            Phone = criteria.Phone;
-            Mobile = criteria.Mobile;
-            Fax = criteria.Fax;
             Credit = criteria.Credit;
             Status = criteria.Status;
             Ip = criteria.Ip;
@@ -45,16 +40,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         public string UserName { get; set; }
 
         public string UserPwd { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Phone { get; set; }
-
-        public string Mobile { get; set; }
-
-        public string Fax { get; set; }
 
         public decimal Credit { get; set; }
 
@@ -85,6 +70,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         public int PTBetType { get; set; }
 
         public bool IsLiveOutput { get; set; }
+
+        public string IBCUserName { get; set; }
 
         public override bool IsValid()
         {

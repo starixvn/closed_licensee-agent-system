@@ -68,10 +68,10 @@ namespace LicenseeAgent.Taiwan
 
             foreach (var property in properties)
             {
-                paramData.Append(string.Format(ServiceSetting.ParamFormat, property, HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
+                paramData.Append(string.Format(ServiceSetting.ParamFormat, property.Name, HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
             }
 
-            byte[] formData = UTF8Encoding.UTF8.GetBytes(paramData.ToString());
+            byte[] formData = UTF8Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
             request.ContentLength = formData.Length;
             
             using (Stream post = request.GetRequestStream())

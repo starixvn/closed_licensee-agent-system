@@ -12,7 +12,7 @@ namespace LicenseeAgent.Taiwan
     /// </summary>
     public class ResponseResult
     {
-        public int ErrorCode { get; set; }
+        public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

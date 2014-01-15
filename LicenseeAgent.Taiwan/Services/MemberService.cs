@@ -12,7 +12,7 @@ namespace LicenseeAgent.Taiwan.Services
     using System.Linq;
     using System.Text;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Function;
+    using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
     using Newtonsoft.Json;
 
@@ -21,59 +21,29 @@ namespace LicenseeAgent.Taiwan.Services
     /// </summary>
     public class MemberService : IMemberService
     {
-        public bool CheckUserName(IAction action)
+        public ResponseResult CheckUserName(IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
-            if (response.ErrorCode != 0)
-            {
-                return false;
-            }
-
-            return true;
+            return ServiceWrapper.GetResponseData(action);
         }
 
-        public bool InsertNewMember(IAction action)
+        public ResponseResult InsertNewMember(IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
-            if (response.ErrorCode != 0)
-            {
-                return false;
-            }
-
-            return true;
+            return ServiceWrapper.GetResponseData(action);
         }
 
-        public bool ResetPassword(IAction action)
+        public ResponseResult ResetPassword(IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
-            if (response.ErrorCode != 0)
-            {
-                return false;
-            }
-
-            return true;
+            return ServiceWrapper.GetResponseData(action);
         }
 
-        public bool UpdateMemberInfo(IAction action)
+        public ResponseResult UpdateMemberInfo(IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
-            if (response.ErrorCode != 0)
-            {
-                return false;
-            }
-
-            return true;
+            return ServiceWrapper.GetResponseData(action);
         }
 
-        public bool UpdateMemberStatus(IAction action)
+        public ResponseResult UpdateMemberStatus(IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
-            if (response.ErrorCode != 0)
-            {
-                return false;
-            }
-
-            return true;
+            return ServiceWrapper.GetResponseData(action);
         }
 
         public T GetMemberInformation<T>(T memberEntity, IAction action)
@@ -98,7 +68,7 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 var memberResults = JsonConvert.DeserializeObject<IList<MemberResult>>(response.Data);
 
-                ServiceMapper.MapObjects<MemberResult, T>(memberResults, memberEntitys, new MemberFunction());
+                ServiceMapper.MapObjects<MemberResult, T>(memberResults, memberEntitys, new MemberFilter());
             }
 
             return memberEntitys;

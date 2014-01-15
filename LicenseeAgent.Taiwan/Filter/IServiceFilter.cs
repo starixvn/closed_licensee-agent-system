@@ -1,18 +1,18 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="IFunction.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IServiceFilter.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan.Function
+namespace LicenseeAgent.Taiwan.Filter
 {
     using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IFunction
+    public interface IServiceFilter
     {
         /// <summary>
         /// Check two object same key property.

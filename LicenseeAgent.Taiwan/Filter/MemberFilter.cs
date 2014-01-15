@@ -1,11 +1,11 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="MemberFunction.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberFilter.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan.Function
+namespace LicenseeAgent.Taiwan.Filter
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Function
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MemberFunction : IFunction
+    public class MemberFilter : IServiceFilter
     {
         /// <summary>
         /// Check two object same key property.

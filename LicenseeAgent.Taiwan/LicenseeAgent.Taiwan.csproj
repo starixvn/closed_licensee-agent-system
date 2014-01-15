@@ -62,11 +62,12 @@
     <Compile Include="Actions\UpdateMemberInfoAction.cs" />
     <Compile Include="Actions\UpdateMemberStatusAction.cs" />
     <Compile Include="Configurations\ServiceSetting.cs" />
-    <Compile Include="Function\IFunction.cs" />
-    <Compile Include="Function\MemberFunction.cs" />
+    <Compile Include="Filter\IServiceFilter.cs" />
+    <Compile Include="Filter\MemberFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\MemberResult.cs" />
     <Compile Include="Results\ResponseResult.cs" />
+    <Compile Include="Results\UpdateStatusResult.cs" />
     <Compile Include="Utils\ServiceAttribute.cs" />
     <Compile Include="Utils\ServiceMapper.cs" />
     <Compile Include="Utils\ServiceWrapper.cs" />

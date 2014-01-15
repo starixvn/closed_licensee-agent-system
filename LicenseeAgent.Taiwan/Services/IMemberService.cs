@@ -15,15 +15,15 @@ namespace LicenseeAgent.Taiwan.Services
     /// </summary>
     public interface IMemberService
     {
-        bool CheckUserName(IAction action);
+        ResponseResult CheckUserName(IAction action);
 
-        bool InsertNewMember(IAction action);
+        ResponseResult InsertNewMember(IAction action);
 
-        bool ResetPassword(IAction action);
+        ResponseResult ResetPassword(IAction action);
 
-        bool UpdateMemberInfo(IAction action);
+        ResponseResult UpdateMemberInfo(IAction action);
 
-        bool UpdateMemberStatus(IAction action);
+        ResponseResult UpdateMemberStatus(IAction action);
 
         T GetMemberInformation<T>(T memberEntity, IAction action);
 

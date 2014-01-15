@@ -11,7 +11,7 @@ namespace LicenseeAgent.Taiwan
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using LicenseeAgent.Taiwan.Function;
+    using LicenseeAgent.Taiwan.Filter;
 
     /// <summary>
     /// TODO: Update summary.
@@ -62,13 +62,13 @@ namespace LicenseeAgent.Taiwan
         /// <typeparam name="T2">Type destination.</typeparam>
         /// <param name="sources">List Source entity.</param>
         /// <param name="destinations">List Destination entity.</param>
-        public static void MapObjects<T1, T2>(IEnumerable<T1> sources, IEnumerable<T2> destinations, IFunction function)
+        public static void MapObjects<T1, T2>(IEnumerable<T1> sources, IEnumerable<T2> destinations, IServiceFilter serviceFilter)
         {
             foreach (var destination in destinations)
             {
-                var source = (from s in sources 
-                             where function.IsEquals<T1, T2>(s, destination) 
-                             select s).FirstOrDefault();
+                var source = (from s in sources
+                              where serviceFilter.IsEquals<T1, T2>(s, destination) 
+                              select s).FirstOrDefault();
 
                 ServiceMapper.MapObject<T1, T2>(source, destination);
             }

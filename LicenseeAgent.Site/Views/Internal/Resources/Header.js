@@ -51,6 +51,7 @@
         enableSearch: function (enabled) {
             if (enabled) {
                 $('#submit').removeClass('disabled');
+                $('#submit').click();
             }
             else {
                 $('#submit').addClass('disabled');

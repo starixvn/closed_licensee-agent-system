@@ -78,7 +78,7 @@
                 editAgentId = $(target).data('agentid');
                 editAgentLevel = $(target).data('agentlevel');
             }
-            $('#menuSportsbook').hide();
+            //$('#menuSportsbook').hide();
         },
         gridAfterBinding: function () {
             customerList.initInstruction();

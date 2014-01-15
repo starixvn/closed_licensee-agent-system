@@ -1,0 +1,43 @@
+﻿// ----------------------------------------------------------------------
+// <copyright file="ServiceMemberEntity.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+//
+// ------------------------------------------------------------------------
+
+namespace LicenseeAgent.Taiwan.Entities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Text;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [DataContract]
+    public class ServiceMemberEntity
+    {
+        [DataMember(Name = "IBCCustID")]
+        public int IBCCustId { get; set; }
+
+        [DataMember(Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [DataMember(Name = "LastName")]
+        public string LastName { get; set; }
+
+        [DataMember(Name = "Phone")]
+        public string Phone { get; set; }
+
+        [DataMember(Name = "MobilePhone")]
+        public string MobilePhone { get; set; }
+
+        [DataMember(Name = "Fax")]
+        public string Fax { get; set; }
+
+        [DataMember(Name = "IsClosed")]
+        public bool IsClosed { get; set; }
+    }
+}

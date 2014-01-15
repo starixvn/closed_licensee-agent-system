@@ -11,6 +11,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;

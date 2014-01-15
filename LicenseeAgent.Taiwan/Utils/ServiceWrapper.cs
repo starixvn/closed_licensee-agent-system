@@ -27,15 +27,15 @@ namespace LicenseeAgent.Taiwan
         /// <summary>
         /// Response data when call service.
         /// </summary>
+        /// <typeparam name="T">Type response result.</typeparam>
         /// <param name="action">Action of service.</param>
         /// <returns>String response data.</returns>
-        public static ResponseResult GetResponseData(IAction action)
+        public static T GetResponseData<T>(IAction action) where T : class
         {
             var request = ServiceWrapper.CreateRequest(action.GetActionName());
-
             ServiceWrapper.SetParams(request, action);
 
-            return ServiceWrapper.MakeRequest(request);
+            return ServiceWrapper.MakeRequest<T>(request);
         }
 
         /// <summary>
@@ -45,8 +45,7 @@ namespace LicenseeAgent.Taiwan
         /// <returns>Request Object.</returns>
         private static HttpWebRequest CreateRequest(string actionName)
         {
-            Uri address = new Uri(string.Format(ServiceSetting.UrlAction, AppSettings.TaiwanAPI, actionName));
-
+            var address = new Uri(string.Format(ServiceSetting.UrlAction, AppSettings.TaiwanAPI, actionName));
             var request = WebRequest.Create(address) as HttpWebRequest;
 
             request.Method = ServiceSetting.Method;
@@ -62,13 +61,15 @@ namespace LicenseeAgent.Taiwan
         /// <param name="action">Action service.</param>
         private static void SetParams(HttpWebRequest request, IAction action)
         {
-            StringBuilder paramData = new StringBuilder();
-
+            var paramData = new StringBuilder();
             var properties = action.GetType().GetProperties();
 
             foreach (var property in properties)
             {
-                paramData.Append(string.Format(ServiceSetting.ParamFormat, property.Name, HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
+                paramData.Append(string.Format(
+                                                ServiceSetting.ParamFormat, 
+                                                property.Name, 
+                                                HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
             }
 
             byte[] formData = UTF8Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
@@ -83,9 +84,10 @@ namespace LicenseeAgent.Taiwan
         /// <summary>
         /// Make request service.
         /// </summary>
+        /// <typeparam name="T">Type response result.</typeparam>
         /// <param name="request">Request object.</param>
         /// <returns>String response data after request.</returns>
-        private static ResponseResult MakeRequest(HttpWebRequest request)
+        private static T MakeRequest<T>(HttpWebRequest request) where T : class
         {
             try
             {
@@ -96,9 +98,9 @@ namespace LicenseeAgent.Taiwan
                         throw new Exception(string.Format(ServiceSetting.HttpError, response.StatusCode, response.StatusDescription));
                     }
 
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(ResponseResult));
+                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(T));
 
-                    return jsonSerializer.ReadObject(response.GetResponseStream()) as ResponseResult;
+                    return jsonSerializer.ReadObject(response.GetResponseStream()) as T;
                 }
             }
             catch (Exception exception)

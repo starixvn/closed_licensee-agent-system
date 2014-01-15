@@ -12,9 +12,9 @@ namespace LicenseeAgent.Taiwan.Services
     using System.Linq;
     using System.Text;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,7 +28,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult CheckUserName(IAction action)
         {
-            return ServiceWrapper.GetResponseData(action);
+            return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult InsertNewMember(IAction action)
         {
-            return ServiceWrapper.GetResponseData(action);
+            return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult ResetPassword(IAction action)
         {
-            return ServiceWrapper.GetResponseData(action);
+            return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult UpdateMemberInfo(IAction action)
         {
-            return ServiceWrapper.GetResponseData(action);
+            return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult UpdateMemberStatus(IAction action)
         {
-            return ServiceWrapper.GetResponseData(action);
+            return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
 
         /// <summary>
@@ -80,13 +80,11 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Member entity after merging.</returns>
         public ResponseResult GetMemberInformation<T>(T memberEntity, IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
+            var response = ServiceWrapper.GetResponseData<MemberResult>(action);
 
             if (response.ErrCode == 0)
             {
-                var memberResult = JsonConvert.DeserializeObject<MemberResult>(response.Data);
-
-                ServiceMapper.MapObject<MemberResult, T>(memberResult, memberEntity);
+                ServiceMapper.MapObject<ServiceMemberEntity, T>(response.Member, memberEntity);
             }
 
             return response;
@@ -101,13 +99,11 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>List member entity after merging.</returns>
         public ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, IAction action)
         {
-            var response = ServiceWrapper.GetResponseData(action);
+            var response = ServiceWrapper.GetResponseData<MemberListResult>(action);
 
             if (response.ErrCode == 0)
             {
-                var memberResults = JsonConvert.DeserializeObject<IList<MemberResult>>(response.Data);
-
-                ServiceMapper.MapObjects<MemberResult, T>(memberResults, memberEntitys, new MemberFilter());
+                ServiceMapper.MapObjects<ServiceMemberEntity, T>(response.Members, memberEntitys, new MemberFilter());
             }
 
             return response;

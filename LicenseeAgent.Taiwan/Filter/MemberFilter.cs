@@ -47,7 +47,7 @@ namespace LicenseeAgent.Taiwan.Filter
 
                 if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    return destinationProperty.GetValue(destination, null) == sourceProperty.GetValue(source, null);
+                    return Convert.ToInt32(destinationProperty.GetValue(destination, null)) == Convert.ToInt32(sourceProperty.GetValue(source, null));
                 }
             }
 

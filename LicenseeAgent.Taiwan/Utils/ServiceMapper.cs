@@ -62,6 +62,7 @@ namespace LicenseeAgent.Taiwan
         /// <typeparam name="T2">Type destination.</typeparam>
         /// <param name="sources">List Source entity.</param>
         /// <param name="destinations">List Destination entity.</param>
+        /// <param name="serviceFilter">Service filter.</param>
         public static void MapObjects<T1, T2>(IEnumerable<T1> sources, IEnumerable<T2> destinations, IServiceFilter serviceFilter)
         {
             foreach (var destination in destinations)

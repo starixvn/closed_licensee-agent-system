@@ -66,9 +66,11 @@ namespace LicenseeAgent.Taiwan
 
             foreach (var property in properties)
             {
+                var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+
                 paramData.Append(string.Format(
-                                                ServiceSetting.ParamFormat, 
-                                                property.Name, 
+                                                ServiceSetting.ParamFormat,
+                                                attribute != null ? ((ServiceAttribute)attribute).Name : property.Name, 
                                                 HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
             }
 

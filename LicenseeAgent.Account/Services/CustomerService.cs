@@ -96,5 +96,14 @@ namespace LicenseeAgent.Account.Services
         {
             return GetEntites<MemberEntity>(criteria);
         }
+
+        /// <summary>
+        /// Reset Password.
+        /// </summary>
+        /// <param name="criteria">Reset Password Criteria.</param>
+        public void ResetPassword(ResetPasswordCriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

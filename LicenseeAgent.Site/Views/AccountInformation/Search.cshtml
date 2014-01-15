@@ -1,4 +1,5 @@
 ﻿@using LicenseeAgent.Account.ViewResults
+@using LicenseeAgent.Core.Utils
 @model SearchUserResultViewModel
 @{
     Layout = null;
@@ -45,5 +46,11 @@
         accountInformation.showNoUserAlert('@result.ErrMsg');
     </script>
     }
-
+}
+    
+@if (ViewBag.PageContext != null)
+{
+    <script type="text/javascript">
+        @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
+    </script>
 }

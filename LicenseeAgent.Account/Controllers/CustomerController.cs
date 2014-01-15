@@ -8,6 +8,7 @@ namespace LicenseeAgent.Account.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.Common;
     using LicenseeAgent.Account.Binders;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
@@ -15,9 +16,11 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Account.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -336,6 +339,77 @@ namespace LicenseeAgent.Account.Controllers
                 City = ipInformation.IpCity,
                 Country = ipInformation.CountryLong
             });
+        }
+
+        /// <summary>
+        /// Reset Password.
+        /// </summary>
+        /// <param name="customer">Customer Entity.</param>
+        /// <returns>Action result.</returns>
+        [HttpGet]
+        public ActionResult ResetPassword(CustomerEntity customer)
+        {
+            ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+            {
+                IsDirectDownline = true,
+                IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
+                IsMember = customer.Level == Constants.MemberLevel
+            };
+
+            return View(new ResetPasswordViewModel
+            {
+                CustId = customer.CustId
+            });
+        }
+
+        /// <summary>
+        /// Reset Password Agent.
+        /// </summary>
+        /// <param name="model">Reset Password View Model.</param>
+        /// <returns>Action Result.</returns>
+        [HttpPost]
+        public ActionResult ResetPasswordAgent(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var criteria = new ResetPasswordCriteria 
+                { 
+                    AgentId = model.CustId,
+                    Password = model.Password,
+                    UserId = CurrentSession.AgentInfo.AgentId,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserSalt = Cryptography.CreateSalt()
+                };
+
+                _agentService.ResetPassword(criteria);
+
+                if (criteria.ErrCode != 0)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                }
+                else
+                {
+                    ViewBag.Result = Las.UpdateSuccessfully;
+                }
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Reset Password Agent.
+        /// </summary>
+        /// <param name="model">Reset Password View Model.</param>
+        /// <returns>Action Result.</returns>
+        [HttpPost]
+        public ActionResult ResetPasswordMember(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Call API to update member password
+            }
+
+            return View(model);
         }
     }
 }

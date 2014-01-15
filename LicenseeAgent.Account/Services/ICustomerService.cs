@@ -71,5 +71,11 @@ namespace LicenseeAgent.Account.Services
         /// <param name="criteria">Member get by agent criteria.</param>
         /// <returns>List member.</returns>
         IEnumerable<MemberEntity> GetMemberAutoComplete(MemberAutoCompleteCriteria criteria);
+
+        /// <summary>
+        /// Reset Password.
+        /// </summary>
+        /// <param name="criteria">Reset Password Criteria.</param>
+        void ResetPassword(ResetPasswordCriteria criteria);
     }
 }

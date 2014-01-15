@@ -20,6 +20,12 @@
                             @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                         </a>
                     </li>
+                    <li>
+                        <a href="@Url.Action("ResetPassword", "Customer", Model.Customer)" target="frmMain">
+                            <i class="icon-downline-arrow"></i>
+                            @Las.ResetPassword
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

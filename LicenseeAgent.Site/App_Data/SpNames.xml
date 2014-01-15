@@ -16,6 +16,9 @@
     <Setting Key="Las_AgentUserLogout" SpName="Las_AgentUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AdminUserLogout" SpName="Las_AdminUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AgentChangePwd" SpName="Las_AgentChangePwd" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="LAS_ResetPassword_Agent" SpName="LAS_ResetPassword_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_DownlineCheckBelonging" SpName="Las_DownlineCheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="LAS_ResetPassword_Member_Writelog" SpName="LAS_ResetPassword_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>
   <Function Name="AfterLogin">
     <Setting Key="Las_GetLicenseeList" SpName="Las_GetLicenseeList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />

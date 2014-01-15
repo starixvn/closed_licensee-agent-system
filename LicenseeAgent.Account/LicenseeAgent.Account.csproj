@@ -89,6 +89,7 @@
     <Compile Include="Criterias\LicenseeAdminLoginCriteria.cs" />
     <Compile Include="Criterias\MemberAutoCompleteCriteria.cs" />
     <Compile Include="Criterias\MemberGetByAgentCriteria.cs" />
+    <Compile Include="Criterias\ResetPasswordCriteria.cs" />
     <Compile Include="Criterias\SearchAgentCriteria.cs" />
     <Compile Include="Criterias\SearchMemberCriteria.cs" />
     <Compile Include="Criterias\UpdateAgentAccStatusCriteria.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="ViewModels\AgentBreadcrumViewModel.cs" />
     <Compile Include="ViewModels\AgentInfoViewModel.cs" />
     <Compile Include="ViewModels\AgentStatusViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\CustomerSearchAutoCompleteViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
     <Compile Include="ViewModels\AgentViewModel.cs" />

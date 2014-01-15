@@ -320,6 +320,7 @@
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
     <Content Include="Views\BetList\Resources\BetListManager.js" />
+    <Content Include="Views\Customer\Resources\resetpassword.js" />
     <Content Include="Views\Customer\Resources\customerlist.js" />
     <Content Include="Views\Internal\Resources\Header.js" />
     <Content Include="Content\contextmenu\context.standalone.css" />
@@ -766,6 +767,7 @@
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Views\Report\Results.cshtml" />
+    <Content Include="Views\Customer\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

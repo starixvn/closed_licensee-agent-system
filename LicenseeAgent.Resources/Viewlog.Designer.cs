@@ -59,32 +59,5 @@ namespace LicenseeAgent.Resources {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Commission.
-        /// </summary>
-        public static string _2 {
-            get {
-                return ResourceManager.GetString("2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Bet Limit.
-        /// </summary>
-        public static string _3 {
-            get {
-                return ResourceManager.GetString("3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Share.
-        /// </summary>
-        public static string _4 {
-            get {
-                return ResourceManager.GetString("4", resourceCulture);
-            }
-        }
     }
 }

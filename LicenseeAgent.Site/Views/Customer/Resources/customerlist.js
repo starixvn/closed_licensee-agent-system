@@ -19,6 +19,7 @@
     return {
         init: function () {
             $('.selectpicker').selectpicker();
+
             // breadcrum
             $('.breadcrumb a').click(function () {
                 var agentId = $(this).data('agent-id');
@@ -149,6 +150,13 @@
             });
         },
         onShowTop: function () {
+//            $("#contextMenu").css({
+//                display: "block",
+//                left: e.pageX,
+//                top: e.pageY
+//            });
+//            return;
+
             $.contextMenu({
                 selector: '.icon-arrow',
                 items: showItems,
@@ -277,8 +285,8 @@
             $('#dialog-confirm').dialog('close');
         },
         getIpInformation: function (ipAddress) {
-            $.ajax({ 
-            url: CORE.resolveUrl('~/Customer/GetIpInformation'),
+            $.ajax({
+                url: CORE.resolveUrl('~/Customer/GetIpInformation'),
                 type: 'post',
                 data: { IpAddress: ipAddress },
                 beforeSend: function () {
@@ -299,6 +307,12 @@
         editAgent: function (agentId, agentLevel, status) {
             editAgentId = agentId;
             editAgentLevel = agentLevel;
+            $("#contextMenu").css({
+                display: "block",
+                left: event.pageX,
+                top: event.pageY
+            });
+            return;
             $.contextMenu({
                 selector: '.cell-' + agentId,
                 items: customerList.getEditItems(status),

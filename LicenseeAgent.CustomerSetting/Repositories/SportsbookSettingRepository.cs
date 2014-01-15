@@ -300,7 +300,8 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                     PTSportType = Converter.ToInt(parameters["ptsporttype"]),
                     PTBetType = Converter.ToInt(parameters["ptbettype"]),
                     IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                    CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
+                    CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
+                    IBCUserName = Converter.ToString2(parameters["ibcusername"])
                 };
             }
         }

@@ -14,6 +14,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Web.Services;
     using SimpleInjector;
@@ -59,6 +60,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IBetListService, BetListService>();
             container.Register<ICoreService, CoreService>();
             container.Register<ITransferService, TransferService>();
+            container.Register<IMemberService, MemberService>();
         }
     }
 }

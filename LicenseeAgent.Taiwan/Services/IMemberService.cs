@@ -57,7 +57,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntity">Member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>Member entity after merging.</returns>
-        T GetMemberInformation<T>(T memberEntity, IAction action);
+        ResponseResult GetMemberInformation<T>(T memberEntity, IAction action);
 
         /// <summary>
         /// Get list member information.
@@ -66,6 +66,6 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        IList<T> GetMemberInformations<T>(IList<T> memberEntitys, IAction action);
+        ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, IAction action);
     }
 }

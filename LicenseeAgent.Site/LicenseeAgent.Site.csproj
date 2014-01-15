@@ -81,6 +81,9 @@
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
+    <Reference Include="LicenseeAgent.Taiwan">
+      <HintPath>..\LicenseeAgent.Taiwan\bin\Debug\LicenseeAgent.Taiwan.dll</HintPath>
+    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
     </Reference>

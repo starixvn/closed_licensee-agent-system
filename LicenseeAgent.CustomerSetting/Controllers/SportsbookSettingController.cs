@@ -21,6 +21,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -60,10 +62,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly IAccountService _accountService;
 
-        public SportsbookSettingController(ISportsbookSettingService customerSettingService, IAccountService accountService)
+        private readonly IMemberService _memberService;
+
+        public SportsbookSettingController(
+                ISportsbookSettingService customerSettingService, 
+                IAccountService accountService,
+                IMemberService memberService)
         {
             _customerSettingService = customerSettingService;
             _accountService = accountService;
+            _memberService = memberService;
         }
 
         /// <summary>
@@ -170,6 +178,34 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.InsertCustomer(model);
             var messages = GenerateMessages(result);
+
+            if (result.ErrCode == 0 && model.SettingContext.TargetRoleId == (int)Role.Member)
+            {
+                var serviceResult = _memberService.InsertNewMember(new InsertNewMemberAction
+                {
+                    UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName,
+                    Password = model.UpdateDataSportsbookCustomer.CustInfo.Password,
+                    IBCCustId = result.CustIdReturn,
+                    IBCUserName = result.IBCUserName,
+                    LASAgentId = CurrentSession.AgentInfo.AgentId,
+                    FirstName = model.UpdateDataSportsbookCustomer.CustInfo.FirstName,
+                    LastName = model.UpdateDataSportsbookCustomer.CustInfo.LastName,
+                    Phone = model.UpdateDataSportsbookCustomer.CustInfo.Phone,
+                    OtherPhone = model.UpdateDataSportsbookCustomer.CustInfo.Mobile,
+                    Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax,
+                    SiteName = CurrentSession.LicenseeInfo.UserName,
+                    Currency = CurrentSession.AgentInfo.CurrencyId
+                });
+                if (serviceResult.ErrorCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrorCode,
+                        Messages = serviceResult.ErrMsg
+                    });
+                }
+            }
+
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

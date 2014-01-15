@@ -37,7 +37,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public string Fax { get; set; }
 
-        public byte Currency { get; set; }
+        public int Currency { get; set; }
 
         public int LASAgentId { get; set; }
 

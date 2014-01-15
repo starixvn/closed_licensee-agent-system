@@ -78,7 +78,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntity">Member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>Member entity after merging.</returns>
-        public T GetMemberInformation<T>(T memberEntity, IAction action)
+        public ResponseResult GetMemberInformation<T>(T memberEntity, IAction action)
         {
             var response = ServiceWrapper.GetResponseData(action);
 
@@ -89,7 +89,7 @@ namespace LicenseeAgent.Taiwan.Services
                 ServiceMapper.MapObject<MemberResult, T>(memberResult, memberEntity);
             }
 
-            return memberEntity;
+            return response;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        public IList<T> GetMemberInformations<T>(IList<T> memberEntitys, IAction action)
+        public ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, IAction action)
         {
             var response = ServiceWrapper.GetResponseData(action);
 
@@ -110,7 +110,7 @@ namespace LicenseeAgent.Taiwan.Services
                 ServiceMapper.MapObjects<MemberResult, T>(memberResults, memberEntitys, new MemberFilter());
             }
 
-            return memberEntitys;
+            return response;
         }
     }
 }

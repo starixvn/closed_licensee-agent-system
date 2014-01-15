@@ -29,6 +29,8 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public int CustIdReturn { get; set; }
 
+        public string IBCUserName { get; set; }
+
         public decimal MinPTOutput { get; set; }
 
         public decimal MaxPTOutput { get; set; }

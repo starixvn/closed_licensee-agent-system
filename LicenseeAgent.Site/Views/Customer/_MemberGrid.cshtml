@@ -12,7 +12,7 @@
                 { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
                 { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        return '<i class="icon-customer-edit" data-memberid="{0}"></span>'.format(rowData.CustId);
+                        return '<i class="icon-customer-edit" data-memberid="{0}"></i>'.format(rowData.CustId);
                     }
                 },
                 { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:

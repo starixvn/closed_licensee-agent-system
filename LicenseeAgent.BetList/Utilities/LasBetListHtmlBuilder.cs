@@ -98,7 +98,7 @@ namespace LicenseeAgent.BetList.Utilities
                 return "-";
             }
 
-            return ticket.Winlost > 0
+            return ticket.Winlost >= 0
                 ? string.Format("{0:#,##0.00}", ticket.Winlost)
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
         }

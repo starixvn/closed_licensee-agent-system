@@ -3,16 +3,16 @@
         columns:
             [
                 {
-                    HeaderText: "<span class='icon-uncheck-all' onclick='customerList.checkAllItem(this);'></span>" +
-                                "<span class='icon-arrow' onclick='customerList.onShowTop();'></span>", Width: 30, Name: "Select", CellAlign: "center", Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
+                    HeaderText: '<i class="icon-uncheck-all" onclick="customerList.checkAllItem(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+                    Width: 30, Name: "Select", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
                     }
                 },
                 { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
                 { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        return '<i class="icon-customer-edit data-memberid={0}"></span>'.format(rowData.CustId);
+                        return '<i class="icon-customer-edit" data-memberid="{0}"></span>'.format(rowData.CustId);
                     }
                 },
                 { HeaderText: "@Las.Username", Width: 140, Name: "UserName", HeaderAlign: "center", Formatter:

@@ -72,11 +72,11 @@
         },
         updateActionMenus: function (target) {
             if (pageContext.IsLastLevel) {
-                editMemberId = $(target).data('memberid');
+                editMemberId = parseInt($(target).data('memberid'));
             }
             else {
-                editAgentId = $(target).data('agentid');
-                editAgentLevel = $(target).data('agentlevel');
+                editAgentId = parseInt($(target).data('agentid'));
+                editAgentLevel = parseInt($(target).data('agentlevel'));
             }
             //$('#menuSportsbook').hide();
         },

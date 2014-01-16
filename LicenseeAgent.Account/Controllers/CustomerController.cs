@@ -350,15 +350,17 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Reset Password.
         /// </summary>
-        /// <param name="customer">Customer Entity.</param>
+        /// <param name="memberId">Member Id.</param>
         /// <returns>Action result.</returns>
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
-            return View("~/Views/Customer/ResetPassword.cshtml", new ResetPasswordViewModel
-            {
-                CustId = memberId
-            });
+            return View(
+                "~/Views/Customer/ResetPassword.cshtml", 
+                new ResetPasswordViewModel
+                {
+                    CustId = memberId
+                });
         }
 
         /// <summary>
@@ -395,12 +397,15 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Reset Password.
         /// </summary>
-        /// <param name="customer">Customer Entity.</param>
+        /// <param name="agentId">Agent Id information.</param>
+        /// <param name="agentLevel">Agent Level.</param>
         /// <returns>Action result.</returns>
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
-            return View("~/Views/Customer/ResetPassword.cshtml", new ResetPasswordViewModel
+            return View(
+                "~/Views/Customer/ResetPassword.cshtml", 
+                new ResetPasswordViewModel
             {
                 CustId = agentId,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastAgent(agentLevel)

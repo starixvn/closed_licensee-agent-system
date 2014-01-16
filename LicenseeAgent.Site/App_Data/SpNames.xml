@@ -96,6 +96,9 @@
     <Setting Key="Las_GetDownlineList" SpName="Las_GetDownlineList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_GetAncestorList" SpName="Las_GetAncestorList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
+  <Function Name="Transfer">
+    <Setting Key="LAS_Transfer_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+  </Function>
   <Function Name="LRF">
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>

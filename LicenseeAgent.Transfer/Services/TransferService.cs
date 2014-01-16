@@ -6,12 +6,19 @@
 
 namespace LicenseeAgent.Transfer.Services
 {
+    using System.Collections.Generic;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Transfer.Criteria;
+    using LicenseeAgent.Transfer.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class TransferService : QueryService, ITransferService
     {
+        public IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria)
+        {
+            return GetEntites<AgentBalanceInfo>(criteria);
+        }
     }
 }

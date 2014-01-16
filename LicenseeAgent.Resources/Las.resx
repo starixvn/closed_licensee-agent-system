@@ -878,4 +878,7 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
   <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
 </root>

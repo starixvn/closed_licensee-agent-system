@@ -6,11 +6,6 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/transfer")
 }
-@section scripts
-{
-    @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/transfer")
-}
 <div class="legend">
     @ViewBag.Title
 </div>
@@ -44,11 +39,16 @@
 </ul>
 <div id="grid" class="freegrid">
 </div>
-@if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+@section scripts
 {
-    @Html.Partial("MemberList")
-}
-else
-{
-    @Html.Partial("AgentList")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/transfer")
+    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+    {
+        @Html.Partial("MemberList")
+    }
+    else
+    {
+        @Html.Partial("AgentList")
+    }
 }

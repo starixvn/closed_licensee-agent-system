@@ -41,7 +41,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/config.js",
                 "~/scripts/utils.js",
                 "~/scripts/language.js",
-                "~/scripts/HeadJS/head.js",
+                "~/scripts/headjs/head.js",
                 "~/scripts/core.js",
                 "~/scripts/popup.js"));
 
@@ -92,16 +92,13 @@ namespace LicenseeAgent.Site
 
             // Fanex.Grid
             bundles.Add(new ScriptBundle("~/js/fanexgrid").Include(
+                "~/scripts/fanexgrid/numeral.js",
                 "~/scripts/fanexgrid/Fanex.Grid.js",
                 "~/scripts/fanexgrid/Fanex.Pagination.js"));
             bundles.Add(new LessBundle("~/css/fanexgrid").Include(
                 "~/content/fanexgrid/Fanex.Grid.css",
                 "~/content/fanexgrid/Fanex.Pagination.css",
                 "~/content/customizeFanexGrid.less"));
-
-            // Numeral
-            bundles.Add(new ScriptBundle("~/js/numeral").Include(
-                "~/scripts/fanexgrid/numeral.js"));
 
             // Combobox
             bundles.Add(new ScriptBundle("~/js/bootstrap-select").Include(

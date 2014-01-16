@@ -12,6 +12,7 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Transfer.Criteria;
 
     /// <summary>
     /// TODO: Update summary.
@@ -35,7 +36,13 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             return Json(new
             {
-                ErrCode = Result.SuccessValue
+                ErrCode = Result.SuccessValue,
+                List = _transferService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    Username = model.UserName,
+                    Status = model.Status
+                })
             });
         }
 

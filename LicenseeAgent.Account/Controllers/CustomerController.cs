@@ -16,14 +16,14 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
-    using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -368,7 +368,6 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        [AppAuthorize(Role = AccountType.Agent, IsValidateAgent = false)]
         [ValidateAntiForgeryToken]
         public ActionResult ResetPassword(ResetPasswordViewModel model)
         {
@@ -376,17 +375,16 @@ namespace LicenseeAgent.Account.Controllers
             {
                 if (model.IsLastLevel)
                 {
-                    ResetPasswordMember(model);
+                    return ResetPasswordMember(model);
                 }
                 else
                 {
-                    ResetPasswordAgent(model);
+                    return ResetPasswordAgent(model);
                 }
             }
 
-            return View(model);
+            return View();
         }
-
 
         /// <summary>
         /// Reset Password Agent.
@@ -412,7 +410,7 @@ namespace LicenseeAgent.Account.Controllers
                 ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
             }
 
-            return View(model);
+            return View();
         }
 
         /// <summary>
@@ -439,7 +437,7 @@ namespace LicenseeAgent.Account.Controllers
                 }
             }
 
-            return View(model);
+            return View();
         }
     }
 }

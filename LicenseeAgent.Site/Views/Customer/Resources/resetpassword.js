@@ -1,10 +1,10 @@
 ﻿var resetPassword = function ($) {
     return {
         init: function () {
-            $('form').submit(function () {
-                resetPassword.updatePassword();
-                return false;
-            });
+//            $('form').submit(function () {
+//                resetPassword.updatePassword();
+//                return false;
+//            });
         },
         updatePassword: function () {
             var params = {

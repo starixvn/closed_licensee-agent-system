@@ -72,17 +72,20 @@
             });
         },
         updateActionMenus: function (target) {
-            $('#menuAddDownline').show();
+            if (!pageContext.IsAdmin || $(target).attr('data-status') == 0 || pageContext.IsLastLevel) {
+                $('#menuAddDownline').hide();
+            }
+            else {
+                $('#menuAddDownline').show();
+            }
+
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'));
-                $('#menuAddDownline').hide();
             }
             else {
                 editAgentId = parseInt($(target).data('agentid'));
                 editAgentLevel = parseInt($(target).data('agentlevel'));
             }
-            if ($(target).attr('data-status') == 0)
-                $('#menuAddDownline').hide();
         },
         gridAfterBinding: function () {
             customerList.initInstruction();

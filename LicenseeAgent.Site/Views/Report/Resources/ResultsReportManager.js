@@ -2,8 +2,11 @@
     return {
         init: function () {
             $("#filter-tabs").tabs();
+            $('#matchdatetimepicker').datepicker();
+            $('#outrightfromdatetimepicker').datepicker();
+            $('#outrighttodatetimepicker').datepicker();
 
-            REPORT.initData();
+            //REPORT.initData();
         },
 
         initData: function () {

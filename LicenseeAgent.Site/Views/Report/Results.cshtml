@@ -3,20 +3,72 @@
 }
 @section css
 {
+    @Styles.Render("~/css/datetimepicker")
     @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/bootstrap-select")
+    <style>
+        .ui-tabs .ui-tabs-nav li.ui-tabs-active
+        {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            border-top-width: 0;
+        }
+        
+        .ui-tabs .ui-tabs-nav
+        {
+            padding: 0.2em 1.2em 0;
+            position: absolute;
+            top: -36px;
+            left: 15px;
+        }
+        
+        .ui-widget-header
+        {
+            background: none;
+            border: none;
+        }
+        
+        .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
+        {
+            background-color: #F4F8FB;
+            border-color: #D93B3C #EDEDED -moz-use-text-color;
+            border-style: solid none none;
+            border-width: 2px 1px 0;
+        }
+        
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+        {
+            background: none;
+        }
+        
+        .form-filter
+        {
+            margin-top: 40px;
+        }
+        
+        .span2
+        {
+            width: 80px !important;
+        }
+        
+    </style>
 }
 @section scripts
 {
     @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/bootstrap-select")
+    @Scripts.Render("~/js/datetimepicker")
     <script type="text/javascript" src='@Url.Content("~/Views/Report/Resources/ResultsReportManager.js")'></script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
 @using (Html.BeginForm("Results", "Report", FormMethod.Post,
-    new { @class = "form-inline form-filter ", id = "search-form" }))
- {
-    <div id="filter-tabs">
+    new { @class = "form-inline ", id = "search-form" }))
+{
+    <div id="filter-tabs" class="form-filter">
         <ul>
             <li><a href="#filter-tab-match"> @Las.MatchResults</a></li>
             <li><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
@@ -24,24 +76,48 @@
         <div id="filter-tab-match">
             <div class="controls-row">
                 <span>Date</span>
+                <div class="input-append date" id="matchdatetimepicker" data-date="@DateTime.Today">
+                    <input class="span2" size="16" type="text" value="@DateTime.Today" />
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+
                 <button class="btn btn-primary" type="submit">@Las.Submit</button>
                 <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
                 <button class="btn btn-primary" type="submit">@Las.Today</button>
             </div>
             <div class="controls-row">
                 <span>Sport</span>
-                <div id="sport-multi-select">
-                </div>
-                @Html.Hidden("Sport", "")
-
+                @Html.DropDownList("MatchSport", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
+                
                 <span>League</span>
-                <div id="league-multi-select">
-                </div>
-                @Html.Hidden("League", "")
+                @Html.DropDownList("MatchLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
         </div>
         <div id="filter-tab-outright">
-            Content 2
+            <div class="controls-row">
+                <span>From</span>
+                <div class="input-append date" id="outrightfromdatetimepicker" data-date="@DateTime.Today">
+                    <input class="span2" size="16" type="text" value="@DateTime.Today" />
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+
+                <span>To</span>
+                <div class="input-append date" id="outrighttodatetimepicker" data-date="@DateTime.Today">
+                    <input class="span2" size="16" type="text" value="@DateTime.Today" />
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+
+                <button class="btn btn-primary" type="submit">@Las.Submit</button>
+                <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
+                <button class="btn btn-primary" type="submit">@Las.Today</button>
+            </div>
+            <div class="controls-row">
+                <span>Sport</span>
+                @Html.DropDownList("OutrightSport", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
+                
+                <span>League</span>
+                @Html.DropDownList("OutrightLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
+            </div>
         </div>
     </div>
 }

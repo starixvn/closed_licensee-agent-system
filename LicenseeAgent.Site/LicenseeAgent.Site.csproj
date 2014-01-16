@@ -762,6 +762,8 @@
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Views\Report\Results.cshtml" />
     <Content Include="Views\Customer\ResetPassword.cshtml" />
+    <Content Include="Views\BetList\ParlayList.cshtml" />
+    <Content Include="Views\BetList\ParlayDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

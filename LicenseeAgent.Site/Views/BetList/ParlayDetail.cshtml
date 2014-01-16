@@ -1,0 +1,33 @@
+﻿@model LicenseeAgent.BetList.ViewModels.BetListDetailsViewModel
+@{Layout = null;}
+<table class="bet-list-details">
+    <thead>
+        <tr>
+            <th style="width: 100px">
+                Agent
+            </th>
+            <th style="width: 120px">
+                Position Taking
+            </th>
+            <th style="width: 120px">
+                Commission
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var rowIndex = 1;}
+        @foreach (var detail in Model.BetListDetails)
+        {
+            <tr class="@(rowIndex % 2 == 0 ? "even-row" : "")">
+                <td class="agent-name">@Html.Raw(detail.Agent)
+                </td>
+                <td class="bl_underdog">@Html.Raw(detail.PositionTaking)
+                </td>
+                <td class="bl_underdog">@Html.Raw(detail.Commission)
+                </td>
+            </tr>
+            
+            rowIndex++;
+        }
+    </tbody>
+</table>

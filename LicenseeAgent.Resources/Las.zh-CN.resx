@@ -695,4 +695,8 @@
   <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
+  <data name="Parlay" xml:space="preserve">
+    <value>Parlay</value>
+    <comment>not</comment>
+  </data>
 </root>

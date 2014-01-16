@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = Las.PageTitle_BetList;
+}
+@section css
+{
+    @Styles.Render("~/css/monthpicker")
+    @Styles.Render("~/css/angulargrid")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/bootstrap-select")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/bootstrap-select")
+    @Scripts.Render("~/js/monthpicker")
+    <script type="text/javascript" src='@Url.Content("~/Views/BetList/Resources/BetListManager.js")'></script>
+    <script type="text/javascript">
+        var _today = '@DateTime.Today.ToShortDateString()';
+        var _minDate = '10/1/2013';
+        var lastDay = '@DateTime.Now.Day';
+        var lastMonth = '@DateTime.Now.Month';
+        var lastYear = '@DateTime.Now.Year';
+        var custId = '@ViewBag.CustId';
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div>
+    @using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
+        new { @class = "form-inline form-filter ", id = "search-form" }))
+    {
+        <div id="filter-area" class="clearfix filter-area">
+            <div class="controls-row">
+                <div class="month pull-left">
+                    Month</div>
+                <div class="pull-left controls-row" id="month-picker-control">
+                </div>
+            </div>
+            <div class="controls-row">
+                @Html.Label("Status", "Status", new { @class = "month" })
+                @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
+            </div>
+            <div class="controls-row">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    }
+    <div class="gridWrapper">
+        <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "Customer")">
+        </div>
+    </div>
+</div>
+<div id="instruction" class="instruction-content">
+</div>

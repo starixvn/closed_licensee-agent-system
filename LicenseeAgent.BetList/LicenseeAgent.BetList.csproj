@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BetListController.cs" />
+    <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />

@@ -25,6 +25,7 @@
             context.attach('.icon-customer-edit', [
                 { id: 'menuSportsbook', icon: 'icon-account-logout', text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
                 { id: 'menuEditInfo', icon: 'icon-account-logout', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
+                { id: 'menuResetPassword', icon: 'icon-account-logout', text: LANGUAGE.getString('ResetPassword'), href: '#', action: customerList.resetPassword },
                 { id: 'menuAddDownline', icon: 'icon-account-logout', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }
             ]);
 
@@ -405,16 +406,14 @@
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
         resetPassword: function () {
-            alert("Reset Password");
-            return;
             var url;
             if (pageContext.IsLastLevel) {
-                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+                url = "Customer/ResetPasswordMember?memberId={0}".format(editMemberId)
             }
             else {
-                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+                url = "Customer/ResetPasswordAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
             }
-            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+            POPUP.openDialogFrame(url, { width: 400, height: 400 });
         }
     }
 } (jQuery);

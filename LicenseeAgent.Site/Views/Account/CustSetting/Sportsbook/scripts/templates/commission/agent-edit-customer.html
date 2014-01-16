@@ -14,9 +14,10 @@
         </div>
     </div>
     <div class="comm-line">
-        <select ng-change="commissionSettingsChangeViewModel()" ng-model="viewModel.commissionSettingsViewModel.selectedGroup"
+        <span>{{viewModel.commissionSettingsViewModel.selectedGroup}}</span>
+        <!--<select ng-change="commissionSettingsChangeViewModel()" ng-model="viewModel.commissionSettingsViewModel.selectedGroup"
             ng-options="item.name as item.name for item in viewModel.commissionSettingsViewModel.group">
-        </select>
+        </select>-->
     </div>
     <div class="comm-content-wrapper">
         <div class="comm-setting-item left-item">

@@ -81,9 +81,6 @@
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
-    <Reference Include="LicenseeAgent.Taiwan">
-      <HintPath>..\LicenseeAgent.Taiwan\bin\Debug\LicenseeAgent.Taiwan.dll</HintPath>
-    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
     </Reference>
@@ -796,6 +793,10 @@
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>LicenseeAgent.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Taiwan\LicenseeAgent.Taiwan.csproj">
+      <Project>{0AA1A19E-A3FB-49C1-9AEF-738122579250}</Project>
+      <Name>LicenseeAgent.Taiwan</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.TotalBets\LicenseeAgent.TotalBets.csproj">
       <Project>{803BF0FE-989A-4CB0-9267-3CC9D3763B65}</Project>

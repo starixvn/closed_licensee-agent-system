@@ -84,9 +84,19 @@
                     if (data.ErrCode == 0) {
                         $scope.Messages = data.Messages;
                         CORE.scrollTop();
-                        if (window.parent.customerList)
-                            window.parent.customerList.reRenderAfterPaged();
-                        POPUP.close();
+                        var isSuccess = true;
+                        for (var i = 0; i < data.Messages.length; i++) {
+                            var message = data.Messages[i];
+                            if (message.ErrCode != 0) {
+                                isSuccess = false;
+                                break;
+                            }
+                        }
+                        if (isSuccess) {
+                            POPUP.close();
+                            if (window.parent.customerList)
+                                window.parent.customerList.reRenderAfterPaged();
+                        }
                     }
                     else {
                         alert(data.ErrMsg);

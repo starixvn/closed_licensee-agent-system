@@ -376,7 +376,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, you do not have permission to access this page..
+        ///   Looks up a localized string similar to You are not authorized for this page..
         /// </summary>
         public static string Msg_1036 {
             get {

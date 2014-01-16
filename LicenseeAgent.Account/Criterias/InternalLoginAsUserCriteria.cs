@@ -32,7 +32,7 @@ namespace LicenseeAgent.Account.Criterias
 
         public short AgentLevel { get; set; }
 
-        public int MsgId { get; set; }
+        public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {

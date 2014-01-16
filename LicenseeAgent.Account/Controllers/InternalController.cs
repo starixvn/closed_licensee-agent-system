@@ -145,7 +145,7 @@ namespace LicenseeAgent.Account
             };
 
             _accountService.InternalLoginAsUser(criteria);
-            if (criteria.MsgId == 0)
+            if (criteria.ErrCode == 0)
             {
                 var internalLoginInfo = new InternalLoginInfo
                 {
@@ -168,7 +168,7 @@ namespace LicenseeAgent.Account
                 }
             }
 
-            return JsonResult(criteria.MsgId);
+            return JsonResult(criteria.ErrCode);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace LicenseeAgent.Account
                     CurrencyId = internalLoginInfo.CurrencyId
                 };
                 _accountService.InternalLoginAsUser(criteria);
-                if (criteria.MsgId == Result.SuccessValue)
+                if (criteria.ErrCode == Result.SuccessValue)
                 {
                     var agentInfo = criteria.CreateAgent();
 
@@ -231,7 +231,7 @@ namespace LicenseeAgent.Account
                 }
                 else
                 {
-                    return JsonResult(criteria.MsgId);
+                    return JsonResult(criteria.ErrCode);
                 }
             }
 
@@ -289,14 +289,14 @@ namespace LicenseeAgent.Account
                 UserName = internalLoginInfo.AgentName
             };
             _accountService.InternalLoginAsUser(criteria);
-            if (criteria.MsgId == Result.SuccessValue)
+            if (criteria.ErrCode == Result.SuccessValue)
             {
                 var agentInfo = criteria.CreateAgent();
                 return AdminLoginAsAgent(agentInfo, internalLoginInfo);
             }
             else
             {
-                return Content(ResourceManager.GetErrMsg(criteria.MsgId));
+                return Content(ResourceManager.GetErrMsg(criteria.ErrCode));
             }
         }
 

@@ -26,7 +26,7 @@
     <Setting Key="Las_LicenseeSelAgent" SpName="Las_LicenseeSelAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_GetAgentL0ByLicensee" SpName="Las_GetAgentL0ByLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_Agent_GetAgentDownline" SpName="Las_Agent_GetAgentDownline" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
-    <Setting Key="Las_InternalLoginAsUser" SpName="Las_InternalLoginAsUser" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_InternalLoginAsUser" SpName="Las_InternalLoginAsUser_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
@@ -62,7 +62,6 @@
     <Setting Key="Las_AgentGetAutoCompleteUserName" SpName="Las_AgentGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
-
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBTXNIP.IPDB.bodbDownlineNet" Plain="0"  TimeOut="600"/>
   </Function>

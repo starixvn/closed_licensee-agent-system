@@ -152,7 +152,7 @@
         updateStatus: function (target, custId, statusId, url) {
             var params;
             if (pageContext.IsLastLevel) {
-                params = { memberid: custId, status: statusId };
+                params = { memberid: custId, status: statusId, agentid: $("#AgentId").val() };
             }
             else {
                 params = { agentid: custId, status: statusId };

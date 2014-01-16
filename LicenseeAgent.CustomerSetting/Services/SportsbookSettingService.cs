@@ -565,11 +565,18 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             var passwordSalt = Cryptography.CreateSalt();
             var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsbookCustomer.CustInfo.Password, passwordSalt);
+            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
+
             var criteria = new LicenseeInsertAgentSettingCriteria(criteriaBase)
             {
                 AgentL0Id = model.SettingContext.CustId,
                 UserSalt = passwordSalt,
-                UserPwd = hashPassword
+                UserPwd = hashPassword,
+                Phone = custInfo.Phone,
+                Mobile = custInfo.Mobile,
+                FirstName = custInfo.FirstName,
+                LastName = custInfo.LastName,
+                Fax = custInfo.Fax
             };
 
             return criteria;
@@ -605,11 +612,18 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             var passwordSalt = Cryptography.CreateSalt();
             var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsbookCustomer.CustInfo.Password, passwordSalt);
+            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
+
             var criteria = new AgentInsertAgentSettingCriteria(criteriaBase)
             {
                 ParentId = model.SettingContext.CustId,
                 UserSalt = passwordSalt,
-                UserPwd = hashPassword
+                UserPwd = hashPassword,
+                Phone = custInfo.Phone,
+                Mobile = custInfo.Mobile,
+                FirstName = custInfo.FirstName,
+                LastName = custInfo.LastName,
+                Fax = custInfo.Fax
             };
 
             return criteria;

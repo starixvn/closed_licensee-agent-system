@@ -24,6 +24,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -193,6 +194,24 @@ namespace LicenseeAgent.Account.Controllers
 
             var members = _agentService.GetMemberList(criteria);
 
+            if (criteria.MsgId == 0)
+            {
+                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(members, new GetMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
+            }
+
             return Json(new
             {
                 ErrCode = criteria.MsgId,
@@ -217,6 +236,25 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             var members = _agentService.SearchMember(criteria);
+
+            if (criteria.MsgId == 0)
+            {
+                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(members, new GetMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
+            }
+
             return Json(new
             {
                 ErrCode = criteria.MsgId,
@@ -254,15 +292,19 @@ namespace LicenseeAgent.Account.Controllers
         [DirectDownLineMember]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
-            var criteria = new UpdateMemberAccStatusCriteria
+            var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
             {
-                Updater = CurrentSession.LoginUserId,
-                CustId = model.MemberId,
-                AccStatus = model.Status
-            };
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                IBCCustId = model.MemberId,
+                IsClosed = model.Status == (byte)AccountStatus.Closed,
+                LASAgentId = model.AgentId
+            });
 
-            _agentService.UpdateMemberAccStatus(criteria);
-            return JsonResult(criteria.MsgId);
+            return Json(new
+            {
+                ErrCode = serviceResult.ErrCode,
+                ErrMsg = serviceResult.ErrMsg
+            });
         }
 
         /// <summary>

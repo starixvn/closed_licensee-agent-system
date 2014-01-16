@@ -18,6 +18,8 @@ namespace LicenseeAgent.Account.ViewModels
     {
         public int MemberId { get; set; }
 
+        public int AgentId { get; set; }
+
         public byte Status { get; set; }
     }
 }

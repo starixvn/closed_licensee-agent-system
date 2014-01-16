@@ -175,7 +175,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
-            model.SettingContext.CustId = model.SettingContext.CustId;
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.InsertCustomer(model);

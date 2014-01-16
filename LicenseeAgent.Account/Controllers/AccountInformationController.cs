@@ -18,6 +18,8 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -29,9 +31,12 @@ namespace LicenseeAgent.Account.Controllers
     {
         private readonly ISearchUserService _searchUserService;
 
-        public AccountInformationController(ISearchUserService searchUserService)
+        private readonly IMemberService _memberService;
+
+        public AccountInformationController(ISearchUserService searchUserService, IMemberService memberService)
         {
             _searchUserService = searchUserService;
+            _memberService = memberService;
         }
 
         /// <summary>
@@ -209,7 +214,7 @@ namespace LicenseeAgent.Account.Controllers
 
             return View(new SearchUserResultViewModel
             {
-                Customer = customer,
+                Customer = GetFullInformation(customer),
                 Uplines = uplines,
                 Downlines = downlines,
                 PageIndex = criteria.PageIndex,
@@ -265,12 +270,41 @@ namespace LicenseeAgent.Account.Controllers
 
             return View(new SearchUserResultViewModel
             {
-                Customer = customer,
+                Customer = GetFullInformation(customer),
                 Uplines = uplines,
                 Downlines = downlines,
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
             });
+        }
+
+        /// <summary>
+        /// Get full information when customer is member.
+        /// </summary>
+        /// <param name="customer">Customer Entity.</param>
+        /// <returns>Customer Entity.</returns>
+        [NonAction]
+        public CustomerEntity GetFullInformation(CustomerEntity customer)
+        {
+            if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
+            {
+                var serviceResult = _memberService.GetMemberInformation<CustomerEntity>(customer, new GetMemberInfoAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    IBCCustId = customer.CustId
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    ViewBag.Result = new SearchUserViewResult
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    };
+                }
+            }
+
+            return customer;
         }
     }
 }

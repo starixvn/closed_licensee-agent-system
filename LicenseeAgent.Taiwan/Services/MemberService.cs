@@ -97,7 +97,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        public ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, IAction action)
+        public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, IAction action)
         {
             var response = ServiceWrapper.GetResponseData<MemberListResult>(action);
 

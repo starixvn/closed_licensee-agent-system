@@ -5,7 +5,7 @@
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>
   <Function Name="Login">
-    <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AgentSaltSel" SpName="Las_AgentSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
     <Setting Key="Las_AdminSaltSel" SpName="Las_AdminSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />

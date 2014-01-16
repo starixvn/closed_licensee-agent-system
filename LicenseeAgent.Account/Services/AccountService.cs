@@ -45,7 +45,8 @@ namespace LicenseeAgent.Account.Services
                     LastChangedPwdDate = criteria.LastChangedPwdDate,
                     LicenseeId = criteria.LicenseeId,
                     IsNickName = criteria.IsNickName,
-                    LastLoggedTime = criteria.LastLoggedTime
+                    LastLoggedTime = criteria.LastLoggedTime,
+                    LicenseeName = criteria.LicenseeName
                 };
             }
 

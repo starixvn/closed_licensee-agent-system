@@ -67,6 +67,6 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, IAction action);
+        ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, IAction action);
     }
 }

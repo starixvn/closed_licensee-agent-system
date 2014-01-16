@@ -22,7 +22,7 @@
                 },
                 { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
+                        return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.CustId + ')">'
                             + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
                             + '</div>';
                     }

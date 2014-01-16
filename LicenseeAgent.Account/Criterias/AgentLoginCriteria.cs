@@ -55,6 +55,8 @@ namespace LicenseeAgent.Account.Criterias
 
         public int LicenseeId { get; set; }
 
+        public string LicenseeName { get; set; }
+
         public byte NumberOfLevel { get; set; }
 
         public DateTime LastLoggedTime { get; set; }

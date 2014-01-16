@@ -7,22 +7,27 @@
 namespace LicenseeAgent.Account.Entities
 {
     using LicenseeAgent.Account.Core;
+    using LicenseeAgent.Taiwan;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class CustomerEntity
     {
+        [Service(Name = "IBCCustId")]
         public int CustId { get; set; }
 
         public int Currency { get; set; }
 
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         public string UserName { get; set; }
 
         public string Phone { get; set; }
 
+        [Service(Name = "MobilePhone")]
         public string Mobile { get; set; }
 
         public string Fax { get; set; }
@@ -35,12 +40,14 @@ namespace LicenseeAgent.Account.Entities
         {
             get
             {
-                if (FullName.Length > Constants.LargeStringLength)
+                string fullName = string.Format("{0} {1}", FirstName, LastName);
+
+                if (fullName.Length > Constants.LargeStringLength)
                 {
-                    return string.Format("{0}...", FullName.Substring(0, Constants.LargeStringLength));
+                    return string.Format("{0}...", fullName.Substring(0, Constants.LargeStringLength));
                 }
 
-                return FullName;
+                return fullName;
             }
         }
 

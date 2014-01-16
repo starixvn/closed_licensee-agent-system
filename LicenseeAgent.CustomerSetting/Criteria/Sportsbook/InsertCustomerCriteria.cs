@@ -27,7 +27,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         public InsertCustomerCriteria(InsertCustomerCriteria criteria)
         {
             UserName = criteria.UserName;
-            UserPwd = criteria.UserPwd;
             Credit = criteria.Credit;
             Status = criteria.Status;
             Ip = criteria.Ip;
@@ -38,8 +37,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         }
 
         public string UserName { get; set; }
-
-        public string UserPwd { get; set; }
 
         public decimal Credit { get; set; }
 
@@ -75,8 +72,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(UserName) &&
-                !string.IsNullOrEmpty(UserPwd);
+            return !string.IsNullOrEmpty(UserName);
         }
     }
 }

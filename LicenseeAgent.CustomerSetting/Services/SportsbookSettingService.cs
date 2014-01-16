@@ -425,7 +425,6 @@ namespace LicenseeAgent.CustomerSetting.Service
             var criteriaBase = new InsertCustomerCriteria
             {
                 UserName = custInfo.UserName,
-                UserPwd = custInfo.Password,
                 Ip = model.SettingContext.Ip,
                 Creator = model.SettingContext.LoginUserId,
                 Credit = custInfo.Credit,
@@ -506,7 +505,6 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             var criteria = new AgentInsertMemberSettingCriteria(criteriaBase)
             {
-                UserPwd = Cryptography.CfsEnCrypt(model.UpdateDataSportsbookCustomer.CustInfo.Password),
                 UGroup = model.UpdateDataSportsbookCustomer.CommissionSetting.UserGroup,
                 ParentId = model.SettingContext.CustId
             };

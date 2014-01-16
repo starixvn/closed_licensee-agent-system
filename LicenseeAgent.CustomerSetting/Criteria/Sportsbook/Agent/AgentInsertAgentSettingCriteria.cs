@@ -29,6 +29,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
 
         public short MaxPTOutput { get; set; }
 
+        public string UserPwd { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AgentInsAgentAdvanceMode";
@@ -38,7 +40,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
         {
             return base.IsValid() &&
                 ParentId > 0 &&
-                !string.IsNullOrEmpty(UserSalt);
+                !string.IsNullOrEmpty(UserSalt) &&
+                !string.IsNullOrEmpty(UserPwd);
         }
     }
 }

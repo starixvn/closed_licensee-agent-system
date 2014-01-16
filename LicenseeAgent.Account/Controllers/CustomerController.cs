@@ -385,8 +385,8 @@ namespace LicenseeAgent.Account.Controllers
                 _agentService.ResetPassword(criteria);
 
                 return Json(new Result(criteria.ErrCode));
-                
             }
+
             return Json(new Result(Result.FailureValue));
         }
 

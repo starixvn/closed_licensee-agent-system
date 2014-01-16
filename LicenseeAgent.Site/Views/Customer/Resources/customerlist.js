@@ -71,6 +71,7 @@
             });
         },
         updateActionMenus: function (target) {
+            $('#menuAddDownline').show();
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'));
                 $('#menuAddDownline').hide();
@@ -79,8 +80,7 @@
                 editAgentId = parseInt($(target).data('agentid'));
                 editAgentLevel = parseInt($(target).data('agentlevel'));
             }
-            alert(target);
-            if ($(target).data('status') == 0)
+            if ($(target).attr('data-status') == 0)
                 $('#menuAddDownline').hide();
         },
         gridAfterBinding: function () {

@@ -32,5 +32,7 @@ namespace LicenseeAgent.Account.ViewModels
         [Compare("Password", ErrorMessageResourceName = "PasswordNotMatch", ErrorMessageResourceType = typeof(Las))]
         [Display(Name = "ConfirmPassword", ResourceType = typeof(Las))]
         public string ConfirmPassword { get; set; }
+
+        public bool IsLastLevel { get; set; }
     }
 }

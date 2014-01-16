@@ -5,7 +5,6 @@
                 resetPassword.updatePassword();
                 return false;
             });
-            alert("hehe");
         },
         updatePassword: function () {
             var params = {
@@ -16,7 +15,7 @@
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Customer/ResetPasswordAgent"),
+                url: CORE.resolveUrl("~/Customer/ResetPasswordMember"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {

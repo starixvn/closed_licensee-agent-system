@@ -68,8 +68,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
 
         public bool IsLiveOutput { get; set; }
 
-        public string IBCUserName { get; set; }
-
         public override bool IsValid()
         {
             return !string.IsNullOrEmpty(UserName);

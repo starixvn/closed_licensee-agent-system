@@ -36,7 +36,7 @@
     <Setting Key="Las_LicenseeInsAgentAdvanceMode" SpName="Las_LicenseeInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentSportsbookSettingSel" SpName="Las_AgentSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentInsAgentAdvanceMode" SpName="Las_AgentInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
-    <Setting Key="Las_AgentInsMemAdvanceMode" SpName="Las_AgentInsMemAdvanceMode_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_AgentInsMemAdvanceMode" SpName="Las_AgentInsMemAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_CheckExistUserName" SpName="Las_CheckExistUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_LicenseeGetAgentSBSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_AgentGetAgentSBSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

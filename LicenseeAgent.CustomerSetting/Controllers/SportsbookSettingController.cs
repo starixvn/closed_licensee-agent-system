@@ -92,7 +92,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 CustId = custId,
                 RoleId = roleId,
                 TargetCustId = targetCustId,
-                TargetRoleId = targetRoleId
+                TargetRoleId = targetRoleId,
+                Ip = Request.GetClientIp()
             };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForInsert(settingContext);

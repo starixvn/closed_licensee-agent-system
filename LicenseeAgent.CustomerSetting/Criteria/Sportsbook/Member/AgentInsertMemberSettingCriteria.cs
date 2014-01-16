@@ -29,6 +29,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
 
         public short MaxPTOutput { get; set; }
 
+        public string IBCUserName { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AgentInsMemAdvanceMode";

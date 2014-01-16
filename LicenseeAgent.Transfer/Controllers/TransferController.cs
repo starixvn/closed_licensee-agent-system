@@ -9,10 +9,10 @@ namespace LicenseeAgent.Transfer.Controllers
     using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Transfer.Criteria;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Transfer.Criteria;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,6 +31,11 @@ namespace LicenseeAgent.Transfer.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Searches the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns list of customer balance.</returns>
         [HttpPost]
         public JsonResult Search(TransferSearchViewModel model)
         {

@@ -54,7 +54,7 @@
     <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_MemberGetByAgent" SpName="Las_MemberGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_SearchAgent" SpName="Las_SearchAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
-    <Setting Key="Las_SearchMember" SpName="Las_SearchMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_SearchMember" SpName="Las_SearchMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_UpdateAgentAccStatus" SpName="Las_UpdateAgentAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_UpdateAgentBetStatus" SpName="Las_UpdateAgentBetStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_UpdateMemberAccStatus" SpName="Las_UpdateMemberAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

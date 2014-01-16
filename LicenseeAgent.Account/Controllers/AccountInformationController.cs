@@ -18,8 +18,8 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utils;
-    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
@@ -282,17 +282,19 @@ namespace LicenseeAgent.Account.Controllers
         /// Get full information when customer is member.
         /// </summary>
         /// <param name="customer">Customer Entity.</param>
-        /// <returns>Customer Entity.</returns>
+        /// <returns>Customer Entity After merge.</returns>
         [NonAction]
         public CustomerEntity GetFullInformation(CustomerEntity customer)
         {
             if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
             {
-                var serviceResult = _memberService.GetMemberInformation<CustomerEntity>(customer, new GetMemberInfoAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    IBCCustId = customer.CustId
-                });
+                var serviceResult = _memberService.GetMemberInformation<CustomerEntity>(
+                                    customer, 
+                                    new GetMemberInfoAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        IBCCustId = customer.CustId
+                                    });
 
                 if (serviceResult.ErrCode != 0)
                 {

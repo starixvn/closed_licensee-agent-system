@@ -24,7 +24,6 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
-    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -196,11 +195,13 @@ namespace LicenseeAgent.Account.Controllers
 
             if (criteria.MsgId == 0)
             {
-                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(members, new GetMemberInfoListAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = model.AgentId
-                });
+                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
+                                    members, 
+                                    new GetMemberInfoListAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        LASAgentId = model.AgentId
+                                    });
 
                 if (serviceResult.ErrCode != 0)
                 {
@@ -239,11 +240,13 @@ namespace LicenseeAgent.Account.Controllers
 
             if (criteria.MsgId == 0)
             {
-                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(members, new GetMemberInfoListAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = model.AgentId
-                });
+                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
+                                    members,
+                                    new GetMemberInfoListAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        LASAgentId = model.AgentId
+                                    });
 
                 if (serviceResult.ErrCode != 0)
                 {

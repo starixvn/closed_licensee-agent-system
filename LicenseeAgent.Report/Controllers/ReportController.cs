@@ -11,7 +11,9 @@
 namespace LicenseeAgent.Report.Controllers
 {
     using System.Web.Mvc;
-    using LicenseeAgent.Web.Controllers;
+    using Criteria;
+    using Services;
+    using Web.Controllers;
 
     /// <summary>
     /// Report Controller.
@@ -20,17 +22,26 @@ namespace LicenseeAgent.Report.Controllers
     {
         #region Constant
 
+        private bool IncludeTestData = false;
+
         #endregion
 
         #region Services
+
+        private IResultsReportService _resultsReportService;
 
         #endregion
 
         #region Constructor
 
+        public ReportController(IResultsReportService resultsReportService)
+        {
+            _resultsReportService = resultsReportService;
+        }
+
         #endregion
 
-        #region Actions
+        #region Results Report
 
         /// <summary>
         /// Index page of Results report.
@@ -40,6 +51,31 @@ namespace LicenseeAgent.Report.Controllers
         public ActionResult Results()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Get list of sports.
+        /// </summary>
+        /// <param name="criteria">Sport criteria.</param>
+        /// <returns>JSON object.</returns>
+        [HttpGet]
+        public JsonResult GetSports(SportCriteria criteria)
+        {
+            criteria.IsShowAll = IncludeTestData;
+            var sports = _resultsReportService.GetSports(criteria);
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get list of leagues.
+        /// </summary>
+        /// <param name="criteria">League criteria.</param>
+        /// <returns>JSON object.</returns>
+        [HttpGet]
+        public JsonResult GetLeagues(LeagueCriteria criteria)
+        {
+            return null;
         }
 
         #endregion

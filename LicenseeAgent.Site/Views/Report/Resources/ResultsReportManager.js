@@ -5,21 +5,22 @@
             $('#matchdatetimepicker').datepicker();
             $('#outrightfromdatetimepicker').datepicker();
             $('#outrighttodatetimepicker').datepicker();
+            $('.selectpicker').selectpicker();
 
-            //REPORT.initData();
+            REPORT.initData();
         },
 
         initData: function () {
             REPORT.getLeagueDataBySport();
-            REPORT.getEventDataByLeague(true);
+            //REPORT.getEventDataByLeague(true);
         },
 
         getLeagueDataBySport: function () {
             var params = {
-                League: $("#League").val()
+                EventDate: $("#matchdatetime").val()
             };
             $.ajax({
-                url: CORE.resolveUrl("~/TotalBets/GetLeagueList"),
+                url: CORE.resolveUrl("~/Report/GetSports"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -28,7 +29,7 @@
                 success: function (data) {
                     REPORT.initLeagueMultiSelect(data.List);
                 },
-                complete: function () {                    
+                complete: function () {
                 }
             });
         },

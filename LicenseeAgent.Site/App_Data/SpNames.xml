@@ -87,6 +87,16 @@
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
+  <Function Name="Report">
+    <!-- Results Report-->
+    <Setting Key="LAS_Result_SportSelByDate" SpName="LAS_Result_SportSelByDate" DbName="DBLAS.bodb02.bodblicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    
+    <!--Other reports should be applied-->
+    
+  </Function>
   <Function Name="SearchUser">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="Las_SuggestSearchMember_Agent" SpName="Las_SuggestSearchMember_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

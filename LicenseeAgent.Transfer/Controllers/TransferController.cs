@@ -57,21 +57,24 @@ namespace LicenseeAgent.Transfer.Controllers
         /// <param name="agentId">The agent identifier.</param>
         /// <returns>Returns agent transfer page.</returns>
         [HttpGet]
-        public ViewResult Agent(int agentId)
+        public ViewResult Agent(TransferAgentViewModel model)
         {
-            var model = new TransferAgentViewModel
+            if (model.Amount > 0)
             {
-                AgentId = agentId,
-                Amount = 10,
-                MinAmount = 0,
-                MaxAmount = 100
-            };
+                model.MinAmount = 0;
+                model.MaxAmount = model.Amount;
+            }
+            else
+            {
+                model.MinAmount = model.Amount;
+                model.MaxAmount = 0;
+            }
 
             return View(model);
         }
 
-        [HttpPost]
-        public JsonResult Agent(TransferAgentViewModel model)
+        [HttpPost, ActionName("Agent")]
+        public JsonResult AgentPost(TransferAgentViewModel model)
         {
             return Json(new
             {

@@ -41,6 +41,7 @@
 </div>
 @section scripts
 {
+    @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/transfer")
     @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)

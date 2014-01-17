@@ -3,6 +3,14 @@
         init: function () {
             $('.selectpicker').selectpicker();
 
+            context.init({
+                preventDoubleContext: false
+            });
+            context.attach('#select-dropdown', [
+                { text: LANGUAGE.getString('All'), href: '#', action: TRANSFER.checkAll },
+                { text: LANGUAGE.getString('None'), href: '#', action: TRANSFER.uncheckAll }
+            ]);
+
             $('#search-form').submit(function (e) {
                 TRANSFER.reRenderAfterPaged();
                 e.preventDefault();
@@ -57,6 +65,10 @@
         uncheckAll: function () {
             $(".icon-checked-all").attr("class", "icon-uncheck-all");
             $(".icon-checked").attr("class", "icon-uncheck");
+        },
+        transferAgent: function (agentId, agentName, amount) {
+            var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
+            POPUP.openDialogFrame(url, { width: 428, height: 200 });
         }
     }
 } (jQuery);

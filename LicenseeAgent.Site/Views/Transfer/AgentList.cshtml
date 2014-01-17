@@ -2,8 +2,7 @@
     var gridOption = {
         columns: [
                         {
-                            HeaderText: "<span class='icon-uncheck-all' onclick='TRANSFER.toggleCheck(this);'></span>" +
-                                        "<span class='icon-arrow' onclick='TRANSFER.onShowTop();'></span>",
+                            HeaderText: '<i class="icon-uncheck-all" onclick="TRANSFER.toggleCheck(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
                             Width: 30, Name: "Select", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<span class="cell-select icon icon-uncheck" onclick="TRANSFER.selectClick(this);"></span>';
@@ -13,10 +12,10 @@
                             HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
                         },
                         {
-                            HeaderText: "@Las.Username", Width: 110, Name: "UserName", HeaderAlign: "center"
+                            HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center"
                         },
                         {
-                            HeaderText: "@Las.CustomerName", Width: 140, Name: "CustomerName", HeaderAlign: "center"
+                            HeaderText: "@Las.CustomerName", Width: 125, Name: "CustomerName", HeaderAlign: "center"
                         },
                         {
                             HeaderText: "@Las.Status", Width: 55, Name: "Status", HeaderAlign: "center", CellAlign: "center",
@@ -32,7 +31,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-transfer"></i>';
+                                return '<i class="icon-transfer" onclick="TRANSFER.transferAgent({0}, \'{1}\', {2})"></i>'.format(rowData.AgentId, rowData.UserName, -rowData.YesterdayBalance);
                             }
                         },
                         {

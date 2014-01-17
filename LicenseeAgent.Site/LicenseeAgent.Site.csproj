@@ -521,7 +521,6 @@
     <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />
     <Content Include="Views\AccountInformation\Resources\index.js" />
-    <Content Include="Views\Transfer\Resources\Transfer.less" />
     <Content Include="Views\Transfer\Resources\Transfer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -59,7 +59,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Criterias\" />
+    <Folder Include="Criteria\" />
     <Folder Include="Entities\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />

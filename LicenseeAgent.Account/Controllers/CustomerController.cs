@@ -418,6 +418,19 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (ModelState.IsValid)
             {
+                var logStatement = new ResetPasswordMemberLogCriteria
+                {
+                    CustId = model.CustId,
+                    ErrCode = 0,
+                    ErrMsg = string.Empty,
+                    Doing = string.Empty,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId
+                };
+
+                // Write log before call API
+                _agentService.ResetPasswordMemberLog(logStatement);
+
                 // Call API to update member password
                 var serviceResult = _memberService.ResetPassword(new ResetPasswordAction
                 {
@@ -434,6 +447,12 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
                 }
+
+                // Write log after call API
+                logStatement.Doing = string.Empty;
+                logStatement.ErrCode = serviceResult.ErrCode;
+                logStatement.ErrMsg = serviceResult.ErrMsg;
+                _agentService.ResetPasswordMemberLog(logStatement);
             }
 
             return View("~/Views/Customer/ResetPassword.cshtml");

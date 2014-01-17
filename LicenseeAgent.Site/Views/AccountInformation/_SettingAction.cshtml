@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("ResetPassword", "Customer", Model.Customer)" target="frmMain">
+                        <a href="@(pageContext.IsLastLevel ? Url.Action("ResetPasswordMember", "Customer", new { memberId = Model.Customer.CustId }) : Url.Action("ResetPasswordAgent", "Customer", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.ResetPassword
                         </a>

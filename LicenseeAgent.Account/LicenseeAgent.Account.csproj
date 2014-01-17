@@ -105,6 +105,7 @@
     <Compile Include="Entities\MemberEntity.cs" />
     <Compile Include="Entities\SuggestionEntity.cs" />
     <Compile Include="Entities\UplineEntity.cs" />
+    <Compile Include="Criterias\ResetPasswordMemberLogCriteria.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CurrencyService.cs" />

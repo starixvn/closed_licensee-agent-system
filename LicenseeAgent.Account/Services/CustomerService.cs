@@ -107,5 +107,10 @@ namespace LicenseeAgent.Account.Services
             criteria.Password = Cryptography.CreateHash(criteria.Password, criteria.UserSalt);
             Execute(criteria);
         }
+
+        public void ResetPasswordMemberLog(ResetPasswordMemberLogCriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

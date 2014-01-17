@@ -77,5 +77,11 @@ namespace LicenseeAgent.Account.Services
         /// </summary>
         /// <param name="criteria">Reset Password Criteria.</param>
         void ResetPassword(ResetPasswordCriteria criteria);
+
+        /// <summary>
+        /// Reset Password.
+        /// </summary>
+        /// <param name="criteria">Reset Password Criteria.</param>
+        void ResetPasswordMemberLog(ResetPasswordMemberLogCriteria criteria);
     }
 }

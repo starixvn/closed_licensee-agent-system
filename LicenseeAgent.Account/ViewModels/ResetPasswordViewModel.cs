@@ -20,10 +20,10 @@ namespace LicenseeAgent.Account.ViewModels
 
         [AllowHtml]
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceName = "NewPasswordRequired", ErrorMessageResourceType = typeof(Las))]
+        [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Las))]
         [AppPasswordRule]
         [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordRuleInstruction", ErrorMessageResourceType = typeof(Las))]
-        [Display(Name = "ResetPassword", ResourceType = typeof(Las))]
+        [Display(Name = "Password", ResourceType = typeof(Las))]
         public string Password { get; set; }
 
         [AllowHtml]

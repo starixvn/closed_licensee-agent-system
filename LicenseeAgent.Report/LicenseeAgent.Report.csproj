@@ -82,7 +82,7 @@
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
     <Folder Include="Criteria\" />
     <Folder Include="Entities\" />
     <Folder Include="Services\" />

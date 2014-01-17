@@ -37,11 +37,25 @@
                 });
             }
 
+            $('#submit').addClass('disabled');
+            $('#agentName').keyup(function () {
+                if ($.trim($('#agentName').val()) != '') {
+                    $('#submit').removeClass('disabled');
+                }
+                else {
+                    if (!$('#submit').hasClass('disabled')) {
+                        $('#submit').addClass('disabled');
+                    }
+                }
+            });
+
             INTERNAL_HEADER.initCurrencyBox();
 
             $('#internal-form').submit(function (e) {
                 e.preventDefault();
-                INTERNAL_HEADER.submit();
+                if (!$('#submit').hasClass('disabled')) {
+                    INTERNAL_HEADER.submit();
+                }
             });
 
             if ($('#licensee').length > 0 && (!licenseeId || !currencyId)) {
@@ -49,12 +63,10 @@
             }
         },
         enableSearch: function (enabled) {
+            $('#agentName').val('');
             if (enabled) {
                 $('#submit').removeClass('disabled');
                 $('#submit').click();
-            }
-            else {
-                $('#submit').addClass('disabled');
             }
         },
         submit: function () {
@@ -62,7 +74,7 @@
                 var data = {
                     licenseeid: newLicenseeId,
                     currencyId: newCurrencyId,
-                    userName: $('#agentName').val()
+                    userName: $.trim($('#agentName').val())
                 };
                 var url = $('#internal-form').attr('action');
                 $.ajax({
@@ -80,7 +92,9 @@
                         if (data.DirectUrl) {
                             POPUP.openWindow(data.DirectUrl);
                         }
-                        location.reload();
+                        else {
+                            location.reload();
+                        }
                     },
                     complete: function () {
                         CORE.unblockUI();

@@ -23,7 +23,7 @@ namespace LicenseeAgent.BetList.Criteria
         public long TransId { get; set; }
         
         [SpParam(Ignored = true)]
-        public int StatusId { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
         /// Get SP name.

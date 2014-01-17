@@ -126,7 +126,7 @@ var BETLIST = function ($) {
             $('#month-picker-control').monPickr("setFromDay", lastDay);
         },
         showBetListDetails: function (transId, status) {
-            var url = "~/BetList/Details?transId=" + transId + "&statusid=" + status;
+            var url = "~/BetList/Details?transId=" + transId + "&status=" + status;
             $.ajax({
                 type: "GET",
                 contentType: 'application/json',

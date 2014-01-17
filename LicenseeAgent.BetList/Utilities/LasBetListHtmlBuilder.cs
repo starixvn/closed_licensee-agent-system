@@ -16,6 +16,7 @@ namespace LicenseeAgent.BetList.Utilities
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Utils;
 
     /// <summary>
@@ -23,10 +24,6 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public static class LasBetListHtmlBuilder
     {
-        private const string BETLISTTICKETSTATUSRUNNING = "running";
-
-        private const string BETLISTTICKETSTATUSWAITING = "waiting";
-
         /// <summary>
         /// Get ticket status.
         /// </summary>
@@ -136,7 +133,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            if (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
+            if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
             {
                 return "-";
             }
@@ -158,7 +155,7 @@ namespace LicenseeAgent.BetList.Utilities
         {
             var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
             var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100) + "%</div>";
-            agentPTHtmlStr += (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
+            agentPTHtmlStr += (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
                 ? string.Empty
                 : "<div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
             return agentPTHtmlStr;
@@ -175,7 +172,7 @@ namespace LicenseeAgent.BetList.Utilities
             LasTicket ticket)
         {
             var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100) + "%</div>";
-            agentCommHtmlStr += (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
+            agentCommHtmlStr += (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
                 ? string.Empty
                 : "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
             return agentCommHtmlStr;

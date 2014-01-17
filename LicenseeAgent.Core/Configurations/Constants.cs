@@ -19,6 +19,9 @@ namespace LicenseeAgent.Core.Configurations
         public const string AppSessionCaptcha = "LasCaptcha";
         public const string AppSessionLanguage = "LasLanguage";
 
+        public const string BETLISTTICKETSTATUSRUNNING = "running";
+        public const string BETLISTTICKETSTATUSWAITING = "waiting";
+
         public const int CaptchaWidth = 110;
         public const int CaptchaHeight = 32;
         public static readonly Color CaptchaBackColor = Color.FromArgb(240, 238, 240);

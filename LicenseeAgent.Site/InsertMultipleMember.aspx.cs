@@ -167,6 +167,7 @@ namespace LicenseeAgent.Site
             custInfo.LastName = prefix + "-" + index.ToString("D9");
             custInfo.Phone = prefix + "-" + index.ToString("D9");
             custInfo.Fax = prefix + "-" + index.ToString("D9");
+            viewModel.SettingContext.Ip = "127.0.0.1";
 
             return viewModel;
         }

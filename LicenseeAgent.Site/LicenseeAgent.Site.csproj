@@ -237,6 +237,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InsertMultipleMember.aspx.cs">
+      <DependentUpon>InsertMultipleMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InsertMultipleMember.aspx.designer.cs">
+      <DependentUpon>InsertMultipleMember.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="Content\BetList\betlist.core.css" />
@@ -258,6 +264,7 @@
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\login\sprite.png" />
+    <Content Include="InsertMultipleMember.aspx" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />

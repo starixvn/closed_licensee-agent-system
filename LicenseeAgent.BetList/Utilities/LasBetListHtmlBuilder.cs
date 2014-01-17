@@ -199,8 +199,6 @@ namespace LicenseeAgent.BetList.Utilities
             param += "&CustId=" + (ticket.CustId == 0 ? criteria.CustId : ticket.CustId);
             param += "&CurrencyId=" + currencyID.ToString();
             param += "&CurrencyName=" + currencyName;
-            param += "&BaseCurrency=" + criteria.BaseCurrency;
-
             return param;
         }
 

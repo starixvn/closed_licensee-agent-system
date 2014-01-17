@@ -15,6 +15,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
@@ -421,9 +422,9 @@ namespace LicenseeAgent.Account.Controllers
                 var logStatement = new ResetPasswordMemberLogCriteria
                 {
                     CustId = model.CustId,
-                    ErrCode = 0,
-                    ErrMsg = string.Empty,
-                    Doing = string.Empty,
+                    Doing = string.Format("Url: {0}/ResetPassword/?help=0", AppSettings.TaiwanAPI) +
+                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName + 
+                            ", IBCCustID:" + model.CustId,
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId
                 };
@@ -449,7 +450,6 @@ namespace LicenseeAgent.Account.Controllers
                 }
 
                 // Write log after call API
-                logStatement.Doing = string.Empty;
                 logStatement.ErrCode = serviceResult.ErrCode;
                 logStatement.ErrMsg = serviceResult.ErrMsg;
                 _agentService.ResetPasswordMemberLog(logStatement);

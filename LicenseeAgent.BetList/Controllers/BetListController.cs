@@ -34,6 +34,10 @@ namespace LicenseeAgent.BetList.Controllers
 
         private const string BetListCustomerInfo = "BetListCustomerInfo";
 
+        private const int TicketStatusRunning = 0;
+
+        private const int TicketStatusWaiting = 1;
+
         private const int CacheDuration = 43200;
 
         #endregion
@@ -166,7 +170,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
             var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails);
+            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.StatusId);
 
             return View(viewModel);
         }
@@ -225,7 +229,7 @@ namespace LicenseeAgent.BetList.Controllers
                     WinLoss = builder.BuildLasWinloss(ticket)
                 };
 
-                var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);
+                var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0},{1})\"", ticket.TransId, ticket.StatusId);
                 ticketText.Feature = string.Format(
                         "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>",
                         clickFunction,
@@ -244,8 +248,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// Format raw bet list details.
         /// </summary>
         /// <param name="originalData">List of raw bet list details.</param>
+        /// <param name="statusId">Ticket status ID.</param>
         /// <returns>List of formatted bet list details.</returns>
-        private static List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData)
+        private static List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, int statusId)
         {
             var formattedData = new List<BetListDetails>();
             foreach (var item in originalData)
@@ -253,19 +258,21 @@ namespace LicenseeAgent.BetList.Controllers
                 formattedData.Add(new BetListDetails
                 {
                     Agent = item.AgentName,
-                    PositionTaking = GenerateHtmlStringForAgent(item.AgentPTPercent, item.AgentPT),
-                    Commission = GenerateHtmlStringForAgent(item.AgentCommPercent, item.AgentComm)
+                    PositionTaking = GenerateHtmlStringForAgent(item.AgentPTPercent, item.AgentPT, statusId),
+                    Commission = GenerateHtmlStringForAgent(item.AgentCommPercent, item.AgentComm, statusId)
                 });
             }
 
             return formattedData;
         }
 
-        private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
+        private static string GenerateHtmlStringForAgent(decimal percentage, decimal value, int statusId)
         {
             var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100);
-            htmlString += "%</div><div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100) + "%</div>";
+            htmlString += (statusId == TicketStatusRunning || statusId == TicketStatusWaiting)
+                ? string.Empty
+                : "<div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
 
             return htmlString;
         }

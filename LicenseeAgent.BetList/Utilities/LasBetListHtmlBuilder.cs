@@ -114,8 +114,10 @@ namespace LicenseeAgent.BetList.Utilities
             LasTicket ticket)
         {
             var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
-            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100);
-            agentPTHtmlStr += "%</div><div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
+            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100) + "%</div>";
+            agentPTHtmlStr += (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
+                ? string.Empty
+                : "<div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
             return agentPTHtmlStr;
         }
 
@@ -129,8 +131,10 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket)
         {
-            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100);
-            agentCommHtmlStr += "%</div><div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
+            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100) + "%</div>";
+            agentCommHtmlStr += (ticket.Status == BETLISTTICKETSTATUSRUNNING || ticket.Status == BETLISTTICKETSTATUSWAITING)
+                ? string.Empty
+                : "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
             return agentCommHtmlStr;
         }
 

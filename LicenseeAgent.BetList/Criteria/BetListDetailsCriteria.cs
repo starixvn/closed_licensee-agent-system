@@ -21,6 +21,9 @@ namespace LicenseeAgent.BetList.Criteria
         public int AgentId { get; set; }
 
         public long TransId { get; set; }
+        
+        [SpParam(Ignored = true)]
+        public int StatusId { get; set; }
 
         /// <summary>
         /// Get SP name.

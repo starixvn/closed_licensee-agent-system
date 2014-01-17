@@ -233,7 +233,7 @@ namespace LicenseeAgent.Account.Controllers
             var criteria = new AdminGetMemberListCriteria
             {
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                UserId = CurrentSession.AdminInfo.UserId,
+                UserId = CurrentSession.LoginUserId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
                 UserName = model.UserName,
                 PageSize = Constants.PageSize
@@ -296,14 +296,14 @@ namespace LicenseeAgent.Account.Controllers
                                         IBCCustId = customer.CustId
                                     });
 
-                if (serviceResult.ErrCode != 0)
-                {
-                    ViewBag.Result = new SearchUserViewResult
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    };
-                }
+                // if (serviceResult.ErrCode != 0)
+                // {
+                //    ViewBag.Result = new SearchUserViewResult
+                //    {
+                //        ErrCode = serviceResult.ErrCode,
+                //        ErrMsg = serviceResult.ErrMsg
+                //    };
+                // }
             }
 
             return customer;

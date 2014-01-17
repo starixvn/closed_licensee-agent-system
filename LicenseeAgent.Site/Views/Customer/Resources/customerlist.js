@@ -120,21 +120,26 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        currentPage: 0,
-                        itemsPerPageArray: CORE.pageSizes,
-                        showDetail: true,
-                        afterPagedFunction: function () {
-                            customerList.gridAfterBinding();
-                        }
-                    };
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                    }
+                    else {
+                        gridOption.pagerOption = {
+                            itemsPerPage: CORE.pageSizes[0],
+                            currentPage: 0,
+                            itemsPerPageArray: CORE.pageSizes,
+                            showDetail: true,
+                            afterPagedFunction: function () {
+                                customerList.gridAfterBinding();
+                            }
+                        };
 
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
+                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                        $('#grid').show().fanexGrid(gridOption);
 
-                    customerList.gridAfterBinding();
-                    customerList.resizeBox();
+                        customerList.gridAfterBinding();
+                        customerList.resizeBox();
+                    }
                 },
                 complete: function () {
                     CORE.unblockUI();

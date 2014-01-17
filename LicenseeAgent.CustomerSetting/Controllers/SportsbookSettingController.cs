@@ -336,6 +336,25 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             };
 
             _customerSettingService.CheckExistUserName(criteria);
+
+            if (criteria.MsgId != 0)
+            {
+                var serviceResult = _memberService.CheckUserName(new CheckUserNameAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    UserName = model.UserName
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
+            }
+
             return JsonResult(criteria.MsgId);
         }
 

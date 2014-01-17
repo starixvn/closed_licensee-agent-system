@@ -204,14 +204,14 @@ namespace LicenseeAgent.Account.Controllers
                                         LASAgentId = model.AgentId
                                     });
 
-                if (serviceResult.ErrCode != 0)
-                {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
-                }
+                // if (serviceResult.ErrCode != 0)
+                // {
+                //    return Json(new
+                //    {
+                //        ErrCode = serviceResult.ErrCode,
+                //        ErrMsg = serviceResult.ErrMsg
+                //    });
+                // }
             }
 
             return Json(new
@@ -248,14 +248,14 @@ namespace LicenseeAgent.Account.Controllers
                                         LASAgentId = model.AgentId
                                     });
 
-                if (serviceResult.ErrCode != 0)
-                {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
-                }
+                // if (serviceResult.ErrCode != 0)
+                // {
+                //    return Json(new
+                //    {
+                //        ErrCode = serviceResult.ErrCode,
+                //        ErrMsg = serviceResult.ErrMsg
+                //    });
+                // }
             }
 
             return Json(new

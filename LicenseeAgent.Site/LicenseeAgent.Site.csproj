@@ -403,7 +403,6 @@
     <Content Include="Scripts\clickout\jquery.clickout.js" />
     <Content Include="Scripts\contextmenu\context.js" />
     <Content Include="Scripts\dotdotdot\jquery.dotdotdot.js" />
-    <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />

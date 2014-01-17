@@ -10,9 +10,11 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Criteria;
     using Services;
+    using ViewModels;
     using Web.Controllers;
 
     /// <summary>
@@ -22,7 +24,7 @@ namespace LicenseeAgent.Report.Controllers
     {
         #region Constant
 
-        private bool IncludeTestData = false;
+        private bool _includeTestData = false;
 
         #endregion
 
@@ -50,7 +52,8 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult Results()
         {
-            return View();
+            var model = new ResultsReportViewModel();
+            return View(model);
         }
 
         /// <summary>
@@ -58,13 +61,18 @@ namespace LicenseeAgent.Report.Controllers
         /// </summary>
         /// <param name="criteria">Sport criteria.</param>
         /// <returns>JSON object.</returns>
-        [HttpGet]
-        public JsonResult GetSports(SportCriteria criteria)
+        public ActionResult GetSports(SportCriteria criteria)
         {
-            criteria.IsShowAll = IncludeTestData;
+            criteria.IsShowAll = _includeTestData;
             var sports = _resultsReportService.GetSports(criteria);
 
-            return null;
+            var model = new ResultsReportViewModel();
+            foreach (var item in sports)
+            {
+                model.Sports.Add(new SelectListItem { Text = item.SportName, Value = item.SportType });
+            }
+
+            return View("Results", model);
         }
 
         /// <summary>
@@ -72,7 +80,6 @@ namespace LicenseeAgent.Report.Controllers
         /// </summary>
         /// <param name="criteria">League criteria.</param>
         /// <returns>JSON object.</returns>
-        [HttpGet]
         public JsonResult GetLeagues(LeagueCriteria criteria)
         {
             return null;

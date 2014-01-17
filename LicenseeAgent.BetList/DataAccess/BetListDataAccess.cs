@@ -150,6 +150,7 @@ namespace LicenseeAgent.BetList.DataAccess
             var containsCurrencyId = columnCollection.Contains("currencyid");
             var containsLiveHomeScore = columnCollection.Contains("livehomescore");
             var containsLiveAwayScore = columnCollection.Contains("liveawayscore");
+            var containsStatusID = columnCollection.Contains("statusid");
 
             // Long
             var containsTransId = columnCollection.Contains("transid");
@@ -209,6 +210,7 @@ namespace LicenseeAgent.BetList.DataAccess
                 ticket.CustId = containsCustId ? Converter.ToInt(dataRow["custid"]) : 0;
                 ticket.LiveHomeScore = containsLiveHomeScore ? Converter.ToInt(dataRow["livehomescore"]) : 0;
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
+                ticket.StatusId = containsStatusID ? Converter.ToInt(dataRow["statusid"]) : 0;
 
                 // Long
                 ticket.TransId = containsTransId ? Convert.ToInt64(dataRow["transid"]) : 0;

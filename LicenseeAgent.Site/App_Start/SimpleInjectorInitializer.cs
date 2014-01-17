@@ -14,6 +14,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.Report.Services;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Web.Services;
@@ -58,6 +59,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IIpInformationService, IpInformationService>();
             container.Register<ISearchUserService, SearchUserService>();
             container.Register<IBetListService, BetListService>();
+            container.Register<IResultsReportService, ResultsReportService>();
             container.Register<ICoreService, CoreService>();
             container.Register<ITransferService, TransferService>();
             container.Register<IMemberService, MemberService>();

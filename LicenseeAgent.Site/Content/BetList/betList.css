@@ -446,3 +446,14 @@ Format styles
 .freegrid td, .freegrid .grid-fixed-table td {
 	padding: 10px 3px 10px 0 !important;
 }
+
+/* Line-through voided tickets */
+div.ticketList div.void span, div.ticketList div.void div
+{
+    text-decoration: line-through;
+}
+
+div.ticketList div.void > div.match, div.ticketList div.void div.firstGoal, div.ticketList div.void div.lastGoal
+{
+    text-decoration: none;
+}

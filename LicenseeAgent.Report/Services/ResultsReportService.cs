@@ -57,7 +57,7 @@ namespace LicenseeAgent.Report.Services
         /// <param name="criteria">System parlay result criteria.</param>
         public void GetMatchResults(ICriteria criteria)
         {
-
+            return;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace LicenseeAgent.Report.Services
         /// <param name="criteria">Bet List Details Criteria.</param>
         public void GetOutrightResults(ICriteria criteria)
         {
-
+            return;
         }
         
         #endregion

@@ -89,10 +89,10 @@
   </Function>
   <Function Name="Report">
     <!-- Results Report-->
-    <Setting Key="LAS_Result_SportSelByDate" SpName="LAS_Result_SportSelByDate" DbName="DBLAS.bodb02.bodblicenseeNet" Plain="1"  TimeOut="600"/>
-    <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
-    <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
-    <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBLAS.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_SportSelByDate" SpName="LAS_Result_SportSelByDate" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     
     <!--Other reports should be applied-->
     

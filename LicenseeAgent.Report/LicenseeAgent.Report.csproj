@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ResultsReportService.cs" />
     <Compile Include="Services\IResultsReportService.cs" />
+    <Compile Include="ViewModels\ResultsReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
@@ -81,7 +82,7 @@
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup />
     <Folder Include="Criteria\" />
     <Folder Include="Entities\" />
     <Folder Include="Services\" />

@@ -234,7 +234,6 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentId = model.AgentId,
                 UserName = model.UserName,
-                AccStatus = model.Status
             };
 
             var members = _agentService.SearchMember(criteria);

@@ -17,22 +17,11 @@ namespace LicenseeAgent.Account.Criterias
     /// </summary>
     public class SearchAgentCriteria : CriteriaBase
     {
-        public SearchAgentCriteria()
-        {
-            PageSize = 1000;
-        }
-
         public int AgentId { get; set; }
 
         public string UserName { get; set; }
 
         public byte? AccStatus { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalItems { get; set; }
 
         public int MsgId { get; set; }
 

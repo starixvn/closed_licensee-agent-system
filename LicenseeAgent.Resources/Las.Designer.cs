@@ -1188,6 +1188,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member List.
         /// </summary>
         public static string MemberList {
@@ -1202,6 +1211,15 @@ namespace LicenseeAgent.Resources {
         public static string MessageUnderMaintenance {
             get {
                 return ResourceManager.GetString("MessageUnderMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mix Parlay.
+        /// </summary>
+        public static string MixParlay {
+            get {
+                return ResourceManager.GetString("MixParlay", resourceCulture);
             }
         }
         
@@ -1445,6 +1463,15 @@ namespace LicenseeAgent.Resources {
         public static string PageTitle_BetList {
             get {
                 return ResourceManager.GetString("PageTitle_BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parlay - Total Bets.
+        /// </summary>
+        public static string PageTitle_ParlayTotalBets {
+            get {
+                return ResourceManager.GetString("PageTitle_ParlayTotalBets", resourceCulture);
             }
         }
         
@@ -1779,6 +1806,15 @@ namespace LicenseeAgent.Resources {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Parlay.
+        /// </summary>
+        public static string SystemParlay {
+            get {
+                return ResourceManager.GetString("SystemParlay", resourceCulture);
             }
         }
         

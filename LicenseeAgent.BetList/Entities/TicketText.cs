@@ -17,6 +17,8 @@ namespace LicenseeAgent.BetList.Entities
     {
         public int Index { get; set; }
 
+        public string Member { get; set; }
+
         public string ExternalId { get; set; }
 
         public string SystemId { get; set; }

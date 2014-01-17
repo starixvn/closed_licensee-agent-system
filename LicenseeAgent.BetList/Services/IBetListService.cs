@@ -21,8 +21,6 @@ namespace LicenseeAgent.BetList.Services
     /// </summary>
     public interface IBetListService
     {
-        #region BetList
-
         /// <summary>
         /// Get Bet List.
         /// </summary>
@@ -30,7 +28,7 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         TicketResult GetBetList(ICriteria criteria);
 
-       /// <summary>
+        /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
         /// <param name="criteria">Mix Parlay Details Criteria.</param>
@@ -50,7 +48,35 @@ namespace LicenseeAgent.BetList.Services
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>A list of bet list details.</returns>
         IEnumerable<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria);
-     
-        #endregion
+
+        /// <summary>
+        /// Get Parlay List.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>
+        /// Ticket results.
+        /// </returns>
+        TicketResult GetParlayList(ICriteria criteria);
+
+        /// <summary>
+        /// Get Parlay Detail.
+        /// </summary>
+        /// <param name="criteria">Parlay Detail Criteria.</param>
+        /// <returns>Ticket results.</returns>
+        IEnumerable<RawBetListDetails> GetParlayDetail(TotalBetsParlayDetailCriteria criteria);
+
+        /// <summary>
+        /// Get Total Bets Mix Parlay Detail.
+        /// </summary>
+        /// <param name="criteria">Total Bets Mix Parlay Detail Criteria.</param>
+        /// <returns>Ticket results.</returns>
+        TicketResult GetTotalBetsMixParlayDetail(TotalBetsMixParlayDetailCriteria criteria);
+
+        /// <summary>
+        /// Get system parlay result data.
+        /// </summary>
+        /// <param name="criteria">System parlay result criteria.</param>
+        /// <returns>System Parlay Data.</returns>
+        SystemParlayData GetTotalBetsSystemParlayDetail(TotalBetsSystemParlayDetailCriteria criteria);
     }
 }

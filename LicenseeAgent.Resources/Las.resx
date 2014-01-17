@@ -884,4 +884,16 @@ Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special cha
   <data name="Parlay" xml:space="preserve">
     <value>Parlay</value>
   </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="PageTitle_ParlayTotalBets" xml:space="preserve">
+    <value>Parlay - Total Bets</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
 </root>

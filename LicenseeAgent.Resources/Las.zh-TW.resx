@@ -702,4 +702,20 @@
     <value>Parlay</value>
     <comment>not</comment>
   </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+    <comment>not</comment>
+  </data>
+  <data name="PageTitle_ParlayTotalBets" xml:space="preserve">
+    <value>Parlay - Total Bets</value>
+    <comment>not</comment>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
+    <comment>not</comment>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+    <comment>not</comment>
+  </data>
 </root>

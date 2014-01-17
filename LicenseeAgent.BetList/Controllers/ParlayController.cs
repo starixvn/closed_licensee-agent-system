@@ -29,8 +29,6 @@ namespace LicenseeAgent.BetList.Controllers
     /// </summary>
     public class ParlayController : BaseController
     {
-        private const string BetListCustomerInfo = "BetListCustomerInfo";
-        private const int CacheDuration = 43200;
         private IBetListService _betlistService;
         private ICoreService _coreService;
 
@@ -40,15 +38,9 @@ namespace LicenseeAgent.BetList.Controllers
             _coreService = coreService;
         }
 
-        /// <summary>
-        /// Index page of Bet List.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult ParlayList(int custId)
+        public ActionResult ParlayList()
         {
-            ViewBag.CustId = custId;
             return View("~/Views/BetList/ParlayList.cshtml");
         }
 
@@ -58,26 +50,21 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="criteria">Bet List By Member Criteria.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        public JsonResult ParlayList(BetListSelByMemberCriteria criteria)
+        public JsonResult ParlayList(TotalBetsParlayListCriteria criteria)
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            criteria.MoveBetsDay = balanceUp.MoveBetDay;
-            criteria.BalanceUpDay = balanceUp.BalanceUpDay;
-            criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;
-
-            var ticketResults = _betlistService.GetBetList(criteria);
+            var ticketResults = _betlistService.GetParlayList(criteria);
 
             var model = new BetListViewModel()
             {
-                TicketTextList = Ticket(ticketResults, criteria),
+                TicketTextList = ComposeTickets(ticketResults, criteria),
                 TicketResult = ticketResults
             };
 
             return Json(new
             {
                 List = model.TicketTextList,
-                TotalItem = criteria.TotalRows
+                TotalItem = model.TicketTextList.Count
             });
         }
 
@@ -91,8 +78,8 @@ namespace LicenseeAgent.BetList.Controllers
         public ActionResult MixParlayDetails(long transId)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
-            var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
-            var ticketResult = _betlistService.GetMixParlayDetails(criteria);
+            var criteria = new TotalBetsMixParlayDetailCriteria { AgentId = agentId, TransId = transId };
+            var ticketResult = _betlistService.GetTotalBetsMixParlayDetail(criteria);
             var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
 
@@ -107,28 +94,25 @@ namespace LicenseeAgent.BetList.Controllers
         }
 
         /// <summary>
-        /// System Parlay Result action.
+        /// System Parlay Details action.
         /// </summary>
         /// <param name="refNo">Reference number of transaction.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>String content.</returns>
+        /// <returns>
+        /// String content.
+        /// </returns>
         [HttpGet]
         [DownLineMember]
-        public ActionResult SystemParlayResult(long refNo, int custId)
+        public ActionResult SystemParlayDetails(long refNo)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
-            var balanceUp = _coreService.GetBalanceUpDay();
 
-            var criteria = new SystemParlayResultCriteria
+            var criteria = new TotalBetsSystemParlayDetailCriteria
             {
                 AgentId = agentId,
-                RefNo = refNo,
-                CustId = custId,
-                BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetDay
+                RefNo = refNo
             };
 
-            var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
+            var systemParlayData = _betlistService.GetTotalBetsSystemParlayDetail(criteria);
             var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper();
             var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
@@ -143,14 +127,14 @@ namespace LicenseeAgent.BetList.Controllers
         /// <returns>Return a view.</returns>
         [HttpGet]
         [DownLineTransaction]
-        public ActionResult Details(BetListDetailsCriteria criteria)
+        public ActionResult ParlayDetails(TotalBetsParlayDetailCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
+            var rawBetListDetails = _betlistService.GetParlayDetail(criteria);
             var viewModel = new BetListDetailsViewModel();
             viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails);
 
-            return View(viewModel);
+            return View("~/Views/BetList/ParlayDetail.cshtml", viewModel);
         }
 
         /// <summary>
@@ -162,9 +146,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="showOdds">Show Odds or not.</param>
         /// <returns>Result value.</returns>
         [NonAction]
-        private static List<TicketText> Ticket(
+        private static List<TicketText> ComposeTickets(
             TicketResult ticketResult,
-            BetListCriteriaBase criteria,
+            TotalBetsParlayListCriteria criteria,
             int startIndex = 1,
             bool showOdds = false)
         {
@@ -176,13 +160,12 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 if (ticket.BetTypeId == (int)BetType.SystemParlay)
                 {
-                    var custId = ticket.CustId != 0 ? ticket.CustId : criteria.CustId;
                     var betTeam = ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
-                    var formatDetail = "BETLIST.showSystemParlayResult({0},{1},\"{2}\")";
+                    var formatDetail = "fanex.totalBets.parlay.showSystemParlayDetails({0},{1},\"{2}\")";
                     ticketHelper.ClientDetailSystemParlayFunction = string.Format(
                         formatDetail,
                         ticket.RefNo,
-                        custId,
+                        ticket.CustId,
                         betTeam);
                 }
 
@@ -190,11 +173,12 @@ namespace LicenseeAgent.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     Index = startIndex++,
+                    Member = "victorm7",
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
                     TransTime = builder.BuildTrans(ticket),
-                    Status = builder.BuildLasBetListResultStatus(
-                        ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
+                    ////Status = builder.BuildLasBetListResultStatus(
+                    ////    ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
                     Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                     Stake = builder.BuildLasStake(ticket),
@@ -203,7 +187,7 @@ namespace LicenseeAgent.BetList.Controllers
                     WinLoss = builder.BuildLasWinloss(ticket)
                 };
 
-                var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0})\"", ticket.TransId);
+                var clickFunction = string.Format("onclick=\"javascript: fanex.totalBets.parlay.showParlayDetails({0})\"", ticket.TransId);
                 ticketText.Feature = string.Format(
                         "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>",
                         clickFunction,

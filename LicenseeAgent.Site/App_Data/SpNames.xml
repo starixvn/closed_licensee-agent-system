@@ -79,6 +79,10 @@
     <Setting Key="LAS_TotalBet_Outright_GetLeagueList" SpName="LAS_TotalBet_Outright_GetLeagueList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_Outright_GetTeamList" SpName="LAS_TotalBet_Outright_GetTeamList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
     <Setting Key="LAS_TotalBet_Outright_SelBetData" SpName="LAS_TotalBet_Outright_SelBetData" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_SelParlayTickets" SpName="LAS_TotalBet_SelParlayTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_SelParlayDetail" SpName="LAS_TotalBet_SelParlayDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="LAS_TotalBet_SystemParlayResult" SpName="LAS_TotalBet_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
+    <Setting Key="Las_TotalBet_SelAgentPTComm" SpName="Las_TotalBet_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>
   </Function>
   <Function Name="BetList">
     <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="1"  TimeOut="600"/>

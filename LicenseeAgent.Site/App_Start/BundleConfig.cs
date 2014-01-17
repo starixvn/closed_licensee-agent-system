@@ -273,6 +273,8 @@ namespace LicenseeAgent.Site
                 "~/content/betlist/betlist.core.css",
                 "~/content/betlist/betlist.css",
                 "~/content/betlist/system-parlay-detail.css"));
+            bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
+                "~/Views/BetList/Resources/totalbets.parlay.less"));
         }
 
         /// <summary>

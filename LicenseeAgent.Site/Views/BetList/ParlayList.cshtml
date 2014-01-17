@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Las.PageTitle_BetList;
+    ViewBag.Title = Las.PageTitle_ParlayTotalBets;
 }
 @section css
 {
@@ -8,6 +8,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/bootstrap-select")
+    @Styles.Render("~/css/totalbets/parlay")
 }
 @section scripts
 {
@@ -16,7 +17,7 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/bootstrap-select")
     @Scripts.Render("~/js/monthpicker")
-    <script type="text/javascript" src='@Url.Content("~/Views/BetList/Resources/BetListManager.js")'></script>
+    <script type="text/javascript" src='@Url.Content("~/Views/BetList/Resources/totalbets.parlay.js")'></script>
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '10/1/2013';
@@ -29,26 +30,10 @@
 <div class="legend">
     @ViewBag.Title
 </div>
+<div class="parlay-tabs">
+    <span id="mixParlayTab">@Las.MixParlay</span><span class="separate">|</span><span id="systemParlayTab">@Las.SystemParlay</span>
+</div>
 <div>
-    @using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
-        new { @class = "form-inline form-filter ", id = "search-form" }))
-    {
-        <div id="filter-area" class="clearfix filter-area">
-            <div class="controls-row">
-                <div class="month pull-left">
-                    Month</div>
-                <div class="pull-left controls-row" id="month-picker-control">
-                </div>
-            </div>
-            <div class="controls-row">
-                @Html.Label("Status", "Status", new { @class = "month" })
-                @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
-            </div>
-            <div class="controls-row">
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </div>
-        </div>
-    }
     <div class="gridWrapper">
         <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "Customer")">
         </div>

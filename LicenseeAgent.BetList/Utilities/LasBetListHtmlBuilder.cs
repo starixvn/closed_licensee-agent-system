@@ -71,6 +71,49 @@ namespace LicenseeAgent.BetList.Utilities
         }
 
         /// <summary>
+        /// Get ticket status.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <param name="ticketHelper">Ticket helper.</param>
+        /// <param name="ticketData">List of ticket data.</param>
+        /// <param name="criteria">Meta model.</param>
+        /// <param name="currencyID">Currency ID.</param>
+        /// <param name="currencyName">Currency Name.</param>
+        /// <returns>Ticket status text.</returns>
+        public static string BuildTotalBetsParlayStatus(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            TotalBetsParlayListCriteria criteria,
+            int currencyID,
+            string currencyName)
+        {
+            const string StatusTemp = "<div class='status'>{0}</div>";
+            var statusText = GetStatusText(ticket);
+            var statusNormalText = string.Format(StatusTemp, statusText);
+
+            switch (ticket.BetTypeId)
+            {
+                case (int)BetType.CasinoGames:
+                    string casinoHandTemplate = "<div id='casino-hand-history-{0}'";
+                    casinoHandTemplate += "'result casino-hand-history-link' url-param='{1}' onclick='BetList.ViewCasinoHandHistory({0});'>{2}</div>";
+                    return statusNormalText + string.Format(
+                        casinoHandTemplate,
+                        ticket.RefNo,
+                        GetCasinoHandHistoryParam(ticket, criteria, currencyID, currencyName),
+                        "Results");
+                case (int)BetType.P2PGames:
+                case (int)BetType.MiniGames:
+                    return statusNormalText;
+
+                default:
+                    return builder.BuildStatus(ticket, ticketHelper, ticketData, true);
+            }
+        }
+
+        /// <summary>
         /// Get ticket Agent PT.
         /// </summary>
         /// <param name="builder">Bet list builder.</param>
@@ -157,6 +200,26 @@ namespace LicenseeAgent.BetList.Utilities
             param += "&CurrencyId=" + currencyID.ToString();
             param += "&CurrencyName=" + currencyName;
             param += "&BaseCurrency=" + criteria.BaseCurrency;
+
+            return param;
+        }
+
+        /// <summary>
+        /// Get Casino Hand History Parameter.
+        /// </summary>
+        /// <param name="ticket">LRF Ticket object.</param>
+        /// <param name="criteria">Meta model object.</param>
+        /// <param name="currencyID">Currency ID.</param>
+        /// <param name="currencyName">Currency Name.</param>
+        /// <returns>Parameter for Casino Hand History.</returns>
+        private static string GetCasinoHandHistoryParam(LasTicket ticket, TotalBetsParlayListCriteria criteria, int currencyID, string currencyName)
+        {
+            var param = string.Empty;
+            param += "?RefNo=" + ticket.RefNo;
+            param += "&SystemId=" + (string.IsNullOrEmpty(ticket.UserName) ? string.Empty : ticket.UserName);
+            param += "&CustId=" + ticket.CustId;
+            param += "&CurrencyId=" + currencyID.ToString();
+            param += "&CurrencyName=" + currencyName;
 
             return param;
         }

@@ -177,8 +177,8 @@ namespace LicenseeAgent.BetList.Controllers
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
                     TransTime = builder.BuildTrans(ticket),
-                    ////Status = builder.BuildLasBetListResultStatus(
-                    ////    ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
+                    Status = builder.BuildTotalBetsParlayStatus(
+                        ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
                     Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                     Stake = builder.BuildLasStake(ticket),

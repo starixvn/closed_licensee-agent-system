@@ -54,8 +54,10 @@ namespace LicenseeAgent.Transfer.Controllers
         /// <summary>
         /// Agents the specified agent identifier.
         /// </summary>
-        /// <param name="agentId">The agent identifier.</param>
-        /// <returns>Returns agent transfer page.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns agent transfer page.
+        /// </returns>
         [HttpGet]
         public ViewResult Agent(TransferAgentViewModel model)
         {
@@ -74,7 +76,7 @@ namespace LicenseeAgent.Transfer.Controllers
         }
 
         [HttpPost, ActionName("Agent")]
-        public JsonResult AgentPost(TransferAgentViewModel model)
+        public ActionResult AgentPost(TransferAgentViewModel model)
         {
             return Json(new
             {

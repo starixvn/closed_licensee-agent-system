@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/8/2014 2:42:31 PM
+// Lasted generated date: 1/20/2014 10:32:37 AM
 // </history>
 
 var _language_zh_TW={
@@ -34,7 +34,11 @@ var _language_zh_TW={
 				 	
                      AdvancedMode:"進階模式",
 				 	
+                     AgentComm:"AgentComm",
+				 	
                      AgentList:"代理列表",
+				 	
+                     AgentPT:"Agent PT",
 				 	
                      AlertAdminLicenseeChanged:"The licensee was changed by admin, this session must be closed.",
 				 	
@@ -75,6 +79,8 @@ var _language_zh_TW={
                      ChangeStatusAgent:"Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.",
 				 	
                      ChangeStatusMember:"Are you sure you want to change Closed status for this member?",
+				 	
+                     Choice:"Choice",
 				 	
                      ChooseCurrency:"Choose currency",
 				 	
@@ -123,6 +129,8 @@ var _language_zh_TW={
                      Event:"Event",
 				 	
                      Fax:"傳真",
+				 	
+                     Feature:"Feature",
 				 	
                      FH1X2:"1H. 1X2",
 				 	
@@ -192,6 +200,8 @@ var _language_zh_TW={
 				 	
                      MainMenu:"主要目錄",
 				 	
+                     MatchResults:"Match Results",
+				 	
                      MaxCredit:"Max Credit",
 				 	
                      MemberList:"會員清單",
@@ -224,11 +234,15 @@ var _language_zh_TW={
 				 	
                      NumberGame:"百鍊賽",
 				 	
+                     Odds:"Odds",
+				 	
                      OK:"OK",
 				 	
                      Open:"打开",
 				 	
                      OtherSports:"其他體育",
+				 	
+                     OutrightResults:"Outright Results",
 				 	
                      Outstanding:"未結算",
 				 	
@@ -250,6 +264,8 @@ var _language_zh_TW={
 				 	
                      PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)",
 				 	
+                     PasswordSecurity:"The password supplied does not meet the minimum security requirements.",
+				 	
                      PasswordWillExpired:"Your password will expire on {0}. Do you want to change it now?",
 				 	
                      Phone:"電話",
@@ -263,6 +279,8 @@ var _language_zh_TW={
                      Reports:"报告",
 				 	
                      ResetPassword:"Reset Password",
+				 	
+                     Results:"Results",
 				 	
                      SBBetSetting:"SB Bet Setting",
 				 	
@@ -286,7 +304,11 @@ var _language_zh_TW={
 				 	
                      Soccer:"Soccer",
 				 	
+                     Sport:"Sport",
+				 	
                      Sportsbook:"體育",
+				 	
+                     Stake:"Stake",
 				 	
                      Statement:"Statement",
 				 	
@@ -298,9 +320,13 @@ var _language_zh_TW={
 				 	
                      Time:"Time",
 				 	
+                     Today:"Today",
+				 	
                      TotalBets:"總投注",
 				 	
                      Transfer:"轉帳",
+				 	
+                     TransTime:"Trans.Time",
 				 	
                      UnauthorizedMsg:"您的連線已被終止或者尚未授權",
 				 	
@@ -324,7 +350,9 @@ var _language_zh_TW={
 				 	
                      Welcome:"欢迎",
 				 	
-                     WinLoss:"輸贏"
+                     WinLoss:"輸贏",
+				 	
+                     Yesterday:"Yesterday"
 				 	
              
 	 

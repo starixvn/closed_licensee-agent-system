@@ -695,6 +695,9 @@
   <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
+  <data name="PasswordSecurity" xml:space="preserve">
+    <value>The password supplied does not meet the minimum security requirements.</value>
+  </data>
   <data name="Parlay" xml:space="preserve">
     <value>Parlay</value>
     <comment>not</comment>

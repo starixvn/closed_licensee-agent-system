@@ -1,33 +1,13 @@
 ﻿var resetPassword = function ($) {
     return {
-        init: function () {
-//            $('form').submit(function () {
-//                resetPassword.updatePassword();
-//                return false;
-//            });
-        },
-        updatePassword: function () {
-            var params = {
-                CustId: $("#CustId").val(),
-                Password: $("#Password").val(),
-                ConfirmPassword: $("#ConfirmPassword").val()
-
-            };
-
-            $.ajax({
-                url: CORE.resolveUrl("~/Customer/ResetPasswordMember"),
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode != 0) {
-                        alert(data.ErrMsg);
+        init: function () {            
+            $("#Password").keyup(function (event) {
+                if ($("#Password").val() != "") {
+                    if (CORE.PASSWORD_FORMAT.test($("#Password").val())) {
+                        $("#iconValid").removeClass("icon-input-invalid").addClass("icon-input-valid");
+                    } else {
+                        $("#iconValid").removeClass("icon-input-valid").addClass("icon-input-invalid");
                     }
-                },
-                complete: function () {
-                    CORE.unblockUI();
                 }
             });
         }

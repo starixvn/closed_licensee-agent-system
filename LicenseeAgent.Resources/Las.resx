@@ -895,4 +895,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="SystemParlay" xml:space="preserve">
     <value>System Parlay</value>
   </data>
+  <data name="PasswordSecurity" xml:space="preserve">
+    <value>The password supplied does not meet the minimum security requirements.</value>
+  </data>
 </root>

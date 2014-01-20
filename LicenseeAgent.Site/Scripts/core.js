@@ -8,6 +8,7 @@
         FORMATNUMBER: '0,0.00',
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '700',
+        PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),        
 
         init: function () {
             $('input, textarea').placeholder();
@@ -245,6 +246,18 @@
         },
         parseBoolean: function (value) {
             return /^true$/i.test(value);
+        },
+        showErrorMsg: function (msg) {
+            var msgWrp = $('.validation-summary-valid');
+            msgWrp.show();
+            msgWrp.addClass('validation-summary-errors')
+					.find('li:first').html(msg).show();
+        },
+        showSuccessMsg: function (msg) {
+            var msgWrp = $('.validation-summary-valid');
+            msgWrp.show();
+            msgWrp.addClass('success')
+			        .find('li:first').html(msg).show();
         }
     };
 } (jQuery);

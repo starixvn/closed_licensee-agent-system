@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/14/2014 4:37:34 PM
+// Lasted generated date: 1/20/2014 10:32:25 AM
 // </history>
 
 var _language_en_US={
@@ -136,6 +136,8 @@ var _language_en_US={
 				 	
                      CustomerInformation:"Customer Information",
 				 	
+                     CustomerName:"Customer Name",
+				 	
                      DeadBall:"Dead Ball",
 				 	
                      Details:"Details",
@@ -256,6 +258,8 @@ var _language_en_US={
 				 	
                      MainMenu:"Main Menu",
 				 	
+                     MatchResults:"Match Results",
+				 	
                      MaxCredit:"Max Credit",
 				 	
                      MemberList:"Member List",
@@ -308,9 +312,15 @@ var _language_en_US={
 				 	
                      Outright:"Outright",
 				 	
+                     OutrightResults:"Outright Results",
+				 	
                      Outstanding:"Outstanding",
 				 	
                      Over:"Over",
+				 	
+                     PageTitle_BetList:"LAS&apos;s Bet List",
+				 	
+                     PageTitle_Report_Results:"Results",
 				 	
                      Password:"Password",
 				 	
@@ -329,6 +339,8 @@ var _language_en_US={
                      PasswordRequired:"Please enter your password.",
 				 	
                      PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:  Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special character (!,@,#,etc..).",
+				 	
+                     PasswordSecurity:"The password supplied does not meet the minimum security requirements.",
 				 	
                      PasswordWillExpired:"Your password will expire on {0}. Do you want to change it now?",
 				 	
@@ -368,6 +380,8 @@ var _language_en_US={
 				 	
                      Soccer:"Soccer",
 				 	
+                     Sport:"Sport",
+				 	
                      Sportsbook:"Sportsbook",
 				 	
                      Stake:"Stake",
@@ -385,6 +399,8 @@ var _language_en_US={
                      ThreeWayHandicap:"3-Way Handicap",
 				 	
                      Time:"Time",
+				 	
+                     Today:"Today",
 				 	
                      TooManyDownLineParameters:"There is too many parameters with name {0}",
 				 	
@@ -439,6 +455,8 @@ var _language_en_US={
                      WinLoss:"Win Loss",
 				 	
                      Yes:"Yes",
+				 	
+                     Yesterday:"Yesterday",
 				 	
                      YesterdayBalance:"Yesterday Balance",
 				 	

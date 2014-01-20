@@ -528,29 +528,5 @@ namespace LicenseeAgent.Account.Controllers
 
             return View("~/Views/Customer/ResetPassword.cshtml");
         }
-
-        /// <summary>
-        /// Reset Password.
-        /// </summary>
-        /// <param name="model">Reset Password View Model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ResetPassword(ResetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (model.IsLastLevel)
-                {
-                    return ResetPasswordMember(model);
-                }
-                else
-                {
-                    return ResetPasswordAgent(model);
-                }
-            }
-
-            return View();
-        }
     }
 }

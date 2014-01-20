@@ -1575,6 +1575,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password supplied does not meet the minimum security requirements..
+        /// </summary>
+        public static string PasswordSecurity {
+            get {
+                return ResourceManager.GetString("PasswordSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password will expire on {0}. Do you want to change it now?.
         /// </summary>
         public static string PasswordWillExpired {

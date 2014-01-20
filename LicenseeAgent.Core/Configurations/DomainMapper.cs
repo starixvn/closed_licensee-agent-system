@@ -61,6 +61,11 @@ namespace LicenseeAgent.Core.Configurations
             return null;
         }
 
+        /// <summary>
+        /// Gets the licensee domains.
+        /// </summary>
+        /// <returns>Returns list of licensee domains.</returns>
+        /// <exception cref="System.Exception">Licensee domains configuration is fail.</exception>
         private static IEnumerable<LicenseeDomain> GetLicenseeDomains()
         {
             var licenseeDomains = _cacheService.Get<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey);

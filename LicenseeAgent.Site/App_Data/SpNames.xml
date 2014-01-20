@@ -5,7 +5,7 @@
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Login">
-    <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSaltSel" SpName="Las_AgentSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminSaltSel" SpName="Las_AdminSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -52,9 +52,9 @@
   </Function>
   <Function Name="CustomerList">
     <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_MemberGetByAgent" SpName="Las_MemberGetByAgent_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_MemberGetByAgent" SpName="Las_MemberGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SearchAgent" SpName="Las_SearchAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_SearchMember" SpName="Las_SearchMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_SearchMember" SpName="Las_SearchMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_UpdateAgentAccStatus" SpName="Las_UpdateAgentAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_UpdateAgentBetStatus" SpName="Las_UpdateAgentBetStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_UpdateMemberAccStatus" SpName="Las_UpdateMemberAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

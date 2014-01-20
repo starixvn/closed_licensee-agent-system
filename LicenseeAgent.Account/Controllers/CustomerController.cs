@@ -197,7 +197,7 @@ namespace LicenseeAgent.Account.Controllers
             if (criteria.MsgId == 0)
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
-                                    members, 
+                                    members,
                                     new GetMemberInfoListAction
                                     {
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -283,6 +283,26 @@ namespace LicenseeAgent.Account.Controllers
             };
 
             _agentService.UpdateAgentAccStatus(criteria);
+
+            if (criteria.MsgId == 0 && model.Status == (byte)AccountStatus.Closed)
+            {
+                var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId,
+                    IsClosed = true
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
+            }
+
             return JsonResult(criteria.MsgId);
         }
 
@@ -401,7 +421,7 @@ namespace LicenseeAgent.Account.Controllers
         public ActionResult ResetPasswordMember(int memberId)
         {
             return View(
-                "~/Views/Customer/ResetPassword.cshtml", 
+                "~/Views/Customer/ResetPassword.cshtml",
                 new ResetPasswordViewModel
                 {
                     CustId = memberId
@@ -422,7 +442,7 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     CustId = model.CustId,
                     Doing = string.Format("Url: {0}/ResetPassword/?help=0", AppSettings.TaiwanAPI) +
-                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName + 
+                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName +
                             ", IBCCustID:" + model.CustId,
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId
@@ -467,12 +487,12 @@ namespace LicenseeAgent.Account.Controllers
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
             return View(
-                "~/Views/Customer/ResetPassword.cshtml", 
+                "~/Views/Customer/ResetPassword.cshtml",
                 new ResetPasswordViewModel
-            {
-                CustId = agentId,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastAgent(agentLevel)
-            });
+                {
+                    CustId = agentId,
+                    IsLastLevel = CurrentSession.AgentInfo.IsLastAgent(agentLevel)
+                });
         }
 
         /// <summary>

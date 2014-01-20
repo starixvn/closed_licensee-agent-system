@@ -19,7 +19,7 @@ namespace LicenseeAgent.Taiwan.Actions
     {
         public string SiteName { get; set; }
 
-        public int IBCCustId { get; set; }
+        public int? IBCCustId { get; set; }
 
         public int LASAgentId { get; set; }
 

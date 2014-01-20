@@ -66,7 +66,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private readonly IMemberService _memberService;
 
         public SportsbookSettingController(
-                ISportsbookSettingService customerSettingService, 
+                ISportsbookSettingService customerSettingService,
                 IAccountService accountService,
                 IMemberService memberService)
         {
@@ -175,6 +175,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
+            var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
+            {
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
+            });
+
+            if (checkUserNameResult.ErrCode != 0)
+            {
+                return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
+            }
+
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
             model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
             var result = _customerSettingService.InsertCustomer(model);
@@ -182,13 +193,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             if (result.ErrCode == 0 && model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                var serviceResult = _memberService.InsertNewMember(new InsertNewMemberAction
+                var insertResult = _memberService.InsertNewMember(new InsertNewMemberAction
                 {
                     UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName,
                     Password = model.UpdateDataSportsbookCustomer.CustInfo.Password,
                     IBCCustId = result.CustIdReturn,
                     IBCUserName = result.IBCUserName,
-                    LASAgentId = CurrentSession.AgentInfo.AgentId,
+                    LASAgentId = model.SettingContext.CustId,
                     FirstName = model.UpdateDataSportsbookCustomer.CustInfo.FirstName,
                     LastName = model.UpdateDataSportsbookCustomer.CustInfo.LastName,
                     Phone = model.UpdateDataSportsbookCustomer.CustInfo.Phone,
@@ -197,21 +208,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     Currency = CurrentSession.AgentInfo.CurrencyId
                 });
-                if (serviceResult.ErrCode != 0)
+                if (insertResult.ErrCode != 0)
                 {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        Messages = serviceResult.ErrMsg
-                    });
+                    return Json(new { ErrCode = insertResult.ErrCode, Messages = insertResult.ErrMsg });
                 }
             }
 
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                Messages = messages
-            });
+            return Json(new { ErrCode = Result.SuccessValue, Messages = messages });
         }
 
         /// <summary>
@@ -311,10 +314,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetCustId = model.MemberId,
                 TargetRoleId = (int)Role.Member,
                 Ip = Request.GetClientIp(),
-                IsOnlyUpdatePT = CurrentSession.AdminInfo == null 
+                IsOnlyUpdatePT = CurrentSession.AdminInfo == null
                                 && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             };
-            
+
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);
         }
 
@@ -337,7 +340,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             _customerSettingService.CheckExistUserName(criteria);
 
-            if (criteria.MsgId != 0)
+            if (criteria.MsgId == 0)
             {
                 var serviceResult = _memberService.CheckUserName(new CheckUserNameAction
                 {

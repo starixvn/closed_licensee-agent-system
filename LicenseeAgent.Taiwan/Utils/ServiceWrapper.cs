@@ -50,7 +50,7 @@ namespace LicenseeAgent.Taiwan
 
             request.Method = ServiceSetting.Method;
             request.ContentType = ServiceSetting.ContentType;
-            
+
             return request;
         }
 
@@ -66,17 +66,21 @@ namespace LicenseeAgent.Taiwan
 
             foreach (var property in properties)
             {
-                var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+                var propertyValue = property.GetValue(action, null);
 
-                paramData.Append(string.Format(
-                                                ServiceSetting.ParamFormat,
-                                                attribute != null ? ((ServiceAttribute)attribute).Name : property.Name, 
-                                                HttpUtility.UrlEncode(property.GetValue(action, null).ToString())));
+                if (propertyValue != null)
+                {
+                    var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+                    paramData.Append(string.Format(
+                                                    ServiceSetting.ParamFormat,
+                                                    attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
+                                                    HttpUtility.UrlEncode(propertyValue.ToString())));
+                }
             }
 
             byte[] formData = UTF8Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
             request.ContentLength = formData.Length;
-            
+
             using (Stream post = request.GetRequestStream())
             {
                 post.Write(formData, 0, formData.Length);

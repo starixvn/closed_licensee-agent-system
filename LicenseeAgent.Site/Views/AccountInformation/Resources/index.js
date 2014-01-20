@@ -18,6 +18,10 @@
                 if (timerAutocomplete == null) {
                     timerAutocomplete = setInterval(accountInformation.autoComplete, 200);
                 }
+
+                if (event.which == 13) {
+                    $(".ui-autocomplete").hide();
+                }
             });
 
             //form submit

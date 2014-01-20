@@ -414,6 +414,15 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         /// <summary>
+        /// Statistics Total Open/Close down line.
+        /// </summary>
+        /// <returns>View result.</returns>
+        public ViewResult TotalOpenClose()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// Validates the Agent user.
         /// </summary>
         /// <param name="model">The model.</param>
@@ -481,15 +490,6 @@ namespace LicenseeAgent.Account.Controllers
             _accountService.AgentCheckIn(criteria);
             SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
-        }
-
-        /// <summary>
-        /// Statistics Total Open/Close downline.
-        /// </summary>
-        /// <returns>View result.</returns>
-        public ViewResult TotalOpenClose()
-        {
-            return View();
-        }
+        }        
     }
 }

@@ -77,7 +77,7 @@
 
         topWinningMembers: function () {
             $.ajax({
-                url: CORE.resolveUrl("~/Account/TotalOpenClose"),
+                url: CORE.resolveUrl("~/Account/TopWinning"),
                 type: 'get',
                 beforeSend: function () {
                     CORE.blockUI();

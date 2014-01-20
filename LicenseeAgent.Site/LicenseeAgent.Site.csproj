@@ -779,6 +779,7 @@
     <Content Include="Views\Account\TotalOpenClose.cshtml" />
     <Content Include="Views\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
+    <Content Include="Views\Account\TopWinning.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

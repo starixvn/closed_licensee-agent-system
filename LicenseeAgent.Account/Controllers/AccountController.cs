@@ -423,6 +423,20 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         /// <summary>
+        /// Statistics top 10 winning members.
+        /// </summary>
+        /// <returns>View result.</returns>
+        public ViewResult TopWinning()
+        {
+            return View();
+        }
+
+        public ViewResult TopTurnover()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// Validates the Agent user.
         /// </summary>
         /// <param name="model">The model.</param>

@@ -20,6 +20,12 @@ namespace LicenseeAgent.Report.ViewModels
     /// </summary>
     public class ResultsReportViewModel
     {
+        public ResultsReportViewModel()
+        {
+            Sports = new List<SelectListItem>();
+            Leagues = new List<SelectListItem>();
+        }
+
         public DateTime EventDate { get; set; }
 
         public int SportType { get; set; }

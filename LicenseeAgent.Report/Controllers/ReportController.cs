@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Criteria;
@@ -48,21 +49,12 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Index page of Results report.
         /// </summary>
+        /// <param name="criteria">Sport criteria.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Results()
+        public ActionResult Results(SportCriteria criteria)
         {
-            var model = new ResultsReportViewModel();
-            return View(model);
-        }
-
-        /// <summary>
-        /// Get list of sports.
-        /// </summary>
-        /// <param name="criteria">Sport criteria.</param>
-        /// <returns>JSON object.</returns>
-        public ActionResult GetSports(SportCriteria criteria)
-        {
+            criteria.EventDate = DateTime.Today;
             criteria.IsShowAll = _includeTestData;
             var sports = _resultsReportService.GetSports(criteria);
 
@@ -72,6 +64,30 @@ namespace LicenseeAgent.Report.Controllers
                 model.Sports.Add(new SelectListItem { Text = item.SportName, Value = item.SportType });
             }
 
+            model.Sports[0].Selected = true;
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Get list of sports.
+        /// </summary>
+        /// <param name="criteria">Sport criteria.</param>
+        /// <returns>JSON object.</returns>
+        [HttpPost]
+        public ActionResult GetSports(SportCriteria criteria)
+        {
+            criteria.IsShowAll = _includeTestData;
+            var sports = _resultsReportService.GetSports(criteria);
+
+            var model = new ResultsReportViewModel();
+            foreach (var item in sports)
+            {
+                model.Sports.Add(new SelectListItem { Text = item.SportName, Value = item.SportType });
+                model.Sports.Add(new SelectListItem { Text = "do", Value = "long", Selected = true });
+            }
+
+            ViewBag.Sports = model.Sports;
             return View("Results", model);
         }
 

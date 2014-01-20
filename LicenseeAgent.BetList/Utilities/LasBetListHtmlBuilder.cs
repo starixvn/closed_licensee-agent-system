@@ -148,7 +148,7 @@ namespace LicenseeAgent.BetList.Utilities
         /// </summary>
         /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket status text.</returns>
+        /// <returns>Ticket agent position taking text.</returns>
         public static string BuildAgentPT(
             this BetListHTMLBuilder builder,
             LasTicket ticket)
@@ -166,7 +166,7 @@ namespace LicenseeAgent.BetList.Utilities
         /// </summary>
         /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket status text.</returns>
+        /// <returns>Ticket agent commission text.</returns>
         public static string BuildAgentComm(
             this BetListHTMLBuilder builder,
             LasTicket ticket)
@@ -176,6 +176,24 @@ namespace LicenseeAgent.BetList.Utilities
                 ? string.Empty
                 : "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
             return agentCommHtmlStr;
+        }
+
+        /// <summary>
+        /// Get ticket Admin Agent Commission.
+        /// </summary>
+        /// <param name="builder">Bet list builder.</param>
+        /// <param name="ticket">Affiliate ticket object.</param>
+        /// <returns>Ticket Admin agent commission text.</returns>
+        public static string BuildAdminAgentComm(
+            this BetListHTMLBuilder builder,
+            LasTicket ticket)
+        {
+            if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
+            {
+                return "-";
+            }
+
+            return "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
         }
 
         /// <summary>

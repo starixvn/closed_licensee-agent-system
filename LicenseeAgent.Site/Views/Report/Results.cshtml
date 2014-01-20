@@ -93,9 +93,11 @@
                 <button class="btn btn-primary" type="submit">@Las.Today</button>
             </div> <br />
             <div class="controls-row margin-top-10px">
+
                 @Html.DropDownList("MatchSport", Model.Sports, new { @class = "selectpicker w120" })
-                
+
                 @Html.DropDownList("MatchLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w300" })
+                
             </div>
         </div>
         <div id="filter-tab-outright">

@@ -185,7 +185,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="showOdds">Show Odds or not.</param>
         /// <returns>Result value.</returns>
         [NonAction]
-        private static List<TicketText> Ticket(
+        private List<TicketText> Ticket(
             TicketResult ticketResult,
             BetListCriteriaBase criteria,
             int startIndex = 1,
@@ -222,7 +222,9 @@ namespace LicenseeAgent.BetList.Controllers
                     Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                     Stake = builder.BuildLasStake(ticket),
                     AgentPT = builder.BuildAgentPT(ticket),
-                    AgentComm = builder.BuildAgentComm(ticket),
+                    AgentComm = CurrentSession.IsAdmin
+                        ? builder.BuildAdminAgentComm(ticket)
+                        : builder.BuildAgentComm(ticket),
                     WinLoss = builder.BuildLasWinloss(ticket)
                 };
 
@@ -247,7 +249,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="originalData">List of raw bet list details.</param>
         /// <param name="status">Ticket status ID.</param>
         /// <returns>List of formatted bet list details.</returns>
-        private static List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
+        private List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
         {
             var formattedData = new List<BetListDetails>();
             foreach (var item in originalData)
@@ -263,7 +265,7 @@ namespace LicenseeAgent.BetList.Controllers
             return formattedData;
         }
 
-        private static string GenerateHtmlStringForAgent(decimal percentage, decimal value, string status)
+        private string GenerateHtmlStringForAgent(decimal percentage, decimal value, string status)
         {
             var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
             var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100) + "%</div>";

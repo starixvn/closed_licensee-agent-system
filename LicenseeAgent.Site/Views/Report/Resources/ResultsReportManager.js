@@ -11,7 +11,7 @@
         },
 
         initData: function () {
-            REPORT.getLeagueDataBySport();
+            //REPORT.getLeagueDataBySport();
             //REPORT.getEventDataByLeague(true);
         },
 
@@ -26,10 +26,10 @@
                 beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function (data) {
-                    REPORT.initLeagueMultiSelect(data.List);
+                success: function () {
                 },
                 complete: function () {
+                    CORE.unblockUI();
                 }
             });
         },

@@ -84,7 +84,7 @@ namespace LicenseeAgent.Web.Filters
                 return false;
             }
 
-            if (!AppSettings.IsAdminSite && currentSession.IsDirectSignIn)
+            if (!currentSession.IsAdmin && currentSession.IsDirectSignIn)
             {
                 var passwordStatus = PasswordRule.GetPasswordStatus(currentSession.AgentInfo);
                 var passwordExpired = passwordStatus == PasswordStatus.Expired || passwordStatus == PasswordStatus.FirstLogin;
@@ -137,16 +137,16 @@ namespace LicenseeAgent.Web.Filters
                     return currentSession.LicenseeInfo != null ? true : false;
 
                 case AccountType.Agent:
-                    return currentSession.IsAgentView() ? true : false;
+                    return !currentSession.IsAdmin ? true : false;
 
                 case AccountType.AgentLevel0:
-                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLevel0 ? true : false;
+                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0 ? true : false;
 
                 case AccountType.AgentLevel1:
-                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLevel1 ? true : false;
+                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1 ? true : false;
 
                 case AccountType.AgentLeveln:
-                    return currentSession.IsAgentView() && currentSession.AgentInfo.IsLastLevel ? true : false;
+                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
 
                 default:
                     throw new Exception("Please implement here");

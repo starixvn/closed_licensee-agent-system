@@ -137,7 +137,7 @@ namespace LicenseeAgent.Web
         {
             get
             {
-                return AgentInfo.IsLevel0;
+                return AdminInfo != null || LicenseeInfo != null;
             }
         }
     }

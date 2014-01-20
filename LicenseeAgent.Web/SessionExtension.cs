@@ -57,17 +57,5 @@ namespace LicenseeAgent.Web
             return currentSession.AgentInfo.IsLevel0
                 || agentLevel == currentSession.AgentInfo.AgentLevel;
         }
-
-        public static bool IsAgentView(this ICurrentSession currentSession)
-        {
-            return currentSession.AdminInfo == null && currentSession.LicenseeInfo == null && currentSession.AgentInfo != null
-                ? true
-                : false;
-        }
-
-        public static bool IsLicenseeView(this ICurrentSession currentSession)
-        {
-            return currentSession.LicenseeInfo != null ? true : false;
-        }
     }
 }

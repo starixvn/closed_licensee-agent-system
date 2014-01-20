@@ -122,9 +122,8 @@ namespace LicenseeAgent.Account
                 UserId = criteria.UserId,
                 UserName = criteria.UserName
             };
-            var currentSession = new CurrentSession(licenseeInfo, loginInfo.OnUserId, loginInfo.Language);
-            SessionManager.CurrentSession = currentSession;
-            FormsAuthentication.SetAuthCookie(licenseeInfo.UserName, true);
+
+            CheckIn(licenseeInfo, loginInfo.Language);
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
@@ -446,6 +445,26 @@ namespace LicenseeAgent.Account
             var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, language);
             SessionManager.CurrentSession = currentSession;
             FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
+        }
+
+        /// <summary>
+        /// Checks the in.
+        /// </summary>
+        /// <param name="licenseeInfo">The licensee information.</param>
+        /// <param name="language">The language.</param>
+        private void CheckIn(LicenseeInfo licenseeInfo, string language)
+        {
+            var criteria = new AdminCheckInCriteria
+            {
+                AdminId = licenseeInfo.UserId,
+                Ip = Request.GetClientIp(),
+                NetSessionId = Session.SessionID
+            };
+
+            _accountService.AdminCheckIn(criteria);
+            var currentSession = new CurrentSession(licenseeInfo, criteria.OnAdminId, language);
+            SessionManager.CurrentSession = currentSession;
+            FormsAuthentication.SetAuthCookie(licenseeInfo.UserName, true);
         }
     }
 }

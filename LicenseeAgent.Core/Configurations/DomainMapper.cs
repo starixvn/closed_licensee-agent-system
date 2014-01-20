@@ -9,10 +9,9 @@ namespace LicenseeAgent.Core.Configurations
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Web;
     using System.Web.Mvc;
-    using Fanex.Logging;
+    using Fanex.Caching;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
 
@@ -21,13 +20,10 @@ namespace LicenseeAgent.Core.Configurations
     /// </summary>
     public static class DomainMapper
     {
-        private static IEnumerable<LicenseeDomain> _licenseeDomains = null;
-
-        static DomainMapper()
-        {
-            ICoreService coreService = DependencyResolver.Current.GetService<ICoreService>();
-            _licenseeDomains = coreService.GetLicenseeDomains();
-        }
+        private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";
+        private const int LicenseeDomainsCacheTimeout = 30 * 60; // 60 minutes
+        private static ICoreService _coreService = DependencyResolver.Current.GetService<ICoreService>();
+        private static ICache _cacheService = CacheService.CreateInstance();
 
         /// <summary>
         /// Gets licensee id by URL.
@@ -38,15 +34,16 @@ namespace LicenseeAgent.Core.Configurations
         /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
-            if (AppSettings.LocalTest)
-            {
-                return AppSettings.LocalLicenseeId;
-            }
-
-            var licenseeDomains = _licenseeDomains.Where(x => x.DomainName.Equals(request.Url.Authority, StringComparison.OrdinalIgnoreCase));
+            var licenseeDomains = GetLicenseeDomains();
+            licenseeDomains = licenseeDomains.Where(x => x.DomainName.Equals(request.Url.Authority, StringComparison.OrdinalIgnoreCase));
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().LicenseeId;
+            }
+
+            if (AppSettings.LocalTest)
+            {
+                return AppSettings.LocalLicenseeId;
             }
 
             return null;
@@ -54,13 +51,31 @@ namespace LicenseeAgent.Core.Configurations
 
         public static string GetDomain(int licenseeId)
         {
-            var licenseeDomains = _licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId));
+            var licenseeDomains = GetLicenseeDomains();
+            licenseeDomains = licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId));
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().DomainName;
             }
 
             return null;
+        }
+
+        private static IEnumerable<LicenseeDomain> GetLicenseeDomains()
+        {
+            var licenseeDomains = _cacheService.Get<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey);
+            if (licenseeDomains == null)
+            {
+                licenseeDomains = _coreService.GetLicenseeDomains();
+                if (licenseeDomains == null || licenseeDomains.Count() == 0)
+                {
+                    throw new Exception("Licensee domains configuration is fail");
+                }
+
+                _cacheService.Set<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
+            }
+
+            return licenseeDomains;
         }
     }
 }

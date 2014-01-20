@@ -46,6 +46,62 @@
         {
             color: #d93b3c;
         }
+
+		.new-members
+		{
+			font-weight: bold;
+		}
+	
+		.dropdown-button
+		{		 
+			 width: 12px;
+			 height: 12px;
+			 display: inline-block;
+			 cursor: pointer;
+		}
+
+		.expand
+		{
+			background-image: url(images/expand.png);
+		}
+
+		.collapse
+		{
+			background-image: url(images/collapse.png);
+		}
+
+		.dropdown-popup
+		{
+			position: absolute;
+			z-index: 999;
+			border: 1px solid #cccccc;
+			border-radius: 2px;			
+			background-color: #edf0f0;
+
+			table tr.header
+			{
+				background-color: #8A8A8A;				
+				color: #fff;
+			}
+
+			table tr.header td
+			{
+				text-align: center;
+				font-weight: bold;
+			}
+
+			tr
+			{
+				background-color: #edf0f0;
+			}
+
+			table tr td
+			{
+				border-right: 1px solid #fff;
+				border-bottom: 1px solid #fff;
+				padding: 2px;
+			}
+		}
     }
     
     .text-right
@@ -69,5 +125,5 @@
     .w-100
     {
         width: 80%;
-    }
+    }	
 }

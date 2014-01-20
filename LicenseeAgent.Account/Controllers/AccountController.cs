@@ -482,5 +482,14 @@ namespace LicenseeAgent.Account.Controllers
             SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
         }
+
+        /// <summary>
+        /// Statistics Total Open/Close downline.
+        /// </summary>
+        /// <returns>View result.</returns>
+        public ViewResult TotalOpenClose()
+        {
+            return View();
+        }
     }
 }

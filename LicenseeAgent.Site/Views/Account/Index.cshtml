@@ -5,6 +5,9 @@
 {
     @Styles.Render("~/css/account")
 }
+@section scripts{
+    @Scripts.Render("~/js/account")    
+}
 <div class="box-row">
     @Html.Partial("_BalanceInfo")
     @Html.Partial("_Statistics")

@@ -236,6 +236,9 @@ namespace LicenseeAgent.Site
         {
             bundles.Add(new LessBundle("~/css/account").Include(
                 "~/Views/Account/Resources/account.less"));
+
+            bundles.Add(new ScriptBundle("~/js/account").Include(
+                "~/Views/Account/Resources/home-page.js"));
         }
 
         /// <summary>

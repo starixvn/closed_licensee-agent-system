@@ -38,7 +38,7 @@
                             @Html.LabelFor(m => m.Amount)
                         </td>
                         <td>
-                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160" })
+                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160", data_val_range_min = Model.MinAmount, data_val_range_max = Model.MaxAmount, data_val_range = Las.InvalidAmount })
                             <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal(Model.MinAmount), Formatter.FormatDecimal(Model.MaxAmount))</span>
                         </td>
                     </tr>
@@ -55,3 +55,7 @@
         </fieldset>
     }
 </div>
+@section scripts
+{
+    @Scripts.Render("~/js/transfer-popup")
+}

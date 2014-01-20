@@ -41,6 +41,7 @@
             $('#agentName').keyup(function () {
                 if ($.trim($('#agentName').val()) != '') {
                     $('#submit').removeClass('disabled');
+                    $('#agentName').prop('disabled', false);
                 }
                 else {
                     if (!$('#submit').hasClass('disabled')) {
@@ -66,15 +67,20 @@
             $('#agentName').val('');
             if (enabled) {
                 $('#submit').removeClass('disabled');
+                $('#agentName').prop('disabled', false);
                 $('#submit').click();
+            }
+            else {
+                $('#agentName').prop('disabled', true);
             }
         },
         submit: function () {
             if (newLicenseeId > 0 && newCurrencyId > 0) {
+                var agentName = $.trim($('#agentName').val());
                 var data = {
                     licenseeid: newLicenseeId,
                     currencyId: newCurrencyId,
-                    userName: $.trim($('#agentName').val())
+                    userName: agentName
                 };
                 var url = $('#internal-form').attr('action');
                 $.ajax({

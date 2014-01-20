@@ -319,11 +319,11 @@ namespace LicenseeAgent.Site
 
         private static void RegisterTransferPage(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/transfer").Include(
-                "~/views/transfer/resources/transfer.less"));
+            bundles.Add(new ScriptBundle("~/js/transfer-list").Include(
+                "~/views/transfer/resources/transfer-list.js"));
 
-            bundles.Add(new ScriptBundle("~/js/transfer").Include(
-                "~/views/transfer/resources/transfer.js"));
+            bundles.Add(new ScriptBundle("~/js/transfer-popup").Include(
+                "~/views/transfer/resources/transfer-popup.js"));
         }
 
         #endregion Pages

@@ -1,4 +1,4 @@
-﻿var TRANSFER = function ($) {
+﻿var TRANSFER_LIST = function ($) {
     return {
         init: function () {
             $('.selectpicker').selectpicker();
@@ -7,12 +7,12 @@
                 preventDoubleContext: false
             });
             context.attach('#select-dropdown', [
-                { text: LANGUAGE.getString('All'), href: '#', action: TRANSFER.checkAll },
-                { text: LANGUAGE.getString('None'), href: '#', action: TRANSFER.uncheckAll }
+                { text: LANGUAGE.getString('All'), href: '#', action: TRANSFER_LIST.checkAll },
+                { text: LANGUAGE.getString('None'), href: '#', action: TRANSFER_LIST.uncheckAll }
             ]);
 
             $('#search-form').submit(function (e) {
-                TRANSFER.reRenderAfterPaged();
+                TRANSFER_LIST.reRenderAfterPaged();
                 e.preventDefault();
             });
 
@@ -52,10 +52,10 @@
         },
         toggleCheck: function (target) {
             if ($(target).hasClass("icon-uncheck-all")) {
-                TRANSFER.checkAll();
+                TRANSFER_LIST.checkAll();
             }
             else {
-                TRANSFER.uncheckAll();
+                TRANSFER_LIST.uncheckAll();
             }
         },
         checkAll: function () {
@@ -74,5 +74,5 @@
 } (jQuery);
 
 $(function () {
-    TRANSFER.init();
+    TRANSFER_LIST.init();
 });

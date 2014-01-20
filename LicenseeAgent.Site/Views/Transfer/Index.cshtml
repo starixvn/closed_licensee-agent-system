@@ -4,7 +4,6 @@
 @section css
 {
     @Styles.Render("~/css/fanexgrid")
-    @Styles.Render("~/css/transfer")
 }
 <div class="legend">
     @ViewBag.Title
@@ -43,7 +42,7 @@
 {
     @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/transfer")
+    @Scripts.Render("~/js/transfer-list")
     @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
     {
         @Html.Partial("MemberList")

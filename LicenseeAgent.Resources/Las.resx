@@ -902,4 +902,7 @@ If that is not you, please contact your upline!!!</value>
     <value>No information is available</value>
     <comment>not</comment>
   </data>
+  <data name="InvalidAmount" xml:space="preserve">
+    <value>Invalid Amount</value>
+  </data>
 </root>

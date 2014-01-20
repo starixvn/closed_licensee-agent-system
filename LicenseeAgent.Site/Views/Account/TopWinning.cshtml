@@ -1,22 +1,26 @@
 ﻿@{
     Layout = null;
 }
-
+@model IEnumerable<LicenseeAgent.Account.Entities.TopWinningEntity>
 <table style="width:300px;">
     <tr  class="header">
         <td>Username</td>
         <td>Winning Amount</td>
     </tr>
-    <tr>
-        <td>User 01</td>
-        <td class="text-right">326.32</td>
-    </tr>
-    <tr>
-        <td>User 02</td>
-        <td class="text-right">562.90</td>
-    </tr>
-    <tr>
-        <td>Member 01</td>
-        <td class="text-right">569.08</td>
-    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var member in Model)
+        {
+        <tr>
+            <td>@member.Username</td>
+            <td class="text-right">@LicenseeAgent.Core.Utils.Formatter.FormatDecimal(member.WinLost)</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="2" class="text-center">@Las.NoInfo</td>
+        </tr>
+    }
 </table>

@@ -4,18 +4,7 @@
             HomePage.initEvent();
         },
 
-        initEvent: function () {
-            $("#total-open-close").click(function () {
-                if ($(this).hasClass("expand")) {
-                    HomePage.expandCommon(this);
-                    HomePage.totalOpenClose();
-                } else {
-                    $(this).removeClass("collapse");
-                    $(this).addClass("expand");
-                    $("#total-open-close-content").hide();
-                }
-            });
-
+        initEvent: function () {            
             $("#top-winning").click(function () {
                 if ($(this).hasClass("expand")) {
                     HomePage.expandCommon(this);
@@ -58,23 +47,6 @@
             $(context).addClass("collapse");
         },
 
-        totalOpenClose: function () {
-            $.ajax({
-                url: CORE.resolveUrl("~/Account/TotalOpenClose"),
-                type: 'get',
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                    $("#total-open-close-content").html(data);
-                    $("#total-open-close-content").show();
-                },
-                complete: function () {
-                    CORE.unblockUI();
-                }
-            });
-        },
-
         topWinningMembers: function () {
             $.ajax({
                 url: CORE.resolveUrl("~/Account/TopWinning"),
@@ -94,7 +66,7 @@
 
         topTurnoverMembers: function () {
             $.ajax({
-                url: CORE.resolveUrl("~/Account/TotalOpenClose"),
+                url: CORE.resolveUrl("~/Account/TopTurnover"),
                 type: 'get',
                 beforeSend: function () {
                     CORE.blockUI();
@@ -111,7 +83,7 @@
 
         newMembers: function () {
             $.ajax({
-                url: CORE.resolveUrl("~/Account/TotalOpenClose"),
+                url: CORE.resolveUrl("~/Account/NewMembers"),
                 type: 'get',
                 beforeSend: function () {
                     CORE.blockUI();

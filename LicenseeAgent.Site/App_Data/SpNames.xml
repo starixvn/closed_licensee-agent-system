@@ -29,7 +29,13 @@
     <Setting Key="Las_InternalLoginAsUser" SpName="Las_InternalLoginAsUser" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>    
+  </Function>
+  <Function Name="HomePage">    
+    <Setting Key="Las_AgentSelStatisticsInfo" SpName="Las_AgentSelStatisticsInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentSelNewMemOfMonth" SpName="Las_AgentSelNewMemOfMonth" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentSelTopWinningMembers" SpName="Las_AgentSelTopWinningMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentSelTopTurnoverMembers" SpName="Las_AgentSelTopTurnoverMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting">
     <Setting Key="Las_LicenseeSportsbookSettingSel" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

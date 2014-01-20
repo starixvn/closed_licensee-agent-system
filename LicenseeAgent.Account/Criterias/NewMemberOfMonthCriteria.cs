@@ -1,0 +1,32 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="NewMemberOfMonthCriteria.cs" company="Nexcel Solutions Vietnam">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.Account.Criterias
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class NewMemberOfMonthCriteria : CriteriaBase
+    {
+        public int AgentID { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Las_AgentSelNewMemOfMonth";
+        }
+
+        public override bool IsValid()
+        {
+            return AgentID > 0;
+        }
+    }
+}

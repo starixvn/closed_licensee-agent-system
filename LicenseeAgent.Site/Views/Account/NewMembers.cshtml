@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+@using LicenseeAgent.Core.Utils
+@model IEnumerable<LicenseeAgent.Account.Entities.NewMemberOfMonthEntity>
+<table style="width:400px;">
+    <tr  class="header">
+        <td>Username</td>
+        <td>Given Credit</td>
+        <td>Created Date</td>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var member in Model)
+        {
+    <tr>
+        <td>@member.Username</td>
+        <td class="text-right">@Formatter.FormatDecimal(member.Credit)</td>
+        <td class="text-center">@Formatter.FormatDateTime(member.CreatedDate)</td>
+    </tr>
+        }
+    }
+    else
+    {
+    <tr>
+        <td colspan="3" class="text-center">@Las.NoInfo</td>        
+    </tr>
+    }    
+</table>

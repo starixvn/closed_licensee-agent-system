@@ -1,4 +1,6 @@
-﻿<div class="box-cell w-40">
+﻿@using LicenseeAgent.Core.Utils
+@model HomePageViewModel
+<div class="box-cell w-40">
     <table class="table">
         <thead>
             <tr>
@@ -9,19 +11,12 @@
         <tbody>
             <tr>
                 <td class="title-border">Agent Outstanding</td>
-                <td class="text-right title-border">0.00</td>
+                <td class="text-right title-border">@Formatter.FormatDecimal(Model.StatisticInfo.OutStanding)</td>
             </tr>
             <tr>
                 <td>Total Outstanding</td>
-                <td class="text-right">6.00</td>
-            </tr>
-            <tr>
-                <td>Total Open/Close downline 
-                    <div class="dropdown-button expand" id="total-open-close"></div>
-                    <div class="dropdown-popup" id="total-open-close-content" style="display: none;"></div>
-                </td>
-                <td class="text-right"></td>
-            </tr>
+                <td class="text-right">@Formatter.FormatDecimal(Model.StatisticInfo.TotalOutStading)</td>
+            </tr>            
             <tr>
                 <td>Top 10 winning members of the month 
                     <div class="dropdown-button expand" id="top-winning"></div>
@@ -37,7 +32,7 @@
                 <td class="text-right"></td>
             </tr>
             <tr>
-                <td>New members of the month: <span class="new-members">1</span>
+                <td>New members of the month: <span class="new-members">@Formatter.FormatInt(Model.StatisticInfo.NumberOfNewMember)</span>
                     <div class="dropdown-button expand" id="new-members"></div>
                     <div class="dropdown-popup" id="new-members-content" style="display: none;"></div>
                 </td>

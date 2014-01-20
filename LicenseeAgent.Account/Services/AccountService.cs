@@ -151,5 +151,25 @@ namespace LicenseeAgent.Account.Services
         {
             Execute(criteria);
         }
+
+        public IEnumerable<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria)
+        {
+            return GetEntites<TopWinningEntity>(criteria);
+        }
+
+        public IEnumerable<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria)
+        {
+            return GetEntites<TopTurnoverEntity>(criteria);
+        }
+
+        public IEnumerable<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria)
+        {
+            return GetEntites<NewMemberOfMonthEntity>(criteria);
+        }
+
+        public IEnumerable<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria)
+        {
+            return GetEntites<StatisticEntity>(criteria);
+        }
     }
 }

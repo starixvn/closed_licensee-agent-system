@@ -8,17 +8,20 @@ namespace LicenseeAgent.Account.Controllers
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
     using Fanex.Common;
     using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
@@ -37,17 +40,32 @@ namespace LicenseeAgent.Account.Controllers
 
         private readonly ICurrencyService _currencyService;
 
-        public AccountController(IAccountService accountService, ICurrencyService currencyService)
+        private readonly ICoreService _coreService;
+
+        public AccountController(IAccountService accountService, ICurrencyService currencyService, ICoreService coreService)
         {
             _accountService = accountService;
             _currencyService = currencyService;
+            _coreService = coreService;
         }
 
+        /// <summary>
+        /// Home page.
+        /// </summary>
+        /// <returns>Action result.</returns>
         [HttpGet]
         [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
-            return View();
+            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity() };
+
+            if (CurrentSession.AgentInfo != null)
+            {
+                var criteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+                model.StatisticInfo = _accountService.GetStatisticInfo(criteria).FirstOrDefault();
+            }
+
+            return View(model);
         }
 
         /// <summary>
@@ -413,14 +431,7 @@ namespace LicenseeAgent.Account.Controllers
             return Content(imgSrc);
         }
 
-        /// <summary>
-        /// Statistics Total Open/Close down line.
-        /// </summary>
-        /// <returns>View result.</returns>
-        public ViewResult TotalOpenClose()
-        {
-            return View();
-        }
+        #region Statistic Drilldown
 
         /// <summary>
         /// Statistics top 10 winning members.
@@ -428,13 +439,49 @@ namespace LicenseeAgent.Account.Controllers
         /// <returns>View result.</returns>
         public ViewResult TopWinning()
         {
-            return View();
+            var balanceUp = _coreService.GetBalanceUpDay();
+            var criteria = new TopWinningCriteria
+            {
+                AgentID = CurrentSession.AgentInfo.AgentId,
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                MoveBetsDay = balanceUp.MoveBetDay
+            };
+            var topWinningData = _accountService.GetTopWinning(criteria);
+
+            return View(topWinningData);
         }
 
+        /// <summary>
+        /// Statistics top 10 turnover members.
+        /// </summary>
+        /// <returns>View result.</returns>
         public ViewResult TopTurnover()
         {
-            return View();
+            var balanceUp = _coreService.GetBalanceUpDay();
+            var criteria = new TopTurnoverCriteria
+            {
+                AgentID = CurrentSession.AgentInfo.AgentId,
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                MoveBetsDay = balanceUp.MoveBetDay
+            };
+            var topTurnoverData = _accountService.GetTopTurnover(criteria);
+
+            return View(topTurnoverData);
         }
+
+        /// <summary>
+        /// New members of the month.
+        /// </summary>
+        /// <returns>View result.</returns>
+        public ViewResult NewMembers()
+        {
+            var criteria = new NewMemberOfMonthCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+            var newMemberData = _accountService.GetNewMemberOfMonth(criteria);
+
+            return View(newMemberData);
+        }
+
+        #endregion Statistic Drilldown
 
         /// <summary>
         /// Validates the Agent user.
@@ -504,6 +551,6 @@ namespace LicenseeAgent.Account.Controllers
             _accountService.AgentCheckIn(criteria);
             SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
-        }        
+        }
     }
 }

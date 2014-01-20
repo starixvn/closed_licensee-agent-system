@@ -46,5 +46,13 @@ namespace LicenseeAgent.Account.Services
         void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria);
 
         void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria);
+
+        IEnumerable<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria);
+
+        IEnumerable<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria);
+
+        IEnumerable<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria);
+
+        IEnumerable<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria);
     }
 }

@@ -255,7 +255,14 @@ namespace LicenseeAgent.Account.Controllers
                     }
                 }
 
-                errCode = AdminReCheckIn();
+                if (CurrentSession.AdminInfo != null)
+                {
+                    errCode = AdminReCheckIn();
+                }
+                else if (CurrentSession.LicenseeInfo != null)
+                {
+                    errCode = Result.SuccessValue;
+                }
             }
             else
             {

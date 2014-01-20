@@ -16,7 +16,7 @@ namespace LicenseeAgent.API.LRF.Entities
     {
         public LoginInfo()
         {
-            Timeout = DateTime.Now.AddMinutes(30);
+            Timeout = DateTime.Now.AddMinutes(3);
         }
 
         public int UserId { get; set; }

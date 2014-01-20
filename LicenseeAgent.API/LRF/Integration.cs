@@ -8,8 +8,8 @@ namespace LicenseeAgent.API.LRF
 {
     using System.Web;
     using LicenseeAgent.API.LRF.Entities;
-    using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.API.LRF.Services;
+    using LicenseeAgent.API.Utils;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,6 +24,8 @@ namespace LicenseeAgent.API.LRF
 
         private static byte[] aesVector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 221, 112, 79, 32, 114, 156 };
 
+        private static IDomainService _domainService = new DomainService();
+
         /// <summary>
         /// Generates the link.
         /// </summary>
@@ -36,8 +38,8 @@ namespace LicenseeAgent.API.LRF
         /// </returns>
         public static string GenerateLink(int userId, int checkinUserId, int licenseeId, string language)
         {
-            var domain = DomainMapper.GetDomain(licenseeId);
-            if (string.IsNullOrEmpty(domain))
+            var licenseeDomain = _domainService.GetLicenseeDomain(licenseeId);
+            if (licenseeDomain == null)
             {
                 return null;
             }
@@ -53,7 +55,7 @@ namespace LicenseeAgent.API.LRF
             using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
             {
                 var authKey = HttpUtility.UrlEncode(rijndaelHelper.EncryptObject(loginInfo));
-                return string.Format("http://{0}/internal/lrf?authkey={1}", domain, authKey);
+                return string.Format("http://{0}/internal/lrf?authkey={1}", licenseeDomain.DomainName, authKey);
             }
         }
 

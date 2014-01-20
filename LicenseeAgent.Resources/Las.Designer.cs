@@ -1566,8 +1566,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following: 
-        ///Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special character (!,@,#,etc..)..
+        ///   Looks up a localized string similar to The password supplied does not meet the minimum security requirements..
         /// </summary>
         public static string PasswordRuleInstruction {
             get {

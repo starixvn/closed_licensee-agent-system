@@ -4,49 +4,49 @@
     <table class="table">
         <thead >
             <tr>
-                <th>BALANCE INFO</th>
+                <th>@Las.BalanceInfo</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="title-border">Agent</td>
+                <td class="title-border">@Las.Agent</td>
                 <td class="text-right title-border">@Model.BalanceInfo.AgentName</td>
             </tr>
             <tr>
-                <td>Currency</td>
+                <td>@Las.Currency</td>
                 <td class="text-right">@Model.BalanceInfo.CurrencyName</td>
             </tr>
             <tr>
-                <td>Total Cash</td>
+                <td>@Las.TotalCash</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TotalCash)</td>
             </tr>
             <tr>
-                <td>Yesterday Cash</td>
+                <td>@Las.YesterdayCash</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayCash)</td>
             </tr>
             <tr>
-                <td>Total Balance</td>
+                <td>@Las.TotalBalance</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TotalBalance)</td>
             </tr>
             <tr>
-                <td>Yesterday Balance</td>
+                <td>@Las.YesterdayBalance</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayBalance)</td>
             </tr>
             <tr>
-                <td>Today Win Loss (@Model.BalanceInfo.Today.ToString("MM/dd/yyyy"))</td>
+                <td>@Las.Today @Las.WinLoss (@Model.BalanceInfo.Today.ToString("MM/dd/yyyy"))</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TodayWinloss)</td>
             </tr>
             <tr>
-                <td>Yesterday Win Loss (@Model.BalanceInfo.Yesterday.ToString("MM/dd/yyyy"))</td>
+                <td>@Las.Yesterday @Las.WinLoss (@Model.BalanceInfo.Yesterday.ToString("MM/dd/yyyy"))</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayWinloss)</td>
             </tr>
             <tr>
-                <td>Given Credit</td>
+                <td>@Las.GivenCredit</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit)</td>
             </tr>
             <tr>
-                <td>Userd Credit</td>
+                <td>@Las.UsedCredit</td>
                 <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.UsedCredit)</td>
             </tr>
                                        

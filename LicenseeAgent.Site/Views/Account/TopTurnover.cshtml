@@ -4,8 +4,8 @@
 @model IEnumerable<LicenseeAgent.Account.Entities.TopTurnoverEntity>
 <table style="width:300px;">
     <tr  class="header">
-        <td>Username</td>
-        <td>Turnover</td>
+        <td>@Las.Username</td>
+        <td>@Las.Turnover</td>
     </tr>
     @if (Model != null && Model.Count() > 0)
     {

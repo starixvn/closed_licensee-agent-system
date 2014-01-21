@@ -4,8 +4,8 @@
 @model IEnumerable<LicenseeAgent.Account.Entities.TopWinningEntity>
 <table style="width:300px;">
     <tr  class="header">
-        <td>Username</td>
-        <td>Winning Amount</td>
+        <td>@Las.Username</td>
+        <td>@Las.WinningAmount</td>
     </tr>
     @if (Model != null && Model.Count() > 0)
     {

@@ -5,9 +5,9 @@
 @model IEnumerable<LicenseeAgent.Account.Entities.NewMemberOfMonthEntity>
 <table style="width:400px;">
     <tr  class="header">
-        <td>Username</td>
-        <td>Given Credit</td>
-        <td>Created Date</td>
+        <td>@Las.Username</td>
+        <td>@Las.GivenCredit</td>
+        <td>@Las.CreatedDate</td>
     </tr>
     @if (Model != null && Model.Count() > 0)
     {

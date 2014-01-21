@@ -4,35 +4,35 @@
     <table class="table">
         <thead>
             <tr>
-                <th>YOUR STATISTICS</th>
+                <th>@Las.YourStatisticTitle</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="title-border">Agent Outstanding</td>
+                <td class="title-border">@Las.AgentOutstanding</td>
                 <td class="text-right title-border">@Formatter.FormatDecimal(Model.StatisticInfo.OutStanding)</td>
             </tr>
             <tr>
-                <td>Total Outstanding</td>
+                <td>@Las.TotalOutstanding</td>
                 <td class="text-right">@Formatter.FormatDecimal(Model.StatisticInfo.TotalOutStading)</td>
             </tr>            
             <tr>
-                <td>Top 10 winning members of the month 
+                <td>@Las.TopWinningMembers
                     <div class="dropdown-button expand" id="top-winning"></div>
                     <div class="dropdown-popup" id="top-winning-content" style="display: none;"></div>
                 </td>
                 <td class="text-right"></td>
             </tr>
             <tr>
-                <td>Top 10 highest turnover members of the month
+                <td>@Las.TopTurnoverMembers
                     <div class="dropdown-button expand" id="top-turnover"></div>
                     <div class="dropdown-popup" id="top-turnover-content" style="display: none;"></div>
                 </td>
                 <td class="text-right"></td>
             </tr>
             <tr>
-                <td>New members of the month: <span class="new-members">@Formatter.FormatInt(Model.StatisticInfo.NumberOfNewMember)</span>
+                <td>@Las.NewMemberOfMonth: <span class="new-members">@Formatter.FormatInt(Model.StatisticInfo.NumberOfNewMember)</span>
                     <div class="dropdown-button expand" id="new-members"></div>
                     <div class="dropdown-popup" id="new-members-content" style="display: none;"></div>
                 </td>

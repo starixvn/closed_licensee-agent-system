@@ -905,4 +905,48 @@ If that is not you, please contact your upline!!!</value>
   <data name="InvalidAmount" xml:space="preserve">
     <value>Invalid Amount</value>
   </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+    <comment>not</comment>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>Agent Outstanding</value>
+    <comment>not</comment>
+  </data>
+  <data name="BalanceInfoTitle" xml:space="preserve">
+    <value>BALANCE INFO</value>
+    <comment>not</comment>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+    <comment>not</comment>
+  </data>
+  <data name="NewMemberOfMonth" xml:space="preserve">
+    <value>New members of the month</value>
+    <comment>not</comment>
+  </data>
+  <data name="TopTurnoverMembers" xml:space="preserve">
+    <value>Top 10 highest turnover members of the month</value>
+    <comment>not</comment>
+  </data>
+  <data name="TopWinningMembers" xml:space="preserve">
+    <value>Top 10 winning members of the month</value>
+    <comment>not</comment>
+  </data>
+  <data name="TotalOutstanding" xml:space="preserve">
+    <value>Total Outstanding</value>
+    <comment>not</comment>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Turnover</value>
+    <comment>not</comment>
+  </data>
+  <data name="WinningAmount" xml:space="preserve">
+    <value>Winning Amount</value>
+    <comment>not</comment>
+  </data>
+  <data name="YourStatisticTitle" xml:space="preserve">
+    <value>YOUR STATISTICS</value>
+    <comment>not</comment>
+  </data>
 </root>

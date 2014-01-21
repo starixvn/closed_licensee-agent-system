@@ -83,5 +83,24 @@ namespace LicenseeAgent.Account.Services
         /// </summary>
         /// <param name="criteria">Reset Password Criteria.</param>
         void ResetPasswordMemberLog(ResetPasswordMemberLogCriteria criteria);
+
+        /// <summary>
+        /// Edit Information Agent.
+        /// </summary>
+        /// <param name="criteria">Edit info Agent Criteria.</param>
+        /// <returns>Agent Info.</returns>
+        AgentEntity GetAgentInfo(AgentInfoCriteria criteria);
+
+        /// <summary>
+        /// Edit Information Agent.
+        /// </summary>
+        /// <param name="criteria">Edit info Agent Criteria.</param>
+        void EditInfoAgent(EditinfoAgentCriteria criteria);
+
+        /// <summary>
+        /// Edit Info Member Log.
+        /// </summary>
+        /// <param name="criteria">Edit Info Member Log Criteria.</param>
+        void EditInfoMemberLog(EditInfoMemberLogCriteria criteria);
     }
 }

@@ -39,6 +39,12 @@ namespace LicenseeAgent.Account.Entities
 
         public string LastName { get; set; }
 
+        public string Phone { get; set; }
+        
+        public string Mobile { get; set; }
+        
+        public string Fax { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public string IpLogin { get; set; }

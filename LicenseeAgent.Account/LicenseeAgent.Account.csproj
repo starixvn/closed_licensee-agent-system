@@ -71,6 +71,10 @@
     <Compile Include="Criterias\StatisticCriteria.cs" />
     <Compile Include="Criterias\NewMemberOfMonthCriteria.cs" />
     <Compile Include="Criterias\TopTurnoverCriteria.cs" />
+    <Compile Include="Criterias\AgentInfoCriteria.cs" />
+    <Compile Include="Criterias\EditinfoAgentCriteria.cs" />
+    <Compile Include="Criterias\EditInfoMemberLogCriteria.cs" />
+    <Compile Include="Criterias\TopTurnoverCriteria.cs" />
     <Compile Include="Criterias\GetAncestorListCriteria.cs" />
     <Compile Include="Criterias\GetDirectFatherCriteria.cs" />
     <Compile Include="Criterias\GetDownlineListCriteria.cs" />
@@ -133,6 +137,7 @@
     <Compile Include="ViewModels\AgentInfoViewModel.cs" />
     <Compile Include="ViewModels\AgentStatusViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\EditInfoViewModel.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\CustomerSearchAutoCompleteViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />

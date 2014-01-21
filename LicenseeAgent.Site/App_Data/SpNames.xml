@@ -19,6 +19,9 @@
     <Setting Key="LAS_ResetPassword_Agent" SpName="LAS_ResetPassword_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_DownlineCheckBelonging" SpName="Las_DownlineCheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_ResetPassword_Member_Writelog" SpName="LAS_ResetPassword_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Editinfo_Agent" SpName="LAS_Editinfo_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_EditInfo_Member_Writelog" SpName="LAS_EditInfo_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_GetAgentinfo_Detail" SpName="Las_GetAgentinfo_Detail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="AfterLogin">
     <Setting Key="Las_GetLicenseeList" SpName="Las_GetLicenseeList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

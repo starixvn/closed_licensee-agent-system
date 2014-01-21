@@ -12,6 +12,7 @@
     var editAgentId = 0;
     var editAgentLevel = 0;
     var editMemberId = 0;
+    var editUsername = "";
 
     return {
         init: function () {
@@ -81,6 +82,7 @@
 
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'));
+                editUsername = $(target).data('username');
             }
             else {
                 editAgentId = parseInt($(target).data('agentid'));
@@ -401,12 +403,12 @@
         editInfo: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+                url = "Customer/EditInfoMember?memberId={0}&username={1}".format(editMemberId, editUsername);
             }
             else {
-                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+                url = "Customer/EditInfoAgent?agentId={0}".format(editAgentId);
             }
-            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+            POPUP.openDialogFrame(url, { width: 420, height: 400 });
         },
         addDownline: function () {
             var url;
@@ -421,7 +423,7 @@
             else {
                 url = "Customer/ResetPasswordAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
             }
-            POPUP.openDialogFrame(url, { width: 400, height: 400 });
+            POPUP.openDialogFrame(url, { width: 420, height: 400 });
         }
     }
 } (jQuery);

@@ -21,6 +21,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -412,6 +413,7 @@ namespace LicenseeAgent.Account.Controllers
             });
         }
 
+        #region Reset Password
         /// <summary>
         /// Reset Password.
         /// </summary>
@@ -443,6 +445,7 @@ namespace LicenseeAgent.Account.Controllers
                     CustId = model.CustId,
                     Doing = string.Format("Url: {0}/ResetPassword/?help=0", AppSettings.TaiwanAPI) +
                             ", SiteName: " + CurrentSession.AgentInfo.LicenseeName +
+                            ", Password: " + Cryptography.CfsEnCrypt(model.Password) +
                             ", IBCCustID:" + model.CustId,
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId
@@ -528,5 +531,165 @@ namespace LicenseeAgent.Account.Controllers
 
             return View("~/Views/Customer/ResetPassword.cshtml");
         }
+        #endregion
+
+        #region Edit Info
+        /// <summary>
+        /// Edit Info Member.
+        /// </summary>
+        /// <param name="memberId">Member Id.</param>
+        /// <param name="username">Username member.</param>
+        /// <returns>Action result.</returns>
+        [HttpGet]
+        public ActionResult EditInfoMember(int memberId, string username)
+        {
+            var memberInfo = new ServiceMemberEntity();
+            _memberService.GetMemberInformation(
+                memberInfo, 
+                new GetMemberInfoAction
+                {
+                    IBCCustId = memberId,
+                    SiteName = CurrentSession.AgentInfo.LicenseeName
+                });
+
+            return View(
+                "~/Views/Customer/EditInfo.cshtml",
+                new EditInfoViewModel
+                {
+                    CustId = memberId,
+                    FirstName = memberInfo.FirstName,
+                    LastName = memberInfo.LastName,
+                    Mobile = memberInfo.MobilePhone,
+                    Phone = memberInfo.Phone,
+                    Fax = memberInfo.Fax,
+                    UserName = username
+                });
+        }
+
+        /// <summary>
+        /// Reset Password Member.
+        /// </summary>
+        /// <param name="model">Reset Password View Model.</param>
+        /// <returns>Action Result.</returns>
+        [HttpPost]
+        public ActionResult EditInfoMember(EditInfoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var logStatement = new EditInfoMemberLogCriteria
+                {
+                    CustId = model.CustId,
+                    Doing = string.Format("Url: {0}/UpdateMemberInfo/?help=0", AppSettings.TaiwanAPI) +
+                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName +
+                            ", IBCCustID:" + model.CustId +
+                            ", FirstName: " + model.FirstName +
+                            ", LastName: " + model.LastName +
+                            ", Phone: " + model.Phone +
+                            ", OtherPhone: " + model.Mobile +
+                            ", Fax: " + model.Fax,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId
+                };
+
+                // Write log before call API
+                _agentService.EditInfoMemberLog(logStatement);
+
+                // Call API to update member password
+                var serviceResult = _memberService.UpdateMemberInfo(new UpdateMemberInfoAction
+                {
+                    IBCCustId = model.CustId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Phone = model.Phone,
+                    OtherPhone = model.Mobile,
+                    Fax = model.Fax,
+                    SiteName = CurrentSession.AgentInfo.LicenseeName
+                });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
+                }
+                else
+                {
+                    ViewBag.Result = Las.UpdateSuccessfully;
+                }
+
+                // Write log after call API
+                logStatement.ErrCode = serviceResult.ErrCode;
+                logStatement.ErrMsg = serviceResult.ErrMsg;
+                _agentService.EditInfoMemberLog(logStatement);
+            }
+
+            return View("~/Views/Customer/EditInfo.cshtml", model);
+        }
+
+        /// <summary>
+        /// Reset Password.
+        /// </summary>
+        /// <param name="agentId">Agent Id information.</param>
+        /// <returns>Action result.</returns>
+        [HttpGet]
+        public ActionResult EditInfoAgent(int agentId)
+        {
+            var agentInfo = _agentService.GetAgentInfo(new AgentInfoCriteria
+            {
+                AgentId = agentId,
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                UserId = CurrentSession.LoginUserId,
+                CurrencyId = CurrentSession.AgentInfo.CurrencyId
+            });
+
+            return View(
+                "~/Views/Customer/EditInfo.cshtml",
+                new EditInfoViewModel
+                {
+                    CustId = agentInfo.AgentId,
+                    FirstName = agentInfo.FirstName,
+                    LastName = agentInfo.LastName,
+                    Mobile = agentInfo.Mobile,
+                    Phone = agentInfo.Phone,
+                    Fax = agentInfo.Fax,
+                    UserName = agentInfo.UserName
+                });
+        }
+
+        /// <summary>
+        /// Reset Password Agent.
+        /// </summary>
+        /// <param name="model">Reset Password View Model.</param>
+        /// <returns>Action Result.</returns>
+        [HttpPost]
+        public ActionResult EditInfoAgent(EditInfoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var criteria = new EditinfoAgentCriteria
+                {
+                    AgentId = model.CustId,
+                    UserId = CurrentSession.LoginUserId,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Phone = model.Phone,
+                    Mobile = model.Mobile,
+                    Fax = model.Fax
+                };
+
+                _agentService.EditInfoAgent(criteria);
+
+                if (criteria.ErrCode != 0)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                }
+                else
+                {
+                    ViewBag.Result = Las.UpdateSuccessfully;
+                }
+            }
+
+            return View("~/Views/Customer/EditInfo.cshtml", model);
+        }
+        #endregion
     }
 }

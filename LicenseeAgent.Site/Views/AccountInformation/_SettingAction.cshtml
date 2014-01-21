@@ -36,6 +36,12 @@
                             @Las.ResetPassword
                         </a>
                     </li>
+                    <li>
+                        <a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "Customer", new { memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "Customer", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                            <i class="icon-downline-arrow"></i>
+                            @Las.EditInfo
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -43,7 +43,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
 
         public override bool IsValid()
         {
-            return CustId > 0 && AgentId > 0 && Updater > 0 && !string.IsNullOrEmpty(PositionTaking);
+            return CustId > 0 && AgentId > 0 && Updater > 0;
         }
     }
 }

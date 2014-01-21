@@ -82,11 +82,11 @@
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
                     if (data.ErrCode == 0) {
-                        $scope.Messages = data.Messages;
+                        $scope.Messages = data.ErrMsg;
                         CORE.scrollTop();
                         var isSuccess = true;
-                        for (var i = 0; i < data.Messages.length; i++) {
-                            var message = data.Messages[i];
+                        for (var i = 0; i < data.ErrMsg.length; i++) {
+                            var message = data.ErrMsg[i];
                             if (message.ErrCode != 0) {
                                 isSuccess = false;
                                 break;
@@ -159,11 +159,11 @@
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
                 if (data.ErrCode == 0) {
-                    $scope.Messages = data.Messages;
+                    $scope.Messages = data.ErrMsg;
                     CORE.scrollTop();
                     var isSuccess = true;
-                    for (var i = 0; i < data.Messages.length; i++) {
-                        var message = data.Messages[i];
+                    for (var i = 0; i < data.ErrMsg.length; i++) {
+                        var message = data.ErrMsg[i];
                         if (message.ErrCode != 0) {
                             isSuccess = false;
                             break;
@@ -196,6 +196,7 @@
             }
             var positionTakingUpdated = positionTakingScope.saveData();
 
+            console.log(positionTakingUpdated);
             $scope.Messages = null;
             CORE.blockUI();
             $http({
@@ -214,11 +215,11 @@
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
                 if (data.ErrCode == 0) {
-                    $scope.Messages = data.Messages;
+                    $scope.Messages = data.ErrMsg;
                     CORE.scrollTop();
                     var isSuccess = true;
-                    for (var i = 0; i < data.Messages.length; i++) {
-                        var message = data.Messages[i];
+                    for (var i = 0; i < data.ErrMsg.length; i++) {
+                        var message = data.ErrMsg[i];
                         if (message.ErrCode != 0) {
                             isSuccess = false;
                             break;

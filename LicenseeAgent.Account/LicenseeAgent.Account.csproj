@@ -70,7 +70,6 @@
     <Compile Include="Criterias\BalanceInfoCriteria.cs" />
     <Compile Include="Criterias\StatisticCriteria.cs" />
     <Compile Include="Criterias\NewMemberOfMonthCriteria.cs" />
-    <Compile Include="Criterias\TopTurnoverCriteria.cs" />
     <Compile Include="Criterias\AgentInfoCriteria.cs" />
     <Compile Include="Criterias\EditinfoAgentCriteria.cs" />
     <Compile Include="Criterias\EditInfoMemberLogCriteria.cs" />

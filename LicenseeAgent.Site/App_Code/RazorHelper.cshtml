@@ -29,7 +29,11 @@
         <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
     </div>
 }
-@helper RenderPopover(int memberId, IList<UplineEntity> uplines,int numberOfLevel)
+@helper FormatNegative(decimal value)
+{
+    var className = value < 0 ? "color-r" : string.Empty;
+    <span class="@className">@LicenseeAgent.Core.Utils.Formatter.FormatDecimal(value)</span>    
+}@helper RenderPopover(int memberId, IList<UplineEntity> uplines,int numberOfLevel)
 {
     var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     var numberUpline = uplines.Count;

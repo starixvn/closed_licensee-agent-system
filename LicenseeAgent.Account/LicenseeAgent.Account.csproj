@@ -67,6 +67,7 @@
     <Compile Include="Criterias\AgentGetByAgentCriteria.cs" />
     <Compile Include="Criterias\AgentAutoCompleteCriteria.cs" />
     <Compile Include="Criterias\AgentSuggestSearchMemberCriteria.cs" />
+    <Compile Include="Criterias\BalanceInfoCriteria.cs" />
     <Compile Include="Criterias\StatisticCriteria.cs" />
     <Compile Include="Criterias\NewMemberOfMonthCriteria.cs" />
     <Compile Include="Criterias\TopTurnoverCriteria.cs" />

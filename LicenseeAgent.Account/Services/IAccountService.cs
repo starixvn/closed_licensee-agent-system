@@ -54,5 +54,7 @@ namespace LicenseeAgent.Account.Services
         IEnumerable<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria);
 
         IEnumerable<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria);
+
+        IEnumerable<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria);
     }
 }

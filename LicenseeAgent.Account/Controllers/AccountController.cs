@@ -57,12 +57,20 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
-            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity() };
+            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity(), BalanceInfo= new BalanceInfoEntity() };
 
             if (CurrentSession.AgentInfo != null)
             {
-                var criteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
-                model.StatisticInfo = _accountService.GetStatisticInfo(criteria).FirstOrDefault();
+                var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+                model.StatisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
+
+                var balanceUp = _coreService.GetBalanceUpDay();
+                var balanceInfoCriteria = new BalanceInfoCriteria
+                {
+                    AgentID = CurrentSession.AgentInfo.AgentId,
+                    MoveBetDay = balanceUp.MoveBetDay
+                };
+                model.BalanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
             }
 
             return View(model);

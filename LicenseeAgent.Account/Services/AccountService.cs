@@ -171,5 +171,10 @@ namespace LicenseeAgent.Account.Services
         {
             return GetEntites<StatisticEntity>(criteria);
         }
+
+        public IEnumerable<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria)
+        {
+            return GetEntites<BalanceInfoEntity>(criteria);
+        }
     }
 }

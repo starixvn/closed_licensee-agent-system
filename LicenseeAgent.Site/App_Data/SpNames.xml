@@ -36,6 +36,7 @@
     <Setting Key="Las_AgentSelNewMemOfMonth" SpName="Las_AgentSelNewMemOfMonth" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelTopWinningMembers" SpName="Las_AgentSelTopWinningMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelTopTurnoverMembers" SpName="Las_AgentSelTopTurnoverMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_HomePage_SelBalanceInfo" SpName="LAS_HomePage_SelBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting">
     <Setting Key="Las_LicenseeSportsbookSettingSel" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

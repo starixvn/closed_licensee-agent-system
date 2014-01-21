@@ -195,8 +195,6 @@
                 return;
             }
             var positionTakingUpdated = positionTakingScope.saveData();
-
-            console.log(positionTakingUpdated);
             $scope.Messages = null;
             CORE.blockUI();
             $http({

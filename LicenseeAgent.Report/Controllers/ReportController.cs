@@ -169,6 +169,11 @@ namespace LicenseeAgent.Report.Controllers
 
         #region Utilities
         
+        /// <summary>
+        /// Get Match Results Data.
+        /// </summary>
+        /// <param name="criteria">Match Results Report Criteria.</param>
+        /// <returns>HTML string.</returns>
         private string GetMatchResultsData(MatchResultsReportCriteria criteria)
         {
             var setting = new ResultSetting
@@ -186,6 +191,11 @@ namespace LicenseeAgent.Report.Controllers
             return string.Empty;
         }
 
+        /// <summary>
+        /// Get Outright Results Data.
+        /// </summary>
+        /// <param name="criteria">Outright Results Report Criteria.</param>
+        /// <returns>HTML string.</returns>
         private string GetOutrightResultsData(OutrightResultsReportCriteria criteria)
         {
             var setting = new ResultSetting
@@ -208,6 +218,11 @@ namespace LicenseeAgent.Report.Controllers
             return string.Empty;
         }
 
+        /// <summary>
+        /// Generate Outright Cache Key.
+        /// </summary>
+        /// <param name="criteria">Outright Results Report Criteria.</param>
+        /// <returns>HTML string.</returns>
         private string GenerateOutRightCacheKey(OutrightResultsReportCriteria criteria)
         {
             const string PatternKey = "{0}{1}Result.OutRight.Data_{2}";

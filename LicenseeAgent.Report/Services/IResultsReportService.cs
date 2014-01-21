@@ -14,6 +14,7 @@ namespace LicenseeAgent.Report.Services
     using Criteria;
     using Entities;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Result.Core.DTO;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,12 +39,14 @@ namespace LicenseeAgent.Report.Services
         /// Get match results.
         /// </summary>
         /// <param name="criteria">System parlay result criteria.</param>
-        void GetMatchResults(ICriteria criteria);
+        /// <returns>List of match results.</returns>
+        IList<Sportbook> GetMatchResults(ICriteria criteria);
 
         /// <summary>
         /// Get outright results.
         /// </summary>
         /// <param name="criteria">Bet List Details Criteria.</param>
-        void GetOutrightResults(ICriteria criteria);
+        /// <returns>List of outright results.</returns>
+        IList<OutRight> GetOutrightResults(ICriteria criteria);
     }
 }

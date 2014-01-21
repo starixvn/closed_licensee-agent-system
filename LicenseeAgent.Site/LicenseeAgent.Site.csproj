@@ -263,6 +263,11 @@
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\ng-grid\ng-grid.css" />
+    <Content Include="Content\Results\fanex.result.css" />
+    <Content Include="Content\Results\images\bg_header03.jpg" />
+    <Content Include="Content\Results\images\first-goal.gif" />
+    <Content Include="Content\Results\images\last-goal.gif" />
+    <Content Include="Content\Results\images\tab_topbg.gif" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="InsertMultipleMember.aspx" />
@@ -528,6 +533,7 @@
     <Content Include="Views\Home\Resources\header.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Views\Home\Resources\menu.js" />
+    <Content Include="Scripts\Results\Result.js" />
     <Content Include="Views\Report\Resources\ResultsReportManager.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />

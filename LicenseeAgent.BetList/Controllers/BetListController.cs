@@ -257,21 +257,33 @@ namespace LicenseeAgent.BetList.Controllers
                 formattedData.Add(new BetListDetails
                 {
                     Agent = item.AgentName,
-                    PositionTaking = GenerateHtmlStringForAgent(item.AgentPTPercent, item.AgentPT, status),
-                    Commission = GenerateHtmlStringForAgent(item.AgentCommPercent, item.AgentComm, status)
+                    PositionTaking = GenerateHtmlStringForAgentPT(item, status),
+                    Commission = GenerateHtmlStringForAgentComm(item, status)
                 });
             }
 
             return formattedData;
         }
 
-        private string GenerateHtmlStringForAgent(decimal percentage, decimal value, string status)
+        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
         {
-            var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100) + "%</div>";
+            var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
             htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
                 ? string.Empty
-                : "<div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
+                : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
+
+            return htmlString;
+        }
+
+        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
+        {
+            var htmlString = data.AgentLevel == 1
+                ? string.Empty
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
+            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
+                ? (data.AgentLevel == 1 ? "-" : string.Empty)
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
 
             return htmlString;
         }

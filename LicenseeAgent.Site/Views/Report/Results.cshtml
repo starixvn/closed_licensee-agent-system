@@ -8,6 +8,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/bootstrap-select")
+    <link href="@Url.Content("~/Content/Results/fanex.result.css")" rel="Stylesheet" type="text/css" />
     <style>
         .ui-tabs .ui-tabs-nav li.ui-tabs-active
         {
@@ -88,13 +89,13 @@
                     <span class="add-on"><i class="icon-th"></i></span>
                 </div>
 
-                <button class="btn btn-primary" type="submit">@Las.Submit</button>
-                <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
-                <button class="btn btn-primary" type="submit">@Las.Today</button>
+                <button class="btn btn-primary" onclick="return matchSubmit();">@Las.Submit</button>
+                <button class="btn btn-primary" onclick="return matchYesterday();">@Las.Yesterday</button>
+                <button class="btn btn-primary" onclick="return matchToday();">@Las.Today</button>
             </div> <br />
             <div class="controls-row margin-top-10px">
 
-                @Html.DropDownList("MatchSport", Model.Sports, new { @class = "selectpicker w120" })
+                @Html.DropDownList("MatchSport", ModelSettings.BetListStatuses, new { @class = "selectpicker w120" })
 
                 @Html.DropDownList("MatchLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w300" })
                 
@@ -126,7 +127,5 @@
         </div>
     </div>
 }
-<div class="gridWrapper">
-    <div id="ResultsGrid" class="freegrid content-grid">
-    </div>
-</div>
+
+<div id="ResultsArea"></div>

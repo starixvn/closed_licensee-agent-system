@@ -17,6 +17,8 @@ namespace LicenseeAgent.BetList.Entities
     {
         public int AgentID { get; set; }
 
+        public int AgentLevel { get; set; }
+
         public string AgentName { get; set; }
 
         public decimal AgentPT { get; set; }

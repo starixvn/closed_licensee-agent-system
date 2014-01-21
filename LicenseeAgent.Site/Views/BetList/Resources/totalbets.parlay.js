@@ -192,6 +192,7 @@ fanex.totalBets.parlay = {
                     CORE.blockUI();
                 },
                 complete: function () {
+                    $('#BetListGrid').fanexGrid('resizeGrid');
                     CORE.unblockUI();
                 }
             });

@@ -94,13 +94,6 @@ namespace LicenseeAgent.BetList.Utilities
             switch (ticket.BetTypeId)
             {
                 case (int)BetType.CasinoGames:
-                    string casinoHandTemplate = "<div id='casino-hand-history-{0}'";
-                    casinoHandTemplate += "'result casino-hand-history-link' url-param='{1}' onclick='BetList.ViewCasinoHandHistory({0});'>{2}</div>";
-                    return statusNormalText + string.Format(
-                        casinoHandTemplate,
-                        ticket.RefNo,
-                        GetCasinoHandHistoryParam(ticket, criteria, currencyID, currencyName),
-                        "Results");
                 case (int)BetType.P2PGames:
                 case (int)BetType.MiniGames:
                     return statusNormalText;

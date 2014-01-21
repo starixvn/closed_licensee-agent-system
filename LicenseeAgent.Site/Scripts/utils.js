@@ -45,3 +45,12 @@ String.prototype.isNumber = function () {
     var regs = new RegExp(/^-?\d+(\.\d+)?\s*$/);
     return (regs.test(this));
 };
+
+// Getting the number of decimals in a number
+Number.prototype.countDecimals = function () {
+    if (Math.floor(this.valueOf()) === this.valueOf()) return 0;
+    return this.toString().split(".")[1].length || 0;
+}
+
+Number.MinInt = -9007199254740992;
+Number.MaxInt = 9007199254740992;

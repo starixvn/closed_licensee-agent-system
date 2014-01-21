@@ -908,6 +908,10 @@ If that is not you, please contact your upline!!!</value>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
     <comment>not</comment>
+    </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
+    <value>Transfer successfully.</value>
+  </data>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Agent Outstanding</value>

@@ -9,6 +9,7 @@ namespace LicenseeAgent.Transfer.Controllers
     using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Transfer.Criteria;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
@@ -75,13 +76,35 @@ namespace LicenseeAgent.Transfer.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Agents the post.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns View.</returns>
         [HttpPost, ActionName("Agent")]
+        [ValidateAntiForgeryToken]
         public ActionResult AgentPost(TransferAgentViewModel model)
         {
-            return Json(new
+            if (ModelState.IsValid)
             {
-                ErrCode = Result.SuccessValue
-            });
+                var criteria = new TransferToAgentCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    ToAgentId = model.AgentId,
+                    Amount = model.Amount
+                };
+                _transferService.TransferToAgent(criteria);
+                if (criteria.ErrCode != Result.SuccessValue)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                }
+                else
+                {
+                    ViewBag.Result = Las.TransferSuccessfully;
+                }
+            }
+
+            return View(model);
         }
 
         /// <summary>

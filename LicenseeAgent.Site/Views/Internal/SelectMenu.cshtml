@@ -4,7 +4,7 @@
 @using (Html.BeginForm("LoginAsUser", "Internal", FormMethod.Post, new { id = "internal-form", name = "internal-form" }))
 {
     <div class="select-box">
-        @if (SessionManager.CurrentSession.AdminInfo != null)
+        @if (SessionManager.CurrentSession.IsViewSelectLicensee())
         {
             <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="~/Internal/GetCurrencies">
                 <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>

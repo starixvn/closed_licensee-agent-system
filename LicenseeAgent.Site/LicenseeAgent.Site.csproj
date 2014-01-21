@@ -264,6 +264,7 @@
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Content\Results\fanex.result.css" />
+    <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.png" />
     <Content Include="Content\Results\images\bg_header03.jpg" />
     <Content Include="Content\Results\images\first-goal.gif" />
     <Content Include="Content\Results\images\last-goal.gif" />
@@ -401,7 +402,6 @@
     <Content Include="Content\fanexgrid\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\poshytip\tip-twitter\tip-twitter.css" />
-    <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.gif" />
     <Content Include="Images\avatar.png" />
     <Content Include="Views\Home\Resources\Images\bgheader.png" />
     <Content Include="Content\poshytip\tip-yellowsimple\tip-yellowsimple.css" />

@@ -11,14 +11,15 @@ $.blockUI.defaults.css = {
 };
 
 // inject validate unobtrusive
-jQuery.validator.unobtrusive.adapters.add(
-'notequalto', ['other'], function (options) {
-    options.rules['notEqualTo'] = '#' + options.params.other;
-    if (options.message) {
-        options.messages['notEqualTo'] = options.message;
-    }
-});
+if (typeof (jQuery.validator.unobtrusive) != 'undefined') {
+    jQuery.validator.unobtrusive.adapters.add('notequalto', ['other'], function (options) {
+        options.rules['notEqualTo'] = '#' + options.params.other;
+        if (options.message) {
+            options.messages['notEqualTo'] = options.message;
+        }
+    });
 
-jQuery.validator.addMethod('notEqualTo', function (value, element, param) {
-    return this.optional(element) || value != $(param).val();
-}, '');
+    jQuery.validator.addMethod('notEqualTo', function (value, element, param) {
+        return this.optional(element) || value != $(param).val();
+    }, '');
+}

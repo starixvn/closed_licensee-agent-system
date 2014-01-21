@@ -14,13 +14,15 @@
 }
 @section css
 {
-    @Styles.Render("~/css/customersetting")
+    @Styles.Render("~/css/poshytip")
     @Styles.Render("~/css/customersetting/sportsbook")
 }
 @section scripts
 {
     <script type="text/javascript" src=@Url.Content("~/SportsbookSetting/GetSettingForInsert?custId=" + Model.CustId + "&roleId=" + Model.RoleId + "&targetCustId=" + Model.TargetCustId + "&targetRoleId=" + Model.TargetRoleId)></script>
     @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/poshytip")
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting/sportsbook")
 }

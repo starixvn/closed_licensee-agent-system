@@ -96,7 +96,12 @@
                             return;
                         }
                         if (data.DirectUrl) {
-                            POPUP.openWindow(data.DirectUrl);
+                            if (agentName == '') {
+                                location.href = data.DirectUrl;
+                            }
+                            else {
+                                POPUP.openWindow(data.DirectUrl);
+                            }
                         }
                         else {
                             location.reload();
@@ -111,16 +116,12 @@
         onChange: function () {
             if (newCurrencyId > 0 && newCurrencyId > 0) {
                 INTERNAL_HEADER.enableSearch(true);
+                INTERNAL_HEADER.activeMain();
             }
             else {
                 INTERNAL_HEADER.enableSearch(false);
+                INTERNAL_HEADER.unactiveMain();
             }
-
-            if (licenseeId == newLicenseeId && currencyId == newCurrencyId) {
-                return;
-            }
-
-            INTERNAL_HEADER.unactiveMain();
         },
         activeMain: function () {
             $('#overlay').hide();

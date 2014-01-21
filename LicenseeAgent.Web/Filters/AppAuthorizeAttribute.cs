@@ -128,13 +128,13 @@ namespace LicenseeAgent.Web.Filters
                     return true;
 
                 case AccountType.Admin:
-                    return currentSession.AdminInfo != null || currentSession.LicenseeInfo != null ? true : false;
+                    return currentSession.IsAdmin;
 
                 case AccountType.CSD_IT:
-                    return currentSession.AdminInfo != null ? true : false;
+                    return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT ? true : false;
 
                 case AccountType.Licensee:
-                    return currentSession.LicenseeInfo != null ? true : false;
+                    return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee ? true : false;
 
                 case AccountType.Agent:
                     return !currentSession.IsAdmin ? true : false;

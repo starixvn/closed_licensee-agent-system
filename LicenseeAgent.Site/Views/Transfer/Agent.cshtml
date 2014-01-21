@@ -19,6 +19,8 @@
             }
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.AgentId)
+            @Html.HiddenFor(m => m.MinAmount)
+            @Html.HiddenFor(m => m.MaxAmount)
             <table>
                 <colgroup>
                     <col width="150" />
@@ -38,7 +40,7 @@
                             @Html.LabelFor(m => m.Amount)
                         </td>
                         <td>
-                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160", data_val_range_min = Model.MinAmount, data_val_range_max = Model.MaxAmount, data_val_range = Las.InvalidAmount })
+                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160 text-right", data_val_range_min = Model.MinAmount, data_val_range_max = Model.MaxAmount, data_val_range = Las.InvalidAmount })
                             <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal(Model.MinAmount), Formatter.FormatDecimal(Model.MaxAmount))</span>
                         </td>
                     </tr>
@@ -55,7 +57,19 @@
         </fieldset>
     }
 </div>
+@section css
+{
+    @Styles.Render("~/css/poshytip")
+}
 @section scripts
 {
+    @Scripts.Render("~/js/poshytip")
+    @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/transfer-popup")
+    @if (ViewBag.Result != null)
+    {
+        <script type="text/javascript">
+            POPUP.close();
+        </script>
+    }
 }

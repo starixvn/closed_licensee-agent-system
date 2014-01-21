@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Web
 {
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// Contains all properties of an authenticated user.
@@ -20,6 +21,10 @@ namespace LicenseeAgent.Web
         AgentInfo AgentInfo { get; set; }
 
         int LoginUserId { get; }
+
+        string LoginUserName { get; }
+
+        AccountType LoginAccountType { get; }
 
         int OnUserId { get; }
 

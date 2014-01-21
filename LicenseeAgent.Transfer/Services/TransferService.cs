@@ -20,5 +20,10 @@ namespace LicenseeAgent.Transfer.Services
         {
             return GetEntites<AgentBalanceInfo>(criteria);
         }
+
+        public void TransferToAgent(TransferToAgentCriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

@@ -6,6 +6,8 @@
 
 namespace LicenseeAgent.Web
 {
+    using LicenseeAgent.Core.Enumerations;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -13,10 +15,18 @@ namespace LicenseeAgent.Web
     {
         public static bool IsViewSelectMenu(this ICurrentSession currentSession)
         {
-            return (currentSession.AgentInfo == null
-                || (currentSession.AgentInfo != null && currentSession.AgentInfo.IsLevel0))
-                ? true
-                : false;
+            return currentSession.IsAdmin;
+        }
+
+        public static bool IsViewSelectLicensee(this ICurrentSession currentSession)
+        {
+            return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT;
+        }
+
+        public static bool IsViewAccountDropDownMenu(this ICurrentSession currentSession)
+        {
+            return !(currentSession.LicenseeInfo != null
+                || (currentSession.LoginAccountType == AccountType.Licensee && currentSession.AgentInfo.IsLevel0));
         }
 
         public static bool IsViewChangePassword(this ICurrentSession currentSession)
@@ -34,22 +44,7 @@ namespace LicenseeAgent.Web
         /// <returns>Returns display name on home page.</returns>
         public static string DisplayName(this ICurrentSession currentSession)
         {
-            if (currentSession.AgentInfo != null && !currentSession.AgentInfo.IsLevel0)
-            {
-                return currentSession.AgentInfo.UserName;
-            }
-
-            if (currentSession.AdminInfo != null)
-            {
-                return currentSession.AdminInfo.UserName;
-            }
-
-            if (currentSession.LicenseeInfo != null)
-            {
-                return currentSession.LicenseeInfo.UserName;
-            }
-
-            return currentSession.AgentInfo.UserName;
+            return currentSession.IsAdmin ? currentSession.LoginUserName : currentSession.AgentInfo.AgentName;
         }
 
         public static bool IsDirectDownline(this ICurrentSession currentSession, int agentLevel)

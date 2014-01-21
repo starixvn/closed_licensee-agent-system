@@ -120,12 +120,14 @@
     <Compile Include="Entities\UplineEntity.cs" />
     <Compile Include="Criterias\ResetPasswordMemberLogCriteria.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\InternalService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\ICurrencyService.cs" />
+    <Compile Include="Services\IInternalService.cs" />
     <Compile Include="Services\IIpInformationService.cs" />
     <Compile Include="Services\IpInformationService.cs" />
     <Compile Include="Services\ISearchUserService.cs" />

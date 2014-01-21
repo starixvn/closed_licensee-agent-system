@@ -7,7 +7,7 @@
         <div class="username">
             <b>@SessionManager.CurrentSession.DisplayName()</b>
         </div>
-        @if (SessionManager.CurrentSession.AdminInfo != null)
+        @if (SessionManager.CurrentSession.IsViewAccountDropDownMenu())
         {
             <div class="dropdown">
                 <a data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>

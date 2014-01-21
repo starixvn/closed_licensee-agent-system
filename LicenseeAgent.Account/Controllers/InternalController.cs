@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.Account
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -31,11 +30,13 @@ namespace LicenseeAgent.Account
     {
         private readonly IAccountService _accountService;
         private readonly ICurrencyService _currencyService;
+        private readonly IInternalService _internalService;
 
-        public InternalController(IAccountService accountService, ICurrencyService currencyService)
+        public InternalController(IAccountService accountService, ICurrencyService currencyService, IInternalService internalService)
         {
             _accountService = accountService;
             _currencyService = currencyService;
+            _internalService = internalService;
         }
 
         [HttpGet]
@@ -148,6 +149,8 @@ namespace LicenseeAgent.Account
             {
                 var internalLoginInfo = new InternalLoginInfo
                 {
+                    AccountType = CurrentSession.LoginAccountType,
+                    UserName = CurrentSession.LoginUserName,
                     LicenseeId = criteria.LicenseeId,
                     CurrencyId = criteria.CurrencyId,
                     AgentName = model.UserName,
@@ -157,128 +160,76 @@ namespace LicenseeAgent.Account
                 };
 
                 var agentInfo = criteria.CreateAgent();
-                if (agentInfo.IsLevel0)
-                {
-                    return AdminLoginAsAgent0(internalLoginInfo, agentInfo);
-                }
-                else
-                {
-                    return AdminLoginAsAgent(internalLoginInfo);
-                }
+                return InternalLogin(internalLoginInfo, agentInfo);
             }
 
             return JsonResult(criteria.ErrCode);
         }
 
         /// <summary>
-        /// Admins the login as agent level 0.
+        /// Admins direct login as agent.
         /// </summary>
         /// <param name="internalLoginInfo">The admin internal login information.</param>
         /// <param name="agentInfo">The agent information.</param>
-        /// <returns>Returns JSON result.</returns>
-        [NonAction]
-        public JsonResult AdminLoginAsAgent0(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
-        {
-            // check in selected licensee
-            var criteria = new AdminCheckInLicenseeCriteria
-            {
-                OnAdminId = internalLoginInfo.OnUserId,
-                LicenseeId = internalLoginInfo.LicenseeId
-            };
-
-            _accountService.AdminCheckInLicensee(criteria);
-            if (criteria.MsgId == Result.SuccessValue)
-            {
-                CurrentSession.AgentInfo = agentInfo;
-            }
-
-            return JsonResult(criteria.MsgId);
-        }
-
-        /// <summary>
-        /// Logins as agent level k > 0.
-        /// </summary>
-        /// <param name="internalLoginInfo">The internal login information.</param>
         /// <returns>
         /// Returns JSON result.
         /// </returns>
         [NonAction]
-        public JsonResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo)
+        public JsonResult InternalLogin(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
         {
-            var reloadAdminSession = true;
-            if (CurrentSession.AgentInfo != null &&
-                CurrentSession.AgentInfo.LicenseeId != internalLoginInfo.LicenseeId &&
-                CurrentSession.AgentInfo.CurrencyId != internalLoginInfo.CurrencyId)
+            if (string.IsNullOrEmpty(internalLoginInfo.AgentName))
             {
-                reloadAdminSession = false;
-            }
-
-            if (reloadAdminSession)
-            {
-                var criteria = new InternalLoginAsUserCriteria
+                var criteria = new AdminCheckInLicenseeCriteria
                 {
-                    LicenseeId = internalLoginInfo.LicenseeId,
-                    CurrencyId = internalLoginInfo.CurrencyId
+                    OnAdminId = internalLoginInfo.OnUserId,
+                    LicenseeId = internalLoginInfo.LicenseeId
                 };
-                _accountService.InternalLoginAsUser(criteria);
-                if (criteria.ErrCode == Result.SuccessValue)
+                _accountService.AdminCheckInLicensee(criteria);
+                if (criteria.MsgId != Result.SuccessValue)
                 {
-                    var agentInfo = criteria.CreateAgent();
-
-                    // Recheck in new agent level 0
-                    AdminLoginAsAgent0(internalLoginInfo, agentInfo);
-                }
-                else
-                {
-                    return JsonResult(criteria.ErrCode);
+                    return JsonResult(criteria.MsgId);
                 }
             }
 
-            var authKey = internalLoginInfo.Save();
-            var ticket = new FormsAuthenticationTicket(
-                1,
-                CurrentSession.AdminInfo.UserName,
-                DateTime.Now,
-                DateTime.Now.AddSeconds(10),
-                false,
-                authKey);
-            var authTicket = FormsAuthentication.Encrypt(ticket);
-            var directUrl = string.Format("{0}/?authTicket={1}", Request.Url.AbsoluteUri, authTicket);
-            return Json(
-                new
-                {
-                    ErrCode = Result.SuccessValue,
-                    DirectUrl = directUrl
-                });
+            if (CurrentSession.AgentInfo == null)
+            {
+                CurrentSession.AgentInfo = agentInfo;
+                return JsonResult(Result.SuccessValue);
+            }
+            else
+            {
+                var authKey = _internalService.Encode(internalLoginInfo);
+                var directUrl = string.Format("{0}/?authKey={1}", Request.Url.AbsoluteUri, authKey);
+                return Json(
+                    new
+                    {
+                        ErrCode = Result.SuccessValue,
+                        DirectUrl = directUrl
+                    });
+            }
         }
 
         /// <summary>
         /// Update user role.
         /// </summary>
-        /// <param name="authTicket">The authentication ticket.</param>
+        /// <param name="authKey">The authentication key.</param>
         /// <returns>
         /// JSON null when update user role.
         /// </returns>
         [AdminSite]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult LoginAsUser(string authTicket)
+        public ActionResult LoginAsUser(string authKey)
         {
-            if (string.IsNullOrEmpty(authTicket))
+            if (string.IsNullOrEmpty(authKey))
             {
                 return Content("Ticket is not found");
             }
 
-            var ticket = FormsAuthentication.Decrypt(authTicket);
-            if (ticket.Expired)
+            var internalLoginInfo = _internalService.Decode(authKey);
+            if (internalLoginInfo.IsExpired)
             {
                 return Content("Ticket is expired");
-            }
-
-            var internalLoginInfo = InternalLoginInfo.GetInfo(ticket.UserData);
-            if (internalLoginInfo == null)
-            {
-                return Content("Data is invalid or it was used");
             }
 
             var criteria = new InternalLoginAsUserCriteria
@@ -322,7 +273,7 @@ namespace LicenseeAgent.Account
             }
 
             var model = new LicenseeViewModel();
-            if (CurrentSession.AdminInfo != null)
+            if (CurrentSession.LoginAccountType == AccountType.CSD_IT)
             {
                 model.Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria
                 {
@@ -341,9 +292,9 @@ namespace LicenseeAgent.Account
                     model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
                 }
             }
-            else if (CurrentSession.LicenseeInfo != null)
+            else if (CurrentSession.LoginAccountType == AccountType.Licensee)
             {
-                model.LicenseeId = CurrentSession.LicenseeInfo.LicenseeId;
+                model.LicenseeId = CurrentSession.OnLicenseeId;
                 model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
                 {
                     UserId = CurrentSession.LoginUserId,

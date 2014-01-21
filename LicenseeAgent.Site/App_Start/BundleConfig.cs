@@ -106,9 +106,19 @@ namespace LicenseeAgent.Site
             bundles.Add(new LessBundle("~/css/bootstrap-select").Include(
                 "~/content/bootstrap-select/bootstrap-select.css"));
 
-            // Contex Menu
+            // Context Menu
             bundles.Add(new ScriptBundle("~/js/contextmenu").Include(
                 "~/scripts/contextmenu/context.js"));
+
+            // Tooltip
+            bundles.Add(new ScriptBundle("~/js/poshytip").Include(
+                "~/scripts/poshytip/jquery.poshytip.js"));
+            bundles.Add(new LessBundle("~/css/poshytip").Include(
+                "~/content/poshytip/tip-twitter/tip-twitter.css"));
+
+            // Auto numeric
+            bundles.Add(new ScriptBundle("~/js/autonumeric").Include(
+                "~/scripts/autonumeric/autonumeric.js"));
         }
 
         /// <summary>
@@ -217,12 +227,8 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">Bundle collection.</param>
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/customersetting").Include(
-                "~/scripts/poshytip/jquery.poshytip.js").IncludeDirectory(
-                "~/views/account/custsetting/resources/scripts", "*.js", true).Include(
-                "~/scripts/autonumeric/autonumeric.js"));
-            bundles.Add(new LessBundle("~/css/customersetting").Include(
-                "~/content/poshytip/tip-twitter/tip-twitter.css"));
+            bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
+                "~/views/account/custsetting/resources/scripts", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
                 "~/views/account/custsetting/sportsbook/scripts", "*.js", true));

@@ -2034,6 +2034,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transfer successfully..
+        /// </summary>
+        public static string TransferSuccessfully {
+            get {
+                return ResourceManager.GetString("TransferSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can only transfer from 12pm to 11:59pm (GMT-4)..
         /// </summary>
         public static string TransferTimeWarning {

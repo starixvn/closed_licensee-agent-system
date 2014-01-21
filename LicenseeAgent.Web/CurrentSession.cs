@@ -7,8 +7,8 @@
 namespace LicenseeAgent.Web
 {
     using System;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     ///  It contains all properties of an authenticated user.
@@ -19,13 +19,13 @@ namespace LicenseeAgent.Web
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrentSession"/> class.
-        /// Admin direct login.
+        /// CSD/IT direct login.
         /// </summary>
         /// <param name="adminInfo">The admin information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = "en-US")
-            : this(adminInfo.UserId, checkinOnUserId, language)
+            : this(adminInfo.UserId, adminInfo.UserName, AccountType.CSD_IT, checkinOnUserId, language)
         {
             AdminInfo = adminInfo;
         }
@@ -38,7 +38,7 @@ namespace LicenseeAgent.Web
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = "en-US")
-            : this(licenseeInfo.UserId, checkinOnUserId, language)
+            : this(licenseeInfo.UserId, licenseeInfo.UserName, AccountType.Licensee, checkinOnUserId, language)
         {
             LicenseeInfo = licenseeInfo;
             OnLicenseeId = licenseeInfo.LicenseeId;
@@ -52,7 +52,7 @@ namespace LicenseeAgent.Web
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = "en-US")
-            : this(agentInfo.AgentId, checkinOnUserId, language)
+            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
         {
             AgentInfo = agentInfo;
             OnLicenseeId = agentInfo.LicenseeId;
@@ -65,32 +65,67 @@ namespace LicenseeAgent.Web
         /// <param name="agentInfo">The agent information.</param>
         /// <param name="internalLoginInfo">The internal login information.</param>
         public CurrentSession(AgentInfo agentInfo, InternalLoginInfo internalLoginInfo)
-            : this(internalLoginInfo.UserId, internalLoginInfo.OnUserId, internalLoginInfo.Language)
+            : this(internalLoginInfo.UserId, internalLoginInfo.UserName, internalLoginInfo.AccountType, internalLoginInfo.OnUserId, internalLoginInfo.Language)
         {
             AgentInfo = agentInfo;
             OnLicenseeId = internalLoginInfo.LicenseeId;
         }
 
-        protected CurrentSession(int loginUserId, int checkinOnUserId, string language)
+        protected CurrentSession(int loginUserId, string loginUserName, AccountType loginAccountType, int checkinOnUserId, string language)
         {
+            if (loginAccountType != AccountType.CSD_IT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
+            {
+                throw new Exception("Invalid");
+            }
+
             LoginUserId = loginUserId;
+            LoginUserName = loginUserName;
+            LoginAccountType = loginAccountType;
             OnUserId = checkinOnUserId;
             Language = language;
         }
 
+        /// <summary>
+        /// Gets the admin account information after login.
+        /// </summary>
+        /// <value>
+        /// The admin information.
+        /// </value>
         public AdminInfo AdminInfo { get; private set; }
 
+        /// <summary>
+        /// Gets the licensee account information after login.
+        /// </summary>
+        /// <value>
+        /// The licensee information.
+        /// </value>
         public LicenseeInfo LicenseeInfo { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the agent account information after login or internal login.
+        /// </summary>
+        /// <value>
+        /// The agent information.
+        /// </value>
         public AgentInfo AgentInfo { get; set; }
 
         public string Language { get; set; }
 
         public int LoginUserId { get; private set; }
 
+        public string LoginUserName { get; private set; }
+
         public int OnUserId { get; private set; }
 
         public int OnLicenseeId { get; private set; }
+
+        /// <summary>
+        /// Gets the type of the account who created session.
+        /// </summary>
+        /// <value>
+        /// The type of the account.
+        /// </value>
+        public AccountType LoginAccountType { get; private set; }
 
         public bool IsDirectSignIn
         {
@@ -109,22 +144,7 @@ namespace LicenseeAgent.Web
         {
             get
             {
-                if (AdminInfo == null && LicenseeInfo == null && AgentInfo == null)
-                {
-                    return false;
-                }
-
-                if (AdminInfo != null && !AppSettings.IsAdminSite)
-                {
-                    return false;
-                }
-
-                if (LicenseeInfo != null && AppSettings.IsAdminSite)
-                {
-                    return false;
-                }
-
-                if (AgentInfo != null && AdminInfo == null && AppSettings.IsAdminSite == IsDirectSignIn)
+                if (AgentInfo != null && AgentInfo.IsLevel0 && LoginAccountType == AccountType.Agent)
                 {
                     return false;
                 }
@@ -137,7 +157,7 @@ namespace LicenseeAgent.Web
         {
             get
             {
-                return AdminInfo != null || LicenseeInfo != null;
+                return AdminInfo != null || LicenseeInfo != null || AgentInfo.IsLevel0;
             }
         }
     }

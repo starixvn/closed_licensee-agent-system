@@ -16,5 +16,7 @@ namespace LicenseeAgent.Transfer.Services
     public interface ITransferService
     {
         IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);
+
+        void TransferToAgent(TransferToAgentCriteria criteria);
     }
 }

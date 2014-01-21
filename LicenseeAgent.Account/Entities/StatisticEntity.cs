@@ -19,10 +19,8 @@ namespace LicenseeAgent.Account.Entities
     {
         public decimal OutStanding { get; set; }
 
-        [SpParam(SqlParamName = "total_outstanding")]
-        public decimal TotalOutStading { get; set; }
+        public decimal TotalOutStanding { get; set; }
 
-        [SpParam(SqlParamName = "number_newMembers")]
-        public int NumberOfNewMember { get; set; }
+        public int NumberNewMembers { get; set; }
     }
 }

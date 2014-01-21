@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = @Las.Transfer;
+    ViewBag.Title = @Las.CreditBalance;
 }
 @section css
 {
@@ -25,24 +25,13 @@
         </button>
     </div>
 }
-<ul class="bullet-star">
-    <li>
-        @Las.TransferTimeWarning
-    </li>
-    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
-    {
-        <li class="text-warning">
-            @Html.Raw(Las.TransferMemberWarning)
-        </li>
-    }
-</ul>
 <div id="grid" class="freegrid">
 </div>
 @section scripts
 {
     @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/transfer-list")
+    @Scripts.Render("~/js/creditbalance-list")
     @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
     {
         @Html.Partial("~/Views/Account/CreditBalance/MemberList.cshtml")

@@ -20,5 +20,10 @@ namespace LicenseeAgent.CreditBalance.Services
         {
             return GetEntites<AgentBalanceInfo>(criteria);
         }
+
+        public IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria)
+        {
+            return GetEntites<MemberBalanceInfo>(criteria);
+        }
     }
 }

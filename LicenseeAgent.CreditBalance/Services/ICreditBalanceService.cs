@@ -16,5 +16,7 @@ namespace LicenseeAgent.CreditBalance.Services
     public interface ICreditBalanceService
     {
         IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);
+
+        IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
     }
 }

@@ -612,7 +612,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credit/Balance.
+        ///   Looks up a localized string similar to Credit / Balance.
         /// </summary>
         public static string CreditBalance {
             get {

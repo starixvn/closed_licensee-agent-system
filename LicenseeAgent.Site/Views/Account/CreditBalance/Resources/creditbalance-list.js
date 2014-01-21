@@ -1,7 +1,8 @@
 ﻿var TRANSFER_LIST = function ($) {
     return {
         init: function () {
-            $('.selectpicker').selectpicker();
+            $('.selectpicker').val(1);
+            $('.selectpicker').selectpicker('refresh');
 
             context.init({
                 preventDoubleContext: false

@@ -296,8 +296,8 @@
     </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
-    <Content Include="Views\Account\CreditBalance\Resources\transfer-list.js" />
-    <Content Include="Views\Account\CreditBalance\Resources\transfer-popup.js" />
+    <Content Include="Views\Account\CreditBalance\Resources\creditbalance-list.js" />
+    <Content Include="Views\Account\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />

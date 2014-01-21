@@ -12,6 +12,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.CreditBalance.Criteria;
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CreditBalance.ViewModels;
+    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
 
     /// <summary>
@@ -39,16 +40,31 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost]
         public JsonResult Search(CreditBalanceSearchViewModel model)
         {
-            return Json(new
+            if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
             {
-                ErrCode = Result.SuccessValue,
-                List = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+                return Json(new
                 {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
-                    Username = model.UserName,
-                    Status = model.Status
-                })
-            });
+                    ErrCode = Result.SuccessValue,
+                    List = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
+                    {
+                        AgentId = CurrentSession.AgentInfo.AgentId,
+                        Username = model.UserName
+                    })
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    ErrCode = Result.SuccessValue,
+                    List = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+                    {
+                        AgentId = CurrentSession.AgentInfo.AgentId,
+                        Username = model.UserName,
+                        Status = model.Status
+                    })
+                });
+            }
         }
 
         /// <summary>

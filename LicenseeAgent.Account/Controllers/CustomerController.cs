@@ -440,20 +440,6 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (ModelState.IsValid)
             {
-                var logStatement = new ResetPasswordMemberLogCriteria
-                {
-                    CustId = model.CustId,
-                    Doing = string.Format("Url: {0}/ResetPassword/?help=0", AppSettings.TaiwanAPI) +
-                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName +
-                            ", Password: " + Cryptography.CfsEnCrypt(model.Password) +
-                            ", IBCCustID:" + model.CustId,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserId = CurrentSession.LoginUserId
-                };
-
-                // Write log before call API
-                _agentService.ResetPasswordMemberLog(logStatement);
-
                 // Call API to update member password
                 var serviceResult = _memberService.ResetPassword(new ResetPasswordAction
                 {
@@ -470,11 +456,6 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
                 }
-
-                // Write log after call API
-                logStatement.ErrCode = serviceResult.ErrCode;
-                logStatement.ErrMsg = serviceResult.ErrMsg;
-                _agentService.ResetPasswordMemberLog(logStatement);
             }
 
             return View("~/Views/Customer/ResetPassword.cshtml");
@@ -576,24 +557,6 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (ModelState.IsValid)
             {
-                var logStatement = new EditInfoMemberLogCriteria
-                {
-                    CustId = model.CustId,
-                    Doing = string.Format("Url: {0}/UpdateMemberInfo/?help=0", AppSettings.TaiwanAPI) +
-                            ", SiteName: " + CurrentSession.AgentInfo.LicenseeName +
-                            ", IBCCustID:" + model.CustId +
-                            ", FirstName: " + model.FirstName +
-                            ", LastName: " + model.LastName +
-                            ", Phone: " + model.Phone +
-                            ", OtherPhone: " + model.Mobile +
-                            ", Fax: " + model.Fax,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserId = CurrentSession.LoginUserId
-                };
-
-                // Write log before call API
-                _agentService.EditInfoMemberLog(logStatement);
-
                 // Call API to update member password
                 var serviceResult = _memberService.UpdateMemberInfo(new UpdateMemberInfoAction
                 {
@@ -614,11 +577,6 @@ namespace LicenseeAgent.Account.Controllers
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
                 }
-
-                // Write log after call API
-                logStatement.ErrCode = serviceResult.ErrCode;
-                logStatement.ErrMsg = serviceResult.ErrMsg;
-                _agentService.EditInfoMemberLog(logStatement);
             }
 
             return View("~/Views/Customer/EditInfo.cshtml", model);

@@ -57,7 +57,7 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
-            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity(), BalanceInfo= new BalanceInfoEntity() };
+            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity(), BalanceInfo = new BalanceInfoEntity() };
 
             if (CurrentSession.AgentInfo != null)
             {

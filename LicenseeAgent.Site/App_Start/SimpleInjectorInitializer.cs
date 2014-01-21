@@ -12,6 +12,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.Report.Services;
@@ -63,6 +64,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<ICoreService, CoreService>();
             container.Register<ITransferService, TransferService>();
             container.Register<IMemberService, MemberService>();
+            container.Register<ICreditBalanceService, CreditBalanceService>();
         }
     }
 }

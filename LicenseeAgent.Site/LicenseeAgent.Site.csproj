@@ -290,6 +290,8 @@
     </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
+    <Content Include="Views\Account\CreditBalance\Resources\transfer-list.js" />
+    <Content Include="Views\Account\CreditBalance\Resources\transfer-popup.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />
@@ -788,6 +790,11 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Account\TopTurnover.cshtml" />
     <Content Include="Views\Account\NewMembers.cshtml" />
+    <Content Include="Views\Account\CreditBalance\MemberList.cshtml" />
+    <Content Include="Views\Account\CreditBalance\Agent.cshtml" />
+    <Content Include="Views\Account\CreditBalance\AgentList.cshtml" />
+    <Content Include="Views\Account\CreditBalance\Index.cshtml" />
+    <Content Include="Views\Account\CreditBalance\Member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
@@ -801,6 +808,10 @@
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.CreditBalance\LicenseeAgent.CreditBalance.csproj">
+      <Project>{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}</Project>
+      <Name>LicenseeAgent.CreditBalance</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj">
       <Project>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</Project>

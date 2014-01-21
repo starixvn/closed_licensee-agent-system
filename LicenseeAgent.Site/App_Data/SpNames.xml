@@ -120,6 +120,9 @@
   <Function Name="Transfer">
     <Setting Key="LAS_Transfer_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
+  <Function Name="Transfer">
+    <Setting Key="LAS_CreditBalance_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+  </Function>
   <Function Name="LRF">
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>

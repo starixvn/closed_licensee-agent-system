@@ -1,0 +1,85 @@
+﻿@using LicenseeAgent.Core.Utils
+@model LicenseeAgent.Transfer.ViewModels.TransferMemberViewModel
+@{
+    ViewBag.Title = @Las.Transfer;
+}
+@section css
+{
+    @Styles.Render("~/css/account")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+            }
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.MemberId)
+            <table>
+                <colgroup>
+                    <col width="150" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Las.Username
+                        </td>
+                        <td>
+                            @Model.UserName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.BetCredit
+                        </td>
+                        <td>
+                            @Formatter.FormatDecimal(Model.BetCredit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.LastLogin
+                        </td>
+                        <td>
+                            @Formatter.FormatDateTime(Model.LastLogin)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.LastTransaction
+                        </td>
+                        <td>
+                            @Formatter.FormatDateTime(Model.LastTransaction)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Amount)
+                        </td>
+                        <td>
+                            @Html.TextBox("Amount", Formatter.FormatDecimal(Model.Amount), new { @class = "w160" })
+                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal(Model.MinAmount), Formatter.FormatDecimal(Model.MaxAmount))</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="button" class="btn btn-primary pull-right">
+                    @Las.Cancel
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Transfer
+                </button>
+            </div>
+        </fieldset>
+    }
+</div>

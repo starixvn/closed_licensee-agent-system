@@ -949,4 +949,7 @@ If that is not you, please contact your upline!!!</value>
     <value>YOUR STATISTICS</value>
     <comment>not</comment>
   </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value>Credit/Balance</value>
+  </data>
 </root>

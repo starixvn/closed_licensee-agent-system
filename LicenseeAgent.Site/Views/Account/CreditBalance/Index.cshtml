@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = @Las.Transfer;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm("Search", null, FormMethod.Post,
+    new { @class = "form-inline form-filter ", id = "search-form" }))
+{
+    <div class="controls-row">
+        @Html.Label("Username", Las.Username)
+        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, urlAutoSearch = @Url.Action("CustomerSearchAutoComplete", "Customer"), @autocomplete = "false" })
+    </div>
+    <div class="controls-row">
+        @Html.Label("Status", Las.Status)
+        @Html.DropDownList("Status", ModelSettings.StatusList, new { @class = "selectpicker w100" })
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+}
+<ul class="bullet-star">
+    <li>
+        @Las.TransferTimeWarning
+    </li>
+    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+    {
+        <li class="text-warning">
+            @Html.Raw(Las.TransferMemberWarning)
+        </li>
+    }
+</ul>
+<div id="grid" class="freegrid">
+</div>
+@section scripts
+{
+    @Scripts.Render("~/js/contextmenu")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/transfer-list")
+    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+    {
+        @Html.Partial("~/Views/Account/CreditBalance/MemberList.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Account/CreditBalance/AgentList.cshtml")
+    }
+}

@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Taiwan", "Lic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.API", "LicenseeAgent.API\LicenseeAgent.API.csproj", "{52B801D3-8D5C-4127-8F59-B7FD2800C150}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CreditBalance", "LicenseeAgent.CreditBalance\LicenseeAgent.CreditBalance.csproj", "{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,16 @@ Global
 		{52B801D3-8D5C-4127-8F59-B7FD2800C150}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{52B801D3-8D5C-4127-8F59-B7FD2800C150}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{52B801D3-8D5C-4127-8F59-B7FD2800C150}.Release|x86.ActiveCfg = Release|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

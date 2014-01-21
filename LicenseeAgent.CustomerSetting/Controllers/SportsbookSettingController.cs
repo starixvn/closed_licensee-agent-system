@@ -181,22 +181,23 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (model == null ||
-                model.SettingContext == null ||
-                model.UpdateDataSportsbookCustomer == null)
+            if (model == null || model.SettingContext == null || model.UpdateDataSportsbookCustomer == null)
             {
                 return InvalidModelJsonResult();
             }
 
-            var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
+            if (model.SettingContext.RoleId == (int)Role.Member)
             {
-                SiteName = CurrentSession.AgentInfo.LicenseeName,
-                UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
-            });
+                var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
+                });
 
-            if (checkUserNameResult.ErrCode != 0)
-            {
-                return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
+                if (checkUserNameResult.ErrCode != 0)
+                {
+                    return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
+                }
             }
 
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;

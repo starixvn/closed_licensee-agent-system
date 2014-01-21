@@ -52,7 +52,19 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public decimal MaxCredit { get; set; }
 
-        [Required]
-        public byte Status { get; set; }
+        public bool IsClosed { get; set; }
+
+        public byte Status
+        {
+            get
+            {
+                return IsClosed ? (byte)AccountStatus.Closed : (byte)AccountStatus.Open;
+            }
+
+            set
+            {
+                IsClosed = value == (byte)AccountStatus.Closed;
+            }
+        }
     }
 }

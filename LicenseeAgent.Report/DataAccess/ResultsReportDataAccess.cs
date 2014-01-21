@@ -33,8 +33,6 @@ namespace LicenseeAgent.Report.DataAccess
 
                 return dataset.Tables[0];
             }
-
-            return null;
         }
     }
 }

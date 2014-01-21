@@ -186,7 +186,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
-            if (model.SettingContext.RoleId == (int)Role.Member)
+            if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
                 var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
                 {

@@ -14,7 +14,8 @@ if (fanex.sportsbookSetting) {
             return {
                 checkUsername: function (userName) {
                     var data = {
-                        userName: userName
+                        userName: userName,
+                        targetRoleId: settingContext.TargetRoleId
                     };
                     deferred = $q.defer();
                     //Calling Web API to fetch shopping cart items

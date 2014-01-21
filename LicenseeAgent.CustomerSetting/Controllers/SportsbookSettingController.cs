@@ -119,12 +119,25 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId,
                 Ip = Request.GetClientIp(),
-                IsOnlyUpdatePT = CurrentSession.AdminInfo == null
-                                && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-                                && model.TargetRoleId == (int)Role.Member
+                IsOnlyUpdatePT = model.IsOnlyUpdatePT,
+                IndirectAgentId = CurrentSession.IsAdmin ? model.IndirectAgentId : CurrentSession.AgentInfo.AgentId
             };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
+
+            if (model.TargetRoleId == (int)Role.Member && sportsBookCustomer.CustInfo != null)
+            {
+                sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
+
+                var serviceResult = _memberService.GetMemberInformation<CustomerInfo>(
+                                    sportsBookCustomer.CustInfo, 
+                                    new GetMemberInfoAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        IBCCustId = model.TargetCustId
+                                    });
+            }
+
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
                     settingContext,
                     sportsBookCustomer);
@@ -200,21 +213,21 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     IBCCustId = result.CustIdReturn,
                     IBCUserName = result.IBCUserName,
                     LASAgentId = model.SettingContext.CustId,
-                    FirstName = model.UpdateDataSportsbookCustomer.CustInfo.FirstName,
-                    LastName = model.UpdateDataSportsbookCustomer.CustInfo.LastName,
-                    Phone = model.UpdateDataSportsbookCustomer.CustInfo.Phone,
-                    OtherPhone = model.UpdateDataSportsbookCustomer.CustInfo.Mobile,
-                    Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax,
+                    FirstName = model.UpdateDataSportsbookCustomer.CustInfo.FirstName ?? string.Empty,
+                    LastName = model.UpdateDataSportsbookCustomer.CustInfo.LastName ?? string.Empty,
+                    Phone = model.UpdateDataSportsbookCustomer.CustInfo.Phone ?? string.Empty,
+                    OtherPhone = model.UpdateDataSportsbookCustomer.CustInfo.Mobile ?? string.Empty,
+                    Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax ?? string.Empty,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     Currency = CurrentSession.AgentInfo.CurrencyId
                 });
                 if (insertResult.ErrCode != 0)
                 {
-                    return Json(new { ErrCode = insertResult.ErrCode, Messages = insertResult.ErrMsg });
+                    return Json(new { ErrCode = insertResult.ErrCode, ErrMsg = insertResult.ErrMsg });
                 }
             }
 
-            return Json(new { ErrCode = Result.SuccessValue, Messages = messages });
+            return Json(new { ErrCode = Result.SuccessValue, ErrMsg = messages });
         }
 
         /// <summary>
@@ -242,7 +255,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                Messages = messages
+                ErrMsg = messages
             });
         }
 
@@ -270,7 +283,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                Messages = messages
+                ErrMsg = messages
             });
         }
 
@@ -314,8 +327,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetCustId = model.MemberId,
                 TargetRoleId = (int)Role.Member,
                 Ip = Request.GetClientIp(),
-                IsOnlyUpdatePT = CurrentSession.AdminInfo == null
-                                && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+                IsOnlyUpdatePT = (CurrentSession.IsAdmin &&
+                                    (model.AgentLevel > 0 && model.NumberOfLevel > 0) &&
+                                    !ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel))
+                                    || (!CurrentSession.IsAdmin 
+                                    && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)),
+                IndirectAgentId = model.AgentId
             };
 
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);
@@ -340,7 +357,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             _customerSettingService.CheckExistUserName(criteria);
 
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == 0 && model.TargetRoleId == (int)Role.Member)
             {
                 var serviceResult = _memberService.CheckUserName(new CheckUserNameAction
                 {

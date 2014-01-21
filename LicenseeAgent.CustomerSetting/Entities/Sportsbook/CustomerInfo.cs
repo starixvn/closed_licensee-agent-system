@@ -12,6 +12,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan;
     using LicenseeAgent.Web.Validations;
 
     /// <summary>
@@ -23,6 +24,9 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         {
             Status = (byte)AccountStatus.Open;
         }
+
+        [Service(Name = "IBCCustId")]
+        public int CustId { get; set; }
 
         [Required]
         public string UserName { get; set; }
@@ -38,6 +42,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public string Phone { get; set; }
 
+        [Service(Name = "MobilePhone")]
         public string Mobile { get; set; }
 
         public string Fax { get; set; }

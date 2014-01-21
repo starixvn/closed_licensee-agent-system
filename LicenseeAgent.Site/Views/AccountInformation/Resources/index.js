@@ -70,11 +70,30 @@
                     }
                 });
             }
-
             //add trigger event
             $('.btn-inverse').click(function () {
                 $("#frmMain").attr("src", $(this).data("url"));
             });
+
+            //add popover for edit indirect member
+            if ($('.popover-link').length > 0) {
+                $('.popover-link').popover({
+                    container: 'body',
+                    html: true,
+                    placement: 'right'
+                });
+
+                $(document).click(function (e) {
+                    $('.popover-link').each(function () {
+                        if (!$(this).is(e.target) &&
+                            $(this).has(e.target).length === 0 &&
+                            $('.popover').has(e.target).length === 0) {
+                            $(this).popover('hide');
+                            return;
+                        }
+                    });
+                });
+            }
 
             accountInformation.pagingBinding();
         },
@@ -85,6 +104,9 @@
 
                 event.preventDefault();
             });
+        },
+        hidePopover : function() {
+            $('.popover-link').popover('hide');
         },
         //suggest agent name
         autoComplete: function () {

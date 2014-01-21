@@ -24,8 +24,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
 
         public int CustId { get; set; }
 
-        public string UGroup { get; set; }
-
         /// <summary>
         /// Get Setting key.
         /// </summary>

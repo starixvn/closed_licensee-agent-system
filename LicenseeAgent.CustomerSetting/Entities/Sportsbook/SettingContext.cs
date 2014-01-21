@@ -90,5 +90,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public bool CanEditComGroup { get; set; }
 
         public bool IsOnlyUpdatePT { get; set; }
+
+        public int IndirectAgentId { get; set; }
     }
 }

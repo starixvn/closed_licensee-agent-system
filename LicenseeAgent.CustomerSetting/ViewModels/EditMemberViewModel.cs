@@ -20,5 +20,11 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Required]
         [Range(1, Int32.MaxValue)]
         public int MemberId { get; set; }
+
+        public int AgentId { get; set; }
+
+        public int AgentLevel { get; set; }
+
+        public int NumberOfLevel { get; set; }
     }
 }

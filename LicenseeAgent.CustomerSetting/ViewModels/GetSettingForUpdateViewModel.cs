@@ -27,5 +27,9 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
 
         [Required]
         public int FormId { get; set; }
+
+        public bool IsOnlyUpdatePT { get; set; }
+
+        public int IndirectAgentId { get; set; }
     }
 }

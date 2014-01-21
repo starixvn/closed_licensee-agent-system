@@ -524,8 +524,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             var criteria = new AgentUpdateMemberSettingCriteria(criteriaBase)
             {
-                CustId = model.SettingContext.TargetCustId,
-                UGroup = model.UpdateDataSportsbookCustomer.CommissionSetting.UserGroup,
+                CustId = model.SettingContext.TargetCustId
             };
 
             return criteria;
@@ -544,7 +543,7 @@ namespace LicenseeAgent.CustomerSetting.Service
             var criteria = new AgentEditMemIndirectCriteria()
             {
                 CustId = model.SettingContext.TargetCustId,
-                AgentId = model.SettingContext.CustId,
+                AgentId = model.SettingContext.IndirectAgentId,
                 Updater = model.SettingContext.LoginUserId,
                 PositionTaking = criteriaBase.PositionTaking,
                 Ip = criteriaBase.Ip
@@ -663,7 +662,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     getAgentSettingCriteria = new AgentSelMemIndirectForUpdateCriteria
                     {
                         CustId = settingContext.TargetCustId,
-                        AgentId = settingContext.CustId
+                        AgentId = settingContext.IndirectAgentId
                     };
                 }
                 else

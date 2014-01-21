@@ -1,5 +1,8 @@
-﻿@using LicenseeAgent.Core.Configurations
+﻿@using System.Web.Mvc
+@using LicenseeAgent.Core.Configurations
 @using LicenseeAgent.Resources
+@using LicenseeAgent.Account.Entities
+
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -25,4 +28,13 @@
         @text
         <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
     </div>
+}
+@helper RenderPopover(int memberId, IList<UplineEntity> uplines,int numberOfLevel)
+{
+    var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+    var numberUpline = uplines.Count;
+    for(int index = numberUpline-1; index >= 0; index--)
+    {
+        <a href='@(url.Action("EditMember", "SportsbookSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
+    }
 }

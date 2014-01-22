@@ -12,6 +12,7 @@ namespace LicenseeAgent.Taiwan.Entities
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Text;
+    using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,18 +24,23 @@ namespace LicenseeAgent.Taiwan.Entities
         public int IBCCustId { get; set; }
 
         [DataMember(Name = "FirstName")]
+        [Service(DefaultValue = "---")]
         public string FirstName { get; set; }
 
         [DataMember(Name = "LastName")]
+        [Service(DefaultValue = "---")]
         public string LastName { get; set; }
 
         [DataMember(Name = "Phone")]
+        [Service(DefaultValue = "---")]
         public string Phone { get; set; }
 
         [DataMember(Name = "MobilePhone")]
+        [Service(DefaultValue = "---")]
         public string MobilePhone { get; set; }
 
         [DataMember(Name = "Fax")]
+        [Service(DefaultValue = "---")]
         public string Fax { get; set; }
 
         [DataMember(Name = "IsClosed")]

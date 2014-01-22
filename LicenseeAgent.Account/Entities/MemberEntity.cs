@@ -12,6 +12,7 @@ namespace LicenseeAgent.Account.Entities
     using System.Text;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Utils;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,9 +26,6 @@ namespace LicenseeAgent.Account.Entities
         public int CustId { get; set; }
 
         public string UserName { get; set; }
-
-        [Service(Name = "IsClosed")]
-        public bool IsClosed { get; set; }
 
         public string FirstName { get; set; }
 
@@ -47,17 +45,7 @@ namespace LicenseeAgent.Account.Entities
 
         public string Fax { get; set; }
 
-        public byte Status
-        {
-            get
-            {
-                return IsClosed ? (byte)AccountStatus.Closed : (byte)AccountStatus.Open;
-            }
-
-            set
-            {
-                IsClosed = value == (byte)AccountStatus.Closed;
-            }
-        }
+        [StatusService(Name = "IsClosed")]
+        public byte Status { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace LicenseeAgent.Taiwan
     {
         public string Name { get; set; }
 
+        public string DefaultValue { get; set; }
+
         public bool IsWriteLog { get; set; }
     }
 }

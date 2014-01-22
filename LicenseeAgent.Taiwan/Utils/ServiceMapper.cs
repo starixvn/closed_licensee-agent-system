@@ -10,6 +10,7 @@ namespace LicenseeAgent.Taiwan
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Utils;
@@ -57,7 +58,7 @@ namespace LicenseeAgent.Taiwan
                             value = parser.Parse(value);
                         }
 
-                        destinationProperty.SetValue(destination, value, null);
+                        destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, value), null);
                     }
                 }
             }
@@ -81,6 +82,29 @@ namespace LicenseeAgent.Taiwan
 
                 ServiceMapper.MapObject<T1, T2>(source, destination);
             }
+        }
+
+        /// <summary>
+        /// Get value when value is empty.
+        /// </summary>
+        /// <param name="propertyInfo">Property get default value.</param>
+        /// <param name="value">Value when get data.</param>
+        /// <returns>When value is null then return default value, else return self.</returns>
+        private static object GetValue(PropertyInfo propertyInfo, object value)
+        {
+            if (value is string)
+            {
+                var propertyValue = value.ToString();
+
+                if (string.IsNullOrEmpty(propertyValue))
+                {
+                    var attribute = propertyInfo.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+
+                    return attribute != null ? ((ServiceAttribute)attribute).DefaultValue : value;
+                }
+            }
+
+            return value;
         }
     }
 }

@@ -40,6 +40,11 @@ namespace LicenseeAgent.Account.Entities
         {
             get
             {
+                if (FirstName == Constants.DefaultFullName && LastName == Constants.DefaultFullName)
+                {
+                    return Constants.DefaultFullName;
+                }
+
                 string fullName = string.Format("{0} {1}", FirstName, LastName);
 
                 if (fullName.Length > Constants.LargeStringLength)

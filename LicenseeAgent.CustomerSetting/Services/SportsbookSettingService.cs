@@ -575,7 +575,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
                 Fax = custInfo.Fax,
-                Status = model.UpdateDataSportsbookCustomer.CustInfo.Status
+                Status = (byte)model.UpdateDataSportsbookCustomer.CustInfo.Status
             };
 
             return criteria;

@@ -145,6 +145,7 @@
         genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
+            var tdCssClass = options.tdCssClass;
             var rowHeight = options.RowHeight;
             var indexNumberColumn = options.indexNumberColumn; // custom option
 
@@ -172,7 +173,8 @@
                                     return col.Formatter(rIndex, rowData, cell, cellFormated);
                                 } else
                                     return cellFormated;
-                            }
+                            },
+                            TdClass: tdCssClass ? tdCssClass(rowIndex, colName, record) : undefined
                         });
                     } ());
                 }

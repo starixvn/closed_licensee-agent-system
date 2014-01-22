@@ -1,4 +1,14 @@
 ﻿<script type="text/javascript">
+    var footerRows = [
+              {
+                  Columns: [
+                    { Value: "Total", Name: "Total", MergeColNumber: 5 },
+                    { Value: "YesterdayBalance", Name: "Number1", MergeColNumber: 2 },
+                    { Value: "TotalBalance", Name: "TotalBalance" },
+                    { Value: "", Name: "Empty", MergeRowNumber: 2 }
+                ]
+              }
+        ];
     var gridOption = {
         columns: [
                         {
@@ -37,7 +47,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.transferMember({0}, \'{1}\', {2})"></i>'.format(rowData.CustId, -rowData.YesterdayBalance);
+                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.transferMember({0}, {1})"></i>'.format(rowData.CustId, -rowData.YesterdayBalance);
                             }
                         },
                         {
@@ -54,6 +64,8 @@
         gridExpandHeight: 100,
         indexNumberColumn: 1,
         bodyRowHeight: 29,
+        //showFooter: true,
+        footerRows: footerRows,
         autoResizeColumn: true
     };
 </script>

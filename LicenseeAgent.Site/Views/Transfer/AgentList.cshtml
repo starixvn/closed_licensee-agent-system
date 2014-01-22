@@ -1,4 +1,16 @@
 ﻿<script type="text/javascript">
+    var footerRows = [
+              {
+                  Columns: [
+                    { Value: "Total", Name: "Total", MergeColNumber: 5 },
+                    { Value: "YesterdayBalance", Name: "Number1", MergeColNumber: 2 },
+                    { Value: "TotalBalance", Name: "TotalBalance" },
+                    { Value: "YesterdayCash", Name: "YesterdayCash" },
+                    { Value: "TotalCash", Name: "TotalCash" },
+                    { Value: "", Name: "Empty", MergeRowNumber: 3 }
+                ]
+              }
+        ];
     var gridOption = {
         columns: [
                         {
@@ -26,7 +38,7 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', MergeHeaderColNumber: 2, CanResize: true 
+                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', MergeHeaderColNumber: 2, CanResize: true
                         },
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
@@ -35,28 +47,30 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true 
+                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
                         },
                         {
-                            HeaderText: "@Las.YesterdayCash", Width: 80, Name: "YesterdayCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true 
+                            HeaderText: "@Las.YesterdayCash", Width: 80, Name: "YesterdayCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
                         },
                         {
-                            HeaderText: "@Las.TotalCash", Width: 80, Name: "TotalCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true 
+                            HeaderText: "@Las.TotalCash", Width: 80, Name: "TotalCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
                         },
                         {
-                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true 
+                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
                         },
                         {
-                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true 
+                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true
                         },
                         {
-                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true 
+                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true
                         }
                    ],
         showPager: true,
         gridExpandHeight: 100,
         indexNumberColumn: 1,
         bodyRowHeight: 29,
+        //showFooter: true,
+        footerRows: footerRows,
         autoResizeColumn: true
     };
 </script>

@@ -6,8 +6,11 @@
 
 namespace LicenseeAgent.Transfer.Controllers
 {
+    using System;
+    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
@@ -62,15 +65,26 @@ namespace LicenseeAgent.Transfer.Controllers
         [NonAction]
         public JsonResult SearchAgent(TransferSearchViewModel model)
         {
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = _transferService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+            var list = _transferService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     Username = model.UserName,
                     Status = model.Status
-                })
+                });
+
+            var total = new AgentBalanceInfo
+            {
+                YesterdayBalance = list.Select(x => x.YesterdayBalance).Sum(),
+                TotalBalance = list.Select(x => x.TotalBalance).Sum(),
+                YesterdayCash = list.Select(x => x.YesterdayCash).Sum(),
+                TotalCash = list.Select(x => x.TotalCash).Sum()
+            };
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = list,
+                Total = total
             });
         }
 
@@ -82,14 +96,14 @@ namespace LicenseeAgent.Transfer.Controllers
         [NonAction]
         public JsonResult SearchMember(TransferSearchViewModel model)
         {
-            var data = _transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
+            var list = _transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     Username = model.UserName
                 });
 
             var response = _memberService.GetMemberInformations<MemberBalanceInfo>(
-                data,
+                list,
                 new GetMemberInfoListAction
                 {
                     LASAgentId = CurrentSession.AgentInfo.AgentId,
@@ -101,10 +115,18 @@ namespace LicenseeAgent.Transfer.Controllers
                 return Json(response);
             }
 
+            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) && (model.Status == null || x.Status == model.Status));
+            var total = new MemberBalanceInfo
+            {
+                YesterdayBalance = list.Select(x => x.YesterdayBalance).Sum(),
+                TotalBalance = list.Select(x => x.TotalBalance).Sum()
+            };
+
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = data
+                List = list,
+                Total = total
             });
         }
 
@@ -202,7 +224,7 @@ namespace LicenseeAgent.Transfer.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Returns View.</returns>
-        [HttpPost, ActionName("Agent")]
+        [HttpPost, ActionName("Member")]
         [ValidateAntiForgeryToken]
         public ActionResult MemberPost(TransferMemberViewModel model)
         {

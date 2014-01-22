@@ -37,6 +37,11 @@ namespace LicenseeAgent.Account.Services
             }
         }
 
+        /// <summary>
+        /// Decodes the specified authentication key.
+        /// </summary>
+        /// <param name="authKey">The authentication key.</param>
+        /// <returns>Returns internal login information.</returns>
         public InternalLoginInfo Decode(string authKey)
         {
             try

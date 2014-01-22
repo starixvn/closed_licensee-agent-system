@@ -4,12 +4,9 @@
     var msgAmount;
     return {
         init: function () {
-            $("form").validate().resetForm();
-
             minAmount = parseFloat($('#Amount').attr('data-val-range-min'));
             maxAmount = parseFloat($('#Amount').attr('data-val-range-max'));
             msgAmount = $('#Amount').attr('data-val-range');
-
             var poshytipOptions = {
                 content: msgAmount,
                 alignTo: 'target',
@@ -31,6 +28,7 @@
                 TRANSFER_POPUP.validateAmount(this);
             });
 
+            $("form").validate().cancelSubmit = true;
             $('form').submit(function (e) {
                 if (!TRANSFER_POPUP.validateAmount($('#Amount'))) {
                     e.preventDefault();

@@ -41,6 +41,11 @@
                         itemsPerPageArray: CORE.pageSizes,
                         showDetail: true
                     };
+                    gridOption.tdCssClass = function (rowIndex, colName, rowData) {
+                        if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
+                            return rowData.IsHighlighted ? 'text-highlighted' : '';
+                        }
+                    }
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
@@ -71,8 +76,8 @@
             POPUP.openDialogFrame(url, { width: 480, height: 200 });
         },
         transferMember: function (memberId, amount) {
-            var url = '~/Transfer/Agent?agentId={0}&amount={1}'.format(agentId, amount);
-            POPUP.openDialogFrame(url, { width: 480, height: 200 });
+            var url = '~/Transfer/Member?memberId={0}&amount={1}'.format(memberId, amount);
+            POPUP.openDialogFrame(url, { width: 480, height: 300 });
         }
     }
 } (jQuery);

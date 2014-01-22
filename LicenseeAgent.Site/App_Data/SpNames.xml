@@ -12,7 +12,7 @@
     <Setting Key="Las_AgentCheckIn" SpName="Las_AgentCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentReCheckIn" SpName="Las_AgentReCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminCheckIn" SpName="Las_AdminCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AdminReCheckIn" SpName="Las_AdminReCheckIn_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AdminReCheckIn" SpName="Las_AdminReCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentUserLogout" SpName="Las_AgentUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminUserLogout" SpName="Las_AdminUserLogout" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentChangePwd" SpName="Las_AgentChangePwd" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

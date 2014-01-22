@@ -409,7 +409,8 @@ namespace LicenseeAgent.Account
             {
                 AdminId = licenseeInfo.UserId,
                 Ip = Request.GetClientIp(),
-                NetSessionId = Session.SessionID
+                NetSessionId = Session.SessionID,
+                LicenseeId = licenseeInfo.LicenseeId
             };
 
             _accountService.AdminCheckIn(criteria);

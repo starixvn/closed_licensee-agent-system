@@ -11,6 +11,8 @@ namespace LicenseeAgent.Account.Criterias
     {
         public int AdminId { get; set; }
 
+        public int? LicenseeId { get; set; }
+
         public string NetSessionId { get; set; }
 
         [SpParam(SqlParamName = "On_AdminId")]

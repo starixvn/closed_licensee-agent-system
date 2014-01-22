@@ -269,7 +269,7 @@ namespace LicenseeAgent.Account.Controllers
             }
             else if (CurrentSession.LoginAccountType == AccountType.Licensee)
             {
-                errCode = Result.SuccessValue;
+                errCode = AdminReCheckIn();
             }
             else if (CurrentSession.LoginAccountType == AccountType.Agent)
             {

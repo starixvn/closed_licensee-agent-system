@@ -20,5 +20,9 @@ namespace LicenseeAgent.Transfer.Services
         void TransferToAgent(TransferToAgentCriteria criteria);
 
         IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
+
+        MemberDetail GetMemberDetail(GetMemberDetailCriteria criteria);
+
+        void TransferToMember(TransferToMemberCriteria criteria);
     }
 }

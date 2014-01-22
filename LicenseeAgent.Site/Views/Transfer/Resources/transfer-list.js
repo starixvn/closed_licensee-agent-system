@@ -69,6 +69,10 @@
         transferAgent: function (agentId, agentName, amount) {
             var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
             POPUP.openDialogFrame(url, { width: 480, height: 200 });
+        },
+        transferMember: function (memberId, amount) {
+            var url = '~/Transfer/Agent?agentId={0}&amount={1}'.format(agentId, amount);
+            POPUP.openDialogFrame(url, { width: 480, height: 200 });
         }
     }
 } (jQuery);

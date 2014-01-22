@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.Transfer.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
@@ -167,32 +166,66 @@ namespace LicenseeAgent.Transfer.Controllers
         /// <summary>
         /// Members the specified member identifier.
         /// </summary>
-        /// <param name="memberId">The member identifier.</param>
-        /// <returns>Returns member transfer page.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns member transfer page.
+        /// </returns>
         [HttpGet]
-        public ViewResult Member(int memberId)
+        public ViewResult Member(TransferMemberViewModel model)
         {
-            var model = new TransferMemberViewModel
+            var criteria = new GetMemberDetailCriteria
             {
-                MemberId = memberId,
-                BetCredit = 12345.678m,
-                LastLogin = DateTime.Now,
-                LastTransaction = DateTime.Now,
-                Amount = 10,
-                MinAmount = 0,
-                MaxAmount = 100
+                CustId = model.MemberId
             };
+
+            var memberDetail = _transferService.GetMemberDetail(criteria);
+            model.UserName = memberDetail.UserName;
+            model.BetCredit = memberDetail.BetCredit;
+            model.LastLogin = memberDetail.LastLogin;
+            model.LastTransaction = memberDetail.LastTransaction;
+            if (model.Amount > 0)
+            {
+                model.MinAmount = 0;
+                model.MaxAmount = model.Amount;
+            }
+            else
+            {
+                model.MinAmount = model.Amount;
+                model.MaxAmount = 0;
+            }
 
             return View(model);
         }
 
-        [HttpPost]
-        public JsonResult Member(TransferMemberViewModel model)
+        /// <summary>
+        /// Members the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns View.</returns>
+        [HttpPost, ActionName("Agent")]
+        [ValidateAntiForgeryToken]
+        public ActionResult MemberPost(TransferMemberViewModel model)
         {
-            return Json(new
+            if (ModelState.IsValid)
             {
-                ErrCode = Result.SuccessValue
-            });
+                var criteria = new TransferToMemberCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    ToCustId = model.MemberId,
+                    Amount = model.Amount
+                };
+                _transferService.TransferToMember(criteria);
+                if (criteria.ErrCode != Result.SuccessValue)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                }
+                else
+                {
+                    ViewBag.Result = Las.TransferSuccessfully;
+                }
+            }
+
+            return View(model);
         }
     }
 }

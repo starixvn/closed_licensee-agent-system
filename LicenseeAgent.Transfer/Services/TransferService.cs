@@ -30,5 +30,15 @@ namespace LicenseeAgent.Transfer.Services
         {
             return GetEntites<MemberBalanceInfo>(criteria);
         }
+
+        public MemberDetail GetMemberDetail(GetMemberDetailCriteria criteria)
+        {
+            return GetEntity<MemberDetail>(criteria);
+        }
+
+        public void TransferToMember(TransferToMemberCriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

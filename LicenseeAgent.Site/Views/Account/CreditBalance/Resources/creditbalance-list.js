@@ -51,8 +51,8 @@
                 }
             });
         },
-        licenseeEditAgentCredit: function (agentId, agentName, givenCredit) {
-            var url = '~/CreditBalance/LicenseeEditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
+        editAgentCredit: function (agentId, agentName, givenCredit) {
+            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
             POPUP.openDialogFrame(url, { width: 428, height: 200 });
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {

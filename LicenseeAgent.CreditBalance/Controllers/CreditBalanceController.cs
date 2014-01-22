@@ -70,43 +70,59 @@ namespace LicenseeAgent.CreditBalance.Controllers
         }
 
         /// <summary>
-        /// Licensees the edit agent credit.
+        /// Edit agent credit.
         /// </summary>
-        /// <param name="licenseeEditAgentCreditViewModel">The licensee edit agent credit view model.</param>
-        /// <returns>The LicenseeEditAgentCredit view.</returns>
+        /// <param name="editAgentCreditViewModel">Edit agent credit view model.</param>
+        /// <returns>
+        /// The EditAgentCredit view.
+        /// </returns>
         [HttpGet]
-        public ViewResult LicenseeEditAgentCredit(LicenseeEditAgentCreditViewModel licenseeEditAgentCreditViewModel)
+        public ViewResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
         {
-            var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
+            if (SessionManager.CurrentSession.AgentInfo.IsLevel0)
             {
-                AgentId = licenseeEditAgentCreditViewModel.AgentId
-            };
+                var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
+                {
+                    AgentId = editAgentCreditViewModel.AgentId
+                };
+                _creditBalanceService.LicenseeGetAgentRangeInfo(licenseeGetAgentRangeInfoCriteria);
+                editAgentCreditViewModel.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
+                editAgentCreditViewModel.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
+            }
+            else
+            {
+                var agentGetAgentRangeInfoCriteria = new AgentGetAgentRangeInfoCriteria
+                {
+                    AgentId = editAgentCreditViewModel.AgentId
+                };
+                _creditBalanceService.AgentGetAgentRangeInfo(agentGetAgentRangeInfoCriteria);
+                editAgentCreditViewModel.MinCreditOutput = agentGetAgentRangeInfoCriteria.MinCreditOutput;
+                editAgentCreditViewModel.MaxCreditOutput = agentGetAgentRangeInfoCriteria.MaxCreditOutput;
+            }
 
-            _creditBalanceService.LicenseeGetAgentRangeInfo(licenseeGetAgentRangeInfoCriteria);
-            licenseeEditAgentCreditViewModel.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
-            licenseeEditAgentCreditViewModel.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
-
-            return View("~/Views/Account/CreditBalance/LicenseeEditAgentCredit.cshtml", licenseeEditAgentCreditViewModel);
+            return View("~/Views/Account/CreditBalance/EditAgentCredit.cshtml", editAgentCreditViewModel);
         }
 
         /// <summary>
-        /// Licensees the edit agent credit post.
+        /// Edit agent credit post.
         /// </summary>
-        /// <param name="licenseeEditAgentCreditViewModel">The licensee edit agent credit view model.</param>
-        /// <returns>The LicenseeEditAgentCredit view.</returns>
-        [HttpPost, ActionName("LicenseeEditAgentCredit")]
-        public ActionResult LicenseeEditAgentCreditPost(LicenseeEditAgentCreditViewModel licenseeEditAgentCreditViewModel)
+        /// <param name="editAgentCreditViewModel">Edit agent credit view model.</param>
+        /// <returns>The EditAgentCredit view.</returns>
+        [HttpPost, ActionName("EditAgentCredit")]
+        public ActionResult EditAgentCreditPost(EditAgentCreditViewModel editAgentCreditViewModel)
         {
             if (ModelState.IsValid)
             {
-                var criteria = new LicenseeUpdateAgentCreditCriteria
+                string settingKey = SessionManager.CurrentSession.AgentInfo.IsLevel0 ? "Las_LicenseeUpdAgentCredit" : "Las_AgentUpdAgentCredit";
+
+                var criteria = new UpdateAgentCreditCriteria(settingKey)
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
-                    Credit = licenseeEditAgentCreditViewModel.GivenCredit,
+                    Credit = editAgentCreditViewModel.GivenCredit,
                     Ip = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId
                 };
-                _creditBalanceService.LicenseeUpdateAgentCredit(criteria);
+                _creditBalanceService.UpdateAgentCredit(criteria);
 
                 if (criteria.MsgId != Result.SuccessValue)
                 {
@@ -118,7 +134,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 }
             }
 
-            return View("~/Views/Account/CreditBalance/LicenseeEditAgentCredit.cshtml", licenseeEditAgentCreditViewModel);
+            return View("~/Views/Account/CreditBalance/EditAgentCredit.cshtml", editAgentCreditViewModel);
         }
 
         /// <summary>

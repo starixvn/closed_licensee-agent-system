@@ -21,10 +21,12 @@ namespace LicenseeAgent.CreditBalance.Services
 
         void LicenseeGetAgentRangeInfo(LicenseeGetAgentRangeInfoCriteria criteria);
 
-        void LicenseeUpdateAgentCredit(LicenseeUpdateAgentCreditCriteria criteria);
-
         void AgentGetMemberRangeInfo(AgentGetMemberRangeInfoCriteria criteria);
 
         void AgentUpdateMemberCredit(AgentUpdateMemberCreditCriteria criteria);
+
+        void AgentGetAgentRangeInfo(AgentGetAgentRangeInfoCriteria criteria);
+
+        void UpdateAgentCredit(UpdateAgentCreditCriteria criteria);
     }
 }

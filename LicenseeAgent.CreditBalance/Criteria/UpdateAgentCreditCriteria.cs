@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeUpdateAgentCreditCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateAgentCreditCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -11,15 +11,18 @@ namespace LicenseeAgent.CreditBalance.Criteria
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LicenseeUpdateAgentCreditCriteria : CriteriaBase
+    public class UpdateAgentCreditCriteria : CriteriaBase
     {
+        private string _settingKey = string.Empty;
+
+        public UpdateAgentCreditCriteria(string settingKey)
+        {
+            _settingKey = settingKey;
+        }
+
         public int AgentId { get; set; }
 
         public decimal Credit { get; set; }
-
-        public decimal? MaxCreditOutput { get; set; }
-
-        public decimal MinCreditOutput { get; set; }
 
         public int MsgId { get; set; }
 
@@ -29,7 +32,7 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeUpdAgentCredit";
+            return this._settingKey;
         }
 
         public override bool IsValid()

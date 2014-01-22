@@ -134,7 +134,7 @@
     <Setting Key="Las_AgentSelAgentCredit" SpName="Las_AgentSelAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelMemberCredit" SpName="Las_AgentSelMemberCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_LicenseeUpdAgentCredit" SpName="Las_LicenseeUpdAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentUdpAgentCredit" SpName="Las_AgentUdpAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentUpdAgentCredit" SpName="Las_AgentUpdAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentUpdMemberCredit" SpName="Las_AgentUpdMemberCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="LRF">

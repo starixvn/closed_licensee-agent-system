@@ -31,17 +31,22 @@ namespace LicenseeAgent.CreditBalance.Services
             Execute(criteria);
         }
 
-        public void LicenseeUpdateAgentCredit(LicenseeUpdateAgentCreditCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         public void AgentGetMemberRangeInfo(AgentGetMemberRangeInfoCriteria criteria)
         {
             Execute(criteria);
         }
 
         public void AgentUpdateMemberCredit(AgentUpdateMemberCreditCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void AgentGetAgentRangeInfo(AgentGetAgentRangeInfoCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void UpdateAgentCredit(UpdateAgentCreditCriteria criteria)
         {
             Execute(criteria);
         }

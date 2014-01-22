@@ -1,5 +1,5 @@
 ﻿@using LicenseeAgent.Core.Utils
-@model LicenseeAgent.CreditBalance.ViewModels.LicenseeEditAgentCreditViewModel
+@model LicenseeAgent.CreditBalance.ViewModels.EditAgentCreditViewModel
 @{
     ViewBag.Title = @Las.UpdateCredit;
 }
@@ -7,7 +7,7 @@
     @ViewBag.Title
 </div>
 <div class="pull-left">
-    @using (Html.BeginForm("LicenseeEditAgentCredit", "CreditBalance", FormMethod.Post, new { @class = "form-table" }))
+    @using (Html.BeginForm("EditAgentCredit", "CreditBalance", FormMethod.Post, new { @class = "form-table" }))
     {
         @Html.ValidationSummary()
         <fieldset>

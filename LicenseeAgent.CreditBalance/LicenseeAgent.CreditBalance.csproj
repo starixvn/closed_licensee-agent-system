@@ -49,7 +49,8 @@
     <Compile Include="Controllers\CreditBalanceController.cs" />
     <Compile Include="Criteria\AgentGetMemberRangeInfoCriteria.cs" />
     <Compile Include="Criteria\AgentUpdateMemberCreditCriteria.cs" />
-    <Compile Include="Criteria\LicenseeUpdateAgentCreditCriteria.cs" />
+    <Compile Include="Criteria\AgentGetAgentRangeInfoCriteria.cs" />
+    <Compile Include="Criteria\UpdateAgentCreditCriteria.cs" />
     <Compile Include="Criteria\LicenseeGetAgentRangeInfoCriteria.cs" />
     <Compile Include="Criteria\GetMemberBalanceInfoCriteria.cs" />
     <Compile Include="Criteria\GetAgentBalanceInfoCriteria.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="ViewModels\CreditBalanceAgentViewModel.cs" />
     <Compile Include="ViewModels\CreditBalanceMemberViewModel.cs" />
     <Compile Include="ViewModels\CreditBalanceSearchViewModel.cs" />
-    <Compile Include="ViewModels\LicenseeEditAgentCreditViewModel.cs" />
+    <Compile Include="ViewModels\EditAgentCreditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

@@ -1,28 +1,32 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeEditAgentCreditViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentGetAgentRangeInfoCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CreditBalance.ViewModels
+namespace LicenseeAgent.CreditBalance.Criteria
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LicenseeEditAgentCreditViewModel
+    public class AgentGetAgentRangeInfoCriteria : CriteriaBase
     {
-        [Required]
         public int AgentId { get; set; }
-
-        public string AgentName { get; set; }
 
         public decimal? MaxCreditOutput { get; set; }
 
         public decimal MinCreditOutput { get; set; }
 
-        public decimal GivenCredit { get; set; }
+        public override string GetSettingKey()
+        {
+            return "Las_AgentSelAgentCredit";
+        }
+
+        public override bool IsValid()
+        {
+            return AgentId > 0;
+        }
     }
 }

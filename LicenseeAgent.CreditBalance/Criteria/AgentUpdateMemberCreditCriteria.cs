@@ -17,10 +17,6 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public decimal Credit { get; set; }
 
-        public decimal? MaxCreditOutput { get; set; }
-
-        public decimal MinCreditOutput { get; set; }
-
         public int MsgId { get; set; }
 
         public int Updater { get; set; }

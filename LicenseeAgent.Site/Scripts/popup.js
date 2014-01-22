@@ -35,6 +35,13 @@
                 $('.ui-dialog-title').html(popupTitle);
                 // hide margin
                 $(popupDocument).find('#mainContainer').addClass("popup");
+
+                //auto width and height
+                if (options == null || options == undefined) {
+                    var body = this.contentWindow.document.documentElement;
+                    $(frame).dialog("option", "width", body.scrollWidth + 50);
+                    $(frame).dialog("option", "height", body.scrollHeight + 60);
+                }
             });
             return POPUP.openDialog(frame, 'Loading ...', options);
         },

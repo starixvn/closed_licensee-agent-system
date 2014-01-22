@@ -38,7 +38,7 @@
                         <td>
                             @Html.LabelFor(m => m.Amount)
                         </td>
-                        <td>
+                        <td class="nowrap">
                             @Html.TextBox("Amount", Formatter.FormatDecimal4n(Model.Amount), new { @class = "w160 text-right", data_val_range_min = Model.MinAmount, data_val_range_max = Model.MaxAmount, data_val_range = Las.InvalidAmount })
                             <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4n(Model.MinAmount), Formatter.FormatDecimal4n(Model.MaxAmount))</span>
                         </td>

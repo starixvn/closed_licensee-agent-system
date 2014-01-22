@@ -353,13 +353,16 @@ namespace LicenseeAgent.Account.Controllers
         [NonAction]
         public void ClearSession(bool clearCheckin)
         {
-            if (CurrentSession.IsAdmin && CurrentSession.LoginAccountType == AccountType.CSD_IT)
+            if (clearCheckin)
             {
-                AdminUserLogout();
-            }
-            else if (CurrentSession.AgentInfo != null && CurrentSession.IsDirectSignIn)
-            {
-                AgentUserLogout();
+                if (CurrentSession.IsAdmin)
+                {
+                    AdminUserLogout();
+                }
+                else
+                {
+                    AgentUserLogout();
+                }
             }
 
             FormsAuthentication.SignOut();

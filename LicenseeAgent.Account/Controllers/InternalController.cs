@@ -216,7 +216,6 @@ namespace LicenseeAgent.Account
         /// <returns>
         /// JSON null when update user role.
         /// </returns>
-        [AdminSite]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult LoginAsUser(string authKey)
@@ -227,9 +226,9 @@ namespace LicenseeAgent.Account
             }
 
             var internalLoginInfo = _internalService.Decode(authKey);
-            if (internalLoginInfo.IsExpired)
+            if (internalLoginInfo == null || internalLoginInfo.IsExpired)
             {
-                return Content("Ticket is expired");
+                return Content("Ticket is invalid or expired");
             }
 
             var criteria = new InternalLoginAsUserCriteria

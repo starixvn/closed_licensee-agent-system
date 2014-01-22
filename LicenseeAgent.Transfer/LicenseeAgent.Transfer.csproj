@@ -47,9 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TransferController.cs" />
+    <Compile Include="Criteria\GetMemberBalanceInfoCriteria.cs" />
     <Compile Include="Criteria\TransferToAgentCriteria.cs" />
     <Compile Include="Entities\AgentBalanceInfo.cs" />
     <Compile Include="Criteria\GetAgentBalanceInfoCriteria.cs" />
+    <Compile Include="Entities\MemberBalanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TransferService.cs" />
     <Compile Include="Services\ITransferService.cs" />

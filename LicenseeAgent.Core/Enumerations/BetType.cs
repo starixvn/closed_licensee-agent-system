@@ -9,8 +9,9 @@ namespace LicenseeAgent.Core.Enumerations
     using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:EnumerationItemsMustBeDocumented", Justification = "Reviewed.")]
-    public enum BetType
+    public enum BetType : int
     {
+        MixParlay = 9,
         FulltimeHandicap = 1,
         FulltimeOddEven = 2,
         FulltimeOverUnder = 3,

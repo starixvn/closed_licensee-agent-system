@@ -263,11 +263,8 @@ namespace LicenseeAgent.Account.Controllers
         public JsonResult ReCheckIn()
         {
             var errCode = Result.FailureValue;
-            if (CurrentSession.LoginAccountType == AccountType.CSD_IT)
-            {
-                errCode = AdminReCheckIn();
-            }
-            else if (CurrentSession.LoginAccountType == AccountType.Licensee)
+            if (CurrentSession.LoginAccountType == AccountType.CSD_IT
+                || CurrentSession.LoginAccountType == AccountType.Licensee)
             {
                 errCode = AdminReCheckIn();
             }

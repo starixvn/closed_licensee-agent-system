@@ -52,7 +52,6 @@ namespace LicenseeAgent.Core.Enumerations
         HorseRacingFixedOdds = 154,
         NumberGame = 161,
         LiveCasino = 162,
-        OpusCasino = 163,
         VirtualSoccer = 180,
         VirtualHorseRacing = 181,
         VirtualGreyhounds = 182,

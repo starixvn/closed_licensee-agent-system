@@ -21,7 +21,7 @@ namespace LicenseeAgent.Core.Enumerations
     while (loop)
     {
 #>
-        <#= reader["SportName"].ToString().Replace(" ", string.Empty).Replace("/", string.Empty).Replace(".", string.Empty) #> = <#= reader["SportType"].ToString() #><#loop = reader.Read();#><#=loop ? "," : "" #>
+        <#= reader["SportName"].ToString().Replace(" ", string.Empty).Replace("/", string.Empty).Replace(".", string.Empty).Replace("'", string.Empty) #> = <#= reader["SportType"].ToString() #><#loop = reader.Read();#><#=loop ? "," : "" #>
 <#}#>
     <#
     reader.Close();

@@ -10,6 +10,7 @@ namespace LicenseeAgent.Transfer.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Transfer.Criteria;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
@@ -21,10 +22,12 @@ namespace LicenseeAgent.Transfer.Controllers
     public class TransferController : BaseController
     {
         private readonly ITransferService _transferService;
+        private readonly IMemberService _memberService;
 
-        public TransferController(ITransferService transferService)
+        public TransferController(ITransferService transferService, IMemberService memberService)
         {
             _transferService = transferService;
+            _memberService = memberService;
         }
 
         public ActionResult Index()
@@ -40,6 +43,24 @@ namespace LicenseeAgent.Transfer.Controllers
         [HttpPost]
         public JsonResult Search(TransferSearchViewModel model)
         {
+            if (CurrentSession.AgentInfo.IsLastLevel)
+            {
+                return SearchMember(model);
+            }
+            else
+            {
+                return SearchAgent(model);
+            }
+        }
+
+        /// <summary>
+        /// Searches the agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON balance.</returns>
+        [NonAction]
+        public JsonResult SearchAgent(TransferSearchViewModel model)
+        {
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -49,6 +70,27 @@ namespace LicenseeAgent.Transfer.Controllers
                     Username = model.UserName,
                     Status = model.Status
                 })
+            });
+        }
+
+        /// <summary>
+        /// Searches the member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON balance.</returns>
+        [NonAction]
+        public JsonResult SearchMember(TransferSearchViewModel model)
+        {
+            var data = _transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    Username = model.UserName
+                });
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = data
             });
         }
 

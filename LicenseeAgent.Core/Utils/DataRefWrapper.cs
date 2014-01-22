@@ -3,12 +3,10 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.11.7">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Utils
 {
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using RemotingRef;
 
@@ -30,9 +28,9 @@ namespace LicenseeAgent.Core.Utils
         /// <returns>Return the sport name.</returns>
         public static string GetSportName(int sportType, int betType = 0)
         {
-            if (sportType == 99)
+            if (sportType == (int)SportType.OtherSports)
             {
-                return betType == 9 ? Las.MixSportsParlay : Las.OtherSports;
+                return betType == (int)BetType.MixParlay ? Las.MixSportsParlay : Las.OtherSports;
             }
             else
             {
@@ -41,7 +39,7 @@ namespace LicenseeAgent.Core.Utils
         }
 
         public static string GetLeagueName(int leagueId)
-        {            
+        {
             return RefData.GetLeagueName(leagueId.ToString(), LanguageManager.TwoLetterISOLanguageName);
         }
 

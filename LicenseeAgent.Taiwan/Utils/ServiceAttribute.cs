@@ -19,5 +19,7 @@ namespace LicenseeAgent.Taiwan
     public class ServiceAttribute : Attribute
     {
         public string Name { get; set; }
+
+        public bool IsWriteLog { get; set; }
     }
 }

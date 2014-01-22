@@ -428,7 +428,6 @@ namespace LicenseeAgent.CustomerSetting.Service
                 Ip = model.SettingContext.Ip,
                 Creator = model.SettingContext.LoginUserId,
                 Credit = custInfo.Credit,
-                Status = custInfo.Status,
                 Discount = discountXML,
                 BetLimit = betLimitXML,
                 PositionTaking = positionTakingXML
@@ -575,7 +574,8 @@ namespace LicenseeAgent.CustomerSetting.Service
                 Mobile = custInfo.Mobile,
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
-                Fax = custInfo.Fax
+                Fax = custInfo.Fax,
+                Status = model.UpdateDataSportsbookCustomer.CustInfo.Status
             };
 
             return criteria;
@@ -622,7 +622,8 @@ namespace LicenseeAgent.CustomerSetting.Service
                 Mobile = custInfo.Mobile,
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
-                Fax = custInfo.Fax
+                Fax = custInfo.Fax,
+                Status = model.UpdateDataSportsbookCustomer.CustInfo.Status
             };
 
             return criteria;

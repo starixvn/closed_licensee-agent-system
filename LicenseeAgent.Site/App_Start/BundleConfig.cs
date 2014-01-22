@@ -153,9 +153,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/bootstrap/bootstrap-select.js").Include(
                 "~/scripts/bootstrap/bootstrap-switch.js",
                 "~/scripts/bootstrap/bootstrap-paginator.js",
-                "~/scripts/bootstrap/bootstrap-tab.js",
-                "~/scripts/bootstrap/bootstrap-tooltip.js",
-                "~/scripts/bootstrap/bootstrap-popover.js"));
+                "~/scripts/bootstrap/bootstrap-tab.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));
         }
@@ -210,7 +208,9 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",
-                "~/views/accountinformation/resources/index.js"));
+                "~/views/accountinformation/resources/index.js",
+                "~/scripts/bootstrap/bootstrap-tooltip.js",
+                "~/scripts/bootstrap/bootstrap-popover.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
                 "~/Views/Internal/Resources/Header.js"));

@@ -37,6 +37,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 
         public string Fax { get; set; }
 
+        public byte Status { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_LicenseeInsAgentAdvanceMode";

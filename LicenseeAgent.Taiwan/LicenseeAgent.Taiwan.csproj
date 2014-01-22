@@ -59,6 +59,7 @@
     <Compile Include="Actions\GetMemberInfoListAction.cs" />
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="Actions\InsertNewMemberAction.cs" />
+    <Compile Include="Actions\LogAction.cs" />
     <Compile Include="Actions\ResetPasswordAction.cs" />
     <Compile Include="Actions\UpdateMemberInfoAction.cs" />
     <Compile Include="Actions\UpdateMemberStatusAction.cs" />

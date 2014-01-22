@@ -29,7 +29,7 @@
             var iframe = frame.children('iframe');
             iframe.attr('src', url);
             $(iframe).load(function () {
-                var popupDocument = document.getElementById("popup").contentDocument;
+                var popupDocument = document.getElementById("popup").contentDocument; 
                 // update popup title
                 var popupTitle = popupDocument.title;
                 $('.ui-dialog-title').html(popupTitle);

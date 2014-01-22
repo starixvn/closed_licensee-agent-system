@@ -28,7 +28,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         {
             UserName = criteria.UserName;
             Credit = criteria.Credit;
-            Status = criteria.Status;
             Ip = criteria.Ip;
             Creator = criteria.Creator;
             Discount = criteria.Discount;
@@ -39,8 +38,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
         public string UserName { get; set; }
 
         public decimal Credit { get; set; }
-
-        public byte Status { get; set; }
 
         public int Creator { get; set; }
 

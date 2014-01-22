@@ -796,13 +796,13 @@
     <Content Include="Views\Account\TopTurnover.cshtml" />
     <Content Include="Views\Account\NewMembers.cshtml" />
     <Content Include="Views\Account\CreditBalance\MemberList.cshtml" />
-    <Content Include="Views\Account\CreditBalance\Agent.cshtml" />
     <Content Include="Views\Account\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\Account\CreditBalance\Index.cshtml" />
     <Content Include="Views\Account\CreditBalance\Member.cshtml" />
     <Content Include="Views\Customer\EditInfo.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Account\CreditBalance\LicenseeEditAgentCredit.cshtml" />
+    <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

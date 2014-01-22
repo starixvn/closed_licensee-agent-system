@@ -13,7 +13,7 @@ namespace LicenseeAgent.CreditBalance.Entities
     {
         public long RowNo { get; set; }
 
-        public int AgentId { get; set; }
+        public int CustId { get; set; }
 
         public string UserName { get; set; }
 
@@ -21,18 +21,14 @@ namespace LicenseeAgent.CreditBalance.Entities
 
         public bool Status { get; set; }
 
+        public decimal BetCredit { get; set; }
+
         public decimal YesterdayBalance { get; set; }
 
         public decimal TotalBalance { get; set; }
 
-        public decimal YesterdayCash { get; set; }
-
-        public decimal TotalCash { get; set; }
-
         public decimal Outstanding { get; set; }
 
         public decimal GivenCredit { get; set; }
-
-        public decimal UsedCredit { get; set; }
     }
 }

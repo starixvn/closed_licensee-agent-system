@@ -122,34 +122,59 @@ namespace LicenseeAgent.CreditBalance.Controllers
         }
 
         /// <summary>
-        /// Members the specified member identifier.
+        /// Agent the edit member credit.
         /// </summary>
-        /// <param name="memberId">The member identifier.</param>
-        /// <returns>Returns member CreditBalance page.</returns>
+        /// <param name="agentEditMemberCreditViewModel">The agent edit member credit view model.</param>
+        /// <returns>
+        /// The AgentEditMemberCredit view.
+        /// </returns>
         [HttpGet]
-        public ViewResult Member(int memberId)
+        public ViewResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            var model = new CreditBalanceMemberViewModel
+            var agentGetMemberRangeInfoCriteria = new AgentGetMemberRangeInfoCriteria
             {
-                MemberId = memberId,
-                BetCredit = 12345.678m,
-                LastLogin = DateTime.Now,
-                LastTransaction = DateTime.Now,
-                Amount = 10,
-                MinAmount = 0,
-                MaxAmount = 100
+                CustId = agentEditMemberCreditViewModel.CustId
             };
 
-            return View(model);
+            _creditBalanceService.AgentGetMemberRangeInfo(agentGetMemberRangeInfoCriteria);
+            agentEditMemberCreditViewModel.MinCreditOutput = agentGetMemberRangeInfoCriteria.MinCreditOutput;
+            agentEditMemberCreditViewModel.MaxCreditOutput = agentGetMemberRangeInfoCriteria.MaxCreditOutput;
+
+            return View("~/Views/Account/CreditBalance/AgentEditMemberCredit.cshtml", agentEditMemberCreditViewModel);
         }
 
-        [HttpPost]
-        public JsonResult Member(CreditBalanceMemberViewModel model)
+        /// <summary>
+        /// Agent the edit member credit.
+        /// </summary>
+        /// <param name="agentEditMemberCreditViewModel">The agent edit member credit view model.</param>
+        /// <returns>
+        /// The AgentEditMemberCredit view.
+        /// </returns>
+        [HttpPost, ActionName("AgentEditMemberCredit")]
+        public ActionResult AgentEditMemberCreditPost(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            return Json(new
+            if (ModelState.IsValid)
             {
-                ErrCode = Result.SuccessValue
-            });
+                var criteria = new AgentUpdateMemberCreditCriteria
+                {
+                    CustId = agentEditMemberCreditViewModel.CustId,
+                    Credit = agentEditMemberCreditViewModel.GivenCredit,
+                    Ip = Request.GetClientIp(),
+                    Updater = CurrentSession.LoginUserId
+                };
+                _creditBalanceService.AgentUpdateMemberCredit(criteria);
+
+                if (criteria.MsgId != Result.SuccessValue)
+                {
+                    ModelState.AddModelError(criteria.MsgId.ToString(), GetErrMsg(criteria.MsgId));
+                }
+                else
+                {
+                    ViewBag.Result = Las.EditCreditSuccessfully;
+                }
+            }
+
+            return View("~/Views/Account/CreditBalance/AgentEditMemberCredit.cshtml", agentEditMemberCreditViewModel);
         }
     }
 }

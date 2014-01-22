@@ -171,7 +171,6 @@ var BETLIST = function ($) {
                         CORE.blockUI();
                     },
                     complete: function () {
-                        $('#BetListGrid').fanexGrid('resizeGrid');
                         CORE.unblockUI();
                     }
                 });

@@ -8,59 +8,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/bootstrap-select")
-    <link href="@Url.Content("~/Content/Results/fanex.result.css")" rel="Stylesheet" type="text/css" />
-    <style>
-        .ui-tabs .ui-tabs-nav li.ui-tabs-active
-        {
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-            border-top-width: 0;
-        }
-        
-        .ui-tabs .ui-tabs-nav
-        {
-            padding: 0.2em 1.2em 0;
-            position: absolute;
-            top: -36px;
-            left: 15px;
-        }
-        
-        .ui-widget-header
-        {
-            background: none;
-            border: none;
-        }
-        
-        .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
-        {
-            background-color: #F4F8FB;
-            border-color: #D93B3C #EDEDED -moz-use-text-color;
-            border-style: solid none none;
-            border-width: 2px 1px 0;
-        }
-        
-        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
-        {
-            background: none;
-        }
-        
-        .form-filter
-        {
-            margin-top: 40px;
-            padding: 0;
-        }
-        
-        .span2
-        {
-            width: 80px !important;
-        }
-        
-        .margin-top-10px
-        {
-            margin-top: 10px;
-        }
-        
-    </style>
+    @Styles.Render("~/css/resultsreport")
 }
 @section scripts
 {
@@ -68,7 +16,7 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/bootstrap-select")
     @Scripts.Render("~/js/datetimepicker")
-    <script type="text/javascript" src='@Url.Content("~/Views/Report/Resources/ResultsReportManager.js")'></script>
+    @Scripts.Render("~/js/resultsreport")
 }
 <div class="legend">
     @ViewBag.Title
@@ -95,9 +43,9 @@
             </div> <br />
             <div class="controls-row margin-top-10px">
 
-                @Html.DropDownList("MatchSport", ModelSettings.BetListStatuses, new { @class = "selectpicker w120" })
+                @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w120" })
 
-                @Html.DropDownList("MatchLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w300" })
+                @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w300" })
                 
             </div>
         </div>
@@ -105,24 +53,24 @@
             <div class="controls-row">
                 <span>From</span>
                 <div class="input-append date" id="outrightfromdatetimepicker" data-date="@DateTime.Today">
-                    <input class="span2" size="16" type="text" value="@DateTime.Today" />
+                    <input class="span2" id="outrightFromDate" size="16" type="text" value="@DateTime.Today" />
                     <span class="add-on"><i class="icon-th"></i></span>
                 </div>
 
                 <span>To</span>
                 <div class="input-append date" id="outrighttodatetimepicker" data-date="@DateTime.Today">
-                    <input class="span2" size="16" type="text" value="@DateTime.Today" />
+                    <input class="span2" id="outrightToDate" size="16" type="text" value="@DateTime.Today" />
                     <span class="add-on"><i class="icon-th"></i></span>
                 </div>
 
-                <button class="btn btn-primary" type="submit">@Las.Submit</button>
-                <button class="btn btn-primary" type="submit">@Las.Yesterday</button>
-                <button class="btn btn-primary" type="submit">@Las.Today</button>
+                <button class="btn btn-primary" onclick="return outrightSubmit();">@Las.Submit</button>
+                <button class="btn btn-primary" onclick="return outrightYesterday();">@Las.Yesterday</button>
+                <button class="btn btn-primary" onclick="return outrightToday();">@Las.Today</button>
             </div>
-            <div class="controls-row margin-top-10px">
-                @Html.DropDownList("OutrightSport", ModelSettings.BetListStatuses, new { @class = "selectpicker w120" })
+            <div class="outright-dropdownlists margin-top-10px">
+                @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w120" })
                 
-                @Html.DropDownList("OutrightLeague", ModelSettings.BetListStatuses, new { @class = "selectpicker w300" })
+                @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w300" })
             </div>
         </div>
     </div>

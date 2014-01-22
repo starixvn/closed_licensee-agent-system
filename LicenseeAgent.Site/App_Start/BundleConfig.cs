@@ -173,6 +173,7 @@ namespace LicenseeAgent.Site
             RegisterAccountPage(bundles);
             RegisterCustomerListPage(bundles);
             RegisterBetListPage(bundles);
+            RegisterReportPage(bundles);
             RegisterTotalBetsPages(bundles);
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
@@ -287,6 +288,20 @@ namespace LicenseeAgent.Site
                 "~/content/betlist/system-parlay-detail.css"));
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
+        }
+
+        /// <summary>
+        /// Registers the report page bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterReportPage(BundleCollection bundles)
+        {
+            // Month Picker
+            bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
+                "~/Views/Report/Resources/ResultsReportManager.js"));
+            bundles.Add(new LessBundle("~/css/resultsreport").Include(
+                "~/Content/Results/fanex.result.css",
+                "~/Content/Results/results.css"));
         }
 
         /// <summary>

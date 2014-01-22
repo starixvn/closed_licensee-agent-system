@@ -49,7 +49,9 @@ namespace LicenseeAgent.TotalBets.Utils
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
                         LiveIndicator = matchGroup.LiveIndicator,
-                        Time = matchGroup.LiveIndicator ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore) : matches.FirstOrDefault().ShowTime,
+                        Time = matchGroup.LiveIndicator 
+                            ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
+                            : matches.FirstOrDefault().ShowTime,
                         LiveHomeScore = matchGroup.LiveHomeScore,
                         LiveAwayScore = matchGroup.LiveAwayScore,
                         HomeId = matches.FirstOrDefault().HomeId,

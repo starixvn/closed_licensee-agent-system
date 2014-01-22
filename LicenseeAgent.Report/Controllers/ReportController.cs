@@ -19,6 +19,7 @@ namespace LicenseeAgent.Report.Controllers
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utils;
     using Services;
     using ViewModels;
     using Web.Controllers;
@@ -93,20 +94,12 @@ namespace LicenseeAgent.Report.Controllers
                     model.Leagues.Add(new SelectListItem { Text = leagueItem.LeagueName, Value = leagueItem.LeagueID });
                 }
 
-                var resultsReportCriteria = new MatchResultsReportCriteria()
-                {
-                    CustId = CurrentSession.OnUserId,
-                    EventDate = criteria.EventDate,
-                    SportType = int.Parse(model.Sports[0].Value),
-                    LeagueId = int.Parse(model.Leagues[0].Value)
-                };
-
-                var resultsData = GetMatchResultsData(resultsReportCriteria);
                 return Json(new
                 {
                     ErrCode = Result.SuccessValue,
                     Sports = model.Sports,
-                    Leagues = model.Leagues
+                    Leagues = model.Leagues,
+                    Results = GetMatchResultsData(leagueCriteria, 0)
                 });
             }
 
@@ -115,7 +108,55 @@ namespace LicenseeAgent.Report.Controllers
                 ErrCode = Result.SuccessValue,
                 Sports = new List<SelectListItem>(),
                 Leagues = new List<SelectListItem>(),
-                Results = "No data."
+                Results = ResultsMatchNoData()
+            });
+        }
+
+        /// <summary>
+        /// Index page of Results report.
+        /// </summary>
+        /// <param name="criteria">Sport criteria.</param>
+        /// <returns>Return a view.</returns>
+        [HttpPost]
+        public JsonResult OutrightResults(OutrightResultsReportCriteria criteria)
+        {
+            var setting = new ResultSetting { IsOutRight = true, LanguageCode = "en-US" };
+
+            var resultsHtmlString = string.Empty;
+            var cacheKey = GenerateOutRightCacheKey(criteria);
+            var outRightData = (IList<OutRight>)HttpRuntime.Cache.Get(cacheKey) ?? _resultsReportService.GetOutrightResults(criteria);
+
+            if (outRightData.Count > 0)
+            {
+                var sports = outRightData.GroupBy(i => i.SportType)
+                .Select(j => new SelectListItem { Text = DataRefWrapper.GetSportName(j.First().SportType), Value = j.First().SportType.ToString() })
+                .ToList();
+                var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
+                var leagues = outRightData.Where(i => i.SportType == sportType)
+                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).ToList();
+                var data = outRightData.Where(i => i.SportType == sportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
+                if (data.Count > 0)
+                {
+                    resultsHtmlString = ResultEngine.HtmlParser(data, setting);
+                }
+
+                return Json(new
+                {
+                    ErrCode = Result.SuccessValue,
+                    Sports = sports,
+                    Leagues = leagues,
+                    Results = resultsHtmlString,
+                    TotalRows = data.Count
+                });
+            }
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Sports = new List<SelectListItem>(),
+                Leagues = new List<SelectListItem>(),
+                Results = ResultsOutrightNoData(),
+                TotalRows = 0
             });
         }
 
@@ -125,22 +166,19 @@ namespace LicenseeAgent.Report.Controllers
         /// <param name="criteria">Results Report criteria.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        public ActionResult GetMatchResults(MatchResultsReportCriteria criteria)
+        public JsonResult GetMatchResults(MatchResultsReportCriteria criteria)
         {
-            ViewBag.ResultsData = GetMatchResultsData(criteria);
-            return View("Report/Results");
-        }
+            var leagueCriteria = new LeagueCriteria()
+            {
+                SportType = criteria.SportType,
+                EventDate = criteria.EventDate
+            };
 
-        /// <summary>
-        /// Get list of results.
-        /// </summary>
-        /// <param name="criteria">Results Report criteria.</param>
-        /// <returns>JSON object.</returns>
-        [HttpPost]
-        public ActionResult GetOutrightResults(OutrightResultsReportCriteria criteria)
-        {
-            ViewBag.ResultsData = GetOutrightResultsData(criteria);
-            return View("Report/Results");
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Results = GetMatchResultsData(leagueCriteria, criteria.LeagueId)
+            });
         }
 
         /// <summary>
@@ -161,58 +199,41 @@ namespace LicenseeAgent.Report.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                Leagues = leagueItems
+                Leagues = leagueItems,
+                Results = GetMatchResultsData(criteria, 0)
             });
         }
 
         #endregion
 
         #region Utilities
-        
+
         /// <summary>
         /// Get Match Results Data.
         /// </summary>
         /// <param name="criteria">Match Results Report Criteria.</param>
+        /// <param name="leagueId">League ID input.</param>
         /// <returns>HTML string.</returns>
-        private string GetMatchResultsData(MatchResultsReportCriteria criteria)
+        private string GetMatchResultsData(LeagueCriteria criteria, int leagueId)
         {
+            var matchResultsReportCriteria = new MatchResultsReportCriteria()
+            {
+                CustId = CurrentSession.OnUserId,
+                SportType = criteria.SportType,
+                LeagueId = leagueId,
+                EventDate = criteria.EventDate
+            };
+
             var setting = new ResultSetting
             {
                 SportType = (SportType)criteria.SportType,
                 LanguageCode = "en-US"
             };
 
-            var data = _resultsReportService.GetMatchResults(criteria);
+            var data = _resultsReportService.GetMatchResults(matchResultsReportCriteria);
             if (data != null)
             {
                 return ResultEngine.HtmlParser(data, setting);
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Get Outright Results Data.
-        /// </summary>
-        /// <param name="criteria">Outright Results Report Criteria.</param>
-        /// <returns>HTML string.</returns>
-        private string GetOutrightResultsData(OutrightResultsReportCriteria criteria)
-        {
-            var setting = new ResultSetting
-            {
-                IsOutRight = true,
-                LanguageCode = "en-US"
-            };
-            var cacheKey = GenerateOutRightCacheKey(criteria);
-            var outRightData = (IList<OutRight>)HttpRuntime.Cache.Get(cacheKey) ?? _resultsReportService.GetOutrightResults(criteria);
-            if (outRightData != null)
-            {
-                var data =
-                    outRightData.Where(i => i.SportType == criteria.SportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
-                if (data.Count > 0)
-                {
-                    return ResultEngine.HtmlParser(data, setting);
-                }
             }
 
             return string.Empty;
@@ -225,8 +246,25 @@ namespace LicenseeAgent.Report.Controllers
         /// <returns>HTML string.</returns>
         private string GenerateOutRightCacheKey(OutrightResultsReportCriteria criteria)
         {
-            const string PatternKey = "{0}{1}Result.OutRight.Data_{2}";
+            const string PatternKey = "{0}{1}Results.OutRight.Data_{2}";
             return string.Format(PatternKey, criteria.FromDate, criteria.ToDate, CurrentSession.OnUserId);
+        }
+
+        private string ResultsMatchNoData()
+        {
+            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Kick Off. Time</th>";
+            htmlNoDataStr += "<th class='column-match'>Match</th><th class='column-firsthaftscore'>First Half Score</th>";
+            htmlNoDataStr += "<th class='column-finalscore'>Final Score</th><th class='column-status'>Status</th></tr></thead>";
+            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            return htmlNoDataStr;
+        }
+
+        private string ResultsOutrightNoData()
+        {
+            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Time</th>";
+            htmlNoDataStr += "<th class='column-match'>Team</th><th class='column-status'>Resuls</th></tr></thead>";
+            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            return htmlNoDataStr;
         }
 
         #endregion

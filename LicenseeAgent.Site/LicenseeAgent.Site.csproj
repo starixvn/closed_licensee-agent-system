@@ -263,6 +263,7 @@
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\ng-grid\ng-grid.css" />
+    <Content Include="Content\Results\results.css" />
     <Content Include="Content\Results\fanex.result.css" />
     <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.png" />
     <Content Include="Content\Results\images\bg_header03.jpg" />
@@ -274,6 +275,7 @@
     <Content Include="InsertMultipleMember.aspx" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
@@ -428,7 +430,6 @@
     <Content Include="Scripts\contextmenu\context.js" />
     <Content Include="Scripts\dotdotdot\jquery.dotdotdot.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
-    <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
     <Content Include="Scripts\fanexgrid\moment.js" />
     <Content Include="Scripts\jquery-ui\jquery.ui.dropdownlist.js" />

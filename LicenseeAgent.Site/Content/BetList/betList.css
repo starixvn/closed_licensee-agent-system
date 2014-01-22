@@ -24,6 +24,7 @@
     border: solid 1px #FFF;
     background: #EDF0F0;
     text-align: right;
+    vertical-align: middle;
     padding: 2px 2px 0 2px;
     color: #6d6d6d;
     font-weight: bold;

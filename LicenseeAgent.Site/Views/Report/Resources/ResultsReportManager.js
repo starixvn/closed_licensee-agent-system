@@ -11,7 +11,9 @@
         },
 
         initData: function () {
-            REPORT.matchToday();
+            var currentTime = new Date();
+            var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
+            REPORT.matchSubmit(todayStr);
 
             $("#MatchSport").change(function () {
                 REPORT.manageSportSelect();
@@ -19,6 +21,14 @@
 
             $("#MatchLeague").change(function () {
                 REPORT.manageLeagueSelect();
+            });
+
+            $("#OutrightSport").change(function () {
+                REPORT.manageOutrightSportSelect();
+            });
+
+            $("#OutrightLeague").change(function () {
+                REPORT.manageOutrightLeagueSelect();
             });
         },
 
@@ -42,6 +52,8 @@
                     }
                     if (data.Leagues != null) {
                         REPORT.generateLeagues(data.Leagues);
+
+                        REPORT.generateResults(data.Results);
                     }
                 },
                 complete: function () {
@@ -58,7 +70,7 @@
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetResults"),
+                url: CORE.resolveUrl("~/Report/GetMatchResults"),
                 type: 'POST',
                 data: params,
                 dataType: "json",
@@ -69,6 +81,9 @@
                     if (data.ErrCode != 0) {
                         return;
                     }
+                    if (data.Results != null) {
+                        REPORT.generateResults(data.Results);
+                    }
 
                 },
                 complete: function () {
@@ -77,9 +92,74 @@
             });
         },
 
-        updateContent: function (params) {
+        manageOutrightSportSelect: function () {
+            var params = {
+                FromDate: $("#outrightFromDate").val(),
+                ToDate: $("#outrightToDate").val(),
+                SportType: $("#OutrightSport").val()
+            };
+
             $.ajax({
-                url: CORE.resolveUrl("~/Report/Results"),
+                url: CORE.resolveUrl("~/Report/OutrightResults"),
+                type: 'POST',
+                data: params,
+                dataType: "json",
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        return;
+                    }
+                    if (data.Leagues != null) {
+                        REPORT.generateLeagues(data.Leagues);
+
+                        REPORT.generateResults(data.Results);
+                    }
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+        
+        manageOutrightLeagueSelect: function () {
+            var params = {
+                FromDate: $("#outrightFromDate").val(),
+                ToDate: $("#outrightToDate").val(),
+                SportType: $("#OutrightSport").val(),
+                LeagueId: $("#OutrightLeague").val(),
+            };
+
+            $.ajax({
+                url: CORE.resolveUrl("~/Report/OutrightResults"),
+                type: 'POST',
+                data: params,
+                dataType: "json",
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        return;
+                    }
+                    if (data.Results != null) {
+                        REPORT.generateResults(data.Results);
+                    }
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+
+        updateContent: function (params, viewMatchResults) {
+            var actionUrl = "~/Report/OutrightResults";
+            if (viewMatchResults == 1)
+                actionUrl = "~/Report/Results";
+
+            $.ajax({
+                url: CORE.resolveUrl(actionUrl),
                 type: 'POST',
                 data: params,
                 dataType: "json",
@@ -91,9 +171,9 @@
                         return;
                     }
                     if (data.Sports != null) {
-                        REPORT.generateSports(data.Sports);
+                        REPORT.generateSports(data.Sports, viewMatchResults);
 
-                        REPORT.generateLeagues(data.Leagues);
+                        REPORT.generateLeagues(data.Leagues, viewMatchResults);
 
                         REPORT.generateResults(data.Results);
                     }
@@ -104,76 +184,111 @@
             });
         },
 
-        generateSports: function (sports) {
+        generateSports: function (sports, viewMatchResults) {
             var itemCounter = sports.length;
             var listItemsHtml = '';
             for (var index = 0; index < itemCounter; index++) {
                 listItemsHtml += '<option value="' + sports[index].Value + '">' + sports[index].Text + '</option>';
             }
-            $("#MatchSport").html(listItemsHtml);
-            $('#MatchSport').selectpicker('refresh');
+
+            if (viewMatchResults == 1) {
+                $("#MatchSport").html(listItemsHtml);
+                $('#MatchSport').selectpicker('refresh');
+            }
+            else {
+                $("#OutrightSport").html(listItemsHtml);
+                $('#OutrightSport').selectpicker('refresh');
+            }
         },
 
-        generateLeagues: function (leagues) {
+        generateLeagues: function (leagues, viewMatchResults) {
             var itemCounter = leagues.length;
-            var listItemsHtml = '';
+            var listItemsHtml = '<option value="0">Show All Leagues</option>';
             for (var index = 0; index < itemCounter; index++) {
                 listItemsHtml += '<option value="' + leagues[index].Value + '">' + leagues[index].Text + '</option>';
             }
-            $("#MatchLeague").html(listItemsHtml);
-            $('#MatchLeague').selectpicker('refresh');
+
+            if (viewMatchResults == 1) {
+                $("#MatchLeague").html(listItemsHtml);
+                $('#MatchLeague').selectpicker('refresh');
+            }
+            else {
+                $("#OutrightLeague").html(listItemsHtml);
+                $('#OutrightLeague').selectpicker('refresh');
+            }
         },
 
         generateResults: function (results) {
+            if(results.search("<!--NoInfo-->") > 0)
+            {
+                $( ".outright-dropdownlists" ).hide();
+            }
+            else
+            {
+                $( ".outright-dropdownlists" ).show();
+            }
             $("#ResultsArea").html(results);
         },
 
-        matchSubmit: function () {
+        matchSubmit: function (eventDateString) {
+            $('#matchdatetime').val(eventDateString);
             var params = {
-                EventDate: $("#matchdatetime").val()
+                EventDate: eventDateString
             };
 
-            REPORT.updateContent(params);
+            REPORT.updateContent(params, 1);
         },
 
-        matchYesterday: function () {
-            var currentTime = new Date();
-            var yesterdayStr = (currentTime.getMonth() + 1) + "/" + (currentTime.getDate() - 1) + "/" + currentTime.getFullYear();
-            $('#matchdatetime').val(yesterdayStr);
+        outrightSubmit: function (fromDateString, toDateString) {
+            $('#outrightFromDate').val(fromDateString);
+            $('#outrightToDate').val(toDateString);
             var params = {
-                EventDate: yesterdayStr
+                FromDate: fromDateString,
+                ToDate: toDateString
             };
 
-            REPORT.updateContent(params);
-        },
-
-        matchToday: function () {
-            var currentTime = new Date();
-            var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
-            $('#matchdatetime').val(todayStr);
-            var params = {
-                EventDate: todayStr
-            };
-
-            REPORT.updateContent(params);
+            REPORT.updateContent(params, 0);
         }
     }
 } (jQuery);
 
 /* Match Resuls */
-function matchSubmit()
-{
-    REPORT.matchSubmit();
+function matchSubmit() {
+    REPORT.matchSubmit($('#matchdatetime').val());
     return false;
 }
 
 function matchYesterday() {
-    REPORT.matchYesterday();
+    var currentTime = new Date();
+    var yesterdayStr = (currentTime.getMonth() + 1) + "/" + (currentTime.getDate() - 1) + "/" + currentTime.getFullYear();
+    REPORT.matchSubmit(yesterdayStr);
     return false;
 }
 
 function matchToday() {
-    REPORT.matchToday();
+    var currentTime = new Date();
+    var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
+    REPORT.matchSubmit(todayStr);
+    return false;
+}
+
+/* Outright Resuls */
+function outrightSubmit() {
+    REPORT.outrightSubmit($('#outrightFromDate').val(), $('#outrightToDate').val());
+    return false;
+}
+
+function outrightYesterday() {
+    var currentTime = new Date();
+    var yesterdayStr = (currentTime.getMonth() + 1) + "/" + (currentTime.getDate() - 1) + "/" + currentTime.getFullYear();
+    REPORT.outrightSubmit(yesterdayStr, yesterdayStr);
+    return false;
+}
+
+function outrightToday() {
+    var currentTime = new Date();
+    var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
+    REPORT.outrightSubmit(todayStr, todayStr);
     return false;
 }
 

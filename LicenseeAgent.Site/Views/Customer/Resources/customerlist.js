@@ -80,6 +80,13 @@
                 $('#menuAddDownline').show();
             }
 
+            if (pageContext.IsAdmin || pageContext.IsDirectDownline) {
+                $('#menuEditInfo').show();
+            }
+            else {
+                $('#menuEditInfo').hide();
+            }
+
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'));
                 editUsername = $(target).data('username');

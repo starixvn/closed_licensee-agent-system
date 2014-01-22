@@ -148,9 +148,6 @@
   <data name="AgentList" xml:space="preserve">
     <value>代理列表</value>
   </data>
-  <data name="AlertKickoutMessage" xml:space="preserve">
-    <value>另外一个会话登入\n此会话将被终止！\n如果不是您的帐号，请联络您的上线！</value>
-  </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
@@ -388,10 +385,6 @@
   </data>
   <data name="AccountWasStopped" xml:space="preserve">
     <value>Your account was stopped!</value>
-    <comment>not</comment>
-  </data>
-  <data name="AlertAdminLicenseeChanged" xml:space="preserve">
-    <value>The licensee was changed by admin, this session must be closed.</value>
     <comment>not</comment>
   </data>
   <data name="BetSettingInstructions" xml:space="preserve">

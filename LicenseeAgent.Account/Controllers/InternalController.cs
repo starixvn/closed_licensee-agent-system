@@ -193,7 +193,7 @@ namespace LicenseeAgent.Account
 
             if (CurrentSession.AgentInfo == null)
             {
-                CurrentSession.AgentInfo = agentInfo;
+                CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
             else

@@ -280,4 +280,12 @@
   <data name="Msg_1036" xml:space="preserve">
     <value>You are not authorized for this page.</value>
   </data>
+  <data name="Msg_1037" xml:space="preserve">
+    <value>... Another session has been logged in ...
+Your session will be terminated!!!
+If that is not you, please contact your upline!!!</value>
+  </data>
+  <data name="Msg_1038" xml:space="preserve">
+    <value>The licensee was changed by admin, this session must be closed.</value>
+  </data>
 </root>

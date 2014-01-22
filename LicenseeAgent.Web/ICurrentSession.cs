@@ -18,7 +18,7 @@ namespace LicenseeAgent.Web
 
         LicenseeInfo LicenseeInfo { get; }
 
-        AgentInfo AgentInfo { get; set; }
+        AgentInfo AgentInfo { get; }
 
         int LoginUserId { get; }
 
@@ -37,5 +37,7 @@ namespace LicenseeAgent.Web
         bool IsValid { get; }
 
         bool IsAdmin { get; }
+
+        void UpdateAgent(AgentInfo agentInfo);
     }
 }

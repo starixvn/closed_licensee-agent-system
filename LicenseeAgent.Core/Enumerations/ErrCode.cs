@@ -117,6 +117,18 @@ namespace LicenseeAgent.Core.Enumerations
         /// <summary>
         /// You don't have permission to update this account settings.
         /// </summary>
-        Msg_1030 = 1030
+        Msg_1030 = 1030,
+
+        /// <summary>
+        /// "... Another session has been logged in ...
+        /// Your session will be terminated!!!
+        /// If that is not you, please contact your upline!!!"
+        /// </summary>
+        Msg_1037 = 1037,
+
+        /// <summary>
+        /// The licensee was changed by admin, this session must be closed.
+        /// </summary>
+        Msg_1038 = 1038
     }
 }

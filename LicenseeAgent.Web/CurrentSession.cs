@@ -33,7 +33,7 @@ namespace LicenseeAgent.Web
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrentSession"/> class.
         /// Licensee direct login from LRF.
-        /// </summary>
+        /// </summary>ger
         /// <param name="licenseeInfo">The licensee information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
@@ -102,12 +102,12 @@ namespace LicenseeAgent.Web
         public LicenseeInfo LicenseeInfo { get; private set; }
 
         /// <summary>
-        /// Gets or sets the agent account information after login or internal login.
+        /// Gets the agent account information after login or internal login.
         /// </summary>
         /// <value>
         /// The agent information.
         /// </value>
-        public AgentInfo AgentInfo { get; set; }
+        public AgentInfo AgentInfo { get; private set; }
 
         public string Language { get; set; }
 
@@ -159,6 +159,17 @@ namespace LicenseeAgent.Web
             {
                 return AdminInfo != null || LicenseeInfo != null || AgentInfo.IsLevel0;
             }
+        }
+
+        public void UpdateAgent(AgentInfo agentInfo)
+        {
+            if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)
+            {
+                throw new Exception("Invalid");
+            }
+
+            AgentInfo = agentInfo;
+            OnLicenseeId = agentInfo.LicenseeId;
         }
     }
 }

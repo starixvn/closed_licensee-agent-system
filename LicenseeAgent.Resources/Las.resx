@@ -143,11 +143,6 @@
   <data name="AgentList" xml:space="preserve">
     <value>Agent List</value>
   </data>
-  <data name="AlertKickoutMessage" xml:space="preserve">
-    <value>... Another session has been logged in ...
-Your session will be terminated!!!
-If that is not you, please contact your upline!!!</value>
-  </data>
   <data name="BetSetting" xml:space="preserve">
     <value>Bet Setting</value>
   </data>
@@ -344,10 +339,6 @@ If that is not you, please contact your upline!!!</value>
   </data>
   <data name="MixSportsParlay" xml:space="preserve">
     <value>MixSportsParlay</value>
-    <comment>not</comment>
-  </data>
-  <data name="AlertAdminLicenseeChanged" xml:space="preserve">
-    <value>The licensee was changed by admin, this session must be closed.</value>
     <comment>not</comment>
   </data>
   <data name="PositionTakingSimpleModeHeader" xml:space="preserve">
@@ -908,7 +899,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
     <comment>not</comment>
-    </data>
+  </data>
   <data name="TransferSuccessfully" xml:space="preserve">
     <value>Transfer successfully.</value>
   </data>

@@ -205,26 +205,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The licensee was changed by admin, this session must be closed..
-        /// </summary>
-        public static string AlertAdminLicenseeChanged {
-            get {
-                return ResourceManager.GetString("AlertAdminLicenseeChanged", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ... Another session has been logged in ...
-        ///Your session will be terminated!!!
-        ///If that is not you, please contact your upline!!!.
-        /// </summary>
-        public static string AlertKickoutMessage {
-            get {
-                return ResourceManager.GetString("AlertKickoutMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {

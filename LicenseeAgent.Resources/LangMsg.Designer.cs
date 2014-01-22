@@ -385,6 +385,26 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Another session has been logged in ...
+        ///Your session will be terminated!!!
+        ///If that is not you, please contact your upline!!!.
+        /// </summary>
+        public static string Msg_1037 {
+            get {
+                return ResourceManager.GetString("Msg_1037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The licensee was changed by admin, this session must be closed..
+        /// </summary>
+        public static string Msg_1038 {
+            get {
+                return ResourceManager.GetString("Msg_1038", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This user is not active..
         /// </summary>
         public static string Msg_200022 {

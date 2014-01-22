@@ -254,61 +254,40 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Post ReCheckIn.
         /// </summary>
-        /// <param name="licenseeId">The licensee identifier.</param>
-        /// <param name="currencyId">The currency identifier.</param>
         /// <returns>
         /// Return true or false.
         /// </returns>
         [HttpPost]
         [AjaxOnly]
         [AppAuthorize(IsValidateAgent = false)]
-        public JsonResult ReCheckIn(int? licenseeId, int? currencyId)
+        public JsonResult ReCheckIn()
         {
             var errCode = Result.FailureValue;
-            if ((CurrentSession.AdminInfo != null || CurrentSession.LicenseeInfo != null) && CurrentSession.IsDirectSignIn)
+            if (CurrentSession.LoginAccountType == AccountType.CSD_IT)
             {
-                if (CurrentSession.AgentInfo != null)
-                {
-                    var isValidLicensee = licenseeId == 0 ? true : licenseeId == CurrentSession.AgentInfo.LicenseeId;
-                    var isValidCurrency = currencyId == 0 ? true : currencyId == CurrentSession.AgentInfo.CurrencyId;
-                    if (!isValidLicensee || !isValidCurrency)
-                    {
-                        return Json(new
-                        {
-                            ErrCode = errCode,
-                            Reload = true
-                        });
-                    }
-                }
-
-                if (CurrentSession.AdminInfo != null)
-                {
-                    errCode = AdminReCheckIn();
-                }
-                else if (CurrentSession.LicenseeInfo != null)
-                {
-                    errCode = Result.SuccessValue;
-                }
+                errCode = AdminReCheckIn();
             }
-            else
+            else if (CurrentSession.LoginAccountType == AccountType.Licensee)
             {
-                if (CurrentSession.AgentInfo != null)
-                {
-                    if (CurrentSession.IsDirectSignIn)
-                    {
-                        errCode = AgentReCheckIn();
-                    }
-                    else
-                    {
-                        errCode = AgentReCheckInLicensee();
-                    }
-                }
+                errCode = Result.SuccessValue;
+            }
+            else if (CurrentSession.LoginAccountType == AccountType.Agent)
+            {
+                errCode = AgentReCheckIn();
             }
 
-            var result = new Result(
-                errCode,
-                errCode != Result.SuccessValue ? CurrentSession.IsDirectSignIn ? Las.AlertKickoutMessage : Las.AlertAdminLicenseeChanged : string.Empty);
-            return Json(result);
+            switch (errCode)
+            {
+                case (int)ErrCode.Msg_1037:
+                    ClearSession(true);
+                    break;
+
+                case (int)ErrCode.Msg_1038:
+                    ClearSession(false);
+                    break;
+            }
+
+            return JsonResult(errCode);
         }
 
         [NonAction]
@@ -351,7 +330,8 @@ namespace LicenseeAgent.Account.Controllers
         {
             var criteria = new AdminReCheckInCriteria
             {
-                OnAdminId = CurrentSession.OnUserId
+                OnAdminId = CurrentSession.OnUserId,
+                OnLicenseeId = CurrentSession.OnLicenseeId == 0 ? null : (int?)CurrentSession.OnLicenseeId
             };
 
             _accountService.AdminReCheckIn(criteria);
@@ -365,7 +345,18 @@ namespace LicenseeAgent.Account.Controllers
         [AppAuthorize(IsValidateAgent = false)]
         public ActionResult SignOut()
         {
-            if (CurrentSession.AdminInfo != null && CurrentSession.IsDirectSignIn)
+            ClearSession(true);
+            return Redirect(FormsAuthentication.LoginUrl);
+        }
+
+        /// <summary>
+        /// Clears the session.
+        /// </summary>
+        /// <param name="clearCheckin">If set to <c>true</c> [clear check-in].</param>
+        [NonAction]
+        public void ClearSession(bool clearCheckin)
+        {
+            if (CurrentSession.IsAdmin && CurrentSession.LoginAccountType == AccountType.CSD_IT)
             {
                 AdminUserLogout();
             }
@@ -376,7 +367,6 @@ namespace LicenseeAgent.Account.Controllers
 
             FormsAuthentication.SignOut();
             SessionManager.ClearAll();
-            return Redirect(FormsAuthentication.LoginUrl);
         }
 
         /// <summary>

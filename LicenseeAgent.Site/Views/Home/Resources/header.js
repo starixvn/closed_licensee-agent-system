@@ -67,7 +67,7 @@
                     }
 
                     alert(result.ErrMsg);
-                    HEADER.signOut();
+                    location.href = CORE.UrlRoot;
                 }
                 else {
                     setTimeout(function () { HEADER.reCheckIn(); }, 30000);

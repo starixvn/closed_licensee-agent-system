@@ -12,6 +12,9 @@ namespace LicenseeAgent.Account.Criterias
         [SpParam(SqlParamName = "On_AdminId")]
         public int OnAdminId { get; set; }
 
+        [SpParam(SqlParamName = "On_LicenseeID")]
+        public int? OnLicenseeId { get; set; }
+
         public int ErrCode { get; set; }
 
         public override string GetSettingKey()

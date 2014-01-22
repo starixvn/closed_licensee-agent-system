@@ -333,7 +333,6 @@
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Views\Account\CustSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
-    <Content Include="Views\Account\Resources\622161982.css" />
     <Content Include="Views\Account\Resources\home-page.js" />
     <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
     <Content Include="Views\Account\Resources\Images\collapse.png" />

@@ -718,4 +718,16 @@
     <value>Credit / Balance</value>
     <comment>not</comment>
   </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Credit</value>
+    <comment>not</comment>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>Update Credit</value>
+    <comment>not</comment>
+  </data>
+  <data name="EditCreditSuccessfully" xml:space="preserve">
+    <value>Edit Credit Successfully</value>
+    <comment>not</comment>
+  </data>
 </root>

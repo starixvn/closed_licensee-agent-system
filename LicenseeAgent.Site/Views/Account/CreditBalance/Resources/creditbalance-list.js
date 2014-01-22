@@ -51,24 +51,8 @@
                 }
             });
         },
-        toggleCheck: function (target) {
-            if ($(target).hasClass("icon-uncheck-all")) {
-                TRANSFER_LIST.checkAll();
-            }
-            else {
-                TRANSFER_LIST.uncheckAll();
-            }
-        },
-        checkAll: function () {
-            $(".icon-uncheck-all").attr("class", "icon-checked-all");
-            $(".icon-uncheck").attr("class", "icon-checked");
-        },
-        uncheckAll: function () {
-            $(".icon-checked-all").attr("class", "icon-uncheck-all");
-            $(".icon-checked").attr("class", "icon-uncheck");
-        },
-        transferAgent: function (agentId, agentName, amount) {
-            var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
+        licenseeEditAgentCredit: function (agentId, agentName, givenCredit) {
+            var url = '~/CreditBalance/LicenseeEditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
             POPUP.openDialogFrame(url, { width: 428, height: 200 });
         }
     }

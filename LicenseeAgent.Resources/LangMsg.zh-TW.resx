@@ -231,6 +231,10 @@
     <value>There is no downline.</value>
     <comment>not</comment>
   </data>
+  <data name="Msg_1040" xml:space="preserve">
+    <value>Invalid amount</value>
+    <comment>not</comment>
+  </data>
   <data name="Msg_200022" xml:space="preserve">
     <value>此會員並不活躍!</value>
   </data>

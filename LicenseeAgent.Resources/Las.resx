@@ -946,4 +946,13 @@
   <data name="CreditBalance" xml:space="preserve">
     <value>Credit / Balance</value>
   </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>Update Credit</value>
+  </data>
+  <data name="EditCreditSuccessfully" xml:space="preserve">
+    <value>Edit Credit Successfully</value>
+  </data>
 </root>

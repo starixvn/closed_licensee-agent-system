@@ -25,5 +25,15 @@ namespace LicenseeAgent.CreditBalance.Services
         {
             return GetEntites<MemberBalanceInfo>(criteria);
         }
+
+        public void LicenseeGetAgentRangeInfo(LicenseeGetAgentRangeInfoCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void LicenseeUpdateAgentCredit(LicenseeUpdateAgentCreditCriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

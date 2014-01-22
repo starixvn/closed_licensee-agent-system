@@ -1,0 +1,66 @@
+﻿@using LicenseeAgent.Core.Utils
+@model LicenseeAgent.CreditBalance.ViewModels.LicenseeEditAgentCreditViewModel
+@{
+    ViewBag.Title = @Las.UpdateCredit;
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left">
+    @using (Html.BeginForm("LicenseeEditAgentCredit", "CreditBalance", FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+            }
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.AgentId)
+            <table>
+                <colgroup>
+                    <col width="150" />
+                    <col width="250" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Las.Username
+                        </td>
+                        <td>
+                            @Model.AgentName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.Credit
+                        </td>
+                        <td>
+                            @if (!Model.MaxCreditOutput.HasValue || (Model.MaxCreditOutput.HasValue && Model.MaxCreditOutput.Value == 0))
+                            {
+                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w120", data_val_range_min = Model.MinCreditOutput, data_val_range = Las.InvalidAmount })
+                                <span>@string.Format(">= {0}", Formatter.FormatDecimal(Model.MinCreditOutput))</span>
+                            }
+                            else
+                            {
+                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w120", data_val_range_min = Model.MinCreditOutput, data_val_range_max = Model.MaxCreditOutput, data_val_range = Las.InvalidAmount })
+                                <span>@string.Format("[{0} - {1}]", Formatter.FormatDecimal(Model.MinCreditOutput), Formatter.FormatDecimal(Model.MaxCreditOutput))</span>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Update
+                </button>
+            </div>
+        </fieldset>
+    }
+</div>
+@section scripts
+{
+    @Scripts.Render("~/js/creditbalance-popup")
+}

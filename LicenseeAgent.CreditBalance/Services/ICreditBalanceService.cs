@@ -18,5 +18,9 @@ namespace LicenseeAgent.CreditBalance.Services
         IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);
 
         IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
+
+        void LicenseeGetAgentRangeInfo(LicenseeGetAgentRangeInfoCriteria criteria);
+
+        void LicenseeUpdateAgentCredit(LicenseeUpdateAgentCreditCriteria criteria);
     }
 }

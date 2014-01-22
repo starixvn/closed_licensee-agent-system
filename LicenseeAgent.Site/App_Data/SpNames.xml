@@ -130,6 +130,10 @@
   <Function Name="CreditBalance">
     <Setting Key="LAS_CreditBalance_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_CreditBalance_MemberBalanceInfo" SpName="LAS_Transfer_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeSelAgentCredit" SpName="Las_LicenseeSelAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentSelAgentCredit" SpName="Las_AgentSelAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeUpdAgentCredit" SpName="Las_LicenseeUpdAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentUdpAgentCredit" SpName="Las_AgentUdpAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="LRF">
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

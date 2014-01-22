@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CreditBalanceController.cs" />
+    <Compile Include="Criteria\LicenseeUpdateAgentCreditCriteria.cs" />
+    <Compile Include="Criteria\LicenseeGetAgentRangeInfoCriteria.cs" />
     <Compile Include="Criteria\GetMemberBalanceInfoCriteria.cs" />
     <Compile Include="Criteria\GetAgentBalanceInfoCriteria.cs" />
     <Compile Include="Entities\AgentBalanceInfo.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="ViewModels\CreditBalanceAgentViewModel.cs" />
     <Compile Include="ViewModels\CreditBalanceMemberViewModel.cs" />
     <Compile Include="ViewModels\CreditBalanceSearchViewModel.cs" />
+    <Compile Include="ViewModels\LicenseeEditAgentCreditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

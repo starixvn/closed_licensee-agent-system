@@ -12,8 +12,10 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.CreditBalance.Criteria;
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CreditBalance.ViewModels;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
@@ -68,36 +70,55 @@ namespace LicenseeAgent.CreditBalance.Controllers
         }
 
         /// <summary>
-        /// Agents the specified agent identifier.
+        /// Licensees the edit agent credit.
         /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// Returns agent CreditBalance page.
-        /// </returns>
+        /// <param name="licenseeEditAgentCreditViewModel">The licensee edit agent credit view model.</param>
+        /// <returns>The LicenseeEditAgentCredit view.</returns>
         [HttpGet]
-        public ViewResult Agent(CreditBalanceAgentViewModel model)
+        public ViewResult LicenseeEditAgentCredit(LicenseeEditAgentCreditViewModel licenseeEditAgentCreditViewModel)
         {
-            if (model.Amount > 0)
+            var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
             {
-                model.MinAmount = 0;
-                model.MaxAmount = model.Amount;
-            }
-            else
-            {
-                model.MinAmount = model.Amount;
-                model.MaxAmount = 0;
-            }
+                AgentId = licenseeEditAgentCreditViewModel.AgentId
+            };
 
-            return View(model);
+            _creditBalanceService.LicenseeGetAgentRangeInfo(licenseeGetAgentRangeInfoCriteria);
+            licenseeEditAgentCreditViewModel.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
+            licenseeEditAgentCreditViewModel.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
+
+            return View("~/Views/Account/CreditBalance/LicenseeEditAgentCredit.cshtml", licenseeEditAgentCreditViewModel);
         }
 
-        [HttpPost, ActionName("Agent")]
-        public ActionResult AgentPost(CreditBalanceAgentViewModel model)
+        /// <summary>
+        /// Licensees the edit agent credit post.
+        /// </summary>
+        /// <param name="licenseeEditAgentCreditViewModel">The licensee edit agent credit view model.</param>
+        /// <returns>The LicenseeEditAgentCredit view.</returns>
+        [HttpPost, ActionName("LicenseeEditAgentCredit")]
+        public ActionResult LicenseeEditAgentCreditPost(LicenseeEditAgentCreditViewModel licenseeEditAgentCreditViewModel)
         {
-            return Json(new
+            if (ModelState.IsValid)
             {
-                ErrCode = Result.SuccessValue
-            });
+                var criteria = new LicenseeUpdateAgentCreditCriteria
+                {
+                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    Credit = licenseeEditAgentCreditViewModel.GivenCredit,
+                    Ip = Request.GetClientIp(),
+                    Updater = CurrentSession.LoginUserId
+                };
+                _creditBalanceService.LicenseeUpdateAgentCredit(criteria);
+
+                if (criteria.MsgId != Result.SuccessValue)
+                {
+                    ModelState.AddModelError(criteria.MsgId.ToString(), GetErrMsg(criteria.MsgId));
+                }
+                else
+                {
+                    ViewBag.Result = Las.EditCreditSuccessfully;
+                }
+            }
+
+            return View("~/Views/Account/CreditBalance/LicenseeEditAgentCredit.cshtml", licenseeEditAgentCreditViewModel);
         }
 
         /// <summary>

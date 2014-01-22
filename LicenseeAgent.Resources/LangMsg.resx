@@ -288,4 +288,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_1038" xml:space="preserve">
     <value>The licensee was changed by admin, this session must be closed.</value>
   </data>
+  <data name="Msg_1040" xml:space="preserve">
+    <value>Invalid amount</value>
+  </data>
 </root>

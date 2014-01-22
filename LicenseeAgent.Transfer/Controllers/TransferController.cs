@@ -10,8 +10,10 @@ namespace LicenseeAgent.Transfer.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Transfer.Criteria;
+    using LicenseeAgent.Transfer.Entities;
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
@@ -86,6 +88,19 @@ namespace LicenseeAgent.Transfer.Controllers
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     Username = model.UserName
                 });
+
+            var response = _memberService.GetMemberInformations<MemberBalanceInfo>(
+                data,
+                new GetMemberInfoListAction
+                {
+                    LASAgentId = CurrentSession.AgentInfo.AgentId,
+                    SiteName = CurrentSession.AgentInfo.LicenseeName
+                });
+
+            if (response.ErrCode != Result.SuccessValue)
+            {
+                return Json(response);
+            }
 
             return Json(new
             {

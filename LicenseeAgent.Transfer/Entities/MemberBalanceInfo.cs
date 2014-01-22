@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Transfer.Entities
 {
     using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Utils;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,16 +27,12 @@ namespace LicenseeAgent.Transfer.Entities
         [Service(Name = "LastName")]
         public string LastName { get; set; }
 
-        [Service(Name = "IsClosed")]
-        public bool IsClosed { get; set; }
+        [StatusService(Name = "IsClosed")]
+        public int Status { get; set; }
 
         public decimal YesterdayBalance { get; set; }
 
         public decimal TotalBalance { get; set; }
-
-        public decimal YesterdayCash { get; set; }
-
-        public decimal TotalCash { get; set; }
 
         public decimal Outstanding { get; set; }
 

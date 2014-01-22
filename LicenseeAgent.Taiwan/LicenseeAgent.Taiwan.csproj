@@ -75,11 +75,13 @@
     <Compile Include="Results\MemberResult.cs" />
     <Compile Include="Results\ResponseResult.cs" />
     <Compile Include="Results\UpdateStatusResult.cs" />
+    <Compile Include="Utils\IDataParser.cs" />
     <Compile Include="Utils\ServiceAttribute.cs" />
     <Compile Include="Utils\ServiceMapper.cs" />
     <Compile Include="Utils\ServiceWrapper.cs" />
     <Compile Include="Services\IMemberService.cs" />
     <Compile Include="Services\MemberService.cs" />
+    <Compile Include="Utils\StatusServiceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

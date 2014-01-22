@@ -186,18 +186,15 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
-            if (model.SettingContext.TargetRoleId == (int)Role.Member)
+            var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
             {
-                var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
-                });
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
+            });
 
-                if (checkUserNameResult.ErrCode != 0)
-                {
-                    return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
-                }
+            if (checkUserNameResult.ErrCode != 0)
+            {
+                return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
             }
 
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
@@ -358,7 +355,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             _customerSettingService.CheckExistUserName(criteria);
 
-            if (criteria.MsgId == 0 && model.TargetRoleId == (int)Role.Member)
+            if (criteria.MsgId == 0)
             {
                 var serviceResult = _memberService.CheckUserName(new CheckUserNameAction
                 {

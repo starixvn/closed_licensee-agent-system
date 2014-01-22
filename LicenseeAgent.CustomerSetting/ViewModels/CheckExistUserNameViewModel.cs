@@ -21,9 +21,5 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Required(ErrorMessageResourceName = "UsernameMinimumLength", ErrorMessageResourceType = typeof(Las))]
         [StringLength(50, MinimumLength = 6, ErrorMessageResourceName = "UsernameMinimumLength", ErrorMessageResourceType = typeof(Las))]
         public string UserName { get; set; }
-
-        [Required]
-        [Range(1, Int32.MaxValue)]
-        public int TargetRoleId { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace LicenseeAgent.Taiwan
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    internal class ServiceWrapper
+    internal static class ServiceWrapper
     {
         /// <summary>
         /// Response data when call service.
@@ -107,7 +107,7 @@ namespace LicenseeAgent.Taiwan
                 {
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        throw new Exception(string.Format(ServiceSetting.HttpError, response.StatusCode, response.StatusDescription));
+                        throw new InvalidOperationException(string.Format(ServiceSetting.HttpError, response.StatusCode, response.StatusDescription));
                     }
 
                     DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(T));
@@ -115,7 +115,7 @@ namespace LicenseeAgent.Taiwan
                     return jsonSerializer.ReadObject(response.GetResponseStream()) as T;
                 }
             }
-            catch (Exception exception)
+            catch (InvalidOperationException exception)
             {
                 LogService.Error(exception.Message, exception);
             }

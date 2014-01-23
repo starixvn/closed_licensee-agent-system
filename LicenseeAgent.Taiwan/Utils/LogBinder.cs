@@ -17,9 +17,9 @@ namespace LicenseeAgent.Taiwan.Utils
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LogBinder
+    public static class LogBinder
     {
-        public static string GetDoing(IAction action)
+        public static string GetActionInformation(IAction action)
         {
             var logContent = new LogContentEntity
             {

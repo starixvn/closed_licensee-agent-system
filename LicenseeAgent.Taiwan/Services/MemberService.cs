@@ -54,7 +54,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetDoing(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -81,7 +81,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetDoing(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -108,7 +108,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetDoing(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -135,7 +135,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId.HasValue ? action.IBCCustId.Value : 0,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetDoing(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 

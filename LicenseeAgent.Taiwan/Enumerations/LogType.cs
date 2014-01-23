@@ -18,6 +18,11 @@ namespace LicenseeAgent.Taiwan.Enumerations
     public enum LogType : short
     {
         /// <summary>
+        /// None status.
+        /// </summary>
+        None,
+
+        /// <summary>
         /// Before call API.
         /// </summary>
         BeforeCall = 1,

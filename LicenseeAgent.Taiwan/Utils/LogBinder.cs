@@ -19,6 +19,11 @@ namespace LicenseeAgent.Taiwan.Utils
     /// </summary>
     public static class LogBinder
     {
+        /// <summary>
+        /// Get action information.
+        /// </summary>
+        /// <param name="action">Service Action.</param>
+        /// <returns>String Action information.</returns>
         public static string GetActionInformation(IAction action)
         {
             var logContent = new LogContentEntity

@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.TotalBets.Entities
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Core.Utils;
 
     /// <summary>
@@ -17,6 +14,8 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class LeagueGroupEntity
     {
+        private string _leagueName;
+
         public int LeagueId { get; set; }
 
         public bool LiveIndicator { get; set; }
@@ -25,7 +24,17 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                return DataRefWrapper.GetLeagueName(LeagueId);
+                if (_leagueName == null)
+                {
+                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
+                }
+
+                return _leagueName;
+            }
+
+            set
+            {
+                _leagueName = value;
             }
         }
 

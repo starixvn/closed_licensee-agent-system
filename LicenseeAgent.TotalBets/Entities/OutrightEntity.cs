@@ -13,13 +13,28 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class OutrightEntity
     {
+        private string _sportName;
+
+        private string _leagueName;
+
+        private string _teamName;
+
         public int SportType { get; set; }
 
         public string SportName
         {
             get
             {
-                return DataRefWrapper.GetSportName(SportType);
+                if (_sportName == null)
+                {
+                    _sportName = DataRefWrapper.GetSportName(SportType);
+                }
+
+                return _sportName;
+            }
+            set
+            {
+                _sportName = value;
             }
         }
 
@@ -29,7 +44,16 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                return DataRefWrapper.GetLeagueName(LeagueId);
+                if (_leagueName == null)
+                {
+                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
+                }
+
+                return _leagueName;
+            }
+            set
+            {
+                _leagueName = value;
             }
         }
 
@@ -39,7 +63,16 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                return DataRefWrapper.GetTeamname(TeamId);
+                if (_teamName == null)
+                {
+                    _teamName = DataRefWrapper.GetTeamname(TeamId);
+                }
+
+                return _teamName;
+            }
+            set
+            {
+                _teamName = value;
             }
         }
 

@@ -6,10 +6,6 @@
 
 namespace LicenseeAgent.TotalBets.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Core.Utils;
 
     /// <summary>
@@ -17,6 +13,10 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class MatchEntity
     {
+        private string _homeName;
+
+        private string _awayName;
+
         public int MatchId { get; set; }
 
         public bool LiveIndicator { get; set; }
@@ -35,8 +35,17 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                var neutral = IsNeutral ? " (N)" : string.Empty;
-                return DataRefWrapper.GetTeamname(HomeId) + neutral;
+                if (_homeName == null)
+                {
+                    var neutral = IsNeutral ? " (N)" : string.Empty;
+                    _homeName = DataRefWrapper.GetTeamname(HomeId) + neutral;
+                }
+
+                return _homeName;
+            }
+            set
+            {
+                _homeName = value;
             }
         }
 
@@ -46,7 +55,15 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                return DataRefWrapper.GetTeamname(AwayId);
+                if (_awayName == null)
+                {
+                    _awayName = DataRefWrapper.GetTeamname(AwayId);
+                }
+                return _awayName;
+            }
+            set
+            {
+                _awayName = value;
             }
         }
 
@@ -65,14 +82,14 @@ namespace LicenseeAgent.TotalBets.Entities
         public string DrawFulltimeOneXTwo { get; set; }
 
         public string HomeFirstHalfHandicap { get; set; }
-        
+
         public string HomeFulltimeOddEven { get; set; }
 
         public string AwayFulltimeOddEven { get; set; }
 
         public string HomeFulltimeMoneyLine { get; set; }
 
-        public string AwayFulltimeMoneyLine { get; set; }        
+        public string AwayFulltimeMoneyLine { get; set; }
 
         public string HomeFirstHaflHandicap { get; set; }
 

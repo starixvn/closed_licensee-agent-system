@@ -13,14 +13,26 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class LeagueEntity
     {
+        private string _leagueName;
+
         public int LeagueId { get; set; }
 
         public string LeagueName
         {
             get
             {
-                return DataRefWrapper.GetLeagueName(LeagueId);
+                if (_leagueName == null)
+                {
+                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
+                }
+
+                return _leagueName;
             }
-        }        
+
+            set
+            {
+                _leagueName = value;
+            }
+        }
     }
 }

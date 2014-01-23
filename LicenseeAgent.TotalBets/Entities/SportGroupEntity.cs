@@ -14,13 +14,24 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class SportGroupEntity
     {
+        private string _sportName;
+
         public int SportType { get; set; }
 
         public string SportName
         {
             get
             {
-                return DataRefWrapper.GetSportName(SportType);
+                if (_sportName == null)
+                {
+                    _sportName = DataRefWrapper.GetSportName(SportType);
+                }
+
+                return _sportName;
+            }
+            set
+            {
+                _sportName = value;
             }
         }
 

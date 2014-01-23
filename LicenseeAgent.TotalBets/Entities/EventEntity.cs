@@ -13,6 +13,8 @@ namespace LicenseeAgent.TotalBets.Entities
     /// </summary>
     public class EventEntity
     {
+        private string _matchName;
+
         public int MatchId { get; set; }
 
         public int LeagueId { get; set; }
@@ -29,9 +31,18 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                var neutral = IsNeutral ? " (N)" : string.Empty;
-                var matchName = DataRefWrapper.GetTeamname(HomeTeam) + neutral + " -vs- " + DataRefWrapper.GetTeamname(AwayTeam);
-                return matchName;
+                if (_matchName == null)
+                {
+                    var neutral = IsNeutral ? " (N)" : string.Empty;
+                    _matchName = DataRefWrapper.GetTeamname(HomeTeam) + neutral + " -vs- " + DataRefWrapper.GetTeamname(AwayTeam);
+                }
+
+                return _matchName;
+            }
+
+            set
+            {
+                _matchName = value;
             }
         }
     }

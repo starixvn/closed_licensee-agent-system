@@ -10,9 +10,13 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CreditBalance.Criteria;
+    using LicenseeAgent.CreditBalance.Entities;
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CreditBalance.ViewModels;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Entities;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Mvc;
@@ -23,10 +27,12 @@ namespace LicenseeAgent.CreditBalance.Controllers
     public class CreditBalanceController : BaseController
     {
         private readonly ICreditBalanceService _creditBalanceService;
+        private readonly IMemberService _memberService;
 
-        public CreditBalanceController(ICreditBalanceService creditBalanceService)
+        public CreditBalanceController(ICreditBalanceService creditBalanceService, IMemberService memberService)
         {
             _creditBalanceService = creditBalanceService;
+            _memberService = memberService;
         }
 
         public ActionResult Index()
@@ -44,14 +50,24 @@ namespace LicenseeAgent.CreditBalance.Controllers
         {
             if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
             {
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
+                var memberBalanceInfo = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
                     {
                         AgentId = CurrentSession.AgentInfo.AgentId,
                         Username = model.UserName
-                    })
+                    });
+
+                var serviceResult = _memberService.GetMemberInformations<MemberBalanceInfo>(
+                                    memberBalanceInfo,
+                                    new GetMemberInfoListAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        LASAgentId = CurrentSession.AgentInfo.AgentId
+                                    });
+
+                return Json(new
+                {
+                    ErrCode = Result.SuccessValue,
+                    List = memberBalanceInfo
                 });
             }
             else

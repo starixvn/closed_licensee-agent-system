@@ -6,6 +6,13 @@
 
 namespace LicenseeAgent.CreditBalance.Entities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Taiwan;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -13,13 +20,26 @@ namespace LicenseeAgent.CreditBalance.Entities
     {
         public long RowNo { get; set; }
 
+        [Service(Name = "IBCCustId")]
         public int CustId { get; set; }
+
+        public string CustomerName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
 
         public string UserName { get; set; }
 
-        public string CustomerName { get; set; }
-
-        public bool Status { get; set; }
+        public bool Status
+        {
+            get 
+            {
+                return IsClosed;
+            }
+        }
 
         public decimal BetCredit { get; set; }
 
@@ -30,5 +50,12 @@ namespace LicenseeAgent.CreditBalance.Entities
         public decimal Outstanding { get; set; }
 
         public decimal GivenCredit { get; set; }
+
+        [Service(Name = "IsClosed")]
+        public bool IsClosed { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

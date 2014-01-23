@@ -61,6 +61,7 @@
     <Compile Include="Actions\InsertNewMemberAction.cs" />
     <Compile Include="Actions\LogAction.cs" />
     <Compile Include="Actions\ResetPasswordAction.cs" />
+    <Compile Include="Actions\UpdateMemberInfoAction.cs" />
     <Compile Include="Actions\UpdateMemberStatusAction.cs" />
     <Compile Include="Configurations\ServiceSetting.cs" />
     <Compile Include="Criterias\AddNewMemberCriteria.cs" />

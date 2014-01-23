@@ -49,14 +49,13 @@ namespace LicenseeAgent.Account
         /// <summary>
         /// Signs in by IT/CSD.
         /// </summary>
-        /// <param name="language">The selected language.</param>
         /// <returns>Returns MVC View.</returns>
         [AdminSite]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult SignIn()
         {
-            var currentLanguage = base.Language;
+            var currentLanguage = Language;
             var model = new AdminSignInViewModel
             {
                 Language = currentLanguage

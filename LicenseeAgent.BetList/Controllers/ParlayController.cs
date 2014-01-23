@@ -176,7 +176,7 @@ namespace LicenseeAgent.BetList.Controllers
                     Member = ticket.UserName2,
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
-                    TransTime = builder.BuildTrans(ticket),
+                    TransTime = LasBetListHtmlBuilder.BuildTrans(ticket),
                     Status = builder.BuildTotalBetsParlayStatus(
                         ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),

@@ -10,11 +10,13 @@
 
 namespace LicenseeAgent.BetList.Utilities
 {
+    using System;
     using System.Collections.Generic;
     using Criteria;
     using Entities;
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Utils;
@@ -24,6 +26,8 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public static class LasBetListHtmlBuilder
     {
+        private const string _TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
+
         /// <summary>
         /// Get ticket status.
         /// </summary>
@@ -187,6 +191,38 @@ namespace LicenseeAgent.BetList.Utilities
             }
 
             return "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
+        }
+
+        /// <summary>
+        /// Builds the trans.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <returns>The html string of Transaction Time.</returns>
+        public static string BuildTrans(ITicket ticket)
+        {
+            ITrans transBuilder = CreateTransBuilder(ticket.BetTypeId);
+            string trans = transBuilder.Render(ticket);
+            return trans;
+        }
+
+        /// <summary>
+        /// Creates the Transaction Time builder.
+        /// </summary>
+        /// <param name="bettype">The BETTYPE.</param>
+        /// <returns>The html string of Transaction Time.</returns>
+        private static ITrans CreateTransBuilder(int bettype)
+        {
+            string typeName = string.Join(null, new string[] { _TRANS_BUILDER_NAMESPACE, ".Trans", bettype.ToString() });
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new LasTrans();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as ITrans;
+            }
         }
 
         /// <summary>

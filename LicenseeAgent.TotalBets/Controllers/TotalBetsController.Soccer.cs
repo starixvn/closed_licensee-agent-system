@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Services;
-    using LicenseeAgent.TotalBets.Utils;
+    using LicenseeAgent.TotalBets.Utilities;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 

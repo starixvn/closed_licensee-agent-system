@@ -106,14 +106,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITotalBetsService.cs" />
     <Compile Include="Services\TotalBetsService.cs" />
-    <Compile Include="Utils\TotalBetsUtils.cs" />
+    <Compile Include="Utilities\TotalBetsUtils.cs" />
     <Compile Include="ViewModels\OtherSportsViewModel.cs" />
     <Compile Include="ViewModels\OutrightViewModel.cs" />
     <Compile Include="ViewModels\SoccerDetailViewModel.cs" />
     <Compile Include="ViewModels\TotalBetsViewModel.cs" />
     <Compile Include="ViewModels\SoccerViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

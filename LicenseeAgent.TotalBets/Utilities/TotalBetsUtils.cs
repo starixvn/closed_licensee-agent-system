@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.TotalBets.Utils
+namespace LicenseeAgent.TotalBets.Utilities
 {
     using System;
     using System.Collections.Generic;

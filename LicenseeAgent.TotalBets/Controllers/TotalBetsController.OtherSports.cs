@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
-    using LicenseeAgent.TotalBets.Utils;
+    using LicenseeAgent.TotalBets.Utilities;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -26,14 +26,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult OtherSportsAllBetType(int matchId, string matchName)
-        {
-            ViewBag.Match = matchName;
-            return View();
-        }
-
+               
         /// <summary>
         /// Get All League.
         /// </summary>

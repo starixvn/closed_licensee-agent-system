@@ -10,7 +10,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
-    using LicenseeAgent.TotalBets.Utils;
+    using LicenseeAgent.TotalBets.Utilities;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -24,14 +24,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult BasketballAllBetType(int matchId, string matchName)
-        {
-            ViewBag.Match = matchName;
-            return View();
-        }
-
+        
         /// <summary>
         /// Get Basketball Data.
         /// </summary>

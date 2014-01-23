@@ -37,7 +37,7 @@
                     }
 
                     gridOption.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
+                        itemsPerPage: CORE.pageSizes[2],
                         currentPage: 0,
                         itemsPerPageArray: CORE.pageSizes,
                         showDetail: true

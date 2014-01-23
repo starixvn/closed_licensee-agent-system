@@ -33,6 +33,7 @@
                 success: function (data) {
                     if (data.ErrCode != 0) {
                         alert(data.ErrMsg);
+                        return;
                     }
 
                     gridOption.pagerOption = {
@@ -48,6 +49,7 @@
                     }
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                    gridOption.footerRows = CORE.genFooterRows(data.Total, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
                 },
                 complete: function () {

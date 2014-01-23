@@ -189,50 +189,20 @@
             }
             return bodyRows;
         },
-        genGridData: function (columns, list, rowCssClass) {
-            var bodyRows = [];
-            var len = list.length;
-            for (var i = 0; i < len; i++) {
-                var record = list[i];
-                var dataRow = [];
-
-                for (var j = 0; j < columns.length; j++) {
-                    (function () {
-                        var colName = columns[j].Name;
-                        var col = columns[j];
-                        dataRow.push({
-                            Name: colName,
-                            Value: record[colName],
-                            CustomCellRender: function (cell, cellFormated) {
-                                if (col.Formatter) {
-                                    return col.Formatter(record, cell, cellFormated);
-                                } else
-                                    return cellFormated;
-                            }
-                        });
-                    } ());
+        genFooterRows: function (data, options) {
+            if (options.footerRows) {
+                var columns = options.footerRows[0].Columns;
+                var length = columns.length;
+                for (var i = 0; i < length; i++) {
+                    var colName = columns[i].Name;
+                    var value = data[colName];
+                    if (typeof value != 'undefined' && columns[i].Value) {
+                        columns[i].Value = value;
+                    }
                 }
-
-                bodyRows.push({
-                    Columns: dataRow,
-                    CssClass: rowCssClass ? rowCssClass(record) : undefined
-                });
+                return options.footerRows;
             }
-            return bodyRows;
-        },
-        renderGrid: function (gridObject, data, gridOption, callback) {
-            gridObject.show();
-            gridOption.pagerOption = {
-                itemsPerPage: data.ItemsPerPage,
-                itemsPerPageArray: CORE.pageSizes,
-                currentPage: data.CurrentPage,
-                totalItem: data.TotalItem,
-                pagerSelectCallBack: callback
-            };
-            var bodyRows = CORE.genGridRows(data.List, gridOption);
-            gridOption.bodyRows = bodyRows;
-
-            gridObject.fanexGrid(gridOption);
+            return undefined;
         },
         resizeHeightDataGrid: function (gridOption) {
             var colHeight = $("#gridId").attr('colHeight'),

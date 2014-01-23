@@ -2,10 +2,10 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "Total", Name: "Total", MergeColNumber: 5 },
-                    { Value: "YesterdayBalance", Name: "Number1", MergeColNumber: 2 },
+                    { Value: "Total", Name: "Select", MergeColNumber: 5 },
+                    { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2 },
                     { Value: "TotalBalance", Name: "TotalBalance" },
-                    { Value: "", Name: "Empty", MergeRowNumber: 2 }
+                    { Value: "", Name: "Outstanding", MergeColNumber: 2 }
                 ]
               }
         ];
@@ -64,7 +64,7 @@
         gridExpandHeight: 100,
         indexNumberColumn: 1,
         bodyRowHeight: 29,
-        //showFooter: true,
+        showFooter: true,
         footerRows: footerRows,
         autoResizeColumn: true
     };

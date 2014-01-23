@@ -173,7 +173,7 @@ namespace LicenseeAgent.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     Index = startIndex++,
-                    Member = ticket.UserName,
+                    Member = ticket.UserName2,
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
                     TransTime = builder.BuildTrans(ticket),

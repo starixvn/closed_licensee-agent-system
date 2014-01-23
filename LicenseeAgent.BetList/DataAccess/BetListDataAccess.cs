@@ -183,6 +183,7 @@ namespace LicenseeAgent.BetList.DataAccess
 
             // string
             var containsUsername = columnCollection.Contains("username");
+            var containsUsername2 = columnCollection.Contains("username2");
             var containsRefNo = columnCollection.Contains("refno");
             var containsMatchCode = columnCollection.Contains("matchcode");
             var containsStatus = columnCollection.Contains("status");
@@ -244,6 +245,7 @@ namespace LicenseeAgent.BetList.DataAccess
 
                 // string
                 ticket.UserName = containsUsername ? Converter.ToString2(dataRow["username"]) : string.Empty;
+                ticket.UserName2 = containsUsername2 ? Converter.ToString2(dataRow["username2"]) : string.Empty;
                 ticket.RefNo = containsRefNo ? Converter.ToString2(dataRow["refno"]) : string.Empty;
                 ticket.MatchCode = containsMatchCode ? Converter.ToString2(dataRow["matchcode"]) : string.Empty;
                 ticket.Status = containsStatus ? Converter.ToString2(dataRow["status"]) : string.Empty;

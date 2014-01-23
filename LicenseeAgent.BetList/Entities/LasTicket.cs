@@ -22,5 +22,7 @@ namespace LicenseeAgent.BetList.Entities
         public decimal AgentPTPercent { get; set; }
 
         public decimal AgentCommPercent { get; set; }
+
+        public string UserName2 { get; set; }
     }
 }

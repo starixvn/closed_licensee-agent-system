@@ -64,13 +64,11 @@ fanex.totalBets.parlay = {
             itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
         }
 
-        var urlGetBetList = $('#search-form').attr('action');
         var params = {
             BetType: betType
         };
 
         $.ajax({
-            url: urlGetBetList,
             type: 'post',
             data: params,
             beforeSend: function () {

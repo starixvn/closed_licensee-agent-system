@@ -113,9 +113,9 @@ namespace LicenseeAgent.BetList.Controllers
             };
 
             var systemParlayData = _betlistService.GetTotalBetsSystemParlayDetail(criteria);
-            var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper();
-            var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
+            var builder = new LASSystemParlayDetail(ticketHelper, systemParlayData);
+            var systemParlayText = builder.Build();
 
             return Content(systemParlayText);
         }
@@ -173,7 +173,7 @@ namespace LicenseeAgent.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     Index = startIndex++,
-                    Member = "victorm7",
+                    Member = ticket.UserName,
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
                     TransTime = builder.BuildTrans(ticket),

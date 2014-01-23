@@ -54,11 +54,12 @@ namespace LicenseeAgent.Account
         [AdminSite]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult SignIn(string language)
+        public ActionResult SignIn()
         {
+            var currentLanguage = base.Language;
             var model = new AdminSignInViewModel
             {
-                Language = Language
+                Language = currentLanguage
             };
 
             return View(model);

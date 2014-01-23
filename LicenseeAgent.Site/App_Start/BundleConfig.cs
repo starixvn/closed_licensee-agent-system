@@ -81,7 +81,6 @@ namespace LicenseeAgent.Site
 
             // Moment JS
             bundles.Add(new ScriptBundle("~/js/moment").Include(
-                "~/scripts/MomentJS/moment.js",
                 "~/scripts/MomentJS/moment-with-langs.js"));
 
             // Datetimepicker

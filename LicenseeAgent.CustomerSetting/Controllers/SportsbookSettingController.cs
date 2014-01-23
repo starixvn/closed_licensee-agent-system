@@ -217,7 +217,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     OtherPhone = model.UpdateDataSportsbookCustomer.CustInfo.Mobile ?? string.Empty,
                     Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax ?? string.Empty,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    Currency = CurrentSession.AgentInfo.CurrencyId
+                    Currency = CurrentSession.AgentInfo.CurrencyId,
+                    IsClosed = model.UpdateDataSportsbookCustomer.CustInfo.Status == (byte)AccountStatus.Closed
                 });
                 if (insertResult.ErrCode != 0)
                 {

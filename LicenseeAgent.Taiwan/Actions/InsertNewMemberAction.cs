@@ -53,6 +53,8 @@ namespace LicenseeAgent.Taiwan.Actions
         [Service(Name = "LASAgentID")]
         public int LASAgentId { get; set; }
 
+        public bool IsClosed { get; set; }
+
         /// <summary>
         /// Get action name.
         /// </summary>

@@ -524,7 +524,7 @@ namespace LicenseeAgent.Account.Controllers
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
-            var memberInfo = new CustomerEntity { CustId =  memberId };
+            var memberInfo = new CustomerEntity { CustId = memberId };
 
             _memberService.GetMemberInformation<CustomerEntity>(
                 memberInfo, 

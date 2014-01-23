@@ -77,7 +77,7 @@ namespace LicenseeAgent.Site
 
             // Angular JS
             bundles.Add(new ScriptBundle("~/js/angular").Include(
-                "~/scripts/angular/angular.js"));
+                "~/scripts/angularjs/angular.js"));
 
             // Moment JS
             bundles.Add(new ScriptBundle("~/js/moment").Include(
@@ -281,7 +281,7 @@ namespace LicenseeAgent.Site
 
             // For Bet List
             bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
-                "~/scripts/Angular/angular-sanitize.js"));
+                "~/scripts/angularjs/angular-sanitize.js"));
             bundles.Add(new LessBundle("~/css/angulargrid").Include(
                 "~/content/betlist/betlist.core.css",
                 "~/content/betlist/betlist.css",

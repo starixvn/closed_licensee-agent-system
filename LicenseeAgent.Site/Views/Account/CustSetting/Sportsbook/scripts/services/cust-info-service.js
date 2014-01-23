@@ -11,21 +11,24 @@ if (fanex.sportsbookSetting) {
     function ($http, $q) {
         if ($('#userName').length > 0) {
             var apiPath = CORE.resolveUrl($('#userName').data('href'));
+            var deferred;
             return {
                 checkUsername: function (userName) {
                     var data = {
                         userName: userName
                     };
                     deferred = $q.defer();
-                    //Calling Web API to fetch shopping cart items
-                    $http.post(apiPath, data, { timeout: deferred.promise }
-                ).success(function (data) {
-                    //Passing data to deferred's resolve function on successful completion
-                    deferred.resolve(data);
-                }).error(function (data) {
-                    //Sending a friendly error message in case of failure
-                    deferred.reject("An error occured while fetching items");
-                });
+                    $http({
+                        method: 'POST',
+                        url: apiPath,
+                        data: data
+                    }).success(function (data) {
+                        //Passing data to deferred's resolve function on successful completion
+                        deferred.resolve(data);
+                    }).error(function (data) {
+                        //Sending a friendly error message in case of failure
+                        deferred.reject("An error occured while fetching items");
+                    });
 
                     //Returning the promise object
                     return deferred.promise;

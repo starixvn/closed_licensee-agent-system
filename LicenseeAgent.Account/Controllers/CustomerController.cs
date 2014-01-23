@@ -524,8 +524,9 @@ namespace LicenseeAgent.Account.Controllers
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
-            var memberInfo = new ServiceMemberEntity();
-            _memberService.GetMemberInformation(
+            var memberInfo = new CustomerEntity { CustId =  memberId };
+
+            _memberService.GetMemberInformation<CustomerEntity>(
                 memberInfo, 
                 new GetMemberInfoAction
                 {
@@ -540,7 +541,7 @@ namespace LicenseeAgent.Account.Controllers
                     CustId = memberId,
                     FirstName = memberInfo.FirstName,
                     LastName = memberInfo.LastName,
-                    Mobile = memberInfo.MobilePhone,
+                    Mobile = memberInfo.Mobile,
                     Phone = memberInfo.Phone,
                     Fax = memberInfo.Fax,
                     UserName = username

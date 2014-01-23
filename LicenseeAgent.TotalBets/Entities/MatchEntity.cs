@@ -43,6 +43,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
                 return _homeName;
             }
+
             set
             {
                 _homeName = value;
@@ -59,8 +60,10 @@ namespace LicenseeAgent.TotalBets.Entities
                 {
                     _awayName = DataRefWrapper.GetTeamname(AwayId);
                 }
+
                 return _awayName;
             }
+
             set
             {
                 _awayName = value;

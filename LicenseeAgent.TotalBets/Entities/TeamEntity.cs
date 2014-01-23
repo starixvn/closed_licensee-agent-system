@@ -32,6 +32,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
                 return _teamName;
             }
+
             set
             {
                 _teamName = value;

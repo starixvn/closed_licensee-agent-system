@@ -32,6 +32,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
                 return _sportName;
             }
+
             set
             {
                 _sportName = value;
@@ -51,6 +52,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
                 return _leagueName;
             }
+
             set
             {
                 _leagueName = value;
@@ -70,6 +72,7 @@ namespace LicenseeAgent.TotalBets.Entities
 
                 return _teamName;
             }
+
             set
             {
                 _teamName = value;

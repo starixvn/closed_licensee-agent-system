@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResetPasswordAction : IAction
+    public class ResetPasswordAction : LogAction, IAction
     {
         public string SiteName { get; set; }
 

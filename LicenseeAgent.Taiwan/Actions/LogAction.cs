@@ -7,15 +7,21 @@
 
 namespace LicenseeAgent.Taiwan.Actions
 {
+    using System;
+    using System.Xml.Serialization;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [Serializable]
     public abstract class LogAction
     {
-        [Service(IsWriteLog = true)]
+        [Service(IsParamAction = true)]
+        [XmlIgnore]
         public int LicenseeId { get; set; }
 
-        [Service(IsWriteLog = true)]
+        [Service(IsParamAction = true)]
+        [XmlIgnore]
         public int UserId { get; set; }
     }
 }

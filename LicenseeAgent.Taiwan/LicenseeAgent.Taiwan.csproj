@@ -67,27 +67,34 @@
     <Compile Include="Criterias\AddNewMemberCriteria.cs" />
     <Compile Include="Criterias\EditInfoMemberCriteria.cs" />
     <Compile Include="Criterias\ResetPasswordMemberCriteria.cs" />
+    <Compile Include="Entities\LogContentEntity.cs" />
     <Compile Include="Entities\ServiceMemberEntity.cs" />
+    <Compile Include="Enumerations\LogType.cs" />
     <Compile Include="Filter\IServiceFilter.cs" />
     <Compile Include="Filter\MemberFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\MemberListResult.cs" />
     <Compile Include="Results\MemberResult.cs" />
     <Compile Include="Results\ResponseResult.cs" />
-    <Compile Include="Results\UpdateStatusResult.cs" />
+    <Compile Include="Services\ILogService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Utils\IDataParser.cs" />
-    <Compile Include="Utils\ServiceAttribute.cs" />
+    <Compile Include="Utils\LogBinder.cs" />
+    <Compile Include="Attributes\ServiceAttribute.cs" />
     <Compile Include="Utils\ServiceMapper.cs" />
     <Compile Include="Utils\ServiceWrapper.cs" />
     <Compile Include="Services\IMemberService.cs" />
     <Compile Include="Services\MemberService.cs" />
-    <Compile Include="Utils\StatusServiceAttribute.cs" />
+    <Compile Include="Attributes\StatusServiceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

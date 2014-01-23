@@ -21,35 +21,35 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        ResponseResult CheckUserName(IAction action);
+        ResponseResult CheckUserName(CheckUserNameAction action);
 
         /// <summary>
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        ResponseResult InsertNewMember(IAction action);
+        ResponseResult InsertNewMember(InsertNewMemberAction action);
 
         /// <summary>
         /// Reset password.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        ResponseResult ResetPassword(IAction action);
+        ResponseResult ResetPassword(ResetPasswordAction action);
 
         /// <summary>
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        ResponseResult UpdateMemberInfo(IAction action);
+        ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action);
 
         /// <summary>
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        ResponseResult UpdateMemberStatus(IAction action);
+        ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action);
 
         /// <summary>
         /// Get member information.
@@ -58,7 +58,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntity">Member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>Member entity after merging.</returns>
-        ResponseResult GetMemberInformation<T>(T memberEntity, IAction action);
+        ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action);
 
         /// <summary>
         /// Get list member information.
@@ -67,6 +67,6 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, IAction action);
+        ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action);
     }
 }

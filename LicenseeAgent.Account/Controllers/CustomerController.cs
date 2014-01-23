@@ -289,6 +289,8 @@ namespace LicenseeAgent.Account.Controllers
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
                 {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     LASAgentId = model.AgentId,
                     IsClosed = true
@@ -318,6 +320,8 @@ namespace LicenseeAgent.Account.Controllers
         {
             var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
             {
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                UserId = CurrentSession.LoginUserId,
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 IBCCustId = model.MemberId,
                 IsClosed = model.Status == (byte)AccountStatus.Closed,
@@ -443,6 +447,8 @@ namespace LicenseeAgent.Account.Controllers
                 // Call API to update member password
                 var serviceResult = _memberService.ResetPassword(new ResetPasswordAction
                 {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId,
                     IBCCustId = model.CustId,
                     Password = model.Password,
                     SiteName = CurrentSession.AgentInfo.LicenseeName
@@ -561,6 +567,8 @@ namespace LicenseeAgent.Account.Controllers
                 // Call API to update member password
                 var serviceResult = _memberService.UpdateMemberInfo(new UpdateMemberInfoAction
                 {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId,
                     IBCCustId = model.CustId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,

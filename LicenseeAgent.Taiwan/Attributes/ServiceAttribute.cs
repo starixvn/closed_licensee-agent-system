@@ -22,6 +22,6 @@ namespace LicenseeAgent.Taiwan
 
         public string DefaultValue { get; set; }
 
-        public bool IsWriteLog { get; set; }
+        public bool IsParamAction { get; set; }
     }
 }

@@ -141,8 +141,8 @@
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function name="TaiwanAPILog">
-      <Setting Key="LAS_ResetPassword_Member_Writelog" SpName="LAS_ResetPassword_Member_Writelog" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
-      <Setting Key="LAS_EditInfo_Member_Writelog" SpName="LAS_EditInfo_Member_Writelog" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
-      <Setting Key="LAS_AddNew_Member_Writelog" SpName="LAS_AddNew_Member_Writelog" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
+      <Setting Key="LAS_ResetPassword_Member_Writelog" SpName="LAS_ResetPassword_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+      <Setting Key="LAS_EditInfo_Member_Writelog" SpName="LAS_EditInfo_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+      <Setting Key="LAS_AddNew_Member_Writelog" SpName="LAS_AddNew_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
 </Functions>

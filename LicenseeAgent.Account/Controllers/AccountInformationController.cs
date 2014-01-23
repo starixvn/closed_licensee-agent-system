@@ -151,7 +151,7 @@ namespace LicenseeAgent.Account.Controllers
             var criteria = new AdminSuggestSearchMemberCriteria
             {
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                UserId = CurrentSession.AdminInfo.UserId,
+                UserId = CurrentSession.LoginUserId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
                 UserName = model.UserName
             };

@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UpdateMemberInfoAction : IAction
+    public class UpdateMemberInfoAction : LogAction, IAction
     {
         public string SiteName { get; set; }
 

@@ -12,6 +12,7 @@ namespace LicenseeAgent.Taiwan
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Reflection;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Web;
@@ -67,10 +68,15 @@ namespace LicenseeAgent.Taiwan
             foreach (var property in properties)
             {
                 var propertyValue = property.GetValue(action, null);
+                var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+
+                if (!ServiceWrapper.IsParamRequest(attribute))
+                {
+                    continue;
+                }
 
                 if (propertyValue != null)
                 {
-                    var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
                     paramData.Append(string.Format(
                                                     ServiceSetting.ParamFormat,
                                                     attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
@@ -115,6 +121,16 @@ namespace LicenseeAgent.Taiwan
             }
 
             return null;
+        }
+
+        private static bool IsParamRequest(object attribute)
+        {
+            if (attribute != null)
+            {
+                return ((ServiceAttribute)attribute).IsParamAction;
+            }
+
+            return true;
         }
     }
 }

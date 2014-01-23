@@ -12,21 +12,31 @@ namespace LicenseeAgent.Taiwan.Services
     using System.Linq;
     using System.Text;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
+    using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
+    using LicenseeAgent.Taiwan.Utils;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class MemberService : IMemberService
     {
+        private readonly ILogService _logService;
+
+        public MemberService()
+        {
+            _logService = new LogService();
+        }
+
         /// <summary>
         /// Check username.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult CheckUserName(IAction action)
+        public ResponseResult CheckUserName(CheckUserNameAction action)
         {
             return ServiceWrapper.GetResponseData<ResponseResult>(action);
         }
@@ -36,9 +46,26 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult InsertNewMember(IAction action)
+        public ResponseResult InsertNewMember(InsertNewMemberAction action)
         {
-            return ServiceWrapper.GetResponseData<ResponseResult>(action);
+            var criteria = new AddNewMemberCriteria
+            {
+                LicenseeId = action.LicenseeId,
+                UserId = action.UserId,
+                CustId = action.IBCCustId,
+                Status = (int)LogType.BeforeCall,
+                Doing = LogBinder.GetDoing(action)
+            };
+            _logService.WriteLog(criteria);
+
+            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
+
+            criteria.LogId = criteria.LogIdReturn;
+            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            criteria.ErrMsg = responseResult.ErrMsg;
+            _logService.WriteLog(criteria);
+
+            return responseResult;
         }
 
         /// <summary>
@@ -46,9 +73,26 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult ResetPassword(IAction action)
+        public ResponseResult ResetPassword(ResetPasswordAction action)
         {
-            return ServiceWrapper.GetResponseData<ResponseResult>(action);
+            var criteria = new ResetPasswordMemberCriteria
+            {
+                LicenseeId = action.LicenseeId,
+                UserId = action.UserId,
+                CustId = action.IBCCustId,
+                Status = (int)LogType.BeforeCall,
+                Doing = LogBinder.GetDoing(action)
+            };
+            _logService.WriteLog(criteria);
+
+            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
+
+            criteria.LogId = criteria.LogIdReturn;
+            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            criteria.ErrMsg = responseResult.ErrMsg;
+            _logService.WriteLog(criteria);
+
+            return responseResult;
         }
 
         /// <summary>
@@ -56,9 +100,26 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult UpdateMemberInfo(IAction action)
+        public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action)
         {
-            return ServiceWrapper.GetResponseData<ResponseResult>(action);
+            var criteria = new EditInfoMemberCriteria
+            {
+                LicenseeId = action.LicenseeId,
+                UserId = action.UserId,
+                CustId = action.IBCCustId,
+                Status = (int)LogType.BeforeCall,
+                Doing = LogBinder.GetDoing(action)
+            };
+            _logService.WriteLog(criteria);
+
+            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
+
+            criteria.LogId = criteria.LogIdReturn;
+            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            criteria.ErrMsg = responseResult.ErrMsg;
+            _logService.WriteLog(criteria);
+
+            return responseResult;
         }
 
         /// <summary>
@@ -66,9 +127,26 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult UpdateMemberStatus(IAction action)
+        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
         {
-            return ServiceWrapper.GetResponseData<ResponseResult>(action);
+            var criteria = new EditInfoMemberCriteria
+            {
+                LicenseeId = action.LicenseeId,
+                UserId = action.UserId,
+                CustId = action.IBCCustId.HasValue ? action.IBCCustId.Value : 0,
+                Status = (int)LogType.BeforeCall,
+                Doing = LogBinder.GetDoing(action)
+            };
+            _logService.WriteLog(criteria);
+
+            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
+
+            criteria.LogId = criteria.LogIdReturn;
+            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            criteria.ErrMsg = responseResult.ErrMsg;
+            _logService.WriteLog(criteria);
+
+            return responseResult;
         }
 
         /// <summary>
@@ -78,7 +156,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntity">Member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>Member entity after merging.</returns>
-        public ResponseResult GetMemberInformation<T>(T memberEntity, IAction action)
+        public ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action)
         {
             var response = ServiceWrapper.GetResponseData<MemberResult>(action);
 
@@ -97,7 +175,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, IAction action)
+        public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action)
         {
             var response = ServiceWrapper.GetResponseData<MemberListResult>(action);
 

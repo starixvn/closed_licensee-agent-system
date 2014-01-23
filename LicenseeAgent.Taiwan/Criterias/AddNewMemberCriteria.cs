@@ -1,8 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AddNewMemberCriteria.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// ----------------------------------------------------------------------
+// <copyright file="AddNewMemberCriteria.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//
+// ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Criterias
 {
@@ -21,9 +22,13 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public string Doing { get; set; }
 
-        public int ErrCode { get; set; }
-
         public string ErrMsg { get; set; }
+
+        public short Status { get; set; }
+
+        public long LogId { get; set; }
+
+        public long LogIdReturn { get; set; }
 
         public override string GetSettingKey()
         {
@@ -32,7 +37,7 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 && UserId > 0 && CustId > 0;
+            return LicenseeId > 0 && UserId > 0;
         }
     }
 }

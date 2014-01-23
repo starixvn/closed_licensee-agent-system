@@ -4,9 +4,10 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan.Utils
+namespace LicenseeAgent.Taiwan
 {
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Taiwan.Utils;
 
     /// <summary>
     /// TODO: Update summary.

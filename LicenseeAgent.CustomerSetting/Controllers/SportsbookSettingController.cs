@@ -206,6 +206,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 var insertResult = _memberService.InsertNewMember(new InsertNewMemberAction
                 {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    UserId = CurrentSession.LoginUserId,
                     UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName,
                     Password = model.UpdateDataSportsbookCustomer.CustInfo.Password,
                     IBCCustId = result.CustIdReturn,

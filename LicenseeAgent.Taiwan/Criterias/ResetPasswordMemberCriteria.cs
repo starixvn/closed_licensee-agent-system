@@ -22,9 +22,13 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public string Doing { get; set; }
 
-        public int ErrCode { get; set; }
-
         public string ErrMsg { get; set; }
+
+        public short Status { get; set; }
+
+        public long LogId { get; set; }
+
+        public long LogIdReturn { get; set; }
 
         public override string GetSettingKey()
         {

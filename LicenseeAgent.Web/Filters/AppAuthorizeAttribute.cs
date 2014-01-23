@@ -18,7 +18,7 @@ namespace LicenseeAgent.Web.Filters
     /// TODO: Update summary.
     /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
-    public class AppAuthorizeAttribute : AuthorizeAttribute
+    public sealed class AppAuthorizeAttribute : AuthorizeAttribute
     {
         public AppAuthorizeAttribute()
         {
@@ -71,11 +71,26 @@ namespace LicenseeAgent.Web.Filters
         }
 
         /// <summary>
+        /// When overridden, provides an entry point for custom authorization checks.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param>
+        /// <returns>
+        /// True if the user is authorized; otherwise, false.
+        /// </returns>
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            // don't use base.AuthorizeCore,
+            // see: http://stackoverflow.com/questions/3488348/overriding-authorizecore-in-custom-authorize-attribute-results-in-no-suitable-m
+            var authorized = httpContext.Request.IsAuthenticated;
+            return authorized ? AuthorizeRole() : false;
+        }
+
+        /// <summary>
         /// Validates the agent information.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         /// <returns>Returns true if agent is valid.</returns>
-        protected static bool ValidateAgent(AuthorizationContext filterContext)
+        private static bool ValidateAgent(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
             if (currentSession.AgentInfo == null)
@@ -96,21 +111,6 @@ namespace LicenseeAgent.Web.Filters
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// When overridden, provides an entry point for custom authorization checks.
-        /// </summary>
-        /// <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param>
-        /// <returns>
-        /// True if the user is authorized; otherwise, false.
-        /// </returns>
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            // don't use base.AuthorizeCore,
-            // see: http://stackoverflow.com/questions/3488348/overriding-authorizecore-in-custom-authorize-attribute-results-in-no-suitable-m
-            var authorized = httpContext.Request.IsAuthenticated;
-            return authorized ? AuthorizeRole() : false;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace LicenseeAgent.Web.Filters
                     return !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
 
                 default:
-                    throw new Exception("Please implement here");
+                    throw new NotSupportedException("Please implement here");
             }
         }
     }

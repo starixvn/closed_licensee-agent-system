@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Web.Mvc;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
@@ -13,7 +14,8 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DirectDownLineAgentAttribute : DownLineAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class DirectDownLineAgentAttribute : DownLineAttribute
     {
         /// <summary>
         /// Check down line is belong.

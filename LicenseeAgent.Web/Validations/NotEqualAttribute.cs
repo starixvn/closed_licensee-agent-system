@@ -9,6 +9,7 @@
 
 namespace LicenseeAgent.Web.Validations
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
@@ -17,7 +18,8 @@ namespace LicenseeAgent.Web.Validations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class NotEqualAttribute : ValidationAttribute, IClientValidatable
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class NotEqualAttribute : ValidationAttribute, IClientValidatable
     {
         public NotEqualAttribute(string otherProperty)
         {

@@ -6,14 +6,15 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Web.Mvc;
     using LicenseeAgent.Web.Criterias;
-    using LicenseeAgent.Web.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownLineTransactionAttribute : DownLineAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class DownLineTransactionAttribute : DownLineAttribute
     {
         /// <summary>
         /// Check down line is belong.

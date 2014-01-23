@@ -31,7 +31,7 @@ namespace LicenseeAgent.Web.Filters
         /// </summary>
         /// <param name="filterContext">Action executing context.</param>
         /// <returns>Return text in stream.</returns>
-        protected static string ReadRequestInputStream(ActionExecutingContext filterContext)
+        protected static string ReadRequestInputStream(ControllerContext filterContext)
         {
             var stream = filterContext.HttpContext.Request.InputStream;
             stream.Seek(0, SeekOrigin.Begin);

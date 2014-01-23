@@ -54,10 +54,8 @@ namespace LicenseeAgent.Web.Mvc
         /// <returns>Returns client IP.</returns>
         public static string GetClientIp(this HttpRequestBase httpRequest)
         {
-            var currentRequest = HttpContext.Current.Request;
-            string ip = string.Empty;
-            string userHostAddress = HttpContext.Current.Request.UserHostAddress;
-            var internalAddress = GetInternalAddress(currentRequest.UserHostAddress);
+            string userHostAddress = httpRequest.UserHostAddress;
+            var internalAddress = GetInternalAddress(userHostAddress);
             if (internalAddress == null)
             {
                 var hostName = Dns.GetHostName();

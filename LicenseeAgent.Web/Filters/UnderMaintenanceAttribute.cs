@@ -17,6 +17,7 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
         private IUnderMaintenanceService _maintenanceService;
@@ -34,16 +35,18 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!Ignore)
+            if (Ignore)
             {
-                var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
-                if (maintenanceInfo.Status)
-                {
-                    var isAjaxRequest = filterContext.IsAjaxRequest();
-                    filterContext.Result = isAjaxRequest
-                        ? (ActionResult)(new JsonResult { Data = ((ViewResult)filterContext.Result).ViewData.Model })
-                        : (ActionResult)(new RedirectResult(AppURLs.URLs.UnderMaintenance, false));
-                }
+                return;
+            }
+
+            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+            if (maintenanceInfo.Status)
+            {
+                var isAjaxRequest = filterContext.IsAjaxRequest();
+                filterContext.Result = isAjaxRequest
+                    ? (ActionResult)(new JsonResult { Data = ((ViewResult)filterContext.Result).ViewData.Model })
+                    : (ActionResult)(new RedirectResult(AppURLs.URLs.UnderMaintenance, false));
             }
         }
 

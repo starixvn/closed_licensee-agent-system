@@ -75,7 +75,7 @@ namespace LicenseeAgent.Web
         {
             if (loginAccountType != AccountType.CSD_IT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
             {
-                throw new Exception("Invalid");
+                throw new InvalidOperationException("Invalid");
             }
 
             LoginUserId = loginUserId;
@@ -165,7 +165,7 @@ namespace LicenseeAgent.Web
         {
             if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)
             {
-                throw new Exception("Invalid");
+                throw new InvalidOperationException("Invalid");
             }
 
             AgentInfo = agentInfo;

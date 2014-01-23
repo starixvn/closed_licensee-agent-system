@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
@@ -14,7 +15,8 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AjaxOnlyAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class AjaxOnlyAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

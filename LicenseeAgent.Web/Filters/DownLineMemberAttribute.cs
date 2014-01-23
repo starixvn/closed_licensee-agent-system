@@ -20,7 +20,8 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownLineMemberAttribute : DownLineAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class DownLineMemberAttribute : DownLineAttribute
     {
         private static string[] _memberIdParameterNames = new[] { "MemberId", "CustId", "TargetCustId" };
 

@@ -33,7 +33,7 @@ namespace LicenseeAgent.Web.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
-        protected ICurrentSession CurrentSession
+        protected static ICurrentSession CurrentSession
         {
             get
             {
@@ -111,6 +111,11 @@ namespace LicenseeAgent.Web.Controllers
                     }
                 }
             }
+        }
+
+        protected static string GetErrMsg(int errCode)
+        {
+            return ResourceManager.GetErrMsg(errCode);
         }
 
         /// <summary>
@@ -204,11 +209,6 @@ namespace LicenseeAgent.Web.Controllers
             {
                 base.OnActionExecuting(filterContext);
             }
-        }
-
-        protected string GetErrMsg(int errCode)
-        {
-            return ResourceManager.GetErrMsg(errCode);
         }
 
         protected JsonResult JsonResult(Result result)

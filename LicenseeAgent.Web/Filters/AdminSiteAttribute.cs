@@ -6,13 +6,15 @@
 
 namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AdminSiteAttribute : BaseActionFilterAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class AdminSiteAttribute : BaseActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

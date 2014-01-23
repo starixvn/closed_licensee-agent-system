@@ -18,7 +18,7 @@ namespace LicenseeAgent.Web.Validations
     /// Password Rule Validation Attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public class AppPasswordRuleAttribute : RegularExpressionAttribute
+    public sealed class AppPasswordRuleAttribute : RegularExpressionAttribute
     {
         public AppPasswordRuleAttribute()
             : base(PasswordRule.PasswordPattern)

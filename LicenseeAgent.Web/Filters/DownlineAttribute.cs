@@ -20,13 +20,14 @@ namespace LicenseeAgent.Web.Filters
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public class DownLineAttribute : BaseActionFilterAttribute
     {
         static DownLineAttribute()
         {
-            AgentIdParameterNames = new[] { "AgentId", "CustId" };
-            MemberIdParameterNames = new[] { "MemberId", "TargetCustId" };
-            TransIdParameterNames = new[] { "TransId" };
+            AgentIdParameterNames = new List<string> { "AgentId", "CustId" };
+            MemberIdParameterNames = new List<string> { "MemberId", "TargetCustId" };
+            TransIdParameterNames = new List<string> { "TransId" };
         }
 
         public DownLineAttribute()
@@ -34,11 +35,11 @@ namespace LicenseeAgent.Web.Filters
             AuthorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
         }
 
-        protected static string[] AgentIdParameterNames { get; private set; }
+        protected static IList<string> AgentIdParameterNames { get; private set; }
 
-        protected static string[] MemberIdParameterNames { get; private set; }
+        protected static IList<string> MemberIdParameterNames { get; private set; }
 
-        protected static string[] TransIdParameterNames { get; private set; }
+        protected static IList<string> TransIdParameterNames { get; private set; }
 
         protected IAuthorizeService AuthorizeService { get; private set; }
 
@@ -82,7 +83,7 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="filterContext">Action executing context.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static long GetDownLineParameter(ActionExecutingContext filterContext, string[] parameterNames)
+        protected static long GetDownLineParameter(ActionExecutingContext filterContext, IList<string> parameterNames)
         {
             var actionParameters = GetActionParameter(filterContext.ActionParameters, parameterNames);
             var jsonParameters = GetJsonParameter(filterContext, parameterNames);
@@ -103,7 +104,7 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="actionParameters">Action parameters.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static IEnumerable<long> GetActionParameter(IDictionary<string, object> actionParameters, string[] parameterNames)
+        protected static IEnumerable<long> GetActionParameter(IDictionary<string, object> actionParameters, IList<string> parameterNames)
         {
             foreach (var name in parameterNames)
             {
@@ -131,7 +132,7 @@ namespace LicenseeAgent.Web.Filters
         /// <param name="filterContext">Action executing context.</param>
         /// <param name="parameterNames">Parameter name array.</param>
         /// <returns>Long value.</returns>
-        protected static IEnumerable<long> GetJsonParameter(ActionExecutingContext filterContext, string[] parameterNames)
+        protected static IEnumerable<long> GetJsonParameter(ActionExecutingContext filterContext, IList<string> parameterNames)
         {
             if (filterContext.HttpContext.Request.InputStream.Length == 0)
             {

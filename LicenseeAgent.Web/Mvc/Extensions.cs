@@ -49,20 +49,10 @@ namespace LicenseeAgent.Web.Mvc
             return IsAjaxRequestInternal(context.HttpContext.Request);
         }
 
-        public static bool IsAjaxRequest(this ActionExecutingContext context)
+        public static bool IsAjaxRequest(this HttpContext context)
         {
-            return IsAjaxRequestInternal(context.HttpContext.Request);
-        }
-
-        public static bool IsAjaxRequest(this HttpRequest httpRequest)
-        {
-            var httpContextWrapper = new HttpContextWrapper(HttpContext.Current);
+            var httpContextWrapper = new HttpContextWrapper(context);
             return IsAjaxRequestInternal(httpContextWrapper.Request);
-        }
-
-        public static bool IsAjaxRequest(this AuthorizationContext context)
-        {
-            return IsAjaxRequestInternal(context.HttpContext.Request);
         }
 
         public static void WriteJson(this HttpResponse httpResponse, Result jsonResult)

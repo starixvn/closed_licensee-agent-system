@@ -1,12 +1,13 @@
 ﻿var REPORT = function ($) {
     return {
         init: function () {
-            $("#filter-tabs").tabs();
+            $("#filter-tabs").tabs();/*
             $('#matchdatetimepicker').datepicker();
             $('#outrightfromdatetimepicker').datepicker();
-            $('#outrighttodatetimepicker').datepicker();
+            $('#outrighttodatetimepicker').datepicker();*/
             $('.selectpicker').selectpicker();
-
+            
+            REPORT.getBalanceUpMoveBet();
             REPORT.initData();
         },
 
@@ -14,6 +15,15 @@
             var currentTime = new Date();
             var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
             REPORT.matchSubmit(todayStr);
+            
+            $('li.tab-match').click(function(e) 
+            { 
+                REPORT.manageLeagueSelect();
+            });
+            $('li.tab-outright').click(function(e) 
+            { 
+                REPORT.manageOutrightLeagueSelect();
+            });
 
             $("#MatchSport").change(function () {
                 REPORT.manageSportSelect();
@@ -29,6 +39,31 @@
 
             $("#OutrightLeague").change(function () {
                 REPORT.manageOutrightLeagueSelect();
+            });
+        },
+
+        getBalanceUpMoveBet: function () {
+            $.ajax({
+                url: CORE.resolveUrl("~/Report/GetBalanceUpMoveBet"),
+                type: 'POST',
+                dataType: "json",
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        return;
+                    }
+                    var currentTime = new Date();
+                    var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
+            
+                    $('#matchdatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr});
+                    $('#outrightfromdatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr});
+                    $('#outrighttodatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr});
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
             });
         },
 
@@ -51,9 +86,9 @@
                         return;
                     }
                     if (data.Leagues != null) {
-                        REPORT.generateLeagues(data.Leagues);
+                        REPORT.generateLeagues(data.Leagues, 1);
 
-                        REPORT.generateResults(data.Results);
+                        REPORT.generateResults(data.Results, 1);
                     }
                 },
                 complete: function () {
@@ -82,7 +117,7 @@
                         return;
                     }
                     if (data.Results != null) {
-                        REPORT.generateResults(data.Results);
+                        REPORT.generateResults(data.Results, 1);
                     }
 
                 },
@@ -112,9 +147,9 @@
                         return;
                     }
                     if (data.Leagues != null) {
-                        REPORT.generateLeagues(data.Leagues);
+                        REPORT.generateLeagues(data.Leagues, 0);
 
-                        REPORT.generateResults(data.Results);
+                        REPORT.generateResults(data.Results, 0);
                     }
                 },
                 complete: function () {
@@ -124,11 +159,17 @@
         },
         
         manageOutrightLeagueSelect: function () {
+            var sporttype = leagueid = 0;
+            if($("#OutrightSport").val() != null)
+                sporttype = $("#OutrightSport").val();
+            if($("#OutrightLeague").val() != null)
+                leagueid = $("#OutrightLeague").val();
+
             var params = {
                 FromDate: $("#outrightFromDate").val(),
                 ToDate: $("#outrightToDate").val(),
-                SportType: $("#OutrightSport").val(),
-                LeagueId: $("#OutrightLeague").val(),
+                SportType: sporttype,
+                LeagueId: leagueid,
             };
 
             $.ajax({
@@ -144,7 +185,7 @@
                         return;
                     }
                     if (data.Results != null) {
-                        REPORT.generateResults(data.Results);
+                        REPORT.generateResults(data.Results, 0);
                     }
                 },
                 complete: function () {
@@ -175,7 +216,7 @@
 
                         REPORT.generateLeagues(data.Leagues, viewMatchResults);
 
-                        REPORT.generateResults(data.Results);
+                        REPORT.generateResults(data.Results, viewMatchResults);
                     }
                 },
                 complete: function () {
@@ -190,6 +231,9 @@
             for (var index = 0; index < itemCounter; index++) {
                 listItemsHtml += '<option value="' + sports[index].Value + '">' + sports[index].Text + '</option>';
             }
+
+            if(itemCounter <= 0)
+                listItemsHtml = '<option>No Data</option>';
 
             if (viewMatchResults == 1) {
                 $("#MatchSport").html(listItemsHtml);
@@ -208,6 +252,9 @@
                 listItemsHtml += '<option value="' + leagues[index].Value + '">' + leagues[index].Text + '</option>';
             }
 
+            if(itemCounter <= 0)
+                listItemsHtml = '<option>No Data</option>';
+
             if (viewMatchResults == 1) {
                 $("#MatchLeague").html(listItemsHtml);
                 $('#MatchLeague').selectpicker('refresh');
@@ -218,20 +265,23 @@
             }
         },
 
-        generateResults: function (results) {
-            if(results.search("<!--NoInfo-->") > 0)
+        generateResults: function (results, viewMatchResults) {
+            if(viewMatchResults == 0)
             {
-                $( ".outright-dropdownlists" ).hide();
-            }
-            else
-            {
-                $( ".outright-dropdownlists" ).show();
+                if(results.search("<!--NoInfo-->") > 0)
+                {
+                    $( ".outright-dropdownlists" ).hide();
+                }
+                else
+                {
+                    $( ".outright-dropdownlists" ).show();
+                }
             }
             $("#ResultsArea").html(results);
         },
 
         matchSubmit: function (eventDateString) {
-            $('#matchdatetime').val(eventDateString);
+            $('#matchdatetimepicker').datepicker("update", eventDateString );
             var params = {
                 EventDate: eventDateString
             };
@@ -240,8 +290,8 @@
         },
 
         outrightSubmit: function (fromDateString, toDateString) {
-            $('#outrightFromDate').val(fromDateString);
-            $('#outrightToDate').val(toDateString);
+            $('#outrightfromdatetimepicker').datepicker("update", fromDateString );
+            $('#outrighttodatetimepicker').datepicker("update", toDateString );
             var params = {
                 FromDate: fromDateString,
                 ToDate: toDateString

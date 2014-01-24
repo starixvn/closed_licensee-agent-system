@@ -23,6 +23,7 @@ namespace LicenseeAgent.Report.Controllers
     using Services;
     using ViewModels;
     using Web.Controllers;
+    using LicenseeAgent.Core.Services;
 
     /// <summary>
     /// Report Controller.
@@ -36,6 +37,8 @@ namespace LicenseeAgent.Report.Controllers
         #endregion
 
         #region Services
+        
+        private ICoreService _coreService;
 
         private IResultsReportService _resultsReportService;
 
@@ -43,8 +46,9 @@ namespace LicenseeAgent.Report.Controllers
 
         #region Constructor
 
-        public ReportController(IResultsReportService resultsReportService)
+        public ReportController(ICoreService coreService, IResultsReportService resultsReportService)
         {
+            _coreService = coreService;
             _resultsReportService = resultsReportService;
         }
 
@@ -201,6 +205,23 @@ namespace LicenseeAgent.Report.Controllers
                 ErrCode = Result.SuccessValue,
                 Leagues = leagueItems,
                 Results = GetMatchResultsData(criteria, 0)
+            });
+        }
+        
+        /// <summary>
+        /// Get list of leagues.
+        /// </summary>
+        /// <param name="criteria">League criteria.</param>
+        /// <returns>JSON object.</returns>
+        [HttpPost]
+        public JsonResult GetBalanceUpMoveBet()
+        {
+            var balanceUp = _coreService.GetBalanceUpDay();
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                BalanceUp = balanceUp.BalanceUpDay.ToShortDateString(),
+                MoveBet = balanceUp.MoveBetDay.ToShortDateString()
             });
         }
 

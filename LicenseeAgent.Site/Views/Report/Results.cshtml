@@ -26,8 +26,8 @@
 {
     <div id="filter-tabs" class="form-filter">
         <ul>
-            <li><a href="#filter-tab-match"> @Las.MatchResults</a></li>
-            <li><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
+            <li class="tab-match"><a href="#filter-tab-match"> @Las.MatchResults</a></li>
+            <li class="tab-outright"><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
         </ul>
         <div id="filter-tab-match">
             <div class="controls-row">
@@ -43,9 +43,9 @@
             </div> <br />
             <div class="controls-row margin-top-10px">
 
-                @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w120" })
+                @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
 
-                @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w300" })
+                @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
                 
             </div>
         </div>
@@ -68,9 +68,9 @@
                 <button class="btn btn-primary" onclick="return outrightToday();">@Las.Today</button>
             </div>
             <div class="outright-dropdownlists margin-top-10px">
-                @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w120" })
+                @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
                 
-                @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w300" })
+                @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
             </div>
         </div>
     </div>

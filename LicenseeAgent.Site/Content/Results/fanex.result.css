@@ -36,37 +36,48 @@ table.fanex-result tr.row-header th, table.fanex-result-tenis-setdetail tr.row-h
 /*header-column*/
 table.fanex-result tr.row-header th.column-kickofftime
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-time
 {
-    width: 65px;
+    width: 80px;
 }
 table.fanex-result tr.row-header th.column-match
 {
+    width: 300px;
 }
 table.fanex-result tr.row-header th.column-firsthaftscore
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-finalscore
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-status
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-result
 {
+    width: 70px;
+    text-align: center;
 }
 table.fanex-result tr.row-header th.column-lblOEFT
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-lbl1stball
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-lastball
 {
+    width: 70px;
 }
 table.fanex-result tr.row-header th.column-warrior
 {
+    width: 70px;
 }
 /*end-header-column*/
 /*endregion*/
@@ -116,14 +127,19 @@ table.fanex-result tr.row-data td.column-kickofftime
     font-weight: normal;
     white-space: nowrap;
 }
-table.fanex-result tr.row-data td.column-match, tr.row-data td.column-team, table.fanex-result tr.row-data td.column-result
+table.fanex-result tr.row-data td.column-match, tr.row-data td.column-team
 {
     text-align: left !important;
 }
 
+table.fanex-result tr.row-data td.column-result
+{
+	text-align: center;
+}
+
 table.fanex-result tr.row-data td.column-match div.first-goal
 {
-    background: url(images/first-goal.gif) no-repeat center center;
+    background: url(../../Images/sprite.png) no-repeat -786px -1px;
     height: 10px;
     width: 14px;
     display: inline;
@@ -131,7 +147,7 @@ table.fanex-result tr.row-data td.column-match div.first-goal
 }
 table.fanex-result tr.row-data td.column-match div.last-goal
 {
-    background: url(images/last-goal.gif) no-repeat center center;
+    background: url(../../Images/sprite.png) no-repeat -807px -1px;
     height: 10px;
     width: 14px;
     display: inline;

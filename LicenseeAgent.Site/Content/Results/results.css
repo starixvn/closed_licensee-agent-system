@@ -1,4 +1,5 @@
-﻿table.fanex-result tr.row-data td.column-league
+﻿/*Results table*/
+table.fanex-result tr.row-data td.column-league
 {
     background: #DEDEDE;
 }
@@ -48,7 +49,6 @@ table.fanex-result tr.row-data td, table.fanex-result-tenis-setdetail tr.row-dat
 }
 
 #ResultsArea {
-	margin-top: -15px;
 }
 
 /*no-info*/
@@ -64,8 +64,22 @@ table.fanex-result .row-noinfo td
     height: 50px;
 }
 
+/*Date time picker*/
+.datepicker th.switch, .table-condensed th {
+	color: #238FD0;
+}
+
+.datepicker th.prev, .datepicker th.next {
+	font-size: 1.3em;
+}
+
+.datepicker table tr td.active, .datepicker table tr td.active:hover,
+.datepicker table tr td.active, .datepicker table tr td.active:hover {
+	background-image: -moz-linear-gradient(center top, #0088CC, #238FD0);
+}
+
 /*main-page*/
-.ui-tabs .ui-tabs-nav li.ui-tabs-active
+ui-tabs .ui-tabs-nav li.ui-tabs-active
 {
     margin-bottom: 0px;
     padding-bottom: 0px;
@@ -76,16 +90,17 @@ table.fanex-result .row-noinfo td
 {
     padding: 0.2em 1.2em 0;
     position: absolute;
-    top: -36px;
-    left: 15px;
+    top: -35px;
+    left: 0px;
 }
         
 .ui-widget-header
 {
     background: none;
     border: none;
+    font-size: inherit;
 }
-        
+
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 {
     background-color: #F4F8FB;
@@ -118,4 +133,38 @@ table.fanex-result .row-noinfo td
 .outright-dropdownlists
 {
 	display: none;
+}
+
+.bootstrap-select.btn-group .btn .filter-option {
+	left: 5px;
+}
+
+.controls-row:before, .controls-row:after {
+	margin-top: 2px;
+}
+
+.btn {
+	margin-left: 12px;
+}
+
+.input-append input, .input-prepend input, 
+.input-append select, .input-prepend select, 
+.input-append .uneditable-input, 
+.input-prepend .uneditable-input, 
+.input-append .dropdown-menu, .input-prepend .dropdown-menu, 
+.input-append .popover, .input-prepend .popover {
+	left: 1px;
+	border-color: #E8E8E8 -moz-use-text-color #E8E8E8 #E8E8E8;
+}
+
+.input-append .add-on, .input-prepend .add-on {
+	border-color: #E8E8E8 #E8E8E8 #E8E8E8 -moz-use-text-color;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	padding-bottom: 0px;
+	top: -1px;	
+    border: 1px solid;
+    border-color: #FF0000 #E8E8E8 -moz-use-text-color #E8E8E8;
+    border-style: solid solid none solid;
 }

@@ -1,4 +1,16 @@
 ﻿<script type="text/javascript">
+    var footerRows = [
+              {
+                  Columns: [
+                    { Value: "UserName", Name: "UserName", CellAlign: "center", MergeColNumber: 4 },
+                    { Value: "GivenCredit", Name: "GivenCredit", MergeColNumber: 2 },
+                    { Value: "BetCredit", Name: "BetCredit" },
+                    { Value: "YesterdayBalance", Name: "YesterdayBalance" },
+                    { Value: "TotalBalance", Name: "TotalBalance" },
+                    { Value: "Outstanding", Name: "Outstanding", MergeColNumber: 2 }
+                ]
+              }
+        ];
     var gridOption = {
         columns: [
                         {
@@ -41,8 +53,11 @@
                         }
                    ],
         showPager: true,
+        customPager: true,
         gridExpandHeight: 100,
         bodyRowHeight: 29,
+        showFooter: true,
+        footerRows: footerRows,
         autoResizeColumn: true
     };
 </script>

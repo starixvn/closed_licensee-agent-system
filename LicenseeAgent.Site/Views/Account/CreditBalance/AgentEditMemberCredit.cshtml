@@ -40,13 +40,13 @@
                         <td>
                             @if (!Model.MaxCreditOutput.HasValue || (Model.MaxCreditOutput.HasValue && Model.MaxCreditOutput.Value == 0))
                             {
-                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w120", data_val_range_min = Model.MinCreditOutput, data_val_range = Las.InvalidAmount })
-                                <span>@string.Format(">= {0}", Formatter.FormatDecimal(Model.MinCreditOutput))</span>
+                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w100", data_min = Model.MinCreditOutput, title = Las.InvalidAmount })
+                                <span>@string.Format(">= {0}", Formatter.FormatDecimal4n(Model.MinCreditOutput))</span>
                             }
                             else
                             {
-                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w120", data_val_range_min = Model.MinCreditOutput, data_val_range_max = Model.MaxCreditOutput, data_val_range = Las.InvalidAmount })
-                                <span>@string.Format("[{0} - {1}]", Formatter.FormatDecimal(Model.MinCreditOutput), Formatter.FormatDecimal(Model.MaxCreditOutput))</span>
+                                @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w100", data_min = Model.MinCreditOutput, data_max = Model.MaxCreditOutput, title = Las.InvalidAmount })
+                                <span>@string.Format("[{0} - {1}]", Formatter.FormatDecimal4n(Model.MinCreditOutput), Formatter.FormatDecimal4n(Model.MaxCreditOutput))</span>
                             }
                         </td>
                     </tr>
@@ -65,5 +65,12 @@
 </div>
 @section scripts
 {
+    @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/creditbalance-popup")
+    @if (ViewBag.Result != null)
+    {
+        <script type="text/javascript">
+            POPUP.close();
+        </script>
+    }
 }

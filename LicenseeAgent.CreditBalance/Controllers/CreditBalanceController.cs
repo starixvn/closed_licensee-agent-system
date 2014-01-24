@@ -73,8 +73,20 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 Username = model.UserName
             });
 
+            var pagedList = memberBalanceInfo.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
+
+            var totalData = new MemberBalanceInfo
+            {
+                UserName = "Total",
+                GivenCredit = pagedList.Select(x => x.GivenCredit).Sum(),
+                BetCredit = pagedList.Select(x => x.BetCredit).Sum(),
+                YesterdayBalance = pagedList.Select(x => x.YesterdayBalance).Sum(),
+                TotalBalance = pagedList.Select(x => x.TotalBalance).Sum(),
+                Outstanding = pagedList.Select(x => x.Outstanding).Sum(),
+            };
+
             var serviceResult = _memberService.GetMemberInformations<MemberBalanceInfo>(
-                                memberBalanceInfo,
+                                pagedList,
                                 new GetMemberInfoListAction
                                 {
                                     SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -84,7 +96,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = memberBalanceInfo
+                List = pagedList,
+                TotalData = totalData,
+                TotalRecords = memberBalanceInfo.Count()
             });
         }
 
@@ -96,14 +110,14 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [NonAction]
         public JsonResult SearchAgent(CreditBalanceSearchViewModel model)
         {
-            var list = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+            var agentBalanceInfo = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 Username = model.UserName,
                 Status = model.Status
             });
 
-            var pagedList = list.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
+            var pagedList = agentBalanceInfo.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
 
             var totalData = new AgentBalanceInfo
             {
@@ -122,7 +136,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 ErrCode = Result.SuccessValue,
                 List = pagedList,
                 TotalData = totalData,
-                TotalRecords = list.Count()
+                TotalRecords = agentBalanceInfo.Count()
             });
         }
 

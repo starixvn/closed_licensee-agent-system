@@ -8,6 +8,7 @@ namespace LicenseeAgent.CreditBalance.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,6 +24,8 @@ namespace LicenseeAgent.CreditBalance.ViewModels
 
         public decimal MinCreditOutput { get; set; }
 
+        [Required]
+        [Display(Name = "Amount", ResourceType = typeof(Las))]
         public decimal GivenCredit { get; set; }
     }
 }

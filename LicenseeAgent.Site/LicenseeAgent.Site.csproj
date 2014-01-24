@@ -272,7 +272,6 @@
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Content\Results\results.css" />
     <Content Include="Content\Results\fanex.result.css" />
-    <Content Include="Content\poshytip\tip-twitter\tip-twitter_arrows.png" />
     <Content Include="Content\Results\images\bg_header03.jpg" />
     <Content Include="Content\Results\images\first-goal.gif" />
     <Content Include="Content\Results\images\last-goal.gif" />
@@ -286,6 +285,7 @@
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />
+    <Content Include="Scripts\HeadJS\head.core.js" />
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
@@ -412,11 +412,8 @@
     <Content Include="Content\fanexgrid\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\poshytip\tip-twitter\tip-twitter.css" />
     <Content Include="Images\avatar.png" />
     <Content Include="Views\Home\Resources\Images\bgheader.png" />
-    <Content Include="Content\poshytip\tip-yellowsimple\tip-yellowsimple.css" />
-    <Content Include="Content\poshytip\tip-yellowsimple\tip-yellowsimple_arrows.gif" />
     <Content Include="Content\Select2\select2.css" />
     <Content Include="Images\flags.png" />
     <Content Include="Images\login\bg-repeat.jpg" />
@@ -457,7 +454,6 @@
     <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />
-    <Content Include="Scripts\poshytip\jquery.poshytip.js" />
     <Content Include="Scripts\Select2\select2.js" />
     <Content Include="Scripts\utils.js" />
   </ItemGroup>
@@ -571,8 +567,6 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\bootstrap\affix.js" />
-    <Content Include="Scripts\bootstrap\alert.js" />
     <Content Include="Scripts\bootstrap\bootstrap-affix.js" />
     <Content Include="Scripts\bootstrap\bootstrap-alert.js" />
     <Content Include="Scripts\bootstrap\bootstrap-button.js" />
@@ -599,7 +593,6 @@
     <Content Include="Content\language.less" />
     <Content Include="Scripts\BlockUI\jquery.blockUI.js" />
     <Content Include="Scripts\core.js" />
-    <Content Include="Scripts\HeadJS\head.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
   <ItemGroup>

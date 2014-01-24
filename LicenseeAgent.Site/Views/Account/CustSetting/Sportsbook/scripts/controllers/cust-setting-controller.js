@@ -9,8 +9,6 @@
         }
 
         CORE.initInstruction();
-        // init tooltip
-        $(document).tooltip();
 
         $('#modeSwitcher').on('switch-change', function (e, data) {
             var isSimpleMode = !data.value;

@@ -29,6 +29,16 @@
                 moment.lang(selectedLanguageCode);
             }
 
+            $(document).click(function (e) {
+                if ($().tooltip) {
+                    $('.tooltip').prev().each(function (index, element) {
+                        if (element != e.target) {
+                            $(element).tooltip('hide');
+                        }
+                    });
+                }
+            });
+
             // Override the fanexGrid
             var fanexGridOrigin = jQuery.fn.fanexGrid;
             if (fanexGridOrigin != undefined) {

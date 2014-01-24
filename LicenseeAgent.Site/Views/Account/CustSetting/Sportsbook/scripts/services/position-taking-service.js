@@ -2,10 +2,6 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-
-
-
-
 if (fanex.sportsbookSetting) {
     //// Helper
 
@@ -86,8 +82,6 @@ if (fanex.sportsbookSetting) {
                 copyAllMessage.push('<ul>');
                 copyAllMessage.push('<li>' + lang.otherBettypeOfBasketball + '</li>');
             }
-
-
 
             for (var i = fromIndex; i < groupLength; i++) {
                 var currentGroup = ptGroups[i];
@@ -279,6 +273,4 @@ if (fanex.sportsbookSetting) {
             return true;
         }
     };
-
 }
-

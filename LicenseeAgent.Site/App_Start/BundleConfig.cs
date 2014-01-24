@@ -37,12 +37,12 @@ namespace LicenseeAgent.Site
         {
             bundles.Add(new ScriptBundle("~/js/core").Include(
                 "~/scripts/placeholder/jquery.placeholder.js",
+                "~/scripts/headjs/head.core.js",
                 "~/scripts/blockui/jquery.blockui.js",
                 "~/scripts/config.js",
+                "~/scripts/core.js",
                 "~/scripts/utils.js",
                 "~/scripts/language.js",
-                "~/scripts/headjs/head.js",
-                "~/scripts/core.js",
                 "~/scripts/popup.js"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
@@ -99,21 +99,9 @@ namespace LicenseeAgent.Site
                 "~/content/fanexgrid/Fanex.Pagination.css",
                 "~/content/customizeFanexGrid.less"));
 
-            // Combobox
-            bundles.Add(new ScriptBundle("~/js/bootstrap-select").Include(
-                "~/scripts/bootstrap-select/bootstrap-select.js"));
-            bundles.Add(new LessBundle("~/css/bootstrap-select").Include(
-                "~/content/bootstrap-select/bootstrap-select.css"));
-
             // Context Menu
             bundles.Add(new ScriptBundle("~/js/contextmenu").Include(
                 "~/scripts/contextmenu/context.js"));
-
-            // Tooltip
-            bundles.Add(new ScriptBundle("~/js/poshytip").Include(
-                "~/scripts/poshytip/jquery.poshytip.js"));
-            bundles.Add(new LessBundle("~/css/poshytip").Include(
-                "~/content/poshytip/tip-twitter/tip-twitter.css"));
 
             // Auto numeric
             bundles.Add(new ScriptBundle("~/js/autonumeric").Include(
@@ -135,10 +123,24 @@ namespace LicenseeAgent.Site
 
             // Jquery UI
             bundles.Add(new ScriptBundle("~/js/jqueryui").Include(
-                "~/scripts/jquery-ui/jquery-ui.js",
+                "~/scripts/jquery-ui/jquery.ui.core.js",
+                "~/scripts/jquery-ui/jquery.ui.widget.js",
+                "~/scripts/jquery-ui/jquery.ui.mouse.js",
+                "~/scripts/jquery-ui/jquery.ui.position.js",
+                "~/scripts/jquery-ui/jquery.ui.draggable.js",
+                "~/scripts/jquery-ui/jquery.ui.droppable.js",
+                "~/scripts/jquery-ui/jquery.ui.resizable.js",
+                "~/scripts/jquery-ui/jquery.ui.selectable.js",
+                "~/scripts/jquery-ui/jquery.ui.sortable.js",
+                "~/scripts/jquery-ui/jquery.ui.button.js",
+                "~/scripts/jquery-ui/jquery.ui.dialog.js",
                 "~/scripts/clickout/jquery.clickout.js"));
             bundles.Add(new LessBundle("~/css/jqueryui").Include(
-                "~/content/jquery-ui/jquery-ui.css"));
+                "~/content/jquery-ui/jquery.ui.core.css",
+                "~/content/jquery-ui/jquery.ui.theme.css",
+                "~/content/jquery-ui/jquery.ui.resizable.css",
+                "~/content/jquery-ui/jquery.ui.button.css",
+                "~/content/jquery-ui/jquery.ui.dialog.css"));
         }
 
         /// <summary>
@@ -151,6 +153,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
                 "~/scripts/bootstrap/bootstrap-select.js").Include(
                 "~/scripts/bootstrap/bootstrap-switch.js",
+                "~/scripts/bootstrap/bootstrap-tooltip.js",
+                "~/scripts/bootstrap/bootstrap-popover.js",
                 "~/scripts/bootstrap/bootstrap-paginator.js",
                 "~/scripts/bootstrap/bootstrap-tab.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
@@ -201,16 +205,14 @@ namespace LicenseeAgent.Site
         private static void RegisterHomePage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/home").Include(
-                "~/scripts/headjs/head.js",
+                "~/scripts/headjs/head.core.js",
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/views/home/resources/menu.js",
                 "~/views/home/resources/header.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",
-                "~/views/accountinformation/resources/index.js",
-                "~/scripts/bootstrap/bootstrap-tooltip.js",
-                "~/scripts/bootstrap/bootstrap-popover.js"));
+                "~/views/accountinformation/resources/index.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
                 "~/Views/Internal/Resources/Header.js"));

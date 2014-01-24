@@ -9,10 +9,10 @@
   z-index: @zindexTooltip;
   display: block;
   visibility: visible;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
   .opacity(0);
-  &.in     { .opacity(80); }
+  &.in     { .opacity(100); }
   &.top    { margin-top:  -3px; padding: 5px 0; }
   &.right  { margin-left:  3px; padding: 0 5px; }
   &.bottom { margin-top:   3px; padding: 5px 0; }
@@ -21,10 +21,10 @@
 
 // Wrapper for the tooltip content
 .tooltip-inner {
-  max-width: 200px;
-  padding: 8px;
+  max-width: 300px;
+  padding: 6px;
   color: @tooltipColor;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   background-color: @tooltipBackground;
   .border-radius(@baseBorderRadius);

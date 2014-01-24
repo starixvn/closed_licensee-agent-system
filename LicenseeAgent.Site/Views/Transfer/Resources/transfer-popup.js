@@ -1,22 +1,15 @@
 ﻿var TRANSFER_POPUP = function ($) {
     var minAmount;
     var maxAmount;
-    var msgAmount;
     return {
         init: function () {
-            minAmount = parseFloat($('#Amount').attr('data-val-range-min'));
-            maxAmount = parseFloat($('#Amount').attr('data-val-range-max'));
-            msgAmount = $('#Amount').attr('data-val-range');
-            var poshytipOptions = {
-                content: msgAmount,
-                alignTo: 'target',
-                alignX: 'inner-right',
-                offsetY: 5,
-                showOn: 'none',
-                showTimeout: 0,
-                className: 'tip-twitter'
-            }
-            $('#Amount').poshytip(poshytipOptions)
+            minAmount = parseFloat($('#Amount').data('min'));
+            maxAmount = parseFloat($('#Amount').data('max'));
+
+            $('#Amount').tooltip({
+                placement: 'top',
+                trigger: 'manual'
+            })
             .autoNumeric('init', {
                 mDec: Math.max(minAmount.countDecimals(), maxAmount.countDecimals()),
                 vMin: Number.MinInt,
@@ -41,11 +34,11 @@
         validateAmount: function (target) {
             var newAmount = $(target).autoNumeric('get');
             if (newAmount < minAmount || newAmount > maxAmount) {
-                $(target).poshytip('show');
+                $(target).tooltip('show');
                 return false;
             }
             else {
-                $(target).poshytip('hide');
+                $(target).tooltip('hide');
                 return true;
             }
         }

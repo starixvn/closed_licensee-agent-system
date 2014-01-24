@@ -14,7 +14,6 @@
 }
 @section css
 {
-    @Styles.Render("~/css/poshytip")
     @Styles.Render("~/css/customersetting/sportsbook")
 }
 @section scripts
@@ -22,7 +21,6 @@
     <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?targetCustId={0}&targetRoleId={1}&formId={2}&isOnlyUpdatePT={3}&indirectAgentId={4}", Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId, Model.IsOnlyUpdatePT, Model.IndirectAgentId))></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
-    @Scripts.Render("~/js/poshytip")
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting/sportsbook")
 }

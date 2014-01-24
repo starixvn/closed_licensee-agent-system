@@ -48,32 +48,24 @@ fanex.showHintOption = function (element, content, option) {
     if (typeof fanex.hintTarget != 'undefined' && fanex.hintTarget[0] != element[0]) {
         fanex.hideHint();
     }
-    if (typeof $(element).data('poshytip') == 'undefined') {
+    if (typeof $(element).data('tooltip') == 'undefined') {
         if (typeof content == 'undefined') {
             content = $(element).data('hint');
         }
-        var defaultOption = {
-            content: content,
-            alignTo: 'target',
-            offsetX: 0,
-            offsetY: 5,
-            showOn: 'none',
-            showTimeout: 0,
-            className: 'tip-twitter'
-        }
-        option = $.extend({}, defaultOption, option);
-        $(element).poshytip(option);
-        $(element).data('poshytip').$tip.click(function () {
-            fanex.hideHint();
+        $(element).tooltip({
+            title: content,
+            placement: $(element).data('placement'),
+            trigger: 'manual',
+            delay: { show: 500, hide: 100 }
         });
     }
     else {
-        if ($(element).data('poshytip').content != content) {
-            $(element).poshytip('update', content);
+        if ($(element).data('tooltip').options.title != content) {
+            $(element).data('tooltip').options.title = content;
         }
     }
     if (fanex.hintTarget != element) {
-        $(element).poshytip('show');
+        $(element).tooltip('show');
     }
     fanex.hintTarget = $(element);
 }
@@ -83,7 +75,7 @@ fanex.hideHint = function (element) {
         element = fanex.hintTarget;
     }
     if (typeof element != 'undefined') {
-        $(element).poshytip('hide');
+        $(element).tooltip('hide');
     }
 }
 

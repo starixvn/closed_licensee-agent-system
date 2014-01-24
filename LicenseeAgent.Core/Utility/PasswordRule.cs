@@ -12,14 +12,14 @@ namespace LicenseeAgent.Core.Utility
     using LicenseeAgent.Resources;
 
     /// <summary>
-    /// Password rules: Password must be at least 8 characters (maximum = 24 characters) 
+    /// Password rules: Password must be at least 8 characters (maximum = 24 characters)
     /// without white space and contain at least 3 of the following:
     /// Uppercase letter [A-Z].
     /// Lowercase leader [a-z].
     /// Numeric [0-9].
     /// Special character (!,@,#,etc..).
     /// </summary>
-    public class PasswordRule
+    public static class PasswordRule
     {
         // Source: http://regexlib.com/REDetails.aspx?regexp_id=887
         // Source: http://regexlib.com/REDetails.aspx?regexp_id=2983
@@ -34,6 +34,11 @@ namespace LicenseeAgent.Core.Utility
         /// </summary>
         public const int PasswordExpiredTotalDays = 60;
 
+        public static PasswordStatus GetPasswordStatus(AgentInfo agentInfo)
+        {
+            return GetPasswordStatus(agentInfo, null);
+        }
+
         /// <summary>
         /// Gets the password status.
         /// </summary>
@@ -42,7 +47,7 @@ namespace LicenseeAgent.Core.Utility
         /// <returns>
         /// Returns password status.
         /// </returns>
-        public static PasswordStatus GetPasswordStatus(AgentInfo agentInfo, DateTime? lastLoginTime = null)
+        public static PasswordStatus GetPasswordStatus(AgentInfo agentInfo, DateTime? lastLoginTime)
         {
             if (agentInfo.IsFirstLogin)
             {

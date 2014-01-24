@@ -20,13 +20,18 @@ namespace LicenseeAgent.Core.Utility
             return RefData.GetBetTypeName(betType.ToString(), LanguageManager.TwoLetterISOLanguageName);
         }
 
+        public static string GetSportName(int sportType)
+        {
+            return GetSportName(sportType, 0);
+        }
+
         /// <summary>
         /// Gets the name of the sport.
         /// </summary>
         /// <param name="sportType">Type of the sport.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <returns>Return the sport name.</returns>
-        public static string GetSportName(int sportType, int betType = 0)
+        public static string GetSportName(int sportType, int betType)
         {
             if (sportType == (int)SportType.OtherSports)
             {

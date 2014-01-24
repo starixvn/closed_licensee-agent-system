@@ -3,10 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky" date="2013.3.29">Created</change>
-//   <change who="Leo" date="2013.9.18">Change Captcha, Before login has support for multi-language</change>
-// </history>
 
 namespace LicenseeAgent.Core.Services
 {
@@ -26,14 +22,12 @@ namespace LicenseeAgent.Core.Services
     {
         private const int WaitInterval = 1000; // 1 second.
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
-        private readonly UMBusiness _underMaintenanceService;
         private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;
         private readonly HttpClient _client;
 
         public UnderMaintenanceService()
         {
-            _underMaintenanceService = new UMBusiness();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
             _client = new HttpClient();
         }

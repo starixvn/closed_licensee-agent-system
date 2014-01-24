@@ -9,7 +9,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum AccountStatus : byte
+    public enum AccountStatus : int
     {
         /// <summary>
         /// The account is closed.

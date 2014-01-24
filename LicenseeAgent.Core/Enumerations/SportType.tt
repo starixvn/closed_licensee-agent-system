@@ -11,6 +11,7 @@ namespace LicenseeAgent.Core.Enumerations
 {
     public enum SportType : int
     {
+        None = 0,
 <#
     SqlConnection conn = new SqlConnection(connectionString);
     string sql = "Select * from Sports";

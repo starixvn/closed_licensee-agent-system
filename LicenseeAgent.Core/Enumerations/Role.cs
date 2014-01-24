@@ -9,7 +9,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum Role : byte
+    public enum Role : int
     {
         /// <summary>
         /// Licensee role.
@@ -30,5 +30,10 @@ namespace LicenseeAgent.Core.Enumerations
         /// Member role.
         /// </summary>
         Member = 1,
+
+        /// <summary>
+        /// Undefined role.
+        /// </summary>
+        None = 0
     }
 }

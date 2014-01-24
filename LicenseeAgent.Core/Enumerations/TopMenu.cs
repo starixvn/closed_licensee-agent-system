@@ -9,7 +9,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum TopMenu : byte
+    public enum TopMenu : int
     {
         /// <summary>
         /// The home menu.

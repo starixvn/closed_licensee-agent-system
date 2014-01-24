@@ -61,7 +61,7 @@ namespace LicenseeAgent.Core.Configurations
             catch (Exception ex)
             {
                 Fanex.Logging.LogService.Error(ex.Message, ex);
-                return string.Empty;
+                throw;
             }
         }
     }

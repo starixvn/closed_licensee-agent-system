@@ -3,6 +3,7 @@ namespace LicenseeAgent.Core.Enumerations
 {
     public enum SportType : int
     {
+        None = 0,
         Soccer = 1,
         Basketball = 2,
         Football = 3,

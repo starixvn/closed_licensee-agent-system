@@ -3,16 +3,13 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Enumerations
 {
     /// <summary>
     /// Agent Password Status.
     /// </summary>
-    public enum PasswordStatus : byte
+    public enum PasswordStatus : int
     {
         /// <summary>
         /// Password status is normal.

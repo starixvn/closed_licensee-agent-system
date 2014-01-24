@@ -15,6 +15,11 @@ namespace LicenseeAgent.Core.Enumerations
     public enum ErrCode : int
     {
         /// <summary>
+        /// Successfully.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// Min Bet should be less than or equal to Max Bet({@BetLimitSportType})
         /// </summary>
         Msg_1003 = 1003,

@@ -41,7 +41,7 @@ namespace LicenseeAgent.Core.Utility
         /// </summary>
         /// <param name="xml">The XML string.</param>
         /// <returns>Return list.</returns>
-        public static List<T> DeserializeList(string xml)
+        public static IList<T> DeserializeList(string xml)
         {
             if (string.IsNullOrEmpty(xml))
             {

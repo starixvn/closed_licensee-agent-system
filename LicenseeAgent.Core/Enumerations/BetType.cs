@@ -11,6 +11,7 @@ namespace LicenseeAgent.Core.Enumerations
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:EnumerationItemsMustBeDocumented", Justification = "Reviewed.")]
     public enum BetType : int
     {
+        None = 0,
         MixParlay = 9,
         FulltimeHandicap = 1,
         FulltimeOddEven = 2,

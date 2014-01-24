@@ -17,11 +17,11 @@ namespace LicenseeAgent.Core.Utility
     {
         private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture("en-US");
 
-        private static readonly System.Resources.ResourceManager _langResourceManager;
+        private static readonly System.Resources.ResourceManager LangResourceManager;
 
         static LanguageManager()
         {
-            _langResourceManager = new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
+            LangResourceManager = new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
         }
 
         public static string TwoLetterISOLanguageName
@@ -46,9 +46,9 @@ namespace LicenseeAgent.Core.Utility
 
         public static string GetResourceData(string key)
         {
-            if (!ReferenceEquals(_langResourceManager, null))
+            if (!ReferenceEquals(LangResourceManager, null))
             {
-                return _langResourceManager.GetString(key);
+                return LangResourceManager.GetString(key);
             }
 
             return string.Empty;

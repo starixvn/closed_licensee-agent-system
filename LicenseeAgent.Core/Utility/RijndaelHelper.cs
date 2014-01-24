@@ -107,7 +107,7 @@ namespace LicenseeAgent.Core.Utility
             }
         }
 
-        private byte[] ObjectToByteArray(object obj)
+        private static byte[] ObjectToByteArray(object obj)
         {
             var binaryFormatter = new BinaryFormatter();
             using (var stream = new MemoryStream())
@@ -117,7 +117,7 @@ namespace LicenseeAgent.Core.Utility
             }
         }
 
-        private T ByteArrayToObject<T>(byte[] arrBytes)
+        private static T ByteArrayToObject<T>(byte[] arrBytes)
         {
             var binaryFormatter = new BinaryFormatter();
             using (var stream = new MemoryStream())

@@ -9,7 +9,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// <summary>
     /// List of account types in LAS system.
     /// </summary>
-    public enum AccountType : byte
+    public enum AccountType : int
     {
         /// <summary>
         /// Used in Authorization.

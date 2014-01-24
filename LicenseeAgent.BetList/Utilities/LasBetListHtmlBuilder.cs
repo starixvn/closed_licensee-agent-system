@@ -19,7 +19,7 @@ namespace LicenseeAgent.BetList.Utilities
     using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

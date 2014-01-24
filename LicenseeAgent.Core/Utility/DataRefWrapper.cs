@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Core.Utils
+namespace LicenseeAgent.Core.Utility
 {
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;

@@ -32,7 +32,7 @@
 @helper FormatNegative(decimal value)
 {
     var className = value < 0 ? "color-r" : string.Empty;
-    <span class="@className">@LicenseeAgent.Core.Utils.Formatter.FormatDecimal(value)</span>    
+    <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(value)</span>    
 }@helper RenderPopover(int memberId, IList<UplineEntity> uplines,int numberOfLevel)
 {
     var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);

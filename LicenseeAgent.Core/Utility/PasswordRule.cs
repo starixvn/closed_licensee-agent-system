@@ -3,11 +3,8 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
-namespace LicenseeAgent.Core.Utils
+namespace LicenseeAgent.Core.Utility
 {
     using System;
     using LicenseeAgent.Core.Entities;

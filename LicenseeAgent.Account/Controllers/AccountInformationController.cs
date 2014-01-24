@@ -17,7 +17,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Account.ViewResults;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;

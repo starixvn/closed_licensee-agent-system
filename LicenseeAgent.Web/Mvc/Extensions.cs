@@ -11,7 +11,7 @@ namespace LicenseeAgent.Web.Mvc
     using System.Web.Mvc;
     using Fanex.Common;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

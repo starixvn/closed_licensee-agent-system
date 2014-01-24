@@ -11,7 +11,7 @@ namespace LicenseeAgent.Web.Validations
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
 
     /// <summary>

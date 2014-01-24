@@ -10,7 +10,7 @@ namespace LicenseeAgent.TotalBets.Entities
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// Soccer Detail Entity.

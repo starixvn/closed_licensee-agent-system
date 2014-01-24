@@ -14,7 +14,7 @@ namespace LicenseeAgent.Account.ViewModels
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
 
     /// <summary>

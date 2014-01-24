@@ -7,9 +7,8 @@
 namespace LicenseeAgent.Account.Services
 {
     using System.Web;
-    using Fanex.Caching;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

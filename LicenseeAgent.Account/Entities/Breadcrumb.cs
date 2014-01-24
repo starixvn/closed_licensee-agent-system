@@ -8,7 +8,7 @@ namespace LicenseeAgent.Account.Entities
 {
     using System.Collections.Generic;
     using System.Web;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

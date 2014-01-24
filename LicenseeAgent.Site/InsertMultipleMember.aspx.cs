@@ -13,7 +13,7 @@ using LicenseeAgent.Core.Entities;
 using LicenseeAgent.CustomerSetting.Entities;
 using LicenseeAgent.Core.Enumerations;
 using LicenseeAgent.Taiwan.Actions;
-using LicenseeAgent.Core.Utils;
+using LicenseeAgent.Core.Utility;
 using LicenseeAgent.Resources;
 using LicenseeAgent.Taiwan.Services;
 using LicenseeAgent.CustomerSetting.Service;

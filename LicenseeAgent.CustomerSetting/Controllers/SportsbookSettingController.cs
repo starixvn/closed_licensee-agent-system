@@ -15,7 +15,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criterias;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;

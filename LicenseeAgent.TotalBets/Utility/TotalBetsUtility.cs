@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Utility
     using System.Linq;
     using System.Text;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Entities;
 

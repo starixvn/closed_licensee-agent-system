@@ -22,7 +22,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 

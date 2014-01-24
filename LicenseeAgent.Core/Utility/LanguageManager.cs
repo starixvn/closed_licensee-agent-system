@@ -3,15 +3,10 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Terry" date="2013.6.3">Created</change>
-//   <change who="Edward.Nguyen" date="2013.7.2">Change to static class</change>
-// </history>
 
-namespace LicenseeAgent.Core
+namespace LicenseeAgent.Core.Utility
 {
     using System.Globalization;
-    using System.Resources;
     using System.Threading;
     using LicenseeAgent.Resources;
 
@@ -21,11 +16,12 @@ namespace LicenseeAgent.Core
     public static class LanguageManager
     {
         private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture("en-US");
-        private static readonly ResourceManager LangResourceManager;
+
+        private static readonly System.Resources.ResourceManager _langResourceManager;
 
         static LanguageManager()
         {
-            LangResourceManager = new ResourceManager(typeof(Las)) { IgnoreCase = true };
+            _langResourceManager = new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
         }
 
         public static string TwoLetterISOLanguageName
@@ -50,9 +46,9 @@ namespace LicenseeAgent.Core
 
         public static string GetResourceData(string key)
         {
-            if (!ReferenceEquals(LangResourceManager, null))
+            if (!ReferenceEquals(_langResourceManager, null))
             {
-                return LangResourceManager.GetString(key);
+                return _langResourceManager.GetString(key);
             }
 
             return string.Empty;

@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Core.Entities
 {
     using System;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

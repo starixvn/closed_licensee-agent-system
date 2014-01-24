@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.TotalBets.Entities
 {
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// League Entity.

@@ -20,7 +20,7 @@ namespace LicenseeAgent.CustomerSetting.Service
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent;

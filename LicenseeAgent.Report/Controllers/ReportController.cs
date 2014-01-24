@@ -10,17 +10,16 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
     using Core.Entities;
     using Core.Services;
-    using Core.Utils;
     using Criteria;
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
+    using LicenseeAgent.Core.Utility;
     using Services;
     using ViewModels;
     using Web.Controllers;
@@ -34,15 +33,15 @@ namespace LicenseeAgent.Report.Controllers
 
         private bool _includeTestData = false;
 
-        #endregion
+        #endregion Constant
 
         #region Services
-        
+
         private ICoreService _coreService;
 
         private IResultsReportService _resultsReportService;
 
-        #endregion
+        #endregion Services
 
         #region Constructor
 
@@ -52,7 +51,7 @@ namespace LicenseeAgent.Report.Controllers
             _resultsReportService = resultsReportService;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Results Report
 
@@ -207,7 +206,7 @@ namespace LicenseeAgent.Report.Controllers
                 Results = GetMatchResultsData(criteria, 0)
             });
         }
-        
+
         /// <summary>
         /// Get Balance up and move bet dates.
         /// </summary>
@@ -224,7 +223,7 @@ namespace LicenseeAgent.Report.Controllers
             });
         }
 
-        #endregion
+        #endregion Results Report
 
         #region Utilities
 
@@ -287,6 +286,6 @@ namespace LicenseeAgent.Report.Controllers
             return htmlNoDataStr;
         }
 
-        #endregion
+        #endregion Utilities
     }
 }

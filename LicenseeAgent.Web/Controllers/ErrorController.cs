@@ -13,7 +13,7 @@ namespace LicenseeAgent.Web.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.ViewModels;
 

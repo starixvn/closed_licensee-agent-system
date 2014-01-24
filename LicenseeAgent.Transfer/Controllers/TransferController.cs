@@ -10,7 +10,7 @@ namespace LicenseeAgent.Transfer.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;

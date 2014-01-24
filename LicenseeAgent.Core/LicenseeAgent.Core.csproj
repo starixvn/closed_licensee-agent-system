@@ -76,7 +76,6 @@
     <Compile Include="Entities\LicenseeDomain.cs" />
     <Compile Include="Entities\LicenseeInfo.cs" />
     <Compile Include="Entities\PageContext.cs" />
-    <Compile Include="Entities\PageLang.cs" />
     <Compile Include="Entities\UnderMaintenanceInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Enumerations\AccountType.cs" />
@@ -94,11 +93,11 @@
     <Compile Include="Services\ICoreService.cs" />
     <Compile Include="Services\IUnderMaintenanceService.cs" />
     <Compile Include="Services\UnderMaintenanceService.cs" />
-    <Compile Include="Utils\AppHandler.cs" />
+    <Compile Include="Utility\AppHandler.cs" />
     <Compile Include="Enumerations\AccountStatus.cs" />
-    <Compile Include="Utils\DataRefWrapper.cs" />
+    <Compile Include="Utility\DataRefWrapper.cs" />
     <Compile Include="Configurations\DomainMapper.cs" />
-    <Compile Include="Utils\CaptchaImage.cs" />
+    <Compile Include="Utility\CaptchaImage.cs" />
     <Compile Include="Configurations\Constants.cs" />
     <Compile Include="Configurations\ModelSettings.cs" />
     <Compile Include="Entities\AdminInfo.cs" />
@@ -106,15 +105,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QueryService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
-    <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="Utils\Formatter.cs" />
-    <Compile Include="Utils\EnumExtensions.cs" />
-    <Compile Include="Utils\LanguageManager.cs" />
-    <Compile Include="Utils\ModelHelper.cs" />
-    <Compile Include="Utils\ObjectSerializer.cs" />
-    <Compile Include="Utils\PasswordRule.cs" />
-    <Compile Include="Utils\ResourceManager.cs" />
-    <Compile Include="Utils\RijndaelHelper.cs" />
+    <Compile Include="Utility\Extensions.cs" />
+    <Compile Include="Utility\Formatter.cs" />
+    <Compile Include="Utility\EnumExtensions.cs" />
+    <Compile Include="Utility\LanguageManager.cs" />
+    <Compile Include="Utility\ModelHelper.cs" />
+    <Compile Include="Utility\ObjectSerializer.cs" />
+    <Compile Include="Utility\PasswordRule.cs" />
+    <Compile Include="Utility\ResourceManager.cs" />
+    <Compile Include="Utility\RijndaelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">

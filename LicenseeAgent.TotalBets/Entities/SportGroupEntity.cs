@@ -7,7 +7,7 @@
 namespace LicenseeAgent.TotalBets.Entities
 {
     using System.Collections.Generic;
-    using Core.Utils;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

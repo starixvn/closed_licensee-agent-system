@@ -24,6 +24,7 @@ if (fanex.sportsbookSetting) {
                         data: data
                     }).success(function (data) {
                         //Passing data to deferred's resolve function on successful completion
+                        data.userName = userName;
                         deferred.resolve(data);
                     }).error(function (data) {
                         //Sending a friendly error message in case of failure

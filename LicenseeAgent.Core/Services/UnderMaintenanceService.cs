@@ -12,13 +12,13 @@ namespace LicenseeAgent.Core.Services
     using Fanex.Caching;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utility;
     using Newtonsoft.Json;
-    using Sunplus.UMControllerLibrary;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UnderMaintenanceService : ServiceBase, IDisposable, IUnderMaintenanceService
+    public class UnderMaintenanceService : IDisposable, IUnderMaintenanceService
     {
         private const int WaitInterval = 1000; // 1 second.
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
@@ -119,7 +119,8 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                HandleException(exception);
+                Logger.HandleException(exception);
+                throw;
             }
 
             return result;

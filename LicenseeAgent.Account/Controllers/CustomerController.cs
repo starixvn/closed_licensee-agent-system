@@ -201,6 +201,15 @@ namespace LicenseeAgent.Account.Controllers
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                                         LASAgentId = model.AgentId
                                     });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
             }
 
             return Json(new
@@ -230,12 +239,21 @@ namespace LicenseeAgent.Account.Controllers
             if (criteria.MsgId == 0)
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
-                                    members,
-                                    new GetMemberInfoListAction
-                                    {
-                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        LASAgentId = model.AgentId
-                                    });
+                    members,
+                    new GetMemberInfoListAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        LASAgentId = model.AgentId
+                    });
+
+                if (serviceResult.ErrCode != 0)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
             }
 
             return Json(new

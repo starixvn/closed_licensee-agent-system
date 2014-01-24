@@ -57,7 +57,6 @@
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Core\ModelSettings.cs" />
     <Compile Include="Criterias\AdminCheckInCriteria.cs" />
     <Compile Include="Criterias\AdminCheckInLicenseeCriteria.cs" />
     <Compile Include="Criterias\AdminGetMemberListCriteria.cs" />

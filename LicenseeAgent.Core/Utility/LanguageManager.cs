@@ -17,12 +17,7 @@ namespace LicenseeAgent.Core.Utility
     {
         private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture("en-US");
 
-        private static readonly System.Resources.ResourceManager LangResourceManager;
-
-        static LanguageManager()
-        {
-            LangResourceManager = new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
-        }
+        private static readonly System.Resources.ResourceManager LangResourceManager = new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
 
         public static string TwoLetterISOLanguageName
         {

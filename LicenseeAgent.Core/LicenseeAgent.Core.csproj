@@ -104,11 +104,11 @@
     <Compile Include="Entities\AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QueryService.cs" />
-    <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Utility\Extensions.cs" />
     <Compile Include="Utility\Formatter.cs" />
     <Compile Include="Utility\EnumExtensions.cs" />
     <Compile Include="Utility\LanguageManager.cs" />
+    <Compile Include="Utility\Logger.cs" />
     <Compile Include="Utility\ModelHelper.cs" />
     <Compile Include="Utility\ObjectSerializer.cs" />
     <Compile Include="Utility\PasswordRule.cs" />

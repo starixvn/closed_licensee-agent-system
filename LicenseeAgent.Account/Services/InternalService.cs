@@ -41,16 +41,9 @@ namespace LicenseeAgent.Account.Services
         /// <returns>Returns internal login information.</returns>
         public InternalLoginInfo Decode(string authKey)
         {
-            try
+            using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
             {
-                using (var rijndaelHelper = new RijndaelHelper(aesKey, aesVector))
-                {
-                    return rijndaelHelper.DecryptObject<InternalLoginInfo>(authKey);
-                }
-            }
-            catch
-            {
-                return null;
+                return rijndaelHelper.DecryptObject<InternalLoginInfo>(authKey);
             }
         }
     }

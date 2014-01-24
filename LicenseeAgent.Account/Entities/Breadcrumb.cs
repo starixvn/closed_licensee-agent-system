@@ -7,15 +7,16 @@
 namespace LicenseeAgent.Account.Entities
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Web;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Breadcrumb : List<BreadcrumbItem>
+    public class Breadcrumb : Collection<BreadcrumbItem>
     {
-        public Breadcrumb(IEnumerable<BreadcrumbItem> list)
+        public Breadcrumb(IList<BreadcrumbItem> list)
             : base(list)
         {
         }

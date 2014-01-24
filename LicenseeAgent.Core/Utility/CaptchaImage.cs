@@ -379,7 +379,7 @@ namespace LicenseeAgent.Core.Utility
         /// <param name="function">The function.</param>
         /// <param name="r">The r.</param>
         /// <returns></returns>
-        private GraphicsPath TextPath(string s, Font f, Rectangle r)
+        private static GraphicsPath TextPath(string s, Font f, Rectangle r)
         {
             var sf = new StringFormat
             {

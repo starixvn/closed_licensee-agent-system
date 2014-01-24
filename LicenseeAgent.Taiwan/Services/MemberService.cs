@@ -167,6 +167,10 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 ServiceMapper.MapObject<ServiceMemberEntity, T>(response.Member, memberEntity);
             }
+            else
+            {
+                response.ErrCode = 0;
+            }
 
             return response;
         }

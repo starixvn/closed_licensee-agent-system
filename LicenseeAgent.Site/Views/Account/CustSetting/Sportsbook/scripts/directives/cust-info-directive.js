@@ -29,7 +29,11 @@ if (fanex.sportsbookSetting) {
                         timeout = setTimeout(function () {
                             if (currentValue == ctrl.$modelValue) {
                                 var promise = custInfoService.checkUsername(value);
+                                promise.userName = value;
                                 promise.then(function (data) {
+                                    if (currentValue != data.userName) {
+                                        return;
+                                    }
                                     if (data.ErrCode == 0) {
                                         ctrl.hintMessage = '';
                                         setValidity(true);

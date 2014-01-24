@@ -296,14 +296,14 @@ namespace LicenseeAgent.Account.Controllers
                                         IBCCustId = customer.CustId
                                     });
 
-                // if (serviceResult.ErrCode != 0)
-                // {
-                //    ViewBag.Result = new SearchUserViewResult
-                //    {
-                //        ErrCode = serviceResult.ErrCode,
-                //        ErrMsg = serviceResult.ErrMsg
-                //    };
-                // }
+                if (serviceResult.ErrCode != 0)
+                {
+                    ViewBag.Result = new SearchUserViewResult
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    };
+                }
             }
 
             return customer;

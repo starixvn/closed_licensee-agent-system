@@ -32,8 +32,6 @@ namespace LicenseeAgent.CustomerSetting.Service
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
-    using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Mvc;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -58,6 +56,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             Execute(criteria);
         }
+
 
         /// <summary>
         /// Get Agent setting for insert new.
@@ -200,7 +199,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     discountXML,
                     betLimitXML,
                     positionTakingXML);
-                HandleException(errorMessage, ex);
+                Logger.HandleException(errorMessage, ex);
             }
 
             return new InsertResult
@@ -252,7 +251,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     discountXML,
                     betLimitXML,
                     positionTakingXML);
-                HandleException(errorMessage, ex);
+                Logger.HandleException(errorMessage, ex);
             }
 
             return new InsertResult
@@ -292,7 +291,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     string.Empty,
                     string.Empty,
                     positionTakingXML);
-                HandleException(errorMessage, ex);
+                Logger.HandleException(errorMessage, ex);
             }
 
             return new InsertResult
@@ -759,6 +758,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 betSettingXml,
                 positionTakingSettingXml);
         }
+                Logger.HandleException(ex);
 
         /// <summary>
         /// Build XML String for Updating.
@@ -1030,6 +1030,7 @@ namespace LicenseeAgent.CustomerSetting.Service
             var criteria = CreateUpdateCustomerCriteria(model, string.Empty, string.Empty, positionTakingXML);
             return _customerSettingRepository.UpdateIndirectCustomer(criteria);
         }
+
         #endregion Add Customer Setting
     }
 }

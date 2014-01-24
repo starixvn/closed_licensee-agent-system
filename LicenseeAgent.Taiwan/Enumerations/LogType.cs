@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Enumerations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum LogType : short
+    public enum LogType
     {
         /// <summary>
         /// None status.

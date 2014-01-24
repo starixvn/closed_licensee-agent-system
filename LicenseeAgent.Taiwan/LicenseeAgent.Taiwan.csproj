@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
@@ -78,14 +82,12 @@
     <Compile Include="Results\ResponseResult.cs" />
     <Compile Include="Services\ILogService.cs" />
     <Compile Include="Services\LogService.cs" />
-    <Compile Include="Utils\IDataParser.cs" />
-    <Compile Include="Utils\LogBinder.cs" />
+    <Compile Include="Utility\LogBinder.cs" />
     <Compile Include="Attributes\ServiceAttribute.cs" />
-    <Compile Include="Utils\ServiceMapper.cs" />
-    <Compile Include="Utils\ServiceWrapper.cs" />
+    <Compile Include="Utility\ServiceMapper.cs" />
+    <Compile Include="Utility\ServiceWrapper.cs" />
     <Compile Include="Services\IMemberService.cs" />
     <Compile Include="Services\MemberService.cs" />
-    <Compile Include="Attributes\StatusServiceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

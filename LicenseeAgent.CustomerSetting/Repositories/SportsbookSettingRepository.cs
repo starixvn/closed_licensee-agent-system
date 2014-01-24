@@ -263,7 +263,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    this.ParseDataSettingForUpdate(settingContext, custInfo, commissionSetting, bettingLimits, positionTakingDataList, reader);
+                    ParseDataSettingForUpdate(settingContext, custInfo, commissionSetting, bettingLimits, positionTakingDataList, reader);
                 }
             }
         }
@@ -396,7 +396,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// </summary>
         /// <param name="customerInfo">The customer information.</param>
         /// <param name="reader">The reader.</param>
-        private void ReaderAgentInfoData(CustomerInfo customerInfo, IDataReader reader)
+        private static void ReaderAgentInfoData(CustomerInfo customerInfo, IDataReader reader)
         {
             while (reader.Read())
             {
@@ -414,7 +414,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="customerInfo">The customer information.</param>
         /// <param name="reader">The reader.</param>
         /// <param name="userGroup">The user group.</param>
-        private void ReaderMemberInfoData(CustomerInfo customerInfo, IDataReader reader, out string userGroup)
+        private static void ReaderMemberInfoData(CustomerInfo customerInfo, IDataReader reader, out string userGroup)
         {
             userGroup = string.Empty;
             while (reader.Read())
@@ -432,7 +432,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// </summary>
         /// <param name="positionTakingDataList">Position taking list after read.</param>
         /// <param name="reader">Reader for reading database.</param>
-        private void ReadMemberPositionTakingData(Dictionary<string, PositionTaking> positionTakingDataList, IDataReader reader)
+        private static void ReadMemberPositionTakingData(Dictionary<string, PositionTaking> positionTakingDataList, IDataReader reader)
         {
             while (reader.Read())
             {
@@ -467,7 +467,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="positionTakingDataList">Position taking list after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineData">Get up line data or not, in edit form will get this data.</param>
-        private void ReadAgentPositionTakingSettingData(
+        private static void ReadAgentPositionTakingSettingData(
             Dictionary<string, PositionTaking> positionTakingDataList,
             IDataReader reader,
             bool getUplineData = true)
@@ -526,7 +526,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="positionTakingDataList">Position taking list after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="targetRoleId">The target role identifier.</param>
-        private void ReadAgentPositionTakingSettingDataForUpdate(
+        private static void ReadAgentPositionTakingSettingDataForUpdate(
             Dictionary<string, PositionTaking> positionTakingDataList,
             IDataReader reader,
             int targetRoleId)
@@ -576,7 +576,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// </summary>
         /// <param name="commissionItems">Commission setting after read.</param>
         /// <param name="reader">Reader for reading data.</param>
-        private void ReadMemberCommissionSettingData(IList<CommissionItem> commissionItems, IDataReader reader)
+        private static void ReadMemberCommissionSettingData(IList<CommissionItem> commissionItems, IDataReader reader)
         {
             while (reader.Read())
             {
@@ -602,7 +602,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="commissionItems">Commission setting after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineCom">Get up line commission or not.</param>
-        private void ReadAgentCommissionData(IList<CommissionItem> commissionItems, IDataReader reader, bool getUplineCom = true)
+        private static void ReadAgentCommissionData(IList<CommissionItem> commissionItems, IDataReader reader, bool getUplineCom = true)
         {
             while (reader.Read())
             {
@@ -647,9 +647,8 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="bettingLimits">Bet limits setting after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
-        private void ReadBetLimitData(IList<BettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
+        private static void ReadBetLimitData(IList<BettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
         {
-            string bettingItemDicKey = string.Empty;
             while (reader.Read())
             {
                 var sportType = reader.ToInt("SportType");
@@ -690,7 +689,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="bettingLimits">The betting limits.</param>
         /// <param name="positionTakingDataList">The position taking data list.</param>
         /// <param name="reader">The reader.</param>
-        private void ParseDataSettingForUpdate(
+        private static void ParseDataSettingForUpdate(
             SettingContext settingContext,
             CustomerInfo custInfo,
             CommissionSetting commissionSetting,
@@ -701,7 +700,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
                 var userGroup = string.Empty;
-                this.ReaderMemberInfoData(custInfo, reader, out userGroup);
+                ReaderMemberInfoData(custInfo, reader, out userGroup);
                 commissionSetting.UserGroup = userGroup;
             }
             else
@@ -715,11 +714,11 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 {
                     if (settingContext.TargetRoleId == (int)Role.Member)
                     {
-                        this.ReadMemberCommissionSettingData(commissionSetting.CommissionItems, reader);
+                        ReadMemberCommissionSettingData(commissionSetting.CommissionItems, reader);
                     }
                     else
                     {
-                        this.ReadAgentCommissionData(commissionSetting.CommissionItems, reader, true);
+                        ReadAgentCommissionData(commissionSetting.CommissionItems, reader, true);
                     }
                 }
 
@@ -733,11 +732,11 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             {
                 if (settingContext.TargetRoleId == (int)Role.Member)
                 {
-                    this.ReadMemberPositionTakingData(positionTakingDataList, reader);
+                    ReadMemberPositionTakingData(positionTakingDataList, reader);
                 }
                 else
                 {
-                    this.ReadAgentPositionTakingSettingDataForUpdate(positionTakingDataList, reader, settingContext.TargetRoleId);
+                    ReadAgentPositionTakingSettingDataForUpdate(positionTakingDataList, reader, settingContext.TargetRoleId);
                 }
             }
         }

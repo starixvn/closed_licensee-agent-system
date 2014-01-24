@@ -11,13 +11,14 @@ namespace LicenseeAgent.Taiwan.Services
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Fanex.Common;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
-    using LicenseeAgent.Taiwan.Utils;
+    using LicenseeAgent.Taiwan.Utility;
 
     /// <summary>
     /// TODO: Update summary.
@@ -48,13 +49,15 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult InsertNewMember(InsertNewMemberAction action)
         {
+            action.Password = Cryptography.CreateHash(action.Password, Cryptography.CreateSalt());
+
             var criteria = new AddNewMemberCriteria
             {
                 LicenseeId = action.LicenseeId,
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
+                Doing = LogBinder.GetActionInformation<InsertNewMemberAction>(action)
             };
             _logService.WriteLog(criteria);
 
@@ -81,7 +84,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
+                Doing = LogBinder.GetActionInformation<ResetPasswordAction>(action)
             };
             _logService.WriteLog(criteria);
 
@@ -108,7 +111,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
+                Doing = LogBinder.GetActionInformation<UpdateMemberInfoAction>(action)
             };
             _logService.WriteLog(criteria);
 
@@ -135,7 +138,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId.HasValue ? action.IBCCustId.Value : 0,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
+                Doing = LogBinder.GetActionInformation<UpdateMemberStatusAction>(action)
             };
             _logService.WriteLog(criteria);
 

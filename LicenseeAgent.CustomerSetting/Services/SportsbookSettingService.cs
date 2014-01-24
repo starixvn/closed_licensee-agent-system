@@ -47,13 +47,18 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             _customerSettingRepository = customerSettingRepository;
         }
+        
+        #region Add Customer Setting
 
+        /// <summary>
+        /// Check user name.
+        /// </summary>
+        /// <param name="criteria">Check exist username criteria.</param>
         public void CheckExistUserName(CheckExistUserNameCriteria criteria)
         {
             Execute(criteria);
         }
 
-        #region Add Customer Setting
         /// <summary>
         /// Get Agent setting for insert new.
         /// </summary>
@@ -123,7 +128,7 @@ namespace LicenseeAgent.CustomerSetting.Service
             CommissionSetting commissionSetting = null;
             IList<BettingLimit> bettingLimits = null;
             Dictionary<string, PositionTaking> positionTakingData = null;
-            ICriteria getAgentSettingCriteria = this.InitializeCriteriaForGettingSportsbookSettingForUpdate(settingContext);
+            ICriteria getAgentSettingCriteria = InitializeCriteriaForGettingSportsbookSettingForUpdate(settingContext);
 
             var msgId = 0;
             _customerSettingRepository.GetSettingForUpdate(
@@ -142,7 +147,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,
                     BettingLimits = bettingLimits,
-                    PositionTakingSetting = BuildPositionTakingGroupsForUpdate(settingContext, positionTakingData)
+                    PositionTakingSetting = BuildPositionTakingGroupsForUpdate(positionTakingData)
                 };
             }
 
@@ -163,16 +168,16 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             //// Build XML setting for insert new customer.
             var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
-            var betLimitXmlStringData = BuildBetLimitSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.BettingLimits);
+            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsbookCustomer.BettingLimits);
             var positionTakingXmlStringData = BuildPositionTakingSettingXML(
                 model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
-            var discountXML = discountXmlStringData != string.Empty
+            var discountXML = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
-            var betLimitXML = betLimitXmlStringData != string.Empty
+            var betLimitXML = !string.IsNullOrEmpty(betLimitXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData)
                 : string.Empty;
-            var positionTakingXML = positionTakingXmlStringData != string.Empty
+            var positionTakingXML = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
@@ -214,17 +219,17 @@ namespace LicenseeAgent.CustomerSetting.Service
         public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var discountXmlStringData = this.BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
-            var betLimitXmlStringData = this.BuildBetLimitSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.BettingLimits);
-            var positionTakingXmlStringData = this.BuildPositionTakingSettingXML(
+            var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
+            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsbookCustomer.BettingLimits);
+            var positionTakingXmlStringData = BuildPositionTakingSettingXML(
                 model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
-            var discountXML = discountXmlStringData != string.Empty
+            var discountXML = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
-            var betLimitXML = betLimitXmlStringData != string.Empty
+            var betLimitXML = !string.IsNullOrEmpty(betLimitXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData)
                 : string.Empty;
-            var positionTakingXML = positionTakingXmlStringData != string.Empty
+            var positionTakingXML = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
@@ -266,9 +271,9 @@ namespace LicenseeAgent.CustomerSetting.Service
         public InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var positionTakingXmlStringData = this.BuildPositionTakingSettingXML(
+            var positionTakingXmlStringData = BuildPositionTakingSettingXML(
                 model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
-            var positionTakingXML = positionTakingXmlStringData != string.Empty
+            var positionTakingXML = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
@@ -314,7 +319,7 @@ namespace LicenseeAgent.CustomerSetting.Service
             var betLimits = sportsBookCustomer != null ? sportsBookCustomer.BettingLimits : null;
             var positionTakingSetting = sportsBookCustomer != null ? sportsBookCustomer.PositionTakingSetting : null;
 
-            JsonSerializerSettings jsonSetting = GetJsonSetting();
+            JsonSerializerSettings jsonSetting = GetJsonSetting;
             var settingScript = new StringBuilder();
             if (result != null && result.ErrCode != 0)
             {
@@ -352,62 +357,6 @@ namespace LicenseeAgent.CustomerSetting.Service
         }
 
         /// <summary>
-        /// Insert customer to database.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="discountXML">Discount XML data.</param>
-        /// <param name="betLimitXML">Bet limit XML data.</param>
-        /// <param name="positionTakingXML">Position taking setting XML data.</param>
-        /// <returns>
-        /// Insert status and customer id.
-        /// </returns>
-        private InsertResult InsertCustomerData(
-            InsertCustomerViewModel model,
-            string discountXML,
-            string betLimitXML,
-            string positionTakingXML)
-        {
-            var criteria = CreateInsertCustomerCriteria(model, discountXML, betLimitXML, positionTakingXML);
-            return _customerSettingRepository.InsertCustomer(criteria);
-        }
-
-        /// <summary>
-        /// Insert customer to database.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="discountXML">Discount XML data.</param>
-        /// <param name="betLimitXML">Bet limit XML data.</param>
-        /// <param name="positionTakingXML">Position taking setting XML data.</param>
-        /// <returns>
-        /// Insert status and customer id.
-        /// </returns>
-        private InsertResult UpdateCustomerData(
-            UpdateCustomerViewModel model,
-            string discountXML,
-            string betLimitXML,
-            string positionTakingXML)
-        {
-            var criteria = this.CreateUpdateCustomerCriteria(model, discountXML, betLimitXML, positionTakingXML);
-            return _customerSettingRepository.UpdateCustomer(criteria);
-        }
-
-        /// <summary>
-        /// Edit customer to database.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="positionTakingXML">Position taking setting XML data.</param>
-        /// <returns>
-        /// Insert status and customer id.
-        /// </returns>
-        private InsertResult UpdateIndirectCustomerData(
-            UpdateCustomerViewModel model,
-            string positionTakingXML)
-        {
-            var criteria = this.CreateUpdateCustomerCriteria(model, string.Empty, string.Empty, positionTakingXML);
-            return _customerSettingRepository.UpdateIndirectCustomer(criteria);
-        }
-
-        /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>
         /// <param name="model">The model.</param>
@@ -415,7 +364,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="betLimitXML">The bet limit XML.</param>
         /// <param name="positionTakingXML">The position taking XML.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateInsertCustomerCriteria(
+        private static ICriteria CreateInsertCustomerCriteria(
             InsertCustomerViewModel model,
             string discountXML,
             string betLimitXML,
@@ -458,13 +407,12 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="betLimitXML">The bet limit XML.</param>
         /// <param name="positionTakingXML">The position taking XML.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateUpdateCustomerCriteria(
+        private static ICriteria CreateUpdateCustomerCriteria(
             UpdateCustomerViewModel model,
             string discountXML,
             string betLimitXML,
             string positionTakingXML)
         {
-            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
             var criteriaBase = new UpdateCustomerCriteria
             {
                 Discount = discountXML,
@@ -478,27 +426,27 @@ namespace LicenseeAgent.CustomerSetting.Service
             {
                 if (model.SettingContext.IsOnlyUpdatePT)
                 {
-                    return this.CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model);
+                    return CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model);
                 }
                 else
                 {
-                    return this.CreateAgentUpdateMemberCriteria(criteriaBase, model);
+                    return CreateAgentUpdateMemberCriteria(criteriaBase, model);
                 }
             }
             else
             {
                 if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
                 {
-                    return this.CreateLicenseeUpdateAgentCriteria(criteriaBase, model);
+                    return CreateLicenseeUpdateAgentCriteria(criteriaBase, model);
                 }
                 else
                 {
-                    return this.CreateAgentUpdateAgentCriteria(criteriaBase, model);
+                    return CreateAgentUpdateAgentCriteria(criteriaBase, model);
                 }
             }
         }
 
-        private ICriteria CreateAgentInsertMemberCriteria(
+        private static ICriteria CreateAgentInsertMemberCriteria(
             InsertCustomerCriteria criteriaBase,
             InsertCustomerViewModel model)
         {
@@ -517,7 +465,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>The criteria for agent update member.</returns>
-        private ICriteria CreateAgentUpdateMemberCriteria(
+        private static ICriteria CreateAgentUpdateMemberCriteria(
             UpdateCustomerCriteria criteriaBase,
             UpdateCustomerViewModel model)
         {
@@ -535,7 +483,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>The criteria for agent update member.</returns>
-        private ICriteria CreateAgentUpdateIndirectMemberCriteria(
+        private static ICriteria CreateAgentUpdateIndirectMemberCriteria(
             UpdateCustomerCriteria criteriaBase,
             UpdateCustomerViewModel model)
         {
@@ -557,7 +505,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateLicenseeInsertAgentCriteria(
+        private static ICriteria CreateLicenseeInsertAgentCriteria(
             InsertCustomerCriteria criteriaBase,
             InsertCustomerViewModel model)
         {
@@ -587,7 +535,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateLicenseeUpdateAgentCriteria(
+        private static ICriteria CreateLicenseeUpdateAgentCriteria(
             UpdateCustomerCriteria criteriaBase,
             UpdateCustomerViewModel model)
         {
@@ -605,7 +553,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateAgentInsertAgentCriteria(
+        private static ICriteria CreateAgentInsertAgentCriteria(
             InsertCustomerCriteria criteriaBase,
             InsertCustomerViewModel model)
         {
@@ -635,7 +583,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="criteriaBase">The criteria base.</param>
         /// <param name="model">The model.</param>
         /// <returns>Returns a criteria.</returns>
-        private ICriteria CreateAgentUpdateAgentCriteria(
+        private static ICriteria CreateAgentUpdateAgentCriteria(
             UpdateCustomerCriteria criteriaBase,
             UpdateCustomerViewModel model)
         {
@@ -652,7 +600,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// </summary>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Criteria for getting SportsBook setting.</returns>
-        private ICriteria InitializeCriteriaForGettingSportsbookSettingForUpdate(SettingContext settingContext)
+        private static ICriteria InitializeCriteriaForGettingSportsbookSettingForUpdate(SettingContext settingContext)
         {
             ICriteria getAgentSettingCriteria = null;
 
@@ -699,7 +647,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="positionTakingData">Position taking raw data.</param>
         /// <param name="maxLicenseePt">Get max PT incase  insert new agent level 1.</param>
         /// <returns>List position taking group.</returns>
-        private IList<PositionTakingGroup> BuildPositionTakingGroups(
+        private static IList<PositionTakingGroup> BuildPositionTakingGroups(
             SettingContext settingContext,
             Dictionary<string, PositionTaking> positionTakingData,
             int maxLicenseePt = 0)
@@ -736,13 +684,11 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <summary>
         /// Build position taking group from raw data.
         /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingData">Position taking raw data.</param>
         /// <returns>
         /// List position taking group.
         /// </returns>
-        private IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
-            SettingContext settingContext,
+        private static IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
             Dictionary<string, PositionTaking> positionTakingData)
         {
             IList<PositionTakingGroup> positionTakingSetting = new List<PositionTakingGroup>();
@@ -764,7 +710,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                     var betTypeArray = betTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingDataForUpdate(settingContext, positionTakingData, positionTakingGroup, betTypeId);
+                        GetPositionTakingDataForUpdate(positionTakingData, positionTakingGroup, betTypeId);
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -786,7 +732,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="betSettingXml">Betting limit XML data.</param>
         /// <param name="positionTakingSettingXml">Position taking setting data.</param>
         /// <returns>Message details string.</returns>
-        private string BuildLogErrorDetail(
+        private static string BuildLogErrorDetail(
             string errorMessage,
             bool isEditAgent,
             int actorId,
@@ -796,30 +742,22 @@ namespace LicenseeAgent.CustomerSetting.Service
             string betSettingXml,
             string positionTakingSettingXml)
         {
-            try
-            {
-                string errorString = "Message: {0} \nForm: {1} \nActor Id: {2} \nCust Id(s): {3} \nAdmin Id: {4} \n"
-                    + "CommissionSetting: {5} \n"
-                    + "Betting Limit: {6} \n"
-                    + "Share Setting: {7} \n"
-                    + "Apply Preset On Member: {8} \n";
+            string errorString = "Message: {0} \nForm: {1} \nActor Id: {2} \nCust Id(s): {3} \nAdmin Id: {4} \n"
+                + "CommissionSetting: {5} \n"
+                + "Betting Limit: {6} \n"
+                + "Share Setting: {7} \n"
+                + "Apply Preset On Member: {8} \n";
 
-                return string.Format(
-                    errorString,
-                    errorMessage,
-                    isEditAgent ? "Edit Agent" : "Edit Member(s)",
-                    actorId,
-                    custId,
-                    adminId,
-                    commissionXml,
-                    betSettingXml,
-                    positionTakingSettingXml);
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                return errorMessage;
-            }
+            return string.Format(
+                errorString,
+                errorMessage,
+                isEditAgent ? "Edit Agent" : "Edit Member(s)",
+                actorId,
+                custId,
+                adminId,
+                commissionXml,
+                betSettingXml,
+                positionTakingSettingXml);
         }
 
         /// <summary>
@@ -828,7 +766,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="commissionSetting">Commission setting data.</param>
         /// <returns>String data for update to database.</returns>
-        private string BuildCommissionSettingXML(SettingContext settingContext, CommissionSetting commissionSetting)
+        private static string BuildCommissionSettingXML(SettingContext settingContext, CommissionSetting commissionSetting)
         {
             string xmlStringData = string.Empty;
             string tempString = string.Empty;
@@ -873,13 +811,11 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <summary>
         /// Build XML String for Updating.
         /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
         /// <param name="bettingLimits">Betting limits data.</param>
         /// <returns>String data to update database.</returns>
-        private string BuildBetLimitSettingXML(SettingContext settingContext, IList<BettingLimit> bettingLimits)
+        private static string BuildBetLimitSettingXML(IList<BettingLimit> bettingLimits)
         {
             string xmlStringData = string.Empty;
-            string tempString = string.Empty;
             if (bettingLimits != null && bettingLimits.Any())
             {
                 foreach (BettingLimit betLimit in bettingLimits)
@@ -903,20 +839,20 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingSetting">Position taking data.</param>
         /// <returns>String data to update database.</returns>
-        private string BuildPositionTakingSettingXML(SettingContext settingContext, IList<PositionTaking> positionTakingSetting)
+        private static string BuildPositionTakingSettingXML(SettingContext settingContext, IList<PositionTaking> positionTakingSetting)
         {
             string xmlStringData = string.Empty;
 
             if (positionTakingSetting == null || !positionTakingSetting.Any())
-            { 
-                return xmlStringData; 
+            {
+                return xmlStringData;
             }
 
             foreach (PositionTaking positionTaking in positionTakingSetting)
             {
                 if (positionTaking != null)
                 {
-                    xmlStringData += this.BuildXMLForOnePositionTakingSetting(settingContext, positionTaking);
+                    xmlStringData += BuildXMLForOnePositionTakingSetting(settingContext, positionTaking);
                 }
             }
 
@@ -929,7 +865,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="settingContext">The setting context.</param>
         /// <param name="positionTaking">The position taking.</param>
         /// <returns>The xml string for one position taking item.</returns>
-        private string BuildXMLForOnePositionTakingSetting(SettingContext settingContext, PositionTaking positionTaking)
+        private static string BuildXMLForOnePositionTakingSetting(SettingContext settingContext, PositionTaking positionTaking)
         {
             string xmlResult = string.Empty;
 
@@ -980,7 +916,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
-        private void GetPositionTakingData(
+        private static void GetPositionTakingData(
             SettingContext settingContext,
             Dictionary<string, PositionTaking> positionTakingData,
             int maxLicenseePt,
@@ -1019,12 +955,10 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <summary>
         /// Get Position taking item.
         /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingData">Position taking to save data.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
-        private void GetPositionTakingDataForUpdate(
-            SettingContext settingContext,
+        private static void GetPositionTakingDataForUpdate(
             Dictionary<string, PositionTaking> positionTakingData,
             PositionTakingGroup positionTakingGroup,
             string betTypeId)
@@ -1039,6 +973,62 @@ namespace LicenseeAgent.CustomerSetting.Service
             {
                 positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);
             }
+        }
+
+        /// <summary>
+        /// Insert customer to database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="discountXML">Discount XML data.</param>
+        /// <param name="betLimitXML">Bet limit XML data.</param>
+        /// <param name="positionTakingXML">Position taking setting XML data.</param>
+        /// <returns>
+        /// Insert status and customer id.
+        /// </returns>
+        private InsertResult InsertCustomerData(
+            InsertCustomerViewModel model,
+            string discountXML,
+            string betLimitXML,
+            string positionTakingXML)
+        {
+            var criteria = CreateInsertCustomerCriteria(model, discountXML, betLimitXML, positionTakingXML);
+            return _customerSettingRepository.InsertCustomer(criteria);
+        }
+
+        /// <summary>
+        /// Insert customer to database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="discountXML">Discount XML data.</param>
+        /// <param name="betLimitXML">Bet limit XML data.</param>
+        /// <param name="positionTakingXML">Position taking setting XML data.</param>
+        /// <returns>
+        /// Insert status and customer id.
+        /// </returns>
+        private InsertResult UpdateCustomerData(
+            UpdateCustomerViewModel model,
+            string discountXML,
+            string betLimitXML,
+            string positionTakingXML)
+        {
+            var criteria = CreateUpdateCustomerCriteria(model, discountXML, betLimitXML, positionTakingXML);
+            return _customerSettingRepository.UpdateCustomer(criteria);
+        }
+
+        /// <summary>
+        /// Edit customer to database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="positionTakingXML">Position taking setting XML data.</param>
+        /// <returns>
+        /// Insert status and customer id.
+        /// </returns>
+        private InsertResult UpdateIndirectCustomerData(
+            UpdateCustomerViewModel model,
+            string positionTakingXML)
+        {
+            var criteria = CreateUpdateCustomerCriteria(model, string.Empty, string.Empty, positionTakingXML);
+            return _customerSettingRepository.UpdateIndirectCustomer(criteria);
         }
         #endregion Add Customer Setting
     }

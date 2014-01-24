@@ -5,7 +5,7 @@
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan.Utils
+namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
     using System.IO;
@@ -22,28 +22,21 @@ namespace LicenseeAgent.Taiwan.Utils
         /// <summary>
         /// Get action information.
         /// </summary>
+        /// <typeparam name="T">Type action.</typeparam>
         /// <param name="action">Service Action.</param>
         /// <returns>String Action information.</returns>
-        public static string GetActionInformation(IAction action)
+        public static string GetActionInformation<T>(IAction action) where T : class
         {
             var logContent = new LogContentEntity
             {
-                Url = AppSettings.TaiwanAPI,
+                Link = AppSettings.TaiwanAPI,
                 Action = action.GetActionName(),
                 Parameters = (LogAction)action
             };
 
             using (var stringWriter = new StringWriter())
             {
-                var types = new Type[] 
-                { 
-                    typeof(InsertNewMemberAction), 
-                    typeof(ResetPasswordAction), 
-                    typeof(UpdateMemberInfoAction), 
-                    typeof(UpdateMemberStatusAction) 
-                };
-
-                var serializer = new XmlSerializer(logContent.GetType(), types);
+                var serializer = new XmlSerializer(logContent.GetType(), new Type[] { typeof(T) });
 
                 serializer.Serialize(stringWriter, logContent);
              

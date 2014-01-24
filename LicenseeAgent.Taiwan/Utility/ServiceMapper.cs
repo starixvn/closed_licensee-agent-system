@@ -5,7 +5,7 @@
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan
+namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,6 @@ namespace LicenseeAgent.Taiwan
     using System.Reflection;
     using System.Text;
     using LicenseeAgent.Taiwan.Filter;
-    using LicenseeAgent.Taiwan.Utils;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,14 +50,7 @@ namespace LicenseeAgent.Taiwan
 
                     if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        var value = sourceProperty.GetValue(source, null);
-                        if (attribute is IDataParser)
-                        {
-                            var parser = (IDataParser)attribute;
-                            value = parser.Parse(value);
-                        }
-
-                        destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, value), null);
+                        destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, sourceProperty.GetValue(source, null)), null);
                     }
                 }
             }

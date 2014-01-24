@@ -12,7 +12,7 @@ namespace LicenseeAgent.Account.Entities
     using System.Text;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Taiwan;
-    using LicenseeAgent.Taiwan.Utils;
+    using LicenseeAgent.Taiwan.Utility;
 
     /// <summary>
     /// TODO: Update summary.
@@ -45,7 +45,6 @@ namespace LicenseeAgent.Account.Entities
 
         public string Fax { get; set; }
 
-        [StatusService(Name = "IsClosed")]
         public byte Status { get; set; }
     }
 }

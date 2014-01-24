@@ -17,12 +17,15 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// </summary>
     public class CustomerSettingServiceBase : QueryService
     {
-        protected JsonSerializerSettings GetJsonSetting()
+        protected static JsonSerializerSettings GetJsonSetting
         {
-            var settings = new JsonSerializerSettings();
-            settings.NullValueHandling = NullValueHandling.Ignore;
-            settings.Formatting = Formatting.Indented;
-            return settings;
+            get
+            {
+                var settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.Formatting = Formatting.Indented;
+                return settings;
+            }
         }
     }
 }

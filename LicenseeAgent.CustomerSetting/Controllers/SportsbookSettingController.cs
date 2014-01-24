@@ -61,17 +61,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly ISportsbookSettingService _customerSettingService;
 
-        private readonly IAccountService _accountService;
-
         private readonly IMemberService _memberService;
 
         public SportsbookSettingController(
                 ISportsbookSettingService customerSettingService,
-                IAccountService accountService,
                 IMemberService memberService)
         {
             _customerSettingService = customerSettingService;
-            _accountService = accountService;
             _memberService = memberService;
         }
 
@@ -129,7 +125,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
 
-                var serviceResult = _memberService.GetMemberInformation<CustomerInfo>(
+                _memberService.GetMemberInformation<CustomerInfo>(
                                     sportsBookCustomer.CustInfo, 
                                     new GetMemberInfoAction
                                     {
@@ -389,7 +385,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        private IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
+        private static IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
         {
             var msgContents = new List<Result>();
             if (result.ErrCode == 0)
@@ -479,7 +475,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return msgContents;
         }
 
-        private string GetSportName(int sportType, int betType, bool isLive)
+        private static string GetSportName(int sportType, int betType, bool isLive)
         {
             var sportName = DataRefWrapper.GetSportName(sportType, betType);
             return sportType == (int)SportType.Soccer

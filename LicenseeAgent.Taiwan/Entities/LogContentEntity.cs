@@ -19,7 +19,8 @@ namespace LicenseeAgent.Taiwan.Entities
     [XmlRootAttribute("root", IsNullable = false)]
     public class LogContentEntity
     {
-        public string Url { get; set; }
+        [XmlElement(ElementName = "Url")]
+        public string Link { get; set; }
 
         public string Action { get; set; }
         

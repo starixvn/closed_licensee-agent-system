@@ -13,7 +13,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan;
-    using LicenseeAgent.Taiwan.Utils;
+    using LicenseeAgent.Taiwan.Utility;
     using LicenseeAgent.Web.Validations;
 
     /// <summary>
@@ -53,7 +53,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public decimal MaxCredit { get; set; }
 
-        [StatusService(Name = "IsClosed")]
         public byte Status { get; set; }
     }
 }

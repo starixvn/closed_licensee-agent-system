@@ -5,7 +5,7 @@
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan
+namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace LicenseeAgent.Taiwan
     using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Results;
 
     /// <summary>
     /// TODO: Update summary.

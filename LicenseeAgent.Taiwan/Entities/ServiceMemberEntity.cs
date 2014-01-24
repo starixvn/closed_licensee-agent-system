@@ -8,6 +8,7 @@
 namespace LicenseeAgent.Taiwan.Entities
 {
     using System.Runtime.Serialization;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,5 +41,13 @@ namespace LicenseeAgent.Taiwan.Entities
 
         [DataMember(Name = "IsClosed")]
         public bool IsClosed { get; set; }
+
+        public object Status 
+        {
+            get
+            {
+                return IsClosed ? AccountStatus.Closed : AccountStatus.Open;
+            }
+        }
     }
 }

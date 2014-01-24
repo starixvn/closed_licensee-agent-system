@@ -22,7 +22,9 @@
         reRenderAfterPaged: function () {
             var params = {
                 username: $.trim($("#Username").val()),
-                status: $("#Status").val()
+                status: $("#Status").val(),
+                pageindex: 1,
+                itemsperpage: CORE.pageSizes[0]
             };
             $.ajax({
                 url: $('#search-form').attr('action'),
@@ -40,16 +42,52 @@
                         itemsPerPage: CORE.pageSizes[0],
                         currentPage: 0,
                         itemsPerPageArray: CORE.pageSizes,
-                        showDetail: true
+                        showDetail: true,
+                        totalItem: data.TotalRecords,
+                        pagerSelectCallBack: TRANSFER_LIST.doPaging
                     };
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
                 },
                 complete: function () {
                     CORE.unblockUI();
                 }
             });
+        },
+        doPaging: function (page_index, itemsPerPage, jq) {
+            gridOption.pagerOption.itemsPerPage = itemsPerPage;
+            gridOption.pagerOption.currentPage = page_index;
+
+            var params = {
+                username: $.trim($("#Username").val()),
+                status: $("#Status").val(),
+                pageindex: page_index,
+                itemsperpage: itemsPerPage
+            };
+            $.ajax({
+                url: $('#search-form').attr('action'),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                    }
+
+                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
+                    $('#grid').show().fanexGrid(gridOption);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+
+            return false;
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);

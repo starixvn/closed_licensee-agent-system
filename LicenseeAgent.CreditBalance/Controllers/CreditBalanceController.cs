@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CreditBalance.Controllers
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CreditBalance.Criteria;
@@ -50,39 +51,79 @@ namespace LicenseeAgent.CreditBalance.Controllers
         {
             if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
             {
-                var memberBalanceInfo = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
-                    {
-                        AgentId = CurrentSession.AgentInfo.AgentId,
-                        Username = model.UserName
-                    });
-
-                var serviceResult = _memberService.GetMemberInformations<MemberBalanceInfo>(
-                                    memberBalanceInfo,
-                                    new GetMemberInfoListAction
-                                    {
-                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        LASAgentId = CurrentSession.AgentInfo.AgentId
-                                    });
-
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = memberBalanceInfo
-                });
+                return SearchMember(model);
             }
             else
             {
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
-                    {
-                        AgentId = CurrentSession.AgentInfo.AgentId,
-                        Username = model.UserName,
-                        Status = model.Status
-                    })
-                });
+                return SearchAgent(model);
             }
+        }
+
+        /// <summary>
+        /// Searches the member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON balance.</returns>
+        [NonAction]
+        public JsonResult SearchMember(CreditBalanceSearchViewModel model)
+        {
+            var memberBalanceInfo = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                Username = model.UserName
+            });
+
+            var serviceResult = _memberService.GetMemberInformations<MemberBalanceInfo>(
+                                memberBalanceInfo,
+                                new GetMemberInfoListAction
+                                {
+                                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                    LASAgentId = CurrentSession.AgentInfo.AgentId
+                                });
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = memberBalanceInfo
+            });
+        }
+
+        /// <summary>
+        /// Searches the agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON balance.</returns>
+        [NonAction]
+        public JsonResult SearchAgent(CreditBalanceSearchViewModel model)
+        {
+            var list = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                Username = model.UserName,
+                Status = model.Status
+            });
+
+            var pagedList = list.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
+
+            var totalData = new AgentBalanceInfo
+            {
+                UserName = "Total",
+                GivenCredit = pagedList.Select(x => x.GivenCredit).Sum(),
+                UsedCredit = pagedList.Select(x => x.UsedCredit).Sum(),
+                YesterdayBalance = pagedList.Select(x => x.YesterdayBalance).Sum(),
+                TotalBalance = pagedList.Select(x => x.TotalBalance).Sum(),
+                YesterdayCash = pagedList.Select(x => x.YesterdayCash).Sum(),
+                TotalCash = pagedList.Select(x => x.TotalCash).Sum(),
+                Outstanding = pagedList.Select(x => x.Outstanding).Sum(),
+            };
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = pagedList,
+                TotalData = totalData,
+                TotalRecords = list.Count()
+            });
         }
 
         /// <summary>

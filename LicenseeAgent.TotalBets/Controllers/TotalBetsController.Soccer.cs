@@ -84,7 +84,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sportType">Sport Type.</param>
         /// <returns>League list.</returns>
         [HttpPost]
-        public JsonResult GetLeagueList(string league, int sportType = 1)
+        public JsonResult GetLeagueList(string league, int sportType)
         {
             var criteria = new LeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType };
             var leagues = _totalBetsService.GetLeagues(criteria).OrderBy(x => x.LeagueName);
@@ -117,7 +117,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sportType">Sport Type.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
-        public JsonResult GetEventsByLeagues(string league, string @event, int sportType = 1)
+        public JsonResult GetEventsByLeagues(string league, string @event, int sportType)
         {
             var criteria = new EventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
             var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);

@@ -1,5 +1,6 @@
 ﻿var Soccer = function ($) {
     return {
+        sportType: 1, //Basketball sporttype
         init: function () {
             $("#refresh-count-down").refreshCountDown({
                 listTimeInterval: CORE.TimeInterval,
@@ -24,7 +25,8 @@
 
         getLeagueData: function () {
             var params = {
-                League: $("#League").val()
+                League: $("#League").val(),
+                sportType: Soccer.sportType
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetLeagueList"),
@@ -75,7 +77,8 @@
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#League").val(),
-                Event: $("#Event").val()
+                Event: $("#Event").val(),
+                sportType: Soccer.sportType
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetEventsByLeagues"),

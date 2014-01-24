@@ -26,7 +26,14 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             return View();
         }
-               
+
+        [HttpGet]
+        public ActionResult OtherSportsAllBetType(string matchName)
+        {
+            ViewBag.Match = matchName;
+            return View();
+        }
+
         /// <summary>
         /// Get All League.
         /// </summary>

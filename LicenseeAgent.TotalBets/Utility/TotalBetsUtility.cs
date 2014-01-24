@@ -19,7 +19,7 @@ namespace LicenseeAgent.TotalBets.Utility
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TotalBetsUtility
+    public static class TotalBetsUtility
     {
         /// <summary>
         /// Get main display data to view.

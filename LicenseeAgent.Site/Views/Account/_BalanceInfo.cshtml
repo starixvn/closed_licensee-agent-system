@@ -45,17 +45,15 @@
                 <td>@Las.GivenCredit</td>
                 <td class="text-right">
                     @{
-                        var isAdmin = (bool)ViewBag.IsAdmin;
-                        if(isAdmin != null && isAdmin == true && Model.BalanceInfo.GivenCredit == 0)
+                        if(ViewBag.IsAdmin != null && ViewBag.IsAdmin == true && Model.BalanceInfo.GivenCredit == 0)
                         {
                             <span>@Las.Unlimitted</span>
                         }
                         else
                         {
-                            RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit);
+                            <span>@RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit)</span>
                         }
-                    }
-                    
+                    }                    
                 </td>
             </tr>
             <tr>

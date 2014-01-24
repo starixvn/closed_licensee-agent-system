@@ -134,13 +134,15 @@ namespace LicenseeAgent.Site
                 "~/scripts/jquery-ui/jquery.ui.sortable.js",
                 "~/scripts/jquery-ui/jquery.ui.button.js",
                 "~/scripts/jquery-ui/jquery.ui.dialog.js",
+                "~/scripts/jquery-ui/jquery.ui.tabs.js",
                 "~/scripts/clickout/jquery.clickout.js"));
             bundles.Add(new LessBundle("~/css/jqueryui").Include(
                 "~/content/jquery-ui/jquery.ui.core.css",
                 "~/content/jquery-ui/jquery.ui.theme.css",
                 "~/content/jquery-ui/jquery.ui.resizable.css",
                 "~/content/jquery-ui/jquery.ui.button.css",
-                "~/content/jquery-ui/jquery.ui.dialog.css"));
+                "~/content/jquery-ui/jquery.ui.dialog.css",
+                "~/content/jquery-ui/jquery.ui.tabs.css"));
         }
 
         /// <summary>

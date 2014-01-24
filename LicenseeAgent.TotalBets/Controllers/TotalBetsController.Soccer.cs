@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Services;
-    using LicenseeAgent.TotalBets.Utilities;
+    using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -55,7 +55,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var dataList = _totalBetsService.GetSoccerData(criteria);
-            var mapData = TotalBetsUtils.MapTotalBetsMainData(dataList)
+            var mapData = TotalBetsUtility.MapTotalBetsMainData(dataList)
                 .OrderByDescending(x => x.LiveIndicator)
                 .ThenBy(x => x.LeagueName)
                 .ToList();

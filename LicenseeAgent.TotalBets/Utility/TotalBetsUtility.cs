@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsUtils.cs" company="Microsoft">
+// <copyright file="TotalBetsUtility.cs" company="Nexcel Solutions Vietnam">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.TotalBets.Utilities
+namespace LicenseeAgent.TotalBets.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace LicenseeAgent.TotalBets.Utilities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TotalBetsUtils
+    public class TotalBetsUtility
     {
         /// <summary>
         /// Get main display data to view.

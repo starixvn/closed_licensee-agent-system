@@ -10,7 +10,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
-    using LicenseeAgent.TotalBets.Utilities;
+    using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -42,7 +42,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     MatchList = model.MatchList
                 };
                 var dataList = _totalBetsService.GetBasketballData(criteria);
-                var orderedDataList = TotalBetsUtils.MapTotalBetsMainData(dataList)
+                var orderedDataList = TotalBetsUtility.MapTotalBetsMainData(dataList)
                     .OrderByDescending(x => x.LiveIndicator)
                     .ThenBy(x => x.LeagueName)
                     .ToList();

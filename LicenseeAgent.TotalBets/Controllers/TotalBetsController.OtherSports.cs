@@ -12,7 +12,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
-    using LicenseeAgent.TotalBets.Utilities;
+    using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
 
@@ -180,7 +180,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     liveEventsResult.Add(new SportGroupEntity
                     {
                         SportType = sportId,
-                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportLive).ToList()
+                        LeagueList = TotalBetsUtility.MapTotalBetsMainData(leaguesInSportLive).ToList()
                     });
                 }
 
@@ -189,7 +189,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     deadEventsResult.Add(new SportGroupEntity
                     {
                         SportType = sportId,
-                        LeagueList = TotalBetsUtils.MapTotalBetsMainData(leaguesInSportDead).ToList()
+                        LeagueList = TotalBetsUtility.MapTotalBetsMainData(leaguesInSportDead).ToList()
                     });
                 }
             }

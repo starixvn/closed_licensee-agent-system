@@ -101,7 +101,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="data">Input data table.</param>
         /// <returns>List of formatted sports book.</returns>
-        public IList<Sportbook> GenerateSportsbookResults(DataTable data)
+        private static IList<Sportbook> GenerateSportsbookResults(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {
@@ -155,7 +155,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="data">Input data table.</param>
         /// <returns>List of formatted outright.</returns>
-        public IList<OutRight> GenerateOutrightResults(DataTable data)
+        private static IList<OutRight> GenerateOutrightResults(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {

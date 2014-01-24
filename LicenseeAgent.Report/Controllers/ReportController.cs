@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -228,6 +229,34 @@ namespace LicenseeAgent.Report.Controllers
         #region Utilities
 
         /// <summary>
+        /// Generate Outright Cache Key.
+        /// </summary>
+        /// <param name="criteria">Outright Results Report Criteria.</param>
+        /// <returns>HTML string.</returns>
+        private static string GenerateOutRightCacheKey(OutrightResultsReportCriteria criteria)
+        {
+            const string PatternKey = "{0}{1}Results.OutRight.Data_{2}";
+            return string.Format(PatternKey, criteria.FromDate, criteria.ToDate, CurrentSession.OnUserId);
+        }
+
+        private static string ResultsMatchNoData()
+        {
+            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Kick Off. Time</th>";
+            htmlNoDataStr += "<th class='column-match'>Match</th><th class='column-firsthaftscore'>First Half Score</th>";
+            htmlNoDataStr += "<th class='column-finalscore'>Final Score</th><th class='column-status'>Status</th></tr></thead>";
+            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            return htmlNoDataStr;
+        }
+
+        private static string ResultsOutrightNoData()
+        {
+            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Time</th>";
+            htmlNoDataStr += "<th class='column-match'>Team</th><th class='column-status'>Resuls</th></tr></thead>";
+            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            return htmlNoDataStr;
+        }
+
+        /// <summary>
         /// Get Match Results Data.
         /// </summary>
         /// <param name="criteria">Match Results Report Criteria.</param>
@@ -256,34 +285,6 @@ namespace LicenseeAgent.Report.Controllers
             }
 
             return string.Empty;
-        }
-
-        /// <summary>
-        /// Generate Outright Cache Key.
-        /// </summary>
-        /// <param name="criteria">Outright Results Report Criteria.</param>
-        /// <returns>HTML string.</returns>
-        private string GenerateOutRightCacheKey(OutrightResultsReportCriteria criteria)
-        {
-            const string PatternKey = "{0}{1}Results.OutRight.Data_{2}";
-            return string.Format(PatternKey, criteria.FromDate, criteria.ToDate, CurrentSession.OnUserId);
-        }
-
-        private string ResultsMatchNoData()
-        {
-            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Kick Off. Time</th>";
-            htmlNoDataStr += "<th class='column-match'>Match</th><th class='column-firsthaftscore'>First Half Score</th>";
-            htmlNoDataStr += "<th class='column-finalscore'>Final Score</th><th class='column-status'>Status</th></tr></thead>";
-            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
-            return htmlNoDataStr;
-        }
-
-        private string ResultsOutrightNoData()
-        {
-            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Time</th>";
-            htmlNoDataStr += "<th class='column-match'>Team</th><th class='column-status'>Resuls</th></tr></thead>";
-            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
-            return htmlNoDataStr;
         }
 
         #endregion Utilities

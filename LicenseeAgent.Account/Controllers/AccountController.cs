@@ -70,6 +70,7 @@ namespace LicenseeAgent.Account.Controllers
                     AgentID = CurrentSession.AgentInfo.AgentId,
                     MoveBetDay = balanceUp.MoveBetDay
                 };
+                ViewBag.IsAdmin = CurrentSession.IsAdmin;
                 model.BalanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
             }
 

@@ -955,4 +955,8 @@
   <data name="EditCreditSuccessfully" xml:space="preserve">
     <value>Edit Credit Successfully</value>
   </data>
+  <data name="Unlimitted" xml:space="preserve">
+    <value>Unlimitted</value>
+    <comment>not</comment>
+  </data>
 </root>

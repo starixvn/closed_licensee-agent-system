@@ -43,7 +43,20 @@
             </tr>
             <tr>
                 <td>@Las.GivenCredit</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit)</td>
+                <td class="text-right">
+                    @{
+                        var isAdmin = (bool)ViewBag.IsAdmin;
+                        if(isAdmin != null && isAdmin == true && Model.BalanceInfo.GivenCredit == 0)
+                        {
+                            <span>@Las.Unlimitted</span>
+                        }
+                        else
+                        {
+                            RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit);
+                        }
+                    }
+                    
+                </td>
             </tr>
             <tr>
                 <td>@Las.UsedCredit</td>

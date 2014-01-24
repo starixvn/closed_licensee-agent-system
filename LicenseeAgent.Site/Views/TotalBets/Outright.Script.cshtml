@@ -2,13 +2,14 @@
     var gridOption = {
         columns: [
                     { HeaderText: "#", Width: 40, Name: "RowID" },
-                    { HeaderText: "@Las.Team", Width: 310, Name: "Team", HeaderAlign: "center", CellAlign: "left" },
-                    { HeaderText: "@Las.BetCount", Width: 100, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0." },
-                    { HeaderText: "@Las.Balance", Width: 150, Name: "Balance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                    { HeaderText: "@Las.Forecast", Width: 150, Name: "Forecast", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                    { HeaderText: "@Las.Team", Width: 310, Name: "Team", HeaderAlign: "center", CellAlign: "left", CanResize: true },
+                    { HeaderText: "@Las.BetCount", Width: 100, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true },
+                    { HeaderText: "@Las.Balance", Width: 150, Name: "Balance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true },
+                    { HeaderText: "@Las.Forecast", Width: 150, Name: "Forecast", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true },
                 ],
         gridExpandHeight: 200,
         indexNumberColumn: 1,
-        bodyRowHeight: 26
+        bodyRowHeight: 26,
+        autoResizeColumn: true
     };
 </script>

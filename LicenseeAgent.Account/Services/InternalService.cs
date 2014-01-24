@@ -18,8 +18,6 @@ namespace LicenseeAgent.Account.Services
     {
         private const int Timeout = 1 * 60; // 1 minute
 
-        private static ICache cache = CacheService.CreateInstance(CacheType.MemoryCache);
-
         private static byte[] aesKey =
         {
             123, 217, 19, 11, 24, 26, 85, 45, 114, 184, 27, 162, 37,

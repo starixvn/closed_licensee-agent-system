@@ -10,18 +10,15 @@ namespace LicenseeAgent.Account.Controllers
     using System.Web.Mvc;
     using Fanex.Common;
     using LicenseeAgent.Account.Binders;
-    using LicenseeAgent.Account.Core;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utils;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -204,15 +201,6 @@ namespace LicenseeAgent.Account.Controllers
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                                         LASAgentId = model.AgentId
                                     });
-
-                // if (serviceResult.ErrCode != 0)
-                // {
-                //    return Json(new
-                //    {
-                //        ErrCode = serviceResult.ErrCode,
-                //        ErrMsg = serviceResult.ErrMsg
-                //    });
-                // }
             }
 
             return Json(new
@@ -248,15 +236,6 @@ namespace LicenseeAgent.Account.Controllers
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                                         LASAgentId = model.AgentId
                                     });
-
-                // if (serviceResult.ErrCode != 0)
-                // {
-                //    return Json(new
-                //    {
-                //        ErrCode = serviceResult.ErrCode,
-                //        ErrMsg = serviceResult.ErrMsg
-                //    });
-                // }
             }
 
             return Json(new
@@ -418,6 +397,7 @@ namespace LicenseeAgent.Account.Controllers
         }
 
         #region Reset Password
+
         /// <summary>
         /// Reset Password.
         /// </summary>
@@ -518,9 +498,11 @@ namespace LicenseeAgent.Account.Controllers
 
             return View("~/Views/Customer/ResetPassword.cshtml");
         }
-        #endregion
+
+        #endregion Reset Password
 
         #region Edit Info
+
         /// <summary>
         /// Edit Info Member.
         /// </summary>
@@ -533,7 +515,7 @@ namespace LicenseeAgent.Account.Controllers
             var memberInfo = new CustomerEntity { CustId = memberId };
 
             _memberService.GetMemberInformation<CustomerEntity>(
-                memberInfo, 
+                memberInfo,
                 new GetMemberInfoAction
                 {
                     IBCCustId = memberId,
@@ -657,6 +639,7 @@ namespace LicenseeAgent.Account.Controllers
 
             return View("~/Views/Customer/EditInfo.cshtml", model);
         }
-        #endregion
+
+        #endregion Edit Info
     }
 }

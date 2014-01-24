@@ -38,14 +38,11 @@ namespace LicenseeAgent.Account.Controllers
     {
         private readonly IAccountService _accountService;
 
-        private readonly ICurrencyService _currencyService;
-
         private readonly ICoreService _coreService;
 
-        public AccountController(IAccountService accountService, ICurrencyService currencyService, ICoreService coreService)
+        public AccountController(IAccountService accountService, ICoreService coreService)
         {
             _accountService = accountService;
-            _currencyService = currencyService;
             _coreService = coreService;
         }
 
@@ -80,11 +77,12 @@ namespace LicenseeAgent.Account.Controllers
         /// <summary>
         /// Generate Captcha Image.
         /// </summary>
-        /// <param name="noisy">Checking noise or not.</param>
-        /// <returns>Return image.</returns>
+        /// <returns>
+        /// Return image.
+        /// </returns>
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult CaptchaImage(bool noisy = true)
+        public ActionResult CaptchaImage()
         {
             var captchaImage = new CaptchaImage
             {

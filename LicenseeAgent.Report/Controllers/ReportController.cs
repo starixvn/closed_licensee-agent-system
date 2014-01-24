@@ -15,15 +15,15 @@ namespace LicenseeAgent.Report.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Core.Entities;
+    using Core.Services;
+    using Core.Utils;
     using Criteria;
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
-    using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utils;
     using Services;
     using ViewModels;
     using Web.Controllers;
-    using LicenseeAgent.Core.Services;
 
     /// <summary>
     /// Report Controller.
@@ -209,9 +209,8 @@ namespace LicenseeAgent.Report.Controllers
         }
         
         /// <summary>
-        /// Get list of leagues.
+        /// Get Balance up and move bet dates.
         /// </summary>
-        /// <param name="criteria">League criteria.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
         public JsonResult GetBalanceUpMoveBet()

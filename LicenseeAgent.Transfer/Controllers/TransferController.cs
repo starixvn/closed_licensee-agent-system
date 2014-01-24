@@ -115,7 +115,8 @@ namespace LicenseeAgent.Transfer.Controllers
                 return Json(response);
             }
 
-            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) && (model.Status == null || x.Status == model.Status));
+            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) && 
+                (model.Status == null || x.Status == model.Status));
             var total = new MemberBalanceInfo
             {
                 YesterdayBalance = list.Select(x => x.YesterdayBalance).Sum(),

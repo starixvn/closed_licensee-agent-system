@@ -65,7 +65,12 @@ namespace LicenseeAgent.Web
         /// <param name="agentInfo">The agent information.</param>
         /// <param name="internalLoginInfo">The internal login information.</param>
         public CurrentSession(AgentInfo agentInfo, InternalLoginInfo internalLoginInfo)
-            : this(internalLoginInfo.UserId, internalLoginInfo.UserName, internalLoginInfo.AccountType, internalLoginInfo.OnUserId, internalLoginInfo.Language)
+            : this(
+            internalLoginInfo.UserId, 
+            internalLoginInfo.UserName, 
+            internalLoginInfo.AccountType, 
+            internalLoginInfo.OnUserId, 
+            internalLoginInfo.Language)
         {
             AgentInfo = agentInfo;
             OnLicenseeId = internalLoginInfo.LicenseeId;

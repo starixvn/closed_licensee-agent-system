@@ -1,4 +1,7 @@
 ﻿var TRANSFER_LIST = function ($) {
+    var _pageindex = 0;
+    var _itemsperpage = CORE.pageSizes[0];
+
     return {
         init: function () {
             $('.selectpicker').val(1);
@@ -23,8 +26,8 @@
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val(),
-                pageindex: 0,
-                itemsperpage: CORE.pageSizes[0]
+                pageindex: _pageindex,
+                itemsperpage: _itemsperpage
             };
             $.ajax({
                 url: $('#search-form').attr('action'),
@@ -59,12 +62,14 @@
         doPaging: function (page_index, itemsPerPage, jq) {
             gridOption.pagerOption.itemsPerPage = itemsPerPage;
             gridOption.pagerOption.currentPage = page_index;
+            _pageindex = page_index;
+            _itemsperpage = itemsPerPage;
 
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val(),
-                pageindex: page_index,
-                itemsperpage: itemsPerPage
+                pageindex: _pageindex,
+                itemsperpage: _itemsperpage
             };
             $.ajax({
                 url: $('#search-form').attr('action'),
@@ -88,6 +93,34 @@
             });
 
             return false;
+        },
+        reload: function () {
+            var params = {
+                username: $.trim($("#Username").val()),
+                status: $("#Status").val(),
+                pageindex: _pageindex,
+                itemsperpage: _itemsperpage
+            };
+            $.ajax({
+                url: $('#search-form').attr('action'),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                    }
+
+                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
+                    $('#grid').show().fanexGrid(gridOption);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);

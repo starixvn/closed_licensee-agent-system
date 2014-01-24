@@ -45,7 +45,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             _customerSettingRepository = customerSettingRepository;
         }
-        
+
         #region Add Customer Setting
 
         /// <summary>
@@ -56,7 +56,6 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             Execute(criteria);
         }
-
 
         /// <summary>
         /// Get Agent setting for insert new.
@@ -758,7 +757,6 @@ namespace LicenseeAgent.CustomerSetting.Service
                 betSettingXml,
                 positionTakingSettingXml);
         }
-                Logger.HandleException(ex);
 
         /// <summary>
         /// Build XML String for Updating.

@@ -23,7 +23,7 @@
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val(),
-                pageindex: 1,
+                pageindex: 0,
                 itemsperpage: CORE.pageSizes[0]
             };
             $.ajax({

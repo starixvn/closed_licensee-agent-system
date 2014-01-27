@@ -142,7 +142,8 @@
                     },
                     success: function (data) {
                         if (data.ErrCode == 0) {
-                            $("#UserName").autocomplete({
+                            $("#UserName").typeahead({
+                                name: 'UserName',
                                 source: data.List
                             });
                         }

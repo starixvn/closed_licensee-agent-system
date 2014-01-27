@@ -158,7 +158,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/bootstrap/bootstrap-tooltip.js",
                 "~/scripts/bootstrap/bootstrap-popover.js",
                 "~/scripts/bootstrap/bootstrap-paginator.js",
-                "~/scripts/bootstrap/bootstrap-tab.js"));
+                "~/scripts/bootstrap/bootstrap-tab.js",
+                "~/scripts/bootstrap/bootstrap-typeahead.js"));
             bundles.Add(new LessBundle("~/css/bootstrap").Include(
                 "~/content/bootstrap/bootstrap.less"));
         }

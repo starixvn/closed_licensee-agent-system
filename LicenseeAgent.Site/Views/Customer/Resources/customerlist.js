@@ -263,7 +263,8 @@
                     },
                     success: function (data) {
                         if (data.ErrCode == 0) {
-                            $("#Username").autocomplete({
+                            $("#Username").typeahead({
+                                name: 'Username',
                                 source: data.List
                             });
                         }

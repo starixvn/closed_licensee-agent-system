@@ -42,11 +42,11 @@ namespace LicenseeAgent.Taiwan.Entities
         [DataMember(Name = "IsClosed")]
         public bool IsClosed { get; set; }
 
-        public object Status 
+        public byte Status 
         {
             get
             {
-                return IsClosed ? AccountStatus.Closed : AccountStatus.Open;
+                return IsClosed ? (byte)AccountStatus.Closed : (byte)AccountStatus.Open;
             }
         }
     }

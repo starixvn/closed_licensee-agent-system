@@ -36,7 +36,7 @@
     vertical-align: middle;
     white-space: normal;
     color: #6d6d6d;
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .system-parlay-outstanding td
@@ -54,4 +54,14 @@
 .system-parlay-total td
 {
     background-color: #ffd0b2;
+}
+
+font.highlight-negative
+{
+    color: #FF2D2D !important;
+}
+
+.player-commission
+{
+    padding-top: 1px;
 }

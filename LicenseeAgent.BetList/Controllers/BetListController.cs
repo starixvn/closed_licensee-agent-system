@@ -149,7 +149,7 @@ namespace LicenseeAgent.BetList.Controllers
 
             var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
             var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper();
+            var ticketHelper = new TicketHelper() { ShowSystemParlayPlayerComm = true };
             var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
 
             return Content(systemParlayText);

@@ -113,7 +113,7 @@ namespace LicenseeAgent.BetList.Controllers
             };
 
             var systemParlayData = _betlistService.GetTotalBetsSystemParlayDetail(criteria);
-            var ticketHelper = new TicketHelper();
+            var ticketHelper = new TicketHelper { ShowSystemParlayPlayerComm = true };
             var builder = new LASSystemParlayDetail(ticketHelper, systemParlayData);
             var systemParlayText = builder.Build();
 

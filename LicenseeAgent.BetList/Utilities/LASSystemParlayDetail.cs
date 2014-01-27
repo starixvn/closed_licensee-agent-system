@@ -59,7 +59,8 @@ namespace LicenseeAgent.BetList.Utilities
 
         private void RenderTotalRows()
         {
-            var totalWinLost = _ticketList.Sum(d => d.WinLost);
+            var totalPlayerCommission = _ticketHelper.ShowSystemParlayPlayerComm ? _ticketList.Sum(d => d.PlayerComm) : 0;
+            var totalWinLost = _ticketList.Sum(d => d.WinLost) + totalPlayerCommission;
             _template.TotalContents.Visible = _ticketList.Count > 0;
             _template.TotalContents.TotalWinloss = Formatter.HighlightNegativeNumber(totalWinLost);
         }
@@ -109,9 +110,11 @@ namespace LicenseeAgent.BetList.Utilities
             rowBlock.WinlossDate.WinlossDate = string.Format("{0:MM/dd/yyyy}", row.WinLostDate);
             rowBlock.WinlossDate.Visible = eventOrderInDay == 0;
             rowBlock.Status = GetBetListStatusName(row.StatusId);
-            rowBlock.Winloss = Formatter.HighlightNegativeNumber(row.WinLost) + "<br/>" + Formatter.HighlightNegativeNumber(row.PlayerComm);
+            rowBlock.Winloss = Formatter.HighlightNegativeNumber(row.WinLost);
             rowBlock.Odds = row.MOdds == 0 ? "-" : Formatter.HighlightNegativeNumber(row.MOdds);
             rowBlock.Stake = Formatter.DecFormat(row.Stake, 2);
+            rowBlock.PlayerCommission.Visible = _ticketHelper.ShowSystemParlayPlayerComm;
+            rowBlock.PlayerCommission.PlayerCommission = Formatter.DecFormat(row.PlayerComm, 2);
 
             // Event
             rowBlock.Match.Clear();
@@ -137,7 +140,8 @@ namespace LicenseeAgent.BetList.Utilities
         private void RenderSubTotalForOneDay(List<ISystemParlayTicket> dataInDate)
         {
             var subTotalBlock = new SystemParlayDetail_SubTotalContents_Block();
-            var subTotal = dataInDate.Sum(d => d.WinLost);
+            var subTotalPlayerCommission = _ticketHelper.ShowSystemParlayPlayerComm ? dataInDate.Sum(d => d.PlayerComm) : 0;
+            var subTotal = dataInDate.Sum(d => d.WinLost) + subTotalPlayerCommission;
             subTotalBlock.TotalWinloss = Formatter.HighlightNegativeNumber(subTotal);
             _template.Contents.Append(subTotalBlock);
         }

@@ -263,10 +263,13 @@
                     },
                     success: function (data) {
                         if (data.ErrCode == 0) {
-                            $("#Username").typeahead({
-                                name: 'Username',
-                                source: data.List
-                            });
+                            var typeahead = $('#Username').data('typeahead');
+                            if (typeahead) {
+                                typeahead.source = data.List;
+                            }
+                            else {
+                                $("#Username").typeahead({ name: 'Username', source: data.List });
+                            }
                         }
                     },
                     complete: function () {

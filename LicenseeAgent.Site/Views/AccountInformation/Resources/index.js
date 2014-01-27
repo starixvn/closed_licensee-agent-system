@@ -105,7 +105,7 @@
                 event.preventDefault();
             });
         },
-        hidePopover : function() {
+        hidePopover: function () {
             $('.popover-link').popover('hide');
         },
         //suggest agent name
@@ -142,10 +142,13 @@
                     },
                     success: function (data) {
                         if (data.ErrCode == 0) {
-                            $("#UserName").typeahead({
-                                name: 'UserName',
-                                source: data.List
-                            });
+                            var typeahead = $('#UserName').data('typeahead');
+                            if (typeahead) {
+                                typeahead.source = data.List;
+                            }
+                            else {
+                                $("#UserName").typeahead({ name: 'UserName', source: data.List });
+                            }
                         }
                     },
                     complete: function () {

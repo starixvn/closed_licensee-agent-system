@@ -598,6 +598,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <param name="agentId">Agent Id information.</param>
         /// <returns>Action result.</returns>
+        [DirectDownLineAgent]
         [HttpGet]
         public ActionResult EditInfoAgent(int agentId)
         {
@@ -628,6 +629,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
+        [DirectDownLineAgent]
         [HttpPost]
         public ActionResult EditInfoAgent(EditInfoViewModel model)
         {

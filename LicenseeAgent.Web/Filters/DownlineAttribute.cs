@@ -33,7 +33,10 @@ namespace LicenseeAgent.Web.Filters
         public DownLineAttribute()
         {
             AuthorizeService = DependencyResolver.Current.GetService<IAuthorizeService>();
+            IsAllowAdmin = true;
         }
+
+        public bool IsAllowAdmin { get; set; }
 
         protected static IList<string> AgentIdParameterNames { get; private set; }
 

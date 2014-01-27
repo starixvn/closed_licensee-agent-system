@@ -16,11 +16,11 @@ namespace LicenseeAgent.Taiwan.Actions
     [Serializable]
     public abstract class LogAction
     {
-        [Service(IsParamAction = true)]
+        [Service(IsParamAction = false)]
         [XmlIgnore]
         public int LicenseeId { get; set; }
 
-        [Service(IsParamAction = true)]
+        [Service(IsParamAction = false)]
         [XmlIgnore]
         public int UserId { get; set; }
     }

@@ -260,7 +260,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = members.Where(m => m.Status == model.Status)
+                List = model.Status == null ? members : members.Where(m => m.Status == model.Status)
             });
         }
 

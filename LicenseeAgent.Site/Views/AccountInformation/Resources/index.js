@@ -34,7 +34,7 @@
 
                     $(this).ajaxSubmit({
                         target: '#searchResult',
-                        beforeSubmit: accountInformation.preSearchUser,
+                        beforeSubmit: accountInformation.beforeSearchUser,
                         success: accountInformation.searchResultBinding
                     });
                 }
@@ -46,7 +46,7 @@
                 $("#formSearch").submit();
             });
         },
-        preSearchUser: function () {
+        beforeSearchUser: function () {
             CORE.blockUI();
             $("#searchAlert").hide();
         },
@@ -242,7 +242,7 @@
                     if (INTERNAL_HEADER != undefined) {
                         INTERNAL_HEADER.setCurrency(currencyId, currencyName);
                     }
-                    $("#frmMain").contentWindow.location.reload(true);
+                    document.getElementById("frmMain").contentWindow.location.reload(true);
                     $("#formSearch").submit();
                 },
                 complete: function () {

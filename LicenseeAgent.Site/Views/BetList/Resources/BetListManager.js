@@ -1,4 +1,4 @@
-﻿var gridOption = {
+﻿var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("TransTime"), Width: 95, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
@@ -48,10 +48,10 @@ var BETLIST = function ($) {
             BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
-            if (gridOption && gridOption.pagerOption) {
+            if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
-                                                : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
+                                                : gridOptions.pagerOption.currentPage;
+                itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
             }
 
             var urlGetBetList = $('#search-form').attr('action');
@@ -72,14 +72,17 @@ var BETLIST = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.pagerOption = {
+                    gridOptions.pagerOption = {
                         itemsPerPage: CORE.pageSizes[0],
                         itemsPerPageArray: CORE.pageSizes,
                         currentPage: 0,
                         showDetail: true
                     };
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    $('#BetListGrid').show().fanexGrid(gridOption);
+                    gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                    $('#BetListGrid').show().fanexGrid(gridOptions);
+
+                    if(data.IsLastLevel == true)
+                        $("#BetListGrid").fanexGrid("hideColumns", gridOptions, [9]);
                 },
                 complete: function () {
                     CORE.unblockUI();

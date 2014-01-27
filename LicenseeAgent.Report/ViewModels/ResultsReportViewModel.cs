@@ -30,8 +30,8 @@ namespace LicenseeAgent.Report.ViewModels
 
         public int SportType { get; set; }
 
-        public List<SelectListItem> Sports { get; set; }
+        public IList<SelectListItem> Sports { get; set; }
 
-        public List<SelectListItem> Leagues { get; set; }
+        public IList<SelectListItem> Leagues { get; set; }
     }
 }

@@ -77,10 +77,7 @@ namespace LicenseeAgent.Report.Controllers
             criteria.IsShowAll = _includeTestData;
             var sports = _resultsReportService.GetSports(criteria);
             var model = new ResultsReportViewModel();
-            foreach (var item in sports)
-            {
-                model.Sports.Add(new SelectListItem { Text = item.SportName, Value = item.SportType });
-            }
+            model.Sports = sports.Select(i => new SelectListItem { Text = i.SportName, Value = i.SportType }).ToList();
 
             if (model.Sports.Count > 0)
             {
@@ -93,10 +90,7 @@ namespace LicenseeAgent.Report.Controllers
                 };
 
                 var leagues = _resultsReportService.GetLeagues(leagueCriteria);
-                foreach (var leagueItem in leagues)
-                {
-                    model.Leagues.Add(new SelectListItem { Text = leagueItem.LeagueName, Value = leagueItem.LeagueID });
-                }
+                model.Leagues = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).ToList();
 
                 return Json(new
                 {
@@ -133,8 +127,8 @@ namespace LicenseeAgent.Report.Controllers
             if (outRightData.Count > 0)
             {
                 var sports = outRightData.GroupBy(i => i.SportType)
-                .Select(j => new SelectListItem { Text = DataRefWrapper.GetSportName(j.First().SportType), Value = j.First().SportType.ToString() })
-                .ToList();
+                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetSportName(j.First().SportType), Value = j.First().SportType.ToString() })
+                    .ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
                 var leagues = outRightData.Where(i => i.SportType == sportType)
                     .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).ToList();
@@ -195,11 +189,8 @@ namespace LicenseeAgent.Report.Controllers
         {
             var leagueItems = new List<SelectListItem>();
             var leagues = _resultsReportService.GetLeagues(criteria);
-            foreach (var leagueItem in leagues)
-            {
-                leagueItems.Add(new SelectListItem { Text = leagueItem.LeagueName, Value = leagueItem.LeagueID });
-            }
-
+            leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).ToList();
+            
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

@@ -103,18 +103,18 @@ namespace LicenseeAgent.BetList.DataAccess
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
+                var systemParlayData = new SystemParlayData();
                 using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
                     var ticketList = multipleQuery.Read<SystemParlayTicket>();
                     var serialList = multipleQuery.Read<SystemParlaySerial>();
-                    var outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["Outstanding"]);
-                    return new SystemParlayData
-                    {
-                        TicketList = ticketList.Cast<ISystemParlayTicket>().ToList(),
-                        SerialList = serialList.Cast<ISystemParlaySerial>().ToList(),
-                        Outstanding = outstanding
-                    };
+
+                    systemParlayData.TicketList = ticketList.Cast<ISystemParlayTicket>().ToList();
+                    systemParlayData.SerialList = serialList.Cast<ISystemParlaySerial>().ToList();
                 }
+
+                systemParlayData.Outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["outstanding"]);
+                return systemParlayData;
             }
         }
 

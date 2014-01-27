@@ -148,8 +148,8 @@ fanex.totalBets.parlay = {
         });
         $('#month-picker-control').monPickr("setFromDay", lastDay);
     },
-    showParlayDetails: function (transId) {
-        var url = "~/Parlay/ParlayDetails?transId=" + transId;
+    showParlayDetails: function (transId, status) {
+        var url = "~/Parlay/ParlayDetails?transId=" + transId + "&status=" + status;
         $.ajax({
             type: "GET",
             contentType: 'application/json',

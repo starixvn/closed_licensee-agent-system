@@ -17,6 +17,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Filters;
@@ -133,7 +134,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetParlayDetail(criteria);
             var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails);
+            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status);
 
             return View("~/Views/BetList/ParlayDetail.cshtml", viewModel);
         }
@@ -188,7 +189,10 @@ namespace LicenseeAgent.BetList.Controllers
                     WinLoss = builder.BuildLasWinloss(ticket)
                 };
 
-                var clickFunction = string.Format("onclick=\"javascript: fanex.totalBets.parlay.showParlayDetails({0})\"", ticket.TransId);
+                var clickFunction = string.Format(
+                    "onclick=\"javascript: fanex.totalBets.parlay.showParlayDetails({0}, '{1}')\"",
+                    ticket.TransId,
+                    ticket.Status);
                 ticketText.Feature = string.Format(
                         "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>",
                         clickFunction,
@@ -204,8 +208,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// Format raw bet list details.
         /// </summary>
         /// <param name="originalData">List of raw bet list details.</param>
+        /// <param name="status">Ticket status ID.</param>
         /// <returns>List of formatted bet list details.</returns>
-        private static List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData)
+        private List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
         {
             var formattedData = new List<BetListDetails>();
             foreach (var item in originalData)
@@ -213,19 +218,33 @@ namespace LicenseeAgent.BetList.Controllers
                 formattedData.Add(new BetListDetails
                 {
                     Agent = item.AgentName,
-                    PositionTaking = GenerateHtmlStringForAgent(item.AgentPTPercent, item.AgentPT),
-                    Commission = GenerateHtmlStringForAgent(item.AgentCommPercent, item.AgentComm)
+                    PositionTaking = GenerateHtmlStringForAgentPT(item, status),
+                    Commission = GenerateHtmlStringForAgentComm(item, status)
                 });
             }
 
             return formattedData;
         }
 
-        private static string GenerateHtmlStringForAgent(decimal percentage, decimal value)
+        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
         {
-            var colorValue = value >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", percentage * 100);
-            htmlString += "%</div><div" + colorValue + string.Format("{0:#,##0.00}", value) + "</div>";
+            var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
+            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
+                ? string.Empty
+                : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
+
+            return htmlString;
+        }
+
+        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
+        {
+            var htmlString = data.AgentLevel == 1
+                ? string.Empty
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
+            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
+                ? (data.AgentLevel == 1 ? "-" : string.Empty)
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
 
             return htmlString;
         }

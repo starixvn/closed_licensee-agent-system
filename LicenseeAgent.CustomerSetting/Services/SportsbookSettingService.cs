@@ -740,22 +740,31 @@ namespace LicenseeAgent.CustomerSetting.Service
             string betSettingXml,
             string positionTakingSettingXml)
         {
-            string errorString = "Message: {0} \nForm: {1} \nActor Id: {2} \nCust Id(s): {3} \nAdmin Id: {4} \n"
-                + "CommissionSetting: {5} \n"
-                + "Betting Limit: {6} \n"
-                + "Share Setting: {7} \n"
-                + "Apply Preset On Member: {8} \n";
+            try
+            {
+                string errorString = "Message: {0} \nForm: {1} \nActor Id: {2} \nCust Id(s): {3} \nAdmin Id: {4} \n"
+                    + "CommissionSetting: {5} \n"
+                    + "Betting Limit: {6} \n"
+                    + "Share Setting: {7} \n"
+                    + "Apply Preset On Member: {8} \n";
 
-            return string.Format(
-                errorString,
-                errorMessage,
-                isEditAgent ? "Edit Agent" : "Edit Member(s)",
-                actorId,
-                custId,
-                adminId,
-                commissionXml,
-                betSettingXml,
-                positionTakingSettingXml);
+                return string.Format(
+                    errorString,
+                    errorMessage,
+                    isEditAgent ? "Edit Agent" : "Edit Member(s)",
+                    actorId,
+                    custId,
+                    adminId,
+                    commissionXml,
+                    betSettingXml,
+                    positionTakingSettingXml);
+            }
+            catch (Exception exception)
+            {
+                Logger.HandleException(exception.Message, exception);
+
+                return errorMessage;
+            }
         }
 
         /// <summary>

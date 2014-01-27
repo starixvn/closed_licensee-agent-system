@@ -16,6 +16,11 @@ namespace LicenseeAgent.Taiwan.Results
     [DataContract]
     public class MemberResult : ResponseResult
     {
+        public MemberResult(int errorCode, string errorMessage)
+            : base(errorCode, errorMessage)
+        {
+        }
+
         [DataMember(Name = "Data")]
         public ServiceMemberEntity Member { get; set; }
     }

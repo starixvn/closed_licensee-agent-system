@@ -16,7 +16,6 @@ namespace LicenseeAgent.Taiwan.Utility
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Web;
-    using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
@@ -34,10 +33,10 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <returns>String response data.</returns>
         public static T GetResponseData<T>(IAction action) where T : class
         {
-            var request = ServiceWrapper.CreateRequest(action.GetActionName());
-            ServiceWrapper.SetParams(request, action);
+            var request = CreateRequest(action.GetActionName());
+            SetParams(request, action);
 
-            return ServiceWrapper.MakeRequest<T>(request);
+            return MakeRequest<T>(request);
         }
 
         /// <summary>
@@ -102,6 +101,8 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <returns>String response data after request.</returns>
         private static T MakeRequest<T>(HttpWebRequest request) where T : class
         {
+            string message = string.Empty;
+
             try
             {
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
@@ -118,12 +119,17 @@ namespace LicenseeAgent.Taiwan.Utility
             }
             catch (InvalidOperationException exception)
             {
-                LogService.Error(exception.Message, exception);
+                message = exception.Message;
             }
 
-            return null;
+            return GetResponseError<T>(message);
         }
 
+        /// <summary>
+        /// Check is parameter request.
+        /// </summary>
+        /// <param name="attribute">Attribute object.</param>
+        /// <returns>If is parameter service return true, else return false.</returns>
         private static bool IsParamRequest(object attribute)
         {
             if (attribute != null)
@@ -132,6 +138,24 @@ namespace LicenseeAgent.Taiwan.Utility
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Get response error.
+        /// </summary>
+        /// <typeparam name="T">Type response result.</typeparam>
+        /// <param name="message">Message Error.</param>
+        /// <returns>Response error.</returns>
+        private static T GetResponseError<T>(string message) where T : class
+        {
+            var constructorInfo = typeof(T).GetConstructor(new Type[] { typeof(int), typeof(string) });
+            
+            if (constructorInfo != null)
+            {
+                return (T)constructorInfo.Invoke(new object[] { ServiceSetting.HttpErrorCode, message });
+            }
+
+            return default(T);
         }
     }
 }

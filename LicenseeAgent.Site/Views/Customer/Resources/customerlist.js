@@ -268,7 +268,7 @@
                                 typeahead.source = data.List;
                             }
                             else {
-                                $("#Username").typeahead({ name: 'Username', source: data.List });
+                                $("#Username").typeahead({ source: data.List, items: 10 });
                             }
                         }
                     },

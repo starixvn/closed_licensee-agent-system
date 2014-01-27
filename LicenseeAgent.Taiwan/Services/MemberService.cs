@@ -49,7 +49,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult InsertNewMember(InsertNewMemberAction action)
         {
-            action.Password = Cryptography.CreateHash(action.Password, Cryptography.CreateSalt());
+            action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
             var criteria = new AddNewMemberCriteria
             {

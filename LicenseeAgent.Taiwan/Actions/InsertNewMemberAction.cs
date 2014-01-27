@@ -7,6 +7,8 @@
 
 namespace LicenseeAgent.Taiwan.Actions
 {
+    using System.Xml.Serialization;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -16,7 +18,11 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public string UserName { get; set; }
 
+        [XmlIgnore]
         public string Password { get; set; }
+
+        [XmlElement(ElementName = "Password")]
+        public string EncryptedPassword { get; set; }
 
         public int IBCCustId { get; set; }
 

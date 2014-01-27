@@ -48,7 +48,7 @@
     @Html.HiddenFor(m => m.AgentLevel)
     <div class="controls-row">
         @Html.Label("Username", Las.Username)
-        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, urlAutoSearch = @Url.Action("CustomerSearchAutoComplete", "Customer"), @autocomplete = "false" })
+        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, urlAutoSearch = @Url.Action("CustomerSearchAutoComplete", "Customer"), @autocomplete = "off" })
     </div>
     <div class="controls-row">
         @Html.Label("Status", Las.Status)

@@ -28,7 +28,7 @@ namespace LicenseeAgent.Account.Services
             var result = new AgentInfo();
             criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
             Execute(criteria);
-            if (criteria.ErrCode == 0)
+            if (criteria.ErrCode == Result.SuccessValue)
             {
                 result = new AgentInfo
                 {

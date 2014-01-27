@@ -7,13 +7,15 @@
 namespace LicenseeAgent.Account.Services
 {
     using System.Web;
+    using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class InternalService : IInternalService
+    public class InternalService : QueryService, IInternalService
     {
         private const int Timeout = 1 * 60; // 1 minute
 
@@ -45,6 +47,40 @@ namespace LicenseeAgent.Account.Services
             {
                 return rijndaelHelper.DecryptObject<InternalLoginInfo>(authKey);
             }
+        }
+
+        /// <summary>
+        /// Agents the internal login.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns agent information.</returns>
+        public AgentInfo AgentInternalLogin(AgentInternalLoginCriteria criteria)
+        {
+            var result = new AgentInfo();
+            Execute(criteria);
+            if (criteria.ErrCode == Result.SuccessValue)
+            {
+                result = new AgentInfo
+                {
+                    UserName = criteria.UserName,
+                    UserSalt = criteria.UserSalt,
+                    AgentId = criteria.AgentId,
+                    AgentLevel = criteria.AgentLevel,
+                    NumberOfLevel = criteria.NumberOfLevel,
+                    SubAccId = criteria.SubAccId,
+                    CurrencyName = criteria.Currency,
+                    CurrencyId = criteria.CurrencyId,
+                    IsFirstLogin = criteria.IsFirstLogin,
+                    PwdExpiry = criteria.PwdExpiry,
+                    LastChangedPwdDate = criteria.LastChangedPwdDate,
+                    LicenseeId = criteria.LicenseeId,
+                    IsNickName = criteria.IsNickName,
+                    LastLoggedTime = criteria.LastLoggedTime,
+                    LicenseeName = criteria.LicenseeName
+                };
+            }
+
+            return result;
         }
     }
 }

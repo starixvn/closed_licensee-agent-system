@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Account.Services
 {
+    using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Core.Entities;
 
     /// <summary>
@@ -16,5 +17,7 @@ namespace LicenseeAgent.Account.Services
         string Encode(InternalLoginInfo internalLoginInfo);
 
         InternalLoginInfo Decode(string authKey);
+
+        AgentInfo AgentInternalLogin(AgentInternalLoginCriteria criteria);
     }
 }

@@ -20,71 +20,23 @@ namespace LicenseeAgent.Core.Entities
             Timeout = DateTime.Now.AddMinutes(3);
         }
 
-        /// <summary>
-        /// Gets or sets the type of the account who created this object. It can be CSD/IT or licensee user.
-        /// </summary>
-        /// <value>
-        /// The type of the account.
-        /// </value>
-        public AccountType AccountType { get; set; }
+        public DateTime Timeout { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the name of the admin.
-        /// </summary>
-        /// <value>
-        /// The name of the admin.
-        /// </value>
-        public string UserName { get; set; }
+        public AccountType LoginAccountType { get; set; }
 
-        /// <summary>
-        /// Gets or sets the licensee ID.
-        /// </summary>
-        /// <value>
-        /// The licensee ID.
-        /// </value>
-        public int LicenseeId { get; set; }
+        public int LoginUserId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the currency ID.
-        /// </summary>
-        /// <value>
-        /// The currency ID.
-        /// </value>
-        public int CurrencyId { get; set; }
+        public string LoginUserName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the agent.
-        /// </summary>
-        /// <value>
-        /// The name of the agent.
-        /// </value>
-        public string AgentName { get; set; }
+        public int OnLoginUserId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the language.
-        /// </summary>
-        /// <value>
-        /// The language.
-        /// </value>
         public string Language { get; set; }
 
-        /// <summary>
-        /// Gets or sets the user ID.
-        /// </summary>
-        /// <value>
-        /// The user ID.
-        /// </value>
-        public int UserId { get; set; }
+        public int LicenseeId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the on user ID.
-        /// </summary>
-        /// <value>
-        /// The on user ID.
-        /// </value>
-        public int OnUserId { get; set; }
+        public int CurrencyId { get; set; }
 
-        public DateTime Timeout { get; private set; }
+        public string AgentName { get; set; }
 
         public bool IsExpired
         {

@@ -16,15 +16,15 @@ namespace LicenseeAgent.Account.Criterias
     {
         public int LicenseeId { get; set; }
 
+        public string LicenseeName { get; set; }
+
         public int CurrencyId { get; set; }
+
+        public string CurrencyName { get; set; }
 
         public string UserName { get; set; }
 
         public int AgentId { get; set; }
-
-        public string LicenseeName { get; set; }
-
-        public string CurrencyName { get; set; }
 
         public string AgentName { get; set; }
 
@@ -43,25 +43,6 @@ namespace LicenseeAgent.Account.Criterias
         {
             return LicenseeId > 0 &&
                 CurrencyId > 0;
-        }
-
-        /// <summary>
-        /// Creates the agent.
-        /// </summary>
-        /// <returns>Returns agent info object.</returns>
-        public AgentInfo CreateAgent()
-        {
-            return new AgentInfo
-            {
-                LicenseeId = LicenseeId,
-                LicenseeName = LicenseeName,
-                CurrencyId = CurrencyId,
-                CurrencyName = CurrencyName,
-                UserName = AgentName,
-                AgentId = AgentId,
-                AgentLevel = AgentLevel,
-                NumberOfLevel = NumberOfLevel
-            };
         }
     }
 }

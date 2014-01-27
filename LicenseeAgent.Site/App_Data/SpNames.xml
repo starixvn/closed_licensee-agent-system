@@ -30,6 +30,7 @@
     <Setting Key="Las_GetAgentL0ByLicensee" SpName="Las_GetAgentL0ByLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_Agent_GetAgentDownline" SpName="Las_Agent_GetAgentDownline" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_InternalLoginAsUser" SpName="Las_InternalLoginAsUser" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentInternalLogin" SpName="Las_AgentInternalLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>    

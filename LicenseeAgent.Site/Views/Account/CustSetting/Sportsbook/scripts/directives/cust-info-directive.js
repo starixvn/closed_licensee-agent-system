@@ -4,12 +4,11 @@
 
 if (fanex.sportsbookSetting) {
     // An agent edit another agent in the simple mode
-    fanex.sportsbookSetting.directive('uniqueUserName', ['fanex.sportsbookSetting.custInfoService', function (custInfoService) {
+    fanex.sportsbookSetting.directive('uniqueUserName', ['$timeout', 'fanex.sportsbookSetting.custInfoService', function ($timeout, custInfoService) {
         return {
             require: 'ngModel',
             restrict: 'A',
             link: function (scope, el, attrs, ctrl) {
-                var currentValue = undefined;
                 var timeout = undefined;
                 var setValidity = function (isValid) {
                     ctrl.$setValidity('', isValid);
@@ -20,20 +19,16 @@ if (fanex.sportsbookSetting) {
                 }, function (value) {
                     if (value) {
                         // save current value to check whether user name is existed after 200 miliseconds.
-                        currentValue = value;
-
+                        var currentValue = value;
                         if (timeout != undefined) {
-                            clearTimeout(timeout);
+                            $timeout.cancel(timeout);
                         }
 
-                        timeout = setTimeout(function () {
+                        timeout = $timeout(function () {
                             if (currentValue == ctrl.$modelValue) {
-                                var promise = custInfoService.checkUsername(value);
-                                promise.userName = value;
+                                var promise = custInfoService.checkUsername(scope, currentValue);
+                                promise.userName = currentValue;
                                 promise.then(function (data) {
-                                    if (currentValue != data.userName) {
-                                        return;
-                                    }
                                     if (data.ErrCode == 0) {
                                         ctrl.hintMessage = '';
                                         setValidity(true);
@@ -45,6 +40,9 @@ if (fanex.sportsbookSetting) {
                                 }, function (reason) {
                                     setValidity(false);
                                     alert(reason);
+                                }, function (update) {
+                                    setValidity(false);
+                                    alert(update);
                                 });
                             }
                         }, 200);

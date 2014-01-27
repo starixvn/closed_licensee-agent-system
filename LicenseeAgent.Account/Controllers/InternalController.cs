@@ -145,22 +145,21 @@ namespace LicenseeAgent.Account
             };
 
             _accountService.InternalLoginAsUser(criteria);
-            if (criteria.ErrCode == 0)
+            if (criteria.ErrCode == Result.SuccessValue)
             {
                 var internalLoginInfo = new InternalLoginInfo
                 {
-                    AccountType = CurrentSession.LoginAccountType,
-                    UserName = CurrentSession.LoginUserName,
+                    LoginUserId = CurrentSession.LoginUserId,
+                    LoginAccountType = CurrentSession.LoginAccountType,
+                    LoginUserName = CurrentSession.LoginUserName,
+                    OnLoginUserId = CurrentSession.OnUserId,
+                    Language = CurrentSession.Language,
                     LicenseeId = criteria.LicenseeId,
                     CurrencyId = criteria.CurrencyId,
-                    AgentName = model.UserName,
-                    Language = CurrentSession.Language,
-                    UserId = CurrentSession.LoginUserId,
-                    OnUserId = CurrentSession.OnUserId,
+                    AgentName = model.UserName
                 };
 
-                var agentInfo = criteria.CreateAgent();
-                return InternalLogin(internalLoginInfo, agentInfo);
+                return InternalLogin(internalLoginInfo);
             }
 
             return JsonResult(criteria.ErrCode);
@@ -170,18 +169,17 @@ namespace LicenseeAgent.Account
         /// Admins direct login as agent.
         /// </summary>
         /// <param name="internalLoginInfo">The admin internal login information.</param>
-        /// <param name="agentInfo">The agent information.</param>
         /// <returns>
         /// Returns JSON result.
         /// </returns>
         [NonAction]
-        public JsonResult InternalLogin(InternalLoginInfo internalLoginInfo, AgentInfo agentInfo)
+        public JsonResult InternalLogin(InternalLoginInfo internalLoginInfo)
         {
             if (string.IsNullOrEmpty(internalLoginInfo.AgentName))
             {
                 var criteria = new AdminCheckInLicenseeCriteria
                 {
-                    OnAdminId = internalLoginInfo.OnUserId,
+                    OnAdminId = internalLoginInfo.OnLoginUserId,
                     LicenseeId = internalLoginInfo.LicenseeId
                 };
                 _accountService.AdminCheckInLicensee(criteria);
@@ -193,6 +191,13 @@ namespace LicenseeAgent.Account
 
             if (CurrentSession.AgentInfo == null)
             {
+                var criteria = new AgentInternalLoginCriteria
+                {
+                    LicenseeId = internalLoginInfo.LicenseeId,
+                    CurrencyId = internalLoginInfo.CurrencyId,
+                    UserName = internalLoginInfo.AgentName
+                };
+                var agentInfo = _internalService.AgentInternalLogin(criteria);
                 CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
@@ -240,8 +245,7 @@ namespace LicenseeAgent.Account
             _accountService.InternalLoginAsUser(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
             {
-                var agentInfo = criteria.CreateAgent();
-                return AdminLoginAsAgent(agentInfo, internalLoginInfo);
+                return AdminLoginAsAgent(internalLoginInfo);
             }
             else
             {
@@ -249,9 +253,21 @@ namespace LicenseeAgent.Account
             }
         }
 
+        /// <summary>
+        /// Admins the login as agent.
+        /// </summary>
+        /// <param name="internalLoginInfo">The internal login information.</param>
+        /// <returns>Returns page after internal login.</returns>
         [NonAction]
-        public ActionResult AdminLoginAsAgent(AgentInfo agentInfo, InternalLoginInfo internalLoginInfo)
+        public ActionResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo)
         {
+            var criteria = new AgentInternalLoginCriteria
+            {
+                LicenseeId = internalLoginInfo.LicenseeId,
+                CurrencyId = internalLoginInfo.CurrencyId,
+                UserName = internalLoginInfo.AgentName
+            };
+            var agentInfo = _internalService.AgentInternalLogin(criteria);
             SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo);
             FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
             return Redirect(FormsAuthentication.DefaultUrl);

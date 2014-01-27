@@ -7,17 +7,18 @@ if (fanex.sportsbookSetting) {
 
     fanex.sportsbookSetting.factory('fanex.sportsbookSetting.custInfoService', [
     '$http',
+    '$timeout',
+    '$rootScope',
     '$q',
-    function ($http, $q) {
+    function ($http, $timeout, $rootScope, $q) {
         if ($('#userName').length > 0) {
             var apiPath = CORE.resolveUrl($('#userName').data('href'));
-            var deferred;
             return {
-                checkUsername: function (userName) {
+                checkUsername: function (scope, userName) {
                     var data = {
                         userName: userName
                     };
-                    deferred = $q.defer();
+                    var deferred = $q.defer();
                     $http({
                         method: 'POST',
                         url: apiPath,

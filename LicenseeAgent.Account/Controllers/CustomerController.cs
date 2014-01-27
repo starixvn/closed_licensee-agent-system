@@ -527,6 +527,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="memberId">Member Id.</param>
         /// <param name="username">Username member.</param>
         /// <returns>Action result.</returns>
+        [DirectDownLineMember]
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
@@ -559,6 +560,7 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
+        [DirectDownLineMember]
         [HttpPost]
         public ActionResult EditInfoMember(EditInfoViewModel model)
         {

@@ -17,6 +17,13 @@ namespace LicenseeAgent.Web.Filters
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class DirectDownLineMemberAttribute : DownLineAttribute
     {
+        public DirectDownLineMemberAttribute()
+        {
+            IsAllowAdmin = true;
+        }
+
+        public bool IsAllowAdmin { get; set; }
+
         /// <summary>
         /// Check down line is belong.
         /// </summary>
@@ -42,7 +49,19 @@ namespace LicenseeAgent.Web.Filters
 
             if (!AuthorizeService.IsDirectDownline(criteria))
             {
-                AccessDenied(filterContext);
+                if (!criteria.IsBelongTo)
+                {
+                    AccessDenied(filterContext);
+                }
+                else
+                {
+                    if (!criteria.IsDirectDownLine)
+                    {
+                        if (IsAllowAdmin && currentSession.IsAdmin)
+                            return;
+                        AccessDenied(filterContext);
+                    }
+                }
             }
         }
     }

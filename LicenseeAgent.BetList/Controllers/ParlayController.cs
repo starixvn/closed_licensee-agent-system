@@ -64,6 +64,7 @@ namespace LicenseeAgent.BetList.Controllers
             return Json(new
             {
                 List = model.TicketTextList,
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = model.TicketTextList.Count
             });
         }

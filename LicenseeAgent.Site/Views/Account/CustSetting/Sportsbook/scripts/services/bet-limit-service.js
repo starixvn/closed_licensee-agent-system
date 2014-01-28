@@ -33,20 +33,21 @@ if (fanex.sportsbookSetting) {
             fanex.showHint(element, message);
         },
         refreshData: function (settingContext, bettingLimitsData, firstRecordData) {
+            var self = this;
             if (settingContext.IsSimpleMode) {
                 for (var i = 0; i < bettingLimitsData.length; i++) {
                     var bettingLimit = bettingLimitsData[i];
-                    if (typeof firstRecordData.MinBet != 'undefined') firstRecordData.MinBet = bettingLimit.MinBet;
-                    if (typeof firstRecordData.MaxBet != 'undefined') firstRecordData.MaxBet = bettingLimit.MaxBet;
-                    if (typeof firstRecordData.MaxPerMatch != 'undefined') firstRecordData.MaxPerMatch = bettingLimit.MaxPerMatch;
+                    if (typeof firstRecordData.MinBet != 'undefined') firstRecordData.MinBet = self.formatInputNumber(bettingLimit.MinBet);
+                    if (typeof firstRecordData.MaxBet != 'undefined') firstRecordData.MaxBet = self.formatInputNumber(bettingLimit.MaxBet);
+                    if (typeof firstRecordData.MaxPerMatch != 'undefined') firstRecordData.MaxPerMatch = self.formatInputNumber(bettingLimit.MaxPerMatch);
                 }
             }
             else {
                 for (var i = 0; i < bettingLimitsData.length; i++) {
                     var bettingLimit = bettingLimitsData[i];
-                    if (typeof bettingLimit.OldMinBet != 'undefined') bettingLimit.OldMinBet = bettingLimit.MinBet;
-                    if (typeof bettingLimit.OldMaxBet != 'undefined') bettingLimit.OldMaxBet = bettingLimit.MaxBet;
-                    if (typeof bettingLimit.OldMaxPerMatch != 'undefined') bettingLimit.OldMaxPerMatch = bettingLimit.MaxPerMatch;
+                    if (typeof bettingLimit.OldMinBet != 'undefined') bettingLimit.OldMinBet = self.formatInputNumber(bettingLimit.MinBet);
+                    if (typeof bettingLimit.OldMaxBet != 'undefined') bettingLimit.OldMaxBet = self.formatInputNumber(bettingLimit.MaxBet);
+                    if (typeof bettingLimit.OldMaxPerMatch != 'undefined') bettingLimit.OldMaxPerMatch = self.formatInputNumber(bettingLimit.MaxPerMatch);
                 }
             }
         },

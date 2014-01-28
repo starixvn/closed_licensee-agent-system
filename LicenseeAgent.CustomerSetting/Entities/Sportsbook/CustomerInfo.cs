@@ -53,6 +53,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public decimal MaxCredit { get; set; }
 
-        public byte Status { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
 
         public string Fax { get; set; }
 
-        public byte Status { get; set; }
+        public int Status { get; set; }
 
         public override string GetSettingKey()
         {

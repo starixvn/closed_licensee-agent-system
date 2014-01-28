@@ -243,15 +243,7 @@ namespace LicenseeAgent.Account
                 CurrencyId = internalLoginInfo.CurrencyId,
                 UserName = internalLoginInfo.AgentName
             };
-            _accountService.InternalLoginAsUser(criteria);
-            if (criteria.ErrCode == Result.SuccessValue)
-            {
-                return AdminLoginAsAgent(internalLoginInfo);
-            }
-            else
-            {
-                return Content(ResourceManager.GetErrMsg(criteria.ErrCode));
-            }
+            return AdminLoginAsAgent(internalLoginInfo);
         }
 
         /// <summary>

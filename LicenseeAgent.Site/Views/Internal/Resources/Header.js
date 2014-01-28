@@ -117,6 +117,7 @@
             if (newCurrencyId > 0 && newCurrencyId > 0) {
                 INTERNAL_HEADER.enableSearch(true);
                 INTERNAL_HEADER.activeMain();
+                INTERNAL_HEADER.submit();
             }
             else {
                 INTERNAL_HEADER.enableSearch(false);

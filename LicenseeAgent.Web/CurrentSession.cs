@@ -56,6 +56,7 @@ namespace LicenseeAgent.Web
         {
             AgentInfo = agentInfo;
             OnLicenseeId = agentInfo.LicenseeId;
+            OnValidateAgent(agentInfo);
         }
 
         /// <summary>
@@ -74,6 +75,7 @@ namespace LicenseeAgent.Web
         {
             AgentInfo = agentInfo;
             OnLicenseeId = internalLoginInfo.LicenseeId;
+            OnValidateAgent(agentInfo);
         }
 
         protected CurrentSession(int loginUserId, string loginUserName, AccountType loginAccountType, int checkinOnUserId, string language)
@@ -168,13 +170,52 @@ namespace LicenseeAgent.Web
 
         public void UpdateAgent(AgentInfo agentInfo)
         {
-            if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)
-            {
-                throw new InvalidOperationException("Invalid");
-            }
-
             AgentInfo = agentInfo;
             OnLicenseeId = agentInfo.LicenseeId;
+            OnValidateAgent(agentInfo);
+        }
+
+        /// <summary>
+        /// Called when [validate agent].
+        /// </summary>
+        /// <param name="agentInfo">The agent information.</param>
+        /// <exception cref="System.InvalidOperationException">
+        /// Agent is invalid.
+        /// or
+        /// Licensee is invalid.
+        /// or
+        /// Level is invalid.
+        /// or
+        /// Licensee is invalid.
+        /// or
+        /// Currency is invalid.
+        /// </exception>
+        protected void OnValidateAgent(AgentInfo agentInfo)
+        {
+            if (agentInfo == null)
+            {
+                throw new InvalidOperationException("Agent is invalid.");
+            }
+
+            if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)
+            {
+                throw new InvalidOperationException("Licensee is invalid.");
+            }
+
+            if (agentInfo.AgentLevel - 1 > agentInfo.NumberOfLevel)
+            {
+                throw new InvalidOperationException("Level is invalid.");
+            }
+
+            if (agentInfo.LicenseeId == 0 || string.IsNullOrEmpty(agentInfo.LicenseeName))
+            {
+                throw new InvalidOperationException("Licensee is invalid.");
+            }
+
+            if (agentInfo.CurrencyId == 0 || string.IsNullOrEmpty(agentInfo.CurrencyName))
+            {
+                throw new InvalidOperationException("Currency is invalid.");
+            }
         }
     }
 }

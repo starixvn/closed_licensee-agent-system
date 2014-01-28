@@ -56,7 +56,7 @@ namespace LicenseeAgent.Account.Services
         /// <returns>Returns agent information.</returns>
         public AgentInfo AgentInternalLogin(AgentInternalLoginCriteria criteria)
         {
-            var result = new AgentInfo();
+            AgentInfo result = null;
             Execute(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
             {

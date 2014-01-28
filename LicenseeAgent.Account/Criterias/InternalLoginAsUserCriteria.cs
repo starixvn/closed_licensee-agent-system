@@ -7,30 +7,27 @@
 namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class InternalLoginAsUserCriteria : CriteriaBase
     {
-        public int LicenseeId { get; set; }
+        public int AdminId { get; set; }
 
-        public string LicenseeName { get; set; }
+        public int LicenseeId { get; set; }
 
         public int CurrencyId { get; set; }
 
-        public string CurrencyName { get; set; }
-
         public string UserName { get; set; }
 
-        public int AgentId { get; set; }
+        public string LoginIp { get; set; }
 
-        public string AgentName { get; set; }
+        public string BrowserName { get; set; }
 
-        public short NumberOfLevel { get; set; }
+        public string Platform { get; set; }
 
-        public short AgentLevel { get; set; }
+        public string CountryCode { get; set; }
 
         public int ErrCode { get; set; }
 
@@ -41,8 +38,9 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 &&
-                CurrencyId > 0;
+            return AdminId > 0
+                && LicenseeId > 0
+                && CurrencyId > 0;
         }
     }
 }

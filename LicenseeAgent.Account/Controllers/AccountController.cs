@@ -342,6 +342,11 @@ namespace LicenseeAgent.Account.Controllers
         public ActionResult SignOut()
         {
             ClearSession(true);
+            if (HttpContext.Response.IsRequestBeingRedirected)
+            {
+                return null;
+            }
+
             return Redirect(FormsAuthentication.LoginUrl);
         }
 

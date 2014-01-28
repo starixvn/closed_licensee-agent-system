@@ -138,11 +138,17 @@ namespace LicenseeAgent.Account
         [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
         public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
         {
+            var clientInfo = Request.GetClientInfo();
             var criteria = new InternalLoginAsUserCriteria
             {
+                AdminId = CurrentSession.LoginUserId,
                 LicenseeId = model.LicenseeId,
                 CurrencyId = model.CurrencyId,
-                UserName = model.UserName
+                UserName = model.UserName,
+                LoginIp = clientInfo.Ip,
+                BrowserName = clientInfo.BrowserName,
+                Platform = clientInfo.Platform,
+                CountryCode = clientInfo.CountryCode
             };
 
             _accountService.InternalLoginAsUser(criteria);
@@ -237,12 +243,6 @@ namespace LicenseeAgent.Account
                 return Content("Ticket is invalid or expired");
             }
 
-            var criteria = new InternalLoginAsUserCriteria
-            {
-                LicenseeId = internalLoginInfo.LicenseeId,
-                CurrencyId = internalLoginInfo.CurrencyId,
-                UserName = internalLoginInfo.AgentName
-            };
             return AdminLoginAsAgent(internalLoginInfo);
         }
 

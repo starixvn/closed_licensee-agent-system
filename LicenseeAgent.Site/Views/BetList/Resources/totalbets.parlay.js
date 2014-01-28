@@ -39,8 +39,6 @@ fanex.totalBets.parlay = {
 
         $('.selectpicker').selectpicker();
 
-        fanex.totalBets.parlay.renderDatePicker();
-
         // search
         $('#search-form').submit(function (e) {
             fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0]);
@@ -86,7 +84,7 @@ fanex.totalBets.parlay = {
                 $('#BetListGrid').show().fanexGrid(gridOption);
 
                 if (data.TotalItem > 0 && data.IsLastLevel == true)
-                    $("#BetListGrid").fanexGrid("hideColumns", gridOptions, [10]);
+                    $("#BetListGrid").fanexGrid("hideColumns", gridOption, [10]);
             },
             complete: function () {
                 CORE.unblockUI();

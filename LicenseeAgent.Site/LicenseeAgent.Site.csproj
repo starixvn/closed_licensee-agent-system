@@ -798,6 +798,7 @@
     <Content Include="Views\Account\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
     <Content Include="Views\Internal\Tool.cshtml" />
+    <Content Include="Views\Report\AgentWinLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">

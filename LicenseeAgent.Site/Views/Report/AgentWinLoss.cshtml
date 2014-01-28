@@ -1,0 +1,63 @@
+﻿@model LicenseeAgent.Report.ViewModels.ResultsReportViewModel
+@{
+    ViewBag.Title = "Agent Win Loss";
+}
+@section css
+{
+    @Styles.Render("~/css/datetimepicker")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/datetimepicker")
+    @Scripts.Render("~/js/resultsreport")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+
+@using (Html.BeginForm("Results", "Report", FormMethod.Post,
+    new { @class = "form-filter form-inline", id = "search-form" }))
+{
+    <div class="controls-row">
+        <label for="inputIcon">Date Range</label>
+        <div class="input-append">
+            <input class="span2" id="matchdatetime" type="text" value="@DateTime.Today" />
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="controls-row">
+        <span for="matchdatetime1" class="control-label"> To </span>        
+        <div class="input-append">
+            <input class="span2" id="matchdatetime1" type="text" value="@DateTime.Today" />
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="newline"></div>
+    
+    <div class="controls-row">
+        <label for="inputIcon">Draw Filter </label>
+        <label class="radio">
+            Normal 
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        </label>
+        <label class="radio">
+            No Draw 
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        </label>
+        <label class="radio">
+            No Draw For Turnover Only
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        </label>
+    </div>
+    <div class="newline"></div>
+        
+    <div class="offset1 controls-row">            
+        <button class="btn btn-primary left-button" onclick="return outrightSubmit();">@Las.Submit</button>
+        <button class="btn btn-primary" onclick="return outrightToday();">@Las.Today</button>
+        <button class="btn btn-primary" onclick="return outrightYesterday();">@Las.Yesterday</button>
+    </div>
+}

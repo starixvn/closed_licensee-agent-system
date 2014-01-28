@@ -959,4 +959,7 @@
     <value>Unlimitted</value>
     <comment>not</comment>
   </data>
+  <data name="AgentWinLoss" xml:space="preserve">
+    <value>Agent Win Loss</value>
+  </data>
 </root>

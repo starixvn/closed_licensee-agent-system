@@ -217,6 +217,18 @@ namespace LicenseeAgent.Report.Controllers
 
         #endregion Results Report
 
+        #region Agent Win Loss Report
+        /// <summary>
+        /// Agent Win Loss.
+        /// </summary>
+        /// <returns>Return a view.</returns>
+        [HttpGet]
+        public ActionResult AgentWinLoss()
+        {
+            return View();
+        }
+        #endregion
+
         #region Utilities
 
         /// <summary>

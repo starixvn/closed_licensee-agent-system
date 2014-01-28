@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResetPasswordAction : LogAction, IAction
+    public class ResetPasswordAction : LogAction, IAction, ICloneable
     {
         public string SiteName { get; set; }
 
@@ -30,6 +30,11 @@ namespace LicenseeAgent.Taiwan.Actions
         public string GetActionName()
         {
             return "ResetPassword";
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

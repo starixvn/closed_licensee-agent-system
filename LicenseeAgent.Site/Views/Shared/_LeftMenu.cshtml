@@ -25,7 +25,7 @@
             <li class="divider"></li>
             <li><a class="tree-toggler nav-header">@Las.Reports</a>
                 <ul class="nav nav-list tree" style="display: none">
-                    @BootstrapHelper.LeftMenu(Las.WinLoss, Url.Action("Index", "Account"))
+                    @BootstrapHelper.LeftMenu(Las.AgentWinLoss, Url.Action("AgentWinLoss", "Report"))
                     @BootstrapHelper.LeftMenu(Las.Outstanding, Url.Action("Index", "Account"))
                     @BootstrapHelper.LeftMenu(Las.Results, Url.Action("Results", "Report"))
                 </ul>

@@ -12,7 +12,7 @@
                 { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    gridExpandHeight: 85,
+    gridExpandHeight: 100,
     bodyRowHeight: 29
 };
 
@@ -169,6 +169,7 @@ var BETLIST = function ($) {
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();
+                        $('#BetListGrid').fanexGrid('resizeGrid');
                     },
                     beforeSend: function () {
                         CORE.blockUI();

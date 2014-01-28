@@ -85,7 +85,7 @@ fanex.totalBets.parlay = {
                 gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                 $('#BetListGrid').show().fanexGrid(gridOption);
 
-                if (data.IsLastLevel == true)
+                if (data.TotalItem > 0 && data.IsLastLevel == true)
                     $("#BetListGrid").fanexGrid("hideColumns", gridOptions, [10]);
             },
             complete: function () {

@@ -14,6 +14,8 @@ namespace LicenseeAgent.BetList.Criteria
 
         public long RefNo { get; set; }
 
+        public decimal Outstanding { get; set; }
+
         public override string GetSettingKey()
         {
             return "LAS_TotalBet_SystemParlayResult";

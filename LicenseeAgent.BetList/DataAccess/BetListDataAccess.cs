@@ -151,6 +151,7 @@ namespace LicenseeAgent.BetList.DataAccess
                 {
                     var ticketList = multipleQuery.Read<SystemParlayTicket>();
                     var serialList = multipleQuery.Read<SystemParlaySerial>();
+                    criteria.Outstanding = Converter.ToDecimal(objectDb.GetParameterValue("Outstanding"));
                     return new SystemParlayData
                     {
                         TicketList = ticketList.Cast<ISystemParlayTicket>().ToList(),

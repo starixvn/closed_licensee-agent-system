@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.Report.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -127,11 +126,15 @@ namespace LicenseeAgent.Report.Controllers
             if (outRightData.Count > 0)
             {
                 var sports = outRightData.GroupBy(i => i.SportType)
-                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetSportName(j.First().SportType), Value = j.First().SportType.ToString() })
-                    .ToList();
+                    .Select(j => new SelectListItem 
+                    { 
+                        Text = DataRefWrapper.GetSportName(j.First().SportType), 
+                        Value = j.First().SportType.ToString(), 
+                        Selected = j.First().SportType == criteria.SportType 
+                    }).ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
                 var leagues = outRightData.Where(i => i.SportType == sportType)
-                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).ToList();
+                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).OrderBy(x => x.Text).ToList();
                 var data = outRightData.Where(i => i.SportType == sportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
                 if (data.Count > 0)
                 {
@@ -190,7 +193,7 @@ namespace LicenseeAgent.Report.Controllers
             var leagueItems = new List<SelectListItem>();
             var leagues = _resultsReportService.GetLeagues(criteria);
             leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).ToList();
-            
+
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -218,6 +221,7 @@ namespace LicenseeAgent.Report.Controllers
         #endregion Results Report
 
         #region Agent Win Loss Report
+
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
@@ -227,7 +231,8 @@ namespace LicenseeAgent.Report.Controllers
         {
             return View();
         }
-        #endregion
+
+        #endregion Agent Win Loss Report
 
         #region Utilities
 

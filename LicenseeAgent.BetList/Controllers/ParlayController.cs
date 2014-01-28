@@ -185,7 +185,7 @@ namespace LicenseeAgent.BetList.Controllers
                     Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                     Stake = builder.BuildLasStake(ticket),
                     AgentPT = builder.BuildAgentPT(ticket),
-                    AgentComm = builder.BuildAgentComm(ticket),
+                    AgentComm = CurrentSession.IsAdmin ? builder.BuildAdminAgentComm(ticket) : builder.BuildAgentComm(ticket),
                     WinLoss = builder.BuildLasWinloss(ticket)
                 };
 

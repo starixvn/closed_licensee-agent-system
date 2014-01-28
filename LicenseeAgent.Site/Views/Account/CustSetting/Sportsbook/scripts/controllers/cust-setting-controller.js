@@ -168,6 +168,8 @@
                         }
                     }
                     if (isSuccess) {
+                        bettingLimitScope.refreshData();
+                        positionTakingScope.refreshData();
                         POPUP.close();
                     }
                 }
@@ -222,6 +224,8 @@
                         }
                     }
                     if (isSuccess) {
+                        bettingLimitScope.refreshData();
+                        positionTakingScope.refreshData();
                         POPUP.close();
                     }
                 }

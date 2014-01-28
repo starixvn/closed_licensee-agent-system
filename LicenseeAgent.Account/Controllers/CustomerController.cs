@@ -192,7 +192,7 @@ namespace LicenseeAgent.Account.Controllers
 
             var members = _agentService.GetMemberList(criteria);
 
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == Result.SuccessValue)
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
                                     members,
@@ -202,7 +202,7 @@ namespace LicenseeAgent.Account.Controllers
                                         LASAgentId = model.AgentId
                                     });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new
                     {
@@ -236,7 +236,7 @@ namespace LicenseeAgent.Account.Controllers
 
             var members = _agentService.SearchMember(criteria);
 
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == Result.SuccessValue)
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
                     members,
@@ -246,7 +246,7 @@ namespace LicenseeAgent.Account.Controllers
                         LASAgentId = model.AgentId
                     });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new
                     {
@@ -282,7 +282,7 @@ namespace LicenseeAgent.Account.Controllers
 
             _agentService.UpdateAgentAccStatus(criteria);
 
-            if (criteria.MsgId == 0 && model.Status == (byte)AccountStatus.Closed)
+            if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
                 {
@@ -293,7 +293,7 @@ namespace LicenseeAgent.Account.Controllers
                     IsClosed = true
                 });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new
                     {
@@ -321,7 +321,7 @@ namespace LicenseeAgent.Account.Controllers
                 UserId = CurrentSession.LoginUserId,
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 IBCCustId = model.MemberId,
-                IsClosed = model.Status == (byte)AccountStatus.Closed,
+                IsClosed = model.Status == (int)AccountStatus.Closed,
                 LASAgentId = model.AgentId
             });
 
@@ -452,7 +452,7 @@ namespace LicenseeAgent.Account.Controllers
                     SiteName = CurrentSession.AgentInfo.LicenseeName
                 });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
                 }
@@ -504,7 +504,7 @@ namespace LicenseeAgent.Account.Controllers
 
                 _agentService.ResetPassword(criteria);
 
-                if (criteria.ErrCode != 0)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 }
@@ -580,7 +580,7 @@ namespace LicenseeAgent.Account.Controllers
                     SiteName = CurrentSession.AgentInfo.LicenseeName
                 });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
                 }
@@ -649,7 +649,7 @@ namespace LicenseeAgent.Account.Controllers
 
                 _agentService.EditInfoAgent(criteria);
 
-                if (criteria.ErrCode != 0)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 }

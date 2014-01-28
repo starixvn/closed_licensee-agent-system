@@ -8,8 +8,7 @@ if (fanex.sportsbookSetting) {
     [
         '$scope',
         '$filter',
-        '$http',
-        function ($scope, $filter, $http) {
+        function ($scope, $filter) {
             $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
             fanex.sportsbookSetting.positionTakingService.init(positionTakingSetting, $scope.language);
             $scope.config = fanex.sportsbookSetting.positionTakingService.config;
@@ -23,6 +22,13 @@ if (fanex.sportsbookSetting) {
 
             $scope.saveData = function (callBackFunction) {
                 return $scope.positionTakingService.getPositionTakingUpdate(
+                    settingContext,
+                    $scope.ptModel.ptFirstData,
+                    $scope.ptModel.ptGroups);
+            }
+
+            $scope.refreshData = function () {
+                return $scope.positionTakingService.refreshData(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);

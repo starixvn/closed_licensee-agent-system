@@ -32,6 +32,24 @@ if (fanex.sportsbookSetting) {
         showInvalidMessage: function (element, message) {
             fanex.showHint(element, message);
         },
+        refreshData: function (settingContext, bettingLimitsData, firstRecordData) {
+            if (settingContext.IsSimpleMode) {
+                for (var i = 0; i < bettingLimitsData.length; i++) {
+                    var bettingLimit = bettingLimitsData[i];
+                    if (typeof firstRecordData.MinBet != 'undefined') firstRecordData.MinBet = bettingLimit.MinBet;
+                    if (typeof firstRecordData.MaxBet != 'undefined') firstRecordData.MaxBet = bettingLimit.MaxBet;
+                    if (typeof firstRecordData.MaxPerMatch != 'undefined') firstRecordData.MaxPerMatch = bettingLimit.MaxPerMatch;
+                }
+            }
+            else {
+                for (var i = 0; i < bettingLimitsData.length; i++) {
+                    var bettingLimit = bettingLimitsData[i];
+                    if (typeof bettingLimit.OldMinBet != 'undefined') bettingLimit.OldMinBet = bettingLimit.MinBet;
+                    if (typeof bettingLimit.OldMaxBet != 'undefined') bettingLimit.OldMaxBet = bettingLimit.MaxBet;
+                    if (typeof bettingLimit.OldMaxPerMatch != 'undefined') bettingLimit.OldMaxPerMatch = bettingLimit.MaxPerMatch;
+                }
+            }
+        },
         getbettingLimits: function (settingContext, bettingLimitsData, firstRecordData) {
             var bettingLimitsSave = [];
             var self = this;
@@ -116,4 +134,3 @@ if (fanex.sportsbookSetting) {
         }
     };
 }
-

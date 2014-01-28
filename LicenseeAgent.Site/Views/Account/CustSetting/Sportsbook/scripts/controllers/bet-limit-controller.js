@@ -7,8 +7,7 @@ if (fanex.sportsbookSetting) {
     [
         '$scope',
         '$filter',
-        '$http',
-        function ($scope, $filter, $http) {
+        function ($scope, $filter) {
             $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
 
             $scope.config = fanex.sportsbookSetting.betLimitService.config;
@@ -22,6 +21,13 @@ if (fanex.sportsbookSetting) {
                 firstRecord: fanex.cloneObject(betLimits[0]),
                 settingContext: settingContext
             };
+
+            $scope.refreshData = function () {
+                return $scope.betLimitService.refreshData(
+                    settingContext,
+                    $scope.model.bettingLimitsModel,
+                    $scope.model.firstRecord);
+            }
 
             $scope.saveData = function (callBackFunction) {
                 return $scope.betLimitService.getbettingLimits(
@@ -45,6 +51,5 @@ if (fanex.sportsbookSetting) {
                     return $scope;
                 }
             }
-
         } ]);
-    }
+}

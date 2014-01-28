@@ -2,17 +2,14 @@
 // <copyright file="LogService.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,11 +18,19 @@ namespace LicenseeAgent.Taiwan.Services
     {
         /// <summary>
         /// Write log when call API.
+        /// Wrap exception to avoid causing error on LAS site.
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         public void WriteLog(ICriteria criteria)
         {
-            Execute(criteria);
+            try
+            {
+                Execute(criteria);
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleException(ex);
+            }
         }
     }
 }

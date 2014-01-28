@@ -216,7 +216,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     Fax = model.UpdateDataSportsbookCustomer.CustInfo.Fax ?? string.Empty,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     Currency = CurrentSession.AgentInfo.CurrencyId,
-                    IsClosed = model.UpdateDataSportsbookCustomer.CustInfo.Status == (byte)AccountStatus.Closed
+                    IsClosed = model.UpdateDataSportsbookCustomer.CustInfo.Status == (int)AccountStatus.Closed
                 });
                 if (insertResult.ErrCode != 0)
                 {

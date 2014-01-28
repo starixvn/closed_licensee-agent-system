@@ -7,8 +7,7 @@ if (fanex.sportsbookSetting) {
     [
         '$scope',
         '$filter',
-        '$http',
-        function ($scope, $filter, $http) {
+        function ($scope, $filter) {
             $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
 
             $scope.config = fanex.sportsbookSetting.commissionSettingService.config;
@@ -47,6 +46,5 @@ if (fanex.sportsbookSetting) {
                     return $scope;
                 }
             }
-
         } ]);
 }

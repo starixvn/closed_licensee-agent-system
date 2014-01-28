@@ -45,6 +45,6 @@ namespace LicenseeAgent.Account.Entities
 
         public string Fax { get; set; }
 
-        public byte Status { get; set; }
+        public int Status { get; set; }
     }
 }

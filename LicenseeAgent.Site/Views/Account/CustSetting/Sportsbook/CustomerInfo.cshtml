@@ -28,7 +28,7 @@
         <div class="block4">
             <div class="pull-left">
                 <input id="password" autocomplete="off" type="password" name="password" data-placement="bottom" data-html="true"
-                    maxlength="16" style="position: relative;" data-ng-model="custInfo.password" password-rule hint-validator="@Las.PasswordHint" />
+                    maxlength="24" style="position: relative;" data-ng-model="custInfo.password" password-rule hint-validator="@Las.PasswordHint" />
             </div>
             <div class="pull-left">
                 <span data-ng-class="{'icon-input-invalid': formCustInfo.password.$dirty && formCustInfo.password.$invalid, 'icon-input-valid' : formCustInfo.password.$dirty && formCustInfo.password.$valid}">
@@ -69,7 +69,7 @@
             <span class="require"></span><span>@Las.MaxCredit</span>
         </div>
         <div class="block2">
-            <input id="credit" name="credit" type="text" maxlength="15" class="text-right" data-ng-model="custInfo.credit"
+            <input id="credit" name="credit" type="text" maxlength="24" class="text-right" data-ng-model="custInfo.credit"
                 hint-validator required required-hint="Max Credit is required" auto-numeric-format="0" />
             <span ng-show="isShowLimitMaxCredit"><= {{custInfo.maxCredit | number : 0}}</span>
         </div>

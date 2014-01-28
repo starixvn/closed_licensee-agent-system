@@ -74,7 +74,6 @@
             if (enabled) {
                 $('#submit').removeClass('disabled');
                 $('#agentName').prop('disabled', false);
-                $('#submit').click();
             }
             else {
                 $('#agentName').prop('disabled', true);

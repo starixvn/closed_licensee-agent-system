@@ -50,6 +50,12 @@
                 }
             });
 
+            $('#submit').click(function () {
+                if (!$('#submit').hasClass('disabled')) {
+                    INTERNAL_HEADER.submit();
+                }
+            });
+
             INTERNAL_HEADER.initCurrencyBox();
 
             $('#internal-form').submit(function (e) {

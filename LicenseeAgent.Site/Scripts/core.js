@@ -206,7 +206,7 @@
                 for (var i = 0; i < length; i++) {
                     var colName = columns[i].Name;
                     var value = data[colName];
-                    if (typeof value != 'undefined' && columns[i].Value) {
+                    if (typeof value != 'undefined' && columns[i].Value !== '') {
                         columns[i].Value = value;
                     }
                 }

@@ -153,23 +153,11 @@ if (fanex.sportsbookSetting) {
         refreshData: function (settingContext, simpleModeData, advancedModeData) {
             var self = this;
             if (settingContext.IsSimpleMode) {
-                var updatedPt = simpleModeData,
-                    datalength = positionTakingSetting.length,
-                    positionTakingSave = [];
-                for (var i = 0; i < datalength; i++) {
-                    var currentGroup = positionTakingSetting[i];
-                    if (currentGroup) {
-                        var groupLength = currentGroup.PositionTakings.length;
-                        for (var j = 0; j < groupLength; j++) {
-                            var currentPositionTaking = currentGroup.PositionTakings[j];
-                            if (typeof updatedPt.Value != 'undefined') currentPositionTaking.Value = updatedPt.Value;
-                            if (typeof updatedPt.Min != 'undefined') currentPositionTaking.Min = updatedPt.Min;
-                            if (typeof updatedPt.Max != 'undefined') currentPositionTaking.Max = updatedPt.Max;
-                            if (typeof updatedPt.Preset != 'undefined') currentPositionTaking.Preset = updatedPt.Preset;
-                            if (typeof updatedPt.ApplyAll != 'undefined') currentPositionTaking.ApplyAll = updatedPt.ApplyAll;
-                        }
-                    }
-                }
+                var updatedPt = simpleModeData;
+                if (typeof updatedPt.OldValue != 'undefined') updatedPt.OldValue = updatedPt.Value;
+                if (typeof updatedPt.OldMin != 'undefined') updatedPt.OldMin = updatedPt.Min;
+                if (typeof updatedPt.OldMax != 'undefined') updatedPt.OldMax = updatedPt.Max;
+                if (typeof updatedPt.OldPreset != 'undefined') updatedPt.OldPreset = updatedPt.Preset;
             }
             else {
                 var updatedData = advancedModeData,
@@ -203,7 +191,7 @@ if (fanex.sportsbookSetting) {
                         var groupLength = currentGroup.PositionTakings.length;
                         for (var j = 0; j < groupLength; j++) {
                             var currentPositionTaking = currentGroup.PositionTakings[j];
-
+                            self.getSimpleModePositionTaking(settingContext, updatedPt, currentPositionTaking, positionTakingSave);
                         }
                     }
                 }

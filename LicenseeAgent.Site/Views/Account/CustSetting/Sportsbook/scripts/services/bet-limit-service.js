@@ -35,12 +35,9 @@ if (fanex.sportsbookSetting) {
         refreshData: function (settingContext, bettingLimitsData, firstRecordData) {
             var self = this;
             if (settingContext.IsSimpleMode) {
-                for (var i = 0; i < bettingLimitsData.length; i++) {
-                    var bettingLimit = bettingLimitsData[i];
-                    if (typeof firstRecordData.MinBet != 'undefined') firstRecordData.MinBet = self.formatInputNumber(bettingLimit.MinBet);
-                    if (typeof firstRecordData.MaxBet != 'undefined') firstRecordData.MaxBet = self.formatInputNumber(bettingLimit.MaxBet);
-                    if (typeof firstRecordData.MaxPerMatch != 'undefined') firstRecordData.MaxPerMatch = self.formatInputNumber(bettingLimit.MaxPerMatch);
-                }
+                if (typeof firstRecordData.MinBet != 'undefined') firstRecordData.MinBet = self.formatInputNumber(firstRecordData.MinBet);
+                if (typeof firstRecordData.MaxBet != 'undefined') firstRecordData.MaxBet = self.formatInputNumber(firstRecordData.MaxBet);
+                if (typeof firstRecordData.MaxPerMatch != 'undefined') firstRecordData.MaxPerMatch = self.formatInputNumber(firstRecordData.MaxPerMatch);
             }
             else {
                 for (var i = 0; i < bettingLimitsData.length; i++) {

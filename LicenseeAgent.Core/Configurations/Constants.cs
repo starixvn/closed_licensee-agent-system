@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Configurations
 {
@@ -21,6 +18,9 @@ namespace LicenseeAgent.Core.Configurations
 
         public const string BETLISTTICKETSTATUSRUNNING = "running";
         public const string BETLISTTICKETSTATUSWAITING = "waiting";
+
+        public const int LargeStringLength = 35;
+        public const string DefaultFullName = "---";
 
         public const int CaptchaWidth = 110;
         public const int CaptchaHeight = 32;

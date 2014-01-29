@@ -19,11 +19,11 @@ namespace LicenseeAgent.Web.Controllers
     using System.Text;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using LicenseeAgent.Core;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
@@ -212,6 +212,15 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         protected JsonResult JsonResult(Result result)
+        {
+            return Json(new
+            {
+                ErrCode = result.ErrCode,
+                ErrMsg = result.ErrMsg
+            });
+        }
+
+        protected JsonResult JsonResult(ResponseResult result)
         {
             return Json(new
             {

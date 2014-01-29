@@ -7,11 +7,9 @@
 
 namespace LicenseeAgent.Account.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Account.Entities;
+    using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
     /// TODO: Update summary.

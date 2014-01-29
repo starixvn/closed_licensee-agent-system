@@ -71,6 +71,7 @@
     <Compile Include="Criterias\AddNewMemberCriteria.cs" />
     <Compile Include="Criterias\EditInfoMemberCriteria.cs" />
     <Compile Include="Criterias\ResetPasswordMemberCriteria.cs" />
+    <Compile Include="Entities\CustomerEntity.cs" />
     <Compile Include="Entities\LogContentEntity.cs" />
     <Compile Include="Entities\ServiceMemberEntity.cs" />
     <Compile Include="Enumerations\LogType.cs" />

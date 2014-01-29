@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.API", "Licens
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CreditBalance", "LicenseeAgent.CreditBalance\LicenseeAgent.CreditBalance.csproj", "{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CustomerList", "LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj", "{431F4C65-A756-45EC-BD0C-05F8EC35004A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +193,16 @@ Global
 		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}.Release|x86.ActiveCfg = Release|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{431F4C65-A756-45EC-BD0C-05F8EC35004A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,6 +19,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -289,7 +290,7 @@ namespace LicenseeAgent.Account.Controllers
             if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
             {
                 var serviceResult = _memberService.GetMemberInformation<CustomerEntity>(
-                                    customer, 
+                                    customer,
                                     new GetMemberInfoAction
                                     {
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,

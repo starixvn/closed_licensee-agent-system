@@ -344,8 +344,8 @@
     <Content Include="Views\Account\Resources\Images\expand.png" />
     <Content Include="Views\BetList\Resources\BetListManager.js" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
-    <Content Include="Views\Customer\Resources\resetpassword.js" />
-    <Content Include="Views\Customer\Resources\customerlist.js" />
+    <Content Include="Views\CustomerList\Resources\resetpassword.js" />
+    <Content Include="Views\CustomerList\Resources\customerlist.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
@@ -661,10 +661,10 @@
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
-    <Content Include="Views\Customer\Resources\customerlist.less" />
-    <Content Include="Views\Customer\_Breadcrumb.cshtml" />
-    <Content Include="Views\Customer\_Link.cshtml" />
-    <Content Include="Views\Customer\_IpInformation.cshtml" />
+    <Content Include="Views\CustomerList\Resources\customerlist.less" />
+    <Content Include="Views\CustomerList\_Breadcrumb.cshtml" />
+    <Content Include="Views\CustomerList\_Link.cshtml" />
+    <Content Include="Views\CustomerList\_IpInformation.cshtml" />
     <Content Include="Views\Account\EditCustomer.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\ViewCustomerInfo.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSetting.cshtml" />
@@ -741,12 +741,12 @@
     <Content Include="Content\bootstrap\utilities.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\wells.less" />
-    <Content Include="Views\Customer\_Script.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\CustomerList\_Script.cshtml" />
+    <Content Include="Views\CustomerList\Index.cshtml" />
     <Content Include="Views\AccountInformation\Index.cshtml" />
-    <Content Include="Views\Customer\_MemberGrid.cshtml" />
-    <Content Include="Views\Customer\GetIpInformation.cshtml" />
-    <Content Include="Views\Customer\_AgentGrid.cshtml" />
+    <Content Include="Views\CustomerList\_MemberGrid.cshtml" />
+    <Content Include="Views\CustomerList\GetIpInformation.cshtml" />
+    <Content Include="Views\CustomerList\_AgentGrid.cshtml" />
     <Content Include="Views\TotalBets\Soccer.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
@@ -782,7 +782,7 @@
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Views\Report\Results.cshtml" />
-    <Content Include="Views\Customer\ResetPassword.cshtml" />
+    <Content Include="Views\CustomerList\ResetPassword.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
     <Content Include="Views\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
@@ -793,7 +793,7 @@
     <Content Include="Views\Account\CreditBalance\MemberList.cshtml" />
     <Content Include="Views\Account\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\Account\CreditBalance\Index.cshtml" />
-    <Content Include="Views\Customer\EditInfo.cshtml" />
+    <Content Include="Views\CustomerList\EditInfo.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Account\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
@@ -816,6 +816,10 @@
     <ProjectReference Include="..\LicenseeAgent.CreditBalance\LicenseeAgent.CreditBalance.csproj">
       <Project>{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}</Project>
       <Name>LicenseeAgent.CreditBalance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj">
+      <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
+      <Name>LicenseeAgent.CustomerList</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj">
       <Project>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</Project>

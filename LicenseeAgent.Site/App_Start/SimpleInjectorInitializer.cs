@@ -13,6 +13,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CreditBalance.Services;
+    using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
     using LicenseeAgent.Report.DataAccess;

@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 {
@@ -37,7 +34,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 
         public string Fax { get; set; }
 
-        public byte Status { get; set; }
+        public int Status { get; set; }
 
         public override string GetSettingKey()
         {
@@ -46,10 +43,10 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 
         public override bool IsValid()
         {
-            return base.IsValid() &&
-                AgentL0Id > 0 &&
-                !string.IsNullOrEmpty(UserSalt) &&
-                !string.IsNullOrEmpty(UserPwd);
+            return base.IsValid()
+                && AgentL0Id > 0
+                && !string.IsNullOrEmpty(UserSalt)
+                && !string.IsNullOrEmpty(UserPwd);
         }
     }
 }

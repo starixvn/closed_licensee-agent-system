@@ -9,9 +9,6 @@
 
             // username suggestion
             $("#UserName").typeahead({ source: accountInformation.getSuggestion, items: 10 });
-            $('#UserName').bind('input', function () {
-                //accountInformation.autoComplete();
-            });
 
             //form submit
             $('#formSearch').submit(function (event) {

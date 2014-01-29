@@ -20,6 +20,7 @@ namespace LicenseeAgent.CustomerList.ViewModels
         public int AgentLevel { get; set; }
 
         [Required]
-        public string Text { get; set; }
+        [StringLength(50, MinimumLength = 1)]
+        public string UserName { get; set; }
     }
 }

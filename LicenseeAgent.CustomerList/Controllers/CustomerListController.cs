@@ -372,7 +372,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             var criteria = new AgentAutoCompleteCriteria
             {
                 AgentId = model.AgentId,
-                Text = model.Text
+                Text = model.UserName
             };
 
             var agents = _customerService.GetAgentAutoComplete(criteria);
@@ -394,7 +394,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             var criteria = new MemberAutoCompleteCriteria
             {
                 AgentId = model.AgentId,
-                Text = model.Text
+                Text = model.UserName
             };
 
             var members = _customerService.GetMemberAutoComplete(criteria);

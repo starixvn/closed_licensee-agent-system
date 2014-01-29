@@ -185,7 +185,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
             {
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
-                UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim()
+                UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName
             });
 
             if (checkUserNameResult.ErrCode != 0)
@@ -194,7 +194,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
+            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
             var result = _customerSettingService.InsertCustomer(model);
             var messages = GenerateMessages(result);
 
@@ -246,7 +246,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
             model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
+            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
             var result = _customerSettingService.UpdateCustomer(model);
             var messages = GenerateMessages(result, true);
             return Json(new
@@ -274,7 +274,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
             model.SettingContext.LoginUserId = CurrentSession.AgentInfo.AgentId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName.Trim();
+            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
             var result = _customerSettingService.UpdateIndirectCustomer(model);
             var messages = GenerateMessages(result, true);
             return Json(new

@@ -4,18 +4,18 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Controllers
+namespace LicenseeAgent.AccountInformation.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Account.Core;
-    using LicenseeAgent.Account.Criterias;
-    using LicenseeAgent.Account.Entities;
-    using LicenseeAgent.Account.Services;
-    using LicenseeAgent.Account.ViewModels;
-    using LicenseeAgent.Account.ViewResults;
+    using LicenseeAgent.AccountInformation.Criteria;
+    using LicenseeAgent.AccountInformation.Entities;
+    using LicenseeAgent.AccountInformation.Services;
+    using LicenseeAgent.AccountInformation.ViewModels;
+    using LicenseeAgent.AccountInformation.ViewResults;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
@@ -61,7 +61,7 @@ namespace LicenseeAgent.Account.Controllers
         {
             if (!ModelState.IsValid)
             {
-                InvalidModelViewResult();
+                return InvalidModelViewResult();
             }
 
             if (CurrentSession.AgentInfo.IsLevel0)
@@ -80,7 +80,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Suggestion view model.</param>
         /// <returns>JSON result.</returns>
         [HttpPost]
-        public ActionResult Suggest(SuggestionViewModel model)
+        public JsonResult Suggest(SuggestionViewModel model)
         {
             if (CurrentSession.AgentInfo.IsLevel0)
             {

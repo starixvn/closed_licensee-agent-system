@@ -1,24 +1,18 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="SearchUserViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SuggestionEntity.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.ViewModels
+namespace LicenseeAgent.AccountInformation.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SearchUserViewModel
+    public class SuggestionEntity
     {
-        [Required]
         public string UserName { get; set; }
+
+        public int CustId { get; set; }
     }
 }

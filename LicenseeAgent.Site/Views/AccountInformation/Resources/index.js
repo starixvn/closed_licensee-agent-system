@@ -1,43 +1,27 @@
 ﻿var accountInformation = function ($) {
-    var isCalling = false
-        , timerAutocomplete = null
-        , preUserName
-        , lengthUsername = 1;
-
     var urlSuggestion = $("#searchUrl").data("suggest");
     var urlDownline = $("#searchUrl").data("downline");
     var urlCurrency = $("#searchUrl").data("currency");
-
     return {
         init: function () {
             //scroll left menu
             $(".leftmenu-box").niceScroll();
 
             // username suggestion
-            $('#UserName').keyup(function (event) {
-                if (timerAutocomplete == null) {
-                    timerAutocomplete = setInterval(accountInformation.autoComplete, 200);
-                }
-
-                if (event.which == 13) {
-                    $(".ui-autocomplete").hide();
-                }
+            $("#UserName").typeahead({ source: accountInformation.getSuggestion, items: 10 });
+            $('#UserName').bind('input', function () {
+                //accountInformation.autoComplete();
             });
 
             //form submit
             $('#formSearch').submit(function (event) {
                 var userName = $.trim($("#UserName").val());
-
-                if (userName.length >= lengthUsername) {
-
-                    $("#UserName").val(userName);
-
-                    $(this).ajaxSubmit({
-                        target: '#searchResult',
-                        beforeSubmit: accountInformation.beforeSearchUser,
-                        success: accountInformation.searchResultBinding
-                    });
-                }
+                $("#UserName").val(userName);
+                $(this).ajaxSubmit({
+                    target: '#searchResult',
+                    beforeSubmit: accountInformation.beforeSearchUser,
+                    success: accountInformation.searchResultBinding
+                });
                 event.preventDefault();
             });
 
@@ -108,54 +92,19 @@
         hidePopover: function () {
             $('.popover-link').popover('hide');
         },
-        //suggest agent name
-        autoComplete: function () {
-            var userName = $('#UserName').val();
-            accountInformation.clearTimer();
-            if ($.trim(userName).length >= lengthUsername) {
-                if (userName != preUserName) {
-                    timerAutocomplete = setInterval(accountInformation.autoComplete, 200);
-                }
-                else {
-                    accountInformation.getAutoComplete(userName);
-                }
-            }
-            preUserName = userName;
-        },
-        clearTimer: function () {
-            clearInterval(timerAutocomplete);
-            timerAutocomplete = null;
-        },
-        getAutoComplete: function (userName) {
-            if ($.trim(userName).length < lengthUsername) {
-                return;
-            }
-            if (!isCalling) {
-                $.ajax({
-                    url: urlSuggestion,
-                    type: 'post',
-                    data: {
-                        username: userName
-                    },
-                    beforeSend: function () {
-                        isCalling = true;
-                    },
-                    success: function (data) {
-                        if (data.ErrCode == 0) {
-                            var typeahead = $('#UserName').data('typeahead');
-                            if (typeahead) {
-                                typeahead.source = data.List;
-                            }
-                            else {
-                                $("#UserName").typeahead({ source: data.List, items: 10 });
-                            }
-                        }
-                    },
-                    complete: function () {
-                        isCalling = false;
+        getSuggestion: function (query, process) {
+            return $.ajax({
+                url: urlSuggestion,
+                type: 'post',
+                data: {
+                    username: query
+                },
+                success: function (data) {
+                    if (data.ErrCode == 0) {
+                        return process(data.List);
                     }
-                });
-            }
+                }
+            });
         },
         //get downline when click paging
         getDownline: function (pageIndex) {

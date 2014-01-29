@@ -1,20 +1,20 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="DownlineEntity.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DownlineViewModel.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Entities
+namespace LicenseeAgent.AccountInformation.ViewModels
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownlineEntity
+    public class DownlineViewModel
     {
-        public int DownlineCustId { get; set; }
+        public int AgentId { get; set; }
 
-        public string UserName { get; set; }
+        public int? PageSize { get; set; }
 
-        public int Level { get; set; }
+        public int PageIndex { get; set; }
     }
 }

@@ -2,13 +2,12 @@
 // <copyright file="SearchUserResultViewModel.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.ViewModels
+namespace LicenseeAgent.AccountInformation.ViewModels
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Account.Entities;
+    using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>

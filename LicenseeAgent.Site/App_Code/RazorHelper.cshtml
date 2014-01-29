@@ -1,8 +1,7 @@
 ﻿@using System.Web.Mvc
 @using LicenseeAgent.Core.Configurations
 @using LicenseeAgent.Resources
-@using LicenseeAgent.Account.Entities
-
+@using LicenseeAgent.AccountInformation.Entities
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -26,19 +25,21 @@
     {
     <div class="instruction">
         @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
+        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
+        </span>
     </div>
 }
 @helper FormatNegative(decimal value)
-{
-    var className = value < 0 ? "color-r" : string.Empty;
-    <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(value)</span>    
-}@helper RenderPopover(int memberId, IList<UplineEntity> uplines,int numberOfLevel)
-{
-    var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-    var numberUpline = uplines.Count;
-    for(int index = numberUpline-1; index >= 0; index--)
     {
-        <a href='@(url.Action("EditMember", "SportsbookSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
-    }
+        var className = value < 0 ? "color-r" : string.Empty;
+    <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(value)</span>
+}
+@helper RenderPopover(int memberId, IList<UplineEntity> uplines, int numberOfLevel)
+    {
+        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+        var numberUpline = uplines.Count;
+        for (int index = numberUpline - 1; index >= 0; index--)
+        {
+    <a href='@(url.Action("EditMember", "SportsbookSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
+        }
 }

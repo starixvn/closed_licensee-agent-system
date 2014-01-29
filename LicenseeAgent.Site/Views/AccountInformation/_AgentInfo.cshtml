@@ -1,5 +1,5 @@
-﻿@model SearchUserResultViewModel
-
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@model SearchUserResultViewModel
 @Html.HiddenFor(m => m.Customer.CustId, new { @id="AgentId" })
 <table class="table table-condensed">
 @if (Model.Uplines.Any())

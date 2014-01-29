@@ -2,15 +2,10 @@
 // <copyright file="GetDownlineListCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Criterias
+namespace LicenseeAgent.AccountInformation.Criteria
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

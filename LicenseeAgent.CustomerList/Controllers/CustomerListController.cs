@@ -316,14 +316,17 @@ namespace LicenseeAgent.CustomerList.Controllers
         [DirectDownLineMember]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
-            var criteria = new CheckMemberUplineStatusForUpdateCriteria
+            if (model.Status == (int)AccountStatus.Open)
             {
-                CustId = model.MemberId
-            };
-            _customerService.CheckMemberUplineStatusForUpdate(criteria);
-            if (criteria.ErrCode != Result.SuccessValue)
-            {
-                return JsonResult(criteria.ErrCode);
+                var criteria = new CheckMemberUplineStatusForUpdateCriteria
+                {
+                    CustId = model.MemberId
+                };
+                _customerService.CheckMemberUplineStatusForUpdate(criteria);
+                if (criteria.ErrCode != Result.SuccessValue)
+                {
+                    return JsonResult(criteria.ErrCode);
+                }
             }
 
             var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction

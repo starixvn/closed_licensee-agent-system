@@ -1,25 +1,20 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="AdminSuggestSearchMemberCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentSuggestSearchMemberCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Criterias
+namespace LicenseeAgent.AccountInformation.Criteria
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AdminSuggestSearchMemberCriteria : CriteriaBase
+    public class AgentSuggestSearchMemberCriteria : CriteriaBase
     {
         public int LicenseeId { get; set; }
-        
+
         public int CurrencyId { get; set; }
 
         public int UserId { get; set; }
@@ -31,14 +26,14 @@ namespace LicenseeAgent.Account.Criterias
 
         public override string GetSettingKey()
         {
-            return "Las_SuggestSearchMember_Admin";
+            return "Las_SuggestSearchMember_Agent";
         }
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 
-                && CurrencyId > 0 
-                && UserId > 0 
+            return LicenseeId > 0
+                && CurrencyId > 0
+                && UserId > 0
                 && !string.IsNullOrEmpty(UserName);
         }
     }

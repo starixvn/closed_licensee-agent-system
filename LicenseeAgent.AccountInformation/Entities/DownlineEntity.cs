@@ -1,24 +1,20 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="SuggestionEntity.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DownlineEntity.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Entities
+namespace LicenseeAgent.AccountInformation.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SuggestionEntity
+    public class DownlineEntity
     {
+        public int DownlineCustId { get; set; }
+
         public string UserName { get; set; }
 
-        public int CustId { get; set; }
+        public int Level { get; set; }
     }
 }

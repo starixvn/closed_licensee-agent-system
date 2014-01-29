@@ -2,15 +2,10 @@
 // <copyright file="AdminGetMemberListCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Criterias
+namespace LicenseeAgent.AccountInformation.Criteria
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -19,9 +14,9 @@ namespace LicenseeAgent.Account.Criterias
     public class AdminGetMemberListCriteria : CriteriaBase
     {
         public int LicenseeId { get; set; }
-        
+
         public int AgentId { get; set; }
-        
+
         public int UserId { get; set; }
 
         public int CurrencyId { get; set; }
@@ -50,9 +45,9 @@ namespace LicenseeAgent.Account.Criterias
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 
-                && CurrencyId > 0 
-                && UserId > 0 
+            return LicenseeId > 0
+                && CurrencyId > 0
+                && UserId > 0
                 && !string.IsNullOrEmpty(UserName);
         }
     }

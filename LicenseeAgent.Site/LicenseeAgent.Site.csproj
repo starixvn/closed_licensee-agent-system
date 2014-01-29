@@ -801,6 +801,10 @@
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">
+      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
+      <Name>LicenseeAgent.AccountInformation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>LicenseeAgent.Account</Name>

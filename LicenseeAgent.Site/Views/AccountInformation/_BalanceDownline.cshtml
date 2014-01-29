@@ -1,8 +1,8 @@
-﻿@model SearchUserResultViewModel
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
 }
-
 <div class="controls-row">
     @if (pageContext.IsMember)
     {
@@ -10,21 +10,20 @@
             <li class="active"><a href="#balance" id="tabBalance" data-toggle="tab">@Las.BalanceInfo</a></li>
         </ul>
         <div class="tab-content tab-small">
-            <div class="tab-pane active in" id="balance"></div>
+            <div class="tab-pane active in" id="balance">
+            </div>
         </div>
     }
     else
     {
         <ul class="nav nav-tabs">
-            <li>
-                <a href="#balance" id="tabBalance" data-toggle="tab">@Las.BalanceInfo</a>
-            </li>
-            <li class="active">
-                <a href="#downlineList" id="tabDownline" data-toggle="tab">@Las.DownlineList</a>
+            <li><a href="#balance" id="tabBalance" data-toggle="tab">@Las.BalanceInfo</a> </li>
+            <li class="active"><a href="#downlineList" id="tabDownline" data-toggle="tab">@Las.DownlineList</a>
             </li>
         </ul>
         <div class="tab-content tab-small">
-            <div class="tab-pane fade" id="balance"></div>
+            <div class="tab-pane fade" id="balance">
+            </div>
             <div class="tab-pane active in" id="downlineList">
                 @if (Model.Downlines.Any())
                 {
@@ -32,14 +31,13 @@
                         <ul class="nav nav-list">
                             @foreach (var donwline in Model.Downlines)
                             {
-                                <li>
-                                    <a class="agent-inline" href="#" data-id="@donwline.DownlineCustId" title="@donwline.UserName">
-                                        <i class="icon-downline-arrow"></i>@donwline.UserName</a>
-                                </li>    
+                                <li><a class="agent-inline" href="#" data-id="@donwline.DownlineCustId" title="@donwline.UserName">
+                                    <i class="icon-downline-arrow"></i>@donwline.UserName</a> </li>
                             }
                         </ul>
                     </div>
-                    <div id="paging" data-total-pages="@Model.TotalPages" data-page-index="@Model.PageIndex"></div>
+                    <div id="paging" data-total-pages="@Model.TotalPages" data-page-index="@Model.PageIndex">
+                    </div>
                 }
                 else
                 {

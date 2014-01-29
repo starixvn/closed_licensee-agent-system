@@ -19,8 +19,12 @@ namespace LicenseeAgent.Core.Configurations
         public const string BETLISTTICKETSTATUSRUNNING = "running";
         public const string BETLISTTICKETSTATUSWAITING = "waiting";
 
+        public const int ShortStringLength = 15;
+        public const int MediumStringLength = 20;
         public const int LargeStringLength = 35;
         public const string DefaultFullName = "---";
+        public const int PageSize = 20;
+        public const int MemberLevel = -1;
 
         public const int CaptchaWidth = 110;
         public const int CaptchaHeight = 32;

@@ -4,9 +4,9 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Entities
+namespace LicenseeAgent.AccountInformation.Entities
 {
-    using LicenseeAgent.Account.Core;
+    using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.

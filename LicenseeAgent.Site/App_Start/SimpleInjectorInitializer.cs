@@ -10,6 +10,7 @@ namespace LicenseeAgent.Site.App_Start
     using System.Reflection;
     using System.Web.Mvc;
     using LicenseeAgent.Account.Services;
+    using LicenseeAgent.AccountInformation.Services;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CreditBalance.Services;

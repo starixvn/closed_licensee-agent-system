@@ -8,7 +8,7 @@
             $(".leftmenu-box").niceScroll();
 
             // username suggestion
-            $("#UserName").typeahead({ source: accountInformation.getSuggestion, items: 10 });
+            $("#UserName").typeahead({ source: accountInformation.getSuggestion, minLength: 2 });
 
             //form submit
             $('#formSearch').submit(function (event) {

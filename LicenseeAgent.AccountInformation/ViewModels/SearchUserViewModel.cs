@@ -14,7 +14,7 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     public class SearchUserViewModel
     {
         [Required]
-        [StringLength(50, MinimumLength = 1)]
+        [StringLength(50, MinimumLength = 2)]
         public string UserName { get; set; }
     }
 }

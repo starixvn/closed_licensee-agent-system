@@ -1,14 +1,5 @@
 ﻿var customerList = function ($) {
-    var isCalling = false
-        , timerAutocomplete = null
-        , preUserName
-        , agentBreadCrumb = []
-        , customerLink
-        , customerType
-        , combobox
-        , lengthUsername = 2
-        , statusObj = { All: -1, Close: 0, Open: 1 };
-
+    var statusObj = { All: -1, Close: 0, Open: 1 };
     var editAgentId = 0;
     var editAgentLevel = 0;
     var editMemberId = 0;
@@ -54,11 +45,7 @@
             });
 
             // username suggestion
-            $('#Username').keyup(function (event) {
-                if (timerAutocomplete == null) {
-                    timerAutocomplete = setInterval(customerList.autoComplete, 200);
-                }
-            });
+            $('#Username').typeahead({ source: customerList.getSuggestion, minLength: 2 });
 
             $(".combobox-container input[type=text]").attr('readonly', 'readonly');
 
@@ -228,55 +215,21 @@
                 $(".icon-checked-all").attr("class", "icon-uncheck-all");
             }
         },
-        autoComplete: function () {
-            var userName = $('#Username').val();
-            customerList.clearTimer();
-            if ($.trim(userName).length >= lengthUsername) {
-                if (userName != preUserName) {
-                    timerAutocomplete = setInterval(customerList.autoComplete, 200);
-                }
-                else {
-                    customerList.getAutoComplete(userName);
-                }
-            }
-            preUserName = userName;
-        },
-        clearTimer: function () {
-            clearInterval(timerAutocomplete);
-            timerAutocomplete = null;
-        },
-        getAutoComplete: function (userName) {
-            if ($.trim(userName).length <= lengthUsername) {
-                return;
-            }
-            if (!isCalling) {
-                $.ajax({
-                    url: CORE.resolveUrl('~/CustomerList/CustomerSearchAutoComplete'),
-                    type: 'post',
-                    data: {
-                        text: userName,
-                        agentid: $("#AgentId").val(),
-                        agentLevel: $("#AgentLevel").val()
-                    },
-                    beforeSend: function () {
-                        isCalling = true;
-                    },
-                    success: function (data) {
-                        if (data.ErrCode == 0) {
-                            var typeahead = $('#Username').data('typeahead');
-                            if (typeahead) {
-                                typeahead.source = data.List;
-                            }
-                            else {
-                                $("#Username").typeahead({ source: data.List, items: 10 });
-                            }
-                        }
-                    },
-                    complete: function () {
-                        isCalling = false;
+        getSuggestion: function (query, process) {
+            return $.ajax({
+                url: CORE.resolveUrl('~/CustomerList/CustomerSearchAutoComplete'),
+                type: 'post',
+                data: {
+                    userName: query,
+                    agentId: $("#AgentId").val(),
+                    agentLevel: $("#AgentLevel").val()
+                },
+                success: function (data) {
+                    if (data.ErrCode == 0) {
+                        return process(data.List);
                     }
-                });
-            }
+                }
+            });
         },
         showAlert: function (isConfirm, target, custId, statusId) {
             var buttons = new Array();

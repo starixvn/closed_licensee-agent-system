@@ -264,6 +264,9 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/customerlist").Include(
                 "~/Views/CustomerList/Resources/customerlist.js"));
+
+            bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
+                "~/Views/CustomerList/Resources/resetpassword.js"));
         }
 
         /// <summary>

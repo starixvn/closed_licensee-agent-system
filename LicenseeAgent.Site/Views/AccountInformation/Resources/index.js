@@ -185,11 +185,9 @@
                         alert(data.ErrMsg);
                         return;
                     }
-                    if (INTERNAL_HEADER != undefined) {
-                        INTERNAL_HEADER.setCurrency(currencyId, currencyName);
+                    if (typeof INTERNAL_HEADER != 'undefined') {
+                        INTERNAL_HEADER.setCurrency(currencyId);
                     }
-                    document.getElementById("frmMain").contentWindow.location.reload(true);
-                    $("#formSearch").submit();
                 },
                 complete: function () {
                     CORE.unblockUI();

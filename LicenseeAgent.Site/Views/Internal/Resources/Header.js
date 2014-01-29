@@ -177,11 +177,9 @@
                 $('#currency').find('ul').hide();
             });
         },
-        setCurrency: function (switchedCurrencyId, switchedCurrencyName) {
-            newCurrencyId = switchedCurrencyId;
-            currencyId = switchedCurrencyId;
-            $('#currency').data('currency-id', switchedCurrencyId);
-            $('#currency').find('span:first').html(switchedCurrencyName);
+        setCurrency: function (currencyId) {
+            newCurrencyId = currencyId;
+            INTERNAL_HEADER.submit();
         }
     };
 } (jQuery);

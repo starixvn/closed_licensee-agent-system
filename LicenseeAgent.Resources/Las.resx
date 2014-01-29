@@ -962,4 +962,13 @@
   <data name="AgentWinLoss" xml:space="preserve">
     <value>Agent Win Loss</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
 </root>

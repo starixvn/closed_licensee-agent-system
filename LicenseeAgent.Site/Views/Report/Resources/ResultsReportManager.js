@@ -1,7 +1,7 @@
 ﻿var REPORT = function ($) {
     return {
         init: function () {
-            $("#filter-tabs").tabs(); /*
+            $("#tabs-area a:first").tab('show'); /*
             $('#matchdatetimepicker').datepicker();
             $('#outrightfromdatetimepicker').datepicker();
             $('#outrighttodatetimepicker').datepicker();*/
@@ -17,9 +17,11 @@
             REPORT.matchSubmit(todayStr);
 
             $('li.tab-match').click(function (e) {
+                $("#tabs-area a:first").tab('show');
                 REPORT.manageLeagueSelect();
             });
             $('li.tab-outright').click(function (e) {
+                $("#tabs-area a:last").tab('show');
                 REPORT.manageOutrightLeagueSelect();
             });
 

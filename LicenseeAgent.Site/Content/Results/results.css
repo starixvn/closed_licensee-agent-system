@@ -79,44 +79,23 @@ table.fanex-result .row-noinfo td
 }
 
 /*main-page*/
-ui-tabs .ui-tabs-nav li.ui-tabs-active
+#tabs-area li.active
 {
     margin-bottom: 0px;
     padding-bottom: 0px;
     border-top-width: 0;
 }
-        
-.ui-tabs .ui-tabs-nav
-{
-    padding: 0.2em 1.2em 0;
-    position: absolute;
-    top: -35px;
-    left: 0px;
-}
-        
-.ui-widget-header
-{
-    background: none;
-    border: none;
-    font-size: inherit;
-}
 
-.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
+#tabs-area li.active a, #tabs-area li.active a:link, #tabs-area li.active a:visited
 {
     background-color: #F4F8FB;
-    border-color: #D93B3C #EDEDED -moz-use-text-color;
+    border-color: #D93B3C #EDEDED transparent #EDEDED;
     border-style: solid none none;
-    border-width: 2px 1px 0;
+    border-width: 3px 1px 0;
 }
-        
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
-{
-    background: none;
-}
-        
+
 .form-filter
-{
-    margin-top: 40px;
+{    
     padding: 0;
 }
         
@@ -151,7 +130,6 @@ ui-tabs .ui-tabs-nav li.ui-tabs-active
 .input-append select, .input-prepend select, 
 .input-append .uneditable-input, 
 .input-prepend .uneditable-input, 
-.input-append .dropdown-menu, .input-prepend .dropdown-menu, 
 .input-append .popover, .input-prepend .popover {
 	left: 1px;
 	border-color: #E8E8E8 -moz-use-text-color #E8E8E8 #E8E8E8;
@@ -159,12 +137,4 @@ ui-tabs .ui-tabs-nav li.ui-tabs-active
 
 .input-append .add-on, .input-prepend .add-on {
 	border-color: #E8E8E8 #E8E8E8 #E8E8E8 -moz-use-text-color;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active {
-	padding-bottom: 0px;
-	top: -1px;	
-    border: 1px solid;
-    border-color: #FF0000 #E8E8E8 -moz-use-text-color #E8E8E8;
-    border-style: solid solid none solid;
 }

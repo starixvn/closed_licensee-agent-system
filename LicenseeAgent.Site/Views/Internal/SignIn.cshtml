@@ -10,6 +10,8 @@
 <div class="container">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Language)
         <div class="login-box">
             <div class="header-box">
                 <div class="title">@Las.SignIn</div>
@@ -31,8 +33,6 @@
                 </div>
             </div>
             <div class="content-box">
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.Language)
                 <div class="control-group">
                     @Html.TextBoxFor(m => m.Username, new { @class = "input-text", autocomplete = "off", placeholder = Las.Username })
                 </div>

@@ -152,6 +152,16 @@
             $('div.block-loading').hide();
             $.unblockUI();
         },
+        getGridColumnId: function (gridOption, columnName) {
+            var length = gridOption.columns.length;
+            for (var i = 0; i < length; i++) {
+                var column = gridOption.columns[i];
+                if (column.Name == columnName) {
+                    return i;
+                }
+            }
+            return -1;
+        },
         genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
@@ -199,7 +209,7 @@
             }
             return bodyRows;
         },
-        genFooterRows: function (data, gridOption) {
+        genGridFooterRows: function (data, gridOption) {
             if (gridOption.footerRows) {
                 var columns = gridOption.footerRows[0].Columns;
                 var length = columns.length;
@@ -214,18 +224,20 @@
             }
             return undefined;
         },
-        genTotalRows: function (data, gridOption) {
+        genGridTotalRows: function (bodyRows, gridOption) {
             if (gridOption.footerRows) {
                 var columns = gridOption.footerRows[0].Columns;
                 var length = columns.length;
                 for (var i = 0; i < length; i++) {
-                    if (columns[i].IsCalculated) {
+                    var column = columns[i];
+                    if (column.IsCalculated) {
                         var total = 0;
                         var colName = columns[i].Name;
-                        for (var j = 0; j < data.length; j++) {
-                            total += data[j][colName];
+                        var colId = CORE.getGridColumnId(gridOption, colName);
+                        for (var j = 0; j < bodyRows.length; j++) {
+                            total += bodyRows[j].Columns[colId].Value;
                         }
-                        columns[i].Value = total;
+                        column.Value = total;
                     }
                 }
                 return gridOption.footerRows;

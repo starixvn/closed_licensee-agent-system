@@ -14,6 +14,11 @@ namespace LicenseeAgent.Core.Utility
     /// </summary>
     public static class ResourceManager
     {
+        /// <summary>
+        /// Gets the error MSG.
+        /// </summary>
+        /// <param name="errorCode">The error code.</param>
+        /// <returns>Returns error message.</returns>
         public static string GetErrMsg(int errorCode)
         {
             var result = string.Empty;

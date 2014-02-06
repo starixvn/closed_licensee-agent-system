@@ -51,8 +51,8 @@
                 totalItem: records.length,
                 itemsPerPageArray: CORE.pageSizes,
                 showDetail: true,
-                pagerSelectCallBack: function (pageIndex, itemsPerPage) {
-                    TRANSFER_LIST.pagerSelectCallBack(pageIndex, itemsPerPage);
+                customRenderFooter: function (bodyRows, pageIndex, itemsPerPage) {
+                    return CORE.genGridTotalRows(bodyRows, gridOption);
                 }
             };
             gridOption.tdCssClass = function (rowIndex, colName, rowData) {
@@ -60,19 +60,7 @@
                     return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
             }
-
-            if (gridOption.bodyRows) {
-                var startIndex = pageIndex * itemsPerPage;
-                var endIndex = (pageIndex + 1) * itemsPerPage;
-                var newRecords = records.slice(startIndex, endIndex);
-                gridOption.bodyRows = CORE.genGridRows(newRecords, gridOption);
-                gridOption.footerRows = CORE.genTotalRows(newRecords, gridOption);
-            }
-            else {
-                gridOption.bodyRows = CORE.genGridRows(records, gridOption);
-                gridOption.footerRows = CORE.genTotalRows(records, gridOption, itemsPerPage);
-            }
-            
+            gridOption.bodyRows = CORE.genGridRows(records, gridOption);
             $('#grid').show().fanexGrid(gridOption);
         },
         toggleCheck: function (target) {

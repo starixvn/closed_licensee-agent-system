@@ -51,7 +51,7 @@
                     };
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
+                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
                 },
                 complete: function () {
@@ -84,7 +84,7 @@
                     }
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
+                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
                 },
                 complete: function () {
@@ -114,7 +114,7 @@
                     }
 
                     gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genFooterRows(data.TotalData, gridOption);
+                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
                     $('#grid').show().fanexGrid(gridOption);
                 },
                 complete: function () {

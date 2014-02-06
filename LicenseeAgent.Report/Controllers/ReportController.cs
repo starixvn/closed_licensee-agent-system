@@ -134,7 +134,8 @@ namespace LicenseeAgent.Report.Controllers
                     }).OrderBy(k => k.Text).ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
                 var leagues = outRightData.Where(i => i.SportType == sportType)
-                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).OrderBy(k => k.Text).ToList();
+                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() })
+                    .OrderBy(k => k.Text).ToList();
                 var data = outRightData.Where(i => i.SportType == sportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
                 if (data.Count > 0)
                 {

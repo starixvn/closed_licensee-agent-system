@@ -7,16 +7,14 @@
     @Styles.Render("~/css/angulargrid")
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/bootstrap")
-    @Styles.Render("~/css/bootstrap-select")
 }
 @section scripts
 {
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/bootstrap-select")
     @Scripts.Render("~/js/monthpicker")
-    <script type="text/javascript" src='@Url.Content("~/Views/BetList/Resources/BetListManager.js")'></script>
+    @Scripts.Render("~/js/betlist")
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '10/1/2013';

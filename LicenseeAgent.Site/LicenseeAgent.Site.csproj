@@ -342,7 +342,8 @@
     <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
     <Content Include="Views\Account\Resources\Images\collapse.png" />
     <Content Include="Views\Account\Resources\Images\expand.png" />
-    <Content Include="Views\BetList\Resources\BetListManager.js" />
+    <Content Include="Views\BetList\Resources\betlist.manager.js" />
+    <Content Include="Views\BetList\Resources\betlist.core.js" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
     <Content Include="Views\CustomerList\Resources\resetpassword.js" />
     <Content Include="Views\CustomerList\Resources\customerlist.js" />

@@ -15,7 +15,7 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/monthpicker")
-    <script type="text/javascript" src='@Url.Content("~/Views/BetList/Resources/totalbets.parlay.js")'></script>
+    @Scripts.Render("~/js/totalbets/parlay")
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '10/1/2013';

@@ -290,6 +290,12 @@ namespace LicenseeAgent.Site
                 "~/content/betlist/system-parlay-detail.css"));
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
+            bundles.Add(new ScriptBundle("~/js/betlist").Include(
+                "~/Views/BetList/Resources/betlist.core.js",
+                "~/Views/BetList/Resources/betlist.manager.js"));
+            bundles.Add(new ScriptBundle("~/js/totalbets/parlay").Include(
+                "~/Views/BetList/Resources/betlist.core.js",
+                "~/Views/BetList/Resources/totalbets.parlay.js"));
         }
 
         /// <summary>

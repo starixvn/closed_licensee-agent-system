@@ -1,4 +1,4 @@
-﻿var gridOption = {
+﻿var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "center", CanResize: true },
@@ -18,19 +18,9 @@
     autoResizeColumn: true
 };
 
-function OpenIPInfo(ipstring) {
-    fanex.totalBets.parlay.getIpInformation(ipstring);
-};
-
-function showMP(transId) {
-    var divEvent = $('#divEvent_' + transId);
-    fanex.totalBets.parlay.showMixParlayDetails(transId, divEvent);
-};
-
-function showCombMP(transId, index) {
-    var divEvent = $('#divEvent_' + transId + "" + index);
-    fanex.totalBets.parlay.showMixParlayDetails(transId, divEvent);
-};
+var showMixParlayDetailUrl = "~/Parlay/MixParlayDetails?transid=";
+var showBetListDetailsUrl = "~/Parlay/ParlayDetails?transId=";
+var showSystemParlayDetailsUrl = "~/Parlay/SystemParlayDetails?refNo=";
 
 var fanex = fanex || {};
 fanex.totalBets = fanex.totalBets || {};
@@ -57,10 +47,10 @@ fanex.totalBets.parlay = {
         fanex.totalBets.parlay.switchParlayType(true);
     },
     reRenderAfterPaged: function (currentPage, itemsPerPage, betType) {
-        if (gridOption && gridOption.pagerOption) {
+        if (gridOptions && gridOptions.pagerOption) {
             currentPage = currentPage >= 0 ? currentPage
-                                                : gridOption.pagerOption.currentPage;
-            itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
+                                                : gridOptions.pagerOption.currentPage;
+            itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
         }
 
         var params = {
@@ -74,17 +64,7 @@ fanex.totalBets.parlay = {
                 CORE.blockUI();
             },
             success: function (data) {
-                gridOption.pagerOption = {
-                    itemsPerPage: CORE.pageSizes[0],
-                    itemsPerPageArray: CORE.pageSizes,
-                    currentPage: 0,
-                    showDetail: true
-                };
-                gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                $('#BetListGrid').show().fanexGrid(gridOption);
-
-                if (data.TotalItem > 0 && data.IsLastLevel == true)
-                    $("#BetListGrid").fanexGrid("hideColumns", gridOption, [10]);
+                fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
             },
             complete: function () {
                 CORE.unblockUI();
@@ -107,129 +87,11 @@ fanex.totalBets.parlay = {
             fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0], 29);
         }
     },
-    getIpInformation: function (ipAddress) {
-        var urlIpInformation = $("#BetListGrid").data('url-ip');
-        $.ajax({ url: urlIpInformation,
-            type: 'post',
-            data: { IpAddress: ipAddress },
-            beforeSend: function () {
-                CORE.blockUI();
-            },
-            success: function (data) {
-                if (data != null) {
-                    $('#instruction').html(data);
-                    var dialog = POPUP.openDialog($('#instruction'), "IP Information", { modal: false, clickout: true, openid: $(this).attr('id') });
-                    $('.ui-tooltip').remove();
-                }
-            },
-            complete: function () {
-                CORE.unblockUI();
-            }
-        });
-    },
-    renderDatePicker: function () {
-        var lastdate = '';
-        lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
-        $('#month-picker-control').monPickr({
-            plugInId: '#month-picker-control',
-            today: lastdate,
-            maxDate: _today,
-            minDate: _minDate,
-            showDateRange: true,
-            fromDayId: 'spFrom',
-            toDayId: 'spTo',
-            fromDayLabel: 'From',
-            toDayLabel: 'To',
-            log: function (msg) {
-                console.warn(msg);
-            }
-        });
-        $('#month-picker-control').monPickr("setFromDay", lastDay);
-    },
     showParlayDetails: function (transId, status) {
-        var url = "~/Parlay/ParlayDetails?transId=" + transId + "&status=" + status;
-        $.ajax({
-            type: "GET",
-            contentType: 'application/json',
-            dataType: "text",
-            cache: false,
-            url: CORE.resolveUrl(url),
-            error: function (xhRequest, errorText, thrownError) {
-                alert(errorText);
-            },
-            success: function (response) {
-                var height = 280;
-                var width = 360;
-                var details = '<div>' + response + '</div>';
-                var title = LANGUAGE.getString("BetListDetails") + transId;
-                POPUP.openDialog(details, title, { width: width, height: height });
-            },
-            beforeSend: function () {
-                CORE.blockUI();
-            },
-            complete: function () {
-                CORE.unblockUI();
-            }
-        });
-    },
-    showMixParlayDetails: function (transId, divEvent) {
-        var loadMixParlayDetail = function (transId) {
-            var url = "~/Parlay/MixParlayDetails?transid=" + transId;
-            $.ajax({
-                type: "GET",
-                contentType: 'application/json',
-                dataType: "text",
-                cache: false,
-                url: CORE.resolveUrl(url),
-                error: function (xhRequest, errorText, thrownError) {
-                    alert(errorText);
-                },
-                success: function (response) {
-                    divEvent.html(response);
-                    $(".line:last", divEvent).remove();
-                },
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                complete: function () {
-                    $('#BetListGrid').fanexGrid('resizeGrid');
-                    CORE.unblockUI();
-                }
-            });
-        };
-
-        var dataExisted = $("#divEvent_5325904317").text().length > 0;
-        if (!dataExisted) {
-            loadMixParlayDetail(transId);
-        }
-
-        divEvent.toggle();
+        fanex.betlist.core.showDetails(transId, status);
     },
     showSystemParlayDetails: function (refNo, custId, betTeam) {
-
-        var url = "~/Parlay/SystemParlayDetails?refNo=" + refNo + "&custId=" + custId;
-        $.ajax({
-            type: "GET",
-            contentType: 'application/json',
-            dataType: "text",
-            cache: false,
-            url: CORE.resolveUrl(url),
-            error: function (xhRequest, errorText, thrownError) {
-                alert(errorText);
-            },
-            success: function (response) {
-                var height = 550;
-                var width = 750;
-                var details = '<div><div class="system-parlay-detail-wrapper">' + response + '</div></div>';
-                POPUP.openDialog(details, betTeam, { width: width, height: height });
-            },
-            beforeSend: function () {
-                CORE.blockUI();
-            },
-            complete: function () {
-                CORE.unblockUI();
-            }
-        });
+        fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
     }
 };
 

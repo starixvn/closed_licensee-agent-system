@@ -115,7 +115,6 @@
     <Compile Include="Utilities\ParlayTicketBuilder.cs" />
     <Compile Include="Utilities\ITicketBuilder.cs" />
     <Compile Include="Utilities\TicketBuilder.cs" />
-    <Compile Include="Utilities\ILASSystemParlayDetail.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />

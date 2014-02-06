@@ -16,19 +16,9 @@
     bodyRowHeight: 29
 };
 
-function OpenIPInfo(ipstring) {
-    BETLIST.getIpInformation(ipstring);
-};
-
-function showMP(transId) {
-    var divEvent = $('#divEvent_' + transId);
-    BETLIST.showMixParlayDetail(transId, divEvent);
-};
-
-function showCombMP(transId, index) {
-    var divEvent = $('#divEvent_' + transId + "" + index);
-    BETLIST.showMixParlayDetail(transId, divEvent);
-};
+var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
+var showBetListDetailsUrl = "~/BetList/Details?transId=";
+var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 
 var BETLIST = function ($) {
     return {
@@ -72,37 +62,7 @@ var BETLIST = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOptions.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        itemsPerPageArray: CORE.pageSizes,
-                        currentPage: 0,
-                        showDetail: true
-                    };
-                    gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
-                    $('#BetListGrid').show().fanexGrid(gridOptions);
-
-                    if(data.IsLastLevel == true)
-                        $("#BetListGrid").fanexGrid("hideColumns", gridOptions, [9]);
-                },
-                complete: function () {
-                    CORE.unblockUI();
-                }
-            });
-        },
-        getIpInformation: function (ipAddress) {
-            var urlIpInformation = $("#BetListGrid").data('url-ip');
-            $.ajax({ url: urlIpInformation,
-                type: 'post',
-                data: { IpAddress: ipAddress },
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                    if (data != null) {
-                        $('#instruction').html(data);
-                        var dialog = POPUP.openDialog($('#instruction'), "IP Information", { modal: false, clickout: true, openid: $(this).attr('id') });
-                        $('.ui-tooltip').remove();
-                    }
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [9]);
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -129,34 +89,11 @@ var BETLIST = function ($) {
             $('#month-picker-control').monPickr("setFromDay", lastDay);
         },
         showBetListDetails: function (transId, status) {
-            var url = "~/BetList/Details?transId=" + transId + "&status=" + status;
-            $.ajax({
-                type: "GET",
-                contentType: 'application/json',
-                dataType: "text",
-                cache: false,
-                url: CORE.resolveUrl(url),
-                error: function (xhRequest, errorText, thrownError) {
-                    alert(errorText);
-                },
-                success: function (response) {
-                    var height = 280;
-                    var width = 360;
-                    var details = '<div>' + response + '</div>';
-                    var title = LANGUAGE.getString("BetListDetails") + transId;
-                    POPUP.openDialog(details, title, { width: width, height: height });
-                },
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                complete: function () {
-                    CORE.unblockUI();
-                }
-            });
+            fanex.betlist.core.showDetails(transId, status);
         },
         showMixParlayDetail: function (transId, divEvent) {
             var loadMixParlayDetail = function (transId) {
-                var url = "~/BetList/MixParlayDetails?transid=" + transId;
+                var url = showMixParlayDetailurl + transId;
                 $.ajax({
                     type: "GET",
                     contentType: 'application/json',
@@ -188,32 +125,8 @@ var BETLIST = function ($) {
             divEvent.toggle();
         },
         showSystemParlayResult: function (refNo, custId, betTeam) {
-
-            var url = "~/BetList/SystemParlayResult?refNo=" + refNo + "&custId=" + custId;
-            $.ajax({
-                type: "GET",
-                contentType: 'application/json',
-                dataType: "text",
-                cache: false,
-                url: CORE.resolveUrl(url),
-                error: function (xhRequest, errorText, thrownError) {
-                    alert(errorText);
-                },
-                success: function (response) {
-                    var height = 550;
-                    var width = 750;
-                    var details = '<div><div class="system-parlay-detail-wrapper">' + response + '</div></div>';
-                    POPUP.openDialog(details, betTeam, { width: width, height: height });
-                },
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                complete: function () {
-                    CORE.unblockUI();
-                }
-            });
+            fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         }
-
     }
 } (jQuery);
 

@@ -112,7 +112,6 @@
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="Utilities\ILASSystemParlayDetail.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
-    <Compile Include="Utilities\LASSystemParlayDetail.cs" />
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />

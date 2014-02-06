@@ -76,7 +76,7 @@ namespace LicenseeAgent.Report.Controllers
             criteria.IsShowAll = _includeTestData;
             var sports = _resultsReportService.GetSports(criteria);
             var model = new ResultsReportViewModel();
-            model.Sports = sports.Select(i => new SelectListItem { Text = i.SportName, Value = i.SportType }).ToList();
+            model.Sports = sports.Select(i => new SelectListItem { Text = i.SportName, Value = i.SportType }).OrderBy(j => j.Text).ToList();
 
             if (model.Sports.Count > 0)
             {
@@ -89,7 +89,7 @@ namespace LicenseeAgent.Report.Controllers
                 };
 
                 var leagues = _resultsReportService.GetLeagues(leagueCriteria);
-                model.Leagues = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).ToList();
+                model.Leagues = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
 
                 return Json(new
                 {
@@ -130,11 +130,11 @@ namespace LicenseeAgent.Report.Controllers
                     { 
                         Text = DataRefWrapper.GetSportName(j.First().SportType), 
                         Value = j.First().SportType.ToString(), 
-                        Selected = j.First().SportType == criteria.SportType 
-                    }).ToList();
+                        Selected = j.First().SportType == criteria.SportType
+                    }).OrderBy(k => k.Text).ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
                 var leagues = outRightData.Where(i => i.SportType == sportType)
-                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).OrderBy(x => x.Text).ToList();
+                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.LeagueId), Value = j.LeagueId.ToString() }).OrderBy(k => k.Text).ToList();
                 var data = outRightData.Where(i => i.SportType == sportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
                 if (data.Count > 0)
                 {
@@ -192,7 +192,7 @@ namespace LicenseeAgent.Report.Controllers
         {
             var leagueItems = new List<SelectListItem>();
             var leagues = _resultsReportService.GetLeagues(criteria);
-            leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).ToList();
+            leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
 
             return Json(new
             {

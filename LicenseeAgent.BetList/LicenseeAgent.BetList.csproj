@@ -103,6 +103,7 @@
     <Compile Include="Entities\BetListCustomerInfo.cs" />
     <Compile Include="Entities\BetType.cs" />
     <Compile Include="Entities\BetListDetails.cs" />
+    <Compile Include="Entities\TicketBuilderParameters.cs" />
     <Compile Include="Entities\RawBetListDetails.cs" />
     <Compile Include="Entities\LasTicket.cs" />
     <Compile Include="Entities\TicketResult.cs" />
@@ -110,6 +111,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
+    <Compile Include="Utilities\BetListTicketBuilder.cs" />
+    <Compile Include="Utilities\ParlayTicketBuilder.cs" />
+    <Compile Include="Utilities\ITicketBuilder.cs" />
+    <Compile Include="Utilities\TicketBuilder.cs" />
     <Compile Include="Utilities\ILASSystemParlayDetail.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
     <Compile Include="Utilities\LasTrans.cs" />

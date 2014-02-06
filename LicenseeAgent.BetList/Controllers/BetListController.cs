@@ -69,10 +69,16 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;
 
             var ticketResults = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters() 
+            {
+                TicketResult = ticketResults,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+            var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
 
             var model = new BetListViewModel()
             {
-                TicketTextList = Ticket(ticketResults, criteria),
+                TicketTextList = betListTicketBuilder.BuildTickets(),
                 TicketResult = ticketResults
             };
 
@@ -96,17 +102,8 @@ namespace LicenseeAgent.BetList.Controllers
             var agentId = CurrentSession.AgentInfo.AgentId;
             var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
             var ticketResult = _betlistService.GetMixParlayDetails(criteria);
-            var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
 
-            var stringBuilder = new StringBuilder();
-            foreach (var ticket in ticketResult.MainTicketList)
-            {
-                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
-                stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
-            }
-
-            return Content(stringBuilder.ToString());
+            return this.BuildMixParlayDetails(ticketResult);
         }
 
         /// <summary>
@@ -132,9 +129,7 @@ namespace LicenseeAgent.BetList.Controllers
             };
 
             var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
-            var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper() { ShowSystemParlayPlayerComm = true };
-            var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
+            var systemParlayText = this.BuildSystemParlayDetail(systemParlayData);
 
             return Content(systemParlayText);
         }
@@ -151,73 +146,9 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
             var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status);
+            viewModel.BetListDetails = this.FormatRawBetListDetails(rawBetListDetails, criteria.Status);
 
             return View(viewModel);
-        }
-
-        /// <summary>
-        /// Generate ticket text.
-        /// </summary>
-        /// <param name="ticketResult">Ticket result Parameter value.</param>
-        /// <param name="criteria"> Parameter value.</param>
-        /// <param name="startIndex">Start index Parameter value.</param>
-        /// <param name="showOdds">Show Odds or not.</param>
-        /// <returns>Result value.</returns>
-        [NonAction]
-        private List<TicketText> Ticket(
-            TicketResult ticketResult,
-            BetListCriteriaBase criteria,
-            int startIndex = 1,
-            bool showOdds = false)
-        {
-            var builder = new BetListHTMLBuilder();
-            var ticketTextList = new List<TicketText>();
-            var ticketHelper = new TicketHelper();
-
-            foreach (var ticket in ticketResult.MainTicketList)
-            {
-                if (ticket.BetTypeId == (int)BetType.SystemParlay)
-                {
-                    var custId = ticket.CustId != 0 ? ticket.CustId : criteria.CustId;
-                    var betTeam = ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
-                    var formatDetail = "BETLIST.showSystemParlayResult({0},{1},\"{2}\")";
-                    ticketHelper.ClientDetailSystemParlayFunction = string.Format(
-                        formatDetail,
-                        ticket.RefNo,
-                        custId,
-                        betTeam);
-                }
-
-                ticketHelper.IsShowOddsWithChoice = showOdds;
-                var ticketText = new TicketText
-                {
-                    Index = startIndex++,
-                    ExternalId = ticket.ExternalId,
-                    SystemId = ticket.UserName,
-                    TransTime = builder.BuildTrans(ticket),
-                    Status = builder.BuildLasBetListResultStatus(
-                        ticket, ticketHelper, ticketResult.TicketDataList, criteria, 20, "UUS"),
-                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
-                    Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
-                    Stake = builder.BuildLasStake(ticket),
-                    AgentPT = builder.BuildAgentPT(ticket),
-                    AgentComm = CurrentSession.IsAdmin
-                        ? builder.BuildAdminAgentComm(ticket)
-                        : builder.BuildAgentComm(ticket),
-                    WinLoss = builder.BuildLasWinloss(ticket)
-                };
-
-                var clickFunction = string.Format("onclick=\"javascript: BETLIST.showBetListDetails({0},'{1}')\"", ticket.TransId, ticket.Status);
-                ticketText.Feature = string.Format(
-                        "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>",
-                        clickFunction,
-                        Las.Details);
-
-                ticketTextList.Add(ticketText);
-            }
-
-            return ticketTextList;
         }
     }
 }

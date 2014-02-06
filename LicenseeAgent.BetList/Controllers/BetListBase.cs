@@ -13,8 +13,14 @@ namespace LicenseeAgent.BetList.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Web.Mvc;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Controllers;
 
     /// <summary>
@@ -42,6 +48,34 @@ namespace LicenseeAgent.BetList.Controllers
             }
 
             return formattedData;
+        }
+
+        public string BuildSystemParlayDetail(SystemParlayData systemParlayData)
+        {
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper() { ShowSystemParlayPlayerComm = true };
+            var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
+            return systemParlayText;
+        }
+
+        /// <summary>
+        /// Builds the mix parlay details.
+        /// </summary>
+        /// <param name="ticketResult">The ticket result.</param>
+        /// <returns>The object of ActionResult.</returns>
+        public ActionResult BuildMixParlayDetails(TicketResult ticketResult)
+        {
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
+
+            var stringBuilder = new StringBuilder();
+            foreach (var ticket in ticketResult.MainTicketList)
+            {
+                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
+                stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
+            }
+
+            return Content(stringBuilder.ToString());
         }
 
         private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)

@@ -13,6 +13,8 @@ namespace LicenseeAgent.BetList.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Web.Mvc;
+    using Fanex.BetList.Core.Entities;
     using LicenseeAgent.BetList.Entities;
 
     /// <summary>
@@ -21,5 +23,9 @@ namespace LicenseeAgent.BetList.Controllers
     public interface IBetListBase
     {
         List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status);
+
+        string BuildSystemParlayDetail(SystemParlayData systemParlayData);
+
+        ActionResult BuildMixParlayDetails(TicketResult ticketResult);
     }
 }

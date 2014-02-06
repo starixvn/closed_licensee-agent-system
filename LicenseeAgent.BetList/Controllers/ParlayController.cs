@@ -28,7 +28,7 @@ namespace LicenseeAgent.BetList.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ParlayController : BaseController
+    public class ParlayController : BetListBase, IBetListBase
     {
         private IBetListService _betlistService;
         private ICoreService _coreService;
@@ -135,7 +135,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetParlayDetail(criteria);
             var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status);
+            viewModel.BetListDetails = base.FormatRawBetListDetails(rawBetListDetails, criteria.Status);
 
             return View("~/Views/BetList/ParlayDetail.cshtml", viewModel);
         }
@@ -203,51 +203,6 @@ namespace LicenseeAgent.BetList.Controllers
             }
 
             return ticketTextList;
-        }
-
-        /// <summary>
-        /// Format raw bet list details.
-        /// </summary>
-        /// <param name="originalData">List of raw bet list details.</param>
-        /// <param name="status">Ticket status ID.</param>
-        /// <returns>List of formatted bet list details.</returns>
-        private List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
-        {
-            var formattedData = new List<BetListDetails>();
-            foreach (var item in originalData)
-            {
-                formattedData.Add(new BetListDetails
-                {
-                    Agent = item.AgentName,
-                    PositionTaking = GenerateHtmlStringForAgentPT(item, status),
-                    Commission = GenerateHtmlStringForAgentComm(item, status)
-                });
-            }
-
-            return formattedData;
-        }
-
-        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
-        {
-            var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
-            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
-                ? string.Empty
-                : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
-
-            return htmlString;
-        }
-
-        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
-        {
-            var htmlString = data.AgentLevel == 1
-                ? string.Empty
-                : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
-            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
-                ? (data.AgentLevel == 1 ? "-" : string.Empty)
-                : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
-
-            return htmlString;
-        }
+        }  
     }
 }

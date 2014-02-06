@@ -151,7 +151,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
             var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = base.FormatRawBetListDetails(rawBetListDetails, criteria.Status);
+            viewModel.BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status);
 
             return View(viewModel);
         }

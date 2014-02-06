@@ -78,15 +78,14 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult ResetPassword(ResetPasswordAction action)
         {
-            var logAction = (ResetPasswordAction)action.Clone();
-            logAction.Password = Cryptography.CfsEnCrypt(logAction.Password);
+            action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
             var criteria = new ResetPasswordMemberCriteria
             {
-                LicenseeId = logAction.LicenseeId,
-                UserId = logAction.UserId,
-                CustId = logAction.IBCCustId,
+                LicenseeId = action.LicenseeId,
+                UserId = action.UserId,
+                CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation<ResetPasswordAction>(logAction)
+                Doing = LogBinder.GetActionInformation<ResetPasswordAction>(action)
             };
             _logService.WriteLog(criteria);
 

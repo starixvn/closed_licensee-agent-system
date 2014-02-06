@@ -11,17 +11,23 @@ namespace LicenseeAgent.Taiwan.Actions
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Xml.Serialization;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResetPasswordAction : LogAction, IAction, ICloneable
+    public class ResetPasswordAction : LogAction, IAction
     {
         public string SiteName { get; set; }
 
         public int IBCCustId { get; set; }
 
+        [XmlIgnore]
         public string Password { get; set; }
+
+        [Service(IsParamAction = false)]
+        [XmlElement(ElementName = "Password")]
+        public string EncryptedPassword { get; set; }
 
         /// <summary>
         /// Get action name.
@@ -30,11 +36,6 @@ namespace LicenseeAgent.Taiwan.Actions
         public string GetActionName()
         {
             return "ResetPassword";
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
         }
     }
 }

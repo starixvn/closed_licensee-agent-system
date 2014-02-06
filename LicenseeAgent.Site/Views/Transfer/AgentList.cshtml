@@ -3,10 +3,10 @@
               {
                   Columns: [
                     { Value: "Total", Name: "Select", MergeColNumber: 5 },
-                    { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2 },
-                    { Value: "TotalBalance", Name: "TotalBalance" },
-                    { Value: "YesterdayCash", Name: "YesterdayCash" },
-                    { Value: "TotalCash", Name: "TotalCash" },
+                    { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2, IsCalculated: true },
+                    { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
+                    { Value: "YesterdayCash", Name: "YesterdayCash", IsCalculated: true },
+                    { Value: "TotalCash", Name: "TotalCash", IsCalculated: true },
                     { Value: "", Name: "Outstanding", MergeColNumber: 3 }
                 ]
               }
@@ -66,7 +66,8 @@
                         }
                    ],
         showPager: true,
-        gridExpandHeight: 100,
+        customPager: true,
+        gridExpandHeight: 120,
         indexNumberColumn: 1,
         bodyRowHeight: 29,
         showFooter: true,

@@ -72,19 +72,10 @@ namespace LicenseeAgent.Transfer.Controllers
                     Status = model.Status
                 });
 
-            var total = new AgentBalanceInfo
-            {
-                YesterdayBalance = list.Select(x => x.YesterdayBalance).Sum(),
-                TotalBalance = list.Select(x => x.TotalBalance).Sum(),
-                YesterdayCash = list.Select(x => x.YesterdayCash).Sum(),
-                TotalCash = list.Select(x => x.TotalCash).Sum()
-            };
-
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = list,
-                Total = total
+                List = list
             });
         }
 
@@ -115,19 +106,12 @@ namespace LicenseeAgent.Transfer.Controllers
                 return Json(response);
             }
 
-            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) && 
+            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) &&
                 (model.Status == null || x.Status == model.Status));
-            var total = new MemberBalanceInfo
-            {
-                YesterdayBalance = list.Select(x => x.YesterdayBalance).Sum(),
-                TotalBalance = list.Select(x => x.TotalBalance).Sum()
-            };
-
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = list,
-                Total = total
+                List = list
             });
         }
 

@@ -16,13 +16,18 @@ namespace LicenseeAgent.Core.Utility
     {
         public static string GetErrMsg(int errorCode)
         {
+            var result = string.Empty;
             if (errorCode != 0)
             {
                 var key = string.Format("Msg_{0}", errorCode);
-                return LangMsg.ResourceManager.GetString(key);
+                result = LangMsg.ResourceManager.GetString(key);
+                if (string.IsNullOrEmpty(result))
+                {
+                    result = string.Format("Undefined error code {0}", errorCode);
+                }
             }
 
-            return string.Empty;
+            return result;
         }
 
         public static string GetErrMsg(ErrCode msgId)

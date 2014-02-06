@@ -199,9 +199,9 @@
             }
             return bodyRows;
         },
-        genFooterRows: function (data, options) {
-            if (options.footerRows) {
-                var columns = options.footerRows[0].Columns;
+        genFooterRows: function (data, gridOption) {
+            if (gridOption.footerRows) {
+                var columns = gridOption.footerRows[0].Columns;
                 var length = columns.length;
                 for (var i = 0; i < length; i++) {
                     var colName = columns[i].Name;
@@ -210,7 +210,25 @@
                         columns[i].Value = value;
                     }
                 }
-                return options.footerRows;
+                return gridOption.footerRows;
+            }
+            return undefined;
+        },
+        genTotalRows: function (data, gridOption) {
+            if (gridOption.footerRows) {
+                var columns = gridOption.footerRows[0].Columns;
+                var length = columns.length;
+                for (var i = 0; i < length; i++) {
+                    if (columns[i].IsCalculated) {
+                        var total = 0;
+                        var colName = columns[i].Name;
+                        for (var j = 0; j < data.length; j++) {
+                            total += data[j][colName];
+                        }
+                        columns[i].Value = total;
+                    }
+                }
+                return gridOption.footerRows;
             }
             return undefined;
         },

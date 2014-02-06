@@ -1,4 +1,5 @@
 ﻿var TRANSFER_LIST = function ($) {
+    var records;
     return {
         init: function () {
             $('.selectpicker').selectpicker();
@@ -12,13 +13,13 @@
             ]);
 
             $('#search-form').submit(function (e) {
-                TRANSFER_LIST.reRenderAfterPaged();
+                TRANSFER_LIST.submit();
                 e.preventDefault();
             });
 
             $('#search-form').submit();
         },
-        reRenderAfterPaged: function () {
+        submit: function () {
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val()
@@ -35,27 +36,44 @@
                         alert(data.ErrMsg);
                         return;
                     }
-
-                    gridOption.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[2],
-                        currentPage: 0,
-                        itemsPerPageArray: CORE.pageSizes,
-                        showDetail: true
-                    };
-                    gridOption.tdCssClass = function (rowIndex, colName, rowData) {
-                        if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
-                            return rowData.IsHighlighted ? 'text-highlighted' : '';
-                        }
-                    }
-
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genFooterRows(data.Total, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
+                    records = data.List;
+                    TRANSFER_LIST.pagerSelectCallBack(0, CORE.pageSizes[2]);
                 },
                 complete: function () {
                     CORE.unblockUI();
                 }
             });
+        },
+        pagerSelectCallBack: function (pageIndex, itemsPerPage) {
+            gridOption.pagerOption = {
+                itemsPerPage: itemsPerPage,
+                currentPage: pageIndex,
+                totalItem: records.length,
+                itemsPerPageArray: CORE.pageSizes,
+                showDetail: true,
+                pagerSelectCallBack: function (pageIndex, itemsPerPage) {
+                    TRANSFER_LIST.pagerSelectCallBack(pageIndex, itemsPerPage);
+                }
+            };
+            gridOption.tdCssClass = function (rowIndex, colName, rowData) {
+                if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
+                    return rowData.IsHighlighted ? 'text-highlighted' : '';
+                }
+            }
+
+            if (gridOption.bodyRows) {
+                var startIndex = pageIndex * itemsPerPage;
+                var endIndex = (pageIndex + 1) * itemsPerPage;
+                var newRecords = records.slice(startIndex, endIndex);
+                gridOption.bodyRows = CORE.genGridRows(newRecords, gridOption);
+                gridOption.footerRows = CORE.genTotalRows(newRecords, gridOption);
+            }
+            else {
+                gridOption.bodyRows = CORE.genGridRows(records, gridOption);
+                gridOption.footerRows = CORE.genTotalRows(records, gridOption, itemsPerPage);
+            }
+            
+            $('#grid').show().fanexGrid(gridOption);
         },
         toggleCheck: function (target) {
             if ($(target).hasClass("icon-uncheck-all")) {

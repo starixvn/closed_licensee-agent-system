@@ -86,7 +86,7 @@ namespace LicenseeAgent.Account.Controllers
         {
             var captchaImage = new CaptchaImage
             {
-                Width = 160,
+                Width = 119,
                 Height = 32
             };
 

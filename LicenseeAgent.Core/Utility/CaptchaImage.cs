@@ -284,11 +284,11 @@ namespace LicenseeAgent.Core.Utility
         /// </summary>
         static CaptchaImage()
         {
-            FontWarp = FontWarpFactor.Medium;
+            FontWarp = FontWarpFactor.None;
             BackgroundNoise = BackgroundNoiseLevel.Low;
             LineNoise = LineNoiseLevel.None;
             TextLength = 6;
-            TextChars = "ACDEFGHJKLNPQRTUVXYZ2346789";
+            TextChars = "acdefghjknpqruvxyzACDEFGHJKLNPQRTUVXYZ2346789";
             CacheTimeOut = 180D;
         }
 
@@ -426,7 +426,7 @@ namespace LicenseeAgent.Core.Utility
                     break;
             }
 
-            return new Font(fname, fsize, FontStyle.Bold);
+            return new Font(fname, fsize);
         }
 
         /// <summary>

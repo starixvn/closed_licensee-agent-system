@@ -19,6 +19,9 @@
             }
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.AgentId)
+            @Html.HiddenFor(m => m.AgentName)
+            @Html.HiddenFor(m => m.MinCreditOutput)
+            @Html.HiddenFor(m => m.MaxCreditOutput)
             <table>
                 <colgroup>
                     <col width="150" />
@@ -38,7 +41,7 @@
                             @Las.Credit
                         </td>
                         <td>
-                            @if (!Model.MaxCreditOutput.HasValue || (Model.MaxCreditOutput.HasValue && Model.MaxCreditOutput.Value == 0))
+                            @if (!Model.MaxCreditOutput.HasValue)
                             {
                                 @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w100", data_min = Model.MinCreditOutput, title = Las.InvalidAmount })
                                 <span>@string.Format(">= {0}", Formatter.FormatDecimal(Model.MinCreditOutput))</span>
@@ -65,7 +68,7 @@
 </div>
 @section scripts
 {
-     @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/creditbalance-popup")
     @if (ViewBag.Result != null)
     {

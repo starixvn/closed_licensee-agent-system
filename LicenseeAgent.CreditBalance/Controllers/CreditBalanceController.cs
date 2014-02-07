@@ -188,7 +188,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
 
                 var criteria = new UpdateAgentCreditCriteria(settingKey)
                 {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
+                    AgentId = editAgentCreditViewModel.AgentId,
                     Credit = editAgentCreditViewModel.GivenCredit,
                     Ip = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId

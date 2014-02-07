@@ -39,11 +39,14 @@
         </div>
     </div>
     <div class="clearfix">
-        <div class="control-group" data-ng-hide="settingMode">
-            <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                @Las.Update
-            </button>
-        </div>
+        @if (Model.FormId != FormType.ReadOnly)
+        {
+            <div class="control-group" data-ng-hide="settingMode">
+                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                    @Las.Update
+                </button>
+            </div>
+        }
     </div>
     <div class="clearfix">
         @Html.Partial("~/Views/Account/CustSetting/Sportsbook/ViewCustomerInfo.cshtml")
@@ -79,11 +82,14 @@
     <div class="clearfix">
         <div class="control-group" data-ng-show="settingMode">
         </div>
-        <div class="control-group">
-            <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                @Las.Update
-            </button>
-        </div>
+        @if (Model.FormId != FormType.ReadOnly)
+        {
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                    @Las.Update
+                </button>
+            </div>
+        }
     </div>
 </div>
 @if (Model.TargetRoleId == (int)Role.AgentLevel1)

@@ -10,6 +10,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
@@ -301,10 +302,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            if (!CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel))
+            var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+            var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+            if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
             {
                 settingContext.FormId = FormType.EditIndirectMember;
-                settingContext.CustId = model.AgentId;
+                settingContext.CustId = agentId;
             }
 
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);

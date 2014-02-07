@@ -15,12 +15,12 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     public enum FormType : int
     {
         /// <summary>
-        /// Add new form.
+        /// Add new form (agent or member).
         /// </summary>
         Add = 0,
 
         /// <summary>
-        /// Edit form.
+        /// Edit directly form (agent or member).
         /// </summary>
         Edit = 1,
 
@@ -30,8 +30,13 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         ReadOnly = 2,
 
         /// <summary>
+        /// Edit indirect member.
+        /// </summary>
+        EditIndirectMember = 3,
+
+        /// <summary>
         /// Edit multiple member.
         /// </summary>
-        EditMultiple = 3
+        EditMultiple = 4
     }
 }

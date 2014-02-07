@@ -22,13 +22,6 @@ if (fanex.sportsbookSetting) {
                 settingContext: settingContext
             };
 
-            $scope.refreshData = function () {
-                return $scope.betLimitService.refreshData(
-                    settingContext,
-                    $scope.model.bettingLimitsModel,
-                    $scope.model.firstRecord);
-            }
-
             $scope.saveData = function (callBackFunction) {
                 return $scope.betLimitService.getbettingLimits(
                     settingContext,

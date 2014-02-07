@@ -11,9 +11,8 @@ fanex.sportsbookSetting.FormType = {
     Add: 0,
     Edit: 1,
     ReadOnly: 2,
-    ViewAllSetting: 3,
-    ShadowViewSetting: 4,
-    EditMultiple: 5
+    EditIndirectMember: 3,
+    EditMultiple: 4
 };
 
 fanex.sportsbookSetting.Role = {

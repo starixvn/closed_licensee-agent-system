@@ -10,9 +10,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Account.Criterias;
-    using LicenseeAgent.Account.Entities;
-    using LicenseeAgent.Account.Services;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
@@ -74,21 +71,19 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <summary>
         /// Get Setting Context For Insert.
         /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <param name="roleId">The role identifier.</param>
-        /// <param name="targetCustId">The target customer identifier.</param>
-        /// <param name="targetRoleId">The target role identifier.</param>
+        /// <param name="model">The model.</param>
         /// <returns>
         /// Action Result.
         /// </returns>
-        public ActionResult GetSettingForInsert(int custId, int roleId, int targetCustId, int targetRoleId)
+        [HttpGet]
+        public ActionResult GetSettingForInsert(GetSettingForInsertViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                CustId = custId,
-                RoleId = roleId,
-                TargetCustId = targetCustId,
-                TargetRoleId = targetRoleId,
+                CustId = model.CustId,
+                RoleId = model.RoleId,
+                TargetCustId = model.TargetCustId,
+                TargetRoleId = model.TargetRoleId,
                 Ip = Request.GetClientIp()
             };
 
@@ -107,16 +102,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// JAVASCRIPT string object.
         /// </returns>
         [DownLine]
+        [HttpGet]
         public ActionResult GetSettingForUpdate(GetSettingForUpdateViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = model.FormId == (int)FormType.Edit ? FormType.Edit : FormType.ReadOnly,
+                FormId = (FormType)model.FormId,
+                CustId = model.CustId,
+                RoleId = model.RoleId,
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId,
-                Ip = Request.GetClientIp(),
-                IsOnlyUpdatePT = model.IsOnlyUpdatePT,
-                IndirectAgentId = CurrentSession.IsAdmin ? model.IndirectAgentId : CurrentSession.AgentInfo.AgentId
+                Ip = Request.GetClientIp()
             };
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
@@ -126,7 +122,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
 
                 _memberService.GetMemberInformation<CustomerInfo>(
-                                    sportsBookCustomer.CustInfo, 
+                                    sportsBookCustomer.CustInfo,
                                     new GetMemberInfoAction
                                     {
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -177,7 +173,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (model == null || model.SettingContext == null || model.UpdateDataSportsbookCustomer == null)
+            if (model == null
+                || model.SettingContext == null
+                || model.UpdateDataSportsbookCustomer == null
+                || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }
@@ -188,17 +187,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName
             });
 
-            if (checkUserNameResult.ErrCode != 0)
+            if (checkUserNameResult.ErrCode != Result.SuccessValue)
             {
                 return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
             }
 
-            model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
             var result = _customerSettingService.InsertCustomer(model);
-            var messages = GenerateMessages(result);
-
-            if (result.ErrCode == 0 && model.SettingContext.TargetRoleId == (int)Role.Member)
+            if (result.ErrCode == Result.SuccessValue && model.SettingContext.TargetRoleId == (int)Role.Member)
             {
                 var insertResult = _memberService.InsertNewMember(new InsertNewMemberAction
                 {
@@ -218,13 +213,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     Currency = CurrentSession.AgentInfo.CurrencyId,
                     IsClosed = model.UpdateDataSportsbookCustomer.CustInfo.Status == (int)AccountStatus.Closed
                 });
-                if (insertResult.ErrCode != 0)
+                if (insertResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new { ErrCode = insertResult.ErrCode, ErrMsg = insertResult.ErrMsg });
                 }
             }
 
-            return Json(new { ErrCode = Result.SuccessValue, ErrMsg = messages });
+            var messages = GenerateMessages(result);
+            return Json(new { ErrCode = Result.SuccessValue, Messages = messages });
         }
 
         /// <summary>
@@ -237,50 +233,29 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [DirectDownLineAgent]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            if (model == null ||
-                model.SettingContext == null ||
-                model.UpdateDataSportsbookCustomer == null)
+            if (model == null
+                || model.SettingContext == null
+                || model.UpdateDataSportsbookCustomer == null
+                || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }
 
-            model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
-            model.SettingContext.LoginUserId = CurrentSession.LoginUserId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
-            var result = _customerSettingService.UpdateCustomer(model);
-            var messages = GenerateMessages(result, true);
-            return Json(new
+            InsertResult result = null;
+            if (model.SettingContext.FormId == FormType.EditIndirectMember)
             {
-                ErrCode = Result.SuccessValue,
-                ErrMsg = messages
-            });
-        }
-
-        /// <summary>
-        /// Update indirect customer.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Returns JSON result.</returns>
-        [HttpPost]
-        [DownLine]
-        public JsonResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
-        {
-            if (model == null ||
-                model.SettingContext == null ||
-                model.UpdateDataSportsbookCustomer == null)
+                result = _customerSettingService.UpdateIndirectCustomer(model);
+            }
+            else
             {
-                return InvalidModelJsonResult();
+                result = _customerSettingService.UpdateCustomer(model);
             }
 
-            model.SettingContext.CustId = CurrentSession.AgentInfo.AgentId;
-            model.SettingContext.LoginUserId = CurrentSession.AgentInfo.AgentId;
-            model.UpdateDataSportsbookCustomer.CustInfo.UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName;
-            var result = _customerSettingService.UpdateIndirectCustomer(model);
             var messages = GenerateMessages(result, true);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                ErrMsg = messages
+                Messages = messages
             });
         }
 
@@ -323,14 +298,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 FormId = FormType.Edit,
                 TargetCustId = model.MemberId,
                 TargetRoleId = (int)Role.Member,
-                Ip = Request.GetClientIp(),
-                IsOnlyUpdatePT = (CurrentSession.IsAdmin &&
-                                    (model.AgentLevel > 0 && model.NumberOfLevel > 0) &&
-                                    !ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel))
-                                    || (!CurrentSession.IsAdmin 
-                                    && !ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)),
-                IndirectAgentId = model.AgentId
+                Ip = Request.GetClientIp()
             };
+
+            if (!CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel))
+            {
+                settingContext.FormId = FormType.EditIndirectMember;
+                settingContext.CustId = model.AgentId;
+            }
 
             return View("~/Views/Account/EditCustomer.cshtml", settingContext);
         }
@@ -353,8 +328,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             };
 
             _customerSettingService.CheckExistUserName(criteria);
-
-            if (criteria.MsgId == 0)
+            if (criteria.MsgId == Result.SuccessValue)
             {
                 var serviceResult = _memberService.CheckUserName(new CheckUserNameAction
                 {
@@ -362,7 +336,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     UserName = model.UserName
                 });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new
                     {

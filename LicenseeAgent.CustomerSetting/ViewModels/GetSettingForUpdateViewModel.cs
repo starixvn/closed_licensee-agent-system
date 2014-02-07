@@ -3,13 +3,9 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -18,18 +14,18 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     public class GetSettingForUpdateViewModel
     {
         [Required]
-        [Range(1, Int32.MaxValue)]
+        public int CustId { get; set; }
+
+        [Required]
+        public int RoleId { get; set; }
+
+        [Required]
         public int TargetCustId { get; set; }
 
         [Required]
-        [Range(1, Int32.MaxValue)]
         public int TargetRoleId { get; set; }
 
         [Required]
         public int FormId { get; set; }
-
-        public bool IsOnlyUpdatePT { get; set; }
-
-        public int IndirectAgentId { get; set; }
     }
 }

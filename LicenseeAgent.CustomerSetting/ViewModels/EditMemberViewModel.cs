@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
@@ -21,10 +18,12 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Range(1, Int32.MaxValue)]
         public int MemberId { get; set; }
 
+        [Required]
+        [Range(1, Int32.MaxValue)]
         public int AgentId { get; set; }
 
-        public int AgentLevel { get; set; }
-
-        public int NumberOfLevel { get; set; }
+        [Required]
+        [Range(1, short.MaxValue)]
+        public short AgentLevel { get; set; }
     }
 }

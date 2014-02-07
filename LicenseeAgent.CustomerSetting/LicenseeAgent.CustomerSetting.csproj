@@ -103,6 +103,7 @@
     <Compile Include="Services\SportsbookSettingService.cs" />
     <Compile Include="Services\ISportsbookSettingService.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditMemberViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForUpdateViewModel.cs" />

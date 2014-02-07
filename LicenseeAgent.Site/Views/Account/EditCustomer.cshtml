@@ -18,7 +18,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?targetCustId={0}&targetRoleId={1}&formId={2}&isOnlyUpdatePT={3}&indirectAgentId={4}", Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId, Model.IsOnlyUpdatePT, Model.IndirectAgentId))></script>
+    <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId))></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/customersetting")
@@ -29,7 +29,7 @@
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.sportsbookSetting"
     class="fanex-sportbook-setting" ng-controller="sportsbook.custSettingController"
-    data-href="@(Model.IsOnlyUpdatePT ? "~/SportsbookSetting/UpdateIndirectCustomer" : "~/SportsbookSetting/UpdateCustomer")">
+    data-href="@("~/SportsbookSetting/UpdateCustomer")">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
@@ -40,18 +40,15 @@
     </div>
     <div class="clearfix">
         <div class="control-group" data-ng-hide="settingMode">
-        @if (Model.FormId == FormType.Edit)
-        {
-            <button class="btn btn-primary" data-ng-click="@(Model.IsOnlyUpdatePT ? "updateIndirectCustomer()" : "updateCustomer()")">
+            <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
                 @Las.Update
             </button>
-        }
         </div>
     </div>
     <div class="clearfix">
         @Html.Partial("~/Views/Account/CustSetting/Sportsbook/ViewCustomerInfo.cshtml")
     </div>
-    @if (!Model.IsOnlyUpdatePT)
+    @if (Model.FormId != FormType.EditIndirectMember)
     {
         <div class="clearfix">
             @Html.Partial("~/Views/Account/CustSetting/Sportsbook/Commission.cshtml", Model)
@@ -70,7 +67,7 @@
             @Las.SimpleModeNote
         </div>
     </div>
-    @if (!Model.IsOnlyUpdatePT)
+    @if (Model.FormId != FormType.EditIndirectMember)
     {
         <div class="clearfix">
             @Html.Partial("~/Views/Account/CustSetting/Sportsbook/BetSetting.cshtml", Model)
@@ -83,12 +80,9 @@
         <div class="control-group" data-ng-show="settingMode">
         </div>
         <div class="control-group">
-            @if (Model.FormId == FormType.Edit)
-            {
-                <button class="btn btn-primary" data-ng-click="@(Model.IsOnlyUpdatePT ? "updateIndirectCustomer()" : "updateCustomer()")">
-                    @Las.Update
-                </button>
-            }
+            <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                @Las.Update
+            </button>
         </div>
     </div>
 </div>

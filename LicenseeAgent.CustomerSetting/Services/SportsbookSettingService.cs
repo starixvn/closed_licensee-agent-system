@@ -422,7 +422,7 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                if (model.SettingContext.IsOnlyUpdatePT)
+                if (model.SettingContext.FormId == FormType.EditIndirectMember)
                 {
                     return CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model);
                 }
@@ -487,9 +487,9 @@ namespace LicenseeAgent.CustomerSetting.Service
         {
             var criteria = new AgentEditMemIndirectCriteria()
             {
-                CustId = model.SettingContext.TargetCustId,
-                AgentId = model.SettingContext.IndirectAgentId,
                 Updater = model.SettingContext.LoginUserId,
+                AgentId = model.SettingContext.CustId,
+                CustId = model.SettingContext.TargetCustId,
                 PositionTaking = criteriaBase.PositionTaking,
                 Ip = criteriaBase.Ip
             };
@@ -604,12 +604,12 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                if (settingContext.IsOnlyUpdatePT)
+                if (settingContext.FormId == FormType.EditIndirectMember)
                 {
                     getAgentSettingCriteria = new AgentSelMemIndirectForUpdateCriteria
                     {
-                        CustId = settingContext.TargetCustId,
-                        AgentId = settingContext.IndirectAgentId
+                        AgentId = settingContext.CustId,
+                        CustId = settingContext.TargetCustId
                     };
                 }
                 else

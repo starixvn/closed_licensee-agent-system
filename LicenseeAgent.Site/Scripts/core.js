@@ -257,6 +257,22 @@
         scrollTop: function () {
             $("html, body").animate({ scrollTop: 0 }, "fast");
         },
+        scrollTo: function (element) {
+            var viewportWidth = $(window).width(),
+                viewportHeight = $(window).height(),
+                $element = $(element),
+                elWidth = $element.width(),
+                elHeight = $element.height(),
+                elOffset = $element.offset();
+            $("html, body").animate({ scrollTop: elOffset.top + (elHeight / 2) - (viewportHeight / 2) }, "fast");
+        },
+        isScrolledIntoView: function (elem) {
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + $(elem).height();
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        },
         parseBoolean: function (value) {
             return /^true$/i.test(value);
         },
@@ -271,6 +287,33 @@
             msgWrp.show();
             msgWrp.addClass('success')
                     .find('li:first').html(msg).show();
+        },
+        getParameterByName: function (name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        },
+        removeURLParameter: function (url, parameter) {
+            //prefer to use l.search if you have a location/link object
+            var urlparts = url.split('?');
+            if (urlparts.length >= 2) {
+                var prefix = encodeURIComponent(parameter) + '=';
+                var pars = urlparts[1].split(/[&;]/g);
+
+                //reverse iteration as may be destructive
+                for (var i = pars.length; i-- > 0; ) {
+                    //idiom for string.startsWith
+                    if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                        pars.splice(i, 1);
+                    }
+                }
+
+                url = urlparts[0] + '?' + pars.join('&');
+                return url;
+            } else {
+                return url;
+            }
         }
     };
 } (jQuery);

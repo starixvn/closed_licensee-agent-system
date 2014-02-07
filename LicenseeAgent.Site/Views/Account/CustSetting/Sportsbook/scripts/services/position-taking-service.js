@@ -150,35 +150,6 @@ if (fanex.sportsbookSetting) {
             ptGroup.WidthStyle.width = ptGroup.TitleWidth + 'px';
             ptGroup.Expand = !ptGroup.Expand;
         },
-        refreshData: function (settingContext, simpleModeData, advancedModeData) {
-            var self = this;
-            if (settingContext.IsSimpleMode) {
-                var updatedPt = simpleModeData;
-                if (typeof updatedPt.OldValue != 'undefined') updatedPt.OldValue = updatedPt.Value;
-                if (typeof updatedPt.OldMin != 'undefined') updatedPt.OldMin = updatedPt.Min;
-                if (typeof updatedPt.OldMax != 'undefined') updatedPt.OldMax = updatedPt.Max;
-                if (typeof updatedPt.OldPreset != 'undefined') updatedPt.OldPreset = updatedPt.Preset;
-            }
-            else {
-                var updatedData = advancedModeData,
-                    datalength = updatedData.length,
-                    positionTakingSave = [];
-                for (var i = 0; i < datalength; i++) {
-                    var currentGroup = updatedData[i];
-                    if (currentGroup) {
-                        for (var j = 0; j < currentGroup.PositionTakings.length; j++) {
-                            var currentPositionTaking = currentGroup.PositionTakings[j];
-                            if (typeof currentPositionTaking.OldValue != 'undefined') currentPositionTaking.OldValue = currentPositionTaking.Value;
-                            if (typeof currentPositionTaking.OldMin != 'undefined') currentPositionTaking.OldMin = currentPositionTaking.Min;
-                            if (typeof currentPositionTaking.OldMax != 'undefined') currentPositionTaking.OldMax = currentPositionTaking.Max;
-                            if (typeof currentPositionTaking.OldPreset != 'undefined') currentPositionTaking.OldPreset = currentPositionTaking.Preset;
-                        }
-
-                    }
-
-                }
-            }
-        },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
             var self = this;
             if (settingContext.IsSimpleMode) {

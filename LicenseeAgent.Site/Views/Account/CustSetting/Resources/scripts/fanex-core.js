@@ -65,6 +65,9 @@ fanex.showHintOption = function (element, content, option) {
         }
     }
     if (fanex.hintTarget != element) {
+        if (!CORE.isScrolledIntoView(element)) {
+            CORE.scrollTo(element);
+        }
         $(element).tooltip('show');
     }
     fanex.hintTarget = $(element);

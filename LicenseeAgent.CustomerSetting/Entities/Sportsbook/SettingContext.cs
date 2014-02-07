@@ -37,17 +37,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
             Language = currentSession.Language;
         }
 
-        public SettingContext(bool isLastLevel, bool isLevel0)
-            : this()
-        {
-            LoginUserId = SessionManager.CurrentSession.LoginUserId;
-            RoleId = isLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
-            TargetRoleId = isLevel0
-                ? (int)Role.AgentLevel1
-                : isLastLevel ? (int)Role.Member : (int)Role.Agent;
-            Language = SessionManager.CurrentSession.Language;
-        }
-
         public int CustId { get; set; }
 
         public string UserName { get; set; }
@@ -58,13 +47,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public int TargetRoleId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Admin ID.
-        /// </summary>
-        /// <value>
-        /// The creator identifier.
-        /// </value>
-        [JsonIgnore]
         public int LoginUserId { get; set; }
 
         public int SubAccId { get; set; }
@@ -88,9 +70,5 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public bool HasMinConstrain { get; set; }
 
         public bool CanEditComGroup { get; set; }
-
-        public bool IsOnlyUpdatePT { get; set; }
-
-        public int IndirectAgentId { get; set; }
     }
 }

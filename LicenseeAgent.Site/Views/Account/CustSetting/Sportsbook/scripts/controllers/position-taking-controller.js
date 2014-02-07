@@ -27,13 +27,6 @@ if (fanex.sportsbookSetting) {
                     $scope.ptModel.ptGroups);
             }
 
-            $scope.refreshData = function () {
-                return $scope.positionTakingService.refreshData(
-                    settingContext,
-                    $scope.ptModel.ptFirstData,
-                    $scope.ptModel.ptGroups);
-            }
-
             $scope.isValidData = function () {
                 return $scope.positionTakingService.isValidData(
                     settingContext,

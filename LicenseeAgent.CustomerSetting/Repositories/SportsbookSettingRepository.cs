@@ -708,7 +708,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 ReaderAgentInfoData(custInfo, reader);
             }
 
-            if (!settingContext.IsOnlyUpdatePT)
+            if (settingContext.FormId != FormType.EditIndirectMember)
             {
                 if (reader.NextResult())
                 {

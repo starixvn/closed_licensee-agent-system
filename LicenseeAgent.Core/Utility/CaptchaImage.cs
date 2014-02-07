@@ -288,7 +288,7 @@ namespace LicenseeAgent.Core.Utility
             BackgroundNoise = BackgroundNoiseLevel.Low;
             LineNoise = LineNoiseLevel.None;
             TextLength = 6;
-            TextChars = "acdefghjknpqruvxyzACDEFGHJKLNPQRTUVXYZ2346789";
+            TextChars = "ACDEFGHJKLNPQRTUVXYZ2346789";
             CacheTimeOut = 180D;
         }
 

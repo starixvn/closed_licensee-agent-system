@@ -85,7 +85,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 Outstanding = pagedList.Select(x => x.Outstanding).Sum(),
             };
 
-            var serviceResult = _memberService.GetMemberInformations<MemberBalanceInfo>(
+            _memberService.GetMemberInformations<MemberBalanceInfo>(
                                 pagedList,
                                 new GetMemberInfoListAction
                                 {

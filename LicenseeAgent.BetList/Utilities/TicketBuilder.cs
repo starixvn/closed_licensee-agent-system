@@ -12,8 +12,10 @@ namespace LicenseeAgent.BetList.Utilities
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Entities;
@@ -35,15 +37,14 @@ namespace LicenseeAgent.BetList.Utilities
         private BetListHTMLBuilder _builder;
         private TicketHelper _ticketHelper;
         private bool _isAdmin = false;
-        private List<TicketText> _ticketTextList;
+        private Collection<TicketText> _ticketTextList;
 
-        public TicketBuilder(TicketBuilderParameters ticketBuilderParameters)
+        protected TicketBuilder(TicketBuilderParameters ticketBuilderParameters)
         {
             _ticketResult = ticketBuilderParameters.TicketResult;
             _isAdmin = ticketBuilderParameters.IsAdmin;
-            this.Initialize();
             _builder = new BetListHTMLBuilder();
-            _ticketTextList = new List<TicketText>();
+            _ticketTextList = new Collection<TicketText>();
             _ticketHelper = new TicketHelper();
         }
 
@@ -105,8 +106,10 @@ namespace LicenseeAgent.BetList.Utilities
         /// Generate ticket text.
         /// </summary>
         /// <returns>Result value.</returns>
-        public List<TicketText> BuildTickets()
+        public Collection<TicketText> BuildTickets()
         {
+            this.Initialize();
+
             foreach (var ticket in this._ticketResult.MainTicketList)
             {
                 this.BuildOneTicket(ticket);
@@ -136,8 +139,8 @@ namespace LicenseeAgent.BetList.Utilities
                 SystemId = ticket.UserName,
                 TransTime = LasBetListHtmlBuilder.BuildTrans(ticket),
                 Status = this.BuildStatus(ticket),
-                Choice = _builder.BuildChoice(ticket, _ticketHelper, this._ticketResult.TicketDataList, false),
-                Odds = _builder.BuildOdds(ticket, this._ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
+                Choice = _builder.BuildChoice(ticket, _ticketHelper, (List<ITicketData>)this._ticketResult.TicketDataList, false),
+                Odds = _builder.BuildOdds(ticket, (List<ITicketData>)this._ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                 Stake = _builder.BuildLasStake(ticket),
                 AgentPT = _builder.BuildAgentPT(ticket),
                 AgentComm = this._isAdmin ? _builder.BuildAdminAgentComm(ticket) : _builder.BuildAgentComm(ticket),
@@ -174,7 +177,6 @@ namespace LicenseeAgent.BetList.Utilities
             if (ticket.BetTypeId == (int)BetType.SystemParlay)
             {
                 var betTeam = _ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + _ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
-                var formatDetail =
                 _ticketHelper.ClientDetailSystemParlayFunction = string.Format(
                     this._formatDetail,
                     ticket.RefNo,

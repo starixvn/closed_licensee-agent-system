@@ -14,6 +14,7 @@ namespace LicenseeAgent.BetList.Utilities
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Entities;
@@ -45,7 +46,7 @@ namespace LicenseeAgent.BetList.Utilities
         public override string BuildStatus(LasTicket ticket)
         {
             return Builder.BuildLasBetListResultStatus(
-                                    ticket, TicketHelper, TicketResult.TicketDataList, _criteria, 20, "UUS");
+                                    ticket, TicketHelper, (List<ITicketData>)TicketResult.TicketDataList, _criteria, 20, "UUS");
         }
 
         public override long BuildCustId(LasTicket ticket)

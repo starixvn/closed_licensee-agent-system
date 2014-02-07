@@ -31,12 +31,10 @@ namespace LicenseeAgent.BetList.Controllers
     public class ParlayController : BetListBase, IBetListBase
     {
         private IBetListService _betlistService;
-        private ICoreService _coreService;
 
-        public ParlayController(IBetListService betlistService, ICoreService coreService)
+        public ParlayController(IBetListService betlistService)
         {
             _betlistService = betlistService;
-            _coreService = coreService;
         }
 
         [HttpGet]
@@ -60,7 +58,7 @@ namespace LicenseeAgent.BetList.Controllers
                 TicketResult = ticketResults,
                 IsAdmin = CurrentSession.IsAdmin
             };
-            var betListTicketBuilder = new ParlayTicketBuilder(ticketBuilderParameters, criteria);
+            var betListTicketBuilder = new ParlayTicketBuilder(ticketBuilderParameters);
 
             var model = new BetListViewModel()
             {

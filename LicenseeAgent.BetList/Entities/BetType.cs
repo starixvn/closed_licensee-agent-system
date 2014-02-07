@@ -15,6 +15,7 @@ namespace LicenseeAgent.BetList.Entities
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:EnumerationItemsMustBeDocumented", Justification = "Reviewed.")]
     public enum BetType
     {
+        None = 0,
         Handicap = 1,
         OddEven = 2,
         OverUnder = 3,

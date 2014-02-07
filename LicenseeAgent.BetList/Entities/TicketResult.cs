@@ -11,6 +11,7 @@
 namespace LicenseeAgent.BetList.Entities
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -26,7 +27,7 @@ namespace LicenseeAgent.BetList.Entities
 
         public IList<LasTicket> MainTicketList { get; set; }
 
-        public List<ITicketData> TicketDataList { get; set; }
+        public IList<ITicketData> TicketDataList { get; set; }
 
         public int TotalRows { get; set; }
     }

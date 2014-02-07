@@ -10,7 +10,7 @@
 
 namespace LicenseeAgent.BetList.Utilities
 {
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using LicenseeAgent.BetList.Entities;
 
     /// <summary>
@@ -18,7 +18,7 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public interface ITicketBuilder
     {
-        List<TicketText> BuildTickets();
+        Collection<TicketText> BuildTickets();
 
         void Initialize();
 

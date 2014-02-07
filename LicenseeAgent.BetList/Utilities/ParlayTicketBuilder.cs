@@ -14,6 +14,7 @@ namespace LicenseeAgent.BetList.Utilities
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Entities;
@@ -25,12 +26,9 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public class ParlayTicketBuilder : TicketBuilder, ITicketBuilder
     {
-        private TotalBetsParlayListCriteria _criteria;
-
-        public ParlayTicketBuilder(TicketBuilderParameters ticketBuilderParameters, TotalBetsParlayListCriteria criteria)
+        public ParlayTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
             : base(ticketBuilderParameters)
         {
-            _criteria = criteria;
         }
 
         public override void Initialize()
@@ -45,7 +43,7 @@ namespace LicenseeAgent.BetList.Utilities
         public override string BuildStatus(LasTicket ticket)
         {
             return Builder.BuildTotalBetsParlayStatus(
-                        ticket, TicketHelper, TicketResult.TicketDataList, _criteria, 20, "UUS");
+                        ticket, TicketHelper, (List<ITicketData>)TicketResult.TicketDataList);
         }
 
         public override long BuildCustId(LasTicket ticket)

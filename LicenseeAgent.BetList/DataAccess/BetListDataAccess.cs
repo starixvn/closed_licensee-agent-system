@@ -175,9 +175,6 @@ namespace LicenseeAgent.BetList.DataAccess
         {
             var playerCommCol = "playercomm" + baseCurrency;
             var commCol = "comm" + baseCurrency;
-            var licenseeWlCol = "licenseewl" + baseCurrency;
-            var winlostCol = "winlost" + baseCurrency;
-            var stakeCol = "stake" + baseCurrency;
             var actualStakeCol = "actual_stake" + baseCurrency;
 
             var columnCollection = dataTable.Columns;
@@ -208,7 +205,6 @@ namespace LicenseeAgent.BetList.DataAccess
             var containsAwayId = columnCollection.Contains("awayid");
             var containsMatchId = columnCollection.Contains("matchid");
             var containsCustId = columnCollection.Contains("custid");
-            var containsCurrencyId = columnCollection.Contains("currencyid");
             var containsLiveHomeScore = columnCollection.Contains("livehomescore");
             var containsLiveAwayScore = columnCollection.Contains("liveawayscore");
             var containsStatusID = columnCollection.Contains("statusid");
@@ -224,7 +220,6 @@ namespace LicenseeAgent.BetList.DataAccess
             // Money
             var containsPlayerComm = columnCollection.Contains(playerCommCol);
             var containsComm = columnCollection.Contains(commCol);
-            var containsLicenseeWl = columnCollection.Contains(licenseeWlCol);
             var containsWinlost = columnCollection.Contains("winlost");
             var containsStake = columnCollection.Contains("stake");
             var containsActualStake = columnCollection.Contains(actualStakeCol);

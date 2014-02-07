@@ -11,6 +11,7 @@ namespace LicenseeAgent.BetList.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
@@ -22,7 +23,7 @@ namespace LicenseeAgent.BetList.Controllers
     /// </summary>
     public interface IBetListBase
     {
-        List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status);
+        Collection<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status);
 
         string BuildSystemParlayDetail(SystemParlayData systemParlayData);
 

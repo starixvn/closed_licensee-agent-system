@@ -11,6 +11,7 @@ namespace LicenseeAgent.BetList.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
@@ -34,9 +35,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="originalData">List of raw bet list details.</param>
         /// <param name="status">Ticket status ID.</param>
         /// <returns>List of formatted bet list details.</returns>
-        public List<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
+        public Collection<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status)
         {
-            var formattedData = new List<BetListDetails>();
+            var formattedData = new Collection<BetListDetails>();
             foreach (var item in originalData)
             {
                 formattedData.Add(new BetListDetails
@@ -71,14 +72,14 @@ namespace LicenseeAgent.BetList.Controllers
             var stringBuilder = new StringBuilder();
             foreach (var ticket in ticketResult.MainTicketList)
             {
-                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
+                var choice = builder.BuildChoice(ticket, ticketHelper, (List<ITicketData>)ticketResult.TicketDataList, false);
                 stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
             }
 
             return Content(stringBuilder.ToString());
         }
 
-        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
+        private static string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
         {
             var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
             var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
@@ -89,7 +90,7 @@ namespace LicenseeAgent.BetList.Controllers
             return htmlString;
         }
 
-        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
+        private static string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
         {
             var htmlString = data.AgentLevel == 1
                 ? string.Empty

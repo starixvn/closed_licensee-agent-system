@@ -215,7 +215,7 @@ namespace LicenseeAgent.Report.Controllers
             {
                 ErrCode = Result.SuccessValue,
                 BalanceUp = balanceUp.BalanceUpDay.ToShortDateString(),
-                MoveBet = balanceUp.MoveBetDay.ToShortDateString()
+                MoveBet = balanceUp.MoveBetsDay.ToShortDateString()
             });
         }
 

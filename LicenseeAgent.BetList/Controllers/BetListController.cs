@@ -64,7 +64,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var balanceUp = _coreService.GetBalanceUpDay();
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            criteria.MoveBetsDay = balanceUp.MoveBetDay;
+            criteria.MoveBetsDay = balanceUp.MoveBetsDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
             criteria.StatusId = criteria.StatusId == 255 ? null : criteria.StatusId;
 
@@ -125,7 +125,7 @@ namespace LicenseeAgent.BetList.Controllers
                 RefNo = refNo,
                 CustId = custId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetDay
+                MoveBetsDay = balanceUp.MoveBetsDay
             };
 
             var systemParlayData = _betlistService.GetSystemParlayResult(criteria);

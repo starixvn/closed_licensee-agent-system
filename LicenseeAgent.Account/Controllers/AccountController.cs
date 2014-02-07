@@ -65,7 +65,7 @@ namespace LicenseeAgent.Account.Controllers
                 var balanceInfoCriteria = new BalanceInfoCriteria
                 {
                     AgentID = CurrentSession.AgentInfo.AgentId,
-                    MoveBetDay = balanceUp.MoveBetDay
+                    MoveBetDay = balanceUp.MoveBetsDay
                 };
                 ViewBag.IsAdmin = CurrentSession.IsAdmin;
                 model.BalanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
@@ -446,7 +446,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentID = CurrentSession.AgentInfo.AgentId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetDay
+                MoveBetsDay = balanceUp.MoveBetsDay
             };
             var topWinningData = _accountService.GetTopWinning(criteria);
 
@@ -464,7 +464,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 AgentID = CurrentSession.AgentInfo.AgentId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetDay
+                MoveBetsDay = balanceUp.MoveBetsDay
             };
             var topTurnoverData = _accountService.GetTopTurnover(criteria);
 

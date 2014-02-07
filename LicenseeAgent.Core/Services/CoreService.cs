@@ -16,7 +16,7 @@ namespace LicenseeAgent.Core.Services
     /// </summary>
     public class CoreService : QueryService, ICoreService
     {
-        private const string BalanceUpDayCacheKey = "BalanceUpDayCacheKey";
+        private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";
 
         private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
 

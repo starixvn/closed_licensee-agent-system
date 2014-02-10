@@ -39,16 +39,16 @@ namespace LicenseeAgent.Report.Controllers
 
         private ICoreService _coreService;
 
-        private IResultsReportService _resultsReportService;
+        private IReportService _reportService;
 
         #endregion Services
 
         #region Constructor
 
-        public ReportController(ICoreService coreService, IResultsReportService resultsReportService)
+        public ReportController(ICoreService coreService, IReportService reportService)
         {
             _coreService = coreService;
-            _resultsReportService = resultsReportService;
+            _reportService = reportService;
         }
 
         #endregion Constructor
@@ -74,7 +74,7 @@ namespace LicenseeAgent.Report.Controllers
         public JsonResult Results(SportCriteria criteria)
         {
             criteria.IsShowAll = _includeTestData;
-            var sports = _resultsReportService.GetSports(criteria);
+            var sports = _reportService.GetSports(criteria);
             var model = new ResultsReportViewModel();
             model.Sports = sports.Select(i => new SelectListItem { Text = i.SportName, Value = i.SportType }).OrderBy(j => j.Text).ToList();
 
@@ -88,7 +88,7 @@ namespace LicenseeAgent.Report.Controllers
                     SportType = int.Parse(model.Sports[0].Value)
                 };
 
-                var leagues = _resultsReportService.GetLeagues(leagueCriteria);
+                var leagues = _reportService.GetLeagues(leagueCriteria);
                 model.Leagues = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
 
                 return Json(new
@@ -121,7 +121,7 @@ namespace LicenseeAgent.Report.Controllers
 
             var resultsHtmlString = string.Empty;
             var cacheKey = GenerateOutRightCacheKey(criteria);
-            var outRightData = (IList<OutRight>)HttpRuntime.Cache.Get(cacheKey) ?? _resultsReportService.GetOutrightResults(criteria);
+            var outRightData = (IList<OutRight>)HttpRuntime.Cache.Get(cacheKey) ?? _reportService.GetOutrightResults(criteria);
 
             if (outRightData.Count > 0)
             {
@@ -192,7 +192,7 @@ namespace LicenseeAgent.Report.Controllers
         public JsonResult GetLeagues(LeagueCriteria criteria)
         {
             var leagueItems = new List<SelectListItem>();
-            var leagues = _resultsReportService.GetLeagues(criteria);
+            var leagues = _reportService.GetLeagues(criteria);
             leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
 
             return Json(new
@@ -231,6 +231,35 @@ namespace LicenseeAgent.Report.Controllers
         public ActionResult AgentWinLoss()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Agent Win Loss.
+        /// </summary>
+        /// <param name="model">Agent Win Loss Report View Model.</param>
+        /// <returns>JSON Result.</returns>
+        [HttpPost]
+        public JsonResult AgentWinLoss(AgentWinLossReportViewModel model)
+        {
+            var balanceUp = _coreService.GetBalanceUpDay();
+
+            var criteria = new AgentWinLossReportCriteria
+            {
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                MoveBetDay = balanceUp.MoveBetDay,
+                DrawType = model.DrawFilter,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                AgentID = 13730682
+            };
+
+            var result = _reportService.AgentWinLossReport(criteria);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = result
+            });
         }
 
         #endregion Agent Win Loss Report
@@ -287,7 +316,7 @@ namespace LicenseeAgent.Report.Controllers
                 LanguageCode = "en-US"
             };
 
-            var data = _resultsReportService.GetMatchResults(matchResultsReportCriteria);
+            var data = _reportService.GetMatchResults(matchResultsReportCriteria);
             if (data != null)
             {
                 return ResultEngine.HtmlParser(data, setting);

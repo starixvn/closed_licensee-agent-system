@@ -730,4 +730,22 @@
   <data name="AgentWinLoss" xml:space="preserve">
     <value>Agent Win Loss</value>
   </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="DrawFilter" xml:space="preserve">
+    <value>Draw Filter</value>
+  </data>
+  <data name="NoDraw" xml:space="preserve">
+    <value>No Draw</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="NoDrawForTurnoverOnly" xml:space="preserve">
+    <value>No Draw For Turnover Only</value>
+  </data>
+  <data name="EffectiveStake" xml:space="preserve">
+    <value>Effective Stake</value>
+  </data>
 </root>

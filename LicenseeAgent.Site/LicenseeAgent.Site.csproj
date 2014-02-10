@@ -534,7 +534,9 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Views\Home\Resources\menu.js" />
     <Content Include="Scripts\Results\Result.js" />
+    <Content Include="Views\Report\Resources\AgentWinlossReport.js" />
     <Content Include="Views\Report\Resources\ResultsReportManager.js" />
+    <Content Include="Views\Report\Resources\AgentWinLoss.less" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
@@ -801,6 +803,7 @@
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
+    <Content Include="Views\Report\AgentWinLoss.Script.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

@@ -682,6 +682,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dead Ball.
         /// </summary>
         public static string DeadBall {
@@ -745,6 +754,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Draw Filter.
+        /// </summary>
+        public static string DrawFilter {
+            get {
+                return ResourceManager.GetString("DrawFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DrawNoBet.
         /// </summary>
         public static string DrawNoBet {
@@ -804,6 +822,15 @@ namespace LicenseeAgent.Resources {
         public static string EditSportsbookMember {
             get {
                 return ResourceManager.GetString("EditSportsbookMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effective Stake.
+        /// </summary>
+        public static string EffectiveStake {
+            get {
+                return ResourceManager.GetString("EffectiveStake", resourceCulture);
             }
         }
         
@@ -1420,6 +1447,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Draw For Turnover Only.
+        /// </summary>
+        public static string NoDrawForTurnoverOnly {
+            get {
+                return ResourceManager.GetString("NoDrawForTurnoverOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInfo {
@@ -1443,6 +1479,15 @@ namespace LicenseeAgent.Resources {
         public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
             }
         }
         

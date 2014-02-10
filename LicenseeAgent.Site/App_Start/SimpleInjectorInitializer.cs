@@ -64,7 +64,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<ISearchUserService, SearchUserService>();
             container.Register<IBetListService, BetListService>();
             container.Register<IResultsReportDataAccess, ResultsReportDataAccess>();
-            container.Register<IResultsReportService, ResultsReportService>();
+            container.Register<IReportService, ReportService>();
             container.Register<ICoreService, CoreService>();
             container.Register<ITransferService, TransferService>();
             container.Register<IMemberService, MemberService>();

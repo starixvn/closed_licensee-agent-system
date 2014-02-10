@@ -105,22 +105,12 @@ namespace LicenseeAgent.CustomerList.Services
             Execute(criteria);
         }
 
-        public void ResetPasswordMemberLog(ResetPasswordMemberLogCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         public AgentEntity GetAgentInfo(AgentInfoCriteria criteria)
         {
             return GetEntity<AgentEntity>(criteria);
         }
 
         public void EditInfoAgent(EditinfoAgentCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void EditInfoMemberLog(EditInfoMemberLogCriteria criteria)
         {
             Execute(criteria);
         }

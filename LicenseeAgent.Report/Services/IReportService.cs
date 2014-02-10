@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="IResultsReportService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IReportService.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -19,7 +19,7 @@ namespace LicenseeAgent.Report.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IResultsReportService
+    public interface IReportService
     {
         /// <summary>
         /// Get Sports.
@@ -48,5 +48,7 @@ namespace LicenseeAgent.Report.Services
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>List of outright results.</returns>
         IList<OutRight> GetOutrightResults(ICriteria criteria);
+
+        IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
     }
 }

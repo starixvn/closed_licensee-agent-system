@@ -88,12 +88,6 @@ namespace LicenseeAgent.CustomerList.Services
         /// <param name="criteria">Edit info Agent Criteria.</param>
         void EditInfoAgent(EditinfoAgentCriteria criteria);
 
-        /// <summary>
-        /// Edit Info Member Log.
-        /// </summary>
-        /// <param name="criteria">Edit Info Member Log Criteria.</param>
-        void EditInfoMemberLog(EditInfoMemberLogCriteria criteria);
-
         void CheckMemberUplineStatusForUpdate(CheckMemberUplineStatusForUpdateCriteria criteria);
     }
 }

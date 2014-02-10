@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="ResultsReportService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ReportService.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -24,7 +24,7 @@ namespace LicenseeAgent.Report.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResultsReportService : QueryService, IResultsReportService
+    public class ReportService : QueryService, IReportService
     {
         #region Fields
 
@@ -41,7 +41,7 @@ namespace LicenseeAgent.Report.Services
         /// Initializes a new instance of the <see cref="ResultsReportService" /> class.
         /// </summary>
         /// <param name="resultsReportDataAccess">Results report data access.</param>
-        public ResultsReportService(IResultsReportDataAccess resultsReportDataAccess)
+        public ReportService(IResultsReportDataAccess resultsReportDataAccess)
         {
             _resultsReportDataAccess = resultsReportDataAccess ?? new ResultsReportDataAccess();
         }
@@ -90,6 +90,11 @@ namespace LicenseeAgent.Report.Services
         {
             var data = _resultsReportDataAccess.GetResults(criteria);
             return GenerateOutrightResults(data);
+        }
+
+        public IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria)
+        {
+            return GetEntites<AgentWinLoss>(criteria);
         }
 
         #endregion

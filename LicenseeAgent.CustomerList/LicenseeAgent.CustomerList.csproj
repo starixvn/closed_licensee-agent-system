@@ -56,12 +56,10 @@
     <Compile Include="Criteria\AgentInfoCriteria.cs" />
     <Compile Include="Criteria\CheckMemberUplineStatusForUpdateCriteria.cs" />
     <Compile Include="Criteria\EditinfoAgentCriteria.cs" />
-    <Compile Include="Criteria\EditInfoMemberLogCriteria.cs" />
     <Compile Include="Criteria\GetIpInformationCriteria.cs" />
     <Compile Include="Criteria\MemberAutoCompleteCriteria.cs" />
     <Compile Include="Criteria\MemberGetByAgentCriteria.cs" />
     <Compile Include="Criteria\ResetPasswordCriteria.cs" />
-    <Compile Include="Criteria\ResetPasswordMemberLogCriteria.cs" />
     <Compile Include="Criteria\SearchAgentCriteria.cs" />
     <Compile Include="Criteria\SearchMemberCriteria.cs" />
     <Compile Include="Criteria\UpdateAgentAccStatusCriteria.cs" />

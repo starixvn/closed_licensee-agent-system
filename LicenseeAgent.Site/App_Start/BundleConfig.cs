@@ -311,7 +311,11 @@ namespace LicenseeAgent.Site
                 "~/Views/Report/Resources/ResultsReportManager.js"));
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Results/fanex.result.css",
-                "~/Content/Results/results.css"));
+                "~/Content/Results/results.css")); 
+            bundles.Add(new LessBundle("~/css/agentwinlostreport").Include(
+                 "~/Views/Report/Resources/AgentWinLoss.less"));
+            bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
+                "~/Views/Report/Resources/AgentWinlossReport.js"));
         }
 
         /// <summary>

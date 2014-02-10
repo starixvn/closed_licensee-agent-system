@@ -276,6 +276,7 @@
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
+    <Content Include="Scripts\cookie\jquery.cookie.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />
     <Content Include="Scripts\HeadJS\head.core.js" />
@@ -798,7 +799,7 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Account\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
-    <Content Include="Views\Internal\Tool.cshtml" />
+    <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>

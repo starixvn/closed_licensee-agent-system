@@ -61,6 +61,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
+    <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="Criterias\TicketDownLineCriteria.cs" />

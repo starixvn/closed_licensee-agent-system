@@ -26,6 +26,18 @@
             $('#search').click(function () {
                 $("#formSearch").submit();
             });
+
+            //check exist cookie username. If exist, call search username
+            var userName = $.cookie('username');
+            if (userName != null) {
+
+                $("#UserName").val(userName);
+                $("#formSearch").submit();
+
+                $.removeCookie('username', { path: '/' });
+
+                accountInformation.changeAccountInfoActive();
+            }
         },
         beforeSearchUser: function () {
             CORE.blockUI();
@@ -186,6 +198,7 @@
                         return;
                     }
                     if (typeof INTERNAL_HEADER != 'undefined') {
+                        $.cookie('username', $("#UserName").val(), { path: '/' });
                         INTERNAL_HEADER.setCurrency(currencyId);
                     }
                 },
@@ -193,6 +206,18 @@
                     CORE.unblockUI();
                 }
             });
+        },
+        changeAccountInfoActive: function () {
+            var tab = $('.leftmenu-box').find('.nav-tabs').first();
+            tab.find('li:first').removeClass('active');
+            tab.find('li:nth-child(2)').addClass('active');
+
+            var mainMenuId = tab.find('li:first').find('a:first').attr('href');
+            var accountInfoId = tab.find('li:nth-child(2)').find('a:first').attr('href');
+
+            $(mainMenuId).removeClass('active in');
+            $(accountInfoId).removeClass('fade');
+            $(accountInfoId).addClass('active in');
         }
     }
 } (jQuery);

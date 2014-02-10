@@ -1699,6 +1699,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose a currency.
+        /// </summary>
+        public static string PleaseChooseCurrency {
+            get {
+                return ResourceManager.GetString("PleaseChooseCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a licensee and a currency.
+        /// </summary>
+        public static string PleaseChooseLicenseeCurrency {
+            get {
+                return ResourceManager.GetString("PleaseChooseLicenseeCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position Taking.
         /// </summary>
         public static string PositionTaking {

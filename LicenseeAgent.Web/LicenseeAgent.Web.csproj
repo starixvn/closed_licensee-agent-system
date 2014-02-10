@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppURLs.cs" />
+    <Compile Include="Binders\AgentBreadcrumModelBinder.cs" />
     <Compile Include="Binders\AppModelBinder.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="Criterias\TicketDownLineCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Entities\Breadcrumb.cs" />
+    <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Validations\AppPasswordRuleAttribute.cs" />
     <Compile Include="Validations\NotEqualAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AgentBreadcrumViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

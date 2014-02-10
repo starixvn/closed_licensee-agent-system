@@ -971,4 +971,10 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="PleaseChooseCurrency" xml:space="preserve">
+    <value>Please choose a currency</value>
+  </data>
+  <data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
+    <value>Please choose a licensee and a currency</value>
+  </data>
 </root>

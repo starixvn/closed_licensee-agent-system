@@ -25,6 +25,10 @@ body
         background: white;
         opacity: 0.7;
         filter: alpha(opacity=70);
+        &.intro
+        {
+            background: black;
+        }
     }
     .container-fluid
     {
@@ -33,6 +37,7 @@ body
     .header-box
     {
         height: @layoutTopHeight;
+        background: white;
         .account-box
         {
             position: absolute;
@@ -241,7 +246,7 @@ body
                 {
                     padding-left: 5px;
                     padding-right: 5px;
-                    background-color: #E5E5E5;
+                    background: #E5E5E5;
                     float: none; /* not needed, just for clarification */
                     /* the next props are meant to keep this block independent from the other floated one */
                     width: auto;
@@ -252,7 +257,7 @@ body
                 .personalmessage
                 {
                     padding: 0 10px;
-                    background-color: #D6D6D6;
+                    background: #D6D6D6;
                     text-align: center;
                     float: right;
                 }

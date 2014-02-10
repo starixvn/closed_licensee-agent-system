@@ -12,7 +12,6 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.CustomerList.Binders;
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Entities;
     using LicenseeAgent.CustomerList.Services;
@@ -22,8 +21,11 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.

@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerList.Entities
+namespace LicenseeAgent.Web.Entities
 {
     /// <summary>
     /// TODO: Update summary.

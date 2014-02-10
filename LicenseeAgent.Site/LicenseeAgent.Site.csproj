@@ -270,6 +270,7 @@
     <Content Include="Content\Results\images\last-goal.gif" />
     <Content Include="Content\Results\images\tab_topbg.gif" />
     <Content Include="Images\bullet-star.png" />
+    <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="InsertMultipleMember.aspx" />
     <Content Include="readme.txt" />
@@ -664,7 +665,7 @@
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
     <Content Include="Views\CustomerList\Resources\customerlist.less" />
-    <Content Include="Views\CustomerList\_Breadcrumb.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\CustomerList\_Link.cshtml" />
     <Content Include="Views\CustomerList\_IpInformation.cshtml" />
     <Content Include="Views\Account\EditCustomer.cshtml" />

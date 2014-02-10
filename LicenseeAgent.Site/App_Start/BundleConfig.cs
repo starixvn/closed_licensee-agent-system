@@ -150,8 +150,9 @@ namespace LicenseeAgent.Site
         private static void RegisterBootstrap(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/bootstrap").Include(
-                "~/scripts/bootstrap/bootstrap-dropdown.js").Include(
-                "~/scripts/bootstrap/bootstrap-select.js").Include(
+                "~/scripts/bootstrap/bootstrap-modal.js",
+                "~/scripts/bootstrap/bootstrap-dropdown.js",
+                "~/scripts/bootstrap/bootstrap-select.js",
                 "~/scripts/bootstrap/bootstrap-switch.js",
                 "~/scripts/bootstrap/bootstrap-tooltip.js",
                 "~/scripts/bootstrap/bootstrap-popover.js",

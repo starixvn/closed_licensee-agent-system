@@ -4,10 +4,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerList.ViewModels
+namespace LicenseeAgent.Web.ViewModels
 {
     using System.Collections.Generic;
-    using LicenseeAgent.CustomerList.Entities;
+    using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// TODO: Update summary.

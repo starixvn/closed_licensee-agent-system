@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerList.Entities
+namespace LicenseeAgent.Web.Entities
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

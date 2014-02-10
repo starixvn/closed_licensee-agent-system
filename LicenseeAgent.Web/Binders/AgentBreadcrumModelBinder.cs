@@ -4,12 +4,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerList.Binders
+namespace LicenseeAgent.Web.Binders
 {
     using System;
     using System.Web.Mvc;
-    using LicenseeAgent.CustomerList.Entities;
-    using LicenseeAgent.CustomerList.ViewModels;
+    using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.

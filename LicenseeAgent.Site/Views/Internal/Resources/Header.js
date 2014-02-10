@@ -67,6 +67,7 @@
 
             if ($('#licensee').length > 0 && (!licenseeId || !currencyId)) {
                 INTERNAL_HEADER.unactiveMain();
+                INTERNAL_HEADER.beginIntro();
             }
         },
         enableSearch: function (enabled) {
@@ -129,9 +130,11 @@
             }
         },
         activeMain: function () {
+            $('.message-box').show();
             $('#overlay').hide();
         },
         unactiveMain: function () {
+            $('.message-box').hide();
             $('#overlay').show();
         },
         loadCurrency: function (lsId) {
@@ -180,6 +183,15 @@
         setCurrency: function (currencyId) {
             newCurrencyId = currencyId;
             INTERNAL_HEADER.submit();
+        },
+        beginIntro: function () {
+            $('#overlay').addClass('intro');
+            $('body').click(function () {
+                INTERNAL_HEADER.endIntro();
+            });
+        },
+        endIntro: function () {
+            $('#overlay').removeClass('intro');
         }
     };
 } (jQuery);

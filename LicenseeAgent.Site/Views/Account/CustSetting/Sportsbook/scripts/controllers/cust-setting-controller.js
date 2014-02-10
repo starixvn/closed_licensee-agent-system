@@ -209,8 +209,10 @@
                 }
                 if (isSuccess) {
                     if (!POPUP.close()) {
-                        var url = CORE.removeURLParameter(location.href, 'messages') + '&messages=' + encodeMessages(data.Messages);
-                        location.href = url;
+                        setTimeout(function () {
+                            var url = CORE.removeURLParameter(location.href, 'messages') + '&messages=' + encodeMessages(data.Messages);
+                            location.href = url;
+                        }, CORE.RELOAD_INTERVAL);
                     }
                 }
 

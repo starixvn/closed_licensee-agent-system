@@ -10,6 +10,7 @@
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '700',
         PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),
+        RELOAD_INTERVAL: 2500,
 
         init: function () {
             $('input, textarea').placeholder();

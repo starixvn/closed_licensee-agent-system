@@ -803,6 +803,7 @@
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
+    <Content Include="Views\Report\AgentWinLoss.Script.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.MemberGrid.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.cshtml" />

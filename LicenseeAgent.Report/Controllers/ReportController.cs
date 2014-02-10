@@ -279,6 +279,35 @@ namespace LicenseeAgent.Report.Controllers
             });
         }
 
+        /// <summary>
+        /// Agent Win Loss.
+        /// </summary>
+        /// <param name="model">Agent Win Loss Report View Model.</param>
+        /// <returns>JSON Result.</returns>
+        [HttpPost]
+        public JsonResult AgentWinLoss(AgentWinLossReportViewModel model)
+        {
+            var balanceUp = _coreService.GetBalanceUpDay();
+
+            var criteria = new AgentWinLossReportCriteria
+            {
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                MoveBetDay = balanceUp.MoveBetDay,
+                DrawType = model.DrawFilter,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                AgentID = 13730682
+            };
+
+            var result = _reportService.AgentWinLossReport(criteria);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = result
+            });
+        }
+
         #endregion Agent Win Loss Report
 
         #region Utilities

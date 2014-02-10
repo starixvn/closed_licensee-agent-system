@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.29">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
@@ -13,7 +10,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan;
-    using LicenseeAgent.Taiwan.Utility;
     using LicenseeAgent.Web.Validations;
 
     /// <summary>
@@ -30,6 +26,8 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         public int CustId { get; set; }
 
         [Required]
+        [StringLength(50, MinimumLength = 6, ErrorMessageResourceName = "UsernameMinimumLength", ErrorMessageResourceType = typeof(Las))]
+        [RegularExpression("^[a-zA-Z0-9]{6,50}$", ErrorMessageResourceName = "UsernameMinimumLength", ErrorMessageResourceType = typeof(Las))]
         public string UserName { get; set; }
 
         [DataType(DataType.Password)]

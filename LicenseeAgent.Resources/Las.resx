@@ -521,7 +521,7 @@
     <comment>not</comment>
   </data>
   <data name="UsernameMinimumLength" xml:space="preserve">
-    <value>Username must be at least 6 characters.</value>
+    <value>Username must be at least 6 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only.</value>
     <comment>not</comment>
   </data>
   <data name="UsernameRequired" xml:space="preserve">

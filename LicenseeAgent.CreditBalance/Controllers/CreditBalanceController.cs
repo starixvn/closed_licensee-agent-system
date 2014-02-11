@@ -172,7 +172,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 }
                 else
                 {
-                    ViewBag.Result = Las.EditCreditSuccessfully;
+                    ViewBag.Result = Las.UpdateSuccessfully;
                 }
             }
 
@@ -228,7 +228,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 }
                 else
                 {
-                    ViewBag.Result = Las.EditCreditSuccessfully;
+                    ViewBag.Result = Las.UpdateSuccessfully;
                 }
             }
 

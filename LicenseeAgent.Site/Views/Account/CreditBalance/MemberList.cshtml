@@ -2,12 +2,12 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "Total", Name: "UserName", CellAlign: "center", MergeColNumber: 4 },
+                    { Value: "Total", Name: "RowNo", CellAlign: "center", MergeColNumber: 4 },
                     { Value: "GivenCredit", Name: "GivenCredit", MergeColNumber: 2, IsCalculated: true },
                     { Value: "BetCredit", Name: "BetCredit", IsCalculated: true },
                     { Value: "YesterdayBalance", Name: "YesterdayBalance", IsCalculated: true },
                     { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
-                    { Value: "Outstanding", Name: "Outstanding", MergeColNumber: 2, IsCalculated: true }
+                    { Value: "Outstanding", Name: "Outstanding", IsCalculated: true }
                 ]
               }
         ];
@@ -57,6 +57,7 @@
         bodyRowHeight: 29,
         showFooter: true,
         footerRows: footerRows,
-        autoResizeColumn: true
+        autoResizeColumn: true,
+        allowTruncate: true
     };
 </script>

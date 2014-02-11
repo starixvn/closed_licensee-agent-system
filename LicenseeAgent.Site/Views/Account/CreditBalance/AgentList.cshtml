@@ -9,7 +9,7 @@
                     { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
                     { Value: "YesterdayCash", Name: "YesterdayCash", IsCalculated: true },
                     { Value: "TotalCash", Name: "TotalCash", IsCalculated: true },
-                    { Value: "Outstanding", Name: "Outstanding", MergeColNumber: 2, IsCalculated: true }
+                    { Value: "Outstanding", Name: "Outstanding", IsCalculated: true }
                 ]
               }
         ];
@@ -65,6 +65,7 @@
         bodyRowHeight: 29,
         showFooter: true,
         footerRows: footerRows,
-        autoResizeColumn: true
+        autoResizeColumn: true,
+        allowTruncate: true
     };
 </script>

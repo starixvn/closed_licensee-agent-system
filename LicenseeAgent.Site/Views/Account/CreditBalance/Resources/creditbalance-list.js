@@ -1,6 +1,5 @@
-﻿var TRANSFER_LIST = function ($) {
-    var _pageindex = 0;
-    var _itemsperpage = CORE.pageSizes[0];
+﻿var creditBalanceList = function ($) {
+    var records;
 
     return {
         init: function () {
@@ -10,24 +9,18 @@
             context.init({
                 preventDoubleContext: false
             });
-            context.attach('#select-dropdown', [
-                { text: LANGUAGE.getString('All'), href: '#', action: TRANSFER_LIST.checkAll },
-                { text: LANGUAGE.getString('None'), href: '#', action: TRANSFER_LIST.uncheckAll }
-            ]);
 
             $('#search-form').submit(function (e) {
-                TRANSFER_LIST.reRenderAfterPaged();
+                creditBalanceList.submit();
                 e.preventDefault();
             });
 
             $('#search-form').submit();
         },
-        reRenderAfterPaged: function () {
+        submit: function () {
             var params = {
                 username: $.trim($("#Username").val()),
-                status: $("#Status").val(),
-                pageindex: _pageindex,
-                itemsperpage: _itemsperpage
+                status: $("#Status").val()
             };
             $.ajax({
                 url: $('#search-form').attr('action'),
@@ -39,88 +32,34 @@
                 success: function (data) {
                     if (data.ErrCode != 0) {
                         alert(data.ErrMsg);
+                        return;
                     }
-
-                    gridOption.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        currentPage: 0,
-                        itemsPerPageArray: CORE.pageSizes,
-                        showDetail: true,
-                        totalItem: data.TotalRecords,
-                        pagerSelectCallBack: TRANSFER_LIST.doPaging
-                    };
-
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
+                    records = data.List;
+                    creditBalanceList.pagerSelectCallBack(0, CORE.pageSizes[2]);
                 },
                 complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        doPaging: function (page_index, itemsPerPage, jq) {
-            gridOption.pagerOption.itemsPerPage = itemsPerPage;
-            gridOption.pagerOption.currentPage = page_index;
-            _pageindex = page_index;
-            _itemsperpage = itemsPerPage;
-
-            var params = {
-                username: $.trim($("#Username").val()),
-                status: $("#Status").val(),
-                pageindex: _pageindex,
-                itemsperpage: _itemsperpage
-            };
-            $.ajax({
-                url: $('#search-form').attr('action'),
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode != 0) {
-                        alert(data.ErrMsg);
-                    }
-
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
-                },
-                complete: function () {
-                    CORE.unblockUI();
+        pagerSelectCallBack: function (pageIndex, itemsPerPage) {
+            gridOption.pagerOption = {
+                itemsPerPage: itemsPerPage,
+                currentPage: pageIndex,
+                totalItem: records.length,
+                itemsPerPageArray: CORE.pageSizes,
+                showDetail: true,
+                customRenderFooter: function (bodyRows, pageIndex, itemsPerPage) {
+                    return CORE.genGridTotalRows(bodyRows, gridOption);
                 }
-            });
-
-            return false;
-        },
-        reload: function () {
-            var params = {
-                username: $.trim($("#Username").val()),
-                status: $("#Status").val(),
-                pageindex: _pageindex,
-                itemsperpage: _itemsperpage
             };
-            $.ajax({
-                url: $('#search-form').attr('action'),
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode != 0) {
-                        alert(data.ErrMsg);
-                    }
-
-                    gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = CORE.genGridFooterRows(data.TotalData, gridOption);
-                    $('#grid').show().fanexGrid(gridOption);
-                },
-                complete: function () {
-                    CORE.unblockUI();
+            gridOption.tdCssClass = function (rowIndex, colName, rowData) {
+                if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
+                    return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
-            });
+            }
+            gridOption.bodyRows = CORE.genGridRows(records, gridOption);
+            $('#grid').show().fanexGrid(gridOption);
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
@@ -134,5 +73,5 @@
 } (jQuery);
 
 $(function () {
-    TRANSFER_LIST.init();
+    creditBalanceList.init();
 });

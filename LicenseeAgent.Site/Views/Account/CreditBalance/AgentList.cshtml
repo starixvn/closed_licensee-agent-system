@@ -2,14 +2,14 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "UserName", Name: "UserName", CellAlign: "center", MergeColNumber: 4 },
-                    { Value: "GivenCredit", Name: "GivenCredit", MergeColNumber: 2 },
-                    { Value: "UsedCredit", Name: "UsedCredit" },
-                    { Value: "YesterdayBalance", Name: "YesterdayBalance" },
-                    { Value: "TotalBalance", Name: "TotalBalance" },
-                    { Value: "YesterdayCash", Name: "YesterdayCash" },
-                    { Value: "TotalCash", Name: "TotalCash" },
-                    { Value: "Outstanding", Name: "Outstanding", MergeColNumber: 2 }
+                    { Value: "Total", Name: "RowNo", CellAlign: "center", MergeColNumber: 4 },
+                    { Value: "GivenCredit", Name: "GivenCredit", MergeColNumber: 2, IsCalculated: true },
+                    { Value: "UsedCredit", Name: "UsedCredit", IsCalculated: true },
+                    { Value: "YesterdayBalance", Name: "YesterdayBalance", IsCalculated: true },
+                    { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
+                    { Value: "YesterdayCash", Name: "YesterdayCash", IsCalculated: true },
+                    { Value: "TotalCash", Name: "TotalCash", IsCalculated: true },
+                    { Value: "Outstanding", Name: "Outstanding", MergeColNumber: 2, IsCalculated: true }
                 ]
               }
         ];
@@ -38,7 +38,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.editAgentCredit({0}, \'{1}\', {2})"></i>'.format(rowData.AgentId, rowData.UserName, rowData.GivenCredit);
+                                return '<i class="icon-transfer" onclick="creditBalanceList.editAgentCredit({0}, \'{1}\', {2})"></i>'.format(rowData.AgentId, rowData.UserName, rowData.GivenCredit);
                             }
                         },
                         {
@@ -61,7 +61,6 @@
                         }
                    ],
         showPager: true,
-        customPager: true,
         gridExpandHeight: 100,
         bodyRowHeight: 29,
         showFooter: true,

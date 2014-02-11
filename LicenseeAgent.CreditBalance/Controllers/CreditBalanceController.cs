@@ -73,20 +73,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 Username = model.UserName
             });
 
-            var pagedList = memberBalanceInfo.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
-
-            var totalData = new MemberBalanceInfo
-            {
-                UserName = "Total",
-                GivenCredit = pagedList.Select(x => x.GivenCredit).Sum(),
-                BetCredit = pagedList.Select(x => x.BetCredit).Sum(),
-                YesterdayBalance = pagedList.Select(x => x.YesterdayBalance).Sum(),
-                TotalBalance = pagedList.Select(x => x.TotalBalance).Sum(),
-                Outstanding = pagedList.Select(x => x.Outstanding).Sum(),
-            };
-
             _memberService.GetMemberInformations<MemberBalanceInfo>(
-                                pagedList,
+                                memberBalanceInfo,
                                 new GetMemberInfoListAction
                                 {
                                     SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -96,9 +84,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = pagedList,
-                TotalData = totalData,
-                TotalRecords = memberBalanceInfo.Count()
+                List = memberBalanceInfo
             });
         }
 
@@ -117,26 +103,10 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 Status = model.Status
             });
 
-            var pagedList = agentBalanceInfo.Skip(model.ItemsPerPage * model.PageIndex).Take(model.ItemsPerPage);
-
-            var totalData = new AgentBalanceInfo
-            {
-                UserName = "Total",
-                GivenCredit = pagedList.Select(x => x.GivenCredit).Sum(),
-                UsedCredit = pagedList.Select(x => x.UsedCredit).Sum(),
-                YesterdayBalance = pagedList.Select(x => x.YesterdayBalance).Sum(),
-                TotalBalance = pagedList.Select(x => x.TotalBalance).Sum(),
-                YesterdayCash = pagedList.Select(x => x.YesterdayCash).Sum(),
-                TotalCash = pagedList.Select(x => x.TotalCash).Sum(),
-                Outstanding = pagedList.Select(x => x.Outstanding).Sum(),
-            };
-
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = pagedList,
-                TotalData = totalData,
-                TotalRecords = agentBalanceInfo.Count()
+                List = agentBalanceInfo
             });
         }
 

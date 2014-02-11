@@ -14,9 +14,5 @@ namespace LicenseeAgent.CreditBalance.ViewModels
         public string UserName { get; set; }
 
         public int? Status { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int ItemsPerPage { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 <div class="pull-left">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
     {
+        @Html.ValidationSummary()
         <fieldset>
             @if (ViewBag.Result != null)
             {
@@ -15,6 +16,7 @@
             }
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.MemberId)
+            @Html.HiddenFor(m => m.UserName)
             @Html.HiddenFor(m => m.MinAmount)
             @Html.HiddenFor(m => m.MaxAmount)
             @Html.HiddenFor(m => m.LastLogin)

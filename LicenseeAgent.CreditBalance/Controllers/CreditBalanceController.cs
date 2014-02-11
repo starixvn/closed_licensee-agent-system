@@ -80,6 +80,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                                     LASAgentId = CurrentSession.AgentInfo.AgentId
                                 });
+            memberBalanceInfo = memberBalanceInfo.Where(m => !model.Status.HasValue || (m.Status == Convert.ToBoolean(model.Status.Value))).ToList();
 
             return Json(new
             {

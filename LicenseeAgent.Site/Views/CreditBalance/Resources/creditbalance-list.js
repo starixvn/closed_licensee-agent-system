@@ -66,7 +66,7 @@
             POPUP.openDialogFrame(url, { width: 428, height: 200 });
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {
-            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&custName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
+            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
             POPUP.openDialogFrame(url, { width: 428, height: 200 });
         }
     }

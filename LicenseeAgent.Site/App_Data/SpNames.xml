@@ -123,15 +123,15 @@
     <Setting Key="Las_GetAncestorList" SpName="Las_GetAncestorList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Transfer">
-    <Setting Key="LAS_Transfer_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Transfer_AgentBalanceInfo" SpName="LAS_Balance_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Transfer_AgentToAgent" SpName="LAS_Transfer_AgentToAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_Transfer_MemberBalanceInfo" SpName="LAS_Transfer_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Transfer_MemberBalanceInfo" SpName="LAS_Balance_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Transfer_MemberDetail" SpName="LAS_Transfer_MemberDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Transfer_AgentToMember" SpName="LAS_Transfer_AgentToMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CreditBalance">
-    <Setting Key="LAS_CreditBalance_AgentBalanceInfo" SpName="LAS_Transfer_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_CreditBalance_MemberBalanceInfo" SpName="LAS_Transfer_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_CreditBalance_AgentBalanceInfo" SpName="LAS_Balance_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_CreditBalance_MemberBalanceInfo" SpName="LAS_Balance_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_LicenseeSelAgentCredit" SpName="Las_LicenseeSelAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelAgentCredit" SpName="Las_AgentSelAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelMemberCredit" SpName="Las_AgentSelMemberCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

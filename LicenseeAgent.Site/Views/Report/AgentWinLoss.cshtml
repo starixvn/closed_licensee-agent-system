@@ -1,6 +1,8 @@
-﻿@model LicenseeAgent.Report.ViewModels.AgentWinLossReportViewModel
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@model LicenseeAgent.Report.ViewModels.AgentWinLossReportViewModel
 @{
     ViewBag.Title = "Agent Win Loss";
+    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -15,7 +17,19 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
     @Scripts.Render("~/js/agentwinlostreport")
-    @Html.Partial("AgentWinLoss.Script")
+    
+    @if (pageContext.IsLastLevel){
+        @Html.Partial("AgentWinLoss.MemberGrid")
+    }
+    else {
+        if(pageContext.AgentLevel == 1)
+        {
+            @Html.Partial("AgentWinLoss.LicenseeGrid")
+        }
+        else {
+            @Html.Partial("AgentWinLoss.AgentGrid")
+        }
+    }
 }
 <div class="legend">
     @ViewBag.Title
@@ -27,14 +41,14 @@
     <div class="controls-row">
         @Html.LabelFor(m => m.FromDate)      
         <div class="input-append date" id="fromDatePicker">
-            @Html.TextBoxFor(m => m.FromDate, new { @class = "span2" })
+            @Html.TextBoxFor(m => m.FromDate, new { @class = "span2", @Value = DateTime.Now.AddMonths(-3).ToString("MM/dd/yyyy") })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
     <div class="controls-row">
         @Html.LabelFor(m => m.ToDate, new { @class = "small-label" })      
         <div class="input-append date" id="toDatePicker">
-            @Html.TextBoxFor(m => m.ToDate, new { @class = "span2" })
+            @Html.TextBoxFor(m => m.ToDate, new { @class = "span2", @Value = DateTime.Now.ToString("MM/dd/yyyy") })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
@@ -62,6 +76,9 @@
         <button class="btn btn-primary" id="today" data-date="@DateTime.Now.ToString("MM/dd/yyyy")">@Las.Today</button>
         <button class="btn btn-primary" id="yesterday" data-date="@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")">@Las.Yesterday</button>
     </div>
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.AgentLevel)
+    @Html.HiddenFor(m => m.BreadCrumb)
 }
 <div class="wrapper">
     <div id="grid" class="freegrid">

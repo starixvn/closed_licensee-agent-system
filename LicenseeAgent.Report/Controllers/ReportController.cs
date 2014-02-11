@@ -20,6 +20,7 @@ namespace LicenseeAgent.Report.Controllers
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Web;
     using Services;
     using ViewModels;
     using Web.Controllers;
@@ -226,11 +227,27 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
+        /// <param name="agentId">Agent Id Info.</param>
+        /// <param name="agentLevel">Agent Level.</param>
+        /// <param name="breadCrumb">Bread Crumb.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult AgentWinLoss()
+        public ActionResult AgentWinLoss(int? agentId, int? agentLevel, string breadCrumb)
         {
-            return View();
+            var paramAgentId = agentId ?? CurrentSession.AgentInfo.AgentId;
+            var paramAgentLevel = agentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+            ViewBag.PageContext = new PageContext(paramAgentId, paramAgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+            {
+                IsDirectDownline = CurrentSession.IsDirectDownline(paramAgentLevel),
+                IsAdmin = CurrentSession.IsAdmin
+            };
+            var model = new AgentWinLossReportViewModel
+            {
+                AgentId = paramAgentId,
+                AgentLevel = paramAgentLevel,
+                BreadCrumb = string.IsNullOrEmpty(breadCrumb) ? CurrentSession.AgentInfo.LicenseeName : breadCrumb
+            };
+            return View(model);
         }
 
         /// <summary>
@@ -246,11 +263,11 @@ namespace LicenseeAgent.Report.Controllers
             var criteria = new AgentWinLossReportCriteria
             {
                 BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetDay = balanceUp.MoveBetDay,
+                MoveBetDay = balanceUp.MoveBetsDay,
                 DrawType = model.DrawFilter,
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
-                AgentID = 13730682
+                AgentID = model.AgentId
             };
 
             var result = _reportService.AgentWinLossReport(criteria);

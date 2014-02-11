@@ -172,9 +172,12 @@
 
             var bodyRows = [];
             var len = list.length;
+            var rowIndex = 0;
+            if (typeof value != 'undefined') {
+                var currentPage = options.pagerOption.currentPage || 0;
+                rowIndex = currentPage * options.pagerOption.itemsPerPage;
+            }
 
-            var currentPage = options.pagerOption.currentPage || 0;
-            var rowIndex = currentPage * options.pagerOption.itemsPerPage;
             for (var i = 0; i < len; i++) {
                 var record = list[i];
                 var dataRow = [];
@@ -337,6 +340,28 @@
 $(function () {
     CORE.init();
 });
+$.fn.serializeObject = function () {
+    var o = {};
+    // find disabled inputs
+    var inputs = this.find(':disabled');
+    // enable them
+    inputs.prop('disabled', false);
+
+    var a = this.serializeArray();
+
+    // then, disable them
+    inputs.prop('disabled', true);
+
+    $.each(a, function () {
+        if (o[this.name] !== undefined) {
+            o[this.name] = o[this.name] + ',' + this.value;
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+
+    return o;
+};
 $.ajaxSetup({
     error: function (jqXHR, textStatus, errorThrown) {
         alert('Your request is temporarily cannot be processed, please try again later!');

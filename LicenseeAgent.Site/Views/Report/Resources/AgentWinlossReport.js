@@ -2,33 +2,34 @@
     return {
         init: function () {
             $("#tabs-area a:first").tab('show');
-            $('#fromDatePicker').datepicker();
+            $('#fromDatePicker').datepicker("setDate", '12/01/2013');
             $('#toDatePicker').datepicker();
 
             $('#search').click(function () {
-                AGENTWINLOSS.dataGridBinding($("#FromDate").val(), $("#ToDate").val());
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
             $('#today').click(function () {
-                AGENTWINLOSS.dataGridBinding($(this).data('date'), $(this).data('date'));
+                $('#FromDate').val($(this).data('date'));
+                $('#ToDate').val($(this).data('date'));
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
             $('#yesterday').click(function () {
-                AGENTWINLOSS.dataGridBinding($(this).data('date'), $(this).data('date'));
+                $('#FromDate').val($(this).data('date'));
+                $('#ToDate').val($(this).data('date'));
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
+            AGENTWINLOSS.dataGridBinding($("#FromDate").val(), $("#ToDate").val());
         },
 
-        dataGridBinding: function (fromDate, toDate) {
-            var params = {
-                FromDate: fromDate,
-                ToDate: toDate,
-                DrawFilter: $('#search-form input[name=DrawFilter]:checked').val()
-            };
+        dataGridBinding: function () {
+            var submitOptions = $('form').serializeObject();
             $.ajax({
                 url: CORE.resolveUrl("~/Report/AgentWinLoss"),
                 type: 'post',
-                data: params,
+                data: jQuery.param(submitOptions),
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -36,6 +37,7 @@
                     if (data.ErrCode == 0) {
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                         $('#grid').show().fanexGrid(gridOption);
+                        CORE.unblockUI();
                         //customerList.resizeBox();
                     }
                     else {
@@ -46,6 +48,11 @@
                     CORE.unblockUI();
                 }
             });
+        },
+
+        ViewDownline: function () {
+            alert("test");
+            //location.href = "/Report/AgentWinloss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&breadcrumb=" + $("#BreadCrumb").val()
         }
     }
 } (jQuery);

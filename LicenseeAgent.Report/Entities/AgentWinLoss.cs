@@ -11,11 +11,16 @@ namespace LicenseeAgent.Report.Entities
 {
     using System;
 
+    /// <summary>
+    /// Agent WinLoss.
+    /// </summary>
     public class AgentWinLoss
     {
         public string Username { get; set; }
 
         public int AgentId { get; set; }
+
+        public int AgentLevel { get; set; }
 
         public long BetCount { get; set; }
 
@@ -37,7 +42,7 @@ namespace LicenseeAgent.Report.Entities
 
         public decimal DownlineTotal { get; set; }
 
-        public decimal UplineEffStake { get; set; }
+        public decimal UplineStake { get; set; }
 
         public decimal UplineTotal { get; set; }
     }

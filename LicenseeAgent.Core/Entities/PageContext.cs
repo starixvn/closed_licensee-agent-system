@@ -24,10 +24,13 @@ namespace LicenseeAgent.Core.Entities
         public PageContext(int agentId, int agentLevel, int numberOfLevel)
         {
             AgentId = agentId;
+            AgentLevel = agentLevel;
             IsLastLevel = ModelHelper.IsLastAgent(agentLevel, numberOfLevel);
         }
 
         public int AgentId { get; set; }
+
+        public int AgentLevel { get; set; }
 
         public bool IsLastLevel { get; set; }
 

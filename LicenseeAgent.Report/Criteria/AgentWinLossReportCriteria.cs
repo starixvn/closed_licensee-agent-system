@@ -27,7 +27,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public DateTime BalanceUpDay { get; set; }
 
-        public Int16 DrawType { get; set; }
+        public short DrawType { get; set; }
 
         public override string GetSettingKey()
         {

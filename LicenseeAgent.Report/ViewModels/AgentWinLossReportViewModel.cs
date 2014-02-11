@@ -22,6 +22,12 @@ namespace LicenseeAgent.Report.ViewModels
     /// </summary>
     public class AgentWinLossReportViewModel
     {
+        public int AgentId { get; set; }
+
+        public int AgentLevel { get; set; }
+        
+        public string BreadCrumb { get; set; }
+
         [Required]
         [Display(Name = "DateRange", ResourceType = typeof(Las))]
         public DateTime FromDate { get; set; }
@@ -31,6 +37,6 @@ namespace LicenseeAgent.Report.ViewModels
         public DateTime ToDate { get; set; }
 
         [Display(Name = "DrawFilter", ResourceType = typeof(Las))]
-        public Int16 DrawFilter { get; set; }
+        public short DrawFilter { get; set; }
     }
 }

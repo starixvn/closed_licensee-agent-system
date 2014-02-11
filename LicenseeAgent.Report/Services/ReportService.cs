@@ -38,7 +38,7 @@ namespace LicenseeAgent.Report.Services
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResultsReportService" /> class.
+        /// Initializes a new instance of the <see cref="ReportService" /> class.
         /// </summary>
         /// <param name="resultsReportDataAccess">Results report data access.</param>
         public ReportService(IResultsReportDataAccess resultsReportDataAccess)

@@ -977,4 +977,7 @@
   <data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
     <value>Please choose a licensee and a currency</value>
   </data>
+  <data name="DontShowMessageAgain" xml:space="preserve">
+    <value>Don't show this message again.</value>
+  </data>
 </root>

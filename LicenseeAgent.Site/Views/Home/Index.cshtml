@@ -2,31 +2,51 @@
 @model TopMenu
 @{
     ViewBag.Title = Las.LasTitle;
-    Layout = "~/Views/Home/_Layout.cshtml";
+    Layout = null;
 }
-<div class="navbar navbar-fixed-top">
-    <div class="header-box">
-        @Html.Partial("_Header")
-    </div>
-</div>
-<div id="main" class="container">
-    <div class="leftmenu-box">
-        @Html.Partial("_LeftMenu")
-    </div>
-    <div class="main-box">
-        <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
-        </iframe>
-    </div>
-</div>
-<div id="overlay" class="container">
-</div>
-@section css
-{
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/jqueryui")
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/core")
     @Styles.Render("~/css/home")
     @Styles.Render("~/css/home/accountinfo")
-}
-@section scripts
-{
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="header-box">
+            @Html.Partial("_Header")
+        </div>
+    </div>
+    <div id="main" class="container">
+        <div class="leftmenu-box">
+            @Html.Partial("_LeftMenu")
+        </div>
+        <div class="main-box">
+            <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
+            </iframe>
+        </div>
+    </div>
+    @if (SessionManager.CurrentSession.IsAdmin)
+    {
+        <div id="intro">
+            @Html.Partial("_Intro")
+        </div>
+    }
+    <div id="overlay" class="container">
+    </div>
+    <div class="block-loading" style="display: none;">
+    </div>
+    @Html.Hidden("AppRoot", Url.Content("~/"))
+    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/home")
@@ -35,4 +55,5 @@
     {
         @Scripts.Render("~/js/home/internal")
     }
-}
+</body>
+</html>

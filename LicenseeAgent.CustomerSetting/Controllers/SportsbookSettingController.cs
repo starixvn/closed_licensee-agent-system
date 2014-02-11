@@ -304,7 +304,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
             var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-            if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+            if (!CurrentSession.IsAdmin && !CurrentSession.AgentInfo.IsLastAgent(agentLevel))
             {
                 settingContext.FormId = FormType.EditIndirectMember;
                 settingContext.CustId = agentId;

@@ -67,7 +67,10 @@
 
             if ($('#licensee').length > 0 && (!licenseeId || !currencyId)) {
                 INTERNAL_HEADER.unactiveMain();
-                INTERNAL_HEADER.beginIntro();
+                var isShowIntro = $.cookie('show_intro');
+                if (isShowIntro !== '0') {
+                    INTERNAL_HEADER.beginIntro();
+                }
             }
         },
         enableSearch: function (enabled) {
@@ -120,6 +123,7 @@
             }
         },
         onChange: function () {
+            INTERNAL_HEADER.endIntro();
             if (newCurrencyId > 0 && newCurrencyId > 0) {
                 INTERNAL_HEADER.enableSearch(true);
                 INTERNAL_HEADER.submit();
@@ -186,12 +190,68 @@
         },
         beginIntro: function () {
             $('#overlay').addClass('intro');
-            $('body').click(function () {
-                INTERNAL_HEADER.endIntro();
+
+            // calculate intro position
+            var x = 0;
+            if ($('#licensee').length > 0 && $('#licensee').css('display') != 'none') {
+                x = $('#licensee').offset().left;
+            }
+            else {
+                x = $('#currency').offset().left;
+            }
+            var y = $('#currency').offset().left + $('#currency').outerWidth();
+            $('#intro').modal({
+                backdrop: false,
+                show: true
+            });
+            var width = $('#intro').outerWidth();
+            $('#intro').css('left', x - (width - (y - x)) / 2);
+
+            // create & amimate intro arrow
+            var arrow = $('<div class="intro-arrow"></div>');
+            $('body').append(arrow);
+            INTERNAL_HEADER.animateArrow(arrow, $('#licensee'));
+
+            $('#intro .checkbox').change(function () {
+                var isChecked = $(this).find('input').is(':checked');
+                if (isChecked) {
+                    $.cookie('show_intro', '0');
+                    INTERNAL_HEADER.endIntro();
+                }
+            });
+
+            $('body').bind('click', function (e) {
+                if (!$.contains($('#intro')[0], e.target)) {
+                    INTERNAL_HEADER.endIntro();
+                    $(this).unbind(e);
+                }
             });
         },
         endIntro: function () {
+            $('.intro-arrow').remove();
             $('#overlay').removeClass('intro');
+            $('#intro').modal('hide');
+        },
+        animateArrow: function (arrow, element) {
+            if (element.length == 0 || element.css('display') == 'none') element = $('#currency');
+            arrow.css('opacity', 1);
+            var x = element.offset().left + (element.outerWidth() - arrow.width()) / 2;
+            var y = $('#intro').offset().top - arrow.height();
+            arrow.css({
+                'left': x,
+                'top': y
+            });
+            var animate_top = '{0}px'.format(element.offset().top + element.outerHeight());
+            arrow.animate({ "top": animate_top, opacity: 0 }, 900, function () {
+                setTimeout(function () {
+                    if (element[0] == $('#currency')[0]) {
+                        INTERNAL_HEADER.animateArrow(arrow, $('#licensee'));
+                    }
+                    else {
+                        INTERNAL_HEADER.animateArrow(arrow, $('#currency'));
+                    }
+                }, 1000);
+            });
         }
     };
 } (jQuery);

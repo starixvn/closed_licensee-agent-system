@@ -623,19 +623,18 @@
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="Views\Home\_Header.cshtml" />
+    <Content Include="Views\Home\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <Content Include="Views\Shared\_AccountBox.cshtml" />
+    <Content Include="Views\Home\_AccountBox.cshtml" />
     <Content Include="App_Code\RazorHelper.cshtml" />
-    <Content Include="Views\Shared\_TopMenu.cshtml" />
+    <Content Include="Views\Home\_TopMenu.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="App_Code\BootstrapHelper.cshtml" />
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Views\Home\Popup.cshtml" />
     <Content Include="Content\core.less" />
-    <Content Include="Views\Home\_Layout.cshtml" />
     <Content Include="Views\Account\InsertCustomer.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\PositionTaking.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\Commission.cshtml" />
@@ -802,6 +801,7 @@
     <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
+    <Content Include="Views\Home\_Intro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

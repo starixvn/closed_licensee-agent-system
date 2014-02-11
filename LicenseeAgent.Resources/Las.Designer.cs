@@ -700,6 +700,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t show this message again..
+        /// </summary>
+        public static string DontShowMessageAgain {
+            get {
+                return ResourceManager.GetString("DontShowMessageAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DoubleChance.
         /// </summary>
         public static string DoubleChance {

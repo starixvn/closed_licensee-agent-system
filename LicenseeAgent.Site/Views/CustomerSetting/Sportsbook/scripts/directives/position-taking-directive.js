@@ -3,9 +3,9 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
 
-    fanex.sportsbookSetting.positionTakingActions =
+    fanex.customerSetting.positionTakingActions =
     {
         agentEditAgentActions: function (scope, currentPt, presetInput, maxInput, minInput, controller) {
             var self = this;
@@ -74,7 +74,7 @@ if (fanex.sportsbookSetting) {
                 validPreset: function () {
                     var isValid = fanex.roundNumber(currentPt.Preset) >= fanex.roundNumber(currentPt.MinRangeOfPreset) && fanex.roundNumber(currentPt.Preset) <= fanex.roundNumber(currentPt.MaxRangeOfPreset);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             presetInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfPreset),
@@ -85,7 +85,7 @@ if (fanex.sportsbookSetting) {
                 validMax: function () {
                     var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfMax),
@@ -96,7 +96,7 @@ if (fanex.sportsbookSetting) {
                 validMin: function () {
                     var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfMin),
@@ -148,7 +148,7 @@ if (fanex.sportsbookSetting) {
                 validMax: function () {
                     var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfMax),
@@ -159,7 +159,7 @@ if (fanex.sportsbookSetting) {
                 validMin: function () {
                     var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfMin),
@@ -191,7 +191,7 @@ if (fanex.sportsbookSetting) {
                 validValue: function () {
                     var isValid = fanex.roundNumber(currentPt.Value) >= fanex.roundNumber(currentPt.MinRangeOfValue) && fanex.roundNumber(currentPt.Value) <= fanex.roundNumber(currentPt.MaxRangeOfValue);
                     if (!isValid) {
-                        fanex.sportsbookSetting.positionTakingService.showInvalidRangeMessage(
+                        fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             valueInput,
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfValue),
@@ -205,7 +205,7 @@ if (fanex.sportsbookSetting) {
     };
 
     //// Edit position taking advanced mode.
-    fanex.sportsbookSetting.directive('agentEditAgentPtAdvancedMode', function () {
+    fanex.customerSetting.directive('agentEditAgentPtAdvancedMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -223,7 +223,7 @@ if (fanex.sportsbookSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -236,7 +236,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('agentEditAgentPtAdvancedModeReadOnly', function () {
+    fanex.customerSetting.directive('agentEditAgentPtAdvancedModeReadOnly', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -254,7 +254,7 @@ if (fanex.sportsbookSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -267,7 +267,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('licenseeEditAgentOnePtAdvancedMode', function () {
+    fanex.customerSetting.directive('licenseeEditAgentOnePtAdvancedMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -283,7 +283,7 @@ if (fanex.sportsbookSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.licenseeEditAgentOneActions(scope, currentPt, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(scope, currentPt, maxInput, minInput, controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -297,7 +297,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('agentEditMemberPtAdvancedMode', function () {
+    fanex.customerSetting.directive('agentEditMemberPtAdvancedMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -310,7 +310,7 @@ if (fanex.sportsbookSetting) {
                 valueInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditMemberActions(scope, currentPt, valueInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(scope, currentPt, valueInput, controller);
 
                 //// Init value
                 currentPt.OldValue = currentPt.Value;
@@ -321,7 +321,7 @@ if (fanex.sportsbookSetting) {
     });
 
     //// Edit postion taking simple mode.
-    fanex.sportsbookSetting.directive('agentEditAgentPtSimpleMode', function () {
+    fanex.customerSetting.directive('agentEditAgentPtSimpleMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -341,7 +341,7 @@ if (fanex.sportsbookSetting) {
                 maxInput.preventSpecialCharacters("^[0-9.]+$");
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -353,7 +353,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('agentEditAgentPtSimpleModeReadOnly', function () {
+    fanex.customerSetting.directive('agentEditAgentPtSimpleModeReadOnly', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -373,7 +373,7 @@ if (fanex.sportsbookSetting) {
                 maxInput.preventSpecialCharacters("^[0-9.]+$");
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, currentPt, presetInput, maxInput, minInput, controller);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -385,7 +385,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('licenseeEditAgentOnePtSimpleMode', function () {
+    fanex.customerSetting.directive('licenseeEditAgentOnePtSimpleMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -404,7 +404,7 @@ if (fanex.sportsbookSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.licenseeEditAgentOneActions(scope, currentPt, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(scope, currentPt, maxInput, minInput, controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -418,7 +418,7 @@ if (fanex.sportsbookSetting) {
         }
     });
 
-    fanex.sportsbookSetting.directive('agentEditMemberPtSimpleMode', function () {
+    fanex.customerSetting.directive('agentEditMemberPtSimpleMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -434,7 +434,7 @@ if (fanex.sportsbookSetting) {
                 valueInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.sportsbookSetting.positionTakingActions.agentEditMemberActions(scope, currentPt, valueInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(scope, currentPt, valueInput, controller);
 
                 //// Init value
                 currentPt.OldValue = currentPt.Value;

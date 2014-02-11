@@ -2,10 +2,10 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
     //// Helper
 
-    fanex.sportsbookSetting.commissionSettingService = {
+    fanex.customerSetting.commissionSettingService = {
         config: {
             maxInput: 5
         },
@@ -88,7 +88,7 @@ if (fanex.sportsbookSetting) {
             }
             else {
                 // Insert
-                if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                if (settingContext.FormId == fanex.customerSetting.FormType.Add) {
                     var commissionSettingViewModel = {
                         selectedGroup: 'A',
                         group: [{ name: 'A', agentCommission: commissionSettingModel[0].Upline.DiscountA, memberCommission: commissionSettingModel[0].DiscountA },
@@ -128,7 +128,7 @@ if (fanex.sportsbookSetting) {
         },
         getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
             // Insert
-            if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+            if (settingContext.FormId == fanex.customerSetting.FormType.Add) {
                 if (targetRoleId != 1) {
                     // GroupA
                     commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;

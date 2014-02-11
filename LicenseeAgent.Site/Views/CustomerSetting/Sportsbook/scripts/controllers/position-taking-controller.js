@@ -3,17 +3,17 @@
 /// <reference path="../../../../libs/fanex.core.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
-    var positionTakingController = fanex.sportsbookSetting.controller('sportsbook.positionTakingController',
+if (fanex.customerSetting) {
+    var positionTakingController = fanex.customerSetting.controller('sportsbook.positionTakingController',
     [
         '$scope',
         '$filter',
         function ($scope, $filter) {
-            $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
-            fanex.sportsbookSetting.positionTakingService.init(positionTakingSetting, $scope.language);
-            $scope.config = fanex.sportsbookSetting.positionTakingService.config;
+            $scope.language = fanex.customerSetting.language[settingContext.Language];
+            fanex.customerSetting.positionTakingService.init(positionTakingSetting, $scope.language);
+            $scope.config = fanex.customerSetting.positionTakingService.config;
             $scope.settingContext = settingContext;
-            $scope.positionTakingService = fanex.sportsbookSetting.positionTakingService;
+            $scope.positionTakingService = fanex.customerSetting.positionTakingService;
             $scope.ptModel = {
                 ptGroups: fanex.cloneObject(positionTakingSetting),
                 ptFirstData: fanex.cloneObject(positionTakingSetting[0].PositionTakings[0]),

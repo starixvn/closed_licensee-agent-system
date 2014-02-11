@@ -1,6 +1,6 @@
-﻿if (fanex.sportsbookSetting) {
-    fanex.sportsbookSetting.language = fanex.sportsbookSetting.language || {};
-    fanex.sportsbookSetting.language['en-US'] = {
+﻿if (fanex.customerSetting) {
+    fanex.customerSetting.language = fanex.customerSetting.language || {};
+    fanex.customerSetting.language['en-US'] = {
         // Common messages
         message_ValueIsNotInRange: 'Invalid range, input must be in',
         message_DataIsNotChanged: "Don't have any data changed",
@@ -82,5 +82,5 @@
     };
 }
 else {
-    alert("Missing fanex.sportsbookSetting in language");
+    alert("Missing fanex.customerSetting in language");
 }

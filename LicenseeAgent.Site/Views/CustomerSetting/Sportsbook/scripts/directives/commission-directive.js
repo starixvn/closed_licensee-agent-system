@@ -3,9 +3,9 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
 
-    fanex.sportsbookSetting.commissionSettingActions =
+    fanex.customerSetting.commissionSettingActions =
     {
         licenseeOrAgentEditAgentActions: function (modelData, controller, inputControl, scope) {
             return {
@@ -20,7 +20,7 @@ if (fanex.sportsbookSetting) {
                     var isValid = modelData.discount >= modelData.minDiscount && modelData.discount <= modelData.maxDiscount;
                     if (!isValid) {
                         var message = scope.language["message_ValueIsNotInRange"] + ' [' + modelData.minDiscount + ' - ' + modelData.maxDiscount + ']';
-                        fanex.sportsbookSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
+                        fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
                     }
                     else {
                         fanex.hideHint();
@@ -45,7 +45,7 @@ if (fanex.sportsbookSetting) {
                         var inputControl = $('#' + controlId);
                         inputControl.preventSpecialCharacters("^[0-9.]+$");
                         var message = scope.language["message_ValueIsNotInRange"] + ' [0' + ' - ' + modelData.agentCommission + ']';
-                        fanex.sportsbookSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
+                        fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
                     }
                     else {
                         fanex.hideHint();
@@ -68,45 +68,45 @@ if (fanex.sportsbookSetting) {
     };
 
 
-    fanex.sportsbookSetting.directive('commissionSettingLicenseeOrAgentEditAgent', function () {
+    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent', function () {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.custsetting.commissioncontroller',
+            controller: 'fanex.customersetting.commissioncontroller',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent.html',
             link: function (scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
                 inputControl.preventSpecialCharacters("^[0-9.]+$");
-                commissionSetting.actions = fanex.sportsbookSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting, controller, inputControl, scope);
+                commissionSetting.actions = fanex.customerSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting, controller, inputControl, scope);
             }
         }
     });
 
-    fanex.sportsbookSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly', function () {
+    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly', function () {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.custsetting.commissioncontroller',
+            controller: 'fanex.customersetting.commissioncontroller',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent-readonly.html',
             link: function (scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
                 inputControl.preventSpecialCharacters("^[0-9.]+$");
-                commissionSetting.actions = fanex.sportsbookSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting, controller, inputControl, scope);
+                commissionSetting.actions = fanex.customerSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting, controller, inputControl, scope);
             }
         }
     });
 
-    fanex.sportsbookSetting.directive('commissionSettingAgentEditMember', function () {
+    fanex.customerSetting.directive('commissionSettingAgentEditMember', function () {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.custsetting.commissioncontroller',
+            controller: 'fanex.customersetting.commissioncontroller',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/agent-edit-customer.html',
             link: function (scope, element, attrs, controller) {
                 var commissionSettingsViewModel = scope.viewModel.commissionSettingsViewModel;
-                commissionSettingsViewModel.actions = fanex.sportsbookSetting.commissionSettingActions.agentEditCustomerActions(commissionSettingsViewModel, controller, scope);
+                commissionSettingsViewModel.actions = fanex.customerSetting.commissionSettingActions.agentEditCustomerActions(commissionSettingsViewModel, controller, scope);
             }
         }
     });

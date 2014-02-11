@@ -2,10 +2,10 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
     //// Helper
 
-    fanex.sportsbookSetting.betLimitService = {
+    fanex.customerSetting.betLimitService = {
         config: {
             maxInput: 15
         },
@@ -20,13 +20,13 @@ if (fanex.sportsbookSetting) {
             }
         },
         copyAction: function (source, destination) {
-            destination.MinBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(source.MinBet);
+            destination.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(source.MinBet);
             destination.actions.validMinBet();
 
-            destination.MaxBet = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(source.MaxBet);
+            destination.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(source.MaxBet);
             destination.actions.validMaxBet();
 
-            destination.MaxPerMatch = fanex.sportsbookSetting.betLimitService.reformatInputNumberForControl(source.MaxPerMatch);
+            destination.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(source.MaxPerMatch);
             destination.actions.validMaxPerMatch();
         },
         showInvalidMessage: function (element, message) {
@@ -42,7 +42,7 @@ if (fanex.sportsbookSetting) {
                     if (self.formatInputNumber(bettingLimit.MinBet) != self.formatInputNumber(firstRecordData.MinBet)
                     || self.formatInputNumber(bettingLimit.MaxBet) != self.formatInputNumber(firstRecordData.MaxBet)
                     || self.formatInputNumber(bettingLimit.MaxPerMatch) != self.formatInputNumber(firstRecordData.MaxPerMatch)
-                    || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                         bettingLimitsSave.push({
                             MinBet: self.formatInputNumber(firstRecordData.MinBet),
                             MaxBet: self.formatInputNumber(firstRecordData.MaxBet),
@@ -57,7 +57,7 @@ if (fanex.sportsbookSetting) {
                 for (var i = 0; i < bettingLimitsData.length; i++) {
                     var bettingLimit = bettingLimitsData[i];
                     if (bettingLimit.actions.isDataChanged()
-                    || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                         bettingLimitsSave.push({
                             MinBet: self.formatInputNumber(bettingLimit.MinBet),
                             MaxBet: self.formatInputNumber(bettingLimit.MaxBet),

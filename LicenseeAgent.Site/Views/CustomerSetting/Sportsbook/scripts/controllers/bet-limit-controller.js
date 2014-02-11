@@ -2,17 +2,17 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
-    var positionTakingController = fanex.sportsbookSetting.controller('fanex.custsetting.betlimitcontroller',
+if (fanex.customerSetting) {
+    var positionTakingController = fanex.customerSetting.controller('fanex.customersetting.betlimitcontroller',
     [
         '$scope',
         '$filter',
         function ($scope, $filter) {
-            $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
+            $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            $scope.config = fanex.sportsbookSetting.betLimitService.config;
+            $scope.config = fanex.customerSetting.betLimitService.config;
             $scope.settingContext = settingContext;
-            $scope.betLimitService = fanex.sportsbookSetting.betLimitService;
+            $scope.betLimitService = fanex.customerSetting.betLimitService;
 
             $scope.model = {
                 // For all sport types

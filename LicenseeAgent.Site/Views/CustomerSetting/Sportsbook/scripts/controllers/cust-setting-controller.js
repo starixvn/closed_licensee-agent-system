@@ -1,5 +1,5 @@
-﻿if (fanex.sportsbookSetting) {
-    var custSettingController = fanex.sportsbookSetting.controller('sportsbook.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
+﻿if (fanex.customerSetting) {
+    var custSettingController = fanex.customerSetting.controller('sportsbook.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
         CORE.blockUI();
         if (typeof result != 'undefined') {
             $('#custSetting').html(result.ErrMsg);
@@ -66,14 +66,14 @@
             }
             else {
                 // Commission Setting
-                var commissionSettingScope = angular.element('[ng-controller="fanex.custsetting.commissioncontroller"]').scope();
+                var commissionSettingScope = angular.element('[ng-controller="fanex.customersetting.commissioncontroller"]').scope();
                 if (!commissionSettingScope.isValidData()) {
                     return;
                 }
                 var commissionSettingsModel = commissionSettingScope.saveData();
 
                 // Betting Limit
-                var bettingLimitScope = angular.element('[ng-controller="fanex.custsetting.betlimitcontroller"]').scope();
+                var bettingLimitScope = angular.element('[ng-controller="fanex.customersetting.betlimitcontroller"]').scope();
                 if (!bettingLimitScope.isValidData()) {
                     return;
                 }
@@ -144,8 +144,8 @@
 
             // Commission Setting
             var commissionSettingsModel = null;
-            if (settingContext.FormId != fanex.sportsbookSetting.FormType.EditIndirectMember) {
-                var commissionSettingScope = angular.element('[ng-controller="fanex.custsetting.commissioncontroller"]').scope();
+            if (settingContext.FormId != fanex.customerSetting.FormType.EditIndirectMember) {
+                var commissionSettingScope = angular.element('[ng-controller="fanex.customersetting.commissioncontroller"]').scope();
                 if (!commissionSettingScope.isValidData()) {
                     return;
                 }
@@ -154,8 +154,8 @@
 
             // Betting Limit
             var bettingLimits = null;
-            if (settingContext.FormId != fanex.sportsbookSetting.FormType.EditIndirectMember) {
-                var bettingLimitScope = angular.element('[ng-controller="fanex.custsetting.betlimitcontroller"]').scope();
+            if (settingContext.FormId != fanex.customerSetting.FormType.EditIndirectMember) {
+                var bettingLimitScope = angular.element('[ng-controller="fanex.customersetting.betlimitcontroller"]').scope();
                 if (!bettingLimitScope.isValidData()) {
                     return;
                 }
@@ -163,7 +163,7 @@
             }
 
             var userGroup = null;
-            if (settingContext.FormId != fanex.sportsbookSetting.FormType.EditIndirectMember) {
+            if (settingContext.FormId != fanex.customerSetting.FormType.EditIndirectMember) {
                 userGroup = bettingLimitScope.settingContext.TargetRoleId == 1 ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup : ''
             }
 

@@ -2,9 +2,9 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
     // An agent edit another agent in the simple mode
-    fanex.sportsbookSetting.directive('uniqueUserName', ['$timeout', 'fanex.sportsbookSetting.custInfoService', function ($timeout, custInfoService) {
+    fanex.customerSetting.directive('uniqueUserName', ['$timeout', 'fanex.customerSetting.custInfoService', function ($timeout, custInfoService) {
         return {
             require: 'ngModel',
             restrict: 'A',

@@ -1,14 +1,14 @@
-﻿if (fanex.sportsbookSetting) {
-    var custInfoController = fanex.sportsbookSetting.controller('sportsbook.custInfoController',
+﻿if (fanex.customerSetting) {
+    var custInfoController = fanex.customerSetting.controller('sportsbook.custInfoController',
     [
         '$scope',
-        'fanex.sportsbookSetting.custInfoService',
+        'fanex.customerSetting.custInfoService',
         function CustInfoController($scope, custInfoService) {
-            $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
+            $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            if (settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+            if (settingContext.FormId == fanex.customerSetting.FormType.Add) {
                 var isShowMaxCredit = true;
-                if (settingContext.TargetRoleId == fanex.sportsbookSetting.Role.AgentLevel1 &&
+                if (settingContext.TargetRoleId == fanex.customerSetting.Role.AgentLevel1 &&
             custInfo.MaxCredit == 0) {
                     isShowMaxCredit = false;
                 }

@@ -2,19 +2,19 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
-    var commissionController = fanex.sportsbookSetting.controller('fanex.custsetting.commissioncontroller',
+if (fanex.customerSetting) {
+    var commissionController = fanex.customerSetting.controller('fanex.customersetting.commissioncontroller',
     [
         '$scope',
         '$filter',
         function ($scope, $filter) {
-            $scope.language = fanex.sportsbookSetting.language[settingContext.Language];
+            $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            $scope.config = fanex.sportsbookSetting.commissionSettingService.config;
+            $scope.config = fanex.customerSetting.commissionSettingService.config;
             $scope.settingContext = settingContext;
-            $scope.commissionSettingService = fanex.sportsbookSetting.commissionSettingService;
-            commissionSetting.CommissionItems = fanex.sportsbookSetting.commissionSettingService.arrangeCommissionSettingModel(commissionSetting.CommissionItems);
-            var commissionSettingViewModel = fanex.sportsbookSetting.commissionSettingService.getCommissionSettingViewModel(fanex.cloneObject(commissionSetting.CommissionItems), $scope.language, settingContext.TargetRoleId);
+            $scope.commissionSettingService = fanex.customerSetting.commissionSettingService;
+            commissionSetting.CommissionItems = fanex.customerSetting.commissionSettingService.arrangeCommissionSettingModel(commissionSetting.CommissionItems);
+            var commissionSettingViewModel = fanex.customerSetting.commissionSettingService.getCommissionSettingViewModel(fanex.cloneObject(commissionSetting.CommissionItems), $scope.language, settingContext.TargetRoleId);
 
             $scope.viewModel = {
                 commissionSettingsViewModel: commissionSettingViewModel,

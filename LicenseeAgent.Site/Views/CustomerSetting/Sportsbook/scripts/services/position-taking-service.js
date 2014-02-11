@@ -2,10 +2,10 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-if (fanex.sportsbookSetting) {
+if (fanex.customerSetting) {
     //// Helper
 
-    fanex.sportsbookSetting.positionTakingService = {
+    fanex.customerSetting.positionTakingService = {
         config: {
             decNumber: 2,
             breakNewLine: 5,
@@ -187,9 +187,9 @@ if (fanex.sportsbookSetting) {
             return positionTakingSave;
         },
         getSimpleModePositionTaking: function (settingContext, updatedPt, currentPositionTaking, positionTakingSave) {
-            if (settingContext.TargetRoleId == fanex.sportsbookSetting.Role.Member) {
+            if (settingContext.TargetRoleId == fanex.customerSetting.Role.Member) {
                 if (currentPositionTaking.Value != updatedPt.Value
-                || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Value: updatedPt.Value,
                         SportId: currentPositionTaking.SportId,
@@ -203,7 +203,7 @@ if (fanex.sportsbookSetting) {
                     || currentPositionTaking.Max != updatedPt.Max
                     || currentPositionTaking.Preset != updatedPt.Preset
                     || updatedPt.ApplyAll
-                    || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: updatedPt.Min,
                         Max: updatedPt.Max,
@@ -217,9 +217,9 @@ if (fanex.sportsbookSetting) {
             }
         },
         getAdvancedModePositionTaking: function (settingContext, currentPositionTaking, positionTakingSave) {
-            if (settingContext.TargetRoleId == fanex.sportsbookSetting.Role.Member) {
+            if (settingContext.TargetRoleId == fanex.customerSetting.Role.Member) {
                 if (currentPositionTaking.Value != currentPositionTaking.OldValue
-                    || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Value: currentPositionTaking.Value,
                         SportId: currentPositionTaking.SportId,
@@ -233,7 +233,7 @@ if (fanex.sportsbookSetting) {
                     || currentPositionTaking.Max != currentPositionTaking.OldMax
                     || currentPositionTaking.Preset != currentPositionTaking.OldPreset
                     || currentPositionTaking.ApplyAll
-                    || settingContext.FormId == fanex.sportsbookSetting.FormType.Add) {
+                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: currentPositionTaking.Min,
                         Max: currentPositionTaking.Max,

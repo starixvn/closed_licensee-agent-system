@@ -5,9 +5,9 @@
 
 var fanex = fanex || {};
 
-fanex.sportsbookSetting = angular.module('fanex.sportsbookSetting', ['fanex.angular']);
+fanex.customerSetting = angular.module('fanex.customerSetting', ['fanex.angular']);
 
-fanex.sportsbookSetting.FormType = {
+fanex.customerSetting.FormType = {
     Add: 0,
     Edit: 1,
     ReadOnly: 2,
@@ -15,14 +15,14 @@ fanex.sportsbookSetting.FormType = {
     EditMultiple: 4
 };
 
-fanex.sportsbookSetting.Role = {
+fanex.customerSetting.Role = {
     Licensee: 4,
     AgentLevel1: 3,
     Agent: 2,
     Member: 1
 };
 
-fanex.sportsbookSetting.filter('numberOnly', function (input) {
+fanex.customerSetting.filter('numberOnly', function (input) {
     input += 0;
     return input;
 });

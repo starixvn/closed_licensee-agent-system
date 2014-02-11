@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Core.Entities
 {
     using System;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -80,6 +81,11 @@ namespace LicenseeAgent.Core.Entities
         public bool IsLastAgent(int agentLevel)
         {
             return ModelHelper.IsLastAgent(agentLevel, NumberOfLevel);
+        }
+
+        public PasswordStatus GetPasswordStatus()
+        {
+            return PasswordRule.GetPasswordStatus(this, LastLoggedTime);
         }
     }
 }

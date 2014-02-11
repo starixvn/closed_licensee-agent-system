@@ -315,6 +315,22 @@
             } else {
                 return url;
             }
+        },
+        reload: function (timeout) {
+            if (timeout == undefined) {
+                timeout = CORE.RELOAD_INTERVAL;
+            }
+            setTimeout(function () {
+                window.parent.location.href = CORE.UrlRoot;
+            }, timeout);
+        },
+        reloadPage: function (timeout) {
+            if (timeout == undefined) {
+                timeout = CORE.RELOAD_INTERVAL;
+            }
+            setTimeout(function () {
+                location.reload();
+            }, timeout);
         }
     };
 } (jQuery);

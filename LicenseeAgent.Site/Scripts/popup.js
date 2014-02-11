@@ -68,7 +68,7 @@
         close: function (timeout) {
             if (window.parent && window.parent.popup) {
                 if (timeout == undefined) {
-                    timeout = 3000;
+                    timeout = CORE.RELOAD_INTERVAL;
                 }
                 setTimeout(function () {
                     window.parent.POPUP.closeDialog();

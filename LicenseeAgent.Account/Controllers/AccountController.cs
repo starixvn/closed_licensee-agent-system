@@ -240,10 +240,15 @@ namespace LicenseeAgent.Account.Controllers
                 }
                 else
                 {
+                    ViewBag.Result = new AgentChangePasswordViewResult
+                    {
+                        Message = Las.UpdateSuccessfully,
+                        IsReload = CurrentSession.IsAgentChangePassword()
+                    };
+
                     // after changing password successfully, re-update some status to not validate user password again.
                     CurrentSession.AgentInfo.IsFirstLogin = false;
                     CurrentSession.AgentInfo.PwdExpiry = DateTime.Today.AddDays(PasswordRule.PasswordExpiredTotalDays);
-                    ViewBag.Result = Las.UpdateSuccessfully;
                 }
             }
 

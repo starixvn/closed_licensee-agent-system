@@ -4,26 +4,11 @@
 @model SearchUserViewModel
 @{
     Layout = null;
-    var disableSearch = false;
-    var currentSession = SessionManager.CurrentSession;
-    if (currentSession.LoginAccountType == AccountType.Agent)
-    {
-        var agentInfo = currentSession.AgentInfo;
-        var passwordStatus = PasswordRule.GetPasswordStatus(agentInfo, agentInfo.LastLoggedTime);
-        disableSearch = (passwordStatus == PasswordStatus.FirstLogin || passwordStatus == PasswordStatus.Expired);
-    }
 }
 @using (Html.BeginForm("Search", "AccountInformation", FormMethod.Post, new { @id = "formSearch", @class = "form-search form-inline" }))
 {
     <div class="input-append">
-        @if (disableSearch)
-        {
-            @Html.TextBoxFor(m => m.UserName, new { @placeholder = Las.Username, @class = "input-medium", @maxlength = 50, @autocomplete = "off", @disabled = "disabled" })
-        }
-        else
-        {
-            @Html.TextBoxFor(m => m.UserName, new { @placeholder = Las.Username, @class = "input-medium", @maxlength = 50, @autocomplete = "off" })
-        }
+        @Html.TextBoxFor(m => m.UserName, new { @placeholder = Las.Username, @class = "input-medium", @maxlength = 50, @autocomplete = "off" })
         <span id="search" class="add-on"><i class="icon-customer-search"></i></span>
     </div>
 }

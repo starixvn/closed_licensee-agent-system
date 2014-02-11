@@ -1,5 +1,7 @@
 @using LicenseeAgent.Core.Enumerations
-@model TopMenu
+@using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Web.ViewModels
+@model HomeViewModel
 @{
     ViewBag.Title = Las.LasTitle;
     Layout = null;
@@ -24,10 +26,13 @@
     </div>
     <div id="main" class="container">
         <div class="leftmenu-box">
-            @Html.Partial("_LeftMenu")
+            @if (!Model.IsAgentChangePassword)
+            {
+                @Html.Partial("_LeftMenu")
+            }
         </div>
         <div class="main-box">
-            <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
+            <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model.TopMenu == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
             </iframe>
         </div>
     </div>

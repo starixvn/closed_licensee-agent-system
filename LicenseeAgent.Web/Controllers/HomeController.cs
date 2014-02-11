@@ -3,17 +3,13 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky" date="2013.3.29">Created</change>
-//   <change who="Leo" date="2013.9.18">Change Captcha, Before login has support for multi-language</change>
-// </history>
 
 namespace LicenseeAgent.Web.Controllers
 {
-    using System.Threading;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// Authenticate for Agent user.
@@ -42,7 +38,19 @@ namespace LicenseeAgent.Web.Controllers
                 }
             }
 
-            return this.View(topMenu);
+            var isAgentChangePassword = CurrentSession.IsAgentChangePassword();
+            if (isAgentChangePassword)
+            {
+                topMenu = TopMenu.Security;
+            }
+
+            var model = new HomeViewModel
+            {
+                TopMenu = topMenu,
+                IsAgentChangePassword = isAgentChangePassword
+            };
+
+            return this.View(model);
         }
 
         [HttpGet]
@@ -54,13 +62,6 @@ namespace LicenseeAgent.Web.Controllers
         [HttpGet]
         public ActionResult Example()
         {
-            return this.View();
-        }
-
-        [HttpGet]
-        public ActionResult Popup()
-        {
-            Thread.Sleep(3000);
             return this.View();
         }
     }

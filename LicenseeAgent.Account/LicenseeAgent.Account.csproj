@@ -102,8 +102,8 @@
     <Compile Include="ViewModels\CurrencyLicenseeViewModel.cs" />
     <Compile Include="ViewModels\LicenseeViewModel.cs" />
     <Compile Include="ViewModels\InternalLoginAsUserViewModel.cs" />
-    <Compile Include="ViewModels\ValidateSessionViewModel.cs" />
     <Compile Include="ViewModels\ViewAsLicenseeViewModel.cs" />
+    <Compile Include="ViewResults\AgentChangePasswordViewResult.cs" />
     <Compile Include="ViewResults\SignInViewResult.cs" />
   </ItemGroup>
   <ItemGroup>

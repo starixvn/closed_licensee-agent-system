@@ -633,7 +633,6 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="App_Code\BootstrapHelper.cshtml" />
     <Content Include="Views\Home\Example.cshtml" />
-    <Content Include="Views\Home\Popup.cshtml" />
     <Content Include="Content\core.less" />
     <Content Include="Views\Account\InsertCustomer.cshtml" />
     <Content Include="Views\Account\CustSetting\Sportsbook\PositionTaking.cshtml" />

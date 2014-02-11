@@ -37,6 +37,18 @@ namespace LicenseeAgent.Web
                 : false;
         }
 
+        public static bool IsAgentChangePassword(this ICurrentSession currentSession)
+        {
+            var isAgentChangePassword = false;
+            if (currentSession.LoginAccountType == AccountType.Agent)
+            {
+                var passwordStatus = currentSession.AgentInfo.GetPasswordStatus();
+                isAgentChangePassword = passwordStatus == PasswordStatus.FirstLogin || passwordStatus == PasswordStatus.Expired;
+            }
+
+            return isAgentChangePassword;
+        }
+
         /// <summary>
         /// Displays the name.
         /// </summary>

@@ -40,6 +40,6 @@
         var numberUpline = uplines.Count;
         for (int index = numberUpline - 1; index >= 0; index--)
         {
-    <a href='@(url.Action("EditMember", "SportsbookSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
+    <a href='@(url.Action("EditMember", "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
         }
 }

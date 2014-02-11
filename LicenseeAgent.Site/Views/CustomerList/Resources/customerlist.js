@@ -354,10 +354,10 @@
         editSportsbook: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "SportsbookSetting/EditMember?memberId={0}".format(editMemberId);
+                url = "CustomerSetting/EditMember?memberId={0}".format(editMemberId);
             }
             else {
-                url = "SportsbookSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+                url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
             }
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
@@ -376,7 +376,7 @@
         },
         addDownline: function () {
             var url;
-            url = "SportsbookSetting/InsertCustomer?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+            url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
         resetPassword: function () {

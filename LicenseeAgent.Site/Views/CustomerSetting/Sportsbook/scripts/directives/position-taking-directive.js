@@ -210,7 +210,7 @@ if (fanex.sportsbookSetting) {
             restrict: 'E',
             replace: true,
             controller: 'sportsbook.positionTakingController',
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
@@ -241,7 +241,7 @@ if (fanex.sportsbookSetting) {
             restrict: 'E',
             replace: true,
             controller: 'sportsbook.positionTakingController',
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
@@ -272,7 +272,7 @@ if (fanex.sportsbookSetting) {
             restrict: 'E',
             replace: true,
             controller: 'sportsbook.positionTakingController',
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
@@ -302,7 +302,7 @@ if (fanex.sportsbookSetting) {
             restrict: 'E',
             replace: true,
             controller: 'sportsbook.positionTakingController',
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');
@@ -329,7 +329,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
@@ -361,7 +361,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
@@ -393,7 +393,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
@@ -426,7 +426,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-simple-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-simple-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');

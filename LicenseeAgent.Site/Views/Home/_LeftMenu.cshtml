@@ -35,13 +35,13 @@
                 <ul class="nav nav-list tree" style="display: none">
                     @if (SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel)
                     {
-                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "SportsbookSetting"))
+                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "CustomerSetting"))
                         @BootstrapHelper.LeftMenu(Las.MemberList, Url.Action("Index", "CustomerList"))
                         @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
                     }
                     else
                     {
-                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.Action("InsertCustomer", "SportsbookSetting"))
+                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
                         @BootstrapHelper.LeftMenu(Las.AgentList, Url.Action("Index", "CustomerList"))
                         @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
                     }

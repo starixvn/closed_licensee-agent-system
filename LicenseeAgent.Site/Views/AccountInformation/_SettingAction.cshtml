@@ -25,7 +25,7 @@
                         }
                         else
                         {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsbookSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsbookSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>

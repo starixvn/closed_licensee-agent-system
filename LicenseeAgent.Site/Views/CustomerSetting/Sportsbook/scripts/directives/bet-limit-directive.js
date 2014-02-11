@@ -116,7 +116,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode.html',
             link: function (scope, element, attrs, controller) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
@@ -140,7 +140,7 @@ if (fanex.sportsbookSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
@@ -166,7 +166,7 @@ if (fanex.sportsbookSetting) {
                 betSetting : '=',
                 currentIndex: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
@@ -192,7 +192,7 @@ if (fanex.sportsbookSetting) {
                 betSetting: '=',
                 currentIndex: '='
             },
-            templateUrl: '/Views/Account/CustSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html',
+            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');

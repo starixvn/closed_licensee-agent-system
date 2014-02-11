@@ -5,11 +5,11 @@
     var currentSession = SessionManager.CurrentSession;
     if (Model.TargetRoleId == (int)Role.Member)
     {
-        ViewBag.Title = Las.EditSportsbookMember;
+        ViewBag.Title = Las.AddNewMember;
     }
     else
     {
-        ViewBag.Title = Las.EditSportsbookAgent;
+        ViewBag.Title = Las.AddNewAgent;
     }
 }
 @section css
@@ -18,7 +18,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content(string.Format("~/SportsbookSetting/GetSettingForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId))></script>
+    <script type="text/javascript" src=@Url.Content("~/CustomerSetting/GetSettingForInsert?custId=" + Model.CustId + "&roleId=" + Model.RoleId + "&targetCustId=" + Model.TargetCustId + "&targetRoleId=" + Model.TargetRoleId)></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/customersetting")
@@ -29,7 +29,7 @@
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.sportsbookSetting"
     class="fanex-sportbook-setting" ng-controller="sportsbook.custSettingController"
-    data-href="@("~/SportsbookSetting/UpdateCustomer")">
+    data-href="~/CustomerSetting/InsertCustomer">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
@@ -39,24 +39,18 @@
         </div>
     </div>
     <div class="clearfix">
-        @if (Model.FormId != FormType.ReadOnly)
-        {
-            <div class="control-group" data-ng-hide="settingMode">
-                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                    @Las.Update
-                </button>
-            </div>
-        }
+        <div class="control-group" data-ng-hide="settingMode">
+            <button class="btn btn-primary" data-ng-click="insertCustomer($event)">
+                <i class="icon-button-plus"></i>@Las.Add
+            </button>
+        </div>
     </div>
     <div class="clearfix">
-        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/ViewCustomerInfo.cshtml")
+        @Html.Partial("~/Views/CustomerSetting/Sportsbook/CustomerInfo.cshtml")
     </div>
-    @if (Model.FormId != FormType.EditIndirectMember)
-    {
-        <div class="clearfix">
-            @Html.Partial("~/Views/Account/CustSetting/Sportsbook/Commission.cshtml", Model)
-        </div>
-    }
+    <div class="clearfix">
+        @Html.Partial("~/Views/CustomerSetting/Sportsbook/Commission.cshtml", Model)
+    </div>
     <div class="clearfix">
         <div class="container-mode">
             <span class="mode-text">@Las.AdvancedMode</span>
@@ -70,26 +64,20 @@
             @Las.SimpleModeNote
         </div>
     </div>
-    @if (Model.FormId != FormType.EditIndirectMember)
-    {
-        <div class="clearfix">
-            @Html.Partial("~/Views/Account/CustSetting/Sportsbook/BetSetting.cshtml", Model)
-        </div>
-    }
     <div class="clearfix">
-        @Html.Partial("~/Views/Account/CustSetting/Sportsbook/PositionTaking.cshtml", Model)
+        @Html.Partial("~/Views/CustomerSetting/Sportsbook/BetSetting.cshtml", Model)
+    </div>
+    <div class="clearfix">
+        @Html.Partial("~/Views/CustomerSetting/Sportsbook/PositionTaking.cshtml", Model)
     </div>
     <div class="clearfix">
         <div class="control-group" data-ng-show="settingMode">
         </div>
-        @if (Model.FormId != FormType.ReadOnly)
-        {
-            <div class="control-group">
-                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                    @Las.Update
-                </button>
-            </div>
-        }
+        <div class="control-group">
+            <button class="btn btn-primary" ng-click="insertCustomer($event)">
+                <i class="icon-button-plus"></i>@Las.Add
+            </button>
+        </div>
     </div>
 </div>
 @if (Model.TargetRoleId == (int)Role.AgentLevel1)
@@ -159,14 +147,14 @@ else if (Model.TargetRoleId == (int)Role.Agent)
 
     @Html.Action("Index", "Instruction", new
     {
-        key = "AgentEditAgentPositionTakingSetting",
+        key = "AgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
     @Html.Action("Index", "Instruction", new
     {
-        key = "AgentEditAgentPositionTakingSettingAdv",
+        key = "AgentPositionTakingSettingAdv",
         trigger = "agent-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions

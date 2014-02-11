@@ -234,12 +234,12 @@ namespace LicenseeAgent.Site
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
-                "~/views/account/custsetting/resources/scripts", "*.js", true));
+                "~/views/customersetting/resources/scripts", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
-                "~/views/account/custsetting/sportsbook/scripts", "*.js", true));
+                "~/views/customersetting/sportsbook/scripts", "*.js", true));
             bundles.Add(new LessBundle("~/css/customersetting/sportsbook").Include(
-                "~/views/account/custSetting/sportsbook/styles/fanex.sportsbookSetting.less"));
+                "~/views/customersetting/sportsbook/styles/fanex.sportsbookSetting.less"));
         }
 
         /// <summary>

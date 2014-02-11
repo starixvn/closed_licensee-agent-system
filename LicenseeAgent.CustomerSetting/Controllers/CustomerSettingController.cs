@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookSettingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CustomerSettingController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -30,7 +30,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// <summary>
     /// Sport books setting controller.
     /// </summary>
-    public class SportsbookSettingController : BaseController
+    public class CustomerSettingController : BaseController
     {
         private static ErrCode[] betSettingErrCodes =
         {
@@ -61,7 +61,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly IMemberService _memberService;
 
-        public SportsbookSettingController(
+        public CustomerSettingController(
                 ISportsbookSettingService customerSettingService,
                 IMemberService memberService)
         {
@@ -163,7 +163,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     : (int)Role.Agent;
             }
 
-            return View("~/Views/Account/InsertCustomer.cshtml", settingContext);
+            return View("~/Views/CustomerSetting/InsertCustomer.cshtml", settingContext);
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            return View("~/Views/Account/EditCustomer.cshtml", settingContext);
+            return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 settingContext.CustId = agentId;
             }
 
-            return View("~/Views/Account/EditCustomer.cshtml", settingContext);
+            return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
         }
 
         /// <summary>

@@ -303,8 +303,8 @@
     </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
-    <Content Include="Views\Account\CreditBalance\Resources\creditbalance-list.js" />
-    <Content Include="Views\Account\CreditBalance\Resources\creditbalance-popup.js" />
+    <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
+    <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\Account\CustSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\invalid.gif" />
     <Content Include="Views\Account\CustSetting\Sportsbook\images\valid.png" />
@@ -792,13 +792,13 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Account\TopTurnover.cshtml" />
     <Content Include="Views\Account\NewMembers.cshtml" />
-    <Content Include="Views\Account\CreditBalance\MemberList.cshtml" />
-    <Content Include="Views\Account\CreditBalance\AgentList.cshtml" />
-    <Content Include="Views\Account\CreditBalance\Index.cshtml" />
+    <Content Include="Views\CreditBalance\MemberList.cshtml" />
+    <Content Include="Views\CreditBalance\AgentList.cshtml" />
+    <Content Include="Views\CreditBalance\Index.cshtml" />
     <Content Include="Views\CustomerList\EditInfo.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
-    <Content Include="Views\Account\CreditBalance\EditAgentCredit.cshtml" />
-    <Content Include="Views\Account\CreditBalance\AgentEditMemberCredit.cshtml" />
+    <Content Include="Views\CreditBalance\EditAgentCredit.cshtml" />
+    <Content Include="Views\CreditBalance\AgentEditMemberCredit.cshtml" />
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />

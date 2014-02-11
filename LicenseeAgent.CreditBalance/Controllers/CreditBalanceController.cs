@@ -38,7 +38,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
 
         public ActionResult Index()
         {
-            return View("~/Views/Account/CreditBalance/Index.cshtml");
+            return View();
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 editAgentCreditViewModel.MaxCreditOutput = agentGetAgentRangeInfoCriteria.MaxCreditOutput;
             }
 
-            return View("~/Views/Account/CreditBalance/EditAgentCredit.cshtml", editAgentCreditViewModel);
+            return View(editAgentCreditViewModel);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 }
             }
 
-            return View("~/Views/Account/CreditBalance/EditAgentCredit.cshtml", editAgentCreditViewModel);
+            return View(editAgentCreditViewModel);
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             agentEditMemberCreditViewModel.MinCreditOutput = agentGetMemberRangeInfoCriteria.MinCreditOutput;
             agentEditMemberCreditViewModel.MaxCreditOutput = agentGetMemberRangeInfoCriteria.MaxCreditOutput;
 
-            return View("~/Views/Account/CreditBalance/AgentEditMemberCredit.cshtml", agentEditMemberCreditViewModel);
+            return View(agentEditMemberCreditViewModel);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 }
             }
 
-            return View("~/Views/Account/CreditBalance/AgentEditMemberCredit.cshtml", agentEditMemberCreditViewModel);
+            return View(agentEditMemberCreditViewModel);
         }
     }
 }

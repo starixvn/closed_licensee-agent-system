@@ -1,4 +1,4 @@
-﻿var TRANSFER_POPUP = function ($) {
+﻿var creditBalancePopup = function ($) {
     var minAmount;
     var maxAmount;
     return {
@@ -18,12 +18,12 @@
                 wEmpty: 'zero'
             })
             .on('keyup', function () {
-                TRANSFER_POPUP.validateAmount(this);
+                creditBalancePopup.validateAmount(this);
             });
 
             $("form").validate().cancelSubmit = true;
             $('form').submit(function (e) {
-                if (!TRANSFER_POPUP.validateAmount($('#GivenCredit'))) {
+                if (!creditBalancePopup.validateAmount($('#GivenCredit'))) {
                     e.preventDefault();
                 }
                 else {
@@ -46,5 +46,5 @@
 } (jQuery);
 
 $(function () {
-    TRANSFER_POPUP.init();
+    creditBalancePopup.init();
 });

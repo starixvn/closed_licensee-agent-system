@@ -34,10 +34,10 @@
     @Scripts.Render("~/js/creditbalance-list")
     @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
     {
-        @Html.Partial("~/Views/Account/CreditBalance/MemberList.cshtml")
+        @Html.Partial("~/Views/CreditBalance/MemberList.cshtml")
     }
     else
     {
-        @Html.Partial("~/Views/Account/CreditBalance/AgentList.cshtml")
+        @Html.Partial("~/Views/CreditBalance/AgentList.cshtml")
     }
 }

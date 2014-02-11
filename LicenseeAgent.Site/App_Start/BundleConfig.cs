@@ -363,10 +363,10 @@ namespace LicenseeAgent.Site
         private static void RegisterCreditBalancePage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/creditbalance-list").Include(
-                "~/views/account/creditbalance/resources/creditbalance-list.js"));
+                "~/views/creditbalance/resources/creditbalance-list.js"));
 
             bundles.Add(new ScriptBundle("~/js/creditbalance-popup").Include(
-                "~/views/account/creditbalance/resources/creditbalance-popup.js"));
+                "~/views/creditbalance/resources/creditbalance-popup.js"));
         }
         #endregion Pages
     }

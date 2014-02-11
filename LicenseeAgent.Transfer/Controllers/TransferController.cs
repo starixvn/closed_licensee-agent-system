@@ -20,7 +20,6 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Mvc;
-    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.

@@ -302,14 +302,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
-            var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-            if (!CurrentSession.IsAdmin && !CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+            if (model.AgentId.HasValue && model.AgentId.HasValue)
             {
-                settingContext.FormId = FormType.EditIndirectMember;
-                settingContext.CustId = agentId;
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                    settingContext.CustId = agentId;
+                }
             }
-
+            
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
         }
 

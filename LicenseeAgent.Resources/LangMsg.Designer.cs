@@ -151,6 +151,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The agent does not exist..
+        /// </summary>
+        public static string Msg_101 {
+            get {
+                return ResourceManager.GetString("Msg_101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % PT must be greater than or equal to zero ( {0} - {1} )..
         /// </summary>
         public static string Msg_1010 {
@@ -237,6 +246,15 @@ namespace LicenseeAgent.Resources {
         public static string Msg_1019 {
             get {
                 return ResourceManager.GetString("Msg_1019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, you can transfer from 12pm to 11:59pm only..
+        /// </summary>
+        public static string Msg_102 {
+            get {
+                return ResourceManager.GetString("Msg_102", resourceCulture);
             }
         }
         
@@ -331,6 +349,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fail to transfer money. Please try again..
+        /// </summary>
+        public static string Msg_103 {
+            get {
+                return ResourceManager.GetString("Msg_103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permission to update this account settings..
         /// </summary>
         public static string Msg_1030 {
@@ -405,6 +432,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The transfer amount must be between {0} and {1}..
+        /// </summary>
+        public static string Msg_104 {
+            get {
+                return ResourceManager.GetString("Msg_104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid amount.
         /// </summary>
         public static string Msg_1040 {
@@ -419,6 +455,15 @@ namespace LicenseeAgent.Resources {
         public static string Msg_1042 {
             get {
                 return ResourceManager.GetString("Msg_1042", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one transaction is allowed per day for this member..
+        /// </summary>
+        public static string Msg_107 {
+            get {
+                return ResourceManager.GetString("Msg_107", resourceCulture);
             }
         }
         

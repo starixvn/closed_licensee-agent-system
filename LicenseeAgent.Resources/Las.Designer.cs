@@ -2230,7 +2230,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username must be at least 6 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only..
+        ///   Looks up a localized string similar to Username must be between 6 and 30 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only..
         /// </summary>
         public static string UsernameMinimumLength {
             get {

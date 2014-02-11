@@ -2,17 +2,19 @@
 // <copyright file="ToolController.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Web.Controllers
 {
     using System.Web.Mvc;
     using Fanex.Common;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [AdminSite]
+    [AllowAnonymous]
     public class ToolController : Controller
     {
         /// <summary>

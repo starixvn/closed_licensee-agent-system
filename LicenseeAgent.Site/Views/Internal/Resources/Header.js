@@ -4,6 +4,7 @@
     var newLicenseeId = licenseeId;
     var currencyId = $('#currency').data('currency-id');
     var newCurrencyId = currencyId;
+    var userName = $('.username b').text();
     return {
         init: function () {
             if (!isSelected) {
@@ -67,7 +68,7 @@
 
             if ($('#licensee').length > 0 && (!licenseeId || !currencyId)) {
                 INTERNAL_HEADER.unactiveMain();
-                var isShowIntro = $.cookie('show_intro');
+                var isShowIntro = $.cookie('{0}_show_intro'.format(userName));
                 if (isShowIntro !== '0') {
                     INTERNAL_HEADER.beginIntro();
                 }
@@ -215,7 +216,7 @@
             $('#intro .checkbox').change(function () {
                 var isChecked = $(this).find('input').is(':checked');
                 if (isChecked) {
-                    $.cookie('show_intro', '0');
+                    $.cookie('{0}_show_intro'.format(userName), '0', { path: '/' });
                     INTERNAL_HEADER.endIntro();
                 }
             });

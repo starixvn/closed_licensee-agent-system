@@ -51,27 +51,37 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>Action result.</returns>
         [HttpGet]
-        [AppAuthorize(IsValidateAgent = false)]
         public ActionResult Index()
         {
-            var model = new HomePageViewModel { StatisticInfo = new StatisticEntity(), BalanceInfo = new BalanceInfoEntity() };
+            var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+            var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
 
-            if (CurrentSession.AgentInfo != null)
+            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceInfoCriteria = new BalanceInfoCriteria
             {
-                var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
-                model.StatisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
+                AgentID = CurrentSession.AgentInfo.AgentId,
+                MoveBetDay = balanceUp.MoveBetsDay
+            };
+            var balanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
 
-                var balanceUp = _coreService.GetBalanceUpDay();
-                var balanceInfoCriteria = new BalanceInfoCriteria
-                {
-                    AgentID = CurrentSession.AgentInfo.AgentId,
-                    MoveBetDay = balanceUp.MoveBetsDay
-                };
-                ViewBag.IsAdmin = CurrentSession.IsAdmin;
-                model.BalanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
-            }
-
+            var model = new HomePageViewModel
+            {
+                StatisticInfo = statisticInfo,
+                BalanceInfo = balanceInfo
+            };
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Fake()
+        {
+            var model = new HomePageViewModel
+            {
+                StatisticInfo = new StatisticEntity(),
+                BalanceInfo = new BalanceInfoEntity()
+            };
+            return View("Index", model);
         }
 
         /// <summary>

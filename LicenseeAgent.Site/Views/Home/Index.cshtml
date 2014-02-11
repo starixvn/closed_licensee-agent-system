@@ -5,6 +5,15 @@
 @{
     ViewBag.Title = Las.LasTitle;
     Layout = null;
+    var action = "Index";
+    if (Model.TopMenu == TopMenu.Security)
+    {
+        action = "ChangePassword";
+    }
+    else if (SessionManager.CurrentSession.AgentInfo == null)
+    {
+        action = "Fake";
+    }
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -32,7 +41,7 @@
             }
         </div>
         <div class="main-box">
-            <iframe id="frmMain" name="frmMain" frameborder="0" src="@(Model.TopMenu == TopMenu.Security ? Url.Action("ChangePassword", "Account") : Url.Action("Index", "Account"))">
+            <iframe id="frmMain" name="frmMain" frameborder="0" src="@Url.Action(@action, "Account")">
             </iframe>
         </div>
     </div>

@@ -45,7 +45,7 @@
                 <td>@Las.GivenCredit</td>
                 <td class="text-right">
                     @{
-                        if(ViewBag.IsAdmin != null && ViewBag.IsAdmin == true && Model.BalanceInfo.GivenCredit == 0)
+                        if(SessionManager.CurrentSession.IsAdmin && Model.BalanceInfo.GivenCredit == 0)
                         {
                             <span>@Las.Unlimitted</span>
                         }

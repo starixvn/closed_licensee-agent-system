@@ -43,7 +43,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.transferAgent({0}, \'{1}\', {2})"></i>'.format(rowData.AgentId, rowData.UserName, -rowData.YesterdayBalance);
+                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.transferAgent({0}, \'{1}\', {2})" title="{3}"></i>'.format(rowData.AgentId, rowData.UserName, -rowData.YesterdayBalance, '@Las.Transfer');
                             }
                         },
                         {
@@ -59,10 +59,10 @@
                             HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
                         },
                         {
-                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true
+                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true
                         },
                         {
-                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.", CanResize: true
+                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true
                         }
                    ],
         showPager: true,

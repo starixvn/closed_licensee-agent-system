@@ -19,6 +19,8 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -154,6 +156,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToAgentId = model.AgentId,
+                    Ip = Request.GetClientIp(),
                     Amount = model.Amount
                 };
                 _transferService.TransferToAgent(criteria);
@@ -219,6 +222,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToCustId = model.MemberId,
+                    Ip = Request.GetClientIp(),
                     Amount = model.Amount
                 };
                 _transferService.TransferToMember(criteria);

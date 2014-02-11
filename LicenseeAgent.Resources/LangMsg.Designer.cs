@@ -432,15 +432,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The transfer amount must be between {0} and {1}..
-        /// </summary>
-        public static string Msg_104 {
-            get {
-                return ResourceManager.GetString("Msg_104", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid amount.
         /// </summary>
         public static string Msg_1040 {

@@ -47,8 +47,6 @@
             // username suggestion
             $('#Username').typeahead({ source: customerList.getSuggestion, minLength: 2 });
 
-            $(".combobox-container input[type=text]").attr('readonly', 'readonly');
-
             // get customer list
             customerList.reRenderAfterPaged();
         },

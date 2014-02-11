@@ -7,7 +7,9 @@
 
 namespace LicenseeAgent.Taiwan.Services
 {
+    using System.Collections.Generic;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,5 +21,12 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         void WriteLog(ICriteria criteria);
+
+        /// <summary>
+        /// Get log informations.
+        /// </summary>
+        /// <param name="criteria">Criteria store procedure.</param>
+        /// <returns>List log information.</returns>
+        IEnumerable<LogInformationEntity> GetLogInformations(ICriteria criteria);
     }
 }

@@ -33,7 +33,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// Update account status of agent.
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
-        void UpdateAgentAccStatus(UpdateAgentAccStatusCriteria criteria);
+        IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentAccStatusCriteria criteria);
 
         /// <summary>
         /// Get member list.

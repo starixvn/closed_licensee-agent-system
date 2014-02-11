@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerList.Entities
 {
     using System;
+    using LicenseeAgent.CustomerList.Core;
     using LicenseeAgent.Taiwan;
 
     /// <summary>
@@ -41,5 +42,18 @@ namespace LicenseeAgent.CustomerList.Entities
         public string Fax { get; set; }
 
         public int Status { get; set; }
+
+        public string SuggestionUserName
+        {
+            get
+            {
+                if (UserName.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", UserName.Substring(0, Constants.LargeStringLength));
+                }
+
+                return UserName;
+            }
+        }
     }
 }

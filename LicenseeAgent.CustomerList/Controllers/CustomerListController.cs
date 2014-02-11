@@ -283,7 +283,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 AccStatus = model.Status
             };
 
-            _customerService.UpdateAgentAccStatus(criteria);
+            var agents = _customerService.UpdateAgentAccStatus(criteria);
 
             if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
             {
@@ -292,7 +292,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = model.AgentId,
+                    LASAgentId = string.Join(",", agents.Select(a => a.AgentId.ToString()).ToArray<string>()),
                     IsClosed = true
                 });
 
@@ -336,9 +336,9 @@ namespace LicenseeAgent.CustomerList.Controllers
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 UserId = CurrentSession.LoginUserId,
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
-                IBCCustId = model.MemberId,
+                IBCCustId = model.MemberId.ToString(),
                 IsClosed = model.Status == (int)AccountStatus.Closed,
-                LASAgentId = model.AgentId
+                LASAgentId = model.AgentId.ToString()
             });
 
             return JsonResult(serviceResult);
@@ -381,7 +381,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = agents.Select(m => m.UserName).ToArray()
+                List = agents.Select(m => m.SuggestionUserName).ToArray()
             });
         }
 
@@ -403,7 +403,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = members.Select(m => m.UserName).ToArray()
+                List = members.Select(m => m.SuggestionUserName).ToArray()
             });
         }
 

@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerList.Entities
 {
     using System;
+    using LicenseeAgent.CustomerList.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,5 +52,18 @@ namespace LicenseeAgent.CustomerList.Entities
         public int RowNumber { get; set; }
 
         public int NumberAgentLevel { get; set; }
+
+        public string SuggestionUserName
+        {
+            get
+            {
+                if (UserName.Length > Constants.LargeStringLength)
+                {
+                    return string.Format("{0}...", UserName.Substring(0, Constants.LargeStringLength));
+                }
+
+                return UserName;
+            }
+        }
     }
 }

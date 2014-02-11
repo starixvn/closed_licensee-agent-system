@@ -133,24 +133,25 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
         {
-            var criteria = new EditInfoMemberCriteria
+            var criteria = new ChangeStatusMemberCriteria
             {
                 LicenseeId = action.LicenseeId,
                 UserId = action.UserId,
-                CustId = action.IBCCustId.HasValue ? action.IBCCustId.Value : 0,
+                AgentId = action.LASAgentId,
+                MemberId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
                 Doing = LogBinder.GetActionInformation<UpdateMemberStatusAction>(action)
             };
-            _logService.WriteLog(criteria);
+            var logInformations = _logService.GetLogInformations(criteria);
 
-            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
+            var memberStatusResult = ServiceWrapper.GetResponseData<MemberStatusResult>(action);
 
             criteria.LogId = criteria.LogIdReturn;
-            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
-            criteria.ErrMsg = responseResult.ErrMsg;
+            criteria.Status = memberStatusResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            criteria.ErrMsg = memberStatusResult.ErrMsg;
             _logService.WriteLog(criteria);
 
-            return responseResult;
+            return memberStatusResult;
         }
 
         /// <summary>
@@ -162,18 +163,18 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Member entity after merging.</returns>
         public ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action)
         {
-            var response = ServiceWrapper.GetResponseData<MemberResult>(action);
+            var memberResult = ServiceWrapper.GetResponseData<MemberResult>(action);
 
-            if (response.ErrCode == 0)
+            if (memberResult.ErrCode == 0)
             {
-                ServiceMapper.MapObject<ServiceMemberEntity, T>(response.Member, memberEntity);
+                ServiceMapper.MapObject<ServiceMemberEntity, T>(memberResult.Member, memberEntity);
             }
             else
             {
-                response.ErrCode = 0;
+                memberResult.ErrCode = 0;
             }
 
-            return response;
+            return memberResult;
         }
 
         /// <summary>
@@ -185,14 +186,14 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>List member entity after merging.</returns>
         public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action)
         {
-            var response = ServiceWrapper.GetResponseData<MemberListResult>(action);
+            var memberListResult = ServiceWrapper.GetResponseData<MemberListResult>(action);
 
-            if (response.ErrCode == 0)
+            if (memberListResult.ErrCode == 0)
             {
-                ServiceMapper.MapObjects<ServiceMemberEntity, T>(response.Members, memberEntitys, new MemberFilter());
+                ServiceMapper.MapObjects<ServiceMemberEntity, T>(memberListResult.Members, memberEntitys, new MemberFilter());
             }
 
-            return response;
+            return memberListResult;
         }
     }
 }

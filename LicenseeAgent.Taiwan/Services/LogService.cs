@@ -7,9 +7,11 @@
 namespace LicenseeAgent.Taiwan.Services
 {
     using System;
+    using System.Collections.Generic;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,6 +33,16 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 Logger.HandleException(ex);
             }
+        }
+
+        /// <summary>
+        /// Get log informations.
+        /// </summary>
+        /// <param name="criteria">Criteria store procedure.</param>
+        /// <returns>List log information.</returns>
+        public IEnumerable<LogInformationEntity> GetLogInformations(ICriteria criteria)
+        {
+            return GetEntites<LogInformationEntity>(criteria);
         }
     }
 }

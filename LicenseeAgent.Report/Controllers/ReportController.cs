@@ -127,10 +127,10 @@ namespace LicenseeAgent.Report.Controllers
             if (outRightData.Count > 0)
             {
                 var sports = outRightData.GroupBy(i => i.SportType)
-                    .Select(j => new SelectListItem 
-                    { 
-                        Text = DataRefWrapper.GetSportName(j.First().SportType), 
-                        Value = j.First().SportType.ToString(), 
+                    .Select(j => new SelectListItem
+                    {
+                        Text = DataRefWrapper.GetSportName(j.First().SportType),
+                        Value = j.First().SportType.ToString(),
                         Selected = j.First().SportType == criteria.SportType
                     }).OrderBy(k => k.Text).ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
@@ -268,35 +268,6 @@ namespace LicenseeAgent.Report.Controllers
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
                 AgentID = model.AgentId
-            };
-
-            var result = _reportService.AgentWinLossReport(criteria);
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = result
-            });
-        }
-
-        /// <summary>
-        /// Agent Win Loss.
-        /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult AgentWinLoss(AgentWinLossReportViewModel model)
-        {
-            var balanceUp = _coreService.GetBalanceUpDay();
-
-            var criteria = new AgentWinLossReportCriteria
-            {
-                BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetDay = balanceUp.MoveBetDay,
-                DrawType = model.DrawFilter,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                AgentID = 13730682
             };
 
             var result = _reportService.AgentWinLossReport(criteria);

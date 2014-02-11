@@ -1,5 +1,5 @@
 ﻿if (fanex.customerSetting) {
-    var custSettingController = fanex.customerSetting.controller('sportsbook.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
+    var custSettingController = fanex.customerSetting.controller('customerSetting.custSettingController', ['$scope', '$http', function CustSettingController($scope, $http) {
         CORE.blockUI();
         if (typeof result != 'undefined') {
             $('#custSetting').html(result.ErrMsg);
@@ -14,7 +14,7 @@
             var isSimpleMode = !data.value;
             fanex.hideHint();
             $scope.settingMode = isSimpleMode;
-            var positionTakingScope = angular.element('[ng-controller="sportsbook.positionTakingController"]').scope();
+            var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
             positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
             $scope.$apply();
         });
@@ -80,7 +80,7 @@
                 var bettingLimits = bettingLimitScope.saveData();
 
                 // position taking
-                var positionTakingScope = angular.element('[ng-controller="sportsbook.positionTakingController"]').scope();
+                var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
                 if (!positionTakingScope.isValidData()) {
                     return;
                 }
@@ -140,7 +140,7 @@
             $('.messages').hide();
             $scope.Messages = null;
 
-            var custInfoScope = angular.element('[ng-controller="sportsbook.custInfoController"]').scope();
+            var custInfoScope = angular.element('[ng-controller="customerSetting.custInfoController"]').scope();
 
             // Commission Setting
             var commissionSettingsModel = null;
@@ -168,7 +168,7 @@
             }
 
             // position taking
-            var positionTakingScope = angular.element('[ng-controller="sportsbook.positionTakingController"]').scope();
+            var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
             if (!positionTakingScope.isValidData()) {
                 return;
             }

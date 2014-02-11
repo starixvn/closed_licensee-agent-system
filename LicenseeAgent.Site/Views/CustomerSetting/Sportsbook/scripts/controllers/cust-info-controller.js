@@ -1,5 +1,5 @@
 ﻿if (fanex.customerSetting) {
-    var custInfoController = fanex.customerSetting.controller('sportsbook.custInfoController',
+    var custInfoController = fanex.customerSetting.controller('customerSetting.custInfoController',
     [
         '$scope',
         'fanex.customerSetting.custInfoService',

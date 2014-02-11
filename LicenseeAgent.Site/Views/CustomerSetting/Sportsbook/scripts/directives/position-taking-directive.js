@@ -209,7 +209,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
@@ -240,7 +240,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
@@ -271,7 +271,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
@@ -301,7 +301,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html',
             link: function (scope, element, attrs, controller) {
                 //// Cache Elements.
@@ -325,7 +325,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             scope: {
                 ptSimple: '='
             },
@@ -357,7 +357,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             scope: {
                 ptSimple: '='
             },
@@ -389,7 +389,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             scope: {
                 ptSimple: '='
             },
@@ -422,7 +422,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'sportsbook.positionTakingController',
+            controller: 'customerSetting.positionTakingController',
             scope: {
                 ptSimple: '='
             },

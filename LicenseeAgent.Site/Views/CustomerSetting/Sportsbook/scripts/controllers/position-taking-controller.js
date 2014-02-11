@@ -4,7 +4,7 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 if (fanex.customerSetting) {
-    var positionTakingController = fanex.customerSetting.controller('sportsbook.positionTakingController',
+    var positionTakingController = fanex.customerSetting.controller('customerSetting.positionTakingController',
     [
         '$scope',
         '$filter',

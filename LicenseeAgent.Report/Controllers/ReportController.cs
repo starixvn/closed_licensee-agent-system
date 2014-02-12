@@ -244,18 +244,8 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult Outstanding(OutstandingReportCriteria criteria)
         {
-            var paramAgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
-            /*var paramAgentLevel = criteria.AgentLevel <= 0 ? CurrentSession.AgentInfo.AgentLevel : criteria.AgentLevel;
-            ViewBag.PageContext = new PageContext(paramAgentId, paramAgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(paramAgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };*/
-
-            var agentOutstandings = _reportService.GetOutstandings(new OutstandingReportCriteria
-            {
-                AgentId = paramAgentId
-            });
+            criteria.AgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
+            var agentOutstandings = _reportService.GetOutstandings(criteria);
 
             decimal sumOutstanding = 0;
             decimal sumPositiontaking = 0;
@@ -270,7 +260,7 @@ namespace LicenseeAgent.Report.Controllers
                 List = agentOutstandings.ToList(),
                 SumOutstanding = sumOutstanding,
                 SumPositiontaking = sumPositiontaking,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel
+                IsLastLevel = criteria.IsLastLevel
             });
         }
 

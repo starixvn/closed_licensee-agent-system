@@ -18,6 +18,8 @@ namespace LicenseeAgent.Report.Criteria
     public class OutstandingReportCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
+        
+        public bool IsLastLevel { get; set; }
 
         public override string GetSettingKey()
         {

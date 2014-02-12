@@ -61,6 +61,9 @@ var OUTSTANDING = function ($) {
                     };
                     gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
                     gridOptions.footerRows = footerRows;
+                    if (data.IsLastLevel == true) {
+                        gridOptions.columns[0].HeaderText = LANGUAGE.getString("Member");
+                    }
                     $('#BetListGrid').show().fanexGrid(gridOptions);
                 },
                 complete: function () {

@@ -41,6 +41,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// Update account status of agent.
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
+        /// <returns>List agent ID.</returns>
         public IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentAccStatusCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);

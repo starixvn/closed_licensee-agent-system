@@ -57,9 +57,9 @@ namespace LicenseeAgent.CustomerList.Entities
         {
             get
             {
-                if (UserName.Length > Constants.LargeStringLength)
+                if (UserName.Length > Constants.MediumStringLength)
                 {
-                    return string.Format("{0}...", UserName.Substring(0, Constants.LargeStringLength));
+                    return string.Format("{0}...", UserName.Substring(0, Constants.MediumStringLength));
                 }
 
                 return UserName;

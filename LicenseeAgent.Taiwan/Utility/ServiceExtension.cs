@@ -55,6 +55,12 @@ namespace LicenseeAgent.Taiwan.Utility
             }
         }
 
+        /// <summary>
+        /// Get log information.
+        /// </summary>
+        /// <param name="custIds">Customer information ID.</param>
+        /// <param name="agentIds">Agent information ID.</param>
+        /// <returns>List log information.</returns>
         public static IEnumerable<LogInformationEntity> GetLogInformations(string custIds, string agentIds)
         {
             var logInformations = new List<LogInformationEntity>();

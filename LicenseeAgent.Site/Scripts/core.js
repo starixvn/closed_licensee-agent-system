@@ -334,6 +334,9 @@
             setTimeout(function () {
                 location.reload();
             }, timeout);
+        },
+        submitPage: function () {
+            $('button[type=submit]').submit();
         }
     };
 } (jQuery);

@@ -76,6 +76,19 @@
                 return true;
             }
             return false;
+        },
+        closeAndReload: function (timeout) {
+            if (window.parent && window.parent.popup) {
+                if (timeout == undefined) {
+                    timeout = CORE.RELOAD_INTERVAL;
+                }
+                setTimeout(function () {
+                    window.parent.POPUP.closeDialog();
+                    window.parent.CORE.submitPage();
+                }, timeout);
+                return true;
+            }
+            return false;
         }
     }
 } (jQuery);

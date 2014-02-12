@@ -43,7 +43,7 @@ namespace LicenseeAgent.CustomerList.Entities
 
         public int Status { get; set; }
 
-        public string SuggestionUserName
+        public string ShortUserName
         {
             get
             {

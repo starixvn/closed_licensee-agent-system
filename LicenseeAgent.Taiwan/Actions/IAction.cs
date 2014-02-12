@@ -17,6 +17,6 @@ namespace LicenseeAgent.Taiwan.Actions
     /// </summary>
     public interface IAction
     {
-        string GetActionName();
+        string ActionName { get; }
     }
 }

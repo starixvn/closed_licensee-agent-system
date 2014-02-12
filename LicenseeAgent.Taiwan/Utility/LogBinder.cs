@@ -32,7 +32,7 @@ namespace LicenseeAgent.Taiwan.Utility
             var logContent = new LogContentEntity
             {
                 Link = AppSettings.TaiwanAPI,
-                Action = action.GetActionName(),
+                Action = action.ActionName,
                 Parameters = (LogAction)action
             };
 

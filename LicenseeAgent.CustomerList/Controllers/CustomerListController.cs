@@ -381,7 +381,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = agents.Select(m => m.SuggestionUserName).ToArray()
+                List = agents.Select(m => m.UserName).ToArray()
             });
         }
 
@@ -403,7 +403,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = members.Select(m => m.SuggestionUserName).ToArray()
+                List = members.Select(m => m.UserName).ToArray()
             });
         }
 

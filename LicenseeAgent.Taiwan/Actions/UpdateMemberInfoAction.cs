@@ -35,9 +35,13 @@ namespace LicenseeAgent.Taiwan.Actions
         /// Get action name.
         /// </summary>
         /// <returns>Action name.</returns>
-        public string GetActionName()
+        [Service(IsParamAction = false)]
+        public string ActionName
         {
-            return "UpdateMemberInfo";
+            get
+            {
+                return "UpdateMemberInfo";
+            }
         }
     }
 }

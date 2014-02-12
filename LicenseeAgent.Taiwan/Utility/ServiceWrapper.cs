@@ -33,7 +33,7 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <returns>String response data.</returns>
         public static T GetResponseData<T>(IAction action) where T : class
         {
-            var request = CreateRequest(action.GetActionName());
+            var request = CreateRequest(action.ActionName);
             SetParams(request, action);
 
             return MakeRequest<T>(request);

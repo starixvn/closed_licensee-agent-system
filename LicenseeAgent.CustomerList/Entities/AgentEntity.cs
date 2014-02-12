@@ -53,7 +53,7 @@ namespace LicenseeAgent.CustomerList.Entities
 
         public int NumberAgentLevel { get; set; }
 
-        public string SuggestionUserName
+        public string ShortUserName
         {
             get
             {

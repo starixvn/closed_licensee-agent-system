@@ -92,6 +92,16 @@ namespace LicenseeAgent.Report.Services
             return GenerateOutrightResults(data);
         }
 
+        /// <summary>
+        /// Get outstanding results.
+        /// </summary>
+        /// <param name="criteria">Outstanding Criteria.</param>
+        /// <returns>List of agent outstanding results.</returns>
+        public IEnumerable<AgentOutstanding> GetOutstandings(ICriteria criteria)
+        {
+            return GetEntites<AgentOutstanding>(criteria);
+        }
+
         public IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria)
         {
             return GetEntites<AgentWinLoss>(criteria);

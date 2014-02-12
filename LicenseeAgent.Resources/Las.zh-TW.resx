@@ -751,4 +751,10 @@
   <data name="EffectiveStake" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="PageTitle_Report_Outstanding" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="AgentShare" xml:space="preserve">
+    <value>Agent Share</value>
+  </data>
 </root>

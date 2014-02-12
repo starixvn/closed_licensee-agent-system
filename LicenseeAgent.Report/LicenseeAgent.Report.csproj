@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Criteria\OutstandingReportCriteria.cs" />
     <Compile Include="Criteria\OutrightResultsReportCriteria.cs" />
     <Compile Include="Criteria\LeagueCriteria.cs" />
     <Compile Include="Criteria\SportCriteria.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="DataAccess\ResultsReportDataAccess.cs" />
     <Compile Include="DataAccess\IResultsReportDataAccess.cs" />
     <Compile Include="Entities\AgentWinLoss.cs" />
+    <Compile Include="Entities\AgentOutstanding.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Criteria\AgentWinLossReportCriteria.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\IReportService.cs" />
     <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
+    <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

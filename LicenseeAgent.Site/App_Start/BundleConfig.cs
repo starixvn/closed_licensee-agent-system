@@ -305,12 +305,18 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">The bundles.</param>
         private static void RegisterReportPage(BundleCollection bundles)
         {
-            // Month Picker
             bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
-                "~/Views/Report/Resources/ResultsReportManager.js"));
+                "~/Views/Report/Resources/ResultsReport.js"));
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Results/fanex.result.css",
-                "~/Content/Results/results.css")); 
+                "~/Content/Results/results.css"));
+
+            bundles.Add(new LessBundle("~/css/outstandingreport").Include(
+                 "~/Views/Report/Resources/Outstanding.less"));
+            bundles.Add(new ScriptBundle("~/js/outstandingreport").Include(
+                "~/Views/BetList/Resources/betlist.core.js",
+                "~/Views/Report/Resources/OutstandingReport.js"));
+
             bundles.Add(new LessBundle("~/css/agentwinlostreport").Include(
                  "~/Views/Report/Resources/AgentWinLoss.less"));
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(

@@ -51,7 +51,7 @@ var BETLIST = function ($) {
                 CustId: custId,
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusId: $("#Status").val() != 255 ? $.trim($("#Status").val()) : ''
+                StatusIDs: $("#Status").val() != 255 ? $.trim($("#Status").val()) : 'All'
             };
 
             $.ajax({

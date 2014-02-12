@@ -49,6 +49,13 @@ namespace LicenseeAgent.Report.Services
         /// <returns>List of outright results.</returns>
         IList<OutRight> GetOutrightResults(ICriteria criteria);
 
+        /// <summary>
+        /// Get outstanding results.
+        /// </summary>
+        /// <param name="criteria">Outstanding Criteria.</param>
+        /// <returns>List of agent outstanding results.</returns>
+        IEnumerable<AgentOutstanding> GetOutstandings(ICriteria criteria);
+
         IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
     }
 }

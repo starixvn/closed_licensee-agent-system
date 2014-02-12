@@ -222,6 +222,60 @@ namespace LicenseeAgent.Report.Controllers
 
         #endregion Results Report
 
+        #region Outstanding Report
+
+        /// <summary>
+        /// Outstanding Report.
+        /// </summary>
+        /// <param name="agentId">Agent Id Info.</param>
+        /// <param name="agentLevel">Agent Level.</param>
+        /// <param name="breadCrumb">Bread Crumb.</param>
+        /// <returns>Return a JSON object.</returns>
+        public ActionResult Outstanding(int? agentId, int? agentLevel, string breadCrumb)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Outstanding Report.
+        /// </summary>
+        /// <param name="criteria">Outstanding Report Criteria.</param>
+        /// <returns>Return a JSON object.</returns>
+        [HttpPost]
+        public JsonResult Outstanding(OutstandingReportCriteria criteria)
+        {
+            var paramAgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
+            /*var paramAgentLevel = criteria.AgentLevel <= 0 ? CurrentSession.AgentInfo.AgentLevel : criteria.AgentLevel;
+            ViewBag.PageContext = new PageContext(paramAgentId, paramAgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+            {
+                IsDirectDownline = CurrentSession.IsDirectDownline(paramAgentLevel),
+                IsAdmin = CurrentSession.IsAdmin
+            };*/
+
+            var agentOutstandings = _reportService.GetOutstandings(new OutstandingReportCriteria
+            {
+                AgentId = paramAgentId
+            });
+
+            decimal sumOutstanding = 0;
+            decimal sumPositiontaking = 0;
+            foreach (var item in agentOutstandings)
+            {
+                sumOutstanding += item.Outstanding;
+                sumPositiontaking += item.Positiontaking;
+            }
+
+            return Json(new
+            {
+                List = agentOutstandings.ToList(),
+                SumOutstanding = sumOutstanding,
+                SumPositiontaking = sumPositiontaking,
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel
+            });
+        }
+
+        #endregion
+
         #region Agent Win Loss Report
 
         /// <summary>

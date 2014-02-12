@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = Las.PageTitle_Report_Outstanding;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/outstandingreport")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/outstandingreport")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+
+<div class="gridWrapper">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
+    </div>
+</div>

@@ -191,24 +191,8 @@
         },
         beginIntro: function () {
             if ($('#intro').length == 0) return;
-
             $('#overlay').addClass('intro');
-
-            // calculate intro position
-            var x = 0;
-            if ($('#licensee').length > 0 && $('#licensee').css('display') != 'none') {
-                x = $('#licensee').offset().left;
-            }
-            else {
-                x = $('#currency').offset().left;
-            }
-            var y = $('#currency').offset().left + $('#currency').outerWidth();
-            $('#intro').modal({
-                backdrop: false,
-                show: true
-            });
-            var width = $('#intro').outerWidth();
-            $('#intro').css('left', x - (width - (y - x)) / 2);
+            INTERNAL_HEADER.calculateIntro();
 
             // create & amimate intro arrow
             var arrow = $('<div class="intro-arrow"></div>');
@@ -229,11 +213,31 @@
                     $(this).unbind(e);
                 }
             });
+
+            $(window).bind('resize', function (e) {
+                INTERNAL_HEADER.calculateIntro();
+            });
         },
         endIntro: function () {
             $('.intro-arrow').remove();
             $('#overlay').removeClass('intro');
             $('#intro').modal('hide');
+        },
+        calculateIntro: function () {
+            var x = 0;
+            if ($('#licensee').length > 0 && $('#licensee').css('display') != 'none') {
+                x = $('#licensee').offset().left;
+            }
+            else {
+                x = $('#currency').offset().left;
+            }
+            var y = $('#currency').offset().left + $('#currency').outerWidth();
+            $('#intro').modal({
+                backdrop: false,
+                show: true
+            });
+            var width = $('#intro').outerWidth();
+            $('#intro').css('left', x - (width - (y - x)) / 2);
         },
         animateArrow: function (arrow, element) {
             if (element.length == 0 || element.css('display') == 'none') element = $('#currency');

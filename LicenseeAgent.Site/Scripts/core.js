@@ -11,6 +11,7 @@
         MIN_CONTENT_WIDTH: '700',
         PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),
         RELOAD_INTERVAL: 2500,
+        EMPTY_TEXT_FORMAT: '---',
 
         init: function () {
             $('input, textarea').placeholder();
@@ -337,36 +338,15 @@
         },
         submitPage: function () {
             $('button[type=submit]').submit();
+        },
+        formatCustomerName: function (firstName, lastName) {
+            if (firstName || lastName) {
+                return '{0} {1}'.format(firstName, lastName);
+            }
+            return CORE.EMPTY_TEXT_FORMAT;
         }
     };
 } (jQuery);
 $(function () {
     CORE.init();
-});
-$.fn.serializeObject = function () {
-    var o = {};
-    // find disabled inputs
-    var inputs = this.find(':disabled');
-    // enable them
-    inputs.prop('disabled', false);
-
-    var a = this.serializeArray();
-
-    // then, disable them
-    inputs.prop('disabled', true);
-
-    $.each(a, function () {
-        if (o[this.name] !== undefined) {
-            o[this.name] = o[this.name] + ',' + this.value;
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-
-    return o;
-};
-$.ajaxSetup({
-    error: function (jqXHR, textStatus, errorThrown) {
-        alert('Your request is temporarily cannot be processed, please try again later!');
-    }
 });

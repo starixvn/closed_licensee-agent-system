@@ -39,9 +39,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/placeholder/jquery.placeholder.js",
                 "~/scripts/headjs/head.core.js",
                 "~/scripts/blockui/jquery.blockui.js",
-                "~/scripts/config.js",
                 "~/scripts/core.js",
-                "~/scripts/utils.js",
+                "~/scripts/utility.js",
                 "~/scripts/language.js",
                 "~/scripts/popup.js"));
 

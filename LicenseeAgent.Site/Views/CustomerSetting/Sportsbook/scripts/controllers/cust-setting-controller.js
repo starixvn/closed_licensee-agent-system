@@ -184,7 +184,6 @@
                     updateDataSportsbookCustomer:
                         {
                             PositionTakingSetting: positionTakingUpdated,
-                            CustInfo: custInfoScope.custInfo,
                             CommissionSetting: {
                                 CommissionItems: commissionSettingsModel,
                                 UserGroup: userGroup

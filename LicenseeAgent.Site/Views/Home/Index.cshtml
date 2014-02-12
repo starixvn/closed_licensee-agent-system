@@ -45,7 +45,7 @@
             </iframe>
         </div>
     </div>
-    @if (SessionManager.CurrentSession.IsAdmin)
+    @if (SessionManager.CurrentSession.IsViewIntro())
     {
         <div id="intro">
             @Html.Partial("_Intro")

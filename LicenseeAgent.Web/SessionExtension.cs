@@ -18,6 +18,11 @@ namespace LicenseeAgent.Web
             return currentSession.IsAdmin;
         }
 
+        public static bool IsViewIntro(this ICurrentSession currentSession)
+        {
+            return IsViewSelectMenu(currentSession) && currentSession.AgentInfo == null;
+        }
+
         public static bool IsViewSelectLicensee(this ICurrentSession currentSession)
         {
             return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT;

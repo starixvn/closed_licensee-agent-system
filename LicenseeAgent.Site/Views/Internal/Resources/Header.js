@@ -190,6 +190,8 @@
             INTERNAL_HEADER.submit();
         },
         beginIntro: function () {
+            if ($('#intro').length == 0) return;
+
             $('#overlay').addClass('intro');
 
             // calculate intro position

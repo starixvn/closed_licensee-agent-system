@@ -29,10 +29,6 @@ namespace LicenseeAgent.Taiwan.Actions
         [XmlElement(ElementName = "Password")]
         public string EncryptedPassword { get; set; }
 
-        /// <summary>
-        /// Get action name.
-        /// </summary>
-        /// <returns>Action name.</returns>
         [Service(IsParamAction = false)]
         public string ActionName
         {

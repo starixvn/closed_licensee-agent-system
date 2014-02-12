@@ -21,10 +21,6 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public int LASAgentId { get; set; }
 
-        /// <summary>
-        /// Get action name.
-        /// </summary>
-        /// <returns>Action name.</returns>
         [Service(IsParamAction = false)]
         public string ActionName
         {

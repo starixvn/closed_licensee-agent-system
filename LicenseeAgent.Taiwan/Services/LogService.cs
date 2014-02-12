@@ -36,7 +36,7 @@ namespace LicenseeAgent.Taiwan.Services
         }
 
         /// <summary>
-        /// Get log informations.
+        /// Get list log information.
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         /// <returns>List log information.</returns>

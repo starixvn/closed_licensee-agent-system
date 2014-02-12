@@ -8,7 +8,9 @@
 namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
@@ -34,12 +36,36 @@ namespace LicenseeAgent.Taiwan.Utility
                 Parameters = (LogAction)action
             };
 
-            using (var stringWriter = new StringWriter())
-            {
-                var serializer = new XmlSerializer(logContent.GetType(), new Type[] { typeof(T) });
+            return SerializeObject<LogContentEntity, T>(logContent);
+        }
 
-                serializer.Serialize(stringWriter, logContent);
-             
+        /// <summary>
+        /// Get member content.
+        /// </summary>
+        /// <param name="members">List member information.</param>
+        /// <returns>Content of member.</returns>
+        public static string GetMembersContent(IEnumerable<LogInformationEntity> members)
+        {
+            return SerializeObject<StatusEntity, LogInformationEntity>(new StatusEntity { Customers = members.ToList() });
+        }
+
+        /// <summary>
+        /// Serialize object.
+        /// </summary>
+        /// <typeparam name="T1">Type of object 1 need serialize.</typeparam>
+        /// <typeparam name="T2">Type of object 2 need serialize.</typeparam>
+        /// <param name="objectSerialization">Object need serialize.</param>
+        /// <returns>String object after serialize.</returns>
+        private static string SerializeObject<T1, T2>(T1 objectSerialization) 
+                where T1 : class 
+                where T2 : class
+        {
+            using (var stringWriter = new ExtentedStringWriter(System.Text.Encoding.UTF8))
+            {
+                var serializer = new XmlSerializer(objectSerialization.GetType(), new Type[] { typeof(T1), typeof(T2) });
+
+                serializer.Serialize(stringWriter, objectSerialization);
+
                 return stringWriter.ToString();
             }
         }

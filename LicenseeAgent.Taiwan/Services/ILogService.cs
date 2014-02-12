@@ -23,7 +23,7 @@ namespace LicenseeAgent.Taiwan.Services
         void WriteLog(ICriteria criteria);
 
         /// <summary>
-        /// Get log informations.
+        /// Get list log information.
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         /// <returns>List log information.</returns>

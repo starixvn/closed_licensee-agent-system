@@ -1,8 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LogContentEntity.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// ----------------------------------------------------------------------
+// <copyright file="LogContentEntity.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//
+// ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Entities
 {
@@ -16,7 +17,7 @@ namespace LicenseeAgent.Taiwan.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [XmlRootAttribute("root", IsNullable = false)]
+    [XmlRootAttribute("Root", IsNullable = false)]
     public class LogContentEntity
     {
         [XmlElement(ElementName = "Url")]

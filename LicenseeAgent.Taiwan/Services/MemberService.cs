@@ -137,18 +137,25 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 LicenseeId = action.LicenseeId,
                 UserId = action.UserId,
-                AgentId = action.LASAgentId,
-                MemberId = action.IBCCustId,
-                Status = (int)LogType.BeforeCall,
+                MemberStatus = LogBinder.GetMembersContent(ServiceExtension.GetLogInformations(action.IBCCustId, action.LASAgentId)),
                 Doing = LogBinder.GetActionInformation<UpdateMemberStatusAction>(action)
             };
-            var logInformations = _logService.GetLogInformations(criteria);
 
+            var logInformations = _logService.GetLogInformations(criteria);
             var memberStatusResult = ServiceWrapper.GetResponseData<MemberStatusResult>(action);
 
-            criteria.LogId = criteria.LogIdReturn;
-            criteria.Status = memberStatusResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            if (ServiceExtension.IsUpdateMultipleStatus(action.IBCCustId))
+            {
+                ServiceExtension.UpdateLogInformations(logInformations, memberStatusResult);
+            }
+            else
+            {
+                logInformations.FirstOrDefault().Status = memberStatusResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
+            }
+
             criteria.ErrMsg = memberStatusResult.ErrMsg;
+            criteria.MemberStatus = LogBinder.GetMembersContent(logInformations);
+
             _logService.WriteLog(criteria);
 
             return memberStatusResult;

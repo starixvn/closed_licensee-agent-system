@@ -22,19 +22,12 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public int UserId { get; set; }
 
-        public string AgentId { get; set; }
-
-        public string MemberId { get; set; }
+        [SpParam(SqlParamName = "strXML")]
+        public string MemberStatus { get; set; }
 
         public string Doing { get; set; }
 
         public string ErrMsg { get; set; }
-
-        public short Status { get; set; }
-
-        public long LogId { get; set; }
-
-        public long LogIdReturn { get; set; }
 
         public override string GetSettingKey()
         {

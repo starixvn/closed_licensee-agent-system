@@ -28,5 +28,7 @@ namespace LicenseeAgent.Taiwan
         public const string HttpError = "Server error (HTTP {0}: {1}).";
 
         public const int HttpErrorCode = 404;
+
+        public const string StatusSuccess = "Success";
     }
 }

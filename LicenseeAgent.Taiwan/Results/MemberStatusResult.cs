@@ -14,6 +14,7 @@ namespace LicenseeAgent.Taiwan.Results
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [DataContract]
     public class MemberStatusResult : ResponseResult
     {
         public MemberStatusResult(int errorCode, string errorMessage)

@@ -34,9 +34,10 @@
             $(document).click(function (e) {
                 if ($().tooltip) {
                     $('.tooltip').prev().each(function (index, element) {
-                        if (element != e.target) {
-                            $(element).tooltip('hide');
-                        }
+                        if (element == e.target) return;
+                        if ($(e.target).is('button')) return;
+                        if ($(e.target).attr('title')) return;
+                        $(element).tooltip('hide');
                     });
                 }
             });

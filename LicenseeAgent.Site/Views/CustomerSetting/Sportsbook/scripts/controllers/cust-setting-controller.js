@@ -136,7 +136,6 @@
         }
 
         $scope.updateCustomer = function ($event) {
-            $event.stopPropagation();
             $('.messages').hide();
             $scope.Messages = null;
 

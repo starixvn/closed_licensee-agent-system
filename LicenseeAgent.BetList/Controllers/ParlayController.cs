@@ -20,7 +20,10 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
     using Web.Controllers;
@@ -30,11 +33,15 @@ namespace LicenseeAgent.BetList.Controllers
     /// </summary>
     public class ParlayController : BetListBase, IBetListBase
     {
-        private IBetListService _betlistService;
+        private readonly IBetListService _betlistService;
+        private readonly IBelongingCheckingService _belongingCheckingService;
 
-        public ParlayController(IBetListService betlistService)
+        public ParlayController(
+            IBetListService betlistService,
+            IBelongingCheckingService belongingCheckingService)
         {
             _betlistService = betlistService;
+            _belongingCheckingService = belongingCheckingService;
         }
 
         [HttpGet]
@@ -80,9 +87,17 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="transId">Transaction ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        [DownLineTransaction]
         public ActionResult MixParlayDetails(long transId)
         {
+            var transactionBelongingChecking = new TransactionBelongingChecking()
+            {
+                TransactionId = transId
+            };
+            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var agentId = CurrentSession.AgentInfo.AgentId;
             var criteria = new TotalBetsMixParlayDetailCriteria { AgentId = agentId, TransId = transId };
             var ticketResult = _betlistService.GetTotalBetsMixParlayDetail(criteria);
@@ -98,7 +113,6 @@ namespace LicenseeAgent.BetList.Controllers
         /// String content.
         /// </returns>
         [HttpGet]
-        [DownLineMember]
         public ActionResult SystemParlayDetails(long refNo)
         {
             var agentId = CurrentSession.AgentInfo.AgentId;
@@ -122,9 +136,17 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        [DownLineTransaction]
         public ActionResult ParlayDetails(TotalBetsParlayDetailCriteria criteria)
         {
+            var transactionBelongingChecking = new TransactionBelongingChecking()
+            {
+                TransactionId = criteria.TransId
+            };
+            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetParlayDetail(criteria);
             var viewModel = new BetListDetailsViewModel();

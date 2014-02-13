@@ -70,6 +70,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
+    <Compile Include="Entities\FormType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />

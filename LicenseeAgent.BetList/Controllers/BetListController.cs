@@ -22,11 +22,14 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
     using Web.Controllers;
-
+    
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -34,13 +37,18 @@ namespace LicenseeAgent.BetList.Controllers
     {
         private const string BetListCustomerInfo = "BetListCustomerInfo";
         private const int CacheDuration = 43200;
-        private IBetListService _betlistService;
-        private ICoreService _coreService;
+        private readonly IBetListService _betlistService;
+        private readonly ICoreService _coreService;
+        private readonly IBelongingCheckingService _belongingCheckingService;
 
-        public BetListController(IBetListService betlistService, ICoreService coreService)
+        public BetListController(
+            IBetListService betlistService, 
+            ICoreService coreService,
+            IBelongingCheckingService belongingCheckingService)
         {
             _betlistService = betlistService;
             _coreService = coreService;
+            _belongingCheckingService = belongingCheckingService;
         }
 
         /// <summary>
@@ -108,9 +116,17 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="transId">Transaction ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        [DownLineTransaction]
         public ActionResult MixParlayDetails(long transId)
         {
+            var transactionBelongingChecking = new TransactionBelongingChecking()
+            {
+                TransactionId = transId
+            };
+            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var agentId = CurrentSession.AgentInfo.AgentId;
             var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
             var ticketResult = _betlistService.GetMixParlayDetails(criteria);
@@ -125,9 +141,17 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="custId">Customer ID.</param>
         /// <returns>String content.</returns>
         [HttpGet]
-        [DownLineMember]
         public ActionResult SystemParlayResult(long refNo, int custId)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = custId
+            };
+            if (!_belongingCheckingService.IsDownLineMember(belongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var agentId = CurrentSession.AgentInfo.AgentId;
             var balanceUp = _coreService.GetBalanceUpDay();
 
@@ -152,9 +176,17 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        [DownLineTransaction]
         public ActionResult Details(BetListDetailsCriteria criteria)
         {
+            var transactionBelongingChecking = new TransactionBelongingChecking()
+            {
+                TransactionId = criteria.TransId
+            };
+            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
             var viewModel = new BetListDetailsViewModel();

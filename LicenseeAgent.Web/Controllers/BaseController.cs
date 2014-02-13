@@ -279,6 +279,20 @@ namespace LicenseeAgent.Web.Controllers
             };
         }
 
+        protected ActionResult RedirectToAccessDeniedPage()
+        {
+            return Redirect(AppURLs.URLs.AccessDenied);
+        }
+
+        protected JsonResult RedirectToAccessDeniedJson()
+        {
+            return Json(new
+            {
+                ErrCode = Result.FailureValue,
+                Messages = Las.AccessDeniedMsg
+            });
+        }
+
         /// <summary>
         /// Get Error message.
         /// </summary>

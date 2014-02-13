@@ -7,7 +7,7 @@
 //   <change who="Ricky.Nguyen" date="2013.10.30">Created</change>
 // </history>
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.Core.Entities
 {
     /// <summary>
     /// TODO: Update summary.

@@ -70,6 +70,9 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\TransactionBelongingChecking.cs" />
+    <Compile Include="Entities\CustomerBelongingCheckingBase.cs" />
+    <Compile Include="Entities\EditingCustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
@@ -82,6 +85,8 @@
     <Compile Include="Filters\DirectDownLineMemberAttribute.cs" />
     <Compile Include="Filters\DownLineAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
+    <Compile Include="Services\BelongingCheckingService.cs" />
+    <Compile Include="Services\IBelongingCheckingService.cs" />
     <Compile Include="SessionExtension.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Mvc\RequestExtensions.cs" />

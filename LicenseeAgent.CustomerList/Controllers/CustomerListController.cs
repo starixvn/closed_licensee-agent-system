@@ -25,6 +25,7 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
@@ -33,16 +34,20 @@ namespace LicenseeAgent.CustomerList.Controllers
     public class CustomerListController : BaseController
     {
         private readonly ICustomerService _customerService;
-
         private readonly IIpInformationService _ipService;
-
         private readonly IMemberService _memberService;
+        private readonly IBelongingCheckingService _belongingCheckingService;
 
-        public CustomerListController(ICustomerService agentService, IIpInformationService ipService, IMemberService memberService)
+        public CustomerListController(
+            ICustomerService agentService,
+            IIpInformationService ipService,
+            IMemberService memberService,
+            IBelongingCheckingService belongingCheckingService)
         {
             _customerService = agentService;
             _ipService = ipService;
             _memberService = memberService;
+            _belongingCheckingService = belongingCheckingService;
         }
 
         /// <summary>
@@ -273,9 +278,17 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// <param name="model">Agent status view model.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        [DirectDownLineAgent]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = model.AgentId
+            };
+            if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedJson();
+            }
+
             var criteria = new UpdateAgentAccStatusCriteria
             {
                 Updater = CurrentSession.LoginUserId,
@@ -315,9 +328,17 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// <param name="model">Member status view model.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        [DirectDownLineMember]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = model.MemberId
+            };
+            if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedJson();
+            }
+
             if (model.Status == (int)AccountStatus.Open)
             {
                 var criteria = new CheckMemberUplineStatusForUpdateCriteria
@@ -539,10 +560,18 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// <param name="memberId">Member Id.</param>
         /// <param name="username">Username member.</param>
         /// <returns>Action result.</returns>
-        [DirectDownLineMember]
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = memberId
+            };
+            if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
+
             var memberInfo = new CustomerEntity { CustId = memberId };
 
             _memberService.GetMemberInformation<CustomerEntity>(
@@ -572,12 +601,20 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// </summary>
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
-        [DirectDownLineMember]
         [HttpPost]
         public ActionResult EditInfoMember(EditInfoViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.CustId
+                };
+                if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+                {
+                    return this.RedirectToAccessDeniedPage();
+                }
+
                 // Call API to update member password
                 var serviceResult = _memberService.UpdateMemberInfo(new UpdateMemberInfoAction
                 {
@@ -610,10 +647,18 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// </summary>
         /// <param name="agentId">Agent Id information.</param>
         /// <returns>Action result.</returns>
-        [DirectDownLineAgent]
         [HttpGet]
         public ActionResult EditInfoAgent(int agentId)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = agentId
+            };
+            if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
+
             var agentInfo = _customerService.GetAgentInfo(new AgentInfoCriteria
             {
                 AgentId = agentId,
@@ -641,12 +686,20 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// </summary>
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
-        [DirectDownLineAgent]
         [HttpPost]
         public ActionResult EditInfoAgent(EditInfoViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.CustId
+                };
+                if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+                {
+                    return this.RedirectToAccessDeniedPage();
+                }
+
                 var criteria = new EditinfoAgentCriteria
                 {
                     AgentId = model.CustId,

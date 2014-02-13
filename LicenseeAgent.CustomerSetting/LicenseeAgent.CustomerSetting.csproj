@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -89,7 +90,6 @@
     <Compile Include="Entities\Sportsbook\CommissionItem.cs" />
     <Compile Include="Entities\Sportsbook\CommissionSetting.cs" />
     <Compile Include="Entities\Sportsbook\CustomerInfo.cs" />
-    <Compile Include="Entities\Sportsbook\FormType.cs" />
     <Compile Include="Entities\Sportsbook\MemberInfo.cs" />
     <Compile Include="Entities\Sportsbook\PositionTaking.cs" />
     <Compile Include="Entities\Sportsbook\PositionTakingGroup.cs" />

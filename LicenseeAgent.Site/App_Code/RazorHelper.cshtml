@@ -31,7 +31,7 @@
 }
 @helper FormatNegative(decimal value)
     {
-        var className = value < 0 ? "color-r" : string.Empty;
+        var className = value < 0 ? "number-negative" : string.Empty;
     <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(value)</span>
 }
 @helper RenderPopover(int memberId, IList<UplineEntity> uplines, int numberOfLevel)

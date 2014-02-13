@@ -247,10 +247,10 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">The bundles.</param>
         private static void RegisterAccountPage(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/account").Include(
-                "~/Views/Account/Resources/account.less"));
+            bundles.Add(new LessBundle("~/css/home-page").Include(
+                "~/Views/Account/Resources/home-page.less"));
 
-            bundles.Add(new ScriptBundle("~/js/account").Include(
+            bundles.Add(new ScriptBundle("~/js/home-page").Include(
                 "~/Views/Account/Resources/home-page.js"));
         }
 

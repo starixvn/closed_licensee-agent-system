@@ -296,7 +296,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
                     ? FormType.Edit
-                    : FormType.ReadOnly,
+                    : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
                 Ip = Request.GetClientIp()
@@ -333,18 +333,34 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
+            if (CurrentSession.AgentInfo.IsLevel0)
             {
-                settingContext.FormId = FormType.Edit;
+                if (model.AgentId.HasValue && model.AgentLevel.HasValue)
+                {
+                    if (CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value))
+                    {
+                        settingContext.FormId = FormType.Edit;
+                    }
+                    else
+                    {
+                        settingContext.FormId = FormType.EditIndirectMember;
+                        settingContext.CustId = model.AgentId.Value;
+                    }
+                }
+                else
+                {
+                    settingContext.FormId = FormType.Edit;
+                }
             }
             else
             {
-                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
-                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                if (CurrentSession.AgentInfo.IsLastLevel)
+                {
+                    settingContext.FormId = FormType.Edit;
+                }
+                else
                 {
                     settingContext.FormId = FormType.EditIndirectMember;
-                    settingContext.CustId = agentId;
                 }
             }
 

@@ -1,0 +1,125 @@
+﻿#mainContainer
+{
+    margin: 15px;
+}
+
+.box-row
+{
+    color: #3E3E3E;
+    font-size: 11px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    #balance-info-container
+    {
+        min-width: 200px;
+        width: 40%;
+        padding-right: 30px;
+        border-right: 1px solid #dddddd;
+    }
+
+    #your-statistics-container
+    {
+        min-width: 300px;
+        width: 50%;
+        padding-left: 30px;
+    }
+    #announcement-container
+    {
+        width: 90%;
+    }
+    
+    .box-cell
+    {
+        float: left;
+
+        .legend
+        {
+            border-bottom: 1px solid #D93B3C;
+            margin-bottom: 2px;
+        }
+
+        table
+        {
+            width: 100%;
+            tr
+            {
+                td
+                {
+                    text-align: right;
+                    padding: 5px 0;
+                    font-weight: bold;
+                    border-top: 1px solid #dddddd;
+                }
+                td:first-child
+                {
+                    text-align: left;
+                    font-weight: normal;
+                }
+            }
+            tr:first-child
+            {
+                td
+                {
+                    border-top-width: 0;
+                }
+            }
+        }
+        
+        .dropdown-button
+        {		 
+             width: 12px;
+             height: 12px;
+             display: inline-block;
+             cursor: pointer;
+        }
+
+        .dropdown-popup
+        {
+            position: absolute;
+            z-index: 999;
+            border: 1px solid #cccccc;
+            border-radius: 2px;
+            background-color: #ffffff;
+            box-shadow: 1px 4px 6px -3px #888888;
+            padding: 3px;
+            display: none;
+
+            table
+            {
+                min-width: 300px;
+                th, td
+                {
+                    border-right: 1px solid #fff;
+                    border-bottom: 1px solid #fff;
+                    padding: 2px;
+                }
+                th
+                {
+                    background-color: #8A8A8A;
+                    text-align: center;
+                    font-weight: bold;
+                    color: #fff;
+                }
+                td
+                {
+                    background-color: #edf0f0;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .news
+        {    
+            .date-title
+            {
+                color: #AC3031;
+            }
+                   
+            .news-details
+            {
+                font-size: 11px;
+            }
+        }
+    }
+}

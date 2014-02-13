@@ -53,7 +53,7 @@
                         <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
                 </div>
             </div>
-            @if (Model.FormId != FormType.ReadOnly)
+            @if (Model.FormId != FormType.ViewIndirectAgent)
             {
                 <betting-limit-simple-mode model-data="model.firstRecord"></betting-limit-simple-mode>
             }
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div ng-repeat="betSetting in model.bettingLimitsModel">
-                @if (Model.FormId != FormType.ReadOnly)
+                @if (Model.FormId != FormType.ViewIndirectAgent)
                 {
                     <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
                         current-index="$index"></betting-limit-advanced-mode>

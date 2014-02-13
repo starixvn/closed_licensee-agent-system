@@ -2,28 +2,45 @@
     Layout = null;
 }
 @using LicenseeAgent.Core.Utility
-@model IEnumerable<LicenseeAgent.Account.Entities.NewMemberOfMonthEntity>
-<table style="width:400px;">
-    <tr  class="header">
-        <td>@Las.Username</td>
-        <td>@Las.GivenCredit</td>
-        <td>@Las.CreatedDate</td>
-    </tr>
-    @if (Model != null && Model.Count() > 0)
-    {
-        foreach (var member in Model)
+@using LicenseeAgent.Account.Entities
+@model IEnumerable<NewMemberOfMonthEntity>
+<table>
+    <colgroup>
+        <col />
+        <col />
+        <col width="130" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>@Las.Username
+            </th>
+            <th>@Las.GivenCredit
+            </th>
+            <th>@Las.CreatedDate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count() > 0)
         {
-    <tr>
-        <td>@member.Username</td>
-        <td class="text-right">@Formatter.FormatDecimal(member.Credit)</td>
-        <td class="text-center">@Formatter.FormatDateTime(member.CreatedDate)</td>
-    </tr>
+            foreach (var member in Model)
+            {
+            <tr>
+                <td>@member.Username
+                </td>
+                <td class="text-right">@Formatter.FormatDecimal(member.Credit)
+                </td>
+                <td class="text-center">@Formatter.FormatDateTime(member.CreatedDate)
+                </td>
+            </tr>
+            }
         }
-    }
-    else
-    {
-    <tr>
-        <td colspan="3" class="text-center">@Las.NoInfo</td>        
-    </tr>
-    }    
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">@Las.NoInfo
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

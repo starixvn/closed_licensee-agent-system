@@ -939,8 +939,8 @@
     <value>Winning Amount</value>
     <comment>not</comment>
   </data>
-  <data name="YourStatisticTitle" xml:space="preserve">
-    <value>YOUR STATISTICS</value>
+  <data name="YourStatistics" xml:space="preserve">
+    <value>Your Statistics</value>
     <comment>not</comment>
   </data>
   <data name="CreditBalance" xml:space="preserve">
@@ -1000,5 +1000,14 @@
   </data>
   <data name="AgentShare" xml:space="preserve">
     <value>Agent Share</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
+    <value>Today Win Loss</value>
+  </data>
+  <data name="YesterdayWinLoss" xml:space="preserve">
+    <value>Yesterday Win Loss</value>
   </data>
 </root>

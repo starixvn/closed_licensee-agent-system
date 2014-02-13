@@ -1,43 +1,45 @@
 ﻿@using LicenseeAgent.Core.Utility
-@model HomePageViewModel
-<div class="box-cell w-40">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>@Las.YourStatisticTitle</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="title-border">@Las.AgentOutstanding</td>
-                <td class="text-right title-border">@Formatter.FormatDecimal(Model.StatisticInfo.OutStanding)</td>
-            </tr>
-            <tr>
-                <td>@Las.TotalOutstanding</td>
-                <td class="text-right">@Formatter.FormatDecimal(Model.StatisticInfo.TotalOutStanding)</td>
-            </tr>            
-            <tr>
-                <td>@Las.TopWinningMembers
-                    <div class="dropdown-button expand" id="top-winning"></div>
-                    <div class="dropdown-popup" id="top-winning-content" style="display: none;"></div>
-                </td>
-                <td class="text-right"></td>
-            </tr>
-            <tr>
-                <td>@Las.TopTurnoverMembers
-                    <div class="dropdown-button expand" id="top-turnover"></div>
-                    <div class="dropdown-popup" id="top-turnover-content" style="display: none;"></div>
-                </td>
-                <td class="text-right"></td>
-            </tr>
-            <tr>
-                <td>@Las.NewMemberOfMonth: <span class="new-members">@Formatter.FormatInt(Model.StatisticInfo.NumberNewMembers)</span>
-                    <div class="dropdown-button expand" id="new-members"></div>
-                    <div class="dropdown-popup" id="new-members-content" style="display: none;"></div>
-                </td>
-                <td class="text-right"></td>
-            </tr>                                        
-        </tbody>
-    </table>
-</div>
+@using LicenseeAgent.Account.Entities
+@model StatisticEntity
+<div class="legend">@Las.YourStatistics</div>
+<table>
+    <tbody>
+        <tr>
+            <td>@Las.AgentOutstanding
+            </td>
+            <td>@Formatter.FormatDecimal(Model.OutStanding)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.TotalOutstanding
+            </td>
+            <td>@Formatter.FormatDecimal(Model.TotalOutStanding)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">@Las.TopWinningMembers
+                <i class="dropdown-button icon-account-expand" href="@Url.Action("TopWinning", "Account")">
+                </i>
+                <div class="dropdown-popup">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">@Las.TopTurnoverMembers
+                <i class="dropdown-button icon-account-expand" href="@Url.Action("TopTurnover", "Account")">
+                </i>
+                <div class="dropdown-popup">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Las.NewMemberOfMonth: <span class="text-bold">@Formatter.FormatInt(Model.NumberNewMembers)</span>
+                <i class="dropdown-button icon-account-expand" href="@Url.Action("NewMembers", "Account")">
+                </i>
+                <div class="dropdown-popup">
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -30,7 +30,7 @@
                 <div ng-repeat="pt in ptGroup.PositionTakings" class="pt-group" ng-show="ptGroup.Expand"
                     ng-switch="settingContext.TargetRoleId">
                     <licensee-edit-agent-one-pt-advanced-mode ng-switch-when="3"></licensee-edit-agent-one-pt-advanced-mode>
-                    @if (Model.FormId != FormType.ReadOnly)
+                    @if (Model.FormId != FormType.ViewIndirectAgent)
                     {
                         <agent-edit-agent-pt-advanced-mode ng-switch-when="2"></agent-edit-agent-pt-advanced-mode>
                     }
@@ -59,7 +59,7 @@
             @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "member-position-taking-info-button")
         }
         <licensee-edit-agent-one-pt-simple-mode ng-switch-when="3" pt-simple="ptModel.ptFirstData"></licensee-edit-agent-one-pt-simple-mode>
-        @if (Model.FormId != FormType.ReadOnly)
+        @if (Model.FormId != FormType.ViewIndirectAgent)
         {
             <agent-edit-agent-pt-simple-mode ng-switch-when="2" pt-simple="ptModel.ptFirstData"></agent-edit-agent-pt-simple-mode>
         }

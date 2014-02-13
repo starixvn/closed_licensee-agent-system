@@ -10,7 +10,7 @@ fanex.customerSetting = angular.module('fanex.customerSetting', ['fanex.angular'
 fanex.customerSetting.FormType = {
     Add: 0,
     Edit: 1,
-    ReadOnly: 2,
+    ViewIndirectAgent: 2,
     EditIndirectMember: 3,
     EditMultiple: 4
 };

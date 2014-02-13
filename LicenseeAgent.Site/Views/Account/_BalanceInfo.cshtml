@@ -1,66 +1,78 @@
 ﻿@using LicenseeAgent.Core.Utility
-@model HomePageViewModel
-<div class="box-cell w-40 border-r">
-    <table class="table">
-        <thead >
-            <tr>
-                <th>@Las.BalanceInfo</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="title-border">@Las.Agent</td>
-                <td class="text-right title-border">@Model.BalanceInfo.AgentName</td>
-            </tr>
-            <tr>
-                <td>@Las.Currency</td>
-                <td class="text-right">@Model.BalanceInfo.CurrencyName</td>
-            </tr>
-            <tr>
-                <td>@Las.TotalCash</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TotalCash)</td>
-            </tr>
-            <tr>
-                <td>@Las.YesterdayCash</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayCash)</td>
-            </tr>
-            <tr>
-                <td>@Las.TotalBalance</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TotalBalance)</td>
-            </tr>
-            <tr>
-                <td>@Las.YesterdayBalance</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayBalance)</td>
-            </tr>
-            <tr>
-                <td>@Las.Today @Las.WinLoss (@Model.BalanceInfo.Today.ToString("MM/dd/yyyy"))</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.TodayWinloss)</td>
-            </tr>
-            <tr>
-                <td>@Las.Yesterday @Las.WinLoss (@Model.BalanceInfo.Yesterday.ToString("MM/dd/yyyy"))</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.YesterdayWinloss)</td>
-            </tr>
-            <tr>
-                <td>@Las.GivenCredit</td>
-                <td class="text-right">
-                    @{
-                        if(SessionManager.CurrentSession.IsAdmin && Model.BalanceInfo.GivenCredit == 0)
-                        {
-                            <span>@Las.Unlimitted</span>
-                        }
-                        else
-                        {
-                            <span>@RazorHelper.FormatNegative(Model.BalanceInfo.GivenCredit)</span>
-                        }
-                    }                    
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.UsedCredit</td>
-                <td class="text-right">@RazorHelper.FormatNegative(Model.BalanceInfo.UsedCredit)</td>
-            </tr>
-                                       
-        </tbody>
-    </table>
-</div>
+@using LicenseeAgent.Account.Entities
+@model BalanceInfoEntity
+<div class="legend">@Las.BalanceInfo</div>
+<table>
+    <tbody>
+        <tr>
+            <td>@Las.Agent
+            </td>
+            <td>@Model.AgentName
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.Currency
+            </td>
+            <td>@Model.CurrencyName
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.TotalCash
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.TotalCash)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayCash
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayCash)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.TotalBalance
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.TotalBalance)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayBalance
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayBalance)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.TodayWinLoss (@Model.Today.ToString("MM/dd/yyyy"))
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.TodayWinloss)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayWinLoss (@Model.Yesterday.ToString("MM/dd/yyyy"))
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayWinloss)
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.GivenCredit
+            </td>
+            <td>
+                @{
+                    if (SessionManager.CurrentSession.IsAdmin && Model.GivenCredit == 0)
+                    {
+                    <span>@Las.Unlimitted</span>
+                    }
+                    else
+                    {
+                    <span>@RazorHelper.FormatNegative(Model.GivenCredit)</span>
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>@Las.UsedCredit
+            </td>
+            <td>@RazorHelper.FormatNegative(Model.UsedCredit)
+            </td>
+        </tr>
+    </tbody>
+</table>

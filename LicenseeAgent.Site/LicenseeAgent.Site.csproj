@@ -342,9 +342,6 @@
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\Account\Resources\home-page.js" />
-    <Content Include="Views\Account\Resources\Images\bg_header02.jpg" />
-    <Content Include="Views\Account\Resources\Images\collapse.png" />
-    <Content Include="Views\Account\Resources\Images\expand.png" />
     <Content Include="Views\BetList\Resources\betlist.manager.js" />
     <Content Include="Views\BetList\Resources\betlist.core.js" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
@@ -596,7 +593,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
-    <Folder Include="Views\Account\Shared\" />
     <Folder Include="Views\CustomerSetting\Sportsbook\scripts\filters\" />
   </ItemGroup>
   <ItemGroup>
@@ -643,7 +639,7 @@
     <Content Include="Views\CustomerSetting\Sportsbook\BetSetting.cshtml" />
     <Content Include="Views\CustomerSetting\Sportsbook\CustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\Sportsbook\styles\fanex.sportsbookSetting.less" />
-    <Content Include="Views\Account\Resources\account.less" />
+    <Content Include="Views\Account\Resources\home-page.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentCommissionSetting.cshtml" />

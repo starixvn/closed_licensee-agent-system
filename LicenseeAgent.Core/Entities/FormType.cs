@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Entities
 {
@@ -15,19 +12,19 @@ namespace LicenseeAgent.Core.Entities
     public enum FormType : int
     {
         /// <summary>
-        /// Add new form (agent or member).
+        /// Add direct agent or member.
         /// </summary>
         Add = 0,
 
         /// <summary>
-        /// Edit directly form (agent or member).
+        /// Edit direct agent or member.
         /// </summary>
         Edit = 1,
 
         /// <summary>
-        /// ReadOnly form.
+        /// View indirect agent.
         /// </summary>
-        ReadOnly = 2,
+        ViewIndirectAgent = 2,
 
         /// <summary>
         /// Edit indirect member.

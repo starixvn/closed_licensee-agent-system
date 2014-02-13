@@ -1,26 +1,36 @@
 ﻿@{
     Layout = null;
 }
-@model IEnumerable<LicenseeAgent.Account.Entities.TopTurnoverEntity>
-<table style="width:300px;">
-    <tr  class="header">
-        <td>@Las.Username</td>
-        <td>@Las.Turnover</td>
-    </tr>
-    @if (Model != null && Model.Count() > 0)
-    {
-        foreach (var member in Model)
+@using LicenseeAgent.Account.Entities
+@model IEnumerable<TopTurnoverEntity>
+<table>
+    <thead>
+        <tr>
+            <th>@Las.Username
+            </th>
+            <th>@Las.Turnover
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count() > 0)
         {
-    <tr>
-        <td>@member.Username</td>
-        <td class="text-right">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(member.Turnover)</td>
-    </tr>
+            foreach (var member in Model)
+            {
+            <tr>
+                <td>@member.Username
+                </td>
+                <td class="text-right">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(member.Turnover)
+                </td>
+            </tr>
+            }
         }
-    }
-    else
-    {        
-    <tr>
-        <td colspan="2" class="text-center">@Las.NoInfo</td>
-    </tr>
-    }    
+        else
+        {
+            <tr>
+                <td colspan="2" class="text-center">@Las.NoInfo
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

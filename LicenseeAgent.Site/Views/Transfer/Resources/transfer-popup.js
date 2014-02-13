@@ -15,7 +15,8 @@
                 vMin: Number.MinInt,
                 vMax: Number.MaxInt,
                 lZero: 'deny',
-                wEmpty: 'zero'
+                wEmpty: 'zero',
+                aPad: false
             })
             .on('keyup', function () {
                 TRANSFER_POPUP.validateAmount(this);

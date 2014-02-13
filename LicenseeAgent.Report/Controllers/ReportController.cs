@@ -276,6 +276,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
         {
+            var test = Fanex.Common.Cryptography.DeCryptConnectionString("Data Source=10.18.200.231;Initial Catalog=LASDB;integrated security=false; User ID=bodbLicenseeNet;Password=Uqeq4MmLwveHZzqok3kHGf7fqd4SEfMq0vtQ5l2TQ50==");
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb) 

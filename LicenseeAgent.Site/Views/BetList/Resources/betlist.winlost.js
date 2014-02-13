@@ -23,15 +23,12 @@ var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 var BETLIST = function ($) {
     return {
         init: function () {
-
-            $('.selectpicker').selectpicker();
-
-            BETLIST.renderDatePicker();
-
-            // search
-            $('#search-form').submit(function (e) {
-                BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
-                e.preventDefault();
+            // breadcrum
+            $('.breadcrumb a').click(function () {
+                var agentId = $(this).data('agent-id');
+                var agentLevel = $(this).data('agent-level');
+                var agentName = $(this).text();
+                BETLIST.ViewDownline(agentId, agentLevel, agentName);
             });
 
             // get bet list
@@ -45,19 +42,12 @@ var BETLIST = function ($) {
             }
 
             var urlGetBetList = $('#search-form').attr('action');
-            var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
-            var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
-            var params = {
-                CustId: custId,
-                FromDate: fromDate,
-                ToDate: toDate,
-                StatusIDs: $("#Status").val() != 255 ? $.trim($("#Status").val()) : 'All'
-            };
+            var submitOptions = $('form').serializeObject();
 
             $.ajax({
                 url: urlGetBetList,
                 type: 'post',
-                data: params,
+                data: jQuery.param(submitOptions),
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -68,25 +58,6 @@ var BETLIST = function ($) {
                     CORE.unblockUI();
                 }
             });
-        },
-        renderDatePicker: function () {
-            var lastdate = '';
-            lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
-            $('#month-picker-control').monPickr({
-                plugInId: '#month-picker-control',
-                today: lastdate,
-                maxDate: _today,
-                minDate: _minDate,
-                showDateRange: true,
-                fromDayId: 'spFrom',
-                toDayId: 'spTo',
-                fromDayLabel: 'From',
-                toDayLabel: 'To',
-                log: function (msg) {
-                    console.warn(msg);
-                }
-            });
-            $('#month-picker-control').monPickr("setFromDay", lastDay);
         },
         showBetListDetails: function (transId, status) {
             fanex.betlist.core.showDetails(transId, status);
@@ -126,6 +97,20 @@ var BETLIST = function ($) {
         },
         showSystemParlayResult: function (refNo, custId, betTeam) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
+        },
+        ViewDownline: function (agentId, agentLevel, username) {
+            //Reset bread crumb value
+            var currentBreadCrumb = $("#BreadCrumb").val();
+            var breadCrumb = agentId + "," + agentLevel + "," + username;
+            var newBreadCrumb = "";
+            if (currentBreadCrumb.indexOf(breadCrumb) >= 0)
+                newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
+            else
+                newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
+            $("#BreadCrumb").val(newBreadCrumb);
+            
+            location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val()
+                                            + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         }
     }
 } (jQuery);

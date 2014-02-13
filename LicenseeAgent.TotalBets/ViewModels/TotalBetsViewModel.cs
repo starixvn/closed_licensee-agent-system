@@ -15,10 +15,8 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// </summary>
     public class TotalBetsViewModel
     {
-        [Required]
         public string LeagueList { get; set; }
 
-        [Required]
         public string MatchList { get; set; }
     }
 }

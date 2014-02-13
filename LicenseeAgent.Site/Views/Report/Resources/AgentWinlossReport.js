@@ -73,8 +73,11 @@
             location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val()
                                             + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         },
-        ViewBetList: function () {
-            alert("Betlist Is here");
+        ViewBetList: function (custId, agentLevel, username) {
+            var currentBreadCrumb = $("#BreadCrumb").val();
+            var breadCrumb = custId + "," + agentLevel + "," + username;
+            $("#BreadCrumb").val(currentBreadCrumb + ';' + breadCrumb);
+            location.href = CORE.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val());
         }
     }
 } (jQuery);

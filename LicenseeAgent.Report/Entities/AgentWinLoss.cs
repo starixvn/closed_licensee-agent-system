@@ -22,6 +22,8 @@ namespace LicenseeAgent.Report.Entities
 
         public int AgentLevel { get; set; }
 
+        public int CustId { get; set; }
+
         public long BetCount { get; set; }
 
         public decimal Turnover { get; set; }

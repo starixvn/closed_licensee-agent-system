@@ -21,18 +21,20 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div>
-    @using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
-        new { @class = "form-inline form-filter ", id = "search-form" }))
-    {
-        @Html.HiddenFor(m => m.CustId)
-        @Html.HiddenFor(m => m.FromDate)
-        @Html.HiddenFor(m => m.ToDate)
-        <input type="hidden" value="All" id="StatusIDs" />
-    }
-    <div class="gridWrapper">
-        <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
-        </div>
+@using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
+    new { @class = "hide", id = "search-form" }))
+{
+    @Html.HiddenFor(m => m.CustId)
+    @Html.HiddenFor(m => m.FromDate)
+    @Html.HiddenFor(m => m.ToDate)
+    <input type="hidden" value="All" id="StatusIDs" />
+}
+@Html.HiddenFor(m => m.DrawFilter)   
+@Html.HiddenFor(m => m.BreadCrumb)   
+ 
+@RazorHelper.BreadCrumb(Model.BreadCrumb)
+<div class="gridWrapper">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
     </div>
 </div>
 <div id="instruction" class="instruction-content">

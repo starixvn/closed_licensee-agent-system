@@ -20,5 +20,9 @@ namespace LicenseeAgent.BetList.ViewModels
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
+
+        public string BreadCrumb { get; set; }
+
+        public string DrawFilter { get; set; }
     }
 }

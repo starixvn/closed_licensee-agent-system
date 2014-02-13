@@ -34,14 +34,14 @@ namespace LicenseeAgent.BetList.Controllers
     public class ParlayController : BetListBase, IBetListBase
     {
         private readonly IBetListService _betlistService;
-        private readonly IBelongingCheckingService _belongingCheckingService;
+        private readonly IPermissionService _permissionService;
 
         public ParlayController(
             IBetListService betlistService,
-            IBelongingCheckingService belongingCheckingService)
+            IPermissionService permissionService)
         {
             _betlistService = betlistService;
-            _belongingCheckingService = belongingCheckingService;
+            _permissionService = permissionService;
         }
 
         [HttpGet]
@@ -93,7 +93,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = transId
             };
-            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -142,7 +142,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = criteria.TransId
             };
-            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }

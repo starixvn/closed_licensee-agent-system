@@ -85,8 +85,8 @@
     <Compile Include="Filters\DirectDownLineMemberAttribute.cs" />
     <Compile Include="Filters\DownLineAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
-    <Compile Include="Services\BelongingCheckingService.cs" />
-    <Compile Include="Services\IBelongingCheckingService.cs" />
+    <Compile Include="Services\PermissionService.cs" />
+    <Compile Include="Services\IPermissionService.cs" />
     <Compile Include="SessionExtension.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Mvc\RequestExtensions.cs" />

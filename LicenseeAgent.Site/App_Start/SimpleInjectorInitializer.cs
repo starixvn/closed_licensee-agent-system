@@ -70,7 +70,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IMemberService, MemberService>();
             container.Register<ICreditBalanceService, CreditBalanceService>();
             container.Register<IInternalService, InternalService>();
-            container.Register<IBelongingCheckingService, BelongingCheckingService>();
+            container.Register<IPermissionService, PermissionService>();
         }
     }
 }

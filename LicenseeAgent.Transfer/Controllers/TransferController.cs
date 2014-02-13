@@ -20,7 +20,9 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -29,11 +31,16 @@ namespace LicenseeAgent.Transfer.Controllers
     {
         private readonly ITransferService _transferService;
         private readonly IMemberService _memberService;
+        private readonly IPermissionService _permissionService;
 
-        public TransferController(ITransferService transferService, IMemberService memberService)
+        public TransferController(
+            ITransferService transferService, 
+            IMemberService memberService,
+            IPermissionService permissionService)
         {
             _transferService = transferService;
             _memberService = memberService;
+            _permissionService = permissionService;
         }
 
         public ActionResult Index()
@@ -127,6 +134,15 @@ namespace LicenseeAgent.Transfer.Controllers
         [HttpGet]
         public ViewResult Agent(TransferAgentViewModel model)
         {
+            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = model.AgentId
+            };
+            if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             if (model.Amount > 0)
             {
                 model.MinAmount = 0;
@@ -152,6 +168,15 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
+                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.AgentId
+                };
+                if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+                {
+                    this.RedirectToAccessDeniedPage();
+                }
+
                 var criteria = new TransferToAgentCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
@@ -183,6 +208,15 @@ namespace LicenseeAgent.Transfer.Controllers
         [HttpGet]
         public ViewResult Member(TransferMemberViewModel model)
         {
+            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = model.MemberId
+            };
+            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var criteria = new GetMemberDetailCriteria
             {
                 CustId = model.MemberId
@@ -218,6 +252,15 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
+                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.MemberId
+                };
+                if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+                {
+                    this.RedirectToAccessDeniedPage();
+                }
+
                 var criteria = new TransferToMemberCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,

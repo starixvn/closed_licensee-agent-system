@@ -36,18 +36,18 @@ namespace LicenseeAgent.CustomerList.Controllers
         private readonly ICustomerService _customerService;
         private readonly IIpInformationService _ipService;
         private readonly IMemberService _memberService;
-        private readonly IBelongingCheckingService _belongingCheckingService;
+        private readonly IPermissionService _permissionService;
 
         public CustomerListController(
             ICustomerService agentService,
             IIpInformationService ipService,
             IMemberService memberService,
-            IBelongingCheckingService belongingCheckingService)
+            IPermissionService permissionService)
         {
             _customerService = agentService;
             _ipService = ipService;
             _memberService = memberService;
-            _belongingCheckingService = belongingCheckingService;
+            _permissionService = permissionService;
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = model.AgentId
             };
-            if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+            if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedJson();
             }
@@ -334,7 +334,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = model.MemberId
             };
-            if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+            if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedJson();
             }
@@ -457,6 +457,15 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = memberId
+            };
+            if (!_permissionService.IsDownLineMember(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
+
             return View(
                 "~/Views/CustomerList/ResetPassword.cshtml",
                 new ResetPasswordViewModel
@@ -475,6 +484,15 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
+                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.CustId
+                };
+                if (!_permissionService.IsDownLineMember(belongingCheckingBase))
+                {
+                    return this.RedirectToAccessDeniedPage();
+                }
+
                 // Call API to update member password
                 var serviceResult = _memberService.ResetPassword(new ResetPasswordAction
                 {
@@ -507,6 +525,15 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
+            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = agentId
+            };
+            if (!_permissionService.IsDownLineAgent(belongingCheckingBase))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
+
             return View(
                 "~/Views/CustomerList/ResetPassword.cshtml",
                 new ResetPasswordViewModel
@@ -526,6 +553,15 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
+                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = model.CustId
+                };
+                if (!_permissionService.IsDownLineAgent(belongingCheckingBase))
+                {
+                    return this.RedirectToAccessDeniedPage();
+                }
+
                 var criteria = new ResetPasswordCriteria
                 {
                     AgentId = model.CustId,
@@ -567,7 +603,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = memberId
             };
-            if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+            if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedPage();
             }
@@ -610,7 +646,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 {
                     TargetCustId = model.CustId
                 };
-                if (!_belongingCheckingService.CheckForEditingMemberInformation(belongingCheckingBase))
+                if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
                 {
                     return this.RedirectToAccessDeniedPage();
                 }
@@ -654,7 +690,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = agentId
             };
-            if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+            if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedPage();
             }
@@ -695,7 +731,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 {
                     TargetCustId = model.CustId
                 };
-                if (!_belongingCheckingService.CheckForEditingAgentInformation(belongingCheckingBase))
+                if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
                 {
                     return this.RedirectToAccessDeniedPage();
                 }

@@ -39,16 +39,16 @@ namespace LicenseeAgent.BetList.Controllers
         private const int CacheDuration = 43200;
         private readonly IBetListService _betlistService;
         private readonly ICoreService _coreService;
-        private readonly IBelongingCheckingService _belongingCheckingService;
+        private readonly IPermissionService _permissionService;
 
         public BetListController(
             IBetListService betlistService, 
             ICoreService coreService,
-            IBelongingCheckingService belongingCheckingService)
+            IPermissionService permissionService)
         {
             _betlistService = betlistService;
             _coreService = coreService;
-            _belongingCheckingService = belongingCheckingService;
+            _permissionService = permissionService;
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = transId
             };
-            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -147,7 +147,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TargetCustId = custId
             };
-            if (!_belongingCheckingService.IsDownLineMember(belongingCheckingBase))
+            if (!_permissionService.IsDownLineMember(belongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -182,7 +182,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = criteria.TransId
             };
-            if (!_belongingCheckingService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }

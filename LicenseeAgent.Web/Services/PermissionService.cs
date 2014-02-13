@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="BelongingCheckingService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="PermissionService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -17,7 +17,7 @@ namespace LicenseeAgent.Web.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BelongingCheckingService : AuthorizeService, IBelongingCheckingService
+    public class PermissionService : AuthorizeService, IPermissionService
     {
         public bool CheckForEditingCustomerSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging)
         {
@@ -57,6 +57,39 @@ namespace LicenseeAgent.Web.Services
             };
 
             return this.IsDownline(criteria);
+        }
+
+        public bool IsDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        {
+            var criteria = new CheckDownlineBelongCriteria
+            {
+                TargetCustId = (int)belongingCheckingBase.TargetCustId,
+                Type = (int)DownLineRole.Agent
+            };
+
+            return this.IsDownline(criteria);
+        }
+
+        public bool IsDirectDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        {
+            var criteria = new CheckDownlineBelongCriteria
+            {
+                TargetCustId = belongingCheckingBase.TargetCustId,
+                Type = (int)DownLineRole.Agent
+            };
+
+            return this.IsDirectDownline(criteria);
+        }
+
+        public bool IsDirectDownLineMember(CustomerBelongingCheckingBase belongingCheckingBase)
+        {
+            var criteria = new CheckDownlineBelongCriteria
+            {
+                TargetCustId = belongingCheckingBase.TargetCustId,
+                Type = (int)DownLineRole.Member
+            };
+
+            return this.IsDirectDownline(criteria);
         }
 
         public bool IsDownLineTransaction(TransactionBelongingChecking transactionBelongingChecking)

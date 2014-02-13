@@ -20,7 +20,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -29,11 +31,16 @@ namespace LicenseeAgent.CreditBalance.Controllers
     {
         private readonly ICreditBalanceService _creditBalanceService;
         private readonly IMemberService _memberService;
+        private readonly IPermissionService _permissionService;
 
-        public CreditBalanceController(ICreditBalanceService creditBalanceService, IMemberService memberService)
+        public CreditBalanceController(
+            ICreditBalanceService creditBalanceService, 
+            IMemberService memberService,
+            IPermissionService permissionService)
         {
             _creditBalanceService = creditBalanceService;
             _memberService = memberService;
+            _permissionService = permissionService;
         }
 
         public ActionResult Index()
@@ -121,6 +128,15 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpGet]
         public ViewResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
         {
+            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = editAgentCreditViewModel.AgentId
+            };
+            if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             if (SessionManager.CurrentSession.AgentInfo.IsLevel0)
             {
                 var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
@@ -155,6 +171,15 @@ namespace LicenseeAgent.CreditBalance.Controllers
         {
             if (ModelState.IsValid)
             {
+                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                {
+                    TargetCustId = editAgentCreditViewModel.AgentId
+                };
+                if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+                {
+                    this.RedirectToAccessDeniedPage();
+                }
+
                 string settingKey = SessionManager.CurrentSession.AgentInfo.IsLevel0 ? "Las_LicenseeUpdAgentCredit" : "Las_AgentUpdAgentCredit";
 
                 var criteria = new UpdateAgentCreditCriteria(settingKey)
@@ -189,6 +214,15 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpGet]
         public ViewResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
+            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = agentEditMemberCreditViewModel.CustId
+            };
+            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var agentGetMemberRangeInfoCriteria = new AgentGetMemberRangeInfoCriteria
             {
                 CustId = agentEditMemberCreditViewModel.CustId
@@ -211,6 +245,15 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost, ActionName("AgentEditMemberCredit")]
         public ActionResult AgentEditMemberCreditPost(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
+            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            {
+                TargetCustId = agentEditMemberCreditViewModel.CustId
+            };
+            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             if (ModelState.IsValid)
             {
                 var criteria = new AgentUpdateMemberCreditCriteria

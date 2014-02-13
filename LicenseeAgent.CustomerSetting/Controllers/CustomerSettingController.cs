@@ -317,7 +317,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         }
 
         /// <summary>
-        /// Edits the agent.
+        /// Edit the member.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>
@@ -354,14 +354,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
             else
             {
-                if (CurrentSession.AgentInfo.IsLastLevel)
-                {
-                    settingContext.FormId = FormType.Edit;
-                }
-                else
-                {
-                    settingContext.FormId = FormType.EditIndirectMember;
-                }
+                settingContext.FormId = CurrentSession.AgentInfo.IsLastLevel ? FormType.Edit : FormType.EditIndirectMember;
             }
 
             var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()

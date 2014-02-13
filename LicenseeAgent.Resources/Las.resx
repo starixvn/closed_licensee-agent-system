@@ -868,8 +868,8 @@
   <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
-  <data name="CustomerName" xml:space="preserve">
-    <value>Customer Name</value>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
   </data>
   <data name="Parlay" xml:space="preserve">
     <value>Parlay</value>

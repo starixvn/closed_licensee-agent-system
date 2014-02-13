@@ -25,7 +25,7 @@
                             HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", allowTruncate: true
                         },
                         {
-                            HeaderText: "@Las.CustomerName", Width: 125, Name: "CustomerName", HeaderAlign: "center", allowTruncate: true,
+                            HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", allowTruncate: true,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
                             }

@@ -682,15 +682,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer Name.
-        /// </summary>
-        public static string CustomerName {
-            get {
-                return ResourceManager.GetString("CustomerName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -993,6 +984,15 @@ namespace LicenseeAgent.Resources {
         public static string FTOU {
             get {
                 return ResourceManager.GetString("FTOU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Name.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
         

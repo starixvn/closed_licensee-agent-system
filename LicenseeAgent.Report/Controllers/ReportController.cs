@@ -276,20 +276,17 @@ namespace LicenseeAgent.Report.Controllers
         /// <param name="breadCrumb">Bread Crumb.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult AgentWinLoss(int? agentId, int? agentLevel, string breadCrumb)
+        public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
         {
-            var paramAgentId = agentId ?? CurrentSession.AgentInfo.AgentId;
-            var paramAgentLevel = agentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-            ViewBag.PageContext = new PageContext(paramAgentId, paramAgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+            model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
+            model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
+            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb) ? model.BreadCrumb : model.AgentId + "," + model.AgentLevel + "," + CurrentSession.AgentInfo.LicenseeName;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : CurrentSession.AgentInfo.LicenseeName;
+
+            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(paramAgentLevel),
+                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
                 IsAdmin = CurrentSession.IsAdmin
-            };
-            var model = new AgentWinLossReportViewModel
-            {
-                AgentId = paramAgentId,
-                AgentLevel = paramAgentLevel,
-                BreadCrumb = string.IsNullOrEmpty(breadCrumb) ? CurrentSession.AgentInfo.LicenseeName : breadCrumb
             };
             return View(model);
         }
@@ -300,19 +297,44 @@ namespace LicenseeAgent.Report.Controllers
         /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult AgentWinLoss(AgentWinLossReportViewModel model)
+        public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-
-            var criteria = new AgentWinLossReportCriteria
+            dynamic criteria = new WinLossAgentViewAgentCriteria
             {
                 BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetDay = balanceUp.MoveBetsDay,
+                MoveBetsDay = balanceUp.MoveBetsDay,
                 DrawType = model.DrawFilter,
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
-                AgentID = model.AgentId
+                AgentId = model.AgentId
             };
+            if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
+            {
+                criteria = new WinLossMemberCriteria
+                {
+                    BalanceUpDay = balanceUp.BalanceUpDay,
+                    MoveBetsDay = balanceUp.MoveBetsDay,
+                    DrawType = model.DrawFilter,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    AgentId = model.AgentId
+                };
+            }
+            else {
+                if(ModelHelper.IsAgentLevel0(model.AgentLevel))
+                {
+                    criteria = new WinLossSuperViewAgentCriteria
+                    {
+                        BalanceUpDay = balanceUp.BalanceUpDay,
+                        MoveBetsDay = balanceUp.MoveBetsDay,
+                        DrawType = model.DrawFilter,
+                        FromDate = model.FromDate,
+                        ToDate = model.ToDate,
+                        AgentId = model.AgentId
+                    };
+                }
+            }
 
             var result = _reportService.AgentWinLossReport(criteria);
 

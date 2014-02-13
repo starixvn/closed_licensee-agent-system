@@ -109,9 +109,11 @@
     <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_Rpt_WinLoss" SpName="LAS_Rpt_WinLoss" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Rpt_WinLoss_SuperViewAgent" SpName="LAS_Rpt_WinLoss_SuperViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_Rpt_Outstanding" SpName="Las_Rpt_Outstanding" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetlistOutStanding_SelByMember" SpName="LAS_BetlistOutStanding_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Rpt_WinLoss_AgentViewAgent" SpName="LAS_Rpt_WinLoss_AgentViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Rpt_WinLoss_Member" SpName="LAS_Rpt_WinLoss_Member" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!--Other reports should be appended here-->
     
   </Function>

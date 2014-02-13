@@ -43,3 +43,46 @@
     <a href='@(url.Action("EditMember", "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
         }
 }
+@helper DrawFilter(short val)
+{
+    <label for="DrawFilter">@Las.DrawFilter</label>
+    <label class="radio">
+        @Las.Normal 
+        <input type="radio" name="DrawFilter" value="0" @(val == 0 ? "checked" : "") />
+    </label>
+    <label class="radio">
+        @Las.NoDraw
+        <input type="radio" name="DrawFilter" value="1" @(val == 1 ? "checked" : "") />
+    </label>
+    <label class="radio">
+        @Las.NoDrawForTurnoverOnly
+        <input type="radio" name="DrawFilter" value="2" @(val == 2 ? "checked" : "") />
+    </label>
+}
+@helper BreadCrumb(string val)
+{
+    var listBreadCrumb = val.Split(';');
+    var length = listBreadCrumb.Length;
+    if(length > 1)
+    {
+        <div class="clearfix">
+            <ul class="breadcrumb">
+                @foreach (var item in listBreadCrumb)
+                {
+                    var agentInfo = item.Split(',');
+                    <li>
+                        @if (string.Compare(item, listBreadCrumb[length - 1]) != 0)
+                        {
+                            <a href="#" data-agent-id="@agentInfo[0]" data-agent-level="@agentInfo[1]">@agentInfo[2]</a>
+                            <span class="divider">>></span>
+                        }
+                        else
+                        {
+                            <span>@agentInfo[2]</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+}

@@ -6,29 +6,39 @@
             $('#toDatePicker').datepicker();
 
             $('#search').click(function () {
-                AGENTWINLOSS.dataGridBinding($("#FromDate").val(), $("#ToDate").val());
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
             $('#today').click(function () {
-                AGENTWINLOSS.dataGridBinding($(this).data('date'), $(this).data('date'));
+                $('#FromDate').val($(this).data('date'));
+                $('#ToDate').val($(this).data('date'));
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
             $('#yesterday').click(function () {
-                AGENTWINLOSS.dataGridBinding($(this).data('date'), $(this).data('date'));
+                $('#FromDate').val($(this).data('date'));
+                $('#ToDate').val($(this).data('date'));
+                AGENTWINLOSS.dataGridBinding();
                 return false;
             });
+
+            // breadcrum
+            $('.breadcrumb a').click(function () {
+                var agentId = $(this).data('agent-id');
+                var agentLevel = $(this).data('agent-level');
+                var agentName = $(this).text();
+                AGENTWINLOSS.ViewDownline(agentId, agentLevel, agentName);
+            });
+
+            AGENTWINLOSS.dataGridBinding();
         },
 
-        dataGridBinding: function (fromDate, toDate) {
-            var params = {
-                FromDate: fromDate,
-                ToDate: toDate,
-                DrawFilter: $('#search-form input[name=DrawFilter]:checked').val()
-            };
+        dataGridBinding: function () {
+            var submitOptions = $('form').serializeObject();
             $.ajax({
-                url: CORE.resolveUrl("~/Report/AgentWinLoss"),
+                url: CORE.resolveUrl("~/Report/GetAgentWinLossData"),
                 type: 'post',
-                data: params,
+                data: jQuery.param(submitOptions),
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -36,6 +46,7 @@
                     if (data.ErrCode == 0) {
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                         $('#grid').show().fanexGrid(gridOption);
+                        CORE.unblockUI();
                         //customerList.resizeBox();
                     }
                     else {
@@ -46,6 +57,24 @@
                     CORE.unblockUI();
                 }
             });
+        },
+
+        ViewDownline: function (agentId, agentLevel, username) {
+            //Reset bread crumb value
+            var currentBreadCrumb = $("#BreadCrumb").val();
+            var breadCrumb = agentId + "," + agentLevel + "," + username;
+            var newBreadCrumb = "";
+            if (currentBreadCrumb.indexOf(breadCrumb) >= 0)
+                newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
+            else
+                newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
+            $("#BreadCrumb").val(newBreadCrumb);
+
+            location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val()
+                                            + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
+        },
+        ViewBetList: function () {
+            alert("Betlist Is here");
         }
     }
 } (jQuery);

@@ -16,15 +16,24 @@ namespace LicenseeAgent.Report.ViewModels
     using System.Web.Mvc;
     using Entities;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Web;
 
     /// <summary>
     /// Bet List View Model.
     /// </summary>
     public class AgentWinLossReportViewModel
     {
+        public AgentWinLossReportViewModel()
+        {
+            FromDate = DateTime.Now.AddMonths(-3);
+            ToDate = DateTime.Now;
+            DrawFilter = 0;
+        }
         public int AgentId { get; set; }
 
         public int AgentLevel { get; set; }
+
+        public string Username { get; set; }
         
         public string BreadCrumb { get; set; }
 

@@ -44,7 +44,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-edit-credit-balance" onclick="creditBalanceList.editAgentCredit({0}, \'{1}\', {2})"></i>'.format(rowData.AgentId, rowData.UserName, rowData.GivenCredit);
+                                return '<i class="icon-edit-credit-balance" onclick="creditBalanceList.editAgentCredit({0}, \'{1}\', {2})" title="{3}"></i>'.format(rowData.AgentId, rowData.UserName, rowData.GivenCredit, '@Las.Edit');
                             }
                         },
                         {

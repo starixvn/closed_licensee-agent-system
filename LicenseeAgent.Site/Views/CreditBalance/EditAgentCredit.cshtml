@@ -40,7 +40,7 @@
                         <td>
                             @Las.Credit
                         </td>
-                        <td>
+                        <td class="nowrap">
                             @if (!Model.MaxCreditOutput.HasValue)
                             {
                                 @Html.TextBox("GivenCredit", Formatter.FormatDecimal(Model.GivenCredit), new { @class = "w100", data_min = Model.MinCreditOutput, title = Las.InvalidAmount })

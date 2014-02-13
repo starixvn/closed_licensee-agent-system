@@ -303,6 +303,7 @@
     </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
+    <Content Include="Views\BetList\Resources\betlist.winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\fanex-core.js" />
@@ -809,6 +810,7 @@
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.cshtml" />
     <Content Include="Views\Report\Outstanding.cshtml" />
     <Content Include="Views\Report\Resources\Outstanding.less" />
+    <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

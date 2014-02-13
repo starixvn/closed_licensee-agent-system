@@ -297,6 +297,9 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/betlist.core.js",
                 "~/Views/BetList/Resources/totalbets.parlay.js"));
+            bundles.Add(new ScriptBundle("~/js/betlistwinlost").Include(
+                "~/Views/BetList/Resources/betlist.core.js",
+                "~/Views/BetList/Resources/betlist.winlost.js"));
         }
 
         /// <summary>

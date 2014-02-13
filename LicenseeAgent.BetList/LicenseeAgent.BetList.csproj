@@ -120,6 +120,7 @@
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
+    <Compile Include="ViewModels\BetListWinlossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

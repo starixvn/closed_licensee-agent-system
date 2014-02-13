@@ -10,6 +10,7 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Web.Mvc;
@@ -88,6 +89,17 @@ namespace LicenseeAgent.BetList.Controllers
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = criteria.TotalRows
             });
+        }
+
+        /// <summary>
+        /// Index page of Bet List.
+        /// </summary>
+        /// <param name="model">Bet List Win loss View Model.</param>
+        /// <returns>Return a view.</returns>
+        [HttpGet]
+        public ActionResult BetListWinlossReport(BetListWinlossViewModel model)
+        {
+            return View(model);
         }
 
         /// <summary>

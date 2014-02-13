@@ -1,6 +1,11 @@
 ﻿var LOGIN = function ($) {
     return {
         init: function () {
+            if ($(window.parent.document).find('iframe').length > 0) {
+                window.parent.location.href = location.href;
+                return;
+            }
+
             LOGIN.setFocus($('.btn-primary'));
             if ($('#Username').val().length == 0) {
                 LOGIN.setFocus($('#Username'));

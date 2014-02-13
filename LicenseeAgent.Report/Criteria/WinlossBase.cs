@@ -9,6 +9,9 @@ namespace LicenseeAgent.Report.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Win loss Report Base.
+    /// </summary>
     public class WinlossBase : CriteriaBase
     {
         public int AgentId { get; set; }

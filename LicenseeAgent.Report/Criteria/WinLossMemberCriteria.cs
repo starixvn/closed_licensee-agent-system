@@ -12,6 +12,9 @@ namespace LicenseeAgent.Report.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Win Loss Member Criteria.
+    /// </summary>
     public class WinLossMemberCriteria : WinlossBase
     {
         public override string GetSettingKey()

@@ -29,6 +29,7 @@ namespace LicenseeAgent.Report.ViewModels
             ToDate = DateTime.Now;
             DrawFilter = 0;
         }
+
         public int AgentId { get; set; }
 
         public int AgentLevel { get; set; }

@@ -12,6 +12,9 @@ namespace LicenseeAgent.Report.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Win Loss Super View Agent Criteria.
+    /// </summary>
     public class WinLossSuperViewAgentCriteria : WinlossBase
     {
         public override string GetSettingKey()

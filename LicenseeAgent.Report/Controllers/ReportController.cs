@@ -271,16 +271,16 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <param name="agentId">Agent Id Info.</param>
-        /// <param name="agentLevel">Agent Level.</param>
-        /// <param name="breadCrumb">Bread Crumb.</param>
+        /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
         {
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
-            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb) ? model.BreadCrumb : model.AgentId + "," + model.AgentLevel + "," + CurrentSession.AgentInfo.LicenseeName;
+            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb) 
+                                ? model.BreadCrumb 
+                                : model.AgentId + "," + model.AgentLevel + "," + CurrentSession.AgentInfo.LicenseeName;
             model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : CurrentSession.AgentInfo.LicenseeName;
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
@@ -321,8 +321,9 @@ namespace LicenseeAgent.Report.Controllers
                     AgentId = model.AgentId
                 };
             }
-            else {
-                if(ModelHelper.IsAgentLevel0(model.AgentLevel))
+            else 
+            {
+                if (ModelHelper.IsAgentLevel0(model.AgentLevel))
                 {
                     criteria = new WinLossSuperViewAgentCriteria
                     {

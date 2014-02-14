@@ -48,7 +48,7 @@ namespace LicenseeAgent.Web.Services
                 this.IsDownline(criteria) : this.IsDirectDownline(criteria);
         }
 
-        public bool IsDownLineMember(CustomerBelongingCheckingBase belongingCheckingBase)
+        public bool IsDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
@@ -59,7 +59,7 @@ namespace LicenseeAgent.Web.Services
             return this.IsDownline(criteria);
         }
 
-        public bool IsDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        public bool IsDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
@@ -70,7 +70,7 @@ namespace LicenseeAgent.Web.Services
             return this.IsDownline(criteria);
         }
 
-        public bool IsDirectDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        public bool IsDirectDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
@@ -81,7 +81,7 @@ namespace LicenseeAgent.Web.Services
             return this.IsDirectDownline(criteria);
         }
 
-        public bool IsDirectDownLineMember(CustomerBelongingCheckingBase belongingCheckingBase)
+        public bool IsDirectDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
@@ -92,11 +92,18 @@ namespace LicenseeAgent.Web.Services
             return this.IsDirectDownline(criteria);
         }
 
-        public bool IsDownLineTransaction(TransactionBelongingChecking transactionBelongingChecking)
+        public bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking)
         {
             var criteria = new TicketDownLineCriteria { TransId = transactionBelongingChecking.TransactionId };
 
             return this.IsDownlineTicket(criteria);
+        }
+
+        public bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking)
+        {
+            var criteria = new ReferenceNumberCriteria { RefNo = referenceNumberBelongingChecking.ReferenceNumber };
+
+            return this.IsDownlineReferenceNumber(criteria);
         }
 
         /// <summary>

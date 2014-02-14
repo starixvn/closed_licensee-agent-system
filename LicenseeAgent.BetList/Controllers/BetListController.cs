@@ -122,7 +122,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = transId
             };
-            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -147,7 +147,13 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TargetCustId = custId
             };
-            if (!_permissionService.IsDownLineMember(belongingCheckingBase))
+            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking() 
+            {
+                ReferenceNumber = refNo
+            };
+
+            if (!_permissionService.IsDownlineMember(belongingCheckingBase) 
+                || !_permissionService.IsDownlineReferenceNumber(referenceNumberBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -182,7 +188,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = criteria.TransId
             };
-            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }

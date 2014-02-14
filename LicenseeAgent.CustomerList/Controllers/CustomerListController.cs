@@ -461,7 +461,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = memberId
             };
-            if (!_permissionService.IsDownLineMember(belongingCheckingBase))
+            if (!_permissionService.IsDownlineMember(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedPage();
             }
@@ -488,7 +488,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 {
                     TargetCustId = model.CustId
                 };
-                if (!_permissionService.IsDownLineMember(belongingCheckingBase))
+                if (!_permissionService.IsDownlineMember(belongingCheckingBase))
                 {
                     return this.RedirectToAccessDeniedPage();
                 }
@@ -529,7 +529,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 TargetCustId = agentId
             };
-            if (!_permissionService.IsDownLineAgent(belongingCheckingBase))
+            if (!_permissionService.IsDownlineAgent(belongingCheckingBase))
             {
                 return this.RedirectToAccessDeniedPage();
             }
@@ -557,7 +557,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 {
                     TargetCustId = model.CustId
                 };
-                if (!_permissionService.IsDownLineAgent(belongingCheckingBase))
+                if (!_permissionService.IsDownlineAgent(belongingCheckingBase))
                 {
                     return this.RedirectToAccessDeniedPage();
                 }

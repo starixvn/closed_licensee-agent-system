@@ -93,7 +93,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = transId
             };
-            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -115,6 +115,16 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult SystemParlayDetails(long refNo)
         {
+            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking()
+            {
+                ReferenceNumber = refNo
+            };
+
+            if (!_permissionService.IsDownlineReferenceNumber(referenceNumberBelongingChecking))
+            {
+                this.RedirectToAccessDeniedPage();
+            }
+
             var agentId = CurrentSession.AgentInfo.AgentId;
 
             var criteria = new TotalBetsSystemParlayDetailCriteria
@@ -142,7 +152,7 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TransactionId = criteria.TransId
             };
-            if (!_permissionService.IsDownLineTransaction(transactionBelongingChecking))
+            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();
             }

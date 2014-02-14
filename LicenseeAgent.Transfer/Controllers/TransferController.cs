@@ -138,7 +138,7 @@ namespace LicenseeAgent.Transfer.Controllers
             {
                 TargetCustId = model.AgentId
             };
-            if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+            if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -172,7 +172,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 {
                     TargetCustId = model.AgentId
                 };
-                if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+                if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
                 {
                     this.RedirectToAccessDeniedPage();
                 }
@@ -212,7 +212,7 @@ namespace LicenseeAgent.Transfer.Controllers
             {
                 TargetCustId = model.MemberId
             };
-            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -256,7 +256,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 {
                     TargetCustId = model.MemberId
                 };
-                if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+                if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
                 {
                     this.RedirectToAccessDeniedPage();
                 }

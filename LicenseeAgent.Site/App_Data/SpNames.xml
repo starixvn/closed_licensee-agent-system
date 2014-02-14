@@ -102,6 +102,7 @@
     <Setting Key="Las_Ticket_CheckBelonging" SpName="Las_Ticket_CheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_RefNo_CheckBelonging" SpName="LAS_RefNo_CheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Report">
     <!-- Results Report-->

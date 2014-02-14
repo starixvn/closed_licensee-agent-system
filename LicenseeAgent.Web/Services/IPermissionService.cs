@@ -21,14 +21,16 @@ namespace LicenseeAgent.Web.Services
 
         bool CheckForEditingMemberInformation(CustomerBelongingCheckingBase belongingCheckingBase);
 
-        bool IsDownLineMember(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
 
-        bool IsDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
 
-        bool IsDirectDownLineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDirectDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
 
-        bool IsDirectDownLineMember(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDirectDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
 
-        bool IsDownLineTransaction(TransactionBelongingChecking transactionBelongingChecking);
+        bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking);
+
+        bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking);
     }
 }

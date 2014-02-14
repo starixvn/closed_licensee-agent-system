@@ -19,5 +19,7 @@ namespace LicenseeAgent.Web.Services
         bool IsDownline(CheckDownlineBelongCriteria criteria);
 
         bool IsDownlineTicket(TicketDownLineCriteria criteria);
+
+        bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria);
     }
 }

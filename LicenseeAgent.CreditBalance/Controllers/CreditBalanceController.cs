@@ -132,7 +132,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             {
                 TargetCustId = editAgentCreditViewModel.AgentId
             };
-            if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+            if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -175,7 +175,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 {
                     TargetCustId = editAgentCreditViewModel.AgentId
                 };
-                if (!_permissionService.IsDirectDownLineAgent(customerBelongingCheckingBase))
+                if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
                 {
                     this.RedirectToAccessDeniedPage();
                 }
@@ -218,7 +218,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             {
                 TargetCustId = agentEditMemberCreditViewModel.CustId
             };
-            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -249,7 +249,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             {
                 TargetCustId = agentEditMemberCreditViewModel.CustId
             };
-            if (!_permissionService.IsDirectDownLineMember(customerBelongingCheckingBase))
+            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
             {
                 this.RedirectToAccessDeniedPage();
             }

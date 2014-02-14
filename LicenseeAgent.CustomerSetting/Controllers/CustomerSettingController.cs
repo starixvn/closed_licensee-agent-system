@@ -118,16 +118,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            ////var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            ////{
-            ////    TargetRoleId = settingContext.TargetCustId,
-            ////    FormId = (int)settingContext.FormId,
-            ////    TargetCustId = settingContext.TargetCustId
-            ////};
-            ////if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            ////{
-            ////    return Redirect(AppURLs.URLs.AccessDenied);
-            ////}
+            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            {
+                TargetRoleId = settingContext.TargetRoleId,
+                FormId = CurrentSession.AgentInfo.IsLevel0 && model.TargetRoleId == (int)Role.Member ?
+                        (int)FormType.EditIndirectMember : (int)settingContext.FormId,
+                TargetCustId = settingContext.TargetCustId
+            };
+            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
+            {
+                return Redirect(AppURLs.URLs.AccessDenied);
+            }
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
 
@@ -245,16 +246,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            ////var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            ////{
-            ////    TargetRoleId = model.SettingContext.TargetCustId,
-            ////    FormId = (int)model.SettingContext.FormId,
-            ////    TargetCustId = model.SettingContext.TargetCustId
-            ////};
-            ////if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            ////{
-            ////    return this.RedirectToAccessDeniedJson();
-            ////}
+            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            {
+                TargetRoleId = model.SettingContext.TargetRoleId,
+                FormId = CurrentSession.AgentInfo.IsLevel0 && model.SettingContext.TargetRoleId == (int)Role.Member ?
+                        (int)FormType.EditIndirectMember : (int)model.SettingContext.FormId,
+                TargetCustId = model.SettingContext.TargetCustId
+            };
+            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
+            {
+                return this.RedirectToAccessDeniedJson();
+            }
 
             if (model == null
                 || model.SettingContext == null
@@ -302,22 +304,22 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            ////var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            ////{
-            ////    TargetRoleId = settingContext.TargetRoleId,
-            ////    FormId = (int)settingContext.FormId,
-            ////    TargetCustId = settingContext.TargetCustId
-            ////};
-            ////if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            ////{
-            ////    return this.RedirectToAccessDeniedPage();
-            ////}
+            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            {
+                TargetRoleId = settingContext.TargetRoleId,
+                FormId = (int)settingContext.FormId,
+                TargetCustId = settingContext.TargetCustId
+            };
+            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
         }
 
         /// <summary>
-        /// Edit the member.
+        /// Edits the agent.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>
@@ -333,40 +335,32 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            if (CurrentSession.AgentInfo.IsLevel0)
+            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
             {
-                if (model.AgentId.HasValue && model.AgentLevel.HasValue)
-                {
-                    if (CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value))
-                    {
-                        settingContext.FormId = FormType.Edit;
-                    }
-                    else
-                    {
-                        settingContext.FormId = FormType.EditIndirectMember;
-                        settingContext.CustId = model.AgentId.Value;
-                    }
-                }
-                else
-                {
-                    settingContext.FormId = FormType.Edit;
-                }
+                settingContext.FormId = FormType.Edit;
             }
             else
             {
-                settingContext.FormId = CurrentSession.AgentInfo.IsLastLevel ? FormType.Edit : FormType.EditIndirectMember;
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                    settingContext.CustId = agentId;
+                }
             }
 
-            ////var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            ////{
-            ////    TargetRoleId = settingContext.TargetRoleId,
-            ////    FormId = (int)settingContext.FormId,
-            ////    TargetCustId = settingContext.TargetCustId
-            ////};
-            ////if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            ////{
-            ////    return this.RedirectToAccessDeniedPage();
-            ////}
+            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            {
+                TargetRoleId = settingContext.TargetRoleId,
+                FormId = CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null) ?
+                        (int)FormType.EditIndirectMember : (int)settingContext.FormId,
+                TargetCustId = settingContext.TargetCustId
+            };
+            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
         }

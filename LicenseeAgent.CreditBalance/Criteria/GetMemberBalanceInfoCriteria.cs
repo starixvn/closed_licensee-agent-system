@@ -17,6 +17,8 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public string Username { get; set; }
 
+        public bool IsYBFiltered { get; set; }
+
         public override string GetSettingKey()
         {
             return "LAS_CreditBalance_MemberBalanceInfo";

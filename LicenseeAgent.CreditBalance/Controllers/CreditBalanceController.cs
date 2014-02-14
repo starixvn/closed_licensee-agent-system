@@ -77,7 +77,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
             var memberBalanceInfo = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
-                Username = model.UserName
+                Username = model.UserName,
+                IsYBFiltered = false
             });
 
             _memberService.GetMemberInformations<MemberBalanceInfo>(
@@ -108,7 +109,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 Username = model.UserName,
-                Status = model.Status
+                Status = model.Status,
+                IsYBFiltered = false
             });
 
             return Json(new

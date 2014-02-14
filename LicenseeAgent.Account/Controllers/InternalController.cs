@@ -14,6 +14,7 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.API.LRF;
+    using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;

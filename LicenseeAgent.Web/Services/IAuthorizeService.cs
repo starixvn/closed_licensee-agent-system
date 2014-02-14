@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Services
 {
+    using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
 
@@ -21,5 +22,7 @@ namespace LicenseeAgent.Web.Services
         bool IsDownlineTicket(TicketDownLineCriteria criteria);
 
         bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria);
+
+        bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria);
     }
 }

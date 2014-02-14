@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
+    <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />

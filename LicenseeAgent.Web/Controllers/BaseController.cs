@@ -15,16 +15,19 @@
 
 namespace LicenseeAgent.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login
@@ -33,6 +36,17 @@ namespace LicenseeAgent.Web.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
+        private readonly IPermissionService _permissionService;
+
+        protected BaseController()
+        { 
+        }
+
+        protected BaseController(IPermissionService permissionService)
+        {
+            _permissionService = permissionService;
+        }
+
         protected static ICurrentSession CurrentSession
         {
             get
@@ -291,6 +305,34 @@ namespace LicenseeAgent.Web.Controllers
                 ErrCode = Result.FailureValue,
                 Messages = Las.AccessDeniedMsg
             });
+        }
+
+        /// <summary>
+        /// Checks the valid currency.
+        /// </summary>
+        /// <exception cref="System.Exception">The exception of denied access.</exception>
+        protected void CheckValidCurrency()
+        {
+            if (CurrentSession.AgentInfo != null)
+            {
+                var clientInfo = Request.GetClientInfo();
+                var criteria = new InternalLoginAsUserCriteria
+                {
+                    AdminId = CurrentSession.LoginUserId,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                    UserName = CurrentSession.AgentInfo.UserName,
+                    LoginIp = clientInfo.Ip,
+                    BrowserName = clientInfo.BrowserName,
+                    Platform = clientInfo.Platform,
+                    CountryCode = clientInfo.CountryCode
+                };
+
+                if (!_permissionService.IsValidCurrency(criteria))
+                {
+                    throw new Exception(Las.AccessDeniedMsg);
+                }
+            }
         }
 
         /// <summary>

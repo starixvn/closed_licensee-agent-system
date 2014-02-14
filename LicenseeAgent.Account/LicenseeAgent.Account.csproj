@@ -63,7 +63,6 @@
     <Compile Include="Criterias\TopTurnoverCriteria.cs" />
     <Compile Include="Criterias\GetAncestorListCriteria.cs" />
     <Compile Include="Criterias\GetDirectFatherCriteria.cs" />
-    <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\GetAgentDownlineCriteria.cs" />
     <Compile Include="Criterias\GetAgentL0ByLicenseeCriteria.cs" />
     <Compile Include="Criterias\GetCurrencyOfLicenseeCriteria.cs" />

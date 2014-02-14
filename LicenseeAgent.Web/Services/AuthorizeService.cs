@@ -7,6 +7,8 @@
 namespace LicenseeAgent.Web.Services
 {
     using Fanex.Data;
+    using LicenseeAgent.Core.Criterias;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
@@ -84,6 +86,12 @@ namespace LicenseeAgent.Web.Services
                 var param = criteria.GetSpParams();
                 return (bool)objectDb.ExecuteScalar(param);
             }
+        }
+
+        public bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria)
+        {
+            Execute(internalLoginAsUserCriteria);
+            return internalLoginAsUserCriteria.ErrCode == Result.SuccessValue ? true : false;
         }
     }
 }

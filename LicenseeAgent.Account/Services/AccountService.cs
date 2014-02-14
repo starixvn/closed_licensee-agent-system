@@ -10,6 +10,7 @@ namespace LicenseeAgent.Account.Services
     using Fanex.Common;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
+    using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
 

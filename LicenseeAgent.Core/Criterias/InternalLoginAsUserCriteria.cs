@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LicenseeAgent.Account.Criterias
+namespace LicenseeAgent.Core.Criterias
 {
     using Fanex.NAP.Framework.Data;
 

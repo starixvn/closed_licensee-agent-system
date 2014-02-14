@@ -25,6 +25,7 @@ namespace LicenseeAgent.Report.Controllers
     using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Services;
     using Services;
     using Utilities;
     using ViewModels;
@@ -53,7 +54,12 @@ namespace LicenseeAgent.Report.Controllers
 
         #region Constructor
 
-        public ReportController(ICoreService coreService, IReportService reportService, IBetListService betlistService)
+        public ReportController(
+            ICoreService coreService,
+            IReportService reportService,
+            IBetListService betlistService,
+            IPermissionService permissionService)
+            : base(permissionService)
         {
             _coreService = coreService;
             _reportService = reportService;
@@ -318,8 +324,8 @@ namespace LicenseeAgent.Report.Controllers
         {
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
-            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb) 
-                                ? model.BreadCrumb 
+            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
+                                ? model.BreadCrumb
                                 : model.AgentId + "," + model.AgentLevel + "," + CurrentSession.AgentInfo.LicenseeName;
             model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : CurrentSession.AgentInfo.LicenseeName;
 
@@ -361,7 +367,7 @@ namespace LicenseeAgent.Report.Controllers
                     AgentId = model.AgentId
                 };
             }
-            else 
+            else
             {
                 if (ModelHelper.IsAgentLevel0(model.AgentLevel))
                 {
@@ -389,6 +395,12 @@ namespace LicenseeAgent.Report.Controllers
         #endregion Agent Win Loss Report
 
         #region Utilities
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
+        }
 
         /// <summary>
         /// Generate Outright Cache Key.

@@ -66,6 +66,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 ISportsbookSettingService customerSettingService,
                 IMemberService memberService,
                 IPermissionService permissionService)
+            : base(permissionService)
         {
             _customerSettingService = customerSettingService;
             _memberService = memberService;
@@ -246,6 +247,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
+            this.CheckValidCurrency();
+
             var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
             {
                 TargetRoleId = model.SettingContext.TargetRoleId,
@@ -402,6 +405,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return JsonResult(criteria.MsgId);
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
         }
 
         /// <summary>

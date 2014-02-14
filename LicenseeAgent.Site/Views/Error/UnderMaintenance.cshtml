@@ -2,20 +2,18 @@
 @model UnderMaintenanceInfo
 @{
     Layout = null;
-    string title = Las.UnderMaintenance;
-    string UMtime = Model.StartTime.ToUpper() + " - " + Model.EndTime.ToUpper() + " (GMT + 08:00)";
-    string messageUM = string.Format(Las.MessageUnderMaintenance, Model.UMDate, UMtime);
+    var maintenanceMessage = string.Format(Las.MessageUnderMaintenance, Model.UmTimeFrom, Model.UmTimeTo);
 }
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>@title</title>
+    <title>@Las.UnderMaintenance</title>
     <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
 </head>
 <body>
     <div class="um-block">
         <div class="block-text">
-            <span>@Html.Raw(messageUM)</span></div>
+            <span>@Html.Raw(maintenanceMessage)</span></div>
     </div>
 </body>
 </html>

@@ -22,7 +22,6 @@ namespace LicenseeAgent.Core.Configurations
 
             IsAdminSite = GetValue("IsAdminSite") == "1";
             UnderMaintenanceUrl = GetValue("UnderMaintenanceUrl");
-            DisabledUnderMaintenanceAPI = GetValue("DisabledUnderMaintenanceAPI") == "1";
             LocalTest = GetValue("LocalTest") == "1";
             LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
             IsDownTime = GetValue("IsDownTime") == "1";
@@ -32,8 +31,6 @@ namespace LicenseeAgent.Core.Configurations
         public static bool IsAdminSite { get; private set; }
 
         public static string UnderMaintenanceUrl { get; private set; }
-
-        public static bool DisabledUnderMaintenanceAPI { get; private set; }
 
         public static bool IsDownTime { get; private set; }
 

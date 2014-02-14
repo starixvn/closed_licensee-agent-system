@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 1/20/2014 10:32:25 AM
+// Lasted generated date: 2/14/2014 2:13:13 PM
 // </history>
 
 var _language_en_US={
@@ -34,19 +34,25 @@ var _language_en_US={
 				 	
                      AdvancedMode:"Advanced Mode",
 				 	
+                     Agent:"Agent",
+				 	
                      AgentComm:"Agent Comm",
 				 	
                      AgentList:"Agent List",
 				 	
+                     AgentOutstanding:"Agent Outstanding",
+				 	
                      AgentPT:"Agent PT",
 				 	
-                     AlertAdminLicenseeChanged:"The licensee was changed by admin, this session must be closed.",
+                     AgentShare:"Agent Share",
 				 	
-                     AlertKickoutMessage:"... Another session has been logged in ... Your session will be terminated!!! If that is not you, please contact your upline!!!",
+                     AgentWinLoss:"Agent Win Loss",
 				 	
                      All:"All",
 				 	
                      Amount:"Amount",
+				 	
+                     Announcement:"Announcement",
 				 	
                      Attention:"Attention",
 				 	
@@ -55,6 +61,8 @@ var _language_en_US={
                      Balance:"Balance",
 				 	
                      BalanceInfo:"Balance Info",
+				 	
+                     BalanceInfoTitle:"BALANCE INFO",
 				 	
                      Basketball:"Basketball",
 				 	
@@ -128,6 +136,12 @@ var _language_en_US={
 				 	
                      CreatedDate:"Created Date",
 				 	
+                     Credit:"Credit",
+				 	
+                     CreditBalance:"Credit / Balance",
+				 	
+                     Currency:"Currency",
+				 	
                      CurrencyRequired:"Please select currency.",
 				 	
                      CurrentPassword:"Current password",
@@ -136,11 +150,15 @@ var _language_en_US={
 				 	
                      CustomerInformation:"Customer Information",
 				 	
-                     CustomerName:"Customer Name",
+                     Date:"Date",
+				 	
+                     DateRange:"Date Range",
 				 	
                      DeadBall:"Dead Ball",
 				 	
                      Details:"Details",
+				 	
+                     DontShowMessageAgain:"Don&apos;t show this message again.",
 				 	
                      DoubleChance:"DoubleChance",
 				 	
@@ -150,9 +168,13 @@ var _language_en_US={
 				 	
                      Draw:"Draw",
 				 	
+                     DrawFilter:"Draw Filter",
+				 	
                      DrawNoBet:"DrawNoBet",
 				 	
                      Edit:"Edit",
+				 	
+                     EditCreditSuccessfully:"Edit Credit Successfully",
 				 	
                      EditInfo:"Edit Info",
 				 	
@@ -161,6 +183,8 @@ var _language_en_US={
                      EditSportsbookAgent:"Edit Sportsbook Agent",
 				 	
                      EditSportsbookMember:"Edit Sportsbook Member",
+				 	
+                     EffectiveStake:"Effective Stake",
 				 	
                      Even:"Even",
 				 	
@@ -184,6 +208,8 @@ var _language_en_US={
 				 	
                      Forecast:"Forecast",
 				 	
+                     From:"From",
+				 	
                      FT1X2:"FT. 1X2",
 				 	
                      FTHDP:"FT. HDP",
@@ -191,6 +217,8 @@ var _language_en_US={
                      FTOE:"FT.OE",
 				 	
                      FTOU:"FT. O/U",
+				 	
+                     FullName:"Full Name",
 				 	
                      Fulltime:"Fulltime",
 				 	
@@ -225,6 +253,8 @@ var _language_en_US={
                      InsertCustomer:"Insert Customer",
 				 	
                      InsertSuccessfully:"Insert Successfully.",
+				 	
+                     InvalidAmount:"Invalid Amount",
 				 	
                      Ip:"IP",
 				 	
@@ -262,9 +292,13 @@ var _language_en_US={
 				 	
                      MaxCredit:"Max Credit",
 				 	
+                     Member:"Member",
+				 	
                      MemberList:"Member List",
 				 	
-                     MessageUnderMaintenance:"We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} {1}.",
+                     MessageUnderMaintenance:"We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} - {1} (GMT + 08:00).",
+				 	
+                     MixParlay:"Mix Parlay",
 				 	
                      MixSportsParlay:"MixSportsParlay",
 				 	
@@ -278,6 +312,8 @@ var _language_en_US={
 				 	
                      NewMember:"New Member",
 				 	
+                     NewMemberOfMonth:"New members of the month",
+				 	
                      NewPassword:"New password",
 				 	
                      NewPasswordRequired:"Please enter new password.",
@@ -288,9 +324,15 @@ var _language_en_US={
 				 	
                      NoDraw:"NoDraw",
 				 	
+                     NoDrawForTurnoverOnly:"No Draw For Turnover Only",
+				 	
+                     NoInfo:"No information is available",
+				 	
                      NoLicenseeDomainFound:"No licensee belongs to domain {0}.",
 				 	
                      None:"None",
+				 	
+                     Normal:"Normal",
 				 	
                      Note:"Note",
 				 	
@@ -320,7 +362,13 @@ var _language_en_US={
 				 	
                      PageTitle_BetList:"LAS&apos;s Bet List",
 				 	
+                     PageTitle_ParlayTotalBets:"Parlay - Total Bets",
+				 	
+                     PageTitle_Report_Outstanding:"Outstanding",
+				 	
                      PageTitle_Report_Results:"Results",
+				 	
+                     Parlay:"Parlay",
 				 	
                      Password:"Password",
 				 	
@@ -330,7 +378,7 @@ var _language_en_US={
 				 	
                      PasswordFirstUse:"This is your first login. You must change your password before continuing.",
 				 	
-                     PasswordHint:"&lt;span class=&apos;prewrap&apos;&gt;Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;",
+                     PasswordHint:"&lt;span class=&apos;prewrap&apos;&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;",
 				 	
                      PasswordMustNotSame:"New password must be different from old password.",
 				 	
@@ -338,13 +386,17 @@ var _language_en_US={
 				 	
                      PasswordRequired:"Please enter your password.",
 				 	
-                     PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:  Uppercase letter [A-Z]    Lowercase letter [a-z]    Numeric [0-9]    Special character (!,@,#,etc..).",
+                     PasswordRuleInstruction:"The password supplied does not meet the minimum security requirements.",
 				 	
                      PasswordSecurity:"The password supplied does not meet the minimum security requirements.",
 				 	
                      PasswordWillExpired:"Your password will expire on {0}. Do you want to change it now?",
 				 	
                      Phone:"Phone",
+				 	
+                     PleaseChooseCurrency:"Please choose a currency",
+				 	
+                     PleaseChooseLicenseeCurrency:"Please choose a licensee and a currency",
 				 	
                      PositionTaking:"Position Taking",
 				 	
@@ -394,15 +446,25 @@ var _language_en_US={
 				 	
                      Submit:"Submit",
 				 	
+                     SystemParlay:"System Parlay",
+				 	
                      Team:"Team",
 				 	
                      ThreeWayHandicap:"3-Way Handicap",
 				 	
                      Time:"Time",
 				 	
+                     To:"To",
+				 	
                      Today:"Today",
 				 	
+                     TodayWinLoss:"Today Win Loss",
+				 	
                      TooManyDownLineParameters:"There is too many parameters with name {0}",
+				 	
+                     TopTurnoverMembers:"Top 10 highest turnover members of the month",
+				 	
+                     TopWinningMembers:"Top 10 winning members of the month",
 				 	
                      Total:"Total",
 				 	
@@ -412,25 +474,35 @@ var _language_en_US={
 				 	
                      TotalCash:"Total Cash",
 				 	
+                     TotalOutstanding:"Total Outstanding",
+				 	
                      ToWinToNil:"To Win To Nil",
 				 	
                      Transfer:"Transfer",
 				 	
                      TransferMemberWarning:"Warning: If balance is full transfered, the &lt;span class=&quot;text-highlighted&quot;&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit.",
 				 	
+                     TransferSuccessfully:"Transfer successfully.",
+				 	
                      TransferTimeWarning:"You can only transfer from 12pm to 11:59pm (GMT-4).",
 				 	
                      TransTime:"Trans.Time",
 				 	
+                     Turnover:"Turnover",
+				 	
                      UnauthorizedMsg:"Your session has timed out or your request is not authorized",
 				 	
                      UnderMaintenance:"Under Maintenance",
+				 	
+                     Unlimitted:"Unlimitted",
 				 	
                      Update:"Update",
 				 	
                      UpdateBetSettingSuccessfully:"Updated bet setting successfully.",
 				 	
                      UpdateCommissionSuccessfully:"Updated commission setting successfully.",
+				 	
+                     UpdateCredit:"Update Credit",
 				 	
                      UpdateSuccessfully:"Updated successfully.",
 				 	
@@ -440,7 +512,7 @@ var _language_en_US={
 				 	
                      Username:"Username",
 				 	
-                     UsernameMinimumLength:"Username must be at least 6 characters.",
+                     UsernameMinimumLength:"Username must be between 6 and 30 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only.",
 				 	
                      UsernameRequired:"Please enter your username.",
 				 	
@@ -454,13 +526,19 @@ var _language_en_US={
 				 	
                      WinLoss:"Win Loss",
 				 	
+                     WinningAmount:"Winning Amount",
+				 	
                      Yes:"Yes",
 				 	
                      Yesterday:"Yesterday",
 				 	
                      YesterdayBalance:"Yesterday Balance",
 				 	
-                     YesterdayCash:"Yesterday Cash"
+                     YesterdayCash:"Yesterday Cash",
+				 	
+                     YesterdayWinLoss:"Yesterday Win Loss",
+				 	
+                     YourStatistics:"Your Statistics"
 				 	
              
 	 

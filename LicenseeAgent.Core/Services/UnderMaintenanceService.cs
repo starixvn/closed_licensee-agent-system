@@ -10,10 +10,12 @@ namespace LicenseeAgent.Core.Services
     using System.Net.Http;
     using System.Threading;
     using Fanex.Caching;
+    using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using Newtonsoft.Json;
+    using Sunplus.UMControllerLibrary;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,12 +26,12 @@ namespace LicenseeAgent.Core.Services
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
         private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;
-        private readonly HttpClient _client;
+        private readonly UMBusiness _umservice;
 
         public UnderMaintenanceService()
         {
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
-            _client = new HttpClient();
+            _umservice = new UMBusiness();
         }
 
         /// <summary>
@@ -78,11 +80,6 @@ namespace LicenseeAgent.Core.Services
                 {
                     _threadMuText.Dispose();
                 }
-
-                if (_client != null)
-                {
-                    _client.Dispose();
-                }
             }
         }
 
@@ -92,38 +89,35 @@ namespace LicenseeAgent.Core.Services
         /// <returns>Return Under Maintenance Information.</returns>
         private UnderMaintenanceInfo InternalGetUnderMaintenanceInfo()
         {
-            var result = new UnderMaintenanceInfo()
+            var maintenanceInfo = new UnderMaintenanceInfo()
             {
                 Status = false
             };
 
+            if (string.IsNullOrWhiteSpace(AppSettings.UnderMaintenanceUrl))
+            {
+                return maintenanceInfo;
+            }
+
             try
             {
-                // Check downtime from AppSetting.
-                if (AppSettings.IsDownTime)
-                {
-                    return new UnderMaintenanceInfo
-                    {
-                        Status = true,
-                        StartTime = AppSettings.BeginTime,
-                        EndTime = AppSettings.EndTime
-                    };
-                }
+                var dateFrom = maintenanceInfo.UmTimeFrom;
+                var dateTo = maintenanceInfo.UmTimeTo;
+                maintenanceInfo.Status = _umservice.isUnderMaintainence(
+                    Sites.LRF,
+                    AppSettings.UnderMaintenanceUrl,
+                    ref dateFrom,
+                    ref dateTo);
 
-                // Check downtime from library.
-                if (!AppSettings.DisabledUnderMaintenanceAPI)
-                {
-                    HttpResponseMessage response = _client.GetAsync(AppSettings.UnderMaintenanceUrl).Result;
-                    result = JsonConvert.DeserializeObject<UnderMaintenanceInfo>(response.Content.ReadAsStringAsync().Result);
-                }
+                maintenanceInfo.UmTimeFrom = dateFrom;
+                maintenanceInfo.UmTimeTo = dateTo;
             }
             catch (Exception exception)
             {
-                Logger.HandleException(exception);
-                throw;
+                LogService.Error(exception.Message, exception);
             }
 
-            return result;
+            return maintenanceInfo;
         }
     }
 }

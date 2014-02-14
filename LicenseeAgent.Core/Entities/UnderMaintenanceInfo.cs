@@ -21,17 +21,14 @@ namespace LicenseeAgent.Core.Entities
         {
             Status = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
-            StartTime = nowHour.ToShortTimeString();
-            EndTime = nowHour.AddHours(1).ToShortTimeString();
-            UMDate = DateTime.Now.ToString("MMMM dd,yyyy");
+            UmTimeFrom = nowHour.ToShortTimeString();
+            UmTimeTo = nowHour.AddHours(1).ToShortTimeString();
         }
 
         public bool Status { get; set; }
 
-        public string StartTime { get; set; }
+        public string UmTimeFrom { get; set; }
 
-        public string EndTime { get; set; }
-
-        public string UMDate { get; set; }
+        public string UmTimeTo { get; set; }
     }
 }

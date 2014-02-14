@@ -1339,7 +1339,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} {1}..
+        ///   Looks up a localized string similar to We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} - {1} (GMT + 08:00)..
         /// </summary>
         public static string MessageUnderMaintenance {
             get {

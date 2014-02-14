@@ -630,7 +630,7 @@
     <comment>not</comment>
   </data>
   <data name="MessageUnderMaintenance" xml:space="preserve">
-    <value>We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} {1}.</value>
+    <value>We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} - {1} (GMT + 08:00).</value>
   </data>
   <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>

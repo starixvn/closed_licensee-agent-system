@@ -25,7 +25,7 @@ namespace LicenseeAgent.Report.ViewModels
     {
         public AgentWinLossReportViewModel()
         {
-            FromDate = DateTime.Now.AddMonths(-3);
+            FromDate = DateTime.Now;
             ToDate = DateTime.Now;
             DrawFilter = 0;
         }

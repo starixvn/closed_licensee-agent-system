@@ -99,16 +99,7 @@ var BETLIST = function ($) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
         ViewDownline: function (agentId, agentLevel, username) {
-            //Reset bread crumb value
-            var currentBreadCrumb = $("#BreadCrumb").val();
-            var breadCrumb = agentId + "," + agentLevel + "," + username;
-            var newBreadCrumb = "";
-            if (currentBreadCrumb.indexOf(breadCrumb) >= 0)
-                newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
-            else
-                newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
-            $("#BreadCrumb").val(newBreadCrumb);
-            
+            $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);            
             location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val()
                                             + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         }

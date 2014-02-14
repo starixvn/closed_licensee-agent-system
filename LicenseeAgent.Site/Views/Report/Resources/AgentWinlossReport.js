@@ -10,14 +10,16 @@
                 return false;
             });
             $('#today').click(function () {
-                $('#FromDate').val($(this).data('date'));
-                $('#ToDate').val($(this).data('date'));
+                var today = $(this).data('date');
+                $('#fromDatePicker').datepicker('update', today);
+                $('#toDatePicker').datepicker('update', today);
                 AGENTWINLOSS.dataGridBinding();
                 return false;
             });
             $('#yesterday').click(function () {
-                $('#FromDate').val($(this).data('date'));
-                $('#ToDate').val($(this).data('date'));
+                var yesterday = $(this).data('date');
+                $('#fromDatePicker').datepicker('update', yesterday);
+                $('#toDatePicker').datepicker('update', yesterday);
                 AGENTWINLOSS.dataGridBinding();
                 return false;
             });
@@ -60,23 +62,12 @@
         },
 
         ViewDownline: function (agentId, agentLevel, username) {
-            //Reset bread crumb value
-            var currentBreadCrumb = $("#BreadCrumb").val();
-            var breadCrumb = agentId + "," + agentLevel + "," + username;
-            var newBreadCrumb = "";
-            if (currentBreadCrumb.indexOf(breadCrumb) >= 0)
-                newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
-            else
-                newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
-            $("#BreadCrumb").val(newBreadCrumb);
-
+            $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val()
                                             + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         },
         ViewBetList: function (custId, agentLevel, username) {
-            var currentBreadCrumb = $("#BreadCrumb").val();
-            var breadCrumb = custId + "," + agentLevel + "," + username;
-            $("#BreadCrumb").val(currentBreadCrumb + ';' + breadCrumb);
+            $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             location.href = CORE.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val());
         }
     }

@@ -59,6 +59,17 @@ $.fn.serializeObject = function () {
     return o;
 };
 
+$.fn.setBreadCrumb = function (agentId, agentLevel, username) {
+    var currentBreadCrumb = $(this).val();
+    var breadCrumb = agentId + "," + agentLevel + "," + username;
+    var newBreadCrumb = "";
+    if (currentBreadCrumb.indexOf(breadCrumb) >= 0)
+        newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
+    else
+        newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
+    $(this).val(newBreadCrumb);
+};
+
 // First, checks if it isn't implemented yet.
 if (!String.prototype.format) {
     String.prototype.format = function () {

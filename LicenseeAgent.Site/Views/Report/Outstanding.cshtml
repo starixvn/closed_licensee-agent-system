@@ -1,11 +1,13 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = Las.PageTitle_Report_Outstanding;
+    var firstBreadcrumbItem = "<a href=\"#\" onclick=\"OUTSTANDING.breadcrumbDrilldown('" + ViewBag.LoggedInAgentName + "\',";
+    firstBreadcrumbItem += ViewBag.LoggedInAgentId + ")\" class=\"link-disable\">" + ViewBag.LoggedInAgentName + "</a>";
 }
 @section css
 {
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/betlist")
     @Styles.Render("~/css/outstandingreport")
 }
 @section scripts
@@ -17,7 +19,10 @@
     @ViewBag.Title
 </div>
 
+<div id="breadcrumb" class="grid-breadcrumb-outstanding"><span>@Html.Raw(firstBreadcrumbItem)</span></div>
 <div class="gridWrapper">
     <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
     </div>
+</div>
+<div id="instruction" class="instruction-content">
 </div>

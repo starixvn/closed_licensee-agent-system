@@ -10,6 +10,8 @@ namespace LicenseeAgent.BetList.Criteria
     /// </summary>
     public abstract class BetListCriteriaBase : CriteriaBase
     {
+        public int AgentId { get; set; }
+
         public int CustId { get; set; }
 
         public DateTime FromDate { get; set; }

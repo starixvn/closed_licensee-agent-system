@@ -1249,6 +1249,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licensee.
+        /// </summary>
+        public static string Licensee {
+            get {
+                return ResourceManager.GetString("Licensee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select licensee..
         /// </summary>
         public static string LicenseeRequired {
@@ -1645,7 +1654,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Outstanding.
+        ///   Looks up a localized string similar to Agent Outstanding - Reports.
         /// </summary>
         public static string PageTitle_Report_Outstanding {
             get {
@@ -1654,7 +1663,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results.
+        ///   Looks up a localized string similar to Results - Reports.
         /// </summary>
         public static string PageTitle_Report_Results {
             get {

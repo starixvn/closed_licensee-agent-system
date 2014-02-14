@@ -285,7 +285,7 @@ namespace LicenseeAgent.Site
             // For Bet List
             bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
                 "~/scripts/angularjs/angular-sanitize.js"));
-            bundles.Add(new LessBundle("~/css/angulargrid").Include(
+            bundles.Add(new LessBundle("~/css/betlist").Include(
                 "~/content/betlist/betlist.core.css",
                 "~/content/betlist/betlist.css",
                 "~/content/betlist/system-parlay-detail.css"));

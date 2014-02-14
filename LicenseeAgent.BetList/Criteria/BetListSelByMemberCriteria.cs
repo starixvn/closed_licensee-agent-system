@@ -10,8 +10,6 @@ namespace LicenseeAgent.BetList.Criteria
     /// </summary>
     public class BetListSelByMemberCriteria : BetListCriteriaBase
     {
-        public int AgentId { get; set; }
-
         public string StatusIDs { get; set; }
 
         public DateTime MoveBetsDay { get; set; }

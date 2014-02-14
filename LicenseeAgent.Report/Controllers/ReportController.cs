@@ -19,9 +19,14 @@ namespace LicenseeAgent.Report.Controllers
     using Criteria;
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
+    using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.BetList.Services;
+    using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web;
     using Services;
+    using Utilities;
     using ViewModels;
     using Web.Controllers;
 
@@ -42,14 +47,17 @@ namespace LicenseeAgent.Report.Controllers
 
         private IReportService _reportService;
 
+        private IBetListService _betlistService;
+
         #endregion Services
 
         #region Constructor
 
-        public ReportController(ICoreService coreService, IReportService reportService)
+        public ReportController(ICoreService coreService, IReportService reportService, IBetListService betlistService)
         {
             _coreService = coreService;
             _reportService = reportService;
+            _betlistService = betlistService;
         }
 
         #endregion Constructor
@@ -233,6 +241,8 @@ namespace LicenseeAgent.Report.Controllers
         /// <returns>Return a JSON object.</returns>
         public ActionResult Outstanding(int? agentId, int? agentLevel, string breadCrumb)
         {
+            ViewBag.LoggedInAgentName = CurrentSession.AgentInfo.AgentName;
+            ViewBag.LoggedInAgentId = CurrentSession.AgentInfo.AgentId;
             return View();
         }
 
@@ -261,6 +271,36 @@ namespace LicenseeAgent.Report.Controllers
                 SumOutstanding = sumOutstanding,
                 SumPositiontaking = sumPositiontaking,
                 IsLastLevel = criteria.IsLastLevel
+            });
+        }
+
+        /// <summary>
+        /// Outstanding - Bet List Report.
+        /// </summary>
+        /// <param name="criteria">Outstanding Report Criteria.</param>
+        /// <returns>Return a JSON object.</returns>
+        [HttpPost]
+        public JsonResult OutstandingBetList(OutstandingReportBetListCriteria criteria)
+        {
+            var betlistTickets = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters()
+            {
+                TicketResult = betlistTickets,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+            var betListTicketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
+
+            var model = new BetListViewModel()
+            {
+                TicketTextList = betListTicketBuilder.BuildTickets(),
+                TicketResult = betlistTickets
+            };
+
+            return Json(new
+            {
+                List = model.TicketTextList,
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = model.TicketTextList.Count()
             });
         }
 

@@ -752,9 +752,18 @@
     <value>Effective Stake</value>
   </data>
   <data name="PageTitle_Report_Outstanding" xml:space="preserve">
-    <value>Outstanding</value>
+    <value>Agent Outstanding - Reports</value>
   </data>
   <data name="AgentShare" xml:space="preserve">
     <value>Agent Share</value>
+  </data>
+  <data name="Licensee" xml:space="preserve">
+    <value>Licensee</value>
+  </data>
+  <data name="PageTitle_BetList" xml:space="preserve">
+    <value>LAS's Bet List</value>
+  </data>
+  <data name="PageTitle_Report_Results" xml:space="preserve">
+    <value>Results - Reports</value>
   </data>
 </root>

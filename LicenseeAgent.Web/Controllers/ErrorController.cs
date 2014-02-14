@@ -52,8 +52,6 @@ namespace LicenseeAgent.Web.Controllers
         /// Show under maintenance page.
         /// </summary>
         /// <returns>Returns HTML content.</returns>
-        [HttpGet]
-        [UnderMaintenance(Ignore = true)]
         public ActionResult UnderMaintenance()
         {
             var maintenanceService = new UnderMaintenanceService();

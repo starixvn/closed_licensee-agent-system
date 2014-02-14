@@ -27,15 +27,16 @@ namespace LicenseeAgent.Web.Filters
             _maintenanceService = DependencyResolver.Current.GetService<IUnderMaintenanceService>();
         }
 
-        public bool Ignore { get; set; }
-
         /// <summary>
         /// Override base action executing function to check maintenance before executing request.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (Ignore)
+            var actionName = filterContext.ActionDescriptor.ActionName;
+            var ignored = actionName.Equals("UnderMaintenance", StringComparison.CurrentCultureIgnoreCase);
+
+            if (ignored || filterContext.HttpContext.Response.IsRequestBeingRedirected)
             {
                 return;
             }

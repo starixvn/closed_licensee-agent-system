@@ -21,7 +21,7 @@ namespace LicenseeAgent.Core.Configurations
             EndTime = downTimes[1].Trim();
 
             IsAdminSite = GetValue("IsAdminSite") == "1";
-            UnderMaintenanceUrl = GetValue("UnderMaintenaceUrl");
+            UnderMaintenanceUrl = GetValue("UnderMaintenanceUrl");
             DisabledUnderMaintenanceAPI = GetValue("DisabledUnderMaintenanceAPI") == "1";
             LocalTest = GetValue("LocalTest") == "1";
             LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));

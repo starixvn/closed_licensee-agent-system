@@ -46,7 +46,12 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <returns>Content of member.</returns>
         public static string GetMembersContent(IEnumerable<LogInformationEntity> members)
         {
-            return SerializeObject<StatusEntity>(new StatusEntity { Customers = new Collection<LogInformationEntity>(members.ToList()) }, typeof(LogInformationEntity));
+            return SerializeObject<StatusEntity>(
+                new StatusEntity
+                {
+                    Customers = new Collection<LogInformationEntity>(members.ToList())
+                }, 
+                typeof(LogInformationEntity));
         }
 
         /// <summary>

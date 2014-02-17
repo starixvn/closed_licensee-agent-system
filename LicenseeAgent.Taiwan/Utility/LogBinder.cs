@@ -9,6 +9,7 @@ namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
@@ -24,10 +25,9 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <summary>
         /// Get action information.
         /// </summary>
-        /// <typeparam name="T">Type action.</typeparam>
         /// <param name="action">Service Action.</param>
         /// <returns>String Action information.</returns>
-        public static string GetActionInformation<T>(IAction action) where T : class
+        public static string GetActionInformation(IAction action)
         {
             var logContent = new LogContentEntity
             {
@@ -36,7 +36,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 Parameters = (LogAction)action
             };
 
-            return SerializeObject<LogContentEntity, T>(logContent);
+            return SerializeObject<LogContentEntity>(logContent, action.GetType());
         }
 
         /// <summary>
@@ -46,23 +46,21 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <returns>Content of member.</returns>
         public static string GetMembersContent(IEnumerable<LogInformationEntity> members)
         {
-            return SerializeObject<StatusEntity, LogInformationEntity>(new StatusEntity { Customers = members.ToList() });
+            return SerializeObject<StatusEntity>(new StatusEntity { Customers = members.ToList() }, typeof(LogInformationEntity));
         }
 
         /// <summary>
         /// Serialize object.
         /// </summary>
-        /// <typeparam name="T1">Type of object 1 need serialize.</typeparam>
-        /// <typeparam name="T2">Type of object 2 need serialize.</typeparam>
+        /// <typeparam name="T">Type of object need serialize.</typeparam>        
         /// <param name="objectSerialization">Object need serialize.</param>
+        /// <param name="typeEntity">Type need serialize.</param>
         /// <returns>String object after serialize.</returns>
-        private static string SerializeObject<T1, T2>(T1 objectSerialization) 
-                where T1 : class 
-                where T2 : class
+        private static string SerializeObject<T>(T objectSerialization, Type typeEntity)
         {
             using (var stringWriter = new ExtentedStringWriter(System.Text.Encoding.UTF8))
             {
-                var serializer = new XmlSerializer(objectSerialization.GetType(), new Type[] { typeof(T1), typeof(T2) });
+                var serializer = new XmlSerializer(objectSerialization.GetType(), new Type[] { typeEntity });
 
                 serializer.Serialize(stringWriter, objectSerialization);
 

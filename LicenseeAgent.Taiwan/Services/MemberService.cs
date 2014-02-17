@@ -57,7 +57,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation<InsertNewMemberAction>(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -85,7 +85,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation<ResetPasswordAction>(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -112,7 +112,7 @@ namespace LicenseeAgent.Taiwan.Services
                 UserId = action.UserId,
                 CustId = action.IBCCustId,
                 Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation<UpdateMemberInfoAction>(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
             _logService.WriteLog(criteria);
 
@@ -138,7 +138,7 @@ namespace LicenseeAgent.Taiwan.Services
                 LicenseeId = action.LicenseeId,
                 UserId = action.UserId,
                 MemberStatus = LogBinder.GetMembersContent(ServiceExtension.GetLogInformations(action.IBCCustId, action.LASAgentId)),
-                Doing = LogBinder.GetActionInformation<UpdateMemberStatusAction>(action)
+                Doing = LogBinder.GetActionInformation(action)
             };
 
             var logInformations = _logService.GetLogInformations(criteria);

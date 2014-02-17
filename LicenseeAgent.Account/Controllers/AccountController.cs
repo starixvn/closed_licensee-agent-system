@@ -29,6 +29,7 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web.Core;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Account controllers.
@@ -37,10 +38,13 @@ namespace LicenseeAgent.Account.Controllers
     public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;
-
         private readonly ICoreService _coreService;
 
-        public AccountController(IAccountService accountService, ICoreService coreService)
+        public AccountController(
+            IAccountService accountService,
+            ICoreService coreService,
+            IPermissionService permissionService)
+            : base(permissionService)
         {
             _accountService = accountService;
             _coreService = coreService;
@@ -363,57 +367,6 @@ namespace LicenseeAgent.Account.Controllers
             }
 
             return Redirect(FormsAuthentication.LoginUrl);
-        }
-
-        /// <summary>
-        /// Clears the session.
-        /// </summary>
-        /// <param name="clearCheckin">If set to <c>true</c> [clear check-in].</param>
-        [NonAction]
-        public void ClearSession(bool clearCheckin)
-        {
-            if (clearCheckin)
-            {
-                if (CurrentSession.IsAdmin)
-                {
-                    AdminUserLogout();
-                }
-                else
-                {
-                    AgentUserLogout();
-                }
-            }
-
-            FormsAuthentication.SignOut();
-            SessionManager.ClearAll();
-        }
-
-        /// <summary>
-        /// Remove Agent Session.
-        /// </summary>
-        [NonAction]
-        public void AgentUserLogout()
-        {
-            var criteria = new AgentUserLogoutCriteria
-            {
-                OnAgentId = CurrentSession.OnUserId
-            };
-
-            _accountService.AgentUserLogout(criteria);
-        }
-
-        /// <summary>
-        /// Remove Admin Session.
-        /// </summary>
-        [NonAction]
-        public void AdminUserLogout()
-        {
-            var criteria = new AdminUserLogoutCriteria
-            {
-                OnAdminId = CurrentSession.OnUserId
-            };
-
-            _accountService.AdminUserLogout(criteria);
         }
 
         /// <summary>

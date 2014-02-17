@@ -29,7 +29,7 @@ namespace LicenseeAgent.BetList.Controllers
     using Services;
     using ViewModels;
     using Web.Controllers;
-    
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -42,9 +42,10 @@ namespace LicenseeAgent.BetList.Controllers
         private readonly IPermissionService _permissionService;
 
         public BetListController(
-            IBetListService betlistService, 
+            IBetListService betlistService,
             ICoreService coreService,
             IPermissionService permissionService)
+            : base(permissionService)
         {
             _betlistService = betlistService;
             _coreService = coreService;
@@ -78,7 +79,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.StatusIDs = criteria.StatusIDs == "All" ? null : criteria.StatusIDs;
 
             var ticketResults = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters() 
+            var ticketBuilderParameters = new TicketBuilderParameters()
             {
                 TicketResult = ticketResults,
                 IsAdmin = CurrentSession.IsAdmin
@@ -147,12 +148,12 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 TargetCustId = custId
             };
-            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking() 
+            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking()
             {
                 ReferenceNumber = refNo
             };
 
-            if (!_permissionService.IsDownlineMember(belongingCheckingBase) 
+            if (!_permissionService.IsDownlineMember(belongingCheckingBase)
                 || !_permissionService.IsDownlineReferenceNumber(referenceNumberBelongingChecking))
             {
                 this.RedirectToAccessDeniedPage();

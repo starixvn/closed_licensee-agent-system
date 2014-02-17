@@ -34,9 +34,10 @@ namespace LicenseeAgent.Transfer.Controllers
         private readonly IPermissionService _permissionService;
 
         public TransferController(
-            ITransferService transferService, 
+            ITransferService transferService,
             IMemberService memberService,
             IPermissionService permissionService)
+            : base(permissionService)
         {
             _transferService = transferService;
             _memberService = memberService;
@@ -280,6 +281,12 @@ namespace LicenseeAgent.Transfer.Controllers
             }
 
             return View(model);
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
         }
     }
 }

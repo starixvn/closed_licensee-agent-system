@@ -39,6 +39,7 @@ namespace LicenseeAgent.BetList.Controllers
         public ParlayController(
             IBetListService betlistService,
             IPermissionService permissionService)
+            : base(permissionService)
         {
             _betlistService = betlistService;
             _permissionService = permissionService;

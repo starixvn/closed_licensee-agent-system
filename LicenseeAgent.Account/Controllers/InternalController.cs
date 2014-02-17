@@ -22,6 +22,7 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Internal Login Controller.
@@ -33,7 +34,12 @@ namespace LicenseeAgent.Account
         private readonly ICurrencyService _currencyService;
         private readonly IInternalService _internalService;
 
-        public InternalController(IAccountService accountService, ICurrencyService currencyService, IInternalService internalService)
+        public InternalController(
+            IAccountService accountService,
+            ICurrencyService currencyService,
+            IInternalService internalService,
+            IPermissionService permissionService)
+            : base(permissionService)
         {
             _accountService = accountService;
             _currencyService = currencyService;

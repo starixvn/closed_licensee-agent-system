@@ -23,12 +23,18 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public abstract class BetListBase : BaseController, IBetListBase
     {
+        protected BetListBase(IPermissionService permissionService)
+            : base(permissionService)
+        {
+        }
+
         /// <summary>
         /// Format raw bet list details.
         /// </summary>
@@ -77,6 +83,12 @@ namespace LicenseeAgent.BetList.Controllers
             }
 
             return Content(stringBuilder.ToString());
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
         }
 
         private static string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)

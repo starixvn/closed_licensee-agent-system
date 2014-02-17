@@ -24,6 +24,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,10 +32,13 @@ namespace LicenseeAgent.AccountInformation.Controllers
     public class AccountInformationController : BaseController
     {
         private readonly ISearchUserService _searchUserService;
-
         private readonly IMemberService _memberService;
 
-        public AccountInformationController(ISearchUserService searchUserService, IMemberService memberService)
+        public AccountInformationController(
+            ISearchUserService searchUserService,
+            IMemberService memberService,
+            IPermissionService permissionService)
+            : base(permissionService)
         {
             _searchUserService = searchUserService;
             _memberService = memberService;
@@ -308,6 +312,12 @@ namespace LicenseeAgent.AccountInformation.Controllers
             }
 
             return customer;
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
         }
     }
 }

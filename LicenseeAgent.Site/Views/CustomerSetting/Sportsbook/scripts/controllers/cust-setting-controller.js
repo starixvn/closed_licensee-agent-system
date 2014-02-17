@@ -195,6 +195,10 @@
                 CORE.unblockUI();
                 if (data.ErrCode != 0) {
                     alert(data.ErrMsg);
+                    if (data.ErrCode == 1036) {
+                        CORE.signOut();
+                        return;
+                    }
                 }
 
                 var isSuccess = true;

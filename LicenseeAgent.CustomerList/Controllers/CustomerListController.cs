@@ -43,6 +43,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             IIpInformationService ipService,
             IMemberService memberService,
             IPermissionService permissionService)
+            : base(permissionService)
         {
             _customerService = agentService;
             _ipService = ipService;
@@ -447,8 +448,6 @@ namespace LicenseeAgent.CustomerList.Controllers
             });
         }
 
-        #region Reset Password
-
         /// <summary>
         /// Reset Password.
         /// </summary>
@@ -585,10 +584,6 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             return View("~/Views/CustomerList/ResetPassword.cshtml");
         }
-
-        #endregion Reset Password
-
-        #region Edit Info
 
         /// <summary>
         /// Edit Info Member.
@@ -763,6 +758,10 @@ namespace LicenseeAgent.CustomerList.Controllers
             return View("~/Views/CustomerList/EditInfo.cshtml", model);
         }
 
-        #endregion Edit Info
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

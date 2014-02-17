@@ -34,9 +34,10 @@ namespace LicenseeAgent.CreditBalance.Controllers
         private readonly IPermissionService _permissionService;
 
         public CreditBalanceController(
-            ICreditBalanceService creditBalanceService, 
+            ICreditBalanceService creditBalanceService,
             IMemberService memberService,
             IPermissionService permissionService)
+            : base(permissionService)
         {
             _creditBalanceService = creditBalanceService;
             _memberService = memberService;
@@ -278,6 +279,12 @@ namespace LicenseeAgent.CreditBalance.Controllers
             }
 
             return View(agentEditMemberCreditViewModel);
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
         }
     }
 }

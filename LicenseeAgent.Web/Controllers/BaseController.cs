@@ -19,6 +19,7 @@ namespace LicenseeAgent.Web.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using System.Web.Security;
     using System.Web.SessionState;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criterias;
@@ -26,6 +27,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Results;
+    using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
@@ -39,7 +41,7 @@ namespace LicenseeAgent.Web.Controllers
         private readonly IPermissionService _permissionService;
 
         protected BaseController()
-        { 
+        {
         }
 
         protected BaseController(IPermissionService permissionService)
@@ -310,8 +312,11 @@ namespace LicenseeAgent.Web.Controllers
         /// <summary>
         /// Checks the valid currency.
         /// </summary>
+        /// <returns>
+        /// The currency is valid or not.
+        /// </returns>
         /// <exception cref="System.Exception">The exception of denied access.</exception>
-        protected void CheckValidCurrency()
+        protected bool CheckValidCurrency()
         {
             if (CurrentSession.AgentInfo != null)
             {
@@ -330,9 +335,53 @@ namespace LicenseeAgent.Web.Controllers
 
                 if (!_permissionService.IsValidCurrency(criteria))
                 {
-                    throw new Exception(Las.AccessDeniedMsg);
+                    return false;
                 }
             }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Signs the out.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
+        protected void SignOut(ActionExecutingContext filterContext)
+        {
+            var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
+            var isAjaxRequest = filterContext.IsAjaxRequest();
+            if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
+            {
+                filterContext.Result = JsonResult(1036);
+            }
+            else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ViewResult)))
+            {
+                filterContext.Result = Redirect(FormsAuthentication.LoginUrl);
+            }
+
+            ClearSession(true);
+        }
+
+        /// <summary>
+        /// Clears the session.
+        /// </summary>
+        /// <param name="clearCheckin">If set to <c>true</c> [clear check-in].</param>
+        protected void ClearSession(bool clearCheckin)
+        {
+            if (clearCheckin)
+            {
+                if (CurrentSession.IsAdmin)
+                {
+                    AdminUserLogout();
+                }
+                else
+                {
+                    AgentUserLogout();
+                }
+            }
+
+            FormsAuthentication.SignOut();
+            SessionManager.ClearAll();
         }
 
         /// <summary>
@@ -350,6 +399,32 @@ namespace LicenseeAgent.Web.Controllers
             }
 
             return "Undefined Error";
+        }
+
+        /// <summary>
+        /// Remove Agent Session.
+        /// </summary>
+        private void AgentUserLogout()
+        {
+            var criteria = new AgentUserLogoutCriteria
+            {
+                OnAgentId = CurrentSession.OnUserId
+            };
+
+            _permissionService.AgentUserLogout(criteria);
+        }
+
+        /// <summary>
+        /// Remove Admin Session.
+        /// </summary>
+        private void AdminUserLogout()
+        {
+            var criteria = new AdminUserLogoutCriteria
+            {
+                OnAdminId = CurrentSession.OnUserId
+            };
+
+            _permissionService.AdminUserLogout(criteria);
         }
     }
 }

@@ -113,16 +113,6 @@ namespace LicenseeAgent.Account.Services
             Execute(criteria);
         }
 
-        public void AgentUserLogout(AgentUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminUserLogout(AdminUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         public IEnumerable<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria)
         {
             return GetEntites<LicenseeEntity>(criteria);

@@ -70,13 +70,11 @@
     <Compile Include="Criterias\AdminLoginCriteria.cs" />
     <Compile Include="Criterias\AdminReCheckInCriteria.cs" />
     <Compile Include="Criterias\AdminSaltSelCriteria.cs" />
-    <Compile Include="Criterias\AdminUserLogoutCriteria.cs" />
     <Compile Include="Criterias\AgentChangePwdCriteria.cs" />
     <Compile Include="Criterias\AgentCheckInCriteria.cs" />
     <Compile Include="Criterias\AgentLoginCriteria.cs" />
     <Compile Include="Criterias\AgentReCheckInCriteria.cs" />
     <Compile Include="Criterias\AgentSaltSelCriteria.cs" />
-    <Compile Include="Criterias\AgentUserLogoutCriteria.cs" />
     <Compile Include="Criterias\LicenseeAdminLoginCriteria.cs" />
     <Compile Include="Criterias\TopWinningCriteria.cs" />
     <Compile Include="Entities\BalanceInfoEntity.cs" />

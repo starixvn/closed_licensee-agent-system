@@ -247,8 +247,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            this.CheckValidCurrency();
-
             var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
             {
                 TargetRoleId = model.SettingContext.TargetRoleId,
@@ -409,7 +407,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            this.CheckValidCurrency();
             base.OnActionExecuting(filterContext);
         }
 

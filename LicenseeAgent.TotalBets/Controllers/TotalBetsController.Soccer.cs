@@ -15,6 +15,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Account controllers.
@@ -23,7 +24,10 @@ namespace LicenseeAgent.TotalBets.Controllers
     {
         private readonly ITotalBetsService _totalBetsService;
 
-        public TotalBetsController(TotalBetsService totalBetsService)
+        public TotalBetsController(
+            TotalBetsService totalBetsService,
+            IPermissionService permissionService)
+            : base(permissionService)
         {
             _totalBetsService = totalBetsService;
         }
@@ -143,5 +147,11 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         #endregion Utilities
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.CheckValidCurrency();
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

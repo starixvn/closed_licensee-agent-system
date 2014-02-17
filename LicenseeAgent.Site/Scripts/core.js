@@ -345,6 +345,15 @@
                 return '{0} {1}'.format(firstName, lastName);
             }
             return CORE.EMPTY_TEXT_FORMAT;
+        },
+        signOut: function () {
+            if (window.parent) {
+                window.parent.location.href = CORE.UrlRoot;
+            }
+            else
+            {
+                window.location.href = CORE.UrlRoot;
+            }
         }
     };
 } (jQuery);

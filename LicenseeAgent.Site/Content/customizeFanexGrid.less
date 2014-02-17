@@ -164,3 +164,67 @@
 }
 
 /* End Overwrite fanex grid */
+
+#pagination
+{
+    div.itemperpage
+    {
+        color: #797979;
+    }
+    #itemperpage,
+    .txt
+    {
+        border: 1px solid #cfcfcf;
+    }
+
+    .numberlist
+    {
+        padding: 0;
+        border: 1px solid #cfcfcf;
+        ul li
+        {
+            padding: 0;
+            background: #fff !important;
+            &.sep
+            {
+                border-right: 0px #cfcfcf solid;
+            }
+            :first-child
+            {
+                border-right: 0px #cfcfcf solid;
+            }
+        }
+    }
+
+    a:hover,
+    .current,
+    .current.prev,
+    .current.next
+    {
+        border-radius: 0;
+    }
+
+    a,
+    span,
+    .lnk:hover
+    {
+        padding: 1px 6px !important;
+        margin-right: 0 !important;
+        font-weight: normal !important;
+        color: #589cc9;
+    }
+
+    a:hover,
+    .current
+    {
+        background: #589cc9;
+        color: #fff;
+    }
+
+    .current.prev,
+    .current.next
+    {
+        background: none;
+        color: #d9d9d9;
+    }
+}

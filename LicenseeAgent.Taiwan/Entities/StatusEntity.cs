@@ -9,6 +9,7 @@ namespace LicenseeAgent.Taiwan.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Xml.Serialization;
@@ -21,6 +22,6 @@ namespace LicenseeAgent.Taiwan.Entities
     public class StatusEntity
     {
         [XmlElement(ElementName = "Customer")]
-        public List<LogInformationEntity> Customers { get; set; }
+        public Collection<LogInformationEntity> Customers { get; set; }
     }
 }

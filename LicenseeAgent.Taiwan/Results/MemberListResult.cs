@@ -8,6 +8,7 @@
 namespace LicenseeAgent.Taiwan.Results
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Entities;
 
@@ -23,6 +24,6 @@ namespace LicenseeAgent.Taiwan.Results
         }
 
         [DataMember(Name = "Data")]
-        public List<ServiceMemberEntity> Members { get; set; }
+        public Collection<ServiceMemberEntity> Members { get; set; }
     }
 }

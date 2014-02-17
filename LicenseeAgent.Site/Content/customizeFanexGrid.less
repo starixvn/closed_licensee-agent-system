@@ -13,6 +13,7 @@
     .x-scrollbar
     {
         height: 16px;
+        border-top: solid 0px #c5c5c5 !important;
     }
 
     .y-scrollbar {
@@ -38,6 +39,11 @@
             border-top-width: 2px !important;
             background: #FFE5D9;
         }
+    }
+
+    .row-footer-background
+    {
+        background: none repeat scroll 0 0 #ffe5d9;
     }
 
     table
@@ -127,6 +133,11 @@
         thead th
         {
             border: 1px solid #fff;
+            &.free-cell-bottom-right
+            {
+                background: #F1F1F1;
+                border-top-width: 0px !important;
+            }
         }
     }
 

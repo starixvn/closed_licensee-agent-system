@@ -32,6 +32,10 @@ namespace LicenseeAgent.Account.Services
 
         void AdminReCheckIn(AdminReCheckInCriteria criteria);
 
+        void AgentUserLogout(AgentUserLogoutCriteria criteria);
+
+        void AdminUserLogout(AdminUserLogoutCriteria criteria);
+
         IEnumerable<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria);
 
         IEnumerable<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria);

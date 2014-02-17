@@ -18,6 +18,7 @@ namespace LicenseeAgent.Web.Controllers
     using System;
     using System.Linq;
     using System.Text;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
@@ -333,10 +334,10 @@ namespace LicenseeAgent.Web.Controllers
                     CountryCode = clientInfo.CountryCode
                 };
 
-                if (!_permissionService.IsValidCurrency(criteria))
-                {
-                    return false;
-                }
+                ////if (!_permissionService.IsValidCurrency(criteria))
+                ////{
+                ////    return false;
+                ////}
             }
 
             return true;
@@ -352,36 +353,14 @@ namespace LicenseeAgent.Web.Controllers
             var isAjaxRequest = filterContext.IsAjaxRequest();
             if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
             {
-                filterContext.Result = JsonResult(1036);
+                filterContext.HttpContext.Response.StatusCode = 100;
+                filterContext.HttpContext.Response.ContentType = "application/json";
+                filterContext.Result = JsonResult("test");
             }
             else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ViewResult)))
             {
                 filterContext.Result = Redirect(FormsAuthentication.LoginUrl);
             }
-
-            ClearSession(true);
-        }
-
-        /// <summary>
-        /// Clears the session.
-        /// </summary>
-        /// <param name="clearCheckin">If set to <c>true</c> [clear check-in].</param>
-        protected void ClearSession(bool clearCheckin)
-        {
-            if (clearCheckin)
-            {
-                if (CurrentSession.IsAdmin)
-                {
-                    AdminUserLogout();
-                }
-                else
-                {
-                    AgentUserLogout();
-                }
-            }
-
-            FormsAuthentication.SignOut();
-            SessionManager.ClearAll();
         }
 
         /// <summary>
@@ -399,32 +378,6 @@ namespace LicenseeAgent.Web.Controllers
             }
 
             return "Undefined Error";
-        }
-
-        /// <summary>
-        /// Remove Agent Session.
-        /// </summary>
-        private void AgentUserLogout()
-        {
-            var criteria = new AgentUserLogoutCriteria
-            {
-                OnAgentId = CurrentSession.OnUserId
-            };
-
-            _permissionService.AgentUserLogout(criteria);
-        }
-
-        /// <summary>
-        /// Remove Admin Session.
-        /// </summary>
-        private void AdminUserLogout()
-        {
-            var criteria = new AdminUserLogoutCriteria
-            {
-                OnAdminId = CurrentSession.OnUserId
-            };
-
-            _permissionService.AdminUserLogout(criteria);
         }
     }
 }

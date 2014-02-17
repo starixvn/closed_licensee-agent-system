@@ -107,16 +107,6 @@ namespace LicenseeAgent.Web.Services
             return this.IsDownlineReferenceNumber(criteria);
         }
 
-        public void AgentUserLogout(AgentUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminUserLogout(AdminUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         /// <summary>
         /// Checks for editing agent.
         /// </summary>

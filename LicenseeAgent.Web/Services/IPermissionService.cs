@@ -35,9 +35,5 @@ namespace LicenseeAgent.Web.Services
         bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking);
 
         bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria);
-
-        void AgentUserLogout(AgentUserLogoutCriteria criteria);
-
-        void AdminUserLogout(AdminUserLogoutCriteria criteria);
     }
 }

@@ -55,7 +55,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Criterias\AdminCheckInCriteria.cs" />
     <Compile Include="Criterias\AdminCheckInLicenseeCriteria.cs" />
+    <Compile Include="Criterias\AdminUserLogoutCriteria.cs" />
     <Compile Include="Criterias\AgentReCheckInLicenseeCriteria.cs" />
+    <Compile Include="Criterias\AgentUserLogoutCriteria.cs" />
     <Compile Include="Criterias\BalanceInfoCriteria.cs" />
     <Compile Include="Criterias\AgentInternalLoginCriteria.cs" />
     <Compile Include="Criterias\StatisticCriteria.cs" />

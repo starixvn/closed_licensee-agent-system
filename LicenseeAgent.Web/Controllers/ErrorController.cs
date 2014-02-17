@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Lewis" date="2013.5.15">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Controllers
 {
@@ -13,8 +10,6 @@ namespace LicenseeAgent.Web.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
@@ -33,19 +28,12 @@ namespace LicenseeAgent.Web.Controllers
         [HttpGet]
         public ActionResult Index(int? statusCode)
         {
-            if (statusCode == null)
-            {
-                statusCode = (int)HttpStatusCode.InternalServerError;
-            }
-
-            var url = statusCode.Value == (int)HttpStatusCode.InternalServerError ?
-                            "~/Views/Error/Error.cshtml" : "~/Views/Error/Index.cshtml";
-            var message = AppHandler.GetHttpErrorMessage(statusCode.Value);
             var model = new ErrorViewModel
             {
-                ErrMsg = message
+                StatusCode = statusCode ?? (int)HttpStatusCode.InternalServerError
             };
-            return View(url, model);
+
+            return View(model);
         }
 
         /// <summary>
@@ -74,12 +62,6 @@ namespace LicenseeAgent.Web.Controllers
 
         [HttpGet]
         public ActionResult AccessDenied()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult AccountStopped()
         {
             return View();
         }

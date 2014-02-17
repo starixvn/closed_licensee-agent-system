@@ -1,18 +1,21 @@
 @using LicenseeAgent.Web.ViewModels
+@using LicenseeAgent.Core.Utility
 @model ErrorViewModel
 @{
     Layout = null;
+    var errMsg = AppHandler.GetHttpErrorMessage(Model.StatusCode);
+    var css = Model.StatusCode == (int)HttpStatusCode.InternalServerError ? "internal-error-block" : "error-block";
 }
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Error</title>
+    <title>@Las.Error</title>
     <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
 </head>
 <body>
-    <div class="error-block">
+    <div class="@css">
         <div class="block-text">
-            <span>@Model.ErrMsg</span>
+            <span>@errMsg</span>
         </div>
     </div>
 </body>

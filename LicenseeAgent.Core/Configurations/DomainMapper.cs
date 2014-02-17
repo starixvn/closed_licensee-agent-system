@@ -41,7 +41,7 @@ namespace LicenseeAgent.Core.Configurations
                 return licenseeDomains.First().LicenseeId;
             }
 
-            if (AppSettings.LocalTest)
+            if (AppSettings.LocalTest || request.IsLocal)
             {
                 return AppSettings.LocalLicenseeId;
             }

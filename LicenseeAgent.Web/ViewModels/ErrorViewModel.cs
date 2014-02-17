@@ -11,6 +11,6 @@ namespace LicenseeAgent.Web.ViewModels
     /// </summary>
     public class ErrorViewModel
     {
-        public string ErrMsg { get; set; }
+        public int StatusCode { get; set; }
     }
 }

@@ -10,7 +10,7 @@
             ],
     showPager: true,
     showFooter: true,
-    gridExpandHeight: 100,
+    gridExpandHeight: 60,
     bodyRowHeight: 29
 };
 

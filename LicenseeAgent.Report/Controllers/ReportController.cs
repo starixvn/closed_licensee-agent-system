@@ -263,13 +263,8 @@ namespace LicenseeAgent.Report.Controllers
             criteria.AgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
             var agentOutstandings = _reportService.GetOutstandings(criteria);
 
-            decimal sumOutstanding = 0;
-            decimal sumPositiontaking = 0;
-            foreach (var item in agentOutstandings)
-            {
-                sumOutstanding += item.Outstanding;
-                sumPositiontaking += item.Positiontaking;
-            }
+            decimal sumOutstanding = agentOutstandings.Sum(i => i.Outstanding);
+            decimal sumPositiontaking = agentOutstandings.Sum(i => i.Positiontaking);
 
             return Json(new
             {

@@ -94,9 +94,6 @@
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
-    <Compile Include="Criteria\TotalBetsSystemParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\TotalBetsMixParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\TotalBetsParlayDetailCriteria.cs" />
     <Compile Include="Criteria\TotalBetsParlayListCriteria.cs" />
     <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
     <Compile Include="Criteria\MixParlayDetailsCriteria.cs" />

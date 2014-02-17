@@ -100,6 +100,13 @@ namespace LicenseeAgent.Web.Services
             return this.IsDownlineTicket(criteria);
         }
 
+        public bool IsDownlineTransaction(long ticketDetailsRefNo)
+        {
+            var criteria = new TicketDetailsDownLineCriteria { RefNo = ticketDetailsRefNo };
+
+            return this.IsDownlineTicketDetails(criteria);
+        }
+
         public bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking)
         {
             var criteria = new ReferenceNumberCriteria { RefNo = referenceNumberBelongingChecking.ReferenceNumber };

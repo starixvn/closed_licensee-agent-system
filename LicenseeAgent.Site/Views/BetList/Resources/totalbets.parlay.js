@@ -13,14 +13,14 @@
                 { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    gridExpandHeight: 85,
+    gridExpandHeight: 100,
     bodyRowHeight: 29,
     autoResizeColumn: true
 };
 
-var showMixParlayDetailUrl = "~/Parlay/MixParlayDetails?transid=";
-var showBetListDetailsUrl = "~/Parlay/ParlayDetails?transId=";
-var showSystemParlayDetailsUrl = "~/Parlay/SystemParlayDetails?refNo=";
+var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
+var showBetListDetailsUrl = "~/BetList/Details?transId=";
+var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 
 var fanex = fanex || {};
 fanex.totalBets = fanex.totalBets || {};

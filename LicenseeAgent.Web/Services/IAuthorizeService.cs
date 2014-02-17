@@ -21,6 +21,8 @@ namespace LicenseeAgent.Web.Services
 
         bool IsDownlineTicket(TicketDownLineCriteria criteria);
 
+        bool IsDownlineTicketDetails(TicketDetailsDownLineCriteria criteria);
+
         bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria);
 
         bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria);

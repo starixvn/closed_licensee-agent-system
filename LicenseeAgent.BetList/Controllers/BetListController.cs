@@ -142,19 +142,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="custId">Customer ID.</param>
         /// <returns>String content.</returns>
         [HttpGet]
-        public ActionResult SystemParlayResult(long refNo, int custId)
+        public ActionResult SystemParlayResult(long refNo)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
-            {
-                TargetCustId = custId
-            };
-            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking()
-            {
-                ReferenceNumber = refNo
-            };
-
-            if (!_permissionService.IsDownlineMember(belongingCheckingBase)
-                || !_permissionService.IsDownlineReferenceNumber(referenceNumberBelongingChecking))
+            if (!_permissionService.IsDownlineTransaction(refNo))
             {
                 this.RedirectToAccessDeniedPage();
             }
@@ -166,7 +156,6 @@ namespace LicenseeAgent.BetList.Controllers
             {
                 AgentId = agentId,
                 RefNo = refNo,
-                CustId = custId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
                 MoveBetsDay = balanceUp.MoveBetsDay
             };

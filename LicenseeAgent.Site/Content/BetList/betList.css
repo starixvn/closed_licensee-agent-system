@@ -108,127 +108,6 @@ td.agent-name
     margin-right: 8px;
 }
 
-.tblBetList a.btnExpand
-{
-    float: right;
-}
-
-.tblBetList a.plus
-{
-    background: transparent url(images/plus.png) no-repeat 0 -13px;
-    padding-left: 15px;
-}
-
-.tblBetList a.plus:hover
-{
-    background: transparent url(images/plus.png) no-repeat 0 -39px;
-}
-
-.tblBetList a.minus
-{
-    background: transparent url(images/plus.png) no-repeat 0 0;
-    padding-left: 15px;
-}
-
-.tblBetList a.minus:hover
-{
-    background: transparent url(images/plus.png) no-repeat 0 -27px;
-}
-
-/***************************
-Combination Mix Parlay
-*/
-.tblBetList .combParlayRow .home-team
-{
-    color: #8C3732;
-}
-
-.tblBetList .combParlayRow .away-team
-{
-    color: #637F57;
-}
-
-.tblBetList .actual-stake
-{
-    position: relative;
-    cursor: default;
-}
-
-.tblBetList .tip
-{
-    position: absolute;
-    top: -5px;
-    right: -100px;
-    min-width: 80px;
-    padding: 5px;
-    background-color: #333;
-    opacity: .9;
-    filter: alpha(opacity=90);
-    color: #FFF;
-    text-align: center;
-    border: #AAA solid 1px;
-    box-shadow: 0 0 1px 1px #AAA;
-    display: none;
-}
-
-.tblBetList tr.combParlayLoseRow td
-{
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.tblBetList tr.total-winloss td
-{
-    background-color: #F3F5BE;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: bold;
-}
-
-.tblBetList tr.combParlayOutstandingRow td
-{
-    background-color: #DBE2BB;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: bold;
-}
-
-.tblBetList .btnCollapseWrp
-{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.tblBetList .btnCollapseWrp a
-{
-    background: transparent url(images/up.png) no-repeat 0 0;
-    padding-left: 15px;
-}
-
-.tblBetList .btnCollapseWrp a:hover
-{
-    background: transparent url(images/up.png) no-repeat 0 -18px;
-}
-
-.tblBetList .btnCombParlayDetailWrp
-{
-    /*border: 1px solid #333;     -moz-border-radius: 13px;     border-radius: 13px;*/
-    float: right;
-    margin-bottom: 5px;
-    padding: 5px 0;
-    text-align: center;
-}
-
-.tblBetList a.btnCombParlayDetail
-{
-    background: transparent url(images/link_14x14.png) no-repeat 0 0;
-    padding: 0 0 2px 18px;
-}
-
-.tblBetList a.btnCombParlayDetail:hover
-{
-    background: transparent url(images/link_14x14.png) no-repeat 0 -16px;
-}
 
 /***************************
 Format styles
@@ -236,6 +115,11 @@ Format styles
 .over-under-no
 {
     color: #555;
+}
+
+.free-cell-top-right
+{
+	height: 26px !important;
 }
 
 /********** Betlist core style **************/
@@ -295,10 +179,6 @@ Format styles
     color: #2b88d8;
 }
 
-.tblBetList tr td a
-{
-    color: #0000FF;
-}
 /********** ------------------ **************/
 /* From MNS */
 .filter-area

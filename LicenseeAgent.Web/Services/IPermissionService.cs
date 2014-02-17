@@ -32,6 +32,8 @@ namespace LicenseeAgent.Web.Services
 
         bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking);
 
+        bool IsDownlineTransaction(long ticketDetailsRefNo);
+
         bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking);
 
         bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria);

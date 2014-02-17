@@ -74,6 +74,21 @@ namespace LicenseeAgent.Web.Services
         }
 
         /// <summary>
+        /// Check if the ticket is belong to current user.
+        /// </summary>
+        /// <param name="criteria">Ticket down line criteria.</param>
+        /// <returns>Return boolean value indicating the down line value.</returns>
+        public bool IsDownlineTicketDetails(TicketDetailsDownLineCriteria criteria)
+        {
+            criteria.AgentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var param = criteria.GetSpParams();
+                return (bool)objectDb.ExecuteScalar(param);
+            }
+        }
+
+        /// <summary>
         /// Check if the reference number is belong to current user.
         /// </summary>
         /// <param name="criteria">Reference number down line criteria.</param>

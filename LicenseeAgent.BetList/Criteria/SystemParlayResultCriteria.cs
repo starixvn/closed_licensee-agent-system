@@ -14,8 +14,6 @@ namespace LicenseeAgent.BetList.Criteria
 
         public long RefNo { get; set; }
 
-        public int CustId { get; set; }
-
         public DateTime MoveBetsDay { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
@@ -29,7 +27,7 @@ namespace LicenseeAgent.BetList.Criteria
 
         public override bool IsValid()
         {
-            return AgentId > 0 && RefNo > 0 && CustId > 0;
+            return AgentId > 0 && RefNo > 0;
         }
     }
 }

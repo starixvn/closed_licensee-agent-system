@@ -89,18 +89,18 @@ fanex.betlist.core = {
                 success: function (response) {
                     divEvent.html(response);
                     $(".line:last", divEvent).remove();
+                    $('#BetListGrid').fanexGrid('resizeGrid');
                 },
                 beforeSend: function () {
                     CORE.blockUI();
                 },
                 complete: function () {
-                    $('#BetListGrid').fanexGrid('resizeGrid');
                     CORE.unblockUI();
                 }
             });
         };
 
-        var dataExisted = $("#divEvent_5325904317").text().length > 0;
+        var dataExisted = $("#divEvent_" + transId).text().length > 0;
         if (!dataExisted) {
             loadMixParlayDetail(transId);
         }

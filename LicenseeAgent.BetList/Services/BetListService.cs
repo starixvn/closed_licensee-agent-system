@@ -94,35 +94,5 @@ namespace LicenseeAgent.BetList.Services
         {
             return _betlistDataAccess.GetParlayList(criteria);
         }
-
-        /// <summary>
-        /// Get Parlay List Details.
-        /// </summary>
-        /// <param name="criteria">Parlay Detail Criteria.</param>
-        /// <returns>A list of parlay detail.</returns>
-        public IEnumerable<RawBetListDetails> GetParlayDetail(TotalBetsParlayDetailCriteria criteria)
-        {
-            return GetEntites<RawBetListDetails>(criteria);
-        }
-
-        /// <summary>
-        /// Get Total Bets Mix Parlay Detail.
-        /// </summary>
-        /// <param name="criteria">Total Bets Mix Parlay Detail Criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public TicketResult GetTotalBetsMixParlayDetail(TotalBetsMixParlayDetailCriteria criteria)
-        {
-            return _betlistDataAccess.GetTotalBetsMixParlayDetail(criteria);
-        }
-
-        /// <summary>
-        /// Get system parlay result data.
-        /// </summary>
-        /// <param name="criteria">System parlay result criteria.</param>
-        /// <returns>System Parlay Data.</returns>
-        public SystemParlayData GetTotalBetsSystemParlayDetail(TotalBetsSystemParlayDetailCriteria criteria)
-        {
-            return _betlistDataAccess.GetTotalBetsSystemParlayDetail(criteria);
-        }
     }
 }

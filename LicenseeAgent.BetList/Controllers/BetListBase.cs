@@ -81,6 +81,7 @@ namespace LicenseeAgent.BetList.Controllers
                 var choice = builder.BuildChoice(ticket, ticketHelper, (List<ITicketData>)ticketResult.TicketDataList, false);
                 stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
             }
+            Response.Write(stringBuilder.ToString());
 
             return Content(stringBuilder.ToString());
         }

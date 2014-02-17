@@ -162,7 +162,7 @@ var OUTSTANDING = function ($) {
                 });
             };
 
-            var dataExisted = $("#divEvent_5325904317").text().length > 0;
+            var dataExisted = $("#divEvent_" + transId).text().length > 0;
             if (!dataExisted) {
                 loadMixParlayDetail(transId);
             }

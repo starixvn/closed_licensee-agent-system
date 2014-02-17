@@ -119,49 +119,6 @@ namespace LicenseeAgent.BetList.DataAccess
         }
 
         /// <summary>
-        /// Get Total Bets Mix Parlay Detail.
-        /// </summary>
-        /// <param name="criteria">Total Bets Mix Parlay Detail Criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public TicketResult GetTotalBetsMixParlayDetail(TotalBetsMixParlayDetailCriteria criteria)
-        {
-            var result = new TicketResult();
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
-
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get system parlay result data.
-        /// </summary>
-        /// <param name="criteria">System parlay result criteria.</param>
-        /// <returns>System Parlay Data.</returns>
-        public SystemParlayData GetTotalBetsSystemParlayDetail(TotalBetsSystemParlayDetailCriteria criteria)
-        {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
-                {
-                    var ticketList = multipleQuery.Read<SystemParlayTicket>();
-                    var serialList = multipleQuery.Read<SystemParlaySerial>();
-                    criteria.Outstanding = Converter.ToDecimal(objectDb.GetParameterValue("Outstanding"));
-                    return new SystemParlayData
-                    {
-                        TicketList = ticketList.Cast<ISystemParlayTicket>().ToList(),
-                        SerialList = serialList.Cast<ISystemParlaySerial>().ToList()
-                    };
-                }
-            }
-        }
-
-        /// <summary>
         /// Read main ticket data.
         /// </summary>
         /// <param name="dataTable">Data table Parameter value.</param>

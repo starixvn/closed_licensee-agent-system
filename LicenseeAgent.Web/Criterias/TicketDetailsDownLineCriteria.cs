@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.Web.Criterias
 {
-
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

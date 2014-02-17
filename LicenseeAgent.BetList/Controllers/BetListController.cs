@@ -139,7 +139,6 @@ namespace LicenseeAgent.BetList.Controllers
         /// System Parlay Result action.
         /// </summary>
         /// <param name="refNo">Reference number of transaction.</param>
-        /// <param name="custId">Customer ID.</param>
         /// <returns>String content.</returns>
         [HttpGet]
         public ActionResult SystemParlayResult(long refNo)

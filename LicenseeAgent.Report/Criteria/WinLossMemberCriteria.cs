@@ -17,6 +17,11 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class WinLossMemberCriteria : WinlossBase
     {
+        public WinLossMemberCriteria(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType) 
+            : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType)
+        {
+        }
+
         public override string GetSettingKey()
         {
             return "LAS_Rpt_WinLoss_Member";

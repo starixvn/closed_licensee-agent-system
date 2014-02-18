@@ -13,7 +13,7 @@
             }
         ],
         columns: [
-                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "center",
+                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
                             return ("<a href='javascript:AGENTWINLOSS.ViewBetList({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.CustId, rowData.AgentLevel, cell.Value);
                         }
@@ -23,15 +23,16 @@
                     { HeaderText: "@Las.WinLoss", Width: 100, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
                     { HeaderText: "@Las.Commission", Width: 100, Name: "PlayerComm", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
                     { HeaderText: "@Las.Total", Width: 100, Name: "MemberTotal", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
-                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "AWinLost", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '($)', ThClass: 'alter-column' },
-                    { HeaderText: "@Las.Commission", Width: 100, Name: "AComm", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '($)', ThClass: 'alter-column' },
-                    { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '($)', ThClass: 'alter-column' },
+                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "AWinLost", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+                    { HeaderText: "@Las.Commission", Width: 100, Name: "AComm", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+                    { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
                     { HeaderText: "@Las.EffectiveStake", Width: 100, Name: "UplineStake", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
                     { HeaderText: "@Las.Total", Width: 100, Name: "UplineTotal", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" }
 
                 ],
         gridExpandHeight: 200,
         showNumberColumn: false,
+        showFooter: true,
         //bodyRowHeight: 26,
         autoResizeColumn: true
     };

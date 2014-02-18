@@ -770,4 +770,13 @@
     <value>Currency permission is invalid</value>
     <comment>not</comment>
   </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="AgentWinLossReport" xml:space="preserve">
+    <value>Agent Win Loss - Report</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
 </root>

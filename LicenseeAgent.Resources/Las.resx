@@ -702,7 +702,7 @@
     <comment>not</comment>
   </data>
   <data name="NoDraw" xml:space="preserve">
-    <value>NoDraw</value>
+    <value>No Draw</value>
     <comment>not</comment>
   </data>
   <data name="Odd" xml:space="preserve">
@@ -1016,8 +1016,17 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
   <data name="CurrencyIsInvalid" xml:space="preserve">
     <value>Your currency permission is not valid. You must relogin for now!</value>
     <comment>not</comment>
+  </data>
+  <data name="AgentWinLossReport" xml:space="preserve">
+    <value>Agent Win Loss - Report</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
   </data>
 </root>

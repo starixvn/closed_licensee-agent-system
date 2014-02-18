@@ -223,6 +223,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Win Loss - Report.
+        /// </summary>
+        public static string AgentWinLossReport {
+            get {
+                return ResourceManager.GetString("AgentWinLossReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -1033,6 +1042,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string Generate {
+            get {
+                return ResourceManager.GetString("Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given Credit.
         /// </summary>
         public static string GivenCredit {
@@ -1483,7 +1501,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NoDraw.
+        ///   Looks up a localized string similar to No Draw.
         /// </summary>
         public static string NoDraw {
             get {
@@ -1848,6 +1866,15 @@ namespace LicenseeAgent.Resources {
         public static string PositionTakingSimpleModeHeader {
             get {
                 return ResourceManager.GetString("PositionTakingSimpleModeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
             }
         }
         

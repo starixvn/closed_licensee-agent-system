@@ -47,6 +47,21 @@
                 success: function (data) {
                     if (data.ErrCode == 0) {
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                        if (data.List.length > 0) {
+                            var footerRows;
+                            var totalRow = data.Total[0];
+                            if (pageContext.IsLastLevel) {
+                                gridOption.footerRows = AGENTWINLOSS.footerMember(totalRow);
+                            }
+                            else {
+                                if (pageContext.AgentLevel == 1) {
+                                    gridOption.footerRows = AGENTWINLOSS.footerLicensee(totalRow);
+                                }
+                                else {
+                                    gridOption.footerRows = AGENTWINLOSS.footerAgent(totalRow);
+                                }
+                            }
+                        }
                         $('#grid').show().fanexGrid(gridOption);
                         CORE.unblockUI();
                         //customerList.resizeBox();
@@ -59,6 +74,65 @@
                     CORE.unblockUI();
                 }
             });
+        },
+        footerMember: function (total) {
+            var footerRows = [
+                                {
+                                    Columns: [
+                                        { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                                        { Value: total.BetCount, Name: "BetCount" },
+                                        { Value: total.Turnover, Name: "Turnover" },
+                                        { Value: total.Winlost, Name: "Winlost" },
+                                        { Value: total.PlayerComm, Name: "PlayerComm" },
+                                        { Value: total.MemberTotal, Name: "MemberTotal" },
+                                        { Value: total.AWinLost, Name: "AWinLost" },
+                                        { Value: total.AComm, Name: "AComm" },
+                                        { Value: total.ATotal, Name: "ATotal" },
+                                        { Value: total.UplineStake, Name: "UplineStake" },
+                                        { Value: total.UplineTotal, Name: "UplineTotal" }
+                                    ]
+                                }
+                        ];
+            return footerRows;
+        },
+
+        footerAgent: function (total) {
+            var footerRows = [
+                    {
+                        Columns: [
+                            { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                            { Value: total.BetCount, Name: "BetCount" },
+                            { Value: total.Turnover, Name: "Turnover" },
+                            { Value: total.MemberTotal, Name: "MemberTotal" },
+                            { Value: total.AWinLost, Name: "AWinLost" },
+                            { Value: total.AComm, Name: "AComm" },
+                            { Value: total.ATotal, Name: "ATotal" },
+                            { Value: total.DownlineStake, Name: "DownlineStake" },
+                            { Value: total.DownlineTotal, Name: "DownlineTotal"},
+                            { Value: total.UplineStake, Name: "UplineStake" },
+                            { Value: total.UplineTotal, Name: "UplineTotal" }
+                        ]
+                    }
+                ];
+            return footerRows;
+        },
+        footerLicensee: function (total) {
+            var footerRows = [
+                {
+                    Columns: [
+                            { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                            { Value: total.BetCount, Name: "BetCount" },
+                            { Value: total.Turnover, Name: "Turnover" },
+                            { Value: total.MemberTotal, Name: "MemberTotal" },
+                            { Value: total.AWinLost, Name: "AWinLost" },
+                            { Value: total.AComm, Name: "AComm" },
+                            { Value: total.ATotal, Name: "ATotal" },
+                            { Value: total.DownlineStake, Name: "DownlineStake" },
+                            { Value: total.DownlineTotal, Name: "DownlineTotal"}
+                        ]
+                }
+            ];
+            return footerRows;
         },
 
         ViewDownline: function (agentId, agentLevel, username) {

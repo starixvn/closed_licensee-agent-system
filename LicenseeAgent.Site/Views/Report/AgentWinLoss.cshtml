@@ -1,7 +1,7 @@
 ﻿@using LicenseeAgent.AccountInformation.ViewModels
 @model LicenseeAgent.Report.ViewModels.AgentWinLossReportViewModel
 @{
-    ViewBag.Title = Las.WinLoss + " - " + Las.Reports;
+    ViewBag.Title = Las.AgentWinLoss + " - " + Las.Report;
     var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
@@ -60,13 +60,13 @@
     <div class="newline"></div>
         
     <div class="offset1 controls-row">  
-        <button class="btn btn-primary left-button" id="search">@Las.Submit</button>
+        <button class="btn btn-primary left-button" id="search">@Las.Generate</button>
         <button class="btn btn-primary" id="today" data-date="@DateTime.Now.ToString("MM/dd/yyyy")">@Las.Today</button>
         <button class="btn btn-primary" id="yesterday" data-date="@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")">@Las.Yesterday</button>
     </div>
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.AgentLevel)
-    @Html.HiddenFor(m => m.BreadCrumb)
+    @Html.HiddenFor(m => m.BreadCrumb)    
 }
 @RazorHelper.BreadCrumb(Model.BreadCrumb)
 <div class="wrapper">

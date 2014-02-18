@@ -116,16 +116,16 @@
 //        },
 //        openDialogFrame: function (url, options) {
 //            url = CORE.resolveUrl(url);
-//            var modal = $('#app-modal-dialog');
-//            if (modal.length == 0) {
-//                modal = $('<div id="app-modal-dialog" class="modal hide fade" tabindex="-1" role="dialog"></div>');
+//            var target = $('#app-modal-dialog');
+//            if (target.length == 0) {
+//                target = $('<div id="app-modal-dialog" class="modal hide fade" tabindex="-1" role="dialog"></div>');
 //                var header = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3>Loading ...</h3></div>');
-//                modal.append(header);
+//                target.append(header);
 //                var body = $('<div class="modal-body"></div>');
-//                modal.append(body);
+//                target.append(body);
 //            }
-//            modal.find('.modal-body').html('<iframe class="loading" id="popup" src="' + '" width="100%" height="100%" frameborder="0" border="0">Test</iframe>');
-//            var iframe = modal.find('iframe');
+//            target.find('.modal-body').html('<iframe class="loading" id="popup" src="' + '" width="100%" height="100%" frameborder="0" border="0">Test</iframe>');
+//            var iframe = target.find('iframe');
 //            iframe.attr('src', url);
 //            $(iframe).load(function () {
 //                var popupDocument = document.getElementById("popup").contentDocument;
@@ -135,7 +135,7 @@
 //                // hide margin
 //                $(popupDocument).find('#mainContainer').addClass("popup");
 //            });
-//            return POPUP.openDialog(modal, 'Loading ...', options);
+//            return POPUP.openDialog(target, 'Loading ...', options);
 //        },
 //        closeDialog: function (target) {
 //            if (target == undefined) {

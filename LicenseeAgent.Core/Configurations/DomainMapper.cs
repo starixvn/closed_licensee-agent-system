@@ -35,7 +35,7 @@ namespace LicenseeAgent.Core.Configurations
         public static int? GetLicenseeId(HttpRequestBase request)
         {
             var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.DomainName.Equals(request.Url.Host, StringComparison.OrdinalIgnoreCase));
+            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1);
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().LicenseeId;

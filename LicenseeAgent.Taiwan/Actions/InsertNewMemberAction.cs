@@ -21,7 +21,7 @@ namespace LicenseeAgent.Taiwan.Actions
         [XmlIgnore]
         public string Password { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         [XmlElement(ElementName = "Password")]
         public string EncryptedPassword { get; set; }
 

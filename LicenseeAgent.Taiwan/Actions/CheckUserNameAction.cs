@@ -21,7 +21,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public string UserName { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         public string ActionName
         {
             get

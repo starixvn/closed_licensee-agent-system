@@ -25,7 +25,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public bool IsClosed { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         public string ActionName
         {
             get

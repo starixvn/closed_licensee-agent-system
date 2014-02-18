@@ -31,7 +31,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public string Fax { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         public string ActionName
         {
             get

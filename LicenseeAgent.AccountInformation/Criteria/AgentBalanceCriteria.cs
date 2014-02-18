@@ -28,7 +28,7 @@ namespace LicenseeAgent.AccountInformation.Criteria
 
         public decimal YesterdayBalance { get; set; }
 
-        public decimal AgentOutstanding { get; set; }
+        public decimal Outstanding { get; set; }
 
         public decimal TotalOutstanding { get; set; }
 

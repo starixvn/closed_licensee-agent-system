@@ -7,6 +7,7 @@
 namespace LicenseeAgent.AccountInformation.Services
 {
     using System.Collections.Generic;
+    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Core.Services;
@@ -37,27 +38,14 @@ namespace LicenseeAgent.AccountInformation.Services
         }
 
         /// <summary>
-        /// Get members by Admin.
+        /// Get members.
         /// </summary>
         /// <typeparam name="T1">Type output 1.</typeparam>
         /// <typeparam name="T2">Type output 2.</typeparam>
         /// <typeparam name="T3">Type output 3.</typeparam>
         /// <param name="criteria">Get member list criteria.</param>
         /// <returns>Search user result.</returns>
-        public IDictionary<string, object> GetMembersAdmin<T1, T2, T3>(AdminGetMemberListCriteria criteria)
-        {
-            return GetEntites<T1, T2, T3>(criteria);
-        }
-
-        /// <summary>
-        /// Get members by Agent.
-        /// </summary>
-        /// <typeparam name="T1">Type output 1.</typeparam>
-        /// <typeparam name="T2">Type output 2.</typeparam>
-        /// <typeparam name="T3">Type output 3.</typeparam>
-        /// <param name="criteria">Get member list criteria.</param>
-        /// <returns>Search user result.</returns>
-        public IDictionary<string, object> GetMembersAgent<T1, T2, T3>(AgentGetMemberListCriteria criteria)
+        public IDictionary<string, object> GetMembers<T1, T2, T3>(ICriteria criteria)
         {
             return GetEntites<T1, T2, T3>(criteria);
         }
@@ -77,14 +65,14 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        public AgentBalanceEntity GetAgentBalance(AgentBalanceCriteria criteria)
+        public BalanceEntity GetAgentBalance(AgentBalanceCriteria criteria)
         {
             Execute(criteria);
 
-            return new AgentBalanceEntity
+            return new BalanceEntity
                     {
-                         AgentOutstanding = criteria.AgentOutstanding,
                          GivenCredit = criteria.GivenCredit,
+                         Outstanding = criteria.Outstanding,
                          TotalBalance = criteria.TotalBalance,
                          TotalCash = criteria.TotalCash,
                          TotalOutstanding = criteria.TotalOutstanding,
@@ -99,11 +87,11 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        public MemberBalanceEntity GetAgentBalance(MemberBalanceCriteria criteria)
+        public BalanceEntity GetMemberBalance(MemberBalanceCriteria criteria)
         {
             Execute(criteria);
 
-            return new MemberBalanceEntity
+            return new BalanceEntity
             {
                 BetCredit = criteria.BetCredit,
                 GivenCredit = criteria.GivenCredit,

@@ -187,7 +187,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembersAgent<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
+            var entities = _searchUserService.GetMembers<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
 
             var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
@@ -200,6 +200,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 Customer = GetFullInformation(customer),
                 Uplines = uplines,
                 Downlines = downlines,
+                Balance = customer == null ? null : GetBalance(customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
             });
@@ -222,7 +223,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembersAdmin<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
+            var entities = _searchUserService.GetMembers<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
 
             var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
@@ -235,6 +236,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 Customer = GetFullInformation(customer),
                 Uplines = uplines,
                 Downlines = downlines,
+                Balance = customer == null ? null : GetBalance(customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
             });
@@ -333,6 +335,24 @@ namespace LicenseeAgent.AccountInformation.Controllers
                     IsLastLevel = isLastLevel,
                     IsMember = isMember,
                 };
+            }
+        }
+
+        /// <summary>
+        /// Get balance of customer.
+        /// </summary>
+        /// <param name="customer">Customer information.</param>
+        /// <returns>Balance entity.</returns>
+        [NonAction]
+        public BalanceEntity GetBalance(CustomerEntity customer)
+        {
+            if (customer.Level == Constants.MemberLevel)
+            {
+                return _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId });
+            }
+            else
+            {
+                return _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
             }
         }
 

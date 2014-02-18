@@ -21,6 +21,8 @@ namespace LicenseeAgent.AccountInformation.ViewModels
 
         public IEnumerable<DownlineEntity> Downlines { get; set; }
 
+        public BalanceEntity Balance { get; set; }
+
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }

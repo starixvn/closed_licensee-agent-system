@@ -21,7 +21,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public int IBCCustId { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         public string ActionName
         {
             get

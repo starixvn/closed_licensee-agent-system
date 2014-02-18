@@ -21,7 +21,7 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public int LASAgentId { get; set; }
 
-        [Service(IsParamAction = false)]
+        [Service]
         public string ActionName
         {
             get

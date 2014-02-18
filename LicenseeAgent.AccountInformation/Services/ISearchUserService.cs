@@ -7,6 +7,7 @@
 namespace LicenseeAgent.AccountInformation.Services
 {
     using System.Collections.Generic;
+    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
 
@@ -30,24 +31,14 @@ namespace LicenseeAgent.AccountInformation.Services
         IEnumerable<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria);
 
         /// <summary>
-        /// Get members by Admin.
+        /// Get members.
         /// </summary>
         /// <typeparam name="T1">Type output 1.</typeparam>
         /// <typeparam name="T2">Type output 2.</typeparam>
         /// <typeparam name="T3">Type output 3.</typeparam>
         /// <param name="criteria">Get member list criteria.</param>
         /// <returns>Search user result.</returns>
-        IDictionary<string, object> GetMembersAdmin<T1, T2, T3>(AdminGetMemberListCriteria criteria);
-
-        /// <summary>
-        /// Get members by Agent.
-        /// </summary>
-        /// <typeparam name="T1">Type output 1.</typeparam>
-        /// <typeparam name="T2">Type output 2.</typeparam>
-        /// <typeparam name="T3">Type output 3.</typeparam>
-        /// <param name="criteria">Get member list criteria.</param>
-        /// <returns>Search user result.</returns>
-        IDictionary<string, object> GetMembersAgent<T1, T2, T3>(AgentGetMemberListCriteria criteria);
+        IDictionary<string, object> GetMembers<T1, T2, T3>(ICriteria criteria);
 
         /// <summary>
         /// Get down line list.
@@ -61,13 +52,13 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        AgentBalanceEntity GetAgentBalance(AgentBalanceCriteria criteria);
+        BalanceEntity GetAgentBalance(AgentBalanceCriteria criteria);
 
         /// <summary>
         /// Get member balance.
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        MemberBalanceEntity GetAgentBalance(MemberBalanceCriteria criteria);
+        BalanceEntity GetMemberBalance(MemberBalanceCriteria criteria);
     }
 }

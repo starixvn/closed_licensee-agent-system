@@ -56,9 +56,8 @@
     <Compile Include="Criteria\AgentGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AgentSuggestSearchMemberCriteria.cs" />
     <Compile Include="Criteria\GetDownlineListCriteria.cs" />
-    <Compile Include="Entities\AgentBalanceEntity.cs" />
+    <Compile Include="Entities\BalanceEntity.cs" />
     <Compile Include="Entities\DownlineEntity.cs" />
-    <Compile Include="Entities\MemberBalanceEntity.cs" />
     <Compile Include="Entities\SuggestionEntity.cs" />
     <Compile Include="Entities\UplineEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

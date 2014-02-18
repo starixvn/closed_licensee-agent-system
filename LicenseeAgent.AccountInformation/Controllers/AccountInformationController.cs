@@ -37,7 +37,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
         public AccountInformationController(
             ISearchUserService searchUserService,
             IMemberService memberService,
-            IDownlLinePermissionService permissionService)
+            IPermissionService permissionService)
             : base(permissionService)
         {
             _searchUserService = searchUserService;
@@ -335,6 +335,24 @@ namespace LicenseeAgent.AccountInformation.Controllers
                     IsLastLevel = isLastLevel,
                     IsMember = isMember,
                 };
+            }
+        }
+
+        /// <summary>
+        /// Get balance of customer.
+        /// </summary>
+        /// <param name="customer">Customer information.</param>
+        /// <returns>Balance entity.</returns>
+        [NonAction]
+        public BalanceEntity GetBalance(CustomerEntity customer)
+        {
+            if (customer.Level == Constants.MemberLevel)
+            {
+                return _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId });
+            }
+            else
+            {
+                return _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
             }
         }
 

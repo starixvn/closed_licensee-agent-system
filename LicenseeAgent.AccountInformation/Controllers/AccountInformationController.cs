@@ -193,29 +193,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
             var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
 
-            if (criteria.MsgId != 0 || customer == null)
-            {
-                ViewBag.Result = new SearchUserViewResult
-                {
-                    ErrCode = criteria.MsgId,
-                    ErrMsg = GetErrMsg(criteria.MsgId)
-                };
-            }
-            else
-            {
-                var isMember = customer.Level == Constants.MemberLevel;
-                var isLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel)
-                                    || ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel);
-                var isDirectDownline = (isLastLevel && isMember)
-                                        || CurrentSession.IsDirectDownline(customer.CustId == CurrentSession.AgentInfo.AgentId ? customer.Level : customer.Level - 1);
-
-                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
-                {
-                    IsDirectDownline = isDirectDownline,
-                    IsLastLevel = isLastLevel,
-                    IsMember = isMember,
-                };
-            }
+            SetAgentView(criteria, customer);
 
             return View(new SearchUserResultViewModel
             {
@@ -250,28 +228,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
             var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
             var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
 
-            if (criteria.MsgId != 0 || customer == null)
-            {
-                var result = new SearchUserViewResult
-                {
-                    ErrCode = criteria.MsgId,
-                    ErrMsg = GetErrMsg(criteria.MsgId),
-                    IsChangeCurrency = criteria.AgentCurrency != 0,
-                    CurrencyId = criteria.AgentCurrency,
-                    CurrencyName = criteria.AgentCurrencyName
-                };
-
-                ViewBag.Result = result;
-            }
-            else
-            {
-                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
-                {
-                    IsDirectDownline = true,
-                    IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
-                    IsMember = customer.Level == Constants.MemberLevel
-                };
-            }
+            SetAdminView(criteria, customer);
 
             return View(new SearchUserResultViewModel
             {
@@ -312,6 +269,71 @@ namespace LicenseeAgent.AccountInformation.Controllers
             }
 
             return customer;
+        }
+
+        /// <summary>
+        /// Set Admin view.
+        /// </summary>
+        /// <param name="criteria">Admin member list criteria.</param>
+        /// <param name="customer">Customer entity.</param>
+        [NonAction]
+        public void SetAdminView(AdminGetMemberListCriteria criteria, CustomerEntity customer)
+        {
+            if (criteria.MsgId != 0 || customer == null)
+            {
+                var result = new SearchUserViewResult
+                {
+                    ErrCode = criteria.MsgId,
+                    ErrMsg = GetErrMsg(criteria.MsgId),
+                    IsChangeCurrency = criteria.AgentCurrency != 0,
+                    CurrencyId = criteria.AgentCurrency,
+                    CurrencyName = criteria.AgentCurrencyName
+                };
+
+                ViewBag.Result = result;
+            }
+            else
+            {
+                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                {
+                    IsDirectDownline = true,
+                    IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
+                    IsMember = customer.Level == Constants.MemberLevel
+                };
+            }
+        }
+
+        /// <summary>
+        /// Set agent view.
+        /// </summary>
+        /// <param name="criteria">Agent member list criteria.</param>
+        /// <param name="customer">Customer entity.</param>
+        [NonAction]
+        public void SetAgentView(AgentGetMemberListCriteria criteria, CustomerEntity customer)
+        {
+            if (criteria.MsgId != 0 || customer == null)
+            {
+                ViewBag.Result = new SearchUserViewResult
+                {
+                    ErrCode = criteria.MsgId,
+                    ErrMsg = GetErrMsg(criteria.MsgId)
+                };
+            }
+            else
+            {
+                var isMember = customer.Level == Constants.MemberLevel;
+                var isLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel)
+                                    || ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel);
+                var isDirectDownline = (isLastLevel && isMember)
+                                        || CurrentSession.IsDirectDownline(customer.CustId == CurrentSession.AgentInfo.AgentId ? customer.Level : customer.Level - 1);
+
+                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                {
+                    IsDirectDownline = isDirectDownline,
+                    IsLastLevel = isLastLevel,
+                    IsMember = isMember,
+                };
+            }
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

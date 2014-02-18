@@ -71,5 +71,46 @@ namespace LicenseeAgent.AccountInformation.Services
         {
             return GetEntites<DownlineEntity>(criteria);
         }
+
+        /// <summary>
+        /// Get agent balance.
+        /// </summary>
+        /// <param name="criteria">Agent balance criteria.</param>
+        /// <returns>Agent balance entity.</returns>
+        public AgentBalanceEntity GetAgentBalance(AgentBalanceCriteria criteria)
+        {
+            Execute(criteria);
+
+            return new AgentBalanceEntity
+                    {
+                         AgentOutstanding = criteria.AgentOutstanding,
+                         GivenCredit = criteria.GivenCredit,
+                         TotalBalance = criteria.TotalBalance,
+                         TotalCash = criteria.TotalCash,
+                         TotalOutstanding = criteria.TotalOutstanding,
+                         UsedCredit  = criteria.UsedCredit,
+                         YesterdayBalance = criteria.YesterdayBalance,
+                         YesterdayCash  = criteria.YesterdayCash
+                    };
+        }
+
+        /// <summary>
+        /// Get member balance.
+        /// </summary>
+        /// <param name="criteria">Member balance criteria.</param>
+        /// <returns>Member balance entity.</returns>
+        public MemberBalanceEntity GetAgentBalance(MemberBalanceCriteria criteria)
+        {
+            Execute(criteria);
+
+            return new MemberBalanceEntity
+            {
+                BetCredit = criteria.BetCredit,
+                GivenCredit = criteria.GivenCredit,
+                Outstanding = criteria.Outstanding,
+                TotalBalance = criteria.TotalBalance,
+                YesterdayBalance = criteria.YesterdayBalance
+            };
+        }
     }
 }

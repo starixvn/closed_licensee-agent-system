@@ -52,10 +52,13 @@
     <Compile Include="Controllers\AccountInformationController.cs" />
     <Compile Include="Criteria\AdminGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AdminSuggestSearchMemberCriteria.cs" />
+    <Compile Include="Criteria\AgentBalanceCriteria.cs" />
     <Compile Include="Criteria\AgentGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AgentSuggestSearchMemberCriteria.cs" />
     <Compile Include="Criteria\GetDownlineListCriteria.cs" />
+    <Compile Include="Entities\AgentBalanceEntity.cs" />
     <Compile Include="Entities\DownlineEntity.cs" />
+    <Compile Include="Entities\MemberBalanceEntity.cs" />
     <Compile Include="Entities\SuggestionEntity.cs" />
     <Compile Include="Entities\UplineEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,7 +70,9 @@
     <Compile Include="ViewModels\SuggestionViewModel.cs" />
     <Compile Include="ViewResults\SearchUserViewResult.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Criteria\MemberBalanceCriteria.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>

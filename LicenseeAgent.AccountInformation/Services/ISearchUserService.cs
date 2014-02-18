@@ -55,5 +55,19 @@ namespace LicenseeAgent.AccountInformation.Services
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
         IEnumerable<DownlineEntity> GetDownlines(GetDownlineListCriteria criteria);
+
+        /// <summary>
+        /// Get agent balance.
+        /// </summary>
+        /// <param name="criteria">Agent balance criteria.</param>
+        /// <returns>Agent balance entity.</returns>
+        AgentBalanceEntity GetAgentBalance(AgentBalanceCriteria criteria);
+
+        /// <summary>
+        /// Get member balance.
+        /// </summary>
+        /// <param name="criteria">Member balance criteria.</param>
+        /// <returns>Member balance entity.</returns>
+        MemberBalanceEntity GetAgentBalance(MemberBalanceCriteria criteria);
     }
 }

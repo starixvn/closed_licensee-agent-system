@@ -19,6 +19,7 @@ namespace LicenseeAgent.Taiwan.Utility
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.
@@ -120,6 +121,7 @@ namespace LicenseeAgent.Taiwan.Utility
             catch (InvalidOperationException exception)
             {
                 message = exception.Message;
+                Logger.HandleException(message, exception);
             }
 
             return GetResponseError<T>(message);

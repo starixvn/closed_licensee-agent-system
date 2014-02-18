@@ -12,6 +12,7 @@ namespace LicenseeAgent.Web.Services
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
+    using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -105,6 +106,11 @@ namespace LicenseeAgent.Web.Services
 
         public bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria)
         {
+            if (!AppSettings.IsCheckingCurrencyPermission)
+            {
+                return true;
+            }
+
             Execute(internalLoginAsUserCriteria);
             return internalLoginAsUserCriteria.ErrCode == Result.SuccessValue ? true : false;
         }

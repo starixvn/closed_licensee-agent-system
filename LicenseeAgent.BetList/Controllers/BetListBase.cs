@@ -87,8 +87,14 @@ namespace LicenseeAgent.BetList.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            this.CheckValidCurrency();
-            base.OnActionExecuting(filterContext);
+            if (!this.CheckValidCurrency())
+            {
+                this.KickOut(filterContext);
+            }
+            else
+            {
+                base.OnActionExecuting(filterContext);
+            }
         }
 
         private static string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)

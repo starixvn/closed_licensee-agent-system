@@ -34,7 +34,6 @@ namespace LicenseeAgent.BetList.Controllers
     public class ParlayController : BetListBase, IBetListBase
     {
         private readonly IBetListService _betlistService;
-        private readonly IPermissionService _permissionService;
 
         public ParlayController(
             IBetListService betlistService,
@@ -42,7 +41,6 @@ namespace LicenseeAgent.BetList.Controllers
             : base(permissionService)
         {
             _betlistService = betlistService;
-            _permissionService = permissionService;
         }
 
         [HttpGet]

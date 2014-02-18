@@ -108,6 +108,18 @@
                 }).
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
+
+                    if (status == 500) {
+                        alert(LANGUAGE.getString("CurrencyIsInvalid"));
+                        if (window.parent) {
+                            window.parent.location.href = CORE.UrlSignOut;
+                        }
+                        else {
+                            window.location.href = CORE.UrlSignOut;
+                        }
+                        return;
+                    }
+
                     if (data.ErrCode != 0) {
                         alert(data.ErrMsg);
                     }
@@ -193,12 +205,20 @@
             }).
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
+
+                if (status == 500) {
+                    alert(LANGUAGE.getString("CurrencyIsInvalid"));
+                    if (window.parent) {
+                        window.parent.location.href = CORE.UrlSignOut;
+                    }
+                    else {
+                        window.location.href = CORE.UrlSignOut;
+                    }
+                    return;
+                }
+
                 if (data.ErrCode != 0) {
                     alert(data.ErrMsg);
-                    if (data.ErrCode == 1036) {
-                        CORE.signOut();
-                        return;
-                    }
                 }
 
                 var isSuccess = true;

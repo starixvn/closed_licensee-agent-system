@@ -1,6 +1,7 @@
 ﻿var CORE = function ($) {
     return {
         UrlRoot: $('#AppRoot').val(),
+        UrlSignOut: $('#AppRoot').val() + 'Account/SignOut',
         pageSizes: [10, 20, 50, 100, 500],
         TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -345,15 +346,6 @@
                 return '{0} {1}'.format(firstName, lastName);
             }
             return CORE.EMPTY_TEXT_FORMAT;
-        },
-        signOut: function () {
-            if (window.parent) {
-                window.parent.location.href = CORE.UrlRoot;
-            }
-            else
-            {
-                window.location.href = CORE.UrlRoot;
-            }
         }
     };
 } (jQuery);

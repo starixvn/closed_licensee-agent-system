@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 2/14/2014 2:13:13 PM
+// Lasted generated date: 2/18/2014 11:39:11 AM
 // </history>
 
 var _language_en_US={
@@ -142,6 +142,8 @@ var _language_en_US={
 				 	
                      Currency:"Currency",
 				 	
+                     CurrencyIsInvalid:"Your currency permission is not valid. You must relogin for now!",
+				 	
                      CurrencyRequired:"Please select currency.",
 				 	
                      CurrentPassword:"Current password",
@@ -185,6 +187,8 @@ var _language_en_US={
                      EditSportsbookMember:"Edit Sportsbook Member",
 				 	
                      EffectiveStake:"Effective Stake",
+				 	
+                     Error:"Error",
 				 	
                      Even:"Even",
 				 	
@@ -276,6 +280,8 @@ var _language_en_US={
 				 	
                      League:"League",
 				 	
+                     Licensee:"Licensee",
+				 	
                      LicenseeRequired:"Please select licensee.",
 				 	
                      Live:"Live",
@@ -364,9 +370,9 @@ var _language_en_US={
 				 	
                      PageTitle_ParlayTotalBets:"Parlay - Total Bets",
 				 	
-                     PageTitle_Report_Outstanding:"Outstanding",
+                     PageTitle_Report_Outstanding:"Agent Outstanding - Reports",
 				 	
-                     PageTitle_Report_Results:"Results",
+                     PageTitle_Report_Results:"Results - Reports",
 				 	
                      Parlay:"Parlay",
 				 	

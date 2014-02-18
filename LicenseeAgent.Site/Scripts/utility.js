@@ -1,6 +1,16 @@
 ﻿$.ajaxSetup({
     error: function (jqXHR, textStatus, errorThrown) {
-        alert('Your request is temporarily cannot be processed, please try again later!');
+        if (jqXHR.status == 500) {
+            alert(LANGUAGE.getString("CurrencyIsInvalid"));
+            if (window.parent) {
+                window.parent.location.href = CORE.UrlSignOut;
+            }
+            else {
+                window.location.href = CORE.UrlSignOut;
+            }
+        } else {
+            alert('Your request is temporarily cannot be processed, please try again later!');
+        }
     }
 });
 

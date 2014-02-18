@@ -285,8 +285,14 @@ namespace LicenseeAgent.Transfer.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            this.CheckValidCurrency();
-            base.OnActionExecuting(filterContext);
+            if (!this.CheckValidCurrency())
+            {
+                this.KickOut(filterContext);
+            }
+            else
+            {
+                base.OnActionExecuting(filterContext);
+            }
         }
     }
 }

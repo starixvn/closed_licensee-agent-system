@@ -1016,4 +1016,8 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="CurrencyIsInvalid" xml:space="preserve">
+    <value>Your currency permission is not valid. You must relogin for now!</value>
+    <comment>not</comment>
+  </data>
 </root>

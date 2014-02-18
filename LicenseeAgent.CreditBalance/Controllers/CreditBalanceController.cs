@@ -8,6 +8,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CreditBalance.Criteria;
@@ -283,8 +284,14 @@ namespace LicenseeAgent.CreditBalance.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            this.CheckValidCurrency();
-            base.OnActionExecuting(filterContext);
+            if (!this.CheckValidCurrency())
+            {
+                this.KickOut(filterContext);
+            }
+            else
+            {
+                base.OnActionExecuting(filterContext);
+            }
         }
     }
 }

@@ -69,5 +69,12 @@ namespace LicenseeAgent.Web
             get { return (string)this["UnderMaintenance"]; }
             set { this["UnderMaintenance"] = value; }
         }
+
+        [ConfigurationProperty("SignOut", IsRequired = true)]
+        public string SignOut
+        {
+            get { return (string)this["SignOut"]; }
+            set { this["SignOut"] = value; }
+        }
     }
 }

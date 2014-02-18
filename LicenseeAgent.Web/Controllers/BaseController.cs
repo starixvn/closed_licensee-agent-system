@@ -17,6 +17,7 @@ namespace LicenseeAgent.Web.Controllers
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
@@ -334,32 +335,34 @@ namespace LicenseeAgent.Web.Controllers
                     CountryCode = clientInfo.CountryCode
                 };
 
-                ////if (!_permissionService.IsValidCurrency(criteria))
-                ////{
-                ////    return false;
-                ////}
+                if (!_permissionService.IsValidCurrency(criteria))
+                {
+                    return false;
+                }
             }
 
             return true;
         }
 
         /// <summary>
-        /// Signs the out.
+        /// Kicks the out.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
-        protected void SignOut(ActionExecutingContext filterContext)
+        protected void KickOut(ActionExecutingContext filterContext)
         {
             var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
             var isAjaxRequest = filterContext.IsAjaxRequest();
             if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
             {
-                filterContext.HttpContext.Response.StatusCode = 100;
-                filterContext.HttpContext.Response.ContentType = "application/json";
-                filterContext.Result = JsonResult("test");
+                filterContext.HttpContext.Response.Clear();
+                filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                filterContext.HttpContext.Response.StatusDescription = Las.CurrencyIsInvalid;
+                filterContext.HttpContext.Response.End();
             }
-            else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ViewResult)))
+            else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ActionResult)))
             {
-                filterContext.Result = Redirect(FormsAuthentication.LoginUrl);
+                filterContext.Result = Redirect(AppURLs.URLs.SignOut);
             }
         }
 

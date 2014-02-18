@@ -9,6 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -407,7 +408,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            base.OnActionExecuting(filterContext);
+            if (!this.CheckValidCurrency())
+            {
+                this.KickOut(filterContext);
+            }
+            else
+            {
+                base.OnActionExecuting(filterContext);
+            }
         }
 
         /// <summary>

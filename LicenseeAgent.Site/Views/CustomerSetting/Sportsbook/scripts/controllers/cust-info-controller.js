@@ -2,8 +2,9 @@
     var custInfoController = fanex.customerSetting.controller('customerSetting.custInfoController',
     [
         '$scope',
+        '$filter',
         'fanex.customerSetting.custInfoService',
-        function CustInfoController($scope, custInfoService) {
+        function CustInfoController($scope, $filter, custInfoService) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
             if (settingContext.FormId == fanex.customerSetting.FormType.Add) {

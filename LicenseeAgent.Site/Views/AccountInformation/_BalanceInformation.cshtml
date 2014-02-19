@@ -1,0 +1,68 @@
+﻿@using LicenseeAgent.AccountInformation.Entities
+@model BalanceEntity
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+<table class="table table-condensed">
+    <tbody>
+    @if (pageContext.IsMember)
+    {
+        <tr>
+            <td>@Las.TotalBalance</td>
+            <td>@RazorHelper.FormatNegative(Model.TotalBalance)</td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayBalance</td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayBalance)</td>
+        </tr>
+        <tr>
+            <td>@Las.Outstanding</td>
+            <td>@RazorHelper.FormatNegative(Model.Outstanding)</td>
+        </tr>
+        <tr>
+            <td>@Las.GivenCredit</td>
+            <td>@RazorHelper.FormatNegative(Model.GivenCredit)</td>
+        </tr>
+        <tr>
+            <td>@Las.BetCredit</td>
+            <td>@RazorHelper.FormatNegative(Model.BetCredit)</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>@Las.TotalCash</td>
+            <td>@RazorHelper.FormatNegative(Model.TotalCash)</td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayCash</td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayCash)</td>
+        </tr>
+        <tr>
+            <td>@Las.TotalBalance</td>
+            <td>@RazorHelper.FormatNegative(Model.TotalBalance)</td>
+        </tr>
+        <tr>
+            <td>@Las.YesterdayBalance</td>
+            <td>@RazorHelper.FormatNegative(Model.YesterdayBalance)</td>
+        </tr>
+        <tr>
+            <td>@Las.AgentOutstanding</td>
+            <td>@RazorHelper.FormatNegative(Model.Outstanding)</td>
+        </tr>
+        <tr>
+            <td>@Las.TotalOutstanding</td>
+            <td>@RazorHelper.FormatNegative(Model.TotalOutstanding)</td>
+        </tr>
+        <tr>
+            <td>@Las.GivenCredit</td>
+            <td>@RazorHelper.FormatNegative(Model.GivenCredit)</td>
+        </tr>
+        <tr>
+            <td>@Las.UsedCredit</td>
+            <td>@RazorHelper.FormatNegative(Model.UsedCredit)</td>
+        </tr>
+        
+    }
+    </tbody>
+</table>

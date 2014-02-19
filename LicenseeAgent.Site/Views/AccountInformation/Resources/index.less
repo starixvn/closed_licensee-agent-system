@@ -9,12 +9,12 @@
         border-radius: 0;
     }
     
-    tr td:first-child,
-    tr th:first-child {
+    #searchResult tr td:first-child,
+    #searchResult tr th:first-child {
         text-align:center;
         width: 30px;
     }
-    
+        
     .table th, .table td
     {
         border-top: 1px dotted #E5E5E5;
@@ -91,6 +91,17 @@
                     display:inline-table;
                 }
             }
+        }
+        
+        #balance .table tr td:first-child
+        {
+            width: 100px;
+            text-align: left;
+        }
+        
+        #balance .table tr td
+        {
+            text-align: right;
         }
     }
     

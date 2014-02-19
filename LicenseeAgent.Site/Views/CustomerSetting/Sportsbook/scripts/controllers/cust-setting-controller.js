@@ -109,7 +109,7 @@
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
 
-                    if (status == 500) {
+                    if (status == 600) {
                         alert(LANGUAGE.getString("CurrencyIsInvalid"));
                         if (window.parent) {
                             window.parent.location.href = CORE.UrlSignOut;
@@ -206,7 +206,7 @@
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
 
-                if (status == 500) {
+                if (status == 600) {
                     alert(LANGUAGE.getString("CurrencyIsInvalid"));
                     if (window.parent) {
                         window.parent.location.href = CORE.UrlSignOut;

@@ -1,6 +1,6 @@
 ﻿$.ajaxSetup({
     error: function (jqXHR, textStatus, errorThrown) {
-        if (jqXHR.status == 500) {
+        if (jqXHR.status == 600) {
             alert(LANGUAGE.getString("CurrencyIsInvalid"));
             if (window.parent) {
                 window.parent.location.href = CORE.UrlSignOut;

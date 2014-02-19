@@ -545,8 +545,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 {
                     CustId = model.AgentId.Value,
                     TargetRoleId = settingContext.TargetRoleId,
-                    ////FormId = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
-                    FormId = (int)FormType.EditIndirectMember,
+                    FormId = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
                     TargetCustId = settingContext.TargetCustId
                 };
                 if (!_permissionService.CheckForEditingCustomerSetting(agentEditCustomerSettingBelonging))

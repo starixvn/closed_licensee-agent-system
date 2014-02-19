@@ -43,9 +43,7 @@ namespace LicenseeAgent.Web.Services
             }
 
             Execute(criteria);
-            return criteria.Type == (int)DownLineRole.Agent
-                ? criteria.IsDirectDownLine
-                : criteria.IsBelongTo && SessionManager.CurrentSession.AgentInfo.IsLastLevel;
+            return criteria.IsBelongTo && criteria.IsDirectDownLine;
         }
 
         /// <summary>
@@ -70,7 +68,7 @@ namespace LicenseeAgent.Web.Services
             {
                 return false;
             }
-            
+
             Execute(criteria);
             return criteria.IsBelongTo;
         }

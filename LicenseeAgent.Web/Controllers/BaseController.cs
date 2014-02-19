@@ -40,6 +40,7 @@ namespace LicenseeAgent.Web.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
+        private const int _InvalidCurrencyStatusCode = 600;
         private readonly IPermissionService _permissionService;
 
         protected BaseController()
@@ -356,7 +357,7 @@ namespace LicenseeAgent.Web.Controllers
             {
                 filterContext.HttpContext.Response.Clear();
                 filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
-                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                filterContext.HttpContext.Response.StatusCode = _InvalidCurrencyStatusCode;
                 filterContext.HttpContext.Response.StatusDescription = Las.CurrencyIsInvalid;
                 filterContext.HttpContext.Response.End();
             }

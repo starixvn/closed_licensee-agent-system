@@ -212,6 +212,14 @@ namespace LicenseeAgent.Web.Services
                     }
 
                     break;
+
+                case FormType.ViewIndirectAgent:
+                    if (IsDownlineAgent(editingCustomerSettingBelonging.TargetCustId))
+                    {
+                        return true;
+                    }
+
+                    break;
             }
 
             return false;

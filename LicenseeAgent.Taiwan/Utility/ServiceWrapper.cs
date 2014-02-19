@@ -8,18 +8,15 @@
 namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
-    using System.Reflection;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Web;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>
     /// TODO: Update summary.
@@ -151,7 +148,7 @@ namespace LicenseeAgent.Taiwan.Utility
         private static T GetResponseError<T>(string message) where T : class
         {
             var constructorInfo = typeof(T).GetConstructor(new Type[] { typeof(int), typeof(string) });
-            
+
             if (constructorInfo != null)
             {
                 return (T)constructorInfo.Invoke(new object[] { ServiceSetting.HttpErrorCode, message });

@@ -29,6 +29,9 @@ if (fanex.customerSetting) {
                                 var promise = custInfoService.checkUsername(scope, currentValue);
                                 promise.userName = currentValue;
                                 promise.then(function (data) {
+                                    if (promise.userName != ctrl.$modelValue) {
+                                        return;
+                                    }
                                     if (data.ErrCode == 0) {
                                         ctrl.hintMessage = '';
                                         setValidity(true);

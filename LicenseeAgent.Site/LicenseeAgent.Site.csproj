@@ -805,6 +805,7 @@
     <Content Include="Views\Report\Outstanding.cshtml" />
     <Content Include="Views\Report\Resources\Outstanding.less" />
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
+    <Content Include="Views\AccountInformation\_BalanceInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

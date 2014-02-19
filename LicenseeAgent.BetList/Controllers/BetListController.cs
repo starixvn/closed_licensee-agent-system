@@ -10,25 +10,15 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Web.Mvc;
     using Entities;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
-    using Web.Controllers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -39,12 +29,12 @@ namespace LicenseeAgent.BetList.Controllers
         private const int CacheDuration = 43200;
         private readonly IBetListService _betlistService;
         private readonly ICoreService _coreService;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         public BetListController(
             IBetListService betlistService,
             ICoreService coreService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _betlistService = betlistService;
@@ -119,13 +109,9 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult MixParlayDetails(long transId)
         {
-            var transactionBelongingChecking = new TransactionBelongingChecking()
+            if (!_permissionService.IsDownlineTransaction(transId))
             {
-                TransactionId = transId
-            };
-            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var agentId = CurrentSession.AgentInfo.AgentId;
@@ -143,9 +129,9 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult SystemParlayResult(long refNo)
         {
-            if (!_permissionService.IsDownlineTransaction(refNo))
+            if (!_permissionService.IsDownlineReferenceNumber(refNo))
             {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var agentId = CurrentSession.AgentInfo.AgentId;
@@ -173,13 +159,9 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult Details(BetListDetailsCriteria criteria)
         {
-            var transactionBelongingChecking = new TransactionBelongingChecking()
+            if (!_permissionService.IsDownlineTransaction(criteria.TransId))
             {
-                TransactionId = criteria.TransId
-            };
-            if (!_permissionService.IsDownlineTransaction(transactionBelongingChecking))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;

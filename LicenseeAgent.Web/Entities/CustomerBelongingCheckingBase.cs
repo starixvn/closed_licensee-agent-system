@@ -6,13 +6,13 @@
 
 namespace LicenseeAgent.Web.Entities
 {
+    using LicenseeAgent.Core.Enumerations;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class CustomerBelongingCheckingBase
     {
-        public int TargetRoleId { get; set; }
-
         public int TargetCustId { get; set; }
     }
 }

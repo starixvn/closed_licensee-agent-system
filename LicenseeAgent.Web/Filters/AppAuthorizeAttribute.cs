@@ -9,10 +9,12 @@ namespace LicenseeAgent.Web.Filters
     using System;
     using System.Web;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -20,8 +22,11 @@ namespace LicenseeAgent.Web.Filters
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public sealed class AppAuthorizeAttribute : AuthorizeAttribute
     {
+        private IAuthorizeService _permissionServiceBase;
+
         public AppAuthorizeAttribute()
         {
+            _permissionServiceBase = DependencyResolver.Current.GetService<IAuthorizeService>();
             IsValidateAgent = true;
             Role = AccountType.All;
         }
@@ -108,6 +113,36 @@ namespace LicenseeAgent.Web.Filters
                     filterContext.Result = new RedirectResult(AppURLs.URLs.ChangePassword);
                     return false;
                 }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates the currency permission.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
+        /// <returns>Returns status of permission.</returns>
+        private bool ValidateCurrencyPermission(AuthorizationContext filterContext)
+        {
+            var currentSession = SessionManager.CurrentSession;
+            if (currentSession.LoginAccountType == AccountType.Agent || currentSession.AgentInfo != null)
+            {
+                return true;
+            }
+
+            var criteria = new CheckCurrencyPermissionCriteria
+            {
+                AdminId = currentSession.LoginUserId,
+                LicenseeId = currentSession.AgentInfo.LicenseeId,
+                CurrencyId = currentSession.AgentInfo.CurrencyId
+            };
+
+            _permissionServiceBase.CheckCurrencyPermission(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
+            {
+                filterContext.ReturnUnauthorized();
+                return false;
             }
 
             return true;

@@ -31,12 +31,12 @@ namespace LicenseeAgent.Transfer.Controllers
     {
         private readonly ITransferService _transferService;
         private readonly IMemberService _memberService;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         public TransferController(
             ITransferService transferService,
             IMemberService memberService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _transferService = transferService;
@@ -133,15 +133,11 @@ namespace LicenseeAgent.Transfer.Controllers
         /// Returns agent transfer page.
         /// </returns>
         [HttpGet]
-        public ViewResult Agent(TransferAgentViewModel model)
+        public ActionResult Agent(TransferAgentViewModel model)
         {
-            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineAgent(model.AgentId))
             {
-                TargetCustId = model.AgentId
-            };
-            if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             if (model.Amount > 0)
@@ -169,13 +165,9 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineAgent(model.AgentId))
                 {
-                    TargetCustId = model.AgentId
-                };
-                if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
-                {
-                    this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 var criteria = new TransferToAgentCriteria
@@ -207,15 +199,11 @@ namespace LicenseeAgent.Transfer.Controllers
         /// Returns member transfer page.
         /// </returns>
         [HttpGet]
-        public ViewResult Member(TransferMemberViewModel model)
+        public ActionResult Member(TransferMemberViewModel model)
         {
-            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(model.MemberId))
             {
-                TargetCustId = model.MemberId
-            };
-            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var criteria = new GetMemberDetailCriteria
@@ -253,13 +241,9 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineMember(model.MemberId))
                 {
-                    TargetCustId = model.MemberId
-                };
-                if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
-                {
-                    this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 var criteria = new TransferToMemberCriteria
@@ -281,18 +265,6 @@ namespace LicenseeAgent.Transfer.Controllers
             }
 
             return View(model);
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace LicenseeAgent.Account
             IAccountService accountService,
             ICurrencyService currencyService,
             IInternalService internalService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _accountService = accountService;

@@ -37,7 +37,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
         public AccountInformationController(
             ISearchUserService searchUserService,
             IMemberService memberService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _searchUserService = searchUserService;
@@ -353,18 +353,6 @@ namespace LicenseeAgent.AccountInformation.Controllers
             else
             {
                 return _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
-            }
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
             }
         }
     }

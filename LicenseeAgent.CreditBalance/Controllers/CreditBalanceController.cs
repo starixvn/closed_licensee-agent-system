@@ -32,12 +32,12 @@ namespace LicenseeAgent.CreditBalance.Controllers
     {
         private readonly ICreditBalanceService _creditBalanceService;
         private readonly IMemberService _memberService;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         public CreditBalanceController(
             ICreditBalanceService creditBalanceService,
             IMemberService memberService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _creditBalanceService = creditBalanceService;
@@ -130,15 +130,11 @@ namespace LicenseeAgent.CreditBalance.Controllers
         /// The EditAgentCredit view.
         /// </returns>
         [HttpGet]
-        public ViewResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
+        public ActionResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
         {
-            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineAgent(editAgentCreditViewModel.AgentId))
             {
-                TargetCustId = editAgentCreditViewModel.AgentId
-            };
-            if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             if (SessionManager.CurrentSession.AgentInfo.IsLevel0)
@@ -175,13 +171,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
         {
             if (ModelState.IsValid)
             {
-                var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineAgent(editAgentCreditViewModel.AgentId))
                 {
-                    TargetCustId = editAgentCreditViewModel.AgentId
-                };
-                if (!_permissionService.IsDirectDownlineAgent(customerBelongingCheckingBase))
-                {
-                    this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 string settingKey = SessionManager.CurrentSession.AgentInfo.IsLevel0 ? "Las_LicenseeUpdAgentCredit" : "Las_AgentUpdAgentCredit";
@@ -216,15 +208,11 @@ namespace LicenseeAgent.CreditBalance.Controllers
         /// The AgentEditMemberCredit view.
         /// </returns>
         [HttpGet]
-        public ViewResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
+        public ActionResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(agentEditMemberCreditViewModel.CustId))
             {
-                TargetCustId = agentEditMemberCreditViewModel.CustId
-            };
-            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var agentGetMemberRangeInfoCriteria = new AgentGetMemberRangeInfoCriteria
@@ -249,13 +237,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost, ActionName("AgentEditMemberCredit")]
         public ActionResult AgentEditMemberCreditPost(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            var customerBelongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(agentEditMemberCreditViewModel.CustId))
             {
-                TargetCustId = agentEditMemberCreditViewModel.CustId
-            };
-            if (!_permissionService.IsDirectDownlineMember(customerBelongingCheckingBase))
-            {
-                this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             if (ModelState.IsValid)
@@ -280,18 +264,6 @@ namespace LicenseeAgent.CreditBalance.Controllers
             }
 
             return View(agentEditMemberCreditViewModel);
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
         }
     }
 }

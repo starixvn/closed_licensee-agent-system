@@ -26,7 +26,7 @@ namespace LicenseeAgent.TotalBets.Controllers
 
         public TotalBetsController(
             TotalBetsService totalBetsService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _totalBetsService = totalBetsService;
@@ -147,17 +147,5 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         #endregion Utilities
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
-        }
     }
 }

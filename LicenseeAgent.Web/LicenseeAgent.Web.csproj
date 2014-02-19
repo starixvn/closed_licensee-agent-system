@@ -79,6 +79,7 @@
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Core\SitePath.cs" />
+    <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="Criterias\TicketDetailsDownLineCriteria.cs" />
     <Compile Include="Criterias\ReferenceNumberCriteria.cs" />
@@ -97,14 +98,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AppAuthorizeAttribute.cs" />
     <Compile Include="Filters\BaseActionFilterAttribute.cs" />
-    <Compile Include="Filters\DownLineMemberAttribute.cs" />
-    <Compile Include="Filters\DownLineTransactionAttribute.cs" />
-    <Compile Include="Filters\DirectDownLineAgentAttribute.cs" />
-    <Compile Include="Filters\DirectDownLineMemberAttribute.cs" />
-    <Compile Include="Filters\DownLineAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
-    <Compile Include="Services\PermissionService.cs" />
-    <Compile Include="Services\IPermissionService.cs" />
+    <Compile Include="Services\DownLineService.cs" />
+    <Compile Include="Services\IDownLineService.cs" />
+    <Compile Include="Services\DownLinePermissionService.cs" />
+    <Compile Include="Services\IDownlLinePermissionService.cs" />
     <Compile Include="SessionExtension.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Mvc\RequestExtensions.cs" />

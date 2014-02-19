@@ -53,7 +53,6 @@ namespace LicenseeAgent.Site.App_Start
         /// <param name="container">The container.</param>
         private static void InitializeContainer(Container container)
         {
-            container.Register<IAuthorizeService, AuthorizeService>();
             container.Register<IUnderMaintenanceService, UnderMaintenanceService>();
             container.Register<IAccountService, AccountService>();
             container.Register<ICurrencyService, CurrencyService>();
@@ -70,7 +69,9 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IMemberService, MemberService>();
             container.Register<ICreditBalanceService, CreditBalanceService>();
             container.Register<IInternalService, InternalService>();
-            container.Register<IPermissionService, PermissionService>();
+            container.Register<IAuthorizeService, AuthorizeService>();
+            container.Register<IDownLineService, DownLineService>();
+            container.Register<IDownlLinePermissionService, DownLinePermissionService>();
         }
     }
 }

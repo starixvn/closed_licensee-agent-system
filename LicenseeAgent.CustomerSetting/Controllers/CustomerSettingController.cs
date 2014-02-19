@@ -9,7 +9,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -25,7 +24,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
@@ -61,12 +59,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly ISportsbookSettingService _customerSettingService;
         private readonly IMemberService _memberService;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         public CustomerSettingController(
                 ISportsbookSettingService customerSettingService,
                 IMemberService memberService,
-                IPermissionService permissionService)
+                IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _customerSettingService = customerSettingService;
@@ -120,16 +118,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            if (!CheckForEditingCustomerSetting(settingContext))
             {
-                TargetRoleId = settingContext.TargetRoleId,
-                FormId = CurrentSession.AgentInfo.IsLevel0 && model.TargetRoleId == (int)Role.Member ?
-                        (int)FormType.EditIndirectMember : (int)settingContext.FormId,
-                TargetCustId = settingContext.TargetCustId
-            };
-            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            {
-                return Redirect(AppURLs.URLs.AccessDenied);
+                return RedirectToAccessDeniedPage();
             }
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
@@ -248,16 +239,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            if (!CheckForEditingCustomerSetting(model.SettingContext))
             {
-                TargetRoleId = model.SettingContext.TargetRoleId,
-                FormId = CurrentSession.AgentInfo.IsLevel0 && model.SettingContext.TargetRoleId == (int)Role.Member ?
-                        (int)FormType.EditIndirectMember : (int)model.SettingContext.FormId,
-                TargetCustId = model.SettingContext.TargetCustId
-            };
-            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            {
-                return this.RedirectToAccessDeniedJson();
+                return RedirectToAccessDeniedJson();
             }
 
             if (model == null
@@ -306,15 +290,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            if (!CheckForEditingCustomerSetting(settingContext))
             {
-                TargetRoleId = settingContext.TargetRoleId,
-                FormId = (int)settingContext.FormId,
-                TargetCustId = settingContext.TargetCustId
-            };
-            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
@@ -329,11 +307,32 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </returns>
         public ActionResult EditMember(EditMemberViewModel model)
         {
-            var settingContext = this.ComposeSettingContextForEditingMember(model);
-            ActionResult actionResult = this.CheckPermissionForEditingMember(model, settingContext);
-            if (actionResult != null)
+            var settingContext = new SettingContext(CurrentSession)
             {
-                return actionResult;
+                FormId = FormType.Edit,
+                TargetCustId = model.MemberId,
+                TargetRoleId = (int)Role.Member,
+                Ip = Request.GetClientIp()
+            };
+
+            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
+            {
+                settingContext.FormId = FormType.Edit;
+            }
+            else
+            {
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                    settingContext.CustId = agentId;
+                }
+            }
+
+            if (!CheckForEditingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedPage();
             }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
@@ -376,18 +375,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return JsonResult(criteria.MsgId);
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
         }
 
         /// <summary>
@@ -499,75 +486,22 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         }
 
         /// <summary>
-        /// Composes the setting context for editing member.
+        /// Checks for editing customer setting.
         /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>The setting context for editing member.</returns>
-        private SettingContext ComposeSettingContextForEditingMember(EditMemberViewModel model)
-        {
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                FormId = FormType.Edit,
-                TargetCustId = model.MemberId,
-                TargetRoleId = (int)Role.Member,
-                Ip = Request.GetClientIp()
-            };
-
-            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
-            {
-                settingContext.FormId = FormType.Edit;
-            }
-            else
-            {
-                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
-                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
-                {
-                    settingContext.FormId = FormType.EditIndirectMember;
-                    settingContext.CustId = agentId;
-                }
-            }
-
-            return settingContext;
-        }
-
-        /// <summary>
-        /// Checks the permission for editing member.
-        /// </summary>
-        /// <param name="model">The model.</param>
         /// <param name="settingContext">The setting context.</param>
-        /// <returns>The redirect result.</returns>
-        private ActionResult CheckPermissionForEditingMember(EditMemberViewModel model, SettingContext settingContext)
+        /// <returns>Returns true if is valid settings.</returns>
+        private bool CheckForEditingCustomerSetting(SettingContext settingContext)
         {
-            if (CurrentSession.AgentInfo.IsLevel0 && model.AgentId != null && model.AgentLevel != null)
+            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging
             {
-                var agentEditCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-                {
-                    CustId = model.AgentId.Value,
-                    TargetRoleId = settingContext.TargetRoleId,
-                    FormId = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
-                    TargetCustId = settingContext.TargetCustId
-                };
-                if (!_permissionService.CheckForEditingCustomerSetting(agentEditCustomerSettingBelonging))
-                {
-                    return this.RedirectToAccessDeniedPage();
-                }
-            }
-
-            var loginUserEditCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            {
-                TargetRoleId = settingContext.TargetRoleId,
-                FormId = CurrentSession.AgentInfo.IsLevel0 ?
-                (int)FormType.EditIndirectMember :
-                CurrentSession.AgentInfo.IsLastAgent(CurrentSession.AgentInfo.AgentLevel) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
-                TargetCustId = settingContext.TargetCustId
+                FormId = settingContext.FormId,
+                CustId = settingContext.CustId,
+                RoleId = settingContext.RoleId,
+                TargetCustId = settingContext.TargetCustId,
+                TargetRoleId = settingContext.TargetRoleId
             };
-            if (!_permissionService.CheckForEditingCustomerSetting(loginUserEditCustomerSettingBelonging))
-            {
-                return this.RedirectToAccessDeniedPage();
-            }
 
-            return null;
+            return _permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
         }
     }
 }

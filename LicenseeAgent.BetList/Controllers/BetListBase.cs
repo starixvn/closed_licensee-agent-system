@@ -30,7 +30,7 @@ namespace LicenseeAgent.BetList.Controllers
     /// </summary>
     public abstract class BetListBase : BaseController, IBetListBase
     {
-        protected BetListBase(IPermissionService permissionService)
+        protected BetListBase(IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
         }
@@ -83,18 +83,6 @@ namespace LicenseeAgent.BetList.Controllers
             }
 
             return Content(stringBuilder.ToString());
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
         }
 
         private static string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)

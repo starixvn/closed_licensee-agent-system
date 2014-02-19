@@ -3,33 +3,18 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Anders" date="2013.3.27">Created</change>
-//   <change who="Anders" date="2013.4.6">Add CurrentSession Property</change>
-//   <change who="Lewis" date="2013.4.10">Added RequestIP property</change>
-//   <change who="Anders.Le" date="2013.5.2">Modify Current Session, change it to readonly</change>
-//   <change who="Anders.Le" date="2013.5.2">Check whether request is authenticated</change>
-//   <change who="Terry.Nguyen" date="2013.5.28">Handle unknow action</change>
-//   <change who="Anders.Le" date="2013.6.30">Add property ActionName, ControllerName, and AreaName</change>
-// </history>
 
 namespace LicenseeAgent.Web.Controllers
 {
-    using System;
     using System.Linq;
-    using System.Net;
-    using System.Text;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.Security;
     using System.Web.SessionState;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Results;
-    using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
@@ -41,13 +26,13 @@ namespace LicenseeAgent.Web.Controllers
     public class BaseController : Controller
     {
         private const int _InvalidCurrencyStatusCode = 600;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         protected BaseController()
         {
         }
 
-        protected BaseController(IPermissionService permissionService)
+        protected BaseController(IDownlLinePermissionService permissionService)
         {
             _permissionService = permissionService;
         }
@@ -278,71 +263,14 @@ namespace LicenseeAgent.Web.Controllers
             return Content(errorMessage);
         }
 
-        /// <summary>
-        /// Override JSON for larger max JSON length.
-        /// </summary>
-        /// <param name="data">Original data.</param>
-        /// <param name="contentType">Content type.</param>
-        /// <param name="contentEncoding">Content Encoding.</param>
-        /// <param name="behavior">Behavior value.</param>
-        /// <returns>JSON object.</returns>
-        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        protected JsonResult RedirectToAccessDeniedJson()
         {
-            return new JsonResult()
-            {
-                Data = data,
-                ContentType = contentType,
-                ContentEncoding = contentEncoding,
-                JsonRequestBehavior = behavior,
-                MaxJsonLength = int.MaxValue
-            };
+            return JsonResult(Las.AccessDeniedMsg);
         }
 
         protected ActionResult RedirectToAccessDeniedPage()
         {
             return Redirect(AppURLs.URLs.AccessDenied);
-        }
-
-        protected JsonResult RedirectToAccessDeniedJson()
-        {
-            return Json(new
-            {
-                ErrCode = Result.FailureValue,
-                Messages = Las.AccessDeniedMsg
-            });
-        }
-
-        /// <summary>
-        /// Checks the valid currency.
-        /// </summary>
-        /// <returns>
-        /// The currency is valid or not.
-        /// </returns>
-        /// <exception cref="System.Exception">The exception of denied access.</exception>
-        protected bool CheckValidCurrency()
-        {
-            if (CurrentSession.AgentInfo != null)
-            {
-                var clientInfo = Request.GetClientInfo();
-                var criteria = new InternalLoginAsUserCriteria
-                {
-                    AdminId = CurrentSession.LoginUserId,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                    UserName = CurrentSession.AgentInfo.UserName,
-                    LoginIp = clientInfo.Ip,
-                    BrowserName = clientInfo.BrowserName,
-                    Platform = clientInfo.Platform,
-                    CountryCode = clientInfo.CountryCode
-                };
-
-                if (!_permissionService.IsValidCurrency(criteria))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         /// <summary>

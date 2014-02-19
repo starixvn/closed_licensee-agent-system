@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="IPermissionService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IDownlLinePermissionService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,28 +14,32 @@ namespace LicenseeAgent.Web.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IPermissionService
+    public interface IDownlLinePermissionService
     {
         bool CheckForEditingCustomerSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging);
 
-        bool CheckForEditingAgentInformation(CustomerBelongingCheckingBase belongingCheckingBase);
-
-        bool CheckForEditingMemberInformation(CustomerBelongingCheckingBase belongingCheckingBase);
-
         bool IsDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
+
+        bool IsDownlineMember(int memberId);
 
         bool IsDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
 
+        bool IsDownlineAgent(int agentId);
+
         bool IsDirectDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
+
+        bool IsDirectDownlineAgent(int agentId);
 
         bool IsDirectDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
 
+        bool IsDirectDownlineMember(int memberId);
+
         bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking);
 
-        bool IsDownlineTransaction(long ticketDetailsRefNo);
+        bool IsDownlineTransaction(long transactionId);
 
         bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking);
 
-        bool IsValidCurrency(InternalLoginAsUserCriteria internalLoginAsUserCriteria);
+        bool IsDownlineReferenceNumber(long referenceNumber);
     }
 }

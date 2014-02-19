@@ -60,6 +60,7 @@
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckDownlineBelong" SpName="Las_CheckDownlineBelong" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerList">
     <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

@@ -59,7 +59,7 @@ namespace LicenseeAgent.Report.Controllers
             ICoreService coreService,
             IReportService reportService,
             IBetListService betlistService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _coreService = coreService;
@@ -389,18 +389,6 @@ namespace LicenseeAgent.Report.Controllers
         #endregion Agent Win Loss Report
 
         #region Utilities
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
-        }
 
         /// <summary>
         /// Generate Outright Cache Key.

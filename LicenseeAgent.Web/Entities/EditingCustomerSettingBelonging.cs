@@ -6,13 +6,21 @@
 
 namespace LicenseeAgent.Web.Entities
 {
+    using LicenseeAgent.Core.Entities;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class EditingCustomerSettingBelonging : CustomerBelongingCheckingBase
+    public class EditingCustomerSettingBelonging
     {
-        public int FormId { get; set; }
+        public FormType FormId { get; set; }
 
         public int CustId { get; set; }
+
+        public int RoleId { get; set; }
+
+        public int TargetCustId { get; set; }
+
+        public int TargetRoleId { get; set; }
     }
 }

@@ -24,7 +24,6 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
@@ -36,13 +35,13 @@ namespace LicenseeAgent.CustomerList.Controllers
         private readonly ICustomerService _customerService;
         private readonly IIpInformationService _ipService;
         private readonly IMemberService _memberService;
-        private readonly IPermissionService _permissionService;
+        private readonly IDownlLinePermissionService _permissionService;
 
         public CustomerListController(
             ICustomerService agentService,
             IIpInformationService ipService,
             IMemberService memberService,
-            IPermissionService permissionService)
+            IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _customerService = agentService;
@@ -85,6 +84,11 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public ActionResult Index([ModelBinder(typeof(AgentBreadcrumModelBinder))]AgentBreadcrumViewModel model)
         {
+            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             var breadcrumbItem = new BreadcrumbItem
             {
                 AgentId = model.AgentId,
@@ -114,6 +118,11 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult GetCustomerList(CustomerListViewModel model)
         {
+            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
             if (isLastLevel)
@@ -291,13 +300,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineAgent(model.AgentId))
             {
-                TargetCustId = model.AgentId
-            };
-            if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedJson();
+                return RedirectToAccessDeniedJson();
             }
 
             var criteria = new UpdateAgentAccStatusCriteria
@@ -341,13 +346,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(model.MemberId))
             {
-                TargetCustId = model.MemberId
-            };
-            if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedJson();
+                return RedirectToAccessDeniedJson();
             }
 
             if (model.Status == (int)AccountStatus.Open)
@@ -384,6 +385,11 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult CustomerSearchAutoComplete(CustomerSearchAutoCompleteViewModel model)
         {
+            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
             if (isLastLevel)
             {
@@ -466,13 +472,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(memberId))
             {
-                TargetCustId = memberId
-            };
-            if (!_permissionService.IsDownlineMember(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             return View(
@@ -493,13 +495,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineMember(model.CustId))
                 {
-                    TargetCustId = model.CustId
-                };
-                if (!_permissionService.IsDownlineMember(belongingCheckingBase))
-                {
-                    return this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 // Call API to update member password
@@ -534,13 +532,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineAgent(agentId))
             {
-                TargetCustId = agentId
-            };
-            if (!_permissionService.IsDownlineAgent(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             return View(
@@ -562,13 +556,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineAgent(model.CustId))
                 {
-                    TargetCustId = model.CustId
-                };
-                if (!_permissionService.IsDownlineAgent(belongingCheckingBase))
-                {
-                    return this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 var criteria = new ResetPasswordCriteria
@@ -604,13 +594,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineMember(memberId))
             {
-                TargetCustId = memberId
-            };
-            if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var memberInfo = new CustomerEntity { CustId = memberId };
@@ -647,13 +633,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineMember(model.CustId))
                 {
-                    TargetCustId = model.CustId
-                };
-                if (!_permissionService.CheckForEditingMemberInformation(belongingCheckingBase))
-                {
-                    return this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 // Call API to update member password
@@ -691,13 +673,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoAgent(int agentId)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase()
+            if (!_permissionService.IsDirectDownlineAgent(agentId))
             {
-                TargetCustId = agentId
-            };
-            if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedPage();
             }
 
             var agentInfo = _customerService.GetAgentInfo(new AgentInfoCriteria
@@ -732,13 +710,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                var belongingCheckingBase = new CustomerBelongingCheckingBase()
+                if (!_permissionService.IsDirectDownlineAgent(model.CustId))
                 {
-                    TargetCustId = model.CustId
-                };
-                if (!_permissionService.CheckForEditingAgentInformation(belongingCheckingBase))
-                {
-                    return this.RedirectToAccessDeniedPage();
+                    return RedirectToAccessDeniedPage();
                 }
 
                 var criteria = new EditinfoAgentCriteria
@@ -766,18 +740,6 @@ namespace LicenseeAgent.CustomerList.Controllers
             }
 
             return View("~/Views/CustomerList/EditInfo.cshtml", model);
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!this.CheckValidCurrency())
-            {
-                this.KickOut(filterContext);
-            }
-            else
-            {
-                base.OnActionExecuting(filterContext);
-            }
         }
     }
 }

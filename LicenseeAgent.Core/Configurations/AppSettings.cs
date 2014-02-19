@@ -8,6 +8,7 @@ namespace LicenseeAgent.Core.Configurations
 {
     using System;
     using System.Configuration;
+    using Fanex.Logging;
 
     /// <summary>
     /// Provide static accessing function for setting key from app setting.config.
@@ -21,8 +22,6 @@ namespace LicenseeAgent.Core.Configurations
             EndTime = downTimes[1].Trim();
 
             IsAdminSite = GetValue("IsAdminSite") == "1";
-            IsCheckingCurrencyPermission = GetValue("IsCheckingCurrencyPermission") == "1";
-            IsCheckingBelonging = GetValue("IsCheckingBelonging") == "1";
             UnderMaintenanceUrl = GetValue("UnderMaintenanceUrl");
             LocalTest = GetValue("LocalTest") == "1";
             LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
@@ -31,10 +30,6 @@ namespace LicenseeAgent.Core.Configurations
         }
 
         public static bool IsAdminSite { get; private set; }
-
-        public static bool IsCheckingCurrencyPermission { get; private set; }
-
-        public static bool IsCheckingBelonging { get; private set; }
 
         public static string UnderMaintenanceUrl { get; private set; }
 
@@ -63,7 +58,7 @@ namespace LicenseeAgent.Core.Configurations
             }
             catch (Exception ex)
             {
-                Fanex.Logging.LogService.Error(ex.Message, ex);
+                LogService.Error(ex.Message, ex);
                 throw;
             }
         }

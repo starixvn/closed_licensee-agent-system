@@ -241,9 +241,12 @@
                     agentLevel: $("#AgentLevel").val()
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
-                        return process(data.List);
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                        return;
                     }
+
+                    return process(data.List);
                 }
             });
         },

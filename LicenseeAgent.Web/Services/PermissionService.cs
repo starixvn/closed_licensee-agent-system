@@ -134,10 +134,16 @@ namespace LicenseeAgent.Web.Services
                 SessionManager.CurrentSession.AgentInfo.IsLevel0 ? this.IsDownline(criteria) : this.IsDirectDownline(criteria);
         }
 
+        /// <summary>
+        /// Checks for editing member setting.
+        /// </summary>
+        /// <param name="editingCustomerSettingBelonging">The editing customer setting belonging.</param>
+        /// <returns>Is valid or not.</returns>
         private bool CheckForEditingMemberSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
+                CustId = editingCustomerSettingBelonging.CustId,
                 TargetCustId = (int)editingCustomerSettingBelonging.TargetCustId,
                 Type = (int)DownLineRole.Member
             };

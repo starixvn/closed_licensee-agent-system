@@ -329,39 +329,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </returns>
         public ActionResult EditMember(EditMemberViewModel model)
         {
-            var settingContext = new SettingContext(CurrentSession)
+            var settingContext = this.ComposeSettingContextForEditingMember(model);
+            ActionResult actionResult = this.CheckPermissionForEditingMember(model, settingContext);
+            if (actionResult != null)
             {
-                FormId = FormType.Edit,
-                TargetCustId = model.MemberId,
-                TargetRoleId = (int)Role.Member,
-                Ip = Request.GetClientIp()
-            };
-
-            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
-            {
-                settingContext.FormId = FormType.Edit;
-            }
-            else
-            {
-                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
-                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
-                {
-                    settingContext.FormId = FormType.EditIndirectMember;
-                    settingContext.CustId = agentId;
-                }
-            }
-
-            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging()
-            {
-                TargetRoleId = settingContext.TargetRoleId,
-                FormId = CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null) ?
-                        (int)FormType.EditIndirectMember : (int)settingContext.FormId,
-                TargetCustId = settingContext.TargetCustId
-            };
-            if (!_permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging))
-            {
-                return this.RedirectToAccessDeniedPage();
+                return actionResult;
             }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
@@ -524,6 +496,79 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return sportType == (int)SportType.Soccer
                 ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
                 : sportName;
+        }
+
+        /// <summary>
+        /// Composes the setting context for editing member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The setting context for editing member.</returns>
+        private SettingContext ComposeSettingContextForEditingMember(EditMemberViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = FormType.Edit,
+                TargetCustId = model.MemberId,
+                TargetRoleId = (int)Role.Member,
+                Ip = Request.GetClientIp()
+            };
+
+            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
+            {
+                settingContext.FormId = FormType.Edit;
+            }
+            else
+            {
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                    settingContext.CustId = agentId;
+                }
+            }
+
+            return settingContext;
+        }
+
+        /// <summary>
+        /// Checks the permission for editing member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="settingContext">The setting context.</param>
+        /// <returns>The redirect result.</returns>
+        private ActionResult CheckPermissionForEditingMember(EditMemberViewModel model, SettingContext settingContext)
+        {
+            if (CurrentSession.AgentInfo.IsLevel0 && model.AgentId != null && model.AgentLevel != null)
+            {
+                var agentEditCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+                {
+                    CustId = model.AgentId.Value,
+                    TargetRoleId = settingContext.TargetRoleId,
+                    ////FormId = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel.Value) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
+                    FormId = (int)FormType.EditIndirectMember,
+                    TargetCustId = settingContext.TargetCustId
+                };
+                if (!_permissionService.CheckForEditingCustomerSetting(agentEditCustomerSettingBelonging))
+                {
+                    return this.RedirectToAccessDeniedPage();
+                }
+            }
+
+            var loginUserEditCustomerSettingBelonging = new EditingCustomerSettingBelonging()
+            {
+                TargetRoleId = settingContext.TargetRoleId,
+                FormId = CurrentSession.AgentInfo.IsLevel0 ?
+                (int)FormType.EditIndirectMember :
+                CurrentSession.AgentInfo.IsLastAgent(CurrentSession.AgentInfo.AgentLevel) ? (int)FormType.Edit : (int)FormType.EditIndirectMember,
+                TargetCustId = settingContext.TargetCustId
+            };
+            if (!_permissionService.CheckForEditingCustomerSetting(loginUserEditCustomerSettingBelonging))
+            {
+                return this.RedirectToAccessDeniedPage();
+            }
+
+            return null;
         }
     }
 }

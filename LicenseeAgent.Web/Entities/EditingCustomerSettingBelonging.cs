@@ -12,5 +12,7 @@ namespace LicenseeAgent.Web.Entities
     public class EditingCustomerSettingBelonging : CustomerBelongingCheckingBase
     {
         public int FormId { get; set; }
+
+        public int CustId { get; set; }
     }
 }

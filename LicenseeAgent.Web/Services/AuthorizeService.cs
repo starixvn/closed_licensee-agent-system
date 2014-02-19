@@ -7,12 +7,12 @@
 namespace LicenseeAgent.Web.Services
 {
     using Fanex.Data;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Enumerations;
-    using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,15 +26,23 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the direct down line value.</returns>
         public bool IsDirectDownline(CheckDownlineBelongCriteria criteria)
         {
-            var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
-            if (agentId == criteria.TargetCustId)
+            if (!AppSettings.IsCheckingBelonging)
             {
                 return true;
             }
 
-            criteria.CustId = agentId;
-            Execute(criteria);
+            if (criteria.CustId == 0)
+            {
+                var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+                criteria.CustId = agentId;
+            }
 
+            if (criteria.CustId == criteria.TargetCustId)
+            {
+                return false;
+            }
+
+            Execute(criteria);
             return criteria.Type == (int)DownLineRole.Agent
                 ? criteria.IsDirectDownLine
                 : criteria.IsBelongTo && SessionManager.CurrentSession.AgentInfo.IsLastLevel;
@@ -47,15 +55,23 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownline(CheckDownlineBelongCriteria criteria)
         {
-            var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
-            if (agentId == criteria.TargetCustId)
+            if (!AppSettings.IsCheckingBelonging)
             {
                 return true;
             }
 
-            criteria.CustId = agentId;
-            Execute(criteria);
+            if (criteria.CustId == 0)
+            {
+                var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+                criteria.CustId = agentId;
+            }
 
+            if (criteria.CustId == criteria.TargetCustId)
+            {
+                return false;
+            }
+            
+            Execute(criteria);
             return criteria.IsBelongTo;
         }
 
@@ -66,7 +82,17 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownlineTicket(TicketDownLineCriteria criteria)
         {
-            criteria.AgentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            if (!AppSettings.IsCheckingBelonging)
+            {
+                return true;
+            }
+
+            if (criteria.AgentId == 0)
+            {
+                var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+                criteria.AgentId = agentId;
+            }
+
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
@@ -81,7 +107,17 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownlineTicketDetails(TicketDetailsDownLineCriteria criteria)
         {
-            criteria.AgentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            if (!AppSettings.IsCheckingBelonging)
+            {
+                return true;
+            }
+
+            if (criteria.AgentId == 0)
+            {
+                var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+                criteria.AgentId = agentId;
+            }
+
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
@@ -96,7 +132,17 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria)
         {
-            criteria.AgentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+            if (!AppSettings.IsCheckingBelonging)
+            {
+                return true;
+            }
+
+            if (criteria.AgentId == 0)
+            {
+                var agentId = SessionManager.CurrentSession.AgentInfo.AgentId;
+                criteria.AgentId = agentId;
+            }
+
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();

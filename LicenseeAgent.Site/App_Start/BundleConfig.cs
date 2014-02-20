@@ -221,8 +221,7 @@ namespace LicenseeAgent.Site
                 "~/Views/Internal/Resources/Header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
-                "~/views/home/resources/home.less",
-                "~/content/layout/layout.css"));
+                "~/views/home/resources/home.less"));
 
             bundles.Add(new LessBundle("~/css/home/accountinfo").Include(
                 "~/views/accountinformation/resources/index.less"));

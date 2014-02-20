@@ -10,7 +10,6 @@ namespace LicenseeAgent.Transfer.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
@@ -20,7 +19,6 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
@@ -172,6 +170,7 @@ namespace LicenseeAgent.Transfer.Controllers
 
                 var criteria = new TransferToAgentCriteria
                 {
+                    Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToAgentId = model.AgentId,
                     Ip = Request.GetClientIp(),
@@ -248,6 +247,7 @@ namespace LicenseeAgent.Transfer.Controllers
 
                 var criteria = new TransferToMemberCriteria
                 {
+                    Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToCustId = model.MemberId,
                     Ip = Request.GetClientIp(),

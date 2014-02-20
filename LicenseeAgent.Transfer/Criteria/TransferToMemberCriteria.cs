@@ -13,6 +13,8 @@ namespace LicenseeAgent.Transfer.Criteria
     /// </summary>
     public class TransferToMemberCriteria : CriteriaBase
     {
+        public int Updater { get; set; }
+
         public int AgentId { get; set; }
 
         public int ToCustId { get; set; }

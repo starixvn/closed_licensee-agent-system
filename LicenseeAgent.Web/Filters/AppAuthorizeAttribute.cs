@@ -7,7 +7,6 @@
 namespace LicenseeAgent.Web.Filters
 {
     using System;
-    using System.Web;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -55,53 +54,53 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
 
+            base.OnAuthorization(filterContext);
+
+            if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
+            {
+                AuthorizeSession(filterContext);
+            }
+
+            if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
+            {
+                AuthorizeRole(filterContext);
+            }
+
+            if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
+            {
+                AuthorizeCurrencyPermission(filterContext);
+            }
+
+            if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
+            {
+                AuthorizeAgent(filterContext);
+            }
+        }
+
+        private void AuthorizeSession(AuthorizationContext filterContext)
+        {
             var currentSession = SessionManager.CurrentSession;
             if (currentSession == null || !currentSession.IsValid)
             {
                 filterContext.ReturnUnauthorized();
-                return;
             }
-
-            var isAuthorized = AuthorizeCore(filterContext.HttpContext);
-            if (!isAuthorized)
-            {
-                filterContext.ReturnAccessDenied();
-                return;
-            }
-
-            if (IsValidateAgent && !ValidateAgent(filterContext))
-            {
-                return;
-            }
-        }
-
-        /// <summary>
-        /// When overridden, provides an entry point for custom authorization checks.
-        /// </summary>
-        /// <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param>
-        /// <returns>
-        /// True if the user is authorized; otherwise, false.
-        /// </returns>
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            // don't use base.AuthorizeCore,
-            // see: http://stackoverflow.com/questions/3488348/overriding-authorizecore-in-custom-authorize-attribute-results-in-no-suitable-m
-            var authorized = httpContext.Request.IsAuthenticated;
-            return authorized ? AuthorizeRole() : false;
         }
 
         /// <summary>
         /// Validates the agent information.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
-        /// <returns>Returns true if agent is valid.</returns>
-        private static bool ValidateAgent(AuthorizationContext filterContext)
+        private void AuthorizeAgent(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
+            if (currentSession == null || !IsValidateAgent)
+            {
+                return;
+            }
+            
             if (currentSession.AgentInfo == null)
             {
                 filterContext.ReturnAccessDenied();
-                return false;
             }
 
             if (!currentSession.IsAdmin && currentSession.IsDirectSignIn)
@@ -111,24 +110,20 @@ namespace LicenseeAgent.Web.Filters
                 if (passwordExpired)
                 {
                     filterContext.Result = new RedirectResult(AppURLs.URLs.ChangePassword);
-                    return false;
                 }
             }
-
-            return true;
         }
 
         /// <summary>
         /// Validates the currency permission.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
-        /// <returns>Returns status of permission.</returns>
-        private bool ValidateCurrencyPermission(AuthorizationContext filterContext)
+        private void AuthorizeCurrencyPermission(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession.LoginAccountType == AccountType.Agent || currentSession.AgentInfo != null)
+            if (currentSession == null || currentSession.LoginAccountType == AccountType.Agent || currentSession.AgentInfo == null || !IsValidateAgent)
             {
-                return true;
+                return;
             }
 
             var criteria = new CheckCurrencyPermissionCriteria
@@ -142,49 +137,61 @@ namespace LicenseeAgent.Web.Filters
             if (criteria.ErrCode != Result.SuccessValue)
             {
                 filterContext.ReturnUnauthorized();
-                return false;
             }
-
-            return true;
         }
 
         /// <summary>
         /// Authorizes the permission. Only call this function if the httpContext.Request.IsAuthenticated
         /// and session is valid.
         /// </summary>
-        /// <returns>True if the user has permission; otherwise, false.</returns>
+        /// <param name="filterContext">The filter context.</param>
+        /// <exception cref="System.NotSupportedException">Please implement here.</exception>
         /// <exception cref="System.Exception">Please implement here.</exception>
-        private bool AuthorizeRole()
+        private void AuthorizeRole(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
+            var isAuthorized = false;
             switch (Role)
             {
                 case AccountType.All:
-                    return true;
+                    isAuthorized = true;
+                    break;
 
                 case AccountType.Admin:
-                    return currentSession.IsAdmin;
+                    isAuthorized = currentSession.IsAdmin;
+                    break;
 
                 case AccountType.CSD_IT:
-                    return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT ? true : false;
+                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT ? true : false;
+                    break;
 
                 case AccountType.Licensee:
-                    return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee ? true : false;
+                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee ? true : false;
+                    break;
 
                 case AccountType.Agent:
-                    return !currentSession.IsAdmin ? true : false;
+                    isAuthorized = !currentSession.IsAdmin ? true : false;
+                    break;
 
                 case AccountType.AgentLevel0:
-                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0 ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0 ? true : false;
+                    break;
 
                 case AccountType.AgentLevel1:
-                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1 ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1 ? true : false;
+                    break;
 
                 case AccountType.AgentLeveln:
-                    return !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
+                    break;
 
                 default:
                     throw new NotSupportedException("Please implement here");
+            }
+
+            if (!isAuthorized)
+            {
+                filterContext.ReturnAccessDenied();
             }
         }
     }

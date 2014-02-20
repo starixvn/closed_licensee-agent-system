@@ -101,6 +101,9 @@
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_RefNo_CheckBelonging" SpName="LAS_RefNo_CheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+
+    <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Report">
     <!-- Results Report-->

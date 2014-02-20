@@ -14,6 +14,7 @@ namespace LicenseeAgent.BetList.Services
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Criteria;
 
     /// <summary>
@@ -57,5 +58,19 @@ namespace LicenseeAgent.BetList.Services
         /// Ticket results.
         /// </returns>
         TicketResult GetParlayList(ICriteria criteria);
+
+        /// <summary>
+        /// Get Sports book Results.
+        /// </summary>
+        /// <param name="criteria">Bet List Results Sports book Criteria.</param>
+        /// <returns>The list of matches.</returns>
+        IList<Sportbook> GetSportsbookResults(BetListResultsSportsbookCriteria criteria);
+
+        /// <summary>
+        /// Get Parlay Results.
+        /// </summary>
+        /// <param name="criteria">Bet List Results Parlay Criteria.</param>
+        /// <returns>The parlay list.</returns>
+        IList<Parlay> GetParlayResults(BetListResultsParlayCriteria criteria);
     }
 }

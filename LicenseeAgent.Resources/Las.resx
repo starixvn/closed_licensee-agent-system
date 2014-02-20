@@ -851,7 +851,7 @@
     <value>LAS's Bet List</value>
   </data>
   <data name="PageTitle_Report_Results" xml:space="preserve">
-    <value>Results - Reports</value>
+    <value>Results - Report</value>
   </data>
   <data name="MatchResults" xml:space="preserve">
     <value>Match Results</value>
@@ -996,7 +996,7 @@
     <value>Effective Stake</value>
   </data>
   <data name="PageTitle_Report_Outstanding" xml:space="preserve">
-    <value>Agent Outstanding - Reports</value>
+    <value>Agent Outstanding - Report</value>
   </data>
   <data name="AgentShare" xml:space="preserve">
     <value>Agent Share</value>

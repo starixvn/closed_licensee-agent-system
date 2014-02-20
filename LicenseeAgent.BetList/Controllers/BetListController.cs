@@ -10,15 +10,27 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
     using System.Web.Mvc;
     using Entities;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.TicketHelper;
+    using Fanex.Result.Core;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
+    using Web.Controllers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -170,6 +182,60 @@ namespace LicenseeAgent.BetList.Controllers
             viewModel.BetListDetails = this.FormatRawBetListDetails(rawBetListDetails, criteria.Status);
 
             return View(viewModel);
+        }
+
+        /// <summary>
+        /// Bet List Results.
+        /// </summary>
+        /// <param name="isSportsbook">Is sports book.</param>
+        /// <param name="matchId">Input Match ID.</param>
+        /// <param name="refNo">Reference Number.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <returns>JSON Object.</returns>
+        public ActionResult Results(bool isSportsbook, int matchId = 0, long refNo = 0, int sportType = 0)
+        {
+            var setting = new ResultSetting
+            {
+                SportType = (SportType)sportType,
+                IsOutRight = false,
+                IsParlayPopUp = !isSportsbook,
+                IsPopUp = true,
+                LanguageCode = CurrentSession.Language
+            };
+
+            ViewBag.Data = isSportsbook
+                ? GetSportsbookResults(matchId, setting)
+                : GetParlayResults(refNo, setting);
+
+            return View();
+        }
+
+        /// <summary>
+        /// Get Sports book Results.
+        /// </summary>
+        /// <param name="matchId">Input Match ID.</param>
+        /// <param name="setting">Results Setting.</param>
+        /// <returns>JSON object.</returns>
+        public string GetSportsbookResults(int matchId, ResultSetting setting)
+        {
+            var data = _betlistService.GetSportsbookResults(new BetListResultsSportsbookCriteria { MatchId = matchId });
+            return data != null
+                ? ResultEngine.HtmlParser(data, setting)
+                : string.Empty;
+        }
+
+        /// <summary>
+        /// Get Parlay Results.
+        /// </summary>
+        /// <param name="refNo">Reference Number.</param>
+        /// <param name="setting">Results Setting.</param>
+        /// <returns>JSON object.</returns>
+        public string GetParlayResults(long refNo, ResultSetting setting)
+        {
+            var data = _betlistService.GetParlayResults(new BetListResultsParlayCriteria { RefNo = refNo });
+            return data != null
+                ? ResultEngine.HtmlParser(data, setting)
+                : string.Empty;
         }
     }
 }

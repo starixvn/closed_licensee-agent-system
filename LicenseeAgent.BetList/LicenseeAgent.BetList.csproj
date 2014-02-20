@@ -66,6 +66,9 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Result.Core">
+      <HintPath>..\Dependencies\Fanex.Result.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NPOI.dll</HintPath>
@@ -94,6 +97,8 @@
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
+    <Compile Include="Criteria\BetListResultsSportsbookCriteria.cs" />
+    <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />
     <Compile Include="Criteria\TotalBetsParlayListCriteria.cs" />
     <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
     <Compile Include="Criteria\MixParlayDetailsCriteria.cs" />

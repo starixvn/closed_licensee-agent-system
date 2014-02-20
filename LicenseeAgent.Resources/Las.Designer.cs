@@ -1690,7 +1690,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent Outstanding - Reports.
+        ///   Looks up a localized string similar to Agent Outstanding - Report.
         /// </summary>
         public static string PageTitle_Report_Outstanding {
             get {
@@ -1699,7 +1699,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results - Reports.
+        ///   Looks up a localized string similar to Results - Report.
         /// </summary>
         public static string PageTitle_Report_Results {
             get {

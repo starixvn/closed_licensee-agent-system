@@ -131,5 +131,14 @@ fanex.betlist.core = {
                 CORE.unblockUI();
             }
         });
+    },
+    showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
+        var url = bettype == 9 || bettype == 29
+                ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
+                : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
+
+        POPUP.openDialogFrame(url, { width: 720, height: 400 });
     }
 };
+
+var ViewResult = fanex.betlist.core.showResults;

@@ -8,7 +8,7 @@
                 { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' },
                 { HeaderText: LANGUAGE.getString("Agent Share"), Width: 200, Name: "Positiontaking", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' }
             ],
-    showPager: true,
+    showPager: false,
     showFooter: true,
     gridExpandHeight: 60,
     bodyRowHeight: 29
@@ -86,6 +86,9 @@ var OUTSTANDING = function ($) {
                         outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Member");
                         isShowBetList = true;
                     }
+                    else {
+                        outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Agent");
+                    }
                     $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
                     $("#breadcrumb").attr("class", "grid-breadcrumb-outstanding");
                 },
@@ -94,7 +97,7 @@ var OUTSTANDING = function ($) {
                 }
             });
         },
-        reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId) {
+        reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId, hidedColumn) {
             if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
                                                 : gridOptions.pagerOption.currentPage;
@@ -124,9 +127,12 @@ var OUTSTANDING = function ($) {
                     $('#BetListGrid').show().fanexGrid(gridOptions);
 
                     if (data.IsLastLevel == true)
+                    {
                         $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
-
-                    $("#breadcrumb").attr("class", "grid-breadcrumb-betlist");
+                        $("#breadcrumb").attr("class", "grid-breadcrumb-betlist-hidefeature");
+                    }
+                    else
+                        $("#breadcrumb").attr("class", "grid-breadcrumb-betlist");
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -177,7 +183,7 @@ var OUTSTANDING = function ($) {
             breadcrumb += '&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;';
             if (isShowBetList) {
                 breadcrumb += agentName;
-                OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN);
+                OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
                 breadcrumb += '<a href="#" onclick="OUTSTANDING.breadcrumbDrilldown(\'' + agentName + '\',' + agentId + ')" class="link-disable">' + agentName + '</a>';

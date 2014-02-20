@@ -35,7 +35,7 @@ namespace LicenseeAgent.Report.Controllers
     /// <summary>
     /// Report Controller.
     /// </summary>
-    public class ReportController : BaseController
+    public partial class ReportController : BaseController
     {
         #region Constant
 
@@ -307,86 +307,6 @@ namespace LicenseeAgent.Report.Controllers
         }
 
         #endregion
-
-        #region Agent Win Loss Report
-
-        /// <summary>
-        /// Agent Win Loss.
-        /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
-        /// <returns>Return a view.</returns>
-        [HttpGet]
-        public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
-        {
-            var isAdmin = CurrentSession.IsAdmin;
-            model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
-            model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;            
-            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
-                                ? model.BreadCrumb
-                                : model.AgentId + "," + model.AgentLevel + "," + (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : CurrentSession.AgentInfo.LicenseeName;
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };
-            return View(model);
-        }
-
-        /// <summary>
-        /// Agent Win Loss.
-        /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
-        {
-            var balanceUp = _coreService.GetBalanceUpDay();
-            var result = new List<AgentWinLoss>();
-            if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
-            {
-                var criteria = new WinLossMemberCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
-            }
-            else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
-            {
-                var criteria = new WinLossSuperViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
-            }
-            else
-            {
-                var criteria = new WinLossAgentViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
-            }
-
-            var totalRow = from x in result
-                           group x by 1
-                           into g
-                           select new
-                           {
-                               BetCount = g.Sum(x => x.BetCount),
-                               Turnover = g.Sum(x => x.Turnover),
-                               Winlost = g.Sum(x => x.Winlost),
-                               PlayerComm = g.Sum(x => x.PlayerComm),
-                               MemberTotal = g.Sum(x => x.MemberTotal),
-                               DownlineStake = g.Sum(x => x.DownlineStake),
-                               DownlineTotal = g.Sum(x => x.DownlineTotal),
-                               AWinLost = g.Sum(x => x.AWinLost),
-                               AComm = g.Sum(x => x.AComm),
-                               ATotal = g.Sum(x => x.ATotal),
-                               UplineStake = g.Sum(x => x.UplineStake),
-                               UplineTotal = g.Sum(x => x.UplineTotal)
-                           };
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                Total = totalRow,
-                List = result
-            });
-        }
-
-        #endregion Agent Win Loss Report
 
         #region Utilities
 

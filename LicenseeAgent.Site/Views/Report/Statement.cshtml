@@ -1,0 +1,54 @@
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@model LicenseeAgent.Report.ViewModels.AgentWinLossReportViewModel
+@{
+    ViewBag.Title = Las.Statement + " - " + Las.Report;
+    //var pageContext = (PageContext)ViewBag.PageContext;
+}
+@section css
+{
+    @Styles.Render("~/css/datetimepicker")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/datetimepicker")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+
+@using (Html.BeginForm("Statement", "Report", FormMethod.Post,
+    new { @class = "form-filter form-inline", id = "search-form" }))
+{
+    <div class="controls-row">
+        @Html.LabelFor(m => m.FromDate)      
+        <div class="input-append date" id="fromDatePicker">
+            @Html.TextBoxFor(m => m.FromDate, new { @class = "span2" })
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.ToDate, new { @class = "small-label" })      
+        <div class="input-append date" id="toDatePicker">
+            @Html.TextBoxFor(m => m.ToDate, new { @class = "span2" })
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    
+    <div class="controls-row">
+        @Html.LabelFor(m => m.Username, new { @class = "small-label" }) 
+        @Html.TextBoxFor(m => m.Username)
+    </div>
+        
+    <div class="offset1 controls-row">  
+        <button class="btn btn-primary left-button" id="search">@Las.Generate</button>
+    </div> 
+}
+
+<div class="wrapper">
+    <div id="grid" class="freegrid">
+    </div>
+</div>

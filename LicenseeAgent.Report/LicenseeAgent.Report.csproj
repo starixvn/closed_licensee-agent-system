@@ -102,6 +102,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ReportController.Statement.cs" />
+    <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Criteria\OutstandingReportBetListCriteria.cs" />
     <Compile Include="Criteria\OutstandingReportCriteria.cs" />

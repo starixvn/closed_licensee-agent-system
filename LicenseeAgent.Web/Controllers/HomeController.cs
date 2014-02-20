@@ -14,6 +14,7 @@ namespace LicenseeAgent.Web.Controllers
     /// <summary>
     /// Authenticate for Agent user.
     /// </summary>
+    [AppAuthorize(IsValidateAgent = false)]
     public class HomeController : BaseController
     {
         /// <summary>

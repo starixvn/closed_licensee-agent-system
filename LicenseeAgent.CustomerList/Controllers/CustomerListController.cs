@@ -472,7 +472,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
-            if (!_permissionService.IsDirectDownLineMember(memberId))
+            if (!_permissionService.IsDownLineMember(memberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -495,7 +495,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineMember(model.CustId))
+                if (!_permissionService.IsDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -532,7 +532,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
-            if (!_permissionService.IsDirectDownLineAgent(agentId))
+            if (!_permissionService.IsDownLineAgent(agentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -556,7 +556,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineAgent(model.CustId))
+                if (!_permissionService.IsDownLineAgent(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }

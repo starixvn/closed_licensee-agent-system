@@ -141,7 +141,7 @@
             var numberDownline = downlines.length;
             var downlineHtml = '';
             for (var index = 0; index < numberDownline; index++) {
-                downlineHtml += '<li><a class="agent-inline" href="#" data-id="' + downlines[index].DownlineCustId + '" title="' + downlines[index].UserName + '">' + downlines[index].UserName + '</a></li>';
+                downlineHtml += '<li><a class="agent-inline" href="#" data-id="' + downlines[index].DownlineCustId + '" title="' + downlines[index].UserName + '"><i class="icon-downline-arrow"></i>' + downlines[index].UserName + '</a></li>';
             }
             $("#downlineContent ul").html(downlineHtml);
             accountInformation.pagingBinding();

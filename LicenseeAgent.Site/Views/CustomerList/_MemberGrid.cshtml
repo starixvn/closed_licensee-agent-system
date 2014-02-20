@@ -17,7 +17,7 @@
                 },
                 { HeaderText: "@Las.Username", Width: 140, Name: "ShortUserName", HeaderAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        return '<a href="#" title="' + rowData.UserName + '">' + cell.Value + '</a>';
+                        return '<span title="' + rowData.UserName + '">' + cell.Value + '</span>';
                     }
                 },
                 { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:

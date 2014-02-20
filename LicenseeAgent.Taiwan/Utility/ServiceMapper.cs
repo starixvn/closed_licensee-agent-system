@@ -69,7 +69,7 @@ namespace LicenseeAgent.Taiwan.Utility
             foreach (var destination in destinations)
             {
                 var source = (from s in sources
-                              where serviceFilter.IsEquals<T1, T2>(s, destination) 
+                              where serviceFilter.IsEquals<T1, T2>(s, destination)
                               select s).FirstOrDefault();
 
                 ServiceMapper.MapObject<T1, T2>(source, destination);

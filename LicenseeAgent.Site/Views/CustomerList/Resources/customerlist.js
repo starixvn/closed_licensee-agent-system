@@ -40,7 +40,7 @@
 
             // search
             $('#search-form').submit(function (e) {
-                customerList.reRenderAfterPaged();
+                customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
                 e.preventDefault();
             });
 
@@ -48,7 +48,7 @@
             $('#Username').typeahead({ source: customerList.getSuggestion, minLength: 2 });
 
             // get customer list
-            customerList.reRenderAfterPaged();
+            customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
         },
         initInstruction: function () {
             $('.instruction-container').each(function () {
@@ -98,12 +98,19 @@
             $('#AgentName').val(agentName);
             $("#ajax-form").submit();
         },
-        reRenderAfterPaged: function () {
+        reRenderAfterPaged: function (currentPage, itemsPerPage) {
+            if (gridOption && gridOption.pagerOption) {
+                currentPage = currentPage >= 0 ? currentPage
+                                                : gridOption.pagerOption.currentPage;
+                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
+            }
             var params = {
                 username: $.trim($("#Username").val()),
                 status: $("#Status").val() != -1 ? $.trim($("#Status").val()) : '',
                 agentId: $("#AgentId").val(),
-                agentLevel: $("#AgentLevel").val()
+                agentLevel: $("#AgentLevel").val(),
+                pageIndex: currentPage,
+                pageSize: itemsPerPage
             };
 
             $.ajax({
@@ -118,15 +125,26 @@
                         alert(data.ErrMsg);
                     }
                     else {
-                        gridOption.pagerOption = {
-                            itemsPerPage: CORE.pageSizes[2],
-                            currentPage: 0,
-                            itemsPerPageArray: CORE.pageSizes,
-                            showDetail: true,
-                            afterPagedFunction: function () {
-                                customerList.gridAfterBinding();
-                            }
-                        };
+                        if (pageContext.IsLastLevel) {
+                            gridOption.pagerOption = {
+                                itemsPerPage: CORE.pageSizes[2],
+                                currentPage: 0,
+                                itemsPerPageArray: CORE.pageSizes,
+                                showDetail: true,
+                                afterPagedFunction: function () {
+                                    customerList.gridAfterBinding();
+                                }
+                            };
+                        }
+                        else {
+                            gridOption.pagerOption = {
+                                itemsPerPage: data.ItemsPerPage,
+                                itemsPerPageArray: CORE.pageSizes,
+                                currentPage: data.CurrentPage,
+                                totalItem: data.TotalItem,
+                                pagerSelectCallBack: customerList.reRenderAfterPaged
+                            };
+                        }
 
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
                         $('#grid').show().fanexGrid(gridOption);

@@ -78,7 +78,7 @@ namespace LicenseeAgent.Taiwan.Utility
                     });
                 }
             }
-            else
+            else if (!string.IsNullOrEmpty(agentIds))
             {
                 var listAgentId = agentIds.Split(',');
                 foreach (var agentId in listAgentId)

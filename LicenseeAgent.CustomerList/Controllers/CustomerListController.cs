@@ -150,7 +150,9 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             var criteria = new AgentGetByAgentCriteria
             {
-                AgentId = model.AgentId
+                AgentId = model.AgentId,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
             };
 
             var agents = _customerService.GetAgentList(criteria);
@@ -158,7 +160,10 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = agents
+                List = agents,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
             });
         }
 
@@ -174,7 +179,9 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 AgentId = model.AgentId,
                 UserName = model.UserName,
-                AccStatus = model.Status
+                AccStatus = model.Status,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
             };
 
             var agents = _customerService.SearchAgent(criteria);
@@ -182,7 +189,10 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = agents
+                List = agents,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
             });
         }
 

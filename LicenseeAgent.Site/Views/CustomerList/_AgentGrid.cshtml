@@ -20,7 +20,7 @@
                         {
                             HeaderText: "@Las.Username", Width: 140, Name: "ShortUserName", HeaderAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<a href="#" title="' + rowData.UserName + '">' + cell.Value + '</a>';
+                                return '<span title="' + rowData.UserName + '">' + cell.Value + '</span>';
                             }
                         },
                         {
@@ -59,6 +59,7 @@
                         }
                    ],
         showPager: true,
+        customPager: true,
         allowTruncate: true,
         gridExpandHeight: 100,
         indexNumberColumn: 1,

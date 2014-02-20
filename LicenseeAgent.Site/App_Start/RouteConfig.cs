@@ -32,7 +32,7 @@ namespace LicenseeAgent.Site
             routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
             routes.MapRoute("AccessDenied", "AccessDenied", new { controller = "Error", action = "AccessDenied" });
-            routes.MapRoute("AccountStopped", "AccountStopped", new { controller = "Error", action = "AccountStopped" });
+            routes.MapRoute("CurrencyPermissionDenied", "CurrencyPermissionDenied", new { controller = "Error", action = "CurrencyPermissionDenied" });
             routes.MapRoute("Error", "Error/{statusCode}", new { controller = "Error", action = "Index", statusCode = UrlParameter.Optional });
             routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Error", action = "Unauthorized" });
             routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Error", action = "UnderMaintenance" });

@@ -1019,8 +1019,8 @@
   <data name="Generate" xml:space="preserve">
     <value>Generate</value>
   </data>
-  <data name="CurrencyIsInvalid" xml:space="preserve">
-    <value>Your currency permission is not valid. You must relogin for now!</value>
+  <data name="AlertNoCurrencyPermission" xml:space="preserve">
+    <value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
     <comment>not</comment>
   </data>
   <data name="AgentWinLossReport" xml:space="preserve">

@@ -1,16 +1,17 @@
 ﻿$.ajaxSetup({
     error: function (jqXHR, textStatus, errorThrown) {
-        if (jqXHR.status == 600) {
-            alert(LANGUAGE.getString("CurrencyIsInvalid"));
-            if (window.parent) {
-                window.parent.location.href = CORE.UrlSignOut;
+        if (jqXHR.status == 403) {
+            var data = jqXHR.responseJSON;
+            if (data && data.ErrCode) {
+                alert(data.ErrMsg);
+                if (data.ErrCode == -2) {
+                    window.parent.location.href = CORE.UrlSignOut;
+                }
+                return;
             }
-            else {
-                window.location.href = CORE.UrlSignOut;
-            }
-        } else {
-            alert('Your request is temporarily cannot be processed, please try again later!');
         }
+
+        alert('Your request is temporarily cannot be processed, please try again later!');
     }
 });
 

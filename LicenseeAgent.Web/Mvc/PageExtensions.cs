@@ -7,6 +7,8 @@
 namespace LicenseeAgent.Web.Mvc
 {
     using System.Net;
+    using System.Text;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Entities;
@@ -30,7 +32,7 @@ namespace LicenseeAgent.Web.Mvc
             }
 
             response.Clear();
-            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
             response.TrySkipIisCustomErrors = true;
             if (filterContext.IsAjaxRequest())
             {
@@ -59,7 +61,7 @@ namespace LicenseeAgent.Web.Mvc
             }
 
             response.Clear();
-            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
             response.TrySkipIisCustomErrors = true;
             if (controllerContext.IsAjaxRequest())
             {
@@ -85,7 +87,7 @@ namespace LicenseeAgent.Web.Mvc
             }
 
             response.Clear();
-            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
             response.TrySkipIisCustomErrors = true;
             if (authorizationContext.IsAjaxRequest())
             {
@@ -98,6 +100,32 @@ namespace LicenseeAgent.Web.Mvc
                 authorizationContext.HttpContext.Session.Abandon();
                 authorizationContext.HttpContext.Response.Cookies.Clear();
                 authorizationContext.Result = new RedirectResult(FormsAuthentication.LoginUrl);
+            }
+        }
+
+        /// <summary>
+        /// Returns the currency permission denied.
+        /// </summary>
+        /// <param name="authorizationContext">The authorization context.</param>
+        public static void ReturnCurrencyPermissionDenied(this AuthorizationContext authorizationContext)
+        {
+            var response = authorizationContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
+            response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
+            response.TrySkipIisCustomErrors = true;
+            if (authorizationContext.IsAjaxRequest())
+            {
+                response.WriteJson(new Result(Result.NoCurrencyPermission, Las.AlertNoCurrencyPermission));
+                response.End();
+            }
+            else
+            {
+                authorizationContext.Result = new RedirectResult(AppURLs.URLs.CurrencyPermissionDenied);
             }
         }
 
@@ -151,7 +179,7 @@ namespace LicenseeAgent.Web.Mvc
                 response.End();
             }
             else
-            { 
+            {
                 response.Redirect(AppURLs.URLs.AccessDenied);
             }
         }

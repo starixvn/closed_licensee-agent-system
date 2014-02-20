@@ -42,11 +42,11 @@ namespace LicenseeAgent.Web
             set { this["AccessDenied"] = value; }
         }
 
-        [ConfigurationProperty("AccountStopped", IsRequired = true)]
-        public string AccountStopped
+        [ConfigurationProperty("CurrencyPermissionDenied", IsRequired = true)]
+        public string CurrencyPermissionDenied
         {
-            get { return (string)this["AccountStopped"]; }
-            set { this["AccountStopped"] = value; }
+            get { return (string)this["CurrencyPermissionDenied"]; }
+            set { this["CurrencyPermissionDenied"] = value; }
         }
 
         [ConfigurationProperty("Error", IsRequired = true)]

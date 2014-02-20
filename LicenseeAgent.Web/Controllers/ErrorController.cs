@@ -67,6 +67,12 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult CurrencyPermissionDenied()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult WhoAmI()
         {
             return View();

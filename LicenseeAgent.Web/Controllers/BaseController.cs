@@ -274,28 +274,6 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         /// <summary>
-        /// Kicks the out.
-        /// </summary>
-        /// <param name="filterContext">The filter context.</param>
-        protected void KickOut(ActionExecutingContext filterContext)
-        {
-            var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
-            var isAjaxRequest = filterContext.IsAjaxRequest();
-            if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
-            {
-                filterContext.HttpContext.Response.Clear();
-                filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
-                filterContext.HttpContext.Response.StatusCode = _InvalidCurrencyStatusCode;
-                filterContext.HttpContext.Response.StatusDescription = Las.CurrencyIsInvalid;
-                filterContext.HttpContext.Response.End();
-            }
-            else if (!isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(ActionResult)))
-            {
-                filterContext.Result = Redirect(AppURLs.URLs.SignOut);
-            }
-        }
-
-        /// <summary>
         /// Get Error message.
         /// </summary>
         /// <returns>Error message string.</returns>

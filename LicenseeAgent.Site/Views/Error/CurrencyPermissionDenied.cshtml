@@ -1,0 +1,18 @@
+@using LicenseeAgent.Web.ViewModels
+@using LicenseeAgent.Core.Utility
+@model ErrorViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>@Las.Error</title>
+    <script type="text/javascript">
+        alert("@Html.Raw(Las.AlertNoCurrencyPermission)");
+        location.href = '@Url.Content(AppURLs.URLs.SignOut)';
+    </script>
+</head>
+<body>
+</body>
+</html>

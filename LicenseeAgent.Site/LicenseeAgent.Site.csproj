@@ -810,6 +810,7 @@
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Views\AccountInformation\_BalanceInformation.cshtml" />
     <Content Include="Views\Report\Statement.cshtml" />
+    <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

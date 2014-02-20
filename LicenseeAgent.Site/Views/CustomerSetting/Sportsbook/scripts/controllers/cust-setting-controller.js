@@ -110,7 +110,7 @@
                     CORE.unblockUI();
 
                     if (status == 600) {
-                        alert(LANGUAGE.getString("CurrencyIsInvalid"));
+                        alert(LANGUAGE.getString("AlertNoCurrencyPermission"));
                         if (window.parent) {
                             window.parent.location.href = CORE.UrlSignOut;
                         }
@@ -207,7 +207,7 @@
                 CORE.unblockUI();
 
                 if (status == 600) {
-                    alert(LANGUAGE.getString("CurrencyIsInvalid"));
+                    alert(LANGUAGE.getString("AlertNoCurrencyPermission"));
                     if (window.parent) {
                         window.parent.location.href = CORE.UrlSignOut;
                     }

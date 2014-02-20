@@ -98,12 +98,7 @@ namespace LicenseeAgent.Web.Filters
                 return;
             }
             
-            if (currentSession.AgentInfo == null)
-            {
-                filterContext.ReturnAccessDenied();
-            }
-
-            if (!currentSession.IsAdmin && currentSession.IsDirectSignIn)
+            if (currentSession.LoginAccountType == AccountType.Agent)
             {
                 var passwordStatus = PasswordRule.GetPasswordStatus(currentSession.AgentInfo);
                 var passwordExpired = passwordStatus == PasswordStatus.Expired || passwordStatus == PasswordStatus.FirstLogin;
@@ -136,7 +131,7 @@ namespace LicenseeAgent.Web.Filters
             _permissionServiceBase.CheckCurrencyPermission(criteria);
             if (criteria.ErrCode != Result.SuccessValue)
             {
-                filterContext.ReturnUnauthorized();
+                filterContext.ReturnCurrencyPermissionDenied();
             }
         }
 

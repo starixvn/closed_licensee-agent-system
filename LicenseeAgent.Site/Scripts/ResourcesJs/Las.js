@@ -141,8 +141,8 @@ var _language_en_US={
                      CreditBalance:"Credit / Balance",
 				 	
                      Currency:"Currency",
-				 	
-                     CurrencyIsInvalid:"Your currency permission is not valid. You must relogin for now!",
+
+                     AlertNoCurrencyPermission: "Your currency permission is not valid. You must relogin for now!",
 				 	
                      CurrencyRequired:"Please select currency.",
 				 	

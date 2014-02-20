@@ -262,6 +262,7 @@
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
+    <Content Include="Content\layout\layout.css" />
     <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Content\Results\results.css" />
     <Content Include="Content\Results\fanex.result.css" />
@@ -281,6 +282,7 @@
     <Content Include="Scripts\fanexgrid\Fanex.Grid.js" />
     <Content Include="Scripts\fanexgrid\numeral.js" />
     <Content Include="Scripts\HeadJS\head.core.js" />
+    <Content Include="Scripts\layout\jquery.layout.min.js" />
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />

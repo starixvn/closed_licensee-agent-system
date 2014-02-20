@@ -210,7 +210,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/views/home/resources/menu.js",
                 "~/views/home/resources/header.js",
-                "~/scripts/cookie/jquery.cookie.js"));
+                "~/scripts/cookie/jquery.cookie.js",
+                "~/scripts/layout/jquery.layout.min.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",
@@ -220,7 +221,8 @@ namespace LicenseeAgent.Site
                 "~/Views/Internal/Resources/Header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
-                "~/views/home/resources/home.less"));
+                "~/views/home/resources/home.less",
+                "~/content/layout/layout.css"));
 
             bundles.Add(new LessBundle("~/css/home/accountinfo").Include(
                 "~/views/accountinformation/resources/index.less"));

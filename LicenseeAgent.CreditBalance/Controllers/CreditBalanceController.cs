@@ -132,7 +132,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpGet]
         public ActionResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
         {
-            if (!_permissionService.IsDirectDownlineAgent(editAgentCreditViewModel.AgentId))
+            if (!_permissionService.IsDirectDownLineAgent(editAgentCreditViewModel.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -171,7 +171,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownlineAgent(editAgentCreditViewModel.AgentId))
+                if (!_permissionService.IsDirectDownLineAgent(editAgentCreditViewModel.AgentId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -210,7 +210,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpGet]
         public ActionResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            if (!_permissionService.IsDirectDownlineMember(agentEditMemberCreditViewModel.CustId))
+            if (!_permissionService.IsDirectDownLineMember(agentEditMemberCreditViewModel.CustId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -237,7 +237,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost, ActionName("AgentEditMemberCredit")]
         public ActionResult AgentEditMemberCreditPost(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
         {
-            if (!_permissionService.IsDirectDownlineMember(agentEditMemberCreditViewModel.CustId))
+            if (!_permissionService.IsDirectDownLineMember(agentEditMemberCreditViewModel.CustId))
             {
                 return RedirectToAccessDeniedPage();
             }

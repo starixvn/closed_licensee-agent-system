@@ -17,27 +17,11 @@ namespace LicenseeAgent.Web.Services
     public class DownLineService : QueryService, IDownLineService
     {
         /// <summary>
-        /// Check if the target user is direct child of current user.
-        /// </summary>
-        /// <param name="criteria">Down line criteria.</param>
-        /// <returns>Return boolean value indicating the direct down line value.</returns>
-        public bool IsDirectDownline(CheckDownlineBelongCriteria criteria)
-        {
-            if (criteria.CustId == criteria.TargetCustId)
-            {
-                return true;
-            }
-
-            Execute(criteria);
-            return criteria.IsBelongTo && criteria.IsDirectDownLine;
-        }
-
-        /// <summary>
         /// Check if the target user is child of current user.
         /// </summary>
         /// <param name="criteria">Down line criteria.</param>
         /// <returns>Return boolean value indicating the down line value.</returns>
-        public bool IsDownline(CheckDownlineBelongCriteria criteria)
+        public bool IsDownLine(CheckDownlineBelongCriteria criteria)
         {
             if (criteria.CustId == criteria.TargetCustId)
             {
@@ -49,17 +33,30 @@ namespace LicenseeAgent.Web.Services
         }
 
         /// <summary>
-        /// Check if the ticket is belong to current user.
+        /// Check if the target user is direct child of current user.
         /// </summary>
-        /// <param name="criteria">Ticket down line criteria.</param>
-        /// <returns>Return boolean value indicating the down line value.</returns>
-        public bool IsDownlineTicket(TicketDownLineCriteria criteria)
+        /// <param name="criteria">Down line criteria.</param>
+        /// <returns>Return boolean value indicating the direct down line value.</returns>
+        public bool IsDirectDownLine(CheckDownlineBelongCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            if (criteria.CustId == criteria.TargetCustId)
             {
-                var param = criteria.GetSpParams();
-                return Converter.ToBool(objectDb.ExecuteScalar(param));
+                return true;
             }
+
+            Execute(criteria);
+            return criteria.IsBelongTo && criteria.IsDirectDownLine;
+        }
+
+        public bool IsIndirectDownLine(CheckDownlineBelongCriteria criteria)
+        {
+            if (criteria.CustId == criteria.TargetCustId)
+            {
+                return true;
+            }
+
+            Execute(criteria);
+            return criteria.IsBelongTo && !criteria.IsDirectDownLine;
         }
 
         /// <summary>
@@ -67,7 +64,7 @@ namespace LicenseeAgent.Web.Services
         /// </summary>
         /// <param name="criteria">Ticket down line criteria.</param>
         /// <returns>Return boolean value indicating the down line value.</returns>
-        public bool IsDownlineTicketDetails(TicketDetailsDownLineCriteria criteria)
+        public bool IsDownLineTicket(TicketDownLineCriteria criteria)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -81,7 +78,7 @@ namespace LicenseeAgent.Web.Services
         /// </summary>
         /// <param name="criteria">Reference number down line criteria.</param>
         /// <returns>Return boolean value indicating the down line value.</returns>
-        public bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria)
+        public bool IsDownLineReferenceNumber(ReferenceNumberCriteria criteria)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {

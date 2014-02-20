@@ -81,16 +81,12 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
-    <Compile Include="Criterias\TicketDetailsDownLineCriteria.cs" />
     <Compile Include="Criterias\ReferenceNumberCriteria.cs" />
     <Compile Include="Criterias\TicketDownLineCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
-    <Compile Include="Entities\ReferenceNumberBelongingChecking.cs" />
-    <Compile Include="Entities\TransactionBelongingChecking.cs" />
-    <Compile Include="Entities\CustomerBelongingCheckingBase.cs" />
     <Compile Include="Entities\EditingCustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />

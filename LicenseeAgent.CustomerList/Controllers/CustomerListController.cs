@@ -84,7 +84,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public ActionResult Index([ModelBinder(typeof(AgentBreadcrumModelBinder))]AgentBreadcrumViewModel model)
         {
-            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -118,7 +118,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult GetCustomerList(CustomerListViewModel model)
         {
-            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -300,7 +300,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
-            if (!_permissionService.IsDirectDownlineAgent(model.AgentId))
+            if (!_permissionService.IsDirectDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -346,7 +346,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
-            if (!_permissionService.IsDirectDownlineMember(model.MemberId))
+            if (!_permissionService.IsDirectDownLineMember(model.MemberId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -385,7 +385,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult CustomerSearchAutoComplete(CustomerSearchAutoCompleteViewModel model)
         {
-            if (!_permissionService.IsDownlineAgent(model.AgentId))
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -472,7 +472,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
-            if (!_permissionService.IsDirectDownlineMember(memberId))
+            if (!_permissionService.IsDirectDownLineMember(memberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -495,7 +495,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownlineMember(model.CustId))
+                if (!_permissionService.IsDirectDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -532,7 +532,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
-            if (!_permissionService.IsDirectDownlineAgent(agentId))
+            if (!_permissionService.IsDirectDownLineAgent(agentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -556,7 +556,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownlineAgent(model.CustId))
+                if (!_permissionService.IsDirectDownLineAgent(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -594,7 +594,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
-            if (!_permissionService.IsDirectDownlineMember(memberId))
+            if (!_permissionService.IsDirectDownLineMember(memberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -633,7 +633,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownlineMember(model.CustId))
+                if (!_permissionService.IsDirectDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -673,7 +673,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoAgent(int agentId)
         {
-            if (!_permissionService.IsDirectDownlineAgent(agentId))
+            if (!_permissionService.IsDirectDownLineAgent(agentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -710,7 +710,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownlineAgent(model.CustId))
+                if (!_permissionService.IsDirectDownLineAgent(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }

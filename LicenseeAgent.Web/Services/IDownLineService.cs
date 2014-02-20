@@ -13,14 +13,14 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public interface IDownLineService
     {
-        bool IsDirectDownline(CheckDownlineBelongCriteria criteria);
+        bool IsDownLine(CheckDownlineBelongCriteria criteria);
 
-        bool IsDownline(CheckDownlineBelongCriteria criteria);
+        bool IsDirectDownLine(CheckDownlineBelongCriteria criteria);
 
-        bool IsDownlineTicket(TicketDownLineCriteria criteria);
+        bool IsIndirectDownLine(CheckDownlineBelongCriteria criteria);
 
-        bool IsDownlineTicketDetails(TicketDetailsDownLineCriteria criteria);
+        bool IsDownLineTicket(TicketDownLineCriteria criteria);
 
-        bool IsDownlineReferenceNumber(ReferenceNumberCriteria criteria);
+        bool IsDownLineReferenceNumber(ReferenceNumberCriteria criteria);
     }
 }

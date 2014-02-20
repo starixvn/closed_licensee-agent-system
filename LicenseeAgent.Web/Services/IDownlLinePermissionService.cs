@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.Web.Services
 {
-    using LicenseeAgent.Core.Criterias;
-    using LicenseeAgent.Web.Criterias;
     using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -18,28 +15,20 @@ namespace LicenseeAgent.Web.Services
     {
         bool CheckForEditingCustomerSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging);
 
-        bool IsDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDownLineMember(int memberId);
 
-        bool IsDownlineMember(int memberId);
+        bool IsDownLineAgent(int agentId);
 
-        bool IsDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDirectDownLineAgent(int agentId);
 
-        bool IsDownlineAgent(int agentId);
+        bool IsDirectDownLineMember(int memberId);
 
-        bool IsDirectDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsIndirectDownLineAgent(int agentId);
 
-        bool IsDirectDownlineAgent(int agentId);
+        bool IsIndirectDownLineMember(int memberId);
 
-        bool IsDirectDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase);
+        bool IsDownLineTransaction(long transactionId);
 
-        bool IsDirectDownlineMember(int memberId);
-
-        bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking);
-
-        bool IsDownlineTransaction(long transactionId);
-
-        bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking);
-
-        bool IsDownlineReferenceNumber(long referenceNumber);
+        bool IsDownLineReferenceNumber(long referenceNumber);
     }
 }

@@ -34,155 +34,143 @@ namespace LicenseeAgent.Web.Services
         /// <summary>
         /// Determines whether [is down-line member] [the specified belonging checking base].
         /// </summary>
-        /// <param name="belongingCheckingBase">The belonging checking base.</param>
-        /// <returns>Returns true if down-line.</returns>
-        public bool IsDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase)
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns>
+        /// Returns true if down-line.
+        /// </returns>
+        public bool IsDownLineMember(int memberId)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TargetCustId = (int)belongingCheckingBase.TargetCustId,
+                TargetCustId = memberId,
                 Type = (int)DownLineRole.Member
             };
 
-            return _downLineService.IsDownline(criteria);
-        }
-
-        public bool IsDownlineMember(int memberId)
-        {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase
-            {
-                TargetCustId = memberId
-            };
-
-            return IsDownlineMember(belongingCheckingBase);
+            return _downLineService.IsDownLine(criteria);
         }
 
         /// <summary>
         /// Determines whether [is down-line agent] [the specified belonging checking base].
         /// </summary>
-        /// <param name="belongingCheckingBase">The belonging checking base.</param>
-        /// <returns>Returns true if down-line.</returns>
-        public bool IsDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>
+        /// Returns true if down-line.
+        /// </returns>
+        public bool IsDownLineAgent(int agentId)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TargetCustId = (int)belongingCheckingBase.TargetCustId,
+                TargetCustId = agentId,
                 Type = (int)DownLineRole.Agent
             };
 
-            return _downLineService.IsDownline(criteria);
-        }
-
-        public bool IsDownlineAgent(int agentId)
-        {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase
-            {
-                TargetCustId = agentId
-            };
-
-            return IsDownlineAgent(belongingCheckingBase);
+            return _downLineService.IsDownLine(criteria);
         }
 
         /// <summary>
         /// Determines whether [is direct down-line agent] [the specified belonging checking base].
         /// </summary>
-        /// <param name="belongingCheckingBase">The belonging checking base.</param>
-        /// <returns>Return true if direct down-line.</returns>
-        public bool IsDirectDownlineAgent(CustomerBelongingCheckingBase belongingCheckingBase)
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>
+        /// Return true if direct down-line.
+        /// </returns>
+        public bool IsDirectDownLineAgent(int agentId)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TargetCustId = belongingCheckingBase.TargetCustId,
+                TargetCustId = agentId,
                 Type = (int)DownLineRole.Agent
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0
-            ? _downLineService.IsDownline(criteria)
-            : _downLineService.IsDirectDownline(criteria);
-        }
-
-        public bool IsDirectDownlineAgent(int agentId)
-        {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase
-            {
-                TargetCustId = agentId
-            };
-
-            return IsDirectDownlineAgent(belongingCheckingBase);
+            ? _downLineService.IsDownLine(criteria)
+            : _downLineService.IsDirectDownLine(criteria);
         }
 
         /// <summary>
         /// Determines whether [is direct down-line member] [the specified belonging checking base].
         /// </summary>
-        /// <param name="belongingCheckingBase">The belonging checking base.</param>
-        /// <returns>Returns true if direct down-line.</returns>
-        public bool IsDirectDownlineMember(CustomerBelongingCheckingBase belongingCheckingBase)
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns>
+        /// Returns true if direct down-line.
+        /// </returns>
+        public bool IsDirectDownLineMember(int memberId)
         {
             var criteria = new CheckDownlineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TargetCustId = belongingCheckingBase.TargetCustId,
+                TargetCustId = memberId,
                 Type = (int)DownLineRole.Member
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0
-            ? _downLineService.IsDownline(criteria)
-            : _downLineService.IsDirectDownline(criteria);
+            ? _downLineService.IsDownLine(criteria)
+            : _downLineService.IsDirectDownLine(criteria);
         }
 
-        public bool IsDirectDownlineMember(int memberId)
+        /// <summary>
+        /// Determines whether [is indirect down line agent] [the specified agent identifier].
+        /// </summary>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>
+        /// Returns true if indirect.
+        /// </returns>
+        public bool IsIndirectDownLineAgent(int agentId)
         {
-            var belongingCheckingBase = new CustomerBelongingCheckingBase
+            var criteria = new CheckDownlineBelongCriteria
             {
-                TargetCustId = memberId
+                CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
+                TargetCustId = agentId,
+                Type = (int)DownLineRole.Agent
             };
 
-            return IsDirectDownlineMember(belongingCheckingBase);
+            return SessionManager.CurrentSession.AgentInfo.IsLevel0
+            ? _downLineService.IsDownLine(criteria)
+            : _downLineService.IsIndirectDownLine(criteria);
         }
 
-        public bool IsDownlineTransaction(TransactionBelongingChecking transactionBelongingChecking)
+        /// <summary>
+        /// Determines whether [is indirect down line member] [the specified member identifier].
+        /// </summary>
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns>Returns true if indirect.</returns>
+        public bool IsIndirectDownLineMember(int memberId)
+        {
+            var criteria = new CheckDownlineBelongCriteria
+            {
+                CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
+                TargetCustId = memberId,
+                Type = (int)DownLineRole.Member
+            };
+
+            return SessionManager.CurrentSession.AgentInfo.IsLevel0
+            ? _downLineService.IsDownLine(criteria)
+            : _downLineService.IsIndirectDownLine(criteria);
+        }
+
+        public bool IsDownLineTransaction(long transactionId)
         {
             var criteria = new TicketDownLineCriteria
             {
                 AgentId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TransId = transactionBelongingChecking.TransactionId
+                TransId = transactionId
             };
 
-            return _downLineService.IsDownlineTicket(criteria);
+            return _downLineService.IsDownLineTicket(criteria);
         }
 
-        public bool IsDownlineTransaction(long transactionId)
-        {
-            var transactionBelongingChecking = new TransactionBelongingChecking
-            {
-                TransactionId = transactionId
-            };
-
-            return IsDownlineTransaction(transactionBelongingChecking);
-        }
-
-        public bool IsDownlineReferenceNumber(ReferenceNumberBelongingChecking referenceNumberBelongingChecking)
+        public bool IsDownLineReferenceNumber(long referenceNumber)
         {
             var criteria = new ReferenceNumberCriteria
             {
                 AgentId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                RefNo = referenceNumberBelongingChecking.ReferenceNumber
+                RefNo = referenceNumber
             };
 
-            return _downLineService.IsDownlineReferenceNumber(criteria);
-        }
-
-        public bool IsDownlineReferenceNumber(long referenceNumber)
-        {
-            var referenceNumberBelongingChecking = new ReferenceNumberBelongingChecking
-            {
-                ReferenceNumber = referenceNumber
-            };
-
-            return IsDownlineReferenceNumber(referenceNumberBelongingChecking);
+            return _downLineService.IsDownLineReferenceNumber(criteria);
         }
 
         /// <summary>
@@ -206,7 +194,7 @@ namespace LicenseeAgent.Web.Services
                     break;
 
                 case FormType.Edit:
-                    if (IsDirectDownlineAgent(editingCustomerSettingBelonging.TargetCustId))
+                    if (IsDirectDownLineAgent(editingCustomerSettingBelonging.TargetCustId))
                     {
                         return true;
                     }
@@ -214,7 +202,7 @@ namespace LicenseeAgent.Web.Services
                     break;
 
                 case FormType.ViewIndirectAgent:
-                    if (IsDownlineAgent(editingCustomerSettingBelonging.TargetCustId))
+                    if (IsIndirectDownLineAgent(editingCustomerSettingBelonging.TargetCustId))
                     {
                         return true;
                     }
@@ -244,7 +232,7 @@ namespace LicenseeAgent.Web.Services
                     break;
 
                 case FormType.Edit:
-                    if (IsDirectDownlineMember(editingCustomerSettingBelonging.TargetCustId))
+                    if (IsDirectDownLineMember(editingCustomerSettingBelonging.TargetCustId))
                     {
                         return true;
                     }
@@ -252,7 +240,7 @@ namespace LicenseeAgent.Web.Services
                     break;
 
                 case FormType.EditIndirectMember:
-                    if (IsDownlineMember(editingCustomerSettingBelonging.TargetCustId))
+                    if (IsIndirectDownLineMember(editingCustomerSettingBelonging.TargetCustId))
                     {
                         return true;
                     }

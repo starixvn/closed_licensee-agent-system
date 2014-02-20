@@ -109,7 +109,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult MixParlayDetails(long transId)
         {
-            if (!_permissionService.IsDownlineTransaction(transId))
+            if (!_permissionService.IsDownLineTransaction(transId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -129,7 +129,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult SystemParlayResult(long refNo)
         {
-            if (!_permissionService.IsDownlineReferenceNumber(refNo))
+            if (!_permissionService.IsDownLineReferenceNumber(refNo))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -159,7 +159,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult Details(BetListDetailsCriteria criteria)
         {
-            if (!_permissionService.IsDownlineTransaction(criteria.TransId))
+            if (!_permissionService.IsDownLineTransaction(criteria.TransId))
             {
                 return RedirectToAccessDeniedPage();
             }

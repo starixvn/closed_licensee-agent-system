@@ -19,7 +19,7 @@ namespace LicenseeAgent.Report.ViewModels
     using LicenseeAgent.Web;
 
     /// <summary>
-    /// Bet List View Model.
+    /// Agent WinLoss Report View Model.
     /// </summary>
     public class AgentWinLossReportViewModel
     {

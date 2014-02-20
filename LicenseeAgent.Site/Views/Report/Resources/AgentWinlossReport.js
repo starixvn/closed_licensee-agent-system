@@ -104,11 +104,11 @@
                             { Value: total.BetCount, Name: "BetCount" },
                             { Value: total.Turnover, Name: "Turnover" },
                             { Value: total.MemberTotal, Name: "MemberTotal" },
+                            { Value: total.DownlineStake, Name: "DownlineStake" },
+                            { Value: total.DownlineTotal, Name: "DownlineTotal" },
                             { Value: total.AWinLost, Name: "AWinLost" },
                             { Value: total.AComm, Name: "AComm" },
                             { Value: total.ATotal, Name: "ATotal" },
-                            { Value: total.DownlineStake, Name: "DownlineStake" },
-                            { Value: total.DownlineTotal, Name: "DownlineTotal"},
                             { Value: total.UplineStake, Name: "UplineStake" },
                             { Value: total.UplineTotal, Name: "UplineTotal" }
                         ]
@@ -124,11 +124,11 @@
                             { Value: total.BetCount, Name: "BetCount" },
                             { Value: total.Turnover, Name: "Turnover" },
                             { Value: total.MemberTotal, Name: "MemberTotal" },
+                            { Value: total.DownlineStake, Name: "DownlineStake" },
+                            { Value: total.DownlineTotal, Name: "DownlineTotal" },
                             { Value: total.AWinLost, Name: "AWinLost" },
                             { Value: total.AComm, Name: "AComm" },
-                            { Value: total.ATotal, Name: "ATotal" },
-                            { Value: total.DownlineStake, Name: "DownlineStake" },
-                            { Value: total.DownlineTotal, Name: "DownlineTotal"}
+                            { Value: total.ATotal, Name: "ATotal" }
                         ]
                 }
             ];

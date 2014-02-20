@@ -124,6 +124,7 @@
     <Compile Include="Services\IReportService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
     <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
+    <Compile Include="ViewModels\StatementReportViewModel.cs" />
     <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />
     <Compile Include="Criteria\WinLossAgentViewAgentCriteria.cs" />

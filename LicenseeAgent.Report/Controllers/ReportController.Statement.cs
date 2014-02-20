@@ -28,7 +28,9 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <returns>Return a view.</returns>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
         [HttpGet]
         public ActionResult Statement()
         {
@@ -38,7 +40,9 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <returns>JSON Result.</returns>
+        /// <returns>
+        /// JSON Result.
+        /// </returns>
         [HttpPost]
         public JsonResult GetStatementData()
         {

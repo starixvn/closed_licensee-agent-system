@@ -183,7 +183,9 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="data">Data Table.</param>
         /// <param name="refNo">The reference no.</param>
-        /// <returns>The parlay data list.</returns>
+        /// <returns>
+        /// The parlay data list.
+        /// </returns>
         [SuppressMessage(
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",

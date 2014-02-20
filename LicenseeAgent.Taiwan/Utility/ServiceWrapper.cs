@@ -8,18 +8,14 @@
 namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
-    using System.Reflection;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Web;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>

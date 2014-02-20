@@ -18,10 +18,6 @@
     autoResizeColumn: true
 };
 
-var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
-var showBetListDetailsUrl = "~/BetList/Details?transId=";
-var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
-
 var fanex = fanex || {};
 fanex.totalBets = fanex.totalBets || {};
 fanex.totalBets.parlay = {

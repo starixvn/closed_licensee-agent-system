@@ -2,7 +2,7 @@
     columns: [
                 { HeaderText: LANGUAGE.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        return '<a href="#" onclick="OUTSTANDING.outstandingDrilldown(\'' + rowData.Username + '\',' + rowData.Id + ')">' + rowData.Username + '</a>';
+                        return '<a href="#" onclick="OUTSTANDING.outstandingDrilldown(\'' + rowData.Username + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
                     } 
                 },
                 { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' },
@@ -32,11 +32,7 @@ var gridOptions = {
     bodyRowHeight: 29
 };
 
-
-var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
-var showBetListDetailsUrl = "~/BetList/Details?transId=";
-var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
-var isShowBetList = false;
+var originalBreadcrumb = '';
 var agentIdLevelN = 0;
 var currenctAgentName = '';
 var currenctAgentId = 0;
@@ -64,6 +60,13 @@ var OUTSTANDING = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
+                    if (data.ErrCode != 0) {
+                        $("#breadcrumb > span").html(originalBreadcrumb);
+                        alert(data.ErrMsg);
+                        return;
+                    }
+
+                    isUpdateBreadcrumb = true;
                     var footerRows = [
                             {
                                 Columns: [
@@ -81,16 +84,23 @@ var OUTSTANDING = function ($) {
                         showDetail: true
                     };
                     outstandingGridOptions.bodyRows = CORE.genGridRows(data.List, outstandingGridOptions);
+
                     outstandingGridOptions.footerRows = footerRows;
                     if (data.IsLastLevel == true) {
                         outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Member");
-                        isShowBetList = true;
                     }
                     else {
                         outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Agent");
                     }
+
+                    for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
+                        var currentRow = outstandingGridOptions.bodyRows[i];
+                        currentRow.Columns[0].IsLastLevel = data.IsLastLevel;
+                    }
+
                     $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
                     $("#breadcrumb").attr("class", "grid-breadcrumb-outstanding");
+                    originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -117,6 +127,13 @@ var OUTSTANDING = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
+                    if (data.ErrCode != 0) {
+                        $("#breadcrumb > span").html(originalBreadcrumb);
+                        alert(data.ErrMsg);
+                        return;
+                    }
+
+                    isUpdateBreadcrumb = true;
                     gridOptions.pagerOption = {
                         itemsPerPage: CORE.pageSizes[0],
                         itemsPerPageArray: CORE.pageSizes,
@@ -126,13 +143,14 @@ var OUTSTANDING = function ($) {
                     gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
                     $('#BetListGrid').show().fanexGrid(gridOptions);
 
-                    if (data.IsLastLevel == true)
-                    {
+                    if (data.IsLastLevel == true) {
                         $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
                         $("#breadcrumb").attr("class", "grid-breadcrumb-betlist-hidefeature");
                     }
                     else
                         $("#breadcrumb").attr("class", "grid-breadcrumb-betlist");
+
+                    originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -178,10 +196,10 @@ var OUTSTANDING = function ($) {
         showSystemParlayResult: function (refNo, custId, betTeam) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
-        outstandingDrilldown: function (agentName, agentId) {
-            var breadcrumb = $("#breadcrumb > span").html().replace('link-disable', ''); ;
+        outstandingDrilldown: function (agentName, agentId, isLastLevel) {
+            var breadcrumb = $("#breadcrumb > span").html().replace('link-disable', '');
             breadcrumb += '&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;';
-            if (isShowBetList) {
+            if (isLastLevel) {
                 breadcrumb += agentName;
                 OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
@@ -190,16 +208,16 @@ var OUTSTANDING = function ($) {
                 agentIdLevelN = agentId;
                 OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
             }
+
             $("#breadcrumb > span").html(breadcrumb);
         },
         breadcrumbDrilldown: function (agentName, agentId) {
-            isShowBetList = false;
             OUTSTANDING.outstandingDrilldown(agentName, agentId);
 
-            var breadcrumb = $("#breadcrumb").html();
+            var breadcrumb = $("#breadcrumb > span").html();
             var indexOfAgentName = breadcrumb.indexOf(agentName + "</a>");
             breadcrumb = breadcrumb.substring(0, indexOfAgentName - 2) + 'link-disable">' + agentName + "</a>";
-            $("#breadcrumb").html(breadcrumb);
+            $("#breadcrumb > span").html(breadcrumb);
         }
     }
 } (jQuery);

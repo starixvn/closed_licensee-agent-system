@@ -37,13 +37,9 @@ namespace LicenseeAgent.Report.Controllers
     /// </summary>
     public partial class ReportController : BaseController
     {
-        #region Constant
+       #region Services
 
-        private bool _includeTestData = false;
-
-        #endregion Constant
-
-        #region Services
+        private readonly IDownlLinePermissionService _permissionService;
 
         private ICoreService _coreService;
 
@@ -52,7 +48,13 @@ namespace LicenseeAgent.Report.Controllers
         private IBetListService _betlistService;
 
         #endregion Services
+        
+        #region Constant
 
+        private bool _includeTestData = false;
+
+        #endregion Constant
+        
         #region Constructor
 
         public ReportController(
@@ -65,6 +67,7 @@ namespace LicenseeAgent.Report.Controllers
             _coreService = coreService;
             _reportService = reportService;
             _betlistService = betlistService;
+            _permissionService = permissionService;
         }
 
         #endregion Constructor
@@ -261,6 +264,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult Outstanding(OutstandingReportCriteria criteria)
         {
+            if (criteria.AgentId != -1 && !_permissionService.IsDownLineAgent(criteria.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             criteria.AgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
             var agentOutstandings = _reportService.GetOutstandings(criteria);
 
@@ -272,7 +280,8 @@ namespace LicenseeAgent.Report.Controllers
                 List = agentOutstandings.ToList(),
                 SumOutstanding = sumOutstanding,
                 SumPositiontaking = sumPositiontaking,
-                IsLastLevel = criteria.IsLastLevel
+                IsLastLevel = criteria.IsLastLevel,
+                ErrCode = Result.SuccessValue
             });
         }
 
@@ -280,10 +289,15 @@ namespace LicenseeAgent.Report.Controllers
         /// Outstanding - Bet List Report.
         /// </summary>
         /// <param name="criteria">Outstanding Report Criteria.</param>
-        /// <returns>Return a JSON object.</returns>
+        /// <returns>Return a JSON object.</returns>downlinemember
         [HttpPost]
         public JsonResult OutstandingBetList(OutstandingReportBetListCriteria criteria)
         {
+            if (!_permissionService.IsDownLineMember(criteria.CustId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var betlistTickets = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters()
             {
@@ -302,7 +316,8 @@ namespace LicenseeAgent.Report.Controllers
             {
                 List = model.TicketTextList,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = model.TicketTextList.Count()
+                TotalItem = model.TicketTextList.Count(),
+                ErrCode = Result.SuccessValue
             });
         }
 

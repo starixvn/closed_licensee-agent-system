@@ -130,7 +130,7 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="data">The data table.</param>
         /// <returns>The sport-book data list.</returns>
-        private static IList<Sportbook> BindSportsbookResults(DataTable data)
+        public IList<Sportbook> BindSportsbookResults(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {
@@ -181,6 +181,7 @@ namespace LicenseeAgent.BetList.Services
         /// <summary>
         /// Get parlay match for pop up page.
         /// </summary>
+        /// <param name="data">Data Table.</param>
         /// <param name="refNo">The reference no.</param>
         /// <returns>The parlay data list.</returns>
         [SuppressMessage(

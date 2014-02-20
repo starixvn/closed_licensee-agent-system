@@ -16,11 +16,6 @@
     bodyRowHeight: 29
 };
 
-var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
-var showBetListDetailsUrl = "~/BetList/Details?transId=";
-var showBetListResultsUrl = "~/BetList/Results";
-var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
-
 var BETLIST = function ($) {
     return {
         init: function () {

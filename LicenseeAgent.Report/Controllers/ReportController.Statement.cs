@@ -1,10 +1,10 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="ReportController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ReportController.Statement.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
 // <history>
-//   <change who="Long.Luu" date="2014/01/14">Created</change>
+//   <change who="Long.Luu" date="2014/02/20">Created</change>
 //   <change who="" date=""></change>
 // </history>
 
@@ -28,7 +28,6 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult Statement()
@@ -39,7 +38,6 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
         public JsonResult GetStatementData()

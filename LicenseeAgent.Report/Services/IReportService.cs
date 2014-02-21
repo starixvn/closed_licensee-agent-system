@@ -57,5 +57,7 @@ namespace LicenseeAgent.Report.Services
         IEnumerable<AgentOutstanding> GetOutstandings(ICriteria criteria);
 
         IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
+
+        IEnumerable<Statement> StatementReport(ICriteria criteria);
     }
 }

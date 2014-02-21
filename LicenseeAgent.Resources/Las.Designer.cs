@@ -772,6 +772,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downline Statement.
+        /// </summary>
+        public static string DownlineStatement {
+            get {
+                return ResourceManager.GetString("DownlineStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Draw.
         /// </summary>
         public static string Draw {

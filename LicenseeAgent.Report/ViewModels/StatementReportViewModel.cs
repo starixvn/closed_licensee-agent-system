@@ -25,10 +25,13 @@ namespace LicenseeAgent.Report.ViewModels
     {
         public int AgentId { get; set; }
 
+        [Display(Name = "DateRange", ResourceType = typeof(Las))]
         public DateTime FromDate { get; set; }
-        
+
+        [Display(Name = "To", ResourceType = typeof(Las))]
         public DateTime ToDate { get; set; }
 
+        [Display(Name = "Username", ResourceType = typeof(Las))]
         public string Username { get; set; }
     }
 }

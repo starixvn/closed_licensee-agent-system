@@ -1029,4 +1029,8 @@
   <data name="Report" xml:space="preserve">
     <value>Report</value>
   </data>
+  <data name="DownlineStatement" xml:space="preserve">
+    <value>Downline Statement</value>
+    <comment>not</comment>
+  </data>
 </root>

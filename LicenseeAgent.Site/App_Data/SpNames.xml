@@ -116,6 +116,8 @@
     <Setting Key="Las_BetlistOutStanding_SelByMember" SpName="Las_BetlistOutStanding_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_AgentViewAgent" SpName="LAS_Rpt_WinLoss_AgentViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_Member" SpName="LAS_Rpt_WinLoss_Member" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Statement_SelDownlineAgents" SpName="LAS_Statement_SelDownlineAgents" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Statement_SelDownlineMembers" SpName="LAS_Statement_SelDownlineMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!--Other reports should be appended here-->
     
   </Function>

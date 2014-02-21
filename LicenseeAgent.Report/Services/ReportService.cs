@@ -107,6 +107,10 @@ namespace LicenseeAgent.Report.Services
             return GetEntites<AgentWinLoss>(criteria);
         }
 
+        public IEnumerable<Statement> StatementReport(ICriteria criteria)
+        {
+            return GetEntites<Statement>(criteria);
+        }
         #endregion
 
         #region Utilities

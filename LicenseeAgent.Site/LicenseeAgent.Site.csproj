@@ -846,6 +846,10 @@
       <Project>{90224F27-06A4-4BEE-979D-4F085F6851C7}</Project>
       <Name>LicenseeAgent.Forecast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Message\LicenseeAgent.Message.csproj">
+      <Project>{EA04AEE5-B144-43EE-8449-563F2C6847AF}</Project>
+      <Name>LicenseeAgent.Message</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Report\LicenseeAgent.Report.csproj">
       <Project>{27E8A480-C746-450C-B00A-6DF69BC29149}</Project>
       <Name>LicenseeAgent.Report</Name>

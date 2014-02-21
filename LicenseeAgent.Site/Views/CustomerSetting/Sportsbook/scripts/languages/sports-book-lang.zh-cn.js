@@ -17,6 +17,17 @@
         commissionSetting_AgentCommission: '代理佣金',
         commissionSetting_MemberCommission: '会员佣金',
         commissionSetting_HDP_OU_OE_Comm: '让球, 大小盘, 单双盘 (%)',
+        commissionSetting_SimpleModelHeader: '佣金',
+        commissionSetting_GroupA: 'A组 (%)',
+        commissionSetting_GroupB: 'B组 (%)',
+        commissionSetting_GroupC: 'C组 (%)',
+        commissionSetting_GroupD: 'D组 (%)',
+        commissionSetting_1x2Comm: '1x2 佣金 (%)',
+        commissionSetting_OthersComm: '其他佣金 (%)',
+        commissionSetting_CommissionGroup: '群组退水',
+        commissionSetting_AgentCommission: '代理佣金',
+        commissionSetting_MemberCommission: '会员佣金',
+        commissionSetting_HDP_OU_OE_Comm: '让球, 大小盘, 单双盘 (%)',
 
         // Bet setting messages
         bettingLimit_SimpleModelHeader: '投注设定',

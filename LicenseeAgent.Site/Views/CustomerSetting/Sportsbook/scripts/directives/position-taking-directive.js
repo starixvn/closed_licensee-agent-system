@@ -2,9 +2,7 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-
 if (fanex.customerSetting) {
-
     fanex.customerSetting.positionTakingActions =
     {
         agentEditAgentActions: function (scope, currentPt, presetInput, maxInput, minInput, controller) {
@@ -24,14 +22,18 @@ if (fanex.customerSetting) {
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
 
-                    if (!currentPt.actions.validPreset()) {
-                        return;
+                    if (currentPt.actions.validPreset()) {
+                        currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
+                        currentPt.Min = Math.min(currentPt.OldMin, fanex.roundNumber(currentPt.Max, 2));
+                        fanex.hideHint();
+                    }
+                    else {
+                        currentPt.Max = 0;
+                        currentPt.Min = 0;
                     }
 
-                    currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
-                    currentPt.Min = Math.min(currentPt.OldMin, fanex.roundNumber(currentPt.Max, 2));
                     currentPt.actions.whenPresetChange();
-                    fanex.hideHint();
+
                 },
                 onChangeMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
@@ -40,7 +42,7 @@ if (fanex.customerSetting) {
                     }
 
                     currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
-                    currentPt.Min = Math.min(currentPt.OldMin, fanex.roundNumber(currentPt.Max, 2));
+                    currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
 
                     if (!currentPt.actions.validMax()) {
                         return;
@@ -64,7 +66,7 @@ if (fanex.customerSetting) {
                 },
                 whenPresetChange: function () {
                     currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max, currentPt.Upline.Min - currentPt.Preset);
-                    currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
+                    currentPt.MaxRangeOfMax = fanex.roundNumber(Math.max(0, currentPt.Upline.Max - currentPt.Preset), 2);
                     currentPt.MinRangeOfMin = 0;
                     currentPt.MaxRangeOfMin = currentPt.Max;
                 },
@@ -113,8 +115,6 @@ if (fanex.customerSetting) {
                                 || currentPt.Max != currentPt.OldMax;
                 },
                 onChangeMax: function () {
-                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
-
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
                     if (endCharacter != '.' && endCharacter != '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
@@ -126,6 +126,7 @@ if (fanex.customerSetting) {
 
                     currentPt.Preset = fanex.roundNumber(100 - currentPt.Max, 2);
                     currentPt.MaxRangeOfMin = currentPt.Max;
+                    currentPt.Min = fanex.roundNumber(Math.min(currentPt.Min, currentPt.Max), 2);
                     fanex.hideHint();
                 },
                 onChangeMin: function () {
@@ -196,7 +197,6 @@ if (fanex.customerSetting) {
                             scope.language["message_ValueIsNotInRange"],
                             controller.formatNumber(currentPt.MinRangeOfValue),
                             controller.formatNumber(currentPt.MaxRangeOfValue));
-
                     }
                     return isValid;
                 }
@@ -443,6 +443,4 @@ if (fanex.customerSetting) {
             }
         }
     });
-    
 }
-

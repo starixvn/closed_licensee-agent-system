@@ -46,7 +46,9 @@
         searchResultBinding: function () {
             CORE.unblockUI();
 
-            $("#downlineContent").niceScroll();
+            $("#tabDownline").click(function () {
+                $("#downlineContent").niceScroll();
+            });
 
             var pageIndex = $('#paging').data('page-index') + 1;
             var totalPages = $('#paging').data('total-pages');

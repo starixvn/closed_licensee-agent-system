@@ -8,7 +8,6 @@ namespace LicenseeAgent.CreditBalance.Controllers
 {
     using System;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CreditBalance.Criteria;
@@ -17,11 +16,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.CreditBalance.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 

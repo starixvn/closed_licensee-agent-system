@@ -3,21 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using LicenseeAgent.CustomerSetting.ViewModels;
 using System.Web.Script.Serialization;
-using Fanex.CustSetting.Service;
 using LicenseeAgent.Core.Entities;
-using LicenseeAgent.CustomerSetting.Entities;
 using LicenseeAgent.Core.Enumerations;
-using LicenseeAgent.Taiwan.Actions;
 using LicenseeAgent.Core.Utility;
-using LicenseeAgent.Resources;
-using LicenseeAgent.Taiwan.Services;
-using LicenseeAgent.CustomerSetting.Service;
+using LicenseeAgent.CustomerSetting.Entities;
 using LicenseeAgent.CustomerSetting.Repositories;
+using LicenseeAgent.CustomerSetting.Service;
+using LicenseeAgent.CustomerSetting.ViewModels;
+using LicenseeAgent.Resources;
+using LicenseeAgent.Taiwan.Actions;
+using LicenseeAgent.Taiwan.Services;
 
 namespace LicenseeAgent.Site
 {
@@ -26,7 +22,6 @@ namespace LicenseeAgent.Site
         public const int AgentId = 1000000633;
         public const string LicenseeName = "yq355";
         public const int CurrencyId = 20;
-
 
         private static ErrCode[] betSettingErrCodes =
         {
@@ -57,6 +52,7 @@ namespace LicenseeAgent.Site
         protected string Prefix = "randomuser";
         protected int MemberCount = 1;
         protected int StartIndex = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.HttpMethod == "GET")

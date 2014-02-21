@@ -73,9 +73,7 @@
     @if (ViewBag.Result != null)
     {
         <script type="text/javascript">
-            POPUP.close();
-            if (window.parent.creditBalanceList)
-                window.parent.creditBalanceList.submit();
+            POPUP.closeAndReload();
         </script>
     }
 }

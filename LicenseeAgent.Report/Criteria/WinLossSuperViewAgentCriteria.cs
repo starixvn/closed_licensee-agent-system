@@ -17,7 +17,13 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class WinLossSuperViewAgentCriteria : WinlossBase
     {
-        public WinLossSuperViewAgentCriteria(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType) 
+        public WinLossSuperViewAgentCriteria(
+            int agentId,
+            DateTime fromDate,
+            DateTime toDate,
+            DateTime moveBetsDay,
+            DateTime balanceUpDay,
+            short drawType) 
             : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType)
         { 
         }

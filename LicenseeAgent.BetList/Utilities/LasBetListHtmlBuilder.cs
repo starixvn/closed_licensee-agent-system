@@ -130,10 +130,12 @@ namespace LicenseeAgent.BetList.Utilities
             {
                 return "-";
             }
-
-            return ticket.Winlost >= 0
-                ? string.Format("{0:#,##0.00}", ticket.Winlost)
+            
+            var lasWinlossHtmlString = ticket.Winlost >= 0
+                ? string.Format("{0:#,##0.00}", ticket.Winlost) + "<br />"
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
+
+            return lasWinlossHtmlString + string.Format("{0:#,##0.00}", ticket.PlayerComm);
         }
 
         /// <summary>

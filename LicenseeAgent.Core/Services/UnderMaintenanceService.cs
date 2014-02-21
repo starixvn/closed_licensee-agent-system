@@ -86,6 +86,16 @@ namespace LicenseeAgent.Core.Services
         /// <returns>Return Under Maintenance Information.</returns>
         private UnderMaintenanceInfo InternalGetUnderMaintenanceInfo()
         {
+            if (AppSettings.IsDownTime)
+            {
+                return new UnderMaintenanceInfo
+                {
+                    Status = true,
+                    UmTimeFrom = AppSettings.BeginTime,
+                    UmTimeTo = AppSettings.EndTime
+                };
+            }
+
             var maintenanceInfo = new UnderMaintenanceInfo()
             {
                 Status = false

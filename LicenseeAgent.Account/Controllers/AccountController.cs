@@ -53,35 +53,33 @@ namespace LicenseeAgent.Account.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
-            var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
-
-            var balanceUp = _coreService.GetBalanceUpDay();
-            var balanceInfoCriteria = new BalanceInfoCriteria
-            {
-                AgentID = CurrentSession.AgentInfo.AgentId,
-                MoveBetDay = balanceUp.MoveBetsDay
-            };
-            var balanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
-
-            var model = new HomePageViewModel
-            {
-                StatisticInfo = statisticInfo,
-                BalanceInfo = balanceInfo
-            };
-            return View(model);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Fake()
-        {
             var model = new HomePageViewModel
             {
                 StatisticInfo = new StatisticEntity(),
                 BalanceInfo = new BalanceInfoEntity()
             };
-            return View("Index", model);
+
+            if (CurrentSession.AgentInfo != null)
+            {
+                var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+                var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
+
+                var balanceUp = _coreService.GetBalanceUpDay();
+                var balanceInfoCriteria = new BalanceInfoCriteria
+                {
+                    AgentID = CurrentSession.AgentInfo.AgentId,
+                    MoveBetDay = balanceUp.MoveBetsDay
+                };
+                var balanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
+
+                model = new HomePageViewModel
+                {
+                    StatisticInfo = statisticInfo,
+                    BalanceInfo = balanceInfo
+                };
+            }
+
+            return View(model);
         }
 
         /// <summary>

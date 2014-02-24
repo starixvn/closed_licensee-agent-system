@@ -1,4 +1,5 @@
 ﻿var MENU = function ($) {
+    var mainLeftCollapse = 0;
     return {
         init: function () {
             // init event on root item
@@ -25,7 +26,18 @@
             $('.banner-box ul.nav-pills li a').click(function (e) {
                 MENU.clearActive();
                 $(this).parent().addClass('active');
-            })
+            });
+
+            // collapse or exapnd main
+            mainLeftCollapse = $('.main-box').offset().left;
+            $('.control-box i').click(function () {
+                MENU.toggleMain();
+            });
+            $('.leftmenu-box ul.nav > li > a').click(function () {
+                if ($('.main-box').offset().left != mainLeftCollapse) {
+                    MENU.toggleMain();
+                }
+            });
         },
         clearActive: function () {
             $('.leftmenu-box ul.tree li.active').removeClass('active');
@@ -36,6 +48,19 @@
             $(menuItem).trigger('click');
             var anchor = $(menuItem).get(0);
             window.open(anchor.href, anchor.target, '');
+        },
+        toggleMain: function () {
+            var left = 0;
+            if ($('.main-box').offset().left != mainLeftCollapse) {
+                left = mainLeftCollapse;
+                $('.control-box i').removeClass('icon-collapse-home').addClass('icon-expand-home');
+            }
+            else {
+                $('.control-box i').removeClass('icon-expand-home').addClass('icon-collapse-home');
+            }
+            $('.main-box').animate({
+                left: '{0}px'.format(left)
+            }, 'fast');
         }
     };
 } (jQuery);

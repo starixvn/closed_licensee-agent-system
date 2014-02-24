@@ -12,7 +12,7 @@
             });
 
             // kickout
-            setTimeout(function () { HEADER.reCheckIn(); }, 1000);
+            setTimeout(function () { CORE.reCheckIn(); }, 1000);
 
             // clock
             setTimeout(HEADER.clockTick, 1000);
@@ -44,34 +44,6 @@
                         location.reload();
                     }
                 });
-            });
-        },
-        reCheckIn: function () {
-            var param = {
-                licenseeId: licenseeId,
-                currencyId: currencyId
-            };
-            $.ajax({
-                type: "POST",
-                data: param,
-                url: CORE.resolveUrl("~/Account/ReCheckIn"),
-                dataType: "json",
-                async: false,
-                timeout: 120000
-            })
-            .done(function (result) {
-                if (result.ErrCode != 0) {
-                    if (result.Reload) {
-                        location.reload();
-                        return;
-                    }
-
-                    alert(result.ErrMsg);
-                    location.href = CORE.UrlRoot;
-                }
-                else {
-                    setTimeout(function () { HEADER.reCheckIn(); }, 30000);
-                }
             });
         },
         signOut: function () {

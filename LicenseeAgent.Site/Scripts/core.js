@@ -80,6 +80,29 @@
                 }
             });
         },
+        reCheckIn: function () {
+            $.ajax({
+                type: "POST",
+                url: CORE.resolveUrl("~/Account/ReCheckIn"),
+                dataType: "json",
+                async: false,
+                timeout: 120000
+            })
+            .done(function (result) {
+                if (result.ErrCode != 0) {
+                    if (result.Reload) {
+                        location.reload();
+                        return;
+                    }
+
+                    alert(result.ErrMsg);
+                    location.href = CORE.UrlRoot;
+                }
+                else {
+                    setTimeout(function () { CORE.reCheckIn(); }, 30000);
+                }
+            });
+        },
         resolveUrl: function (url) {
             var urlRoot = $('#AppRoot');
 

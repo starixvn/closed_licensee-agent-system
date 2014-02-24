@@ -391,7 +391,7 @@
             else {
                 url = "CustomerList/EditInfoAgent?agentId={0}".format(editAgentId);
             }
-            POPUP.openDialogFrame(url, { width: 420, height: 400 });
+            POPUP.openDialogFrame(url, { width: 465, height: 400 });
         },
         addDownline: function () {
             var url;

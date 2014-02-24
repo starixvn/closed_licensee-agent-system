@@ -305,8 +305,8 @@ var _language_en_US={
                      MessageUnderMaintenance:"We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} - {1} (GMT + 08:00).",
 				 	
                      MixParlay:"Mix Parlay",
-				 	
-                     MixSportsParlay:"MixSportsParlay",
+
+                     MixSportsParlay: "Mix Sports Parlay",
 				 	
                      MobilePhone:"Mobile Phone",
 				 	

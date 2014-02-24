@@ -33,12 +33,12 @@ var _language_zh_CN={
                      AddNewMember:"增加会员",
 				 	
                      AdvancedMode:"进阶模式",
-				 	
-                     AgentComm:"AgentComm",
+
+                     AgentComm: "代理佣金",
 				 	
                      AgentList:"代理列表",
-				 	
-                     AgentPT:"Agent PT",
+
+                     AgentPT: "代理占成数",
 				 	
                      AlertAdminLicenseeChanged:"The licensee was changed by admin, this session must be closed.",
 				 	
@@ -47,18 +47,18 @@ var _language_zh_CN={
                      All:"全部",
 				 	
                      Attention:"Attention",
-				 	
-                     BalanceInfo:"Balance Info",
-				 	
-                     Basketball:"Basketball",
-				 	
-                     BetList:"Bet List",
+
+                     BalanceInfo: "余额资料",
+
+                     Basketball: "篮球",
+
+                     BetList: "投注历史",
 				 	
                      BetSetting:"投注设定",
 				 	
                      BetSettingInstructions:"Bet Setting Instructions",
-				 	
-                     Cancel:"Cancel",
+
+                     Cancel: "取消",
 				 	
                      Captcha:"Captcha",
 				 	
@@ -79,8 +79,8 @@ var _language_zh_CN={
                      ChangeStatusAgent:"Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.",
 				 	
                      ChangeStatusMember:"Are you sure you want to change Closed status for this member?",
-				 	
-                     Choice:"Choice",
+
+                     Choice: "选择",
 				 	
                      ChooseCurrency:"Choose currency",
 				 	
@@ -111,26 +111,26 @@ var _language_zh_CN={
                      CurrentPassword:"Current password",
 				 	
                      CurrentPasswordRequired:"Please enter current password.",
-				 	
-                     CustomerInformation:"Customer Information",
+
+                     CustomerInformation: "会员资料",
 				 	
                      Downline:"下线",
-				 	
-                     DownlineList:"Downline List",
-				 	
-                     Draw:"Draw",
+
+                     DownlineList: "下线名单",
+
+                     Draw: "和",
 				 	
                      Edit:"修改",
 				 	
                      EditInfo:"修改资料",
-				 	
-                     EditSportsbook:"Edit Sportsbook",
-				 	
-                     Event:"Event",
+
+                     EditSportsbook: "修改体育博采",
+
+                     Event: "赛事",
 				 	
                      Fax:"传真",
-				 	
-                     Feature:"Feature",
+
+                     Feature: "功能",
 				 	
                      FH1X2:"1H. 1X2",
 				 	
@@ -143,12 +143,12 @@ var _language_zh_CN={
                      FirstName:"名",
 				 	
                      Forecast:"预测",
-				 	
-                     FT1X2:"FT. 1X2",
+
+                     FT1X2: "全场标准盘",
 				 	
                      FTHDP:"FT. HDP",
-				 	
-                     FTOE:"FT.OE",
+
+                     FTOE: "全场单双",
 				 	
                      FTOU:"FT. O/U",
 				 	
@@ -185,12 +185,12 @@ var _language_zh_CN={
                      LasTitle:"主",
 				 	
                      LastName:"姓",
-				 	
-                     League:"League",
+
+                     League: "联盟",
 				 	
                      LicenseeRequired:"Please select licensee.",
-				 	
-                     Live:"Live",
+
+                     Live: "现场",
 				 	
                      Locked:"锁定",
 				 	
@@ -199,22 +199,24 @@ var _language_zh_CN={
                      LogOut:"注销",
 				 	
                      MainMenu:"主要目录",
-				 	
-                     MatchResults:"Match Results",
+
+                     MatchResults: "赛果",
 				 	
                      MaxCredit:"Max Credit",
 				 	
                      MemberList:"会员清单",
 				 	
                      MessageUnderMaintenance:"We apologize for any inconvenience this may cause. If you have any query, please contact us at: Service Discruption Period - {0} {1}.",
-				 	
-                     MixSportsParlay:"MixSportsParlay",
+
+                     MixParlay: "混合过关",
+
+                     MixSportsParlay: "混合过关",
 				 	
                      MobilePhone:"手机",
 				 	
                      MoneyLine:"独赢",
-				 	
-                     More:"More",
+
+                     More: "更多",
 				 	
                      NewAgent:"新增代理",
 				 	
@@ -233,16 +235,16 @@ var _language_zh_CN={
                      None:"無",
 				 	
                      NumberGame:"百炼赛",
-				 	
-                     Odds:"Odds",
+
+                     Odds: "赔率",
 				 	
                      OK:"OK",
 				 	
                      Open:"打開",
 				 	
                      OtherSports:"其他体育",
-				 	
-                     OutrightResults:"Outright Results",
+
+                     OutrightResults: "优胜冠军赛果",
 				 	
                      Outstanding:"未结算",
 				 	
@@ -261,8 +263,8 @@ var _language_zh_CN={
                      PasswordNotMatch:"Your password and confirmation password do not match.",
 				 	
                      PasswordRequired:"Please enter your password.",
-				 	
-                     PasswordRuleInstruction:"Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)",
+
+                     PasswordRuleInstruction: "密码必须至少 8 个字符没有空格和包含至少 3个 以下:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;  特殊字符 （!、 @、 # 等。。)",
 				 	
                      PasswordSecurity:"The password supplied does not meet the minimum security requirements.",
 				 	
@@ -273,14 +275,14 @@ var _language_zh_CN={
                      PositionTaking:"占成数",
 				 	
                      PositionTakingSettingInstructions:"Position Taking Setting Instructions",
-				 	
-                     PositionTakingSimpleModeHeader:"Position Taking (Soccer Dead ball Handicap)",
+
+                     PositionTakingSimpleModeHeader: "占成数 (Soccer Dead ball Handicap)",
 				 	
                      Reports:"报告",
-				 	
-                     ResetPassword:"Reset Password",
-				 	
-                     Results:"Results",
+
+                     ResetPassword: "修改密码",
+
+                     Results: "赛果",
 				 	
                      SBBetSetting:"SB Bet Setting",
 				 	
@@ -289,8 +291,8 @@ var _language_zh_CN={
                      Security:"机密码",
 				 	
                      Select:"选择",
-				 	
-                     Setting:"Setting",
+
+                     Setting: "设定",
 				 	
                      SignIn:"登入",
 				 	
@@ -299,26 +301,26 @@ var _language_zh_CN={
                      SimpleMode:"简单模式",
 				 	
                      SimpleModeNote:"注意：如果在简单模式，你的设定将套用到所有运动项目",
-				 	
-                     Soccer:"Soccer",
-				 	
-                     Sport:"Sport",
+
+                     Soccer: "足球",
+
+                     Sport: "运动",
 				 	
                      Sportsbook:"体育",
-				 	
-                     Stake:"Stake",
-				 	
-                     Statement:"Statement",
+
+                     Stake: "投注额",
+
+                     Statement: "账目",
 				 	
                      Status:"状态",
 				 	
                      Stopped:"停止",
 				 	
                      Submit:"提交",
-				 	
-                     Time:"Time",
-				 	
-                     Today:"Today",
+
+                     Time: "时间",
+
+                     Today: "今日",
 				 	
                      TotalBets:"总投注",
 				 	
@@ -331,8 +333,8 @@ var _language_zh_CN={
                      UnderMaintenance:"维护中",
 				 	
                      UpdateSuccessfully:"更新成功！",
-				 	
-                     Upline:"Upline",
+
+                     Upline: "上线",
 				 	
                      Username:"使用者名称",
 				 	
@@ -341,16 +343,16 @@ var _language_zh_CN={
                      UsernameRequired:"Please enter your username.",
 				 	
                      ViewLog:"显示记录",
-				 	
-                     ViewSportsbook:"View Sportsbook",
+
+                     ViewSportsbook: "浏览体育博彩",
 				 	
                      VirtualSports:"虚拟运动",
 				 	
                      Welcome:"歡迎",
 				 	
                      WinLoss:"输赢",
-				 	
-                     Yesterday:"Yesterday"
+
+                     Yesterday: "昨日"
 				 	
              
 	 

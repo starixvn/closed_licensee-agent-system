@@ -13,12 +13,14 @@
             //form submit
             $('#formSearch').submit(function (event) {
                 var userName = $.trim($("#UserName").val());
-                $("#UserName").val(userName);
-                $(this).ajaxSubmit({
-                    target: '#searchResult',
-                    beforeSubmit: accountInformation.beforeSearchUser,
-                    success: accountInformation.searchResultBinding
-                });
+                if (userName != '') {
+                    $("#UserName").val(userName);
+                    $(this).ajaxSubmit({
+                        target: '#searchResult',
+                        beforeSubmit: accountInformation.beforeSearchUser,
+                        success: accountInformation.searchResultBinding
+                    });
+                }
                 event.preventDefault();
             });
 

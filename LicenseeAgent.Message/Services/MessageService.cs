@@ -10,6 +10,9 @@ namespace LicenseeAgent.Message.Services
 {
     using Core.Services;
 
+    /// <summary>
+    /// Service Message.
+    /// </summary>
     public class MessageService : QueryService, IMessageService
     {
     }

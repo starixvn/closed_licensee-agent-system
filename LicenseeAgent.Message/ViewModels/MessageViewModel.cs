@@ -13,6 +13,9 @@ namespace LicenseeAgent.Message.ViewModels
     using System.ComponentModel.DataAnnotations;
     using Resources;
 
+    /// <summary>
+    /// Message view model.
+    /// </summary>
     public class MessageViewModel
     {
         public MessageViewModel()

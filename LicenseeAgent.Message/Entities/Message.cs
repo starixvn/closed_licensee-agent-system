@@ -8,6 +8,9 @@
 // </history>
 namespace LicenseeAgent.Message.Entities
 {
+    /// <summary>
+    /// Entity Message.
+    /// </summary>
     public class Message
     {
     }

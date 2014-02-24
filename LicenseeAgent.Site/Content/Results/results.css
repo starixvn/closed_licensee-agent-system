@@ -125,3 +125,18 @@ table.fanex-result .row-noinfo td
 .btn {
 	margin-left: 12px;
 }
+
+.bl-sport-type {
+	color: #0088CC;
+}
+
+.bl-league-name {
+	color: black;
+	font-weight: bold !important;
+}
+
+.sporttype {
+	background-color: #dedede;
+	text-align: center;
+	height: 30px;
+}

@@ -196,9 +196,9 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var setting = new ResultSetting
             {
-                SportType = (SportType)sportType,
+                SportType = 0,
                 IsOutRight = false,
-                IsParlayPopUp = !isSportsbook,
+                IsParlayPopUp = true,
                 IsPopUp = true,
                 LanguageCode = CurrentSession.Language
             };

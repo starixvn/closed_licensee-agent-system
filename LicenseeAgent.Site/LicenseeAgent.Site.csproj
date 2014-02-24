@@ -260,6 +260,7 @@
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
+    <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
     <Content Include="Views\Error\Resources\UnderMaintenance.js" />

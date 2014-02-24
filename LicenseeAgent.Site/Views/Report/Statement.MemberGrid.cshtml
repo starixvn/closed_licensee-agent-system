@@ -1,29 +1,25 @@
 ﻿<script type="text/javascript">
     var gridOption = {
         columns: [
-                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "#", Width: 20, Name: "RowID" },
+
                 { HeaderText: "@Las.Username", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustID, cell.Value);
+                        return ("<a href='javascript:STATEMENT.ViewDetail({0}, {1}, {2}, \"{3}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.FromDate, rowData.ToDate, cell.Value);
                     }
                 },
-                { HeaderText: "@Las.FullName", Width: 100, Name: "FullName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, CanResize: true },
-                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Outstanding", Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a href='javascript:STATEMENT.TransferDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustID, rowData.Username);
-                    }
-                },
+                { HeaderText: "@Las.FullName", Width: 70, Name: "FullName", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, CanResize: true },
+                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
+                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
+                { HeaderText: "@Las.Betting", Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
+                { HeaderText: "@Las.Outstanding", Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00" },
+                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", ThClass: 'alter-column' },
+                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", ThClass: 'alter-column' },
                 { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
 
             ],
         gridExpandHeight: 200,
-        showNumberColumn: true,
-        showPager: true,
+        showNumberColumn: false,
         //bodyRowHeight: 26,
         autoResizeColumn: true
     };

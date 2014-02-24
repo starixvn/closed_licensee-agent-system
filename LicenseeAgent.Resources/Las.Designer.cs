@@ -385,6 +385,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Betting.
+        /// </summary>
+        public static string Betting {
+            get {
+                return ResourceManager.GetString("Betting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Both.
         /// </summary>
         public static string Both {
@@ -1623,6 +1632,15 @@ namespace LicenseeAgent.Resources {
         public static string Open {
             get {
                 return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening Balance.
+        /// </summary>
+        public static string OpeningBalance {
+            get {
+                return ResourceManager.GetString("OpeningBalance", resourceCulture);
             }
         }
         

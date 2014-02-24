@@ -25,6 +25,8 @@ namespace LicenseeAgent.Report.ViewModels
     {
         public int AgentId { get; set; }
 
+        public int AgentLevel { get; set; }
+
         [Display(Name = "DateRange", ResourceType = typeof(Las))]
         public DateTime FromDate { get; set; }
 

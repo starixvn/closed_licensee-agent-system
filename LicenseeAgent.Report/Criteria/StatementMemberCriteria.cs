@@ -17,7 +17,7 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class StatementMemberCriteria : CriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public string Username { get; set; }
 
@@ -36,7 +36,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public override bool IsValid()
         {
-            return AgentID > 0;
+            return AgentId > 0;
         }
     }
 }

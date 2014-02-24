@@ -325,6 +325,8 @@ namespace LicenseeAgent.Site
                  "~/Views/Report/Resources/AgentWinLoss.less"));
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
                 "~/Views/Report/Resources/AgentWinlossReport.js"));
+            bundles.Add(new ScriptBundle("~/js/statement").Include(
+                "~/Views/Report/Resources/Statement.js"));
         }
 
         /// <summary>

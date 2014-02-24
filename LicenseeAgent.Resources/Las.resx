@@ -1033,4 +1033,11 @@
     <value>Downline Statement</value>
     <comment>not</comment>
   </data>
+  <data name="Betting" xml:space="preserve">
+    <value>Betting</value>
+    <comment>not</comment>
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
+    <value>Opening Balance</value>
+  </data>
 </root>

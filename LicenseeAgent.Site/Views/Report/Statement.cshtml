@@ -2,7 +2,7 @@
 @model LicenseeAgent.Report.ViewModels.StatementReportViewModel
 @{
     ViewBag.Title = Las.Statement + " - " + Las.Report;
-    //var pageContext = (PageContext)ViewBag.PageContext;
+    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -15,6 +15,13 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
+    @Scripts.Render("~/js/statement")
+    @if (pageContext.IsLastLevel){
+        @Html.Partial("Statement.MemberGrid")
+    }
+    else {
+        @Html.Partial("Statement.AgentGrid")
+    }
 }
 <div class="legend">
     @ViewBag.Title

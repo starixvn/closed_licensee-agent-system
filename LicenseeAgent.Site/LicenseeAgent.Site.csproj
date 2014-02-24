@@ -249,6 +249,7 @@
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
+    <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Tool\InsertMultipleMember.aspx" />
     <Content Include="readme.txt" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
@@ -786,6 +787,8 @@
     <Content Include="Views\AccountInformation\_BalanceInformation.cshtml" />
     <Content Include="Views\Report\Statement.cshtml" />
     <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />
+    <Content Include="Views\Report\Statement.AgentGrid.cshtml" />
+    <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

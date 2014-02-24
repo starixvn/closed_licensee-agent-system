@@ -182,6 +182,7 @@ namespace LicenseeAgent.Site
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
+            RegisterMessagePage(bundles);
         }
 
         /// <summary>
@@ -383,6 +384,16 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/creditbalance-popup").Include(
                 "~/views/creditbalance/resources/creditbalance-popup.js"));
         }
+
+        private static void RegisterMessagePage(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/css/message").Include(
+                "~/views/message/resources/message.less"));
+
+            bundles.Add(new ScriptBundle("~/js/message").Include(
+                "~/views/message/resources/message.js"));
+        }
+
         #endregion Pages
     }
 }

@@ -1040,4 +1040,16 @@
   <data name="OpeningBalance" xml:space="preserve">
     <value>Opening Balance</value>
   </data>
+  <data name="MessageAnnouncement" xml:space="preserve">
+    <value>Message / Announcement</value>
+  </data>
+  <data name="PersonalMessage" xml:space="preserve">
+    <value>Personal Message</value>
+  </data>
+  <data name="PublicAnnouncements" xml:space="preserve">
+    <value>Public Announcements</value>
+  </data>
+  <data name="SpecialAnnouncements" xml:space="preserve">
+    <value>Special Announcements</value>
+  </data>
 </root>

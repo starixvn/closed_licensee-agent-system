@@ -21,6 +21,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
     using Fanex.NAP.Framework.Exceptions;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
@@ -220,7 +221,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 
                 var outputParams = objDb.GetOuputParams();
                 msgId = Converter.ToInt(outputParams["msgid"]);
-                custInfo.MaxCredit = Converter.To<decimal?>(outputParams["maxcredit"]);
+                custInfo.MaxCredit = DbConverter.ToDecimal(outputParams["maxcredit"]);
                 if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
                 {
                     maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;

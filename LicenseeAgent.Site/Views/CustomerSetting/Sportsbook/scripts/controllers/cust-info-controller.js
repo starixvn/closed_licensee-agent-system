@@ -9,8 +9,7 @@
 
             if (settingContext.FormId == fanex.customerSetting.FormType.Add) {
                 var isShowMaxCredit = true;
-                if (settingContext.TargetRoleId == fanex.customerSetting.Role.AgentLevel1 &&
-            custInfo.MaxCredit == 0) {
+                if (custInfo.MaxCredit == undefined) {
                     isShowMaxCredit = false;
                 }
                 $scope.isShowLimitMaxCredit = isShowMaxCredit;

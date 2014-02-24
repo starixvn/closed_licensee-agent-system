@@ -2293,11 +2293,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unlimitted.
+        ///   Looks up a localized string similar to Unlimited.
         /// </summary>
-        public static string Unlimitted {
+        public static string Unlimited {
             get {
-                return ResourceManager.GetString("Unlimitted", resourceCulture);
+                return ResourceManager.GetString("Unlimited", resourceCulture);
             }
         }
         

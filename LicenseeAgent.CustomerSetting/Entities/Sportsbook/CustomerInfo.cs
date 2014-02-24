@@ -49,7 +49,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         [Required]
         public decimal Credit { get; set; }
 
-        public decimal MaxCredit { get; set; }
+        public decimal? MaxCredit { get; set; }
 
         public int Status { get; set; }
     }

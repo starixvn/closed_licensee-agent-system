@@ -511,6 +511,19 @@ body
         bottom: 0;
         overflow: hidden;
         background-color: white;
+        z-index: 1;
+        .control-box
+        {
+            position: fixed;
+            width: 10px;
+            height: 100%;
+            display: table;
+            div
+            {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
         iframe
         {
             width: 100%;

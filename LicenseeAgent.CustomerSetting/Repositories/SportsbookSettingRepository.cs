@@ -220,7 +220,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 
                 var outputParams = objDb.GetOuputParams();
                 msgId = Converter.ToInt(outputParams["msgid"]);
-                custInfo.MaxCredit = Converter.ToDecimal(outputParams["maxcredit"]);
+                custInfo.MaxCredit = Converter.To<decimal?>(outputParams["maxcredit"]);
                 if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
                 {
                     maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;

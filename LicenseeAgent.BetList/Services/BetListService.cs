@@ -195,7 +195,7 @@ namespace LicenseeAgent.BetList.Services
                                                     KickOffTime = DateTime.Parse(i["kickofftime"].ToString()),
                                                     MatchCode = i["matchcode"].ToString(),
                                                     GoalRecord = i["goalrecord"].ToString(),
-                                                    ResultValue = "6-1 *30-40 40-30* *40-0 40-0* *40-0 40-0* *40-0",
+                                                    ResultValue = string.Empty, // "6-1 *30-40 40-30* *40-0 40-0* *40-0 40-0* *40-0",
                                                     IsHTCal = Convert.ToBoolean(i["IsHTCal"]),
                                                     Calculate = Convert.ToBoolean(i["Calculate"]),
                                                     RefNo = (refNo == -1)

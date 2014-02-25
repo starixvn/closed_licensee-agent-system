@@ -55,7 +55,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
-        public IEnumerable<DownlineEntity> GetDownlines(GetDownlineListCriteria criteria)
+        public IEnumerable<DownlineEntity> GetDirectDownlines(GetDirectDownlineCriteria criteria)
         {
             return GetEntites<DownlineEntity>(criteria);
         }

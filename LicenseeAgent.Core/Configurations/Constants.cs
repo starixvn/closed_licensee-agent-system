@@ -22,7 +22,7 @@ namespace LicenseeAgent.Core.Configurations
         public const int ShortStringLength = 15;
         public const int MediumStringLength = 20;
         public const int LargeStringLength = 35;
-        public const string DefaultFullName = "---";
+        public const string EmptyString = "---";
         public const int PageSize = 20;
         public const int MemberLevel = -1;
 

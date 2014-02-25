@@ -43,8 +43,6 @@ namespace LicenseeAgent.CustomerList.Core
 
         public const int LargeStringLength = 35;
 
-        public const string DefaultFullName = "---";
-
         public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
         {
             { 0, "lblSuper" },

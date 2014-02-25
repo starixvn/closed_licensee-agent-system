@@ -36,16 +36,17 @@ namespace LicenseeAgent.Taiwan.Entities
 
         public int NumberOfLevel { get; set; }
 
-        public string LargeFullName
+        public string FullName
         {
             get
             {
-                if (FirstName == Constants.DefaultFullName && LastName == Constants.DefaultFullName)
+                if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName)
+                    || FirstName.Equals(Constants.EmptyString) && LastName.Equals(Constants.EmptyString))
                 {
-                    return Constants.DefaultFullName;
+                    return Constants.EmptyString;
                 }
 
-                string fullName = string.Format("{0} {1}", FirstName, LastName);
+                string fullName = string.IsNullOrEmpty(FirstName) ? LastName : string.Format("{0} {1}", FirstName, LastName);
 
                 if (fullName.Length > Constants.LargeStringLength)
                 {
@@ -56,10 +57,15 @@ namespace LicenseeAgent.Taiwan.Entities
             }
         }
 
-        public string LargePhone
+        public string PhoneDisplay
         {
             get
             {
+                if (string.IsNullOrEmpty(Phone))
+                {
+                    return Constants.EmptyString;
+                }
+
                 if (Phone.Length > Constants.LargeStringLength)
                 {
                     return string.Format("{0}...", Phone.Substring(0, Constants.LargeStringLength));
@@ -69,10 +75,15 @@ namespace LicenseeAgent.Taiwan.Entities
             }
         }
 
-        public string LargeMobile
+        public string MobileDisplay
         {
             get
             {
+                if (string.IsNullOrEmpty(Mobile))
+                {
+                    return Constants.EmptyString;
+                }
+
                 if (Mobile.Length > Constants.LargeStringLength)
                 {
                     return string.Format("{0}...", Mobile.Substring(0, Constants.LargeStringLength));
@@ -82,10 +93,15 @@ namespace LicenseeAgent.Taiwan.Entities
             }
         }
 
-        public string LargeFax
+        public string FaxDisplay
         {
             get
             {
+                if (string.IsNullOrEmpty(Fax))
+                {
+                    return Constants.EmptyString;
+                }
+
                 if (Fax.Length > Constants.LargeStringLength)
                 {
                     return string.Format("{0}...", Fax.Substring(0, Constants.LargeStringLength));

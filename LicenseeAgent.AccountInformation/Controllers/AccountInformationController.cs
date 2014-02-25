@@ -104,14 +104,14 @@ namespace LicenseeAgent.AccountInformation.Controllers
         [HttpPost]
         public JsonResult GetDownlines(DownlineViewModel model)
         {
-            var criteria = new GetDownlineListCriteria
+            var criteria = new GetDirectDownlineCriteria
             {
                 AgentId = model.AgentId,
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize ?? Constants.PageSize
             };
 
-            var downlines = _searchUserService.GetDownlines(criteria);
+            var downlines = _searchUserService.GetDirectDownlines(criteria);
 
             return Json(new
             {

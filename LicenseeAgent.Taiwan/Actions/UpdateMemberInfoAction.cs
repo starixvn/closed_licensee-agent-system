@@ -25,11 +25,11 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public string OtherPhone { get; set; }
 
+        public string Fax { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-        public string Fax { get; set; }
 
         [Service]
         public string ActionName

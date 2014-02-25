@@ -212,8 +212,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/views/home/resources/menu.js",
                 "~/views/home/resources/header.js",
-                "~/scripts/cookie/jquery.cookie.js",
-                "~/scripts/layout/jquery.layout.min.js"));
+                "~/scripts/cookie/jquery.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",

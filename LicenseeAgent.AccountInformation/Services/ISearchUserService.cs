@@ -45,7 +45,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
-        IEnumerable<DownlineEntity> GetDownlines(GetDownlineListCriteria criteria);
+        IEnumerable<DownlineEntity> GetDirectDownlines(GetDirectDownlineCriteria criteria);
 
         /// <summary>
         /// Get agent balance.

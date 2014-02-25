@@ -34,6 +34,7 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -46,6 +47,7 @@
     <Compile Include="Criteria\AgentBalanceCriteria.cs" />
     <Compile Include="Criteria\AgentGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AgentSuggestSearchMemberCriteria.cs" />
+    <Compile Include="Criteria\GetDirectDownlineCriteria.cs" />
     <Compile Include="Criteria\GetDownlineListCriteria.cs" />
     <Compile Include="Entities\BalanceEntity.cs" />
     <Compile Include="Entities\DownlineEntity.cs" />

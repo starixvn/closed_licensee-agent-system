@@ -12,6 +12,7 @@ namespace LicenseeAgent.Taiwan.Services
     using System.Linq;
     using System.Text;
     using Fanex.Common;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
@@ -106,6 +107,12 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action)
         {
+            action.FirstName = action.FirstName ?? Constants.EmptyString;
+            action.LastName = action.LastName ?? Constants.EmptyString;
+            action.Phone = action.Phone ?? string.Empty;
+            action.OtherPhone = action.OtherPhone ?? string.Empty;
+            action.Fax = action.Fax ?? string.Empty;
+
             var criteria = new EditInfoMemberCriteria
             {
                 LicenseeId = action.LicenseeId,

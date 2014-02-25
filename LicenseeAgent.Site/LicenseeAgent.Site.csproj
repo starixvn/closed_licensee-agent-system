@@ -507,7 +507,7 @@
     <Content Include="Scripts\jquery-ui\jquery.ui.widget.js" />
     <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
-    <Content Include="Views\Error\Resources\Unauthorized.js" />
+    <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
     <Content Include="Views\Home\Resources\header.js" />
@@ -593,7 +593,6 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
-    <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Home\Resources\home.less" />
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Web.AppSettings.config">

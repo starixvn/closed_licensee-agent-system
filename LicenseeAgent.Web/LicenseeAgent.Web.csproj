@@ -74,6 +74,7 @@
     <Compile Include="Binders\AgentBreadcrumModelBinder.cs" />
     <Compile Include="Binders\AppModelBinder.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\ToolController.cs" />

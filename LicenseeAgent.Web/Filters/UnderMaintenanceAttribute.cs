@@ -11,7 +11,9 @@ namespace LicenseeAgent.Web.Filters
 {
     using System;
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
@@ -46,8 +48,12 @@ namespace LicenseeAgent.Web.Filters
             {
                 var isAjaxRequest = filterContext.IsAjaxRequest();
                 filterContext.Result = isAjaxRequest
-                    ? (ActionResult)(new JsonResult { Data = ((ViewResult)filterContext.Result).ViewData.Model })
-                    : (ActionResult)(new RedirectResult(AppURLs.URLs.UnderMaintenance, false));
+                    ? (ActionResult)(new JsonResult
+                    {
+                        Data = filterContext.Result != null ? ((ViewResult)filterContext.Result).ViewData.Model :
+                            new { ErrCode = (int)ErrCode.Msg_1037, ErrMsg = LangMsg.Msg_1042 }
+                    })
+                    : (ActionResult)(new RedirectResult("~/Notify/UnderMaintenance", false));
             }
         }
 

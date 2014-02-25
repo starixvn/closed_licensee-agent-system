@@ -36,24 +36,6 @@ namespace LicenseeAgent.Web.Controllers
             return View(model);
         }
 
-        /// <summary>
-        /// Show under maintenance page.
-        /// </summary>
-        /// <returns>Returns HTML content.</returns>
-        public ActionResult UnderMaintenance()
-        {
-            var maintenanceService = new UnderMaintenanceService();
-            var maintenanceInfo = maintenanceService.GetUnderMaintenanceInfo();
-            if (maintenanceInfo.Status)
-            {
-                return View(maintenanceInfo);
-            }
-            else
-            {
-                return Redirect(FormsAuthentication.DefaultUrl);
-            }
-        }
-
         [HttpGet]
         public ActionResult Unauthorized()
         {

@@ -9,6 +9,8 @@ namespace LicenseeAgent.Account.Criterias
     /// </summary>
     public class AgentChangePwdCriteria : CriteriaBase
     {
+        public int Updater { get; set; }
+
         public int AgentId { get; set; }
 
         public string OldPwd { get; set; }

@@ -235,6 +235,7 @@ namespace LicenseeAgent.Account.Controllers
                 var newPassword = Cryptography.CreateHash(model.NewPassword, CurrentSession.AgentInfo.UserSalt);
                 var criteria = new AgentChangePwdCriteria
                 {
+                    Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     OldPwd = oldPassword,
                     Pwd = newPassword,

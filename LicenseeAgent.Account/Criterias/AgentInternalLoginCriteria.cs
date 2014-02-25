@@ -18,9 +18,6 @@ namespace LicenseeAgent.Account.Criterias
             LastLoggedTime = today;
         }
 
-        [SpParam(Ignored = true)]
-        public string UserSalt { get; set; }
-
         public string UserName { get; set; }
 
         public string LoginIp { get; set; }
@@ -48,6 +45,8 @@ namespace LicenseeAgent.Account.Criterias
         public DateTime LastChangedPwdDate { get; set; }
 
         public int ErrCode { get; set; }
+
+        public string UserSalt { get; set; }
 
         public bool IsNickName { get; set; }
 

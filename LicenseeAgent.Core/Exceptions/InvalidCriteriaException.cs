@@ -13,6 +13,7 @@ namespace LicenseeAgent.Core.Exceptions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [Serializable]
     public class InvalidCriteriaException : Exception
     {
         public InvalidCriteriaException(ICriteria criteria)

@@ -13,6 +13,7 @@ namespace LicenseeAgent.Core.Exceptions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [Serializable]
     public class InvalidAgentException : Exception
     {
         public InvalidAgentException(AgentInfo agentInfo, string reason)

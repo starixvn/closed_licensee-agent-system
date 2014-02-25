@@ -17,6 +17,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.Message.Services;
     using LicenseeAgent.Report.DataAccess;
     using LicenseeAgent.Report.Services;
     using LicenseeAgent.Taiwan.Services;
@@ -72,6 +73,7 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IAuthorizeService, AuthorizeService>();
             container.Register<IDownLineService, DownLineService>();
             container.Register<IDownlLinePermissionService, DownLinePermissionService>();
+            container.Register<IMessageService, MessageService>();
         }
     }
 }

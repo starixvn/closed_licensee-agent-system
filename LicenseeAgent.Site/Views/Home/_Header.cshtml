@@ -20,10 +20,11 @@
     <div class="row-fluid">
         <div class="message-box">
             <div class="personalmessage">
-                <i class="icon-envelope"></i>&nbsp;Personal Message <span class="badge">10</span>
+                <a target="frmMain" href="@Url.Content("~/Message")"><i class="icon-envelope"></i>&nbsp;Personal
+                    Message <span class="badge">10</span></a>
             </div>
             <div class="currentmessage">
-                <marquee scrolldelay="200" id="currentMessage">This is an example message.</marquee>
+                <marquee scrolldelay="200" id="currentMessage"><a target="frmMain" href="@Url.Content("~/Message")">This is an example message.</a></marquee>
             </div>
         </div>
     </div>

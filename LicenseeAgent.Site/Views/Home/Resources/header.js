@@ -61,6 +61,8 @@
         },
         activeMessage: function (messageContent) {
             $('#currentMessage').html(messageContent);
+        },
+        updateCountPersonalMessage: function () {
         }
     };
 } (jQuery);

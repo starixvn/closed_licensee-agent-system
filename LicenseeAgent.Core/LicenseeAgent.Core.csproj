@@ -89,6 +89,8 @@
     <Compile Include="Enumerations\ErrCode.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
     <Compile Include="Enumerations\Role.cs" />
+    <Compile Include="Exceptions\InvalidAgentException.cs" />
+    <Compile Include="Exceptions\InvalidCriteriaException.cs" />
     <Compile Include="Services\CoreService.cs" />
     <Compile Include="Services\ICoreService.cs" />
     <Compile Include="Services\IUnderMaintenanceService.cs" />

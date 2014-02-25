@@ -9,6 +9,7 @@ namespace LicenseeAgent.Web
     using System;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Exceptions;
 
     /// <summary>
     ///  It contains all properties of an authenticated user.
@@ -82,7 +83,7 @@ namespace LicenseeAgent.Web
         {
             if (loginAccountType != AccountType.CSD_IT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
             {
-                throw new InvalidOperationException("Invalid");
+                throw new InvalidOperationException(string.Format("Invalid account type {0}", loginAccountType));
             }
 
             LoginUserId = loginUserId;
@@ -194,27 +195,27 @@ namespace LicenseeAgent.Web
         {
             if (agentInfo == null)
             {
-                throw new InvalidOperationException("Agent is invalid.");
+                throw new InvalidAgentException(agentInfo, "Agent is null.");
             }
 
             if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)
             {
-                throw new InvalidOperationException("Licensee is invalid.");
+                throw new InvalidAgentException(agentInfo, "Licensee is invalid.");
             }
 
             if (agentInfo.AgentLevel - 1 > agentInfo.NumberOfLevel)
             {
-                throw new InvalidOperationException("Level is invalid.");
+                throw new InvalidAgentException(agentInfo, "Level is invalid.");
             }
 
             if (agentInfo.LicenseeId == 0 || string.IsNullOrEmpty(agentInfo.LicenseeName))
             {
-                throw new InvalidOperationException("Licensee is invalid.");
+                throw new InvalidAgentException(agentInfo, "Licensee is invalid.");
             }
 
             if (agentInfo.CurrencyId == 0 || string.IsNullOrEmpty(agentInfo.CurrencyName))
             {
-                throw new InvalidOperationException("Currency is invalid.");
+                throw new InvalidAgentException(agentInfo, "Currency is invalid.");
             }
         }
     }

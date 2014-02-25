@@ -14,7 +14,6 @@ namespace LicenseeAgent.Site
     using System.Web.Optimization;
     using System.Web.Routing;
     using Fanex.Data.Configuration;
-    using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
@@ -101,7 +100,7 @@ namespace LicenseeAgent.Site
                     "\r\nQueryString: " + Request.QueryString.ToString() +
                     "\r\nTargetSite: " + baseException.TargetSite +
                     "\r\nStackTrace: " + baseException.StackTrace;
-                LogService.Error(message);
+                Logger.Error(message);
             }
         }
 

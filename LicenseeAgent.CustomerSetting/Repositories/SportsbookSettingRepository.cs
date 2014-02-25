@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.5">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Repositories
 {
@@ -18,9 +15,9 @@ namespace LicenseeAgent.CustomerSetting.Repositories
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework.Exceptions;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
@@ -42,7 +39,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -63,7 +60,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -85,7 +82,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -107,7 +104,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
@@ -129,7 +126,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
@@ -151,7 +148,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (ObjectDb odb = new ObjectDb(criteria.GetSettingKey()))
@@ -190,7 +187,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             maxLicenseePt = 0;
@@ -251,7 +248,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             msgId = 0;
@@ -282,7 +279,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -316,7 +313,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -348,7 +345,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -377,7 +374,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidCriteriaException(criteria);
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))

@@ -17,7 +17,7 @@ namespace LicenseeAgent.Core.Utility
     {
         public static void HandleException(Exception exception)
         {
-            HandleException(exception.Message, exception);
+            HandleException(string.Empty, exception);
         }
 
         public static void HandleException(string message, Exception exception)
@@ -28,6 +28,11 @@ namespace LicenseeAgent.Core.Utility
             }
 
             LogService.Error(message, exception);
+        }
+
+        public static void Error(string message)
+        {
+            LogService.Error(message);
         }
     }
 }

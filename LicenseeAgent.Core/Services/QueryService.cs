@@ -11,7 +11,7 @@ namespace LicenseeAgent.Core.Services
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework.Exceptions;
+    using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new NapDataAccessException();
+                    throw new InvalidCriteriaException(criteria);
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -67,7 +67,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new NapDataAccessException();
+                    throw new InvalidCriteriaException(criteria);
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -100,7 +100,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new NapDataAccessException();
+                    throw new InvalidCriteriaException(criteria);
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -140,7 +140,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new NapDataAccessException();
+                    throw new InvalidCriteriaException(criteria);
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))

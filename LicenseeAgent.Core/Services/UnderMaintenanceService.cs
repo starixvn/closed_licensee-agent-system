@@ -9,9 +9,9 @@ namespace LicenseeAgent.Core.Services
     using System;
     using System.Threading;
     using Fanex.Caching;
-    using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utility;
     using Sunplus.UMControllerLibrary;
 
     /// <summary>
@@ -121,7 +121,7 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                LogService.Error(exception.Message, exception);
+                Logger.HandleException(exception);
             }
 
             return maintenanceInfo;

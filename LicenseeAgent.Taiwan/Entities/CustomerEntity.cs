@@ -40,8 +40,8 @@ namespace LicenseeAgent.Taiwan.Entities
         {
             get
             {
-                if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName)
-                    || FirstName.Equals(Constants.EmptyString) && LastName.Equals(Constants.EmptyString))
+                if ((string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName))
+                    || (FirstName.Equals(Constants.EmptyString) && LastName.Equals(Constants.EmptyString)))
                 {
                     return Constants.EmptyString;
                 }

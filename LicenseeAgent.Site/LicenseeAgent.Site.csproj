@@ -285,8 +285,6 @@
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\fanex-core.js" />
-    <Content Include="Views\CustomerSetting\Sportsbook\images\invalid.gif" />
-    <Content Include="Views\CustomerSetting\Sportsbook\images\valid.png" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\controllers\cust-setting-controller.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\controllers\cust-info-controller.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\controllers\bet-limit-controller.js" />

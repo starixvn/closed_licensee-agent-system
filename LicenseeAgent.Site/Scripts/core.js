@@ -52,6 +52,13 @@
                     $("#mainContainer").css("overflow-x", "hidden");
                 };
             }
+
+            $.ajaxSetup({
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var data = jqXHR.responseJSON;
+                    CORE.handleError(data);
+                }
+            });
         },
         initInstruction: function () {
             var containers = $('.instruction-container');
@@ -369,6 +376,17 @@
                 return '{0} {1}'.format(firstName, lastName);
             }
             return CORE.EMPTY_TEXT_FORMAT;
+        },
+        handleError: function (data) {
+            if (data && data.ErrCode) {
+                alert(data.ErrMsg);
+                if (data.ErrCode == -2) {
+                    window.parent.location.href = CORE.UrlSignOut;
+                }
+                return;
+            }
+
+            alert('Your request is temporarily cannot be processed, please try again later!');
         }
     };
 } (jQuery);

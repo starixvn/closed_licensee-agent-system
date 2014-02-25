@@ -1,21 +1,4 @@
-﻿$.ajaxSetup({
-    error: function (jqXHR, textStatus, errorThrown) {
-        if (jqXHR.status == 403) {
-            var data = jqXHR.responseJSON;
-            if (data && data.ErrCode) {
-                alert(data.ErrMsg);
-                if (data.ErrCode == -2) {
-                    window.parent.location.href = CORE.UrlSignOut;
-                }
-                return;
-            }
-        }
-
-        alert('Your request is temporarily cannot be processed, please try again later!');
-    }
-});
-
-// override default blockUI message
+﻿// override default blockUI message
 $.blockUI.defaults.message = '<div class="loading"></div>';
 $.blockUI.defaults.css = {
     padding: 0,

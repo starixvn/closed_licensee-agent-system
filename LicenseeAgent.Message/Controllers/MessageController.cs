@@ -10,6 +10,8 @@
 namespace LicenseeAgent.Message.Controllers
 {
     using System.Web.Mvc;
+    using Criteria;
+    using Services;
     using ViewModels;
     using Web.Controllers;
 
@@ -20,16 +22,15 @@ namespace LicenseeAgent.Message.Controllers
     {
         #region Services
 
+        private readonly IMessageService _messageService;
+
         #endregion Services
-
-        #region Constant
-
-        #endregion Constant
 
         #region Constructor
 
-        public MessageController()
+        public MessageController(IMessageService messageService)
         {
+            _messageService = messageService;
         }
 
         #endregion Constructor
@@ -40,9 +41,18 @@ namespace LicenseeAgent.Message.Controllers
         /// <param name="model">Message view model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Index(MessageViewModel model)
+        public JsonResult Index(MessageViewModel model)
         {
-            return View(model);
+            var criteria = new SearchMessageCriteria
+            {
+                FromDate = model.FromDate,
+                ToDate = model.ToDate
+            };
+            var message = _messageService.GetMessageList(criteria);
+            return Json(new
+            {
+                List = message
+            });
         }
     }
 }

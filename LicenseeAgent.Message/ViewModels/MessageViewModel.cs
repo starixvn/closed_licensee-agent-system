@@ -20,7 +20,7 @@ namespace LicenseeAgent.Message.ViewModels
     {
         public MessageViewModel()
         {
-            FromDate = DateTime.Now;
+            FromDate = DateTime.Now.AddDays(-1);
             ToDate = DateTime.Now;
         }
 

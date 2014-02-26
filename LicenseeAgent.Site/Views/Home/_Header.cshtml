@@ -24,7 +24,10 @@
                     Message <span class="badge">10</span></a>
             </div>
             <div class="currentmessage">
-                <marquee scrolldelay="200" id="currentMessage"><a target="frmMain" href="@Url.Content("~/Message")">This is an example message.</a></marquee>
+                <div class="marquee">
+                    <a target="frmMain" href="@Url.Content("~/Message")" class="message-content">This is
+                        an example message.</a>
+                </div>
             </div>
         </div>
     </div>

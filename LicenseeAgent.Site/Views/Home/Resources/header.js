@@ -45,6 +45,10 @@
                     }
                 });
             });
+            $('.personalmessage').click(function () {
+                HEADER.updateCountPersonalMessage();
+            });
+            HEADER.initScrollMessage();
         },
         signOut: function () {
             try {
@@ -59,10 +63,22 @@
             $('#clock').html(sTime);
             setTimeout(HEADER.clockTick, 1000);
         },
-        activeMessage: function (messageContent) {
-            $('#currentMessage').html(messageContent);
+        initScrollMessage: function () {
+            $('.marquee').marquee({ speed: 20000 });
+            $('.marquee').mouseover(function () {
+                $(this).trigger('pause');
+            }).mouseout(function () {
+                $(this).trigger('resume');
+            });
+            setInterval("HEADER.newestMessage();", 60000);
+        },
+        newestMessage: function () {
+            $('.marquee').marquee('destroy');
+            $('.message-content').text("ABC");
+            $('.marquee').marquee({ speed: 20000 });
         },
         updateCountPersonalMessage: function () {
+            $('.badge').text(0);
         }
     };
 } (jQuery);

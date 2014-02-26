@@ -249,6 +249,7 @@
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
+    <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Tool\InsertMultipleMember.aspx" />

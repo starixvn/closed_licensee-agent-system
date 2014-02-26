@@ -133,6 +133,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/jquery-ui/jquery.ui.sortable.js",
                 "~/scripts/jquery-ui/jquery.ui.button.js",
                 "~/scripts/jquery-ui/jquery.ui.dialog.js",
+                "~/scripts/jquery-ui/jquery.marquee.js",
                 "~/scripts/clickout/jquery.clickout.js"));
             bundles.Add(new LessBundle("~/css/jqueryui").Include(
                 "~/content/jquery-ui/jquery.ui.core.css",

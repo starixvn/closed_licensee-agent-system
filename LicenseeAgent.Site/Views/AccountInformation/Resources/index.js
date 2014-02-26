@@ -149,6 +149,7 @@
             }
             $("#downlineContent ul").html(downlineHtml);
             accountInformation.pagingBinding();
+            $("#downlineContent").niceScroll();
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {

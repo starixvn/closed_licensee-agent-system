@@ -158,10 +158,10 @@ if (fanex.customerSetting) {
                 var commissionSettings = [];
 
                 if (targetRoleId != 1) {
-                    if (commissionSettingModel[0].DiscountA != commissionSettingViewModel[0].discount
-                    || commissionSettingModel[0].DiscountB != commissionSettingViewModel[3].discount
-                    || commissionSettingModel[0].DiscountC != commissionSettingViewModel[1].discount
-                    || commissionSettingModel[0].DiscountD != commissionSettingViewModel[4].discount) {
+                    if (commissionSettingViewModel[0].DiscountA != commissionSettingViewModel[0].oldDiscount
+                    || commissionSettingViewModel[3].DiscountB != commissionSettingViewModel[3].oldDiscount
+                    || commissionSettingViewModel[1].DiscountC != commissionSettingViewModel[1].oldDiscount
+                    || commissionSettingViewModel[4].DiscountD != commissionSettingViewModel[4].oldDiscount) {
                         commissionSettingModel[0].DiscountA = commissionSettingViewModel[0].discount;
                         commissionSettingModel[0].DiscountB = commissionSettingViewModel[3].discount;
                         commissionSettingModel[0].DiscountC = commissionSettingViewModel[1].discount;
@@ -169,13 +169,13 @@ if (fanex.customerSetting) {
                         commissionSettings.push(commissionSettingModel[0]);
                     }
                     // 1x2 Comm
-                    if (commissionSettingModel[1].DiscountA != commissionSettingViewModel[2].discount) {
-                        commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
+                    if (commissionSettingViewModel[2].DiscountA != commissionSettingViewModel[2].oldDiscount) {
+                        commissionSettingViewModel[2].DiscountA = commissionSettingViewModel[2].oldDiscount;
                         commissionSettings.push(commissionSettingModel[1]);
                     }
                     // Others Comm
-                    if (commissionSettingModel[2].DiscountA != commissionSettingViewModel[5].discount) {
-                        commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+                    if (commissionSettingViewModel[5].DiscountA != commissionSettingViewModel[5].oldDiscount) {
+                        commissionSettingViewModel[5].DiscountA = commissionSettingViewModel[5].oldDiscount;
                         commissionSettings.push(commissionSettingModel[2]);
                     }
                 }

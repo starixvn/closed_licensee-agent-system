@@ -16,7 +16,7 @@
     <div class="pt-simple">
         <div class="pt-box-simple">
             <input class="preset-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Preset"
-                ng-change="ptSimple.actions.onChangePreset()" />
+                ng-change="ptSimple.actions.onChangePreset()" ng-blur="ptSimple.actions.onBlurPreset()" />
             <div class="range">
                 [{{ptSimple.MinRangeOfPreset | number:config.decNumber}} - {{ptSimple.MaxRangeOfPreset
                 | number:config.decNumber}}]</div>
@@ -29,7 +29,7 @@
         </div>
         <div class="pt-box-simple">
             <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Max"
-                ng-change="ptSimple.actions.onChangeMax()" />
+                ng-change="ptSimple.actions.onChangeMax()" ng-blur="ptSimple.actions.onBlurMax()" />
             <div class="range">
                 [{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
                 | number:config.decNumber}}]</div>

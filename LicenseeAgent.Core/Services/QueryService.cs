@@ -34,7 +34,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new InvalidCriteriaException(criteria);
+                    throw new InvalidOperationException("Invalid Criteria");
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -48,8 +48,7 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                Logger.HandleException(exception);
-                throw;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -67,7 +66,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new InvalidCriteriaException(criteria);
+                    throw new InvalidOperationException("Invalid Criteria");
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -79,8 +78,7 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                Logger.HandleException(exception);
-                throw;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -100,7 +98,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new InvalidCriteriaException(criteria);
+                    throw new InvalidOperationException("Invalid Criteria");
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -123,8 +121,7 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                Logger.HandleException(exception);
-                throw;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -140,7 +137,7 @@ namespace LicenseeAgent.Core.Services
             {
                 if (!criteria.IsValid())
                 {
-                    throw new InvalidCriteriaException(criteria);
+                    throw new InvalidOperationException("Invalid Criteria");
                 }
 
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -152,8 +149,7 @@ namespace LicenseeAgent.Core.Services
             }
             catch (Exception exception)
             {
-                Logger.HandleException(exception);
-                throw;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 

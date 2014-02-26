@@ -164,7 +164,7 @@ fanex.angularModule.directive('autoNumericFormat', [
                  }
 
                  if (params != undefined && params['command'] != undefined)
-                     eval(params['command']);
+                     scope.$eval(params['command']);
              }
 
              var autoNumericOptions = {};

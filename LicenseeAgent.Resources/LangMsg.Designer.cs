@@ -450,6 +450,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update failed.
+        /// </summary>
+        public static string Msg_1043 {
+            get {
+                return ResourceManager.GetString("Msg_1043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only one transaction is allowed per day for this member..
         /// </summary>
         public static string Msg_107 {

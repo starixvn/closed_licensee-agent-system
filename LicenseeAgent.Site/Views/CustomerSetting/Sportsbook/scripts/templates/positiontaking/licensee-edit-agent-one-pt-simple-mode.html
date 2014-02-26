@@ -10,7 +10,7 @@
     <div class="pt-simple">
         <div class="pt-box-simple">
             <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Max"
-                ng-change="ptSimple.actions.onChangeMax()" />
+                ng-change="ptSimple.actions.onChangeMax()" ng-blur="ptSimple.actions.onBlurMax()" />
             <div class="range">[{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
                 | number:config.decNumber}}]</div>
         </div>

@@ -24,7 +24,7 @@
         </div>
         <div class="pt-box">
             <input class="preset-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Preset"
-                ng-change="pt.actions.onChangePreset()" />
+                ng-change="pt.actions.onChangePreset()" ng-blur="pt.actions.onBlurPreset()" />
             <div class="range">[{{pt.MinRangeOfPreset | number:config.decNumber}} - {{pt.MaxRangeOfPreset | number:config.decNumber}}]</div>
         </div>
         <div class="pt-box" ng-show="settingContext.FormId != 0">
@@ -35,7 +35,7 @@
         </div>
         <div class="pt-box">
             <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="pt.Max"
-                ng-change="pt.actions.onChangeMax()" />
+                ng-change="pt.actions.onChangeMax()" ng-blur="pt.actions.onBlurMax()" />
             <div class="range">[{{pt.MinRangeOfMax | number:config.decNumber}} - {{pt.MaxRangeOfMax | number:config.decNumber}}]</div>
         </div>
         <div class="pt-box">

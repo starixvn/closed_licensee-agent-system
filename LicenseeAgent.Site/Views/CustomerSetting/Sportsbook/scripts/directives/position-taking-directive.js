@@ -19,10 +19,20 @@ if (fanex.customerSetting) {
                         currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     }
 
+                    if (currentPt.actions.validPreset(true)) {
+                        fanex.hideHint();
+                    }
+                },
+                onBlurPreset: function () {
+                    var endCharacter = currentPt.Preset.toString().charAt(currentPt.Preset.toString().length - 1);
+                    if (endCharacter != '.' && endCharacter != '0') {
+                        currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
+                    }
+
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
 
-                    if (currentPt.actions.validPreset()) {
+                    if (currentPt.actions.validPreset(false)) {
                         currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
                         currentPt.Min = Math.min(currentPt.OldMin, fanex.roundNumber(currentPt.Max, 2));
                         fanex.hideHint();
@@ -33,9 +43,17 @@ if (fanex.customerSetting) {
                     }
 
                     currentPt.actions.whenPresetChange();
-
                 },
                 onChangeMax: function () {
+                    var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
+                    if (endCharacter != '.' && endCharacter != '0') {
+                        currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
+                    }
+                    if (currentPt.actions.validMax(true)) {
+                        fanex.hideHint();
+                    }
+                },
+                onBlurMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
                     if (endCharacter != '.' && endCharacter != '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
@@ -44,7 +62,7 @@ if (fanex.customerSetting) {
                     currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
 
-                    if (!currentPt.actions.validMax()) {
+                    if (!currentPt.actions.validMax(false)) {
                         return;
                     }
                     currentPt.MaxRangeOfMin = currentPt.Max;
@@ -59,7 +77,7 @@ if (fanex.customerSetting) {
                     currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
 
-                    if (!currentPt.actions.validMin()) {
+                    if (!currentPt.actions.validMin(true)) {
                         return;
                     }
                     fanex.hideHint();
@@ -71,11 +89,11 @@ if (fanex.customerSetting) {
                     currentPt.MaxRangeOfMin = currentPt.Max;
                 },
                 isValid: function () {
-                    return currentPt.actions.validPreset() && currentPt.actions.validMax() && currentPt.actions.validMin();
+                    return currentPt.actions.validPreset(true) && currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
-                validPreset: function () {
+                validPreset: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Preset) >= fanex.roundNumber(currentPt.MinRangeOfPreset) && fanex.roundNumber(currentPt.Preset) <= fanex.roundNumber(currentPt.MaxRangeOfPreset);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             presetInput,
                             scope.language["message_ValueIsNotInRange"],
@@ -84,9 +102,9 @@ if (fanex.customerSetting) {
                     }
                     return isValid;
                 },
-                validMax: function () {
+                validMax: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
@@ -95,9 +113,9 @@ if (fanex.customerSetting) {
                     }
                     return isValid;
                 },
-                validMin: function () {
+                validMin: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
@@ -120,7 +138,18 @@ if (fanex.customerSetting) {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
 
-                    if (!currentPt.actions.validMax()) {
+                    if (!currentPt.actions.validMax(true)) {
+                        return;
+                    }
+                    fanex.hideHint();
+                },
+                onBlurMax: function () {
+                    var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
+                    if (endCharacter != '.' && endCharacter != '0') {
+                        currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
+                    }
+
+                    if (!currentPt.actions.validMax(false)) {
                         return;
                     }
 
@@ -138,17 +167,17 @@ if (fanex.customerSetting) {
                         currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
                     }
 
-                    if (!currentPt.actions.validMin()) {
+                    if (!currentPt.actions.validMin(true)) {
                         return;
                     }
                     fanex.hideHint();
                 },
                 isValid: function () {
-                    return currentPt.actions.validMax() && currentPt.actions.validMin();
+                    return currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
-                validMax: function () {
+                validMax: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
@@ -157,9 +186,9 @@ if (fanex.customerSetting) {
                     }
                     return isValid;
                 },
-                validMin: function () {
+                validMin: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
@@ -181,17 +210,17 @@ if (fanex.customerSetting) {
                         currentPt.Value = fanex.roundNumber(currentPt.Value, 2);
                     }
 
-                    if (!currentPt.actions.validValue()) {
+                    if (!currentPt.actions.validValue(true)) {
                         return;
                     }
                     fanex.hideHint();
                 },
                 isValid: function () {
-                    return currentPt.actions.validValue();
+                    return currentPt.actions.validValue(true);
                 },
-                validValue: function () {
+                validValue: function (showHint) {
                     var isValid = fanex.roundNumber(currentPt.Value) >= fanex.roundNumber(currentPt.MinRangeOfValue) && fanex.roundNumber(currentPt.Value) <= fanex.roundNumber(currentPt.MaxRangeOfValue);
-                    if (!isValid) {
+                    if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             valueInput,
                             scope.language["message_ValueIsNotInRange"],

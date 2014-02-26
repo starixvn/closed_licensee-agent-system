@@ -8,6 +8,7 @@ namespace LicenseeAgent.Site
 {
     using System;
     using System.Net;
+    using System.Text;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -81,34 +82,15 @@ namespace LicenseeAgent.Site
             }
 
             var exception = Server.GetLastError();
-            HandleException(exception);
-
-            if (!IsInternalServerError(exception))
-            {
-                return;
-            }
-
-            var antiForgeryException = exception as HttpAntiForgeryException;
-            var isAntiForgeryException = antiForgeryException != null;
-            var isLogging = !isAntiForgeryException;
-            if (isLogging)
-            {
-                var baseException = exception.GetBaseException();
-                string message = baseException.Message +
-                    "\r\nSource: " + baseException.Source +
-                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                    "\r\nQueryString: " + Request.QueryString.ToString() +
-                    "\r\nTargetSite: " + baseException.TargetSite +
-                    "\r\nStackTrace: " + baseException.StackTrace;
-                Logger.Error(message);
-            }
+            HandleRequest(exception);
+            LogException(exception);
         }
 
         /// <summary>
-        /// Handles the exception.
+        /// Handles the request.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        private void HandleException(Exception exception)
+        private void HandleRequest(Exception exception)
         {
             if (Response.IsRequestBeingRedirected)
             {
@@ -144,6 +126,34 @@ namespace LicenseeAgent.Site
             }
 
             Server.ClearError();
+        }
+
+        /// <summary>
+        /// Logs the exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        private void LogException(Exception exception)
+        {
+            var baseException = exception.GetBaseException();
+            var stringBuilder = new StringBuilder(baseException.Message);
+            stringBuilder.AppendFormat("\nSource: {0}", baseException.Source);
+            stringBuilder.AppendFormat("\nDomain: {0}", HttpContext.Current.Request.Headers["Host"]);
+            stringBuilder.AppendFormat("\nQueryString: {0}", Request.QueryString.ToString());
+            stringBuilder.AppendFormat("\nTargetSite: {0}", baseException.TargetSite);
+            stringBuilder.AppendFormat("\nStackTrace: {0}", baseException.StackTrace);
+            if (SessionManager.CurrentSession != null)
+            {
+                stringBuilder.AppendFormat("\nLoginUserId: {0}", SessionManager.CurrentSession.LoginUserId);
+                if (SessionManager.CurrentSession.AgentInfo != null)
+                {
+                    var agentInfo = SessionManager.CurrentSession.AgentInfo;
+                    stringBuilder.AppendFormat("\nAgentId: {0}", agentInfo.AgentId);
+                    stringBuilder.AppendFormat("\nLicenseeId: {0}", agentInfo.LicenseeId);
+                    stringBuilder.AppendFormat("\nCurrencyId: {0}", agentInfo.CurrencyId);
+                }
+            }
+
+            Logger.Error(stringBuilder.ToString());
         }
 
         private bool IsInternalServerError(Exception exception)

@@ -39,7 +39,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -60,7 +60,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -82,7 +82,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -104,7 +104,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
@@ -126,7 +126,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
@@ -148,7 +148,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (ObjectDb odb = new ObjectDb(criteria.GetSettingKey()))
@@ -187,7 +187,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             maxLicenseePt = 0;
@@ -248,7 +248,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             msgId = 0;
@@ -279,7 +279,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -313,7 +313,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -345,7 +345,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
@@ -374,7 +374,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new InvalidCriteriaException(criteria);
+                throw new CriteriaException(criteria, "Invalid criteria");
             }
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))

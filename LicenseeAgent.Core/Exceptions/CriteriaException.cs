@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="InvalidCriteriaException.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CriteriaException.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,9 +15,22 @@ namespace LicenseeAgent.Core.Exceptions
     /// TODO: Update summary.
     /// </summary>
     [Serializable]
-    public class InvalidCriteriaException : Exception
+    public class CriteriaException : Exception
     {
-        public InvalidCriteriaException(ICriteria criteria)
+        public CriteriaException(ICriteria criteria)
+            : base()
+        {
+            Criteria = criteria;
+        }
+
+        public CriteriaException(ICriteria criteria, string message)
+            : base(message)
+        {
+            Criteria = criteria;
+        }
+
+        public CriteriaException(ICriteria criteria, string message, Exception innerException)
+            : base(message, innerException)
         {
             Criteria = criteria;
         }
@@ -28,7 +41,7 @@ namespace LicenseeAgent.Core.Exceptions
         {
             get
             {
-                var stringBuilder = new StringBuilder();
+                var stringBuilder = new StringBuilder(base.Message);
                 stringBuilder.AppendFormat("\nSp Name: {0}", Criteria.GetSettingKey());
                 var param = Criteria.GetSpParams();
                 foreach (var key in param.Keys)

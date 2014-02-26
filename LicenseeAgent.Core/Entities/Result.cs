@@ -18,6 +18,7 @@ namespace LicenseeAgent.Core.Entities
         public const int SuccessValue = 0;
         public const int FailureValue = -1;
         public const int NoCurrencyPermission = -2;
+        public const int UnderMaintenance = -3;
 
         public Result()
             : this(SuccessValue, string.Empty)

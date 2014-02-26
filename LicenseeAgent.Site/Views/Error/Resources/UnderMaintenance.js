@@ -11,18 +11,23 @@
 
         reCheckUM: function () {
             $.ajax({
-                type: "GET",
-                url: CORE.resolveUrl("~/NotifyController/UnderMaintenance"),
+                type: "POST",
+                url: CORE.resolveUrl("~/Notify/UnderMaintenance"),
                 dataType: "json",
                 async: false,
                 timeout: 120000
             })
             .done(function (result) {
                 if (result.ErrCode != 0) {
-                    location.href = CORE.UrlSignOut;
+                    alert(result.ErrMsg);
+                    return;
+                }
+
+                if (result.Status) {
+                    setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
                 }
                 else {
-                    setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
+                    location.href = CORE.UrlRoot;
                 }
             });
         }

@@ -3,23 +3,18 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Filters
 {
     using System;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
         private IUnderMaintenanceService _maintenanceService;
@@ -29,16 +24,15 @@ namespace LicenseeAgent.Web.Filters
             _maintenanceService = DependencyResolver.Current.GetService<IUnderMaintenanceService>();
         }
 
+        public bool Ignore { get; set; }
+
         /// <summary>
         /// Override base action executing function to check maintenance before executing request.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var actionName = filterContext.ActionDescriptor.ActionName;
-            var ignored = actionName.Equals("UnderMaintenance", StringComparison.CurrentCultureIgnoreCase);
-
-            if (ignored || filterContext.HttpContext.Response.IsRequestBeingRedirected)
+            if (Ignore)
             {
                 return;
             }
@@ -46,14 +40,7 @@ namespace LicenseeAgent.Web.Filters
             var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
             if (maintenanceInfo.Status)
             {
-                var isAjaxRequest = filterContext.IsAjaxRequest();
-                filterContext.Result = isAjaxRequest
-                    ? (ActionResult)(new JsonResult
-                    {
-                        Data = filterContext.Result != null ? ((ViewResult)filterContext.Result).ViewData.Model :
-                            new { ErrCode = (int)ErrCode.Msg_1037, ErrMsg = LangMsg.Msg_1042 }
-                    })
-                    : (ActionResult)(new RedirectResult("~/Notify/UnderMaintenance", false));
+                filterContext.ReturnUnderMaintenance(maintenanceInfo);
             }
         }
 

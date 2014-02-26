@@ -7,7 +7,9 @@
 namespace LicenseeAgent.Web.Controllers
 {
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Web.Filters;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,17 +21,17 @@ namespace LicenseeAgent.Web.Controllers
         /// Under Maintenance.
         /// </summary>
         /// <returns>View result.</returns>
-        [HttpGet]
-        public ActionResult UnderMaintenance()
+        [AjaxOnly]
+        [UnderMaintenance(Ignore = true)]
+        public JsonResult UnderMaintenance()
         {
             var maintenanceService = new UnderMaintenanceService();
             var maintenanceInfo = maintenanceService.GetUnderMaintenanceInfo();
-            if (!maintenanceInfo.Status)
+            return Json(new
             {
-                return Redirect(AppURLs.URLs.SignOut);
-            }
-
-            return View(maintenanceInfo);
+                ErrCode = Result.SuccessValue,
+                Status = maintenanceInfo.Status
+            });
         }
     }
 }

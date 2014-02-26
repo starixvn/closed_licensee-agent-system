@@ -10,6 +10,7 @@ namespace LicenseeAgent.Web.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
@@ -18,6 +19,13 @@ namespace LicenseeAgent.Web.Controllers
     [AllowAnonymous]
     public class ErrorController : BaseController
     {
+        private IUnderMaintenanceService _maintenanceService;
+
+        public ErrorController(IUnderMaintenanceService maintenanceService)
+        {
+            _maintenanceService = maintenanceService;
+        }
+
         /// <summary>
         /// Show error page.
         /// </summary>
@@ -46,6 +54,25 @@ namespace LicenseeAgent.Web.Controllers
         public ActionResult AccessDenied()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Under maintenance page.
+        /// </summary>
+        /// <returns>Returns view of page.</returns>
+        [HttpGet]
+        [UnderMaintenance(Ignore = true)]
+        public ActionResult UnderMaintenance()
+        {
+            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+            if (maintenanceInfo.Status)
+            {
+                return View(maintenanceInfo);
+            }
+            else
+            {
+                return Redirect(FormsAuthentication.DefaultUrl);
+            }
         }
 
         [HttpGet]

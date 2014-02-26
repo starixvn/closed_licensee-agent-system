@@ -130,6 +130,33 @@ namespace LicenseeAgent.Web.Mvc
         }
 
         /// <summary>
+        /// Returns under maintenance page.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
+        /// <param name="info">The information.</param>
+        public static void ReturnUnderMaintenance(this ActionExecutingContext filterContext, UnderMaintenanceInfo info)
+        {
+            var response = filterContext.HttpContext.Response;
+            if (response.IsRequestBeingRedirected)
+            {
+                return;
+            }
+
+            response.Clear();
+            response.StatusCode = (int)HttpStatusCode.Forbidden;
+            response.TrySkipIisCustomErrors = true;
+            if (filterContext.IsAjaxRequest())
+            {
+                response.WriteJson(new Result(Result.UnderMaintenance, Las.UnderMaintenance));
+                response.End();
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult(AppURLs.URLs.UnderMaintenance);
+            }
+        }
+
+        /// <summary>
         /// Returns the access denied.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>

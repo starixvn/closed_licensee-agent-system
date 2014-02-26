@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>@Las.UnderMaintenance</title>
-    <link rel="Stylesheet" href="~/views/error/resources/index.less" type="text/css" />
+    @Styles.Render("~/css/error")
 </head>
 <body>
     <div class="um-block">
@@ -17,8 +17,7 @@
     </div>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @Scripts.Render("~/js/jquery")
-    @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/core")
-    @Scripts.Render("~/views/notify/resources/UnderMaintenance.js")
+    @Scripts.Render("~/js/error/UnderMaintenance")
 </body>
 </html>

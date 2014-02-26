@@ -173,6 +173,7 @@ namespace LicenseeAgent.Site
         /// <param name="bundles">The bundles.</param>
         private static void RegisterPages(BundleCollection bundles)
         {
+            RegisterErrorPage(bundles);
             RegisterLoginPage(bundles);
             RegisterHomePage(bundles);
             RegisterAccountPage(bundles);
@@ -184,6 +185,14 @@ namespace LicenseeAgent.Site
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
             RegisterMessagePage(bundles);
+        }
+
+        private static void RegisterErrorPage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/error/UnderMaintenance").Include(
+                "~/views/error/resources/UnderMaintenance.js"));
+            bundles.Add(new LessBundle("~/css/error").Include(
+                "~/views/error/resources/Index.less"));
         }
 
         /// <summary>

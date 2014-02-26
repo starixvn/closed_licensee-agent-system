@@ -255,6 +255,7 @@
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
+    <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Tool\InsertMultipleMember.aspx" />
@@ -792,6 +793,7 @@
     <Content Include="Views\Report\Statement.cshtml" />
     <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />
     <Content Include="Views\Report\Statement.AgentGrid.cshtml" />
+    <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />

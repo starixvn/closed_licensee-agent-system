@@ -379,8 +379,16 @@
         },
         handleError: function (data) {
             if (data && data.ErrCode) {
+                if (data.ErrCode == -3) {
+                    // UM
+                    location.href = CORE.UrlRoot;
+                    return;
+                }
+
                 alert(data.ErrMsg);
                 if (data.ErrCode == -2) {
+                    // Currency Permission
+
                     window.parent.location.href = CORE.UrlSignOut;
                 }
                 return;

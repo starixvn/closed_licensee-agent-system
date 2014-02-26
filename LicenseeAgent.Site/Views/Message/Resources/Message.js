@@ -8,18 +8,19 @@
         initData: function () {
             $('li.tab-public').click(function () {
                 $("#tabs-area a:first").tab('show');
-                MESSAGE.getMessage();
+                MESSAGE.getMessage(false);
             });
             $('li.tab-special').click(function () {
                 $("#tabs-area a").eq(1).tab('show');
-                MESSAGE.getMessage();
+                MESSAGE.getMessage(true);
             });
             $('li.tab-personal').click(function () {
                 $("#tabs-area a:last").tab('show');
-                MESSAGE.getMessage();
+                MESSAGE.getMessage(false);
             });
         },
-        getMessage: function () {
+        getMessage: function (disabled) {
+            $("#search-form :input").attr("disabled", disabled);
             var type = "0";
             if ($(".tab-special").hasClass("active")) {
                 type = "1";
@@ -33,20 +34,21 @@
                 ToDate: $("#ToDate").val(),
                 Type: type
             };
-            $.ajax({
-                url: CORE.resolveUrl("~/Message/GetMessage"),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    CORE.blockUI();
-                },
-                success: function (data) {
-                },
-                complete: function () {
-                    CORE.unblockUI();
-                }
-            });
+
+            //            $.ajax({
+            //                url: CORE.resolveUrl("~/Message/GetMessage"),
+            //                type: 'POST',
+            //                data: params,
+            //                dataType: "json",
+            //                beforeSend: function () {
+            //                    CORE.blockUI();
+            //                },
+            //                success: function (data) {
+            //                },
+            //                complete: function () {
+            //                    CORE.unblockUI();
+            //                }
+            //            });
         }
     }
 } (jQuery));

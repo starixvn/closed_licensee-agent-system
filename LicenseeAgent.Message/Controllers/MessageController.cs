@@ -41,18 +41,19 @@ namespace LicenseeAgent.Message.Controllers
         /// <param name="model">Message view model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public JsonResult Index(MessageViewModel model)
+        public ActionResult Index(MessageViewModel model)
         {
-            var criteria = new SearchMessageCriteria
-            {
-                FromDate = model.FromDate,
-                ToDate = model.ToDate
-            };
-            var message = _messageService.GetMessageList(criteria);
-            return Json(new
-            {
-                List = message
-            });
+            //var criteria = new SearchMessageCriteria
+            //{
+            //    FromDate = model.FromDate,
+            //    ToDate = model.ToDate
+            //};
+            //var message = _messageService.GetMessageList(criteria);
+            //return Json(new
+            //{
+            //    List = message
+            //});
+            return View(model);
         }
     }
 }

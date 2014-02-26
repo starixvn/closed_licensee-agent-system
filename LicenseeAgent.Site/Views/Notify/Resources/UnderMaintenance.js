@@ -1,6 +1,11 @@
 ﻿var UNDERMAINTENANCE = function ($) {
     return {
         init: function () {
+            if ($(window.parent.document).find('iframe').length > 0) {
+                window.parent.location.href = location.href;
+                return;
+            }
+
             setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
         },
 

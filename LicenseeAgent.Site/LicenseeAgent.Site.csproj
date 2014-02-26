@@ -507,7 +507,6 @@
     <Content Include="Scripts\jquery-ui\jquery.ui.widget.js" />
     <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
-    <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
     <Content Include="Views\Home\Resources\header.js" />

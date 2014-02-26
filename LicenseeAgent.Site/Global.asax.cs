@@ -134,6 +134,11 @@ namespace LicenseeAgent.Site
         /// <param name="exception">The exception.</param>
         private void LogException(Exception exception)
         {
+            if (!IsInternalServerError(exception))
+            {
+                return;
+            }
+
             var baseException = exception.GetBaseException();
             var stringBuilder = new StringBuilder(baseException.Message);
             stringBuilder.AppendFormat("\nSource: {0}", baseException.Source);
@@ -161,7 +166,7 @@ namespace LicenseeAgent.Site
             var httpException = exception as HttpException;
             if (httpException == null)
             {
-                return false;
+                return true;
             }
 
             return httpException.GetHttpCode() >= ServerErrorCode;

@@ -50,6 +50,8 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult InsertNewMember(InsertNewMemberAction action)
         {
+            action.FirstName = action.FirstName ?? Constants.EmptyString;
+            action.LastName = action.LastName ?? Constants.EmptyString;
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
             var criteria = new AddNewMemberCriteria

@@ -195,6 +195,14 @@ namespace LicenseeAgent.Site
                 "~/views/error/resources/Index.less"));
         }
 
+        private static void RegisterErrorPage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/error/UnderMaintenance").Include(
+                "~/views/error/resources/UnderMaintenance.js"));
+            bundles.Add(new LessBundle("~/css/error").Include(
+                "~/views/error/resources/Index.less"));
+        }
+
         /// <summary>
         /// Registers the login page.
         /// </summary>

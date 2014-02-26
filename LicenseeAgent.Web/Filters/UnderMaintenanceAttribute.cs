@@ -8,9 +8,7 @@ namespace LicenseeAgent.Web.Filters
 {
     using System;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
@@ -43,10 +41,6 @@ namespace LicenseeAgent.Web.Filters
             if (maintenanceInfo.Status)
             {
                 filterContext.ReturnUnderMaintenance(maintenanceInfo);
-                        Data = filterContext.Result != null ? ((ViewResult)filterContext.Result).ViewData.Model :
-                            new { ErrCode = (int)ErrCode.Msg_1037, ErrMsg = LangMsg.Msg_1042 }
-                    })
-                    : (ActionResult)(new RedirectResult("~/Notify/UnderMaintenance", false));
             }
         }
 

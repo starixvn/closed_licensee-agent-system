@@ -17,7 +17,7 @@ namespace LicenseeAgent.Core.Utility
     {
         public static void HandleException(Exception exception)
         {
-            HandleException(string.Empty, exception);
+            HandleException("Exception Log", exception);
         }
 
         public static void HandleException(string message, Exception exception)

@@ -43,16 +43,16 @@ namespace LicenseeAgent.Message.Controllers
         [HttpGet]
         public ActionResult Index(MessageViewModel model)
         {
-            //var criteria = new SearchMessageCriteria
-            //{
-            //    FromDate = model.FromDate,
-            //    ToDate = model.ToDate
-            //};
-            //var message = _messageService.GetMessageList(criteria);
-            //return Json(new
-            //{
-            //    List = message
-            //});
+            ////var criteria = new SearchMessageCriteria
+            ////{
+            ////    FromDate = model.FromDate,
+            ////    ToDate = model.ToDate
+            ////};
+            ////var message = _messageService.GetMessageList(criteria);
+            ////return Json(new
+            ////{
+            ////    List = message
+            ////});
             return View(model);
         }
     }

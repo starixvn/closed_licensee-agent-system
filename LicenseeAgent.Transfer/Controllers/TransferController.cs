@@ -79,7 +79,7 @@ namespace LicenseeAgent.Transfer.Controllers
                     Username = model.UserName,
                     Status = model.Status
                 });
-
+            
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

@@ -1061,4 +1061,16 @@
   <data name="OpeningBalance" xml:space="preserve">
     <value>Opening Balance</value>
   </data>
+  <data name="ClosingBalance" xml:space="preserve">
+    <value>Closing Balance</value>
+    <comment>not</comment>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>Transfer Amt</value>
+    <comment>not</comment>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>Transfer Details</value>
+    <comment>not</comment>
+  </data>
 </root>

@@ -131,7 +131,7 @@ namespace LicenseeAgent.Web.Controllers
             var sessionIsTimeout = CurrentSession == null || !CurrentSession.IsValid ? true : false;
             if (sessionIsTimeout)
             {
-                if (ControllerContext.IsAjaxRequest())
+                if (ControllerContext.IsJsonRequest())
                 {
                     var jsonResult = new Result(Las.UnauthorizedMsg);
                     Json(jsonResult, JsonRequestBehavior.AllowGet).ExecuteResult(ControllerContext);
@@ -195,7 +195,7 @@ namespace LicenseeAgent.Web.Controllers
                 if (filterContext.ActionDescriptor is ReflectedActionDescriptor)
                 {
                     var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
-                    var isAjaxRequest = filterContext.IsAjaxRequest();
+                    var isAjaxRequest = filterContext.IsJsonRequest();
                     if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
                     {
                         filterContext.Result = InvalidModelJsonResult();

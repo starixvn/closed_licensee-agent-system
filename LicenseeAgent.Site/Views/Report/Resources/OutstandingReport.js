@@ -165,8 +165,7 @@ var OUTSTANDING = function ($) {
                 var url = showMixParlayDetailurl + transId;
                 $.ajax({
                     type: "GET",
-                    contentType: 'application/json',
-                    dataType: "text",
+                    contentType: "text/html",
                     cache: false,
                     url: CORE.resolveUrl(url),
                     error: function (xhRequest, errorText, thrownError) {

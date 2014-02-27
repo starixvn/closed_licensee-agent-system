@@ -102,7 +102,7 @@ namespace LicenseeAgent.Site
             var isAntiForgeryException = antiForgeryException != null;
             int errorCode = httpException != null ? httpException.GetHttpCode() : (int)HttpStatusCode.InternalServerError;
             Response.Clear();
-            if (HttpContext.Current.IsAjaxRequest())
+            if (HttpContext.Current.IsJsonRequest())
             {
                 var msgContent = isAntiForgeryException ? Las.UnauthorizedMsg : AppHandler.GetHttpErrorMessage(errorCode);
                 var jsonResult = new Result

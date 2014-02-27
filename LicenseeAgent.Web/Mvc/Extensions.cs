@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Mvc
 {
+    using System;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -49,10 +50,20 @@ namespace LicenseeAgent.Web.Mvc
             return IsAjaxRequestInternal(context.HttpContext.Request);
         }
 
+        public static bool IsJsonRequest(this ControllerContext context)
+        {
+            return IsAjaxRequest(context) && context.HttpContext.Request.ContentType.IndexOf("text/html", StringComparison.OrdinalIgnoreCase) == -1;
+        }
+
         public static bool IsAjaxRequest(this HttpContext context)
         {
             var httpContextWrapper = new HttpContextWrapper(context);
             return IsAjaxRequestInternal(httpContextWrapper.Request);
+        }
+
+        public static bool IsJsonRequest(this HttpContext context)
+        {
+            return IsAjaxRequest(context) && context.Request.ContentType.IndexOf("text/html", StringComparison.OrdinalIgnoreCase) == -1;
         }
 
         public static void WriteJson(this HttpResponse httpResponse, Result jsonResult)

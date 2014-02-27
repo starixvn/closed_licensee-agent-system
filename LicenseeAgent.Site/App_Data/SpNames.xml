@@ -98,15 +98,15 @@
     <Setting Key="LAS_Betlist_SelParlayDetail" SpName="LAS_Betlist_SelParlayDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Report">
     <!-- Results Report-->
-    <Setting Key="LAS_Result_SportSelByDate" SpName="LAS_Result_SportSelByDate" DbName="DBEXT.bodb02.bodblicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBEXT.bodb02.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Result_SportSelByDate" SpName="LAS_Result_SportSelByDate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Result_LeagueSelByDate" SpName="LAS_Result_LeagueSelByDate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Result_MatchSelByLeague" SpName="LAS_Result_MatchSelByLeague" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_SuperViewAgent" SpName="LAS_Rpt_WinLoss_SuperViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_Rpt_Outstanding" SpName="Las_Rpt_Outstanding" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_BetlistOutStanding_SelByMember" SpName="Las_BetlistOutStanding_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

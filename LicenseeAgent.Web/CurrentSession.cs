@@ -195,7 +195,7 @@ namespace LicenseeAgent.Web
         {
             if (agentInfo == null)
             {
-                throw new InvalidAgentException(agentInfo, "Agent is null.");
+                throw new InvalidOperationException("Agent is null.");
             }
 
             if (OnLicenseeId != 0 && OnLicenseeId != agentInfo.LicenseeId)

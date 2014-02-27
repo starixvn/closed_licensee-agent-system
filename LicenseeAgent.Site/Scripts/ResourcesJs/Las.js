@@ -8,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 2/18/2014 11:39:11 AM
+// Lasted generated date: 2/27/2014 12:44:02 PM
 // </history>
 
 var _language_en_US={
@@ -48,6 +48,10 @@ var _language_en_US={
 				 	
                      AgentWinLoss:"Agent Win Loss",
 				 	
+                     AgentWinLossReport:"Agent Win Loss - Report",
+				 	
+                     AlertNoCurrencyPermission:"Sorry! Your permission has just been updated by admin, thus you&apos;re forced to relogin. Thank you.",
+				 	
                      All:"All",
 				 	
                      Amount:"Amount",
@@ -79,6 +83,8 @@ var _language_en_US={
                      BetSetting:"Bet Setting",
 				 	
                      BetSettingInstructions:"Bet Setting Instructions",
+				 	
+                     Betting:"Betting",
 				 	
                      Both:"Both",
 				 	
@@ -141,8 +147,6 @@ var _language_en_US={
                      CreditBalance:"Credit / Balance",
 				 	
                      Currency:"Currency",
-
-                     AlertNoCurrencyPermission: "Your currency permission is not valid. You must relogin for now!",
 				 	
                      CurrencyRequired:"Please select currency.",
 				 	
@@ -168,11 +172,13 @@ var _language_en_US={
 				 	
                      DownlineList:"Downline List",
 				 	
+                     DownlineStatement:"Downline Statement",
+				 	
                      Draw:"Draw",
 				 	
                      DrawFilter:"Draw Filter",
 				 	
-                     DrawNoBet:"DrawNoBet",
+                     DrawNoBet:"Draw No Bet",
 				 	
                      Edit:"Edit",
 				 	
@@ -228,6 +234,8 @@ var _language_en_US={
 				 	
                      GeneralInformation:"General Information",
 				 	
+                     Generate:"Generate",
+				 	
                      GivenCredit:"Given Credit",
 				 	
                      Goal:"Goal",
@@ -240,7 +248,7 @@ var _language_en_US={
 				 	
                      Home:"Home",
 				 	
-                     HomeNoBet:"AwayNoBet",
+                     HomeNoBet:"Away No Bet",
 				 	
                      HOUL:"Handicap/Over Under/Live",
 				 	
@@ -302,11 +310,13 @@ var _language_en_US={
 				 	
                      MemberList:"Member List",
 				 	
-                     MessageUnderMaintenance:"We apologize for any inconvenience this may cause.&lt;br/&gt;If you have any query, please contact us at: Service Discruption Period&lt;br/&gt; {0} - {1} (GMT + 08:00).",
+                     MessageAnnouncement:"Message / Announcement",
+				 	
+                     MessageUnderMaintenance:"We are having server maintenance, website will be unavailable &lt;br /&gt;from {0} until {1} (GMT +08:00).&lt;br /&gt;Sorry for the inconveniences caused!",
 				 	
                      MixParlay:"Mix Parlay",
-
-                     MixSportsParlay: "Mix Sports Parlay",
+				 	
+                     MixSportsParlay:"Mix Sports Parlay",
 				 	
                      MobilePhone:"Mobile Phone",
 				 	
@@ -328,7 +338,7 @@ var _language_en_US={
 				 	
                      NoDownline:"There is no downline",
 				 	
-                     NoDraw:"NoDraw",
+                     NoDraw:"No Draw",
 				 	
                      NoDrawForTurnoverOnly:"No Draw For Turnover Only",
 				 	
@@ -354,6 +364,8 @@ var _language_en_US={
 				 	
                      Open:"Open",
 				 	
+                     OpeningBalance:"Opening Balance",
+				 	
                      Or:"or",
 				 	
                      OtherSports:"Other Sports",
@@ -370,9 +382,9 @@ var _language_en_US={
 				 	
                      PageTitle_ParlayTotalBets:"Parlay - Total Bets",
 				 	
-                     PageTitle_Report_Outstanding:"Agent Outstanding - Reports",
+                     PageTitle_Report_Outstanding:"Agent Outstanding - Report",
 				 	
-                     PageTitle_Report_Results:"Results - Reports",
+                     PageTitle_Report_Results:"Results - Report",
 				 	
                      Parlay:"Parlay",
 				 	
@@ -398,6 +410,8 @@ var _language_en_US={
 				 	
                      PasswordWillExpired:"Your password will expire on {0}. Do you want to change it now?",
 				 	
+                     PersonalMessage:"Personal Message",
+				 	
                      Phone:"Phone",
 				 	
                      PleaseChooseCurrency:"Please choose a currency",
@@ -409,6 +423,10 @@ var _language_en_US={
                      PositionTakingSettingInstructions:"Position Taking Setting Instructions",
 				 	
                      PositionTakingSimpleModeHeader:"Position Taking (Soccer Dead ball Handicap)",
+				 	
+                     PublicAnnouncements:"Public Announcements",
+				 	
+                     Report:"Report",
 				 	
                      Reports:"Reports",
 				 	
@@ -437,6 +455,8 @@ var _language_en_US={
                      SimpleModeNote:"※Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.",
 				 	
                      Soccer:"Soccer",
+				 	
+                     SpecialAnnouncements:"Special Announcements",
 				 	
                      Sport:"Sport",
 				 	
@@ -500,7 +520,7 @@ var _language_en_US={
 				 	
                      UnderMaintenance:"Under Maintenance",
 				 	
-                     Unlimitted:"Unlimitted",
+                     Unlimited:"Unlimited",
 				 	
                      Update:"Update",
 				 	

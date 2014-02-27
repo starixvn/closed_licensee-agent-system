@@ -22,6 +22,10 @@
     @Styles.Render("~/css/core")
     @Styles.Render("~/css/home")
     @Styles.Render("~/css/home/accountinfo")
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/page")
+    @Scripts.Render("~/js/language")
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -56,12 +60,9 @@
     </div>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
-    @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/home")
     @Scripts.Render("~/js/home/accountinfo")
     @if (SessionManager.CurrentSession.IsViewSelectMenu())

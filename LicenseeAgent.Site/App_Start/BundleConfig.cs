@@ -43,15 +43,17 @@ namespace LicenseeAgent.Site
                 "~/scripts/utility.js",
                 "~/scripts/language.js",
                 "~/scripts/popup.js"));
+            bundles.Add(new LessBundle("~/css/core").Include(
+                "~/content/sprite.less",
+                "~/content/core.less"));
+
+            bundles.Add(new ScriptBundle("~/js/page").Include(
+                "~/scripts/page.js"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
                 "~/scripts/ResourcesJs/Las.js",
                 "~/scripts/ResourcesJs/Las.zh-CN.js",
                 "~/scripts/ResourcesJs/Las.zh-TW.js"));
-
-            bundles.Add(new LessBundle("~/css/core").Include(
-                "~/content/sprite.less",
-                "~/content/core.less"));
         }
 
         #endregion Core

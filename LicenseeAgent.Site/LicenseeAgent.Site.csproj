@@ -255,6 +255,7 @@
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
+    <Content Include="Scripts\page.js" />
     <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\Report\Resources\Statement.js" />

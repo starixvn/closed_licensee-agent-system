@@ -9,6 +9,10 @@
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/core")
     @RenderSection("css", false)
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/page")
+    @Scripts.Render("~/js/language")
 </head>
 <body>
     <div id="mainContainer">
@@ -22,17 +26,8 @@
             @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
         </script>
     }
-    @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/language")
-    <script type="text/javascript">
-        // call if page is not in frame & not be a popup
-        if (window.parent.frmMain == undefined && window.parent.popup == undefined) {
-            setTimeout(function () { CORE.reCheckIn(); }, 1000);
-        }
-    </script>
     @RenderSection("scripts", false)
     <div class="block-loading" style="display: none;">
     </div>

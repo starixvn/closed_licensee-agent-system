@@ -29,17 +29,10 @@ if (fanex.customerSetting) {
                         currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     }
 
-                    currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
-                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
-
                     if (currentPt.actions.validPreset(false)) {
                         currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
-                        currentPt.Min = Math.min(currentPt.OldMin, fanex.roundNumber(currentPt.Max, 2));
+                        currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
                         fanex.hideHint();
-                    }
-                    else {
-                        currentPt.Max = 0;
-                        currentPt.Min = 0;
                     }
 
                     currentPt.actions.whenPresetChange();

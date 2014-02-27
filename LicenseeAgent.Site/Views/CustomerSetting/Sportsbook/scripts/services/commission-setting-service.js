@@ -170,12 +170,12 @@ if (fanex.customerSetting) {
                     }
                     // 1x2 Comm
                     if (commissionSettingViewModel[2].DiscountA != commissionSettingViewModel[2].oldDiscount) {
-                        commissionSettingViewModel[2].DiscountA = commissionSettingViewModel[2].oldDiscount;
+                        commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
                         commissionSettings.push(commissionSettingModel[1]);
                     }
                     // Others Comm
                     if (commissionSettingViewModel[5].DiscountA != commissionSettingViewModel[5].oldDiscount) {
-                        commissionSettingViewModel[5].DiscountA = commissionSettingViewModel[5].oldDiscount;
+                        commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
                         commissionSettings.push(commissionSettingModel[2]);
                     }
                 }

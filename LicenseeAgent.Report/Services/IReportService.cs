@@ -59,5 +59,7 @@ namespace LicenseeAgent.Report.Services
         IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
 
         IEnumerable<Statement> StatementReport(ICriteria criteria);
+
+        IEnumerable<Transfer> TransferDetail(ICriteria criteria);
     }
 }

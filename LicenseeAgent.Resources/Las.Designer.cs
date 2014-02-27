@@ -583,6 +583,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing Balance.
+        /// </summary>
+        public static string ClosingBalance {
+            get {
+                return ResourceManager.GetString("ClosingBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string Commission {
@@ -2334,6 +2343,24 @@ namespace LicenseeAgent.Resources {
         public static string Transfer {
             get {
                 return ResourceManager.GetString("Transfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Amt.
+        /// </summary>
+        public static string TransferAmt {
+            get {
+                return ResourceManager.GetString("TransferAmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Details.
+        /// </summary>
+        public static string TransferDetails {
+            get {
+                return ResourceManager.GetString("TransferDetails", resourceCulture);
             }
         }
         

@@ -1,0 +1,32 @@
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@model LicenseeAgent.Report.ViewModels.TransferDetailViewModel
+@{
+    ViewBag.Title = Las.TransferDetails + " - " + Model.Username;
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/bootstrap")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/transferdetail")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm("GetTransferData", "Report", FormMethod.Post,
+    new { @class = "hide", id = "search-form" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.FromDate)
+    @Html.HiddenFor(m => m.ToDate)
+    @Html.HiddenFor(m => m.IsMember)
+}
+<div class="wrapper">
+    <div id="grid" class="freegrid">
+    </div>
+</div>

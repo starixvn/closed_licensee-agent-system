@@ -111,6 +111,11 @@ namespace LicenseeAgent.Report.Services
         {
             return GetEntites<Statement>(criteria);
         }
+
+        public IEnumerable<Transfer> TransferDetail(ICriteria criteria)
+        {
+            return GetEntites<Transfer>(criteria);
+        }
         #endregion
 
         #region Utilities

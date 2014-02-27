@@ -258,6 +258,8 @@
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\page.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
+    <Content Include="Views\Report\Resources\TransferDetail.js" />
+    <Content Include="Views\Report\Resources\StatementDetail.js" />
     <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
@@ -798,6 +800,10 @@
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
+    <Content Include="Views\Report\StatementDetail.cshtml" />
+    <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />
+    <Content Include="Views\Report\StatementDetail.MemberGrid.cshtml" />
+    <Content Include="Views\Report\TransferDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

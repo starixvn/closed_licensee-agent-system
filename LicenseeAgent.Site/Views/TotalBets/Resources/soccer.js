@@ -48,7 +48,7 @@
                 listData: leagueList,
                 showTooltip: true,
                 maxHeight: 500,
-                minWidth: 400,
+                minWidth: 300,
                 checkAllText: 'All leagues.',
                 noItemText: 'No league seleted.',
                 noneSelectedText: 'Select league',
@@ -60,10 +60,10 @@
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
-                    Soccer.selectedLeague();
+                    Soccer.getEventDataByLeague();
                 },
                 onFooterButtonClick: function () {
-                    Soccer.selectedLeague();
+                    Soccer.getEventDataByLeague();
                 }
             });
         },
@@ -106,7 +106,7 @@
                 listData: eventList,
                 showTooltip: true,
                 maxHeight: 500,
-                minWidth: 350,
+                minWidth: 300,
                 checkAllText: 'All events.',
                 noItemText: 'No event seleted.',
                 noneSelectedText: 'Select event',

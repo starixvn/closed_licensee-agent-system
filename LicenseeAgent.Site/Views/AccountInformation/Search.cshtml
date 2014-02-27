@@ -19,7 +19,7 @@
         {
             <button class="btn btn-inverse" data-url="@Url.Action("Index", "CustomerList", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">@(pageContext.IsLastLevel ? @Las.MemberList : @Las.AgentList)</button>
         }
-        <button class="btn btn-inverse" data-url="@Url.Action("BetListSelByMember", "BetList")">@Las.Statement</button>
+        <button class="btn btn-inverse" data-url="@Url.Action("StatementDetail", "Report", new { agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">@Las.Statement</button>
     </div>
 
     <div class="row-line">

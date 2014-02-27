@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Transfer.cs" />
+    <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\ReportController.Statement.cs" />
     <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -96,8 +98,13 @@
     <Compile Include="Criteria\StatementAgentCriteria.cs" />
     <Compile Include="Entities\Statement.cs" />
     <Compile Include="Criteria\StatementMemberCriteria.cs" />
+    <Compile Include="Criteria\StatementAgentDetailCriteria.cs" />
+    <Compile Include="Criteria\StatementMemberDetailCriteria.cs" />
+    <Compile Include="Criteria\TransferDetailMemberCriteria.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
     <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
+    <Compile Include="ViewModels\TransferDetailViewModel.cs" />
+    <Compile Include="ViewModels\StatementDetailReportViewModel.cs" />
     <Compile Include="ViewModels\StatementReportViewModel.cs" />
     <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />

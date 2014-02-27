@@ -32,6 +32,11 @@ namespace LicenseeAgent.Core.Utility
 
         public static void Error(string message)
         {
+            if (AppSettings.LocalTest)
+            {
+                return;
+            }
+
             LogService.Error(message);
         }
     }

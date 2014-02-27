@@ -66,11 +66,7 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownLineTicket(TicketDownLineCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                return Converter.ToBool(objectDb.ExecuteScalar(param));
-            }
+            return Execute<bool>(criteria);
         }
 
         /// <summary>
@@ -80,11 +76,7 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Return boolean value indicating the down line value.</returns>
         public bool IsDownLineReferenceNumber(ReferenceNumberCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                return Converter.ToBool(objectDb.ExecuteScalar(param));
-            }
+            return Execute<bool>(criteria);
         }
     }
 }

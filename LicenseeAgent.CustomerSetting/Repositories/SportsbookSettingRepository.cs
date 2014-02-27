@@ -37,17 +37,24 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Position taking list.</returns>
         public Dictionary<string, PositionTaking> GetAgentPositionTakingSettingForUpdating(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
+                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    ReadAgentPositionTakingSettingData(positionTakingDataList, reader);
+                    return positionTakingDataList;
+                }
+            }
+            catch (Exception exception)
             {
-                Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
-                IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
-                ReadAgentPositionTakingSettingData(positionTakingDataList, reader);
-                return positionTakingDataList;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -58,18 +65,25 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Position taking list.</returns>
         public Dictionary<string, PositionTaking> GetCustomerPositionTakingSettingForUpdating(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
+                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    ReadMemberPositionTakingData(positionTakingDataList, reader);
+
+                    return positionTakingDataList;
+                }
             }
-
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+            catch (Exception exception)
             {
-                Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
-                IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
-                ReadMemberPositionTakingData(positionTakingDataList, reader);
-
-                return positionTakingDataList;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -80,18 +94,25 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Betting limit list data.</returns>
         public IList<BettingLimit> GetBettingLimitSettingForUpdating(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IList<BettingLimit> bettingLimits = new List<BettingLimit>();
+                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    ReadBetLimitData(bettingLimits, reader);
+
+                    return bettingLimits;
+                }
             }
-
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+            catch (Exception exception)
             {
-                IList<BettingLimit> bettingLimits = new List<BettingLimit>();
-                IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
-                ReadBetLimitData(bettingLimits, reader);
-
-                return bettingLimits;
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -102,19 +123,26 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>List commission item.</returns>
         public IList<CommissionItem> GetAgentCommissionSetingForUpdating(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            IList<CommissionItem> commissionItems = new List<CommissionItem>();
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+                IList<CommissionItem> commissionItems = new List<CommissionItem>();
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    ReadAgentCommissionData(commissionItems, reader);
+                }
+
+                return commissionItems;
+            }
+            catch (Exception exception)
             {
-                IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
-                ReadAgentCommissionData(commissionItems, reader);
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
-
-            return commissionItems;
         }
 
         /// <summary>
@@ -124,19 +152,26 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>List commission data.</returns>
         public IList<CommissionItem> GetCustomerCommissionSetingForUpdating(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            IList<CommissionItem> commissionItems = new List<CommissionItem>();
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+                IList<CommissionItem> commissionItems = new List<CommissionItem>();
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    ReadMemberCommissionSettingData(commissionItems, reader);
+                }
+
+                return commissionItems;
+            }
+            catch (Exception exception)
             {
-                IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
-                ReadMemberCommissionSettingData(commissionItems, reader);
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
-
-            return commissionItems;
         }
 
         /// <summary>
@@ -146,20 +181,27 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Member information details.</returns>
         public MemberInfo GetMemberInfo(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            using (ObjectDb odb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                IDataReader reader = odb.ExecuteReader(criteria.GetSpParams());
-                reader.Read();
-                return new MemberInfo
+                if (!criteria.IsValid())
                 {
-                    UGroup = reader.ToString("UGroup"),
-                    IsUGroupChanged = reader.ToBool("IsUGroupChanged")
-                };
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var odb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader = odb.ExecuteReader(criteria.GetSpParams());
+                    reader.Read();
+                    return new MemberInfo
+                    {
+                        UGroup = reader.ToString("UGroup"),
+                        IsUGroupChanged = reader.ToBool("IsUGroupChanged")
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -185,44 +227,51 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             out int msgId,
             out int maxLicenseePt)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            maxLicenseePt = 0;
-            msgId = -1;
-            custInfo = new CustomerInfo();
-            commissionSetting = new CommissionSetting();
-            bettingLimits = new List<BettingLimit>();
-            positionTakingDataList = new Dictionary<string, PositionTaking>();
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                if (!criteria.IsValid())
                 {
-                    ReadAgentCommissionData(commissionSetting.CommissionItems, reader, false);
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-                    if (reader.NextResult())
+                maxLicenseePt = 0;
+                msgId = -1;
+                custInfo = new CustomerInfo();
+                commissionSetting = new CommissionSetting();
+                bettingLimits = new List<BettingLimit>();
+                positionTakingDataList = new Dictionary<string, PositionTaking>();
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                     {
-                        ReadBetLimitData(bettingLimits, reader, false);
-                    }
+                        ReadAgentCommissionData(commissionSetting.CommissionItems, reader, false);
 
-                    if (settingContext.TargetRoleId != (int)Role.AgentLevel1)
-                    {
                         if (reader.NextResult())
                         {
-                            ReadAgentPositionTakingSettingData(positionTakingDataList, reader, false);
+                            ReadBetLimitData(bettingLimits, reader, false);
+                        }
+
+                        if (settingContext.TargetRoleId != (int)Role.AgentLevel1)
+                        {
+                            if (reader.NextResult())
+                            {
+                                ReadAgentPositionTakingSettingData(positionTakingDataList, reader, false);
+                            }
                         }
                     }
-                }
 
-                var outputParams = objDb.GetOuputParams();
-                msgId = Converter.ToInt(outputParams["msgid"]);
-                custInfo.MaxCredit = DbConverter.ToDecimal(outputParams["maxcredit"]);
-                if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
-                {
-                    maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;
+                    var outputParams = objDb.GetOuputParams();
+                    msgId = Converter.ToInt(outputParams["msgid"]);
+                    custInfo.MaxCredit = DbConverter.ToDecimal(outputParams["maxcredit"]);
+                    if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
+                    {
+                        maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -246,23 +295,30 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             out Dictionary<string, PositionTaking> positionTakingDataList,
             out int msgId)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            msgId = 0;
-            custInfo = new CustomerInfo();
-            commissionSetting = new CommissionSetting();
-            bettingLimits = new List<BettingLimit>();
-            positionTakingDataList = new Dictionary<string, PositionTaking>();
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                if (!criteria.IsValid())
                 {
-                    ParseDataSettingForUpdate(settingContext, custInfo, commissionSetting, bettingLimits, positionTakingDataList, reader);
+                    throw new InvalidOperationException("Invalid criteria");
                 }
+
+                msgId = 0;
+                custInfo = new CustomerInfo();
+                commissionSetting = new CommissionSetting();
+                bettingLimits = new List<BettingLimit>();
+                positionTakingDataList = new Dictionary<string, PositionTaking>();
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                    {
+                        ParseDataSettingForUpdate(settingContext, custInfo, commissionSetting, bettingLimits, positionTakingDataList, reader);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -277,30 +333,37 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Result and output parameters.</returns>
         public InsertResult InsertCustomer(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var parameters = criteria.GetSpParams();
-                objDb.ExecuteNonQuery(parameters);
-                return new InsertResult
+                if (!criteria.IsValid())
                 {
-                    ErrCode = Converter.ToInt(parameters["msgid"]),
-                    MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                    MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                    MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
-                    BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                    BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                    BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                    PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                    PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                    CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
-                    IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
-                };
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
+                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
+                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
+                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
+                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
+                        IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -311,28 +374,35 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Result and output parameters.</returns>
         public InsertResult UpdateCustomer(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var parameters = criteria.GetSpParams();
-                objDb.ExecuteNonQuery(parameters);
-                return new InsertResult
+                if (!criteria.IsValid())
                 {
-                    ErrCode = Converter.ToInt(parameters["msgid"]),
-                    MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                    MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                    BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                    BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                    BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                    PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                    PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                    CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
-                };
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
+                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
+                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
+                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -343,24 +413,31 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Result and output parameters.</returns>
         public InsertResult UpdateIndirectCustomer(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var parameters = criteria.GetSpParams();
-                objDb.ExecuteNonQuery(parameters);
-                return new InsertResult
+                if (!criteria.IsValid())
                 {
-                    ErrCode = Converter.ToInt(parameters["msgid"]),
-                    MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                    MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                    PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                    PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                    IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
-                };
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 
@@ -372,16 +449,23 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <returns>Current updating status.</returns>
         public Result UpdateSetting(ICriteria criteria, ICriteria logCriteria)
         {
-            if (!criteria.IsValid())
+            try
             {
-                throw new CriteriaException(criteria, "Invalid criteria");
-            }
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = logCriteria.AddSpParams(criteria.GetSpParams());
+                    objDb.ExecuteNonQuery(parameters);
+                    return new Result(Convert.ToInt32(parameters["errcode"]), Convert.ToString(parameters["errmsg"]));
+                }
+            }
+            catch (Exception exception)
             {
-                var parameters = logCriteria.AddSpParams(criteria.GetSpParams());
-                objDb.ExecuteNonQuery(parameters);
-                return new Result(Convert.ToInt32(parameters["errcode"]), Convert.ToString(parameters["errmsg"]));
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
 

@@ -102,6 +102,7 @@
                     success: function (data) {
                         if (data.ErrCode != 0) {
                             alert(data.ErrMsg);
+                            CORE.unblockUI();
                             return;
                         }
                         if (data.DirectUrl) {
@@ -110,13 +111,14 @@
                             }
                             else {
                                 POPUP.openWindow(data.DirectUrl);
+                                CORE.unblockUI();
                             }
                         }
                         else {
                             location.reload();
                         }
                     },
-                    complete: function () {
+                    error: function () {
                         CORE.unblockUI();
                     }
                 });

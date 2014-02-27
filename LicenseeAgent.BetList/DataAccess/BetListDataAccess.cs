@@ -21,6 +21,7 @@ namespace LicenseeAgent.BetList.DataAccess
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.BetList.Criteria;
+    using LicenseeAgent.Core.Exceptions;
 
     /// <summary>
     /// Account data access.
@@ -35,19 +36,30 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetBetList(ICriteria criteria)
         {
             var result = new TicketResult();
-
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-                // Main ticket
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
 
-                // Reference ticket
-                var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
-                result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
+                    // Main ticket
+                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+
+                    // Reference ticket
+                    var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
+                    result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
             }
 
             return result;
@@ -61,13 +73,25 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
             var result = new TicketResult();
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+
+                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
             }
 
             return result;
@@ -81,14 +105,25 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetParlayList(ICriteria criteria)
         {
             var result = new TicketResult();
-
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+
+                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
             }
 
             return result;
@@ -101,20 +136,32 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <returns>System Parlay Data.</returns>
         public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var systemParlayData = new SystemParlayData();
-                using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
+                if (!criteria.IsValid())
                 {
-                    var ticketList = multipleQuery.Read<SystemParlayTicket>();
-                    var serialList = multipleQuery.Read<SystemParlaySerial>();
-
-                    systemParlayData.TicketList = ticketList.Cast<ISystemParlayTicket>().ToList();
-                    systemParlayData.SerialList = serialList.Cast<ISystemParlaySerial>().ToList();
+                    throw new InvalidOperationException("Invalid criteria");
                 }
 
-                systemParlayData.Outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["outstanding"]);
-                return systemParlayData;
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var systemParlayData = new SystemParlayData();
+                    using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
+                    {
+                        var ticketList = multipleQuery.Read<SystemParlayTicket>();
+                        var serialList = multipleQuery.Read<SystemParlaySerial>();
+
+                        systemParlayData.TicketList = ticketList.Cast<ISystemParlayTicket>().ToList();
+                        systemParlayData.SerialList = serialList.Cast<ISystemParlaySerial>().ToList();
+                    }
+
+                    systemParlayData.Outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["outstanding"]);
+                    return systemParlayData;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
             }
         }
 
@@ -125,17 +172,29 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <returns>The list of matches.</returns>
         public DataTable GetBetListResults(ICriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-                return dataset.Tables[0];
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+
+                    return dataset.Tables[0];
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
             }
         }
 
         #region BetList.Utilities
-        
+
         /// <summary>
         /// Read main ticket data.
         /// </summary>
@@ -336,6 +395,6 @@ namespace LicenseeAgent.BetList.DataAccess
             return false;
         }
 
-        #endregion
+        #endregion BetList.Utilities
     }
 }

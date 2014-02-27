@@ -8,11 +8,11 @@ namespace LicenseeAgent.Core.Services
 {
     using System;
     using System.Collections.Generic;
+    using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Exceptions;
-    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// This class encapsulate dynamic repository to provide
@@ -145,6 +145,36 @@ namespace LicenseeAgent.Core.Services
                     var param = criteria.GetSpParams();
                     objectDb.ExecuteNonQuery(param);
                     UpdateOutput(objectDb, criteria);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Executes the return.
+        /// </summary>
+        /// <typeparam name="T">Type of return value.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns value with type T after execute.</returns>
+        /// <exception cref="System.InvalidOperationException">Invalid Criteria.</exception>
+        /// <exception cref="CriteriaException"></exception>
+        public T Execute<T>(ICriteria criteria) where T : IConvertible
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid Criteria");
+                }
+
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    return Converter.To<T>(objectDb.ExecuteScalar(param));
                 }
             }
             catch (Exception exception)

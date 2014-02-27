@@ -10,9 +10,11 @@
 
 namespace LicenseeAgent.Report.DataAccess
 {
+    using System;
     using System.Data;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Core.Exceptions;
 
     /// <summary>
     /// Results Report Data Access.
@@ -26,12 +28,24 @@ namespace LicenseeAgent.Report.DataAccess
         /// <returns>List of outright results.</returns>
         public DataTable GetResults(ICriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid Criteria");
+                }
 
-                return dataset.Tables[0];
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+
+                    return dataset.Tables[0];
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
     }

@@ -134,7 +134,6 @@
   </data>
 	<data name="AddDownline" xml:space="preserve">
     <value>Add Downline</value>
-    <comment>not</comment>
   </data>
 	<data name="AddNewAgent" xml:space="preserve">
     <value>新增代理</value>
@@ -317,7 +316,6 @@
   </data>
 	<data name="SBBetSetting" xml:space="preserve">
     <value>SB Bet Setting</value>
-    <comment>not</comment>
   </data>
 	<data name="ScoreMap" xml:space="preserve">
     <value>盈利预测图</value>
@@ -381,175 +379,132 @@
   </data>
 	<data name="AccountStatus" xml:space="preserve">
     <value>Account status</value>
-    <comment>not</comment>
   </data>
 	<data name="AccountWasStopped" xml:space="preserve">
     <value>Your account was stopped!</value>
-    <comment>not</comment>
   </data>
 	<data name="BetSettingInstructions" xml:space="preserve">
     <value>Bet Setting Instructions</value>
-    <comment>not</comment>
   </data>
 	<data name="Captcha" xml:space="preserve">
     <value>Captcha</value>
-    <comment>not</comment>
   </data>
 	<data name="ChangeStatus" xml:space="preserve">
     <value>Change status</value>
-    <comment>not</comment>
   </data>
 	<data name="ChangeStatusAgent" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.</value>
-    <comment>not</comment>
   </data>
 	<data name="ChangeStatusMember" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this member?</value>
-    <comment>not</comment>
   </data>
 	<data name="ChooseCurrency" xml:space="preserve">
     <value>Choose currency</value>
-    <comment>not</comment>
   </data>
 	<data name="ChooseLicensee" xml:space="preserve">
     <value>Choose licensee</value>
-    <comment>not</comment>
   </data>
 	<data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
-    <comment>not</comment>
   </data>
 	<data name="CustomerInformation" xml:space="preserve">
     <value>会员资料</value>
-    <comment>not</comment>
   </data>
 	<data name="InsertCustomer" xml:space="preserve">
     <value>Insert Customer</value>
-    <comment>not</comment>
   </data>
 	<data name="IpInformation" xml:space="preserve">
     <value>Ip Information</value>
-    <comment>not</comment>
   </data>
 	<data name="MaxCredit" xml:space="preserve">
     <value>Max Credit</value>
-    <comment>not</comment>
   </data>
 	<data name="MixSportsParlay" xml:space="preserve">
     <value>混合过关</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordAlert" xml:space="preserve">
     <value>Password Alert</value>
-    <comment>not</comment>
   </data>
 	<data name="PositionTakingSettingInstructions" xml:space="preserve">
     <value>Position Taking Setting Instructions</value>
-    <comment>not</comment>
   </data>
 	<data name="PositionTakingSimpleModeHeader" xml:space="preserve">
     <value>占成数 (Soccer Dead ball Handicap)</value>
-    <comment>not</comment>
   </data>
 	<data name="SignOut" xml:space="preserve">
     <value>Sign Out</value>
-    <comment>not</comment>
   </data>
 	<data name="ChangeCloseToOpenAgent" xml:space="preserve">
     <value>Are you sure you want to change Open status for this agent?</value>
-    <comment>not</comment>
   </data>
 	<data name="ChangeCloseToOpenMember" xml:space="preserve">
     <value>Are you sure you want to change Open status for this member?</value>
-    <comment>not</comment>
   </data>
 	<data name="CaptchaLength" xml:space="preserve">
     <value>Captcha must be 6 characters.</value>
-    <comment>not</comment>
   </data>
 	<data name="CaptchaRequired" xml:space="preserve">
     <value>You must enter validation code.</value>
-    <comment>not</comment>
   </data>
 	<data name="ConfirmPasswordRequired" xml:space="preserve">
     <value>Please enter confirm password.</value>
-    <comment>not</comment>
   </data>
 	<data name="CurrencyRequired" xml:space="preserve">
     <value>Please select currency.</value>
-    <comment>not</comment>
   </data>
 	<data name="CurrentPasswordRequired" xml:space="preserve">
     <value>Please enter current password.</value>
-    <comment>not</comment>
   </data>
 	<data name="HtmlDisallowed" xml:space="preserve">
     <value>The content does not allow HTML.</value>
-    <comment>not</comment>
   </data>
 	<data name="LanguageRequired" xml:space="preserve">
     <value>Please select language.</value>
-    <comment>not</comment>
   </data>
 	<data name="LicenseeRequired" xml:space="preserve">
     <value>Please select licensee.</value>
-    <comment>not</comment>
   </data>
 	<data name="NewPasswordRequired" xml:space="preserve">
     <value>Please enter new password.</value>
-    <comment>not</comment>
   </data>
 	<data name="NoLicenseeDomainFound" xml:space="preserve">
     <value>No licensee belongs to domain {0}.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordExpired" xml:space="preserve">
     <value>Your password has expired on {0}. You must change your password now.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordFirstUse" xml:space="preserve">
     <value>This is your first login. You must change your password before continuing.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordMustNotSame" xml:space="preserve">
     <value>New password must be different from old password.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordNotMatch" xml:space="preserve">
     <value>Your password and confirmation password do not match.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordRequired" xml:space="preserve">
     <value>Please enter your password.</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordRuleInstruction" xml:space="preserve">
     <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 特殊字符 （!、 @、 # 等。。)</value>
-    <comment>not</comment>
   </data>
 	<data name="PasswordWillExpired" xml:space="preserve">
     <value>Your password will expire on {0}. Do you want to change it now?</value>
-    <comment>not</comment>
   </data>
 	<data name="UsernameMinimumLength" xml:space="preserve">
     <value>Username must be at least 6 characters.</value>
-    <comment>not</comment>
   </data>
 	<data name="UsernameRequired" xml:space="preserve">
     <value>Please enter your username.</value>
-    <comment>not</comment>
   </data>
 	<data name="Soccer" xml:space="preserve">
     <value>足球</value>
-    <comment>not</comment>
   </data>
 	<data name="Event" xml:space="preserve">
     <value>赛事</value>
-    <comment>not</comment>
   </data>
 	<data name="League" xml:space="preserve">
     <value>联盟</value>
-    <comment>not</comment>
   </data>
 	<data name="BalanceInfo" xml:space="preserve">
     <value>余额资料</value>
@@ -565,70 +520,54 @@
   </data>
 	<data name="Cancel" xml:space="preserve">
     <value>取消</value>
-    <comment>not</comment>
   </data>
 	<data name="OK" xml:space="preserve">
     <value>OK</value>
-    <comment>not</comment>
   </data>
 	<data name="Setting" xml:space="preserve">
     <value>设定</value>
   </data>
 	<data name="EditSportsbook" xml:space="preserve">
     <value>修改体育博采</value>
-    <comment>not</comment>
   </data>
 	<data name="More" xml:space="preserve">
     <value>更多</value>
-    <comment>not</comment>
   </data>
 	<data name="ViewSportsbook" xml:space="preserve">
     <value>浏览体育博彩</value>
-    <comment>not</comment>
   </data>
 	<data name="BetList" xml:space="preserve">
     <value>投注历史</value>
-    <comment>not</comment>
   </data>
 	<data name="Draw" xml:space="preserve">
     <value>和</value>
-    <comment>not</comment>
   </data>
 	<data name="FH1X2" xml:space="preserve">
     <value>1H. 1X2</value>
-    <comment>not</comment>
   </data>
 	<data name="FHHDP" xml:space="preserve">
     <value>1H. HDP</value>
-    <comment>not</comment>
   </data>
 	<data name="FHOU" xml:space="preserve">
     <value>1H. O/U</value>
-    <comment>not</comment>
   </data>
 	<data name="FT1X2" xml:space="preserve">
     <value>全场标准盘</value>
-    <comment>not</comment>
   </data>
 	<data name="FTHDP" xml:space="preserve">
     <value>FT. HDP</value>
-    <comment>not</comment>
   </data>
 	<data name="FTOU" xml:space="preserve">
     <value>FT. O/U</value>
-    <comment>not</comment>
   </data>
 	<data name="Live" xml:space="preserve">
     <value>现场</value>
-    <comment>not</comment>
   </data>
 	<data name="Time" xml:space="preserve">
     <value>时间</value>
-    <comment>not</comment>
   </data>
 	<data name="Attention" xml:space="preserve">
     <value>Attention</value>
-    <comment>not</comment>
   </data>
 	<data name="MessageUnderMaintenance" xml:space="preserve">
     <value>我们正在服务器维护，网站将被从{0}至{1}无法使用。不便之处，敬请原谅！</value>
@@ -644,7 +583,6 @@
   </data>
 	<data name="NoDownline" xml:space="preserve">
     <value>There is no downline</value>
-    <comment>not</comment>
   </data>
 	<data name="ResetPassword" xml:space="preserve">
     <value>修改密码</value>
@@ -693,39 +631,30 @@
   </data>
 	<data name="Parlay" xml:space="preserve">
     <value>过关</value>
-    <comment>not</comment>
   </data>
 	<data name="Member" xml:space="preserve">
     <value>会员</value>
-    <comment>not</comment>
   </data>
 	<data name="PageTitle_ParlayTotalBets" xml:space="preserve">
     <value>过关 - 总投注</value>
-    <comment>not</comment>
   </data>
 	<data name="MixParlay" xml:space="preserve">
     <value>混合过关</value>
-    <comment>not</comment>
   </data>
 	<data name="SystemParlay" xml:space="preserve">
     <value>串关</value>
-    <comment>not</comment>
   </data>
 	<data name="CreditBalance" xml:space="preserve">
     <value>信用额度/ 现金</value>
-    <comment>not</comment>
   </data>
 	<data name="Credit" xml:space="preserve">
     <value>信用额度</value>
-    <comment>not</comment>
   </data>
 	<data name="UpdateCredit" xml:space="preserve">
     <value>Update Credit</value>
-    <comment>not</comment>
   </data>
 	<data name="EditCreditSuccessfully" xml:space="preserve">
     <value>Edit Credit Successfully</value>
-    <comment>not</comment>
   </data>
 	<data name="AgentWinLoss" xml:space="preserve">
     <value>代理商结果</value>
@@ -773,177 +702,264 @@
     <value>报表</value>
   </data>
 	<data name="BalanceInfoTitle" xml:space="preserve">
-		<value>余额资料</value>
-	</data>
+    <value>余额资料</value>
+  </data>
 	<data name="YesterdayBalance" xml:space="preserve">
-		<value>昨天餘額</value>
-	</data>
+    <value>昨天餘額</value>
+  </data>
 	<data name="YesterdayCash" xml:space="preserve">
-		<value>昨天馀额</value>
-	</data>
+    <value>昨天馀额</value>
+  </data>
 	<data name="YesterdayWinLoss" xml:space="preserve">
-		<value>昨日输赢</value>
-	</data>
+    <value>昨日输赢</value>
+  </data>
 	<data name="WinningAmount" xml:space="preserve">
-		<value>赢额</value>
-	</data>
+    <value>赢额</value>
+  </data>
 	<data name="Yes" xml:space="preserve">
-		<value>是</value>
-	</data>
+    <value>是</value>
+  </data>
 	<data name="Agent" xml:space="preserve">
-		<value>代理</value>
-	</data>
+    <value>代理</value>
+  </data>
 	<data name="AgentOutstanding" xml:space="preserve">
-		<value>代理未结束交易</value>
-	</data>
+    <value>代理未结束交易</value>
+  </data>
 	<data name="Amount" xml:space="preserve">
-		<value>总额</value>
-	</data>
+    <value>总额</value>
+  </data>
 	<data name="Announcement" xml:space="preserve">
-		<value>公告</value>
-	</data>
+    <value>公告</value>
+  </data>
 	<data name="Away" xml:space="preserve">
-		<value>客队</value>
-	</data>
+    <value>客队</value>
+  </data>
 	<data name="HomeNoBet" xml:space="preserve">
-		<value>客队（不获胜球队）</value>
-	</data>
+    <value>客队（不获胜球队）</value>
+  </data>
 	<data name="Balance" xml:space="preserve">
-		<value>结余</value>
-	</data>
+    <value>结余</value>
+  </data>
 	<data name="Bet" xml:space="preserve">
-		<value>下注额</value>
-	</data>
+    <value>下注额</value>
+  </data>
 	<data name="BetCount" xml:space="preserve">
-		<value>投注统计</value>
-	</data>
+    <value>投注统计</value>
+  </data>
 	<data name="BetCredit" xml:space="preserve">
-		<value>投注额度</value>
-	</data>
+    <value>投注额度</value>
+  </data>
 	<data name="Both" xml:space="preserve">
-		<value>两者</value>
-	</data>
+    <value>两者</value>
+  </data>
 	<data name="BothOneNeitherTeamToScore" xml:space="preserve">
-		<value>两者/一</value>
-	</data>
+    <value>两者/一</value>
+  </data>
 	<data name="CorrectScore" xml:space="preserve">
-		<value>波胆</value>
-	</data>
+    <value>波胆</value>
+  </data>
 	<data name="Currency" xml:space="preserve">
-		<value>货币</value>
-	</data>
+    <value>货币</value>
+  </data>
 	<data name="Date" xml:space="preserve">
-		<value>日期</value>
-	</data>
+    <value>日期</value>
+  </data>
 	<data name="DeadBall" xml:space="preserve">
-		<value>早餐,讓球</value>
-	</data>
+    <value>早餐,讓球</value>
+  </data>
 	<data name="Details" xml:space="preserve">
-		<value>细节</value>
-	</data>
+    <value>细节</value>
+  </data>
 	<data name="BetListDetails" xml:space="preserve">
-		<value>细节- 参照号码: </value>
-	</data>
+    <value>细节- 参照号码: </value>
+  </data>
 	<data name="DrawNoBet" xml:space="preserve">
-		<value>获胜球队</value>
-	</data>
+    <value>获胜球队</value>
+  </data>
 	<data name="Even" xml:space="preserve">
-		<value>双</value>
-	</data>
+    <value>双</value>
+  </data>
 	<data name="First" xml:space="preserve">
-		<value>首页</value>
-	</data>
+    <value>首页</value>
+  </data>
 	<data name="From" xml:space="preserve">
-		<value>从</value>
-	</data>
+    <value>从</value>
+  </data>
 	<data name="Fulltime" xml:space="preserve">
-		<value>全场</value>
-	</data>
+    <value>全场</value>
+  </data>
 	<data name="GivenCredit" xml:space="preserve">
-		<value>信用额度</value>
-	</data>
+    <value>信用额度</value>
+  </data>
 	<data name="Goal" xml:space="preserve">
-		<value>進球</value>
-	</data>
+    <value>進球</value>
+  </data>
 	<data name="HalfTime" xml:space="preserve">
-		<value>上半场</value>
-	</data>
+    <value>上半场</value>
+  </data>
 	<data name="InvalidAmount" xml:space="preserve">
-		<value>数额无效</value>
-	</data>
+    <value>数额无效</value>
+  </data>
 	<data name="Last" xml:space="preserve">
-		<value>尾页</value>
-	</data>
+    <value>尾页</value>
+  </data>
 	<data name="LastLogin" xml:space="preserve">
-		<value>最后登入</value>
-	</data>
+    <value>最后登入</value>
+  </data>
 	<data name="LastTransaction" xml:space="preserve">
-		<value>最后交易</value>
-	</data>
+    <value>最后交易</value>
+  </data>
 	<data name="NewMemberOfMonth" xml:space="preserve">
-		<value>本月新会员</value>
-	</data>
+    <value>本月新会员</value>
+  </data>
 	<data name="NoInfo" xml:space="preserve">
-		<value>没资料显示</value>
-	</data>
+    <value>没资料显示</value>
+  </data>
 	<data name="Odd" xml:space="preserve">
-		<value>单</value>
-	</data>
+    <value>单</value>
+  </data>
 	<data name="One" xml:space="preserve">
-		<value>一</value>
-	</data>
+    <value>一</value>
+  </data>
 	<data name="Or" xml:space="preserve">
-		<value>或者</value>
-	</data>
+    <value>或者</value>
+  </data>
 	<data name="Outright" xml:space="preserve">
-		<value>优胜冠军</value>
-	</data>
+    <value>优胜冠军</value>
+  </data>
 	<data name="Over" xml:space="preserve">
-		<value>大</value>
-	</data>
+    <value>大</value>
+  </data>
 	<data name="Reset" xml:space="preserve">
-		<value>重填</value>
-	</data>
+    <value>重填</value>
+  </data>
 	<data name="Team" xml:space="preserve">
-		<value>队伍</value>
-	</data>
+    <value>队伍</value>
+  </data>
 	<data name="Total" xml:space="preserve">
-		<value>总额</value>
-	</data>
+    <value>总额</value>
+  </data>
 	<data name="To" xml:space="preserve">
-		<value>到</value>
-	</data>
+    <value>到</value>
+  </data>
 	<data name="TodayWinLoss" xml:space="preserve">
-		<value>今日输赢</value>
-	</data>
+    <value>今日输赢</value>
+  </data>
 	<data name="TopWinningMembers" xml:space="preserve">
-		<value>本月前10名最高贏額會員</value>
-	</data>
+    <value>本月前10名最高贏額會員</value>
+  </data>
 	<data name="TotalBalance" xml:space="preserve">
-		<value>总平均</value>
-	</data>
+    <value>总平均</value>
+  </data>
 	<data name="TotalCash" xml:space="preserve">
-		<value>馀额总数</value>
-	</data>
+    <value>馀额总数</value>
+  </data>
 	<data name="TotalOutstanding" xml:space="preserve">
-		<value>未完成交易总数</value>
-	</data>
+    <value>未完成交易总数</value>
+  </data>
 	<data name="TransferSuccessfully" xml:space="preserve">
-		<value>成功转账</value>
-	</data>
+    <value>成功转账</value>
+  </data>
 	<data name="Turnover" xml:space="preserve">
-		<value>投注额</value>
-	</data>
+    <value>投注额</value>
+  </data>
 	<data name="Unlimitted" xml:space="preserve">
+    <value>无限</value>
+  </data>
+	<data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+	<data name="TransferMemberWarning" xml:space="preserve">
+    <value>注意: 若昨天余额被全数转账, 被 &lt;font class="highlight"&gt;特别显示&lt;/font&gt; 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
+  </data>
+	<data name="Note" xml:space="preserve">
+    <value>注意</value>
+  </data>
+	<data name="CleanSheet" xml:space="preserve">
+    <value>零失球</value>
+  </data>
+	<data name="DoubleChance" xml:space="preserve">
+    <value>双重机会</value>
+  </data>
+	<data name="IpContent" xml:space="preserve">
+    <value>附加信息於 DNSstuff: &lt;a target="_blank" href="http://www.iplocationfinder.com/{0}"&gt;點擊這裡&lt;/a&gt;. 注意: 由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
+  </data>
+	<data name="MessageAnnouncement" xml:space="preserve">
+    <value>讯息 / 公告</value>
+  </data>
+	<data name="PersonalMessage" xml:space="preserve">
+    <value>个人公告</value>
+  </data>
+	<data name="SpecialAnnouncements" xml:space="preserve">
+    <value>特别公告</value>
+  </data>
+	<data name="EditSportsbookAgent" xml:space="preserve">
+		<value>Edit Sportsbook Agent</value>
+	</data>
+	<data name="EditSportsbookMember" xml:space="preserve">
+		<value>Edit Sportsbook Member</value>
+	</data>
+	<data name="InsertSuccessfully" xml:space="preserve">
+		<value>Insert Successfully.</value>
+	</data>
+	<data name="ThreeWayHandicap" xml:space="preserve">
+		<value>3-Way Handicap</value>
+	</data>
+	<data name="FullName" xml:space="preserve">
+		<value>Full Name</value>
+	</data>
+	<data name="DontShowMessageAgain" xml:space="preserve">
+		<value>Don't show this message again.</value>
+	</data>
+	<data name="Error" xml:space="preserve">
+		<value>Error</value>
+	</data>
+	<data name="DownlineStatement" xml:space="preserve">
+		<value>Downline Statement</value>
+	</data>
+	<data name="Betting" xml:space="preserve">
+		<value>Betting</value>
+	</data>
+	<data name="OpeningBalance" xml:space="preserve">
+		<value>Opening Balance</value>
+	</data>
+	<data name="ToWinToNil" xml:space="preserve">
+		<value>To Win To Nil</value>
+	</data>
+	<data name="TooManyDownLineParameters" xml:space="preserve">
+		<value>There is too many parameters with name {0}</value>
+	</data>
+	<data name="TopTurnoverMembers" xml:space="preserve">
+		<value>Top 10 highest turnover members of the month</value>
+	</data>
+	<data name="Unlimited" xml:space="preserve">
 		<value>无限</value>
 	</data>
-	<data name="Update" xml:space="preserve">
-		<value>更改</value>
+	<data name="PleaseChooseCurrency" xml:space="preserve">
+		<value>Please choose a currency</value>
 	</data>
-	<data name="TransferMemberWarning" xml:space="preserve">
-		<value>注意: 若昨天余额被全数转账, 被 &lt;font class="highlight"&gt;特别显示&lt;/font&gt; 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
+	<data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
+		<value>Please choose a licensee and a currency</value>
 	</data>
-	<data name="Note" xml:space="preserve">
-		<value>注意</value>
+	<data name="AlertNoCurrencyPermission" xml:space="preserve">
+		<value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
+	</data>
+	<data name="PublicAnnouncements" xml:space="preserve">
+		<value>Public Announcements</value>
+	</data>
+	<data name="UpdateBetSettingSuccessfully" xml:space="preserve">
+		<value>Updated bet setting successfully.</value>
+	</data>
+	<data name="UpdateCommissionSuccessfully" xml:space="preserve">
+		<value>Updated commission setting successfully.</value>
+	</data>
+	<data name="TransferTimeWarning" xml:space="preserve">
+		<value>You can only transfer from 12pm to 11:59pm (GMT-4).</value>
+	</data>
+	<data name="UsedCredit" xml:space="preserve">
+		<value>Used Credit</value>
+	</data>
+	<data name="YourStatistics" xml:space="preserve">
+		<value>Your Statistics</value>
 	</data>
 </root>

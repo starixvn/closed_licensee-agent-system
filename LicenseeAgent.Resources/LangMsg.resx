@@ -122,18 +122,15 @@
   </data>
   <data name="Msg_60020" xml:space="preserve">
     <value>This account was disabled!</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_80001" xml:space="preserve">
     <value>The username or password you entered is incorrect.</value>
   </data>
   <data name="Msg_80007" xml:space="preserve">
     <value>Your password was last changed on {0}. Please enter your new password.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_80008" xml:space="preserve">
     <value>Your account has been locked. Please contact Customer Service Department.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_40021" xml:space="preserve">
     <value>The old password is incorrect.</value>
@@ -143,105 +140,81 @@
   </data>
   <data name="Msg_1002" xml:space="preserve">
     <value>Failed to insert agent.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1003" xml:space="preserve">
     <value>Min Bet must be less than or equal to Max Bet ({0}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1004" xml:space="preserve">
     <value>Min Bet must be less than or equal to Max Per Match ({0}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1005" xml:space="preserve">
     <value>Max Bet must be less than or equal to Max Per Match ({0}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1006" xml:space="preserve">
     <value>Min Bet must be greater than or equal to {0} ({1}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1007" xml:space="preserve">
     <value>Max Bet must be less than or equal to {0} ({1}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1008" xml:space="preserve">
     <value>Max Per Match must be less than or equal to {0} ({1})</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1009" xml:space="preserve">
     <value>Invalid commission rate.</value>
   </data>
   <data name="Msg_1010" xml:space="preserve">
     <value>% PT must be greater than or equal to zero ( {0} - {1} ).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1011" xml:space="preserve">
     <value>% Min given PT must be less than or equal to % Max given PT ( {0} - {1} ).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1012" xml:space="preserve">
     <value>% PT must be equal or less than Max PT of Licensee ( {0} - {1} ).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1013" xml:space="preserve">
     <value>%Min is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1014" xml:space="preserve">
     <value>%Max is invalid, it must be between {0} and {1} ({2} - {3}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1015" xml:space="preserve">
     <value>%Preset is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1016" xml:space="preserve">
     <value>The given credit must be between 0 and {0}.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1017" xml:space="preserve">
     <value>The commission must be less than or equal to Parent Agent commission.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1018" xml:space="preserve">
     <value>Failed to copy data to LicenseeCust.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1019" xml:space="preserve">
     <value>The custid already exists in the LicenseeCust.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_40004" xml:space="preserve">
     <value>Failed to create customer. Please try again.</value>
   </data>
   <data name="Msg_1020" xml:space="preserve">
     <value>The username does not exist.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1021" xml:space="preserve">
     <value>%PT is invalid, it must be between {0:p} and {1:p} ({2} - {3})</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_80009" xml:space="preserve">
     <value>Failed to change password.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1001" xml:space="preserve">
     <value>Parent Agent does not exist.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1024" xml:space="preserve">
     <value>On_AdminId does not exist.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1022" xml:space="preserve">
     <value>The agent does not exist.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1023" xml:space="preserve">
     <value>Updated fail!</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1025" xml:space="preserve">
     <value>Fail to update agent's bet setting.</value>
@@ -263,19 +236,15 @@
   </data>
   <data name="Msg_1031" xml:space="preserve">
     <value>This user's upline was closed. Cannot edit.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1032" xml:space="preserve">
     <value>No information available!</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1033" xml:space="preserve">
     <value>The searched user belongs to currency {0}. Do you want to change all data to {0} currency?</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1034" xml:space="preserve">
     <value>There is no downline.</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1036" xml:space="preserve">
     <value>You are not authorized for this page.</value>

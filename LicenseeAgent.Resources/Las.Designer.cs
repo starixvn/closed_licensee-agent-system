@@ -1816,7 +1816,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&apos;prewrap&apos;&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;span class=&apos;prewrap&apos;&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;.
         /// </summary>
         public static string PasswordHint {
             get {
@@ -2095,7 +2095,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ※Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well..
+        ///   Looks up a localized string similar to ?Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well..
         /// </summary>
         public static string SimpleModeNote {
             get {

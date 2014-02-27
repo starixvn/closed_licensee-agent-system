@@ -17,12 +17,12 @@
                             HeaderText: "#", Width: 30, Name: "RowNo", CellAlign: "center"
                         },
                         {
-                            HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", allowTruncate: true
+                            HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", CanResize: true
                         },
                         {
-                            HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", allowTruncate: true,
+                            HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", CanResize: true,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                if (rowData.CustomerName.trim() == '') {
+                                if ($.trim(rowData.CustomerName) == '') {
                                     rowData.CustomerName = '---';
                                 }
                                 return '{0}'.format(rowData.CustomerName);

@@ -1,5 +1,12 @@
 ﻿var MESSAGE = (function ($) {
+    var MAX_ROW_PER_PAGE = 1;
+    var ITEMS_PER_PAGE_ARRAY = [1, 2, 3, 4];
+
     return {
+        storageParams: {
+            PageIndex: 0,
+            PageSize: MAX_ROW_PER_PAGE
+        },
         initialize: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
@@ -49,6 +56,44 @@
             //                    CORE.unblockUI();
             //                }
             //            });
+        },
+        showAnnouncements: function (messages) {
+            var gridOptions = {
+                columns: [
+                    { HeaderText: "#", Name: "No", Width: 30, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
+                    { HeaderText: "ID", Name: "ID", Width: 50, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
+                    { HeaderText: "Post Date", Name: "PostDate", Width: 70, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
+                    { HeaderText: "Message", Name: "Message", Width: 800, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' }
+                ],
+                showTree: true,
+                hideYBackGroundScroller: true,
+                fullHeight: false,
+                gridHeight: 600,
+                showPager: true,
+                customPager: true,
+                pagerOption: {
+                    itemsPerPage: MESSAGE.storageParams.PageSize,
+                    currentPage: MESSAGE.storageParams.PageIndex,
+                    itemsPerPageArray: ITEMS_PER_PAGE_ARRAY,
+                    pagerSelectCallBack: function (pageIndex, pageSize) {
+                        MESSAGE.renderPagingEvent(pageIndex, pageSize);
+                    }
+                },
+                marginRight: 0
+            };
+
+            gridOptions.pagerOption.totalItem = messages.length - 1;
+            gridOptions.bodyRows = CORE.genGridRows(messages, gridOptions);
+
+            $('#MessageArea').fanexGrid(gridOptions);
+        },
+        renderPagingEvent: function (pageIndex, pageSize) {
+            MESSAGE.storageParams.PageIndex = pageIndex;
+            MESSAGE.storageParams.PageSize = pageSize;
+
+            MESSAGE.showAnnouncements();
+
+            return false;
         }
     }
 } (jQuery));

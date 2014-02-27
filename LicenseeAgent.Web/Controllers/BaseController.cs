@@ -273,6 +273,12 @@ namespace LicenseeAgent.Web.Controllers
             return Redirect(AppURLs.URLs.AccessDenied);
         }
 
+        protected JavaScriptResult RedirectToAccessDeniedJavascript()
+        {
+            string script = string.Format("alert('{0}'", Las.AccessDeniedMsg);
+            return JavaScript(script);
+        }
+
         /// <summary>
         /// Get Error message.
         /// </summary>

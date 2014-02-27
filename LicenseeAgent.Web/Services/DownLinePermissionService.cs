@@ -24,11 +24,19 @@ namespace LicenseeAgent.Web.Services
             _downLineService = downLineService;
         }
 
-        public bool CheckForEditingCustomerSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging)
+        public bool CheckForEditingCustomerSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
         {
             return editingCustomerSettingBelonging.TargetRoleId == (int)Role.Member
                 ? CheckForEditingMemberSetting(editingCustomerSettingBelonging)
                 : CheckForEditingAgentSetting(editingCustomerSettingBelonging);
+        }
+
+        public bool CheckForInsertingCustomerSetting(CustomerSettingBelonging insertingCustomerSettingBelonging)
+        {
+            return insertingCustomerSettingBelonging.FormId == FormType.Add
+                && IsDirectDownLineAgent(insertingCustomerSettingBelonging.CustId)
+                ? true
+                : false;
         }
 
         /// <summary>
@@ -180,19 +188,11 @@ namespace LicenseeAgent.Web.Services
         /// <returns>
         /// Is valid or not.
         /// </returns>
-        private bool CheckForEditingAgentSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging)
+        private bool CheckForEditingAgentSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
         {
             var agentInfo = SessionManager.CurrentSession.AgentInfo;
             switch (editingCustomerSettingBelonging.FormId)
             {
-                case FormType.Add:
-                    if (editingCustomerSettingBelonging.CustId == agentInfo.AgentId)
-                    {
-                        return true;
-                    }
-
-                    break;
-
                 case FormType.Edit:
                     if (IsDirectDownLineAgent(editingCustomerSettingBelonging.TargetCustId))
                     {
@@ -218,19 +218,11 @@ namespace LicenseeAgent.Web.Services
         /// </summary>
         /// <param name="editingCustomerSettingBelonging">The editing customer setting belonging.</param>
         /// <returns>Is valid or not.</returns>
-        private bool CheckForEditingMemberSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging)
+        private bool CheckForEditingMemberSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
         {
             var agentInfo = SessionManager.CurrentSession.AgentInfo;
             switch (editingCustomerSettingBelonging.FormId)
             {
-                case FormType.Add:
-                    if (editingCustomerSettingBelonging.CustId == agentInfo.AgentId)
-                    {
-                        return true;
-                    }
-
-                    break;
-
                 case FormType.Edit:
                     if (IsDirectDownLineMember(editingCustomerSettingBelonging.TargetCustId))
                     {

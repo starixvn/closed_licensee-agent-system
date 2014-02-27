@@ -13,7 +13,9 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public interface IDownlLinePermissionService
     {
-        bool CheckForEditingCustomerSetting(EditingCustomerSettingBelonging editingCustomerSettingBelonging);
+        bool CheckForEditingCustomerSetting(CustomerSettingBelonging customerSettingBelonging);
+
+        bool CheckForInsertingCustomerSetting(CustomerSettingBelonging customerSettingBelonging);
 
         bool IsDownLineMember(int memberId);
 

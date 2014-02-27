@@ -87,7 +87,7 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
-    <Compile Include="Entities\EditingCustomerSettingBelonging.cs" />
+    <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />

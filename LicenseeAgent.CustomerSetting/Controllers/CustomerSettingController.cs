@@ -80,7 +80,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Action Result.
         /// </returns>
         [HttpGet]
-        public ActionResult GetSettingForInsert(GetSettingForInsertViewModel model)
+        public JavaScriptResult GetSettingForInsert(GetSettingForInsertViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
@@ -90,6 +90,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetRoleId = model.TargetRoleId,
                 Ip = Request.GetClientIp()
             };
+
+            if (!CheckForInsertingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedJavascript();
+            }
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForInsert(settingContext);
             string javascriptString = _customerSettingService.FormatJavascriptReturn(
@@ -106,7 +111,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// JAVASCRIPT string object.
         /// </returns>
         [HttpGet]
-        public ActionResult GetSettingForUpdate(GetSettingForUpdateViewModel model)
+        public JavaScriptResult GetSettingForUpdate(GetSettingForUpdateViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
@@ -120,7 +125,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             if (!CheckForEditingCustomerSetting(settingContext))
             {
-                return RedirectToAccessDeniedPage();
+                return RedirectToAccessDeniedJavascript();
             }
 
             var sportsBookCustomer = _customerSettingService.GetSportsbookSettingForUpdate(settingContext);
@@ -170,6 +175,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     : (int)Role.Agent;
             }
 
+            if (!CheckForInsertingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             return View("~/Views/CustomerSetting/InsertCustomer.cshtml", settingContext);
         }
 
@@ -179,14 +189,21 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON result.</returns>
         [HttpPost]
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (model == null
-                || model.SettingContext == null
-                || model.UpdateDataSportsbookCustomer == null
+            if (model == null || model.SettingContext == null || model.UpdateDataSportsbookCustomer == null
                 || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
+            }
+
+            if (!CheckForInsertingCustomerSetting(model.SettingContext))
+            {
+                return RedirectToAccessDeniedJson();
             }
 
             var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
@@ -194,7 +211,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 UserName = model.UpdateDataSportsbookCustomer.CustInfo.UserName
             });
-
             if (checkUserNameResult.ErrCode != Result.SuccessValue)
             {
                 return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
@@ -492,7 +508,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <returns>Returns true if is valid settings.</returns>
         private bool CheckForEditingCustomerSetting(SettingContext settingContext)
         {
-            var editingCustomerSettingBelonging = new EditingCustomerSettingBelonging
+            var editingCustomerSettingBelonging = new CustomerSettingBelonging
             {
                 FormId = settingContext.FormId,
                 CustId = settingContext.CustId,
@@ -502,6 +518,24 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             };
 
             return _permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
+        }
+
+        /// <summary>
+        /// Checks for inserting customer setting.
+        /// </summary>
+        /// <param name="settingContext">The setting context.</param>
+        /// <returns>Returns true if is valid settings.</returns>
+        private bool CheckForInsertingCustomerSetting(SettingContext settingContext)
+        {
+            var insertingCustomerSettingBelonging = new CustomerSettingBelonging
+            {
+                FormId = settingContext.FormId,
+                CustId = settingContext.CustId,
+                RoleId = settingContext.RoleId,
+                TargetRoleId = settingContext.TargetRoleId
+            };
+
+            return _permissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
         }
     }
 }

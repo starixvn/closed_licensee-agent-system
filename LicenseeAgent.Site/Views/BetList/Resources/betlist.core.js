@@ -57,7 +57,6 @@ fanex.betlist.core = {
         var url = showBetListDetailsUrl + transId + "&status=" + status;
         $.ajax({
             type: "GET",
-            contentType: 'application/json',
             dataType: "text",
             cache: false,
             url: CORE.resolveUrl(url),
@@ -84,7 +83,6 @@ fanex.betlist.core = {
             var url = showMixParlayDetailUrl + transId;
             $.ajax({
                 type: "GET",
-                contentType: 'application/json',
                 dataType: "text",
                 cache: false,
                 url: CORE.resolveUrl(url),
@@ -116,7 +114,6 @@ fanex.betlist.core = {
         var url = showSystemParlayDetailsUrl + refNo + "&custId=" + custId;
         $.ajax({
             type: "GET",
-            contentType: 'application/json',
             dataType: "text",
             cache: false,
             url: CORE.resolveUrl(url),

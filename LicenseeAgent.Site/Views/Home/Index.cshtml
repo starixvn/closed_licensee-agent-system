@@ -28,6 +28,8 @@
     @Scripts.Render("~/js/language")
 </head>
 <body>
+    @Html.Hidden("AppRoot", Url.Content("~/"))
+    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
     <div class="navbar navbar-fixed-top">
         <div class="header-box">
             @Html.Partial("_Header")
@@ -58,8 +60,6 @@
     </div>
     <div class="block-loading" style="display: none;">
     </div>
-    @Html.Hidden("AppRoot", Url.Content("~/"))
-    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
     @Scripts.Render("~/js/moment")

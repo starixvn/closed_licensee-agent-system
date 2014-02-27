@@ -401,3 +401,8 @@
 $(function () {
     CORE.init();
 });
+
+$(window).load(function () {
+    CORE.UrlRoot = $('#AppRoot').val();
+    CORE.UrlSignOut = $('#AppRoot').val() + 'Account/SignOut';
+});

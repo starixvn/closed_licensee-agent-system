@@ -29,13 +29,14 @@ if (fanex.customerSetting) {
                         currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     }
 
-                    if (currentPt.actions.validPreset(false)) {
-                        currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
-                        currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
-                        fanex.hideHint();
+                    if (!currentPt.actions.validPreset(false)) {
+                        return;
                     }
 
+                    currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
+                    currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
                     currentPt.actions.whenPresetChange();
+                    fanex.hideHint();
                 },
                 onChangeMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
@@ -52,12 +53,12 @@ if (fanex.customerSetting) {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
 
-                    currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
-                    currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
-
                     if (!currentPt.actions.validMax(false)) {
                         return;
                     }
+
+                    currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
+                    currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
                     currentPt.MaxRangeOfMin = currentPt.Max;
                     fanex.hideHint();
                 },

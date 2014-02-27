@@ -17,26 +17,33 @@ namespace LicenseeAgent.Core.Exceptions
     [Serializable]
     public class InvalidAgentException : Exception
     {
-        public InvalidAgentException(AgentInfo agentInfo, string reason)
+        public InvalidAgentException(AgentInfo agentInfo)
+            : base()
         {
             AgentInfo = agentInfo;
-            Reason = reason;
+        }
+
+        public InvalidAgentException(AgentInfo agentInfo, string message)
+            : base(message)
+        {
+            AgentInfo = agentInfo;
         }
 
         public AgentInfo AgentInfo { get; private set; }
-
-        public string Reason { get; private set; }
 
         public override string Message
         {
             get
             {
-                var stringBuilder = new StringBuilder(Reason);
+                var stringBuilder = new StringBuilder(base.Message);
                 if (AgentInfo != null)
                 {
-                    stringBuilder.AppendFormat("\nAgentId: {0}", AgentInfo.AgentId);
                     stringBuilder.AppendFormat("\nLicenseeId: {0}", AgentInfo.LicenseeId);
                     stringBuilder.AppendFormat("\nCurrencyId: {0}", AgentInfo.CurrencyId);
+                    stringBuilder.AppendFormat("\nAgentId: {0}", AgentInfo.AgentId);
+                    stringBuilder.AppendFormat("\nAgentName: {0}", AgentInfo.UserName);
+                    stringBuilder.AppendFormat("\nAgentLevel: {0}", AgentInfo.AgentLevel);
+                    stringBuilder.AppendFormat("\nNumberOfLevel: {0}", AgentInfo.NumberOfLevel);
                 }
 
                 return stringBuilder.ToString();

@@ -602,7 +602,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.sitemap" />
-    <Content Include="Views\Error\WhoAmI.cshtml" />
+    <Content Include="Views\Tool\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />

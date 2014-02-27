@@ -80,11 +80,5 @@ namespace LicenseeAgent.Web.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult WhoAmI()
-        {
-            return View();
-        }
     }
 }

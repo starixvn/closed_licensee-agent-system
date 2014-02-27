@@ -52,5 +52,11 @@ namespace LicenseeAgent.Web.Controllers
 
             return Json(password);
         }
+
+        [HttpGet]
+        public ActionResult WhoAmI()
+        {
+            return View();
+        }
     }
 }

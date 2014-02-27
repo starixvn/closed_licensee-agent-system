@@ -153,6 +153,7 @@ namespace LicenseeAgent.Site
                 {
                     var agentInfo = SessionManager.CurrentSession.AgentInfo;
                     stringBuilder.AppendFormat("\nAgentId: {0}", agentInfo.AgentId);
+                    stringBuilder.AppendFormat("\nAgentName: {0}", agentInfo.UserName);
                     stringBuilder.AppendFormat("\nLicenseeId: {0}", agentInfo.LicenseeId);
                     stringBuilder.AppendFormat("\nCurrencyId: {0}", agentInfo.CurrencyId);
                 }

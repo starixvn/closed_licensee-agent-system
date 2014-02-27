@@ -38,7 +38,6 @@
                 });
             }
 
-            $('#submit').addClass('disabled');
             $('#agentName').keyup(function () {
                 if ($.trim($('#agentName').val()) != '') {
                     $('#submit').removeClass('disabled');

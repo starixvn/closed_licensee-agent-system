@@ -974,6 +974,9 @@
   <data name="Running" xml:space="preserve">
     <value>进行中</value>
   </data>
+  <data name="TicketNotFound" xml:space="preserve">
+    <value>Ticket is not found</value>
+  </data>
   <data name="Void" xml:space="preserve">
     <value>作废</value>
   </data>

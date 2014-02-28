@@ -20,7 +20,7 @@
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
-    <div id="mainContainer">
+    <div id="mainContainer" class="@(Request.IsPopup() ? "popup" : "")">
         @RenderBody()
     </div>
     @if (ViewBag.PageContext != null)

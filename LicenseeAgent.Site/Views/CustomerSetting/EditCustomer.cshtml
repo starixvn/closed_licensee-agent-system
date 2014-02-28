@@ -24,9 +24,7 @@
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting/sportsbook")
 }
-<div class="legend">
-    @ViewBag.Title
-</div>
+@RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
     class="fanex-sportbook-setting" ng-controller="customerSetting.custSettingController"
     data-href="@("~/CustomerSetting/UpdateCustomer")">

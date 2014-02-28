@@ -20,7 +20,7 @@
             return currentOpenDialog;
         },
         openDialogFrame: function (url, options) {
-            url = CORE.resolveUrl(url);
+            url = CORE.resolveUrl(url) + '&popup';
             var frame = $('#app-dialog-frame');
             if (frame.length == 0) {
                 frame = $('<div id="app-dialog-frame"></div>');
@@ -33,8 +33,6 @@
                 // update popup title
                 var popupTitle = popupDocument.title;
                 $('.ui-dialog-title').html(popupTitle);
-                // hide margin
-                $(popupDocument).find('#mainContainer').addClass("popup");
 
                 //auto width and height
                 if (options == null || options == undefined) {

@@ -19,6 +19,12 @@ namespace LicenseeAgent.Web.Mvc
     /// </summary>
     public static class Extensions
     {
+        public static bool IsPopup(this HttpRequestBase request)
+        {
+            var nullKeys = request.QueryString.GetValues(null);
+            return nullKeys != null && nullKeys.Contains("popup");
+        }
+
         public static string GetActionName(this HttpContextBase httpContext)
         {
             return httpContext.Request.RequestContext.RouteData.GetRequiredString("action");

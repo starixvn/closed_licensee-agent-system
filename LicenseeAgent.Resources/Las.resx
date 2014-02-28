@@ -964,6 +964,9 @@
   <data name="Running" xml:space="preserve">
     <value>Running</value>
   </data>
+  <data name="TicketNotFound" xml:space="preserve">
+    <value>Ticket is not found</value>
+  </data>
   <data name="Void" xml:space="preserve">
     <value>Void</value>
   </data>

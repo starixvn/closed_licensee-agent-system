@@ -20,6 +20,7 @@ namespace LicenseeAgent.Core.Services
     public class UnderMaintenanceService : IDisposable, IUnderMaintenanceService
     {
         private const int WaitInterval = 1000; // 1 second.
+        private const int CacheTimeout = 60 * 1000; // 60 seconds.
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
         private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;
@@ -43,7 +44,7 @@ namespace LicenseeAgent.Core.Services
                 if (_threadMuText.WaitOne(WaitInterval))
                 {
                     maintenanceInfo = InternalGetUnderMaintenanceInfo();
-                    _cacheManager.Set<UnderMaintenanceInfo>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));
+                    _cacheManager.Set<UnderMaintenanceInfo>(MaintenanceCacheKey, maintenanceInfo, CacheTimeout);
                     _threadMuText.ReleaseMutex();
                 }
                 else

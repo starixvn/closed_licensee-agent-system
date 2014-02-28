@@ -23,6 +23,7 @@ namespace LicenseeAgent.BetList.Services
     using Fanex.NAP.Framework.Data;
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Criteria;
+    using LicenseeAgent.Core.Exceptions;
 
     /// <summary>
     /// TODO: Update summary.
@@ -58,7 +59,19 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         public TicketResult GetBetList(ICriteria criteria)
         {
-            return _betlistDataAccess.GetBetList(criteria);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return _betlistDataAccess.GetBetList(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
 
         /// <summary>
@@ -68,7 +81,19 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
-            return _betlistDataAccess.GetMixParlayDetails(criteria);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return _betlistDataAccess.GetMixParlayDetails(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
 
         /// <summary>
@@ -78,9 +103,21 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>System Parlay Data.</returns>
         public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
         {
-            return _betlistDataAccess.GetSystemParlayResult(criteria);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return _betlistDataAccess.GetSystemParlayResult(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
-        
+
         /// <summary>
         /// Get Bet List Details.
         /// </summary>
@@ -88,9 +125,21 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>A list of bet list details.</returns>
         public IEnumerable<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria)
         {
-            return GetEntites<RawBetListDetails>(criteria);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return GetEntites<RawBetListDetails>(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
-        
+
         /// <summary>
         /// Get Parlay List.
         /// </summary>
@@ -98,7 +147,19 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>Ticket results.</returns>
         public TicketResult GetParlayList(ICriteria criteria)
         {
-            return _betlistDataAccess.GetParlayList(criteria);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return _betlistDataAccess.GetParlayList(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
 
         /// <summary>
@@ -108,8 +169,20 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>The list of matches.</returns>
         public IList<Parlay> GetSportsbookResults(BetListResultsSportsbookCriteria criteria)
         {
-            var dataTable = _betlistDataAccess.GetBetListResults(criteria);
-            return BindResults(dataTable, -1);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                var dataTable = _betlistDataAccess.GetBetListResults(criteria);
+                return BindResults(dataTable, -1);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
 
         /// <summary>
@@ -119,8 +192,20 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>The parlay list.</returns>
         public IList<Parlay> GetParlayResults(BetListResultsParlayCriteria criteria)
         {
-            var dataTable = _betlistDataAccess.GetBetListResults(criteria);
-            return BindResults(dataTable, criteria.RefNo);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                var dataTable = _betlistDataAccess.GetBetListResults(criteria);
+                return BindResults(dataTable, criteria.RefNo);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
         }
 
         #region BetList.Results.Utilities
@@ -213,6 +298,6 @@ namespace LicenseeAgent.BetList.Services
             return new List<Parlay>();
         }
 
-        #endregion
+        #endregion BetList.Results.Utilities
     }
 }

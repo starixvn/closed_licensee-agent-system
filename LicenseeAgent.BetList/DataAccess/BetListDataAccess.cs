@@ -21,7 +21,6 @@ namespace LicenseeAgent.BetList.DataAccess
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.BetList.Criteria;
-    using LicenseeAgent.Core.Exceptions;
 
     /// <summary>
     /// Account data access.
@@ -36,30 +35,18 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetBetList(ICriteria criteria)
         {
             var result = new TicketResult();
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var dataset = objectDb.ExecuteDataSet(param);
+                // Main ticket
+                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
 
-                    // Main ticket
-                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
-
-                    // Reference ticket
-                    var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
-                    result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
+                // Reference ticket
+                var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
+                result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
             }
 
             return result;
@@ -73,25 +60,13 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
             var result = new TicketResult();
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var dataset = objectDb.ExecuteDataSet(param);
-
-                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
+                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
             }
 
             return result;
@@ -105,25 +80,13 @@ namespace LicenseeAgent.BetList.DataAccess
         public TicketResult GetParlayList(ICriteria criteria)
         {
             var result = new TicketResult();
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var dataset = objectDb.ExecuteDataSet(param);
-
-                    var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                    result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
+                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
+                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
             }
 
             return result;
@@ -136,32 +99,20 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <returns>System Parlay Data.</returns>
         public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
         {
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                if (!criteria.IsValid())
+                var systemParlayData = new SystemParlayData();
+                using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    throw new InvalidOperationException("Invalid criteria");
+                    var ticketList = multipleQuery.Read<SystemParlayTicket>();
+                    var serialList = multipleQuery.Read<SystemParlaySerial>();
+
+                    systemParlayData.TicketList = ticketList.Cast<ISystemParlayTicket>().ToList();
+                    systemParlayData.SerialList = serialList.Cast<ISystemParlaySerial>().ToList();
                 }
 
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var systemParlayData = new SystemParlayData();
-                    using (var multipleQuery = objectDb.QueryMultiple(criteria.GetSpParams()))
-                    {
-                        var ticketList = multipleQuery.Read<SystemParlayTicket>();
-                        var serialList = multipleQuery.Read<SystemParlaySerial>();
-
-                        systemParlayData.TicketList = ticketList.Cast<ISystemParlayTicket>().ToList();
-                        systemParlayData.SerialList = serialList.Cast<ISystemParlaySerial>().ToList();
-                    }
-
-                    systemParlayData.Outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["outstanding"]);
-                    return systemParlayData;
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
+                systemParlayData.Outstanding = Converter.ToDecimal(objectDb.GetOuputParams()["outstanding"]);
+                return systemParlayData;
             }
         }
 
@@ -172,24 +123,12 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <returns>The list of matches.</returns>
         public DataTable GetBetListResults(ICriteria criteria)
         {
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
+                var param = criteria.GetSpParams();
+                var dataset = objectDb.ExecuteDataSet(param);
 
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var dataset = objectDb.ExecuteDataSet(param);
-
-                    return dataset.Tables[0];
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
+                return dataset.Tables[0];
             }
         }
 

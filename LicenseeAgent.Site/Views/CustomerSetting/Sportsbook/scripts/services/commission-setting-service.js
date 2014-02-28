@@ -115,11 +115,11 @@ if (fanex.customerSetting) {
                             { name: 'C', agentCommission: commissionSettingModel[0].Upline.DiscountC, memberCommission: (commissionSetting.UserGroup == 'C' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountC) },
                             { name: 'D', agentCommission: commissionSettingModel[0].Upline.DiscountD, memberCommission: (commissionSetting.UserGroup == 'D' ? commissionSettingModel[0].Discount : commissionSettingModel[0].Upline.DiscountD)}],
                         // GroupA, GroupB, GroupC, GroupD
-                        line1: { name: language['commissionSetting_HDP_OU_OE_Comm'], agentCommission: 0, memberCommission: 0 },
+                        line1: { name: language['commissionSetting_HDP_OU_OE_Comm'], agentCommission: 0, memberCommission: 0, oldCommission: 0 },
                         // 1x2 Comm
-                        line2: { name: language['commissionSetting_1x2Comm'], agentCommission: commissionSettingModel[1].Upline.DiscountA, memberCommission: commissionSettingModel[1].Discount },
+                        line2: { name: language['commissionSetting_1x2Comm'], agentCommission: commissionSettingModel[1].Upline.DiscountA, memberCommission: commissionSettingModel[1].Discount, oldCommission: commissionSettingModel[1].Discount },
                         // Others Comm
-                        line3: { name: language['commissionSetting_OthersComm'], agentCommission: commissionSettingModel[2].Upline.DiscountA, memberCommission: commissionSettingModel[2].Discount }
+                        line3: { name: language['commissionSetting_OthersComm'], agentCommission: commissionSettingModel[2].Upline.DiscountA, memberCommission: commissionSettingModel[2].Discount, oldCommission: commissionSettingModel[2].Discount }
                     };
 
                     return this.changeViewModel(commissionSettingViewModel);
@@ -181,17 +181,17 @@ if (fanex.customerSetting) {
                 }
                 else {
                     if (commissionSettingViewModel.selectedGroup != commissionSettingViewModel.oldSelectedGroup
-                    || (commissionSettingViewModel.selectedGroup == commissionSettingViewModel.oldSelectedGroup && commissionSettingModel[0].Discount != commissionSettingViewModel.line1.memberCommission)) {
+                    || (commissionSettingViewModel.selectedGroup == commissionSettingViewModel.oldSelectedGroup && commissionSettingViewModel.line1.memberCommission != commissionSettingViewModel.line1.oldCommission)) {
                         commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
                         commissionSettings.push(commissionSettingModel[0]);
                     }
                     // 1x2 Comm
-                    if (commissionSettingModel[1].Discount != commissionSettingViewModel.line2.memberCommission) {
+                    if (commissionSettingViewModel.line2.memberCommission != commissionSettingViewModel.line2.oldCommission) {
                         commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
                         commissionSettings.push(commissionSettingModel[1]);
                     }
                     // Others Comm
-                    if (commissionSettingModel[2].Discount != commissionSettingViewModel.line3.memberCommission) {
+                    if (commissionSettingViewModel.line3.memberCommission != commissionSettingViewModel.line3.oldCommission) {
                         commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
                         commissionSettings.push(commissionSettingModel[2]);
                     }
@@ -204,18 +204,22 @@ if (fanex.customerSetting) {
             if (commissionSettingViewModel.selectedGroup == 'A') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[0].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[0].memberCommission;
+                commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[0].memberCommission;
             }
             else if (commissionSettingViewModel.selectedGroup == 'B') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[1].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[1].memberCommission;
+                commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[1].memberCommission;
             }
             else if (commissionSettingViewModel.selectedGroup == 'C') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[2].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[2].memberCommission;
+                commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[2].memberCommission;
             }
             else if (commissionSettingViewModel.selectedGroup == 'D') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[3].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[3].memberCommission;
+                commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[3].memberCommission;
             }
 
             return commissionSettingViewModel;

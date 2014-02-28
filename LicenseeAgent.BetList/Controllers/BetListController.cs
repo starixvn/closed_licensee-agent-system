@@ -78,7 +78,7 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.MoveBetsDay = balanceUp.MoveBetsDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
-            criteria.StatusIDs = criteria.StatusIDs == "All" ? null : criteria.StatusIDs;
+            criteria.StatusIDs = criteria.StatusIDs == Las.All ? null : criteria.StatusIDs;
 
             var ticketResults = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters()

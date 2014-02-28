@@ -26,7 +26,7 @@
     @Html.HiddenFor(m => m.CustId)
     @Html.HiddenFor(m => m.FromDate)
     @Html.HiddenFor(m => m.ToDate)
-    <input type="hidden" value="@(Model.DrawFilter == "1" ? "112,113" : "111,112,113")" id="StatusIDs" name="StatusIDs" />
+    @Html.HiddenFor(m => m.StatusIDs)
 }
 @Html.HiddenFor(m => m.DrawFilter)   
 @Html.HiddenFor(m => m.BreadCrumb)   

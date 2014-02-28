@@ -260,12 +260,10 @@
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
-    <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
     <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Views\Message\Resources\Message.js" />
-    <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Tool\InsertMultipleMember.aspx" />
     <Content Include="readme.txt" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
@@ -524,7 +522,6 @@
     <Content Include="Views\Report\Resources\Statement.less" />
     <Content Include="Views\Report\Resources\OutstandingReport.js" />
     <Content Include="Views\Report\Resources\ResultsReport.js" />
-    <Content Include="Views\Report\Resources\AgentWinLoss.less" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />

@@ -333,8 +333,6 @@ namespace LicenseeAgent.Site
                 "~/Views/BetList/Resources/betlist.core.js",
                 "~/Views/Report/Resources/OutstandingReport.js"));
 
-            bundles.Add(new LessBundle("~/css/agentwinlostreport").Include(
-                 "~/Views/Report/Resources/AgentWinLoss.less"));
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
                 "~/Views/Report/Resources/AgentWinlossReport.js"));
             bundles.Add(new ScriptBundle("~/js/statement").Include(

@@ -24,5 +24,7 @@ namespace LicenseeAgent.BetList.ViewModels
         public string BreadCrumb { get; set; }
 
         public string DrawFilter { get; set; }
+
+        public string StatusIDs { get; set; }
     }
 }

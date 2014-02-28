@@ -561,6 +561,8 @@ div.divSorter.desc {
 	display: inline-block;
     position: relative;
     white-space: pre;
+    text-overflow:ellipsis;
+    overflow: hidden;
 }
 .freegrid .freegrid-active-row td 
 {

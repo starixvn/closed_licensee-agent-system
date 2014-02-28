@@ -11,10 +11,10 @@
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/login")
-    @RenderSection("scripts", false)
 </head>
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @RenderBody()
+    @RenderSection("scripts", false)
 </body>
 </html>

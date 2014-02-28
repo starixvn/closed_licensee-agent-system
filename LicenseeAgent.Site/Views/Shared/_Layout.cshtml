@@ -15,7 +15,6 @@
     @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
-    @RenderSection("scripts", false)
 </head>
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
@@ -31,6 +30,7 @@
     }
     <div class="block-loading" style="display: none;">
     </div>
+    @RenderSection("scripts", false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>
 </html>

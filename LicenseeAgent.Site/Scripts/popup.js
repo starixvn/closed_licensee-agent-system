@@ -33,8 +33,6 @@
                 // update popup title
                 var popupTitle = popupDocument.title;
                 $('.ui-dialog-title').html(popupTitle);
-                // hide margin
-                $(popupDocument).find('#mainContainer').addClass("popup");
 
                 //auto width and height
                 if (options == null || options == undefined) {

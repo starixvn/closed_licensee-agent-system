@@ -3,11 +3,11 @@
               {
                   Columns: [
                     { Value: "Total", Name: "RowNo", CellAlign: "center", MergeColNumber: 4 },
-                    { Value: "GivenCredit", Name: "GivenCredit", MergeColNumber: 2, IsCalculated: true },
-                    { Value: "BetCredit", Name: "BetCredit", IsCalculated: true },
-                    { Value: "YesterdayBalance", Name: "YesterdayBalance", IsCalculated: true },
-                    { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
-                    { Value: "Outstanding", Name: "Outstanding", IsCalculated: true }
+                    { Value: "GC", Name: "GivenCredit", MergeColNumber: 2, IsCalculated: true },
+                    { Value: "BC", Name: "BetCredit", IsCalculated: true },
+                    { Value: "YesterBalance", Name: "YesterdayBalance", IsCalculated: true },
+                    { Value: "TB", Name: "TotalBalance", IsCalculated: true },
+                    { Value: "O", Name: "Outstanding", IsCalculated: true }
                 ]
               }
         ];
@@ -49,16 +49,28 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.BetCredit", Width: 80, Name: "BetCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true
+                            HeaderText: "@Las.BetCredit", Width: 80, Name: "BetCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true,
+                            CalResizeFunction: function (value) {
+                                return value.toString().length * 9;
+                            }
                         },
                         {
-                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
+                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
+                            CalResizeFunction: function (value) {
+                                return value.toString().length * 9;
+                            }
                         },
                         {
-                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
+                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
+                            CalResizeFunction: function (value) {
+                                return value.toString().length * 9;
+                            }
                         },
                         {
-                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true
+                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
+                            CalResizeFunction: function (value) {
+                                return value.toString().length * 9;
+                            }
                         }
                    ],
         showPager: true,

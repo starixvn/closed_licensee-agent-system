@@ -26,6 +26,15 @@
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/page")
     @Scripts.Render("~/js/language")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/home")
+    @Scripts.Render("~/js/home/accountinfo")
+    @if (SessionManager.CurrentSession.IsViewSelectMenu())
+    {
+        @Scripts.Render("~/js/home/internal")
+    }
 </head>
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
@@ -60,14 +69,5 @@
     </div>
     <div class="block-loading" style="display: none;">
     </div>
-    @Scripts.Render("~/js/jqueryui")
-    @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/home")
-    @Scripts.Render("~/js/home/accountinfo")
-    @if (SessionManager.CurrentSession.IsViewSelectMenu())
-    {
-        @Scripts.Render("~/js/home/internal")
-    }
 </body>
 </html>

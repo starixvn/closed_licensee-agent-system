@@ -13,22 +13,22 @@
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/page")
     @Scripts.Render("~/js/language")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/bootstrap")
+    @RenderSection("scripts", false)
 </head>
 <body>
+    @Html.Hidden("AppRoot", Url.Content("~/"))
+    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
     <div id="mainContainer">
         @RenderBody()
     </div>
-    @Html.Hidden("AppRoot", Url.Content("~/"))
-    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
     @if (ViewBag.PageContext != null)
     {
         <script type="text/javascript">
             @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
         </script>
     }
-    @Scripts.Render("~/js/jqueryui")
-    @Scripts.Render("~/js/bootstrap")
-    @RenderSection("scripts", false)
     <div class="block-loading" style="display: none;">
     </div>
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()

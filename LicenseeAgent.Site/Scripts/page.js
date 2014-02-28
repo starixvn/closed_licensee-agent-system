@@ -10,12 +10,6 @@
     }
 } (jQuery);
 
-// Shorthand for $( document ).ready()
 $(function () {
-    CORE.blockUI();
     PAGE.init();
-});
-
-$(window).load(function () {
-    CORE.unblockUI();
 });

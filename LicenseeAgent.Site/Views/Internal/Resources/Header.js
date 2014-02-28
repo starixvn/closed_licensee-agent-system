@@ -1,12 +1,14 @@
 ﻿var INTERNAL_HEADER = function ($) {
-    var isSelected = $('#is-selected').val() == "True";
-    var licenseeId = $('#licensee').data('licensee-id');
-    var newLicenseeId = licenseeId;
-    var currencyId = $('#currency').data('currency-id');
-    var newCurrencyId = currencyId;
-    var userName = $('.username b').text();
+    var isSelected, licenseeId, newLicenseeId, currencyId, newCurrencyId, userName;
     return {
         init: function () {
+            isSelected = $('#is-selected').val() == "True";
+            licenseeId = $('#licensee').data('licensee-id');
+            newLicenseeId = licenseeId;
+            currencyId = $('#currency').data('currency-id');
+            newCurrencyId = currencyId;
+            userName = $('.username b').text();
+
             if (!isSelected) {
                 INTERNAL_HEADER.enableSearch(false);
             }

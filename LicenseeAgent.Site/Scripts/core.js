@@ -1,7 +1,7 @@
 ﻿var CORE = function ($) {
     return {
-        UrlRoot: $('#AppRoot').val(),
-        UrlSignOut: $('#AppRoot').val() + 'Account/SignOut',
+        UrlRoot: '',
+        UrlSignOut: '',
         pageSizes: [10, 20, 50, 100, 500],
         TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -15,6 +15,9 @@
         EMPTY_TEXT_FORMAT: '---',
 
         init: function () {
+            UrlRoot = $('#AppRoot').val();
+            UrlSignOut = $('#AppRoot').val() + 'Account/SignOut';
+
             $('input, textarea').placeholder();
 
             $("button[data-href]").click(function () {
@@ -55,6 +58,10 @@
 
             $.ajaxSetup({
                 error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 0 || jqXHR.readyState === 0) {
+                        // ajax request is aborted.
+                        return;
+                    }
                     var data = jqXHR.responseJSON;
                     CORE.handleError(data);
                 }
@@ -92,7 +99,7 @@
                 type: "POST",
                 url: CORE.resolveUrl("~/Account/ReCheckIn"),
                 dataType: "json",
-                async: false,
+                async: true,
                 timeout: 120000
             })
             .done(function (result) {
@@ -400,9 +407,4 @@
 } (jQuery);
 $(function () {
     CORE.init();
-});
-
-$(window).load(function () {
-    CORE.UrlRoot = $('#AppRoot').val();
-    CORE.UrlSignOut = $('#AppRoot').val() + 'Account/SignOut';
 });

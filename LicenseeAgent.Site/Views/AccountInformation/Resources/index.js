@@ -1,9 +1,11 @@
 ﻿var accountInformation = function ($) {
-    var urlSuggestion = $("#searchUrl").data("suggest");
-    var urlDownline = $("#searchUrl").data("downline");
-    var urlCurrency = $("#searchUrl").data("currency");
+    var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function () {
+            urlSuggestion = $("#searchUrl").data("suggest");
+            urlDownline = $("#searchUrl").data("downline");
+            urlCurrency = $("#searchUrl").data("currency");
+
             //scroll left menu
             $(".leftmenu-box").niceScroll();
 
@@ -32,7 +34,6 @@
             //check exist cookie username. If exist, call search username
             var userName = $.cookie('username');
             if (userName != null) {
-
                 $("#UserName").val(userName);
                 $("#formSearch").submit();
 

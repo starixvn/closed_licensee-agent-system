@@ -255,6 +255,7 @@
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
+    <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\page.js" />
     <Content Include="Views\Error\Resources\UnderMaintenance.js" />
     <Content Include="Views\Message\Resources\Message.js" />
@@ -420,14 +421,12 @@
     <Content Include="Scripts\fanexgrid\moment.js" />
     <Content Include="Scripts\jquery-ui\jquery.ui.dropdownlist.js" />
     <Content Include="Scripts\language.js" />
-    <Content Include="Scripts\jquery\jquery-2.0.3-vsdoc.js" />
-    <Content Include="Scripts\jquery\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Content\moment-datepicker\datepicker.css" />
     <Content Include="Views\Error\Resources\images\error2.png" />
     <Content Include="Images\loader.gif" />
-    <Content Include="Scripts\jquery\jquery.js" />
+    <Content Include="Scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker-ko.js" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />

@@ -1,10 +1,11 @@
 ﻿var HEADER = function ($) {
     var currentTime = Date.now;
-    var licenseeId = $('#licensee').data('licensee-id');
-    var currencyId = $('#currency').data('currency-id');
+    var licenseeId, currencyId;
     return {
         init: function () {
             currentTime = moment($('#clock').html());
+            licenseeId = $('#licensee').data('licensee-id');
+            currencyId = $('#currency').data('currency-id');
 
             var orginalUsername = $.trim($('.username').text());
             $('.username').dotdotdot().trigger("isTruncated", function (isTruncated) {

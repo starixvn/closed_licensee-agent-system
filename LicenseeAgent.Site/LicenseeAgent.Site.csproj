@@ -516,7 +516,6 @@
     <Content Include="Views\Home\Resources\menu.js" />
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Views\Report\Resources\AgentWinlossReport.js" />
-    <Content Include="Views\Report\Resources\Statement.less" />
     <Content Include="Views\Report\Resources\OutstandingReport.js" />
     <Content Include="Views\Report\Resources\ResultsReport.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />

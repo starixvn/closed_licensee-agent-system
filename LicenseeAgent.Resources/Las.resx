@@ -241,7 +241,18 @@
     <value>Password</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>&lt;span class='prewrap'&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;br/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;� Special character (!,@,#,etc..)&lt;br/&gt;&lt;br/&gt;For example: 59D7!4$h, 493abcDE&lt;br/&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;</value>
+    <value>&lt;div&gt;
+&lt;p&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;
+&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;
+&lt;li&gt;Numeric [0-9]&lt;/li&gt;
+&lt;li&gt;Special character (!,@,#,etc..)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span&gt;For example: 59D7!4$h, 493abcDE&lt;/span&gt;
+&lt;br/&gt;
+&lt;span&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;
+&lt;/div&gt;</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>

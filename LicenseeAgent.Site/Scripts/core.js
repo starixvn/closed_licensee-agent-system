@@ -1,7 +1,7 @@
 ﻿var CORE = function ($) {
     return {
-        UrlRoot: '',
-        UrlSignOut: '',
+        UrlRoot: $('#AppRoot').val(),
+        UrlSignOut: $('#AppRoot').val() + 'Account/SignOut',
         pageSizes: [10, 20, 50, 100, 500],
         TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",

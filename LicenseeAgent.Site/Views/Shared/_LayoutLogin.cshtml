@@ -7,14 +7,14 @@
     @Styles.Render("~/css/jqueryui")
     @Styles.Render("~/css/login")
     @RenderSection("css", false)
-    @Scripts.Render("~/js/jquery")
-    @Scripts.Render("~/js/jqueryui")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/login")
 </head>
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
     @RenderBody()
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/login")
     @RenderSection("scripts", false)
 </body>
 </html>

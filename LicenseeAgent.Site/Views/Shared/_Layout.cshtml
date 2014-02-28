@@ -9,12 +9,6 @@
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/core")
     @RenderSection("css", false)
-    @Scripts.Render("~/js/jquery")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/page")
-    @Scripts.Render("~/js/language")
-    @Scripts.Render("~/js/jqueryui")
-    @Scripts.Render("~/js/bootstrap")
 </head>
 <body>
     @Html.Hidden("AppRoot", Url.Content("~/"))
@@ -30,6 +24,12 @@
     }
     <div class="block-loading" style="display: none;">
     </div>
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/page")
+    @Scripts.Render("~/js/language")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/bootstrap")
     @RenderSection("scripts", false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>

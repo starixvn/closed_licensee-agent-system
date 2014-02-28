@@ -110,12 +110,12 @@ if (fanex.customerSetting) {
         copyAction: function (currentPtNeedCopy, pt) {
             if (currentPtNeedCopy) {
                 currentPtNeedCopy.Preset = pt.Preset;
-                if (currentPtNeedCopy.actions.onChangePreset) {
-                    currentPtNeedCopy.actions.onChangePreset();
+                if (currentPtNeedCopy.actions.onBlurPreset) {
+                    currentPtNeedCopy.actions.onBlurPreset();
                 }
                 currentPtNeedCopy.Max = pt.Max;
-                if (currentPtNeedCopy.actions.onChangeMax) {
-                    currentPtNeedCopy.actions.onChangeMax();
+                if (currentPtNeedCopy.actions.onBlurMax) {
+                    currentPtNeedCopy.actions.onBlurMax();
                 }
                 currentPtNeedCopy.Min = pt.Min;
                 if (currentPtNeedCopy.actions.onChangeMin) {

@@ -46,18 +46,18 @@
 }
 @helper DrawFilter(short val)
     {
-    <label for="DrawFilter">@Las.DrawFilter</label>
-    <label class="radio">
-        @Las.Normal
+    <label for="DrawFilter" class="radio inline">@Las.DrawFilter</label>
+    <label class="radio inline">
         <input type="radio" name="DrawFilter" value="0" @(val == 0 ? "checked" : "") />
+        @Las.Normal
     </label>
-    <label class="radio">
-        @Las.NoDraw
+    <label class="radio inline">
         <input type="radio" name="DrawFilter" value="1" @(val == 1 ? "checked" : "") />
+        @Las.NoDraw
     </label>
-    <label class="radio">
-        @Las.NoDrawForTurnoverOnly
+    <label class="radio inline">
         <input type="radio" name="DrawFilter" value="2" @(val == 2 ? "checked" : "") />
+        @Las.NoDrawForTurnoverOnly
     </label>
 }
 @helper BreadCrumb(string val)

@@ -11,7 +11,7 @@
                 trigger: 'manual'
             })
             .autoNumeric('init', {
-                mDec: Math.max(minAmount.countDecimals(), !isNaN(maxAmount) ? maxAmount.countDecimals() : minAmount.countDecimals()),
+                mDec: 4,
                 vMin: Number.MinInt,
                 vMax: Number.MaxInt,
                 lZero: 'deny',

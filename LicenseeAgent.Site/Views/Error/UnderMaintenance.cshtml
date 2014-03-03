@@ -9,15 +9,16 @@
 <head>
     <title>@Las.UnderMaintenance</title>
     @Styles.Render("~/css/error")
+    @Html.Partial("_AppScript")
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/error/UnderMaintenance")
 </head>
 <body>
     <div class="um-block">
         <div class="block-text">
-            <span>@Html.Raw(maintenanceMessage)</span></div>
+            <span>@Html.Raw(maintenanceMessage)</span>
+        </div>
     </div>
-    @Html.Hidden("AppRoot", Url.Content("~/"))
-    @Scripts.Render("~/js/jquery")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/error/UnderMaintenance")
 </body>
 </html>

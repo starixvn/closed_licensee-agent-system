@@ -9,27 +9,26 @@
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/core")
     @RenderSection("css", false)
-</head>
-<body>
-    @Html.Hidden("AppRoot", Url.Content("~/"))
-    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
-    <div id="mainContainer" class="@(Request.IsPopup() ? "popup" : "")">
-        @RenderBody()
-    </div>
-    @if (ViewBag.PageContext != null)
-    {
-        <script type="text/javascript">
-            @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
-        </script>
-    }
-    <div class="block-loading" style="display: none;">
-    </div>
+    @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/page")
     @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
+    @if (ViewBag.PageContext != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
+        </script>
+    }
+</head>
+<body>
+    <div id="mainContainer" class="@(Request.IsPopup() ? "popup" : "")">
+        @RenderBody()
+    </div>
+    <div class="block-loading" style="display: none;">
+    </div>
     @RenderSection("scripts", false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>

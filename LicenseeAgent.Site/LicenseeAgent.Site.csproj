@@ -801,6 +801,7 @@
     <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />
     <Content Include="Views\Report\StatementDetail.MemberGrid.cshtml" />
     <Content Include="Views\Report\TransferDetail.cshtml" />
+    <Content Include="Views\Shared\_AppScript.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

@@ -8,7 +8,6 @@ namespace LicenseeAgent.Core.Utility
 {
     using System.Globalization;
     using System.Threading;
-    using LicenseeAgent.Resources;
 
     /// <summary>
     /// Manage supported languages.
@@ -16,9 +15,6 @@ namespace LicenseeAgent.Core.Utility
     public static class LanguageManager
     {
         private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture("en-US");
-
-        private static readonly System.Resources.ResourceManager LangResourceManager =
-            new System.Resources.ResourceManager(typeof(Las)) { IgnoreCase = true };
 
         public static string TwoLetterISOLanguageName
         {
@@ -28,26 +24,22 @@ namespace LicenseeAgent.Core.Utility
             }
         }
 
-        public static void SetCulture(string language)
+        public static string Language
         {
-            if (!string.IsNullOrEmpty(language))
+            get
             {
+                return Thread.CurrentThread.CurrentCulture.Name;
+            }
+
+            set
+            {
+                var language = value;
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
 
                 Thread.CurrentThread.CurrentCulture.DateTimeFormat = USCulture.DateTimeFormat;
                 Thread.CurrentThread.CurrentCulture.NumberFormat = USCulture.NumberFormat;
             }
-        }
-
-        public static string GetResourceData(string key)
-        {
-            if (!ReferenceEquals(LangResourceManager, null))
-            {
-                return LangResourceManager.GetString(key);
-            }
-
-            return string.Empty;
         }
     }
 }

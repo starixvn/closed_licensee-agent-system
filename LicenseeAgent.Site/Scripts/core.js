@@ -1,7 +1,7 @@
 ﻿var CORE = function ($) {
     return {
-        UrlRoot: $('#AppRoot').val(),
-        UrlSignOut: $('#AppRoot').val() + 'Account/SignOut',
+        UrlRoot: APP_CONFIG.UrlRoot,
+        UrlSignOut: APP_CONFIG.UrlRoot + 'Account/SignOut',
         pageSizes: [10, 20, 50, 100, 500],
         TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -15,9 +15,6 @@
         EMPTY_TEXT_FORMAT: '---',
 
         init: function () {
-            UrlRoot = $('#AppRoot').val();
-            UrlSignOut = $('#AppRoot').val() + 'Account/SignOut';
-
             $('input, textarea').placeholder();
 
             $("button[data-href]").click(function () {
@@ -118,19 +115,19 @@
             });
         },
         resolveUrl: function (url) {
-            var urlRoot = $('#AppRoot');
-
-            if (urlRoot.length == 0) {
-                CORE.console.error('"AppRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("UrlRoot", Url.Content("~/"))');
-            } else {
-                if (url.substr(0, 2) == '~/') {
-                    url = url.substr(2);
-                } else if (url.substr(0, 1) == '/') {
-                    url = url.substr(1);
-                }
-
-                return urlRoot.val() + url;
+            var urlRoot = CORE.UrlRoot;
+            if (urlRoot == undefined) {
+                CORE.console.error('Please include @Html.Partial("_AppScript")');
+                return;
             }
+
+            if (url.substr(0, 2) == '~/') {
+                url = url.substr(2);
+            } else if (url.substr(0, 1) == '/') {
+                url = url.substr(1);
+            }
+
+            return urlRoot + url;
         },
         console: {
             write: function (msg, consoleFunc) {

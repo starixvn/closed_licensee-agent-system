@@ -3,13 +3,11 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Core.Configurations
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
@@ -46,6 +44,14 @@ namespace LicenseeAgent.Core.Configurations
             };
         }
 
+        public static string DefaultLanguage
+        {
+            get
+            {
+                return _languages.First().Value;
+            }
+        }
+
         public static List<SelectListItem> Languages
         {
             get
@@ -66,14 +72,14 @@ namespace LicenseeAgent.Core.Configurations
         {
             get
             {
-                var selectItemList = new List<SelectListItem> 
+                var selectItemList = new List<SelectListItem>
                 {
-                    new SelectListItem 
+                    new SelectListItem
                     {
                         Text = Las.All,
                         Value = string.Empty
                     },
-                    new SelectListItem 
+                    new SelectListItem
                     {
                         Text = Las.Closed,
                         Value = ((int)AccountStatus.Closed).ToString()

@@ -73,24 +73,16 @@ namespace LicenseeAgent.Web.Controllers
         {
             get
             {
-                var language = string.Empty;
+                var language = ModelSettings.DefaultLanguage;
 
                 // current session is only existed when user is authenticated
                 if (CurrentSession != null)
                 {
                     language = CurrentSession.Language;
                 }
-                else
+                else if (Session[Constants.AppSessionLanguage] != null)
                 {
-                    if (Session[Constants.AppSessionLanguage] != null)
-                    {
-                        language = (string)Session[Constants.AppSessionLanguage];
-                    }
-                }
-
-                if (string.IsNullOrEmpty(language))
-                {
-                    language = ModelSettings.Languages.First().Value;
+                    language = (string)Session[Constants.AppSessionLanguage];
                 }
 
                 return language;
@@ -100,7 +92,7 @@ namespace LicenseeAgent.Web.Controllers
             {
                 var language = value;
                 var selectedLanguage = ModelSettings.Languages.Where(x => x.Value == language).FirstOrDefault();
-                language = selectedLanguage != null ? selectedLanguage.Value : ModelSettings.Languages.First().Value;
+                language = selectedLanguage != null ? selectedLanguage.Value : ModelSettings.DefaultLanguage;
                 if (!string.IsNullOrEmpty(language))
                 {
                     if (CurrentSession != null)
@@ -153,34 +145,8 @@ namespace LicenseeAgent.Web.Controllers
         /// <param name="filterContext">Information about the current request and action.</param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            SetRequestLanguage();
+            LanguageManager.Language = Language;
             HandleRequest(filterContext);
-        }
-
-        /// <summary>
-        /// Sets the request language.
-        /// </summary>
-        protected void SetRequestLanguage()
-        {
-            var language = string.Empty;
-            var currentSession = SessionManager.CurrentSession;
-            if (currentSession != null)
-            {
-                language = currentSession.Language;
-            }
-            else
-            {
-                if (Session[Constants.AppSessionLanguage] != null)
-                {
-                    language = (string)Session[Constants.AppSessionLanguage];
-                }
-            }
-
-            if (!string.IsNullOrEmpty(language))
-            {
-                ViewBag.Language = language;
-                LanguageManager.SetCulture(language);
-            }
         }
 
         /// <summary>

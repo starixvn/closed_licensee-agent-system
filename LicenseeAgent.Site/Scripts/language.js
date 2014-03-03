@@ -34,10 +34,7 @@
             });
         },
         getSelectedLanguage: function () {
-            if ($('#AppSelectedLanguage').length == 1) {
-                return $('#AppSelectedLanguage').val().toLowerCase();
-            }
-            return 'en-us';
+            return APP_CONFIG.SelectedLanguage;
         },
         getSelectedLanguageCode: function () {
             var selectedLanguage = LANGUAGE.getSelectedLanguage();

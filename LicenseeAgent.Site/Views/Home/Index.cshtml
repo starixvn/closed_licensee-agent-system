@@ -22,6 +22,7 @@
     @Styles.Render("~/css/core")
     @Styles.Render("~/css/home")
     @Styles.Render("~/css/home/accountinfo")
+    @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/page")
@@ -37,8 +38,6 @@
     }
 </head>
 <body>
-    @Html.Hidden("AppRoot", Url.Content("~/"))
-    @Html.Hidden("AppSelectedLanguage", (string)ViewBag.Language)
     <div class="navbar navbar-fixed-top">
         <div class="header-box">
             @Html.Partial("_Header")

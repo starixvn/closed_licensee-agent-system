@@ -32,6 +32,7 @@
                 url: CORE.resolveUrl("~/TotalBets/GetLeagueList"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -68,16 +69,10 @@
             });
         },
 
-        selectedLeague: function () {
-            var selectedLeagues = $("#league-multi-select").fanexMultiSelect('getItems', true).join(',');
-            $("#League").val(selectedLeagues);
-            Soccer.getEventDataByLeague();
-        },
-
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
-                League: $("#League").val(),
-                Event: $("#Event").val(),
+                League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                Event: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
                 sportType: Soccer.sportType
             };
             $.ajax({
@@ -117,16 +112,13 @@
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
-                onLeave: function () { Soccer.selectedEvent(); },
+                onLeave: function () {
+                    //Soccer.selectedEvent(); 
+                },
                 onFooterButtonClick: function () {
-                    Soccer.selectedEvent();
+                    //Soccer.selectedEvent();
                 }
             });
-        },
-
-        selectedEvent: function () {
-            var selectedLeagues = $("#event-multi-select").fanexMultiSelect('getItems', true).join(',');
-            $("#Event").val(selectedLeagues);
         },
 
         showAllBetType: function (context) {

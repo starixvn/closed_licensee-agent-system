@@ -13,7 +13,6 @@ if (fanex.customerSetting) {
             headerBoxWidth: 160,
             ptBoxWidth: 150,
             collapseWidth: 280
-
         },
         init: function (positionTakingSetting, language) {
             var self = this,
@@ -105,7 +104,6 @@ if (fanex.customerSetting) {
                             $('#copy_sport_' + pt.SportId + '_bettype_' + pt.BetTypeId),
                             copyAllMessage.join(''));
             }, 100);
-
         },
         copyAction: function (currentPtNeedCopy, pt) {
             if (currentPtNeedCopy) {
@@ -150,6 +148,11 @@ if (fanex.customerSetting) {
             ptGroup.WidthStyle.width = ptGroup.TitleWidth + 'px';
             ptGroup.Expand = !ptGroup.Expand;
         },
+        expandGroup: function (ptGroup) {
+            if (angular.isDefined(ptGroup)) {
+                if (!ptGroup.Expand) fanex.customerSetting.positionTakingService.onCollapseExpand(ptGroup);
+            }
+        },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
             var self = this;
             if (settingContext.IsSimpleMode) {
@@ -178,9 +181,7 @@ if (fanex.customerSetting) {
                             var currentPositionTaking = currentGroup.PositionTakings[j];
                             self.getAdvancedModePositionTaking(settingContext, currentPositionTaking, positionTakingSave);
                         }
-
                     }
-
                 }
             }
 
@@ -251,7 +252,6 @@ if (fanex.customerSetting) {
                 return simpleModeData.actions.isValid();
             }
             else {
-
                 var updatedData = advancedModeData,
                     datalength = updatedData.length,
                     positionTakingSave = [];
@@ -265,7 +265,6 @@ if (fanex.customerSetting) {
                                 return false;
                             }
                         }
-
                     }
                 }
             }

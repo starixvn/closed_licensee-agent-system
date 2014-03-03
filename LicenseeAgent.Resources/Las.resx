@@ -327,7 +327,7 @@
     <value>Password Alert</value>
   </data>
   <data name="SimpleModeNote" xml:space="preserve">
-    <value>?Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.</value>
+    <value>Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.</value>
   </data>
   <data name="AddNewAgent" xml:space="preserve">
     <value>Add new agent</value>

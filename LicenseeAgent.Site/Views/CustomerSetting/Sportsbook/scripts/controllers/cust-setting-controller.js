@@ -49,8 +49,7 @@
             return messages;
         }
 
-        $scope.insertCustomer = function ($event) {
-            $event.stopPropagation();
+        $scope.insertCustomer = function () {
             var custInfoScope = angular.element('#custInfoController').scope();
             if (custInfoScope.formCustInfo.$invalid) {
                 var keepGoing = true;
@@ -147,7 +146,7 @@
             }
         }
 
-        $scope.updateCustomer = function ($event) {
+        $scope.updateCustomer = function () {
             $('.messages').hide();
             $scope.Messages = null;
 

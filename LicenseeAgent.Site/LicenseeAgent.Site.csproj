@@ -803,7 +803,6 @@
     <Content Include="Views\Report\Statement.AgentGrid.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
-    <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />

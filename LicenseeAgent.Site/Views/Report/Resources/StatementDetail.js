@@ -31,7 +31,7 @@
                             totalItem: data.List.length
                         };
 
-                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption, $('#IsMember').val());
                         $('#grid').show().fanexGrid(gridOption);
                         CORE.unblockUI();
                     }

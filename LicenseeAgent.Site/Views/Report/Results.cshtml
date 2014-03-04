@@ -18,55 +18,69 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("Results", "Report", FormMethod.Post,
-    new { @class = "form-inline ", id = "search-form" }))
-{
-    <div id="filter-tabs" class="form-filter">
-        <ul id="tabs-area" class="nav nav-tabs">
-            <li class="tab-match"><a href="#filter-tab-match">@Las.MatchResults</a></li>
-            <li class="tab-outright"><a href="#filter-tab-outright">@Las.OutrightResults</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane" id="filter-tab-match">
+<div id="filter-tabs" class="filter-tabs">
+    <ul id="tabs-area" class="nav nav-tabs">
+        <li class="active"><a href="#filter-tab-match" data-toggle="tab">@Las.MatchResults</a>
+        </li>
+        <li><a href="#filter-tab-outright" data-toggle="tab">@Las.OutrightResults</a> </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="filter-tab-match">
+            @using (Html.BeginForm("Results", "Report", FormMethod.Post,
+                new { @class = "form-inline form-filter", id = "search-form" }))
+            {
                 <div class="controls-row">
-                    <span>@Las.Date</span>
+                    <label for="matchdatetime">@Las.Date</label>
                     <div class="input-append date" id="matchdatetimepicker">
                         <input class="span2" id="matchdatetime" size="16" type="text" value="@DateTime.Today" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
+                </div>
+                <div class="controls-row">
                     <button class="btn btn-primary" onclick="return matchSubmit();">@Las.Submit</button>
                     <button class="btn btn-primary" onclick="return matchYesterday();">@Las.Yesterday</button>
                     <button class="btn btn-primary" onclick="return matchToday();">@Las.Today</button>
                 </div>
-                <br />
+                <div class="newline">
+                </div>
                 <div class="controls-row margin-top-10px">
                     @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
                     @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
                 </div>
-            </div>
-            <div class="tab-pane" id="filter-tab-outright">
+            }
+        </div>
+        <div class="tab-pane" id="filter-tab-outright">
+            @using (Html.BeginForm("Results", "Report", FormMethod.Post,
+                new { @class = "form-inline form-filter", id = "search-form" }))
+            {
                 <div class="controls-row">
-                    <span>@Las.From</span>
+                    <label for="outrightFromDate">@Las.From</label>
                     <div class="input-append date" id="outrightfromdatetimepicker" data-date="@DateTime.Today">
                         <input class="span2" id="outrightFromDate" size="16" type="text" value="@DateTime.Today" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
-                    <span>@Las.To</span>
+                </div>
+                <div class="controls-row">
+                    <label for="outrightToDate">@Las.To</label>
                     <div class="input-append date" id="outrighttodatetimepicker" data-date="@DateTime.Today">
                         <input class="span2" id="outrightToDate" size="16" type="text" value="@DateTime.Today" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
+                </div>
+                <div class="controls-row">
                     <button class="btn btn-primary" onclick="return outrightSubmit();">@Las.Submit</button>
                     <button class="btn btn-primary" onclick="return outrightYesterday();">@Las.Yesterday</button>
                     <button class="btn btn-primary" onclick="return outrightToday();">@Las.Today</button>
                 </div>
-                <div class="outright-dropdownlists margin-top-10px">
+                <div class="newline">
+                </div>
+                <div class="controls-row">
                     @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
                     @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
                 </div>
-            </div>
+            }
         </div>
     </div>
-}
+</div>
 <div id="ResultsArea">
 </div>

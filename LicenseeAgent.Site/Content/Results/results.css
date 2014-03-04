@@ -6,12 +6,12 @@ table.fanex-result tr.row-data td.column-league
 
 table.fanex-result tr td
 {
-	border: 1px solid #FFFFFF;
+    border: 1px solid #FFFFFF;
 }
 
 table.fanex-result td
 {
-	border: 1px solid #FFFFFF;
+    border: 1px solid #FFFFFF;
 }
 
 table.fanex-result tr.format-even
@@ -68,77 +68,29 @@ table.fanex-result .row-noinfo td
 
 /*Date time picker*/
 .datepicker th.switch, .table-condensed th {
-	color: #238FD0;
+    color: #238FD0;
 }
 
 .datepicker th.prev, .datepicker th.next {
-	font-size: 1.3em;
+    font-size: 1.3em;
 }
 
 .datepicker table tr td.active, .datepicker table tr td.active:hover,
 .datepicker table tr td.active, .datepicker table tr td.active:hover {
-	background-image: -moz-linear-gradient(center top, #0088CC, #238FD0);
-}
-
-/*main-page*/
-#tabs-area li.active
-{
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-    border-top-width: 0;
-}
-
-#tabs-area li.active a, #tabs-area li.active a:link, #tabs-area li.active a:visited
-{
-    background-color: #F4F8FB;
-    border-color: #D93B3C #EDEDED transparent #EDEDED;
-    border-style: solid none none;
-    border-width: 3px 1px 0;
-}
-
-.form-filter
-{    
-    padding: 0;
-}
-        
-.span2
-{
-    width: 80px !important;
-}
-        
-.margin-top-10px
-{
-    margin-top: 10px;
-}
-
-.outright-dropdownlists
-{
-	display: none;
-}
-
-.bootstrap-select.btn-group .btn .filter-option {
-	left: 5px;
-}
-
-.controls-row:before, .controls-row:after {
-	margin-top: 2px;
-}
-
-.btn {
-	margin-left: 12px;
+    background-image: -moz-linear-gradient(center top, #0088CC, #238FD0);
 }
 
 .bl-sport-type {
-	color: #0088CC;
+    color: #0088CC;
 }
 
 .bl-league-name {
-	color: black;
-	font-weight: bold !important;
+    color: black;
+    font-weight: bold !important;
 }
 
 .sporttype {
-	background-color: #dedede;
-	text-align: center;
-	height: 30px;
+    background-color: #dedede;
+    text-align: center;
+    height: 30px;
 }

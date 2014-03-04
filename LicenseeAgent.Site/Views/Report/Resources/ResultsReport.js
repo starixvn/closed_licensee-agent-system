@@ -1,12 +1,7 @@
 ﻿var REPORT = function ($) {
     return {
         init: function () {
-            $("#tabs-area a:first").tab('show'); /*
-            $('#matchdatetimepicker').datepicker();
-            $('#outrightfromdatetimepicker').datepicker();
-            $('#outrighttodatetimepicker').datepicker();*/
             $('.selectpicker').selectpicker();
-
             REPORT.getBalanceUpMoveBet();
             REPORT.initData();
         },
@@ -16,13 +11,13 @@
             var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
             REPORT.matchSubmit(todayStr);
 
-            $('li.tab-match').click(function (e) {
-                $("#tabs-area a:first").tab('show');
-                REPORT.manageLeagueSelect();
-            });
-            $('li.tab-outright').click(function (e) {
-                $("#tabs-area a:last").tab('show');
-                REPORT.manageOutrightLeagueSelect();
+            $('a[data-toggle="tab"]').on('shown', function (e) {
+                if ($(e.target).attr('href') == "#filter-tab-outright") {
+                    REPORT.manageOutrightLeagueSelect();
+                }
+                else {
+                    REPORT.manageLeagueSelect();
+                }
             });
 
             $("#MatchSport").change(function () {
@@ -230,7 +225,7 @@
             var listItemsHtml = '';
             for (var index = 0; index < itemCounter; index++) {
                 var selectedText = sports[index].Selected == true ? 'selected="selected"' : '';
-                listItemsHtml += '<option value="' + sports[index].Value + '" '+ selectedText + '>' + sports[index].Text + '</option>';
+                listItemsHtml += '<option value="' + sports[index].Value + '" ' + selectedText + '>' + sports[index].Text + '</option>';
             }
 
             if (itemCounter <= 0)

@@ -1,7 +1,9 @@
-@border: 1px solid white;
+@border: 1px solid #dedede;
+@header-border: 1px solid #fff;
 @header-background-color: #F7F0E4;
 @title-background-color: #908f8f;
-@row-height: 25px;
+@cell-height: 31px;
+@header-height: 28px;
 
 .messages
 {
@@ -16,31 +18,69 @@
     }
 }
 
-.row-block()
+.cell-block()
 {
-    height: @row-height;
+    float: left;
+    height: @cell-height;
     padding: 3px 5px;
+    border-left: @border;
+    border-top: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
 }
-.row-header()
+.pt-block()
 {
-    height: 22px;
+    height: @cell-height;
+    padding: 3px 5px;
+    border-left: @border;
+    border-top: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.cell-header()
+{
+    float: left;
+    height: @header-height;
     padding: 3px 5px;
     text-align: center;
     font-weight: bold;
     background: #DEDEDE;
-}
-.cell-border()
-{
+    border-left: @header-border;
+    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-box-sizing: border-box;
+}
+.pt-header()
+{
+    height: @header-height;
+    padding: 3px 5px;
+    text-align: center;
+    font-weight: bold;
+    background: #DEDEDE;
+    border-left: @header-border;
     box-sizing: border-box;
-    border-left: @border;
-    border-top: @border;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.pt-group()
+{
+    float: left;
+    background: #f2f2f2;
+    border-bottom: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
 }
 span
 {
-    height: @row-height;
+    height: @cell-height;
     line-height: 23px;
 }
 
@@ -54,33 +94,20 @@ input.ng-invalid:focus
 
 input[type="text"], input[type="password"]
 {
-    margin-bottom: 2px;
-}
-
-.container-box, .container-box2
-{
-    border-bottom: @border;
     float: left;
-    width: 915px;
-    min-width: 915px;
-    margin-bottom: 10px;
-    .range
-    {
-        float: left;
-        padding-left: 5px;
-        height: @row-height;
-        line-height: 23px;
-    }
+    margin-bottom: 2px;
+    margin-right: 5px;
 }
 
 .container-box
 {
-    background: #EEEFF1;
-}
-
-.container-box2
-{
-    border-left: @border;
+    float: left;
+    width: 915px;
+    min-width: 915px;
+    border-bottom: @border;
+    border-right: @border;
+    background: #eeeff1;
+    margin-bottom: 10px;
 }
 
 .container-mode
@@ -100,20 +127,15 @@ input[type="text"], input[type="password"]
         width: 100%;
         .block1,.block2,.block3,.block4
         {
-            height: @row-height + 6;
-            padding: 3px 5px;
-            float: left;
-            .cell-border();
+            .cell-block();
         }
         .block1
         {
             width: 20%;
             text-align: right;
-            border-left-width: 0;
         }
         .block2
         {
-            border-left: 0;
             width: 30%;
         }
         .block3
@@ -123,16 +145,11 @@ input[type="text"], input[type="password"]
         }
         .block4
         {
-            border-left: 0;
             width: 30%;
         }
         .no-border
         {
             border-left: 0;
-        }
-        .border
-        {
-            .cell-border();
         }
         input[type="text"], input[type="password"], select
         {
@@ -161,116 +178,85 @@ input[type="text"], input[type="password"]
     .comm-setting {
         overflow: hidden;
 
-        .top-header
+        .comm-group
         {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 0px;
-            height: auto;
-
-            .comm-setting-header 
+            .comm-header 
             {
-                width: 304px;
-                float: left;
-                text-align: center;
-                border-left: @border;
-                border-top: @border;
-                border-collapse: collapse;
-                border-spacing: 0px;
-            
-                .comm-setting-inner-header
-                {
-                    .row-block();
-                }
-            }
-
-            .comm-setting-header:first-child
-            {
-                border-left-width: 0;
-            }
-        }
-
-        .left-item 
-        {
-            text-align: right;
-
-            input
-            {
-                margin-left: 20px;
-            }
-        }
-
-        .right-item
-        {
-            text-align: left;
-
-            input
-            {
-                margin-left: 20px;
-            }
-        }
-
-        .comm-line
-        {
-            width: 304px;
-            float: left;
-            padding-top: 22px;
-            text-align: center;
-            height: 59px;
-
-            select
-            {
-                width: 50px;
-            }
-        }
-
-        .comm-content-wrapper
-        {
-            float: left;
-            width: 611px;
-
-            .comm-setting-item 
-            {
-                width: 304px;
-                float: left;
-                border-top: @border;
-                border-left: @border;
-                border-collapse: collapse;
-                border-spacing: 0px;
-
-                .comm-setting-inner-item
-                {
-                    .row-block();
-
-                    input[type=text], input[type=number] {
-                        width: 135px;
-                        text-align: right;
-                    }
-                }
-            }
-        }
-
-        .comm-group {
-            .comm-header {
+                .cell-block();
                 width: 154px;
-                float: left;
                 text-align: right;
-                border-left: @border;
-                border-top: @border;
             }
 
-            .comm-content {
+            .comm-content 
+            {
+                .cell-block();
                 width: 149px;
-                float: left;
-                border-left: @border;
-                border-top: @border;
-            }
 
-            .comm-box, .comm-box-header {
-                .row-block();
                 input[type=text], input[type=number] {
                     width: 38px;
                     text-align: right;
+                }
+            }
+        }
+
+        .member-com-group
+        {
+            .comm-container
+            {
+                float: left;
+                width: 305px;
+
+                .comm-header-title
+                {
+                    .cell-header();
+                    float: none;
+                    &.commission-group
+                    {
+                        border-left-width: 0;
+                    }
+                }
+
+                .comm-group
+                {
+                    .cell-block();
+                    float: none;
+
+                    .comm-block
+                    {
+                        float: left;
+                        width: 50%;
+
+                        input[type=text], input[type=number] 
+                        {
+                            width: 120px;
+                            text-align: right;
+                        }
+
+                        &:first-child
+                        {
+                            text-align: right;
+                            input[type=text], input[type=number]
+                            {
+                                float: right;
+                            }
+                            span
+                            {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+
+                    .comm-full-block
+                    {
+                        width: 100%;
+                        text-align: center;
+                        padding-top: @cell-height;
+
+                        select
+                        {
+                            width: 50px;
+                        }
+                    }
                 }
             }
         }
@@ -281,220 +267,144 @@ input[type="text"], input[type="password"]
 
         .betting-limit-header 
         {
-            width: 252px;
-            float: left;
-            text-align: left;
-            border-top: @border;
-            border-left: @border;
-            border-collapse: collapse;
-            border-spacing: 0px;
-            .betting-limit-header-text
+            .cell-header();
+            width: 253px;
+            &.min-bet
             {
-                .row-header();
-            }
-            .betting-limit-inner-header
-            {
-                .row-block();
+                border-left-width: 0;
             }
         }
 
         .betting-limit-item 
         {
-            width: 252px;
-            float: left;
-            border-top: @border;
-            border-left: @border;
-            border-collapse: collapse;
-            border-spacing: 0px;
-
-            .betting-limit-inner-item
+            .cell-block();
+            width: 253px;
+            input[type=text], input[type=number] 
             {
-                .row-block();
-                input[type=text], input[type=number] {
-                    width: 100px;
-                    text-align: right;
-                }
+                width: 110px;
+                text-align: right;
             }
         }
 
-        .row-title
+        .betting-limit-sport
         {
+            .cell-block();
             width: 156px;
-            border-left-width: 0;
         }
-        .simple-row-title
+
+        .betting-limit-sport-header
         {
-            width: 305px;
+            .cell-header();
+            width: 156px;
             border-left-width: 0;
         }
 
         .simple-mode
         {
-            .betting-limit-header
+            .betting-limit-header, .betting-limit-item 
             {
-                width: 304px;
+                width: 305px;
             }
-
-            .betting-limit-item 
-            {
-                width: 304px;
-            }
-
-            .betting-limit-item:first-child
-            {
-                border-left-width: 0;
-            }
-        }
-    }
-
-    .pt-box,.pt-box-simple
-    {
-        label.checkbox
-        {
-            padding-top: 2px;
         }
     }
 
     .pt-setting {
-        .height-expand {
-            height: 1px;
-        }
-
-        .pt-group-container {
-            clear: both;
-
-            .pt-group {
-
-                .pt-header {
-                    width: 160px;
-                    float: left;
-                    text-align: right;
-                    border-bottom: @border;
-                    background-color: #EEEFF1;
-
-                    .pt-box-header-text {
-                        display: inline-block;
-                    }
-                }
-
-                .pt {
-                    width: 150px;
-                    float: left;
-                    border-bottom: @border;
-                    border-left: @border;
-                    background: #EEEFF1;
-                }
-
-                .pt-box, .pt-box-header, .pt-box-title {
-                    input[type=text], input[type=number] {
-                        float: left;
-                        width: 38px;
-                        text-align: right;
-                    }
-                }
-                .pt-box,.pt-box-header
-                {
-                    .row-block();
-                    border-top: @border;
-                    border-collapse: collapse;
-                    border-spacing: 0px;
-                }
-
-                .pt-box-title {
-                    .row-header();
-                    position: relative;
-                }
-            }
-
-            .pt-group-header {
-                background: #DBDBDB;
-                color: black;
-                height: 22px;
-                padding: 3px 5px;
-
-                &.expand
-                {
-                    background: #EECACA;
-                }
-
-                .collapse-expand-button {
-                    width: 90%;
-                    display: inline-block;
-
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-
-    .pt-setting-simple-mode {
-        width: 360px;
-
-        .range
+        .pt-container-box
         {
             float: left;
-            padding-left: 5px;
-            height: @row-height;
-            line-height: @row-height;
-        }
+            width: 915px;
+            margin-bottom: 10px;
 
-        .simple-mode-title {
-            background-color: @title-background-color;
-            text-align: center;
-            margin-top: 2px;
-            padding: 4px;
-            color: White;
-        }
-
-        .pt-simple {
-            width: 199px;
-            float: left;
-            border-bottom: @border;
-            background-color: #F2F2F2;
-        }
-
-        .pt-header-simple {
-            background-color: #F2F2F2;
-            float: left;
-            width: 160px;
-            text-align: right;
-            border-right: @border;
-            border-bottom: @border;
-
-            .pt-box-header-text-simple {
-                display: inline-block;
-                margin-top: 1px;
+            &.simple-mode
+            {
+                width: 311px;
             }
-        }
 
-        .pt-box-simple, .pt-box-header-simple, .pt-box-title-simple {
-            .row-block();
-            border-top: @border;
-            border-collapse: collapse;
-            border-spacing: 0px;
+            .pt-group-container
+            {
+                overflow: hidden;
+                border-bottom: 1px solid #fff;
 
-            input[type=text], input[type=number] {
-                width: 50px;
-                float: left;
-                text-align: right;
-                margin-top: 1px;
-            }
-        }
+                .pt-group-box
+                {
+                    float: left;
+                    border-right: @border;
 
-        .pt-box-header-simple {
-            border-right: @border;
-        }
+                    .pt-group 
+                    {
+                        .pt-group();
 
-        .pt-box-title-simple {
-            position: relative;
-            background-color: @header-background-color;
+                        .pt-header-box
+                        {
+                            float: left;
+                            width: 159px;
+                            &.simple-mode
+                            {
+                                width: 160px;
+                            }
 
-            .bettype-name-simple {
-                position: absolute;
-                text-align: center;
-                width: 100%;
+                            .pt-header
+                            {
+                                .pt-block();
+                                text-align: right;
+                            }
+                        }
+
+                        .pt-content-box
+                        {
+                            float: left;
+                            width: 151px;
+                            &.simple-mode
+                            {
+                                width: 199px;
+                            }
+
+                            .pt-content 
+                            {
+                                .pt-block();
+                                input[type=text], input[type=number] 
+                                {
+                                    width: 38px;
+                                    text-align: right;
+                                }
+                            }
+                        }
+
+                        .pt-content-bettype, .pt-header-bettype
+                        {
+                            .pt-header();
+                        }
+
+                        .pt-header-bettype
+                        {
+                            border-left-width: 0;
+                        }
+                    }
+                }
+
+                .pt-group-header 
+                {
+                    background: #DBDBDB;
+                    color: black;
+                    height: 22px;
+                    padding: 3px 5px;
+
+                    &.expand
+                    {
+                        background: #EECACA;
+                    }
+
+                    .collapse-expand-button 
+                    {
+                        width: 90%;
+                        display: inline-block;
+
+                        &:hover 
+                        {
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
         }
     }

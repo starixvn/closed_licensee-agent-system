@@ -1,7 +1,7 @@
 ﻿/* Overwrite fanex grid */
 
 .freegrid {
-    border-color: #fff;
+    border-color: #dedede;
     border-radius: 2px;
     font-size: 12px;
 
@@ -17,7 +17,7 @@
     }
 
     .y-scrollbar {
-        border-left-color: #fff !important;
+        border-left-color: #dedede !important;
     }
 
     .free-top-right {
@@ -25,6 +25,7 @@
         table thead th
         {
             border-left-width: 1px !important;
+            border-right-width: 0 !important;
             background: #8a8a8a;
         }
     }
@@ -56,12 +57,17 @@
     }
 
     .grid-fixed-table {
+        &.col_header_content
+        {
+            border-top-width: 0;
+        }
+
         tbody tr {
             &.league-row td, &.league-row.freegrid-even td {
                 text-align: left;
                 background-color: #dedede;
                 font-weight: bold;
-                border-bottom-color: #fff;
+                border-bottom-color: #dedede;
                 border-right: none;
             }
 
@@ -70,8 +76,8 @@
             }
 
             &.normal-row td, &.normal-row.freegrid-even td {
-                border-right-color: #fff;
-                border-bottom-color: #fff;
+                border-right-color: #dedede;
+                border-bottom-color: #dedede;
                 background-color: #edf0f0;
             }
 
@@ -82,14 +88,14 @@
 
             & td.team-name {
                 text-align: left;
-                border-bottom: 1px solid #FFF;
+                border-bottom: 1px solid #dedede;
                 padding-left: 2px;
                 font-weight: bold;
             }
 
             &.header-row td {
                 text-align: center;
-                border-right: 1px solid #fff;
+                border-right: 1px solid #dedede;
             }
 
             &.freegrid-even td {
@@ -98,7 +104,7 @@
 
             td  {
                 background: #edf0f0;
-                border-color: #fff;
+                border-color: #dedede;
                 border-width: 1px 1px 1px 0px;
 
                 span.live {
@@ -133,10 +139,15 @@
         thead th
         {
             border: 1px solid #fff;
+            border-top-width: 0;
             &.free-cell-bottom-right
             {
                 background: #F1F1F1;
                 border-top-width: 0px !important;
+            }
+            &.free-cell-top-right
+            {
+                padding-bottom: 3px;
             }
         }
     }

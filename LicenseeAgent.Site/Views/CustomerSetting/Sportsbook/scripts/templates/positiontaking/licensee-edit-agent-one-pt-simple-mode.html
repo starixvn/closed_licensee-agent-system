@@ -1,24 +1,24 @@
-﻿<div>
-    <div class="pt-header-simple">
-        <div class="pt-box-header-simple">
-            <span class="pt-box-header-text-simple">{{language.maxPt}}</span>
+﻿<div class="pt-group">
+    <div class="pt-header-box">
+        <div class="pt-header">
+            <span>{{language.maxPt}}</span>
         </div>
-        <div class="pt-box-header-simple">
-            <span class="pt-box-header-text-simple">{{language.minPt}}</span>
+        <div class="pt-header">
+            <span>{{language.minPt}}</span>
         </div>
     </div>
-    <div class="pt-simple">
-        <div class="pt-box-simple">
+    <div class="pt-content-box">
+        <div class="pt-content">
             <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Max"
                 ng-change="ptSimple.actions.onChangeMax()" ng-blur="ptSimple.actions.onBlurMax()" />
-            <div class="range">[{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
-                | number:config.decNumber}}]</div>
+            <span>[{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
+                | number:config.decNumber}}] </span>
         </div>
-        <div class="pt-box-simple">
+        <div class="pt-content">
             <input class="min-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Min"
                 ng-change="ptSimple.actions.onChangeMin()" />
-            <div class="range">[{{ptSimple.MinRangeOfMin | number:config.decNumber}} - {{ptSimple.MaxRangeOfMin
-                | number:config.decNumber}}]</div>
+            <span>[{{ptSimple.MinRangeOfMin | number:config.decNumber}} - {{ptSimple.MaxRangeOfMin
+                | number:config.decNumber}}] </span>
         </div>
     </div>
 </div>

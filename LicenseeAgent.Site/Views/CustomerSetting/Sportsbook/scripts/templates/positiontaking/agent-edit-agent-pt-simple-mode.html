@@ -1,45 +1,42 @@
-﻿<div>
-    <div class="pt-header-simple">
-        <div class="pt-box-header-simple">
-            <span class="pt-box-header-text">{{language.presetPt}}</span>
+﻿<div class="pt-group">
+    <div class="pt-header-box">
+        <div class="pt-header">
+            <span>{{language.presetPt}}</span>
         </div>
-        <div class="pt-box-header-simple" ng-show="settingContext.FormId != 0">
-            <span class="pt-box-header-text">&nbsp</span>
+        <div class="pt-header" ng-show="settingContext.FormId != 0">
+            <span>&nbsp</span>
         </div>
-        <div class="pt-box-header-simple">
-            <span class="pt-box-header-text">{{language.maxPt}}</span>
+        <div class="pt-header">
+            <span>{{language.maxPt}}</span>
         </div>
-        <div class="pt-box-header-simple">
-            <span class="pt-box-header-text">{{language.minPt}}</span>
+        <div class="pt-header">
+            <span>{{language.minPt}}</span>
         </div>
     </div>
-    <div class="pt-simple">
-        <div class="pt-box-simple">
+    <div class="pt-content-box">
+        <div class="pt-content">
             <input class="preset-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Preset"
                 ng-change="ptSimple.actions.onChangePreset()" ng-blur="ptSimple.actions.onBlurPreset()" />
-            <div class="range">
-                [{{ptSimple.MinRangeOfPreset | number:config.decNumber}} - {{ptSimple.MaxRangeOfPreset
-                | number:config.decNumber}}]</div>
+            <span>[{{ptSimple.MinRangeOfPreset | number:config.decNumber}} - {{ptSimple.MaxRangeOfPreset
+                | number:config.decNumber}}]</span>
         </div>
-        <div class="pt-box-simple" ng-show="settingContext.FormId != 0">
+        <div class="pt-content" ng-show="settingContext.FormId != 0">
             <label class="checkbox">
                 <input type="checkbox" ng-model="ptSimple.ApplyAll" />
                 {{language.applyForAllMembers}}
             </label>
         </div>
-        <div class="pt-box-simple">
+        <div class="pt-content">
             <input class="max-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Max"
                 ng-change="ptSimple.actions.onChangeMax()" ng-blur="ptSimple.actions.onBlurMax()" />
-            <div class="range">
-                [{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
-                | number:config.decNumber}}]</div>
+            <span>[{{ptSimple.MinRangeOfMax | number:config.decNumber}} - {{ptSimple.MaxRangeOfMax
+                | number:config.decNumber}}]</span>
         </div>
-        <div class="pt-box-simple">
+        <div class="pt-content">
             <input class="min-input" type="text" maxlength="{{config.maxInput}}" ng-model="ptSimple.Min"
                 ng-change="ptSimple.actions.onChangeMin()" />
-            <div class="range">
-                [{{ptSimple.MinRangeOfMin | number:config.decNumber}} - {{ptSimple.MaxRangeOfMin
-                | number:config.decNumber}}]</div>
+            <span>[{{ptSimple.MinRangeOfMin | number:config.decNumber}} - {{ptSimple.MaxRangeOfMin
+                | number:config.decNumber}}]</span>
         </div>
     </div>
 </div>

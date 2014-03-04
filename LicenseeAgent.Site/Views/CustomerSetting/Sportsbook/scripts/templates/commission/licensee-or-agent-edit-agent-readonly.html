@@ -1,15 +1,11 @@
 ﻿<div class="comm-group">
-    <div>
-        <div class="comm-header">
-            <div class="comm-box-header">
-                <span>{{commissionSetting.name}}</span></div>
-        </div>
-        <div class="comm-content">
-            <div class="comm-box">
-                <input type="text" ng-model="commissionSetting.discount" maxlength="{{config.maxInput}}"
-                    ng-change="commissionSetting.actions.onChangeDiscountValue()" class="input value-input" readonly="readonly" />
-                <span>[{{commissionSetting.minDiscount}} - {{commissionSetting.maxDiscount}}]</span>
-            </div>
-        </div>
+    <div class="comm-header">
+        <span>{{commissionSetting.name}}</span>
+    </div>
+    <div class="comm-content">
+        <input type="text" ng-model="commissionSetting.discount" maxlength="{{config.maxInput}}"
+            ng-change="commissionSetting.actions.onChangeDiscountValue()" class="input value-input"
+            readonly="readonly" />
+        <span>[{{commissionSetting.minDiscount}} - {{commissionSetting.maxDiscount}}]</span>
     </div>
 </div>

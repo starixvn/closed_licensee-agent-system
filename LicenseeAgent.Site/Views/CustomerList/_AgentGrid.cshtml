@@ -12,7 +12,7 @@
                             HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
                         },
                         {
-                            HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<i id="{0}" class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}" data-status="{2}"></i>'.format(rowData.AgentId, rowData.AgentLevel, rowData.Status);
                             }
@@ -67,7 +67,7 @@
         showPager: true,
         customPager: true,
         allowTruncate: true,
-        gridExpandHeight: 100,
+        gridExpandHeight: 125,
         indexNumberColumn: 1,
         bodyRowHeight: 29
     };

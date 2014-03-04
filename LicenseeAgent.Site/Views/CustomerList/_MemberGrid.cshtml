@@ -10,7 +10,7 @@
                     }
                 },
                 { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
-                { HeaderText: "@Las.Action", Width: 40, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
+                { HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
                         return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                     }
@@ -49,7 +49,7 @@
             ],
         showPager: true,
         allowTruncate: true,
-        gridExpandHeight: 100,
+        gridExpandHeight: 125,
         indexNumberColumn: 1,
         bodyRowHeight: 29
     };

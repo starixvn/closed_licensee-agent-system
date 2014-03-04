@@ -10,6 +10,8 @@ $.blockUI.defaults.css = {
     cursor: 'wait'
 };
 
+$.fn.tooltip.defaults.animation = false;
+
 // inject validate unobtrusive
 if (typeof (jQuery.validator.unobtrusive) != 'undefined') {
     jQuery.validator.unobtrusive.adapters.add('notequalto', ['other'], function (options) {

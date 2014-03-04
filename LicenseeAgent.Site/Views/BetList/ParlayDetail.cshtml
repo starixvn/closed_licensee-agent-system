@@ -21,12 +21,12 @@
             <tr class="@(rowIndex % 2 == 0 ? "even-row" : "")">
                 <td class="agent-name">@Html.Raw(detail.Agent)
                 </td>
-                <td class="bl_underdog">@Html.Raw(detail.PositionTaking)
+                <td>@Html.Raw(detail.PositionTaking)
                 </td>
-                <td class="bl_underdog">@Html.Raw(detail.Commission)
+                <td>@Html.Raw(detail.Commission)
                 </td>
             </tr>
-            
+
             rowIndex++;
         }
     </tbody>

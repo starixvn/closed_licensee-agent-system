@@ -11,11 +11,11 @@
     @RenderSection("css", false)
     @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/bootstrap")
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/page")
     @Scripts.Render("~/js/language")
-    @Scripts.Render("~/js/jqueryui")
-    @Scripts.Render("~/js/bootstrap")
     @if (ViewBag.PageContext != null)
     {
         <script type="text/javascript">

@@ -6,7 +6,6 @@
     border-top: 1px solid #A3D1E1;
     border-collapse: collapse;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 11px;
     cursor: default;
 }
 /*#region header row*/
@@ -25,7 +24,6 @@ table.fanex-result tr.row-header th, table.fanex-result-tenis-setdetail tr.row-h
     background-image: url("images/tab_topbg.gif");
     background-position: center bottom;
     background-repeat: repeat-x;
-    font-size: 11px;
     font-weight: normal;
     text-align: center;
     vertical-align: middle;
@@ -93,9 +91,8 @@ table.fanex-result tr.row-data td, table.fanex-result-tenis-setdetail tr.row-dat
 {
     border-left: 1px solid #A3D1E1;
     border-bottom: 1px solid #A3D1E1;
-    font-size: 11px;
-    height: 22px;
-    padding: 2px;
+    height: 20px;
+    padding: 5px;
     vertical-align: middle;
     text-align: center;
     color: rgb(69, 69, 69);
@@ -123,7 +120,6 @@ table.fanex-result tr.row-data td.column-league
 
 table.fanex-result tr.row-data td.column-kickofftime
 {
-    font-size: 10px !important;
     font-weight: normal;
     white-space: nowrap;
 }
@@ -134,7 +130,7 @@ table.fanex-result tr.row-data td.column-match, tr.row-data td.column-team
 
 table.fanex-result tr.row-data td.column-result
 {
-	text-align: center;
+    text-align: center;
 }
 
 table.fanex-result tr.row-data td.column-match div.first-goal
@@ -199,7 +195,6 @@ table.fanex-result .red
 table.fanex-result .ball
 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
     color: #141214;
     padding: 5px 5px;
     background: -moz-linear-gradient(top,#f2f2f2 0%, #ffffff 25%,#ffffff 50%, #ffffff 75%, #d1cdcd);

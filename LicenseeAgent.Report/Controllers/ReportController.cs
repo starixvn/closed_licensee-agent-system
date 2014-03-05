@@ -300,6 +300,7 @@ namespace LicenseeAgent.Report.Controllers
 
             criteria.AgentId = CurrentSession.IsAdmin ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
             criteria.AgentId = criteria.AgentId > 0 ? criteria.AgentId : CurrentSession.AgentInfo.AgentId;
+                : criteria.AgentId;
             var betlistTickets = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters()
             {

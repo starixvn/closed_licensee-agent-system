@@ -220,14 +220,14 @@ var Basketball = function ($) {
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
                         { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                        { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                        { Name: "FTOU", Value: Basketball.generateLinkValue(match.MatchId, 3, 'h', match.HomeFulltimeOverUnder) },
                         { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                        { Name: "FTOE", Value: match.HomeFulltimeOddEven },
-                        { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                        { Name: "FTOE", Value: Basketball.generateLinkValue(match.MatchId, 2, 'h', match.HomeFulltimeOddEven) },
+                        { Name: "FHHDP", Value: Basketball.generateLinkValue(match.MatchId, 7, 'h', match.HomeFirstHalfHandicap) },
                         { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                        { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                        { Name: "FHOU", Value: Basketball.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) },
                         { Name: "StatisticsFHOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                        { Name: "FHOE", Value: match.HomeFirstHalfOddEven }
+                        { Name: "FHOE", Value: Basketball.generateLinkValue(match.MatchId, 12, 'h', match.HomeFirstHalfOddEven) }
                     );
 
                     var awayTeam = [];
@@ -235,11 +235,11 @@ var Basketball = function ($) {
                     awayTeam.push(
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'a', match.AwayFulltimeHandicap) },
-                        { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
-                        { Name: "FTOE", Value: match.AwayFulltimeOddEven },
-                        { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
-                        { Name: "FHOU", Value: match.AwayFirstHalfOverUnder },
-                        { Name: "FHOE", Value: match.AwayFirstHalfOddEven }
+                        { Name: "FTOU", Value: Basketball.generateLinkValue(match.MatchId, 3, 'h', match.AwayFulltimeOverUnder) },
+                        { Name: "FTOE", Value: Basketball.generateLinkValue(match.MatchId, 2, 'h', match.AwayFulltimeOddEven) },
+                        { Name: "FHHDP", Value: Basketball.generateLinkValue(match.MatchId, 7, 'h', match.AwayFirstHalfHandicap) },
+                        { Name: "FHOU", Value: Basketball.generateLinkValue(match.MatchId, 8, 'h', match.AwayFirstHalfOverUnder) },
+                        { Name: "FHOE", Value: Basketball.generateLinkValue(match.MatchId, 12, 'h', match.AwayFirstHalfOddEven) }
                     );
 
                     bodyRows.push({
@@ -256,6 +256,8 @@ var Basketball = function ($) {
         },
         showBetList: function (matchId, bettype, betteam) {
             refreshCountDownMethods.stopCountDown();
+            $("#totalbets-filter").attr("class", "totalbets-hide");
+            $("#totalbets-back").attr("class", "history-link");
 
             var params = {
                 MatchId: matchId,
@@ -277,8 +279,6 @@ var Basketball = function ($) {
                     }
 
                     fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
-                    //gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
-                    //$('#BetListGrid').show().fanexGrid(gridOptions);
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -291,6 +291,12 @@ var Basketball = function ($) {
             linkHtmlString += linkvalue + "</a>";
 
             return linkHtmlString;
+        },
+        submitForm: function () {
+            refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+            $("#totalbets-filter").attr("class", "");
+            $("#totalbets-back").attr("class", "totalbets-hide");
+            $('form').submit();
         }
     }
 } (jQuery);

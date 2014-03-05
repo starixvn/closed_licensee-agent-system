@@ -16,7 +16,9 @@ namespace LicenseeAgent.Report.Entities
     /// </summary>
     public class Statement
     {
-        public int CustID { get; set; }
+        public int CustId { get; set; }
+
+        public int AgentId { get; set; }
         
         public DateTime Date { get; set; }
 

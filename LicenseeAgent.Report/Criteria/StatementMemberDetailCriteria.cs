@@ -17,13 +17,13 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class StatementMemberDetailCriteria : CriteriaBase
     {
-        public string Username { get; set; }
+        public int UserId { get; set; }
+
+        public string CustUsername { get; set; }
 
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
-
-        public DateTime MoveBetsDay { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
 
@@ -34,7 +34,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(Username);
+            return !string.IsNullOrEmpty(CustUsername);
         }
     }
 }

@@ -62,10 +62,9 @@ namespace LicenseeAgent.Report.Controllers
             {
                 result = _reportService.StatementReport(new StatementMemberCriteria
                 {
-                    AgentId = model.AgentId,
+                    AgentId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
-                    MoveBetsDay = balanceUp.MoveBetsDay,
                     ToDate = model.ToDate,
                     Username = model.Username
                 }).ToList();
@@ -74,10 +73,9 @@ namespace LicenseeAgent.Report.Controllers
             {
                 result = _reportService.StatementReport(new StatementAgentCriteria
                 {
-                    AgentId = model.AgentId,
+                    AgentId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
-                    MoveBetsDay = balanceUp.MoveBetsDay,
                     ToDate = model.ToDate,
                     Username = model.Username
                 }).ToList();
@@ -157,22 +155,22 @@ namespace LicenseeAgent.Report.Controllers
             {
                 result = _reportService.StatementReport(new StatementMemberDetailCriteria
                 {
+                    UserId = model.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
-                    MoveBetsDay = balanceUp.MoveBetsDay,
                     ToDate = model.ToDate,
-                    Username = model.Username
+                    CustUsername = model.Username
                 }).ToList();
             }
             else
             {
                 result = _reportService.StatementReport(new StatementAgentDetailCriteria
                 {
+                    UserId = model.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
-                    MoveBetsDay = balanceUp.MoveBetsDay,
                     ToDate = model.ToDate,
-                    Username = model.Username
+                    AgentUsername = model.Username
                 }).ToList();
             }
 
@@ -211,7 +209,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    CustId = 137308590
+                    CustId = 1//for testing
                 }).ToList();
             }
             else
@@ -221,7 +219,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    AgentId = 1000001240
+                    AgentId = 1//for testing
                 }).ToList();
             }
 

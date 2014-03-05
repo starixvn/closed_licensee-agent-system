@@ -25,8 +25,6 @@ namespace LicenseeAgent.Report.Criteria
 
         public DateTime ToDate { get; set; }
 
-        public DateTime MoveBetsDay { get; set; }
-
         public DateTime BalanceUpDay { get; set; }
 
         public override string GetSettingKey()

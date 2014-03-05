@@ -1,16 +1,4 @@
-﻿// override default blockUI message
-$.blockUI.defaults.message = '<div class="loading"></div>';
-$.blockUI.defaults.css = {
-    padding: 0,
-    margin: 0,
-    width: '50px',
-    top: '50%',
-    left: '50%',
-    textAlign: 'center',
-    cursor: 'wait'
-};
-
-if ($.fn.tooltip) {
+﻿if ($.fn.tooltip) {
     $.fn.tooltip.defaults.animation = false;
 }
 

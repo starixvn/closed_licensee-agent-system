@@ -178,17 +178,24 @@
             return browserDectect;
         },
         blockUI: function () {
+            if ($('#overlay').length == 0) {
+                CORE.createDivLoading();
+            }
+
             $('div.block-body').show();
             $('div.block-loading').show();
-            $.blockUI({
-                message: "",
-                timeout: 30000
-            });
+            $('#overlay').show();
         },
         unblockUI: function () {
             $('div.block-body').hide();
             $('div.block-loading').hide();
-            $.unblockUI();
+            $('#overlay').hide();
+        },
+        createDivLoading: function () {
+            var div = '<div id="overlay" class="container"></div>';
+            div += '<div class="block-loading" style="display: none;"></div>';
+
+            $('body').append(div);
         },
         getGridColumnId: function (gridOption, columnName) {
             var length = gridOption.columns.length;

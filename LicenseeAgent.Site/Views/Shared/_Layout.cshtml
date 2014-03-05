@@ -27,8 +27,6 @@
     <div id="mainContainer" class="@(Request.IsPopup() ? "popup" : "")">
         @RenderBody()
     </div>
-    <div class="block-loading" style="display: none;">
-    </div>
     @RenderSection("scripts", false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>

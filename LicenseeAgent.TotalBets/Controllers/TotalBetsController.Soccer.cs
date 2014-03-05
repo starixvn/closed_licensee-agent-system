@@ -10,7 +10,10 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
@@ -39,9 +42,27 @@ namespace LicenseeAgent.TotalBets.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Soccer the detail.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Detail of soccer page.</returns>
         [HttpGet]
         public ViewResult SoccerDetail(SoccerDetailViewModel model)
         {
+            var betTypeTableItems = new List<BetTypeTableItem>();
+            betTypeTableItems.Add(new BetTypeTableItem
+            {
+                BetType = (int)BetType.BetType_2,
+                NumberOfColumn = 1,
+                Rows = new BetTypeRowItem[]
+                {
+                    new BetTypeRowItem(Las.Odd, "h"),
+                    new BetTypeRowItem(Las.Even, "a")
+                }
+            });
+
+            var specialChars = new char[] { ' ', '\'', '/', '.', '-' };
             var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = model.MatchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
             model.MainData = dataList.ToList();

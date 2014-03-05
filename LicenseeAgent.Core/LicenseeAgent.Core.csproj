@@ -79,7 +79,11 @@
     <Compile Include="Entities\UnderMaintenanceInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Enumerations\AccountType.cs" />
-    <Compile Include="Enumerations\BetType.cs" />
+    <Compile Include="Enumerations\BetType.generated.cs">
+      <DependentUpon>BetType.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Enumerations\SportType.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,6 +129,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Enumerations\BetType.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BetType.generated.cs</LastGenOutput>
+    </None>
     <None Include="Enumerations\SportType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SportType.generated.cs</LastGenOutput>

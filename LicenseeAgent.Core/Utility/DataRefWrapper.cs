@@ -33,9 +33,9 @@ namespace LicenseeAgent.Core.Utility
         /// <returns>Return the sport name.</returns>
         public static string GetSportName(int sportType, int betType)
         {
-            if (sportType == (int)SportType.OtherSports)
+            if (sportType == (int)SportType.SportType_99)
             {
-                return betType == (int)BetType.MixParlay ? Las.MixSportsParlay : Las.OtherSports;
+                return betType == (int)BetType.BetType_9 ? Las.MixSportsParlay : Las.OtherSports;
             }
             else
             {

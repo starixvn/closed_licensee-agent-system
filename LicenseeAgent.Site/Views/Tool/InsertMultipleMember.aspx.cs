@@ -261,7 +261,7 @@ namespace LicenseeAgent.Site
         private string GetSportName(int sportType, int betType, bool isLive)
         {
             var sportName = DataRefWrapper.GetSportName(sportType, betType);
-            return sportType == (int)SportType.Soccer
+            return sportType == (int)SportType.SportType_1
                 ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
                 : sportName;
         }

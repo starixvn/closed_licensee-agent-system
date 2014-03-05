@@ -49,6 +49,7 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +72,7 @@
     <Compile Include="Criterias\EventCriteria.cs" />
     <Compile Include="Criterias\SoccerCriteria.cs" />
     <Compile Include="Criterias\LeagueCriteria.cs" />
+    <Compile Include="Entities\BetTypeRowItem.cs" />
     <Compile Include="Entities\OutrightEntity.cs" />
     <Compile Include="Entities\SportGroupEntity.cs" />
     <Compile Include="Entities\SportEntity.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Services\ITotalBetsService.cs" />
     <Compile Include="Services\TotalBetsService.cs" />
     <Compile Include="Utility\TotalBetsUtility.cs" />
+    <Compile Include="Entities\BetTypeTableItem.cs" />
     <Compile Include="ViewModels\OtherSportsViewModel.cs" />
     <Compile Include="ViewModels\OutrightViewModel.cs" />
     <Compile Include="ViewModels\SoccerDetailViewModel.cs" />

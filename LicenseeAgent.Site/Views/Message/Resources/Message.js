@@ -25,6 +25,7 @@
                 $("#tabs-area a:last").tab('show');
                 MESSAGE.getMessage(false);
             });
+            MESSAGE.showAnnouncements(null);
         },
         getMessage: function (disabled) {
             $("#search-form :input").attr("disabled", disabled);
@@ -41,7 +42,7 @@
                 ToDate: $("#ToDate").val(),
                 Type: type
             };
-
+            MESSAGE.showAnnouncements(null);
             //            $.ajax({
             //                url: CORE.resolveUrl("~/Message/GetMessage"),
             //                type: 'POST',
@@ -63,7 +64,7 @@
                     { HeaderText: "#", Name: "No", Width: 30, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
                     { HeaderText: "ID", Name: "ID", Width: 50, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
                     { HeaderText: "Post Date", Name: "PostDate", Width: 70, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' },
-                    { HeaderText: "Message", Name: "Message", Width: 800, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' }
+                    { HeaderText: "Message", Name: "Message", Width: 822, HeaderAlign: "center", CellAlign: "center", CssClass: 'bold' }
                 ],
                 showTree: true,
                 hideYBackGroundScroller: true,
@@ -82,9 +83,10 @@
                 marginRight: 0
             };
 
-            gridOptions.pagerOption.totalItem = messages.length - 1;
-            gridOptions.bodyRows = CORE.genGridRows(messages, gridOptions);
-
+            if (messages != null && messages.length > 0) {
+                gridOptions.pagerOption.totalItem = messages.length - 1;
+                gridOptions.bodyRows = CORE.genGridRows(messages, gridOptions);
+            }
             $('#MessageArea').fanexGrid(gridOptions);
         },
         renderPagingEvent: function (pageIndex, pageSize) {

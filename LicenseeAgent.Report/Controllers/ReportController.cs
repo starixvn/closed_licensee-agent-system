@@ -298,9 +298,8 @@ namespace LicenseeAgent.Report.Controllers
                 return RedirectToAccessDeniedJson();
             }
 
-            criteria.AgentId = CurrentSession.IsAdmin ?
-                CurrentSession.AgentInfo.AgentId
-                : criteria.AgentId;
+            criteria.AgentId = CurrentSession.IsAdmin ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
+            criteria.AgentId = criteria.AgentId > 0 ? criteria.AgentId : CurrentSession.AgentInfo.AgentId;
             var betlistTickets = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters()
             {

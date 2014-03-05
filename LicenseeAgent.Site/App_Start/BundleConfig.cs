@@ -51,7 +51,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/page.js"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
-                "~/scripts/ResourcesJs/Las.js",
+                "~/scripts/ResourcesJs/Las.en-US.js",
                 "~/scripts/ResourcesJs/Las.zh-CN.js",
                 "~/scripts/ResourcesJs/Las.zh-TW.js"));
         }

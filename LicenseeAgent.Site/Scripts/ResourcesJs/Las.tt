@@ -44,6 +44,7 @@ var _language_en_US = {
         filePath = openFileDialog1.FileName;
     }
 
+
     using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
     {
         var xdoc = System.Xml.Linq.XDocument.Load(stream);

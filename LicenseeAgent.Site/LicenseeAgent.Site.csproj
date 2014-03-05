@@ -257,10 +257,18 @@
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\page.js" />
-    <Content Include="Scripts\ResourcesJs\language.js">
-      <DependentUpon>language.tt</DependentUpon>
+    <Content Include="Scripts\ResourcesJs\Language.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Language.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\Las.en-US.js">
+      <DependentUpon>Language.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\Las.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Las.tt</DependentUpon>
     </Content>
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
@@ -281,21 +289,6 @@
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
     <Content Include="Scripts\jquery-form\jquery.form.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid-flexible-height.js" />
-    <Content Include="Scripts\ResourcesJs\Las.js">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Las.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\ResourcesJs\Las.zh-CN.js">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Las.zh-CN.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Las.zh-TW.tt</DependentUpon>
-    </Content>
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
     <Content Include="Views\BetList\Resources\betlist.winlost.js" />
@@ -751,21 +744,15 @@
     <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
     <Content Include="Views\TotalBets\Outright.cshtml" />
     <Content Include="Views\TotalBets\Outright.Script.cshtml" />
-    <None Include="Scripts\ResourcesJs\language.tt">
+    <None Include="Scripts\ResourcesJs\Language.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>language.js</LastGenOutput>
+      <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
+&lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
+      <LastGenOutput>Language.js</LastGenOutput>
     </None>
     <None Include="Scripts\ResourcesJs\Las.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Las.js</LastGenOutput>
-    </None>
-    <None Include="Scripts\ResourcesJs\Las.zh-CN.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Las.zh-CN.js</LastGenOutput>
-    </None>
-    <None Include="Scripts\ResourcesJs\Las.zh-TW.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Las.zh-TW.js</LastGenOutput>
     </None>
     <Content Include="Views\Transfer\Index.cshtml" />
     <Content Include="Views\Transfer\Agent.cshtml" />
@@ -804,6 +791,7 @@
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
+    <None Include="Scripts\ResourcesJs\TemplateFileManagerV2.1.ttinclude" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />

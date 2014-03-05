@@ -46,17 +46,17 @@
         },
         getString: function (enghlishName) {
             if (enghlishName == null || enghlishName == undefined) return enghlishName;
-            var keyName = "_language_" + LANGUAGE.getSelectedLanguage().replace("-", "_");
+            var keyName = "Las_" + LANGUAGE.getSelectedLanguage().replace("-", "_");
 
             var resources = window[keyName];
             if (!resources) {
-                resources = _language_en_US;
+                resources = Las_en_US;
             }
 
             var mapResource = function (key) {
                 var item = resources[key];
                 if (item == undefined) {
-                    item = _language_en_US[key];
+                    item = Las_en_US[key];
                     return item != undefined ? item : key;
                 } else {
                     return item;

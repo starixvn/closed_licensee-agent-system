@@ -788,7 +788,6 @@
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <None Include="Scripts\ResourcesJs\TemplateFileManagerV2.1.ttinclude" />
-    <Content Include="Views\TotalBets\TotalbetsBetList.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />

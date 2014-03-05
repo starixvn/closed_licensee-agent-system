@@ -33,19 +33,18 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         [HttpGet]
-        public ViewResult Soccer()
+        public ViewResult Soccer(SoccerViewModel model)
         {
-            var model = new SoccerViewModel() { TimeInterval = 15 };
-
+            model.TimeInterval = model.TimeInterval > 0 ? model.TimeInterval : 15;
             return View(model);
         }
 
         [HttpGet]
-        public ViewResult SoccerDetail(int matchId, string matchName)
+        public ViewResult SoccerDetail(SoccerDetailViewModel model)
         {
-            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = matchId };
+            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = model.MatchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
-            var model = new SoccerDetailViewModel { MatchName = matchName, MainData = dataList.ToList() };
+            model.MainData = dataList.ToList();
             return View(model);
         }
 

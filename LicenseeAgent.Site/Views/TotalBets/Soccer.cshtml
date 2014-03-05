@@ -24,12 +24,10 @@
     <div class="controls-row">
         <div id="league-multi-select">
         </div>
-        @Html.Hidden("League", "")
     </div>
     <div class="controls-row">
         <div id="event-multi-select">
         </div>
-        @Html.Hidden("Event", "")
     </div>
     <div class="controls-row">
         <button class="btn btn-primary" type="submit">
@@ -39,8 +37,10 @@
     <div class="controls-row refresh-count-down-area">
         <div class="refresh-count-down" id="refresh-count-down">
         </div>
-        <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
     </div>
+    <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
+    @Html.HiddenFor(m => m.SelectedEvent)
+    @Html.HiddenFor(m => m.SelectedLeague)
 }
 <div class="wrapper">
     <div id="grid" class="freegrid">

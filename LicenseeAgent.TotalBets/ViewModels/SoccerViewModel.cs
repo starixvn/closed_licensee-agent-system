@@ -13,7 +13,11 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// TODO: Update summary.
     /// </summary>
     public class SoccerViewModel
-    {        
+    {
         public int TimeInterval { get; set; }
+
+        public string SelectedLeague { get; set; }
+
+        public string SelectedEvent { get; set; }
     }
 }

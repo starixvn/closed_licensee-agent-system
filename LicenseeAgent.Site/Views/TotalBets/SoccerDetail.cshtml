@@ -7,9 +7,10 @@
 @section css{
     @Styles.Render("~/css/totalbets")
 }
+
 <div class="controls-row legend">
     <span class="match-name">@Model.MatchName</span>
-    <div onclick="javascript:history.go(-1);" class="history-link">←Back</div>
+    @Html.ActionLink("Back", "Soccer", "TotalBets", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval }, new { @class="history-link" })
 </div>
 <div class="wrapper" id="detail-data-content">
     <table class="detail-table">

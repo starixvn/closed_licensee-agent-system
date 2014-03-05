@@ -14,7 +14,15 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// </summary>
     public class SoccerDetailViewModel
     {
+        public int MatchId { get; set; }
+
         public string MatchName { get; set; }
+
+        public string SelectedLeague { get; set; }
+
+        public string SelectedEvent { get; set; }
+
+        public int TimeInterval { get; set; }
 
         public IList<SoccerDetailEntity> MainData { get; set; }
     }

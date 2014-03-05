@@ -15,7 +15,7 @@
     @Scripts.Render("~/js/monthpicker")
     @Scripts.Render("~/js/betlist")
     <script type="text/javascript">
-        var _today = '@DateTime.Today.ToShortDateString()';
+        var _today = '12/31/' + (@DateTime.Now.Year + 1);
         var _minDate = '10/1/2013';
         var lastDay = '@DateTime.Now.Day';
         var lastMonth = '@DateTime.Now.Month';

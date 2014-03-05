@@ -39,8 +39,8 @@ namespace LicenseeAgent.BetList.Utilities
             this.ShowOdds = false;
             this.StartIndex = 1;
             this.IsShowMember = false;
-            this.FormatDetail = "BETLIST.showSystemParlayResult({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: BETLIST.showBetListDetails({0},'{1}')\"";
+            this.FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+            this.ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0},'{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

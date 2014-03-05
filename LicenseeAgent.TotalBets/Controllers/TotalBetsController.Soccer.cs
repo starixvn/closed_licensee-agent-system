@@ -9,6 +9,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
@@ -27,12 +28,16 @@ namespace LicenseeAgent.TotalBets.Controllers
     {
         private readonly ITotalBetsService _totalBetsService;
 
+        private readonly IBetListService _betlistService;
+
         public TotalBetsController(
             TotalBetsService totalBetsService,
+            BetListService betlistService,
             IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
             _totalBetsService = totalBetsService;
+            _betlistService = betlistService;
         }
 
         [HttpGet]

@@ -1,4 +1,24 @@
-﻿var Basketball = function ($) {
+﻿var gridOptions = {
+    columns: [
+                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "center", CanResize: true },
+                { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+            ],
+    showPager: true,
+    gridExpandHeight: 100,
+    bodyRowHeight: 29,
+    autoResizeColumn: true
+};
+
+var Basketball = function ($) {
     return {
         sportType: 2, //Basketball sporttype
         init: function () {
@@ -146,8 +166,7 @@
                 success: function (data) {
                     if (data.ErrCode == 0) {
                         gridOption.bodyRows = Basketball.genGridRows(data.List, gridOption);
-                        $('#grid').show().fanexGrid(gridOption);
-
+                        $('#BetListGrid').show().fanexGrid(gridOption);
                     }
                     else {
                         alert(data.ErrMsg);
@@ -199,7 +218,7 @@
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 2 },
                         { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                        { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
                         { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
                         { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
@@ -215,7 +234,7 @@
                     //Away team
                     awayTeam.push(
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
+                        { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'a', match.AwayFulltimeHandicap) },
                         { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
                         { Name: "FTOE", Value: match.AwayFulltimeOddEven },
                         { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
@@ -234,6 +253,44 @@
                 }
             }
             return bodyRows;
+        },
+        showBetList: function (matchId, bettype, betteam) {
+            refreshCountDownMethods.stopCountDown();
+
+            var params = {
+                MatchId: matchId,
+                Bettype: bettype,
+                Betteam: betteam
+            };
+
+            $.ajax({
+                url: CORE.resolveUrl("~/Totalbets/GetBasketballBetList"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                        return;
+                    }
+
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                    //gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                    //$('#BetListGrid').show().fanexGrid(gridOptions);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+        generateLinkValue: function (matchId, bettype, betteam, linkvalue) {
+            var linkHtmlString = "<a href=\"javascript:void(0);\" onclick=\"Basketball.showBetList(";
+            linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "')\">";
+            linkHtmlString += linkvalue + "</a>";
+
+            return linkHtmlString;
         }
     }
 } (jQuery);

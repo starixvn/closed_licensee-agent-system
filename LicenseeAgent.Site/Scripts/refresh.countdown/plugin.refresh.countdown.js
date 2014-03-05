@@ -36,7 +36,10 @@
         resetCountDown: function (timeInterval, formName) {
             window.clearInterval(timer);
             refreshCountDownMethods.startCountDown(timeInterval, formName);
+        },
 
+        stopCountDown: function () {
+            window.clearInterval(timer);
         },
 
         submitForm: function (formName) {

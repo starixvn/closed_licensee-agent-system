@@ -82,12 +82,6 @@ fanex.totalBets.parlay = {
             $("#systemParlayTab").addClass('active-tab');
             fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0], 29);
         }
-    },
-    showParlayDetails: function (transId, status) {
-        fanex.betlist.core.showDetails(transId, status);
-    },
-    showSystemParlayDetails: function (refNo, custId, betTeam) {
-        fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
     }
 };
 

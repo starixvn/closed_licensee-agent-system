@@ -12,6 +12,7 @@
     <AssemblyName>LicenseeAgent.TotalBets</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -59,6 +59,7 @@
     <Compile Include="Controllers\TotalBetsController.OtherSports.cs" />
     <Compile Include="Controllers\TotalBetsController.Outright.cs" />
     <Compile Include="Controllers\TotalBetsController.Soccer.cs" />
+    <Compile Include="Criterias\BetListBasketballCriteria.cs" />
     <Compile Include="Criterias\OtherSportsCriteria.cs" />
     <Compile Include="Criterias\OtherSportsLeagueListCriteria.cs" />
     <Compile Include="Criterias\OtherSportsEventListCriteria.cs" />
@@ -99,6 +100,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">
+      <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
+      <Name>LicenseeAgent.BetList</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>

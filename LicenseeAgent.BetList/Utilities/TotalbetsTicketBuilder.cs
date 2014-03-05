@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="ParlayTicketBuilder.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalbetsTicketBuilder.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -24,9 +24,9 @@ namespace LicenseeAgent.BetList.Utilities
     /// <summary>
     /// Build ticket.
     /// </summary>
-    public class ParlayTicketBuilder : TicketBuilder, ITicketBuilder
+    public class TotalbetsTicketBuilder : TicketBuilder, ITicketBuilder
     {
-        public ParlayTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
+        public TotalbetsTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
             : base(ticketBuilderParameters)
         {
         }
@@ -36,8 +36,8 @@ namespace LicenseeAgent.BetList.Utilities
             this.ShowOdds = false;
             this.StartIndex = 1;
             this.IsShowMember = true;
-            this.FormatDetail = "fanex.totalBets.parlay.showSystemParlayDetails({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: fanex.totalBets.parlay.showParlayDetails({0}, '{1}')\"";
+            this.FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+            this.ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

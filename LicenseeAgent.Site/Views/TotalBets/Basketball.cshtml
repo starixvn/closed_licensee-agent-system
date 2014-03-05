@@ -6,6 +6,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
     @Styles.Render("~/css/totalbets")
+    @Styles.Render("~/css/betlist")
 }
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
@@ -40,6 +41,8 @@
     </div>
 }
 <div class="wrapper">
-    <div id="grid" class="freegrid">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
     </div>
+</div>
+<div id="instruction" class="instruction-content">
 </div>

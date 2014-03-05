@@ -31,8 +31,8 @@ namespace LicenseeAgent.BetList.Utilities
         private int _startIndex = 1;
         private bool _showOdds = false;
         private bool _isShowMember = false;
-        private string _formatDetail = "fanex.totalBets.parlay.showSystemParlayDetails({0},{1},\"{2}\")";
-        private string _clickFunction = "onclick=\"javascript: fanex.totalBets.parlay.showParlayDetails({0}, '{1}')\"";
+        private string _formatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+        private string _clickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
         private TicketResult _ticketResult;
         private BetListHTMLBuilder _builder;
         private TicketHelper _ticketHelper;

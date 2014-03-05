@@ -100,6 +100,10 @@
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    
+    <!-- Totalbets - Betlist-->
+    <Setting Key="LAS_Betlist_SelRunningByBettypeMatch" SpName="LAS_Betlist_SelRunningByBettypeMatch" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <!-- End Totalbets - Betlist-->
   </Function>
   <Function Name="Report">
     <!-- Results Report-->

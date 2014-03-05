@@ -64,7 +64,7 @@ namespace LicenseeAgent.BetList.Controllers
                 TicketResult = ticketResults,
                 IsAdmin = CurrentSession.IsAdmin
             };
-            var betListTicketBuilder = new ParlayTicketBuilder(ticketBuilderParameters);
+            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
 
             var model = new BetListViewModel()
             {

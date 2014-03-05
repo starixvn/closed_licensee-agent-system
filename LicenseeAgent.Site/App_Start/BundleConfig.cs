@@ -355,7 +355,8 @@ namespace LicenseeAgent.Site
                 "~/Views/TotalBets/Resources/soccer.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-basketball").Include(
-                "~/Views/TotalBets/Resources/basketball.js"));
+                "~/Views/TotalBets/Resources/basketball.js",
+                "~/Views/BetList/Resources/betlist.core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-OtherSports").Include(
                 "~/Views/TotalBets/Resources/OtherSports.js"));

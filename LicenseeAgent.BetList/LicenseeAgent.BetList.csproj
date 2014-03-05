@@ -105,7 +105,7 @@
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="Utilities\BetListTicketBuilder.cs" />
-    <Compile Include="Utilities\ParlayTicketBuilder.cs" />
+    <Compile Include="Utilities\TotalbetsTicketBuilder.cs" />
     <Compile Include="Utilities\ITicketBuilder.cs" />
     <Compile Include="Utilities\TicketBuilder.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />

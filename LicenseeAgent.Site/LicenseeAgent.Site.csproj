@@ -257,6 +257,11 @@
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\page.js" />
+    <Content Include="Scripts\ResourcesJs\language.js">
+      <DependentUpon>language.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
@@ -746,6 +751,10 @@
     <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
     <Content Include="Views\TotalBets\Outright.cshtml" />
     <Content Include="Views\TotalBets\Outright.Script.cshtml" />
+    <None Include="Scripts\ResourcesJs\language.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>language.js</LastGenOutput>
+    </None>
     <None Include="Scripts\ResourcesJs\Las.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Las.js</LastGenOutput>

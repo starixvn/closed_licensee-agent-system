@@ -1,60 +1,73 @@
 ﻿@using LicenseeAgent.AccountInformation.ViewModels
 @model SearchUserResultViewModel
-@Html.HiddenFor(m => m.Customer.CustId, new { @id="AgentId" })
+@Html.HiddenFor(m => m.Customer.CustId, new { @id = "AgentId" })
 <table class="table table-condensed">
-@if (Model.Uplines.Any())
-{
-    var directUpline = Model.Uplines.First();
-    var numberUpline = Model.Uplines.Count();
-        
-    <thead>
-        <tr>
-            <th>@Las.Upline</th>
-            <th>
-                @if (numberUpline > 1)
-                {
-                    <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">@directUpline.ShortUserName</a>
-                    <div class="btn-group pull-right">
-                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini btn-primary more">
-                            @Las.More
-                            <i class="icon-more-arrow"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            @for (var upIndex = numberUpline - 1; upIndex > 0; upIndex--)
-                            {
-                                var upline = Model.Uplines.ElementAt(upIndex);
-                                <li><a class="agent-inline" href="#" data-id="@(upline.UplineCustId)" title="@upline.UserName">@(upline.MediumUserName)</a></li>    
-                            }
-                        </ul>
-                    </div>
-                }
-                else
-                {
-                    <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">@directUpline.MediumUserName</a>
-                }
-            </th>
-        </tr>
-    </thead>
-}
-@if (Model.Customer != null)
-{
-    <tbody>
-        <tr>
-            <td><i class="icon-customer-avatar"></i></td>
-            <td>@Model.Customer.FullName</td>
-        </tr>
-        <tr>
-            <td><i class="icon-customer-cellphone"></i></td>
-            <td>@Model.Customer.MobileDisplay</td>
-        </tr>
-        <tr>
-            <td><i class="icon-customer-phone"></i></td>
-            <td>@Model.Customer.PhoneDisplay</td>
-        </tr>
-        <tr>
-            <td><i class="icon-customer-fax"></i></td>
-            <td>@Model.Customer.FaxDisplay</td>
-        </tr>
-    </tbody>
-}
+    @if (Model.Uplines.Any())
+    {
+        var directUpline = Model.Uplines.First();
+        var numberUpline = Model.Uplines.Count();
+
+        <thead>
+            <tr>
+                <td class="text-bold">@Las.Upline
+                </td>
+                <td class="text-bold">
+                    @if (numberUpline > 1)
+                    {
+                        <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">@directUpline.ShortUserName</a>
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini btn-primary more">
+                                @Las.More
+                                <i class="icon-more-arrow"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @for (var upIndex = numberUpline - 1; upIndex > 0; upIndex--)
+                                {
+                                    var upline = Model.Uplines.ElementAt(upIndex);
+                                    <li><a class="agent-inline" href="#" data-id="@(upline.UplineCustId)" title="@upline.UserName">@(upline.MediumUserName)</a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">@directUpline.MediumUserName</a>
+                    }
+                </td>
+            </tr>
+        </thead>
+    }
+    @if (Model.Customer != null)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    <i class="icon-customer-avatar"></i>
+                </td>
+                <td>@Model.Customer.FullName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="icon-customer-cellphone"></i>
+                </td>
+                <td>@Model.Customer.MobileDisplay
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="icon-customer-phone"></i>
+                </td>
+                <td>@Model.Customer.PhoneDisplay
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="icon-customer-fax"></i>
+                </td>
+                <td>@Model.Customer.FaxDisplay
+                </td>
+            </tr>
+        </tbody>
+    }
 </table>

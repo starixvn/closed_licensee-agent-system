@@ -574,7 +574,6 @@
     <Content Include="Images\bootstrap\info-rhombus-icon.png" />
     <Content Include="Images\bootstrap\report-title.gif" />
     <Content Include="Content\language.less" />
-    <Content Include="Scripts\BlockUI\jquery.blockUI.js" />
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>

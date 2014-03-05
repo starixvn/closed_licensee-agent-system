@@ -14,8 +14,5 @@ http://momentjs.com/
 jquery-placeholder:
 https://github.com/mathiasbynens/jquery-placeholder
 
-BlockUI:
-https://github.com/malsup/blockui/
-
 HeadJS:
 https://github.com/headjs/headjs

@@ -67,31 +67,6 @@
     background:#000;
 }
 
-/* Block loading */
-div.block-loading
-{
-    background: url(../images/loader.gif) no-repeat;
-    display: block;
-    position: absolute;
-    top: 45%;
-    left: 45%;
-    width: 50px;
-    height: 50px;
-    z-index: 10001;
-}
-div.blockOverlay
-{
-    background: transparent;
-    border: none;
-    background-color: #ffffff;
-    position: absolute;
-    opacity: 0.7;
-    filter: alpha(opacity=70);
-    top: 0%;
-    left: 0%;
-    z-index: 10000 !important;
-}
-
 /* Instruction */
 .instruction
 {
@@ -454,11 +429,24 @@ ul
     top: 0;
     bottom: 0;
 }
-#overlay
+
+.block-overlay
 {
     z-index: 2;
     display: none;
     background: white;
     opacity: 0.7;
     filter: alpha(opacity=70);
+}
+
+.block-loading
+{
+    background: url(../images/loader.gif) no-repeat;
+    display: block;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 50px;
+    height: 50px;
+    z-index: 10001;
 }

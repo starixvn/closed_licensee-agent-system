@@ -178,24 +178,17 @@
             return browserDectect;
         },
         blockUI: function () {
-            if ($('#overlay').length == 0) {
-                CORE.createDivLoading();
+            if ($('.block-overlay').length == 0) {
+                $('body').append('<div class="block-overlay"></div>');
+                $('body').append('<div class="block-loading"></div>');
             }
 
-            $('div.block-body').show();
-            $('div.block-loading').show();
-            $('#overlay').show();
+            $('.block-overlay').show();
+            $('.block-loading').show();
         },
         unblockUI: function () {
-            $('div.block-body').hide();
-            $('div.block-loading').hide();
-            $('#overlay').hide();
-        },
-        createDivLoading: function () {
-            var div = '<div id="overlay" class="container"></div>';
-            div += '<div class="block-loading" style="display: none;"></div>';
-
-            $('body').append(div);
+            $('.block-overlay').hide();
+            $('.block-loading').hide();
         },
         getGridColumnId: function (gridOption, columnName) {
             var length = gridOption.columns.length;

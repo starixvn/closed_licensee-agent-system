@@ -270,6 +270,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Las.tt</DependentUpon>
     </Content>
+    <Content Include="Scripts\ResourcesJs\Las.zh-CN.js">
+      <DependentUpon>Language.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
+      <DependentUpon>Language.tt</DependentUpon>
+    </Content>
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />

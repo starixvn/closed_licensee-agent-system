@@ -66,6 +66,11 @@ namespace LicenseeAgent.TotalBets.Controllers
             return Json(new Result(Result.FailureValue));
         }
 
+        /// <summary>
+        /// Gets the basketball bet list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
         [HttpPost]
         public JsonResult GetBasketballBetList(BetListBasketballCriteria criteria)
         {

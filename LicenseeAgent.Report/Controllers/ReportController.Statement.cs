@@ -209,7 +209,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    CustId = 1//for testing
+                    CustId = 1
                 }).ToList();
             }
             else
@@ -219,7 +219,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    AgentId = 1//for testing
+                    AgentId = 1
                 }).ToList();
             }
 

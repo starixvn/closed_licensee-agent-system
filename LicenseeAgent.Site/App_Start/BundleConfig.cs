@@ -49,10 +49,8 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/page").Include(
                 "~/scripts/page.js"));
 
-            bundles.Add(new ScriptBundle("~/js/language").Include(
-                "~/scripts/ResourcesJs/Las.en-US.js",
-                "~/scripts/ResourcesJs/Las.zh-CN.js",
-                "~/scripts/ResourcesJs/Las.zh-TW.js"));
+            bundles.Add(new ScriptBundle("~/js/language").IncludeDirectory(
+                "~/scripts/ResourcesJs", "*.js", true));
         }
 
         #endregion Core

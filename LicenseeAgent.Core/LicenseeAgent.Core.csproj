@@ -86,9 +86,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Enumerations\ErrCode.generated.cs">
-      <DependentUpon>ErrCode.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ErrCode.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\SportType.generated.cs">
       <AutoGen>True</AutoGen>

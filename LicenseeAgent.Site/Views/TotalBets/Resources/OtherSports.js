@@ -1,6 +1,9 @@
 ﻿var OtherSports = function ($) {
     return {
         //sportType: 2, //Basketball sporttype
+        checkedAllSport: true,
+        checkedAllLeague: true,
+        checkedAllEvent: true,
         init: function () {
             OtherSports.initData();
 
@@ -13,6 +16,9 @@
 
             // search
             $('form').submit(function () {
+                OtherSports.getSportData();
+                OtherSports.getLeagueData();
+                OtherSports.getEventDataByLeague();
                 OtherSports.reRenderAfterPaged();
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;
@@ -28,12 +34,14 @@
 
         getSportData: function () {
             var params = {
-                sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(',')
+                sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
+                checkedAll: OtherSports.checkedAllSport
             };
 
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetSportListOtherSports"),
                 type: 'post',
+                data: params,
                 async: false,
                 beforeSend: function () {
                 },
@@ -73,6 +81,12 @@
                 onFooterButtonClick: function () {
                     OtherSports.getLeagueData();
                     OtherSports.getEventDataByLeague();
+                },
+                onCheck: function () {
+                    OtherSports.checkedAllSport = false;
+                },
+                onCheckAll: function () {
+                    OtherSports.checkedAllSport = true;
                 }
             });
         },
@@ -80,7 +94,8 @@
         getLeagueData: function () {
             var params = {
                 sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
-                leagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(',')
+                leagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                checkedAll: OtherSports.checkedAllLeague
             };
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetLeagueListOtherSports"),
@@ -123,6 +138,12 @@
                 },
                 onFooterButtonClick: function () {
                     OtherSports.getEventDataByLeague();
+                },
+                onCheck: function () {
+                    OtherSports.checkedAllLeague = false;
+                },
+                onCheckAll: function () {
+                    OtherSports.checkedAllLeague = true;
                 }
             });
         },
@@ -136,13 +157,15 @@
             var params = {
                 sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 leagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                eventList: $("#event-multi-select").fanexMultiSelect('getItems', true).join(',')
+                eventList: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
+                checkedAll: OtherSports.checkedAllEvent
             };
 
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetEventsByLeaguesOtherSports"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                 },
                 success: function (data) {
@@ -162,6 +185,12 @@
                             showParentSelectedText: false,
                             onLeave: function () {
                                 OtherSports.reRenderAfterPaged();
+                            },
+                            onCheck: function () {
+                                OtherSports.checkedAllEvent = false;
+                            },
+                            onCheckAll: function () {
+                                OtherSports.checkedAllEvent = true;
                             }
                         });
                     }

@@ -21,6 +21,8 @@
 var Basketball = function ($) {
     return {
         sportType: 2, //Basketball sporttype
+        checkedAllLeague: true,
+        checkedAllEvent: true,
         init: function () {
             Basketball.initData();
 
@@ -33,6 +35,8 @@ var Basketball = function ($) {
 
             // search
             $('form').submit(function () {
+                Basketball.getLeagueData();
+                Basketball.getEventDataByLeague();
                 Basketball.reRenderAfterPaged();
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;
@@ -47,8 +51,9 @@ var Basketball = function ($) {
 
         getLeagueData: function () {
             var params = {
-                League: $("#League").val(),
-                sportType: Basketball.sportType
+                League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                sportType: Basketball.sportType,
+                checkedAll: Basketball.checkedAllLeague
             };
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetLeagueList"),
@@ -91,6 +96,12 @@ var Basketball = function ($) {
                 },
                 onFooterButtonClick: function () {
                     Basketball.getEventDataByLeague();
+                },
+                onCheck: function () {
+                    Basketball.checkedAllLeague = false;
+                },
+                onCheckAll: function () {
+                    Basketball.checkedAllLeague = true;
                 }
             });
         },
@@ -104,13 +115,15 @@ var Basketball = function ($) {
             var params = {
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
                 Event: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
-                sportType: Basketball.sportType
+                sportType: Basketball.sportType,
+                checkedAll: Basketball.checkedAllEvent
             };
 
             $.ajax({
                 url: CORE.resolveUrl("~/Totalbets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                 },
                 success: function (data) {
@@ -145,8 +158,13 @@ var Basketball = function ($) {
                 showParentSelectedText: false,
                 onLeave: function () {
                     //Basketball.reRenderAfterPaged();
+                },
+                onCheck: function () {
+                    Basketball.checkedAllEvent = false;
+                },
+                onCheckAll: function () {
+                    Basketball.checkedAllEvent = true;
                 }
-
             });
         },
 

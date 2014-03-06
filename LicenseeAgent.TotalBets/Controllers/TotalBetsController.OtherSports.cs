@@ -40,7 +40,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sportList">Sport List.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetSportListOtherSports(string sportList)
+        public JsonResult GetSportListOtherSports(string sportList, bool checkedAll)
         {
             var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
 
@@ -55,7 +55,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.SportType,
                     value = item.SportType,
                     text = item.SportName,
-                    @checked = string.IsNullOrEmpty(sportList) || sportIds.Contains(item.SportType.ToString()),
+                    @checked = checkedAll || sportIds.Contains(item.SportType.ToString()),
                     enable = true
                 });
             }

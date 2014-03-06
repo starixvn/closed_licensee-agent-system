@@ -903,8 +903,9 @@
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
   </data>
-  <data name="EffectiveStake" xml:space="preserve">
-    <value>Effective Stake</value>
+  <data name="EffectiveTurnover" xml:space="preserve">
+    <value>Effective Turnover</value>
+    <comment>not</comment>
   </data>
   <data name="PageTitle_Report_Outstanding" xml:space="preserve">
     <value>Agent Outstanding - Report</value>

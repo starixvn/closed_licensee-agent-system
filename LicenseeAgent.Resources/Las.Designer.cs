@@ -925,11 +925,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Stake.
+        ///   Looks up a localized string similar to Effective Turnover.
         /// </summary>
-        public static string EffectiveStake {
+        public static string EffectiveTurnover {
             get {
-                return ResourceManager.GetString("EffectiveStake", resourceCulture);
+                return ResourceManager.GetString("EffectiveTurnover", resourceCulture);
             }
         }
         

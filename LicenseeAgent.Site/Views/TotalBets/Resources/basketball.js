@@ -275,7 +275,7 @@ var Basketball = function ($) {
         showBetList: function (matchId, bettype, betteam) {
             refreshCountDownMethods.stopCountDown();
             $("#totalbets-filter").attr("class", "totalbets-hide");
-            $("#totalbets-back").attr("class", "history-link");
+            $("#totalbets-back").attr("class", "history-back");
 
             var params = {
                 MatchId: matchId,
@@ -313,7 +313,7 @@ var Basketball = function ($) {
         submitForm: function () {
             refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
             $("#totalbets-filter").attr("class", "");
-            $("#totalbets-back").attr("class", "totalbets-hide");
+            $("#totalbets-back").attr("class", "history-back hide");
             $('form').submit();
         }
     }

@@ -1,11 +1,13 @@
 ﻿/* Overwrite fanex grid */
 
-.freegrid {
+.freegrid
+{
     border-color: #dedede;
     border-radius: 2px;
     font-size: 12px;
 
-    .free-top-left table thead th, .col_header table thead th {
+    .free-top-left table thead th, .col_header table thead th 
+    {
         background: #8a8a8a;
         height: 26px;
     }
@@ -16,7 +18,8 @@
         border-top: solid 0px #c5c5c5 !important;
     }
 
-    .y-scrollbar {
+    .y-scrollbar 
+    {
         border-left-color: #dedede !important;
     }
 
@@ -56,20 +59,8 @@
         }
     }
 
-    .grid-fixed-table 
+    .grid-fixed-table
     {
-        &.col_header_content
-        {
-            border-top-width: 0;
-            tr:first-child
-            {
-                th[colspan]
-                {
-                    border-bottom: 1px solid #fff !important;
-                }
-            }
-        }
-
         tbody tr {
             &.league-row td, &.league-row.freegrid-even td {
                 text-align: left;
@@ -136,7 +127,7 @@
                     cursor: pointer;
                 }
 
-				span.data-link {
+                span.data-link {
                     color: #6D6D6D;
                     cursor: pointer;
                 }
@@ -191,6 +182,22 @@
 }
 
 /* End Overwrite fanex grid */
+
+// Fix problem header 2-row
+.freegrid.fix-header-border
+{
+    .grid-fixed-table.col_header_content
+    {
+        border-top-width: 0;
+        tr:first-child
+        {
+            th[colspan]
+            {
+                border-bottom: 1px solid #fff !important;
+            }
+        }
+    }
+}
 
 #pagination
 {

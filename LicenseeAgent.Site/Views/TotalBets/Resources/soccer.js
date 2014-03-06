@@ -37,7 +37,7 @@ var Soccer = function ($) {
                 Soccer.getLeagueData();
                 Soccer.getEventDataByLeague();
                 Soccer.reRenderAfterPaged();
-                refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+
                 return false;
             });
         },
@@ -146,7 +146,7 @@ var Soccer = function ($) {
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
-                    //Soccer.selectedEvent(); 
+                    //Soccer.selectedEvent();
                 },
                 onFooterButtonClick: function () {
                     //Soccer.selectedEvent();
@@ -189,6 +189,7 @@ var Soccer = function ($) {
                 },
                 complete: function () {
                     CORE.unblockUI();
+                    refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 }
             });
         },
@@ -204,7 +205,6 @@ var Soccer = function ($) {
             var rowIndex = 0;
 
             for (var i = 0; i < len; i++) {//League
-
                 var league = list[i];
                 //Push League row
                 bodyRows.push({

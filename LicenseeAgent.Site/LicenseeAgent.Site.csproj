@@ -228,6 +228,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
+    <Content Include="App_Data\TotalBets\SoccerDetail.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\BetList\betlist.core.css" />
     <Content Include="Content\BetList\betlist.css" />
     <Content Include="Content\BetList\images\bar-loader.gif" />

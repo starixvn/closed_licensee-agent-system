@@ -55,19 +55,6 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpGet]
         public ViewResult SoccerDetail(SoccerDetailViewModel model)
         {
-            var betTypeTableItems = new List<BetTypeTableItem>();
-            betTypeTableItems.Add(new BetTypeTableItem
-            {
-                BetType = (int)BetType.BetType_2,
-                NumberOfColumn = 1,
-                Rows = new BetTypeRowItem[]
-                {
-                    new BetTypeRowItem(Las.Odd, "h"),
-                    new BetTypeRowItem(Las.Even, "a")
-                }
-            });
-
-            var specialChars = new char[] { ' ', '\'', '/', '.', '-' };
             var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = model.MatchId };
             var dataList = _totalBetsService.GetSoccerDetailData(criteria);
             model.MainData = dataList.ToList();

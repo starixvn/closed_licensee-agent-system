@@ -1006,4 +1006,40 @@
   <data name="ViewSportsbookAgent" xml:space="preserve">
     <value>View Sportsbook Agent</value>
   </data>
+  <data name="AwayNo" xml:space="preserve">
+    <value>Away No</value>
+  </data>
+  <data name="AwayOrDraw" xml:space="preserve">
+    <value>Away or Draw</value>
+  </data>
+  <data name="AwayTeam" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="AwayYes" xml:space="preserve">
+    <value>Away Yes</value>
+  </data>
+  <data name="HomeNo" xml:space="preserve">
+    <value>Home No</value>
+  </data>
+  <data name="HomeOrAway" xml:space="preserve">
+    <value>Home or Away</value>
+  </data>
+  <data name="HomeOrDraw" xml:space="preserve">
+    <value>Home or Draw</value>
+  </data>
+  <data name="HomeTeam" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeYes" xml:space="preserve">
+    <value>Home Yes</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>No Goal</value>
+  </data>
+  <data name="Score7Over" xml:space="preserve">
+    <value>7&amp;Over</value>
+  </data>
+  <data name="Under" xml:space="preserve">
+    <value>Under</value>
+  </data>
 </root>

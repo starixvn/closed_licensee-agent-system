@@ -38,6 +38,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// Get All League.
         /// </summary>
         /// <param name="sportList">Sport List.</param>
+        /// <param name="checkedAll">Sports are checked All.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
         public JsonResult GetSportListOtherSports(string sportList, bool checkedAll)

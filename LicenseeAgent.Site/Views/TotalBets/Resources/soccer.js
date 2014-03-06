@@ -275,7 +275,7 @@ var Soccer = function ($) {
         },
         showBetList: function (matchId, bettype, betteam) {
             refreshCountDownMethods.stopCountDown();
-            $("#totalbets-filter").attr("class", "totalbets-hide");
+            $("#totalbets-filter").attr("class", "hide");
             $("#totalbets-back").attr("class", "history-back");
 
             var params = {

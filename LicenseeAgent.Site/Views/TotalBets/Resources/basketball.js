@@ -253,11 +253,11 @@ var Basketball = function ($) {
                     awayTeam.push(
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'a', match.AwayFulltimeHandicap) },
-                        { Name: "FTOU", Value: Basketball.generateLinkValue(match.MatchId, 3, 'h', match.AwayFulltimeOverUnder) },
-                        { Name: "FTOE", Value: Basketball.generateLinkValue(match.MatchId, 2, 'h', match.AwayFulltimeOddEven) },
-                        { Name: "FHHDP", Value: Basketball.generateLinkValue(match.MatchId, 7, 'h', match.AwayFirstHalfHandicap) },
-                        { Name: "FHOU", Value: Basketball.generateLinkValue(match.MatchId, 8, 'h', match.AwayFirstHalfOverUnder) },
-                        { Name: "FHOE", Value: Basketball.generateLinkValue(match.MatchId, 12, 'h', match.AwayFirstHalfOddEven) }
+                        { Name: "FTOU", Value: Basketball.generateLinkValue(match.MatchId, 3, 'a', match.AwayFulltimeOverUnder) },
+                        { Name: "FTOE", Value: Basketball.generateLinkValue(match.MatchId, 2, 'a', match.AwayFulltimeOddEven) },
+                        { Name: "FHHDP", Value: Basketball.generateLinkValue(match.MatchId, 7, 'a', match.AwayFirstHalfHandicap) },
+                        { Name: "FHOU", Value: Basketball.generateLinkValue(match.MatchId, 8, 'a', match.AwayFirstHalfOverUnder) },
+                        { Name: "FHOE", Value: Basketball.generateLinkValue(match.MatchId, 12, 'a', match.AwayFirstHalfOddEven) }
                     );
 
                     bodyRows.push({
@@ -304,9 +304,9 @@ var Basketball = function ($) {
             });
         },
         generateLinkValue: function (matchId, bettype, betteam, linkvalue) {
-            var linkHtmlString = "<a href=\"javascript:void(0);\" onclick=\"Basketball.showBetList(";
+            var linkHtmlString = "<span class=\"data-link\" onclick=\"Basketball.showBetList(";
             linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "')\">";
-            linkHtmlString += linkvalue + "</a>";
+            linkHtmlString += linkvalue + "</span>";
 
             return linkHtmlString;
         },

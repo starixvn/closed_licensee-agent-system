@@ -72,7 +72,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns JSON object.</returns>
         [HttpPost]
-        public JsonResult GetBasketballBetList(BetListBasketballCriteria criteria)
+        public JsonResult GetBasketballBetList(BetListByMatchCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var tickets = _betlistService.GetBetList(criteria);

@@ -1,15 +1,21 @@
-﻿// -----------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------
 // <copyright file="TotalBetsController.Soccer.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// <history>
+//   <change who="Long.Luu" date="2014/03/06">Created</change>
+//   <change who="" date=""></change>
+// </history>
 
 namespace LicenseeAgent.TotalBets.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
+    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
@@ -88,6 +94,33 @@ namespace LicenseeAgent.TotalBets.Controllers
             return Json(new
             {
                 List = mapData
+            });
+        }
+
+        /// <summary>
+        /// Gets the soccer bet list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
+        [HttpPost]
+        public JsonResult GetSoccerBetList(BetListByMatchCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var tickets = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters()
+            {
+                TicketResult = tickets,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+
+            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = betListTicketBuilder.BuildTickets(),
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = criteria.TotalRows
             });
         }
 

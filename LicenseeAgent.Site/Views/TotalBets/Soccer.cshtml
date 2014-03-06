@@ -8,6 +8,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
     @Styles.Render("~/css/totalbets")
+    @Styles.Render("~/css/betlist")
 }
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
@@ -18,31 +19,38 @@
 }
 <div class="legend">
     @ViewBag.Title
+    <span id="totalbets-back" onclick="Soccer.submitForm();" class="totalbets-hide"><i class="icon-history-back"></i>
+        @Las.Back
+    </span>
 </div>
-@using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
-{   
-    <div class="controls-row">
-        <div id="league-multi-select">
+<div id="totalbets-filter" class="">
+    @using (Html.BeginForm("Soccer", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+    {   
+        <div class="controls-row">
+            <div id="league-multi-select">
+            </div>
         </div>
-    </div>
-    <div class="controls-row">
-        <div id="event-multi-select">
+        <div class="controls-row">
+            <div id="event-multi-select">
+            </div>
         </div>
-    </div>
-    <div class="controls-row">
-        <button class="btn btn-primary" type="submit">
-            @Las.Submit
-        </button>
-    </div>
-    <div class="controls-row refresh-count-down-area">
-        <div class="refresh-count-down" id="refresh-count-down">
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
         </div>
-    </div>
-    <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
-    @Html.HiddenFor(m => m.SelectedEvent)
-    @Html.HiddenFor(m => m.SelectedLeague)
-}
+        <div class="controls-row refresh-count-down-area">
+            <div class="refresh-count-down" id="refresh-count-down">
+            </div>
+        </div>
+        <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
+        @Html.HiddenFor(m => m.SelectedEvent)
+        @Html.HiddenFor(m => m.SelectedLeague)
+    }
+</div>
 <div class="wrapper">
-    <div id="grid" class="freegrid">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
     </div>
+</div>
+<div id="instruction" class="instruction-content">
 </div>

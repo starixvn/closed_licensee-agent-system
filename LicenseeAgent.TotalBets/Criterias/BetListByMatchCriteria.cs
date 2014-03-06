@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="BetListBasketballCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListByMatchCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -14,9 +14,9 @@ namespace LicenseeAgent.TotalBets.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Basketball Criteria.
+    /// Bet list by match Criteria.
     /// </summary>
-    public class BetListBasketballCriteria : CriteriaBase
+    public class BetListByMatchCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

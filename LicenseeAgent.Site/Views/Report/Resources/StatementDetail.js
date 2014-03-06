@@ -44,8 +44,8 @@
                 }
             });
         },
-        TransferDetail: function (agentId, username) {
-            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username);
+        TransferDetail: function (agentId, isMember) {
+            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), $('#Username').val(), isMember);
             POPUP.openDialogFrame(url, { width: 465, height: 400 });
         },
         BetList: function (custId, statusIDs, date) {

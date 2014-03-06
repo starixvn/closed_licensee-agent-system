@@ -155,7 +155,7 @@ namespace LicenseeAgent.Report.Controllers
             {
                 result = _reportService.StatementReport(new StatementMemberDetailCriteria
                 {
-                    UserId = model.AgentId,
+                    UserId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
@@ -166,7 +166,7 @@ namespace LicenseeAgent.Report.Controllers
             {
                 result = _reportService.StatementReport(new StatementAgentDetailCriteria
                 {
-                    UserId = model.AgentId,
+                    UserId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
@@ -209,7 +209,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    CustId = 1
+                    CustId = model.AgentId
                 }).ToList();
             }
             else
@@ -219,7 +219,7 @@ namespace LicenseeAgent.Report.Controllers
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    AgentId = 1
+                    AgentId = model.AgentId
                 }).ToList();
             }
 

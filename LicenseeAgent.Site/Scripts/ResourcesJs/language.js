@@ -1,6 +1,6 @@
 ﻿ 
 
-// <copyright file="Las.js" company="Nexcel Solutions Vietnam">
+// <copyright file="Language.js" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved. 
 // </copyright>
 //
@@ -9,10 +9,10 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 3/6/2014 9:37:14 AM
+// Lasted generated date: 3/6/2014 10:32:06 AM
 // </history>
 // Generated helper templates
 // Generated items
-// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.en-US.js
-// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-CN.js
-// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-TW.js
+// LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-TW.js
+// LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-CN.js
+// LicenseeAgent.Site\Scripts\ResourcesJs\Las.en-US.js

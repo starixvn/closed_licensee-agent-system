@@ -11,267 +11,267 @@ namespace LicenseeAgent.Core.Enumerations
         None = 0,
 
         /// <summary>
-        /// <value>This username is not available.</value>.
+        /// This username is not available..
         /// </summary>
         Msg_1000 = 1000,
 
         /// <summary>
-        /// <value>Parent Agent does not exist.</value>.
+        /// Parent Agent does not exist..
         /// </summary>
         Msg_1001 = 1001,
 
         /// <summary>
-        /// <value>Failed to insert agent.</value>.
+        /// Failed to insert agent..
         /// </summary>
         Msg_1002 = 1002,
 
         /// <summary>
-        /// <value>Min Bet must be less than or equal to Max Bet ({0}).</value>.
+        /// Min Bet must be less than or equal to Max Bet ({0})..
         /// </summary>
         Msg_1003 = 1003,
 
         /// <summary>
-        /// <value>Min Bet must be less than or equal to Max Per Match ({0}).</value>.
+        /// Min Bet must be less than or equal to Max Per Match ({0})..
         /// </summary>
         Msg_1004 = 1004,
 
         /// <summary>
-        /// <value>Max Bet must be less than or equal to Max Per Match ({0}).</value>.
+        /// Max Bet must be less than or equal to Max Per Match ({0})..
         /// </summary>
         Msg_1005 = 1005,
 
         /// <summary>
-        /// <value>Min Bet must be greater than or equal to {0} ({1}).</value>.
+        /// Min Bet must be greater than or equal to {0} ({1})..
         /// </summary>
         Msg_1006 = 1006,
 
         /// <summary>
-        /// <value>Max Bet must be less than or equal to {0} ({1}).</value>.
+        /// Max Bet must be less than or equal to {0} ({1})..
         /// </summary>
         Msg_1007 = 1007,
 
         /// <summary>
-        /// <value>Max Per Match must be less than or equal to {0} ({1})</value>.
+        /// Max Per Match must be less than or equal to {0} ({1}).
         /// </summary>
         Msg_1008 = 1008,
 
         /// <summary>
-        /// <value>Invalid commission rate.</value>.
+        /// Invalid commission rate..
         /// </summary>
         Msg_1009 = 1009,
 
         /// <summary>
-        /// <value>The agent does not exist.</value>.
+        /// The agent does not exist..
         /// </summary>
         Msg_101 = 101,
 
         /// <summary>
-        /// <value>% PT must be greater than or equal to zero ( {0} - {1} ).</value>.
+        /// % PT must be greater than or equal to zero ( {0} - {1} )..
         /// </summary>
         Msg_1010 = 1010,
 
         /// <summary>
-        /// <value>% Min given PT must be less than or equal to % Max given PT ( {0} - {1} ).</value>.
+        /// % Min given PT must be less than or equal to % Max given PT ( {0} - {1} )..
         /// </summary>
         Msg_1011 = 1011,
 
         /// <summary>
-        /// <value>% PT must be equal or less than Max PT of Licensee ( {0} - {1} ).</value>.
+        /// % PT must be equal or less than Max PT of Licensee ( {0} - {1} )..
         /// </summary>
         Msg_1012 = 1012,
 
         /// <summary>
-        /// <value>%Min is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>.
+        /// %Min is invalid, it must be between {0:p} and {1:p} ({2} - {3})..
         /// </summary>
         Msg_1013 = 1013,
 
         /// <summary>
-        /// <value>%Max is invalid, it must be between {0} and {1} ({2} - {3}).</value>.
+        /// %Max is invalid, it must be between {0} and {1} ({2} - {3})..
         /// </summary>
         Msg_1014 = 1014,
 
         /// <summary>
-        /// <value>%Preset is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>.
+        /// %Preset is invalid, it must be between {0:p} and {1:p} ({2} - {3})..
         /// </summary>
         Msg_1015 = 1015,
 
         /// <summary>
-        /// <value>The given credit must be between 0 and {0}.</value>.
+        /// The given credit must be between 0 and {0}..
         /// </summary>
         Msg_1016 = 1016,
 
         /// <summary>
-        /// <value>The commission must be less than or equal to Parent Agent commission.</value>.
+        /// The commission must be less than or equal to Parent Agent commission..
         /// </summary>
         Msg_1017 = 1017,
 
         /// <summary>
-        /// <value>Failed to copy data to LicenseeCust.</value>.
+        /// Failed to copy data to LicenseeCust..
         /// </summary>
         Msg_1018 = 1018,
 
         /// <summary>
-        /// <value>The custid already exists in the LicenseeCust.</value>.
+        /// The custid already exists in the LicenseeCust..
         /// </summary>
         Msg_1019 = 1019,
 
         /// <summary>
-        /// <value>Sorry, you can transfer from 12pm to 11:59pm only.</value>.
+        /// Sorry, you can transfer from 12pm to 11:59pm only..
         /// </summary>
         Msg_102 = 102,
 
         /// <summary>
-        /// <value>The username does not exist.</value>.
+        /// The username does not exist..
         /// </summary>
         Msg_1020 = 1020,
 
         /// <summary>
-        /// <value>%PT is invalid, it must be between {0:p} and {1:p} ({2} - {3})</value>.
+        /// %PT is invalid, it must be between {0:p} and {1:p} ({2} - {3}).
         /// </summary>
         Msg_1021 = 1021,
 
         /// <summary>
-        /// <value>The agent does not exist.</value>.
+        /// The agent does not exist..
         /// </summary>
         Msg_1022 = 1022,
 
         /// <summary>
-        /// <value>Updated fail!</value>.
+        /// Updated fail!.
         /// </summary>
         Msg_1023 = 1023,
 
         /// <summary>
-        /// <value>On_AdminId does not exist.</value>.
+        /// On_AdminId does not exist..
         /// </summary>
         Msg_1024 = 1024,
 
         /// <summary>
-        /// <value>Fail to update agent's bet setting.</value>.
+        /// Fail to update agent's bet setting..
         /// </summary>
         Msg_1025 = 1025,
 
         /// <summary>
-        /// <value>Fail to update agent's position taking.</value>.
+        /// Fail to update agent's position taking..
         /// </summary>
         Msg_1026 = 1026,
 
         /// <summary>
-        /// <value>Fail to update member's commission.</value>.
+        /// Fail to update member's commission..
         /// </summary>
         Msg_1027 = 1027,
 
         /// <summary>
-        /// <value>Fail to update member's betlimit.</value>.
+        /// Fail to update member's betlimit..
         /// </summary>
         Msg_1028 = 1028,
 
         /// <summary>
-        /// <value>Fail to update member's position taking.</value>.
+        /// Fail to update member's position taking..
         /// </summary>
         Msg_1029 = 1029,
 
         /// <summary>
-        /// <value>Fail to transfer money. Please try again.</value>.
+        /// Fail to transfer money. Please try again..
         /// </summary>
         Msg_103 = 103,
 
         /// <summary>
-        /// <value>You don't have permission to update this account settings.</value>.
+        /// You don't have permission to update this account settings..
         /// </summary>
         Msg_1030 = 1030,
 
         /// <summary>
-        /// <value>This user's upline was closed. Cannot edit.</value>.
+        /// This user's upline was closed. Cannot edit..
         /// </summary>
         Msg_1031 = 1031,
 
         /// <summary>
-        /// <value>No information available!</value>.
+        /// No information available!.
         /// </summary>
         Msg_1032 = 1032,
 
         /// <summary>
-        /// <value>The searched user belongs to currency {0}. Do you want to change all data to {0} currency?</value>.
+        /// The searched user belongs to currency {0}. Do you want to change all data to {0} currency?.
         /// </summary>
         Msg_1033 = 1033,
 
         /// <summary>
-        /// <value>There is no downline.</value>.
+        /// There is no downline..
         /// </summary>
         Msg_1034 = 1034,
 
         /// <summary>
-        /// <value>You are not authorized for this page.</value>.
+        /// You are not authorized for this page..
         /// </summary>
         Msg_1036 = 1036,
 
         /// <summary>
-        /// <value>... Another session has been logged in ... Your session will be terminated!!! If that is not you, please contact your upline!!!</value>.
+        /// ... Another session has been logged in ... Your session will be terminated!!! If that is not you, please contact your upline!!!.
         /// </summary>
         Msg_1037 = 1037,
 
         /// <summary>
-        /// <value>The licensee was changed by admin, this session must be closed.</value>.
+        /// The licensee was changed by admin, this session must be closed..
         /// </summary>
         Msg_1038 = 1038,
 
         /// <summary>
-        /// <value>Invalid amount</value>.
+        /// Invalid amount.
         /// </summary>
         Msg_1040 = 1040,
 
         /// <summary>
-        /// <value>Sorry, you do not have permission to access this page.</value>.
+        /// Sorry, you do not have permission to access this page..
         /// </summary>
         Msg_1042 = 1042,
 
         /// <summary>
-        /// <value>Update failed</value>.
+        /// Update failed.
         /// </summary>
         Msg_1043 = 1043,
 
         /// <summary>
-        /// <value>Only one transaction is allowed per day for this member.</value>.
+        /// Only one transaction is allowed per day for this member..
         /// </summary>
         Msg_107 = 107,
 
         /// <summary>
-        /// <value>This user is not active.</value>.
+        /// This user is not active..
         /// </summary>
         Msg_200022 = 200022,
 
         /// <summary>
-        /// <value>Failed to create customer. Please try again.</value>.
+        /// Failed to create customer. Please try again..
         /// </summary>
         Msg_40004 = 40004,
 
         /// <summary>
-        /// <value>The old password is incorrect.</value>.
+        /// The old password is incorrect..
         /// </summary>
         Msg_40021 = 40021,
 
         /// <summary>
-        /// <value>This account was disabled!</value>.
+        /// This account was disabled!.
         /// </summary>
         Msg_60020 = 60020,
 
         /// <summary>
-        /// <value>The username or password you entered is incorrect.</value>.
+        /// The username or password you entered is incorrect..
         /// </summary>
         Msg_80001 = 80001,
 
         /// <summary>
-        /// <value>Your password was last changed on {0}. Please enter your new password.</value>.
+        /// Your password was last changed on {0}. Please enter your new password..
         /// </summary>
         Msg_80007 = 80007,
 
         /// <summary>
-        /// <value>Your account has been locked. Please contact Customer Service Department.</value>.
+        /// Your account has been locked. Please contact Customer Service Department..
         /// </summary>
         Msg_80008 = 80008,
 
         /// <summary>
-        /// <value>Failed to change password.</value>.
+        /// Failed to change password..
         /// </summary>
         Msg_80009 = 80009,
     }

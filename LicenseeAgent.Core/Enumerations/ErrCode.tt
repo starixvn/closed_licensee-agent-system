@@ -31,7 +31,7 @@ namespace LicenseeAgent.Core.Enumerations
             {
                 var name = item.Attribute("name").Value;
                 var value = name.Split('_')[1];
-                var description = item.Descendants("value").FirstOrDefault().ToString().Replace("\r\n", " ");
+                var description = item.Descendants("value").FirstOrDefault().Value.Replace("\n", " ");
 #>
 
         /// <summary>

@@ -14,11 +14,12 @@
                 preventDoubleContext: false,
                 beforeShow: customerList.updateActionMenus
             });
+
             context.attach('.icon-customer-edit', [
-                { id: 'menuSportsbook', icon: 'icon-account-logout', text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
-                { id: 'menuEditInfo', icon: 'icon-account-logout', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
-                { id: 'menuResetPassword', icon: 'icon-account-logout', text: LANGUAGE.getString('ResetPassword'), href: '#', action: customerList.resetPassword },
-                { id: 'menuAddDownline', icon: 'icon-account-logout', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }
+                { id: 'menuSportsbook', icon: (pageContext.IsAdmin || pageContext.IsDirectDownline ? 'icon-customer-canedit' : 'icon-customer-canview'), text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
+                { id: 'menuEditInfo', icon: 'icon-customer-canedit', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
+                { id: 'menuResetPassword', icon: 'icon-customer-canedit', text: LANGUAGE.getString('ResetPassword'), href: '#', action: customerList.resetPassword },
+                { id: 'menuAddDownline', icon: 'icon-customer-canedit', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }
             ]);
 
             // create select context menu

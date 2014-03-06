@@ -170,6 +170,33 @@ namespace LicenseeAgent.TotalBets.Controllers
         }
 
         /// <summary>
+        /// Gets the Other sports bet list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
+        [HttpPost]
+        public JsonResult GetOtherSportsBetList(BetListByMatchCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var tickets = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters()
+            {
+                TicketResult = tickets,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+
+            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = betListTicketBuilder.BuildTickets(),
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = criteria.TotalRows
+            });
+        }
+
+        /// <summary>
         /// Map Total Bets Other Sports Data.
         /// </summary>
         /// <param name="dataList">Data List from database.</param>
@@ -207,33 +234,6 @@ namespace LicenseeAgent.TotalBets.Controllers
             // Add dead match to the end.
             liveEventsResult.AddRange(deadEventsResult);
             return liveEventsResult;
-        }
-
-        /// <summary>
-        /// Gets the Other sports bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetOtherSportsBetList(BetListByMatchCriteria criteria)
-        {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
-            {
-                TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
-            });
         }
     }
 }

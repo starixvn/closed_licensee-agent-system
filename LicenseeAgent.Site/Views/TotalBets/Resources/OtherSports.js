@@ -13,7 +13,7 @@
                 { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    gridExpandHeight: 100,
+    gridExpandHeight: 60,
     bodyRowHeight: 29,
     autoResizeColumn: true
 };

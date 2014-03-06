@@ -74,3 +74,28 @@
 {
 	display: none
 }
+
+.freegrid {
+	.grid-fixed-table 
+    {
+        &.col_header_content
+        {
+            border-top-width: 0;
+            tr:first-child
+            {
+                th[colspan]
+                {
+                    border-bottom: 0px !important;
+                }
+            }
+        }
+
+		thead th
+        {
+            &.free-cell-top-right
+            {
+                height: 25px !important;
+            }
+        }
+	}
+}

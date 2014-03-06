@@ -35,11 +35,11 @@ namespace LicenseeAgent.Report.Controllers
         {
             var isAdmin = CurrentSession.IsAdmin;
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
-            model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;            
+            model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
                                 ? model.BreadCrumb
-                                : model.AgentId + "," + model.AgentLevel + "," + (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : CurrentSession.AgentInfo.LicenseeName;
+                                : model.AgentId + "," + model.AgentLevel + "," + model.Username;
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {

@@ -111,7 +111,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// </summary>
         /// <param name="league">League value.</param>
         /// <param name="sportType">Sport Type.</param>
-        /// <returns>League list.</returns>
+        /// <param name="checkedAll">If set to <c>true</c> [checked all].</param>
+        /// <returns>
+        /// League list.
+        /// </returns>
         [HttpPost]
         public JsonResult GetLeagueList(string league, int sportType, bool checkedAll)
         {
@@ -144,7 +147,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="league">League value.</param>
         /// <param name="event">Event value.</param>
         /// <param name="sportType">Sport Type.</param>
-        /// <returns>Events result.</returns>
+        /// <param name="checkedAll">If set to <c>true</c> [checked all].</param>
+        /// <returns>
+        /// Events result.
+        /// </returns>
         [HttpPost]
         public JsonResult GetEventsByLeagues(string league, string @event, int sportType, bool checkedAll)
         {

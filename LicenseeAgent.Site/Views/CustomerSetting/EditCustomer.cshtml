@@ -9,7 +9,7 @@
     }
     else
     {
-        ViewBag.Title = Las.EditSportsbookAgent;
+        ViewBag.Title = Model.FormId == FormType.ViewIndirectAgent ? Las.ViewSportsbookAgent : Las.EditSportsbookAgent;
     }
 }
 @section css

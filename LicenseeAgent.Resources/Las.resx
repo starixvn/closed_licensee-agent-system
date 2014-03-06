@@ -1003,4 +1003,7 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="ViewSportsbookAgent" xml:space="preserve">
+    <value>View Sportsbook Agent</value>
+  </data>
 </root>

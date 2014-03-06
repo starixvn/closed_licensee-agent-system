@@ -2565,6 +2565,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Sportsbook Agent.
+        /// </summary>
+        public static string ViewSportsbookAgent {
+            get {
+                return ResourceManager.GetString("ViewSportsbookAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Virtual Sports.
         /// </summary>
         public static string VirtualSports {

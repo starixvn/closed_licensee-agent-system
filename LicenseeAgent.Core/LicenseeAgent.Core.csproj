@@ -60,6 +60,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UMControllerLibrary">
       <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
     </Reference>
@@ -84,13 +85,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Enumerations\ErrCode.generated.cs">
+      <DependentUpon>ErrCode.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Enumerations\SportType.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SportType.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\TopMenu.cs" />
-    <Compile Include="Enumerations\ErrCode.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
     <Compile Include="Enumerations\Role.cs" />
     <Compile Include="Exceptions\InvalidAgentException.cs" />
@@ -132,6 +137,10 @@
     <None Include="Enumerations\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Enumerations\ErrCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ErrCode.generated.cs</LastGenOutput>
     </None>
     <None Include="Enumerations\SportType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -113,7 +113,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sportType">Sport Type.</param>
         /// <returns>League list.</returns>
         [HttpPost]
-        public JsonResult GetLeagueList(string league, int sportType)
+        public JsonResult GetLeagueList(string league, int sportType, bool checkedAll)
         {
             var criteria = new LeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType };
             var leagues = _totalBetsService.GetLeagues(criteria).OrderBy(x => x.LeagueName);
@@ -126,7 +126,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.LeagueId,
                     value = item.LeagueId,
                     text = item.LeagueName,
-                    @checked = string.IsNullOrEmpty(league) || leagueIds.Contains(item.LeagueId.ToString()),
+                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
                     enable = true
                 });
             }
@@ -146,7 +146,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sportType">Sport Type.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
-        public JsonResult GetEventsByLeagues(string league, string @event, int sportType)
+        public JsonResult GetEventsByLeagues(string league, string @event, int sportType, bool checkedAll)
         {
             var criteria = new EventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
             var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);
@@ -159,7 +159,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.MatchId,
                     value = item.MatchId,
                     text = item.MatchName,
-                    @checked = string.IsNullOrEmpty(@event) || eventIds.Contains(item.MatchId.ToString()),
+                    @checked = checkedAll || eventIds.Contains(item.MatchId.ToString()),
                     enable = true
                 });
             }

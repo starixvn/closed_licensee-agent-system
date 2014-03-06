@@ -1,6 +1,8 @@
 ﻿var Soccer = function ($) {
     return {
         sportType: 1, //Basketball sporttype
+        checkedAllLeague: true,
+        checkedAllEvent: true,
         init: function () {
             $("#refresh-count-down").refreshCountDown({
                 listTimeInterval: CORE.TimeInterval,
@@ -12,6 +14,8 @@
             Soccer.initData();
 
             $('form').submit(function () {
+                Soccer.getLeagueData();
+                Soccer.getEventDataByLeague();
                 Soccer.reRenderAfterPaged();
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;
@@ -25,8 +29,9 @@
 
         getLeagueData: function () {
             var params = {
-                League: $("#SelectedLeague").val(),
-                sportType: Soccer.sportType
+                League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                sportType: Soccer.sportType,
+                checkedAll: Soccer.checkedAllLeague
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetLeagueList"),
@@ -61,10 +66,16 @@
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
-                    Soccer.getEventDataByLeague();
+                    //Soccer.getEventDataByLeague();
                 },
                 onFooterButtonClick: function () {
                     Soccer.getEventDataByLeague();
+                },
+                onCheck: function () {
+                    Soccer.checkedAllLeague = false;
+                },
+                onCheckAll: function () {
+                    Soccer.checkedAllLeague = true;
                 }
             });
         },
@@ -72,13 +83,15 @@
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                Event: $("#SelectedEvent").val(),
-                sportType: Soccer.sportType
+                Event: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
+                sportType: Soccer.sportType,
+                checkedAll: Soccer.checkedAllEvent
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -117,6 +130,12 @@
                 },
                 onFooterButtonClick: function () {
                     //Soccer.selectedEvent();
+                },
+                onCheck: function () {
+                    Soccer.checkedAllEvent = false;
+                },
+                onCheckAll: function () {
+                    Soccer.checkedAllEvent = true;
                 }
             });
         },

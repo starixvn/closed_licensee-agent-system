@@ -1,4 +1,24 @@
-﻿var OtherSports = function ($) {
+﻿var gridOptions = {
+    columns: [
+                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "center", CanResize: true },
+                { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+            ],
+    showPager: true,
+    gridExpandHeight: 100,
+    bodyRowHeight: 29,
+    autoResizeColumn: true
+};
+
+var OtherSports = function ($) {
     return {
         //sportType: 2, //Basketball sporttype
         checkedAllSport: true,
@@ -224,7 +244,7 @@
                 success: function (data) {
                     if (data.ErrCode == 0) {
                         gridOption.bodyRows = OtherSports.genGridRows(data.List, gridOption);
-                        $('#grid').show().fanexGrid(gridOption);
+                        $('#BetListGrid').show().fanexGrid(gridOption);
                     }
                     else {
                         alert(data.ErrMsg);
@@ -292,17 +312,17 @@
                             { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
                             { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
                             { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                            { Name: "MoneyLine", Value: match.HomeFulltimeMoneyLine },
-                            { Name: "FTHDP", Value: match.HomeFulltimeHandicap },
+                            { Name: "MoneyLine", Value: OtherSports.generateLinkValue(match.MatchId, 20, 'h', match.HomeFulltimeMoneyLine) },
+                            { Name: "FTHDP", Value: OtherSports.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
                             { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FTOU", Value: match.HomeFulltimeOverUnder },
+                            { Name: "FTOU", Value: OtherSports.generateLinkValue(match.MatchId, 3, 'h', match.HomeFulltimeOverUnder) },
                             { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FT1X2", Value: match.HomeFulltimeOneXTwo },
+                            { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, '1', match.HomeFulltimeOneXTwo) },
                             { Name: "Statistics1X2", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FTOE", Value: match.HomeFulltimeOddEven },
-                            { Name: "FHHDP", Value: match.HomeFirstHalfHandicap },
+                            { Name: "FTOE", Value: OtherSports.generateLinkValue(match.MatchId, 2, 'h', match.HomeFulltimeOddEven) },
+                            { Name: "FHHDP", Value: OtherSports.generateLinkValue(match.MatchId, 7, 'h', match.HomeFirstHalfHandicap) },
                             { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FHOU", Value: match.HomeFirstHalfOverUnder },
+                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) },
                             { Name: "StatisticsFHOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" }
                         );
 
@@ -310,20 +330,20 @@
                         //Away team
                         awayTeam.push(
                             { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                            { Name: "MoneyLine", Value: match.AwayFulltimeMoneyLine },
-                            { Name: "FTHDP", Value: match.AwayFulltimeHandicap },
-                            { Name: "FTOU", Value: match.AwayFulltimeOverUnder },
-                            { Name: "FT1X2", Value: match.AwayFulltimeOneXTwo },
-                            { Name: "FTOE", Value: match.AwayFulltimeOddEven },
-                            { Name: "FHHDP", Value: match.AwayFirstHalfHandicap },
-                            { Name: "FHOU", Value: match.AwayFirstHalfOverUnder }
+                            { Name: "MoneyLine", Value: OtherSports.generateLinkValue(match.MatchId, 20, 'a', match.AwayFulltimeMoneyLine) },
+                            { Name: "FTHDP", Value: OtherSports.generateLinkValue(match.MatchId, 1, 'a', match.AwayFulltimeHandicap) },
+                            { Name: "FTOU", Value: OtherSports.generateLinkValue(match.MatchId, 3, 'a', match.AwayFulltimeOverUnder) },
+                            { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, '2', match.AwayFulltimeOneXTwo) },
+                            { Name: "FTOE", Value: OtherSports.generateLinkValue(match.MatchId, 2, 'a', match.AwayFulltimeOddEven) },
+                            { Name: "FHHDP", Value: OtherSports.generateLinkValue(match.MatchId, 7, 'a', match.AwayFirstHalfHandicap) },
+                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'a', match.AwayFirstHalfOverUnder) }
                         );
 
                         var drawRow = [];
                         drawRow.push(
                             { Name: "Event", Value: "Draw", TdClass: "draw" },
                             { Name: "MoneyLine", Value: "", MergeColNumber: 5 },
-                            { Name: "FT1X2", Value: match.DrawFulltimeOneXTwo },
+                            { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, 'x', match.DrawFulltimeOneXTwo) },
                             { Name: "Statistics1X2", Value: "", MergeColNumber: 6 }
                         );
 
@@ -345,6 +365,50 @@
                 }
             }
             return bodyRows;
+        },
+        showBetList: function (matchId, bettype, betteam) {
+            refreshCountDownMethods.stopCountDown();
+            $("#totalbets-filter").attr("class", "totalbets-hide");
+            $("#totalbets-back").attr("class", "history-link");
+
+            var params = {
+                MatchId: matchId,
+                Bettype: bettype,
+                Betteam: betteam
+            };
+
+            $.ajax({
+                url: CORE.resolveUrl("~/Totalbets/GetOtherSportsBetList"),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    CORE.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode != 0) {
+                        alert(data.ErrMsg);
+                        return;
+                    }
+
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                },
+                complete: function () {
+                    CORE.unblockUI();
+                }
+            });
+        },
+        generateLinkValue: function (matchId, bettype, betteam, linkvalue) {
+            var linkHtmlString = "<span class=\"data-link\" onclick=\"OtherSports.showBetList(";
+            linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "')\">";
+            linkHtmlString += linkvalue + "</span>";
+
+            return linkHtmlString;
+        },
+        submitForm: function () {
+            refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+            $("#totalbets-filter").attr("class", "");
+            $("#totalbets-back").attr("class", "totalbets-hide");
+            $('form').submit();
         }
     }
 } (jQuery);

@@ -52,3 +52,29 @@
         }
     }
 }
+
+
+.row-fluid
+{
+    [class*="colspan"]
+    {
+        float: left;
+        width: auto;
+        margin-left: 10px;
+        .table
+        {
+            width: auto;
+            td
+            {
+                width: 140px;
+
+                &.column-splitter
+                {
+                    width: 8px;
+                    padding: 0;
+                    background: #E4E5E7;
+                }
+            }
+        }
+    }
+}

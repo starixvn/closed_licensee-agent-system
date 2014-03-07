@@ -22,7 +22,7 @@ table {
   // Cells
   th,
   td {
-    padding: 8px;
+    padding: 5px;
     line-height: @baseLineHeight;
     text-align: left;
     vertical-align: top;
@@ -31,6 +31,7 @@ table {
   th {
     font-weight: bold;
     background-color: #908f8f;
+    color: #fff;
   }
   // Bottom align for column headings
   thead th {
@@ -74,6 +75,7 @@ table {
 
 .table-bordered {
   border: 1px solid @tableBorder;
+  background-color: #eeeff1;
   border-collapse: separate; // Done so we can round those corners!
   *border-collapse: collapse; // IE7 can't round corners anyway
   border-left: 0;

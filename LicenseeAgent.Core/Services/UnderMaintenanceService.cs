@@ -20,7 +20,7 @@ namespace LicenseeAgent.Core.Services
     public class UnderMaintenanceService : IDisposable, IUnderMaintenanceService
     {
         private const int WaitInterval = 1000; // 1 second.
-        private const int CacheTimeout = 60 * 1000; // 60 seconds.
+        private const int CacheTimeout = 60; // 60 seconds.
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
         private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;

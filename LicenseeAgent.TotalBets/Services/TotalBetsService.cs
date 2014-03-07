@@ -35,7 +35,7 @@ namespace LicenseeAgent.TotalBets.Services
         {
             return GetEntites<SoccerDetailEntity>(criteria);
         }
-        
+
         public IEnumerable<TotalBetsEntity> GetBasketballData(BasketballCriteria criteria)
         {
             return GetEntites<TotalBetsEntity>(criteria);

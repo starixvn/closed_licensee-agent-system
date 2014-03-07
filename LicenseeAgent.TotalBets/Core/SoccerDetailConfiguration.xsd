@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="SoccerDetailConfiguration"
+           targetNamespace="SoccerDetailConfiguration"
+           elementFormDefault="qualified"
+           version="2.0">
+
+  <xs:element name="SoccerDetail" type="SoccerDetailConfiguration">
+  </xs:element>
+
+  <xs:complexType name="SoccerDetailConfiguration">
+    <xs:sequence maxOccurs="unbounded" minOccurs="1">
+      <xs:element name="Group" type="SoccerDetailGroup" />
+    </xs:sequence>
+    <xs:attribute name="TotalColumn" type="xs:int" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="SoccerDetailGroup">
+    <xs:sequence maxOccurs="unbounded" minOccurs="1">
+      <xs:element name="Table" type="SoccerDetailTable" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SoccerDetailTable">
+    <xs:sequence maxOccurs="unbounded" minOccurs="1">
+      <xs:element name="Row" type="SoccerDetailRow" />
+    </xs:sequence>
+    <xs:attribute name="BetType" type="xs:int" use="required" />
+    <xs:attribute name="NumberOfColumn" type="xs:int" default="1" />
+  </xs:complexType>
+
+  <xs:complexType name="SoccerDetailRow">
+    <xs:attribute name="BetTeam" type="xs:string" use="required" />
+    <xs:attribute name="ColSpan" type="xs:int" default="1" />
+  </xs:complexType>
+</xs:schema>

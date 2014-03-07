@@ -17,10 +17,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Criteria;
-    using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;

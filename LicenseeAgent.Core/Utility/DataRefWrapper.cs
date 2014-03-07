@@ -278,12 +278,10 @@ namespace LicenseeAgent.Core.Utility
                     {
                         return "4-0 UP";
                     }
-                    else if (betTeam == "2")
+                    else
                     {
                         return betTeam.Replace(':', '-');
                     }
-
-                    break;
 
                 case (int)BetType.BetType_121:
                     if (betTeam == "a")

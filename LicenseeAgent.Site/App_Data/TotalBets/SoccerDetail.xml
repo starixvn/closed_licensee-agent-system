@@ -1,159 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SoccerDetail>
+<SoccerDetail
+  TotalColumn="3"
+  xmlns="SoccerDetailConfiguration"
+  xmlns:xsi="SoccerDetailConfiguration">
   <Group>
     <!--Odd/Even-->
-    <Table betType="2">
-      <Row betTeam="h" />
-      <Row betTeam="a" />
+    <Table BetType="2">
+      <Row BetTeam="h" />
+      <Row BetTeam="a" />
     </Table>
     <!--Money Line-->
-    <Table betType="20">
-      <Row betTeam="h" />
-      <Row betTeam="a" />
+    <Table BetType="20">
+      <Row BetTeam="h" />
+      <Row BetTeam="a" />
     </Table>
     <!--Draw / No Draw-->
-    <Table betType="123">
-      <Row betTeam="h" />
-      <Row betTeam="a" />
+    <Table BetType="123">
+      <Row BetTeam="h" />
+      <Row BetTeam="a" />
     </Table>
   </Group>
   <Group>
     <!--Home No Bet-->
-    <Table betType="121">
-      <Row betTeam="a" />
-      <Row betTeam="x" />
+    <Table BetType="121">
+      <Row BetTeam="a" />
+      <Row BetTeam="x" />
     </Table>
     <!--Away No Bet-->
-    <Table betType="122">
-      <Row betTeam="h" />
-      <Row betTeam="x" />
+    <Table BetType="122">
+      <Row BetTeam="h" />
+      <Row BetTeam="x" />
     </Table>
     <!--Draw No Bet-->
-    <Table betType="25">
-      <Row betTeam="h" />
-      <Row betTeam="a" />
+    <Table BetType="25">
+      <Row BetTeam="h" />
+      <Row BetTeam="a" />
     </Table>
   </Group>
   <Group>
     <!--Double Chance-->
-    <Table betType="24">
-      <Row betTeam="1x" />
-      <Row betTeam="12" />
-      <Row betTeam="2x" />
+    <Table BetType="24">
+      <Row BetTeam="1x" />
+      <Row BetTeam="12" />
+      <Row BetTeam="2x" />
     </Table>
     <!--Both/One/Neither Team To Score-->
-    <Table betType="26">
-      <Row betTeam="b" />
-      <Row betTeam="o" />
-      <Row betTeam="n" />
+    <Table BetType="26">
+      <Row BetTeam="b" />
+      <Row BetTeam="o" />
+      <Row BetTeam="n" />
     </Table>
     <!--3-Way Handicap-->
-    <Table betType="28">
-      <Row betTeam="1" />
-      <Row betTeam="x" />
-      <Row betTeam="2" />
+    <Table BetType="28">
+      <Row BetTeam="1" />
+      <Row BetTeam="x" />
+      <Row BetTeam="2" />
     </Table>
   </Group>
   <Group>
     <!--Clean Sheet-->
-    <Table betType="13" numberOfColumn="2">
-      <Row betTeam="hy" />
-      <Row betTeam="ay" />
-      <Row betTeam="hn" />
-      <Row betTeam="an" />
+    <Table BetType="13" NumberOfColumn="2">
+      <Row BetTeam="hy" />
+      <Row BetTeam="ay" />
+      <Row BetTeam="hn" />
+      <Row BetTeam="an" />
     </Table>
     <!--To Win To Nil-->
-    <Table betType="27">
-      <Row betTeam="h" />
-      <Row betTeam="a" />
+    <Table BetType="27">
+      <Row BetTeam="h" />
+      <Row BetTeam="a" />
     </Table>
   </Group>
   <Group>
     <!--Total Goal-->
-    <Table betType="16" numberOfColumn="2">
-      <Row betTeam="0:1" />
-      <Row betTeam="4:6" />
-      <Row betTeam="2:3" />
-      <Row betTeam="7-over" />
+    <Table BetType="6" NumberOfColumn="2">
+      <Row BetTeam="0-1" />
+      <Row BetTeam="4-6" />
+      <Row BetTeam="2-3" />
+      <Row BetTeam="7-over" />
     </Table>
   </Group>
   <Group>
     <!--First Goal / Last Goal-->
-    <Table betType="16" numberOfColumn="3">
-      <Row betTeam="1:1" />
-      <Row betTeam="2:1" />
-      <Row betTeam="0:0" />
-      <Row betTeam="1:2" />
-      <Row betTeam="2:2" />
+    <Table BetType="14" NumberOfColumn="3">
+      <Row BetTeam="1:1" />
+      <Row BetTeam="2:1" />
+      <Row BetTeam="0:0" />
+      <Row BetTeam="1:2" />
+      <Row BetTeam="2:2" ColSpan="2" />
     </Table>
   </Group>
   <Group>
     <!--Half Time / Fulltime-->
-    <Table betType="16" numberOfColumn="2">
-      <Row betTeam="1:1" />
-      <Row betTeam="2:1" />
-      <Row betTeam="0:1" />
-      <Row betTeam="1:0" />
-      <Row betTeam="2:0" />
-      <Row betTeam="0:0" />
-      <Row betTeam="1:2" />
-      <Row betTeam="2:2" />
-      <Row betTeam="0:2" colSpan="2" />
+    <Table BetType="16" NumberOfColumn="3">
+      <Row BetTeam="1:1" />
+      <Row BetTeam="2:1" />
+      <Row BetTeam="0:1" />
+      <Row BetTeam="1:0" />
+      <Row BetTeam="2:0" />
+      <Row BetTeam="0:0" />
+      <Row BetTeam="1:2" />
+      <Row BetTeam="2:2" />
+      <Row BetTeam="0:2" />
     </Table>
   </Group>
   <Group>
     <!--Correct Score-->
-    <Table betType="4" numberOfColumn="3">
-      <Row betTeam="1:0" />
-      <Row betTeam="0:1" />
-      <Row betTeam="0:0" />
-      <Row betTeam="2:0" />
-      <Row betTeam="0:2" />
-      <Row betTeam="1:1" />
-      <Row betTeam="2:1" />
-      <Row betTeam="1:2" />
-      <Row betTeam="2:2" />
-      <Row betTeam="3:0" />
-      <Row betTeam="0:3" />
-      <Row betTeam="3:3" />
-      <Row betTeam="3:1" />
-      <Row betTeam="1:3" />
-      <Row betTeam="4:4" />
-      <Row betTeam="3:2" />
-      <Row betTeam="2:3" colSpan="2" />
-      <Row betTeam="4:0" />
-      <Row betTeam="0:4" colSpan="2" />
-      <Row betTeam="4:1" />
-      <Row betTeam="1:4" colSpan="2" />
-      <Row betTeam="4:2" />
-      <Row betTeam="2:4" colSpan="2" />
-      <Row betTeam="4:3" />
-      <Row betTeam="3:4" colSpan="2" />
-      <Row betTeam="5:0" />
-      <Row betTeam="0:5" colSpan="2" />
+    <Table BetType="4" NumberOfColumn="3">
+      <Row BetTeam="1:0" />
+      <Row BetTeam="0:1" />
+      <Row BetTeam="0:0" />
+      <Row BetTeam="2:0" />
+      <Row BetTeam="0:2" />
+      <Row BetTeam="1:1" />
+      <Row BetTeam="2:1" />
+      <Row BetTeam="1:2" />
+      <Row BetTeam="2:2" />
+      <Row BetTeam="3:0" />
+      <Row BetTeam="0:3" />
+      <Row BetTeam="3:3" />
+      <Row BetTeam="3:1" />
+      <Row BetTeam="1:3" />
+      <Row BetTeam="4:4" />
+      <Row BetTeam="3:2" />
+      <Row BetTeam="2:3" ColSpan="2" />
+      <Row BetTeam="4:0" />
+      <Row BetTeam="0:4" ColSpan="2" />
+      <Row BetTeam="4:1" />
+      <Row BetTeam="1:4" ColSpan="2" />
+      <Row BetTeam="4:2" />
+      <Row BetTeam="2:4" ColSpan="2" />
+      <Row BetTeam="4:3" />
+      <Row BetTeam="3:4" ColSpan="2" />
+      <Row BetTeam="5:0" />
+      <Row BetTeam="0:5" ColSpan="2" />
     </Table>
   </Group>
   <Group>
     <!--HT Correct Score-->
-    <Table betType="30" numberOfColumn="3">
-      <Row betTeam="1:0" />
-      <Row betTeam="0:1" />
-      <Row betTeam="0:0" />
-      <Row betTeam="2:0" />
-      <Row betTeam="0:2" />
-      <Row betTeam="1:1" />
-      <Row betTeam="2:1" />
-      <Row betTeam="1:2" />
-      <Row betTeam="2:2" />
-      <Row betTeam="3:0" />
-      <Row betTeam="0:3" />
-      <Row betTeam="3:3" />
-      <Row betTeam="3:1" />
-      <Row betTeam="1:3" colSpan="2" />
-      <Row betTeam="3:2" />
-      <Row betTeam="2:3" colSpan="2" />
-      <Row betTeam="4:0" />
-      <Row betTeam="0:4" />
+    <Table BetType="30" NumberOfColumn="3">
+      <Row BetTeam="1:0" />
+      <Row BetTeam="0:1" />
+      <Row BetTeam="0:0" />
+      <Row BetTeam="2:0" />
+      <Row BetTeam="0:2" />
+      <Row BetTeam="1:1" />
+      <Row BetTeam="2:1" />
+      <Row BetTeam="1:2" />
+      <Row BetTeam="2:2" />
+      <Row BetTeam="3:0" />
+      <Row BetTeam="0:3" />
+      <Row BetTeam="3:3" />
+      <Row BetTeam="3:1" />
+      <Row BetTeam="1:3" ColSpan="2" />
+      <Row BetTeam="3:2" />
+      <Row BetTeam="2:3" ColSpan="2" />
+      <Row BetTeam="4:0" />
+      <Row BetTeam="0:4" ColSpan="2" />
     </Table>
   </Group>
 </SoccerDetail>

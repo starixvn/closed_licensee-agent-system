@@ -144,7 +144,7 @@
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             var status = (drawFilter == "1" ? "112,113" : "111,112,113");
-            location.href = CORE.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs=" + status);
+            location.href = CORE.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs=" + status + "&title=" + document.title);
         }
     }
 } (jQuery);

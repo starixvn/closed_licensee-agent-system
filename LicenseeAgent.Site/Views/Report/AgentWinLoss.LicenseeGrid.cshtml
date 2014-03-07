@@ -13,7 +13,7 @@
             }
         ],
         columns: [
-                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
+                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", CanResize: true,
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
                             return ("<a href='javascript:AGENTWINLOSS.ViewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
                         }

@@ -362,7 +362,8 @@ namespace LicenseeAgent.Site
                 "~/Views/BetList/Resources/betlist.core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-outright").Include(
-                "~/Views/TotalBets/Resources/outright.js"));
+                "~/Views/TotalBets/Resources/outright.js",
+                "~/Views/BetList/Resources/betlist.core.js"));
         }
 
         /// <summary>

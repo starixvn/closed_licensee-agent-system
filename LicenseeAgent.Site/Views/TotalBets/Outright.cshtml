@@ -8,6 +8,7 @@
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
     @Styles.Render("~/css/totalbets")
+    @Styles.Render("~/css/betlist")
 }
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
@@ -18,36 +19,43 @@
 }
 <div class="legend">
     @ViewBag.Title
+    <span id="totalbets-back" onclick="Outright.submitForm();" class="history-back hide"><i class="icon-history-back"></i>
+        @Las.Back
+    </span>
 </div>
-@using (Html.BeginForm("Outright", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
-{   
-    <div class="controls-row">
-        <div id="sport-multi-select">
+<div id="totalbets-filter" class="">
+    @using (Html.BeginForm("Outright", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+    {   
+        <div class="controls-row">
+            <div id="sport-multi-select">
+            </div>
+            @Html.Hidden("Sport", "")
         </div>
-        @Html.Hidden("Sport", "")
-    </div>
-    <div class="controls-row">
-        <div id="league-multi-select">
+        <div class="controls-row">
+            <div id="league-multi-select">
+            </div>
+            @Html.Hidden("League", "")
         </div>
-        @Html.Hidden("League", "")
-    </div>
-    <div class="controls-row">
-        <div id="team-multi-select">
+        <div class="controls-row">
+            <div id="team-multi-select">
+            </div>
+            @Html.Hidden("Team", "")
         </div>
-        @Html.Hidden("Team", "")
-    </div>
-    <div class="controls-row">
-        <button class="btn btn-primary" type="submit">
-            @Las.Submit
-        </button>
-    </div>
-    <div class="controls-row refresh-count-down-area">
-        <div class="refresh-count-down" id="refresh-count-down">
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
         </div>
-        <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
-    </div>
-}
+        <div class="controls-row refresh-count-down-area">
+            <div class="refresh-count-down" id="refresh-count-down">
+            </div>
+            <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
+        </div>
+    }
+</div>
 <div class="wrapper">
-    <div id="grid" class="freegrid">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
     </div>
+</div>
+<div id="instruction" class="instruction-content">
 </div>

@@ -9,6 +9,8 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
@@ -139,6 +141,35 @@ namespace LicenseeAgent.TotalBets.Controllers
             {
                 ErrCode = Result.SuccessValue,
                 List = teamMultiItems,
+            });
+        }
+
+
+
+        /// <summary>
+        /// Gets the basketball bet list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
+        [HttpPost]
+        public JsonResult GetOutrightBetList(BetListOutrightCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var tickets = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters()
+            {
+                TicketResult = tickets,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+
+            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = betListTicketBuilder.BuildTickets(),
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = criteria.TotalRows
             });
         }
 

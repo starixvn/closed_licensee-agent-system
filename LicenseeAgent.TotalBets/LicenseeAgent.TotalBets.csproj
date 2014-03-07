@@ -60,6 +60,7 @@
     <Compile Include="Controllers\TotalBetsController.Outright.cs" />
     <Compile Include="Controllers\TotalBetsController.Soccer.cs" />
     <Compile Include="Criterias\BetListByMatchCriteria.cs" />
+    <Compile Include="Criterias\BetListOutrightCriteria.cs" />
     <Compile Include="Criterias\OtherSportsCriteria.cs" />
     <Compile Include="Criterias\OtherSportsLeagueListCriteria.cs" />
     <Compile Include="Criterias\OtherSportsEventListCriteria.cs" />

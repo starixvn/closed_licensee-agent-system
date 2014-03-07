@@ -103,6 +103,7 @@
     
     <!-- Totalbets - Betlist-->
     <Setting Key="LAS_Betlist_SelRunningByBettypeMatch" SpName="LAS_Betlist_SelRunningByBettypeMatch" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Betlist_SelRunningOutrightTickets" SpName="LAS_Betlist_SelRunningOutrightTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!-- End Totalbets - Betlist-->
   </Function>
   <Function Name="Report">

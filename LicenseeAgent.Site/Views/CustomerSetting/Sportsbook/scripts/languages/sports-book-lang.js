@@ -3,7 +3,7 @@
     fanex.customerSetting.language['en-US'] = {
         // Common messages
         message_ValueIsNotInRange: 'Invalid range, input must be in',
-        message_DataIsNotChanged: "Don't have any data changed",
+        message_DataIsNotChanged: "There is no updating.",
 
         // Commission setting messages
         commissionSetting_SimpleModelHeader: 'Commission',
@@ -34,7 +34,7 @@
         sport_11_1: 'Motor Sports',
         sport_99_1: 'Other Sports',
         sport_99_9: 'Mix Sports Parlay',
-        bettingLimit_Message_OnlyNumber: 'Only numbers , (,) inbetween number',
+        bettingLimit_Message_OnlyNumber: 'Only numbers , (,) between number',
         bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "Min Bet must be less than or equal to Max Bet",
         bettingLimit_Message_MinBetMoreThanOrEqualTo: "Min Bet must be greater than or equal to ",
         bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "Max Bet must be greater than or equal to Min Bet",

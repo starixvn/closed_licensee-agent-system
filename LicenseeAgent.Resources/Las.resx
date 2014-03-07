@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeniedMsg" xml:space="preserve">
-    <value>Sorry, you do not have permission to access this page.</value>
+    <value>You do not have permission to access this page.</value>
   </data>
   <data name="AccountInfo" xml:space="preserve">
     <value>Account Info</value>
@@ -695,10 +695,6 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
-  <data name="TooManyDownLineParameters" xml:space="preserve">
-    <value>There is too many parameters with name {0}</value>
-    <comment>not - Add by jacob, for down line validation</comment>
-  </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -725,9 +721,6 @@
   </data>
   <data name="TransferMemberWarning" xml:space="preserve">
     <value>Warning: If balance is full transfered, the &lt;span class="text-highlighted"&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit.</value>
-  </data>
-  <data name="TransferTimeWarning" xml:space="preserve">
-    <value>You can only transfer from 12pm to 11:59pm (GMT-4).</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>Given Credit</value>
@@ -945,7 +938,6 @@
   </data>
   <data name="Betting" xml:space="preserve">
     <value>Betting</value>
-    <comment>not</comment>
   </data>
   <data name="OpeningBalance" xml:space="preserve">
     <value>Opening Balance</value>
@@ -991,21 +983,21 @@
   </data>
   <data name="ClosingBalance" xml:space="preserve">
     <value>Closing Balance</value>
-    <comment>not</comment>
   </data>
   <data name="TransferAmt" xml:space="preserve">
     <value>Transfer Amt</value>
-    <comment>not</comment>
   </data>
   <data name="TransferDetails" xml:space="preserve">
     <value>Transfer Details</value>
-    <comment>not</comment>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
   <data name="ViewSportsbookAgent" xml:space="preserve">
     <value>View Sportsbook Agent</value>
+  </data>
+  <data name="TransferTimeWarning" xml:space="preserve">
+    <value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
   </data>
   <data name="AwayNo" xml:space="preserve">
     <value>Away No</value>

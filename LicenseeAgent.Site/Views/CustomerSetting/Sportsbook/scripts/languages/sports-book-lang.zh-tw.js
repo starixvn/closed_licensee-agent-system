@@ -3,7 +3,7 @@
     fanex.customerSetting.language['zh-TW'] = {
         // Common messages
         message_ValueIsNotInRange: 'Invalid range, input must be in',
-        message_DataIsNotChanged: "Don't have any data changed",
+        message_DataIsNotChanged: "There is no updating.",
 
         // Commission setting messages
         commissionSetting_SimpleModelHeader: '佣金',

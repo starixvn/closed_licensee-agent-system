@@ -79,7 +79,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to insert agent..
+        ///   Looks up a localized string similar to Fail to insert agent..
         /// </summary>
         public static string Msg_1002 {
             get {
@@ -178,7 +178,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % PT must be equal or less than Max PT of Licensee ( {0} - {1} )..
+        ///   Looks up a localized string similar to % PT must be less than or equal to Max PT of Licensee ( {0} - {1} )..
         /// </summary>
         public static string Msg_1012 {
             get {
@@ -232,7 +232,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to copy data to LicenseeCust..
+        ///   Looks up a localized string similar to Fail to copy data to LicenseeCust..
         /// </summary>
         public static string Msg_1018 {
             get {
@@ -250,7 +250,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, you can transfer from 12pm to 11:59pm only..
+        ///   Looks up a localized string similar to You can transfer from 12pm to 11:59pm (GMT-4) only..
         /// </summary>
         public static string Msg_102 {
             get {
@@ -403,7 +403,16 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not authorized for this page..
+        ///   Looks up a localized string similar to Fail to configurate Licensee domains..
+        /// </summary>
+        public static string Msg_1035 {
+            get {
+                return ResourceManager.GetString("Msg_1035", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to access this page..
         /// </summary>
         public static string Msg_1036 {
             get {
@@ -477,7 +486,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to create customer. Please try again..
+        ///   Looks up a localized string similar to Fail to create customer. Please try again..
         /// </summary>
         public static string Msg_40004 {
             get {
@@ -531,7 +540,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to change password..
+        ///   Looks up a localized string similar to Fail to change password..
         /// </summary>
         public static string Msg_80009 {
             get {

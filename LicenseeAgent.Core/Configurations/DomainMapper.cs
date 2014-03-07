@@ -14,6 +14,7 @@ namespace LicenseeAgent.Core.Configurations
     using Fanex.Caching;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -74,7 +75,7 @@ namespace LicenseeAgent.Core.Configurations
                 licenseeDomains = _coreService.GetLicenseeDomains();
                 if (licenseeDomains == null || licenseeDomains.Count() == 0)
                 {
-                    throw new InvalidOperationException("Licensee domains configuration is fail");
+                    throw new InvalidOperationException(LangMsg.Msg_1035);
                 }
 
                 _cacheService.Set<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);

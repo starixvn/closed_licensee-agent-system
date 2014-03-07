@@ -139,7 +139,7 @@
     <value>This username is not available.</value>
   </data>
   <data name="Msg_1002" xml:space="preserve">
-    <value>Failed to insert agent.</value>
+    <value>Fail to insert agent.</value>
   </data>
   <data name="Msg_1003" xml:space="preserve">
     <value>Min Bet must be less than or equal to Max Bet ({0}).</value>
@@ -169,7 +169,7 @@
     <value>% Min given PT must be less than or equal to % Max given PT ( {0} - {1} ).</value>
   </data>
   <data name="Msg_1012" xml:space="preserve">
-    <value>% PT must be equal or less than Max PT of Licensee ( {0} - {1} ).</value>
+    <value>% PT must be less than or equal to Max PT of Licensee ( {0} - {1} ).</value>
   </data>
   <data name="Msg_1013" xml:space="preserve">
     <value>%Min is invalid, it must be between {0:p} and {1:p} ({2} - {3}).</value>
@@ -187,13 +187,13 @@
     <value>The commission must be less than or equal to Parent Agent commission.</value>
   </data>
   <data name="Msg_1018" xml:space="preserve">
-    <value>Failed to copy data to LicenseeCust.</value>
+    <value>Fail to copy data to LicenseeCust.</value>
   </data>
   <data name="Msg_1019" xml:space="preserve">
     <value>The custid already exists in the LicenseeCust.</value>
   </data>
   <data name="Msg_40004" xml:space="preserve">
-    <value>Failed to create customer. Please try again.</value>
+    <value>Fail to create customer. Please try again.</value>
   </data>
   <data name="Msg_1020" xml:space="preserve">
     <value>The username does not exist.</value>
@@ -202,7 +202,7 @@
     <value>%PT is invalid, it must be between {0:p} and {1:p} ({2} - {3})</value>
   </data>
   <data name="Msg_80009" xml:space="preserve">
-    <value>Failed to change password.</value>
+    <value>Fail to change password.</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
     <value>Parent Agent does not exist.</value>
@@ -247,7 +247,7 @@
     <value>There is no downline.</value>
   </data>
   <data name="Msg_1036" xml:space="preserve">
-    <value>You are not authorized for this page.</value>
+    <value>You do not have permission to access this page.</value>
   </data>
   <data name="Msg_1037" xml:space="preserve">
     <value>... Another session has been logged in ...
@@ -267,7 +267,7 @@ If that is not you, please contact your upline!!!</value>
     <value>The agent does not exist.</value>
   </data>
   <data name="Msg_102" xml:space="preserve">
-    <value>Sorry, you can transfer from 12pm to 11:59pm only.</value>
+    <value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
   </data>
   <data name="Msg_103" xml:space="preserve">
     <value>Fail to transfer money. Please try again.</value>
@@ -277,5 +277,8 @@ If that is not you, please contact your upline!!!</value>
   </data>
   <data name="Msg_1043" xml:space="preserve">
     <value>Update failed</value>
+  </data>
+  <data name="Msg_1035" xml:space="preserve">
+    <value>Fail to configurate Licensee domains.</value>
   </data>
 </root>

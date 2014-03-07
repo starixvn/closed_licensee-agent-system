@@ -495,7 +495,7 @@
     <value>Your password will expire on {0}. Do you want to change it now?</value>
   </data>
   <data name="UsernameMinimumLength" xml:space="preserve">
-    <value>Username must be at least 6 characters.</value>
+    <value>Username must be between 6 and 30 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only.</value>
   </data>
   <data name="UsernameRequired" xml:space="preserve">
     <value>Please enter your username.</value>
@@ -928,9 +928,6 @@
   </data>
   <data name="ToWinToNil" xml:space="preserve">
     <value>To Win To Nil</value>
-  </data>
-  <data name="TooManyDownLineParameters" xml:space="preserve">
-    <value>There is too many parameters with name {0}</value>
   </data>
   <data name="TopTurnoverMembers" xml:space="preserve">
     <value>Top 10 highest turnover members of the month</value>

@@ -117,7 +117,14 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult StatementDetail(StatementDetailReportViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (model.IsMember)
+            {
+                if (!_permissionService.IsDownLineMember(model.AgentId))
+                {
+                    return RedirectToAccessDeniedPage();
+                }
+            }
+            else if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -215,7 +222,14 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult TransferDetail(TransferDetailViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (model.IsMember)
+            {
+                if (!_permissionService.IsDownLineMember(model.AgentId))
+                {
+                    return RedirectToAccessDeniedPage();
+                }
+            }
+            else if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -231,11 +245,6 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetTransferData(TransferDetailViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
             var balanceUp = _coreService.GetBalanceUpDay();
             var result = new List<Transfer>();
             if (model.IsMember)

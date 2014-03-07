@@ -29,23 +29,7 @@ namespace LicenseeAgent.Report.Entities
 
         public string Username { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                if (_fullName == null)
-                {
-                    _fullName = LastName + " " + FirstName;
-                }
-
-                return _fullName;
-            }
-
-            set
-            {
-                _fullName = value;
-            }
-        }
+        public string FullName { get; set; }
 
         public string FirstName { get; set; }
 

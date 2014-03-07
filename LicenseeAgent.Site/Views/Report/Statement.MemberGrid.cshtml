@@ -7,7 +7,11 @@
                         return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustId, cell.Value);
                     }
                 },
-                { HeaderText: "@Las.FullName", Width: 100, Name: "FullName", HeaderAlign: "center", CellAlign: "left", CanResize: true },
+                { HeaderText: "@Las.FullName", Width: 100, Name: "LastName", HeaderAlign: "center", CellAlign: "left", CanResize: true, Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return ((rowData.LastName == '' ? '--- ' : rowData.LastName) + (rowData.FirstName == '' ? '---' : rowData.FirstName));
+                    }
+                },
                 { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },

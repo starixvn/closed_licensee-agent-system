@@ -10,7 +10,6 @@
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.

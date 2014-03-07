@@ -17,7 +17,6 @@ namespace LicenseeAgent.Account
     using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;

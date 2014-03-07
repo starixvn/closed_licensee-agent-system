@@ -7,7 +7,6 @@
 namespace LicenseeAgent.CreditBalance.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
-    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Resources;
 
     /// <summary>

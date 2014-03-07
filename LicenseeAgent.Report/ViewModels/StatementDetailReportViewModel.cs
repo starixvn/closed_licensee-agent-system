@@ -11,12 +11,8 @@
 namespace LicenseeAgent.Report.ViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-    using Entities;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.Web;
 
     /// <summary>
     /// Statement Report View Model.

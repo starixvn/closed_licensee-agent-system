@@ -7,8 +7,6 @@
 namespace LicenseeAgent.BetList.ViewModels
 {
     using System;
-    using System.Collections.ObjectModel;
-    using Entities;
 
     /// <summary>
     /// TODO: Update summary.

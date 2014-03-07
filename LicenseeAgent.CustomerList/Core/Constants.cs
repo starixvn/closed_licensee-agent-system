@@ -10,7 +10,6 @@
 namespace LicenseeAgent.CustomerList.Core
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.

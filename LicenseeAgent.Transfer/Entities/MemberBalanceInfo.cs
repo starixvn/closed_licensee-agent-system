@@ -7,7 +7,6 @@
 namespace LicenseeAgent.Transfer.Entities
 {
     using LicenseeAgent.Taiwan;
-    using LicenseeAgent.Taiwan.Utility;
 
     /// <summary>
     /// TODO: Update summary.

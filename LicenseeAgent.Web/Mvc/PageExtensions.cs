@@ -7,8 +7,6 @@
 namespace LicenseeAgent.Web.Mvc
 {
     using System.Net;
-    using System.Text;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using LicenseeAgent.Core.Entities;

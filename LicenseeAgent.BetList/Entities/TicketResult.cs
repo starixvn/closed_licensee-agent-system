@@ -11,7 +11,6 @@
 namespace LicenseeAgent.BetList.Entities
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>

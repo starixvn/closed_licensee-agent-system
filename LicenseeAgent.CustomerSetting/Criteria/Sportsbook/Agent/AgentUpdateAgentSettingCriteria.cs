@@ -8,8 +8,6 @@
 // </history>
 namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
 {
-    using Fanex.NAP.Framework.Data;
-
     /// <summary>
     /// Criteria information.
     /// </summary>

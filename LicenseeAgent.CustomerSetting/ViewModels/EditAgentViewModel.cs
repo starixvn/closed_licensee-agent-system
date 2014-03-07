@@ -9,7 +9,6 @@
 
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>

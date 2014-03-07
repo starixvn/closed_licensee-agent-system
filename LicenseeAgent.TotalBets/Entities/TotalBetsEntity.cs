@@ -9,8 +9,6 @@
 
 namespace LicenseeAgent.TotalBets.Entities
 {
-    using System;
-
     /// <summary>
     /// Total Bets Entity.
     /// </summary>

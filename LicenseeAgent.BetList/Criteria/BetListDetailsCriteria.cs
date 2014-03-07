@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.BetList.Criteria
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

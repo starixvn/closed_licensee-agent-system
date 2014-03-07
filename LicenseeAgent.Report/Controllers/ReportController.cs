@@ -21,17 +21,15 @@ namespace LicenseeAgent.Report.Controllers
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
-    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
     using Services;
     using Utilities;
     using ViewModels;
     using Web.Controllers;
-    using LicenseeAgent.Taiwan.Services;
 
     /// <summary>
     /// Report Controller.
@@ -42,13 +40,13 @@ namespace LicenseeAgent.Report.Controllers
 
         private readonly IDownlLinePermissionService _permissionService;
 
+        private readonly IMemberService _memberService;
+
         private ICoreService _coreService;
 
         private IReportService _reportService;
 
         private IBetListService _betlistService;
-
-        private readonly IMemberService _memberService;
        
        #endregion Services
         

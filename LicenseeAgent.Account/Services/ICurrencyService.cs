@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.Account.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
 

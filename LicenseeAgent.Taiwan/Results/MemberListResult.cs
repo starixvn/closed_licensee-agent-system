@@ -7,7 +7,6 @@
 
 namespace LicenseeAgent.Taiwan.Results
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Entities;

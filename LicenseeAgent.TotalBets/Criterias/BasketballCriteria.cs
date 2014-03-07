@@ -9,7 +9,6 @@
 
 namespace LicenseeAgent.TotalBets.Criteria
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

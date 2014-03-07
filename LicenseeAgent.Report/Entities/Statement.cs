@@ -24,12 +24,13 @@ namespace LicenseeAgent.Report.Entities
 
         [Service(Name = "LASAgentId")]
         public int AgentId { get; set; }
-        
+
         public DateTime Date { get; set; }
 
         public string Username { get; set; }
 
-        public string FullName {
+        public string FullName
+        {
             get
             {
                 if (_fullName == null)

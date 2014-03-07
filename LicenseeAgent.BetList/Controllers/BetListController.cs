@@ -10,27 +10,17 @@
 
 namespace LicenseeAgent.BetList.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Web.Mvc;
     using Entities;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.TicketHelper;
     using Fanex.Result.Core;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
-    using Web.Controllers;
 
     /// <summary>
     /// TODO: Update summary.

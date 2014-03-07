@@ -10,18 +10,10 @@
 
 namespace LicenseeAgent.Report.Utilities
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.TicketHelper;
-    using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Report.Criteria;
-    using LicenseeAgent.Resources;
-    using LicenseeAgent.Web;
 
     /// <summary>
     /// Build ticket.

@@ -6,11 +6,9 @@
 
 namespace LicenseeAgent.TotalBets.Utility
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;

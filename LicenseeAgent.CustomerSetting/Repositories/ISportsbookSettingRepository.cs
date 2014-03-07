@@ -10,7 +10,6 @@
 namespace LicenseeAgent.CustomerSetting.Repositories
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Entities;

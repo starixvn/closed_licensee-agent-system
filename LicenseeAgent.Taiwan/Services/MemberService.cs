@@ -7,10 +7,8 @@
 
 namespace LicenseeAgent.Taiwan.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Fanex.Common;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;

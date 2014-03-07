@@ -9,8 +9,6 @@
 
 namespace LicenseeAgent.Report.Entities
 {
-    using System;
-
     /// <summary>
     /// Agent WinLoss.
     /// </summary>

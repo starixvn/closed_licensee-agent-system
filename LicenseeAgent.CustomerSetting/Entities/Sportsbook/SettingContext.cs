@@ -10,8 +10,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Entities;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Class name.

@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.TotalBets.ViewModels
 {
-    using System.Collections.Generic;
-    using LicenseeAgent.TotalBets.Entities;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

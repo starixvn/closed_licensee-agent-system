@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.Account.ViewResults
 {
-    using System;
-    using LicenseeAgent.Core.Enumerations;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

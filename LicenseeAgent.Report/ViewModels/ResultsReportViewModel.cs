@@ -13,7 +13,6 @@ namespace LicenseeAgent.Report.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Entities;
 
     /// <summary>
     /// Bet List View Model.

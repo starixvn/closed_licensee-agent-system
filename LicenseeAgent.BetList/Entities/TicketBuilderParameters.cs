@@ -9,8 +9,6 @@
 
 namespace LicenseeAgent.BetList.Entities
 {
-    using LicenseeAgent.BetList.Criteria;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

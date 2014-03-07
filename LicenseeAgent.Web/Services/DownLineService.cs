@@ -6,8 +6,6 @@
 
 namespace LicenseeAgent.Web.Services
 {
-    using Fanex.Common;
-    using Fanex.Data;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
 

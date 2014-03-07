@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Fanex.NAP.Framework.Data;
-
     /// <summary>
     /// Criteria information.
     /// </summary>

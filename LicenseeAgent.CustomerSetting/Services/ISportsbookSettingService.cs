@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Service
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Criterias;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;

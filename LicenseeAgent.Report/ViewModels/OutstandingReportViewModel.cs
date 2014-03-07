@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.Report.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using Entities;
 

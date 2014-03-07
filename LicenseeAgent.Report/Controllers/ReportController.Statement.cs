@@ -18,10 +18,9 @@ namespace LicenseeAgent.Report.Controllers
     using Criteria;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Entities;
-    using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Controllers;
-    using ViewModels;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Web;
+    using ViewModels;
 
     /// <summary>
     /// Report Controller.

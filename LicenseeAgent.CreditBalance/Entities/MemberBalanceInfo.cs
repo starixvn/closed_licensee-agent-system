@@ -6,11 +6,6 @@
 
 namespace LicenseeAgent.CreditBalance.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Taiwan;
 
     /// <summary>

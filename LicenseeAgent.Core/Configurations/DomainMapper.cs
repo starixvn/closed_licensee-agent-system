@@ -75,7 +75,7 @@ namespace LicenseeAgent.Core.Configurations
                 licenseeDomains = _coreService.GetLicenseeDomains();
                 if (licenseeDomains == null || licenseeDomains.Count() == 0)
                 {
-                    throw new InvalidOperationException(LangMsg.Msg_1035);
+                    throw new InvalidOperationException("Licensee domains configuration is fail.");
                 }
 
                 _cacheService.Set<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);

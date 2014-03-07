@@ -35,6 +35,11 @@ namespace LicenseeAgent.Report.Controllers
         {
             var isAdmin = CurrentSession.IsAdmin;
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
             model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
@@ -57,6 +62,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var balanceUp = _coreService.GetBalanceUpDay();
             var result = new List<AgentWinLoss>();
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))

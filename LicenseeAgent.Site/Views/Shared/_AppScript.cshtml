@@ -3,4 +3,6 @@
     var APP_CONFIG = {};
     APP_CONFIG.UrlRoot = '@Url.Content("~")';
     APP_CONFIG.SelectedLanguage = '@LanguageManager.Language';
+    APP_CONFIG.ServerTime = '@DateTime.Now';
+    APP_CONFIG.ServerShortDate = '@DateTime.Now.ToShortDateString()';
 </script>

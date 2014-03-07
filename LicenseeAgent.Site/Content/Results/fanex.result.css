@@ -223,6 +223,7 @@ table.fanex-result-popup td.sporttype
 table.fanex-result-popup .bl-sport-type
 {
     font-weight: bold;
+    margin-right: 8px;
 }
 table.fanex-result-popup .bl-league-name
 {

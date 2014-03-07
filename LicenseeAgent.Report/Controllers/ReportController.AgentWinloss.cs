@@ -41,7 +41,9 @@ namespace LicenseeAgent.Report.Controllers
             }
 
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
+            model.Username = !string.IsNullOrEmpty(model.Username)
+                ? model.Username
+                : (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
                                 ? model.BreadCrumb
                                 : model.AgentId + "," + model.AgentLevel + "," + model.Username;

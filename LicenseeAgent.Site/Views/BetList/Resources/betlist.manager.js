@@ -66,12 +66,11 @@ var BETLIST = function ($) {
             });
         },
         renderDatePicker: function () {
-            var lastdate = '';
-            lastdate = lastMonth + '/' + lastDay + '/' + lastYear;
+            var lastdate = new Date(CORE.GetServerShortDate);
             $('#month-picker-control').monPickr({
                 plugInId: '#month-picker-control',
-                today: lastdate,
-                maxDate: _today,
+                today: CORE.GetServerShortDate,
+                maxDate: _today + (lastdate.getFullYear() + 1),
                 minDate: _minDate,
                 showDateRange: true,
                 fromDayId: 'spFrom',
@@ -82,7 +81,7 @@ var BETLIST = function ($) {
                     console.warn(msg);
                 }
             });
-            $('#month-picker-control').monPickr("setFromDay", lastDay);
+            $('#month-picker-control').monPickr("setFromDay", lastdate.getDate());
         },
         showBetListDetails: function (transId, status) {
             fanex.betlist.core.showDetails(transId, status);

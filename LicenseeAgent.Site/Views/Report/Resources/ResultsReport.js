@@ -264,10 +264,10 @@
         generateResults: function (results, viewMatchResults) {
             if (viewMatchResults == 0) {
                 if (results.search("<!--NoInfo-->") > 0) {
-                    $(".outright-dropdownlists").hide();
+                    $(".hide").hide();
                 }
                 else {
-                    $(".outright-dropdownlists").show();
+                    $(".hide").show();
                 }
             }
             $("#ResultsArea").html(results);

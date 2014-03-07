@@ -72,11 +72,13 @@
                     <button class="btn btn-primary" onclick="return outrightYesterday();">@Las.Yesterday</button>
                     <button class="btn btn-primary" onclick="return outrightToday();">@Las.Today</button>
                 </div>
-                <div class="newline">
-                </div>
-                <div class="controls-row">
-                    @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
-                    @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
+                <div class="hide">
+                    <div class="newline">
+                    </div>
+                    <div class="controls-row">
+                        @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w130" })
+                        @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
+                    </div>
                 </div>
             }
         </div>

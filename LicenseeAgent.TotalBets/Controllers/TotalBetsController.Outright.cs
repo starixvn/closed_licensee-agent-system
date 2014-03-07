@@ -144,8 +144,6 @@ namespace LicenseeAgent.TotalBets.Controllers
             });
         }
 
-
-
         /// <summary>
         /// Gets the basketball bet list.
         /// </summary>

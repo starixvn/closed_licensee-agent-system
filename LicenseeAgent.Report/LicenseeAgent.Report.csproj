@@ -125,6 +125,10 @@
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>LicenseeAgent.Resources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Taiwan\LicenseeAgent.Taiwan.csproj">
+      <Project>{0AA1A19E-A3FB-49C1-9AEF-738122579250}</Project>
+      <Name>LicenseeAgent.Taiwan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Web\LicenseeAgent.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>LicenseeAgent.Web</Name>

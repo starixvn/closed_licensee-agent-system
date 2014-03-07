@@ -31,6 +31,7 @@ namespace LicenseeAgent.Report.Controllers
     using Utilities;
     using ViewModels;
     using Web.Controllers;
+    using LicenseeAgent.Taiwan.Services;
 
     /// <summary>
     /// Report Controller.
@@ -47,7 +48,9 @@ namespace LicenseeAgent.Report.Controllers
 
         private IBetListService _betlistService;
 
-        #endregion Services
+        private readonly IMemberService _memberService;
+       
+       #endregion Services
         
         #region Constant
 
@@ -61,13 +64,15 @@ namespace LicenseeAgent.Report.Controllers
             ICoreService coreService,
             IReportService reportService,
             IBetListService betlistService,
-            IDownlLinePermissionService permissionService)
+            IDownlLinePermissionService permissionService,
+            IMemberService memberService)
             : base(permissionService)
         {
             _coreService = coreService;
             _reportService = reportService;
             _betlistService = betlistService;
             _permissionService = permissionService;
+            _memberService = memberService;
         }
 
         #endregion Constructor

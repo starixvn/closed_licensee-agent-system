@@ -21,6 +21,7 @@ namespace LicenseeAgent.Report.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using ViewModels;
+    using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>
     /// Report Controller.
@@ -68,6 +69,22 @@ namespace LicenseeAgent.Report.Controllers
                     ToDate = model.ToDate,
                     Username = model.Username
                 }).ToList();
+                var serviceResult = _memberService.GetMemberInformations<Statement>(
+                                    result,
+                                    new GetMemberInfoListAction
+                                    {
+                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                                        LASAgentId = model.AgentId
+                                    });
+
+                if (serviceResult.ErrCode != Result.SuccessValue)
+                {
+                    return Json(new
+                    {
+                        ErrCode = serviceResult.ErrCode,
+                        ErrMsg = serviceResult.ErrMsg
+                    });
+                }
             }
             else
             {
@@ -129,7 +146,7 @@ namespace LicenseeAgent.Report.Controllers
                 AgentLevel = CurrentSession.AgentInfo.AgentLevel,
                 FromDate = DateTime.Now.AddDays(-1),
                 ToDate = DateTime.Now,
-                Username = CurrentSession.LoginUserName
+                Username = CurrentSession.AgentInfo.UserName
             };
             ViewBag.HideUsername = true;
 

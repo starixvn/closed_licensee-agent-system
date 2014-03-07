@@ -44,8 +44,9 @@
                 }
             });
         },
-        TransferDetail: function (agentId, isMember) {
-            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), $('#Username').val(), isMember);
+        TransferDetail: function (agentId, isMember, date) {
+            var dateTime = moment(date).format("MM/DD/YYYY");
+            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, dateTime, dateTime, $('#Username').val(), isMember);
             POPUP.openDialogFrame(url, { width: 465, height: 400 });
         },
         BetList: function (custId, statusIDs, date) {
@@ -81,7 +82,7 @@
                         var rowData = record;
                         var col = columns[j];
                         var colName = col.Name;
-                        var isMatcheBalance = false;
+                        var isMatchBalance = true;
 
                         if (colName == 'ClosingBalance') {
                             previousClosingBalance = record[colName];
@@ -91,7 +92,7 @@
                             currentOpeningBalance = record[colName];
 
                             if (i != 0 && previousClosingBalance != currentOpeningBalance) {
-                                isMatcheBalance = true;
+                                isMatchBalance = false;
                             }
                         }
 
@@ -104,7 +105,7 @@
                                 } else
                                     return cellFormated;
                             },
-                            TdClass: isMatcheBalance ? 'td-highlighted' : ''
+                            TdClass: isMatchBalance ? '' : 'td-highlighted'
                         });
                     } ());
                 }

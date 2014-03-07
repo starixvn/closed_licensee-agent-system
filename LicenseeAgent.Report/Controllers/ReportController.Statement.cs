@@ -35,6 +35,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult Statement(StatementReportViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             model.AgentId = CurrentSession.AgentInfo.AgentId;
             model.AgentLevel = CurrentSession.AgentInfo.AgentLevel;
             model.FromDate = model.FromDate.GetHashCode() == 0 ? DateTime.Now.AddDays(-1) : model.FromDate;
@@ -56,6 +61,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetStatementData(StatementReportViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var balanceUp = _coreService.GetBalanceUpDay();
             var result = new List<Statement>();
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
@@ -75,7 +85,6 @@ namespace LicenseeAgent.Report.Controllers
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                                         LASAgentId = model.AgentId
                                     });
-
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return Json(new
@@ -97,11 +106,7 @@ namespace LicenseeAgent.Report.Controllers
                 }).ToList();
             }
 
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = result
-            });
+            return Json(new { ErrCode = Result.SuccessValue, List = result });
         }
 
         /// <summary>
@@ -112,6 +117,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult StatementDetail(StatementDetailReportViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             if (model.FromDate.GetHashCode() == 0 || model.ToDate.GetHashCode() == 0)
             {
                 model.FromDate = DateTime.Now.AddDays(-1);
@@ -205,6 +215,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult TransferDetail(TransferDetailViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             return View(model);
         }
 
@@ -216,6 +231,11 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetTransferData(TransferDetailViewModel model)
         {
+            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var balanceUp = _coreService.GetBalanceUpDay();
             var result = new List<Transfer>();
             if (model.IsMember)

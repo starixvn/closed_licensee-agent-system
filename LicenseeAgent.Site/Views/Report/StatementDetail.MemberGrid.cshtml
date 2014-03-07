@@ -2,8 +2,8 @@
     var gridOption = {
         columns: [
                 { HeaderText: "@Las.Date", Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "left", FormatDateTime: "MM/DD/YYYY" },
-                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a href='javascript:STATEMENTDETAIL.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, "101,102,103,111,112,113", rowData.Date);

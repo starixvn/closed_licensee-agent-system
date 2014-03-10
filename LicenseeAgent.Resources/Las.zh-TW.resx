@@ -666,13 +666,13 @@
     <value>日期區間</value>
   </data>
   <data name="DrawFilter" xml:space="preserve">
-    <value>Draw Filter</value>
+    <value>和局篩選</value>
   </data>
   <data name="NoDraw" xml:space="preserve">
     <value>不是和局</value>
   </data>
   <data name="NoDrawForTurnoverOnly" xml:space="preserve">
-    <value>No Draw For Turnover Only</value>
+    <value>只有投注額不包括和局</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>普通</value>
@@ -939,7 +939,7 @@
     <value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
   </data>
   <data name="OpeningBalance" xml:space="preserve">
-    <value>Opening Balance</value>
+    <value>期初餘額</value>
   </data>
   <data name="PublicAnnouncements" xml:space="preserve">
     <value>Public Announcements</value>

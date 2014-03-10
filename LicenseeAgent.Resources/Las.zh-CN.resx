@@ -666,7 +666,7 @@
     <value>日期区间</value>
   </data>
   <data name="DrawFilter" xml:space="preserve">
-    <value>Draw Filter</value>
+    <value>和局筛选</value>
   </data>
   <data name="NoDraw" xml:space="preserve">
     <value>不是和局</value>
@@ -675,7 +675,7 @@
     <value>普通</value>
   </data>
   <data name="NoDrawForTurnoverOnly" xml:space="preserve">
-    <value>No Draw For Turnover Only</value>
+    <value>只有投注额不包括和局</value>
   </data>
   <data name="EffectiveStake" xml:space="preserve">
     <value>有效金额</value>
@@ -924,7 +924,7 @@
     <value>Betting</value>
   </data>
   <data name="OpeningBalance" xml:space="preserve">
-    <value>Opening Balance</value>
+    <value>期初余额</value>
   </data>
   <data name="ToWinToNil" xml:space="preserve">
     <value>To Win To Nil</value>

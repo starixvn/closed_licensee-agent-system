@@ -278,7 +278,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 result = _customerSettingService.UpdateCustomer(model);
             }
 
-            var messages = GenerateMessages(result, true);
+            bool hasUpdateCommission = model.UpdateDataSportsbookCustomer.CommissionSetting != null
+                && model.UpdateDataSportsbookCustomer.CommissionSetting.CommissionItems.Count > 0;
+            bool hasUpdateBetSetting = model.UpdateDataSportsbookCustomer.BettingLimits != null
+                && model.UpdateDataSportsbookCustomer.BettingLimits.Count > 0;
+            var messages = GenerateMessages(result, true, hasUpdateCommission, hasUpdateBetSetting);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -398,12 +402,20 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </summary>
         /// <param name="result">The result.</param>
         /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
-        /// <returns>Returns a list of result.</returns>
+        /// <param name="hasUpdateCommission">If set to <c>true</c> [has update commission].</param>
+        /// <param name="hasUpdateBetSetting">If set to <c>true</c> [has update bet setting].</param>
+        /// <returns>
+        /// Returns a list of result.
+        /// </returns>
         [SuppressMessage(
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        private static IList<Result> GenerateMessages(InsertResult result, bool isUpdate = false)
+        private static IList<Result> GenerateMessages(
+            InsertResult result,
+            bool isUpdate = false,
+            bool hasUpdateCommission = false,
+            bool hasUpdateBetSetting = false)
         {
             var msgContents = new List<Result>();
             if (result.ErrCode == 0)
@@ -416,12 +428,22 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 {
                     if (betSettingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
-                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
+                        if (hasUpdateCommission)
+                        {
+                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
+                        }
                     }
                     else if (positionTakingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
-                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
-                        msgContents.Add(new Result(Result.SuccessValue, Las.UpdateBetSettingSuccessfully));
+                        if (hasUpdateCommission)
+                        {
+                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
+                        }
+
+                        if (hasUpdateBetSetting)
+                        {
+                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateBetSettingSuccessfully));
+                        }
                     }
                 }
 

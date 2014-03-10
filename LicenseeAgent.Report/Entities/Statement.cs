@@ -17,8 +17,6 @@ namespace LicenseeAgent.Report.Entities
     /// </summary>
     public class Statement
     {
-        private string _fullName;
-
         [Service(Name = "IBCCustId")]
         public int CustId { get; set; }
 

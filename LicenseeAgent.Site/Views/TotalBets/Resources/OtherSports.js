@@ -314,16 +314,11 @@ var OtherSports = function ($) {
                             { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                             { Name: "MoneyLine", Value: OtherSports.generateLinkValue(match.MatchId, 20, 'h', match.HomeFulltimeMoneyLine) },
                             { Name: "FTHDP", Value: OtherSports.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
-                            { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                             { Name: "FTOU", Value: OtherSports.generateLinkValue(match.MatchId, 3, 'h', match.HomeFulltimeOverUnder) },
-                            { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                             { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, '1', match.HomeFulltimeOneXTwo) },
-                            { Name: "Statistics1X2", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                             { Name: "FTOE", Value: OtherSports.generateLinkValue(match.MatchId, 2, 'h', match.HomeFulltimeOddEven) },
                             { Name: "FHHDP", Value: OtherSports.generateLinkValue(match.MatchId, 7, 'h', match.HomeFirstHalfHandicap) },
-                            { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
-                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) },
-                            { Name: "StatisticsFHOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" }
+                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) }
                         );
 
                         var awayTeam = [];

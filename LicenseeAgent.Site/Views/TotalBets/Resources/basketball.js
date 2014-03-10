@@ -237,14 +237,10 @@ var Basketball = function ($) {
                         { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
                         { Name: "FTHDP", Value: Basketball.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
-                        { Name: "StatisticsHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FTOU", Value: Basketball.generateLinkValue(match.MatchId, 3, 'h', match.HomeFulltimeOverUnder) },
-                        { Name: "StatisticsOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FTOE", Value: Basketball.generateLinkValue(match.MatchId, 2, 'h', match.HomeFulltimeOddEven) },
                         { Name: "FHHDP", Value: Basketball.generateLinkValue(match.MatchId, 7, 'h', match.HomeFirstHalfHandicap) },
-                        { Name: "StatisticsFHHDP", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FHOU", Value: Basketball.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) },
-                        { Name: "StatisticsFHOU", Value: "", MergeRowNumber: 2, CssClass: "totalbets-item" },
                         { Name: "FHOE", Value: Basketball.generateLinkValue(match.MatchId, 12, 'h', match.HomeFirstHalfOddEven) }
                     );
 

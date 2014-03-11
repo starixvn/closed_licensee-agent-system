@@ -49,7 +49,7 @@ var Soccer = function ($) {
 
         getLeagueData: function () {
             var params = {
-                League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                League: $("#SelectedLeague").val(),
                 sportType: Soccer.sportType,
                 checkedAll: Soccer.checkedAllLeague
             };
@@ -103,7 +103,7 @@ var Soccer = function ($) {
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                Event: $("#event-multi-select").fanexMultiSelect('getItems', true).join(','),
+                Event: $("#SelectedEvent").val(),
                 sportType: Soccer.sportType,
                 checkedAll: Soccer.checkedAllEvent
             };
@@ -167,7 +167,7 @@ var Soccer = function ($) {
             var event = $("#event-multi-select").fanexMultiSelect('getItems', true).join(',');
             var timeInterval = $('#server-time-interval').val();
 
-            var url = CORE.resolveUrl("~/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName + "&selectedLeague=" + league + "&selectedEvent=" + event + "&interval=" + timeInterval;
+            var url = CORE.resolveUrl("~/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName + "&selectedLeague=" + league + "&selectedEvent=" + event + "&timeInterval=" + timeInterval;
             window.location.href = url;
         },
         reRenderAfterPaged: function () {

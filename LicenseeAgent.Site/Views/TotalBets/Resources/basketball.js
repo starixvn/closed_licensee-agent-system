@@ -156,8 +156,13 @@ var Basketball = function ($) {
                 useCustomCheckAllText: true,
                 customCheckAllText: 'All events',
                 showParentSelectedText: false,
+                showFooter: true,
+                footerButtonText: 'OK',
                 onLeave: function () {
                     //Basketball.reRenderAfterPaged();
+                },
+                onFooterButtonClick: function () {
+                    Basketball.reRenderAfterPaged();
                 },
                 onCheck: function () {
                     Basketball.checkedAllEvent = false;

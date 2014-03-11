@@ -96,6 +96,7 @@
                 var url = $('#internal-form').attr('action');
                 $.ajax({
                     url: url,
+                    async: false,
                     type: 'post',
                     data: data,
                     beforeSend: function () {

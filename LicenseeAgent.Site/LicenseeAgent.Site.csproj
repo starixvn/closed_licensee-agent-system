@@ -423,7 +423,6 @@
     <Content Include="Scripts\contextmenu\context.js" />
     <Content Include="Scripts\dotdotdot\jquery.dotdotdot.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
-    <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
     <Content Include="Scripts\fanexgrid\moment.js" />
     <Content Include="Scripts\jquery-ui\jquery.ui.dropdownlist.js" />
     <Content Include="Scripts\language.js" />
@@ -683,7 +682,7 @@
     <Content Include="Views\Instruction\zh-TW\MemberCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSetting.cshtml" />
     <Content Include="Content\customizeFanexGrid.less" />
-    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\Server 209.pubxml" />
     <None Include="Scripts\bootstrap\.jshintrc" />
     <Content Include="Content\bootstrap\accordion.less" />
     <Content Include="Content\bootstrap\alerts.less" />

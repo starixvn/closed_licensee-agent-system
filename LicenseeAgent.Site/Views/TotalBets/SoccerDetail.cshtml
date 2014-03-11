@@ -10,6 +10,14 @@
 @section css{
     @Styles.Render("~/css/totalbets")
 }
+@section scripts{
+    <script language="javascript">
+    function showSoccerMoreBetList(matchid, bettype, betteam) {
+        var url = CORE.resolveUrl("~/Totalbets/SoccerBetList") + "?MatchId=" + matchid + "&Bettype=" + bettype + "&Betteam=" + betteam;
+        window.location.href = url;
+    }
+    </script>
+}
 @functions{
     string GetDetailValue(int betType, string betTeam)
     {
@@ -33,6 +41,7 @@
             var totalColumn = table.NumberOfColumn * 2 + table.NumberOfColumn - 1;
             var totalRow = table.Row.Select(x => x.ColSpan).Sum() / table.NumberOfColumn;
             var rowIndex = 0;
+            
             <div class="@tableClass">
                 <table class="table table-bordered">
                     <thead>
@@ -54,7 +63,9 @@
                                 @DataRefWrapper.GetBetTeamName(table.BetType, row.BetTeam)
                             </td>
                             <td class="text-right">
-                                @GetDetailValue(table.BetType, row.BetTeam)
+                                <span class="data-link" onclick="showSoccerMoreBetList(@Model.MatchId, @table.BetType, '@row.BetTeam')">
+                                    @GetDetailValue(table.BetType, row.BetTeam)
+                                </span>
                             </td>
                             if (rowIndex < table.NumberOfColumn - 1)
                             { 

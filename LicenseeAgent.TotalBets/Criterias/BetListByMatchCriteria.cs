@@ -25,6 +25,8 @@ namespace LicenseeAgent.TotalBets.Criteria
 
         public string Betteam { get; set; }
 
+        public bool? ShowLiveTicket { get; set; }
+
         public int TotalRows { get; set; }
 
         public override string GetSettingKey()

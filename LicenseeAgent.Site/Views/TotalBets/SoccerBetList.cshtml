@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = Las.Soccer + " - " + Las.TotalBets;
+}
+@using LicenseeAgent.TotalBets.Criteria;
+@model BetListByMatchCriteria
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/plugin")
+    @Styles.Render("~/css/totalbets")
+    @Styles.Render("~/css/betlist")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/plugin")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/totalbets-soccer-betlist")
+}
+
+<div class="legend">
+    @ViewBag.Title
+    <span id="totalbets-back" onclick="javascript: window.history.back();" class="history-back"><i class="icon-history-back"></i>
+        @Las.Back
+    </span>
+</div>
+<div class="wrapper">
+    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
+    </div>
+</div>
+<div id="instruction" class="instruction-content">
+</div>
+<input type="hidden" data-matchid="@Model.MatchId" data-bettype="@Model.Bettype" data-betteam="@Model.Betteam" id="soccer-more-betlist" />

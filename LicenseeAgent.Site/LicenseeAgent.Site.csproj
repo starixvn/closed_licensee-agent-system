@@ -522,6 +522,7 @@
     <Content Include="Views\Report\Resources\OutstandingReport.js" />
     <Content Include="Views\Report\Resources\ResultsReport.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
+    <Content Include="Views\TotalBets\Resources\soccer.betlist.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
@@ -799,6 +800,7 @@
     <Content Include="Views\Report\StatementDetail.MemberGrid.cshtml" />
     <Content Include="Views\Report\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
+    <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

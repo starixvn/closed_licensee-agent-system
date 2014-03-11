@@ -221,30 +221,31 @@ var Soccer = function ($) {
                 for (var j = 0; j < numMatches; j++) {
                     var match = matches[j];
                     var homeTeam = [];
+                    var showLiveTicket = match.LiveIndicator ? true : false;
                     rowIndex++;
                     //Home team
                     homeTeam.push(
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
                         { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: Soccer.generateLinkValue(match.MatchId, 1, 'h', match.HomeFulltimeHandicap) },
-                        { Name: "FTOU", Value: Soccer.generateLinkValue(match.MatchId, 3, 'h', match.HomeFulltimeOverUnder) },
-                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, '1', match.HomeFulltimeOneXTwo) },
-                        { Name: "FHHDP", Value: Soccer.generateLinkValue(match.MatchId, 7, 'h', match.HomeFirstHalfHandicap) },
-                        { Name: "FHOU", Value: Soccer.generateLinkValue(match.MatchId, 8, 'h', match.HomeFirstHalfOverUnder) },
-                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, '1', match.HomeFirstHalfOneXTwo) }
+                        { Name: "FTHDP", Value: Soccer.generateLinkValue(match.MatchId, 1, 'h', showLiveTicket, match.HomeFulltimeHandicap) },
+                        { Name: "FTOU", Value: Soccer.generateLinkValue(match.MatchId, 3, 'h', showLiveTicket, match.HomeFulltimeOverUnder) },
+                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, '1', showLiveTicket, match.HomeFulltimeOneXTwo) },
+                        { Name: "FHHDP", Value: Soccer.generateLinkValue(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
+                        { Name: "FHOU", Value: Soccer.generateLinkValue(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) },
+                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, '1', showLiveTicket, match.HomeFirstHalfOneXTwo) }
                     );
 
                     var awayTeam = [];
                     //Away team
                     awayTeam.push(
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: Soccer.generateLinkValue(match.MatchId, 1, 'a', match.AwayFulltimeHandicap) },
-                        { Name: "FTOU", Value: Soccer.generateLinkValue(match.MatchId, 3, 'a', match.AwayFulltimeOverUnder) },
-                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, '2', match.AwayFulltimeOneXTwo) },
-                        { Name: "FHHDP", Value: Soccer.generateLinkValue(match.MatchId, 7, 'a', match.AwayFirstHalfHandicap) },
-                        { Name: "FHOU", Value: Soccer.generateLinkValue(match.MatchId, 8, 'a', match.AwayFirstHalfOverUnder) },
-                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, '2', match.AwayFirstHalfOneXTwo) }
+                        { Name: "FTHDP", Value: Soccer.generateLinkValue(match.MatchId, 1, 'a', showLiveTicket, match.AwayFulltimeHandicap) },
+                        { Name: "FTOU", Value: Soccer.generateLinkValue(match.MatchId, 3, 'a', showLiveTicket, match.AwayFulltimeOverUnder) },
+                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, '2', showLiveTicket, match.AwayFulltimeOneXTwo) },
+                        { Name: "FHHDP", Value: Soccer.generateLinkValue(match.MatchId, 7, 'a', showLiveTicket, match.AwayFirstHalfHandicap) },
+                        { Name: "FHOU", Value: Soccer.generateLinkValue(match.MatchId, 8, 'a', showLiveTicket, match.AwayFirstHalfOverUnder) },
+                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, '2', showLiveTicket, match.AwayFirstHalfOneXTwo) }
                     );
 
                     var moreLink = "<span class='more-link' onclick='Soccer.showAllBetType(this)' data-matchid='" + match.MatchId + "' data-matchname='" + match.HomeName + " -vs- " + match.AwayName + "'>More</span>";
@@ -252,9 +253,9 @@ var Soccer = function ($) {
                     drawTeam.push(
                         { Name: "Event", Value: "Draw", TdClass: "draw" },
                         { Name: "FTHDP", Value: moreLink, MergeColNumber: 2, CssClass: "c-align" },
-                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, 'x', match.DrawFulltimeOneXTwo) },
+                        { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
                         { Name: "FHHDP", Value: "", MergeColNumber: 2 },
-                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, 'x', match.DrawFirstHalfOneXTwo) }
+                        { Name: "FH1X2", Value: Soccer.generateLinkValue(match.MatchId, 15, 'x', showLiveTicket, match.DrawFirstHalfOneXTwo) }
                     );
 
                     bodyRows.push({
@@ -273,7 +274,7 @@ var Soccer = function ($) {
             }
             return bodyRows;
         },
-        showBetList: function (matchId, bettype, betteam) {
+        showBetList: function (matchId, bettype, betteam, showliveticket) {
             refreshCountDownMethods.stopCountDown();
             $("#totalbets-filter").attr("class", "hide");
             $("#totalbets-back").attr("class", "history-back");
@@ -281,7 +282,8 @@ var Soccer = function ($) {
             var params = {
                 MatchId: matchId,
                 Bettype: bettype,
-                Betteam: betteam
+                Betteam: betteam,
+                ShowLiveTicket: showliveticket
             };
 
             $.ajax({
@@ -304,9 +306,9 @@ var Soccer = function ($) {
                 }
             });
         },
-        generateLinkValue: function (matchId, bettype, betteam, linkvalue) {
+        generateLinkValue: function (matchId, bettype, betteam, showliveticket, linkvalue) {
             var linkHtmlString = "<span class=\"data-link\" onclick=\"Soccer.showBetList(";
-            linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "')\">";
+            linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "'," + showliveticket + ")\">";
             linkHtmlString += linkvalue + "</span>";
 
             return linkHtmlString;

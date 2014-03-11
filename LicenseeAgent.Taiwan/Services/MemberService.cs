@@ -69,6 +69,8 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
 
+            LogBinder.WriteError(action, responseResult);
+
             return responseResult;
         }
 
@@ -96,6 +98,8 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
+
+            LogBinder.WriteError(action, responseResult);
 
             return responseResult;
         }
@@ -129,6 +133,8 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
+
+            LogBinder.WriteError(action, responseResult);
 
             return responseResult;
         }
@@ -164,6 +170,8 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.MemberStatus = LogBinder.GetMembersContent(logInformations);
 
             _logService.WriteLog(criteria);
+
+            LogBinder.WriteError(action, memberStatusResult);
 
             return memberStatusResult;
         }

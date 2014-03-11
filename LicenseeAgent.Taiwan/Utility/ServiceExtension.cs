@@ -68,30 +68,31 @@ namespace LicenseeAgent.Taiwan.Utility
             if (!string.IsNullOrEmpty(custIds))
             {
                 var listCustId = custIds.Split(',');
-                foreach (var custId in listCustId)
+                logInformations.AddRange(listCustId.Select(custId => new LogInformationEntity
                 {
-                    logInformations.Add(new LogInformationEntity
-                    {
-                        AgentId = Convert.ToInt32(agentIds),
-                        MemberId = Convert.ToInt32(custId),
-                        Status = (short)LogType.BeforeCall
-                    });
-                }
+                    AgentId = Convert.ToInt32(agentIds), MemberId = Convert.ToInt32(custId), Status = (short)LogType.BeforeCall
+                }));
             }
             else if (!string.IsNullOrEmpty(agentIds))
             {
                 var listAgentId = agentIds.Split(',');
-                foreach (var agentId in listAgentId)
+                logInformations.AddRange(listAgentId.Select(agentId => new LogInformationEntity
                 {
-                    logInformations.Add(new LogInformationEntity
-                    {
-                        AgentId = Convert.ToInt32(agentId),
-                        Status = (short)LogType.BeforeCall
-                    });
-                }
+                    AgentId = Convert.ToInt32(agentId), Status = (short)LogType.BeforeCall
+                }));
             }
 
             return logInformations;
+        }
+
+        /// <summary>
+        /// Check is parameter request.
+        /// </summary>
+        /// <param name="attribute">Attribute object.</param>
+        /// <returns>If is parameter service return true, else return false.</returns>
+        public static bool IsParamRequest(object attribute)
+        {
+            return attribute == null || ((ServiceAttribute)attribute).IsParamAction;
         }
     }
 }

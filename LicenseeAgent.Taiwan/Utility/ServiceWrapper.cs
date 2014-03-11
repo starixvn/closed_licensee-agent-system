@@ -68,7 +68,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 var propertyValue = property.GetValue(action, null);
                 var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
 
-                if (!ServiceWrapper.IsParamRequest(attribute))
+                if (!ServiceExtension.IsParamRequest(attribute))
                 {
                     continue;
                 }
@@ -82,7 +82,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 }
             }
 
-            byte[] formData = UTF8Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
+            byte[] formData = Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
             request.ContentLength = formData.Length;
 
             using (Stream post = request.GetRequestStream())
@@ -103,14 +103,14 @@ namespace LicenseeAgent.Taiwan.Utility
 
             try
             {
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                using (var response = request.GetResponse() as HttpWebResponse)
                 {
-                    if (response.StatusCode != HttpStatusCode.OK)
+                    if (response != null && response.StatusCode != HttpStatusCode.OK)
                     {
                         throw new InvalidOperationException(string.Format(ServiceSetting.HttpError, response.StatusCode, response.StatusDescription));
                     }
 
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(T));
+                    var jsonSerializer = new DataContractJsonSerializer(typeof(T));
 
                     return jsonSerializer.ReadObject(response.GetResponseStream()) as T;
                 }
@@ -122,21 +122,6 @@ namespace LicenseeAgent.Taiwan.Utility
             }
 
             return GetResponseError<T>(message);
-        }
-
-        /// <summary>
-        /// Check is parameter request.
-        /// </summary>
-        /// <param name="attribute">Attribute object.</param>
-        /// <returns>If is parameter service return true, else return false.</returns>
-        private static bool IsParamRequest(object attribute)
-        {
-            if (attribute != null)
-            {
-                return ((ServiceAttribute)attribute).IsParamAction;
-            }
-
-            return true;
         }
 
         /// <summary>

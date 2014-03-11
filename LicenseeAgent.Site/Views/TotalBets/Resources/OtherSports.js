@@ -322,7 +322,7 @@ var OtherSports = function ($) {
                             { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, '1', showLiveTicket, match.HomeFulltimeOneXTwo) },
                             { Name: "FTOE", Value: OtherSports.generateLinkValue(match.MatchId, 2, 'h', showLiveTicket, match.HomeFulltimeOddEven) },
                             { Name: "FHHDP", Value: OtherSports.generateLinkValue(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
-                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) },
+                            { Name: "FHOU", Value: OtherSports.generateLinkValue(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) }
                         );
 
                         var awayTeam = [];
@@ -341,9 +341,9 @@ var OtherSports = function ($) {
                         var drawRow = [];
                         drawRow.push(
                             { Name: "Event", Value: "Draw", TdClass: "draw" },
-                            { Name: "MoneyLine", Value: "", MergeColNumber: 5 },
+                            { Name: "MoneyLine", Value: "", MergeColNumber: 3 },
                             { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
-                            { Name: "Statistics1X2", Value: "", MergeColNumber: 6 }
+                            { Name: "FTOE", Value: "", MergeColNumber: 3 }
                         );
 
                         var cssRow = match.LiveIndicator ? "live-row" : "normal-row";

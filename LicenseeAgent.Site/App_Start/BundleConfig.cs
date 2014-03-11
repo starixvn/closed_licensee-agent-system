@@ -104,6 +104,10 @@ namespace LicenseeAgent.Site
             // Auto numeric
             bundles.Add(new ScriptBundle("~/js/autonumeric").Include(
                 "~/scripts/autonumeric/autonumeric.js"));
+
+            // Marquee
+            bundles.Add(new ScriptBundle("~/js/marquee").Include(
+                "~/scripts/marquee/jquery.marquee.js"));
         }
 
         /// <summary>
@@ -132,7 +136,6 @@ namespace LicenseeAgent.Site
                 "~/scripts/jquery-ui/jquery.ui.sortable.js",
                 "~/scripts/jquery-ui/jquery.ui.button.js",
                 "~/scripts/jquery-ui/jquery.ui.dialog.js",
-                "~/scripts/jquery-ui/jquery.marquee.js",
                 "~/scripts/clickout/jquery.clickout.js"));
             bundles.Add(new LessBundle("~/css/jqueryui").Include(
                 "~/content/jquery-ui/jquery.ui.core.css",

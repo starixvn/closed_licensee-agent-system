@@ -49,7 +49,8 @@
             $('.personalmessage').click(function () {
                 HEADER.updateCountPersonalMessage();
             });
-            HEADER.initScrollMessage();
+            
+            //HEADER.initScrollMessage();
         },
         signOut: function () {
             try {

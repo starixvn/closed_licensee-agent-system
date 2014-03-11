@@ -29,6 +29,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PackageAsSingleFile>false</PackageAsSingleFile>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,7 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ExcludeApp_Data>false</ExcludeApp_Data>
-    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
     <DesktopBuildPackageLocation>obj\Release\Package</DesktopBuildPackageLocation>
     <PublishDatabases>false</PublishDatabases>
     <PackageAsSingleFile>false</PackageAsSingleFile>
@@ -262,6 +264,7 @@
     <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Scripts\jquery\jquery.js" />
+    <Content Include="Scripts\marquee\jquery.marquee.js" />
     <Content Include="Scripts\page.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">
       <AutoGen>True</AutoGen>

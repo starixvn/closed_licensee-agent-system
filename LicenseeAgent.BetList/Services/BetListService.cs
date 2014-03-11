@@ -257,11 +257,11 @@ namespace LicenseeAgent.BetList.Services
                                                     FinalAwayScore =
                                                         i["finalawayscore"] != DBNull.Value
                                                             ? int.Parse(i["finalawayscore"].ToString())
-                                                            : -1,
+                                                            : new int?(),
                                                     HtAwayScore =
                                                         i["htawayscore"] != DBNull.Value
                                                             ? int.Parse(i["htawayscore"].ToString())
-                                                            : -1,
+                                                            : new int?(),
                                                     Color = i.Table.Columns.Contains("lcolor") &&
                                                         i["lcolor"] != DBNull.Value
                                                             ? i["lcolor"].ToString()
@@ -269,11 +269,11 @@ namespace LicenseeAgent.BetList.Services
                                                     FinalHomeScore =
                                                         i["finalhomescore"] != DBNull.Value
                                                             ? int.Parse(i["finalhomescore"].ToString())
-                                                            : -1,
+                                                            : new int?(),
                                                     HtHomeScore =
                                                         i["finalhomescore"] != DBNull.Value
                                                             ? int.Parse(i["hthomescore"].ToString())
-                                                            : -1,
+                                                            : new int?(),
                                                     EventDate = DateTime.Parse(i["eventdate"].ToString()),
                                                     IsNeutral = bool.Parse(i["IsNeutral"].ToString()),
                                                     IsPending = bool.Parse(i["IsPending"].ToString()),

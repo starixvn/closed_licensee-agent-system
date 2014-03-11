@@ -383,7 +383,7 @@ namespace LicenseeAgent.Report.Controllers
             var data = _reportService.GetMatchResults(matchResultsReportCriteria);
             if (data != null)
             {
-                return ResultEngine.HtmlParser(data, setting).Replace(">-1<", "><");
+                return ResultEngine.HtmlParser(data, setting);
             }
 
             return string.Empty;

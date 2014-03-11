@@ -4,13 +4,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Fanex.Common.Extensions;
-
 namespace LicenseeAgent.CustomerList.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Common;
+    using Fanex.Common.Extensions;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;

@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TotalBetsController.Basketball.cs" />
-    <Compile Include="TotalBetsController.OtherSports.cs" />
+    <Compile Include="Controllers\TotalBetsController.OtherSports.cs" />
     <Compile Include="Controllers\TotalBetsController.Outright.cs" />
     <Compile Include="Controllers\TotalBetsController.Soccer.cs" />
     <Compile Include="Core\Constant.cs" />

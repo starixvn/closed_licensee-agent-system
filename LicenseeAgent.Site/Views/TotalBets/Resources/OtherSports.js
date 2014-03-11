@@ -342,7 +342,7 @@ var OtherSports = function ($) {
                         drawRow.push(
                             { Name: "Event", Value: "Draw", TdClass: "draw" },
                             { Name: "MoneyLine", Value: "", MergeColNumber: 3 },
-                            { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) }
+                            { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
                             { Name: "FTOE", Value: "", MergeColNumber: 3 }
                         );
 

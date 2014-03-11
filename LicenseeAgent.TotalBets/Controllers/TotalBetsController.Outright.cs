@@ -119,7 +119,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport, LeagueList = league };
             var teams = _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
-            var teamIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
+            var teamIds = string.IsNullOrEmpty(team) ? new List<string>() : team.Split(',').ToList();
             var teamMultiItems = new List<dynamic>();
             foreach (var item in teams)
             {

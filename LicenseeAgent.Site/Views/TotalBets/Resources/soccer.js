@@ -86,7 +86,7 @@ var Soccer = function ($) {
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
-                    //Soccer.getEventDataByLeague();
+                    Soccer.getEventDataByLeague();
                 },
                 onFooterButtonClick: function () {
                     Soccer.getEventDataByLeague();
@@ -149,7 +149,7 @@ var Soccer = function ($) {
                     //Soccer.selectedEvent();
                 },
                 onFooterButtonClick: function () {
-                    //Soccer.selectedEvent();
+                    Soccer.reRenderAfterPaged();
                 },
                 onCheck: function () {
                     Soccer.checkedAllEvent = false;

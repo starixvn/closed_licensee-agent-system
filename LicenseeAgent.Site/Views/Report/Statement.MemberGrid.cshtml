@@ -7,7 +7,7 @@
                         return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustId, cell.Value);
                     }
                 },
-                { HeaderText: "@Las.FullName", Width: 100, Name: "LastName", HeaderAlign: "center", CellAlign: "left", CanResize: true, Formatter:
+                { HeaderText: "@Las.FullName", Width: 100, Name: "LastName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
                         return ((rowData.LastName == '' ? '--- ' : rowData.LastName) + (rowData.FirstName == '' ? '---' : rowData.FirstName));
                     }

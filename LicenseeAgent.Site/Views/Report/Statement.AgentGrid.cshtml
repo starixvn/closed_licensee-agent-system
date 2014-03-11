@@ -7,7 +7,11 @@
                         return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.AgentId, cell.Value);
                     }
                 },
-                { HeaderText: "@Las.FullName", Width: 100, Name: "FullName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, CanResize: true },
+                { HeaderText: "@Las.FullName", Width: 100, Name: "FullName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return $.trim(cell.Value) == '' ? '--- ---' : cellFormated;
+                    }
+                },
                 { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.WinLoss", Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },

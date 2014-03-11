@@ -108,6 +108,7 @@
                             CORE.unblockUI();
                             return;
                         }
+
                         if (data.DirectUrl) {
                             if (agentName == '') {
                                 location.href = data.DirectUrl;
@@ -153,6 +154,7 @@
                 type: 'post',
                 data: { licenseeId: lsId },
                 beforeSend: function () {
+                    CORE.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode != 0) {
@@ -162,6 +164,7 @@
                     INTERNAL_HEADER.parseCurrency(data.List);
                 },
                 complete: function () {
+                    CORE.unblockUI();
                 }
             });
         },

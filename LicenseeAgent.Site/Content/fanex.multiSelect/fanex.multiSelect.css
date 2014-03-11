@@ -166,8 +166,9 @@ important
 
 .fanex-multiselect span
 {
-    float: right;
-    margin-top: -18px;
+    position: absolute;
+    margin-top: 8px;
+    margin-left: -15px;
 }
 
 .fanex-multiselect-header

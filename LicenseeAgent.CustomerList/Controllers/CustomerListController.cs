@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Fanex.Common.Extensions;
+
 namespace LicenseeAgent.CustomerList.Controllers
 {
     using System.Linq;
@@ -220,7 +222,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             var members = _customerService.GetMemberList(criteria);
 
-            if (criteria.MsgId == Result.SuccessValue)
+            if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
                                     members,
@@ -264,7 +266,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             var members = _customerService.SearchMember(criteria);
 
-            if (criteria.MsgId == Result.SuccessValue)
+            if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
                 var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
                     members,

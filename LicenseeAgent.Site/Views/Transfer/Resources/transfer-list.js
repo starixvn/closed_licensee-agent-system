@@ -64,6 +64,21 @@
             $('#grid').show().fanexGrid(gridOption);
         },
         toggleCheck: function (target) {
+            if ($(target).hasClass("icon-uncheck")) {
+                $(target).attr("class", "icon-checked");
+            }
+            else {
+                $(target).attr("class", "icon-uncheck");
+            }
+
+            if ($('.icon-uncheck').length == 0) {
+                $(".icon-uncheck-all").attr("class", "icon-checked-all");
+            }
+            else {
+                $(".icon-checked-all").attr("class", "icon-uncheck-all");
+            }
+        },
+        toggleAll: function (target) {
             if ($(target).hasClass("icon-uncheck-all")) {
                 TRANSFER_LIST.checkAll();
             }

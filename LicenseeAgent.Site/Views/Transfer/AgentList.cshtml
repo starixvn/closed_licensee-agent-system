@@ -14,10 +14,10 @@
     var gridOption = {
         columns: [
                         {
-                            HeaderText: '<i class="icon-uncheck-all" onclick="TRANSFER_LIST.toggleCheck(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+                            HeaderText: '<i class="icon-uncheck-all" onclick="TRANSFER_LIST.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
                             Width: 30, Name: "Select", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-select icon icon-uncheck" onclick="TRANSFER_LIST.selectClick(this);"></span>';
+                                return '<span class="cell-select icon icon-uncheck" onclick="TRANSFER_LIST.toggleCheck(this);"></span>';
                             }
                         },
                         {

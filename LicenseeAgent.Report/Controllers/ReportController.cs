@@ -153,7 +153,7 @@ namespace LicenseeAgent.Report.Controllers
                         Text = DataRefWrapper.GetSportName(j.First().SportType),
                         Value = j.First().SportType.ToString(),
                         Selected = j.First().SportType == criteria.SportType
-                    }).ToList();
+                    }).OrderBy(a => int.Parse(a.Value)).ToList();
                 var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
                 var leagues = outRightData.Where(i => i.SportType == sportType).GroupBy(i => i.LeagueId)
                     .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.First().LeagueId), Value = j.First().LeagueId.ToString() })
@@ -383,7 +383,7 @@ namespace LicenseeAgent.Report.Controllers
             var data = _reportService.GetMatchResults(matchResultsReportCriteria);
             if (data != null)
             {
-                return ResultEngine.HtmlParser(data, setting);
+                return ResultEngine.HtmlParser(data, setting).Replace(">-1<", "><");
             }
 
             return string.Empty;

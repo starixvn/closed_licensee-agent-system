@@ -210,7 +210,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var data = _betlistService.GetSportsbookResults(new BetListResultsSportsbookCriteria { MatchId = matchId });
             return data != null
-                ? ResultEngine.HtmlParser(data, setting)
+                ? ResultEngine.HtmlParser(data, setting).Replace(">-1<", "><")
                 : string.Empty;
         }
 
@@ -224,7 +224,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var data = _betlistService.GetParlayResults(new BetListResultsParlayCriteria { RefNo = refNo });
             return data != null
-                ? ResultEngine.HtmlParser(data, setting)
+                ? ResultEngine.HtmlParser(data, setting).Replace(">-1<", "><")
                 : string.Empty;
         }
     }

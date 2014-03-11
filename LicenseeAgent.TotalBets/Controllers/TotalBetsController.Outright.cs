@@ -48,7 +48,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="sport">Sport value.</param>
         /// <returns>Sport list.</returns>
         [HttpPost]
-        public JsonResult GetSportList(string sport)
+        public JsonResult GetSportList(string sport, bool checkedAll)
         {
             var criteria = new OutrightSportCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
             var sports = _totalBetsService.GetOutrightSports(criteria).OrderBy(x => x.SportName);
@@ -61,7 +61,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.SportType,
                     value = item.SportType,
                     text = item.SportName,
-                    @checked = string.IsNullOrEmpty(sport) || sportIds.Contains(item.SportType.ToString()),
+                    @checked = checkedAll || sportIds.Contains(item.SportType.ToString()),
                     enable = true
                 });
             }
@@ -81,12 +81,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="isFirstLoad">Is first load.</param>
         /// <returns>League list.</returns>
         [HttpPost]
-        public JsonResult GetLeaguesBySports(string sport, string league, bool isFirstLoad)
+        public JsonResult GetLeaguesBySports(string sport, string league, bool checkedAll)
         {
             var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport };
-            var leagues = string.IsNullOrEmpty(sport) && !isFirstLoad
-                ? new List<LeagueEntity>()
-                : _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
+            var leagues = _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
             var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var leagueMultiItems = new List<dynamic>();
             foreach (var item in leagues)
@@ -96,7 +94,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.LeagueId,
                     value = item.LeagueId,
                     text = item.LeagueName,
-                    @checked = string.IsNullOrEmpty(league) || leagueIds.Contains(item.LeagueId.ToString()),
+                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
                     enable = true
                 });
             }
@@ -117,12 +115,10 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="isFirstLoad">Is first load.</param>
         /// <returns>Team list.</returns>
         [HttpPost]
-        public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool isFirstLoad)
+        public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool checkedAll)
         {
             var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport, LeagueList = league };
-            var teams = (string.IsNullOrEmpty(sport) || string.IsNullOrEmpty(league)) && !isFirstLoad
-                ? new List<TeamEntity>()
-                : _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
+            var teams = _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
             var teamIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
             var teamMultiItems = new List<dynamic>();
             foreach (var item in teams)
@@ -132,7 +128,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.TeamId,
                     value = item.TeamId,
                     text = item.TeamName,
-                    @checked = string.IsNullOrEmpty(team) || teamIds.Contains(item.TeamId.ToString()),
+                    @checked = checkedAll || teamIds.Contains(item.TeamId.ToString()),
                     enable = true
                 });
             }

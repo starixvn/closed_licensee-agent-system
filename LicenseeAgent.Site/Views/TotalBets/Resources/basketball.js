@@ -106,11 +106,6 @@ var Basketball = function ($) {
             });
         },
 
-        selectedLeague: function () {
-            var selectedLeagues = $("#league-multi-select").fanexMultiSelect('getItems', true).join(',');
-            Basketball.getEventDataByLeague();
-        },
-
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),

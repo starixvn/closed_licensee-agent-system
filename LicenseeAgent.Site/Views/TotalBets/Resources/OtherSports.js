@@ -96,11 +96,11 @@ var OtherSports = function ($) {
                 footerButtonText: 'OK',
                 onLeave: function () {
                     OtherSports.getLeagueData();
-                    //OtherSports.getEventDataByLeague();
+                    OtherSports.getEventDataByLeague();
                 },
                 onFooterButtonClick: function () {
                     OtherSports.getLeagueData();
-                    //OtherSports.getEventDataByLeague();
+                    OtherSports.getEventDataByLeague();
                 },
                 onCheck: function () {
                     OtherSports.checkedAllSport = false;

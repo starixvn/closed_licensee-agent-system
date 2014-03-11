@@ -46,20 +46,21 @@ var Outright = function ($) {
 
         initData: function () {
             Outright.getSportData();
-            Outright.getLeagueDataBySport(true);
-            Outright.getTeamDataByLeague(true, true);
+            Outright.getLeagueDataBySport();
+            Outright.getTeamDataByLeague(true);
         },
 
         // ------------------------------------------------ Sport filter -----------------------------------------
         getSportData: function () {
             var params = {
-                Sport: $("#Sport").val(),
+                Sport: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 checkedAll: Outright.checkedAllSport
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetSportList"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                     CORE.blockUI();
                 },
@@ -89,9 +90,11 @@ var Outright = function ($) {
                 footerButtonText: 'OK',
                 onLeave: function () {
                     Outright.getLeagueDataBySport();
+                    Outright.getTeamDataByLeague();
                 },
                 onFooterButtonClick: function () {
                     Outright.getLeagueDataBySport();
+                    Outright.getTeamDataByLeague();
                 },
                 onCheck: function () {
                     Outright.checkedAllSport = false;
@@ -103,17 +106,17 @@ var Outright = function ($) {
         },
 
         // ------------------------------------------------ League filter -----------------------------------------
-        getLeagueDataBySport: function (isFirstLoad) {
+        getLeagueDataBySport: function () {
             var params = {
                 Sport: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                IsFirstLoad: isFirstLoad,
                 checkedAll: Outright.checkedAllLeague
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetLeaguesBySports"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                     //CORE.blockUI();
                 },
@@ -158,18 +161,18 @@ var Outright = function ($) {
         },
 
         // ------------------------------------------------ Team filter -----------------------------------------
-        getTeamDataByLeague: function (isFirstLoad, isLoadGrid) {
+        getTeamDataByLeague: function (isLoadGrid) {
             var params = {
                 Sport: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 League: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
                 Team: $("#team-multi-select").fanexMultiSelect('getItems', true).join(','),
-                IsFirstLoad: isFirstLoad,
                 checkedAll: Outright.checkedAllEvent
             };
             $.ajax({
                 url: CORE.resolveUrl("~/TotalBets/GetTeamsByLeagues"),
                 type: 'post',
                 data: params,
+                async: false,
                 beforeSend: function () {
                     CORE.blockUI();
                 },

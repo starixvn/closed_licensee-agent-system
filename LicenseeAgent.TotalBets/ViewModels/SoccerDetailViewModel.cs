@@ -22,6 +22,10 @@ namespace LicenseeAgent.TotalBets.ViewModels
 
         public string SelectedEvent { get; set; }
 
+        public bool CheckAllLeague { get; set; }
+
+        public bool CheckAllEvent { get; set; }
+
         public int TimeInterval { get; set; }
 
         public IList<SoccerDetailEntity> MainData { get; set; }

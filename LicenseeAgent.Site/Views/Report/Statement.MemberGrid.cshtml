@@ -2,7 +2,7 @@
     var gridOption = {
         columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Las.Username", Width: 100, Name: "Username", HeaderAlign: "center", CanResize: true, CellAlign: "left",
+                { HeaderText: "@Las.Username", Width: 100, Name: "Username", HeaderAlign: "center", AllowTruncate: true, CanResize: true, CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustId, cell.Value);
                     }

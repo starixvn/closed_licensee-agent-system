@@ -4,7 +4,7 @@
 @model SoccerDetailViewModel
 @{
     ViewBag.Title = Model.MatchName;
-    var backLink = Url.Action("Soccer", "TotalBets", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval });
+    var backLink = Url.Action("Soccer", "TotalBets", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval, checkAllLeague = Model.CheckAllLeague, checkAllEvent = Model.CheckAllEvent });
     var soccerDetailConfiguration = SettingConfigurations.SoccerDetailConfiguration;
 }
 @section css{

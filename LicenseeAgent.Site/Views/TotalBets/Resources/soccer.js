@@ -43,6 +43,10 @@ var Soccer = function ($) {
         },
 
         initData: function () {
+            if ($('#CheckAllLeague').val() != '' || $('#CheckAllEvent').val() != '') {
+                Soccer.checkedAllLeague = $('#CheckAllLeague').val();
+                Soccer.checkedAllEvent = $('#CheckAllEvent').val();
+            }
             Soccer.getLeagueData();
             Soccer.getEventDataByLeague(true);
         },
@@ -86,9 +90,11 @@ var Soccer = function ($) {
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
+                    $("#SelectedLeague").val($("#league-multi-select").fanexMultiSelect('getItems', true).join(','));
                     Soccer.getEventDataByLeague();
                 },
                 onFooterButtonClick: function () {
+                    $("#SelectedLeague").val($("#league-multi-select").fanexMultiSelect('getItems', true).join(','));
                     Soccer.getEventDataByLeague();
                 },
                 onCheck: function () {
@@ -146,9 +152,11 @@ var Soccer = function ($) {
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
+                    $("#SelectedEvent").val($("#event-multi-select").fanexMultiSelect('getItems', true).join(','));
                     //Soccer.selectedEvent();
                 },
                 onFooterButtonClick: function () {
+                    $("#SelectedEvent").val($("#event-multi-select").fanexMultiSelect('getItems', true).join(','));
                     Soccer.reRenderAfterPaged();
                 },
                 onCheck: function () {
@@ -167,7 +175,7 @@ var Soccer = function ($) {
             var event = $("#event-multi-select").fanexMultiSelect('getItems', true).join(',');
             var timeInterval = $('#server-time-interval').val();
 
-            var url = CORE.resolveUrl("~/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName + "&selectedLeague=" + league + "&selectedEvent=" + event + "&timeInterval=" + timeInterval;
+            var url = CORE.resolveUrl("~/Totalbets/SoccerDetail") + "?matchId=" + matchId + "&matchName=" + matchName + "&selectedLeague=" + league + "&selectedEvent=" + event + "&timeInterval=" + timeInterval + "&checkAllLeague=" + Soccer.checkedAllLeague + "&checkAllEvent=" + Soccer.checkedAllEvent;
             window.location.href = url;
         },
         reRenderAfterPaged: function () {

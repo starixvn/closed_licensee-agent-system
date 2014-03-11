@@ -2,9 +2,9 @@
     var gridOption = {
         columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Las.Username", Width: 100, Name: "Username", CanResize: true, HeaderAlign: "center", CellAlign: "left",
+                { HeaderText: "@Las.Username", Width: 100, Name: "Username", AllowTruncate: true, CanResize: true, HeaderAlign: "center", CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.AgentId, cell.Value);
+                        return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cellFormated + "</a>").format(rowData.AgentId, cell.Value);
                     }
                 },
                 { HeaderText: "@Las.FullName", Width: 100, Name: "FullName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, Formatter:

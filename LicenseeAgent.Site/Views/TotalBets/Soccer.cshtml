@@ -44,8 +44,10 @@
             </div>
         </div>
         <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
-        @Html.HiddenFor(m => m.SelectedEvent)
         @Html.HiddenFor(m => m.SelectedLeague)
+        @Html.HiddenFor(m => m.CheckAllLeague)
+        @Html.HiddenFor(m => m.SelectedEvent)
+        @Html.HiddenFor(m => m.CheckAllEvent)
     }
 </div>
 <div class="wrapper">

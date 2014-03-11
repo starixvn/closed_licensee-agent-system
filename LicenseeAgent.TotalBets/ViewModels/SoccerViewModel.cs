@@ -16,5 +16,9 @@ namespace LicenseeAgent.TotalBets.ViewModels
         public string SelectedLeague { get; set; }
 
         public string SelectedEvent { get; set; }
+
+        public bool CheckAllLeague { get; set; }
+
+        public bool CheckAllEvent { get; set; }
     }
 }

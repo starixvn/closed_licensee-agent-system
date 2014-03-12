@@ -24,15 +24,15 @@
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
-                        gridOption.pagerOption = {
+                        gridOptions.pagerOption = {
                             itemsPerPage: CORE.pageSizes[2],
                             currentPage: 0,
                             itemsPerPageArray: CORE.pageSizes,
                             totalItem: data.List.length
                         };
 
-                        gridOption.bodyRows = STATEMENTDETAIL.genGridRows(data.List, gridOption, $('#IsMember').val());
-                        $('#grid').show().fanexGrid(gridOption);
+                        gridOptions.bodyRows = STATEMENTDETAIL.genGridRows(data.List, gridOptions, $('#IsMember').val());
+                        $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
                     else {

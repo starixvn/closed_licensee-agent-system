@@ -100,10 +100,10 @@
             $("#ajax-form").submit();
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
-            if (gridOption && gridOption.pagerOption) {
+            if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
-                                                : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
+                                                : gridOptions.pagerOption.currentPage;
+                itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
             }
             var params = {
                 username: $.trim($("#Username").val()),
@@ -127,7 +127,7 @@
                     }
                     else {
                         if (pageContext.IsLastLevel) {
-                            gridOption.pagerOption = {
+                            gridOptions.pagerOption = {
                                 itemsPerPage: CORE.pageSizes[2],
                                 currentPage: 0,
                                 itemsPerPageArray: CORE.pageSizes,
@@ -138,7 +138,7 @@
                             };
                         }
                         else {
-                            gridOption.pagerOption = {
+                            gridOptions.pagerOption = {
                                 itemsPerPage: data.ItemsPerPage,
                                 itemsPerPageArray: CORE.pageSizes,
                                 currentPage: data.CurrentPage,
@@ -147,8 +147,8 @@
                             };
                         }
 
-                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                        $('#grid').show().fanexGrid(gridOption);
+                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                        $('#grid').show().fanexGrid(gridOptions);
 
                         customerList.gridAfterBinding();
                         customerList.resizeBox();

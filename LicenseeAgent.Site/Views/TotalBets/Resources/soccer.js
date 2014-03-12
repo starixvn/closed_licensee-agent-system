@@ -192,8 +192,8 @@ var Soccer = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.bodyRows = Soccer.genGridRows(data.List, gridOption);
-                    $('#BetListGrid').show().fanexGrid(gridOption);
+                    gridOptions.bodyRows = Soccer.genGridRows(data.List, gridOptions);
+                    $('#BetListGrid').show().fanexGrid(gridOptions);
                 },
                 complete: function () {
                     CORE.unblockUI();

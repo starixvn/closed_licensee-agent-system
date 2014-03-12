@@ -217,8 +217,8 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOption.bodyRows = Outright.genGridRows(data.List, gridOption);
-                    $('#BetListGrid').show().fanexGrid(gridOption);
+                    gridOptions.bodyRows = Outright.genGridRows(data.List, gridOptions);
+                    $('#BetListGrid').show().fanexGrid(gridOptions);
                 },
                 complete: function () {
                     CORE.unblockUI();

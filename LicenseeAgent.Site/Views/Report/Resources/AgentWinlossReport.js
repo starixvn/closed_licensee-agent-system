@@ -46,23 +46,23 @@
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
-                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
                         if (data.List.length > 0) {
                             var footerRows;
                             var totalRow = data.Total[0];
                             if (pageContext.IsLastLevel) {
-                                gridOption.footerRows = AGENTWINLOSS.footerMember(totalRow);
+                                gridOptions.footerRows = AGENTWINLOSS.footerMember(totalRow);
                             }
                             else {
                                 if (pageContext.AgentLevel == 1) {
-                                    gridOption.footerRows = AGENTWINLOSS.footerLicensee(totalRow);
+                                    gridOptions.footerRows = AGENTWINLOSS.footerLicensee(totalRow);
                                 }
                                 else {
-                                    gridOption.footerRows = AGENTWINLOSS.footerAgent(totalRow);
+                                    gridOptions.footerRows = AGENTWINLOSS.footerAgent(totalRow);
                                 }
                             }
                         }
-                        $('#grid').show().fanexGrid(gridOption);
+                        $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                         //customerList.resizeBox();
                     }

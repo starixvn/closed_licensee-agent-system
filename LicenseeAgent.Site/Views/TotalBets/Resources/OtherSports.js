@@ -241,8 +241,8 @@ var OtherSports = function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
-                        gridOption.bodyRows = OtherSports.genGridRows(data.List, gridOption);
-                        $('#BetListGrid').show().fanexGrid(gridOption);
+                        gridOptions.bodyRows = OtherSports.genGridRows(data.List, gridOptions);
+                        $('#BetListGrid').show().fanexGrid(gridOptions);
                     }
                     else {
                         alert(data.ErrMsg);

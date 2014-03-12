@@ -191,10 +191,10 @@
             $('.block-overlay').hide();
             $('.block-loading').hide();
         },
-        getGridColumnId: function (gridOption, columnName) {
-            var length = gridOption.columns.length;
+        getGridColumnId: function (gridOptions, columnName) {
+            var length = gridOptions.columns.length;
             for (var i = 0; i < length; i++) {
-                var column = gridOption.columns[i];
+                var column = gridOptions.columns[i];
                 if (column.Name == columnName) {
                     return i;
                 }
@@ -257,9 +257,9 @@
             }
             return bodyRows;
         },
-        genGridFooterRows: function (data, gridOption) {
-            if (gridOption.footerRows) {
-                var columns = gridOption.footerRows[0].Columns;
+        genGridFooterRows: function (data, gridOptions) {
+            if (gridOptions.footerRows) {
+                var columns = gridOptions.footerRows[0].Columns;
                 var length = columns.length;
                 for (var i = 0; i < length; i++) {
                     var colName = columns[i].Name;
@@ -268,39 +268,39 @@
                         columns[i].Value = value;
                     }
                 }
-                return gridOption.footerRows;
+                return gridOptions.footerRows;
             }
             return undefined;
         },
-        genGridTotalRows: function (bodyRows, gridOption) {
-            if (gridOption.footerRows) {
-                var columns = gridOption.footerRows[0].Columns;
+        genGridTotalRows: function (bodyRows, gridOptions) {
+            if (gridOptions.footerRows) {
+                var columns = gridOptions.footerRows[0].Columns;
                 var length = columns.length;
                 for (var i = 0; i < length; i++) {
                     var column = columns[i];
                     if (column.IsCalculated) {
                         var total = 0;
                         var colName = columns[i].Name;
-                        var colId = CORE.getGridColumnId(gridOption, colName);
+                        var colId = CORE.getGridColumnId(gridOptions, colName);
                         for (var j = 0; j < bodyRows.length; j++) {
                             total += bodyRows[j].Columns[colId].Value;
                         }
                         column.Value = total;
                     }
                 }
-                return gridOption.footerRows;
+                return gridOptions.footerRows;
             }
             return undefined;
         },
-        resizeHeightDataGrid: function (gridOption) {
+        resizeHeightDataGrid: function (gridOptions) {
             var colHeight = $("#gridId").attr('colHeight'),
                 expHeight = $("#gridId").attr('expHeight');
             if ($(".search-form").is(":visible")) {
-                gridOption.gridExpandHeight = expHeight;
+                gridOptions.gridExpandHeight = expHeight;
             } else {
-                gridOption.gridExpandHeight = colHeight;
+                gridOptions.gridExpandHeight = colHeight;
             }
-            return gridOption;
+            return gridOptions;
         },
         scrollTop: function () {
             $("html, body").animate({ scrollTop: 0 }, "fast");

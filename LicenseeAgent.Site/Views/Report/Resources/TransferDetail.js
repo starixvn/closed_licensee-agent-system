@@ -1,4 +1,4 @@
-﻿var gridOption = {
+﻿var gridOptions = {
     columns: [
                 { HeaderText: LANGUAGE.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center", CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a" },
                 { HeaderText: LANGUAGE.getString('Remark'), Width: 150, Name: "TransType", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true,
@@ -30,9 +30,9 @@ var TRANSFER = function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
-                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                        gridOption.footerRows = TRANSFER.footerRow(data.Total);
-                        $('#grid').show().fanexGrid(gridOption);
+                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                        gridOptions.footerRows = TRANSFER.footerRow(data.Total);
+                        $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
                     else {

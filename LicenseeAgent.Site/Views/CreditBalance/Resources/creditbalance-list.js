@@ -43,23 +43,23 @@
             });
         },
         pagerSelectCallBack: function (pageIndex, itemsPerPage) {
-            gridOption.pagerOption = {
+            gridOptions.pagerOption = {
                 itemsPerPage: itemsPerPage,
                 currentPage: pageIndex,
                 totalItem: records.length,
                 itemsPerPageArray: CORE.pageSizes,
                 showDetail: true,
                 customRenderFooter: function (bodyRows, pageIndex, itemsPerPage) {
-                    return CORE.genGridTotalRows(bodyRows, gridOption);
+                    return CORE.genGridTotalRows(bodyRows, gridOptions);
                 }
             };
-            gridOption.tdCssClass = function (rowIndex, colName, rowData) {
+            gridOptions.tdCssClass = function (rowIndex, colName, rowData) {
                 if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
                     return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
             }
-            gridOption.bodyRows = CORE.genGridRows(records, gridOption);
-            $('#grid').show().fanexGrid(gridOption);
+            gridOptions.bodyRows = CORE.genGridRows(records, gridOptions);
+            $('#grid').show().fanexGrid(gridOptions);
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);

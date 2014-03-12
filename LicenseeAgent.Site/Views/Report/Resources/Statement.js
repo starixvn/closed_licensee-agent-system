@@ -21,16 +21,16 @@
                 success: function (data) {
                     if (data.ErrCode == 0) {
 
-                        gridOption.pagerOption = {
+                        gridOptions.pagerOption = {
                             itemsPerPage: CORE.pageSizes[2],
                             currentPage: 0,
                             itemsPerPageArray: CORE.pageSizes,
                             totalItem: data.List.length
                         };
 
-                        gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                        gridOption.columns[1].Width = 100;//Resize username column
-                        $('#grid').show().fanexGrid(gridOption);
+                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                        gridOptions.columns[1].Width = 100;//Resize username column
+                        $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
                     else {

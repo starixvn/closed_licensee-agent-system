@@ -268,6 +268,11 @@ Format styles
     font-weight: bold;
 }
 
+.stake
+{
+    font-weight: bold;
+}
+
 .red-text
 {
     color: #FF2D2D;

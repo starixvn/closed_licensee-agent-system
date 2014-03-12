@@ -52,7 +52,7 @@
         BetList: function (custId, statusIDs, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             var url = "BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
-            POPUP.openDialogFrame(url);
+            POPUP.openDialogFrame(url, { width: 970, height: 600 });
         },
         genGridRows: function (list, options) {
             var columns = options.columns;

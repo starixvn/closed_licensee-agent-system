@@ -4,6 +4,8 @@
         checkedAllLeague: true,
         checkedAllEvent: true,
         init: function () {
+            Outright.initData();
+
             $("#refresh-count-down").refreshCountDown({
                 listTimeInterval: CORE.TimeInterval,
                 timeIntervalName: "TimeInterval",
@@ -11,15 +13,13 @@
                 formName: "main-form"
             });
 
-            Outright.initData();
-
             $('form').submit(function () {
                 Outright.getSportData();
                 Outright.getLeagueDataBySport();
                 Outright.getTeamDataByLeague();
 
                 Outright.reRenderAfterPaged();
-                //refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
+                refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
                 return false;
             });
         },

@@ -215,8 +215,12 @@
                 var currentPage = options.pagerOption.currentPage || 0;
                 rowIndex = currentPage * options.pagerOption.itemsPerPage;
             }
-            
-            var rowIndexValue = options.pagerOption.itemsPerPage * options.pagerOption.currentPage + 1;
+
+            var rowIndexValue = rowIndex;
+
+            if (options.pagerOption != undefined) {
+                rowIndexValue = options.pagerOption.itemsPerPage * options.pagerOption.currentPage + 1;
+            }
 
             for (var i = 0; i < len; i++) {
                 var record = list[i];

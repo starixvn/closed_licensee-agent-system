@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LicenseeAgent.Resources
-{
-
-
+namespace LicenseeAgent.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -331,7 +331,7 @@ namespace LicenseeAgent.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fail to update member&apos;s betlimit..
+        ///   Looks up a localized string similar to Fail to update member&apos;s bet limit..
         /// </summary>
         public static string Msg_1028 {
             get {

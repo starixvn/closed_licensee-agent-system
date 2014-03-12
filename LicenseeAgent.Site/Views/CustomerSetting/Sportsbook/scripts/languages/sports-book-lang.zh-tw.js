@@ -2,7 +2,7 @@
     fanex.customerSetting.language = fanex.customerSetting.language || {};
     fanex.customerSetting.language['zh-TW'] = {
         // Common messages
-        message_ValueIsNotInRange: 'Invalid range, input must be in',
+        message_ValueIsNotInRange: '範圍無效，輸入值必須在 以內',
         message_DataIsNotChanged: "There is no updating.",
 
         // Commission setting messages
@@ -24,7 +24,7 @@
         bettingLimit_MaxBet: '最高投注',
         bettingLimit_MaxPerMatch: '單場限額',
         bettingLimit_Soccer_Copy_Tooltip: '從足球設定複製所有投注設定和占成數',
-        bettingLimit_Basketball_Copy_Tooltip: 'Copy all below bet settings from Basketball',
+        bettingLimit_Basketball_Copy_Tooltip: '複製籃球賽事中的所有投注設置',
         sport_1_1: '足球',
         sport_2_1: '籃球',
         sport_3_1: '美式足球',
@@ -74,8 +74,8 @@
         basketBallCopyPtTooltip: '從{0} {1}複製所有佔成數',
         soccerHandicapCopyPtTooltip: '複製亞洲盤佔成數',
         soccerOnexTwoCopyPtTooltip: '複製1x2佔成數',
-        soccerHandicapCopyPt: '足球 – Dead Ball Handicap position taking setting is being applied to:',
-        basketballHandicapCopyPt: '籃球 - Handicap position taking setting is being applied to:',
+        soccerHandicapCopyPt: '足球 – 死球讓分盤的宣示價位設置適用於：',
+        basketballHandicapCopyPt: '籃球 - 讓分盤所占份額的設置適用於：',
         otherBettypeOfSoccer: '其他投注類型的 足球',
         otherBettypeOfBasketball: '其他投注類型的 籃球'
     };

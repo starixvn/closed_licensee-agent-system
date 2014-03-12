@@ -124,7 +124,7 @@
     <value>Parent Agent does not exist.</value>
   </data>
   <data name="Msg_1002" xml:space="preserve">
-    <value>Failed to insert agent.</value>
+    <value>插入經紀人失敗。</value>
   </data>
   <data name="Msg_1003" xml:space="preserve">
     <value>Min Bet must be less than or equal to Max Bet ({0}).</value>
@@ -148,31 +148,31 @@
     <value>折扣不正確.</value>
   </data>
   <data name="Msg_1010" xml:space="preserve">
-    <value>% PT must be greater than or equal to zero ( {0} - {1} ).</value>
+    <value>百分之   的PT必須大於或等於零( {0} - {1} )。</value>
   </data>
   <data name="Msg_1011" xml:space="preserve">
-    <value>% Min given PT must be less than or equal to % Max given PT ( {0} - {1} ).</value>
+    <value>百分之   的最小給定PT必須低於或等於百分之   的最大給定PT ( {0} - {1} )。</value>
   </data>
   <data name="Msg_1012" xml:space="preserve">
-    <value>% PT must be equal or less than Max PT of Licensee ( {0} - {1} ).</value>
+    <value>百分之   的PT必須少於或等於被許可人的最高PT( {0} - {1} )。</value>
   </data>
   <data name="Msg_1013" xml:space="preserve">
-    <value>%Min is invalid, it must be between {0:p} and {1:p} ( {2} - {3} ).</value>
+    <value>百分之   的最小值無效，它必須介於{0:p}和{1:p} ({2} - {3})之間。</value>
   </data>
   <data name="Msg_1014" xml:space="preserve">
-    <value>%Max is invalid, it must be between {0} and {1} ( {2} - {3} ).</value>
+    <value>百分之   的最大值無效，它必須介於{0}和{1} ({2} - {3})之間。</value>
   </data>
   <data name="Msg_1015" xml:space="preserve">
-    <value>%Preset is invalid, it must be between {0:p} and {1:p} ( {2} - {3} ).</value>
+    <value>百分之   的预设值无效，它必须介于{0:p}和{1:p} ({2} - {3})之间。</value>
   </data>
   <data name="Msg_1016" xml:space="preserve">
-    <value>The given credit must be between 0 and {0}.</value>
+    <value>給定信貸額必須在0和{0}之間</value>
   </data>
   <data name="Msg_1017" xml:space="preserve">
     <value>The discount must be less than or equal to Parent Agent discount.</value>
   </data>
   <data name="Msg_1018" xml:space="preserve">
-    <value>Failed to copy data to LicenseeCust.</value>
+    <value>複製資料到{被許可客戶}失敗。</value>
   </data>
   <data name="Msg_1019" xml:space="preserve">
     <value>The custid already exists in the LicenseeCust.</value>
@@ -181,7 +181,7 @@
     <value>The username does not exist.</value>
   </data>
   <data name="Msg_1021" xml:space="preserve">
-    <value>%PT is invalid, it must be between {0:p} and {1:p}  ( {2} - {3} )</value>
+    <value>百分之   的PT無效，它必須介於{0:p}和{1:p} ({2} - {3})之間。</value>
   </data>
   <data name="Msg_1022" xml:space="preserve">
     <value>The agent does not exist.</value>
@@ -233,5 +233,26 @@
   </data>
   <data name="Msg_1037" xml:space="preserve">
     <value>另外一個Session登入\n 此Session將被終止!\n如果不是您的帳號,請聯絡您的上線!</value>
+  </data>
+  <data name="Msg_1025" xml:space="preserve">
+    <value>更新經紀人的投注設置失敗</value>
+  </data>
+  <data name="Msg_1026" xml:space="preserve">
+    <value>更新經紀人的所占份額失敗</value>
+  </data>
+  <data name="Msg_1027" xml:space="preserve">
+    <value>更新會員的傭金失敗。</value>
+  </data>
+  <data name="Msg_1028" xml:space="preserve">
+    <value>更新會員的投注限值失敗。</value>
+  </data>
+  <data name="Msg_1029" xml:space="preserve">
+    <value>更新會員的所占份額失敗。</value>
+  </data>
+  <data name="Msg_103" xml:space="preserve">
+    <value>轉帳失敗。請重試。</value>
+  </data>
+  <data name="Msg_800091" xml:space="preserve">
+    <value>更改密碼失敗</value>
   </data>
 </root>

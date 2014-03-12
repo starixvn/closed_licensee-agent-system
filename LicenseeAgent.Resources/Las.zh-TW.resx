@@ -133,7 +133,7 @@
     <value>新增</value>
   </data>
   <data name="AddDownline" xml:space="preserve">
-    <value>Add Downline</value>
+    <value>添加下線人員</value>
   </data>
   <data name="AddNewAgent" xml:space="preserve">
     <value>新增代理</value>
@@ -381,40 +381,40 @@
     <value>輸贏</value>
   </data>
   <data name="AccountStatus" xml:space="preserve">
-    <value>Account status</value>
+    <value>帳戶狀態</value>
   </data>
   <data name="AccountWasStopped" xml:space="preserve">
     <value>Your account was stopped!</value>
   </data>
   <data name="BetSettingInstructions" xml:space="preserve">
-    <value>Bet Setting Instructions</value>
+    <value>投注設置說明</value>
   </data>
   <data name="Captcha" xml:space="preserve">
-    <value>Captcha</value>
+    <value>驗證碼</value>
   </data>
   <data name="ChangeStatus" xml:space="preserve">
-    <value>Change status</value>
+    <value>變更狀態</value>
   </data>
   <data name="ChangeStatusAgent" xml:space="preserve">
-    <value>Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.</value>
+    <value>您確定要將此經紀人的狀態變更為關閉？警告，所有的下線人員都會被關閉。</value>
   </data>
   <data name="ChangeStatusMember" xml:space="preserve">
-    <value>Are you sure you want to change Closed status for this member?</value>
+    <value>您確定要將此會員的狀態變更為關閉？</value>
   </data>
   <data name="ChooseCurrency" xml:space="preserve">
-    <value>Choose currency</value>
+    <value>選擇貨幣</value>
   </data>
   <data name="ChooseLicensee" xml:space="preserve">
-    <value>Choose licensee</value>
+    <value>選擇被許可人</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
-    <value>Current password</value>
+    <value>當前密碼</value>
   </data>
   <data name="CustomerInformation" xml:space="preserve">
     <value>會員資料</value>
   </data>
   <data name="InsertCustomer" xml:space="preserve">
-    <value>Insert Customer</value>
+    <value>插入客戶</value>
   </data>
   <data name="IpInformation" xml:space="preserve">
     <value>Ip Information</value>
@@ -438,13 +438,13 @@
     <value>Sign Out</value>
   </data>
   <data name="ChangeCloseToOpenAgent" xml:space="preserve">
-    <value>Are you sure you want to change Open status for this agent?</value>
+    <value>您確定要將此經紀人的狀態變更為開啟？</value>
   </data>
   <data name="ChangeCloseToOpenMember" xml:space="preserve">
-    <value>Are you sure you want to change Open status for this member?</value>
+    <value>您確定要將此會員的狀態變更為開啟？</value>
   </data>
   <data name="CaptchaLength" xml:space="preserve">
-    <value>Captcha must be 6 characters.</value>
+    <value>驗證碼必須為6位元字元。</value>
   </data>
   <data name="CaptchaRequired" xml:space="preserve">
     <value>You must enter validation code.</value>
@@ -570,7 +570,7 @@
     <value>時間</value>
   </data>
   <data name="Attention" xml:space="preserve">
-    <value>Attention</value>
+    <value>注意</value>
   </data>
   <data name="MessageUnderMaintenance" xml:space="preserve">
     <value>我們正在服務器維護，網站將被從{0}至{1}無法使用。不便之處，敬請原諒！</value>
@@ -657,7 +657,7 @@
     <value>Update Credit</value>
   </data>
   <data name="EditCreditSuccessfully" xml:space="preserve">
-    <value>Edit Credit Successfully</value>
+    <value>成功編輯信貸額</value>
   </data>
   <data name="AgentWinLoss" xml:space="preserve">
     <value>代理商結果</value>
@@ -897,31 +897,31 @@
     <value>特別公告</value>
   </data>
   <data name="EditSportsbookAgent" xml:space="preserve">
-    <value>Edit Sportsbook Agent</value>
+    <value>編輯體育博彩經紀人</value>
   </data>
   <data name="EditSportsbookMember" xml:space="preserve">
-    <value>Edit Sportsbook Member</value>
+    <value>編輯體育博彩會員</value>
   </data>
   <data name="InsertSuccessfully" xml:space="preserve">
-    <value>Insert Successfully.</value>
+    <value>成功插入</value>
   </data>
   <data name="ThreeWayHandicap" xml:space="preserve">
     <value>3-Way Handicap</value>
   </data>
   <data name="FullName" xml:space="preserve">
-    <value>Full Name</value>
+    <value>全名</value>
   </data>
   <data name="DontShowMessageAgain" xml:space="preserve">
-    <value>Don't show this message again.</value>
+    <value>不要再顯示此條資訊。</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>錯誤</value>
   </data>
   <data name="DownlineStatement" xml:space="preserve">
-    <value>Downline Statement</value>
+    <value>下線人員說明</value>
   </data>
   <data name="Betting" xml:space="preserve">
-    <value>Betting</value>
+    <value>投注</value>
   </data>
   <data name="ToWinToNil" xml:space="preserve">
     <value>To Win To Nil</value>

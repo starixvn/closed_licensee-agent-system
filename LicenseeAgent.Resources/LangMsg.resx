@@ -226,7 +226,7 @@
     <value>Fail to update member's commission.</value>
   </data>
   <data name="Msg_1028" xml:space="preserve">
-    <value>Fail to update member's betlimit.</value>
+    <value>Fail to update member's bet limit.</value>
   </data>
   <data name="Msg_1029" xml:space="preserve">
     <value>Fail to update member's position taking.</value>

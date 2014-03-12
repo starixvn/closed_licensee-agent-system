@@ -39,14 +39,13 @@
                 @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
             <div class="controls-row">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">
+                    Submit</button>
             </div>
         </div>
     }
-    <div class="gridWrapper">
-        <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
-        </div>
-    </div>
+</div>
+<div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>
 <div id="instruction" class="instruction-content">
 </div>

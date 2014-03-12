@@ -15,16 +15,14 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/totalbets-soccer-betlist")
 }
-
 <div class="legend">
     @ViewBag.Title
-    <span id="totalbets-back" onclick="javascript: window.history.back();" class="history-back"><i class="icon-history-back"></i>
+    <span id="totalbets-back" onclick="javascript: window.history.back();" class="history-back">
+        <i class="icon-history-back"></i>
         @Las.Back
     </span>
 </div>
-<div class="wrapper">
-    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
-    </div>
+<div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>
 <div id="instruction" class="instruction-content">
 </div>

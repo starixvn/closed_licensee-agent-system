@@ -19,13 +19,14 @@
 }
 <div class="legend">
     @ViewBag.Title
-    <span id="totalbets-back" onclick="Outright.submitForm();" class="history-back hide"><i class="icon-history-back"></i>
+    <span id="totalbets-back" onclick="Outright.submitForm();" class="history-back hide">
+        <i class="icon-history-back"></i>
         @Las.Back
     </span>
 </div>
 <div id="totalbets-filter" class="">
     @using (Html.BeginForm("Outright", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
-    {   
+    {
         <div class="controls-row">
             <div id="sport-multi-select">
             </div>
@@ -50,9 +51,7 @@
         </div>
     }
 </div>
-<div class="wrapper">
-    <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
-    </div>
+<div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>
 <div id="instruction" class="instruction-content">
 </div>

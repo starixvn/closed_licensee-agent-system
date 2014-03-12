@@ -43,7 +43,7 @@ var Soccer = function ($) {
         },
 
         initData: function () {
-            if ($('#CheckAllLeague').val() != '' || $('#CheckAllEvent').val() != '') {
+            if ($('#SelectedLeague').val() != '' || $('#SelectedEvent').val() != '') {
                 Soccer.checkedAllLeague = $('#CheckAllLeague').val();
                 Soccer.checkedAllEvent = $('#CheckAllEvent').val();
             }

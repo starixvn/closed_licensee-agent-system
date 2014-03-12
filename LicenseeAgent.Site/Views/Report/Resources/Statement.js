@@ -29,6 +29,7 @@
                         };
 
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
+                        //$("#grid").fanexGrid('resizeGrid');
                         $('#grid').show().fanexGrid(gridOption);
                         CORE.unblockUI();
                     }

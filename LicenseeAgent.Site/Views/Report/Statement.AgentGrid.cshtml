@@ -1,7 +1,7 @@
 ﻿<script type="text/javascript">
     var gridOption = {
         columns: [
-                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Las.Username", Width: 100, Name: "Username", AllowTruncate: true, CanResize: true, HeaderAlign: "center", CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a href='javascript:STATEMENT.ViewDetail({0}, \"{1}\");'>" + cellFormated + "</a>").format(rowData.AgentId, cell.Value);

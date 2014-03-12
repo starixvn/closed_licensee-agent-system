@@ -77,7 +77,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="leagueList">League list.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetLeagueListOtherSports(string sportList, string leagueList)
+        public JsonResult GetLeagueListOtherSports(string sportList, string leagueList, bool checkedAll)
         {
             var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
             var leagues = _totalBetsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
@@ -90,7 +90,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.LeagueId,
                     value = item.LeagueId,
                     text = item.LeagueName,
-                    @checked = string.IsNullOrEmpty(leagueList) || leagueIds.Contains(item.LeagueId.ToString()),
+                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
                     enable = true
                 });
             }
@@ -110,7 +110,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// <param name="eventList">Event List value.</param>
         /// <returns>Events result.</returns>
         [HttpPost]
-        public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList)
+        public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList, bool checkedAll)
         {
             var criteria = new OtherSportsEventListCriteria()
             {
@@ -129,7 +129,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                     id = item.MatchId,
                     value = item.MatchId,
                     text = item.MatchName,
-                    @checked = string.IsNullOrEmpty(eventList) || eventIds.Contains(item.MatchId.ToString()),
+                    @checked = checkedAll || eventIds.Contains(item.MatchId.ToString()),
                     enable = true
                 });
             }

@@ -168,11 +168,6 @@ var OtherSports = function ($) {
             });
         },
 
-        selectedLeague: function () {
-            var selectedLeagues = $("#league-multi-select").fanexMultiSelect('getItems', true).join(',');
-            OtherSports.getEventDataByLeague();
-        },
-
         getEventDataByLeague: function (isLoadGrid) {
             var params = {
                 sportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),

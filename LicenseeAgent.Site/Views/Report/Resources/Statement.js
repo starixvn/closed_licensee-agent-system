@@ -29,7 +29,7 @@
                         };
 
                         gridOption.bodyRows = CORE.genGridRows(data.List, gridOption);
-                        //$("#grid").fanexGrid('resizeGrid');
+                        gridOption.columns[1].Width = 100;//Resize username column
                         $('#grid').show().fanexGrid(gridOption);
                         CORE.unblockUI();
                     }

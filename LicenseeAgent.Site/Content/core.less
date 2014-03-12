@@ -458,16 +458,21 @@ ul
 }
 a
 {
-    .num-link
+    &.num-link
     {
-        color: #000;
-        span
+        color: #6D6D6D;
+        text-decoration: none;
+        &:hover
         {
-            .format-negative
+            color: #005080;
+            text-decoration: underline;
+            span
             {
-                color: #f00;
+                &.format-negative
+                {
+                    color: #005080 !important;
+                }
             }
         }
-    }
-    
+    }    
 }

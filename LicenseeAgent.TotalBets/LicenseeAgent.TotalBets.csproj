@@ -63,7 +63,11 @@
     <Compile Include="Controllers\TotalBetsController.Soccer.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\SettingConfigurations.cs" />
-    <Compile Include="Core\SoccerDetailConfiguration.designer.cs" />
+    <Compile Include="Core\SoccerDetailConfiguration.designer.cs">
+      <DependentUpon>SoccerDetailConfiguration.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Criterias\BetListByMatchCriteria.cs" />
     <Compile Include="Criterias\BetListOutrightCriteria.cs" />
     <Compile Include="Criterias\OtherSportsCriteria.cs" />

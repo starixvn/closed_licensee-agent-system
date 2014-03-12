@@ -9,7 +9,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 3/6/2014 10:32:06 AM
+// Lasted generated date: 3/12/2014 10:24:58 AM
 // </history>
 // Generated helper templates
 // Generated items

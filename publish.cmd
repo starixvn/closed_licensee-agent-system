@@ -7,13 +7,11 @@ set destPath=D:\Work\Git\Publish\LAS\
 del /F /Q publish.log
 rd /S /Q "%destPath%"
 
-copy /y app_offline.htm %destPath%
+:: Make a release build on local
 call %msBuildDir%\msbuild.exe LicenseeAgent.Site\LicenseeAgent.Site.csproj "/p:Platform=AnyCPU;Configuration=Release;PublishDestination=%destPath%;AutoParameterizationWebConfigConnectionStrings=False" /t:PublishToFileSystem /l:FileLogger,Microsoft.Build.Engine;logfile=publish.log
 :: call %msBuildDir%\msbuild.exe LicenseeAgent.Site\LicenseeAgent.Site.csproj /t:Package "/p:Platform=AnyCPU;Configuration=Release;PackageAsSingleFile=True;AutoParameterizationWebConfigConnectionStrings=False;PackageLocation=D:\Package.zip"
-del /F /Q app_offline.htm
 
+start notepad publish.log
 
 set msBuildDir=
 set destPath=
-
-start notepad publish.log

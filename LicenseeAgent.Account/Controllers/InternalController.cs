@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.Account
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -365,11 +364,6 @@ namespace LicenseeAgent.Account
             {
                 ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.MsgId));
                 return false;
-            }
-
-            if (string.IsNullOrEmpty(userSaltCriteria.UserSalt))
-            {
-                throw new InvalidOperationException(string.Format("Account '{0}' doesn't have user salt.", model.Username));
             }
 
             var clientInfo = Request.GetClientInfo();

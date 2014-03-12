@@ -16,7 +16,7 @@ function ($httpProvider) {
                 if (!(--numLoadings)) {
                     CORE.unblockUI();
                 }
-                if (response.status != 200) {
+                if (response.status != 200 && response.status != 404) {
                     CORE.handleError(response.data);
                 }
                 return response;

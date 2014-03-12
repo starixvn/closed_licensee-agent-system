@@ -215,6 +215,8 @@
                 var currentPage = options.pagerOption.currentPage || 0;
                 rowIndex = currentPage * options.pagerOption.itemsPerPage;
             }
+            
+            var rowIndexValue = options.pagerOption.itemsPerPage * options.pagerOption.currentPage + 1;
 
             for (var i = 0; i < len; i++) {
                 var record = list[i];
@@ -229,7 +231,7 @@
 
                         dataRow.push({
                             Name: colName,
-                            Value: (indexNumberColumn == j) ? rIndex + 1 : record[colName],
+                            Value: (indexNumberColumn == j) ? rowIndexValue++  : record[colName],
                             CustomCellRender: function (cell, cellFormated) {
                                 if (col.Formatter) {
                                     return col.Formatter(rIndex, rowData, cell, cellFormated);

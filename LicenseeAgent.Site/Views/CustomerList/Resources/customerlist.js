@@ -16,7 +16,7 @@
             });
 
             context.attach('.icon-customer-edit', [
-                { id: 'menuSportsbook', icon: (pageContext.IsAdmin || pageContext.IsDirectDownline ? 'icon-customer-canedit' : 'icon-customer-canview'), text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
+                { id: 'menuSportsbook', icon: (pageContext.IsAdmin || pageContext.IsLastLevel || pageContext.IsDirectDownline ? 'icon-customer-canedit' : 'icon-customer-canview'), text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
                 { id: 'menuEditInfo', icon: 'icon-customer-canedit', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
                 { id: 'menuResetPassword', icon: 'icon-customer-canedit', text: LANGUAGE.getString('ResetPassword'), href: '#', action: customerList.resetPassword },
                 { id: 'menuAddDownline', icon: 'icon-customer-canedit', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }

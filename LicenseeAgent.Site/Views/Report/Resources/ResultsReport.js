@@ -159,6 +159,10 @@
                 sporttype = $("#OutrightSport").val();
             if ($("#OutrightLeague").val() != null)
                 leagueid = $("#OutrightLeague").val();
+            if (leagueid == "No Data" || sporttype == "No Data") {
+                leagueid = 0;
+                sporttype = 0;
+            }
 
             var params = {
                 FromDate: $("#outrightFromDate").val(),
@@ -176,9 +180,6 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
-                        return;
-                    }
                     if (data.Results != null) {
                         REPORT.generateResults(data.Results, 0);
                     }
@@ -203,9 +204,6 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
-                        return;
-                    }
                     if (data.Sports != null) {
                         REPORT.generateSports(data.Sports, viewMatchResults);
 

@@ -20,7 +20,7 @@ function showCombMP(transId, index) {
 var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
 fanex.betlist.core = {
-    reRenderAfterPagedSuccessfully: function (data, hidedColumn) {
+    reRenderAfterPagedSuccessfully: function (gridOptions, data, hidedColumn) {
         gridOptions.pagerOption = {
             itemsPerPage: CORE.pageSizes[0],
             itemsPerPageArray: CORE.pageSizes,

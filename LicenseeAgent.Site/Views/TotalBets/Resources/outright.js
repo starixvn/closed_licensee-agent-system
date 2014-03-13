@@ -1,4 +1,24 @@
-﻿var Outright = function ($) {
+﻿var gridOptions = {
+    columns: [
+                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "center", CanResize: true },
+                { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+            ],
+    showPager: true,
+    gridExpandHeight: 60,
+    bodyRowHeight: 29,
+    autoResizeColumn: true
+};
+
+var Outright = function ($) {
     return {
         checkedAllSport: true,
         checkedAllLeague: true,
@@ -217,8 +237,8 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOptions.bodyRows = Outright.genGridRows(data.List, gridOptions);
-                    $('#BetListGrid').show().fanexGrid(gridOptions);
+                    reportGridOptions.bodyRows = Outright.genGridRows(data.List, reportGridOptions);
+                    $('#BetListGrid').show().fanexGrid(reportGridOptions);
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -309,7 +329,7 @@
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
                 },
                 complete: function () {
                     CORE.unblockUI();

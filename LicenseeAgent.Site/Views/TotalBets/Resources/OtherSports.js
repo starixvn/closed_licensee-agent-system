@@ -241,8 +241,8 @@ var OtherSports = function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
-                        gridOptions.bodyRows = OtherSports.genGridRows(data.List, gridOptions);
-                        $('#BetListGrid').show().fanexGrid(gridOptions);
+                        reportGridOptions.bodyRows = OtherSports.genGridRows(data.List, reportGridOptions);
+                        $('#BetListGrid').show().fanexGrid(reportGridOptions);
                     }
                     else {
                         alert(data.ErrMsg);
@@ -385,7 +385,7 @@ var OtherSports = function ($) {
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
                 },
                 complete: function () {
                     CORE.unblockUI();

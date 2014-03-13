@@ -58,7 +58,7 @@ var BETLIST = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [9]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [9]);
                 },
                 complete: function () {
                     CORE.unblockUI();

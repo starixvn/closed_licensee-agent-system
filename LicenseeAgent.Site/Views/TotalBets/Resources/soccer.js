@@ -192,8 +192,8 @@ var Soccer = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    gridOptions.bodyRows = Soccer.genGridRows(data.List, gridOptions);
-                    $('#BetListGrid').show().fanexGrid(gridOptions);
+                    reportGridOptions.bodyRows = Soccer.genGridRows(data.List, reportGridOptions);
+                    $('#BetListGrid').show().fanexGrid(reportGridOptions);
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -307,7 +307,7 @@ var Soccer = function ($) {
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
                 },
                 complete: function () {
                     CORE.unblockUI();

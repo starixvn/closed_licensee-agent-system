@@ -60,7 +60,7 @@ fanex.totalBets.parlay = {
                 CORE.blockUI();
             },
             success: function (data) {
-                fanex.betlist.core.reRenderAfterPagedSuccessfully(data, [10]);
+                fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
             },
             complete: function () {
                 CORE.unblockUI();

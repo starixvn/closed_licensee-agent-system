@@ -9,8 +9,8 @@
             });
             STATEMENTDETAIL.dataGridBinding();
         },
-        dataGridBinding: function () {
-            if (!$('#Username').val().trim()) {
+        dataGridBinding: function () {            
+            if (!$.trim($('#Username').val())) {
                 alert(LANGUAGE.getString('UsernameRequired'));
                 return;
             }

@@ -605,17 +605,8 @@
   <data name="Both" xml:space="preserve">
     <value>Both</value>
   </data>
-  <data name="BothOneNeitherTeamToScore" xml:space="preserve">
-    <value>Both / One / Neither Team To Score</value>
-  </data>
-  <data name="CleanSheet" xml:space="preserve">
-    <value>Clean Sheet</value>
-  </data>
   <data name="CorrectScore" xml:space="preserve">
     <value>Correct Score</value>
-  </data>
-  <data name="DoubleChance" xml:space="preserve">
-    <value>Double Chance</value>
   </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
@@ -656,14 +647,8 @@
   <data name="Over" xml:space="preserve">
     <value>Over</value>
   </data>
-  <data name="ThreeWayHandicap" xml:space="preserve">
-    <value>3-Way Handicap</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
-  </data>
-  <data name="ToWinToNil" xml:space="preserve">
-    <value>To Win To Nil</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
@@ -767,9 +752,6 @@
   <data name="PageTitle_BetList" xml:space="preserve">
     <value>Bet List</value>
   </data>
-  <data name="PageTitle_Report_Results" xml:space="preserve">
-    <value>Results - Report</value>
-  </data>
   <data name="MatchResults" xml:space="preserve">
     <value>Match Results</value>
   </data>
@@ -794,9 +776,6 @@
   <data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
-  <data name="PageTitle_ParlayTotalBets" xml:space="preserve">
-    <value>Parlay - Total Bets</value>
-  </data>
   <data name="MixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
   </data>
@@ -820,9 +799,6 @@
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Agent Outstanding</value>
-  </data>
-  <data name="BalanceInfoTitle" xml:space="preserve">
-    <value>BALANCE INFO</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
@@ -898,13 +874,6 @@
   </data>
   <data name="EffectiveTurnover" xml:space="preserve">
     <value>Effective Turnover</value>
-    <comment>not</comment>
-  </data>
-  <data name="PageTitle_Report_Outstanding" xml:space="preserve">
-    <value>Agent Outstanding - Report</value>
-  </data>
-  <data name="AgentShare" xml:space="preserve">
-    <value>Agent Share</value>
   </data>
   <data name="Announcement" xml:space="preserve">
     <value>Announcement</value>
@@ -926,9 +895,6 @@
   </data>
   <data name="AlertNoCurrencyPermission" xml:space="preserve">
     <value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
-  </data>
-  <data name="AgentWinLossReport" xml:space="preserve">
-    <value>Agent Win Loss - Report</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>Report</value>

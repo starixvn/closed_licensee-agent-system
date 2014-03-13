@@ -638,9 +638,6 @@
   <data name="Member" xml:space="preserve">
     <value>会员</value>
   </data>
-  <data name="PageTitle_ParlayTotalBets" xml:space="preserve">
-    <value>过关 - 总投注</value>
-  </data>
   <data name="MixParlay" xml:space="preserve">
     <value>混合过关</value>
   </data>
@@ -680,32 +677,17 @@
   <data name="EffectiveStake" xml:space="preserve">
     <value>有效金额</value>
   </data>
-  <data name="PageTitle_Report_Outstanding" xml:space="preserve">
-    <value>代理未结束交易 - 报表</value>
-  </data>
-  <data name="AgentShare" xml:space="preserve">
-    <value>代理占成</value>
-  </data>
   <data name="Licensee" xml:space="preserve">
     <value>被许可人</value>
   </data>
   <data name="PageTitle_BetList" xml:space="preserve">
     <value>投注历史</value>
   </data>
-  <data name="PageTitle_Report_Results" xml:space="preserve">
-    <value>赛果 - 报表</value>
-  </data>
   <data name="Generate" xml:space="preserve">
     <value>产能</value>
   </data>
-  <data name="AgentWinLossReport" xml:space="preserve">
-    <value>代理商结果 - 报表</value>
-  </data>
   <data name="Report" xml:space="preserve">
     <value>报表</value>
-  </data>
-  <data name="BalanceInfoTitle" xml:space="preserve">
-    <value>余额资料</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>昨天餘額</value>
@@ -754,9 +736,6 @@
   </data>
   <data name="Both" xml:space="preserve">
     <value>两者</value>
-  </data>
-  <data name="BothOneNeitherTeamToScore" xml:space="preserve">
-    <value>两者/一/两队皆不得分</value>
   </data>
   <data name="CorrectScore" xml:space="preserve">
     <value>波胆</value>
@@ -878,12 +857,6 @@
   <data name="Note" xml:space="preserve">
     <value>注意</value>
   </data>
-  <data name="CleanSheet" xml:space="preserve">
-    <value>零失球</value>
-  </data>
-  <data name="DoubleChance" xml:space="preserve">
-    <value>双重机会</value>
-  </data>
   <data name="IpContent" xml:space="preserve">
     <value>附加信息於 DNSstuff: &lt;a target="_blank" href="http://www.iplocationfinder.com/{0}"&gt;點擊這裡&lt;/a&gt;. 注意: 由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
   </data>
@@ -905,9 +878,6 @@
   <data name="InsertSuccessfully" xml:space="preserve">
     <value>成功插入</value>
   </data>
-  <data name="ThreeWayHandicap" xml:space="preserve">
-    <value>3-Way Handicap</value>
-  </data>
   <data name="FullName" xml:space="preserve">
     <value>全名</value>
   </data>
@@ -925,9 +895,6 @@
   </data>
   <data name="OpeningBalance" xml:space="preserve">
     <value>期初余额</value>
-  </data>
-  <data name="ToWinToNil" xml:space="preserve">
-    <value>To Win To Nil</value>
   </data>
   <data name="TopTurnoverMembers" xml:space="preserve">
     <value>本月交易额最高的前10位会员</value>

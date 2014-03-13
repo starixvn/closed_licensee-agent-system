@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-
 namespace LicenseeAgent.Account
 {
     using System.Linq;

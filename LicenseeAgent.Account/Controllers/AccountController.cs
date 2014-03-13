@@ -9,6 +9,7 @@ namespace LicenseeAgent.Account.Controllers
     using System;
     using System.IO;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
@@ -121,9 +122,10 @@ namespace LicenseeAgent.Account.Controllers
                 return RedirectToAction("SignIn", "Internal");
             }
 
+            var currentLanguage = Language;
             var model = new AgentSignInViewModel
             {
-                Language = Language,
+                Language = currentLanguage,
                 Captcha = AppSettings.LocalTest ? "999999" : string.Empty
             };
 

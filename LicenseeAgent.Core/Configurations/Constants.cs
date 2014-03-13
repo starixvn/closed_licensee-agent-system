@@ -14,7 +14,7 @@ namespace LicenseeAgent.Core.Configurations
     public static class Constants
     {
         public const string AppSessionCaptcha = "LasCaptcha";
-        public const string AppSessionLanguage = "LasLanguage";
+        public const string AppCookieLanguage = "LasLanguage";
 
         public const string BETLISTTICKETSTATUSRUNNING = "running";
         public const string BETLISTTICKETSTATUSWAITING = "waiting";

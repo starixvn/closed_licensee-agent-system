@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -80,9 +81,18 @@ namespace LicenseeAgent.Web.Controllers
                 {
                     language = CurrentSession.Language;
                 }
-                else if (Session[Constants.AppSessionLanguage] != null)
+                else
                 {
-                    language = (string)Session[Constants.AppSessionLanguage];
+                    // not authenticated
+                    var languageCookie = Request.Cookies[Constants.AppCookieLanguage];
+                    if (languageCookie != null)
+                    {
+                        var cookieValue = languageCookie.Value;
+                        if (ModelSettings.Languages.Where(x => x.Value == cookieValue).Any())
+                        {
+                            language = cookieValue;
+                        }
+                    }
                 }
 
                 return language;
@@ -103,7 +113,9 @@ namespace LicenseeAgent.Web.Controllers
                     else
                     {
                         // not authenticated
-                        Session[Constants.AppSessionLanguage] = language;
+                        var languageCookie = new HttpCookie(Constants.AppCookieLanguage, language);
+                        languageCookie.Expires = DateTime.Now.AddDays(30);
+                        Response.SetCookie(languageCookie);
                     }
                 }
             }

@@ -77,8 +77,13 @@ namespace LicenseeAgent.Report.Services
         /// <returns>List of sports book results.</returns>
         public IList<Sportbook> GetMatchResults(ICriteria criteria)
         {
-            var data = _resultsReportDataAccess.GetResults(criteria);
-            return GenerateSportsbookResults(data);
+            if (criteria.IsValid())
+            {
+                var data = _resultsReportDataAccess.GetResults(criteria);
+                return GenerateSportsbookResults(data);
+            }
+
+            return new List<Sportbook>();
         }
 
         /// <summary>
@@ -88,8 +93,13 @@ namespace LicenseeAgent.Report.Services
         /// <returns>List of outright results.</returns>
         public IList<OutRight> GetOutrightResults(ICriteria criteria)
         {
-            var data = _resultsReportDataAccess.GetResults(criteria);
-            return GenerateOutrightResults(data);
+            if (criteria.IsValid())
+            {
+                var data = _resultsReportDataAccess.GetResults(criteria);
+                return GenerateOutrightResults(data);
+            }
+
+            return new List<OutRight>();
         }
 
         /// <summary>

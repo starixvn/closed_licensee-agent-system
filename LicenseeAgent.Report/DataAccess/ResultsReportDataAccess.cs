@@ -30,11 +30,6 @@ namespace LicenseeAgent.Report.DataAccess
         {
             try
             {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid Criteria");
-                }
-
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();

@@ -318,7 +318,7 @@
     <value>报告</value>
   </data>
   <data name="SBBetSetting" xml:space="preserve">
-    <value>SB Bet Setting</value>
+    <value>SB投注设置</value>
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>盈利预测图</value>
@@ -384,7 +384,7 @@
     <value>账户状态</value>
   </data>
   <data name="AccountWasStopped" xml:space="preserve">
-    <value>Your account was stopped!</value>
+    <value>您的账户被停用</value>
   </data>
   <data name="BetSettingInstructions" xml:space="preserve">
     <value>投注设置说明</value>
@@ -417,25 +417,25 @@
     <value>插入客户</value>
   </data>
   <data name="IpInformation" xml:space="preserve">
-    <value>Ip Information</value>
+    <value>网及信息</value>
   </data>
   <data name="MaxCredit" xml:space="preserve">
-    <value>Max Credit</value>
+    <value>最大信贷额</value>
   </data>
   <data name="MixSportsParlay" xml:space="preserve">
     <value>混合过关</value>
   </data>
   <data name="PasswordAlert" xml:space="preserve">
-    <value>Password Alert</value>
+    <value>密码警报</value>
   </data>
   <data name="PositionTakingSettingInstructions" xml:space="preserve">
-    <value>Position Taking Setting Instructions</value>
+    <value>所占份额的设置说明</value>
   </data>
   <data name="PositionTakingSimpleModeHeader" xml:space="preserve">
-    <value>占成数 (Soccer Dead ball Handicap)</value>
+    <value>占成数 (足球死球让分盘)</value>
   </data>
   <data name="SignOut" xml:space="preserve">
-    <value>Sign Out</value>
+    <value>注销</value>
   </data>
   <data name="ChangeCloseToOpenAgent" xml:space="preserve">
     <value>您确定要将此经纪人的状态变更为开启？</value>
@@ -447,58 +447,58 @@
     <value>验证码必须为6位字符。</value>
   </data>
   <data name="CaptchaRequired" xml:space="preserve">
-    <value>You must enter validation code.</value>
+    <value>您必须输入验证码</value>
   </data>
   <data name="ConfirmPasswordRequired" xml:space="preserve">
-    <value>Please enter confirm password.</value>
+    <value>请输入确认密码</value>
   </data>
   <data name="CurrencyRequired" xml:space="preserve">
-    <value>Please select currency.</value>
+    <value>请选择货币</value>
   </data>
   <data name="CurrentPasswordRequired" xml:space="preserve">
-    <value>Please enter current password.</value>
+    <value>请输入当前密码</value>
   </data>
   <data name="HtmlDisallowed" xml:space="preserve">
-    <value>The content does not allow HTML.</value>
+    <value>此项内容不允许通过网页显示。</value>
   </data>
   <data name="LanguageRequired" xml:space="preserve">
-    <value>Please select language.</value>
+    <value>请选择语言</value>
   </data>
   <data name="LicenseeRequired" xml:space="preserve">
-    <value>Please select licensee.</value>
+    <value>请选择被许可人</value>
   </data>
   <data name="NewPasswordRequired" xml:space="preserve">
-    <value>Please enter new password.</value>
+    <value>请输入新密码</value>
   </data>
   <data name="NoLicenseeDomainFound" xml:space="preserve">
-    <value>No licensee belongs to domain {0}.</value>
+    <value>没有被许可人属于域 {0}.</value>
   </data>
   <data name="PasswordExpired" xml:space="preserve">
-    <value>Your password has expired on {0}. You must change your password now.</value>
+    <value>您的密码已于{0}到期。现在您必须更改您的密码。</value>
   </data>
   <data name="PasswordFirstUse" xml:space="preserve">
-    <value>This is your first login. You must change your password before continuing.</value>
+    <value>这是您第一次登录。在继续操作之前您必须更改您的密码。</value>
   </data>
   <data name="PasswordMustNotSame" xml:space="preserve">
-    <value>New password must be different from old password.</value>
+    <value>新密码必须与旧密码不同。</value>
   </data>
   <data name="PasswordNotMatch" xml:space="preserve">
-    <value>Your password and confirmation password do not match.</value>
+    <value>您的密码与确认密码不符</value>
   </data>
   <data name="PasswordRequired" xml:space="preserve">
-    <value>Please enter your password.</value>
+    <value>请输入您的密码</value>
   </data>
   <data name="PasswordRuleInstruction" xml:space="preserve">
     <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 特殊字符 （!、 @、 # 等。。)</value>
   </data>
   <data name="PasswordWillExpired" xml:space="preserve">
-    <value>Your password will expire on {0}. Do you want to change it now?</value>
+    <value>您的密码将于{0}到期。您是否想现在更改它？</value>
   </data>
   <data name="UsernameMinimumLength" xml:space="preserve">
-    <value>Username must be between 6 and 30 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only.</value>
+    <value>用户名必须为6到30位字符，仅含大小写字母（A-Z,a-z）和数字（0-9）。</value>
   </data>
   <data name="UsernameRequired" xml:space="preserve">
-    <value>Please enter your username.</value>
+    <value>请输入您的用户名</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>足球</value>
@@ -585,7 +585,7 @@
     <value>全场单双</value>
   </data>
   <data name="NoDownline" xml:space="preserve">
-    <value>There is no downline</value>
+    <value>没有下线人员。</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>修改密码</value>
@@ -630,7 +630,7 @@
     <value>昨日</value>
   </data>
   <data name="PasswordSecurity" xml:space="preserve">
-    <value>The password supplied does not meet the minimum security requirements.</value>
+    <value>所提供的密码不符合最低的安全要求。</value>
   </data>
   <data name="Parlay" xml:space="preserve">
     <value>过关</value>
@@ -654,7 +654,7 @@
     <value>信用额度</value>
   </data>
   <data name="UpdateCredit" xml:space="preserve">
-    <value>Update Credit</value>
+    <value>更新信贷额</value>
   </data>
   <data name="EditCreditSuccessfully" xml:space="preserve">
     <value>成功编辑信贷额</value>
@@ -687,10 +687,10 @@
     <value>代理占成</value>
   </data>
   <data name="Licensee" xml:space="preserve">
-    <value>Licensee</value>
+    <value>被许可人</value>
   </data>
   <data name="PageTitle_BetList" xml:space="preserve">
-    <value>Bet List</value>
+    <value>投注历史</value>
   </data>
   <data name="PageTitle_Report_Results" xml:space="preserve">
     <value>赛果 - 报表</value>
@@ -756,7 +756,7 @@
     <value>两者</value>
   </data>
   <data name="BothOneNeitherTeamToScore" xml:space="preserve">
-    <value>两者/一</value>
+    <value>两者/一/两队皆不得分</value>
   </data>
   <data name="CorrectScore" xml:space="preserve">
     <value>波胆</value>
@@ -930,37 +930,37 @@
     <value>To Win To Nil</value>
   </data>
   <data name="TopTurnoverMembers" xml:space="preserve">
-    <value>Top 10 highest turnover members of the month</value>
+    <value>本月交易额最高的前10位会员</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>无限</value>
   </data>
   <data name="PleaseChooseCurrency" xml:space="preserve">
-    <value>Please choose a currency</value>
+    <value>请选择一种货币</value>
   </data>
   <data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
-    <value>Please choose a licensee and a currency</value>
+    <value>请选择一名被许可人和一种货币</value>
   </data>
   <data name="AlertNoCurrencyPermission" xml:space="preserve">
-    <value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
+    <value>很抱歉！管理员刚刚更新了对您的许可，因此您必须要重新登录。谢谢。</value>
   </data>
   <data name="PublicAnnouncements" xml:space="preserve">
-    <value>Public Announcements</value>
+    <value>公告</value>
   </data>
   <data name="UpdateBetSettingSuccessfully" xml:space="preserve">
-    <value>Updated bet setting successfully.</value>
+    <value>成功更新投注设置。</value>
   </data>
   <data name="UpdateCommissionSuccessfully" xml:space="preserve">
-    <value>Updated commission setting successfully.</value>
+    <value>成功更新佣金设置</value>
   </data>
   <data name="TransferTimeWarning" xml:space="preserve">
-    <value>You can only transfer from 12pm to 11:59pm (GMT-4).</value>
+    <value>您只可在12点到11：59分（GMT-4）之间进行转账。</value>
   </data>
   <data name="UsedCredit" xml:space="preserve">
-    <value>Used Credit</value>
+    <value>使用过的信贷额</value>
   </data>
   <data name="YourStatistics" xml:space="preserve">
-    <value>Your Statistics</value>
+    <value>您的统计信息</value>
   </data>
   <data name="Lose" xml:space="preserve">
     <value>输</value>
@@ -975,7 +975,7 @@
     <value>进行中</value>
   </data>
   <data name="TicketNotFound" xml:space="preserve">
-    <value>Ticket is not found</value>
+    <value>未找到票据</value>
   </data>
   <data name="Void" xml:space="preserve">
     <value>作废</value>
@@ -985,5 +985,29 @@
   </data>
   <data name="Won" xml:space="preserve">
     <value>赢</value>
+  </data>
+  <data name="ClosingBalance" xml:space="preserve">
+    <value>期终余额</value>
+  </data>
+  <data name="Integration" xml:space="preserve">
+    <value>整合</value>
+  </data>
+  <data name="SessionError" xml:space="preserve">
+    <value>会话中断错误。请与管理员联系</value>
+  </data>
+  <data name="SessionExpired" xml:space="preserve">
+    <value>会话到期</value>
+  </data>
+  <data name="TicketInvalidExpired" xml:space="preserve">
+    <value>票据已无效或到期</value>
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
+    <value>转账金额</value>
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
+    <value>转账详情</value>
+  </data>
+  <data name="UndefinedErrorCode" xml:space="preserve">
+    <value>未定义的错误代码{0}</value>
   </data>
 </root>

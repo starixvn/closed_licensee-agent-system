@@ -121,19 +121,19 @@
     <value>此帳號無效.</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
-    <value>Parent Agent does not exist.</value>
+    <value>不存在總經紀人。</value>
   </data>
   <data name="Msg_1002" xml:space="preserve">
     <value>插入經紀人失敗。</value>
   </data>
   <data name="Msg_1003" xml:space="preserve">
-    <value>Min Bet must be less than or equal to Max Bet ({0}).</value>
+    <value>最小投注額必須小於或等於最大投注額 ({0}).</value>
   </data>
   <data name="Msg_1004" xml:space="preserve">
-    <value>Min Bet must be less than or equal to Max Per Match ({0}).</value>
+    <value>最小投注額必須小於或等於最大單場比賽投注額 ({0}).</value>
   </data>
   <data name="Msg_1005" xml:space="preserve">
-    <value>Max Bet must be less than or equal to Max Per Match ({0}).</value>
+    <value>最大投注額必須小於或等於最大單場比賽投注額 ({0}).</value>
   </data>
   <data name="Msg_1006" xml:space="preserve">
     <value>最低投注不得少於或相等於 {0} ({1}).</value>
@@ -169,43 +169,43 @@
     <value>給定信貸額必須在0和{0}之間</value>
   </data>
   <data name="Msg_1017" xml:space="preserve">
-    <value>The discount must be less than or equal to Parent Agent discount.</value>
+    <value>傭金必須少於或等於總經紀人的傭金。</value>
   </data>
   <data name="Msg_1018" xml:space="preserve">
     <value>複製資料到{被許可客戶}失敗。</value>
   </data>
   <data name="Msg_1019" xml:space="preserve">
-    <value>The custid already exists in the LicenseeCust.</value>
+    <value>被許可客戶中已有客戶ID 。</value>
   </data>
   <data name="Msg_1020" xml:space="preserve">
-    <value>The username does not exist.</value>
+    <value>此用戶名不存在。</value>
   </data>
   <data name="Msg_1021" xml:space="preserve">
     <value>百分之   的PT無效，它必須介於{0:p}和{1:p} ({2} - {3})之間。</value>
   </data>
   <data name="Msg_1022" xml:space="preserve">
-    <value>The agent does not exist.</value>
+    <value>此經紀人不存在。</value>
   </data>
   <data name="Msg_1023" xml:space="preserve">
-    <value>Updated fail!</value>
+    <value>更新失敗</value>
   </data>
   <data name="Msg_1024" xml:space="preserve">
-    <value>On_AdminId does not exist.</value>
+    <value>{管理員ID} 不存在。</value>
   </data>
   <data name="Msg_1031" xml:space="preserve">
-    <value>This user's upline was closed. Cannot edit.</value>
+    <value>此用戶的上線被關閉。無法編輯。</value>
   </data>
   <data name="Msg_1032" xml:space="preserve">
     <value>用戶名不存在！</value>
   </data>
   <data name="Msg_1033" xml:space="preserve">
-    <value>The searched user belongs to currency 'ABC'. Do you want to change all data to ABC currency?</value>
+    <value>被搜索的用戶屬於貨幣{0}。您想把所有的資料都變更為{0}貨幣？</value>
   </data>
   <data name="Msg_1034" xml:space="preserve">
-    <value>There is no downline.</value>
+    <value>沒有下線人員。</value>
   </data>
   <data name="Msg_1040" xml:space="preserve">
-    <value>Invalid amount</value>
+    <value>金額無效</value>
   </data>
   <data name="Msg_200022" xml:space="preserve">
     <value>此會員並不活躍!</value>
@@ -223,13 +223,13 @@
     <value>賬號/匿名或密碼錯誤.</value>
   </data>
   <data name="Msg_80007" xml:space="preserve">
-    <value>Your password was last changed on {0}. Please enter your new password.</value>
+    <value>您的密碼上次於{0}被更改。請輸入您的新密碼</value>
   </data>
   <data name="Msg_80008" xml:space="preserve">
-    <value>Your account has been locked. Please contact Customer Service Department.</value>
+    <value>您的帳戶已被鎖定。請與客服部門聯繫。</value>
   </data>
   <data name="Msg_80009" xml:space="preserve">
-    <value>Failed to change password.</value>
+    <value>更改密碼失敗</value>
   </data>
   <data name="Msg_1037" xml:space="preserve">
     <value>另外一個Session登入\n 此Session將被終止!\n如果不是您的帳號,請聯絡您的上線!</value>
@@ -254,5 +254,17 @@
   </data>
   <data name="Msg_800091" xml:space="preserve">
     <value>更改密碼失敗</value>
+  </data>
+  <data name="Msg_107" xml:space="preserve">
+    <value>只允許此會員每天進行一次交易。</value>
+  </data>
+  <data name="Msg_1030" xml:space="preserve">
+    <value>您未獲許可更新此帳戶設置。</value>
+  </data>
+  <data name="Msg_1038" xml:space="preserve">
+    <value>管理員更改了被許可人，本次會話必須關閉。</value>
+  </data>
+  <data name="Msg_1043" xml:space="preserve">
+    <value>更新失敗</value>
   </data>
 </root>

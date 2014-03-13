@@ -121,42 +121,34 @@
     <value>此账号无效.</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
-    <value>Parent Agent does not exist.</value>
-    <comment>not</comment>
+    <value>不存在总经纪人。</value>
   </data>
   <data name="Msg_1002" xml:space="preserve">
     <value>插入经纪人失败。</value>
   </data>
   <data name="Msg_1003" xml:space="preserve">
-    <value>Min Bet must be less than or equal to Max Bet ({0}).</value>
-    <comment>not</comment>
+    <value>最小投注额必须小于或等于最大投注额 ({0}).</value>
   </data>
   <data name="Msg_1004" xml:space="preserve">
-    <value>Min Bet must be less than or equal to Max Per Match ({0}).</value>
-    <comment>not</comment>
+    <value>最小投注额必须小于或等于最大单场比赛投注额 ({0}).</value>
   </data>
   <data name="Msg_1005" xml:space="preserve">
-    <value>Max Bet must be less than or equal to Max Per Match ({0}).</value>
-    <comment>not</comment>
+    <value>最大投注额必须小于或等于最大单场比赛投注额 ({0}).</value>
   </data>
   <data name="Msg_1006" xml:space="preserve">
     <value>最低投注不得少于或相等于 {0} ({1}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1007" xml:space="preserve">
     <value>最高投注不得多于或相等于 {0} ({1}).</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1008" xml:space="preserve">
     <value>单场最高投注需低于或相等于 {0} ({1})</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1009" xml:space="preserve">
     <value>折扣不正确.</value>
   </data>
   <data name="Msg_1010" xml:space="preserve">
     <value>百分之   的PT必须大于或等于零( {0} - {1} )。</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1011" xml:space="preserve">
     <value>百分之   的最小给定PT必须低于或等于百分之   的最大给定PT ( {0} - {1} )。</value>
@@ -177,54 +169,43 @@
     <value>给定信贷额必须在0和{0}之间</value>
   </data>
   <data name="Msg_1017" xml:space="preserve">
-    <value>The discount must be less than or equal to Parent Agent discount.</value>
-    <comment>not</comment>
+    <value>佣金必须少于或等于总经纪人的佣金。</value>
   </data>
   <data name="Msg_1018" xml:space="preserve">
     <value>复制数据到{被许可客户}失败。</value>
   </data>
   <data name="Msg_1019" xml:space="preserve">
-    <value>The custid already exists in the LicenseeCust.</value>
-    <comment>not</comment>
+    <value>被许可客户中已有客户ID 。</value>
   </data>
   <data name="Msg_1020" xml:space="preserve">
-    <value>The username does not exist.</value>
-    <comment>not</comment>
+    <value>此用户名不存在。</value>
   </data>
   <data name="Msg_1021" xml:space="preserve">
     <value>百分之   的PT无效，它必须介于{0:p}和{1:p} ({2} - {3})之间。</value>
   </data>
   <data name="Msg_1022" xml:space="preserve">
-    <value>The agent does not exist.</value>
-    <comment>not</comment>
+    <value>此经纪人不存在。</value>
   </data>
   <data name="Msg_1023" xml:space="preserve">
-    <value>Updated fail!</value>
-    <comment>not</comment>
+    <value>更新失败</value>
   </data>
   <data name="Msg_1024" xml:space="preserve">
-    <value>On_AdminId does not exist.</value>
-    <comment>not</comment>
+    <value>{管理员ID} 不存在。</value>
   </data>
   <data name="Msg_1031" xml:space="preserve">
-    <value>This user's upline was closed. Cannot edit.</value>
-    <comment>not</comment>
+    <value>此用户的上线被关闭。无法编辑。</value>
   </data>
   <data name="Msg_1032" xml:space="preserve">
     <value>用户名不存在！</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_1033" xml:space="preserve">
-    <value>The searched user belongs to currency 'ABC'. Do you want to change all data to ABC currency?</value>
-    <comment>not</comment>
+    <value>被搜索的用户属于货币{0}。您想把所有的数据都变更为{0}货币？</value>
   </data>
   <data name="Msg_1034" xml:space="preserve">
-    <value>There is no downline.</value>
-    <comment>not</comment>
+    <value>没有下线人员。</value>
   </data>
   <data name="Msg_1040" xml:space="preserve">
-    <value>Invalid amount</value>
-    <comment>not</comment>
+    <value>金额无效</value>
   </data>
   <data name="Msg_200022" xml:space="preserve">
     <value>此会员并不活跃!</value>
@@ -237,22 +218,18 @@
   </data>
   <data name="Msg_60020" xml:space="preserve">
     <value>这个帐号禁用</value>
-    <comment>not</comment>
   </data>
   <data name="Msg_80001" xml:space="preserve">
     <value>账号/匿名或密码错误.</value>
   </data>
   <data name="Msg_80007" xml:space="preserve">
-    <value>Your password was last changed on {0}. Please enter your new password.</value>
-    <comment>not</comment>
+    <value>您的密码上次于{0}被更改。请输入您的新密码</value>
   </data>
   <data name="Msg_80008" xml:space="preserve">
-    <value>Your account has been locked. Please contact Customer Service Department.</value>
-    <comment>not</comment>
+    <value>您的账户已被锁定。请与客服部门联系。</value>
   </data>
   <data name="Msg_80009" xml:space="preserve">
-    <value>Failed to change password.</value>
-    <comment>not</comment>
+    <value>更改密码失败</value>
   </data>
   <data name="Msg_1037" xml:space="preserve">
     <value>另外一个会话登入\n此会话将被终止！\n如果不是您的帐号，请联络您的上线！</value>
@@ -277,5 +254,17 @@
   </data>
   <data name="Msg_800091" xml:space="preserve">
     <value>更改密码失败</value>
+  </data>
+  <data name="Msg_107" xml:space="preserve">
+    <value>只允许此会员每天进行一次交易。</value>
+  </data>
+  <data name="Msg_1030" xml:space="preserve">
+    <value>您未获许可更新此账户设置。</value>
+  </data>
+  <data name="Msg_1038" xml:space="preserve">
+    <value>管理员更改了被许可人，本次会话必须关闭。</value>
+  </data>
+  <data name="Msg_1043" xml:space="preserve">
+    <value>更新失败</value>
   </data>
 </root>

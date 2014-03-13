@@ -147,7 +147,7 @@ namespace LicenseeAgent.Account.Controllers
                 var captcha = Session[Constants.AppSessionCaptcha] as string;
                 if (string.IsNullOrEmpty(captcha))
                 {
-                    ModelState.AddModelError("Captcha", "Session Error. Please contact the administrator");
+                    ModelState.AddModelError("Captcha", Las.SessionError);
                 }
                 else
                 {

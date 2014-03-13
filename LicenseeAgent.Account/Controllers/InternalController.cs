@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
+using LicenseeAgent.Resources;
+
 namespace LicenseeAgent.Account
 {
     using System.Linq;
@@ -104,7 +106,7 @@ namespace LicenseeAgent.Account
             var loginInfo = Integration.Decrypt(authKey);
             if (loginInfo.IsExpired)
             {
-                return Content("Session is expired");
+                return Content(Las.SessionExpired);
             }
 
             var clientInfo = Request.GetClientInfo();
@@ -239,13 +241,13 @@ namespace LicenseeAgent.Account
         {
             if (string.IsNullOrEmpty(authKey))
             {
-                return Content("Ticket is not found");
+                return Content(Las.TicketNotFound);
             }
 
             var internalLoginInfo = _internalService.Decode(authKey);
             if (internalLoginInfo == null || internalLoginInfo.IsExpired)
             {
-                return Content("Ticket is invalid or expired");
+                return Content(Las.TicketInvalidExpired);
             }
 
             return AdminLoginAsAgent(internalLoginInfo);

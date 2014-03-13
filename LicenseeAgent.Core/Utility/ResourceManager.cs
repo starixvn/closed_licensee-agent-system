@@ -28,7 +28,7 @@ namespace LicenseeAgent.Core.Utility
                 result = LangMsg.ResourceManager.GetString(key);
                 if (string.IsNullOrEmpty(result))
                 {
-                    result = string.Format("Undefined error code {0}", errorCode);
+                    result = string.Format(Las.UndefinedErrorCode, errorCode);
                 }
             }
 

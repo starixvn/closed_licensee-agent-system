@@ -1,25 +1,17 @@
-@{
+﻿@{
     Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
 }
 <div class="instruction-content">
     <ul>
-        <li>The commission group A, B, C and D define the commission rates offered to an agent
-            on the following bet types: Handicap (HDP), Over/Under (OU), Odd/Even (OE) and some
-            minor bet types such as 1st Handicap, 1st Over/Under, 1st Odd/Even, Clean Sheet,
-            Double Change, Draw No Bet, Both/One/Neither Team to Score, To Win To Nil, 3-Way
-            Handicap, Home No Bet, Away No Bet and Draw/No Draw.
-            Each group has different values for min and max commission.</li>
-        <li>HDP, OU, OE (%): the commission rate offered to an agent on the bet types Handicap
-            (HDP), Over/Under (OU) and Odd/Even (OE).</li>
-        <li>1x2 Comm (%): the commission rate offered to an agent on the bet types 1st 1X2 and
-            FT. 1X2.</li>
-        <li>Other Comm (%): the commission rate offered to an agent on the other bet types such
-            as Correct Score, Total Goal, Mix Parlay, Outright, First Goal/Last Goal, HT/FT,
-            Moneyline, 1st Moneyline, System Parlay, and 1st Correct Score.</li>
-        <li>[x - y]: input range. If K is the entered amount, then K must be: x <= K <= y.</li>
+        <li>佣金分组A、B、C和D定义了下列投注类型中提供给一名经纪人的佣金率：让分盘（HDP）、
+            大/小盘（OU）、单/双盘（OE）和一些较小的投注类型例如第1让分盘、第1大/小盘、第一单/双盘、零失球、双倍换注、
+            平局退款、两队/单队/两队皆不得分、零失球获胜、3项让分、主队不赌、客队不赌以及平局/非平局。  每组有不同的佣金最小值和最大值。</li>
+        <li>HDP、OU、OE（%）：关于让分盘（HDP）、大/小盘（OU）和单/双盘（OE）投注类型提供给一名经纪人的佣金比。</li>
+        <li>1x2佣金（%）：关于上半场1X2和终场1X2投注类型提供给一名会员的佣金比。</li>
+        <li>其它佣金（%）：是指在其它投注类型中提供给会员的佣金率，它们包括例如波胆、总进球数、混合过关、总冠军、最先进球/最后进球、半场/终场、胜负盘、第1胜负盘、系统过关和第1波胆。</li>
+        <li>[x - y]：输入范围 如果K是输入的金额，则K就必须为：x <= K <= y。</li>
     </ul>
     <p>
-        <span class="note">Note:</span> only allow two numbers after the decimal point.
-        For instance, 1.25 is a valid input, but 1.555 is not.
+        <span class="note">注意:</span> 只允许小数点后保留两位数字。例如，1.25是一个有效的输入值，但1.555就不是。
     </p>
 </div>

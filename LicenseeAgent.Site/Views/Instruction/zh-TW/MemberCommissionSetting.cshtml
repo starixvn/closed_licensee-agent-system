@@ -1,25 +1,17 @@
-@{
+﻿@{
     Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
 }
 <div class="instruction-content">
     <ul>
-        <li>The commission group A, B, C and D define the commission rates offered to an agent
-            on the following bet types: Handicap (HDP), Over/Under (OU), Odd/Even (OE) and some
-            minor bet types such as 1st Handicap, 1st Over/Under, 1st Odd/Even, Clean Sheet,
-            Double Change, Draw No Bet, Both/One/Neither Team to Score, To Win To Nil, 3-Way
-            Handicap, Home No Bet, Away No Bet and Draw/No Draw.
-            Each group has different values for min and max commission.</li>
-        <li>HDP, OU, OE (%): the commission rate offered to an agent on the bet types Handicap
-            (HDP), Over/Under (OU) and Odd/Even (OE).</li>
-        <li>1x2 Comm (%): the commission rate offered to an agent on the bet types 1st 1X2 and
-            FT. 1X2.</li>
-        <li>Other Comm (%): the commission rate offered to an agent on the other bet types such
-            as Correct Score, Total Goal, Mix Parlay, Outright, First Goal/Last Goal, HT/FT,
-            Moneyline, 1st Moneyline, System Parlay, and 1st Correct Score.</li>
-        <li>[x - y]: input range. If K is the entered amount, then K must be: x <= K <= y.</li>
+        <li>傭金分組A、B、C和D定義了下列投注類型中提供給一名經紀人的傭金率：讓分盤（HDP）、
+            大/小盤（OU）、單/雙盤（OE）和一些較小的投注類型例如第1讓分盤、第1大/小盤、第一單/雙盤、零失球、雙倍換注、
+            平局退款、兩隊/單隊/兩隊皆不得分、零失球獲勝、3項讓分、主隊不賭、客隊不賭以及平局/非平局。  每組有不同的傭金最小值和最大值。</li>
+        <li>HDP、OU、OE（%）：關於下列投注類型提供給一名會員的傭金比，包括讓分盤（HDP）、大/小盤（OU）、單/雙盤（OE）和一些較小的投注類型例如第1讓分盤、第1大/小盤、第一單/雙盤、零失球、雙倍換注、平局退款、兩隊/單隊/兩隊皆不得分、零失球獲勝、3項讓分、主隊不賭、客隊不賭以及平局/非平局。</li>
+        <li>1x2傭金（%）：關於上半場1X2和終場1X2投注類型提供給一名會員的傭金比。.</li>
+        <li>其它傭金（%）：是指在其它投注類型中提供給會員的傭金率，它們包括例如波膽、總進球數、混合過關、總冠軍、最先進球/最後進球、半場/終場、勝負盤、第1勝負盤、系統過關和第1波膽。</li>
+        <li>[x - y]：輸入範圍 如果K是輸入的金額，則K就必須為：x <= K <= y。</li>
     </ul>
     <p>
-        <span class="note">Note:</span> only allow two numbers after the decimal point.
-        For instance, 1.25 is a valid input, but 1.555 is not.
+        <span class="note">注意:</span> 只允許小數點後保留兩位元數字。例如，1.25是一個有效的輸入值，但1.555就不是。
     </p>
 </div>

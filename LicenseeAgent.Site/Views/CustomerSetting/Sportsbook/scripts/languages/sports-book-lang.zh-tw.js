@@ -3,7 +3,7 @@
     fanex.customerSetting.language['zh-TW'] = {
         // Common messages
         message_ValueIsNotInRange: '範圍無效，輸入值必須在 以內',
-        message_DataIsNotChanged: "There is no updating.",
+        message_DataIsNotChanged: "沒有更新資訊。",
 
         // Commission setting messages
         commissionSetting_SimpleModelHeader: '佣金',
@@ -34,15 +34,15 @@
         sport_11_1: '賽車',
         sport_99_1: '其他',
         sport_99_9: '混合體育過關',
-        bettingLimit_Message_OnlyNumber: 'Only numbers , (,) inbetween number',
-        bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "Min Bet must be less than or equal to Max Bet",
-        bettingLimit_Message_MinBetMoreThanOrEqualTo: "Min Bet must be greater than or equal to ",
-        bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "Max Bet must be greater than or equal to Min Bet",
-        bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "Max Bet must be less than or equal to Max Per Match",
-        bettingLimit_Message_MaxBetLessThanOrEqualTo: "Max Bet must be less than or equal to ",
-        bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "Max Per Match must be greater than or equal to Max Bet",
-        bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "Max Per Match must be less than or equal to ",
-        customerInfo_Message_MaxCredit: 'Given credit must be between 0 and {0}',
+        bettingLimit_Message_OnlyNumber: '數位間只能有數位(,)',
+        bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "最小投注額必須小於或等於最大投注額",
+        bettingLimit_Message_MinBetMoreThanOrEqualTo: "最大投注額必須大於或等於",
+        bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "最大投注額必須大於或等於最小投注額",
+        bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "最大投注額必須小於或等於最大單場比賽投注額",
+        bettingLimit_Message_MaxBetLessThanOrEqualTo: "最大投注額必須小於或等於",
+        bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "最大單場比賽投注額必須大於或等於最大投注額",
+        bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "最大單場比賽投注額必須小於或等於",
+        customerInfo_Message_MaxCredit: '給定信貸額必須在0和{0}之間',
 
         // Position taking messages
         sport_1_false_1: '足球 - 非滾球',
@@ -66,10 +66,10 @@
         bettype_9: '混合過關',
         bettype_10: '優勝冠軍',
         bettype_20: '獨贏',
-        maxPt: '% Max Downline',
-        minPt: '% Min Downline',
-        presetPt: '% Preset',
-        memberPt: '% on Member',
+        maxPt: '百分之的最大下線值',
+        minPt: '百分之的最小下線值',
+        presetPt: '百分之的預設值',
+        memberPt: '百分之的會員',
         soccerDeadballCopyPtTooltip: '從足球 {1}複製所有佔成數',
         basketBallCopyPtTooltip: '從{0} {1}複製所有佔成數',
         soccerHandicapCopyPtTooltip: '複製亞洲盤佔成數',

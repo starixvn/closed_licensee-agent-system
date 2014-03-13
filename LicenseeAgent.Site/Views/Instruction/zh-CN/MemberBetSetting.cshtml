@@ -1,20 +1,16 @@
-@{
+﻿@{
     Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
 }
 <div class="instruction-content">
     <p>
-        Min Bet, Max Bet and Max Per Match for each product (Sport type) are defined here.
+        在此定义了每种产品（运动类型）的最小投注额、最大投注额和最大单场比赛投注额。
     </p>
     <ul>
-        <li>Min Bet: the minimum stake allowed on a bet. ">= X" means Input must be greater
-            than or equal to X.</li>
-        <li>Max Bet: the maximum stake allowed on a bet. "<= X" means Input must be less than
-            or equal to X.</li>
-        <li>Max Per Match: the maximum stake allowed on a match. "<= X" means Input must be
-            less than or equal to X.</li>
+        <li>最小投注额：单次投注允许的最小赌注。">= X"表示输入必须大于或等于X。</li>
+        <li>最大投注额：单次投注允许的最大赌注。"<= X"表示输入必须小于或等于X。</li>
+        <li>最大单场比赛投注额：单次比赛允许的最大赌注。">= X"表示输入必须小于或等于X。</li>
     </ul>
     <p>
-        <span class="note">Note:</span> decimal numbers are not allowed. For instance, 100.25
-        is an invalid input.
+        <span class="note">注意:</span> 不允许使用小数。例如，100.25是无效的输入值。
     </p>
 </div>

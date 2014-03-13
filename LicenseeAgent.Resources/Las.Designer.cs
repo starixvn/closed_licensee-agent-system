@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LicenseeAgent.Resources
-{
-
-
+namespace LicenseeAgent.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -1303,6 +1303,15 @@ namespace LicenseeAgent.Resources
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Integration.
+        /// </summary>
+        public static string Integration {
+            get {
+                return ResourceManager.GetString("Integration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Amount.
         /// </summary>
         public static string InvalidAmount {
@@ -1962,7 +1971,7 @@ namespace LicenseeAgent.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password supplied does not meet the minimum security requirements..
+        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..).
         /// </summary>
         public static string PasswordRuleInstruction {
             get {
@@ -2178,6 +2187,24 @@ namespace LicenseeAgent.Resources
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Session Error. Please contact the administrator..
+        /// </summary>
+        public static string SessionError {
+            get {
+                return ResourceManager.GetString("SessionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session is expired.
+        /// </summary>
+        public static string SessionExpired {
+            get {
+                return ResourceManager.GetString("SessionExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setting.
         /// </summary>
         public static string Setting {
@@ -2327,6 +2354,15 @@ namespace LicenseeAgent.Resources
         public static string ThreeWayHandicap {
             get {
                 return ResourceManager.GetString("ThreeWayHandicap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket is invalid or expired.
+        /// </summary>
+        public static string TicketInvalidExpired {
+            get {
+                return ResourceManager.GetString("TicketInvalidExpired", resourceCulture);
             }
         }
         
@@ -2525,6 +2561,15 @@ namespace LicenseeAgent.Resources
         public static string UnauthorizedMsg {
             get {
                 return ResourceManager.GetString("UnauthorizedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined error code {0}.
+        /// </summary>
+        public static string UndefinedErrorCode {
+            get {
+                return ResourceManager.GetString("UndefinedErrorCode", resourceCulture);
             }
         }
         

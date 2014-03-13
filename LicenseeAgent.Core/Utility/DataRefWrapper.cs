@@ -17,9 +17,27 @@ namespace LicenseeAgent.Core.Utility
     /// </summary>
     public static class DataRefWrapper
     {
+        private static string RefLanguageCode
+        {
+            get
+            {
+                var languageCode = LanguageManager.Language;
+                switch (languageCode)
+                {
+                    case "en-US": return "en";
+                    case "zh-TW": return "ch"; // Traditional
+                    case "zh-CN": return "cs"; // Simplified
+                    case "ja-JP": return "jp";
+                    case "th-TH": return "th"; // Thai
+
+                    default: return "en";
+                }
+            }
+        }
+
         public static string GetBetTypeName(int betType)
         {
-            return RefData.GetBetTypeName(betType.ToString(), LanguageManager.TwoLetterISOLanguageName);
+            return RefData.GetBetTypeName(betType.ToString(), RefLanguageCode);
         }
 
         public static string GetSportName(int sportType)
@@ -41,18 +59,18 @@ namespace LicenseeAgent.Core.Utility
             }
             else
             {
-                return RefData.GetSportName(sportType.ToString(), LanguageManager.TwoLetterISOLanguageName);
+                return RefData.GetSportName(sportType.ToString(), RefLanguageCode);
             }
         }
 
         public static string GetLeagueName(int leagueId)
         {
-            return RefData.GetLeagueName(leagueId.ToString(), LanguageManager.TwoLetterISOLanguageName);
+            return RefData.GetLeagueName(leagueId.ToString(), RefLanguageCode);
         }
 
         public static string GetTeamname(int teamId)
         {
-            return RefData.GetTeamName(teamId.ToString(), LanguageManager.TwoLetterISOLanguageName);
+            return RefData.GetTeamName(teamId.ToString(), RefLanguageCode);
         }
 
         /// <summary>

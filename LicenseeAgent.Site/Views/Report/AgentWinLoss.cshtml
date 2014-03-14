@@ -39,14 +39,14 @@
 {
     <div class="controls-row">
         @Html.LabelFor(m => m.FromDate)
-        <div class="input-append date" id="fromDatePicker" data-date="@Model.FromDate">
+        <div class="input-append date datepicker" id="fromDatePicker" data-date="@Model.FromDate">
             @Html.TextBoxFor(m => m.FromDate, new { @class = "span2", @Value = Model.FromDate })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
     <div class="controls-row">
         @Html.LabelFor(m => m.ToDate, new { @class = "small-label" })
-        <div class="input-append date" id="toDatePicker" data-date="@Model.ToDate">
+        <div class="input-append date datepicker" id="toDatePicker" data-date="@Model.ToDate">
             @Html.TextBoxFor(m => m.ToDate, new { @class = "span2", @Value = Model.ToDate })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>

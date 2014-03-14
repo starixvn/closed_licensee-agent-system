@@ -436,7 +436,6 @@
     <Content Include="Content\moment-datepicker\datepicker.css" />
     <Content Include="Views\Error\Resources\images\error2.png" />
     <Content Include="Images\loader.gif" />
-    <Content Include="Scripts\moment-datepicker\moment-datepicker-ko.js" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />

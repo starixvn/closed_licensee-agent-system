@@ -18,6 +18,10 @@
         init: function () {
             $('input, textarea').placeholder();
 
+            if ($.fn.datepicker) {
+                $('.datepicker').data('datepicker-format', 'MM/DD/YYYY');
+            }
+
             $("button[data-href]").click(function () {
                 location.href = CORE.resolveUrl($(this).attr("data-href"));
             });
@@ -235,7 +239,7 @@
 
                         dataRow.push({
                             Name: colName,
-                            Value: (indexNumberColumn == j) ? rowIndexValue++  : record[colName],
+                            Value: (indexNumberColumn == j) ? rowIndexValue++ : record[colName],
                             CustomCellRender: function (cell, cellFormated) {
                                 if (col.Formatter) {
                                     return col.Formatter(rIndex, rowData, cell, cellFormated);

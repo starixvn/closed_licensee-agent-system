@@ -70,7 +70,7 @@ var OUTSTANDING = function ($) {
                     var footerRows = [
                             {
                                 Columns: [
-                                    { Value: "Total", Name: "Username", CellAlign: "left" },
+                                    { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "left" },
                                     { Value: data.SumOutstanding, Name: "Outstanding" },
                                     { Value: data.SumPositiontaking, Name: "Positiontaking" }
                                 ]

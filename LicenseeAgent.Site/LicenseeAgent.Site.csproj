@@ -265,6 +265,12 @@
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Images\login\sprite.png" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ja-JP.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ko-KR.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.th-TH.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.vi-VN.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-CN.js" />
+    <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-TW.js" />
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
@@ -429,7 +435,6 @@
     <Content Include="Scripts\contextmenu\context.js" />
     <Content Include="Scripts\dotdotdot\jquery.dotdotdot.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Pagination.js" />
-    <Content Include="Scripts\fanexgrid\moment.js" />
     <Content Include="Scripts\jquery-ui\jquery.ui.dropdownlist.js" />
     <Content Include="Scripts\language.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.js" />

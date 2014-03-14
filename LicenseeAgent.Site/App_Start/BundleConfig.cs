@@ -88,10 +88,8 @@ namespace LicenseeAgent.Site
                 "~/content/moment-datepicker/datepicker.css"));
 
             // Fanex.Grid
-            bundles.Add(new ScriptBundle("~/js/fanexgrid").Include(
-                "~/scripts/fanexgrid/numeral.js",
-                "~/scripts/fanexgrid/Fanex.Grid.js",
-                "~/scripts/fanexgrid/Fanex.Pagination.js"));
+            bundles.Add(new ScriptBundle("~/js/fanexgrid").IncludeDirectory(
+                "~/scripts/fanexgrid", "*.js", true));
             bundles.Add(new LessBundle("~/css/fanexgrid").Include(
                 "~/content/fanexgrid/Fanex.Grid.css",
                 "~/content/fanexgrid/Fanex.Pagination.css",

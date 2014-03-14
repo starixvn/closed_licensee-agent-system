@@ -14,6 +14,11 @@
                 var languageCode = $(this).attr('data-language');
                 LANGUAGE.changeLanguage(languageCode);
             });
+
+            var selectedLanguage = LANGUAGE.getSelectedLanguage();
+            if (typeof fanexGridLanguage !== 'undefined') {
+                fanexGridCurrentLanguage = fanexGridLanguage[selectedLanguage];
+            }
         },
         changeLanguage: function (language) {
             var data = {

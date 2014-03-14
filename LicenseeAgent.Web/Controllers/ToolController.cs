@@ -8,6 +8,7 @@ namespace LicenseeAgent.Web.Controllers
 {
     using System.Web.Mvc;
     using Fanex.Common;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web.Filters;
 
     /// <summary>
@@ -57,6 +58,12 @@ namespace LicenseeAgent.Web.Controllers
         public ActionResult WhoAmI()
         {
             return View();
+        }
+
+        [HttpGet]
+        public void TestMSMQ()
+        {
+            Logger.Error("This is a test");
         }
     }
 }

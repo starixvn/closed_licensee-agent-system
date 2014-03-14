@@ -196,6 +196,8 @@ namespace LicenseeAgent.Taiwan.Services
                 memberResult.ErrCode = 0;
             }
 
+            ServiceExtension.WriteError(action, memberResult);
+
             return memberResult;
         }
 
@@ -214,6 +216,8 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 ServiceMapper.MapObjects<ServiceMemberEntity, T>(memberListResult.Members, memberEntitys, new MemberFilter());
             }
+
+            ServiceExtension.WriteError(action, memberListResult);
 
             return memberListResult;
         }

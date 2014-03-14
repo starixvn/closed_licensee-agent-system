@@ -19,7 +19,7 @@
             $('input, textarea').placeholder();
 
             if ($.fn.datepicker) {
-                $('.datepicker').data('datepicker-format', 'MM/DD/YYYY');
+                $('.datepicker').data('datepicker-format', CORE.DATE_FORMAT);
             }
 
             $("button[data-href]").click(function () {

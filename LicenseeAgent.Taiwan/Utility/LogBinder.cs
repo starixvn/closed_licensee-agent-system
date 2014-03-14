@@ -12,12 +12,10 @@ namespace LicenseeAgent.Taiwan.Utility
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
-    using System.Web;
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
-    using LicenseeAgent.Taiwan.Results;
 
     /// <summary>
     /// TODO: Update summary.
@@ -54,45 +52,6 @@ namespace LicenseeAgent.Taiwan.Utility
                     Customers = new Collection<LogInformationEntity>(members.ToList())
                 }, 
                 typeof(LogInformationEntity));
-        }
-
-        /// <summary>
-        /// Write log when call API error.
-        /// </summary>
-        /// <param name="action">Action when call API.</param>
-        /// <param name="result">Response result.</param>
-        public static void WriteError(IAction action, ResponseResult result)
-        {
-            if (result.ErrCode == 0)
-            {
-                return;
-            }
-
-            var errorMessage = new StringBuilder();
-            errorMessage.AppendFormat("API function: {0}\n", action.ActionName);
-            errorMessage.Append("Input:\n");
-
-            var properties = action.GetType().GetProperties();
-
-            foreach (var property in properties)
-            {
-                var propertyValue = property.GetValue(action, null);
-                var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
-
-                if (!ServiceExtension.IsParamRequest(attribute))
-                {
-                    continue;
-                }
-
-                errorMessage.AppendFormat(
-                    "{0}: {1}\n",
-                    attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
-                    propertyValue != null ? HttpUtility.UrlEncode(propertyValue.ToString()) : string.Empty);
-            }
-
-            errorMessage.Append("Output:\n");
-            errorMessage.AppendFormat("Error Code: {0}\n", result.ErrCode);
-            errorMessage.AppendFormat("Error Message: {0}\n", result.ErrMsg);
         }
 
         /// <summary>

@@ -69,7 +69,7 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
 
-            LogBinder.WriteError(action, responseResult);
+            ServiceExtension.WriteError(action, responseResult);
 
             return responseResult;
         }
@@ -99,7 +99,7 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
 
-            LogBinder.WriteError(action, responseResult);
+            ServiceExtension.WriteError(action, responseResult);
 
             return responseResult;
         }
@@ -134,7 +134,7 @@ namespace LicenseeAgent.Taiwan.Services
             criteria.ErrMsg = responseResult.ErrMsg;
             _logService.WriteLog(criteria);
 
-            LogBinder.WriteError(action, responseResult);
+            ServiceExtension.WriteError(action, responseResult);
 
             return responseResult;
         }
@@ -171,7 +171,7 @@ namespace LicenseeAgent.Taiwan.Services
 
             _logService.WriteLog(criteria);
 
-            LogBinder.WriteError(action, memberStatusResult);
+            ServiceExtension.WriteError(action, memberStatusResult);
 
             return memberStatusResult;
         }

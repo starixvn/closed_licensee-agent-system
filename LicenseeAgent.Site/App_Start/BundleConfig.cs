@@ -188,7 +188,7 @@ namespace LicenseeAgent.Site
         private static void RegisterErrorPage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/error/UnderMaintenance").Include(
-                "~/views/error/resources/UnderMaintenance.js"));
+                "~/views/error/resources/undermaintenance.js"));
             bundles.Add(new LessBundle("~/css/error").Include(
                 "~/views/error/resources/Index.less"));
         }
@@ -217,17 +217,17 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/home").Include(
                 "~/scripts/headjs/head.core.js",
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
-                "~/views/home/resources/menu.js",
-                "~/views/home/resources/header.js",
                 "~/scripts/cookie/jquery.cookie.js",
-                "~/scripts/marquee/jquery.marquee.js"));
+                "~/scripts/marquee/jquery.marquee.js",
+                "~/views/home/resources/menu.js",
+                "~/views/home/resources/header.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",
                 "~/views/accountinformation/resources/index.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
-                "~/Views/Internal/Resources/Header.js"));
+                "~/views/internal/resources/header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
                 "~/views/home/resources/home.less"));
@@ -258,10 +258,10 @@ namespace LicenseeAgent.Site
         private static void RegisterAccountPage(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/home-page").Include(
-                "~/Views/Account/Resources/home-page.less"));
+                "~/views/account/resources/home-page.less"));
 
             bundles.Add(new ScriptBundle("~/js/home-page").Include(
-                "~/Views/Account/Resources/home-page.js"));
+                "~/views/account/resources/home-page.js"));
         }
 
         /// <summary>
@@ -271,13 +271,13 @@ namespace LicenseeAgent.Site
         private static void RegisterCustomerListPage(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/customerlist").Include(
-                "~/Views/CustomerList/Resources/customerlist.less"));
+                "~/views/customerlist/resources/customerlist.less"));
 
             bundles.Add(new ScriptBundle("~/js/customerlist").Include(
-                "~/Views/CustomerList/Resources/customerlist.js"));
+                "~/views/customerList/resources/customerlist.js"));
 
             bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
-                "~/Views/CustomerList/Resources/resetpassword.js"));
+                "~/views/customerlist/resources/resetpassword.js"));
         }
 
         /// <summary>

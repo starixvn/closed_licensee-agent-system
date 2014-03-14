@@ -798,10 +798,12 @@
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <None Include="Scripts\ResourcesJs\TemplateFileManagerV2.1.ttinclude" />
+    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSetting.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSetting.cshtml" />
-    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />

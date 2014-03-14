@@ -977,4 +977,49 @@
   <data name="UndefinedErrorCode" xml:space="preserve">
     <value>未定义的错误代码{0}</value>
   </data>
+  <data name="AwayTeam" xml:space="preserve">
+    <value>客队</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="HomeTeam" xml:space="preserve">
+    <value>主</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>无进球</value>
+  </data>
+  <data name="Score7Over" xml:space="preserve">
+    <value>7或以上</value>
+  </data>
+  <data name="Under" xml:space="preserve">
+    <value>下盘</value>
+  </data>
+  <data name="AwayNo" xml:space="preserve">
+    <value>Away No</value>
+  </data>
+  <data name="AwayOrDraw" xml:space="preserve">
+    <value>Away or Draw</value>
+  </data>
+  <data name="AwayYes" xml:space="preserve">
+    <value>Away Yes</value>
+  </data>
+  <data name="EffectiveTurnover" xml:space="preserve">
+    <value>Effective Turnover</value>
+  </data>
+  <data name="HomeNo" xml:space="preserve">
+    <value>Home No</value>
+  </data>
+  <data name="HomeOrAway" xml:space="preserve">
+    <value>Home or Away</value>
+  </data>
+  <data name="HomeOrDraw" xml:space="preserve">
+    <value>Home or Draw</value>
+  </data>
+  <data name="HomeYes" xml:space="preserve">
+    <value>Home Yes</value>
+  </data>
+  <data name="ViewSportsbookAgent" xml:space="preserve">
+    <value>View Sportsbook Agent</value>
+  </data>
 </root>

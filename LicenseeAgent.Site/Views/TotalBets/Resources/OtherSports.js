@@ -198,11 +198,13 @@ var OtherSports = function ($) {
                             useCustomCheckAllText: true,
                             customCheckAllText: LANGUAGE.getString('AllEvents'),
                             showParentSelectedText: false,
+                            showFooter: true,
+                            footerButtonText: 'OK',
                             onLeave: function () {
                                 //OtherSports.reRenderAfterPaged();
                             },
                             onFooterButtonClick: function () {
-                                OtherSports.reRenderAfterPaged();
+                                //OtherSports.reRenderAfterPaged();
                             },
                             onCheck: function () {
                                 OtherSports.checkedAllEvent = false;

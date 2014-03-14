@@ -115,11 +115,6 @@ Format styles
     color: #555;
 }
 
-.free-cell-top-right
-{
-    height: 26px !important;
-}
-
 /********** Betlist core style **************/
 /* Time */
 .time {

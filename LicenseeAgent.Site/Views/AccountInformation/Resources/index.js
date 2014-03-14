@@ -50,7 +50,7 @@
             CORE.unblockUI();
 
             $("#tabDownline").click(function () {
-                $("#downlineContent").niceScroll();
+                accountInformation.updateScroll();
             });
 
             var pageIndex = $('#paging').data('page-index') + 1;
@@ -150,7 +150,7 @@
             }
             $("#downlineContent ul").html(downlineHtml);
             accountInformation.pagingBinding();
-            $("#downlineContent").niceScroll();
+            accountInformation.updateScroll();
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {
@@ -224,6 +224,10 @@
             $(mainMenuId).removeClass('active in');
             $(accountInfoId).removeClass('fade');
             $(accountInfoId).addClass('active in');
+        },
+        updateScroll: function() {
+            $("#downlineContent").niceScroll();
+            $("#downlineContent").getNiceScroll().resize();
         }
     }
 } (jQuery);

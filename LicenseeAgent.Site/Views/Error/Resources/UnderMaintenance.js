@@ -20,6 +20,7 @@
             .done(function (result) {
                 if (result.ErrCode != 0) {
                     alert(result.ErrMsg);
+                    setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
                     return;
                 }
 

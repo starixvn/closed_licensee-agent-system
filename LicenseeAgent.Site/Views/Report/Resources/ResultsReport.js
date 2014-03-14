@@ -114,7 +114,6 @@
                     if (data.Results != null) {
                         REPORT.generateResults(data.Results, 1);
                     }
-
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -241,7 +240,7 @@
 
         generateLeagues: function (leagues, viewMatchResults) {
             var itemCounter = leagues.length;
-            var listItemsHtml = '<option value="0">Show All Leagues</option>';
+            var listItemsHtml = '<option value="0">' + LANGUAGE.getString('AllLeagues') + '</option>';
             for (var index = 0; index < itemCounter; index++) {
                 listItemsHtml += '<option value="' + leagues[index].Value + '">' + leagues[index].Text + '</option>';
             }

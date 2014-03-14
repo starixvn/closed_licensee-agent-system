@@ -38,7 +38,7 @@ namespace LicenseeAgent.TotalBets.Entities
                 if (_homeName == null)
                 {
                     var neutral = IsNeutral ? " (N)" : string.Empty;
-                    _homeName = DataRefWrapper.GetTeamname(HomeId) + neutral;
+                    _homeName = DataRefWrapper.GetTeamName(HomeId) + neutral;
                 }
 
                 return _homeName;
@@ -58,7 +58,7 @@ namespace LicenseeAgent.TotalBets.Entities
             {
                 if (_awayName == null)
                 {
-                    _awayName = DataRefWrapper.GetTeamname(AwayId);
+                    _awayName = DataRefWrapper.GetTeamName(AwayId);
                 }
 
                 return _awayName;

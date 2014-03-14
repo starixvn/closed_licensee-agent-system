@@ -36,7 +36,7 @@ namespace LicenseeAgent.Report.Controllers
     /// </summary>
     public partial class ReportController : BaseController
     {
-       #region Services
+        #region Services
 
         private readonly IDownlLinePermissionService _permissionService;
 
@@ -47,15 +47,15 @@ namespace LicenseeAgent.Report.Controllers
         private IReportService _reportService;
 
         private IBetListService _betlistService;
-       
-       #endregion Services
-        
+
+        #endregion Services
+
         #region Constant
 
         private bool _includeTestData = false;
 
         #endregion Constant
-        
+
         #region Constructor
 
         public ReportController(
@@ -98,7 +98,7 @@ namespace LicenseeAgent.Report.Controllers
             criteria.IsShowAll = _includeTestData;
             var sports = _reportService.GetSports(criteria);
             var model = new ResultsReportViewModel();
-            model.Sports = sports.Select(i => new SelectListItem { Text = i.SportName, Value = i.SportType }).ToList();
+            model.Sports = sports.Select(i => new SelectListItem { Text = DataRefWrapper.GetSportName(i.SportType), Value = i.SportType.ToString() }).ToList();
 
             if (model.Sports.Count > 0)
             {
@@ -111,7 +111,11 @@ namespace LicenseeAgent.Report.Controllers
                 };
 
                 var leagues = _reportService.GetLeagues(leagueCriteria);
-                model.Leagues = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
+                model.Leagues = leagues.Select(i => new SelectListItem
+                {
+                    Text = DataRefWrapper.GetLeagueName(i.LeagueID),
+                    Value = i.LeagueID.ToString()
+                }).OrderBy(j => j.Text).ToList();
 
                 return Json(new
                 {
@@ -215,7 +219,11 @@ namespace LicenseeAgent.Report.Controllers
         {
             var leagueItems = new List<SelectListItem>();
             var leagues = _reportService.GetLeagues(criteria);
-            leagueItems = leagues.Select(i => new SelectListItem { Text = i.LeagueName, Value = i.LeagueID }).OrderBy(j => j.Text).ToList();
+            leagueItems = leagues.Select(i => new SelectListItem
+            {
+                Text = DataRefWrapper.GetLeagueName(i.LeagueID),
+                Value = i.LeagueID.ToString()
+            }).OrderBy(j => j.Text).ToList();
 
             return Json(new
             {
@@ -326,7 +334,7 @@ namespace LicenseeAgent.Report.Controllers
             });
         }
 
-        #endregion
+        #endregion Outstanding Report
 
         #region Utilities
 

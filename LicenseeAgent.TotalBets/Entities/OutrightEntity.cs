@@ -67,7 +67,7 @@ namespace LicenseeAgent.TotalBets.Entities
             {
                 if (_teamName == null)
                 {
-                    _teamName = DataRefWrapper.GetTeamname(TeamId);
+                    _teamName = DataRefWrapper.GetTeamName(TeamId);
                 }
 
                 return _teamName;

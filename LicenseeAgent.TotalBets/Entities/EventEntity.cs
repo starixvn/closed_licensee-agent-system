@@ -34,7 +34,7 @@ namespace LicenseeAgent.TotalBets.Entities
                 if (_matchName == null)
                 {
                     var neutral = IsNeutral ? " (N)" : string.Empty;
-                    _matchName = DataRefWrapper.GetTeamname(HomeTeam) + neutral + " -vs- " + DataRefWrapper.GetTeamname(AwayTeam);
+                    _matchName = DataRefWrapper.GetTeamName(HomeTeam) + neutral + " -vs- " + DataRefWrapper.GetTeamName(AwayTeam);
                 }
 
                 return _matchName;

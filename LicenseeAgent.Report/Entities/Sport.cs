@@ -15,7 +15,7 @@ namespace LicenseeAgent.Report.Entities
     /// </summary>
     public class Sport
     {
-        public string SportType { get; set; }
+        public int SportType { get; set; }
 
         public string SportName { get; set; }
     }

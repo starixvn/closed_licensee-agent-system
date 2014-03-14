@@ -19,7 +19,7 @@ namespace LicenseeAgent.Report.Entities
     {
         public string LeagueName { get; set; }
 
-        public string LeagueID { get; set; }
+        public int LeagueID { get; set; }
 
         public DateTime EventDate { get; set; }
 

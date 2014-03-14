@@ -68,7 +68,7 @@ namespace LicenseeAgent.Core.Utility
             return RefData.GetLeagueName(leagueId.ToString(), RefLanguageCode);
         }
 
-        public static string GetTeamname(int teamId)
+        public static string GetTeamName(int teamId)
         {
             return RefData.GetTeamName(teamId.ToString(), RefLanguageCode);
         }

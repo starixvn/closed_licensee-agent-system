@@ -44,7 +44,7 @@ fanex.betlist.core = {
             success: function (data) {
                 if (data != null) {
                     $('#instruction').html(data);
-                    var dialog = POPUP.openDialog($('#instruction'), "IP Information", { modal: false, clickout: true, openid: $(this).attr('id') });
+                    var dialog = POPUP.openDialog($('#instruction'), LANGUAGE.getString("IpInformation"), { modal: false, clickout: true, openid: $(this).attr('id') });
                     $('.ui-tooltip').remove();
                 }
             },

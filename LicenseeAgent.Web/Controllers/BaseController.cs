@@ -110,13 +110,10 @@ namespace LicenseeAgent.Web.Controllers
                         // authenticated
                         CurrentSession.Language = language;
                     }
-                    else
-                    {
-                        // not authenticated
-                        var languageCookie = new HttpCookie(Constants.AppCookieLanguage, language);
-                        languageCookie.Expires = DateTime.Now.AddDays(30);
-                        Response.SetCookie(languageCookie);
-                    }
+
+                    var languageCookie = new HttpCookie(Constants.AppCookieLanguage, language);
+                    languageCookie.Expires = DateTime.Now.AddDays(30);
+                    Response.SetCookie(languageCookie);
                 }
             }
         }

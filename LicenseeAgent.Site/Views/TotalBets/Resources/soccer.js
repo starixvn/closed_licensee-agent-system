@@ -259,7 +259,7 @@ var Soccer = function ($) {
                     var moreLink = "<span class='more-link' onclick='Soccer.showAllBetType(this)' data-matchid='" + match.MatchId + "' data-matchname='" + match.HomeName + " -vs- " + match.AwayName + "'>" + LANGUAGE.getString("More") + "</span>";
                     var drawTeam = [];
                     drawTeam.push(
-                        { Name: "Event", Value: "Draw", TdClass: "draw" },
+                        { Name: "Event", Value: LANGUAGE.getString("Draw"), TdClass: "draw" },
                         { Name: "FTHDP", Value: moreLink, MergeColNumber: 2, CssClass: "c-align" },
                         { Name: "FT1X2", Value: Soccer.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
                         { Name: "FHHDP", Value: "", MergeColNumber: 2 },

@@ -1070,4 +1070,7 @@
   <data name="PleaseSelectTeam" xml:space="preserve">
     <value>Please select a team</value>
   </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
 </root>

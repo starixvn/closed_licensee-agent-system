@@ -64,6 +64,7 @@
 	ClosingBalance : "期终余额",
 	Commission : "退水设定",
 	CommissionSettingInstructions : "退水设定说明",
+	Completed : "Completed",
 	ConfirmPassword : "確認密碼",
 	ConfirmPasswordRequired : "请输入确认密码",
 	CorrectScore : "波胆",

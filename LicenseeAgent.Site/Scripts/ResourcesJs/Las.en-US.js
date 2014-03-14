@@ -64,6 +64,7 @@
 	ClosingBalance : "Closing Balance",
 	Commission : "Commission",
 	CommissionSettingInstructions : "Commission Setting Instructions",
+	Completed : "Completed",
 	ConfirmPassword : "Confirm password",
 	ConfirmPasswordRequired : "Please enter confirm password.",
 	CorrectScore : "Correct Score",

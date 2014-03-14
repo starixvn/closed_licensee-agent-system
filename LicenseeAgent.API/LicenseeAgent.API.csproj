@@ -35,6 +35,9 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="LRF\Entities\LicenseeDomain.cs" />
     <Compile Include="LRF\Entities\LoginInfo.cs" />
     <Compile Include="LRF\Integration.cs" />

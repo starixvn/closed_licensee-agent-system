@@ -42,6 +42,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\CreditBalanceController.cs" />
     <Compile Include="Criteria\AgentGetMemberRangeInfoCriteria.cs" />
     <Compile Include="Criteria\AgentUpdateMemberCreditCriteria.cs" />

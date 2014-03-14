@@ -74,6 +74,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\ReportController.Statement.cs" />

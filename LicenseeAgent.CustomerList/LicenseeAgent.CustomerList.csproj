@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\CustomerListController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Criteria\AgentAutoCompleteCriteria.cs" />

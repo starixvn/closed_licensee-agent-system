@@ -51,6 +51,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Criteria\SearchMessageCriteria.cs" />
     <Compile Include="Entities\MessageEntity.cs" />

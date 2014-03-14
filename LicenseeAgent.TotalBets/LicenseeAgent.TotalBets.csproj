@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\TotalBetsController.Basketball.cs" />
     <Compile Include="Controllers\TotalBetsController.OtherSports.cs" />
     <Compile Include="Controllers\TotalBetsController.Outright.cs" />

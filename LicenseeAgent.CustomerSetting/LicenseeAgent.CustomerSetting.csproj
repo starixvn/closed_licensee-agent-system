@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\SettingConfigurations.cs" />

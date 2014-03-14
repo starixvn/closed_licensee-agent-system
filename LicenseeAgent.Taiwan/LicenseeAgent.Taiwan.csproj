@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Actions\CheckUserNameAction.cs" />
     <Compile Include="Actions\GetMemberInfoAction.cs" />
     <Compile Include="Actions\GetMemberInfoListAction.cs" />

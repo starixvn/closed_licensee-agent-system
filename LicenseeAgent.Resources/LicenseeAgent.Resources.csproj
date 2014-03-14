@@ -35,6 +35,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="BetList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -48,6 +48,9 @@
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Criterias\AdminCheckInCriteria.cs" />

@@ -41,6 +41,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Criteria\TransferToMemberCriteria.cs" />
     <Compile Include="Criteria\GetMemberDetailCriteria.cs" />

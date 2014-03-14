@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />

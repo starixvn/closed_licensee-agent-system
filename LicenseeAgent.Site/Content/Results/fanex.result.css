@@ -213,6 +213,7 @@ table.fanex-result .ball
 table.fanex-result-popup
 {
     width: 100%;
+    font-size: 12px !important;
 }
 table.fanex-result-popup td.sporttype
 {

@@ -298,7 +298,9 @@ namespace LicenseeAgent.Site
             bundles.Add(new LessBundle("~/css/betlist").Include(
                 "~/content/betlist/betlist.core.css",
                 "~/content/betlist/betlist.css",
-                "~/content/betlist/system-parlay-detail.css"));
+                "~/content/betlist/system-parlay-detail.css",
+                "~/Content/Results/fanex.result.css",
+                "~/Content/Results/results.css"));
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
             bundles.Add(new ScriptBundle("~/js/betlist").Include(

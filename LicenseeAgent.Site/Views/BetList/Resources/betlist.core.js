@@ -43,8 +43,10 @@ fanex.betlist.core = {
             },
             success: function (data) {
                 if (data != null) {
-                    $('#instruction').html(data);
-                    var dialog = POPUP.openDialog($('#instruction'), LANGUAGE.getString("IpInformation"), { modal: false, clickout: true, openid: $(this).attr('id') });
+                    var height = 220;
+                    var width = 400;
+                    var details = '<div class=\"instruction-content\">' + data + '</div>';
+                    POPUP.openDialog(details, LANGUAGE.getString("IpInformation"), {  width: width, height: height, modal: false, clickout: true, openid: $(this).attr('id') });
                     $('.ui-tooltip').remove();
                 }
             },
@@ -139,7 +141,28 @@ fanex.betlist.core = {
                 ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
                 : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
 
-        POPUP.openDialogFrame(url, { width: 720, height: 400 });
+        //POPUP.openDialogFrame(url, { width: 720, height: 400 });
+        $.ajax({
+            type: "GET",
+            contentType: "text/html",
+            cache: false,
+            url: CORE.resolveUrl(url),
+            error: function (xhRequest, errorText, thrownError) {
+                alert(errorText);
+            },
+            success: function (response) {
+                var height = 400;
+                var width = 720;
+                var details = '<div>' + response + '</div>';
+                POPUP.openDialog(details, LANGUAGE.getString("Results"), { width: width, height: height });
+            },
+            beforeSend: function () {
+                CORE.blockUI();
+            },
+            complete: function () {
+                CORE.unblockUI();
+            }
+        });
     }
 };
 

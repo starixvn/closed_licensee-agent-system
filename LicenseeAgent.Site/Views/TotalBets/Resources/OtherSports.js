@@ -1,7 +1,7 @@
 ﻿var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "center", CanResize: true },
+                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
                 { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
@@ -84,13 +84,13 @@ var OtherSports = function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 150,
-                checkAllText: 'All sports',
-                noItemText: 'No sport seleted.',
-                noneSelectedText: 'Select sport',
-                selectedText: '# selected sports',
-                tooltipNoItem: 'There is no sport selected.',
+                checkAllText: LANGUAGE.getString('AllSports'),
+                noItemText: LANGUAGE.getString('NoSelectedSport'),
+                noneSelectedText: LANGUAGE.getString('PleaseSelectSport'),
+                selectedText: LANGUAGE.getString('NumberOfSelectedSports'),
+                tooltipNoItem: LANGUAGE.getString('NoSelectedSport'),
                 useCustomCheckAllText: true,
-                customCheckAllText: 'All sports',
+                customCheckAllText: LANGUAGE.getString('AllSports'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -143,13 +143,13 @@ var OtherSports = function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 250,
-                checkAllText: 'All leagues',
-                noItemText: 'No league seleted.',
-                noneSelectedText: 'Select league',
-                selectedText: '# selected leagues',
-                tooltipNoItem: 'There is no league selected.',
+                checkAllText: LANGUAGE.getString('AllLeagues'),
+                noItemText: LANGUAGE.getString('NoSelectedLeague'),
+                noneSelectedText: LANGUAGE.getString('PleaseSelectLeague'),
+                selectedText: LANGUAGE.getString('NumberOfSelectedLeagues'),
+                tooltipNoItem: LANGUAGE.getString('NoSelectedLeague'),
                 useCustomCheckAllText: true,
-                customCheckAllText: 'All leagues',
+                customCheckAllText: LANGUAGE.getString('AllLeagues'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -190,13 +190,13 @@ var OtherSports = function ($) {
                             showTooltip: true,
                             maxHeight: 500,
                             minWidth: 250,
-                            checkAllText: 'All events',
-                            noItemText: 'No event seleted.',
-                            noneSelectedText: 'Select event',
-                            selectedText: '# selected events',
-                            tooltipNoItem: 'There is no event selected.',
+                            checkAllText: LANGUAGE.getString('AllEvents'),
+                            noItemText: LANGUAGE.getString('NoSelectedEvent'),
+                            noneSelectedText: LANGUAGE.getString('PleaseSelectEvent'),
+                            selectedText: LANGUAGE.getString('NumberOfSelectedEvents'),
+                            tooltipNoItem: LANGUAGE.getString('NoSelectedEvent'),
                             useCustomCheckAllText: true,
-                            customCheckAllText: 'All events',
+                            customCheckAllText: LANGUAGE.getString('AllEvents'),
                             showParentSelectedText: false,
                             onLeave: function () {
                                 //OtherSports.reRenderAfterPaged();
@@ -283,7 +283,6 @@ var OtherSports = function ($) {
                 var leagues = sport.LeagueList;
                 var len = leagues.length;
                 for (var i = 0; i < len; i++) {
-
                     var league = leagues[i];
                     //Push League row
                     if (oldLeagueId != league.LeagueId) {
@@ -335,7 +334,7 @@ var OtherSports = function ($) {
 
                         var drawRow = [];
                         drawRow.push(
-                            { Name: "Event", Value: "Draw", TdClass: "draw" },
+                            { Name: "Event", Value: LANGUAGE.getString("Draw"), TdClass: "draw" },
                             { Name: "MoneyLine", Value: "", MergeColNumber: 3 },
                             { Name: "FT1X2", Value: OtherSports.generateLinkValue(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
                             { Name: "FTOE", Value: "", MergeColNumber: 3 }

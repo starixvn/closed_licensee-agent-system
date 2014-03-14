@@ -1016,4 +1016,40 @@
   <data name="UndefinedErrorCode" xml:space="preserve">
     <value>Undefined error code {0}</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>All events</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>All leagues</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>All sports</value>
+  </data>
+  <data name="NoSelectedEvent" xml:space="preserve">
+    <value>No selected event</value>
+  </data>
+  <data name="NoSelectedLeague" xml:space="preserve">
+    <value>No selected league</value>
+  </data>
+  <data name="NoSelectedSport" xml:space="preserve">
+    <value>No selected sport</value>
+  </data>
+  <data name="NumberOfSelectedEvents" xml:space="preserve">
+    <value># selected events</value>
+  </data>
+  <data name="NumberOfSelectedLeagues" xml:space="preserve">
+    <value># selected leagues</value>
+  </data>
+  <data name="NumberOfSelectedSports" xml:space="preserve">
+    <value># selected sports</value>
+  </data>
+  <data name="PleaseSelectEvent" xml:space="preserve">
+    <value>Please select an event</value>
+  </data>
+  <data name="PleaseSelectLeague" xml:space="preserve">
+    <value>Please select a league</value>
+  </data>
+  <data name="PleaseSelectSport" xml:space="preserve">
+    <value>Please select a sport</value>
+  </data>
 </root>

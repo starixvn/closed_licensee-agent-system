@@ -232,6 +232,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All events.
+        /// </summary>
+        public static string AllEvents {
+            get {
+                return ResourceManager.GetString("AllEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All leagues.
+        /// </summary>
+        public static string AllLeagues {
+            get {
+                return ResourceManager.GetString("AllLeagues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sports.
+        /// </summary>
+        public static string AllSports {
+            get {
+                return ResourceManager.GetString("AllSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -1663,6 +1690,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No selected event.
+        /// </summary>
+        public static string NoSelectedEvent {
+            get {
+                return ResourceManager.GetString("NoSelectedEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No selected league.
+        /// </summary>
+        public static string NoSelectedLeague {
+            get {
+                return ResourceManager.GetString("NoSelectedLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No selected sport.
+        /// </summary>
+        public static string NoSelectedSport {
+            get {
+                return ResourceManager.GetString("NoSelectedSport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string Note {
@@ -1677,6 +1731,33 @@ namespace LicenseeAgent.Resources {
         public static string NumberGame {
             get {
                 return ResourceManager.GetString("NumberGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # selected events.
+        /// </summary>
+        public static string NumberOfSelectedEvents {
+            get {
+                return ResourceManager.GetString("NumberOfSelectedEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # selected leagues.
+        /// </summary>
+        public static string NumberOfSelectedLeagues {
+            get {
+                return ResourceManager.GetString("NumberOfSelectedLeagues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # selected sports.
+        /// </summary>
+        public static string NumberOfSelectedSports {
+            get {
+                return ResourceManager.GetString("NumberOfSelectedSports", resourceCulture);
             }
         }
         
@@ -1949,6 +2030,33 @@ namespace LicenseeAgent.Resources {
         public static string PleaseChooseLicenseeCurrency {
             get {
                 return ResourceManager.GetString("PleaseChooseLicenseeCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an event.
+        /// </summary>
+        public static string PleaseSelectEvent {
+            get {
+                return ResourceManager.GetString("PleaseSelectEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a league.
+        /// </summary>
+        public static string PleaseSelectLeague {
+            get {
+                return ResourceManager.GetString("PleaseSelectLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a sport.
+        /// </summary>
+        public static string PleaseSelectSport {
+            get {
+                return ResourceManager.GetString("PleaseSelectSport", resourceCulture);
             }
         }
         

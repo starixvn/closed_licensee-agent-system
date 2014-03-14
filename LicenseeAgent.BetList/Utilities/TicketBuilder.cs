@@ -16,6 +16,7 @@ namespace LicenseeAgent.BetList.Utilities
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
     /// <summary>
@@ -170,7 +171,7 @@ namespace LicenseeAgent.BetList.Utilities
         /// <param name="ticket">The ticket.</param>
         private void InitializeTicketHelperInTheCaseOfSystemParlay(LasTicket ticket)
         {
-            if (ticket.BetTypeId == (int)BetType.SystemParlay)
+            if (ticket.BetTypeId == (int)BetType.BetType_29)
             {
                 var betTeam = _ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + _ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
                 _ticketHelper.ClientDetailSystemParlayFunction = string.Format(

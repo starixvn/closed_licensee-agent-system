@@ -19,6 +19,7 @@ namespace LicenseeAgent.BetList.Utilities
     using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -93,9 +94,9 @@ namespace LicenseeAgent.BetList.Utilities
 
             switch (ticket.BetTypeId)
             {
-                case (int)BetType.CasinoGames:
-                case (int)BetType.P2PGames:
-                case (int)BetType.MiniGames:
+                case (int)BetType.BetType_71:
+                case (int)BetType.BetType_72:
+                case (int)BetType.BetType_73:
                     return statusNormalText;
 
                 default:
@@ -130,7 +131,7 @@ namespace LicenseeAgent.BetList.Utilities
             {
                 return "-";
             }
-            
+
             var lasWinlossHtmlString = ticket.Winlost >= 0
                 ? string.Format("{0:#,##0.00}", ticket.Winlost) + "<br />"
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";

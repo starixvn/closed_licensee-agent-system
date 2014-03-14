@@ -259,6 +259,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All teams.
+        /// </summary>
+        public static string AllTeams {
+            get {
+                return ResourceManager.GetString("AllTeams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -1717,6 +1726,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No selected team.
+        /// </summary>
+        public static string NoSelectedTeam {
+            get {
+                return ResourceManager.GetString("NoSelectedTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string Note {
@@ -1758,6 +1776,15 @@ namespace LicenseeAgent.Resources {
         public static string NumberOfSelectedSports {
             get {
                 return ResourceManager.GetString("NumberOfSelectedSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # selected teams.
+        /// </summary>
+        public static string NumberOfSelectedTeams {
+            get {
+                return ResourceManager.GetString("NumberOfSelectedTeams", resourceCulture);
             }
         }
         
@@ -2057,6 +2084,15 @@ namespace LicenseeAgent.Resources {
         public static string PleaseSelectSport {
             get {
                 return ResourceManager.GetString("PleaseSelectSport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a team.
+        /// </summary>
+        public static string PleaseSelectTeam {
+            get {
+                return ResourceManager.GetString("PleaseSelectTeam", resourceCulture);
             }
         }
         

@@ -1058,4 +1058,16 @@
   <data name="PleaseSelectSport" xml:space="preserve">
     <value>Please select a sport</value>
   </data>
+  <data name="AllTeams" xml:space="preserve">
+    <value>All teams</value>
+  </data>
+  <data name="NoSelectedTeam" xml:space="preserve">
+    <value>No selected team</value>
+  </data>
+  <data name="NumberOfSelectedTeams" xml:space="preserve">
+    <value># selected teams</value>
+  </data>
+  <data name="PleaseSelectTeam" xml:space="preserve">
+    <value>Please select a team</value>
+  </data>
 </root>

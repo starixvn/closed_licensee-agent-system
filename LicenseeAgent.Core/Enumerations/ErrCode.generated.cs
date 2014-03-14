@@ -21,7 +21,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1001 = 1001,
 
         /// <summary>
-        /// Failed to insert agent..
+        /// Fail to insert agent..
         /// </summary>
         Msg_1002 = 1002,
 
@@ -76,7 +76,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1011 = 1011,
 
         /// <summary>
-        /// % PT must be equal or less than Max PT of Licensee ( {0} - {1} )..
+        /// % PT must be less than or equal to Max PT of Licensee ( {0} - {1} )..
         /// </summary>
         Msg_1012 = 1012,
 
@@ -106,7 +106,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1017 = 1017,
 
         /// <summary>
-        /// Failed to copy data to LicenseeCust..
+        /// Fail to copy data to LicenseeCust..
         /// </summary>
         Msg_1018 = 1018,
 
@@ -116,7 +116,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1019 = 1019,
 
         /// <summary>
-        /// Sorry, you can transfer from 12pm to 11:59pm only..
+        /// You can transfer from 12pm to 11:59pm (GMT-4) only..
         /// </summary>
         Msg_102 = 102,
 
@@ -161,7 +161,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1027 = 1027,
 
         /// <summary>
-        /// Fail to update member's betlimit..
+        /// Fail to update member's bet limit..
         /// </summary>
         Msg_1028 = 1028,
 
@@ -201,7 +201,12 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1034 = 1034,
 
         /// <summary>
-        /// You are not authorized for this page..
+        /// Fail to configurate Licensee domains..
+        /// </summary>
+        Msg_1035 = 1035,
+
+        /// <summary>
+        /// You do not have permission to access this page..
         /// </summary>
         Msg_1036 = 1036,
 
@@ -241,7 +246,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_200022 = 200022,
 
         /// <summary>
-        /// Failed to create customer. Please try again..
+        /// Fail to create customer. Please try again..
         /// </summary>
         Msg_40004 = 40004,
 
@@ -271,7 +276,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_80008 = 80008,
 
         /// <summary>
-        /// Failed to change password..
+        /// Fail to change password..
         /// </summary>
         Msg_80009 = 80009,
     }

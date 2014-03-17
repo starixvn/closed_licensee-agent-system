@@ -196,14 +196,14 @@ var OUTSTANDING = function ($) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
-            var breadcrumb = $("#breadcrumb > span").html().replace('link-disable', '');
+            var breadcrumb = $("#breadcrumb > span").html().replace('link-disable', '').replace('return;', '');
             breadcrumb += '&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;';
             if (isLastLevel) {
                 breadcrumb += agentName;
                 OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
-                breadcrumb += '<a href="#" onclick="OUTSTANDING.breadcrumbDrilldown(\'' + agentName + '\',' + agentId + ')" class="link-disable">' + agentName + '</a>';
+                breadcrumb += '<a href="#" onclick="javascript:return;OUTSTANDING.breadcrumbDrilldown(\'' + agentName + '\',' + agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
                 OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
             }
@@ -217,6 +217,13 @@ var OUTSTANDING = function ($) {
             var indexOfAgentName = breadcrumb.indexOf(agentName + "</a>");
             breadcrumb = breadcrumb.substring(0, indexOfAgentName - 2) + 'link-disable">' + agentName + "</a>";
             $("#breadcrumb > span").html(breadcrumb);
+            /*breadcrumb = $("#breadcrumb > span").html();
+            alert($("#breadcrumb > span :last-child").html());
+            
+            var a = $("#breadcrumb > span :last-child").attr("onclick").replace('javascript:', 'javascript:return;');
+            var b = $("#breadcrumb > span").html();
+            $("#breadcrumb > span :last-child").live('click', 'alert(1)');
+            var c = $("#breadcrumb > span").html();*/
         }
     }
 } (jQuery);

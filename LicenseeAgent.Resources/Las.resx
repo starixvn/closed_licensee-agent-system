@@ -584,9 +584,6 @@
   <data name="Attention" xml:space="preserve">
     <value>Attention</value>
   </data>
-  <data name="MessageUnderMaintenance" xml:space="preserve">
-    <value>We are having server maintenance, website will be unavailable &lt;br /&gt;from {0} until {1} (GMT +08:00).&lt;br /&gt;Sorry for the inconveniences caused!</value>
-  </data>
   <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>
   </data>

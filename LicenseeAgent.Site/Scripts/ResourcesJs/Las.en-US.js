@@ -162,7 +162,6 @@
 	Member : "Member",
 	MemberList : "Member List",
 	MessageAnnouncement : "Message / Announcement",
-	MessageUnderMaintenance : "We are having server maintenance, website will be unavailable &lt;br /&gt;from {0} until {1} (GMT +08:00).&lt;br /&gt;Sorry for the inconveniences caused!",
 	MixParlay : "Mix Parlay",
 	MixSportsParlay : "Mix Sports Parlay",
 	MobilePhone : "Mobile Phone",

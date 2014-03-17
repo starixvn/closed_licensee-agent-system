@@ -1528,15 +1528,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are having server maintenance, website will be unavailable &lt;br /&gt;from {0} until {1} (GMT +08:00).&lt;br /&gt;Sorry for the inconveniences caused!.
-        /// </summary>
-        public static string MessageUnderMaintenance {
-            get {
-                return ResourceManager.GetString("MessageUnderMaintenance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mix Parlay.
         /// </summary>
         public static string MixParlay {

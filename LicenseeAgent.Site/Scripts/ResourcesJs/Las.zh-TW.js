@@ -163,7 +163,6 @@
 	Member : "會員",
 	MemberList : "會員清單",
 	MessageAnnouncement : "訊息 / 公告",
-	MessageUnderMaintenance : "我們正在服務器維護，網站將被從{0}至{1}無法使用。不便之處，敬請原諒！",
 	MixParlay : "混合過關",
 	MixSportsParlay : "混合過關",
 	MobilePhone : "手機",

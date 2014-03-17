@@ -13,8 +13,8 @@
         PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),
         RELOAD_INTERVAL: 2500,
         EMPTY_TEXT_FORMAT: '---',
-        GetServerTime: APP_CONFIG.ServerTime,
-        GetServerShortDate: APP_CONFIG.ServerShortDate,
+        ServerTime: APP_CONFIG.ServerTime,
+        ServerShortDate: APP_CONFIG.ServerShortDate,
         init: function () {
             $('input, textarea').placeholder();
 

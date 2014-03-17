@@ -14,7 +14,7 @@
         RELOAD_INTERVAL: 2500,
         EMPTY_TEXT_FORMAT: '---',
         ServerTime: APP_CONFIG.ServerTime,
-        ServerShortDate: APP_CONFIG.ServerShortDate,
+        ServerDate: APP_CONFIG.ServerDate,
         init: function () {
             $('input, textarea').placeholder();
 

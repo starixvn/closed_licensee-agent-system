@@ -66,10 +66,10 @@ var BETLIST = function ($) {
             });
         },
         renderDatePicker: function () {
-            var lastdate = new Date(CORE.ServerShortDate);
+            var lastdate = new Date(CORE.ServerDate);
             $('#month-picker-control').monPickr({
                 plugInId: '#month-picker-control',
-                today: CORE.ServerShortDate,
+                today: CORE.ServerDate,
                 maxDate: _today + (lastdate.getFullYear() + 1),
                 minDate: _minDate,
                 showDateRange: true,

@@ -34,7 +34,7 @@
 
             if (typeof moment != 'undefined') {
                 var selectedLanguageCode = LANGUAGE.getSelectedLanguageCode();
-                moment.lang(selectedLanguageCode);
+                moment.lang(selectedLanguageCode.toLowerCase());
             }
 
             $(document).click(function (e) {

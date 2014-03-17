@@ -217,13 +217,8 @@ var OUTSTANDING = function ($) {
             var indexOfAgentName = breadcrumb.indexOf(agentName + "</a>");
             breadcrumb = breadcrumb.substring(0, indexOfAgentName - 2) + 'link-disable">' + agentName + "</a>";
             $("#breadcrumb > span").html(breadcrumb);
-            /*breadcrumb = $("#breadcrumb > span").html();
-            alert($("#breadcrumb > span :last-child").html());
-            
-            var a = $("#breadcrumb > span :last-child").attr("onclick").replace('javascript:', 'javascript:return;');
-            var b = $("#breadcrumb > span").html();
-            $("#breadcrumb > span :last-child").live('click', 'alert(1)');
-            var c = $("#breadcrumb > span").html();*/
+            var onclickFunction = $("#breadcrumb > span :last-child").attr("onclick").replace('javascript:', 'javascript:return;');
+            $("#breadcrumb > span :last-child").attr("onclick", onclickFunction);
         }
     }
 } (jQuery);

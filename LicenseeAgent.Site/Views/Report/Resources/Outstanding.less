@@ -72,7 +72,11 @@
 
 .link-disable
 {
-	pointer-events: none;
 	cursor: default;
-	color: black;
+	color: black !important;
+
+	&:hover, &:focus
+	{
+		text-decoration: none !important;
+	}
 }

@@ -11,7 +11,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Service
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -179,32 +178,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
-            try
-            {
-                return InsertCustomerData(
-                    model,
-                    discountXML,
-                    betLimitXML,
-                    positionTakingXML);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = BuildLogErrorDetail(
-                    ex.Message,
-                    model.SettingContext.TargetRoleId != (int)Role.Member,
-                    model.SettingContext.CustId,
-                    model.SettingContext.FormId == FormType.EditMultiple ? model.SettingContext.TargetCustIds : model.SettingContext.TargetCustId.ToString(),
-                    model.SettingContext.LoginUserId,
-                    discountXML,
-                    betLimitXML,
-                    positionTakingXML);
-                Logger.HandleException(errorMessage, ex);
-            }
-
-            return new InsertResult
-            {
-                ErrCode = Constant.ERROR_CODE_DEFAULT
-            };
+            return InsertCustomerData(model, discountXML, betLimitXML, positionTakingXML);
         }
 
         /// <summary>
@@ -231,32 +205,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
-            try
-            {
-                return UpdateCustomerData(
-                    model,
-                    discountXML,
-                    betLimitXML,
-                    positionTakingXML);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = BuildLogErrorDetail(
-                    ex.Message,
-                    model.SettingContext.TargetRoleId != (int)Role.Member,
-                    model.SettingContext.CustId,
-                    model.SettingContext.FormId == FormType.EditMultiple ? model.SettingContext.TargetCustIds : model.SettingContext.TargetCustId.ToString(),
-                    model.SettingContext.LoginUserId,
-                    discountXML,
-                    betLimitXML,
-                    positionTakingXML);
-                Logger.HandleException(errorMessage, ex);
-            }
-
-            return new InsertResult
-            {
-                ErrCode = Constant.ERROR_CODE_DEFAULT
-            };
+            return UpdateCustomerData(model, discountXML, betLimitXML, positionTakingXML);
         }
 
         /// <summary>
@@ -275,28 +224,7 @@ namespace LicenseeAgent.CustomerSetting.Service
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
 
-            try
-            {
-                return UpdateIndirectCustomerData(model, positionTakingXML);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = BuildLogErrorDetail(
-                    ex.Message,
-                    model.SettingContext.TargetRoleId != (int)Role.Member,
-                    model.SettingContext.CustId,
-                    model.SettingContext.FormId == FormType.EditMultiple ? model.SettingContext.TargetCustIds : model.SettingContext.TargetCustId.ToString(),
-                    model.SettingContext.LoginUserId,
-                    string.Empty,
-                    string.Empty,
-                    positionTakingXML);
-                Logger.HandleException(errorMessage, ex);
-            }
-
-            return new InsertResult
-            {
-                ErrCode = Constant.ERROR_CODE_DEFAULT
-            };
+            return UpdateIndirectCustomerData(model, positionTakingXML);
         }
 
         /// <summary>
@@ -716,55 +644,6 @@ namespace LicenseeAgent.CustomerSetting.Service
             }
 
             return positionTakingSetting;
-        }
-
-        /// <summary>
-        /// Log Error with more details.
-        /// </summary>
-        /// <param name="errorMessage">Error message.</param>
-        /// <param name="isEditAgent">Current form is edit agent or edit member.</param>
-        /// <param name="actorId">Current agent actor id.</param>
-        /// <param name="custId">Current customer is being edited.</param>
-        /// <param name="adminId">Current admin id.</param>
-        /// <param name="commissionXml">Commission XML data.</param>
-        /// <param name="betSettingXml">Betting limit XML data.</param>
-        /// <param name="positionTakingSettingXml">Position taking setting data.</param>
-        /// <returns>Message details string.</returns>
-        private static string BuildLogErrorDetail(
-            string errorMessage,
-            bool isEditAgent,
-            int actorId,
-            string custId,
-            int adminId,
-            string commissionXml,
-            string betSettingXml,
-            string positionTakingSettingXml)
-        {
-            try
-            {
-                string errorString = "Message: {0} \nForm: {1} \nActor Id: {2} \nCust Id(s): {3} \nAdmin Id: {4} \n"
-                    + "CommissionSetting: {5} \n"
-                    + "Betting Limit: {6} \n"
-                    + "Share Setting: {7} \n"
-                    + "Apply Preset On Member: {8} \n";
-
-                return string.Format(
-                    errorString,
-                    errorMessage,
-                    isEditAgent ? "Edit Agent" : "Edit Member(s)",
-                    actorId,
-                    custId,
-                    adminId,
-                    commissionXml,
-                    betSettingXml,
-                    positionTakingSettingXml);
-            }
-            catch (Exception exception)
-            {
-                Logger.HandleException(exception.Message, exception);
-
-                return errorMessage;
-            }
         }
 
         /// <summary>

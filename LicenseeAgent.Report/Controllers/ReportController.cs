@@ -143,7 +143,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult OutrightResults(OutrightResultsReportCriteria criteria)
         {
-            var setting = new ResultSetting { IsOutRight = true, LanguageCode = "en-US" };
+            var setting = new ResultSetting { IsOutRight = true, LanguageCode = LanguageManager.Language };
 
             var resultsHtmlString = string.Empty;
             var cacheKey = GenerateOutRightCacheKey(criteria);
@@ -384,7 +384,7 @@ namespace LicenseeAgent.Report.Controllers
             var setting = new ResultSetting
             {
                 SportType = (SportType)criteria.SportType,
-                LanguageCode = "en-US"
+                LanguageCode = LanguageManager.Language
             };
 
             var data = _reportService.GetMatchResults(matchResultsReportCriteria);

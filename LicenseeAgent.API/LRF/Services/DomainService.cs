@@ -20,12 +20,16 @@ namespace LicenseeAgent.API.LRF.Services
         /// Gets the licensee domain.
         /// </summary>
         /// <param name="licenseeId">The licensee identifier.</param>
-        /// <returns>Returns domain name by licensee ID.</returns>
-        public LicenseeDomain GetLicenseeDomain(int licenseeId)
+        /// <param name="environment">The environment.</param>
+        /// <returns>
+        /// Returns domain name by licensee ID.
+        /// </returns>
+        public LicenseeDomain GetLicenseeDomain(int licenseeId, string environment)
         {
             using (var objectDb = new ObjectDb("Las_GetLicenseeDomain"))
             {
                 objectDb.AddInParameter("licenseeid", DbType.Int32, licenseeId);
+                objectDb.AddInParameter("environment", DbType.String, environment);
                 var reader = objectDb.ExecuteReader();
                 while (reader.Read())
                 {

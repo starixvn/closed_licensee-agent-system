@@ -51,24 +51,6 @@ namespace LicenseeAgent.Core.Configurations
         }
 
         /// <summary>
-        /// Gets the domain.
-        /// </summary>
-        /// <param name="licenseeId">The licensee identifier.</param>
-        /// <returns>Returns domain name.</returns>
-        public static string GetDomain(int licenseeId)
-        {
-            var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId)
-                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
-            if (licenseeDomains.Count() == 1)
-            {
-                return licenseeDomains.First().DomainName;
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Gets the licensee domains.
         /// </summary>
         /// <returns>Returns list of licensee domains.</returns>

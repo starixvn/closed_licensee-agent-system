@@ -16,7 +16,7 @@ namespace LicenseeAgent.API.LRF.Entities
     {
         public LoginInfo()
         {
-            Timeout = DateTime.Now.AddMinutes(3);
+            Timeout = DateTime.Now.AddMinutes(3).ToUniversalTime();
         }
 
         public int UserId { get; set; }
@@ -33,7 +33,8 @@ namespace LicenseeAgent.API.LRF.Entities
         {
             get
             {
-                return DateTime.Now > Timeout;
+                return false;
+                //return DateTime.Now.ToUniversalTime() > Timeout;
             }
         }
     }

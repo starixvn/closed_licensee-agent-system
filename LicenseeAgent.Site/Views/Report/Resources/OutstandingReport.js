@@ -99,7 +99,7 @@ var OUTSTANDING = function ($) {
                     }
 
                     $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
-                    $("#breadcrumb").attr("class", "grid-breadcrumb-outstanding");
+                    $("#breadcrumb").attr("class", "breadcrumb");
                     originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
@@ -145,10 +145,10 @@ var OUTSTANDING = function ($) {
 
                     if (data.IsLastLevel == true) {
                         $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
-                        $("#breadcrumb").attr("class", "grid-breadcrumb-betlist-hidefeature");
+                        $("#breadcrumb").attr("class", "breadcrumb");
                     }
                     else
-                        $("#breadcrumb").attr("class", "grid-breadcrumb-betlist");
+                        $("#breadcrumb").attr("class", "breadcrumb");
 
                     originalBreadcrumb = $("#breadcrumb > span").html();
                 },

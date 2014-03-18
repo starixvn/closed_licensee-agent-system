@@ -28,7 +28,7 @@ var gridOptions = {
                 { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
-    gridExpandHeight: 60,
+    gridExpandHeight: 100,
     bodyRowHeight: 29
 };
 

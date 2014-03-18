@@ -597,10 +597,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Browsers\ie.browser" />
-    <Content Include="App_Browsers\firefox.browser">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\Resources\Index.less" />
@@ -613,7 +609,6 @@
     <Content Include="Web.ConnectionString.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.sitemap" />
     <Content Include="Views\Tool\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />

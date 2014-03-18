@@ -166,6 +166,7 @@
 	MixSportsParlay : "Mix Sports Parlay",
 	MobilePhone : "Mobile Phone",
 	MoneyLine : "Money Line",
+	Month : "Month",
 	More : "More",
 	NewAgent : "New Agent",
 	NewMember : "New Member",

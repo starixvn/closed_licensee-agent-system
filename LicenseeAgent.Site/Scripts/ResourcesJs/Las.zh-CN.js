@@ -167,6 +167,7 @@
 	MixSportsParlay : "混合过关",
 	MobilePhone : "手机",
 	MoneyLine : "独赢",
+	Month : "月",
 	More : "更多",
 	NewAgent : "新增代理",
 	NewMember : "新增会员",

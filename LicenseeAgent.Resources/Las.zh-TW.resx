@@ -1070,4 +1070,7 @@
   <data name="Completed" xml:space="preserve">
     <value>Completed</value>
   </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
 </root>

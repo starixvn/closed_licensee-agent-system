@@ -206,11 +206,6 @@ Format styles
     margin: 6px 7px 7px 7px;
 }
 
-.monpickr-super-wrapper
-{
-    float: left;
-}
-
 .ngHeaderText
 {
     text-align: center !important;
@@ -233,7 +228,6 @@ Format styles
 .monpickr-super-wrapper
 {
     display: inline-block;
-    margin-top: 3px;
     font-size: 10px;
 }
 

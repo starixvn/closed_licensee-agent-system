@@ -19,8 +19,6 @@ namespace LicenseeAgent.Core.Configurations
     {
         private static List<SelectListItem> _languages;
 
-        private static List<SelectListItem> _betlistStatuses;
-
         static ModelSettings()
         {
             _languages = new List<SelectListItem>
@@ -28,19 +26,6 @@ namespace LicenseeAgent.Core.Configurations
                 new SelectListItem { Text = "English", Value = "en-US" },
                 new SelectListItem { Text = "繁體中文", Value = "zh-TW" },
                 new SelectListItem { Text = "简体中文", Value = "zh-CN" }
-            };
-
-            _betlistStatuses = new List<SelectListItem>
-            {
-                new SelectListItem { Text = Las.All, Value = "255" },
-                new SelectListItem { Text = Las.Waiting, Value = "1" },
-                new SelectListItem { Text = Las.Running, Value = "0" },
-                new SelectListItem { Text = Las.Won, Value = "112" },
-                new SelectListItem { Text = Las.Lose, Value = "113" },
-                new SelectListItem { Text = Las.Draw, Value = "111" },
-                new SelectListItem { Text = Las.Void, Value = "102" },
-                new SelectListItem { Text = Las.Reject, Value = "101" },
-                new SelectListItem { Text = Las.Refund, Value = "103" },
             };
         }
 
@@ -64,7 +49,18 @@ namespace LicenseeAgent.Core.Configurations
         {
             get
             {
-                return _betlistStatuses;
+                return new List<SelectListItem>
+                {
+                    new SelectListItem { Text = Las.All, Value = "255" },
+                    new SelectListItem { Text = Las.Waiting, Value = "1" },
+                    new SelectListItem { Text = Las.Running, Value = "0" },
+                    new SelectListItem { Text = Las.Won, Value = "112" },
+                    new SelectListItem { Text = Las.Lose, Value = "113" },
+                    new SelectListItem { Text = Las.Draw, Value = "111" },
+                    new SelectListItem { Text = Las.Void, Value = "102" },
+                    new SelectListItem { Text = Las.Reject, Value = "101" },
+                    new SelectListItem { Text = Las.Refund, Value = "103" },
+                };
             }
         }
 

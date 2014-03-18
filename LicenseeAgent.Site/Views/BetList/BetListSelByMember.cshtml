@@ -29,18 +29,18 @@
     {
         <div id="filter-area" class="clearfix filter-area">
             <div class="controls-row">
-                <div class="month pull-left">
-                    Month</div>
-                <div class="pull-left controls-row" id="month-picker-control">
+                <label>@Las.Month</label>
+                <div id="month-picker-control">
                 </div>
             </div>
             <div class="controls-row">
-                @Html.Label("Status", "Status", new { @class = "month" })
+                @Html.Label("Status", Las.Status, new { @class = "month" })
                 @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
             <div class="controls-row">
                 <button class="btn btn-primary" type="submit">
-                    Submit</button>
+                    @Las.Submit
+                </button>
             </div>
         </div>
     }

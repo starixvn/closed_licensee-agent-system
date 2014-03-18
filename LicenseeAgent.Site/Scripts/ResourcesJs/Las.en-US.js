@@ -215,7 +215,6 @@
 	PasswordNotMatch : "Your password and confirmation password do not match.",
 	PasswordRequired : "Please enter your password.",
 	PasswordRuleInstruction : "Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)",
-	PasswordSecurity : "The password supplied does not meet the minimum security requirements.",
 	PasswordWillExpired : "Your password will expire on {0}. Do you want to change it now?",
 	PersonalMessage : "Personal Message",
 	Phone : "Phone",

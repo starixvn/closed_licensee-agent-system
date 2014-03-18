@@ -626,9 +626,6 @@
   <data name="Yesterday" xml:space="preserve">
     <value>昨日</value>
   </data>
-  <data name="PasswordSecurity" xml:space="preserve">
-    <value>所提供的密碼不符合最低的安全要求。</value>
-  </data>
   <data name="Parlay" xml:space="preserve">
     <value>过关</value>
   </data>

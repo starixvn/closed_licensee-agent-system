@@ -14,7 +14,6 @@ namespace LicenseeAgent.Core.Configurations
     using Fanex.Caching;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -36,7 +35,8 @@ namespace LicenseeAgent.Core.Configurations
         public static int? GetLicenseeId(HttpRequestBase request)
         {
             var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1);
+            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1
+                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().LicenseeId;
@@ -50,10 +50,16 @@ namespace LicenseeAgent.Core.Configurations
             return null;
         }
 
+        /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <returns>Returns domain name.</returns>
         public static string GetDomain(int licenseeId)
         {
             var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId));
+            licenseeDomains = licenseeDomains.Where(x => x.LicenseeId.Equals(licenseeId)
+                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().DomainName;

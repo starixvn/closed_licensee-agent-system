@@ -216,7 +216,6 @@
 	PasswordNotMatch : "您的密码与确认密码不符",
 	PasswordRequired : "请输入您的密码",
 	PasswordRuleInstruction : "密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 特殊字符 （!、 @、 # 等。。)",
-	PasswordSecurity : "所提供的密码不符合最低的安全要求。",
 	PasswordWillExpired : "您的密码将于{0}到期。您是否想现在更改它？",
 	PersonalMessage : "个人公告",
 	Phone : "电话",

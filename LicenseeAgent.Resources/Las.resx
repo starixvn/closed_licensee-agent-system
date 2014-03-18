@@ -779,9 +779,6 @@
   <data name="SystemParlay" xml:space="preserve">
     <value>System Parlay</value>
   </data>
-  <data name="PasswordSecurity" xml:space="preserve">
-    <value>The password supplied does not meet the minimum security requirements.</value>
-  </data>
   <data name="NoInfo" xml:space="preserve">
     <value>No information is available</value>
   </data>

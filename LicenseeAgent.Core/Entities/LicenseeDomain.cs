@@ -20,5 +20,7 @@ namespace LicenseeAgent.Core.Entities
         /// Licensee id.
         /// </value>
         public int LicenseeId { get; set; }
+
+        public string Environment { get; set; }
     }
 }

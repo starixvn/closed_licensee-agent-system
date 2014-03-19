@@ -1,4 +1,7 @@
-﻿var TRANSFER_LIST = function ($) {
+﻿/*global POPUP, gridOptions, context, CORE, LANGUAGE*/
+
+var TRANSFER_LIST = (function ($) {
+    /*jshint strict:false */
     var records;
     return {
         init: function () {
@@ -32,7 +35,7 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -51,15 +54,15 @@
                 totalItem: records.length,
                 itemsPerPageArray: CORE.pageSizes,
                 showDetail: true,
-                customRenderFooter: function (bodyRows, pageIndex, itemsPerPage) {
+                customRenderFooter: function (bodyRows) {
                     return CORE.genGridTotalRows(bodyRows, gridOptions);
                 }
             };
             gridOptions.tdCssClass = function (rowIndex, colName, rowData) {
-                if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
+                if (colName === 'YesterdayBalance' || colName === 'TransferIcon') {
                     return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
-            }
+            };
             gridOptions.bodyRows = CORE.genGridRows(records, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         },
@@ -71,7 +74,7 @@
                 $(target).attr("class", "icon-uncheck");
             }
 
-            if ($('.icon-uncheck').length == 0) {
+            if ($('.icon-uncheck').length === 0) {
                 $(".icon-uncheck-all").attr("class", "icon-checked-all");
             }
             else {
@@ -102,9 +105,10 @@
             var url = '~/Transfer/Member?memberId={0}&amount={1}'.format(memberId, amount);
             POPUP.openDialogFrame(url, { width: 480, height: 300 });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
+    /*jshint strict:false */
     TRANSFER_LIST.init();
 });

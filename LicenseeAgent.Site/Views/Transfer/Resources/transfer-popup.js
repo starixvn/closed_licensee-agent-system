@@ -1,4 +1,5 @@
-﻿var TRANSFER_POPUP = function ($) {
+﻿var TRANSFER_POPUP = (function ($) {
+    /*jshint strict:false */
     var minAmount;
     var maxAmount;
     return {
@@ -43,9 +44,10 @@
                 return true;
             }
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
+    /*jshint strict:false */
     TRANSFER_POPUP.init();
 });

@@ -1,13 +1,16 @@
-﻿var STATEMENT = function ($) {
+﻿/*global gridOptions, CORE, pageContext, POPUP*/
+
+var Statement = (function ($) {
+    /*jshint strict:false */
     return {
         init: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
             $('#search').click(function () {
-                STATEMENT.dataGridBinding();
+                Statement.dataGridBinding();
                 return false;
             });
-            STATEMENT.dataGridBinding();
+            Statement.dataGridBinding();
         },
         dataGridBinding: function () {
             var submitOptions = $('form').serializeObject();
@@ -19,7 +22,7 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
 
                         gridOptions.pagerOption = {
                             itemsPerPage: CORE.pageSizes[2],
@@ -42,17 +45,20 @@
                 }
             });
         },
-        ViewDetail: function (agentId, username) {            
-            var url = CORE.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel));
-            location.href = url;
+        ViewDetail: function (agentId, username) {
+            location.href = CORE.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}&parentUsername={5}"
+                                            .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username,
+                                                    pageContext.IsLastLevel, $('#Username').val()));
         },
         TransferDetail: function (agentId, username) {
-            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel);
+            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
+                      .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel);
             POPUP.openDialogFrame(url, { width: 465, height: 400 });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    STATEMENT.init();
+    /*jshint strict:false */
+    Statement.init();
 });

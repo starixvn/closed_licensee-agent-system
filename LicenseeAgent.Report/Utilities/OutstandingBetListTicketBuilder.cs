@@ -30,8 +30,8 @@ namespace LicenseeAgent.Report.Utilities
             this.ShowOdds = false;
             this.StartIndex = 1;
             this.IsShowMember = false;
-            this.FormatDetail = "OUTSTANDING.showSystemParlayResult({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: OUTSTANDING.showBetListDetails({0},'{1}')\"";
+            this.FormatDetail = "Outstanding.showSystemParlayResult({0},{1},\"{2}\")";
+            this.ClickFunction = "onclick=\"javascript: Outstanding.showBetListDetails({0},'{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

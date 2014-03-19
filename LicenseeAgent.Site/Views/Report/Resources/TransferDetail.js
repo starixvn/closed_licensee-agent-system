@@ -1,12 +1,17 @@
-﻿var gridOptions = {
+﻿/*global CORE, LANGUAGE*/
+
+var gridOptions = {
+    /*jshint strict:false */
     columns: [
-                { HeaderText: LANGUAGE.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center", CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a" },
+                { HeaderText: LANGUAGE.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center", 
+                  CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a" },
                 { HeaderText: LANGUAGE.getString('Remark'), Width: 150, Name: "TransType", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true,
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    Formatter: function (rowIndex, rowData, cell) {
                         return ("<div>" + cell.Value + "<br />" + rowData.TransDesc + "</div>");
                     }
                 },
-                { HeaderText: LANGUAGE.getString('Amount'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
+                { HeaderText: LANGUAGE.getString('Amount'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", 
+                  CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
             ],
     gridExpandHeight: 20,
     bodyRowHeight: 26,
@@ -14,14 +19,15 @@
     autoResizeColumn: true
 };
 
-var TRANSFER = function ($) {
+var Transfer = (function ($) {
+    /*jshint strict:false */
     return {
         init: function () {
-            TRANSFER.dataGridBinding();
+            Transfer.dataGridBinding();
         },
         dataGridBinding: function () {
             var submitOptions = $('form').serializeObject();
-            $.ajax({    
+            $.ajax({
                 url: CORE.resolveUrl("~/Report/GetTransferData"),
                 type: 'post',
                 data: jQuery.param(submitOptions),
@@ -29,9 +35,9 @@ var TRANSFER = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
-                        gridOptions.footerRows = TRANSFER.footerRow(data.Total);
+                        gridOptions.footerRows = Transfer.footerRow(data.Total);
                         $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
@@ -43,7 +49,7 @@ var TRANSFER = function ($) {
                     CORE.unblockUI();
                 }
             });
-        },        
+        },
         footerRow: function (total) {
             var footerRows = [
                                 {
@@ -55,9 +61,10 @@ var TRANSFER = function ($) {
                         ];
             return footerRows;
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    TRANSFER.init();
+    /*jshint strict:false */
+    Transfer.init();
 });

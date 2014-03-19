@@ -1,12 +1,18 @@
-﻿var outstandingGridOptions = {
+﻿/*global CORE, LANGUAGE, showMixParlayDetailurl*/
+
+var outstandingGridOptions = {
+    /*jshint strict:false */
     columns: [
                 { HeaderText: LANGUAGE.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
-                        return '<a href="#" onclick="OUTSTANDING.outstandingDrilldown(\'' + rowData.Username + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
+                    function (rowIndex, rowData, cell) {
+                        return '<a href="#" onclick="Outstanding.outstandingDrilldown(\'' + rowData.Username 
+                                + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
                     } 
                 },
-                { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' },
-                { HeaderText: LANGUAGE.getString("AgentShare"), Width: 200, Name: "Positiontaking", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' }
+                { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding", 
+                  HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' },
+                { HeaderText: LANGUAGE.getString("AgentShare"), Width: 200, Name: "Positiontaking", 
+                  HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' }
             ],
     showPager: false,
     showFooter: true,
@@ -34,9 +40,8 @@ var gridOptions = {
 
 var originalBreadcrumb = '';
 var agentIdLevelN = 0;
-var currenctAgentName = '';
-var currenctAgentId = 0;
-var OUTSTANDING = function ($) {
+var Outstanding = (function ($) {
+    /*jshint strict:false */
     var breadCrumbItems = [
     {
         agentId: $('#loginAgent').data('id'),
@@ -45,7 +50,7 @@ var OUTSTANDING = function ($) {
 
     return {
         init: function () {
-            OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
+            Outstanding.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
             if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
@@ -66,13 +71,12 @@ var OUTSTANDING = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         $("#breadcrumb > span").html(originalBreadcrumb);
                         alert(data.ErrMsg);
                         return;
                     }
 
-                    isUpdateBreadcrumb = true;
                     var footerRows = [
                             {
                                 Columns: [
@@ -92,7 +96,7 @@ var OUTSTANDING = function ($) {
                     outstandingGridOptions.bodyRows = CORE.genGridRows(data.List, outstandingGridOptions);
 
                     outstandingGridOptions.footerRows = footerRows;
-                    if (data.IsLastLevel == true) {
+                    if (data.IsLastLevel === true) {
                         outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Member");
                     }
                     else {
@@ -133,13 +137,12 @@ var OUTSTANDING = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         $("#breadcrumb > span").html(originalBreadcrumb);
                         alert(data.ErrMsg);
                         return;
                     }
 
-                    isUpdateBreadcrumb = true;
                     gridOptions.pagerOption = {
                         itemsPerPage: CORE.pageSizes[0],
                         itemsPerPageArray: CORE.pageSizes,
@@ -149,13 +152,13 @@ var OUTSTANDING = function ($) {
                     gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
                     $('#BetListGrid').show().fanexGrid(gridOptions);
 
-                    if (data.IsLastLevel == true) {
+                    if (data.IsLastLevel === true) {
                         $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
                         $("#breadcrumb").attr("class", "breadcrumb");
                     }
-                    else
+                    else {
                         $("#breadcrumb").attr("class", "breadcrumb");
-
+                    }
                     originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
@@ -174,7 +177,7 @@ var OUTSTANDING = function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: CORE.resolveUrl(url),
-                    error: function (xhRequest, errorText, thrownError) {
+                    error: function (xhRequest, errorText) {
                         alert(errorText);
                     },
                     success: function (response) {
@@ -203,11 +206,12 @@ var OUTSTANDING = function ($) {
         },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
             if (isLastLevel) {
-                OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
+                Outstanding.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
+                breadcrumb += agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
-                OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
+                Outstanding.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
                 OUTSTANDING.createBreadcrumb(agentId, agentName, false);
@@ -216,7 +220,7 @@ var OUTSTANDING = function ($) {
             }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
-            OUTSTANDING.outstandingDrilldown(agentName, agentId);
+            Outstanding.outstandingDrilldown(agentName, agentId);
         },
         createBreadcrumb: function(agentId, agentName, isDownline) {
             var index,
@@ -251,9 +255,10 @@ var OUTSTANDING = function ($) {
             }
             $(".breadcrumb").html(breadCrumbHtml);
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    OUTSTANDING.init();
+    /*jshint strict:false */
+    Outstanding.init();
 });

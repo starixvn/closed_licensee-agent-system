@@ -92,8 +92,8 @@ var accountInformation = (function ($) {
                 $(document).click(function(e) {
                     $('.popover-link').each(function() {
                         if (!$(this).is(e.target) &&
-                            $(this).has(e.target).length === 0 &&
-                            $('.popover').has(e.target).length === 0) {
+                                $(this).has(e.target).length === 0 &&
+                                $('.popover').has(e.target).length === 0) {
                             $(this).popover('hide');
                             return;
                         }

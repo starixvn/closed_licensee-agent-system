@@ -1,4 +1,7 @@
-﻿var creditBalanceList = function ($) {
+﻿/*global POPUP, gridOptions, CORE, context*/
+
+var creditBalanceList = (function ($) {
+    /*jshint strict:false */
     var records;
 
     return {
@@ -30,7 +33,7 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -49,15 +52,17 @@
                 totalItem: records.length,
                 itemsPerPageArray: CORE.pageSizes,
                 showDetail: true,
-                customRenderFooter: function (bodyRows, pageIndex, itemsPerPage) {
+                customRenderFooter: function (bodyRows) {
                     return CORE.genGridTotalRows(bodyRows, gridOptions);
                 }
             };
+
             gridOptions.tdCssClass = function (rowIndex, colName, rowData) {
-                if (colName == 'YesterdayBalance' || colName == 'TransferIcon') {
+                if (colName === 'YesterdayBalance' || colName === 'TransferIcon') {
                     return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
-            }
+            };
+
             gridOptions.bodyRows = CORE.genGridRows(records, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         },
@@ -69,9 +74,10 @@
             var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
             POPUP.openDialogFrame(url, { width: 428, height: 200 });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
+    /*jshint strict:false */
     creditBalanceList.init();
 });

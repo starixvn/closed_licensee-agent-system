@@ -1,4 +1,5 @@
-﻿var creditBalancePopup = function ($) {
+﻿var creditBalancePopup = (function ($) {
+    /*jshint strict:false */
     var minAmount;
     var maxAmount;
     return {
@@ -43,9 +44,10 @@
                 return true;
             }
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
+    /*jshint strict:false */
     creditBalancePopup.init();
 });

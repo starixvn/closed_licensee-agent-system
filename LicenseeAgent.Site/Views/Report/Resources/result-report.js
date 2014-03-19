@@ -85,7 +85,6 @@ var resultReport = (function ($) {
                     }
                     if (data.Leagues != null) {
                         resultReport.generateLeagues(data.Leagues, 1);
-
                         resultReport.generateResults(data.Results, 1);
                     }
                 },
@@ -145,7 +144,6 @@ var resultReport = (function ($) {
                     }
                     if (data.Leagues != null) {
                         resultReport.generateLeagues(data.Leagues, 0);
-
                         resultReport.generateResults(data.Results, 0);
                     }
                 },

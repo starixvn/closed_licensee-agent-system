@@ -56,7 +56,7 @@ var statementReport = (function ($) {
             POPUP.openDialogFrame(url, { width: 465, height: 400 });
         }
     };
-} (jQuery));
+}) (jQuery);
 
 $(function () {
     /*jshint strict:false */

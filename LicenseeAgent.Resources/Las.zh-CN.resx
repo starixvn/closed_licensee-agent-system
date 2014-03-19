@@ -1070,12 +1070,25 @@
   <data name="PasswordSecurity" xml:space="preserve">
     <value>所提供的密码不符合最低的安全要求。</value>
   </data>
+  <data name="InvalidFax" xml:space="preserve">
+    <value>无效的传真号码</value>
+    <comment>not</comment>
+  </data>
+  <data name="InvalidMobilePhone" xml:space="preserve">
+    <value>无效的手机号码</value>
+    <comment>not</comment>
+  </data>
+  <data name="InvalidPhone" xml:space="preserve">
+    <value>无效的电话号码</value>
+    <comment>not</comment>
+  </data>
   <data name="PhoneNote" xml:space="preserve">
     <value>&lt;div&gt;
-&lt;p&gt;A valid phone/mobile/fax numbers should contain an international dialing code in front of the number.&lt;/p&gt;
+&lt;p&gt;有效的电话号码应包含国际区号在号码前面.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
-&lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;有效&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
+&lt;li&gt; 无效: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
 &lt;/div&gt;</value>
+    <comment>not</comment>
   </data>
 </root>

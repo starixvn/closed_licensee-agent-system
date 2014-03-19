@@ -1063,15 +1063,12 @@
   </data>
   <data name="InvalidFax" xml:space="preserve">
     <value>Invalid Fax Number</value>
-    <comment>not</comment>
   </data>
   <data name="InvalidMobilePhone" xml:space="preserve">
     <value>Invalid Mobile Phone Number</value>
-    <comment>not</comment>
   </data>
   <data name="InvalidPhone" xml:space="preserve">
     <value>Invalid Phone Number</value>
-    <comment>not</comment>
   </data>
   <data name="PhoneNote" xml:space="preserve">
     <value>&lt;div&gt;

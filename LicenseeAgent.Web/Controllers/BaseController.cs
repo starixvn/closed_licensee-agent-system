@@ -26,7 +26,6 @@ namespace LicenseeAgent.Web.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
-        private const int _InvalidCurrencyStatusCode = 600;
         private readonly IDownlLinePermissionService _permissionService;
 
         protected BaseController()

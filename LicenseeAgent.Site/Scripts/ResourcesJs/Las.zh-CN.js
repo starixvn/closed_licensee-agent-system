@@ -219,6 +219,7 @@
 	PasswordWillExpired : "您的密码将于{0}到期。您是否想现在更改它？",
 	PersonalMessage : "个人公告",
 	Phone : "电话",
+	PhoneNote : "&lt;div&gt; &lt;p&gt;A valid phone/mobile/fax numbers should contain an international dialing code in front of the number.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt; &lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt; &lt;/div&gt;",
 	PleaseChooseCurrency : "请选择一种货币",
 	PleaseChooseLicenseeCurrency : "请选择一名被许可人和一种货币",
 	PleaseSelectEvent : "Please select an event",

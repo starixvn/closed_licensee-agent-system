@@ -488,9 +488,6 @@
   <data name="PasswordRequired" xml:space="preserve">
     <value>請輸入您的密碼</value>
   </data>
-  <data name="PasswordRuleInstruction" xml:space="preserve">
-    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大写字母 [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 小写字母 [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;  数字 [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 特殊字符 （!、 @、 # 等。。)</value>
-  </data>
   <data name="PasswordWillExpired" xml:space="preserve">
     <value>您的密碼將於{0}到期。您是否想現在更改它？</value>
   </data>
@@ -1069,5 +1066,8 @@
   </data>
   <data name="Month" xml:space="preserve">
     <value>月</value>
+  </data>
+  <data name="PasswordSecurity" xml:space="preserve">
+    <value>所提供的密碼不符合最低的安全要求。</value>
   </data>
 </root>

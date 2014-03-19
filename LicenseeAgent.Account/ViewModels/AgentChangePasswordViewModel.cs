@@ -30,7 +30,7 @@ namespace LicenseeAgent.Account.ViewModels
         [Required(ErrorMessageResourceName = "NewPasswordRequired", ErrorMessageResourceType = typeof(Las))]
         [NotEqual("CurrentPassword", ErrorMessageResourceName = "PasswordMustNotSame", ErrorMessageResourceType = typeof(Las))]
         [AppPasswordRule]
-        [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordRuleInstruction", ErrorMessageResourceType = typeof(Las))]
+        [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordSecurity", ErrorMessageResourceType = typeof(Las))]
         [Display(Name = "NewPassword", ResourceType = typeof(Las))]
         public string NewPassword { get; set; }
 

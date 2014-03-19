@@ -491,9 +491,6 @@
   <data name="PasswordRequired" xml:space="preserve">
     <value>Please enter your password.</value>
   </data>
-  <data name="PasswordRuleInstruction" xml:space="preserve">
-    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Uppercase letter [A-Z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lowercase letter [a-z] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Numeric [0-9] &lt;br/&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special character (!,@,#,etc..)</value>
-  </data>
   <data name="PasswordWillExpired" xml:space="preserve">
     <value>Your password will expire on {0}. Do you want to change it now?</value>
   </data>
@@ -1084,5 +1081,8 @@
 &lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
 &lt;/div&gt;</value>
     <comment>not</comment>
+  </data>
+  <data name="PasswordSecurity" xml:space="preserve">
+    <value>The password supplied does not meet the minimum security requirements.</value>
   </data>
 </root>

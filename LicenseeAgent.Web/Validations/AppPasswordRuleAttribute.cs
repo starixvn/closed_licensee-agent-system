@@ -23,7 +23,7 @@ namespace LicenseeAgent.Web.Validations
         public AppPasswordRuleAttribute()
             : base(PasswordRule.PasswordPattern)
         {
-            ErrorMessageResourceName = "PasswordRuleInstruction";
+            ErrorMessageResourceName = "PasswordSecurity";
             ErrorMessageResourceType = typeof(Las);
         }
     }

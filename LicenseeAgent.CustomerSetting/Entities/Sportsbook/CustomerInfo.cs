@@ -32,7 +32,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         [DataType(DataType.Password)]
         [AppPasswordRule]
-        [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordRuleInstruction", ErrorMessageResourceType = typeof(Las))]
+        [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordSecurity", ErrorMessageResourceType = typeof(Las))]
         public string Password { get; set; }
 
         public string FirstName { get; set; }

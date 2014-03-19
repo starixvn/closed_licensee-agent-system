@@ -94,6 +94,10 @@
                     @Las.Update
                 </button>
             </div>
+            <div class="form-note">
+                <span class="note-text">@Las.Note:</span>
+                @Html.Raw(Las.PhoneNote)
+            </div>
         </fieldset>
         @Html.HiddenFor(m => m.CustId)
         @Html.HiddenFor(m => m.UserName)

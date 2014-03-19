@@ -26,12 +26,15 @@ namespace LicenseeAgent.CustomerList.ViewModels
         public string LastName { get; set; }
 
         [Display(Name = "Phone", ResourceType = typeof(Las))]
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidPhone", ErrorMessageResourceType = typeof(Las))]
         public string Phone { get; set; }
 
         [Display(Name = "MobilePhone", ResourceType = typeof(Las))]
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidMobilePhone", ErrorMessageResourceType = typeof(Las))]
         public string Mobile { get; set; }
 
         [Display(Name = "Fax", ResourceType = typeof(Las))]
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidFax", ErrorMessageResourceType = typeof(Las))]
         public string Fax { get; set; }
     }
 }

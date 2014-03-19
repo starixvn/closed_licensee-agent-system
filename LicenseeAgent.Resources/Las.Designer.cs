@@ -1312,6 +1312,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Fax Number.
+        /// </summary>
+        public static string InvalidFax {
+            get {
+                return ResourceManager.GetString("InvalidFax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Mobile Phone Number.
+        /// </summary>
+        public static string InvalidMobilePhone {
+            get {
+                return ResourceManager.GetString("InvalidMobilePhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Phone Number.
+        /// </summary>
+        public static string InvalidPhone {
+            get {
+                return ResourceManager.GetString("InvalidPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string Ip {
@@ -2039,6 +2066,20 @@ namespace LicenseeAgent.Resources {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;div&gt;
+        ///&lt;p&gt;A valid phone numbers should contain an international dialing code at the start and hyphenation and spaces that are sometimes entered.&lt;/p&gt;
+        ///&lt;ul&gt;
+        ///&lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
+        ///&lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
+        ///&lt;/div&gt;.
+        /// </summary>
+        public static string PhoneNote {
+            get {
+                return ResourceManager.GetString("PhoneNote", resourceCulture);
             }
         }
         

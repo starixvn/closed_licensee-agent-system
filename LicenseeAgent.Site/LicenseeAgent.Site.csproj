@@ -545,6 +545,8 @@
     <Content Include="Views\TotalBets\Resources\outright.js" />
     <Content Include="Views\TotalBets\Resources\total-bets.less" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
+    <Content Include="Views\AccountInformation\Resources\account-information.less" />
+    <Content Include="Views\AccountInformation\Resources\account-information.js" />
     <Content Include="Views\Transfer\Resources\transfer-list.js" />
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">

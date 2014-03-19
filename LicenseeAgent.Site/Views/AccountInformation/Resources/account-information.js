@@ -1,4 +1,6 @@
-﻿var accountInformation = function ($) {
+﻿/*jslint plusplus: true */
+/*global $, jQuery, alert, document, CORE, INTERNAL_HEADER */
+var accountInformation = (function ($) {
     var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function () {
@@ -10,12 +12,15 @@
             $(".leftmenu-box").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
 
             // username suggestion
-            $("#UserName").typeahead({ source: accountInformation.getSuggestion, minLength: 2 });
+            $("#UserName").typeahead({
+                source: accountInformation.getSuggestion,
+                minLength: 2
+            });
 
             //form submit
             $('#formSearch').submit(function (event) {
                 var userName = $.trim($("#UserName").val());
-                if (userName != '') {
+                if (userName !== '') {
                     $("#UserName").val(userName);
                     $(this).ajaxSubmit({
                         target: '#searchResult',
@@ -33,7 +38,7 @@
 
             //check exist cookie username. If exist, call search username
             var userName = $.cookie('username');
-            if (userName != null) {
+            if (userName !== null) {
                 $("#UserName").val(userName);
                 $("#formSearch").submit();
 
@@ -53,8 +58,8 @@
                 accountInformation.showScroll();
             });
 
-            var pageIndex = $('#paging').data('page-index') + 1;
-            var totalPages = $('#paging').data('total-pages');
+            var pageIndex = $('#paging').data('page-index') + 1,
+                totalPages = $('#paging').data('total-pages');
 
             if (totalPages > 1) {
                 $('#paging').bootstrapPaginator({
@@ -63,8 +68,10 @@
                     numberOfPages: 3,
                     totalPages: totalPages,
                     pageUrl: function () { return '#'; },
-                    onPageClicked: function (e, originalEvent, type, page) {
-                        accountInformation.getDownline(page);
+                    onPageChanged: function (e, oldPage, newPage) {
+                        if (oldPage !== newPage && e) {
+                            accountInformation.getDownline(newPage);
+                        }
                     }
                 });
             }
@@ -84,8 +91,8 @@
                 $(document).click(function (e) {
                     $('.popover-link').each(function () {
                         if (!$(this).is(e.target) &&
-                            $(this).has(e.target).length === 0 &&
-                            $('.popover').has(e.target).length === 0) {
+                                $(this).has(e.target).length === 0 &&
+                                $('.popover').has(e.target).length === 0) {
                             $(this).popover('hide');
                             return;
                         }
@@ -114,7 +121,7 @@
                     username: query
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         return process(data.List);
                     }
                 }
@@ -133,7 +140,7 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         accountInformation.bindDownline(data.List);
                     }
                 },
@@ -143,10 +150,15 @@
             });
         },
         bindDownline: function (downlines) {
-            var numberDownline = downlines.length;
-            var downlineHtml = '';
-            for (var index = 0; index < numberDownline; index++) {
-                downlineHtml += '<li><a class="agent-inline" href="#" data-id="' + downlines[index].DownlineCustId + '" title="' + downlines[index].UserName + '"><i class="icon-downline-arrow"></i>' + downlines[index].UserName + '</a></li>';
+            var numberDownline = downlines.length,
+                downlineHtml = '',
+                index = 0;
+            for (index = 0; index < numberDownline; index++) {
+                downlineHtml += '<li><a class="agent-inline" href="#" data-id="' +
+                    downlines[index].DownlineCustId +
+                    '" title="' + downlines[index].UserName +
+                    '"><i class="icon-downline-arrow"></i>' +
+                    downlines[index].UserName + '</a></li>';
             }
             $("#downlineContent ul").html(downlineHtml);
             accountInformation.pagingBinding();
@@ -154,11 +166,12 @@
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {
+            $("#searchAlert").html(message);
             $("#searchAlert").show();
         },
         //show alert when search username exist in another currency
         showCurrencyAlert: function (currencyId, currencyName, msgQuestion, msgAlert) {
-            var buttons = new Array();
+            var buttons = [];
             buttons.push({
                 text: 'YES',
                 click: function () {
@@ -178,15 +191,14 @@
                 resizable: false,
                 width: 400,
                 modal: true,
-                buttons: buttons,
-                close: function (event, ui) { }
+                buttons: buttons
             });
         },
         closeDialog: function () {
             $('#dialog-confirm').dialog('close');
         },
         //change currency site
-        changeCurrencyPage: function (currencyId, currencyName) {
+        changeCurrencyPage: function (currencyId) {
             var data = {
                 licenseeid: $("#licensee").data("licensee-id"),
                 currencyid: currencyId
@@ -199,11 +211,11 @@
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
-                    if (typeof INTERNAL_HEADER != 'undefined') {
+                    if (INTERNAL_HEADER !== undefined) {
                         $.cookie('username', $("#UserName").val(), { path: '/' });
                         INTERNAL_HEADER.setCurrency(currencyId);
                     }
@@ -214,12 +226,13 @@
             });
         },
         changeAccountInfoActive: function () {
-            var tab = $('.leftmenu-box').find('.nav-tabs').first();
+            var tab, mainMenuId, accountInfoId;
+            tab = $('.leftmenu-box').find('.nav-tabs').first();
             tab.find('li:first').removeClass('active');
             tab.find('li:nth-child(2)').addClass('active');
 
-            var mainMenuId = tab.find('li:first').find('a:first').attr('href');
-            var accountInfoId = tab.find('li:nth-child(2)').find('a:first').attr('href');
+            mainMenuId = tab.find('li:first').find('a:first').attr('href');
+            accountInfoId = tab.find('li:nth-child(2)').find('a:first').attr('href');
 
             $(mainMenuId).removeClass('active in');
             $(accountInfoId).removeClass('fade');
@@ -244,8 +257,8 @@
         refreshGivenCredit: function () {
             setTimeout("$('#formSearch').submit();", CORE.RELOAD_INTERVAL);
         }
-    }
-} (jQuery);
+    };
+}(jQuery));
 
 $(function () {
     accountInformation.init();

@@ -46,6 +46,14 @@ namespace LicenseeAgent.Web.Controllers
             }
         }
 
+        protected override bool DisableAsyncSupport
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         protected string CurrentAction
         {
             get
@@ -148,13 +156,18 @@ namespace LicenseeAgent.Web.Controllers
             base.HandleUnknownAction(actionName);
         }
 
+        protected override void ExecuteCore()
+        {
+            LanguageManager.Language = Language;
+            base.ExecuteCore();
+        }
+
         /// <summary>
         /// Override base action executing function to set culture for every request.
         /// </summary>
         /// <param name="filterContext">Information about the current request and action.</param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            LanguageManager.Language = Language;
             HandleRequest(filterContext);
         }
 

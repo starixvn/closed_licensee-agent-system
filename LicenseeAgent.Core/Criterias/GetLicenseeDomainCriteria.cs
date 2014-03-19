@@ -9,6 +9,10 @@ namespace LicenseeAgent.Core.Criterias
     /// </summary>
     public class GetLicenseeDomainCriteria : CriteriaBase
     {
+        public int LicenseeId { get; set; }
+
+        public string Environment { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_GetLicenseeDomain";

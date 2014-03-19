@@ -8,6 +8,7 @@ namespace LicenseeAgent.Core.Services
 {
     using System.Collections.Generic;
     using Fanex.Caching;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
 
@@ -38,9 +39,18 @@ namespace LicenseeAgent.Core.Services
             return balanceUpDay;
         }
 
+        /// <summary>
+        /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
+        /// </summary>
+        /// <returns>Returns list of licensee domain.</returns>
         public IEnumerable<LicenseeDomain> GetLicenseeDomains()
         {
-            var criteria = new GetLicenseeDomainCriteria();
+            var criteria = new GetLicenseeDomainCriteria
+            {
+                LicenseeId = 0,
+                Environment = AppSettings.Environment
+            };
+
             return GetEntites<LicenseeDomain>(criteria);
         }
     }

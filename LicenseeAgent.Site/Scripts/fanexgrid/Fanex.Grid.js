@@ -2015,11 +2015,15 @@
                         }
                         else {
                             if (columnHashtable[currentCol.Name].PixelsPerCharacter != null) {
-                                textLength = currentCol.Value.toString().length * columnHashtable[currentCol.Name].PixelsPerCharacter;
+                                if (currentCol.Value != null) {
+                                    textLength = currentCol.Value.toString().length * columnHashtable[currentCol.Name].PixelsPerCharacter;
+                                }
                             }
                             else {
                                 //currentpixelsPerChar = Fanex.Grid.;
-                                textLength = currentCol.Value.toString().length * pixelsPerCharacter;
+                                if (currentCol.Value != null) {
+                                    textLength = currentCol.Value.toString().length * pixelsPerCharacter;
+                                }
                                 calculated = false;
                             }
 
@@ -2030,7 +2034,9 @@
                             resizeObject[currentCol.Name].length = textLength;
                             if (calculated === false) {
                                 resizeObject[currentCol.Name].calculated = calculated;
-                                resizeObject[currentCol.Name].rawData = currentCol.Value.toString();
+                                if (currentCol.Value != null) {
+                                    resizeObject[currentCol.Name].rawData = currentCol.Value.toString();
+                                }
                             }
                         }
                     }

@@ -153,7 +153,7 @@ fanex.betlist.core = {
             success: function (response) {
                 var height = 400;
                 var width = 720;
-                var details = '<div style=\"width:700px; height: 380px;overflow-y:scroll;\">' + response + '</div>';
+                var details = '<div style=\"width:700px; height: 380px;overflow:auto;\">' + response + '</div>';
                 POPUP.openDialog(details, LANGUAGE.getString("Results"), { width: width, height: height });
             },
             beforeSend: function () {

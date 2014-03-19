@@ -39,11 +39,14 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 
         public string LastName { get; set; }
 
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidPhone", ErrorMessageResourceType = typeof(Las))]
         public string Phone { get; set; }
 
         [Service(Name = "MobilePhone")]
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidMobilePhone", ErrorMessageResourceType = typeof(Las))]
         public string Mobile { get; set; }
 
+        [RegularExpression(@"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$", ErrorMessageResourceName = "InvalidFax", ErrorMessageResourceType = typeof(Las))]
         public string Fax { get; set; }
 
         [Required]

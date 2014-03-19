@@ -266,13 +266,13 @@ namespace LicenseeAgent.Site
         private static void RegisterCustomerListPage(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/customerlist").Include(
-                "~/views/customerlist/resources/customerlist.less"));
+                "~/views/customerlist/resources/customer-list.less"));
 
             bundles.Add(new ScriptBundle("~/js/customerlist").Include(
-                "~/views/customerList/resources/customerlist.js"));
+                "~/views/customerList/resources/customer-list.js"));
 
             bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
-                "~/views/customerlist/resources/resetpassword.js"));
+                "~/views/customerlist/resources/reset-password.js"));
         }
 
         /// <summary>

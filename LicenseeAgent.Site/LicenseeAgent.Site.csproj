@@ -3,6 +3,8 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <JSLintSkip>
+    </JSLintSkip>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -289,6 +291,8 @@
     <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
       <DependentUpon>Language.tt</DependentUpon>
     </Content>
+    <Content Include="Views\AccountInformation\Resources\index.js" />
+    <Content Include="Views\AccountInformation\Resources\index.less" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
@@ -349,8 +353,8 @@
     <Content Include="Views\BetList\Resources\betlist.manager.js" />
     <Content Include="Views\BetList\Resources\betlist.core.js" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
-    <Content Include="Views\CustomerList\Resources\resetpassword.js" />
-    <Content Include="Views\CustomerList\Resources\customerlist.js" />
+    <Content Include="Views\CustomerList\Resources\reset-password.js" />
+    <Content Include="Views\CustomerList\Resources\customer-list.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
@@ -541,8 +545,6 @@
     <Content Include="Views\TotalBets\Resources\outright.js" />
     <Content Include="Views\TotalBets\Resources\total-bets.less" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
-    <Content Include="Views\AccountInformation\Resources\index.less" />
-    <Content Include="Views\AccountInformation\Resources\index.js" />
     <Content Include="Views\Transfer\Resources\transfer-list.js" />
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">
@@ -651,7 +653,7 @@
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
-    <Content Include="Views\CustomerList\Resources\customerlist.less" />
+    <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\CustomerList\_Link.cshtml" />
     <Content Include="Views\CustomerList\_IpInformation.cshtml" />

@@ -142,7 +142,7 @@
     <value>最高投注不得多於或相等於 {0} ({1}).</value>
   </data>
 	<data name="Msg_1008" xml:space="preserve">
-    <value>單場最高投注需底於或等於 {0} ({1})</value>
+    <value>最大單場比賽投注額必須小於或等於 {0} ({1})</value>
   </data>
 	<data name="Msg_1009" xml:space="preserve">
     <value>折扣不正確.</value>

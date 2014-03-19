@@ -7,6 +7,7 @@
 namespace LicenseeAgent.API.LRF.Services
 {
     using System;
+    using System.Configuration;
     using System.Data;
     using Fanex.Data;
     using LicenseeAgent.API.LRF.Entities;
@@ -20,12 +21,12 @@ namespace LicenseeAgent.API.LRF.Services
         /// Gets the licensee domain.
         /// </summary>
         /// <param name="licenseeId">The licensee identifier.</param>
-        /// <param name="environment">The environment.</param>
         /// <returns>
         /// Returns domain name by licensee ID.
         /// </returns>
-        public LicenseeDomain GetLicenseeDomain(int licenseeId, string environment)
+        public LicenseeDomain GetLicenseeDomain(int licenseeId)
         {
+            var environment = ConfigurationManager.AppSettings["Las_Environment"];
             using (var objectDb = new ObjectDb("Las_GetLicenseeDomain"))
             {
                 objectDb.AddInParameter("licenseeid", DbType.Int32, licenseeId);

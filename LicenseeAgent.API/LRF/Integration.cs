@@ -32,14 +32,13 @@ namespace LicenseeAgent.API.LRF
         /// <param name="userId">The user identifier.</param>
         /// <param name="checkinUserId">The on user identifier.</param>
         /// <param name="licenseeId">The licensee identifier.</param>
-        /// <param name="environment">The environment.</param>
         /// <param name="language">The language.</param>
         /// <returns>
         /// Returns URL for internal login from LRF.
         /// </returns>
-        public static string GenerateLink(int userId, int checkinUserId, int licenseeId, string environment, string language)
+        public static string GenerateLink(int userId, int checkinUserId, int licenseeId, string language)
         {
-            var licenseeDomain = _domainService.GetLicenseeDomain(licenseeId, environment);
+            var licenseeDomain = _domainService.GetLicenseeDomain(licenseeId);
             if (licenseeDomain == null)
             {
                 return null;

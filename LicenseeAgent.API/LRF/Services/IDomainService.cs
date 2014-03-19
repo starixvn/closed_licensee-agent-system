@@ -13,6 +13,6 @@ namespace LicenseeAgent.API.LRF.Services
     /// </summary>
     public interface IDomainService
     {
-        LicenseeDomain GetLicenseeDomain(int licenseeId, string environment);
+        LicenseeDomain GetLicenseeDomain(int licenseeId);
     }
 }

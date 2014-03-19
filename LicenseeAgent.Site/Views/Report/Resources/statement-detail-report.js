@@ -104,6 +104,7 @@ var statementDetailReport = (function ($) {
                     dataRow.push({
                         Name: colName,
                         Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
+                                }
                         TdClass: isMatchBalance ? '' : 'td-highlighted'
                     });
                 }

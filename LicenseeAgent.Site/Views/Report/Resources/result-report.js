@@ -335,8 +335,10 @@ var resultReport = (function ($) {
 function matchSubmit() {
     /*jshint strict:false */
     resultReport.matchSubmit($('#matchdatetime').val());
-    return false;
-}
+            return false;
+        }
+    };
+} (jQuery));
 
 /*jshint unused:false*/
 function outrightSubmit() {

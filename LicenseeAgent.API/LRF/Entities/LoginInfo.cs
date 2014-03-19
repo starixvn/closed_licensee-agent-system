@@ -33,8 +33,7 @@ namespace LicenseeAgent.API.LRF.Entities
         {
             get
             {
-                return false;
-                //// return DateTime.Now.ToUniversalTime() > Timeout;
+                return DateTime.Now.ToUniversalTime() > Timeout;
             }
         }
     }

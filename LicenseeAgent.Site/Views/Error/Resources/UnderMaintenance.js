@@ -1,5 +1,7 @@
-﻿var UNDERMAINTENANCE = function ($) {
+﻿/*global CORE*/
     CORE.DisableRecheckIn = true;
+var underMaintenance = (function ($) {
+    /*jshint strict:false */
     return {
         init: function () {
             if ($(window.parent.document).find('iframe').length > 0) {
@@ -7,7 +9,7 @@
                 return;
             }
 
-            setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
+            setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
         },
 
         reCheckUM: function () {
@@ -19,14 +21,14 @@
                 timeout: 120000
             })
             .done(function (result) {
-                if (result.ErrCode != 0) {
+                if (result.ErrCode !== 0) {
                     alert(result.ErrMsg);
-                    setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
+                    setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
                     return;
                 }
 
                 if (result.Status) {
-                    setTimeout(function () { UNDERMAINTENANCE.reCheckUM(); }, 30000);
+                    setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
                 }
                 else {
                     location.href = CORE.UrlRoot;
@@ -34,7 +36,9 @@
             });
         }
     };
-} (jQuery);
+} (jQuery));
+
 $(function () {
-    UNDERMAINTENANCE.init();
+    /*jshint strict:false */
+    underMaintenance.init();
 });

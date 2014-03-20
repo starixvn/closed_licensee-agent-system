@@ -1,7 +1,8 @@
 ﻿/*jslint plusplus: true */
 /*jslint white: true */
-/*global $, jQuery, alert, document, CORE, INTERNAL_HEADER */
+/*global $, jQuery, alert, document, CORE, internalHeader */
 var accountInformation = (function ($) {
+    /*jshint strict:false */
     var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function() {
@@ -216,9 +217,9 @@ var accountInformation = (function ($) {
                         alert(data.ErrMsg);
                         return;
                     }
-                    if (INTERNAL_HEADER !== undefined) {
+                    if (internalHeader !== undefined) {
                         $.cookie('username', $("#UserName").val(), { path: '/' });
-                        INTERNAL_HEADER.setCurrency(currencyId);
+                        internalHeader.setCurrency(currencyId);
                     }
                 },
                 complete: function() {
@@ -262,5 +263,6 @@ var accountInformation = (function ($) {
 }(jQuery));
 
 $(function () {
+    /*jshint strict:false */
     accountInformation.init();
 });

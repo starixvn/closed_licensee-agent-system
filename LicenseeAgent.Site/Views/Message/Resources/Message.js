@@ -1,4 +1,7 @@
-﻿var MESSAGE = (function ($) {
+﻿/*global CORE*/
+
+var Message = (function ($) {
+    /*jshint strict:false */
     var MAX_ROW_PER_PAGE = 1;
     var ITEMS_PER_PAGE_ARRAY = [1, 2, 3, 4];
 
@@ -10,22 +13,22 @@
         initialize: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
-            MESSAGE.initData();
+            Message.initData();
         },
         initData: function () {
             $('li.tab-public').click(function () {
                 $("#tabs-area a:first").tab('show');
-                MESSAGE.getMessage(false);
+                Message.getMessage(false);
             });
             $('li.tab-special').click(function () {
                 $("#tabs-area a").eq(1).tab('show');
-                MESSAGE.getMessage(true);
+                Message.getMessage(true);
             });
             $('li.tab-personal').click(function () {
                 $("#tabs-area a:last").tab('show');
-                MESSAGE.getMessage(false);
+                Message.getMessage(false);
             });
-            MESSAGE.showAnnouncements(null);
+            Message.showAnnouncements(null);
         },
         getMessage: function (disabled) {
             $("#search-form :input").attr("disabled", disabled);
@@ -36,13 +39,7 @@
             else if ($(".tab-personal").hasClass("active")) {
                 type = "2";
             }
-
-            var params = {
-                FromDate: $("#FromDate").val(),
-                ToDate: $("#ToDate").val(),
-                Type: type
-            };
-            MESSAGE.showAnnouncements(null);
+            Message.showAnnouncements(null);
             //            $.ajax({
             //                url: CORE.resolveUrl("~/Message/GetMessage"),
             //                type: 'POST',
@@ -73,11 +70,11 @@
                 showPager: true,
                 customPager: true,
                 pagerOption: {
-                    itemsPerPage: MESSAGE.storageParams.PageSize,
-                    currentPage: MESSAGE.storageParams.PageIndex,
+                    itemsPerPage: Message.storageParams.PageSize,
+                    currentPage: Message.storageParams.PageIndex,
                     itemsPerPageArray: ITEMS_PER_PAGE_ARRAY,
                     pagerSelectCallBack: function (pageIndex, pageSize) {
-                        MESSAGE.renderPagingEvent(pageIndex, pageSize);
+                        Message.renderPagingEvent(pageIndex, pageSize);
                     }
                 },
                 marginRight: 0
@@ -90,15 +87,17 @@
             $('#MessageArea').fanexGrid(gridOptions);
         },
         renderPagingEvent: function (pageIndex, pageSize) {
-            MESSAGE.storageParams.PageIndex = pageIndex;
-            MESSAGE.storageParams.PageSize = pageSize;
+            Message.storageParams.PageIndex = pageIndex;
+            Message.storageParams.PageSize = pageSize;
 
-            MESSAGE.showAnnouncements();
+            Message.showAnnouncements();
 
             return false;
         }
-    }
-} (jQuery));
+    };
+}) (jQuery);
+
 $(function () {
-    MESSAGE.initialize();
+    /*jshint strict:false */
+    Message.initialize();
 });

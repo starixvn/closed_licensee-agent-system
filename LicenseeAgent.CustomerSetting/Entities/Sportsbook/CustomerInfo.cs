@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan;
@@ -33,6 +34,7 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
         [DataType(DataType.Password)]
         [AppPasswordRule]
         [StringLength(24, MinimumLength = 8, ErrorMessageResourceName = "PasswordSecurity", ErrorMessageResourceType = typeof(Las))]
+        [AllowHtml]
         public string Password { get; set; }
 
         public string FirstName { get; set; }

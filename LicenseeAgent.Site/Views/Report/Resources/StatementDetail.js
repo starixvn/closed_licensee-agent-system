@@ -34,7 +34,7 @@ var statementDetail = (function ($) {
                             itemsPerPageArray: CORE.pageSizes,
                             totalItem: data.List.length
                         };
-
+                        
                         gridOptions.bodyRows = statementDetail.genGridRows(data.List, gridOptions, $('#IsMember').val());
                         $('#grid').show().fanexGrid(gridOptions);
 
@@ -84,38 +84,28 @@ var statementDetail = (function ($) {
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-                    (function () {
-                        var rIndex = rowIndex;
-                        var rowData = record;
-                        var col = columns[j];
-                        var colName = col.Name;
-                        var isMatchBalance = true;
+                    var rIndex = rowIndex;
+                    var col = columns[j];
+                    var colName = col.Name;
+                    var isMatchBalance = true;
 
-                        if (colName === 'ClosingBalance') {
-                            previousClosingBalance = record[colName];
+                    if (colName === 'ClosingBalance') {
+                        previousClosingBalance = record[colName];
+                    }
+
+                    if (colName === 'OpeningBalance') {
+                        currentOpeningBalance = record[colName];
+
+                        if (i !== 0 && previousClosingBalance !== currentOpeningBalance) {
+                            isMatchBalance = false;
                         }
+                    }
 
-                        if (colName === 'OpeningBalance') {
-                            currentOpeningBalance = record[colName];
-
-                            if (i !== 0 && previousClosingBalance !== currentOpeningBalance) {
-                                isMatchBalance = false;
-                            }
-                        }
-
-                        dataRow.push({
-                            Name: colName,
-                            Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
-                            CustomCellRender: function (cell, cellFormated) {
-                                if (col.Formatter) {
-                                    return col.Formatter(rIndex, rowData, cell, cellFormated);
-                                } else {
-                                    return cellFormated;
-                                }
-                            },
-                            TdClass: isMatchBalance ? '' : 'td-highlighted'
-                        });
-                    } ());
+                    dataRow.push({
+                        Name: colName,
+                        Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
+                        TdClass: isMatchBalance ? '' : 'td-highlighted'
+                    });
                 }
 
                 bodyRows.push({

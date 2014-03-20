@@ -333,6 +333,12 @@ var Report = (function ($) {
         }
     };
 } (jQuery));
+/*jshint unused:false*/
+function matchSubmit() {
+    /*jshint strict:false */
+    resultReport.matchSubmit($('#matchdatetime').val());
+    return false;
+}
 
 /*jshint unused:false*/
 function outrightSubmit() {

@@ -293,6 +293,9 @@
     </Content>
     <Content Include="Views\AccountInformation\Resources\index.js" />
     <Content Include="Views\AccountInformation\Resources\index.less" />
+    <Content Include="Views\CustomerList\Resources\customerlist.js" />
+    <Content Include="Views\CustomerList\Resources\customerlist.less" />
+    <Content Include="Views\CustomerList\Resources\resetpassword.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
@@ -353,8 +356,6 @@
     <Content Include="Views\BetList\Resources\betlist.manager.js" />
     <Content Include="Views\BetList\Resources\betlist.core.js" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
-    <Content Include="Views\CustomerList\Resources\reset-password.js" />
-    <Content Include="Views\CustomerList\Resources\customer-list.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
@@ -653,7 +654,6 @@
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
-    <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\CustomerList\_Link.cshtml" />
     <Content Include="Views\CustomerList\_IpInformation.cshtml" />

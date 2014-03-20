@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global CORE, LANGUAGE, showMixParlayDetailurl*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
@@ -16,7 +18,8 @@
     bodyRowHeight: 29
 };
 
-var BETLIST = function ($) {
+var betList = (function ($) {
+    /*jshint strict:false */
     return {
         init: function () {
             // breadcrum
@@ -24,11 +27,11 @@ var BETLIST = function ($) {
                 var agentId = $(this).data('agent-id');
                 var agentLevel = $(this).data('agent-level');
                 var agentName = $(this).text();
-                BETLIST.ViewDownline(agentId, agentLevel, agentName);
+                betList.ViewDownline(agentId, agentLevel, agentName);
             });
 
             // get bet list
-            BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            betList.reRenderAfterPaged(0, CORE.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
@@ -66,6 +69,7 @@ var BETLIST = function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: CORE.resolveUrl(url),
+                    /*jshint unused:false*/
                     error: function (xhRequest, errorText, thrownError) {
                         alert(errorText);
                     },
@@ -94,13 +98,15 @@ var BETLIST = function ($) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
         ViewDownline: function (agentId, agentLevel, username) {
-            $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);            
-            location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val()
-                                            + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
+            $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
+            location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel
+                                            + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb=" 
+                                            + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    BETLIST.init();
+    /*jshint strict:false */
+    betList.init();
 });

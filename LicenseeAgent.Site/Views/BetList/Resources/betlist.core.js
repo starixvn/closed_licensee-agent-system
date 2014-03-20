@@ -1,25 +1,32 @@
-﻿var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
+﻿/*global POPUP, LANGUAGE, CORE*/
+/*jshint -W079 */
+
+var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
 var showBetListDetailsUrl = "~/BetList/Details?transId=";
 var showBetListResultsUrl = "~/BetList/Results";
 var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 
 function OpenIPInfo(ipstring) {
+    /*jshint strict:false */
     fanex.betlist.core.getIpInformation(ipstring);
-};
+}
 
 function showMP(transId) {
+    /*jshint strict:false */
     var divEvent = $('#divEvent_' + transId);
     fanex.betlist.core.showMixParlayDetails(transId, divEvent);
-};
+}
 
 function showCombMP(transId, index) {
+    /*jshint strict:false */
     var divEvent = $('#divEvent_' + transId + "" + index);
     fanex.betlist.core.showMixParlayDetails(transId, divEvent);
-};
+}
 
 var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
 fanex.betlist.core = {
+    /*jshint strict:false */
     reRenderAfterPagedSuccessfully: function (gridOptions, data, hidedColumn) {
         gridOptions.pagerOption = {
             itemsPerPage: CORE.pageSizes[0],
@@ -30,8 +37,9 @@ fanex.betlist.core = {
         gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
         $('#BetListGrid').show().fanexGrid(gridOptions);
 
-        if (data.IsLastLevel == true)
+        if (data.IsLastLevel === true) {
             $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
+        }
     },
     getIpInformation: function (ipAddress) {
         var urlIpInformation = $("#BetListGrid").data('url-ip');
@@ -46,7 +54,8 @@ fanex.betlist.core = {
                     var height = 220;
                     var width = 400;
                     var details = '<div class=\"instruction-content\">' + data + '</div>';
-                    POPUP.openDialog(details, LANGUAGE.getString("IpInformation"), {  width: width, height: height, modal: false, clickout: true, openid: $(this).attr('id') });
+                    POPUP.openDialog(details, LANGUAGE.getString("IpInformation"),
+                                     { width: width, height: height, modal: false, clickout: true, openid: $(this).attr('id') });
                     $('.ui-tooltip').remove();
                 }
             },
@@ -62,6 +71,7 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: CORE.resolveUrl(url),
+            /*jshint unused: false*/
             error: function (xhRequest, errorText, thrownError) {
                 alert(errorText);
             },
@@ -88,6 +98,7 @@ fanex.betlist.core = {
                 contentType: "text/html",
                 cache: false,
                 url: CORE.resolveUrl(url),
+                /*jshint unused: false*/
                 error: function (xhRequest, errorText, thrownError) {
                     alert(errorText);
                 },
@@ -119,6 +130,7 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: CORE.resolveUrl(url),
+            /*jshint unused: false*/
             error: function (xhRequest, errorText, thrownError) {
                 alert(errorText);
             },
@@ -137,7 +149,7 @@ fanex.betlist.core = {
         });
     },
     showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
-        var url = bettype == 9 || bettype == 29
+        var url = bettype === 9 || bettype === 29
                 ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
                 : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
 
@@ -147,6 +159,7 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: CORE.resolveUrl(url),
+            /*jshint unused: false*/
             error: function (xhRequest, errorText, thrownError) {
                 alert(errorText);
             },
@@ -166,4 +179,5 @@ fanex.betlist.core = {
     }
 };
 
+/*jshint unused: false*/
 var ViewResult = fanex.betlist.core.showResults;

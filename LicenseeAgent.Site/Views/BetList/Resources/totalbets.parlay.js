@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global CORE, LANGUAGE*/
+/*jshint -W079 */
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
@@ -21,6 +23,7 @@
 var fanex = fanex || {};
 fanex.totalBets = fanex.totalBets || {};
 fanex.totalBets.parlay = {
+    /*jshint strict:false */
     init: function () {
 
         $('.selectpicker').selectpicker();

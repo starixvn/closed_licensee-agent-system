@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global CORE, LANGUAGE, showMixParlayDetailurl, custId, _today, _minDate*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
@@ -16,22 +18,23 @@
     bodyRowHeight: 29
 };
 
-var BETLIST = function ($) {
+var betList = (function ($) {
+    /*jshint strict:false */
     return {
         init: function () {
 
             $('.selectpicker').selectpicker();
 
-            BETLIST.renderDatePicker();
+            betList.renderDatePicker();
 
             // search
             $('#search-form').submit(function (e) {
-                BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+                betList.reRenderAfterPaged(0, CORE.pageSizes[0]);
                 e.preventDefault();
             });
 
             // get bet list
-            BETLIST.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            betList.reRenderAfterPaged(0, CORE.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
@@ -47,7 +50,7 @@ var BETLIST = function ($) {
                 CustId: custId,
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusIDs: $("#Status").val() != 255 ? $.trim($("#Status").val()) : '255'
+                StatusIDs: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255'
             };
 
             $.ajax({
@@ -94,6 +97,7 @@ var BETLIST = function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: CORE.resolveUrl(url),
+                    /*jshint unused: false*/
                     error: function (xhRequest, errorText, thrownError) {
                         alert(errorText);
                     },
@@ -121,9 +125,10 @@ var BETLIST = function ($) {
         showSystemParlayResult: function (refNo, custId, betTeam) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    BETLIST.init();
+    /*jshint strict:false */
+    betList.init();
 });

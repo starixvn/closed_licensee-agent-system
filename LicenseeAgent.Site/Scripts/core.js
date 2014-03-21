@@ -36,10 +36,8 @@
             if (typeof moment != 'undefined') {
                 moment.lang(selectedLanguageCode.toLowerCase());
             }
-
             if ($.fn.fanexGrid) {
                 $.fn.fanexGrid.defaults.language = selectedLanguageCode;
-                $.fn.fanexGrid.defaults.noDataText = fanexGridLanguage[selectedLanguageCode].noData;
             }
 
             $(document).click(function (e) {

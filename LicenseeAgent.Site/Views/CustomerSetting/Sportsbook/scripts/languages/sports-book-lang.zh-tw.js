@@ -1,4 +1,5 @@
-﻿if (fanex.customerSetting) {
+﻿
+if (fanex.customerSetting) {
 	fanex.customerSetting.language = fanex.customerSetting.language || {};
 	fanex.customerSetting.language['zh-TW'] = {
 		// Common messages
@@ -77,10 +78,11 @@
 		soccerHandicapCopyPt: '足球死球讓分盤的宣示價位設置適用於：',
 		basketballHandicapCopyPt: '籃球讓分盤所占份額的設置適用於：',
 		otherBettypeOfSoccer: '其他投注類型足球',
-        otherBettypeOfBasketball: '其他投注類型的 籃球',
-        applyForAllMembers: '所有會員立刻生效'
+		otherBettypeOfBasketball: '其他投注類型籃球',
+		applyForAllMembers: '所有會員立刻生效'
 	};
 }
 else {
 	alert("Missing fanex.customerSetting in language");
 }
+

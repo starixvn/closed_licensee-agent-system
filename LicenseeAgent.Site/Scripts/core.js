@@ -32,12 +32,11 @@
                 });
             }
 
-            var selectedLanguageCode = LANGUAGE.getSelectedLanguageCode();
             if (typeof moment != 'undefined') {
-                moment.lang(selectedLanguageCode.toLowerCase());
+                moment.lang(LANGUAGE.getSelectedLanguageCode().toLowerCase());
             }
             if ($.fn.fanexGrid) {
-                $.fn.fanexGrid.defaults.language = selectedLanguageCode;
+                $.fn.fanexGrid.defaults.language = LANGUAGE.getSelectedLanguage();
             }
 
             $(document).click(function (e) {

@@ -261,7 +261,7 @@ If that is not you, please contact your upline!!!</value>
     <value>Invalid amount</value>
   <comment></comment></data>
 	<data name="Msg_1042" xml:space="preserve">
-    <value>Sorry, you do not have permission to access this page.</value>
+    <value>You do not have permission to access this page.</value>
   <comment></comment></data>
 	<data name="Msg_101" xml:space="preserve">
     <value>The agent does not exist.</value>

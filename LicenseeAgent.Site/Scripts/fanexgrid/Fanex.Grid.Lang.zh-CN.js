@@ -1,9 +1,9 @@
 ﻿/* File Created: December 4, 2013 */
 if (fanexGridLanguage) {
     fanexGridLanguage['zh-CN'] = {
-        noData: 'There is no data',
-        pageSize: 'Page size',
-        goToPage: 'Go To Page',
-        pagingText: 'Displaying <b>{0}</b> to <b>{1}</b> of <b>{2}</b> item(s)'
+        noData: '没有资料',
+        pageSize: '页面尺寸',
+        goToPage: '去到别页',
+        pagingText: '显示<b>{0}</b> 到 <b>{1}</b> / <b>{2}</b> 项目'
     };
 }

@@ -268,13 +268,13 @@
 		<value>您的联机将被终止！</value>
 	</data>
 	<data name="Msg_1042" xml:space="preserve">
-		<value>Sorry, you do not have permission to access this page.</value>
+		<value>您未获许可进入此页面。</value>
 	</data>
 	<data name="Msg_101" xml:space="preserve">
-		<value>The agent does not exist.</value>
+		<value>此经纪人不存在。</value>
 	</data>
 	<data name="Msg_102" xml:space="preserve">
-		<value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
+		<value>您只可在12点到11：59分（GMT-4）之间进行转账。</value>
 	</data>
 	<data name="Msg_1035" xml:space="preserve">
 		<value>会员不存在</value>

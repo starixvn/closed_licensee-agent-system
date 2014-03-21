@@ -542,23 +542,8 @@
 	<data name="Draw" xml:space="preserve">
     <value>和</value>
   </data>
-	<data name="FH1X2" xml:space="preserve">
-    <value>1H. 1X2</value>
-  </data>
-	<data name="FHHDP" xml:space="preserve">
-    <value>1H. HDP</value>
-  </data>
-	<data name="FHOU" xml:space="preserve">
-    <value>1H. O/U</value>
-  </data>
 	<data name="FT1X2" xml:space="preserve">
     <value>全場標準盤</value>
-  </data>
-	<data name="FTHDP" xml:space="preserve">
-    <value>FT. HDP</value>
-  </data>
-	<data name="FTOU" xml:space="preserve">
-    <value>FT. O/U</value>
   </data>
 	<data name="Live" xml:space="preserve">
     <value>現場</value>
@@ -571,9 +556,6 @@
   </data>
 	<data name="Basketball" xml:space="preserve">
     <value>籃球</value>
-  </data>
-	<data name="FHOE" xml:space="preserve">
-    <value>1H.OE</value>
   </data>
 	<data name="FTOE" xml:space="preserve">
     <value>全場單雙</value>

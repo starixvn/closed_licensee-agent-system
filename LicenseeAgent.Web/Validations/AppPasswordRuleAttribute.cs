@@ -11,6 +11,7 @@ namespace LicenseeAgent.Web.Validations
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
 
@@ -25,6 +26,11 @@ namespace LicenseeAgent.Web.Validations
         {
             ErrorMessageResourceName = "PasswordSecurity";
             ErrorMessageResourceType = typeof(Las);
+        }
+
+        public override bool IsValid(object value)
+        {
+            return base.IsValid(value) ? !value.ToString().Any(c => c > 255) : false;
         }
     }
 }

@@ -93,50 +93,6 @@ fanex.angularModule.directive('hintValidator', function () {
     }
 });
 
-fanex.angularModule.directive('passwordRule', function () {
-    return {
-        require: 'ngModel',
-        restrict: 'A',
-        link: function (scope, element, attrs, ctrl) {
-            var isPassword = function (str) {
-                if (str) {
-                    var regex1 = /^(?=.*\d).{8,100}$/;
-                    var regex2 = /^(?=.*[a-z]).{8,100}$/;
-                    var regex3 = /^(?=.*[A-Z]).{8,100}$/;
-                    var regex4 = /^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{8,100}$/;
-
-                    var whiteSpace = /^\S*$/;
-
-                    var case1 = str.search(regex1) != -1 ? 1 : 0;
-                    var case2 = str.search(regex2) != -1 ? 1 : 0;
-                    var case3 = str.search(regex3) != -1 ? 1 : 0;
-                    var case4 = str.search(regex4) != -1 ? 1 : 0;
-
-                    var case5 = str.search(whiteSpace) != -1;
-
-                    return (case1 + case2 + case3 + case4 >= 3) && case5;
-                }
-                return false;
-            };
-
-            var passwordValidator = function (value) {
-                if (isPassword(value)) {
-                    // it is valid
-                    ctrl.$setValidity('passwordRule', true);
-                    return value;
-                } else {
-                    // it is invalid, return undefined (no model update)
-                    ctrl.$setValidity('passwordRule', false);
-                    return undefined;
-                }
-            }
-
-            ctrl.$parsers.unshift(passwordValidator);
-            ctrl.$formatters.unshift(passwordValidator);
-        }
-    };
-});
-
 fanex.angularModule.directive('autoNumericFormat', [
 '$parse',
  function ($parse) {

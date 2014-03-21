@@ -27,7 +27,7 @@ namespace LicenseeAgent.Core.Utility
                "StyleCop.CSharp.Nexcel.NexcelCustomRules",
                "SP2100:CodeLineMustNotBeLongerThan",
                Justification = "Reviewed. Suppression is OK here.")]
-        public const string PasswordPattern = @"(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
+        public const string PasswordPattern = @"(?=^.{8,24}$)(?!.*\s)(?=^[\x00-\x7F]+$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
 
         /// <summary>
         /// The password expired total days.

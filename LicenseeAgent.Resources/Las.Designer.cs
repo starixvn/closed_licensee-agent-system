@@ -1993,11 +1993,11 @@ namespace LicenseeAgent.Resources {
         ///&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;
         ///&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;
         ///&lt;li&gt;Numeric [0-9]&lt;/li&gt;
-        ///&lt;li&gt;Special character (!,@,#,etc..)&lt;/li&gt;
+        ///&lt;li&gt;Special character ~`!@#$%^&amp;*()-_=+[{]}\|;:&apos;&quot;&lt;,&gt;.?/&lt;/li&gt;
         ///&lt;/ul&gt;
         ///&lt;span&gt;For example: 59D7!4$h, 493abcDE&lt;/span&gt;
         ///&lt;br/&gt;
-        ///&lt;span&gt;Notes: your password is cAsE sEnSiTiVe&lt;/span&gt;
+        ///&lt;span&gt;Notes: your password is cAsE sEnSiTiVe and only characters above are allowed.&lt;/span&gt;
         ///&lt;/div&gt;.
         /// </summary>
         public static string PasswordHint {

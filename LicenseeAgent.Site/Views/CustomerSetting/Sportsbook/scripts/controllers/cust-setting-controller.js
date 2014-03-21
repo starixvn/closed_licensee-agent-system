@@ -108,19 +108,12 @@
                 success(function (data, status, headers, config) {
                     CORE.unblockUI();
 
-                    if (status == 600) {
-                        alert(LANGUAGE.getString("AlertNoCurrencyPermission"));
-                        if (window.parent) {
-                            window.parent.location.href = CORE.UrlSignOut;
-                        }
-                        else {
-                            window.location.href = CORE.UrlSignOut;
-                        }
-                        return;
-                    }
-
                     if (data.ErrCode != 0) {
-                        alert(data.ErrMsg);
+                        $scope.Messages = [{
+                            ErrCode: -1,
+                            ErrMsg: data.ErrMsg
+                        }];
+                        return;
                     }
 
                     $scope.Messages = data.Messages;
@@ -205,19 +198,12 @@
             success(function (data, status, headers, config) {
                 CORE.unblockUI();
 
-                if (status == 600) {
-                    alert(LANGUAGE.getString("AlertNoCurrencyPermission"));
-                    if (window.parent) {
-                        window.parent.location.href = CORE.UrlSignOut;
-                    }
-                    else {
-                        window.location.href = CORE.UrlSignOut;
-                    }
-                    return;
-                }
-
                 if (data.ErrCode != 0) {
-                    alert(data.ErrMsg);
+                    $scope.Messages = [{
+                        ErrCode: -1,
+                        ErrMsg: data.ErrMsg
+                    }];
+                    return;
                 }
 
                 var isSuccess = true;

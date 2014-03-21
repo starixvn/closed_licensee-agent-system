@@ -184,7 +184,7 @@
     <value>百分之   的PT無效，它必須介於{0:p}和{1:p} ({2} - {3})之間。</value>
   </data>
 	<data name="Msg_1022" xml:space="preserve">
-    <value>If that is not you, please contact your upline!!!</value>
+    <value>如果這不是你，請聯絡你的上線</value>
   </data>
 	<data name="Msg_1023" xml:space="preserve">
     <value>更新失敗</value>
@@ -265,7 +265,7 @@
     <value>更新失敗</value>
   </data>
 	<data name="Msg_1036" xml:space="preserve">
-		<value>Your session will be terminated!!!</value>
+		<value>您的連線將被終止！</value>
 	</data>
 	<data name="Msg_1042" xml:space="preserve">
 		<value>Sorry, you do not have permission to access this page.</value>
@@ -277,6 +277,6 @@
 		<value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
 	</data>
 	<data name="Msg_1035" xml:space="preserve">
-		<value>The member does not exist.</value>
+		<value>會員不存在</value>
 	</data>
 </root>

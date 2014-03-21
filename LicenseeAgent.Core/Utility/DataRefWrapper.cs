@@ -40,9 +40,19 @@ namespace LicenseeAgent.Core.Utility
             return RefData.GetBetTypeName(betType.ToString(), RefLanguageCode);
         }
 
+        public static string GetBetTypeName(BetType betType)
+        {
+            return GetBetTypeName((int)betType);
+        }
+
         public static string GetSportName(int sportType)
         {
             return GetSportName(sportType, 0);
+        }
+
+        public static string GetSportName(SportType sportType)
+        {
+            return GetSportName((int)sportType);
         }
 
         /// <summary>

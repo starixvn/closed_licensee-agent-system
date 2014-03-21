@@ -32,9 +32,14 @@
                 });
             }
 
+            var selectedLanguageCode = LANGUAGE.getSelectedLanguageCode();
             if (typeof moment != 'undefined') {
-                var selectedLanguageCode = LANGUAGE.getSelectedLanguageCode();
                 moment.lang(selectedLanguageCode.toLowerCase());
+            }
+
+            if ($.fn.fanexGrid) {
+                $.fn.fanexGrid.defaults.language = selectedLanguageCode;
+                $.fn.fanexGrid.defaults.noDataText = fanexGridLanguage[selectedLanguageCode].noData;
             }
 
             $(document).click(function (e) {
@@ -260,21 +265,6 @@
                 rowIndex++;
             }
             return bodyRows;
-        },
-        genGridFooterRows: function (data, gridOptions) {
-            if (gridOptions.footerRows) {
-                var columns = gridOptions.footerRows[0].Columns;
-                var length = columns.length;
-                for (var i = 0; i < length; i++) {
-                    var colName = columns[i].Name;
-                    var value = data[colName];
-                    if (typeof value != 'undefined' && columns[i].Value !== '') {
-                        columns[i].Value = value;
-                    }
-                }
-                return gridOptions.footerRows;
-            }
-            return undefined;
         },
         genGridTotalRows: function (bodyRows, gridOptions) {
             if (gridOptions.footerRows) {

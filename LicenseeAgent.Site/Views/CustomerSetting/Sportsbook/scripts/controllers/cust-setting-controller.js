@@ -199,6 +199,7 @@
                 CORE.unblockUI();
 
                 if (data.ErrCode != 0) {
+                    $('.messages').show();
                     $scope.Messages = [{
                         ErrCode: -1,
                         ErrMsg: data.ErrMsg

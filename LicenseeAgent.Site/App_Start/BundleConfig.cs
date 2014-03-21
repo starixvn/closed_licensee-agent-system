@@ -214,15 +214,15 @@ namespace LicenseeAgent.Site
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/scripts/cookie/jquery.cookie.js",
                 "~/scripts/marquee/jquery.marquee.js",
-                "~/views/home/resources/menu.js",
-                "~/views/home/resources/header.js"));
+                "~/views/home/resources/home-menu.js",
+                "~/views/home/resources/home-header.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/scripts/scroller/jquery.nicescroll.min.js",
                 "~/views/accountinformation/resources/account-information.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(
-                "~/views/internal/resources/header.js"));
+                "~/views/internal/resources/internal-header.js"));
 
             bundles.Add(new LessBundle("~/css/home").Include(
                 "~/views/home/resources/home.less"));

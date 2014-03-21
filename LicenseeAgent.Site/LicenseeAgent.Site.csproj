@@ -289,7 +289,7 @@
       <DependentUpon>Language.tt</DependentUpon>
     </Content>
     <Content Include="Views\CustomerList\Resources\customer-list.js" />
-    <Content Include="Views\CustomerList\Resources\customer-list.less" />    
+    <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
@@ -368,7 +368,7 @@
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
     <Content Include="Views\Error\Resources\images\unauthorized-access.png" />
     <Content Include="Views\Error\Resources\images\Under-Maintenace.png" />
-    <Content Include="Views\Internal\Resources\Header.js" />
+    <Content Include="Views\Internal\Resources\internal-header.js" />
     <Content Include="Content\sprite.less" />
     <Content Include="Content\fanexgrid\Fanex.Grid.css" />
     <Content Include="Content\fanexgrid\Fanex.Pagination.css" />
@@ -536,9 +536,9 @@
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
-    <Content Include="Views\Home\Resources\header.js" />
+    <Content Include="Views\Home\Resources\home-header.js" />
     <Content Include="Scripts\login.js" />
-    <Content Include="Views\Home\Resources\menu.js" />
+    <Content Include="Views\Home\Resources\home-menu.js" />
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Views\Report\Resources\AgentWinlossReport.js" />
     <Content Include="Views\Report\Resources\OutstandingReport.js" />

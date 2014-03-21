@@ -88,7 +88,8 @@
         soccerHandicapCopyPt: '足球 – 死球让分盘的宣示价位设置适用于：',
         basketballHandicapCopyPt: '篮球 - 让分盘所占份额的设置适用于：',
         otherBettypeOfSoccer: '其他投注类型的 足球',
-        otherBettypeOfBasketball: '其他投注类型的 篮球'
+        otherBettypeOfBasketball: '其他投注类型的 篮球',
+        applyForAllMembers: '所有會員立刻生效'
     };
 }
 else {

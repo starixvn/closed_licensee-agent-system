@@ -77,7 +77,8 @@
         soccerHandicapCopyPt: '足球 – 死球讓分盤的宣示價位設置適用於：',
         basketballHandicapCopyPt: '籃球 - 讓分盤所占份額的設置適用於：',
         otherBettypeOfSoccer: '其他投注類型的 足球',
-        otherBettypeOfBasketball: '其他投注類型的 籃球'
+        otherBettypeOfBasketball: '其他投注類型的 籃球',
+        applyForAllMembers: '所有會員立刻生效'
     };
 }
 else {

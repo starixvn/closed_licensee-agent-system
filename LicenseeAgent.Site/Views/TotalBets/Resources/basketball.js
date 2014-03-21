@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global refreshCountDownMethods, reportGridOptions, CORE, LANGUAGE*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
@@ -18,7 +20,8 @@
     autoResizeColumn: true
 };
 
-var Basketball = function ($) {
+var Basketball = (function ($) {
+    /*jshint strict:false */
     return {
         sportType: 2, //Basketball sporttype
         checkedAllLeague: true,
@@ -63,7 +66,7 @@ var Basketball = function ($) {
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         Basketball.initLeagueMultiSelect(data.List);
                     }
                     else {
@@ -121,7 +124,7 @@ var Basketball = function ($) {
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         Basketball.initEventMultiSelect(data.List);
                     }
                     else {
@@ -130,8 +133,9 @@ var Basketball = function ($) {
                 },
                 complete: function () {
                     //Load data for the first time load page
-                    if (isLoadGrid)
+                    if (isLoadGrid) {
                         Basketball.reRenderAfterPaged();
+                    }
                 }
             });
         },
@@ -181,8 +185,8 @@ var Basketball = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
-                        reportGridOptions.bodyRows = Basketball.genGridRows(data.List, reportGridOptions);
+                    if (data.ErrCode === 0) {
+                        reportGridOptions.bodyRows = Basketball.genGridRows(data.List);
                         $('#BetListGrid').show().fanexGrid(reportGridOptions);
                     }
                     else {
@@ -195,11 +199,7 @@ var Basketball = function ($) {
             });
         },
 
-        genGridRows: function (list, options) {
-            var columns = options.columns;
-            var rowCssClass = options.rowCssClass; // custom option
-            var rowHeight = options.RowHeight;
-            var indexNumberColumn = options.indexNumberColumn; // custom option
+        genGridRows: function (list) {
             var len = list.length;
             var bodyRows = [];
             var oldLeagueId = 0;
@@ -209,7 +209,7 @@ var Basketball = function ($) {
                 var league = list[i];
                 var newLeagueId = league.LeagueId;
 
-                if (oldLeagueId != newLeagueId) {
+                if (oldLeagueId !== newLeagueId) {
                     rowIndex = 0;
                     oldLeagueId = newLeagueId;
                     //Push League row
@@ -288,7 +288,7 @@ var Basketball = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -313,8 +313,9 @@ var Basketball = function ($) {
             $("#totalbets-back").attr("class", "history-back hide");
             $('form').submit();
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 $(function () {
+    /*jshint strict:false */
     Basketball.init();
 });

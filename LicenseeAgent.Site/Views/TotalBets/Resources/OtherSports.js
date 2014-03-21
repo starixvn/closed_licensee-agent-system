@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global refreshCountDownMethods, reportGridOptions, CORE, LANGUAGE*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
@@ -18,7 +20,8 @@
     autoResizeColumn: true
 };
 
-var OtherSports = function ($) {
+var OtherSports = (function ($) {
+    /*jshint strict:false */
     return {
         //sportType: 2, //Basketball sporttype
         checkedAllSport: true,
@@ -66,7 +69,7 @@ var OtherSports = function ($) {
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         OtherSports.initSportMultiSelect(data.List);
                     }
                     else {
@@ -125,7 +128,7 @@ var OtherSports = function ($) {
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         OtherSports.initLeagueMultiSelect(data.List);
                     }
                     else {
@@ -184,7 +187,7 @@ var OtherSports = function ($) {
                 beforeSend: function () {
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         $("#event-multi-select").fanexMultiSelect({
                             listData: data.List,
                             showTooltip: true,
@@ -242,8 +245,8 @@ var OtherSports = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode == 0) {
-                        reportGridOptions.bodyRows = OtherSports.genGridRows(data.List, reportGridOptions);
+                    if (data.ErrCode === 0) {
+                        reportGridOptions.bodyRows = OtherSports.genGridRows(data.List);
                         $('#BetListGrid').show().fanexGrid(reportGridOptions);
                     }
                     else {
@@ -256,11 +259,7 @@ var OtherSports = function ($) {
             });
         },
 
-        genGridRows: function (list, options) {
-            var columns = options.columns;
-            var rowCssClass = options.rowCssClass; // custom option
-            var rowHeight = options.RowHeight;
-            var indexNumberColumn = options.indexNumberColumn; // custom option
+        genGridRows: function (list) {
             var lenSports = list.length;
             var bodyRows = [];
             var oldSportId = 0;
@@ -270,7 +269,7 @@ var OtherSports = function ($) {
             for (var k = 0; k < lenSports; k++) {//Sport
                 var sport = list[k];
                 //Push Sport row
-                if (oldSportId != sport.SportType) {
+                if (oldSportId !== sport.SportType) {
                     oldSportId = sport.SportType;
                     bodyRows.push({
                         Columns: ([
@@ -287,7 +286,7 @@ var OtherSports = function ($) {
                 for (var i = 0; i < len; i++) {
                     var league = leagues[i];
                     //Push League row
-                    if (oldLeagueId != league.LeagueId) {
+                    if (oldLeagueId !== league.LeagueId) {
                         rowIndex = 0;
                         oldLeagueId = league.LeagueId;
                         bodyRows.push({
@@ -381,7 +380,7 @@ var OtherSports = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -406,8 +405,10 @@ var OtherSports = function ($) {
             $("#totalbets-back").attr("class", "history-back hide");
             $('form').submit();
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
+
 $(function () {
+    /*jshint strict:false */
     OtherSports.init();
 });

@@ -3,6 +3,7 @@
 /*global $, jQuery, alert, document, CORE, LANGUAGE, POPUP, 
             pageContext, msg, gridOptions, context */
 var customerList = (function ($) {
+    'use strict';
     var statusObj = { All: -1, Close: 0, Open: 1 },
         editAgentId = 0,
         editAgentLevel = 0,
@@ -20,10 +21,38 @@ var customerList = (function ($) {
             });
 
             context.attach('.icon-customer-edit', [
-                { id: 'menuSportsbook', icon: (pageContext.IsAdmin || pageContext.IsLastLevel || pageContext.IsDirectDownline ? 'icon-customer-canedit' : 'icon-customer-canview'), text: LANGUAGE.getString('Sportsbook'), href: '#', action: customerList.editSportsbook },
-                { id: 'menuEditInfo', icon: 'icon-customer-canedit', text: LANGUAGE.getString('EditInfo'), href: '#', action: customerList.editInfo },
-                { id: 'menuResetPassword', icon: 'icon-customer-canedit', text: LANGUAGE.getString('ResetPassword'), href: '#', action: customerList.resetPassword },
-                { id: 'menuAddDownline', icon: 'icon-customer-canedit', text: LANGUAGE.getString('AddDownline'), href: '#', action: customerList.addDownline }
+                {
+                    id: 'menuSportsbook',
+                    icon: (pageContext.IsAdmin
+                            || pageContext.IsLastLevel 
+                            || pageContext.IsDirectDownline
+                            ? 'icon-customer-canedit' 
+                            : 'icon-customer-canview'),
+                    text: LANGUAGE.getString('Sportsbook'),
+                    href: '#',
+                    action: customerList.editSportsbook
+                },
+                {
+                    id: 'menuEditInfo',
+                    icon: 'icon-customer-canedit',
+                    text: LANGUAGE.getString('EditInfo'),
+                    href: '#',
+                    action: customerList.editInfo
+                },
+                {
+                    id: 'menuResetPassword',
+                    icon: 'icon-customer-canedit',
+                    text: LANGUAGE.getString('ResetPassword'),
+                    href: '#',
+                    action: customerList.resetPassword
+                },
+                {
+                    id: 'menuAddDownline',
+                    icon: 'icon-customer-canedit',
+                    text: LANGUAGE.getString('AddDownline'),
+                    href: '#',
+                    action: customerList.addDownline
+                }
             ]);
 
             // create select context menu
@@ -31,8 +60,16 @@ var customerList = (function ($) {
                 preventDoubleContext: false
             });
             context.attach('#select-dropdown', [
-                { text: LANGUAGE.getString('All'), href: '#', action: customerList.checkAll },
-                { text: LANGUAGE.getString('None'), href: '#', action: customerList.uncheckAll }
+                {
+                    text: LANGUAGE.getString('All'),
+                    href: '#',
+                    action: customerList.checkAll
+                },
+                {
+                    text: LANGUAGE.getString('None'),
+                    href: '#',
+                    action: customerList.uncheckAll
+                }
             ]);
 
             // breadcrum
@@ -50,7 +87,10 @@ var customerList = (function ($) {
             });
 
             // username suggestion
-            $('#Username').typeahead({ source: customerList.getSuggestion, minLength: 2 });
+            $('#Username').typeahead({
+                source: customerList.getSuggestion,
+                minLength: 2
+            });
 
             // get customer list
             customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
@@ -63,7 +103,9 @@ var customerList = (function ($) {
             });
         },
         updateActionMenus: function(target) {
-            if (!pageContext.IsAdmin || $(target).attr('data-status') === 0 || pageContext.IsLastLevel) {
+            if (!pageContext.IsAdmin
+                || $(target).attr('data-status') === 0 
+                || pageContext.IsLastLevel) {
                 $('#menuAddDownline').hide();
             } else {
                 $('#menuAddDownline').show();
@@ -74,13 +116,12 @@ var customerList = (function ($) {
             } else {
                 $('#menuEditInfo').hide();
             }
-
             if (pageContext.IsLastLevel) {
-                editMemberId = parseInt($(target).data('memberid'));
+                editMemberId = parseInt($(target).data('memberid'), 0);
                 editUsername = $(target).data('username');
             } else {
-                editAgentId = parseInt($(target).data('agentid'));
-                editAgentLevel = parseInt($(target).data('agentlevel'));
+                editAgentId = parseInt($(target).data('agentid'), 0);
+                editAgentLevel = parseInt($(target).data('agentlevel'), 0);
             }
         },
         gridAfterBinding: function() {
@@ -165,17 +206,26 @@ var customerList = (function ($) {
             var currentStatus, newStatus;
             currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             newStatus = currentStatus === 0 ? 1 : 0;
-            customerList.showAlert(true, target, custId, newStatus);
+            customerList.showAlert(target, custId, newStatus);
         },
         updateStatus: function(target, custId, statusId) {
             var params, url;
             if (pageContext.IsLastLevel) {
-                params = { memberid: custId, status: statusId, agentid: $("#AgentId").val() };
+                params = {
+                    memberid: custId,
+                    status: statusId,
+                    agentid: $("#AgentId").val()
+                };
             } else {
-                params = { agentid: custId, status: statusId };
+                params = {
+                    agentid: custId,
+                    status: statusId
+                };
             }
 
-            url = pageContext.IsLastLevel ? "~/CustomerList/ChangeMemberStatus" : "~/CustomerList/ChangeAgentStatus";
+            url = pageContext.IsLastLevel
+                ? "~/CustomerList/ChangeMemberStatus"
+                : "~/CustomerList/ChangeAgentStatus";
             $.ajax({
                 url: CORE.resolveUrl(url),
                 type: 'post',
@@ -189,9 +239,17 @@ var customerList = (function ($) {
                         return;
                     }
                     if (statusId === 0) {
-                        $(target).find('.icon-status-open').addClass('icon-status-closed').removeClass('icon-status-open').find('span').text('Closed');
+                        $(target).find('.icon-status-open')
+                            .addClass('icon-status-closed')
+                            .removeClass('icon-status-open')
+                            .find('span')
+                            .text('Closed');
                     } else {
-                        $(target).find('.icon-status-closed').addClass('icon-status-open').removeClass('icon-status-closed').find('span').text('Open');
+                        $(target).find('.icon-status-closed')
+                            .addClass('icon-status-open')
+                            .removeClass('icon-status-closed')
+                            .find('span')
+                            .text('Open');
                     }
                     $('#' + custId).attr('data-status', statusId);
                 },
@@ -247,7 +305,7 @@ var customerList = (function ($) {
                 }
             });
         },
-        showAlert: function(isConfirm, target, custId, statusId) {
+        showAlert: function(target, custId, statusId) {
             var buttons = [];
             buttons.push({
                 text: 'YES',
@@ -296,7 +354,12 @@ var customerList = (function ($) {
                 success: function(data) {
                     if (data !== null) {
                         $('#instruction').html(data);
-                        POPUP.openDialog($('#instruction'), msg.IpInformation, { modal: false, clickout: true, openid: $(this).attr('id') });
+                        POPUP.openDialog($('#instruction'),
+                            msg.IpInformation, {
+                                modal: false,
+                                clickout: true,
+                                openid: $(this).attr('id')
+                            });
                         $('.ui-tooltip').remove();
                     }
                 },
@@ -319,40 +382,89 @@ var customerList = (function ($) {
             var editItems = {}, items = [], index;
             if (pageContext.IsLastLevel) {
                 items = [
-                    { name: LANGUAGE.getString("Sportsbook"), callback: customerList.editSportsbook },
-                    { name: LANGUAGE.getString("EditInfo"), callback: customerList.editInfo },
-                    { name: LANGUAGE.getString("ResetPassword"), callback: customerList.resetPassword },
-                    /*{ name: actions.NumberGame, callback: customerList.editSetting },
-                    { name: actions.Casino, callback: customerList.editSetting },
-                    { name: actions.VirtualSports, callback: customerList.editSetting },
-                    { name: actions.SBBetSetting, callback: customerList.editSetting },
-                    { name: actions.Commission, callback: customerList.editSetting },*/
-                    { name: LANGUAGE.getString("Password"), callback: customerList.editSetting }
+                    {
+                        name: LANGUAGE.getString("Sportsbook"),
+                        callback: customerList.editSportsbook
+                    },
+                    {
+                        name: LANGUAGE.getString("EditInfo"),
+                        callback: customerList.editInfo
+                    },
+                    {
+                        name: LANGUAGE.getString("ResetPassword"),
+                        callback: customerList.resetPassword
+                    },
+                    /*{ name: actions.NumberGame, 
+                    callback: customerList.editSetting },
+                    { name: actions.Casino, 
+                    callback: customerList.editSetting },
+                    { name: actions.VirtualSports, 
+                    callback: customerList.editSetting },
+                    { name: actions.SBBetSetting, 
+                    callback: customerList.editSetting },
+                    { name: actions.Commission, 
+                    callback: customerList.editSetting },*/
+                    {
+                        name: LANGUAGE.getString("Password"),
+                        callback: customerList.editSetting
+                    }
                 ];
             } else {
                 items = [
-                    { name: LANGUAGE.getString("Sportsbook"), callback: customerList.editSportsbook },
-                    { name: LANGUAGE.getString("EditInfo"), callback: customerList.editInfo },
-                    { name: LANGUAGE.getString("ResetPassword"), callback: customerList.resetPassword },
-                    /*{ name: actions.NumberGame, callback: customerList.editSetting },
-                        { name: actions.Casino, callback: customerList.editSetting },
-                        { name: actions.VirtualSports, callback: customerList.editSetting },
-                        { name: actions.AddDownline, callback: customerList.editSetting },
-                        { name: actions.Commission, callback: customerList.editSetting },*/
-                    { name: LANGUAGE.getString("Password"), callback: customerList.editSetting }
+                    {
+                        name: LANGUAGE.getString("Sportsbook"),
+                        callback: customerList.editSportsbook
+                    },
+                    {
+                        name: LANGUAGE.getString("EditInfo"),
+                        callback: customerList.editInfo
+                    },
+                    {
+                        name: LANGUAGE.getString("ResetPassword"),
+                        callback: customerList.resetPassword
+                    },
+                    /*{ name: actions.NumberGame, 
+                    callback: customerList.editSetting },
+                    { name: actions.Casino, 
+                    callback: customerList.editSetting },
+                    { name: actions.VirtualSports, 
+                    callback: customerList.editSetting },
+                    { name: actions.AddDownline, 
+                    callback: customerList.editSetting },
+                    { name: actions.Commission, 
+                    callback: customerList.editSetting },*/
+                    {
+                        name: LANGUAGE.getString("Password"),
+                        callback: customerList.editSetting
+                    }
                 ];
             }
 
             if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
-                items.push({ name: LANGUAGE.getString("AddDownline"), callback: customerList.addDownline });
+                items.push({
+                    name: LANGUAGE.getString("AddDownline"),
+                    callback: customerList.addDownline
+                });
             }
             if (pageContext.IsDirectDownline) {
                 for (index = 0; index < items.length; index++) {
-                    editItems[index] = { name: "<span class='action-content'><i class='icon-customer-canedit'></i>" + items[index].name + "</span>", callback: items[index].callback };
+                    editItems[index] = {
+                        name: "<span class='action-content'>" +
+                            "<i class='icon-customer-canedit'></i>"
+                            + items[index].name
+                            + "</span>",
+                        callback: items[index].callback
+                    };
                 }
             } else {
                 for (index = 0; index < items.length; index++) {
-                    editItems[index] = { name: "<span class='action-content'><i class='icon-customer-canview'></i>" + items[index].name + "</span>", callback: items[index].callback };
+                    editItems[index] = {
+                        name: "<span class='action-content'>" +
+                            "<i class='icon-customer-canview'></i>"
+                            + items[index].name
+                            + "</span>",
+                        callback: items[index].callback
+                    };
                 }
             }
 
@@ -361,9 +473,11 @@ var customerList = (function ($) {
         editSportsbook: function() {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerSetting/EditMember?memberId={0}".format(editMemberId);
+                url = "CustomerSetting/EditMember?memberId={0}"
+                    .format(editMemberId);
             } else {
-                url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+                url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}"
+                    .format(editAgentId, editAgentLevel);
             }
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
@@ -373,23 +487,33 @@ var customerList = (function ($) {
         editInfo: function() {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerList/EditInfoMember?memberId={0}&username={1}".format(editMemberId, editUsername);
+                url = "CustomerList/EditInfoMember?memberId={0}&username={1}"
+                    .format(editMemberId, editUsername);
             } else {
-                url = "CustomerList/EditInfoAgent?agentId={0}".format(editAgentId);
+                url = "CustomerList/EditInfoAgent?agentId={0}"
+                    .format(editAgentId);
             }
             POPUP.openDialogFrame(url, { width: 465, height: 520 });
         },
         addDownline: function() {
             var url;
-            url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
-            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+            url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
+                .format(editAgentId, editAgentLevel);
+            POPUP.openDialogFrame(url,
+            {
+                width: 960,
+                height: 680
+
+            });
         },
         resetPassword: function() {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerList/ResetPasswordMember?memberId={0}".format(editMemberId);
+                url = "CustomerList/ResetPasswordMember?memberId={0}"
+                    .format(editMemberId);
             } else {
-                url = "CustomerList/ResetPasswordAgent?agentId={0}&agentLevel={1}".format(editAgentId, editAgentLevel);
+                url = "CustomerList/ResetPasswordAgent?agentId={0}&agentLevel={1}"
+                    .format(editAgentId, editAgentLevel);
             }
             POPUP.openDialogFrame(url, { width: 420, height: 400 });
         }

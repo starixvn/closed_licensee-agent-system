@@ -296,7 +296,7 @@
     <Content Include="Views\Report\Resources\Statement.js" />
     <Content Include="Views\Report\Resources\TransferDetail.js" />
     <Content Include="Views\Report\Resources\StatementDetail.js" />
-    <Content Include="Views\Error\Resources\UnderMaintenance.js" />
+    <Content Include="Views\Error\Resources\under-maintenance-error.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\Tool\InsertMultipleMember.aspx" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
@@ -313,7 +313,7 @@
     <Content Include="Scripts\ng-grid\ng-grid-flexible-height.js" />
     <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Scripts\ng-grid\ng-grid.js" />
-    <Content Include="Views\BetList\Resources\betlist.winlost.js" />
+    <Content Include="Views\BetList\Resources\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\fanex-core.js" />
@@ -350,9 +350,9 @@
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\Account\Resources\home-page.js" />
-    <Content Include="Views\BetList\Resources\betlist.manager.js" />
-    <Content Include="Views\BetList\Resources\betlist.core.js" />
-    <Content Include="Views\BetList\Resources\totalbets.parlay.js" />
+    <Content Include="Views\BetList\Resources\betlist-manager.js" />
+    <Content Include="Views\BetList\Resources\betlist-core.js" />
+    <Content Include="Views\BetList\Resources\totalbets-parlay.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
     <Content Include="Views\Error\Resources\images\page-not-found.png" />

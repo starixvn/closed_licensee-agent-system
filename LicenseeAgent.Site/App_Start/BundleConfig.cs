@@ -183,7 +183,7 @@ namespace LicenseeAgent.Site
         private static void RegisterErrorPage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/error/UnderMaintenance").Include(
-                "~/views/error/resources/undermaintenance.js"));
+                "~/views/error/resources/under-maintenance-error.js"));
             bundles.Add(new LessBundle("~/css/error").Include(
                 "~/views/error/resources/Index.less"));
         }
@@ -299,14 +299,14 @@ namespace LicenseeAgent.Site
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
             bundles.Add(new ScriptBundle("~/js/betlist").Include(
-                "~/Views/BetList/Resources/betlist.core.js",
-                "~/Views/BetList/Resources/betlist.manager.js"));
+                "~/Views/BetList/Resources/betlist-core.js",
+                "~/Views/BetList/Resources/betlist-manager.js"));
             bundles.Add(new ScriptBundle("~/js/totalbets/parlay").Include(
-                "~/Views/BetList/Resources/betlist.core.js",
-                "~/Views/BetList/Resources/totalbets.parlay.js"));
+                "~/Views/BetList/Resources/betlist-core.js",
+                "~/Views/BetList/Resources/totalbets-parlay.js"));
             bundles.Add(new ScriptBundle("~/js/betlistwinlost").Include(
-                "~/Views/BetList/Resources/betlist.core.js",
-                "~/Views/BetList/Resources/betlist.winlost.js"));
+                "~/Views/BetList/Resources/betlist-core.js",
+                "~/Views/BetList/Resources/betlist-winlost.js"));
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace LicenseeAgent.Site
             bundles.Add(new LessBundle("~/css/outstandingreport").Include(
                  "~/Views/Report/Resources/Outstanding.less"));
             bundles.Add(new ScriptBundle("~/js/outstandingreport").Include(
-                "~/Views/BetList/Resources/betlist.core.js",
+                "~/Views/BetList/Resources/betlist-core.js",
                 "~/Views/Report/Resources/OutstandingReport.js"));
 
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
@@ -348,23 +348,23 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
                 "~/Views/TotalBets/Resources/soccer.js",
-                "~/Views/BetList/Resources/betlist.core.js"));
+                "~/Views/BetList/Resources/betlist-core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-soccer-betlist").Include(
                 "~/Views/TotalBets/Resources/soccer.betlist.js",
-                "~/Views/BetList/Resources/betlist.core.js"));
+                "~/Views/BetList/Resources/betlist-core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-basketball").Include(
                 "~/Views/TotalBets/Resources/basketball.js",
-                "~/Views/BetList/Resources/betlist.core.js"));
+                "~/Views/BetList/Resources/betlist-core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-OtherSports").Include(
                 "~/Views/TotalBets/Resources/OtherSports.js",
-                "~/Views/BetList/Resources/betlist.core.js"));
+                "~/Views/BetList/Resources/betlist-core.js"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets-outright").Include(
                 "~/Views/TotalBets/Resources/outright.js",
-                "~/Views/BetList/Resources/betlist.core.js"));
+                "~/Views/BetList/Resources/betlist-core.js"));
         }
 
         /// <summary>

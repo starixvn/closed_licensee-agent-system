@@ -1,6 +1,6 @@
 ﻿/*global CORE*/
     CORE.DisableRecheckIn = true;
-var underMaintenance = (function ($) {
+var underMaintenanceError = (function ($) {
     /*jshint strict:false */
     return {
         init: function () {
@@ -9,7 +9,7 @@ var underMaintenance = (function ($) {
                 return;
             }
 
-            setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
+            setTimeout(function () { underMaintenanceError.reCheckUM(); }, 30000);
         },
 
         reCheckUM: function () {
@@ -23,12 +23,12 @@ var underMaintenance = (function ($) {
             .done(function (result) {
                 if (result.ErrCode !== 0) {
                     alert(result.ErrMsg);
-                    setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
+                    setTimeout(function () { underMaintenanceError.reCheckUM(); }, 30000);
                     return;
                 }
 
                 if (result.Status) {
-                    setTimeout(function () { underMaintenance.reCheckUM(); }, 30000);
+                    setTimeout(function () { underMaintenanceError.reCheckUM(); }, 30000);
                 }
                 else {
                     location.href = CORE.UrlRoot;
@@ -40,5 +40,5 @@ var underMaintenance = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    underMaintenance.init();
+    underMaintenanceError.init();
 });

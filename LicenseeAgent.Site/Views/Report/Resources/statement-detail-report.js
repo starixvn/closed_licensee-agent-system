@@ -34,7 +34,7 @@ var statementDetailReport = (function ($) {
                             itemsPerPageArray: CORE.pageSizes,
                             totalItem: data.List.length
                         };
-                        
+
                         gridOptions.bodyRows = statementDetailReport.genGridRows(data.List, gridOptions, $('#IsMember').val());
                         $('#grid').show().fanexGrid(gridOptions);
 

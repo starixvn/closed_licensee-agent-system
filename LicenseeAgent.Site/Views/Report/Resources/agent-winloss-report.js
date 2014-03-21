@@ -1,6 +1,6 @@
 ﻿/*global gridOptions, CORE, pageContext, LANGUAGE*/
 
-var agentWinLoss = (function ($) {
+var agentWinLossReport = (function ($) {
     /*jshint strict:false */
     return {
         init: function () {
@@ -9,21 +9,21 @@ var agentWinLoss = (function ($) {
             $('#toDatePicker').datepicker();
 
             $('#search').click(function () {
-                agentWinLoss.dataGridBinding();
+                agentWinLossReport.dataGridBinding();
                 return false;
             });
             $('#today').click(function () {
                 var today = $(this).data('date');
                 $('#fromDatePicker').datepicker('update', today);
                 $('#toDatePicker').datepicker('update', today);
-                agentWinLoss.dataGridBinding();
+                agentWinLossReport.dataGridBinding();
                 return false;
             });
             $('#yesterday').click(function () {
                 var yesterday = $(this).data('date');
                 $('#fromDatePicker').datepicker('update', yesterday);
                 $('#toDatePicker').datepicker('update', yesterday);
-                agentWinLoss.dataGridBinding();
+                agentWinLossReport.dataGridBinding();
                 return false;
             });
 
@@ -32,10 +32,10 @@ var agentWinLoss = (function ($) {
                 var agentId = $(this).data('agent-id');
                 var agentLevel = $(this).data('agent-level');
                 var agentName = $(this).text();
-                agentWinLoss.ViewDownline(agentId, agentLevel, agentName);
+                agentWinLossReport.ViewDownline(agentId, agentLevel, agentName);
             });
 
-            agentWinLoss.dataGridBinding();
+            agentWinLossReport.dataGridBinding();
         },
 
         dataGridBinding: function () {
@@ -53,14 +53,14 @@ var agentWinLoss = (function ($) {
                         if (data.List.length > 0) {
                             var totalRow = data.Total[0];
                             if (pageContext.IsLastLevel) {
-                                gridOptions.footerRows = agentWinLoss.footerMember(totalRow);
+                                gridOptions.footerRows = agentWinLossReport.footerMember(totalRow);
                             }
                             else {
                                 if (pageContext.AgentLevel === 1) {
-                                    gridOptions.footerRows = agentWinLoss.footerLicensee(totalRow);
+                                    gridOptions.footerRows = agentWinLossReport.footerLicensee(totalRow);
                                 }
                                 else {
-                                    gridOptions.footerRows = agentWinLoss.footerAgent(totalRow);
+                                    gridOptions.footerRows = agentWinLossReport.footerAgent(totalRow);
                                 }
                             }
                         }
@@ -156,5 +156,5 @@ var agentWinLoss = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    agentWinLoss.init();
+    agentWinLossReport.init();
 });

@@ -15,7 +15,7 @@
         columns: [
                     { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "center",
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                            return ("<a href='javascript:agentWinLoss.ViewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
+                            return ("<a href='javascript:agentWinLossReport.ViewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
                         }
                     },
                     { HeaderText: "@Las.BetCount", Width: 200, Name: "BetCount", HeaderAlign: "center", AllowTruncate: true, CanResize: true },

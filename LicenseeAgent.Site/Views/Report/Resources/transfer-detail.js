@@ -19,11 +19,11 @@ var gridOptions = {
     autoResizeColumn: true
 };
 
-var Transfer = (function ($) {
+var transferDetail = (function ($) {
     /*jshint strict:false */
     return {
         init: function () {
-            Transfer.dataGridBinding();
+            transferDetail.dataGridBinding();
         },
         dataGridBinding: function () {
             var submitOptions = $('form').serializeObject();
@@ -37,7 +37,7 @@ var Transfer = (function ($) {
                 success: function (data) {
                     if (data.ErrCode === 0) {
                         gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
-                        gridOptions.footerRows = Transfer.footerRow(data.Total);
+                        gridOptions.footerRows = transferDetail.footerRow(data.Total);
                         $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
@@ -66,5 +66,5 @@ var Transfer = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    Transfer.init();
+    transferDetail.init();
 });

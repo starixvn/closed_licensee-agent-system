@@ -4,7 +4,7 @@
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Las.Username", Width: 100, Name: "Username", HeaderAlign: "center", AllowTruncate: true, CanResize: true, CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a href='javascript:Statement.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustId, cell.Value);
+                        return ("<a href='javascript:statementReport.ViewDetail({0}, \"{1}\");'>" + cell.Value + "</a>").format(rowData.CustId, cell.Value);
                     }
                 },
                 { HeaderText: "@Las.FullName", Width: 100, Name: "LastName", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true, Formatter:
@@ -19,7 +19,7 @@
                 { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
                 { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a class='num-link' href='javascript:Statement.TransferDetail({0}, \"{1}\");'>" + cellFormated + "</a>").format(rowData.CustId, rowData.Username);
+                        return ("<a class='num-link' href='javascript:statementReport.TransferDetail({0}, \"{1}\");'>" + cellFormated + "</a>").format(rowData.CustId, rowData.Username);
                     }
                 },
                 { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }

@@ -1,16 +1,16 @@
 ﻿/*global gridOptions, CORE, pageContext, POPUP*/
 
-var Statement = (function ($) {
+var statementReport = (function ($) {
     /*jshint strict:false */
     return {
         init: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
             $('#search').click(function () {
-                Statement.dataGridBinding();
+                statementReport.dataGridBinding();
                 return false;
             });
-            Statement.dataGridBinding();
+            statementReport.dataGridBinding();
         },
         dataGridBinding: function () {
             var submitOptions = $('form').serializeObject();
@@ -60,5 +60,5 @@ var Statement = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    Statement.init();
+    statementReport.init();
 });

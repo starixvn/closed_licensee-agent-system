@@ -1,16 +1,16 @@
 ﻿/*global gridOptions, CORE, POPUP, LANGUAGE, moment*/
 
-var statementDetail = (function ($) {
+var statementDetailReport = (function ($) {
     /*jshint strict:false */
     return {
         init: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
             $('#search').click(function () {
-                statementDetail.dataGridBinding();
+                statementDetailReport.dataGridBinding();
                 return false;
             });
-            statementDetail.dataGridBinding();
+            statementDetailReport.dataGridBinding();
         },
         dataGridBinding: function () {
             if (!$.trim($('#Username').val())) {
@@ -34,8 +34,8 @@ var statementDetail = (function ($) {
                             itemsPerPageArray: CORE.pageSizes,
                             totalItem: data.List.length
                         };
-                        
-                        gridOptions.bodyRows = statementDetail.genGridRows(data.List, gridOptions, $('#IsMember').val());
+
+                        gridOptions.bodyRows = statementDetailReport.genGridRows(data.List, gridOptions, $('#IsMember').val());
                         $('#grid').show().fanexGrid(gridOptions);
 
                         if ($('#spanUsername').length > 0) {
@@ -123,5 +123,5 @@ var statementDetail = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    statementDetail.init();
+    statementDetailReport.init();
 });

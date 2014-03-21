@@ -316,7 +316,7 @@ namespace LicenseeAgent.Site
         private static void RegisterReportPage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
-                "~/Views/Report/Resources/ResultsReport.js"));
+                "~/Views/Report/Resources/result-report.js"));
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Results/fanex.result.css",
                 "~/Content/Results/results.css"));
@@ -325,16 +325,16 @@ namespace LicenseeAgent.Site
                  "~/Views/Report/Resources/Outstanding.less"));
             bundles.Add(new ScriptBundle("~/js/outstandingreport").Include(
                 "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/Report/Resources/OutstandingReport.js"));
+                "~/Views/Report/Resources/outstanding-report.js"));
 
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
-                "~/Views/Report/Resources/AgentWinlossReport.js"));
+                "~/Views/Report/Resources/agent-winloss-report.js"));
             bundles.Add(new ScriptBundle("~/js/statement").Include(
-                "~/Views/Report/Resources/Statement.js"));
+                "~/Views/Report/Resources/statement-report.js"));
             bundles.Add(new ScriptBundle("~/js/statementdetail").Include(
-                "~/Views/Report/Resources/StatementDetail.js"));
+                "~/Views/Report/Resources/statement-detail-report.js"));
             bundles.Add(new ScriptBundle("~/js/transferdetail").Include(
-                "~/Views/Report/Resources/TransferDetail.js"));
+                "~/Views/Report/Resources/transfer-detail.js"));
         }
 
         /// <summary>

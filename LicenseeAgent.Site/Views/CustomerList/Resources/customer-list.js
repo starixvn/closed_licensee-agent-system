@@ -117,11 +117,11 @@ var customerList = (function ($) {
                 $('#menuEditInfo').hide();
             }
             if (pageContext.IsLastLevel) {
-                editMemberId = parseInt($(target).data('memberid'), 0);
+                editMemberId = parseInt($(target).data('memberid'), null);
                 editUsername = $(target).data('username');
             } else {
-                editAgentId = parseInt($(target).data('agentid'), 0);
-                editAgentLevel = parseInt($(target).data('agentlevel'), 0);
+                editAgentId = parseInt($(target).data('agentid'), null);
+                editAgentLevel = parseInt($(target).data('agentlevel'), null);
             }
         },
         gridAfterBinding: function() {

@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global CORE, LANGUAGE*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
@@ -18,7 +20,8 @@
     autoResizeColumn: true
 };
 
-var SoccerBetList = function ($) {
+var SoccerBetList = (function ($) {
+    /*jshint strict:false */
     return {
         sportType: 1, //Soccer sporttype
         init: function () {
@@ -44,7 +47,7 @@ var SoccerBetList = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -56,8 +59,10 @@ var SoccerBetList = function ($) {
                 }
             });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
+
 $(function () {
+    /*jshint strict:false */
     SoccerBetList.init();
 });

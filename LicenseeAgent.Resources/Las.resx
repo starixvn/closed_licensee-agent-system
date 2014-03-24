@@ -1071,10 +1071,162 @@
   </data>
   <data name="AgentShare" xml:space="preserve">
     <value>Agent Share</value>
+      </data>
+  <data name="AgentCommission" xml:space="preserve">
+    <value>Agent Commission</value>
   </data>
   <data name="Mine" xml:space="preserve">
     <value>Mine</value>
+  <data name="ApplyForAllMembers" xml:space="preserve">
+    <value>Apply for all members</value>
   </data>
+  <data name="Baseball" xml:space="preserve">
+    <value>Baseball</value>
+  </data>
+  <data name="BasketBallCopyPtTooltip" xml:space="preserve">
+    <value>Copy all below position taking settings from Basketball Handicap</value>
+  </data>
+  <data name="BasketballHandicapCopyPt" xml:space="preserve">
+    <value>Basketball - Handicap position taking setting is being applied to:</value>
+  </data>
+  <data name="Comm1x2" xml:space="preserve">
+    <value>1x2 Comm (%)</value>
+  </data>
+  <data name="CommissionGroup" xml:space="preserve">
+    <value>Commission Group</value>
+  </data>
+  <data name="CopyAllBetSettingBasketBall" xml:space="preserve">
+    <value>Copy all below bet settings from Basketball</value>
+  </data>
+  <data name="CopyAllBetSettingSoccer" xml:space="preserve">
+    <value>Copy all below bet settings from Soccer</value>
+  </data>
+  <data name="FirstHandicap" xml:space="preserve">
+    <value>1st Handicap</value>
+  </data>
+  <data name="FirstOverUnder" xml:space="preserve">
+    <value>1st Over/Under</value>
+  </data>
+  <data name="Football" xml:space="preserve">
+    <value>Football</value>
+  </data>
+  <data name="GivenMaxCredit" xml:space="preserve">
+    <value>Given credit must be between 0 and {0}</value>
+  </data>
+  <data name="Golf" xml:space="preserve">
+    <value>Golf</value>
+  </data>
+  <data name="GroupA" xml:space="preserve">
+    <value>Group A (%)</value>
+  </data>
+  <data name="GroupB" xml:space="preserve">
+    <value>Group B (%)</value>
+  </data>
+  <data name="GroupC" xml:space="preserve">
+    <value>Group C (%)</value>
+  </data>
+  <data name="GroupD" xml:space="preserve">
+    <value>Group D (%)</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>Handicap</value>
+  </data>
+  <data name="HdpOuOeComm" xml:space="preserve">
+    <value>HDP, OU, OE (%)</value>
+  </data>
+  <data name="InvalidRange" xml:space="preserve">
+    <value>Invalid range, input must be in</value>
+  </data>
+  <data name="MaxBet" xml:space="preserve">
+    <value>Max Bet</value>
+  </data>
+  <data name="MaxBetLessThanOrEqualMaxPerMatch" xml:space="preserve">
+    <value>Max Bet must be less than or equal to Max Per Match</value>
+  </data>
+  <data name="MaxBetLessThanOrEqualTo" xml:space="preserve">
+    <value>Max Per Match must be greater than or equal to Max Bet</value>
+  </data>
+  <data name="MaxBetMoreThanOrEqualMinBet" xml:space="preserve">
+    <value>Max Bet must be greater than or equal to Min Bet</value>
+  </data>
+  <data name="MaxDownline" xml:space="preserve">
+    <value>% Max Downline</value>
+  </data>
+  <data name="MaxPerMatch" xml:space="preserve">
+    <value>Max Per Match</value>
+  </data>
+  <data name="MaxPerMatchLessThanOrEqualTo" xml:space="preserve">
+    <value>Max Per Match must be less than or equal to</value>
+  </data>
+  <data name="MaxPerMatchMoreThanOrEqualMaxBet" xml:space="preserve">
+    <value>Max Per Match must be greater than or equal to Max Bet</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>Member Commission</value>
+  </data>
+  <data name="MinBet" xml:space="preserve">
+    <value>Min Bet</value>
+  </data>
+  <data name="MinBetLessThanOrEqualMaxBet" xml:space="preserve">
+    <value>Min Bet must be less than or equal to Max Bet</value>
+  </data>
+  <data name="MinBetMoreThanOrEqualTo" xml:space="preserve">
+    <value>Min Bet must be greater than or equal to</value>
+  </data>
+  <data name="MinDownline" xml:space="preserve">
+    <value>% Min Downline</value>
+  </data>
+  <data name="MotorSports" xml:space="preserve">
+    <value>Motor Sports</value>
+  </data>
+  <data name="NoUpdating" xml:space="preserve">
+    <value>There is no updating.</value>
+  </data>
+  <data name="OddEven" xml:space="preserve">
+    <value>Odd/Even</value>
+  </data>
+  <data name="OneXTwo" xml:space="preserve">
+    <value>1 X 2</value>
+  </data>
+  <data name="OnlyNumberBetweenNumber" xml:space="preserve">
+    <value>Only numbers , (,) between number</value>
+  </data>
+  <data name="OnMember" xml:space="preserve">
+    <value>% on Member</value>
+  </data>
+  <data name="OtherBettypeOfBasketball" xml:space="preserve">
+    <value>Other bet types of Basketball</value>
+  </data>
+  <data name="OtherBettypeOfSoccer" xml:space="preserve">
+    <value>Other bet types of Soccer</value>
+  </data>
+  <data name="OtherComm" xml:space="preserve">
+    <value>Others Comm (%)</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>Over/Under</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>% Preset</value>
+  </data>
+  <data name="SoccerDeadballCopyPtTooltip" xml:space="preserve">
+    <value>Copy all below position taking settings from Soccer – Dead Ball Handicap</value>
+  </data>
+  <data name="SoccerHandicapCopyPt" xml:space="preserve">
+    <value>Soccer – Dead Ball Handicap position taking setting is being applied to:</value>
+  </data>
+  <data name="SoccerHandicapCopyPtTooltip" xml:space="preserve">
+    <value>Copy from Handicap</value>
+  </data>
+  <data name="SoccerOnexTwoCopyPtTooltip" xml:space="preserve">
+    <value>Copy from 1X2</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>Tennis</value>
+  </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>Total Goal</value>
+   </data>
   <data name="FinalScore" xml:space="preserve">
     <value>Final Score</value>
   </data>

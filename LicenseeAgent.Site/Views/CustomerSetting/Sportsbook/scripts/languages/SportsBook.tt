@@ -1,0 +1,122 @@
+﻿<#@ template debug="true" hostspecific="true"#>
+<#@ output extension=".js" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Resources"#>
+<#@ include file="$(ProjectDir)\\Scripts\\ResourcesJs\\TemplateFileManagerV2.1.ttinclude" #>
+
+<#
+	var solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
+	var resourcePath = Path.Combine(solutionPath, "LicenseeAgent.Resources");
+	var fileNames = new string[]
+	{
+		Path.Combine(resourcePath, "Las.resx"),
+		Path.Combine(resourcePath, "Las.zh-CN.resx"),
+		Path.Combine(resourcePath, "Las.zh-TW.resx")
+	};
+
+	var manager = TemplateFileManager.Create(this);
+
+	foreach (string filePath in fileNames) 
+	{
+		var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1).Replace(".resx","");
+		var cultureIndex = fileName.IndexOf(".");
+		var culture = cultureIndex > 0 ? fileName.Substring(cultureIndex + 1) : "en-US";
+		var resourceXSet = new ResXResourceSet(filePath);
+
+		manager.StartNewFile(string.Format("sports-book-lang.{0}.js", culture));
+#>
+
+if (fanex.customerSetting) {
+	fanex.customerSetting.language = fanex.customerSetting.language || {};
+	fanex.customerSetting.language['<#=culture#>'] = {
+		// Common messages
+		message_ValueIsNotInRange: '<#= resourceXSet.GetString("InvalidRange")#>',
+		message_DataIsNotChanged: '<#= resourceXSet.GetString("NoUpdating")#>',
+
+		// Commission setting messages
+		commissionSetting_SimpleModelHeader: '<#= resourceXSet.GetString("Commission")#>',
+		commissionSetting_GroupA: '<#= resourceXSet.GetString("GroupA")#>',
+		commissionSetting_GroupB: '<#= resourceXSet.GetString("GroupB")#>',
+		commissionSetting_GroupC: '<#= resourceXSet.GetString("GroupC")#>',
+		commissionSetting_GroupD: '<#= resourceXSet.GetString("GroupD")#>',
+		commissionSetting_1x2Comm: '<#= resourceXSet.GetString("Comm1x2")#>',
+		commissionSetting_OthersComm: '<#= resourceXSet.GetString("OtherComm")#>',
+		commissionSetting_CommissionGroup: '<#= resourceXSet.GetString("CommissionGroup")#>',
+		commissionSetting_AgentCommission: '<#= resourceXSet.GetString("AgentCommission")#>',
+		commissionSetting_MemberCommission: '<#= resourceXSet.GetString("MemberCommission")#>',
+		commissionSetting_HDP_OU_OE_Comm: '<#= resourceXSet.GetString("HdpOuOeComm")#>',
+
+		// Bet setting messages
+		bettingLimit_SimpleModelHeader: '<#= resourceXSet.GetString("BetSetting")#>',
+		bettingLimit_MinBet: '<#= resourceXSet.GetString("MinBet")#>',
+		bettingLimit_MaxBet: '<#= resourceXSet.GetString("MaxBet")#>',
+		bettingLimit_MaxPerMatch: '<#= resourceXSet.GetString("MaxPerMatch")#>',
+		bettingLimit_Soccer_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingSoccer")#>',
+		bettingLimit_Basketball_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingBasketBall")#>',
+		sport_1_1: '<#= resourceXSet.GetString("Soccer")#>',
+		sport_2_1: '<#= resourceXSet.GetString("Basketball")#>',
+		sport_3_1: '<#= resourceXSet.GetString("Football")#>',
+		sport_5_1: '<#= resourceXSet.GetString("Tennis")#>',
+		sport_8_1: '<#= resourceXSet.GetString("Baseball")#>',
+		sport_10_1: '<#= resourceXSet.GetString("Golf")#>',
+		sport_11_1: '<#= resourceXSet.GetString("MotorSports")#>',
+		sport_99_1: '<#= resourceXSet.GetString("OtherSports")#>',
+		sport_99_9: '<#= resourceXSet.GetString("MixSportsParlay")#>',
+		bettingLimit_Message_OnlyNumber: '<#= resourceXSet.GetString("OnlyNumberBetweenNumber")#>',
+		bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "<#= resourceXSet.GetString("MinBetLessThanOrEqualMaxBet")#>",
+		bettingLimit_Message_MinBetMoreThanOrEqualTo: "<#= resourceXSet.GetString("MinBetMoreThanOrEqualTo")#> ",
+		bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "<#= resourceXSet.GetString("MaxBetMoreThanOrEqualMinBet")#>",
+		bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualMaxPerMatch")#>",
+		bettingLimit_Message_MaxBetLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualTo")#> ",
+		bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "<#= resourceXSet.GetString("MaxPerMatchMoreThanOrEqualMaxBet")#>",
+		bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerMatchLessThanOrEqualTo")#> ",
+		customerInfo_Message_MaxCredit: '<#= resourceXSet.GetString("GivenMaxCredit")#>',
+
+		// Position taking messages
+		sport_1_false_1: '<#= resourceXSet.GetString("Soccer")#> - <#= resourceXSet.GetString("DeadBall")#>',
+		sport_1_true_1: '<#= resourceXSet.GetString("Soccer")#> - <#= resourceXSet.GetString("Live")#>',
+		sport_2_false_1: '<#= resourceXSet.GetString("Basketball")#>',
+		sport_3_false_1: '<#= resourceXSet.GetString("Football")#>',
+		sport_5_false_1: '<#= resourceXSet.GetString("Tennis")#>',
+		sport_8_false_1: '<#= resourceXSet.GetString("Baseball")#>',
+		sport_10_false_1: '<#= resourceXSet.GetString("Golf")#>',
+		sport_11_false_1: '<#= resourceXSet.GetString("MotorSports")#>',
+		sport_99_false_1: '<#= resourceXSet.GetString("OtherSports")#>',
+		sport_99_false_9: '<#= resourceXSet.GetString("MixSportsParlay")#>',
+		bettype_1: '<#= resourceXSet.GetString("Handicap")#>',
+		bettype_2: '<#= resourceXSet.GetString("OddEven")#>',
+		bettype_3: '<#= resourceXSet.GetString("OverUnder")#>',
+		bettype_4: '<#= resourceXSet.GetString("CorrectScore")#>',
+		bettype_5: '<#= resourceXSet.GetString("OneXTwo")#>',
+		bettype_6: '<#= resourceXSet.GetString("TotalGoal")#>',
+		bettype_7: '<#= resourceXSet.GetString("FirstHandicap")#>',
+		bettype_8: '<#= resourceXSet.GetString("FirstOverUnder")#>',
+		bettype_9: '<#= resourceXSet.GetString("MixParlay")#>',
+		bettype_10: '<#= resourceXSet.GetString("Outright")#>',
+		bettype_20: '<#= resourceXSet.GetString("MoneyLine")#>',
+		maxPt: '<#= resourceXSet.GetString("MaxDownline")#>',
+		minPt: '<#= resourceXSet.GetString("MinDownline")#>',
+		presetPt: '<#= resourceXSet.GetString("Preset")#>',
+		memberPt: '<#= resourceXSet.GetString("OnMember")#>',
+		soccerDeadballCopyPtTooltip: '<#= resourceXSet.GetString("SoccerDeadballCopyPtTooltip")#>',
+		basketBallCopyPtTooltip: '<#= resourceXSet.GetString("BasketBallCopyPtTooltip")#>',
+		soccerHandicapCopyPtTooltip: '<#= resourceXSet.GetString("SoccerHandicapCopyPtTooltip")#>',
+		soccerOnexTwoCopyPtTooltip: '<#= resourceXSet.GetString("SoccerOnexTwoCopyPtTooltip")#>',
+		soccerHandicapCopyPt: '<#= resourceXSet.GetString("SoccerHandicapCopyPt")#>',
+		basketballHandicapCopyPt: '<#= resourceXSet.GetString("BasketballHandicapCopyPt")#>',
+		otherBettypeOfSoccer: '<#= resourceXSet.GetString("OtherBettypeOfSoccer")#>',
+		otherBettypeOfBasketball: '<#= resourceXSet.GetString("OtherBettypeOfBasketball")#>',
+		applyForAllMembers: '<#= resourceXSet.GetString("ApplyForAllMembers")#>'
+	};
+}
+else {
+	alert("Missing fanex.customerSetting in language");
+}
+
+<#
+    }
+	manager.Process();
+#>

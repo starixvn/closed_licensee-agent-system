@@ -12,10 +12,10 @@
               var gridOptions = {
                   columns: [
                         /*{
-                            HeaderText: '<i class="icon-uncheck-all" onclick="TRANSFER_LIST.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+                            HeaderText: '<i class="icon-uncheck-all" onclick="transferList.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
                             Width: 30, Name: "Select", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-select icon icon-uncheck" onclick="TRANSFER_LIST.toggleCheck(this);"></span>';
+                                return '<span class="cell-select icon icon-uncheck" onclick="transferList.toggleCheck(this);"></span>';
                             }
                         },*/
                         {
@@ -47,7 +47,7 @@
                         {
                             HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<i class="icon-transfer" onclick="TRANSFER_LIST.transferMember({0}, {1})" title="{2}"></i>'.format(rowData.CustId, -rowData.YesterdayBalance, '@Las.Transfer');
+                                return '<i class="icon-transfer" onclick="transferList.transferMember({0}, {1})" title="{2}"></i>'.format(rowData.CustId, -rowData.YesterdayBalance, '@Las.Transfer');
                             }
                         },
                         {

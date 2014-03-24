@@ -1,6 +1,6 @@
 ﻿/*global POPUP, gridOptions, context, CORE, LANGUAGE*/
 
-var TRANSFER_LIST = (function ($) {
+var transferList = (function ($) {
     /*jshint strict:false */
     var records;
     return {
@@ -11,12 +11,12 @@ var TRANSFER_LIST = (function ($) {
                 preventDoubleContext: false
             });
             context.attach('#select-dropdown', [
-                { text: LANGUAGE.getString('All'), href: '#', action: TRANSFER_LIST.checkAll },
-                { text: LANGUAGE.getString('None'), href: '#', action: TRANSFER_LIST.uncheckAll }
+                { text: LANGUAGE.getString('All'), href: '#', action: transferList.checkAll },
+                { text: LANGUAGE.getString('None'), href: '#', action: transferList.uncheckAll }
             ]);
 
             $('#search-form').submit(function (e) {
-                TRANSFER_LIST.submit();
+                transferList.submit();
                 e.preventDefault();
             });
 
@@ -40,7 +40,7 @@ var TRANSFER_LIST = (function ($) {
                         return;
                     }
                     records = data.List;
-                    TRANSFER_LIST.pagerSelectCallBack(0, CORE.pageSizes[2]);
+                    transferList.pagerSelectCallBack(0, CORE.pageSizes[2]);
                 },
                 complete: function () {
                     CORE.unblockUI();
@@ -83,10 +83,10 @@ var TRANSFER_LIST = (function ($) {
         },
         toggleAll: function (target) {
             if ($(target).hasClass("icon-uncheck-all")) {
-                TRANSFER_LIST.checkAll();
+                transferList.checkAll();
             }
             else {
-                TRANSFER_LIST.uncheckAll();
+                transferList.uncheckAll();
             }
         },
         checkAll: function () {
@@ -110,5 +110,5 @@ var TRANSFER_LIST = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    TRANSFER_LIST.init();
+    transferList.init();
 });

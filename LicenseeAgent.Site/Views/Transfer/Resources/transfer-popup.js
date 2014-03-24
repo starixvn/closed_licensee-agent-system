@@ -1,4 +1,4 @@
-﻿var TRANSFER_POPUP = (function ($) {
+﻿var transferPopUp = (function ($) {
     /*jshint strict:false */
     var minAmount;
     var maxAmount;
@@ -20,12 +20,12 @@
                 aPad: false
             })
             .on('keyup', function () {
-                TRANSFER_POPUP.validateAmount(this);
+                transferPopUp.validateAmount(this);
             });
 
             $("form").validate().cancelSubmit = true;
             $('form').submit(function (e) {
-                if (!TRANSFER_POPUP.validateAmount($('#Amount'))) {
+                if (!transferPopUp.validateAmount($('#Amount'))) {
                     e.preventDefault();
                 }
                 else {
@@ -49,5 +49,5 @@
 
 $(function () {
     /*jshint strict:false */
-    TRANSFER_POPUP.init();
+    transferPopUp.init();
 });

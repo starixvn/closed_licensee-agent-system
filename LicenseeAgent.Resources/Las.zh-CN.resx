@@ -1062,9 +1062,162 @@
   </data>
   <data name="AgentShare" xml:space="preserve">
     <value>代理占成</value>
+    </data>
+  <data name="AgentCommission" xml:space="preserve">
+    <value>代理佣金</value>
   </data>
   <data name="Mine" xml:space="preserve">
     <value>矿</value>
+        </data>
+  <data name="ApplyForAllMembers" xml:space="preserve">
+    <value>所有會員立刻生效</value>
+  </data>
+  <data name="Baseball" xml:space="preserve">
+    <value>棒球</value>
+  </data>
+  <data name="BasketBallCopyPtTooltip" xml:space="preserve">
+    <value>从篮球让球复制所有占成数</value>
+  </data>
+  <data name="BasketballHandicapCopyPt" xml:space="preserve">
+    <value>篮球让分盘所占份额的设置适用于：</value>
+  </data>
+  <data name="Comm1x2" xml:space="preserve">
+    <value>1x2 佣金 (%)</value>
+  </data>
+  <data name="CommissionGroup" xml:space="preserve">
+    <value>群组退水</value>
+  </data>
+  <data name="CopyAllBetSettingBasketBall" xml:space="preserve">
+    <value>复制篮球赛事中的所有投注设置</value>
+  </data>
+  <data name="CopyAllBetSettingSoccer" xml:space="preserve">
+    <value>从足球设定复制所有投注设定和占成数</value>
+  </data>
+  <data name="FirstHandicap" xml:space="preserve">
+    <value>上半场亚洲盘</value>
+  </data>
+  <data name="FirstOverUnder" xml:space="preserve">
+    <value>上半场大小盘</value>
+  </data>
+  <data name="Football" xml:space="preserve">
+    <value>美式足球</value>
+  </data>
+  <data name="GivenMaxCredit" xml:space="preserve">
+    <value>给定信贷额必须在0和{0}之间</value>
+  </data>
+  <data name="Golf" xml:space="preserve">
+    <value>高尔夫球</value>
+  </data>
+  <data name="GroupA" xml:space="preserve">
+    <value>A组 (%)</value>
+  </data>
+  <data name="GroupB" xml:space="preserve">
+    <value>B组 (%)</value>
+  </data>
+  <data name="GroupC" xml:space="preserve">
+    <value>C组 (%)</value>
+  </data>
+  <data name="GroupD" xml:space="preserve">
+    <value>D组 (%)</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>让球</value>
+  </data>
+  <data name="HdpOuOeComm" xml:space="preserve">
+    <value>让球, 大小盘, 单双盘 (%)</value>
+  </data>
+  <data name="InvalidRange" xml:space="preserve">
+    <value>范围无效，输入值必须在 以内</value>
+  </data>
+  <data name="MaxBet" xml:space="preserve">
+    <value>最高投注</value>
+  </data>
+  <data name="MaxBetLessThanOrEqualMaxPerMatch" xml:space="preserve">
+    <value>最大投注额必须小于或等于最大单场比赛投注额</value>
+  </data>
+  <data name="MaxBetLessThanOrEqualTo" xml:space="preserve">
+    <value>最大投注额必须小于或等于</value>
+  </data>
+  <data name="MaxBetMoreThanOrEqualMinBet" xml:space="preserve">
+    <value>最大投注额必须大于或等于最小投注额</value>
+  </data>
+  <data name="MaxDownline" xml:space="preserve">
+    <value>百分之的最大下线值</value>
+  </data>
+  <data name="MaxPerMatch" xml:space="preserve">
+    <value>单场限额</value>
+  </data>
+  <data name="MaxPerMatchLessThanOrEqualTo" xml:space="preserve">
+    <value>最大单场比赛投注额必须小于或等于</value>
+  </data>
+  <data name="MaxPerMatchMoreThanOrEqualMaxBet" xml:space="preserve">
+    <value>最大单场比赛投注额必须大于或等于最大投注额</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>会员佣金</value>
+  </data>
+  <data name="MinBet" xml:space="preserve">
+    <value>最低投注</value>
+  </data>
+  <data name="MinBetLessThanOrEqualMaxBet" xml:space="preserve">
+    <value>最小投注额必须小于或等于最大投注额</value>
+  </data>
+  <data name="MinBetMoreThanOrEqualTo" xml:space="preserve">
+    <value>最大投注额必须大于或等于</value>
+  </data>
+  <data name="MinDownline" xml:space="preserve">
+    <value>百分之的最小下线值</value>
+  </data>
+  <data name="MotorSports" xml:space="preserve">
+    <value>赛车</value>
+  </data>
+  <data name="NoUpdating" xml:space="preserve">
+    <value>没有更新信息。</value>
+  </data>
+  <data name="OddEven" xml:space="preserve">
+    <value>单双</value>
+  </data>
+  <data name="OneXTwo" xml:space="preserve">
+    <value>1 X 2</value>
+  </data>
+  <data name="OnlyNumberBetweenNumber" xml:space="preserve">
+    <value>数字间只能有数字(,)</value>
+  </data>
+  <data name="OnMember" xml:space="preserve">
+    <value>百分之的会员</value>
+  </data>
+  <data name="OtherBettypeOfBasketball" xml:space="preserve">
+    <value>其他投注类型的篮球</value>
+  </data>
+  <data name="OtherBettypeOfSoccer" xml:space="preserve">
+    <value>其他投注类型的足球</value>
+  </data>
+  <data name="OtherComm" xml:space="preserve">
+    <value>其他佣金 (%)</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>大小盘</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>百分之的预设值</value>
+  </data>
+  <data name="SoccerDeadballCopyPtTooltip" xml:space="preserve">
+    <value>从足球死球让分盘复制所有占成数</value>
+  </data>
+  <data name="SoccerHandicapCopyPt" xml:space="preserve">
+    <value>足球死球让分盘的宣示价位设置适用于：</value>
+  </data>
+  <data name="SoccerHandicapCopyPtTooltip" xml:space="preserve">
+    <value>复制亚洲盘占成数</value>
+  </data>
+  <data name="SoccerOnexTwoCopyPtTooltip" xml:space="preserve">
+    <value>复制1X2占成数</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>网球</value>
+  </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>总进球</value>
   </data>
   <data name="FinalScore" xml:space="preserve">
     <value>最后比分</value>

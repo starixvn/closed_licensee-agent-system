@@ -1,4 +1,6 @@
-﻿var gridOptions = {
+﻿/*global refreshCountDownMethods, reportGridOptions, CORE, LANGUAGE*/
+
+var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
                 { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
@@ -18,7 +20,8 @@
     autoResizeColumn: true
 };
 
-var Outright = function ($) {
+var Outright = (function ($) {
+    /*jshint strict:false */
     return {
         checkedAllSport: true,
         checkedAllLeague: true,
@@ -237,7 +240,7 @@ var Outright = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    reportGridOptions.bodyRows = Outright.genGridRows(data.List, reportGridOptions);
+                    reportGridOptions.bodyRows = Outright.genGridRows(data.List);
                     $('#BetListGrid').show().fanexGrid(reportGridOptions);
                 },
                 complete: function () {
@@ -246,14 +249,9 @@ var Outright = function ($) {
             });
         },
 
-        genGridRows: function (list, options) {
-            var columns = options.columns;
-            var rowCssClass = options.rowCssClass; // custom option
-            var rowHeight = options.RowHeight;
-            var indexNumberColumn = options.indexNumberColumn; // custom option
+        genGridRows: function (list) {
             var len = list.length;
             var bodyRows = [];
-            var leagueId = 0;
             var rowIndex = 0;
 
             for (var k = 0; k < len; k++) { //Sport
@@ -324,7 +322,7 @@ var Outright = function ($) {
                     CORE.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode != 0) {
+                    if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
@@ -349,8 +347,9 @@ var Outright = function ($) {
             $("#totalbets-back").attr("class", "history-back hide");
             $('form').submit();
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 $(function () {
+    /*jshint strict:false */
     Outright.init();
 });

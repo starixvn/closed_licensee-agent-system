@@ -215,15 +215,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent Share.
-        /// </summary>
-        public static string AgentShare {
-            get {
-                return ResourceManager.GetString("AgentShare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Agent Win Loss.
         /// </summary>
         public static string AgentWinLoss {
@@ -1061,15 +1052,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Final Score.
-        /// </summary>
-        public static string FinalScore {
-            get {
-                return ResourceManager.GetString("FinalScore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First.
         /// </summary>
         public static string First {
@@ -1079,11 +1061,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Half Score.
+        ///   Looks up a localized string similar to 1st Handicap.
         /// </summary>
-        public static string FirstHalfScore {
+        public static string FirstHandicap {
             get {
-                return ResourceManager.GetString("FirstHalfScore", resourceCulture);
+                return ResourceManager.GetString("FirstHandicap", resourceCulture);
             }
         }
         
@@ -1529,15 +1511,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kick Off. Time.
-        /// </summary>
-        public static string KickOffTime {
-            get {
-                return ResourceManager.GetString("KickOffTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -1691,20 +1664,47 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Match.
-        /// </summary>
-        public static string Match {
-            get {
-                return ResourceManager.GetString("Match", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Match Results.
         /// </summary>
         public static string MatchResults {
             get {
                 return ResourceManager.GetString("MatchResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet.
+        /// </summary>
+        public static string MaxBet {
+            get {
+                return ResourceManager.GetString("MaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be less than or equal to Max Per Match.
+        /// </summary>
+        public static string MaxBetLessThanOrEqualMaxPerMatch {
+            get {
+                return ResourceManager.GetString("MaxBetLessThanOrEqualMaxPerMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match must be greater than or equal to Max Bet.
+        /// </summary>
+        public static string MaxBetLessThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MaxBetLessThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be greater than or equal to Min Bet.
+        /// </summary>
+        public static string MaxBetMoreThanOrEqualMinBet {
+            get {
+                return ResourceManager.GetString("MaxBetMoreThanOrEqualMinBet", resourceCulture);
             }
         }
         
@@ -1898,11 +1898,37 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mine.
         /// </summary>
-        public static string Mine {
+        public static string MinBet {
             get {
-                return ResourceManager.GetString("Mine", resourceCulture);
+                return ResourceManager.GetString("MinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet must be less than or equal to Max Bet.
+        /// </summary>
+        public static string MinBetLessThanOrEqualMaxBet {
+            get {
+                return ResourceManager.GetString("MinBetLessThanOrEqualMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet must be greater than or equal to.
+        /// </summary>
+        public static string MinBetMoreThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MinBetMoreThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Min Downline.
+        /// </summary>
+        public static string MinDownline {
+            get {
+                return ResourceManager.GetString("MinDownline", resourceCulture);
             }
         }
         
@@ -2055,15 +2081,6 @@ namespace LicenseeAgent.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is no data.
-        /// </summary>
-        public static string NoData {
-            get {
-                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         
@@ -2683,15 +2700,6 @@ namespace LicenseeAgent.Resources {
         public static string Reject {
             get {
                 return ResourceManager.GetString("Reject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remark.
-        /// </summary>
-        public static string Remark {
-            get {
-                return ResourceManager.GetString("Remark", resourceCulture);
             }
         }
         

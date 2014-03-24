@@ -1,4 +1,5 @@
-﻿if (fanex.customerSetting) {
+﻿
+if (fanex.customerSetting) {
 	fanex.customerSetting.language = fanex.customerSetting.language || {};
 	fanex.customerSetting.language['en-US'] = {
 		// Common messages
@@ -39,7 +40,7 @@
 		bettingLimit_Message_MinBetMoreThanOrEqualTo: "Min Bet must be greater than or equal to ",
 		bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "Max Bet must be greater than or equal to Min Bet",
 		bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "Max Bet must be less than or equal to Max Per Match",
-		bettingLimit_Message_MaxBetLessThanOrEqualTo: "Max Bet must be less than or equal to ",
+		bettingLimit_Message_MaxBetLessThanOrEqualTo: "Max Per Match must be greater than or equal to Max Bet ",
 		bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "Max Per Match must be greater than or equal to Max Bet",
 		bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "Max Per Match must be less than or equal to ",
 		customerInfo_Message_MaxCredit: 'Given credit must be between 0 and {0}',
@@ -84,3 +85,4 @@
 else {
 	alert("Missing fanex.customerSetting in language");
 }
+

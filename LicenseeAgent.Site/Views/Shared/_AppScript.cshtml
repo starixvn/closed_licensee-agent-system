@@ -1,8 +1,13 @@
 ﻿@using LicenseeAgent.Core.Utility
 <script type="text/javascript">
-    var APP_CONFIG = {};
-    APP_CONFIG.UrlRoot = '@Url.Content("~")';
-    APP_CONFIG.SelectedLanguage = '@LanguageManager.Language';
-    APP_CONFIG.ServerTime = '@DateTime.Now.ToString()';
-    APP_CONFIG.ServerDate = '@DateTime.Now.ToShortDateString()';
+    var appSettings = {
+        UrlRoot: '@Url.Content("~")',
+        SelectedLanguage: '@LanguageManager.Language',
+        ServerTime: '@DateTime.Now.ToString()',
+        ServerDate: '@DateTime.Now.ToShortDateString()'
+    };
+    @if (ViewBag.PageContext != null)
+    {
+        @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
+    }
 </script>

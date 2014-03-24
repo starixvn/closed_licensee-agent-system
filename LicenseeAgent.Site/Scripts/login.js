@@ -13,8 +13,9 @@
                 LOGIN.setFocus($('#Password'));
             }
 
-            $('#reload').click(function () {
-                var captchaUrl = CORE.resolveUrl('~/Account/CaptchaImage') + "?" + Date.now();
+            $('#reload').click(function (e) {
+                e.preventDefault();
+                var captchaUrl = $(this).attr('href') + "?" + Date.now();
                 $('#img-captcha').attr('src', captchaUrl);
             });
         },
@@ -47,7 +48,7 @@
             if (isChangePassword) {
                 url += '?act=ChangePassword';
             }
-            window.location.href = CORE.resolveUrl(url);
+            window.location.href = url;
         }
     }
 } (jQuery);

@@ -46,9 +46,6 @@ namespace LicenseeAgent.Site
                 "~/content/sprite.less",
                 "~/content/core.less"));
 
-            bundles.Add(new ScriptBundle("~/js/page").Include(
-                "~/scripts/page.js"));
-
             bundles.Add(new ScriptBundle("~/js/language").IncludeDirectory(
                 "~/scripts/ResourcesJs", "*.js", true));
         }

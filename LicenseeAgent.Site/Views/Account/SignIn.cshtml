@@ -38,7 +38,7 @@
                 <div class="control-group">
                     @Html.TextBoxFor(m => m.Captcha, new { @class = "input-captcha", autocomplete = "off", placeholder = Las.Captcha, maxlength = "6" })
                     <img src="@Url.Action("CaptchaImage")" id="img-captcha" alt="Captcha" />
-                    <a id="reload" href="#"><i class="icon-captcha-reload">
+                    <a id="reload" href="@Url.Content("~/Account/CaptchaImage")"><i class="icon-captcha-reload">
                     </i></a>
                     <input id="btnSubmit" type="submit" value="@Las.Submit" />
                 </div>
@@ -50,7 +50,7 @@
 @if (ViewBag.Result != null)
 {
     var result = (LicenseeAgent.Account.ViewResults.SignInViewResult)ViewBag.Result;
-    <div id="dialog-confirm" title="@Las.PasswordAlert" data-href="~/Home/Index">
+    <div id="dialog-confirm" title="@Las.PasswordAlert" data-href="@Url.Action("Index", "Home")">
         <p>
             @result.Message
         </p>

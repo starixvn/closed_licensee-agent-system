@@ -39,7 +39,7 @@
             });
         },
         getSelectedLanguage: function () {
-            return APP_CONFIG.SelectedLanguage;
+            return appSettings.SelectedLanguage;
         },
         getSelectedLanguageCode: function () {
             var selectedLanguage = LANGUAGE.getSelectedLanguage();

@@ -276,7 +276,6 @@
     <Content Include="Scripts\jquery-ui\jquery.marquee.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
-    <Content Include="Scripts\page.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

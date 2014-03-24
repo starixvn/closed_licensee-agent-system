@@ -1,7 +1,7 @@
 ﻿var CORE = function ($) {
     return {
-        UrlRoot: APP_CONFIG.UrlRoot,
-        UrlSignOut: APP_CONFIG.UrlRoot + 'Account/SignOut',
+        UrlRoot: appSettings.UrlRoot,
+        UrlSignOut: appSettings.UrlRoot + 'Account/SignOut',
         pageSizes: [10, 20, 50, 100, 500],
         TimeInterval: [15, 30, 45, 60, 75],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -13,25 +13,40 @@
         PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),
         RELOAD_INTERVAL: 2500,
         EMPTY_TEXT_FORMAT: '---',
-        ServerTime: APP_CONFIG.ServerTime,
-        ServerDate: APP_CONFIG.ServerDate,
+        ServerTime: appSettings.ServerTime,
+        ServerDate: appSettings.ServerDate,
         init: function () {
-            $('input, textarea').placeholder();
+            // setup ajax.
+            $.ajaxSetup({
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 0 || jqXHR.readyState === 0) {
+                        // ajax request is aborted.
+                        return;
+                    }
+                    var data = jqXHR.responseJSON;
+                    CORE.handleError(data);
+                }
+            });
 
+            // set behaviour with 3rd.
+            $('input, textarea').placeholder();
             if ($.fn.datepicker) {
                 $('.datepicker').data('datepicker-format', CORE.DATE_FORMAT);
             }
 
+            // set href for button.
             $("button[data-href]").click(function () {
                 location.href = CORE.resolveUrl($(this).attr("data-href"));
             });
 
+            // handle click in iframe.
             if ($('#frmMain').length == 0) {
                 $('html').on('click', function () {
                     parent.$('#frmMain').trigger('click');
                 });
             }
 
+            // set language for 3rd.
             if (typeof moment != 'undefined') {
                 moment.lang(LANGUAGE.getSelectedLanguageCode().toLowerCase());
             }
@@ -39,6 +54,7 @@
                 $.fn.fanexGrid.defaults.language = LANGUAGE.getSelectedLanguage();
             }
 
+            // handle tooltip.
             $(document).click(function (e) {
                 if ($().tooltip) {
                     $('.tooltip').prev().each(function (index, element) {
@@ -60,16 +76,10 @@
                 };
             }
 
-            $.ajaxSetup({
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (jqXHR.status === 0 || jqXHR.readyState === 0) {
-                        // ajax request is aborted.
-                        return;
-                    }
-                    var data = jqXHR.responseJSON;
-                    CORE.handleError(data);
-                }
-            });
+            // call if page is not in frame & not be a popup
+            if (window.parent.frmMain == undefined && window.parent.popup == undefined) {
+                setTimeout(function () { CORE.reCheckIn(); }, 1000);
+            }
         },
         initInstruction: function () {
             var containers = $('.instruction-container');
@@ -123,11 +133,6 @@
         },
         resolveUrl: function (url) {
             var urlRoot = CORE.UrlRoot;
-            if (urlRoot == undefined) {
-                CORE.console.error('Please include @Html.Partial("_AppScript")');
-                return;
-            }
-
             if (url.substr(0, 2) == '~/') {
                 url = url.substr(2);
             } else if (url.substr(0, 1) == '/') {

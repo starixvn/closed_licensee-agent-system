@@ -13,15 +13,8 @@
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/jqueryui")
     @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/page")
     @Scripts.Render("~/js/language")
-    @if (ViewBag.PageContext != null)
-    {
-        <script type="text/javascript">
-            @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
-        </script>
-    }
+    @Scripts.Render("~/js/core")
 </head>
 <body>
     <div id="mainContainer" class="@(Request.IsPopup() ? "popup" : "")">

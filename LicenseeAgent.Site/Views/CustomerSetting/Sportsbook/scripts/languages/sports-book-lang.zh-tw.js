@@ -1,5 +1,4 @@
-﻿
-if (fanex.customerSetting) {
+﻿if (fanex.customerSetting) {
 	fanex.customerSetting.language = fanex.customerSetting.language || {};
 	fanex.customerSetting.language['zh-TW'] = {
 		// Common messages
@@ -85,4 +84,3 @@ if (fanex.customerSetting) {
 else {
 	alert("Missing fanex.customerSetting in language");
 }
-

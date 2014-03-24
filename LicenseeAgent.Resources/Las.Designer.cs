@@ -979,11 +979,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Final Score.
+        /// </summary>
+        public static string FinalScore {
+            get {
+                return ResourceManager.GetString("FinalScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First.
         /// </summary>
         public static string First {
             get {
                 return ResourceManager.GetString("First", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Half Score.
+        /// </summary>
+        public static string FirstHalfScore {
+            get {
+                return ResourceManager.GetString("FirstHalfScore", resourceCulture);
             }
         }
         
@@ -1312,6 +1330,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kick Off. Time.
+        /// </summary>
+        public static string KickOffTime {
+            get {
+                return ResourceManager.GetString("KickOffTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -1452,6 +1479,15 @@ namespace LicenseeAgent.Resources {
         public static string MainMenu {
             get {
                 return ResourceManager.GetString("MainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match.
+        /// </summary>
+        public static string Match {
+            get {
+                return ResourceManager.GetString("Match", resourceCulture);
             }
         }
         
@@ -1614,6 +1650,15 @@ namespace LicenseeAgent.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no data.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         

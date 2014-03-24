@@ -23,6 +23,7 @@ namespace LicenseeAgent.Report.Controllers
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
@@ -348,20 +349,40 @@ namespace LicenseeAgent.Report.Controllers
             return string.Format(PatternKey, criteria.FromDate, criteria.ToDate, CurrentSession.OnUserId);
         }
 
+        /// <summary>
+        /// Return match no data.
+        /// </summary>
+        /// <returns>HTML string.</returns>
         private static string ResultsMatchNoData()
         {
-            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Kick Off. Time</th>";
-            htmlNoDataStr += "<th class='column-match'>Match</th><th class='column-firsthaftscore'>First Half Score</th>";
-            htmlNoDataStr += "<th class='column-finalscore'>Final Score</th><th class='column-status'>Status</th></tr></thead>";
-            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            var htmlNoDataStr = string.Format(
+                                "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
+                                + "<th class='column-match'>{1}</th><th class='column-firsthaftscore'>{2}</th>"
+                                + "<th class='column-finalscore'>{3}</th><th class='column-status'>{4}</th></tr></thead>"
+                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>{5}</td></tr><!--/NoInfo--></tbody></table>", 
+                                 Las.KickOffTime, 
+                                 Las.Match, 
+                                 Las.FirstHalfScore, 
+                                 Las.FinalScore, 
+                                 Las.Status, 
+                                 Las.NoData);
             return htmlNoDataStr;
         }
 
+        /// <summary>
+        /// Return outright no data.
+        /// </summary>
+        /// <returns>HTML string.</returns>
         private static string ResultsOutrightNoData()
         {
-            var htmlNoDataStr = "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>Time</th>";
-            htmlNoDataStr += "<th class='column-match'>Team</th><th class='column-status'>Resuls</th></tr></thead>";
-            htmlNoDataStr += "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>There is no data</td></tr><!--/NoInfo--></tbody></table>";
+            var htmlNoDataStr = string.Format(
+                                "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
+                                + "<th class='column-match'>{1}</th><th class='column-status'>{2}</th></tr></thead>"
+                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>{3}</td></tr><!--/NoInfo--></tbody></table>", 
+                                 Las.Time, 
+                                 Las.Team, 
+                                 Las.Results, 
+                                 Las.NoData);            
             return htmlNoDataStr;
         }
 

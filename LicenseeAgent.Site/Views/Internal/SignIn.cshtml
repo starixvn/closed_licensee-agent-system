@@ -17,8 +17,8 @@
                 <div class="title">@Las.SignIn</div>
                 <div class="language">
                     <ul id="nav">
-                        <li class="icon-language-arrow"><a href="#" class="@string.Format("icon-flag-{0}", Model.Language)">
-                        </a>
+                        <li class="icon-language-arrow" data-href="@Url.Action("ChangeLanguage", "Account")">
+                            <a href="#" class="@string.Format("icon-flag-{0}", Model.Language)"></a>
                             <ul id="languages">
                                 @foreach (var language in ModelSettings.Languages)
                                 {

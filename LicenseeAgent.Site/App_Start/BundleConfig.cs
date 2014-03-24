@@ -40,13 +40,13 @@ namespace LicenseeAgent.Site
                 "~/scripts/headjs/head.core.js",
                 "~/scripts/core.js",
                 "~/scripts/utility.js",
-                "~/scripts/language.js",
                 "~/scripts/popup.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
                 "~/content/core.less"));
 
-            bundles.Add(new ScriptBundle("~/js/language").IncludeDirectory(
+            bundles.Add(new ScriptBundle("~/js/language").Include(
+                "~/scripts/language.js").IncludeDirectory(
                 "~/scripts/ResourcesJs", "*.js", true));
         }
 

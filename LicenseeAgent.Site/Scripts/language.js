@@ -27,7 +27,7 @@
             $.ajax({
                 type: "POST",
                 data: $.param(data),
-                url: CORE.resolveUrl("~/Account/ChangeLanguage"),
+                url: $('.icon-language-arrow').data('href'),
                 dataType: "json",
                 async: false,
                 timeout: 20000

@@ -197,7 +197,7 @@
 	MinBetLessThanOrEqualMaxBet : "最小投注額必須小於或等於最大投注額",
 	MinBetMoreThanOrEqualTo : "最大投注額必須大於或等於",
 	MinDownline : "百分之的最小下線值",
-	Mine : "礦",
+	Mine : "Mine",
 	MixParlay : "混合過關",
 	MixSportsParlay : "混合過關",
 	MobilePhone : "手機",

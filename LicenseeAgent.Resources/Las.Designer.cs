@@ -215,6 +215,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Share.
+        /// </summary>
+        public static string AgentShare {
+            get {
+                return ResourceManager.GetString("AgentShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Win Loss.
         /// </summary>
         public static string AgentWinLoss {
@@ -1885,6 +1894,15 @@ namespace LicenseeAgent.Resources {
         public static string MinDownline {
             get {
                 return ResourceManager.GetString("MinDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mine.
+        /// </summary>
+        public static string Mine {
+            get {
+                return ResourceManager.GetString("Mine", resourceCulture);
             }
         }
         

@@ -339,7 +339,6 @@
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\directives\cust-info-directive.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\directives\position-taking-directive.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\fanex.sports-book-setting.js" />
-    <Content Include="Views\CustomerSetting\Sportsbook\scripts\languages\sports-book-lang.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\services\bet-limit-service.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\services\commission-setting-service.js" />
     <Content Include="Views\CustomerSetting\Sportsbook\scripts\services\cust-info-service.js" />

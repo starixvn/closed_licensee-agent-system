@@ -1144,7 +1144,7 @@
     <value>Max Bet must be less than or equal to Max Per Match</value>
   </data>
   <data name="MaxBetLessThanOrEqualTo" xml:space="preserve">
-    <value>Max Per Match must be greater than or equal to Max Bet</value>
+    <value>Max Bet must be less than or equal to</value>
   </data>
   <data name="MaxBetMoreThanOrEqualMinBet" xml:space="preserve">
     <value>Max Bet must be greater than or equal to Min Bet</value>
@@ -1376,7 +1376,7 @@
   </data>
   <data name="TotalGoal" xml:space="preserve">
     <value>Total Goal</value>
-   </data>
+  </data>
   <data name="FinalScore" xml:space="preserve">
     <value>Final Score</value>
   </data>

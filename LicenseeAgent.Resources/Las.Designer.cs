@@ -1727,7 +1727,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Match must be greater than or equal to Max Bet.
+        ///   Looks up a localized string similar to Max Bet must be less than or equal to.
         /// </summary>
         public static string MaxBetLessThanOrEqualTo {
             get {

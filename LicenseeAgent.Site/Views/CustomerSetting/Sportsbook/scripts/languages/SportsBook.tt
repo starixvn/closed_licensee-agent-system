@@ -28,7 +28,6 @@
 
 		manager.StartNewFile(string.Format("sports-book-lang.{0}.js", culture));
 #>
-
 if (fanex.customerSetting) {
 	fanex.customerSetting.language = fanex.customerSetting.language || {};
 	fanex.customerSetting.language['<#=culture#>'] = {
@@ -115,7 +114,6 @@ if (fanex.customerSetting) {
 else {
 	alert("Missing fanex.customerSetting in language");
 }
-
 <#
     }
 	manager.Process();

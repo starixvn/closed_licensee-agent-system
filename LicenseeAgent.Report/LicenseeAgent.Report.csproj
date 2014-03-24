@@ -46,10 +46,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.5184.20618, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fanex.BetList.Core">
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.5184.20618, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fanex.BetList.Core.TicketHelper">
       <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.62, Culture=neutral, processorArchitecture=MSIL">

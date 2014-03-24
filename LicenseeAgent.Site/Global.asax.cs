@@ -142,8 +142,8 @@ namespace LicenseeAgent.Site
             var baseException = exception.GetBaseException();
             var stringBuilder = new StringBuilder(baseException.Message);
             stringBuilder.AppendFormat("\nSource: {0}", baseException.Source);
-            stringBuilder.AppendFormat("\nDomain: {0}", HttpContext.Current.Request.Headers["Host"]);
-            stringBuilder.AppendFormat("\nQueryString: {0}", Request.QueryString.ToString());
+            stringBuilder.AppendFormat("\nUrl: {0}", Request.Url.ToString());
+            stringBuilder.AppendFormat("\nForm: {0}", Request.Form.ToString());
             stringBuilder.AppendFormat("\nTargetSite: {0}", baseException.TargetSite);
             stringBuilder.AppendFormat("\nStackTrace: {0}", baseException.StackTrace);
             if (SessionManager.CurrentSession != null)

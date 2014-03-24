@@ -178,7 +178,7 @@
 	MatchResults : "Match Results",
 	MaxBet : "Max Bet",
 	MaxBetLessThanOrEqualMaxPerMatch : "Max Bet must be less than or equal to Max Per Match",
-	MaxBetLessThanOrEqualTo : "Max Bet must be less than or equal to",
+	MaxBetLessThanOrEqualTo : "Max Per Match must be greater than or equal to Max Bet",
 	MaxBetMoreThanOrEqualMinBet : "Max Bet must be greater than or equal to Min Bet",
 	MaxCredit : "Max Credit",
 	MaxDownline : "% Max Downline",

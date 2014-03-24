@@ -159,6 +159,7 @@
 	Member : "会员",
 	MemberList : "会员清单",
 	MessageAnnouncement : "讯息 / 公告",
+	Mine : "矿",
 	MixParlay : "混合过关",
 	MixSportsParlay : "混合过关",
 	MobilePhone : "手机",

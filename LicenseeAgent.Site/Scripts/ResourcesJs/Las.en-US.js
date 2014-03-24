@@ -159,6 +159,7 @@
 	Member : "Member",
 	MemberList : "Member List",
 	MessageAnnouncement : "Message / Announcement",
+	Mine : "Mine",
 	MixParlay : "Mix Parlay",
 	MixSportsParlay : "Mix Sports Parlay",
 	MobilePhone : "Mobile Phone",

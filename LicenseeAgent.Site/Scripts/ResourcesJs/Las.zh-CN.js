@@ -15,6 +15,7 @@
 	AgentList : "代理列表",
 	AgentOutstanding : "代理未结束交易",
 	AgentPT : "代理占成数",
+	AgentShare : "代理占成",
 	AgentWinLoss : "代理商结果",
 	AlertNoCurrencyPermission : "很抱歉！管理员刚刚更新了对您的许可，因此您必须要重新登录。谢谢。",
 	All : "全部",

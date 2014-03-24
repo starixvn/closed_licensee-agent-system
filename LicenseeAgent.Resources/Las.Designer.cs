@@ -205,6 +205,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Share.
+        /// </summary>
+        public static string AgentShare {
+            get {
+                return ResourceManager.GetString("AgentShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Win Loss.
         /// </summary>
         public static string AgentWinLoss {
@@ -970,42 +979,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1H. 1X2.
-        /// </summary>
-        public static string FH1X2 {
-            get {
-                return ResourceManager.GetString("FH1X2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1H. HDP.
-        /// </summary>
-        public static string FHHDP {
-            get {
-                return ResourceManager.GetString("FHHDP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1H.OE.
-        /// </summary>
-        public static string FHOE {
-            get {
-                return ResourceManager.GetString("FHOE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1H. O/U.
-        /// </summary>
-        public static string FHOU {
-            get {
-                return ResourceManager.GetString("FHOU", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First.
         /// </summary>
         public static string First {
@@ -1051,29 +1024,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FT. HDP.
-        /// </summary>
-        public static string FTHDP {
-            get {
-                return ResourceManager.GetString("FTHDP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to FT.OE.
         /// </summary>
         public static string FTOE {
             get {
                 return ResourceManager.GetString("FTOE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to FT. O/U.
-        /// </summary>
-        public static string FTOU {
-            get {
-                return ResourceManager.GetString("FTOU", resourceCulture);
             }
         }
         
@@ -1173,15 +1128,6 @@ namespace LicenseeAgent.Resources {
         public static string HomeNo {
             get {
                 return ResourceManager.GetString("HomeNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Away No Bet.
-        /// </summary>
-        public static string HomeNoBet {
-            get {
-                return ResourceManager.GetString("HomeNoBet", resourceCulture);
             }
         }
         
@@ -1551,6 +1497,15 @@ namespace LicenseeAgent.Resources {
         public static string MessageAnnouncement {
             get {
                 return ResourceManager.GetString("MessageAnnouncement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mine.
+        /// </summary>
+        public static string Mine {
+            get {
+                return ResourceManager.GetString("Mine", resourceCulture);
             }
         }
         

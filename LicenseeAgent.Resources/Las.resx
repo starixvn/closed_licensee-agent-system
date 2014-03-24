@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,188 +59,188 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="AccessDeniedMsg" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDeniedMsg" xml:space="preserve">
     <value>You do not have permission to access this page.</value>
-  <comment></comment></data>
-	<data name="AccountInfo" xml:space="preserve">
+  </data>
+  <data name="AccountInfo" xml:space="preserve">
     <value>Account Info</value>
-  <comment></comment></data>
-	<data name="AccountStatus" xml:space="preserve">
+  </data>
+  <data name="AccountStatus" xml:space="preserve">
     <value>Account status</value>
-  <comment></comment></data>
-	<data name="AccountWasStopped" xml:space="preserve">
+  </data>
+  <data name="AccountWasStopped" xml:space="preserve">
     <value>Your account was stopped!</value>
-  <comment></comment></data>
-	<data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Active</value>
-  <comment></comment></data>
-	<data name="Add" xml:space="preserve">
+  </data>
+  <data name="Add" xml:space="preserve">
     <value>Add</value>
-  <comment></comment></data>
-	<data name="AdvancedMode" xml:space="preserve">
+  </data>
+  <data name="AdvancedMode" xml:space="preserve">
     <value>Advanced Mode</value>
-  <comment></comment></data>
-	<data name="AgentList" xml:space="preserve">
+  </data>
+  <data name="AgentList" xml:space="preserve">
     <value>Agent List</value>
-  <comment></comment></data>
-	<data name="BetSetting" xml:space="preserve">
+  </data>
+  <data name="BetSetting" xml:space="preserve">
     <value>Bet Setting</value>
-  <comment></comment></data>
-	<data name="BetSettingInstructions" xml:space="preserve">
+  </data>
+  <data name="BetSettingInstructions" xml:space="preserve">
     <value>Bet Setting Instructions</value>
-  <comment></comment></data>
-	<data name="Captcha" xml:space="preserve">
+  </data>
+  <data name="Captcha" xml:space="preserve">
     <value>Captcha</value>
-  <comment></comment></data>
-	<data name="ChangePassword" xml:space="preserve">
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
-  <comment></comment></data>
-	<data name="ChooseCurrency" xml:space="preserve">
+  </data>
+  <data name="ChooseCurrency" xml:space="preserve">
     <value>Choose currency</value>
-  <comment></comment></data>
-	<data name="ChooseLicensee" xml:space="preserve">
+  </data>
+  <data name="ChooseLicensee" xml:space="preserve">
     <value>Choose licensee</value>
-  <comment></comment></data>
-	<data name="ClickToViewInstructions" xml:space="preserve">
+  </data>
+  <data name="ClickToViewInstructions" xml:space="preserve">
     <value>Click to view instructions</value>
-  <comment></comment></data>
-	<data name="Commission" xml:space="preserve">
+  </data>
+  <data name="Commission" xml:space="preserve">
     <value>Commission</value>
-  <comment></comment></data>
-	<data name="CommissionSettingInstructions" xml:space="preserve">
+  </data>
+  <data name="CommissionSettingInstructions" xml:space="preserve">
     <value>Commission Setting Instructions</value>
-  <comment></comment></data>
-	<data name="ConfirmPassword" xml:space="preserve">
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
-  <comment></comment></data>
-	<data name="CurrentPassword" xml:space="preserve">
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
-  <comment></comment></data>
-	<data name="CustomerInformation" xml:space="preserve">
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
     <value>Customer Information</value>
-  <comment></comment></data>
-	<data name="Fax" xml:space="preserve">
+  </data>
+  <data name="Fax" xml:space="preserve">
     <value>Fax</value>
-  <comment></comment></data>
-	<data name="FirstName" xml:space="preserve">
+  </data>
+  <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
-  <comment></comment></data>
-	<data name="Forecast" xml:space="preserve">
+  </data>
+  <data name="Forecast" xml:space="preserve">
     <value>Forecast</value>
-  <comment></comment></data>
-	<data name="GeneralInformation" xml:space="preserve">
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
     <value>General Information</value>
-  <comment></comment></data>
-	<data name="Help" xml:space="preserve">
+  </data>
+  <data name="Help" xml:space="preserve">
     <value>Help</value>
-  <comment></comment></data>
-	<data name="Home" xml:space="preserve">
+  </data>
+  <data name="Home" xml:space="preserve">
     <value>Home</value>
-  <comment></comment></data>
-	<data name="HttpError_403" xml:space="preserve">
+  </data>
+  <data name="HttpError_403" xml:space="preserve">
     <value>Access denied</value>
-  <comment></comment></data>
-	<data name="HttpError_404" xml:space="preserve">
+  </data>
+  <data name="HttpError_404" xml:space="preserve">
     <value>The page cannot be found, please check the website address (URL) and try again.</value>
-  <comment></comment></data>
-	<data name="HttpError_Default" xml:space="preserve">
+  </data>
+  <data name="HttpError_Default" xml:space="preserve">
     <value>Oops... you are here because of a system error, please notify your administrator.</value>
-  <comment></comment></data>
-	<data name="IncorrectCaptchaMsg" xml:space="preserve">
+  </data>
+  <data name="IncorrectCaptchaMsg" xml:space="preserve">
     <value>You have entered an incorrect answer for CAPTCHA.</value>
-  <comment></comment></data>
-	<data name="Language" xml:space="preserve">
+  </data>
+  <data name="Language" xml:space="preserve">
     <value>Language</value>
-  <comment></comment></data>
-	<data name="LastName" xml:space="preserve">
+  </data>
+  <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
-  <comment></comment></data>
-	<data name="LogOut" xml:space="preserve">
+  </data>
+  <data name="LogOut" xml:space="preserve">
     <value>Log Out</value>
-  <comment></comment></data>
-	<data name="MainMenu" xml:space="preserve">
+  </data>
+  <data name="MainMenu" xml:space="preserve">
     <value>Main Menu</value>
-  <comment></comment></data>
-	<data name="MaxCredit" xml:space="preserve">
+  </data>
+  <data name="MaxCredit" xml:space="preserve">
     <value>Max Credit</value>
-  <comment></comment></data>
-	<data name="MobilePhone" xml:space="preserve">
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
     <value>Mobile Phone</value>
-  <comment></comment></data>
-	<data name="NewAgent" xml:space="preserve">
+  </data>
+  <data name="NewAgent" xml:space="preserve">
     <value>New Agent</value>
-  <comment></comment></data>
-	<data name="NewMember" xml:space="preserve">
+  </data>
+  <data name="NewMember" xml:space="preserve">
     <value>New Member</value>
-  <comment></comment></data>
-	<data name="NewPassword" xml:space="preserve">
+  </data>
+  <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
-  <comment></comment></data>
-	<data name="Outstanding" xml:space="preserve">
+  </data>
+  <data name="Outstanding" xml:space="preserve">
     <value>Outstanding</value>
-  <comment></comment></data>
-	<data name="Password" xml:space="preserve">
+  </data>
+  <data name="Password" xml:space="preserve">
     <value>Password</value>
-  <comment></comment></data>
-	<data name="PasswordHint" xml:space="preserve">
+  </data>
+  <data name="PasswordHint" xml:space="preserve">
     <value>&lt;div&gt;
 &lt;p&gt;Password must be between 8 and 24 characters with no spaces and contain at least 3 of the following character types:&lt;/p&gt;
 &lt;ul&gt;
@@ -253,815 +253,826 @@
 &lt;br/&gt;
 &lt;span&gt;Notes: your password is cAsE sEnSiTiVe and only characters above are allowed.&lt;/span&gt;
 &lt;/div&gt;</value>
-  <comment></comment></data>
-	<data name="Phone" xml:space="preserve">
+  </data>
+  <data name="Phone" xml:space="preserve">
     <value>Phone</value>
-  <comment></comment></data>
-	<data name="PositionTaking" xml:space="preserve">
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
     <value>Position Taking</value>
-  <comment></comment></data>
-	<data name="Reports" xml:space="preserve">
+  </data>
+  <data name="Reports" xml:space="preserve">
     <value>Reports</value>
-  <comment></comment></data>
-	<data name="ScoreMap" xml:space="preserve">
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
     <value>Score Map</value>
-  <comment></comment></data>
-	<data name="Security" xml:space="preserve">
+  </data>
+  <data name="Security" xml:space="preserve">
     <value>Security</value>
-  <comment></comment></data>
-	<data name="Select" xml:space="preserve">
+  </data>
+  <data name="Select" xml:space="preserve">
     <value>Select</value>
-  <comment></comment></data>
-	<data name="PositionTakingSettingInstructions" xml:space="preserve">
+  </data>
+  <data name="PositionTakingSettingInstructions" xml:space="preserve">
     <value>Position Taking Setting Instructions</value>
-  <comment></comment></data>
-	<data name="SignIn" xml:space="preserve">
+  </data>
+  <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>
-  <comment></comment></data>
-	<data name="SimpleMode" xml:space="preserve">
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
     <value>Simple Mode</value>
-  <comment></comment></data>
-	<data name="Stopped" xml:space="preserve">
+  </data>
+  <data name="Stopped" xml:space="preserve">
     <value>Stopped</value>
-  <comment></comment></data>
-	<data name="Submit" xml:space="preserve">
+  </data>
+  <data name="Submit" xml:space="preserve">
     <value>Submit</value>
-  <comment></comment></data>
-	<data name="TotalBets" xml:space="preserve">
+  </data>
+  <data name="TotalBets" xml:space="preserve">
     <value>Total Bets</value>
-  <comment></comment></data>
-	<data name="Transfer" xml:space="preserve">
+  </data>
+  <data name="Transfer" xml:space="preserve">
     <value>Transfer</value>
-  <comment></comment></data>
-	<data name="UnauthorizedMsg" xml:space="preserve">
+  </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
     <value>Your session has timed out or your request is not authorized</value>
-  <comment></comment></data>
-	<data name="UnderMaintenance" xml:space="preserve">
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
     <value>Under Maintenance</value>
-  <comment></comment></data>
-	<data name="UpdateSuccessfully" xml:space="preserve">
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Updated successfully.</value>
-  <comment></comment></data>
-	<data name="Username" xml:space="preserve">
+  </data>
+  <data name="Username" xml:space="preserve">
     <value>Username</value>
-  <comment></comment></data>
-	<data name="ViewLog" xml:space="preserve">
+  </data>
+  <data name="ViewLog" xml:space="preserve">
     <value>View Log</value>
-  <comment></comment></data>
-	<data name="Welcome" xml:space="preserve">
+  </data>
+  <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
-  <comment></comment></data>
-	<data name="WinLoss" xml:space="preserve">
+  </data>
+  <data name="WinLoss" xml:space="preserve">
     <value>Win Loss</value>
-  <comment></comment></data>
-	<data name="InsertCustomer" xml:space="preserve">
+  </data>
+  <data name="InsertCustomer" xml:space="preserve">
     <value>Insert Customer</value>
-  <comment></comment></data>
-	<data name="LasTitle" xml:space="preserve">
+  </data>
+  <data name="LasTitle" xml:space="preserve">
     <value>Home</value>
-  <comment></comment></data>
-	<data name="SignOut" xml:space="preserve">
+  </data>
+  <data name="SignOut" xml:space="preserve">
     <value>Sign Out</value>
-  <comment></comment></data>
-	<data name="PasswordAlert" xml:space="preserve">
+  </data>
+  <data name="PasswordAlert" xml:space="preserve">
     <value>Password Alert</value>
-  <comment></comment></data>
-	<data name="SimpleModeNote" xml:space="preserve">
+  </data>
+  <data name="SimpleModeNote" xml:space="preserve">
     <value>Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.</value>
-  <comment></comment></data>
-	<data name="AddNewAgent" xml:space="preserve">
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
     <value>Add new agent</value>
-  <comment></comment></data>
-	<data name="AddNewMember" xml:space="preserve">
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
     <value>Add new member</value>
-  <comment></comment></data>
-	<data name="MixSportsParlay" xml:space="preserve">
+  </data>
+  <data name="MixSportsParlay" xml:space="preserve">
     <value>Mix Sports Parlay</value>
-  <comment></comment></data>
-	<data name="PositionTakingSimpleModeHeader" xml:space="preserve">
+  </data>
+  <data name="PositionTakingSimpleModeHeader" xml:space="preserve">
     <value>Position Taking (Soccer Dead ball Handicap)</value>
-  <comment></comment></data>
-	<data name="OtherSports" xml:space="preserve">
+  </data>
+  <data name="OtherSports" xml:space="preserve">
     <value>Other Sports</value>
-  <comment></comment></data>
-	<data name="Close" xml:space="preserve">
+  </data>
+  <data name="Close" xml:space="preserve">
     <value>Close</value>
-  <comment></comment></data>
-	<data name="Open" xml:space="preserve">
+  </data>
+  <data name="Open" xml:space="preserve">
     <value>Open</value>
-  <comment></comment></data>
-	<data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Status</value>
-  <comment></comment></data>
-	<data name="Closed" xml:space="preserve">
+  </data>
+  <data name="Closed" xml:space="preserve">
     <value>Closed</value>
-  <comment></comment></data>
-	<data name="CreatedDate" xml:space="preserve">
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
-  <comment></comment></data>
-	<data name="Downline" xml:space="preserve">
+  </data>
+  <data name="Downline" xml:space="preserve">
     <value>Downline</value>
-  <comment></comment></data>
-	<data name="Edit" xml:space="preserve">
+  </data>
+  <data name="Edit" xml:space="preserve">
     <value>Edit</value>
-  <comment></comment></data>
-	<data name="LoginIp" xml:space="preserve">
+  </data>
+  <data name="LoginIp" xml:space="preserve">
     <value>Login IP</value>
-  <comment></comment></data>
-	<data name="No" xml:space="preserve">
+  </data>
+  <data name="No" xml:space="preserve">
     <value>No</value>
-  <comment></comment></data>
-	<data name="Locked" xml:space="preserve">
+  </data>
+  <data name="Locked" xml:space="preserve">
     <value>Locked</value>
-  <comment></comment></data>
-	<data name="All" xml:space="preserve">
+  </data>
+  <data name="All" xml:space="preserve">
     <value>All</value>
-  <comment></comment></data>
-	<data name="Action" xml:space="preserve">
+  </data>
+  <data name="Action" xml:space="preserve">
     <value>Action</value>
-  <comment></comment></data>
-	<data name="Group" xml:space="preserve">
+  </data>
+  <data name="Group" xml:space="preserve">
     <value>Group</value>
-  <comment></comment></data>
-	<data name="MemberList" xml:space="preserve">
+  </data>
+  <data name="MemberList" xml:space="preserve">
     <value>Member List</value>
-  <comment></comment></data>
-	<data name="City" xml:space="preserve">
+  </data>
+  <data name="City" xml:space="preserve">
     <value>City</value>
-  <comment></comment></data>
-	<data name="Country" xml:space="preserve">
+  </data>
+  <data name="Country" xml:space="preserve">
     <value>Country</value>
-  <comment></comment></data>
-	<data name="Ip" xml:space="preserve">
+  </data>
+  <data name="Ip" xml:space="preserve">
     <value>IP</value>
-  <comment>No need to translate</comment></data>
-	<data name="ChangeStatusAgent" xml:space="preserve">
+    <comment>No need to translate</comment>
+  </data>
+  <data name="ChangeStatusAgent" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this agent? Warning, all downlines will be closed as well.</value>
-  <comment></comment></data>
-	<data name="ChangeStatusMember" xml:space="preserve">
+  </data>
+  <data name="ChangeStatusMember" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this member?</value>
-  <comment></comment></data>
-	<data name="ChangeStatus" xml:space="preserve">
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
     <value>Change status</value>
-  <comment></comment></data>
-	<data name="ChangeCloseToOpenAgent" xml:space="preserve">
+  </data>
+  <data name="ChangeCloseToOpenAgent" xml:space="preserve">
     <value>Are you sure you want to change Open status for this agent?</value>
-  <comment></comment></data>
-	<data name="IpInformation" xml:space="preserve">
+  </data>
+  <data name="IpInformation" xml:space="preserve">
     <value>Ip Information</value>
-  <comment></comment></data>
-	<data name="AddDownline" xml:space="preserve">
+  </data>
+  <data name="AddDownline" xml:space="preserve">
     <value>Add Downline</value>
-  <comment></comment></data>
-	<data name="Casino" xml:space="preserve">
+  </data>
+  <data name="Casino" xml:space="preserve">
     <value>Casino</value>
-  <comment></comment></data>
-	<data name="EditInfo" xml:space="preserve">
+  </data>
+  <data name="EditInfo" xml:space="preserve">
     <value>Edit Info</value>
-  <comment></comment></data>
-	<data name="None" xml:space="preserve">
+  </data>
+  <data name="None" xml:space="preserve">
     <value>None</value>
-  <comment></comment></data>
-	<data name="NumberGame" xml:space="preserve">
+  </data>
+  <data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
-  <comment></comment></data>
-	<data name="SBBetSetting" xml:space="preserve">
+  </data>
+  <data name="SBBetSetting" xml:space="preserve">
     <value>SB Bet Setting</value>
-  <comment></comment></data>
-	<data name="Sportsbook" xml:space="preserve">
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
     <value>Sportsbook</value>
-  <comment></comment></data>
-	<data name="VirtualSports" xml:space="preserve">
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
     <value>Virtual Sports</value>
-  <comment></comment></data>
-	<data name="ChangeCloseToOpenMember" xml:space="preserve">
+  </data>
+  <data name="ChangeCloseToOpenMember" xml:space="preserve">
     <value>Are you sure you want to change Open status for this member?</value>
-  <comment></comment></data>
-	<data name="Update" xml:space="preserve">
+  </data>
+  <data name="Update" xml:space="preserve">
     <value>Update</value>
-  <comment></comment></data>
-	<data name="EditSportsbookAgent" xml:space="preserve">
+  </data>
+  <data name="EditSportsbookAgent" xml:space="preserve">
     <value>Edit Sportsbook Agent</value>
-  <comment></comment></data>
-	<data name="EditSportsbookMember" xml:space="preserve">
+  </data>
+  <data name="EditSportsbookMember" xml:space="preserve">
     <value>Edit Sportsbook Member</value>
-  <comment></comment></data>
-	<data name="CaptchaLength" xml:space="preserve">
+  </data>
+  <data name="CaptchaLength" xml:space="preserve">
     <value>Captcha must be 6 characters.</value>
-  <comment></comment></data>
-	<data name="CaptchaRequired" xml:space="preserve">
+  </data>
+  <data name="CaptchaRequired" xml:space="preserve">
     <value>You must enter validation code.</value>
-  <comment></comment></data>
-	<data name="ConfirmPasswordRequired" xml:space="preserve">
+  </data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve">
     <value>Please enter confirm password.</value>
-  <comment></comment></data>
-	<data name="CurrencyRequired" xml:space="preserve">
+  </data>
+  <data name="CurrencyRequired" xml:space="preserve">
     <value>Please select currency.</value>
-  <comment></comment></data>
-	<data name="CurrentPasswordRequired" xml:space="preserve">
+  </data>
+  <data name="CurrentPasswordRequired" xml:space="preserve">
     <value>Please enter current password.</value>
-  <comment></comment></data>
-	<data name="HtmlDisallowed" xml:space="preserve">
+  </data>
+  <data name="HtmlDisallowed" xml:space="preserve">
     <value>The content does not allow HTML.</value>
-  <comment></comment></data>
-	<data name="LanguageRequired" xml:space="preserve">
+  </data>
+  <data name="LanguageRequired" xml:space="preserve">
     <value>Please select language.</value>
-  <comment></comment></data>
-	<data name="LicenseeRequired" xml:space="preserve">
+  </data>
+  <data name="LicenseeRequired" xml:space="preserve">
     <value>Please select licensee.</value>
-  <comment></comment></data>
-	<data name="NewPasswordRequired" xml:space="preserve">
+  </data>
+  <data name="NewPasswordRequired" xml:space="preserve">
     <value>Please enter new password.</value>
-  <comment></comment></data>
-	<data name="NoLicenseeDomainFound" xml:space="preserve">
+  </data>
+  <data name="NoLicenseeDomainFound" xml:space="preserve">
     <value>No licensee belongs to domain {0}.</value>
-  <comment></comment></data>
-	<data name="PasswordExpired" xml:space="preserve">
+  </data>
+  <data name="PasswordExpired" xml:space="preserve">
     <value>Your password has expired on {0}. You must change your password now.</value>
-  <comment></comment></data>
-	<data name="PasswordFirstUse" xml:space="preserve">
+  </data>
+  <data name="PasswordFirstUse" xml:space="preserve">
     <value>This is your first login. You must change your password before continuing.</value>
-  <comment></comment></data>
-	<data name="PasswordMustNotSame" xml:space="preserve">
+  </data>
+  <data name="PasswordMustNotSame" xml:space="preserve">
     <value>New password must be different from old password.</value>
-  <comment></comment></data>
-	<data name="PasswordNotMatch" xml:space="preserve">
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
     <value>Your password and confirmation password do not match.</value>
-  <comment></comment></data>
-	<data name="PasswordRequired" xml:space="preserve">
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
     <value>Please enter your password.</value>
-  <comment></comment></data>
-	<data name="PasswordWillExpired" xml:space="preserve">
+  </data>
+  <data name="PasswordWillExpired" xml:space="preserve">
     <value>Your password will expire on {0}. Do you want to change it now?</value>
-  <comment></comment></data>
-	<data name="UsernameMinimumLength" xml:space="preserve">
+  </data>
+  <data name="UsernameMinimumLength" xml:space="preserve">
     <value>Username must be between 6 and 30 characters with upper and lower case letters (A-Z,a-z) and numbers (0-9) only.</value>
-  <comment></comment></data>
-	<data name="UsernameRequired" xml:space="preserve">
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
     <value>Please enter your username.</value>
-  <comment></comment></data>
-	<data name="UpdateBetSettingSuccessfully" xml:space="preserve">
+  </data>
+  <data name="UpdateBetSettingSuccessfully" xml:space="preserve">
     <value>Updated bet setting successfully.</value>
-  <comment></comment></data>
-	<data name="UpdateCommissionSuccessfully" xml:space="preserve">
+  </data>
+  <data name="UpdateCommissionSuccessfully" xml:space="preserve">
     <value>Updated commission setting successfully.</value>
-  <comment></comment></data>
-	<data name="InsertSuccessfully" xml:space="preserve">
+  </data>
+  <data name="InsertSuccessfully" xml:space="preserve">
     <value>Insert Successfully.</value>
-  <comment></comment></data>
-	<data name="Soccer" xml:space="preserve">
+  </data>
+  <data name="Soccer" xml:space="preserve">
     <value>Soccer</value>
-  <comment></comment></data>
-	<data name="Event" xml:space="preserve">
+  </data>
+  <data name="Event" xml:space="preserve">
     <value>Event</value>
-  <comment></comment></data>
-	<data name="League" xml:space="preserve">
+  </data>
+  <data name="League" xml:space="preserve">
     <value>League</value>
-  <comment></comment></data>
-	<data name="Cancel" xml:space="preserve">
+  </data>
+  <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
-  <comment></comment></data>
-	<data name="OK" xml:space="preserve">
+  </data>
+  <data name="OK" xml:space="preserve">
     <value>OK</value>
-  <comment>No need to translate</comment></data>
-	<data name="BalanceInfo" xml:space="preserve">
+    <comment>No need to translate</comment>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
     <value>Balance Info</value>
-  <comment></comment></data>
-	<data name="DownlineList" xml:space="preserve">
+  </data>
+  <data name="DownlineList" xml:space="preserve">
     <value>Downline List</value>
-  <comment></comment></data>
-	<data name="Statement" xml:space="preserve">
+  </data>
+  <data name="Statement" xml:space="preserve">
     <value>Statement</value>
-  <comment></comment></data>
-	<data name="Upline" xml:space="preserve">
+  </data>
+  <data name="Upline" xml:space="preserve">
     <value>Upline</value>
-  <comment></comment></data>
-	<data name="Setting" xml:space="preserve">
+  </data>
+  <data name="Setting" xml:space="preserve">
     <value>Setting</value>
-  <comment></comment></data>
-	<data name="EditSportsbook" xml:space="preserve">
+  </data>
+  <data name="EditSportsbook" xml:space="preserve">
     <value>Edit Sportsbook</value>
-  <comment></comment></data>
-	<data name="More" xml:space="preserve">
+  </data>
+  <data name="More" xml:space="preserve">
     <value>More</value>
-  <comment></comment></data>
-	<data name="ViewSportsbook" xml:space="preserve">
+  </data>
+  <data name="ViewSportsbook" xml:space="preserve">
     <value>View Sportsbook</value>
-  <comment></comment></data>
-	<data name="BetList" xml:space="preserve">
+  </data>
+  <data name="BetList" xml:space="preserve">
     <value>Bet List</value>
-  <comment></comment></data>
-	<data name="Draw" xml:space="preserve">
+  </data>
+  <data name="Draw" xml:space="preserve">
     <value>Draw</value>
-  <comment></comment></data>
-	<data name="FT1X2" xml:space="preserve">
+  </data>
+  <data name="FT1X2" xml:space="preserve">
     <value>FT. 1X2</value>
-  <comment></comment></data>
-	<data name="Live" xml:space="preserve">
+  </data>
+  <data name="Live" xml:space="preserve">
     <value>Live</value>
-  <comment></comment></data>
-	<data name="Time" xml:space="preserve">
+  </data>
+  <data name="Time" xml:space="preserve">
     <value>Time</value>
-  <comment></comment></data>
-	<data name="Attention" xml:space="preserve">
+  </data>
+  <data name="Attention" xml:space="preserve">
     <value>Attention</value>
-  <comment></comment></data>
-	<data name="Basketball" xml:space="preserve">
+  </data>
+  <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>
-  <comment></comment></data>
-	<data name="FTOE" xml:space="preserve">
+  </data>
+  <data name="FTOE" xml:space="preserve">
     <value>FT.OE</value>
-  <comment></comment></data>
-	<data name="Away" xml:space="preserve">
+  </data>
+  <data name="Away" xml:space="preserve">
     <value>Away</value>
-  <comment></comment></data>
-	<data name="Bet" xml:space="preserve">
+  </data>
+  <data name="Bet" xml:space="preserve">
     <value>Bet</value>
-  <comment></comment></data>
-	<data name="Both" xml:space="preserve">
+  </data>
+  <data name="Both" xml:space="preserve">
     <value>Both</value>
-  <comment></comment></data>
-	<data name="CorrectScore" xml:space="preserve">
+  </data>
+  <data name="CorrectScore" xml:space="preserve">
     <value>Correct Score</value>
-  <comment></comment></data>
-	<data name="DrawNoBet" xml:space="preserve">
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
-  <comment></comment></data>
-	<data name="Even" xml:space="preserve">
+  </data>
+  <data name="Even" xml:space="preserve">
     <value>Even</value>
-  <comment></comment></data>
-	<data name="First" xml:space="preserve">
+  </data>
+  <data name="First" xml:space="preserve">
     <value>First</value>
-  <comment></comment></data>
-	<data name="Fulltime" xml:space="preserve">
+  </data>
+  <data name="Fulltime" xml:space="preserve">
     <value>Fulltime</value>
-  <comment></comment></data>
-	<data name="Goal" xml:space="preserve">
+  </data>
+  <data name="Goal" xml:space="preserve">
     <value>Goal</value>
-  <comment></comment></data>
-	<data name="HalfTime" xml:space="preserve">
+  </data>
+  <data name="HalfTime" xml:space="preserve">
     <value>Half Time</value>
-  <comment></comment></data>
-	<data name="Last" xml:space="preserve">
+  </data>
+  <data name="Last" xml:space="preserve">
     <value>Last</value>
-  <comment></comment></data>
-	<data name="NoDraw" xml:space="preserve">
+  </data>
+  <data name="NoDraw" xml:space="preserve">
     <value>No Draw</value>
-  <comment></comment></data>
-	<data name="Odd" xml:space="preserve">
+  </data>
+  <data name="Odd" xml:space="preserve">
     <value>Odd</value>
-  <comment></comment></data>
-	<data name="One" xml:space="preserve">
+  </data>
+  <data name="One" xml:space="preserve">
     <value>One</value>
-  <comment></comment></data>
-	<data name="Or" xml:space="preserve">
+  </data>
+  <data name="Or" xml:space="preserve">
     <value>or</value>
-  <comment></comment></data>
-	<data name="Over" xml:space="preserve">
+  </data>
+  <data name="Over" xml:space="preserve">
     <value>Over</value>
-  <comment></comment></data>
-	<data name="Total" xml:space="preserve">
+  </data>
+  <data name="Total" xml:space="preserve">
     <value>Total</value>
-  <comment></comment></data>
-	<data name="Yes" xml:space="preserve">
+  </data>
+  <data name="Yes" xml:space="preserve">
     <value>Yes</value>
-  <comment></comment></data>
-	<data name="HOUL" xml:space="preserve">
+  </data>
+  <data name="HOUL" xml:space="preserve">
     <value>Handicap/Over Under/Live</value>
-  <comment></comment></data>
-	<data name="MoneyLine" xml:space="preserve">
+  </data>
+  <data name="MoneyLine" xml:space="preserve">
     <value>Money Line</value>
-  <comment></comment></data>
-	<data name="Outright" xml:space="preserve">
+  </data>
+  <data name="Outright" xml:space="preserve">
     <value>Outright</value>
-  <comment></comment></data>
-	<data name="Balance" xml:space="preserve">
+  </data>
+  <data name="Balance" xml:space="preserve">
     <value>Balance</value>
-  <comment></comment></data>
-	<data name="BetCount" xml:space="preserve">
+  </data>
+  <data name="BetCount" xml:space="preserve">
     <value>Bet Count</value>
-  <comment></comment></data>
-	<data name="Team" xml:space="preserve">
+  </data>
+  <data name="Team" xml:space="preserve">
     <value>Team</value>
-  <comment></comment></data>
-	<data name="NoDownline" xml:space="preserve">
+  </data>
+  <data name="NoDownline" xml:space="preserve">
     <value>There is no downline</value>
-  <comment></comment></data>
-	<data name="DeadBall" xml:space="preserve">
+  </data>
+  <data name="DeadBall" xml:space="preserve">
     <value>Dead Ball</value>
-  <comment></comment></data>
-	<data name="ResetPassword" xml:space="preserve">
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
-  <comment></comment></data>
-	<data name="Reset" xml:space="preserve">
+  </data>
+  <data name="Reset" xml:space="preserve">
     <value>Reset</value>
-  <comment></comment></data>
-	<data name="Note" xml:space="preserve">
+  </data>
+  <data name="Note" xml:space="preserve">
     <value>Note</value>
-  <comment></comment></data>
-	<data name="Details" xml:space="preserve">
+  </data>
+  <data name="Details" xml:space="preserve">
     <value>Details</value>
-  <comment></comment></data>
-	<data name="BetListDetails" xml:space="preserve">
+  </data>
+  <data name="BetListDetails" xml:space="preserve">
     <value>Details - Refno: </value>
-  <comment></comment></data>
-	<data name="BetCredit" xml:space="preserve">
+  </data>
+  <data name="BetCredit" xml:space="preserve">
     <value>Bet Credit</value>
-  <comment></comment></data>
-	<data name="LastLogin" xml:space="preserve">
+  </data>
+  <data name="LastLogin" xml:space="preserve">
     <value>Last Login</value>
-  <comment></comment></data>
-	<data name="LastTransaction" xml:space="preserve">
+  </data>
+  <data name="LastTransaction" xml:space="preserve">
     <value>Last Transaction</value>
-  <comment></comment></data>
-	<data name="Amount" xml:space="preserve">
+  </data>
+  <data name="Amount" xml:space="preserve">
     <value>Amount</value>
-  <comment></comment></data>
-	<data name="TransferMemberWarning" xml:space="preserve">
+  </data>
+  <data name="TransferMemberWarning" xml:space="preserve">
     <value>Warning: If balance is full transfered, the &lt;span class="text-highlighted"&gt;highlighted&lt;/span&gt; members below will have negative bet credit and consequently, they might lose more than their given credit.</value>
-  <comment></comment></data>
-	<data name="GivenCredit" xml:space="preserve">
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
     <value>Given Credit</value>
-  <comment></comment></data>
-	<data name="TotalBalance" xml:space="preserve">
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
     <value>Total Balance</value>
-  <comment></comment></data>
-	<data name="TotalCash" xml:space="preserve">
+  </data>
+  <data name="TotalCash" xml:space="preserve">
     <value>Total Cash</value>
-  <comment></comment></data>
-	<data name="UsedCredit" xml:space="preserve">
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
     <value>Used Credit</value>
-  <comment></comment></data>
-	<data name="YesterdayBalance" xml:space="preserve">
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
     <value>Yesterday Balance</value>
-  <comment></comment></data>
-	<data name="YesterdayCash" xml:space="preserve">
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
     <value>Yesterday Cash</value>
-  <comment></comment></data>
-	<data name="AgentComm" xml:space="preserve">
+  </data>
+  <data name="AgentComm" xml:space="preserve">
     <value>Agent Comm</value>
-  <comment></comment></data>
-	<data name="AgentPT" xml:space="preserve">
+  </data>
+  <data name="AgentPT" xml:space="preserve">
     <value>Agent PT</value>
-  <comment></comment></data>
-	<data name="Choice" xml:space="preserve">
+  </data>
+  <data name="Choice" xml:space="preserve">
     <value>Choice</value>
-  <comment></comment></data>
-	<data name="Feature" xml:space="preserve">
+  </data>
+  <data name="Feature" xml:space="preserve">
     <value>Feature</value>
-  <comment></comment></data>
-	<data name="Odds" xml:space="preserve">
+  </data>
+  <data name="Odds" xml:space="preserve">
     <value>Odds</value>
-  <comment></comment></data>
-	<data name="Stake" xml:space="preserve">
+  </data>
+  <data name="Stake" xml:space="preserve">
     <value>Stake</value>
-  <comment></comment></data>
-	<data name="TransTime" xml:space="preserve">
+  </data>
+  <data name="TransTime" xml:space="preserve">
     <value>Trans.Time</value>
-  <comment></comment></data>
-	<data name="Results" xml:space="preserve">
+  </data>
+  <data name="Results" xml:space="preserve">
     <value>Results</value>
-  <comment></comment></data>
-	<data name="PageTitle_BetList" xml:space="preserve">
+  </data>
+  <data name="PageTitle_BetList" xml:space="preserve">
     <value>Bet List</value>
-  <comment></comment></data>
-	<data name="MatchResults" xml:space="preserve">
+  </data>
+  <data name="MatchResults" xml:space="preserve">
     <value>Match Results</value>
-  <comment></comment></data>
-	<data name="OutrightResults" xml:space="preserve">
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
     <value>Outright Results</value>
-  <comment></comment></data>
-	<data name="Sport" xml:space="preserve">
+  </data>
+  <data name="Sport" xml:space="preserve">
     <value>Sport</value>
-  <comment></comment></data>
-	<data name="Today" xml:space="preserve">
+  </data>
+  <data name="Today" xml:space="preserve">
     <value>Today</value>
-  <comment></comment></data>
-	<data name="Yesterday" xml:space="preserve">
+  </data>
+  <data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
-  <comment></comment></data>
-	<data name="FullName" xml:space="preserve">
+  </data>
+  <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
-  <comment></comment></data>
-	<data name="Parlay" xml:space="preserve">
+  </data>
+  <data name="Parlay" xml:space="preserve">
     <value>Parlay</value>
-  <comment></comment></data>
-	<data name="Member" xml:space="preserve">
+  </data>
+  <data name="Member" xml:space="preserve">
     <value>Member</value>
-  <comment></comment></data>
-	<data name="MixParlay" xml:space="preserve">
+  </data>
+  <data name="MixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
-  <comment></comment></data>
-	<data name="SystemParlay" xml:space="preserve">
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
     <value>System Parlay</value>
-  <comment></comment></data>
-	<data name="NoInfo" xml:space="preserve">
+  </data>
+  <data name="NoInfo" xml:space="preserve">
     <value>No information is available</value>
-  <comment></comment></data>
-	<data name="InvalidAmount" xml:space="preserve">
+  </data>
+  <data name="InvalidAmount" xml:space="preserve">
     <value>Invalid Amount</value>
-  <comment></comment></data>
-	<data name="Agent" xml:space="preserve">
+  </data>
+  <data name="Agent" xml:space="preserve">
     <value>Agent</value>
-  <comment></comment></data>
-	<data name="TransferSuccessfully" xml:space="preserve">
+  </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
     <value>Transfer successfully.</value>
-  <comment></comment></data>
-	<data name="AgentOutstanding" xml:space="preserve">
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
     <value>Agent Outstanding</value>
-  <comment></comment></data>
-	<data name="Currency" xml:space="preserve">
+  </data>
+  <data name="Currency" xml:space="preserve">
     <value>Currency</value>
-  <comment></comment></data>
-	<data name="NewMemberOfMonth" xml:space="preserve">
+  </data>
+  <data name="NewMemberOfMonth" xml:space="preserve">
     <value>New members of the month</value>
-  <comment></comment></data>
-	<data name="TopTurnoverMembers" xml:space="preserve">
+  </data>
+  <data name="TopTurnoverMembers" xml:space="preserve">
     <value>Top 10 highest turnover members of the month</value>
-  <comment></comment></data>
-	<data name="TopWinningMembers" xml:space="preserve">
+  </data>
+  <data name="TopWinningMembers" xml:space="preserve">
     <value>Top 10 winning members of the month</value>
-  <comment></comment></data>
-	<data name="TotalOutstanding" xml:space="preserve">
+  </data>
+  <data name="TotalOutstanding" xml:space="preserve">
     <value>Total Outstanding</value>
-  <comment></comment></data>
-	<data name="Turnover" xml:space="preserve">
+  </data>
+  <data name="Turnover" xml:space="preserve">
     <value>Turnover</value>
-  <comment></comment></data>
-	<data name="WinningAmount" xml:space="preserve">
+  </data>
+  <data name="WinningAmount" xml:space="preserve">
     <value>Winning Amount</value>
-  <comment></comment></data>
-	<data name="YourStatistics" xml:space="preserve">
+  </data>
+  <data name="YourStatistics" xml:space="preserve">
     <value>Your Statistics</value>
-  <comment></comment></data>
-	<data name="CreditBalance" xml:space="preserve">
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
     <value>Credit / Balance</value>
-  <comment></comment></data>
-	<data name="Credit" xml:space="preserve">
+  </data>
+  <data name="Credit" xml:space="preserve">
     <value>Credit</value>
-  <comment></comment></data>
-	<data name="UpdateCredit" xml:space="preserve">
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
     <value>Update Credit</value>
-  <comment></comment></data>
-	<data name="EditCreditSuccessfully" xml:space="preserve">
+  </data>
+  <data name="EditCreditSuccessfully" xml:space="preserve">
     <value>Edit Credit Successfully</value>
-  <comment></comment></data>
-	<data name="Unlimited" xml:space="preserve">
+  </data>
+  <data name="Unlimited" xml:space="preserve">
     <value>Unlimited</value>
-  <comment></comment></data>
-	<data name="AgentWinLoss" xml:space="preserve">
+  </data>
+  <data name="AgentWinLoss" xml:space="preserve">
     <value>Agent Win Loss</value>
-  <comment></comment></data>
-	<data name="Date" xml:space="preserve">
+  </data>
+  <data name="Date" xml:space="preserve">
     <value>Date</value>
-  <comment></comment></data>
-	<data name="From" xml:space="preserve">
+  </data>
+  <data name="From" xml:space="preserve">
     <value>From</value>
-  <comment></comment></data>
-	<data name="To" xml:space="preserve">
+  </data>
+  <data name="To" xml:space="preserve">
     <value>To</value>
-  <comment></comment></data>
-	<data name="PleaseChooseCurrency" xml:space="preserve">
+  </data>
+  <data name="PleaseChooseCurrency" xml:space="preserve">
     <value>Please choose a currency</value>
-  <comment></comment></data>
-	<data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
+  </data>
+  <data name="PleaseChooseLicenseeCurrency" xml:space="preserve">
     <value>Please choose a licensee and a currency</value>
-  <comment></comment></data>
-	<data name="DontShowMessageAgain" xml:space="preserve">
+  </data>
+  <data name="DontShowMessageAgain" xml:space="preserve">
     <value>Don't show this message again.</value>
-  <comment></comment></data>
-	<data name="DateRange" xml:space="preserve">
+  </data>
+  <data name="DateRange" xml:space="preserve">
     <value>Date Range</value>
-  <comment></comment></data>
-	<data name="DrawFilter" xml:space="preserve">
+  </data>
+  <data name="DrawFilter" xml:space="preserve">
     <value>Draw Filter</value>
-  <comment></comment></data>
-	<data name="NoDrawForTurnoverOnly" xml:space="preserve">
+  </data>
+  <data name="NoDrawForTurnoverOnly" xml:space="preserve">
     <value>No Draw For Turnover Only</value>
-  <comment></comment></data>
-	<data name="Normal" xml:space="preserve">
+  </data>
+  <data name="Normal" xml:space="preserve">
     <value>Normal</value>
-  <comment></comment></data>
-	<data name="EffectiveTurnover" xml:space="preserve">
+  </data>
+  <data name="EffectiveTurnover" xml:space="preserve">
     <value>Effective Turnover</value>
-  <comment></comment></data>
-	<data name="Announcement" xml:space="preserve">
+  </data>
+  <data name="Announcement" xml:space="preserve">
     <value>Announcement</value>
-  <comment></comment></data>
-	<data name="Licensee" xml:space="preserve">
+  </data>
+  <data name="Licensee" xml:space="preserve">
     <value>Licensee</value>
-  <comment></comment></data>
-	<data name="TodayWinLoss" xml:space="preserve">
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
     <value>Today Win Loss</value>
-  <comment></comment></data>
-	<data name="YesterdayWinLoss" xml:space="preserve">
+  </data>
+  <data name="YesterdayWinLoss" xml:space="preserve">
     <value>Yesterday Win Loss</value>
-  <comment></comment></data>
-	<data name="Error" xml:space="preserve">
+  </data>
+  <data name="Error" xml:space="preserve">
     <value>Error</value>
-  <comment></comment></data>
-	<data name="Generate" xml:space="preserve">
+  </data>
+  <data name="Generate" xml:space="preserve">
     <value>Generate</value>
-  <comment></comment></data>
-	<data name="AlertNoCurrencyPermission" xml:space="preserve">
+  </data>
+  <data name="AlertNoCurrencyPermission" xml:space="preserve">
     <value>Sorry! Your permission has just been updated by admin, thus you're forced to relogin. Thank you.</value>
-  <comment></comment></data>
-	<data name="Report" xml:space="preserve">
+  </data>
+  <data name="Report" xml:space="preserve">
     <value>Report</value>
-  <comment></comment></data>
-	<data name="DownlineStatement" xml:space="preserve">
+  </data>
+  <data name="DownlineStatement" xml:space="preserve">
     <value>Downline Statement</value>
-  <comment></comment></data>
-	<data name="Betting" xml:space="preserve">
+  </data>
+  <data name="Betting" xml:space="preserve">
     <value>Betting</value>
-  <comment></comment></data>
-	<data name="OpeningBalance" xml:space="preserve">
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
     <value>Opening Balance</value>
-  <comment></comment></data>
-	<data name="MessageAnnouncement" xml:space="preserve">
+  </data>
+  <data name="MessageAnnouncement" xml:space="preserve">
     <value>Message / Announcement</value>
-  <comment></comment></data>
-	<data name="PersonalMessage" xml:space="preserve">
+  </data>
+  <data name="PersonalMessage" xml:space="preserve">
     <value>Personal Message</value>
-  <comment></comment></data>
-	<data name="PublicAnnouncements" xml:space="preserve">
+  </data>
+  <data name="PublicAnnouncements" xml:space="preserve">
     <value>Public Announcements</value>
-  <comment></comment></data>
-	<data name="SpecialAnnouncements" xml:space="preserve">
+  </data>
+  <data name="SpecialAnnouncements" xml:space="preserve">
     <value>Special Announcements</value>
-  <comment></comment></data>
-	<data name="IpContent" xml:space="preserve">
+  </data>
+  <data name="IpContent" xml:space="preserve">
     <value>Additional info at DNSstuff: &lt;a target="_blank" href="http://www.iplocationfinder.com/{0}"&gt;click here&lt;/a&gt;. Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
-  <comment></comment></data>
-	<data name="Lose" xml:space="preserve">
+  </data>
+  <data name="Lose" xml:space="preserve">
     <value>Lose</value>
-  <comment></comment></data>
-	<data name="Refund" xml:space="preserve">
+  </data>
+  <data name="Refund" xml:space="preserve">
     <value>Refund</value>
-  <comment></comment></data>
-	<data name="Reject" xml:space="preserve">
+  </data>
+  <data name="Reject" xml:space="preserve">
     <value>Reject</value>
-  <comment></comment></data>
-	<data name="Running" xml:space="preserve">
+  </data>
+  <data name="Running" xml:space="preserve">
     <value>Running</value>
-  <comment></comment></data>
-	<data name="TicketNotFound" xml:space="preserve">
+  </data>
+  <data name="TicketNotFound" xml:space="preserve">
     <value>Ticket is not found</value>
-  <comment></comment></data>
-	<data name="Void" xml:space="preserve">
+  </data>
+  <data name="Void" xml:space="preserve">
     <value>Void</value>
-  <comment></comment></data>
-	<data name="Waiting" xml:space="preserve">
+  </data>
+  <data name="Waiting" xml:space="preserve">
     <value>Waiting</value>
-  <comment></comment></data>
-	<data name="Won" xml:space="preserve">
+  </data>
+  <data name="Won" xml:space="preserve">
     <value>Won</value>
-  <comment></comment></data>
-	<data name="ClosingBalance" xml:space="preserve">
+  </data>
+  <data name="ClosingBalance" xml:space="preserve">
     <value>Closing Balance</value>
-  <comment></comment></data>
-	<data name="TransferAmt" xml:space="preserve">
+  </data>
+  <data name="TransferAmt" xml:space="preserve">
     <value>Transfer Amt</value>
-  <comment></comment></data>
-	<data name="TransferDetails" xml:space="preserve">
+  </data>
+  <data name="TransferDetails" xml:space="preserve">
     <value>Transfer Details</value>
-  <comment></comment></data>
-	<data name="Back" xml:space="preserve">
+  </data>
+  <data name="Back" xml:space="preserve">
     <value>Back</value>
-  <comment></comment></data>
-	<data name="ViewSportsbookAgent" xml:space="preserve">
+  </data>
+  <data name="ViewSportsbookAgent" xml:space="preserve">
     <value>View Sportsbook Agent</value>
-  <comment></comment></data>
-	<data name="TransferTimeWarning" xml:space="preserve">
+  </data>
+  <data name="TransferTimeWarning" xml:space="preserve">
     <value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
-  <comment></comment></data>
-	<data name="AwayNo" xml:space="preserve">
+  </data>
+  <data name="AwayNo" xml:space="preserve">
     <value>Away No</value>
     <comment>No need to translate</comment>
   </data>
-	<data name="AwayOrDraw" xml:space="preserve">
+  <data name="AwayOrDraw" xml:space="preserve">
     <value>Away or Draw</value>
     <comment>No need to translate</comment>
   </data>
-	<data name="AwayTeam" xml:space="preserve">
+  <data name="AwayTeam" xml:space="preserve">
     <value>Away</value>
-  <comment></comment></data>
-	<data name="AwayYes" xml:space="preserve">
+  </data>
+  <data name="AwayYes" xml:space="preserve">
     <value>Away Yes</value>
     <comment>No need to translate</comment>
   </data>
-	<data name="HomeNo" xml:space="preserve">
+  <data name="HomeNo" xml:space="preserve">
     <value>Home No</value>
     <comment>No need to translate</comment>
   </data>
-	<data name="HomeOrAway" xml:space="preserve">
+  <data name="HomeOrAway" xml:space="preserve">
     <value>Home or Away</value>
-  <comment>No need to translate</comment></data>
-	<data name="HomeOrDraw" xml:space="preserve">
+    <comment>No need to translate</comment>
+  </data>
+  <data name="HomeOrDraw" xml:space="preserve">
     <value>Home or Draw</value>
-  <comment>No need to translate</comment></data>
-	<data name="HomeTeam" xml:space="preserve">
+    <comment>No need to translate</comment>
+  </data>
+  <data name="HomeTeam" xml:space="preserve">
     <value>Home</value>
-  <comment></comment></data>
-	<data name="HomeYes" xml:space="preserve">
+  </data>
+  <data name="HomeYes" xml:space="preserve">
     <value>Home Yes</value>
-  <comment>No need to translate</comment></data>
-	<data name="NoGoal" xml:space="preserve">
+    <comment>No need to translate</comment>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
     <value>No Goal</value>
-  <comment></comment></data>
-	<data name="Score7Over" xml:space="preserve">
+  </data>
+  <data name="Score7Over" xml:space="preserve">
     <value>7&amp;Over</value>
-  <comment></comment></data>
-	<data name="Under" xml:space="preserve">
+  </data>
+  <data name="Under" xml:space="preserve">
     <value>Under</value>
-  <comment></comment></data>
-	<data name="Integration" xml:space="preserve">
+  </data>
+  <data name="Integration" xml:space="preserve">
     <value>Integration</value>
-  <comment></comment></data>
-	<data name="SessionError" xml:space="preserve">
+  </data>
+  <data name="SessionError" xml:space="preserve">
     <value>Session Error. Please contact the administrator.</value>
-  <comment></comment></data>
-	<data name="SessionExpired" xml:space="preserve">
+  </data>
+  <data name="SessionExpired" xml:space="preserve">
     <value>Session is expired</value>
-  <comment></comment></data>
-	<data name="TicketInvalidExpired" xml:space="preserve">
+  </data>
+  <data name="TicketInvalidExpired" xml:space="preserve">
     <value>Ticket is invalid or expired</value>
-  <comment></comment></data>
-	<data name="UndefinedErrorCode" xml:space="preserve">
+  </data>
+  <data name="UndefinedErrorCode" xml:space="preserve">
     <value>Undefined error code {0}</value>
-  <comment></comment></data>
-	<data name="AllEvents" xml:space="preserve">
+  </data>
+  <data name="AllEvents" xml:space="preserve">
     <value>All events</value>
-  <comment></comment></data>
-	<data name="AllLeagues" xml:space="preserve">
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
     <value>All leagues</value>
-  <comment></comment></data>
-	<data name="AllSports" xml:space="preserve">
+  </data>
+  <data name="AllSports" xml:space="preserve">
     <value>All sports</value>
-  <comment></comment></data>
-	<data name="NoSelectedEvent" xml:space="preserve">
+  </data>
+  <data name="NoSelectedEvent" xml:space="preserve">
     <value>No selected event</value>
-  <comment></comment></data>
-	<data name="NoSelectedLeague" xml:space="preserve">
+  </data>
+  <data name="NoSelectedLeague" xml:space="preserve">
     <value>No selected league</value>
-  <comment></comment></data>
-	<data name="NoSelectedSport" xml:space="preserve">
+  </data>
+  <data name="NoSelectedSport" xml:space="preserve">
     <value>No selected sport</value>
-  <comment></comment></data>
-	<data name="NumberOfSelectedEvents" xml:space="preserve">
+  </data>
+  <data name="NumberOfSelectedEvents" xml:space="preserve">
     <value># selected events</value>
-  <comment></comment></data>
-	<data name="NumberOfSelectedLeagues" xml:space="preserve">
+  </data>
+  <data name="NumberOfSelectedLeagues" xml:space="preserve">
     <value># selected leagues</value>
-  <comment></comment></data>
-	<data name="NumberOfSelectedSports" xml:space="preserve">
+  </data>
+  <data name="NumberOfSelectedSports" xml:space="preserve">
     <value># selected sports</value>
-  <comment></comment></data>
-	<data name="PleaseSelectEvent" xml:space="preserve">
+  </data>
+  <data name="PleaseSelectEvent" xml:space="preserve">
     <value>Please select an event</value>
-  <comment></comment></data>
-	<data name="PleaseSelectLeague" xml:space="preserve">
+  </data>
+  <data name="PleaseSelectLeague" xml:space="preserve">
     <value>Please select a league</value>
-  <comment></comment></data>
-	<data name="PleaseSelectSport" xml:space="preserve">
+  </data>
+  <data name="PleaseSelectSport" xml:space="preserve">
     <value>Please select a sport</value>
-  <comment></comment></data>
-	<data name="AllTeams" xml:space="preserve">
+  </data>
+  <data name="AllTeams" xml:space="preserve">
     <value>All teams</value>
-  <comment></comment></data>
-	<data name="NoSelectedTeam" xml:space="preserve">
+  </data>
+  <data name="NoSelectedTeam" xml:space="preserve">
     <value>No selected team</value>
-  <comment></comment></data>
-	<data name="NumberOfSelectedTeams" xml:space="preserve">
+  </data>
+  <data name="NumberOfSelectedTeams" xml:space="preserve">
     <value># selected teams</value>
-  <comment></comment></data>
-	<data name="PleaseSelectTeam" xml:space="preserve">
+  </data>
+  <data name="PleaseSelectTeam" xml:space="preserve">
     <value>Please select a team</value>
-  <comment></comment></data>
-	<data name="Completed" xml:space="preserve">
+  </data>
+  <data name="Completed" xml:space="preserve">
     <value>Completed</value>
-  <comment></comment></data>
-	<data name="Month" xml:space="preserve">
+  </data>
+  <data name="Month" xml:space="preserve">
     <value>Month</value>
-  <comment></comment></data>
-	<data name="InvalidFax" xml:space="preserve">
+  </data>
+  <data name="InvalidFax" xml:space="preserve">
     <value>Invalid Fax Number</value>
-  <comment></comment></data>
-	<data name="InvalidMobilePhone" xml:space="preserve">
+  </data>
+  <data name="InvalidMobilePhone" xml:space="preserve">
     <value>Invalid Mobile Phone Number</value>
-  <comment></comment></data>
-	<data name="InvalidPhone" xml:space="preserve">
+  </data>
+  <data name="InvalidPhone" xml:space="preserve">
     <value>Invalid Phone Number</value>
-  <comment></comment></data>
-	<data name="PhoneNote" xml:space="preserve">
+  </data>
+  <data name="PhoneNote" xml:space="preserve">
     <value>&lt;div&gt;
 &lt;p&gt;A valid phone/mobile/fax numbers should contain an international dialing code in front of the number.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
 &lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
 &lt;/div&gt;</value>
-  <comment></comment></data>
-	<data name="PasswordSecurity" xml:space="preserve">
+  </data>
+  <data name="PasswordSecurity" xml:space="preserve">
     <value>The password supplied does not meet the minimum security requirements.</value>
-  <comment></comment></data>
+  </data>
+  <data name="AgentShare" xml:space="preserve">
+    <value>Agent Share</value>
+  </data>
+  <data name="Mine" xml:space="preserve">
+    <value>Mine</value>
+  </data>
 </root>

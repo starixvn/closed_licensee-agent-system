@@ -15,6 +15,7 @@
 	AgentList : "Agent List",
 	AgentOutstanding : "Agent Outstanding",
 	AgentPT : "Agent PT",
+	AgentShare : "Agent Share",
 	AgentWinLoss : "Agent Win Loss",
 	AlertNoCurrencyPermission : "Sorry! Your permission has just been updated by admin, thus you&apos;re forced to relogin. Thank you.",
 	All : "All",

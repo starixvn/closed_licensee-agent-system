@@ -1060,4 +1060,10 @@
 &lt;li&gt; 无效: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
 &lt;/div&gt;</value>
   </data>
+  <data name="AgentShare" xml:space="preserve">
+    <value>代理占成</value>
+  </data>
+  <data name="Mine" xml:space="preserve">
+    <value>Mine</value>
+  </data>
 </root>

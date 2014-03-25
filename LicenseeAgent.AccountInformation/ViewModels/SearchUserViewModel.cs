@@ -7,6 +7,8 @@
 namespace LicenseeAgent.AccountInformation.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -14,7 +16,7 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     public class SearchUserViewModel
     {
         [Required]
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = Constants.MinimumUsernameLength, ErrorMessageResourceName = "NoInfo", ErrorMessageResourceType = typeof(Las))]
         public string UserName { get; set; }
     }
 }

@@ -747,7 +747,7 @@
     <value>上半场</value>
   </data>
   <data name="InvalidAmount" xml:space="preserve">
-    <value>数额无效</value>
+    <value>金额无效</value>
   </data>
   <data name="Last" xml:space="preserve">
     <value>尾页</value>
@@ -762,7 +762,7 @@
     <value>本月新会员</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
-    <value>没资料显示</value>
+    <value>用户名不存在！</value>
   </data>
   <data name="Odd" xml:space="preserve">
     <value>单</value>

@@ -762,7 +762,7 @@
     <value>本月新會員</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
-    <value>沒資料顯示</value>
+    <value>用戶名不存在！</value>
   </data>
   <data name="Odd" xml:space="preserve">
     <value>單</value>

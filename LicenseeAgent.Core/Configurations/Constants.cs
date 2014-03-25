@@ -19,6 +19,7 @@ namespace LicenseeAgent.Core.Configurations
         public const string BETLISTTICKETSTATUSRUNNING = "running";
         public const string BETLISTTICKETSTATUSWAITING = "waiting";
 
+        public const int MinimumUsernameLength = 6;
         public const int ShortStringLength = 15;
         public const int MediumStringLength = 20;
         public const int LargeStringLength = 35;

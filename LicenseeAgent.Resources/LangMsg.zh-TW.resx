@@ -271,10 +271,10 @@
     <value>您未獲許可進入此頁面。</value>
   </data>
   <data name="Msg_101" xml:space="preserve">
-    <value>The agent does not exist.</value>
+    <value>此經紀人不存在。</value>
   </data>
   <data name="Msg_102" xml:space="preserve">
-    <value>You can transfer from 12pm to 11:59pm (GMT-4) only.</value>
+    <value>您只可在12點到11：59分（GMT-4）之間進行轉帳。</value>
   </data>
   <data name="Msg_1035" xml:space="preserve">
     <value>會員不存在</value>

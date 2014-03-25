@@ -1267,7 +1267,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Amount.
+        ///   Looks up a localized string similar to Invalid amount.
         /// </summary>
         public static string InvalidAmount {
             get {
@@ -1699,7 +1699,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No information is available.
+        ///   Looks up a localized string similar to No information available!.
         /// </summary>
         public static string NoInfo {
             get {

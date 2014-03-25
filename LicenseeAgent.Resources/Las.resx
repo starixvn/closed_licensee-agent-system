@@ -758,10 +758,10 @@
     <value>System Parlay</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
-    <value>No information is available</value>
+    <value>No information available!</value>
   </data>
   <data name="InvalidAmount" xml:space="preserve">
-    <value>Invalid Amount</value>
+    <value>Invalid amount</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>

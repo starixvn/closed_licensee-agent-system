@@ -246,8 +246,8 @@ namespace LicenseeAgent.Web.Controllers
 
         protected ActionResult InvalidModelViewResult()
         {
-            var errorMessage = GetModelErrorMessage();
-            return Content(errorMessage);
+            string errorMessage = GetModelErrorMessage();
+            return Content(string.Format("<div class='alert alert-error' style='display: block;'>{0}</div>", errorMessage));
         }
 
         protected JsonResult RedirectToAccessDeniedJson()

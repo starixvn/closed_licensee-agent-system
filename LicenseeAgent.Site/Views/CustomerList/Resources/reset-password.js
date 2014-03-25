@@ -1,9 +1,8 @@
-﻿/*jslint white: true */
-/*global $, jQuery, CORE */
-var resetPassword = (function($) {
+﻿/*global $, jQuery, CORE */
+var resetPassword = (function ($) {
     return {
-        init: function() {
-            $("#Password").keyup(function() {
+        init: function () {
+            $("#Password").keyup(function () {
                 if ($("#Password").val() !== "") {
                     if (CORE.PASSWORD_FORMAT.test($("#Password").val())) {
                         $("#iconValid").removeClass("icon-input-invalid")

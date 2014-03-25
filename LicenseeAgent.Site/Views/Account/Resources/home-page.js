@@ -1,18 +1,21 @@
-﻿var HomePage = function ($) {
+﻿/*global $, jQuery, CORE */
+var homePage = (function ($) {
     return {
         init: function () {
             $('.dropdown-button').click(function () {
-                var element = $(this);
-                var popup = element.next();
+                var element = $(this),
+                    popup = element.next(),
+                    url = element.attr('href');
                 if (popup.is(":visible")) {
-                    element.removeClass('icon-account-collapse').addClass('icon-account-expand');
+                    element.removeClass('icon-account-collapse')
+                        .addClass('icon-account-expand');
                     popup.hide();
                     return;
                 }
                 $('.dropdown-popup').hide();
-                $('.dropdown-button').removeClass('icon-account-collapse').addClass('icon-account-expand');
+                $('.dropdown-button').removeClass('icon-account-collapse')
+                    .addClass('icon-account-expand');
                 element.addClass('icon-account-collapse');
-                var url = element.attr('href');
                 $.ajax({
                     url: url,
                     type: 'get',
@@ -30,7 +33,7 @@
             });
         }
     };
-} (jQuery);
+}(jQuery));
 $(function () {
-    HomePage.init();
+    homePage.init();
 });

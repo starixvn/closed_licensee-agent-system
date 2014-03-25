@@ -1,11 +1,10 @@
 ﻿/*jslint plusplus: true */
-/*jslint white: true */
 /*global $, jQuery, alert, document, CORE, internalHeader */
 var accountInformation = (function ($) {
     /*jshint strict:false */
     var urlSuggestion, urlDownline, urlCurrency;
     return {
-        init: function() {
+        init: function () {
             urlSuggestion = $("#searchUrl").data("suggest");
             urlDownline = $("#searchUrl").data("downline");
             urlCurrency = $("#searchUrl").data("currency");
@@ -20,7 +19,7 @@ var accountInformation = (function ($) {
             });
 
             //form submit
-            $('#formSearch').submit(function(event) {
+            $('#formSearch').submit(function (event) {
                 var userName = $.trim($("#UserName").val());
                 if (userName !== '') {
                     $("#UserName").val(userName);
@@ -34,7 +33,7 @@ var accountInformation = (function ($) {
             });
 
             //search click
-            $('#search').click(function() {
+            $('#search').click(function () {
                 $("#formSearch").submit();
             });
 
@@ -49,11 +48,11 @@ var accountInformation = (function ($) {
                 accountInformation.changeAccountInfoActive();
             }
         },
-        beforeSearchUser: function() {
+        beforeSearchUser: function () {
             CORE.blockUI();
             $("#searchAlert").hide();
         },
-        searchResultBinding: function() {
+        searchResultBinding: function () {
             CORE.unblockUI();
 
             $('#tabDownline').on('shown', function () {
@@ -69,8 +68,8 @@ var accountInformation = (function ($) {
                     currentPage: pageIndex,
                     numberOfPages: 3,
                     totalPages: totalPages,
-                    pageUrl: function() { return '#'; },
-                    onPageChanged: function(e, oldPage, newPage) {
+                    pageUrl: function () { return '#'; },
+                    onPageChanged: function (e, oldPage, newPage) {
                         if (oldPage !== newPage && e) {
                             accountInformation.getDownline(newPage);
                         }
@@ -78,7 +77,7 @@ var accountInformation = (function ($) {
                 });
             }
             //add trigger event
-            $('.btn-inverse').click(function() {
+            $('.btn-inverse').click(function () {
                 $("#frmMain").attr("src", $(this).data("url"));
             });
 
@@ -90,11 +89,11 @@ var accountInformation = (function ($) {
                     placement: 'right'
                 });
 
-                $(document).click(function(e) {
-                    $('.popover-link').each(function() {
+                $(document).click(function (e) {
+                    $('.popover-link').each(function () {
                         if (!$(this).is(e.target) &&
-                            $(this).has(e.target).length === 0 &&
-                            $('.popover').has(e.target).length === 0) {
+                                $(this).has(e.target).length === 0 &&
+                                $('.popover').has(e.target).length === 0) {
                             $(this).popover('hide');
                             return;
                         }
@@ -104,25 +103,25 @@ var accountInformation = (function ($) {
 
             accountInformation.pagingBinding();
         },
-        pagingBinding: function() {
-            $(".agent-inline").click(function(event) {
+        pagingBinding: function () {
+            $(".agent-inline").click(function (event) {
                 $("#UserName").val($(this).attr('title'));
                 $("#formSearch").submit();
 
                 event.preventDefault();
             });
         },
-        hidePopover: function() {
+        hidePopover: function () {
             $('.popover-link').popover('hide');
         },
-        getSuggestion: function(query, process) {
+        getSuggestion: function (query, process) {
             return $.ajax({
                 url: urlSuggestion,
                 type: 'post',
                 data: {
                     username: query
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode === 0) {
                         return process(data.List);
                     }
@@ -130,7 +129,7 @@ var accountInformation = (function ($) {
             });
         },
         //get downline when click paging
-        getDownline: function(pageIndex) {
+        getDownline: function (pageIndex) {
             $.ajax({
                 url: urlDownline,
                 type: 'post',
@@ -138,20 +137,20 @@ var accountInformation = (function ($) {
                     agentid: $("#AgentId").val(),
                     pageindex: pageIndex - 1
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode === 0) {
                         accountInformation.bindDownline(data.List);
                     }
                 },
-                complete: function() {
+                complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        bindDownline: function(downlines) {
+        bindDownline: function (downlines) {
             var numberDownline = downlines.length,
                 downlineHtml = '',
                 index = 0;
@@ -167,23 +166,23 @@ var accountInformation = (function ($) {
             accountInformation.showScroll();
         },
         //show alert when search username not exist
-        showNoUserAlert: function(message) {
+        showNoUserAlert: function (message) {
             $("#searchAlert").html(message);
             $("#searchAlert").show();
         },
         //show alert when search username exist in another currency
-        showCurrencyAlert: function(currencyId, currencyName, msgQuestion, msgAlert) {
+        showCurrencyAlert: function (currencyId, currencyName, msgQuestion, msgAlert) {
             var buttons = [];
             buttons.push({
                 text: 'YES',
-                click: function() {
+                click: function () {
                     accountInformation.changeCurrencyPage(currencyId, currencyName);
                     accountInformation.closeDialog();
                 }
             });
             buttons.push({
                 text: 'NO',
-                click: function() {
+                click: function () {
                     accountInformation.showNoUserAlert(msgAlert);
                     accountInformation.closeDialog();
                 }
@@ -196,11 +195,11 @@ var accountInformation = (function ($) {
                 buttons: buttons
             });
         },
-        closeDialog: function() {
+        closeDialog: function () {
             $('#dialog-confirm').dialog('close');
         },
         //change currency site
-        changeCurrencyPage: function(currencyId) {
+        changeCurrencyPage: function (currencyId) {
             var data = {
                 licenseeid: $("#licensee").data("licensee-id"),
                 currencyid: currencyId
@@ -209,10 +208,10 @@ var accountInformation = (function ($) {
                 url: urlCurrency,
                 type: 'post',
                 data: data,
-                beforeSend: function() {
+                beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
@@ -222,12 +221,12 @@ var accountInformation = (function ($) {
                         internalHeader.setCurrency(currencyId);
                     }
                 },
-                complete: function() {
+                complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        changeAccountInfoActive: function() {
+        changeAccountInfoActive: function () {
             var tab, mainMenuId, accountInfoId;
             tab = $('.leftmenu-box').find('.nav-tabs').first();
             tab.find('li:first').removeClass('active');

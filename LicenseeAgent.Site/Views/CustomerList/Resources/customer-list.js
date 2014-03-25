@@ -1,7 +1,6 @@
 ﻿/*jslint plusplus: true */
-/*jslint white: true */
-/*global $, jQuery, alert, document, CORE, LANGUAGE, POPUP, 
-            pageContext, msg, gridOptions, context */
+/*global $, jQuery, alert, document, CORE, LANGUAGE, POPUP,
+        pageContext, msg, gridOptions, context */
 var customerList = (function ($) {
     'use strict';
     var statusObj = { All: -1, Close: 0, Open: 1 },
@@ -11,7 +10,7 @@ var customerList = (function ($) {
         editUsername = "";
 
     return {
-        init: function() {
+        init: function () {
             $('.selectpicker').selectpicker();
 
             // create action context menu
@@ -24,10 +23,10 @@ var customerList = (function ($) {
                 {
                     id: 'menuSportsbook',
                     icon: (pageContext.IsAdmin
-                            || pageContext.IsLastLevel 
-                            || pageContext.IsDirectDownline
-                            ? 'icon-customer-canedit' 
-                            : 'icon-customer-canview'),
+                        || pageContext.IsLastLevel
+                        || pageContext.IsDirectDownline
+                        ? 'icon-customer-canedit'
+                        : 'icon-customer-canview'),
                     text: LANGUAGE.getString('Sportsbook'),
                     href: '#',
                     action: customerList.editSportsbook
@@ -73,7 +72,7 @@ var customerList = (function ($) {
             ]);
 
             // breadcrum
-            $('.breadcrumb a').click(function() {
+            $('.breadcrumb a').click(function () {
                 var agentId = $(this).data('agent-id'),
                     agentLevel = $(this).data('agent-level'),
                     agentName = $(this).text();
@@ -81,7 +80,7 @@ var customerList = (function ($) {
             });
 
             // search
-            $('#search-form').submit(function(e) {
+            $('#search-form').submit(function (e) {
                 customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
                 e.preventDefault();
             });
@@ -95,17 +94,17 @@ var customerList = (function ($) {
             // get customer list
             customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
         },
-        initInstruction: function() {
-            $('.instruction-container').each(function() {
-                $(this).click(function() {
+        initInstruction: function () {
+            $('.instruction-container').each(function () {
+                $(this).click(function () {
                     customerList.getIpInformation($(this).html());
                 });
             });
         },
-        updateActionMenus: function(target) {
-            if (!pageContext.IsAdmin
-                || $(target).attr('data-status') === 0 
-                || pageContext.IsLastLevel) {
+        updateActionMenus: function (target) {
+            if (!pageContext.IsAdmin ||
+                    $(target).attr('data-status') === 0 ||
+                    pageContext.IsLastLevel) {
                 $('#menuAddDownline').hide();
             } else {
                 $('#menuAddDownline').show();
@@ -124,24 +123,24 @@ var customerList = (function ($) {
                 editAgentLevel = parseInt($(target).data('agentlevel'), null);
             }
         },
-        gridAfterBinding: function() {
+        gridAfterBinding: function () {
             customerList.initInstruction();
 
             if (!pageContext.IsDirectDownline) {
                 $(".cust-status").addClass('cust-status-none');
             }
         },
-        resizeBox: function() {
+        resizeBox: function () {
             $("#boxsearch").width($("#grid").width());
             $("#breadcrumb").width($("#grid").width());
         },
-        showAgent: function(agentId, agentName, agentLevel) {
+        showAgent: function (agentId, agentName, agentLevel) {
             $('#newAgentId').val(agentId);
             $('#AgentLevel').val(agentLevel);
             $('#AgentName').val(agentName);
             $("#ajax-form").submit();
         },
-        reRenderAfterPaged: function(currentPage, itemsPerPage) {
+        reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
                     : gridOptions.pagerOption.currentPage;
@@ -160,10 +159,10 @@ var customerList = (function ($) {
                 url: $('#search-form').attr('action'),
                 type: 'post',
                 data: params,
-                beforeSend: function() {
+                beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                     } else {
@@ -173,7 +172,7 @@ var customerList = (function ($) {
                                 currentPage: 0,
                                 itemsPerPageArray: CORE.pageSizes,
                                 showDetail: true,
-                                afterPagedFunction: function() {
+                                afterPagedFunction: function () {
                                     customerList.gridAfterBinding();
                                 }
                             };
@@ -194,12 +193,12 @@ var customerList = (function ($) {
                         customerList.resizeBox();
                     }
                 },
-                complete: function() {
+                complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        changeStatus: function(target, custId) {
+        changeStatus: function (target, custId) {
             if (!pageContext.IsDirectDownline) {
                 return;
             }
@@ -208,7 +207,7 @@ var customerList = (function ($) {
             newStatus = currentStatus === 0 ? 1 : 0;
             customerList.showAlert(target, custId, newStatus);
         },
-        updateStatus: function(target, custId, statusId) {
+        updateStatus: function (target, custId, statusId) {
             var params, url;
             if (pageContext.IsLastLevel) {
                 params = {
@@ -230,10 +229,10 @@ var customerList = (function ($) {
                 url: CORE.resolveUrl(url),
                 type: 'post',
                 data: params,
-                beforeSend: function() {
+                beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
@@ -253,27 +252,27 @@ var customerList = (function ($) {
                     }
                     $('#' + custId).attr('data-status', statusId);
                 },
-                complete: function() {
+                complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        checkAllItem: function(itemAll) {
+        checkAllItem: function (itemAll) {
             if ($(itemAll).hasClass("icon-uncheck-all")) {
                 customerList.checkAll();
             } else {
                 customerList.uncheckAll();
             }
         },
-        checkAll: function() {
+        checkAll: function () {
             $(".icon-uncheck-all").attr("class", "icon-checked-all");
             $(".icon-uncheck").attr("class", "icon-checked");
         },
-        uncheckAll: function() {
+        uncheckAll: function () {
             $(".icon-checked-all").attr("class", "icon-uncheck-all");
             $(".icon-checked").attr("class", "icon-uncheck");
         },
-        selectClick: function(itemSelect) {
+        selectClick: function (itemSelect) {
             if ($(itemSelect).hasClass("icon-uncheck")) {
                 $(itemSelect).removeClass("icon-uncheck");
                 $(itemSelect).addClass("icon-checked");
@@ -286,7 +285,7 @@ var customerList = (function ($) {
                 $(".icon-checked-all").attr("class", "icon-uncheck-all");
             }
         },
-        getSuggestion: function(query, process) {
+        getSuggestion: function (query, process) {
             return $.ajax({
                 url: CORE.resolveUrl('~/CustomerList/CustomerSearchAutoComplete'),
                 type: 'post',
@@ -295,7 +294,7 @@ var customerList = (function ($) {
                     agentId: $("#AgentId").val(),
                     agentLevel: $("#AgentLevel").val()
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
@@ -305,18 +304,18 @@ var customerList = (function ($) {
                 }
             });
         },
-        showAlert: function(target, custId, statusId) {
+        showAlert: function (target, custId, statusId) {
             var buttons = [];
             buttons.push({
                 text: 'YES',
-                click: function() {
+                click: function () {
                     customerList.closeDialog();
                     customerList.updateStatus(target, custId, statusId);
                 }
             });
             buttons.push({
                 text: 'NO',
-                click: function() {
+                click: function () {
                     customerList.closeDialog();
                 }
             });
@@ -340,18 +339,18 @@ var customerList = (function ($) {
                 buttons: buttons
             });
         },
-        closeDialog: function() {
+        closeDialog: function () {
             $('#dialog-confirm').dialog('close');
         },
-        getIpInformation: function(ipAddress) {
+        getIpInformation: function (ipAddress) {
             $.ajax({
                 url: CORE.resolveUrl('~/CustomerList/GetIpInformation'),
                 type: 'post',
                 data: { IpAddress: ipAddress },
-                beforeSend: function() {
+                beforeSend: function () {
                     CORE.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data !== null) {
                         $('#instruction').html(data);
                         POPUP.openDialog($('#instruction'),
@@ -363,12 +362,12 @@ var customerList = (function ($) {
                         $('.ui-tooltip').remove();
                     }
                 },
-                complete: function() {
+                complete: function () {
                     CORE.unblockUI();
                 }
             });
         },
-        editMember: function(memberId, status) {
+        editMember: function (memberId, status) {
             editMemberId = memberId;
             $.contextMenu({
                 selector: '.cell-' + memberId,
@@ -378,7 +377,7 @@ var customerList = (function ($) {
                 autoHide: true
             });
         },
-        getEditItems: function(status) {
+        getEditItems: function (status) {
             var editItems = {}, items = [], index;
             if (pageContext.IsLastLevel) {
                 items = [
@@ -470,7 +469,7 @@ var customerList = (function ($) {
 
             return editItems;
         },
-        editSportsbook: function() {
+        editSportsbook: function () {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerSetting/EditMember?memberId={0}"
@@ -481,10 +480,10 @@ var customerList = (function ($) {
             }
             POPUP.openDialogFrame(url, { width: 960, height: 680 });
         },
-        editSetting: function() {
+        editSetting: function () {
             alert('test');
         },
-        editInfo: function() {
+        editInfo: function () {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerList/EditInfoMember?memberId={0}&username={1}"
@@ -495,18 +494,15 @@ var customerList = (function ($) {
             }
             POPUP.openDialogFrame(url, { width: 465, height: 520 });
         },
-        addDownline: function() {
-            var url;
-            url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
+        addDownline: function () {
+            var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
                 .format(editAgentId, editAgentLevel);
-            POPUP.openDialogFrame(url,
-            {
+            POPUP.openDialogFrame(url, {
                 width: 960,
                 height: 680
-
             });
         },
-        resetPassword: function() {
+        resetPassword: function () {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerList/ResetPasswordMember?memberId={0}"
@@ -519,6 +515,7 @@ var customerList = (function ($) {
         }
     };
 }(jQuery));
+
 $(function () {
     customerList.init();
 });

@@ -1077,22 +1077,20 @@
   </data>
   <data name="FinalScore" xml:space="preserve">
     <value>Final Score</value>
-    <comment>not</comment>
   </data>
   <data name="FirstHalfScore" xml:space="preserve">
     <value>First Half Score</value>
-    <comment>not</comment>
   </data>
   <data name="KickOffTime" xml:space="preserve">
     <value>Kick Off. Time</value>
-    <comment>not</comment>
   </data>
   <data name="Match" xml:space="preserve">
     <value>Match</value>
-    <comment>not</comment>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>There is no data</value>
-    <comment>not</comment>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
   </data>
 </root>

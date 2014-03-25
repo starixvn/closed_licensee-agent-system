@@ -1066,4 +1066,22 @@
   <data name="Mine" xml:space="preserve">
     <value>礦</value>
   </data>
+  <data name="FinalScore" xml:space="preserve">
+    <value>最後比分</value>
+  </data>
+  <data name="FirstHalfScore" xml:space="preserve">
+    <value>上半場比分</value>
+  </data>
+  <data name="KickOffTime" xml:space="preserve">
+    <value>开赛时间</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>賽事</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>沒有資料</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>備註</value>
+  </data>
 </root>

@@ -181,7 +181,7 @@
 	NoDraw : "不是和局",
 	NoDrawForTurnoverOnly : "只有投注額不包括和局",
 	NoGoal : "無進球",
-	NoInfo : "沒資料顯示",
+	NoInfo : "用戶名不存在！",
 	NoLicenseeDomainFound : "沒有被許可人屬於域 {0}.",
 	None : "无",
 	Normal : "普通",

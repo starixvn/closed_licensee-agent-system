@@ -228,7 +228,7 @@ namespace LicenseeAgent.Web.Controllers
 
         protected JsonResult JsonResult(string errMsg)
         {
-            var result = new Result(errMsg);
+            var result = new Result(Result.FailureValue, errMsg);
             return JsonResult(result);
         }
 
@@ -240,7 +240,7 @@ namespace LicenseeAgent.Web.Controllers
 
         protected JsonResult InvalidModelJsonResult()
         {
-            var result = new Result(GetModelErrorMessage());
+            var result = new Result(Result.InvalidModel, GetModelErrorMessage());
             return JsonResult(result);
         }
 

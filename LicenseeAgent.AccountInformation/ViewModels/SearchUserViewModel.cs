@@ -16,7 +16,8 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     public class SearchUserViewModel
     {
         [Required]
-        [StringLength(50, MinimumLength = Constants.MinimumUsernameLength, ErrorMessageResourceName = "NoInfo", ErrorMessageResourceType = typeof(Las))]
+        [StringLength(Constants.MaximumUsernameLength, MinimumLength = Constants.MinimumUsernameLength,
+            ErrorMessageResourceName = "NoInfo", ErrorMessageResourceType = typeof(Las))]
         public string UserName { get; set; }
     }
 }

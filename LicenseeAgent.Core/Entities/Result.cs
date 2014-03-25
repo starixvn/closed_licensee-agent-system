@@ -19,14 +19,10 @@ namespace LicenseeAgent.Core.Entities
         public const int FailureValue = -1;
         public const int NoCurrencyPermission = -2;
         public const int UnderMaintenance = -3;
+        public const int InvalidModel = -4;
 
         public Result()
             : this(SuccessValue, string.Empty)
-        {
-        }
-
-        public Result(string errMsg)
-            : this(FailureValue, errMsg)
         {
         }
 

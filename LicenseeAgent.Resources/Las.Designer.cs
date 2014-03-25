@@ -1942,41 +1942,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        /// </summary>
-        public static string MinBet {
-            get {
-                return ResourceManager.GetString("MinBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min Bet must be less than or equal to Max Bet.
-        /// </summary>
-        public static string MinBetLessThanOrEqualMaxBet {
-            get {
-                return ResourceManager.GetString("MinBetLessThanOrEqualMaxBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min Bet must be greater than or equal to.
-        /// </summary>
-        public static string MinBetMoreThanOrEqualTo {
-            get {
-                return ResourceManager.GetString("MinBetMoreThanOrEqualTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to % Min Downline.
-        /// </summary>
-        public static string MinDownline {
-            get {
-                return ResourceManager.GetString("MinDownline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mix Parlay.
         /// </summary>
         public static string MixParlay {

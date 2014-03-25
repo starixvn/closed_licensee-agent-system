@@ -12,6 +12,7 @@ namespace LicenseeAgent.Report.ViewModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
     /// <summary>
@@ -29,6 +30,7 @@ namespace LicenseeAgent.Report.ViewModels
         [Display(Name = "To", ResourceType = typeof(Las))]
         public DateTime ToDate { get; set; }
 
+        [AllowHtml]
         [Display(Name = "Username", ResourceType = typeof(Las))]
         public string Username { get; set; }
 

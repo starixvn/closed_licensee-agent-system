@@ -29,7 +29,7 @@
                         };
 
                         gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
-                        gridOptions.columns[1].Width = 100;//Resize username column
+                        gridOptions.columns[1].Width = 100; //Resize username column
                         $('#grid').show().fanexGrid(gridOptions);
                         CORE.unblockUI();
                     }
@@ -42,8 +42,9 @@
                 }
             });
         },
-        ViewDetail: function (agentId, username) {
-            location.href = CORE.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}&parentUsername={5}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel, $('#Username').val()));
+        ViewDetail: function (agentId, username) {            
+            var url = CORE.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel));
+            location.href = url;
         },
         TransferDetail: function (agentId, username) {
             var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel);

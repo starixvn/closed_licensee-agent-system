@@ -134,12 +134,13 @@ namespace LicenseeAgent.Report.Controllers
                 model.FromDate = DateTime.Now.AddDays(-1);
                 model.ToDate = DateTime.Now;
             }
+            else
+            {
+                // From Downline statement page.
+                ViewBag.ShowBackButton = true;
+            }
 
             ViewBag.HideUsername = false;
-            if (Request["parentUsername"] != null)
-            {
-                ViewBag.ParentUsername = Request["parentUsername"];
-            }
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {

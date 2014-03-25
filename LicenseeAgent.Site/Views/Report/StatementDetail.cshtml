@@ -62,11 +62,11 @@
     @Html.HiddenFor(m => m.AgentLevel)
     @Html.HiddenFor(m => m.IsMember)
 }
-@if (ViewBag.ParentUsername != null)
+@if (ViewBag.ShowBackButton != null)
 {
     <div class="clearfix">
         <ul class="breadcrumb">
-            <li><a href="@Url.Action("Statement", "Report", new { FromDate = Model.FromDate, ToDate = Model.ToDate, Username = ViewBag.ParentUsername })">
+            <li><a href="@Url.Action("Statement", "Report", new { FromDate = Model.FromDate, ToDate = Model.ToDate })">
                 <strong><i class="icon-arrow-left"></i>BACK</strong></a> </li>
         </ul>
     </div>

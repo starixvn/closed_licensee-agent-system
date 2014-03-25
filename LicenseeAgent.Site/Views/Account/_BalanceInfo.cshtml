@@ -16,18 +16,21 @@
             <td>@Model.CurrencyName
             </td>
         </tr>
-        <tr>
-            <td>@Las.TotalCash
-            </td>
-            <td>@RazorHelper.FormatNegative(Model.TotalCash)
-            </td>
-        </tr>
-        <tr>
-            <td>@Las.YesterdayCash
-            </td>
-            <td>@RazorHelper.FormatNegative(Model.YesterdayCash)
-            </td>
-        </tr>
+        @if (!SessionManager.CurrentSession.IsAdmin)
+        {
+            <tr>
+                <td>@Las.TotalCash
+                </td>
+                <td>@RazorHelper.FormatNegative(Model.TotalCash)
+                </td>
+            </tr>
+            <tr>
+                <td>@Las.YesterdayCash
+                </td>
+                <td>@RazorHelper.FormatNegative(Model.YesterdayCash)
+                </td>
+            </tr>
+        }
         <tr>
             <td>@Las.TotalBalance
             </td>

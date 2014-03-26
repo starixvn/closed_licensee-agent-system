@@ -83,9 +83,12 @@ namespace LicenseeAgent.Core.Entities
             return ModelHelper.IsLastAgent(agentLevel, NumberOfLevel);
         }
 
-        public PasswordStatus GetPasswordStatus()
+        public PasswordStatus PasswordStatus
         {
-            return PasswordRule.GetPasswordStatus(this, LastLoggedTime);
+            get
+            {
+                return PasswordRule.GetPasswordStatus(this, LastLoggedTime);
+            }
         }
     }
 }

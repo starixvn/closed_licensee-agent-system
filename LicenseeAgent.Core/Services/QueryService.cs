@@ -58,7 +58,7 @@ namespace LicenseeAgent.Core.Services
         /// <typeparam name="T">The input object type.</typeparam>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns a object T.</returns>
-        public T GetEntity<T>(ICriteria criteria)
+        public static T GetEntity<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -90,7 +90,7 @@ namespace LicenseeAgent.Core.Services
         /// <typeparam name="T3">Type of data 3 wanted receipt.</typeparam>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns a list of object T.</returns>
-        public IDictionary<string, object> GetEntites<T1, T2, T3>(ICriteria criteria)
+        public static IDictionary<string, object> GetEntites<T1, T2, T3>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -129,7 +129,7 @@ namespace LicenseeAgent.Core.Services
         /// Executes the specified criteria.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        public void Execute(ICriteria criteria)
+        public static void Execute(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -161,7 +161,7 @@ namespace LicenseeAgent.Core.Services
         /// <returns>Returns value with type T after execute.</returns>
         /// <exception cref="System.InvalidOperationException">Invalid Criteria.</exception>
         /// <exception cref="CriteriaException"></exception>
-        public T Execute<T>(ICriteria criteria) where T : IConvertible
+        public static T Execute<T>(ICriteria criteria) where T : IConvertible
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             try
@@ -188,7 +188,7 @@ namespace LicenseeAgent.Core.Services
         /// </summary>
         /// <param name="objectDb">The object database.</param>
         /// <param name="criteria">The criteria.</param>
-        private void UpdateOutput(ObjectDb objectDb, ICriteria criteria)
+        private static void UpdateOutput(ObjectDb objectDb, ICriteria criteria)
         {
             var outputParams = objectDb.GetOuputParams();
             if (outputParams != null)

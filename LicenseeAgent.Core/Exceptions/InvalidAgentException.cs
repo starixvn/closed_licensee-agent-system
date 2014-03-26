@@ -17,6 +17,10 @@ namespace LicenseeAgent.Core.Exceptions
     [Serializable]
     public class InvalidAgentException : Exception
     {
+        public InvalidAgentException()
+        {
+        }
+
         public InvalidAgentException(AgentInfo agentInfo)
             : base()
         {

@@ -17,6 +17,10 @@ namespace LicenseeAgent.Core.Exceptions
     [Serializable]
     public class CriteriaException : Exception
     {
+        public CriteriaException()
+        { 
+        }
+
         public CriteriaException(ICriteria criteria)
             : base()
         {

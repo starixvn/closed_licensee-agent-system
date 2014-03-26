@@ -157,7 +157,7 @@ namespace LicenseeAgent.Core.Utility
         /// <summary>
         /// List of fonts to random.
         /// </summary>
-        private static readonly string[] RandomFontFamily =
+        private readonly string[] RandomFontFamily =
         {
             "arial", "arial black", "comic sans ms", "courier new",
             "estrangelo edessa", "franklin gothic medium", "georgia", "lucida console", "lucida sans unicode", "mangal",
@@ -242,7 +242,8 @@ namespace LicenseeAgent.Core.Utility
             {
                 if (value <= 60)
                 {
-                    throw new ArgumentOutOfRangeException("width", value, "width must be greater than 60.");
+                    var paramName = "width";
+                    throw new ArgumentOutOfRangeException(paramName, value, "width must be greater than 60.");
                 }
 
                 _width = value;
@@ -264,7 +265,8 @@ namespace LicenseeAgent.Core.Utility
             {
                 if (value <= 30)
                 {
-                    throw new ArgumentOutOfRangeException("height", value, "height must be greater than 30.");
+                    var paramName = "height";
+                    throw new ArgumentOutOfRangeException(paramName, value, "height must be greater than 30.");
                 }
 
                 _height = value;
@@ -357,7 +359,7 @@ namespace LicenseeAgent.Core.Utility
         /// Randoms the color.
         /// </summary>
         /// <returns></returns>
-        private Color GetRandomColor()
+        private static Color GetRandomColor()
         {
             return Constants.CaptchaForeColor;
         }

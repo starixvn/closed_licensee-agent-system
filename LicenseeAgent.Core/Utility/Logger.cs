@@ -13,7 +13,7 @@ namespace LicenseeAgent.Core.Utility
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Logger
+    public static class Logger
     {
         public static void HandleException(Exception exception)
         {

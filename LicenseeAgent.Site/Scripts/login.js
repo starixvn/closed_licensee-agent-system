@@ -1,4 +1,4 @@
-﻿var LOGIN = function ($) {
+﻿var logIn = (function ($) {
     CORE.DisableRecheckIn = true;
     return {
         init: function () {
@@ -7,11 +7,11 @@
                 return;
             }
 
-            LOGIN.setFocus($('.btn-primary'));
-            if ($('#Username').val().length == 0) {
-                LOGIN.setFocus($('#Username'));
+            logIn.setFocus($('.btn-primary'));
+            if ($('#Username').val().length === 0) {
+                logIn.setFocus($('#Username'));
             } else {
-                LOGIN.setFocus($('#Password'));
+                logIn.setFocus($('#Password'));
             }
 
             $('#reload').click(function (e) {
@@ -33,11 +33,11 @@
             }, 1);
         },
         showAlert: function (isConfirm, confirmButtonText) {
-            var buttons = new Array();
+            var buttons = [];
             buttons.push({
                 text: confirmButtonText,
                 click: function () {
-                    LOGIN.redirect(true);
+                    logIn.redirect(true);
                 }
             });
 
@@ -46,8 +46,9 @@
                 width: 400,
                 modal: true,
                 buttons: buttons,
+                /*jshint unused:false*/
                 close: function (event, ui) {
-                    LOGIN.redirect(false);
+                    logIn.redirect(false);
                 }
             });
         },
@@ -58,9 +59,10 @@
             }
             window.location.href = url;
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(function () {
-    LOGIN.init();
+    /*jshint strict:false */
+    logIn.init();
 });

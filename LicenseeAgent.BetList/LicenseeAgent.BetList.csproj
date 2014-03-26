@@ -92,6 +92,7 @@
     <Compile Include="Controllers\IBetListBase.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
+    <Compile Include="Criteria\BetListResultCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
     <Compile Include="Criteria\BetListResultsSportsbookCriteria.cs" />
@@ -121,9 +122,6 @@
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
     <Compile Include="ViewModels\BetListWinlossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -160,6 +158,9 @@
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeAnalysis\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

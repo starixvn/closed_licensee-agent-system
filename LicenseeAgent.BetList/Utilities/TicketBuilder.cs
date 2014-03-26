@@ -138,10 +138,10 @@ namespace LicenseeAgent.BetList.Utilities
                 Status = this.BuildStatus(ticket),
                 Choice = _builder.BuildChoice(ticket, _ticketHelper, (List<ITicketData>)this._ticketResult.TicketDataList, false),
                 Odds = _builder.BuildOdds(ticket, (List<ITicketData>)this._ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
-                Stake = _builder.BuildLasStake(ticket),
-                AgentPT = _builder.BuildAgentPT(ticket),
-                AgentComm = this._isAdmin ? _builder.BuildAdminAgentComm(ticket) : _builder.BuildAgentComm(ticket),
-                WinLoss = _builder.BuildLasWinloss(ticket)
+                Stake = LasBetListHtmlBuilder.BuildLasStake(ticket),
+                AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket),
+                AgentComm = this._isAdmin ? LasBetListHtmlBuilder.BuildAdminAgentComm(ticket) : LasBetListHtmlBuilder.BuildAgentComm(ticket),
+                WinLoss = LasBetListHtmlBuilder.BuildLasWinloss(ticket)
             };
 
             if (this._isShowMember)

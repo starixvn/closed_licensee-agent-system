@@ -177,12 +177,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <summary>
         /// Bet List Results.
         /// </summary>
-        /// <param name="isSportsbook">Is sports book.</param>
-        /// <param name="matchId">Input Match ID.</param>
-        /// <param name="refNo">Reference Number.</param>
-        /// <param name="sportType">Sport Type.</param>
-        /// <returns>JSON Object.</returns>
-        public ActionResult Results(bool isSportsbook, int matchId = 0, long refNo = 0, int sportType = 0)
+        /// <param name="criteria">Bet list result criteria.</param>
+        /// <returns>JSON result.</returns>
+        public ActionResult Results(BetListResultCriteria criteria)
         {
             var setting = new ResultSetting
             {
@@ -193,9 +190,9 @@ namespace LicenseeAgent.BetList.Controllers
                 LanguageCode = CurrentSession.Language
             };
 
-            ViewBag.Data = isSportsbook
-                ? GetSportsbookResults(matchId, setting)
-                : GetParlayResults(refNo, setting);
+            ViewBag.Data = criteria.IsSportsbook
+                ? GetSportsbookResults(criteria.MatchId, setting)
+                : GetParlayResults(criteria.RefNo, setting);
 
             return View();
         }

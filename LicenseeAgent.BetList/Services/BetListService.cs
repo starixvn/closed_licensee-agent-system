@@ -222,7 +222,7 @@ namespace LicenseeAgent.BetList.Services
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",
            Justification = "Reviewed. Suppression is OK here.")]
-        public IList<Parlay> BindResults(DataTable data, long refNo)
+        private static IList<Parlay> BindResults(DataTable data, long refNo)
         {
             if (data != null && data.Rows.Count > 0)
             {

@@ -107,12 +107,9 @@ namespace LicenseeAgent.BetList.Utilities
         /// <summary>
         /// Get ticket Agent PT.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket Stake text.</returns>
-        public static string BuildLasStake(
-            this BetListHTMLBuilder builder,
-            Ticket ticket)
+        public static string BuildLasStake(Ticket ticket)
         {
             return "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.Stake) + "</div>";
         }
@@ -120,12 +117,9 @@ namespace LicenseeAgent.BetList.Utilities
         /// <summary>
         /// Get ticket Win loss.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket win loss text.</returns>
-        public static string BuildLasWinloss(
-            this BetListHTMLBuilder builder,
-            Ticket ticket)
+        public static string BuildLasWinloss(Ticket ticket)
         {
             if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
             {
@@ -142,12 +136,9 @@ namespace LicenseeAgent.BetList.Utilities
         /// <summary>
         /// Get ticket Agent PT.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket agent position taking text.</returns>
-        public static string BuildAgentPT(
-            this BetListHTMLBuilder builder,
-            LasTicket ticket)
+        public static string BuildAgentPT(LasTicket ticket)
         {
             var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
             var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100) + "%</div>";
@@ -160,12 +151,9 @@ namespace LicenseeAgent.BetList.Utilities
         /// <summary>
         /// Get ticket Agent Commission.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket agent commission text.</returns>
-        public static string BuildAgentComm(
-            this BetListHTMLBuilder builder,
-            LasTicket ticket)
+        public static string BuildAgentComm(LasTicket ticket)
         {
             var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100) + "%</div>";
             agentCommHtmlStr += (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
@@ -177,12 +165,9 @@ namespace LicenseeAgent.BetList.Utilities
         /// <summary>
         /// Get ticket Admin Agent Commission.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket Admin agent commission text.</returns>
-        public static string BuildAdminAgentComm(
-            this BetListHTMLBuilder builder,
-            Ticket ticket)
+        public static string BuildAdminAgentComm(Ticket ticket)
         {
             if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
             {
@@ -242,27 +227,6 @@ namespace LicenseeAgent.BetList.Utilities
             param += "&CustId=" + (ticket.CustId == 0 ? criteria.CustId : ticket.CustId);
             param += "&CurrencyId=" + currencyID.ToString();
             param += "&CurrencyName=" + currencyName;
-            return param;
-        }
-
-        /// <summary>
-        /// Get Casino Hand History Parameter.
-        /// </summary>
-        /// <param name="ticket">LRF Ticket object.</param>
-        /// <param name="currencyID">Currency ID.</param>
-        /// <param name="currencyName">Currency Name.</param>
-        /// <returns>
-        /// Parameter for Casino Hand History.
-        /// </returns>
-        private static string GetCasinoHandHistoryParam(LasTicket ticket, int currencyID, string currencyName)
-        {
-            var param = string.Empty;
-            param += "?RefNo=" + ticket.RefNo;
-            param += "&SystemId=" + (string.IsNullOrEmpty(ticket.UserName) ? string.Empty : ticket.UserName);
-            param += "&CustId=" + ticket.CustId;
-            param += "&CurrencyId=" + currencyID.ToString();
-            param += "&CurrencyName=" + currencyName;
-
             return param;
         }
 

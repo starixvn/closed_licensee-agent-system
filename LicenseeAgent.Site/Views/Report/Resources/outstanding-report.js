@@ -12,7 +12,7 @@ var outstandingGridOptions = {
                 { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding",
                     HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
                 },
-                { HeaderText: LANGUAGE.getString("Agent Share"), Width: 200, Name: "Positiontaking",
+                { HeaderText: LANGUAGE.getString("AgentShare"), Width: 200, Name: "Positiontaking",
                     HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
                 }
             ],

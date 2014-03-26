@@ -9,10 +9,10 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 3/25/2014 1:16:39 PM
+// Lasted generated date: 3/26/2014 10:54:44 AM
 // </history>
 // Generated helper templates
 // Generated items
-// LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-TW.js
-// LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-CN.js
-// LicenseeAgent.Site\Scripts\ResourcesJs\Las.en-US.js
+// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-TW.js
+// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.zh-CN.js
+// LicenseeAgent\licensee-agent-system\LicenseeAgent.Site\Scripts\ResourcesJs\Las.en-US.js

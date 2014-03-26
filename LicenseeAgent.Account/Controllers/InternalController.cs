@@ -103,10 +103,10 @@ namespace LicenseeAgent.Account
         public ActionResult Lrf(string authKey)
         {
             var loginInfo = Integration.Decrypt(authKey);
-            ////if (loginInfo.IsExpired)
-            ////{
-            ////    return Content(Las.SessionExpired);
-            ////}
+            if (loginInfo.IsExpired)
+            {
+                return Content(Las.SessionExpired);
+            }
 
             var clientInfo = Request.GetClientInfo();
             var criteria = new LicenseeAdminLoginCriteria

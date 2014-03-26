@@ -2,6 +2,8 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global angular, fanex */
+
 if (fanex.customerSetting) {
     //// Helper
 

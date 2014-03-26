@@ -2,6 +2,7 @@
 /// <reference path="../../../libs/angular.js" />
 /// <reference path="../../../../Views/Home/Index.cshtml" />
 
+/*global angular */
 
 var fanex = fanex || {};
 

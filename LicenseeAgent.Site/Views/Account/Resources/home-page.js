@@ -1,5 +1,6 @@
 ﻿/*global $, jQuery, CORE */
 var homePage = (function ($) {
+    'use strict';
     return {
         init: function () {
             $('.dropdown-button').click(function () {
@@ -35,5 +36,6 @@ var homePage = (function ($) {
     };
 }(jQuery));
 $(function () {
+    'use strict';
     homePage.init();
 });

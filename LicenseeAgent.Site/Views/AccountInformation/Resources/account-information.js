@@ -1,7 +1,7 @@
 ﻿/*jslint plusplus: true */
 /*global $, jQuery, alert, document, CORE, internalHeader */
 var accountInformation = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function () {
@@ -262,6 +262,6 @@ var accountInformation = (function ($) {
 }(jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     accountInformation.init();
 });

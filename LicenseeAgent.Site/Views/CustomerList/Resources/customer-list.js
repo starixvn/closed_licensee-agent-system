@@ -517,5 +517,6 @@ var customerList = (function ($) {
 }(jQuery));
 
 $(function () {
+    'use strict';
     customerList.init();
 });

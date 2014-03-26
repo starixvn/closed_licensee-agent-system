@@ -5,14 +5,16 @@ var outstandingGridOptions = {
     columns: [
                 { HeaderText: LANGUAGE.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
                     function (rowIndex, rowData, cell) {
-                        return '<a href="#" onclick="Outstanding.outstandingDrilldown(\'' + rowData.Username 
+                        return '<a href="#" onclick="outstandingReport.outstandingDrilldown(\'' + rowData.Username
                                 + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
-                    } 
+                    }
                 },
-                { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding", 
-                  HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' },
-                { HeaderText: LANGUAGE.getString("AgentShare"), Width: 200, Name: "Positiontaking", 
-                  HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)' }
+                { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding",
+                    HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
+                },
+                { HeaderText: LANGUAGE.getString("Agent Share"), Width: 200, Name: "Positiontaking",
+                    HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
+                }
             ],
     showPager: false,
     showFooter: true,
@@ -40,7 +42,7 @@ var gridOptions = {
 
 var originalBreadcrumb = '';
 var agentIdLevelN = 0;
-var Outstanding = (function ($) {
+var outstandingReport = (function ($) {
     /*jshint strict:false */
     var breadCrumbItems = [
     {
@@ -50,7 +52,7 @@ var Outstanding = (function ($) {
 
     return {
         init: function () {
-            Outstanding.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
+            outstandingReport.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
             if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
@@ -206,12 +208,12 @@ var Outstanding = (function ($) {
         },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
             if (isLastLevel) {
-                Outstanding.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
+                outstandingReport.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
                 breadcrumb += agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
-                Outstanding.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
+                outstandingReport.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
                 OUTSTANDING.createBreadcrumb(agentId, agentName, false);
@@ -220,7 +222,7 @@ var Outstanding = (function ($) {
             }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
-            Outstanding.outstandingDrilldown(agentName, agentId);
+            outstandingReport.outstandingDrilldown(agentName, agentId);
         },
         createBreadcrumb: function(agentId, agentName, isDownline) {
             var index,
@@ -260,5 +262,5 @@ var Outstanding = (function ($) {
 
 $(function () {
     /*jshint strict:false */
-    Outstanding.init();
+    outstandingReport.init();
 });

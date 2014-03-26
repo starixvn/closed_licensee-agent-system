@@ -1,4 +1,7 @@
-﻿var HEADER = function ($) {
+﻿/*global CORE, moment, homeMenu*/
+
+var homeHeader = (function ($) {
+    /*jshint strict:false */
     var currentTime = Date.now;
     var licenseeId, currencyId;
     return {
@@ -8,6 +11,7 @@
             currencyId = $('#currency').data('currency-id');
 
             var orginalUsername = $.trim($('.username').text());
+            /*jshint unused: vars */
             $('.username').dotdotdot().trigger("isTruncated", function (isTruncated) {
                 $('.username').attr('title', orginalUsername);
             });
@@ -16,10 +20,10 @@
             setTimeout(function () { CORE.reCheckIn(); }, 1000);
 
             // clock
-            setTimeout(HEADER.clockTick, 1000);
+            setTimeout(homeHeader.clockTick, 1000);
 
             $('#changePwd').click(function () {
-                MENU.activeMenu($('#menuSecurity'));
+                homeMenu.activeMenu($('#menuSecurity'));
             });
 
             $('#language').hover(function () {
@@ -47,10 +51,8 @@
                 });
             });
             $('.personalmessage').click(function () {
-                HEADER.updateCountPersonalMessage();
+                homeHeader.updateCountPersonalMessage();
             });
-            
-            //HEADER.initScrollMessage();
         },
         signOut: function () {
             try {
@@ -63,7 +65,7 @@
             currentTime.add('seconds', 1);
             var sTime = currentTime.format('h:mm:ss A MMM D, YYYY') + ' GMT-4';
             $('#clock').html(sTime);
-            setTimeout(HEADER.clockTick, 1000);
+            setTimeout(homeHeader.clockTick, 1000);
         },
         initScrollMessage: function () {
             $('.marquee').marquee({ speed: 20000 });
@@ -72,7 +74,8 @@
             }).mouseout(function () {
                 $(this).trigger('resume');
             });
-            setInterval("HEADER.newestMessage();", 60000);
+
+            setInterval(function () { homeHeader.newestMessage(); }, 60000);
         },
         newestMessage: function () {
             $('.marquee').marquee('destroy');
@@ -83,7 +86,9 @@
             $('.badge').text(0);
         }
     };
-} (jQuery);
+} (jQuery));
+
 $(function () {
-    HEADER.init();
+    /*jshint strict:false */
+    homeHeader.init();
 });

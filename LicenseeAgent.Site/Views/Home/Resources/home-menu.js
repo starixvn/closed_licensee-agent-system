@@ -1,4 +1,7 @@
-﻿var MENU = function ($) {
+﻿/*global LANGUAGE*/
+
+var homeMenu = (function ($) {
+    /*jshint strict:false */
     var mainLeftCollapse = 0;
     return {
         init: function () {
@@ -8,7 +11,7 @@
                     $(this).toggleClass('active');
                     $(this).parent().children('ul.tree').toggle(300);
                     return;
-                };
+                }
                 var navList = $(this).parent().parent();
                 navList.find('a.tree-toggler').removeClass('active');
                 navList.find('ul.tree').hide();
@@ -18,24 +21,24 @@
 
             // init event on sub item
             $('.leftmenu-box ul.tree > li > a').click(function () {
-                MENU.clearActive();
+                homeMenu.clearActive();
                 $(this).parent().addClass('active');
             });
 
             // init event on top menu items
-            $('.banner-box ul.nav-pills li a').click(function (e) {
-                MENU.clearActive();
+            $('.banner-box ul.nav-pills li a').click(function () {
+                homeMenu.clearActive();
                 $(this).parent().addClass('active');
             });
 
             // collapse or exapnd main
             mainLeftCollapse = $('.main-box').offset().left;
             $('.control-box i').click(function () {
-                MENU.toggleMain();
+                homeMenu.toggleMain();
             });
             $('.leftmenu-box ul.nav > li > a').click(function () {
-                if ($('.main-box').offset().left != mainLeftCollapse) {
-                    MENU.toggleMain();
+                if ($('.main-box').offset().left !== mainLeftCollapse) {
+                    homeMenu.toggleMain();
                 }
             });
         },
@@ -44,14 +47,14 @@
             $('.header-box ul.nav-pills li.active').removeClass('active');
         },
         activeMenu: function (menuItem) {
-            MENU.clearActive();
+            homeMenu.clearActive();
             $(menuItem).trigger('click');
             var anchor = $(menuItem).get(0);
             window.open(anchor.href, anchor.target, '');
         },
         toggleMain: function () {
             var left = 0;
-            if ($('.main-box').offset().left != mainLeftCollapse) {
+            if ($('.main-box').offset().left !== mainLeftCollapse) {
                 left = mainLeftCollapse;
                 $('.control-box i').attr('title', LANGUAGE.getString('Close'));
                 $('.control-box i').removeClass('icon-collapse-home').addClass('icon-expand-home');
@@ -65,7 +68,9 @@
             }, 'fast');
         }
     };
-} (jQuery);
+} (jQuery));
+
 $(function () {
-    MENU.init();
+    /*jshint strict:false */
+    homeMenu.init();
 });

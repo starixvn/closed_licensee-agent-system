@@ -16,7 +16,7 @@
                     REPORT.manageOutrightLeagueSelect();
                 }
                 else {
-                    REPORT.manageLeagueSelect();
+                    REPORT.matchSubmit($("#matchdatetime").val());
                 }
             });
 

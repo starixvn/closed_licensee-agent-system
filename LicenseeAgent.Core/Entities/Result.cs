@@ -20,6 +20,8 @@ namespace LicenseeAgent.Core.Entities
         public const int NoCurrencyPermission = -2;
         public const int UnderMaintenance = -3;
         public const int InvalidModel = -4;
+        public const int Unauthorized = -5;
+        public const int AccessDenied = -6;
 
         public Result()
             : this(SuccessValue, string.Empty)

@@ -141,7 +141,7 @@ namespace LicenseeAgent.Web.Controllers
             {
                 if (ControllerContext.IsJsonRequest())
                 {
-                    var jsonResult = new Result(Las.UnauthorizedMsg);
+                    var jsonResult = new Result(Result.Unauthorized, Las.UnauthorizedMsg);
                     Json(jsonResult, JsonRequestBehavior.AllowGet).ExecuteResult(ControllerContext);
                 }
                 else

@@ -36,7 +36,7 @@ namespace LicenseeAgent.Web.Mvc
             {
                 filterContext.Result = new JsonResult
                 {
-                    Data = new Result(Las.UnauthorizedMsg),
+                    Data = new Result(Result.Unauthorized, Las.UnauthorizedMsg),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -63,7 +63,7 @@ namespace LicenseeAgent.Web.Mvc
             response.TrySkipIisCustomErrors = true;
             if (controllerContext.IsAjaxRequest())
             {
-                response.WriteJson(new Result(Las.UnauthorizedMsg));
+                response.WriteJson(new Result(Result.Unauthorized, Las.UnauthorizedMsg));
                 response.End();
             }
             else
@@ -89,7 +89,7 @@ namespace LicenseeAgent.Web.Mvc
             response.TrySkipIisCustomErrors = true;
             if (authorizationContext.IsAjaxRequest())
             {
-                response.WriteJson(new Result(Las.UnauthorizedMsg));
+                response.WriteJson(new Result(Result.AccessDenied, Las.UnauthorizedMsg));
                 response.End();
             }
             else
@@ -173,7 +173,7 @@ namespace LicenseeAgent.Web.Mvc
             {
                 filterContext.Result = new JsonResult
                 {
-                    Data = new Result(Las.AccessDeniedMsg),
+                    Data = new Result(Result.AccessDenied, Las.AccessDeniedMsg),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -200,7 +200,7 @@ namespace LicenseeAgent.Web.Mvc
             response.TrySkipIisCustomErrors = true;
             if (controllerContext.IsAjaxRequest())
             {
-                response.WriteJson(new Result(Las.AccessDeniedMsg));
+                response.WriteJson(new Result(Result.AccessDenied, Las.AccessDeniedMsg));
                 response.End();
             }
             else

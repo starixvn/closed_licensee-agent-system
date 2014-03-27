@@ -4,7 +4,8 @@
         UrlRoot: '@Url.Content("~")',
         SelectedLanguage: '@LanguageManager.Language',
         ServerTime: '@DateTime.Now.ToString()',
-        ServerDate: '@DateTime.Now.ToShortDateString()'
+        ServerDate: '@DateTime.Now.ToShortDateString()',
+        ServerUtcOffset: '@TimeZoneInfo.Local.BaseUtcOffset'
     };
     @if (ViewBag.PageContext != null)
     {

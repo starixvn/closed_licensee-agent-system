@@ -15,6 +15,7 @@
         EMPTY_TEXT_FORMAT: '---',
         ServerTime: appSettings.ServerTime,
         ServerDate: appSettings.ServerDate,
+        ServerUtcOffset: appSettings.ServerUtcOffset,
         init: function () {
             // setup ajax.
             $.ajaxSetup({
@@ -52,6 +53,7 @@
             }
             if ($.fn.fanexGrid) {
                 $.fn.fanexGrid.defaults.language = LANGUAGE.getSelectedLanguage();
+                $.fn.fanexGrid.defaults.timeZone = CORE.ServerUtcOffset;
             }
 
             // handle tooltip.

@@ -56,14 +56,10 @@ namespace LicenseeAgent.CustomerSetting.Core
 
         static Constant()
         {
-            BETTING_LIMIT_ITEMS_DEFAULT = new Dictionary<string, BettingLimit>();
-            COMMISSION_DEFAULT_VALUE = new decimal[] { 0.0225m, 0.0125m, 0.0075m, 0.0m, 0.0m, 0.0m, 0.0m };
             LoadBettingLimitSportNames();
         }
 
-        public static Dictionary<string, BettingLimit> BETTING_LIMIT_ITEMS_DEFAULT { get; set; }
-
-        public static decimal[] COMMISSION_DEFAULT_VALUE { get; set; }
+        private static Dictionary<string, BettingLimit> BETTING_LIMIT_ITEMS_DEFAULT = new Dictionary<string, BettingLimit>();
 
         /// <summary>
         /// Load betting limit from xml file.

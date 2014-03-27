@@ -20,7 +20,7 @@ namespace LicenseeAgent.WebService
         /// <summary>
         /// Application Start Event Handler.
         /// </summary>
-        protected void Application_Start()
+        protected static void Application_Start()
         {
             DbSettingProviderManager.Current.Start();
         }

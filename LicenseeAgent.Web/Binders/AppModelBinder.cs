@@ -112,7 +112,7 @@ namespace LicenseeAgent.Web.Binders
         /// <param name="propertyDescriptor">The property descriptor.</param>
         /// <param name="value">The value.</param>
         /// <returns>Returns boolean.</returns>
-        protected bool ValidateHtmlText(
+        protected static bool ValidateHtmlText(
             ControllerContext controllerContext,
             ModelBindingContext bindingContext,
             PropertyDescriptor propertyDescriptor,

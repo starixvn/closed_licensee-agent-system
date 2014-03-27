@@ -40,7 +40,7 @@ namespace LicenseeAgent.Web.Filters
             var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
             if (maintenanceInfo.Status)
             {
-                filterContext.ReturnUnderMaintenance(maintenanceInfo);
+                filterContext.ReturnUnderMaintenance();
             }
         }
 

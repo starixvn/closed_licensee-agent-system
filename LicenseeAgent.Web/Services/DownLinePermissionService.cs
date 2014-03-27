@@ -190,7 +190,6 @@ namespace LicenseeAgent.Web.Services
         /// </returns>
         private bool CheckForEditingAgentSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
         {
-            var agentInfo = SessionManager.CurrentSession.AgentInfo;
             switch (editingCustomerSettingBelonging.FormId)
             {
                 case FormType.Edit:
@@ -220,7 +219,6 @@ namespace LicenseeAgent.Web.Services
         /// <returns>Is valid or not.</returns>
         private bool CheckForEditingMemberSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
         {
-            var agentInfo = SessionManager.CurrentSession.AgentInfo;
             switch (editingCustomerSettingBelonging.FormId)
             {
                 case FormType.Edit:

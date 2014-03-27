@@ -77,7 +77,7 @@ namespace LicenseeAgent.Web.Filters
             }
         }
 
-        private void AuthorizeSession(AuthorizationContext filterContext)
+        private static void AuthorizeSession(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
             if (currentSession == null || !currentSession.IsValid)

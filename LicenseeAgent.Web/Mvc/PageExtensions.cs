@@ -131,8 +131,7 @@ namespace LicenseeAgent.Web.Mvc
         /// Returns under maintenance page.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
-        /// <param name="info">The information.</param>
-        public static void ReturnUnderMaintenance(this ActionExecutingContext filterContext, UnderMaintenanceInfo info)
+        public static void ReturnUnderMaintenance(this ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
             if (response.IsRequestBeingRedirected)

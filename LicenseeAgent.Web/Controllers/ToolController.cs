@@ -61,7 +61,7 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         [HttpGet]
-        public void TestMSMQ()
+        public static void TestMSMQ()
         {
             Logger.Error("This is a test");
         }

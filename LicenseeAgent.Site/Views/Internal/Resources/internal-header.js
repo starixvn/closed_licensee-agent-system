@@ -1,4 +1,4 @@
-﻿/*global CORE, LANGUAGE, POPUP*/
+﻿/*global core, language, popup*/
 
 var internalHeader = (function ($) {
     /*jshint strict:false */
@@ -30,7 +30,7 @@ var internalHeader = (function ($) {
                     internalHeader.onChange();
                     $('#licensee').find('span:first').html($(this).find('a').html());
                     $('#licensee').find('ul').hide();
-                    $("#currency").find("span:first").html(LANGUAGE.getString('ChooseCurrency'));
+                    $("#currency").find("span:first").html(language.getString('ChooseCurrency'));
                     internalHeader.loadCurrency(newLicenseeId);
                 });
             }
@@ -103,12 +103,12 @@ var internalHeader = (function ($) {
                     type: 'post',
                     data: data,
                     beforeSend: function () {
-                        CORE.blockUI();
+                        core.blockUI();
                     },
                     success: function (data) {
                         if (data.ErrCode !== 0) {
                             alert(data.ErrMsg);
-                            CORE.unblockUI();
+                            core.unblockUI();
                             return;
                         }
 
@@ -117,8 +117,8 @@ var internalHeader = (function ($) {
                                 location.href = data.DirectUrl;
                             }
                             else {
-                                POPUP.openWindow(data.DirectUrl);
-                                CORE.unblockUI();
+                                popup.openWindow(data.DirectUrl);
+                                core.unblockUI();
                             }
                         }
                         else {
@@ -126,7 +126,7 @@ var internalHeader = (function ($) {
                         }
                     },
                     error: function () {
-                        CORE.unblockUI();
+                        core.unblockUI();
                     }
                 });
             }
@@ -151,13 +151,13 @@ var internalHeader = (function ($) {
             $('#overlay').show();
         },
         loadCurrency: function (lsId) {
-            var url = CORE.resolveUrl($('#licensee').data('href'));
+            var url = core.resolveUrl($('#licensee').data('href'));
             $.ajax({
                 url: url,
                 type: 'post',
                 data: { licenseeId: lsId },
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -167,7 +167,7 @@ var internalHeader = (function ($) {
                     internalHeader.parseCurrency(data.List);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },

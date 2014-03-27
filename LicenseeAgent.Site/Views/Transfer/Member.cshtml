@@ -72,7 +72,7 @@
                 </tbody>
             </table>
             <div class="button-group row-fluid">
-                <button type="button" class="btn btn-primary pull-right" onclick="POPUP.close(0);">
+                <button type="button" class="btn btn-primary pull-right" onclick="popup.close(0);">
                     @Las.Cancel
                 </button>
                 <button type="submit" class="btn btn-primary pull-right">
@@ -89,7 +89,7 @@
     @if (ViewBag.Result != null)
     {
         <script type="text/javascript">
-            POPUP.closeAndReload();
+            popup.closeAndReload();
         </script>
     }
 }

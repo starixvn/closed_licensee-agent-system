@@ -1,4 +1,4 @@
-﻿/*global gridOptions, CORE, pageContext, LANGUAGE*/
+﻿/*global gridOptions, core, pageContext, language*/
 
 var agentWinLossReport = (function ($) {
     /*jshint strict:false */
@@ -41,15 +41,15 @@ var agentWinLossReport = (function ($) {
         dataGridBinding: function () {
             var submitOptions = $('form').serializeObject();
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetAgentWinLossData"),
+                url: core.resolveUrl("~/Report/GetAgentWinLossData"),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
-                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                        gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                         if (data.List.length > 0) {
                             var totalRow = data.Total[0];
                             if (pageContext.IsLastLevel) {
@@ -65,7 +65,7 @@ var agentWinLossReport = (function ($) {
                             }
                         }
                         $('#grid').show().fanexGrid(gridOptions);
-                        CORE.unblockUI();
+                        core.unblockUI();
                         //customerList.resizeBox();
                     }
                     else {
@@ -73,7 +73,7 @@ var agentWinLossReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -81,7 +81,7 @@ var agentWinLossReport = (function ($) {
             var footerRows = [
                                 {
                                     Columns: [
-                                        { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                                        { Value: language.getString("Total"), Name: "Username", CellAlign: "center" },
                                         { Value: total.BetCount, Name: "BetCount" },
                                         { Value: total.Turnover, Name: "Turnover" },
                                         { Value: total.Winlost, Name: "Winlost" },
@@ -102,7 +102,7 @@ var agentWinLossReport = (function ($) {
             var footerRows = [
                     {
                         Columns: [
-                            { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                            { Value: language.getString("Total"), Name: "Username", CellAlign: "center" },
                             { Value: total.BetCount, Name: "BetCount" },
                             { Value: total.Turnover, Name: "Turnover" },
                             { Value: total.MemberTotal, Name: "MemberTotal" },
@@ -122,7 +122,7 @@ var agentWinLossReport = (function ($) {
             var footerRows = [
                 {
                     Columns: [
-                            { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "center" },
+                            { Value: language.getString("Total"), Name: "Username", CellAlign: "center" },
                             { Value: total.BetCount, Name: "BetCount" },
                             { Value: total.Turnover, Name: "Turnover" },
                             { Value: total.MemberTotal, Name: "MemberTotal" },
@@ -139,7 +139,7 @@ var agentWinLossReport = (function ($) {
 
         ViewDownline: function (agentId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
-            location.href = CORE.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username
+            location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username
                                             + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val() + "&breadcrumb=" 
                                             + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         },
@@ -147,7 +147,7 @@ var agentWinLossReport = (function ($) {
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             var status = (drawFilter === "1" ? "112,113" : "111,112,113");
-            location.href = CORE.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate="
+            location.href = core.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate="
                                             + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs=" 
                                             + status + "&title=" + document.title);
         }

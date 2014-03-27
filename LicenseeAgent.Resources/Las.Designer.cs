@@ -1106,15 +1106,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Handicap.
-        /// </summary>
-        public static string FirstHandicap {
-            get {
-                return ResourceManager.GetString("FirstHandicap", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
@@ -1753,40 +1744,6 @@ namespace LicenseeAgent.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Max Bet.
-        /// </summary>
-        public static string MaxBet {
-            get {
-                return ResourceManager.GetString("MaxBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max Bet must be less than or equal to Max Per Match.
-        /// </summary>
-        public static string MaxBetLessThanOrEqualMaxPerMatch {
-            get {
-                return ResourceManager.GetString("MaxBetLessThanOrEqualMaxPerMatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// </summary>
-        public static string MaxBetLessThanOrEqualTo {
-            get {
-                return ResourceManager.GetString("MaxBetLessThanOrEqualTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max Bet must be greater than or equal to Min Bet.
-        /// </summary>
-        public static string MaxBetMoreThanOrEqualMinBet {
-            get {
-                return ResourceManager.GetString("MaxBetMoreThanOrEqualMinBet", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Max Bet.
@@ -1947,41 +1904,6 @@ namespace LicenseeAgent.Resources {
         public static string Mine {
             get {
                 return ResourceManager.GetString("Mine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// </summary>
-        public static string MinBet {
-            get {
-                return ResourceManager.GetString("MinBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min Bet must be less than or equal to Max Bet.
-        /// </summary>
-        public static string MinBetLessThanOrEqualMaxBet {
-            get {
-                return ResourceManager.GetString("MinBetLessThanOrEqualMaxBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min Bet must be greater than or equal to.
-        /// </summary>
-        public static string MinBetMoreThanOrEqualTo {
-            get {
-                return ResourceManager.GetString("MinBetMoreThanOrEqualTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to % Min Downline.
-        /// </summary>
-        public static string MinDownline {
-            get {
-                return ResourceManager.GetString("MinDownline", resourceCulture);
             }
         }
         

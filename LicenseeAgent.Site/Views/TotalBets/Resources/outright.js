@@ -1,18 +1,18 @@
-﻿/*global refreshCountDownMethods, reportGridOptions, CORE, LANGUAGE*/
+﻿/*global refreshCountDownMethods, reportGridOptions, core, language*/
 
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
-                { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
+                { HeaderText: language.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 60,
@@ -30,7 +30,7 @@ var Outright = (function ($) {
             Outright.initData();
 
             $("#refresh-count-down").refreshCountDown({
-                listTimeInterval: CORE.TimeInterval,
+                listTimeInterval: core.TimeInterval,
                 timeIntervalName: "TimeInterval",
                 timeIntervalValue: $("#server-time-interval").val(),
                 formName: "main-form"
@@ -60,12 +60,12 @@ var Outright = (function ($) {
                 checkedAll: Outright.checkedAllSport
             };
             $.ajax({
-                url: CORE.resolveUrl("~/TotalBets/GetSportList"),
+                url: core.resolveUrl("~/TotalBets/GetSportList"),
                 type: 'post',
                 data: params,
                 async: false,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     Outright.initSportMultiSelect(data.List);
@@ -81,13 +81,13 @@ var Outright = (function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 150,
-                checkAllText: LANGUAGE.getString('AllSports'),
-                noItemText: LANGUAGE.getString('NoSelectedSport'),
-                noneSelectedText: LANGUAGE.getString('PleaseSelectSport'),
-                selectedText: LANGUAGE.getString('NumberOfSelectedSports'),
-                tooltipNoItem: LANGUAGE.getString('NoSelectedSport'),
+                checkAllText: language.getString('AllSports'),
+                noItemText: language.getString('NoSelectedSport'),
+                noneSelectedText: language.getString('PleaseSelectSport'),
+                selectedText: language.getString('NumberOfSelectedSports'),
+                tooltipNoItem: language.getString('NoSelectedSport'),
                 useCustomCheckAllText: true,
-                customCheckAllText: LANGUAGE.getString('AllSports'),
+                customCheckAllText: language.getString('AllSports'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -116,18 +116,18 @@ var Outright = (function ($) {
                 checkedAll: Outright.checkedAllLeague
             };
             $.ajax({
-                url: CORE.resolveUrl("~/TotalBets/GetLeaguesBySports"),
+                url: core.resolveUrl("~/TotalBets/GetLeaguesBySports"),
                 type: 'post',
                 data: params,
                 async: false,
                 beforeSend: function () {
-                    //CORE.blockUI();
+                    //core.blockUI();
                 },
                 success: function (data) {
                     Outright.initLeagueMultiSelect(data.List);
                 },
                 complete: function () {
-                    //CORE.unblockUI();
+                    //core.unblockUI();
                 }
             });
         },
@@ -138,13 +138,13 @@ var Outright = (function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 270,
-                checkAllText: LANGUAGE.getString('AllLeagues'),
-                noItemText: LANGUAGE.getString('NoSelectedLeague'),
-                noneSelectedText: LANGUAGE.getString('PleaseSelectLeague'),
-                selectedText: LANGUAGE.getString('NumberOfSelectedLeagues'),
-                tooltipNoItem: LANGUAGE.getString('NoSelectedLeague'),
+                checkAllText: language.getString('AllLeagues'),
+                noItemText: language.getString('NoSelectedLeague'),
+                noneSelectedText: language.getString('PleaseSelectLeague'),
+                selectedText: language.getString('NumberOfSelectedLeagues'),
+                tooltipNoItem: language.getString('NoSelectedLeague'),
                 useCustomCheckAllText: true,
-                customCheckAllText: LANGUAGE.getString('AllLeagues'),
+                customCheckAllText: language.getString('AllLeagues'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -172,12 +172,12 @@ var Outright = (function ($) {
                 checkedAll: Outright.checkedAllEvent
             };
             $.ajax({
-                url: CORE.resolveUrl("~/TotalBets/GetTeamsByLeagues"),
+                url: core.resolveUrl("~/TotalBets/GetTeamsByLeagues"),
                 type: 'post',
                 data: params,
                 async: false,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     Outright.initEventMultiSelect(data.List);
@@ -188,7 +188,7 @@ var Outright = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -199,13 +199,13 @@ var Outright = (function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 250,
-                checkAllText: LANGUAGE.getString('AllTeams'),
-                noItemText: LANGUAGE.getString('NoSelectedTeam'),
-                noneSelectedText: LANGUAGE.getString('PleaseSelectTeam'),
-                selectedText: LANGUAGE.getString('NumberOfSelectedTeams'),
-                tooltipNoItem: LANGUAGE.getString('NoSelectedTeam'),
+                checkAllText: language.getString('AllTeams'),
+                noItemText: language.getString('NoSelectedTeam'),
+                noneSelectedText: language.getString('PleaseSelectTeam'),
+                selectedText: language.getString('NumberOfSelectedTeams'),
+                tooltipNoItem: language.getString('NoSelectedTeam'),
                 useCustomCheckAllText: true,
-                customCheckAllText: LANGUAGE.getString('AllTeams'),
+                customCheckAllText: language.getString('AllTeams'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -233,18 +233,18 @@ var Outright = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetOutrightData"),
+                url: core.resolveUrl("~/Totalbets/GetOutrightData"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     reportGridOptions.bodyRows = Outright.genGridRows(data.List);
                     $('#BetListGrid').show().fanexGrid(reportGridOptions);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -315,11 +315,11 @@ var Outright = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetOutrightBetList"),
+                url: core.resolveUrl("~/Totalbets/GetOutrightBetList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -330,7 +330,7 @@ var Outright = (function ($) {
                     fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },

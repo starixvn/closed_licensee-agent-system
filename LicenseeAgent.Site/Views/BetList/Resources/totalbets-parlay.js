@@ -1,18 +1,18 @@
-﻿/*global CORE, LANGUAGE*/
+﻿/*global core, language*/
 /*jshint -W079 */
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
-                { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
+                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 100,
@@ -30,7 +30,7 @@ fanex.totalBets.parlay = {
 
         // search
         $('#search-form').submit(function (e) {
-            fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            fanex.totalBets.parlay.reRenderAfterPaged(0, core.pageSizes[0]);
             e.preventDefault();
         });
 
@@ -60,13 +60,13 @@ fanex.totalBets.parlay = {
             type: 'post',
             data: params,
             beforeSend: function () {
-                CORE.blockUI();
+                core.blockUI();
             },
             success: function (data) {
                 fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
             },
             complete: function () {
-                CORE.unblockUI();
+                core.unblockUI();
             }
         });
     },
@@ -76,14 +76,14 @@ fanex.totalBets.parlay = {
             $("#mixParlayTab").addClass('active-tab');
             $("#systemParlayTab").removeClass('active-tab');
             $("#systemParlayTab").addClass('inactive-tab');
-            fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0], 9);
+            fanex.totalBets.parlay.reRenderAfterPaged(0, core.pageSizes[0], 9);
         }
         else {
             $("#mixParlayTab").removeClass('active-tab');
             $("#mixParlayTab").addClass('inactive-tab');
             $("#systemParlayTab").removeClass('inactive-tab');
             $("#systemParlayTab").addClass('active-tab');
-            fanex.totalBets.parlay.reRenderAfterPaged(0, CORE.pageSizes[0], 29);
+            fanex.totalBets.parlay.reRenderAfterPaged(0, core.pageSizes[0], 29);
         }
     }
 };

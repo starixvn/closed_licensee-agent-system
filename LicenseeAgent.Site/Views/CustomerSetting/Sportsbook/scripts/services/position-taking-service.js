@@ -2,6 +2,10 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global positionTakingSetting */
+
+'use strict';
+
 if (fanex.customerSetting) {
     //// Helper
 
@@ -46,8 +50,8 @@ if (fanex.customerSetting) {
             for (var i = 0; i < length; i++) {
                 var currentPt = ptGroup.PositionTakings[i];
                 if (currentPt
-                    && currentPt.SportId == pt.SportId
-                    && currentPt.BetTypeId == pt.BetTypeId) {
+                    && currentPt.SportId === pt.SportId
+                    && currentPt.BetTypeId === pt.BetTypeId) {
                     var newLength = i + breakNewLine - 1;
                     newLength = Math.min(newLength, length);
                     for (var j = i + 1; j <= newLength; j++) {
@@ -71,7 +75,7 @@ if (fanex.customerSetting) {
                 scope.positionTakingService.onCollapseExpand(ptGroup);
             }
 
-            if (pt.SportId == 1) {
+            if (pt.SportId === 1) {
                 copyAllMessage.push(lang.soccerHandicapCopyPt);
                 copyAllMessage.push('<ul>');
                 copyAllMessage.push('<li>' + lang.otherBettypeOfSoccer + '</li>');
@@ -86,12 +90,12 @@ if (fanex.customerSetting) {
                 var currentGroup = ptGroups[i];
                 if (currentGroup) {
                     var ptListLength = currentGroup.PositionTakings.length;
-                    for (var j = (i == fromIndex ? 1 : 0); j < ptListLength; j++) {
+                    for (var j = (i === fromIndex ? 1 : 0); j < ptListLength; j++) {
                         var currentPtNeedCopy = currentGroup.PositionTakings[j];
                         self.copyAction(currentPtNeedCopy, pt);
                     }
 
-                    if (pt.SportId != currentGroup.SportId) {
+                    if (pt.SportId !== currentGroup.SportId) {
                         copyAllMessage.push('<li>' + currentGroup.Name + '</li>');
                     }
                 }
@@ -150,35 +154,34 @@ if (fanex.customerSetting) {
         },
         expandGroup: function (ptGroup) {
             if (angular.isDefined(ptGroup)) {
-                if (!ptGroup.Expand) fanex.customerSetting.positionTakingService.onCollapseExpand(ptGroup);
+                if (!ptGroup.Expand) {
+                    fanex.customerSetting.positionTakingService.onCollapseExpand(ptGroup);
+                }
             }
         },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
-            var self = this;
+            var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
-                var updatedPt = simpleModeData,
-                    datalength = positionTakingSetting.length,
-                    positionTakingSave = [];
-                for (var i = 0; i < datalength; i++) {
-                    var currentGroup = positionTakingSetting[i];
+                var updatedPt = simpleModeData;
+                dataLength = positionTakingSetting.length;
+                for (indexData = 0; indexData < dataLength; indexData++) {
+                    currentGroup = positionTakingSetting[indexData];
                     if (currentGroup) {
                         var groupLength = currentGroup.PositionTakings.length;
-                        for (var j = 0; j < groupLength; j++) {
-                            var currentPositionTaking = currentGroup.PositionTakings[j];
+                        for (indexGroup = 0; indexGroup < groupLength; indexGroup++) {
+                            currentPositionTaking = currentGroup.PositionTakings[indexGroup];
                             self.getSimpleModePositionTaking(settingContext, updatedPt, currentPositionTaking, positionTakingSave);
                         }
                     }
                 }
-            }
-            else {
-                var updatedData = advancedModeData,
-                    datalength = updatedData.length,
-                    positionTakingSave = [];
-                for (var i = 0; i < datalength; i++) {
-                    var currentGroup = updatedData[i];
+            } else {
+                var updatedData = advancedModeData;
+                dataLength = updatedData.length;
+                for (indexData = 0; indexData < dataLength; indexData++) {
+                    currentGroup = updatedData[indexData];
                     if (currentGroup) {
-                        for (var j = 0; j < currentGroup.PositionTakings.length; j++) {
-                            var currentPositionTaking = currentGroup.PositionTakings[j];
+                        for (indexGroup = 0; indexGroup < currentGroup.PositionTakings.length; indexGroup++) {
+                            currentPositionTaking = currentGroup.PositionTakings[indexGroup];
                             self.getAdvancedModePositionTaking(settingContext, currentPositionTaking, positionTakingSave);
                         }
                     }
@@ -188,9 +191,9 @@ if (fanex.customerSetting) {
             return positionTakingSave;
         },
         getSimpleModePositionTaking: function (settingContext, updatedPt, currentPositionTaking, positionTakingSave) {
-            if (settingContext.TargetRoleId == fanex.customerSetting.Role.Member) {
-                if (currentPositionTaking.Value != updatedPt.Value
-                || settingContext.FormId == fanex.customerSetting.FormType.Add) {
+            if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                if (currentPositionTaking.Value !== updatedPt.Value
+                || settingContext.FormId === fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Value: updatedPt.Value,
                         SportId: currentPositionTaking.SportId,
@@ -200,11 +203,11 @@ if (fanex.customerSetting) {
                 }
             }
             else {
-                if (currentPositionTaking.Min != updatedPt.Min
-                    || currentPositionTaking.Max != updatedPt.Max
-                    || currentPositionTaking.Preset != updatedPt.Preset
+                if (currentPositionTaking.Min !== updatedPt.Min
+                    || currentPositionTaking.Max !== updatedPt.Max
+                    || currentPositionTaking.Preset !== updatedPt.Preset
                     || updatedPt.ApplyAll
-                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
+                    || settingContext.FormId === fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: updatedPt.Min,
                         Max: updatedPt.Max,
@@ -218,9 +221,9 @@ if (fanex.customerSetting) {
             }
         },
         getAdvancedModePositionTaking: function (settingContext, currentPositionTaking, positionTakingSave) {
-            if (settingContext.TargetRoleId == fanex.customerSetting.Role.Member) {
-                if (currentPositionTaking.Value != currentPositionTaking.OldValue
-                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
+            if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                if (currentPositionTaking.Value !== currentPositionTaking.OldValue
+                    || settingContext.FormId === fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Value: currentPositionTaking.Value,
                         SportId: currentPositionTaking.SportId,
@@ -230,11 +233,11 @@ if (fanex.customerSetting) {
                 }
             }
             else {
-                if (currentPositionTaking.Min != currentPositionTaking.OldMin
-                    || currentPositionTaking.Max != currentPositionTaking.OldMax
-                    || currentPositionTaking.Preset != currentPositionTaking.OldPreset
+                if (currentPositionTaking.Min !== currentPositionTaking.OldMin
+                    || currentPositionTaking.Max !== currentPositionTaking.OldMax
+                    || currentPositionTaking.Preset !== currentPositionTaking.OldPreset
                     || currentPositionTaking.ApplyAll
-                    || settingContext.FormId == fanex.customerSetting.FormType.Add) {
+                    || settingContext.FormId === fanex.customerSetting.FormType.Add) {
                     positionTakingSave.push({
                         Min: currentPositionTaking.Min,
                         Max: currentPositionTaking.Max,
@@ -251,24 +254,22 @@ if (fanex.customerSetting) {
             if (settingContext.IsSimpleMode) {
                 return simpleModeData.actions.isValid();
             }
-            else {
-                var updatedData = advancedModeData,
-                    datalength = updatedData.length,
-                    positionTakingSave = [];
 
-                for (var i = 0; i < datalength; i++) {
-                    var currentGroup = updatedData[i];
-                    if (currentGroup) {
-                        for (var j = 0; j < currentGroup.PositionTakings.length; j++) {
-                            var currentPositionTaking = currentGroup.PositionTakings[j];
-                            if (!currentPositionTaking.actions.isValid()) {
-                                return false;
-                            }
+            var updatedData = advancedModeData,
+                dataLength = updatedData.length;
+
+            for (var i = 0; i < dataLength; i++) {
+                var currentGroup = updatedData[i];
+                if (currentGroup) {
+                    for (var j = 0; j < currentGroup.PositionTakings.length; j++) {
+                        var currentPositionTaking = currentGroup.PositionTakings[j];
+                        if (!currentPositionTaking.actions.isValid()) {
+                            return false;
                         }
                     }
                 }
             }
-
+            
             return true;
         }
     };

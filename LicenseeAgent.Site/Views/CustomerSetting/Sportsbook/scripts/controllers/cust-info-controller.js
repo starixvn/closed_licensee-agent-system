@@ -1,22 +1,28 @@
-﻿if (fanex.customerSetting) {
+﻿/*global settingContext, custInfo */
+/*exported custInfoController*/
+
+'use strict';
+
+if (fanex.customerSetting) {
     var custInfoController = fanex.customerSetting.controller('customerSetting.custInfoController',
     [
         '$scope',
         '$filter',
         'fanex.customerSetting.custInfoService',
-        function CustInfoController($scope, $filter, custInfoService) {
+        function CustInfoController($scope, $filter) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            if (settingContext.FormId == fanex.customerSetting.FormType.Add) {
+            if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 var isShowMaxCredit = true;
-                if (custInfo.MaxCredit == undefined) {
+                if (custInfo.MaxCredit === undefined) {
                     isShowMaxCredit = false;
                 }
                 $scope.isShowLimitMaxCredit = isShowMaxCredit;
                 if ($scope.isShowLimitMaxCredit) {
                     $scope.$watch('custInfo.credit', function (newValue) {
                         if (parseFloat(newValue) > $scope.custInfo.maxCredit) {
-                            $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit'].format($filter('number')($scope.custInfo.maxCredit, 0));
+                            $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit']
+                                .format($filter('number')($scope.custInfo.maxCredit, 0));
                             $scope.formCustInfo.credit.$setValidity('', false);
                         }
                         else {

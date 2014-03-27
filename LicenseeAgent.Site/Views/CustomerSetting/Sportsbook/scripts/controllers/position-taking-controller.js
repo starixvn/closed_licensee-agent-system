@@ -3,6 +3,11 @@
 /// <reference path="../../../../libs/fanex.core.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global positionTakingSetting, settingContext */
+/*exported positionTakingController*/
+
+'use strict';
+
 if (fanex.customerSetting) {
     var positionTakingController = fanex.customerSetting.controller('customerSetting.positionTakingController',
     [
@@ -20,12 +25,12 @@ if (fanex.customerSetting) {
                 settingContext: settingContext
             };
 
-            $scope.saveData = function (callBackFunction) {
+            $scope.saveData = function() {
                 return $scope.positionTakingService.getPositionTakingUpdate(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
-            }
+            };
 
             $scope.isValidData = function () {
                 return $scope.positionTakingService.isValidData(
@@ -35,12 +40,12 @@ if (fanex.customerSetting) {
             };
 
             return {
-                formatNumber: function (number) {
+                formatNumber: function(number) {
                     return $filter('number')(number, 2);
                 },
-                getScope: function () {
+                getScope: function() {
                     return $scope;
                 }
-            }
+            };
         } ]);
 }

@@ -1,4 +1,4 @@
-﻿/*global CORE, LANGUAGE*/
+﻿/*global core, language*/
 
 var resultReport = (function ($) {
     /*jshint strict:false */
@@ -42,11 +42,11 @@ var resultReport = (function ($) {
 
         getBalanceUpMoveBet: function () {
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetBalanceUpMoveBet"),
+                url: core.resolveUrl("~/Report/GetBalanceUpMoveBet"),
                 type: 'POST',
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -60,7 +60,7 @@ var resultReport = (function ($) {
                     $('#outrighttodatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr });
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -72,12 +72,12 @@ var resultReport = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetLeagues"),
+                url: core.resolveUrl("~/Report/GetLeagues"),
                 type: 'POST',
                 data: params,
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -89,7 +89,7 @@ var resultReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -102,12 +102,12 @@ var resultReport = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetMatchResults"),
+                url: core.resolveUrl("~/Report/GetMatchResults"),
                 type: 'POST',
                 data: params,
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -118,7 +118,7 @@ var resultReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -131,12 +131,12 @@ var resultReport = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Report/OutrightResults"),
+                url: core.resolveUrl("~/Report/OutrightResults"),
                 type: 'POST',
                 data: params,
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -148,7 +148,7 @@ var resultReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -175,12 +175,12 @@ var resultReport = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Report/OutrightResults"),
+                url: core.resolveUrl("~/Report/OutrightResults"),
                 type: 'POST',
                 data: params,
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.Results != null) {
@@ -188,7 +188,7 @@ var resultReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -200,12 +200,12 @@ var resultReport = (function ($) {
             }
 
             $.ajax({
-                url: CORE.resolveUrl(actionUrl),
+                url: core.resolveUrl(actionUrl),
                 type: 'POST',
                 data: params,
                 dataType: "json",
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.Sports != null) {
@@ -217,7 +217,7 @@ var resultReport = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -246,7 +246,7 @@ var resultReport = (function ($) {
 
         generateLeagues: function (leagues, viewMatchResults) {
             var itemCounter = leagues.length;
-            var listItemsHtml = '<option value="0">' + LANGUAGE.getString('AllLeagues') + '</option>';
+            var listItemsHtml = '<option value="0">' + language.getString('AllLeagues') + '</option>';
             for (var index = 0; index < itemCounter; index++) {
                 listItemsHtml += '<option value="' + leagues[index].Value + '">' + leagues[index].Text + '</option>';
             }

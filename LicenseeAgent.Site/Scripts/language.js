@@ -1,68 +1,74 @@
-﻿var LANGUAGE = function ($) {
+﻿/*global appSettings, fanexGridLanguage, fanexGridCurrentLanguage:true, Las_en_US*/
+/* jshint camelcase: false */
+
+var language = (function($) {
+    'use strict';
     return {
-        init: function () {
-            $('#nav li').hover(function () {
-                //show its submenu
-                $('ul', this).stop().slideDown(100);
-            }, function () {
-                //hide its submenu
-                $('ul', this).stop().slideUp(100);
-            }
+        init: function() {
+            $('#nav li').hover(function() {
+                    //show its submenu
+                    $('ul', this).stop().slideDown(100);
+                }, function() {
+                    //hide its submenu
+                    $('ul', this).stop().slideUp(100);
+                }
             );
 
-            $('#languages li').click(function () {
+            $('#languages li').click(function() {
                 var languageCode = $(this).attr('data-language');
-                LANGUAGE.changeLanguage(languageCode);
+                language.changeLanguage(languageCode);
             });
 
-            var selectedLanguage = LANGUAGE.getSelectedLanguage();
+            var selectedLanguage = language.getSelectedLanguage();
             if (typeof fanexGridLanguage !== 'undefined') {
                 fanexGridCurrentLanguage = fanexGridLanguage[selectedLanguage];
             }
         },
-        changeLanguage: function (language) {
+        changeLanguage: function(language) {
             var data = {
                 Language: language
             };
             $.ajax({
-                type: "POST",
-                data: $.param(data),
-                url: $('.icon-language-arrow').data('href'),
-                dataType: "json",
-                async: false,
-                timeout: 20000
-            })
-            .done(function (result) {
-                if (result.isChanged) {
-                    location.reload();
-                }
-            });
+                    type: "POST",
+                    data: $.param(data),
+                    url: $('.icon-language-arrow').data('href'),
+                    dataType: "json",
+                    async: false,
+                    timeout: 20000
+                })
+                .done(function(result) {
+                    if (result.isChanged) {
+                        location.reload();
+                    }
+                });
         },
-        getSelectedLanguage: function () {
+        getSelectedLanguage: function() {
             return appSettings.SelectedLanguage;
         },
-        getSelectedLanguageCode: function () {
-            var selectedLanguage = LANGUAGE.getSelectedLanguage();
+        getSelectedLanguageCode: function() {
+            var selectedLanguage = language.getSelectedLanguage();
             var selectedLanguageCode = selectedLanguage.substr(0, 2);
-            if (selectedLanguageCode == 'zh') {
+            if (selectedLanguageCode === 'zh') {
                 selectedLanguageCode = selectedLanguage;
             }
             return selectedLanguageCode;
         },
-        getString: function (enghlishName) {
-            if (enghlishName == null || enghlishName == undefined) return enghlishName;
-            var keyName = "Las_" + LANGUAGE.getSelectedLanguage().replace("-", "_");
+        getString: function(enghlishName) {
+            if (enghlishName == null || enghlishName === undefined) {
+                return enghlishName;
+            }
+            var keyName = "Las_" + language.getSelectedLanguage().replace("-", "_");
 
             var resources = window[keyName];
             if (!resources) {
                 resources = Las_en_US;
             }
 
-            var mapResource = function (key) {
+            var mapResource = function(key) {
                 var item = resources[key];
-                if (item == undefined) {
+                if (item === undefined) {
                     item = Las_en_US[key];
-                    return item != undefined ? item : key;
+                    return item !== undefined ? item : key;
                 } else {
                     return item;
                 }
@@ -78,13 +84,13 @@
                     return temp;
                 }
                 return mapResource(enghlishName);
-            }
-            else {
+            } else {
                 return mapResource(enghlishName);
             }
         }
     };
-} (jQuery);
+}(jQuery));
 $(function () {
-    LANGUAGE.init();
+    'use strict';
+    language.init();
 });

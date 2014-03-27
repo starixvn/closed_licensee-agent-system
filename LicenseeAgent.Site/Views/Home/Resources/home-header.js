@@ -1,4 +1,4 @@
-﻿/*global CORE, moment, homeMenu*/
+﻿/*global core, moment, homeMenu*/
 
 var homeHeader = (function ($) {
     /*jshint strict:false */
@@ -17,7 +17,7 @@ var homeHeader = (function ($) {
             });
 
             // kickout
-            setTimeout(function () { CORE.reCheckIn(); }, 1000);
+            setTimeout(function () { core.reCheckIn(); }, 1000);
 
             // clock
             setTimeout(homeHeader.clockTick, 1000);
@@ -39,7 +39,7 @@ var homeHeader = (function ($) {
                 $.ajax({
                     type: "POST",
                     data: $.param(data),
-                    url: CORE.resolveUrl("~/Account/ChangeLanguage"),
+                    url: core.resolveUrl("~/Account/ChangeLanguage"),
                     dataType: "json",
                     async: false,
                     timeout: 20000
@@ -56,9 +56,9 @@ var homeHeader = (function ($) {
         },
         signOut: function () {
             try {
-                parent.location = CORE.resolveUrl('~/Account/SignOut');
+                parent.location = core.resolveUrl('~/Account/SignOut');
             } catch (err) {
-                CORE.console.warn(err);
+                core.console.warn(err);
             }
         },
         clockTick: function () {

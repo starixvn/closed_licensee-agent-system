@@ -1,18 +1,18 @@
-﻿/*global CORE, LANGUAGE, showMixParlayDetailurl*/
+﻿/*global core, language, showMixParlayDetailurl*/
 
 var outstandingGridOptions = {
     /*jshint strict:false */
     columns: [
-                { HeaderText: LANGUAGE.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
+                { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
                     function (rowIndex, rowData, cell) {
                         return '<a href="#" onclick="outstandingReport.outstandingDrilldown(\'' + rowData.Username
                                 + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
                     }
                 },
-                { HeaderText: LANGUAGE.getString("Outstanding"), Width: 200, Name: "Outstanding",
+                { HeaderText: language.getString("Outstanding"), Width: 200, Name: "Outstanding",
                     HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
                 },
-                { HeaderText: LANGUAGE.getString("AgentShare"), Width: 200, Name: "Positiontaking",
+                { HeaderText: language.getString("AgentShare"), Width: 200, Name: "Positiontaking",
                     HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
                 }
             ],
@@ -25,15 +25,15 @@ var outstandingGridOptions = {
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 100,
@@ -52,7 +52,7 @@ var outstandingReport = (function ($) {
 
     return {
         init: function () {
-            outstandingReport.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
+            outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], -1);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
             if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
@@ -70,7 +70,7 @@ var outstandingReport = (function ($) {
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -82,7 +82,7 @@ var outstandingReport = (function ($) {
                     var footerRows = [
                             {
                                 Columns: [
-                                    { Value: LANGUAGE.getString("Total"), Name: "Username", CellAlign: "left" },
+                                    { Value: language.getString("Total"), Name: "Username", CellAlign: "left" },
                                     { Value: data.SumOutstanding, Name: "Outstanding" },
                                     { Value: data.SumPositiontaking, Name: "Positiontaking" }
                                 ]
@@ -90,19 +90,19 @@ var outstandingReport = (function ($) {
                     ];
 
                     outstandingGridOptions.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        itemsPerPageArray: CORE.pageSizes,
+                        itemsPerPage: core.pageSizes[0],
+                        itemsPerPageArray: core.pageSizes,
                         currentPage: 0,
                         showDetail: true
                     };
-                    outstandingGridOptions.bodyRows = CORE.genGridRows(data.List, outstandingGridOptions);
+                    outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
 
                     outstandingGridOptions.footerRows = footerRows;
                     if (data.IsLastLevel === true) {
-                        outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Member");
+                        outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
                     }
                     else {
-                        outstandingGridOptions.columns[0].HeaderText = LANGUAGE.getString("Agent");
+                        outstandingGridOptions.columns[0].HeaderText = language.getString("Agent");
                     }
 
                     for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
@@ -115,7 +115,7 @@ var outstandingReport = (function ($) {
                     originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -136,7 +136,7 @@ var outstandingReport = (function ($) {
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -146,12 +146,12 @@ var outstandingReport = (function ($) {
                     }
 
                     gridOptions.pagerOption = {
-                        itemsPerPage: CORE.pageSizes[0],
-                        itemsPerPageArray: CORE.pageSizes,
+                        itemsPerPage: core.pageSizes[0],
+                        itemsPerPageArray: core.pageSizes,
                         currentPage: 0,
                         showDetail: true
                     };
-                    gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                    gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                     $('#BetListGrid').show().fanexGrid(gridOptions);
 
                     if (data.IsLastLevel === true) {
@@ -164,7 +164,7 @@ var outstandingReport = (function ($) {
                     originalBreadcrumb = $("#breadcrumb > span").html();
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -178,7 +178,7 @@ var outstandingReport = (function ($) {
                     type: "GET",
                     contentType: "text/html",
                     cache: false,
-                    url: CORE.resolveUrl(url),
+                    url: core.resolveUrl(url),
                     error: function (xhRequest, errorText) {
                         alert(errorText);
                     },
@@ -188,10 +188,10 @@ var outstandingReport = (function ($) {
                         $('#BetListGrid').fanexGrid('resizeGrid');
                     },
                     beforeSend: function () {
-                        CORE.blockUI();
+                        core.blockUI();
                     },
                     complete: function () {
-                        CORE.unblockUI();
+                        core.unblockUI();
                     }
                 });
             };
@@ -208,12 +208,12 @@ var outstandingReport = (function ($) {
         },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
             if (isLastLevel) {
-                outstandingReport.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
+                outstandingReport.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
                 breadcrumb += agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
-                outstandingReport.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
+                outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
                 OUTSTANDING.createBreadcrumb(agentId, agentName, false);

@@ -2,20 +2,21 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+'use strict';
+
 if (fanex.customerSetting) {
     fanex.customerSetting.positionTakingActions =
     {
         agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput, controller) {
-            var self = this;
             return {
                 isDataChanged: function () {
-                    return currentPt.Min != currentPt.OldMin
-                                || currentPt.Max != currentPt.OldMax
-                                || currentPt.Preset != currentPt.OldPreset;
+                    return currentPt.Min !== currentPt.OldMin
+                                || currentPt.Max !== currentPt.OldMax
+                                || currentPt.Preset !== currentPt.OldPreset;
                 },
                 onChangePreset: function () {
                     var endCharacter = currentPt.Preset.toString().charAt(currentPt.Preset.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     }
 
@@ -25,7 +26,7 @@ if (fanex.customerSetting) {
                 },
                 onBlurPreset: function () {
                     var endCharacter = currentPt.Preset.toString().charAt(currentPt.Preset.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     }
 
@@ -40,7 +41,7 @@ if (fanex.customerSetting) {
                 },
                 onChangeMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
                     if (currentPt.actions.validMax(true)) {
@@ -49,7 +50,7 @@ if (fanex.customerSetting) {
                 },
                 onBlurMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
 
@@ -64,7 +65,7 @@ if (fanex.customerSetting) {
                 },
                 onChangeMin: function () {
                     var endCharacter = currentPt.Min.toString().charAt(currentPt.Min.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
                     }
 
@@ -86,7 +87,8 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validPreset(true) && currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
                 validPreset: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Preset) >= fanex.roundNumber(currentPt.MinRangeOfPreset) && fanex.roundNumber(currentPt.Preset) <= fanex.roundNumber(currentPt.MaxRangeOfPreset);
+                    var isValid = fanex.roundNumber(currentPt.Preset) >= fanex.roundNumber(currentPt.MinRangeOfPreset) &&
+                        fanex.roundNumber(currentPt.Preset) <= fanex.roundNumber(currentPt.MaxRangeOfPreset);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -100,7 +102,8 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMax: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
+                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) &&
+                        fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -114,7 +117,8 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMin: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
+                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) &&
+                        fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -132,12 +136,12 @@ if (fanex.customerSetting) {
         licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput, controller) {
             return {
                 isDataChanged: function () {
-                    return currentPt.Min != currentPt.OldMin
-                                || currentPt.Max != currentPt.OldMax;
+                    return currentPt.Min !== currentPt.OldMin
+                                || currentPt.Max !== currentPt.OldMax;
                 },
                 onChangeMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
 
@@ -148,7 +152,7 @@ if (fanex.customerSetting) {
                 },
                 onBlurMax: function () {
                     var endCharacter = currentPt.Max.toString().charAt(currentPt.Max.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     }
 
@@ -166,7 +170,7 @@ if (fanex.customerSetting) {
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
 
                     var endCharacter = currentPt.Min.toString().charAt(currentPt.Min.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
                     }
 
@@ -179,7 +183,8 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
                 validMax: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
+                    var isValid = fanex.roundNumber(currentPt.Max) >= fanex.roundNumber(currentPt.MinRangeOfMax) && 
+                        fanex.roundNumber(currentPt.Max) <= fanex.roundNumber(currentPt.MaxRangeOfMax);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -193,7 +198,8 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMin: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
+                    var isValid = fanex.roundNumber(currentPt.Min) >= fanex.roundNumber(currentPt.MinRangeOfMin) && 
+                        fanex.roundNumber(currentPt.Min) <= fanex.roundNumber(currentPt.MaxRangeOfMin);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -211,11 +217,11 @@ if (fanex.customerSetting) {
         agentEditMemberActions: function (scope, $timeout, currentPt, valueInput, controller) {
             return {
                 isDataChanged: function () {
-                    return currentPt.Value != currentPt.OldValue;
+                    return currentPt.Value !== currentPt.OldValue;
                 },
                 onChangeValue: function () {
                     var endCharacter = currentPt.Value.toString().charAt(currentPt.Value.toString().length - 1);
-                    if (endCharacter != '.' && endCharacter != '0') {
+                    if (endCharacter !== '.' && endCharacter !== '0') {
                         currentPt.Value = fanex.roundNumber(currentPt.Value, 2);
                     }
 
@@ -228,7 +234,8 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validValue(true);
                 },
                 validValue: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Value) >= fanex.roundNumber(currentPt.MinRangeOfValue) && fanex.roundNumber(currentPt.Value) <= fanex.roundNumber(currentPt.MaxRangeOfValue);
+                    var isValid = fanex.roundNumber(currentPt.Value) >= fanex.roundNumber(currentPt.MinRangeOfValue) && 
+                        fanex.roundNumber(currentPt.Value) <= fanex.roundNumber(currentPt.MaxRangeOfValue);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
@@ -252,7 +259,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -264,7 +271,14 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, $timeout, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    presetInput,
+                    maxInput,
+                    minInput,
+                    controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -274,7 +288,7 @@ if (fanex.customerSetting) {
                 currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
                 currentPt.actions.whenPresetChange();
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('agentEditAgentPtAdvancedModeReadOnly', ['$timeout', function ($timeout) {
@@ -283,7 +297,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -295,7 +309,14 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, $timeout, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    presetInput,
+                    maxInput,
+                    minInput,
+                    controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -305,7 +326,7 @@ if (fanex.customerSetting) {
                 currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
                 currentPt.actions.whenPresetChange();
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('licenseeEditAgentOnePtAdvancedMode', ['$timeout', function ($timeout) {
@@ -314,7 +335,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
                 var minInput = element.find('.min-input');
@@ -324,7 +345,13 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(scope, $timeout, currentPt, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    maxInput,
+                    minInput,
+                    controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -335,7 +362,7 @@ if (fanex.customerSetting) {
                 currentPt.MinRangeOfMin = 0;
                 currentPt.MaxRangeOfMin = currentPt.Max;
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('agentEditMemberPtAdvancedMode', ['$timeout', function ($timeout) {
@@ -344,21 +371,26 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'customerSetting.positionTakingController',
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');
                 var currentPt = scope.pt;
                 valueInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(scope, $timeout, currentPt, valueInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    valueInput,
+                    controller);
 
                 //// Init value
                 currentPt.OldValue = currentPt.Value;
                 currentPt.MinRangeOfValue = currentPt.Upline.Min;
                 currentPt.MaxRangeOfValue = currentPt.Upline.Max;
             }
-        }
+        };
     } ]);
 
     //// Edit postion taking simple mode.
@@ -371,7 +403,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -382,7 +414,14 @@ if (fanex.customerSetting) {
                 maxInput.preventSpecialCharacters("^[0-9.]+$");
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, $timeout, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    presetInput,
+                    maxInput,
+                    minInput,
+                    controller);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -391,7 +430,7 @@ if (fanex.customerSetting) {
                 currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
                 currentPt.actions.whenPresetChange();
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('agentEditAgentPtSimpleModeReadOnly', ['$timeout', function ($timeout) {
@@ -403,7 +442,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -414,7 +453,14 @@ if (fanex.customerSetting) {
                 maxInput.preventSpecialCharacters("^[0-9.]+$");
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(scope, $timeout, currentPt, presetInput, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    presetInput,
+                    maxInput,
+                    minInput,
+                    controller);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -423,7 +469,7 @@ if (fanex.customerSetting) {
                 currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
                 currentPt.actions.whenPresetChange();
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('licenseeEditAgentOnePtSimpleMode', ['$timeout', function ($timeout) {
@@ -435,7 +481,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
                 var minInput = element.find('.min-input');
@@ -445,7 +491,13 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(scope, $timeout, currentPt, maxInput, minInput, controller);
+                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    maxInput,
+                    minInput,
+                    controller);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -456,7 +508,7 @@ if (fanex.customerSetting) {
                 currentPt.MinRangeOfMin = 0;
                 currentPt.MaxRangeOfMin = currentPt.Max;
             }
-        }
+        };
     } ]);
 
     fanex.customerSetting.directive('agentEditMemberPtSimpleMode', ['$timeout', function ($timeout) {
@@ -468,7 +520,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-member-simple-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function(scope, element, attrs, controller) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');
                 var currentPt = scope.ptSimple;
@@ -482,6 +534,6 @@ if (fanex.customerSetting) {
                 currentPt.MinRangeOfValue = currentPt.Upline.Min;
                 currentPt.MaxRangeOfValue = currentPt.Upline.Max;
             }
-        }
+        };
     } ]);
 }

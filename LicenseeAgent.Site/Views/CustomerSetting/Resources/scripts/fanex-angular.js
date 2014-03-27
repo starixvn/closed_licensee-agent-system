@@ -11,13 +11,13 @@ function ($httpProvider) {
     $httpProvider.responseInterceptors.push(function () {
         return function (promise) {
             numLoadings++;
-            CORE.blockUI();
+            core.blockUI();
             var hide = function (response) {
                 if (!(--numLoadings)) {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
                 if (response.status != 200 && response.status != 404) {
-                    CORE.handleError(response.data);
+                    core.handleError(response.data);
                 }
                 return response;
             };

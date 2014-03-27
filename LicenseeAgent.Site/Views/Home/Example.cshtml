@@ -196,14 +196,14 @@
             $("a[data-href]").click(function () {
                 var $this = $(this);
                 var url = $(this).attr("data-href");
-                POPUP.openDialogFrame(url, { width: 800, height: 680 });
+                popup.openDialogFrame(url, { width: 800, height: 680 });
             });
 
             $("#blockui").click(function () {
                 //$.blockUI({ message: 'Unblock after 2 seconds.' });
-                CORE.blockUI();
+                core.blockUI();
                 setTimeout(function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }, 2000);
             });
         });

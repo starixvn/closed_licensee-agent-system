@@ -1,4 +1,4 @@
-﻿/*global gridOptions, CORE, POPUP, LANGUAGE, moment*/
+﻿/*global gridOptions, core, popup, language, moment*/
 
 var statementDetailReport = (function ($) {
     /*jshint strict:false */
@@ -14,24 +14,24 @@ var statementDetailReport = (function ($) {
         },
         dataGridBinding: function () {
             if (!$.trim($('#Username').val())) {
-                alert(LANGUAGE.getString('UsernameRequired'));
+                alert(language.getString('UsernameRequired'));
                 return;
             }
             var submitOptions = $('form').serializeObject();
             $.ajax({
-                url: CORE.resolveUrl("~/Report/GetStatementDetailData"),
+                url: core.resolveUrl("~/Report/GetStatementDetailData"),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
                         var gridOptions = (data.IsAgent ? gridOptionsAgent : gridOptionsMember);
                         gridOptions.pagerOption = {
-                            itemsPerPage: CORE.pageSizes[2],
+                            itemsPerPage: core.pageSizes[2],
                             currentPage: 0,
-                            itemsPerPageArray: CORE.pageSizes,
+                            itemsPerPageArray: core.pageSizes,
                             totalItem: data.List.length
                         };
 
@@ -41,14 +41,13 @@ var statementDetailReport = (function ($) {
                         if ($('#spanUsername').length > 0) {
                             $('#spanUsername').html($('#Username').val());
                         }
-                        CORE.unblockUI();
                     }
                     else {
                         alert(data.ErrMsg);
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -56,12 +55,12 @@ var statementDetailReport = (function ($) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                        .format(agentId, dateTime, dateTime, $('#Username').val(), isMember);
-            POPUP.openDialogFrame(url, { width: 465, height: 400 });
+            popup.openDialogFrame(url, { width: 465, height: 400 });
         },
         BetList: function (custId, statusIDs, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             var url = "BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
-            POPUP.openDialogFrame(url, { width: 970, height: 600 });
+            popup.openDialogFrame(url, { width: 970, height: 600 });
         },
         genGridRows: function (list, options) {
             var columns = options.columns;

@@ -2,12 +2,17 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global settingContext, betLimits */
+/*exported positionTakingController*/
+
+'use strict';
+
 if (fanex.customerSetting) {
     var positionTakingController = fanex.customerSetting.controller('fanex.customersetting.betlimitcontroller',
     [
         '$scope',
         '$filter',
-        function ($scope, $filter) {
+        function($scope, $filter) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
             $scope.config = fanex.customerSetting.betLimitService.config;
@@ -22,14 +27,14 @@ if (fanex.customerSetting) {
                 settingContext: settingContext
             };
 
-            $scope.saveData = function (callBackFunction) {
+            $scope.saveData = function() {
                 return $scope.betLimitService.getbettingLimits(
                     settingContext,
                     $scope.model.bettingLimitsModel,
                     $scope.model.firstRecord);
-            }
+            };
 
-            $scope.isValidData = function () {
+            $scope.isValidData = function() {
                 return $scope.betLimitService.isValidData(
                     settingContext,
                     $scope.model.bettingLimitsModel,
@@ -37,12 +42,13 @@ if (fanex.customerSetting) {
             };
 
             return {
-                formatNumber: function (number) {
+                formatNumber: function(number) {
                     return $filter('number')(number, 2);
                 },
-                getScope: function () {
+                getScope: function() {
                     return $scope;
                 }
-            }
-        } ]);
+            };
+        }
+    ]);
 }

@@ -1,7 +1,5 @@
-﻿/*jslint plusplus: true */
-/*global $, jQuery, alert, document, CORE, LANGUAGE, POPUP,
-        pageContext, msg, gridOptions, context */
-var customerList = (function ($) {
+﻿/*global core, language, popup, pageContext, msg, gridOptions, context */
+var customerList = (function($) {
     'use strict';
     var statusObj = { All: -1, Close: 0, Open: 1 },
         editAgentId = 0,
@@ -10,7 +8,7 @@ var customerList = (function ($) {
         editUsername = "";
 
     return {
-        init: function () {
+        init: function() {
             $('.selectpicker').selectpicker();
 
             // create action context menu
@@ -22,33 +20,33 @@ var customerList = (function ($) {
             context.attach('.icon-customer-edit', [
                 {
                     id: 'menuSportsbook',
-                    icon: (pageContext.IsAdmin
-                        || pageContext.IsLastLevel
-                        || pageContext.IsDirectDownline
-                        ? 'icon-customer-canedit'
+                    icon: (pageContext.IsAdmin ||
+                        pageContext.IsLastLevel ||
+                        pageContext.IsDirectDownline ? 
+                        'icon-customer-canedit'
                         : 'icon-customer-canview'),
-                    text: LANGUAGE.getString('Sportsbook'),
+                    text: language.getString('Sportsbook'),
                     href: '#',
                     action: customerList.editSportsbook
                 },
                 {
                     id: 'menuEditInfo',
                     icon: 'icon-customer-canedit',
-                    text: LANGUAGE.getString('EditInfo'),
+                    text: language.getString('EditInfo'),
                     href: '#',
                     action: customerList.editInfo
                 },
                 {
                     id: 'menuResetPassword',
                     icon: 'icon-customer-canedit',
-                    text: LANGUAGE.getString('ResetPassword'),
+                    text: language.getString('ResetPassword'),
                     href: '#',
                     action: customerList.resetPassword
                 },
                 {
                     id: 'menuAddDownline',
                     icon: 'icon-customer-canedit',
-                    text: LANGUAGE.getString('AddDownline'),
+                    text: language.getString('AddDownline'),
                     href: '#',
                     action: customerList.addDownline
                 }
@@ -60,19 +58,19 @@ var customerList = (function ($) {
             });
             context.attach('#select-dropdown', [
                 {
-                    text: LANGUAGE.getString('All'),
+                    text: language.getString('All'),
                     href: '#',
                     action: customerList.checkAll
                 },
                 {
-                    text: LANGUAGE.getString('None'),
+                    text: language.getString('None'),
                     href: '#',
                     action: customerList.uncheckAll
                 }
             ]);
 
             // breadcrum
-            $('.breadcrumb a').click(function () {
+            $('.breadcrumb a').click(function() {
                 var agentId = $(this).data('agent-id'),
                     agentLevel = $(this).data('agent-level'),
                     agentName = $(this).text();
@@ -80,8 +78,8 @@ var customerList = (function ($) {
             });
 
             // search
-            $('#search-form').submit(function (e) {
-                customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
+            $('#search-form').submit(function(e) {
+                customerList.reRenderAfterPaged(0, core.pageSizes[2]);
                 e.preventDefault();
             });
 
@@ -92,19 +90,19 @@ var customerList = (function ($) {
             });
 
             // get customer list
-            customerList.reRenderAfterPaged(0, CORE.pageSizes[2]);
+            customerList.reRenderAfterPaged(0, core.pageSizes[2]);
         },
-        initInstruction: function () {
-            $('.instruction-container').each(function () {
-                $(this).click(function () {
+        initInstruction: function() {
+            $('.instruction-container').each(function() {
+                $(this).click(function() {
                     customerList.getIpInformation($(this).html());
                 });
             });
         },
-        updateActionMenus: function (target) {
+        updateActionMenus: function(target) {
             if (!pageContext.IsAdmin ||
-                    $(target).attr('data-status') === 0 ||
-                    pageContext.IsLastLevel) {
+                $(target).attr('data-status') === 0 ||
+                pageContext.IsLastLevel) {
                 $('#menuAddDownline').hide();
             } else {
                 $('#menuAddDownline').show();
@@ -123,24 +121,24 @@ var customerList = (function ($) {
                 editAgentLevel = parseInt($(target).data('agentlevel'), null);
             }
         },
-        gridAfterBinding: function () {
+        gridAfterBinding: function() {
             customerList.initInstruction();
 
             if (!pageContext.IsDirectDownline) {
                 $(".cust-status").addClass('cust-status-none');
             }
         },
-        resizeBox: function () {
+        resizeBox: function() {
             $("#boxsearch").width($("#grid").width());
             $("#breadcrumb").width($("#grid").width());
         },
-        showAgent: function (agentId, agentName, agentLevel) {
+        showAgent: function(agentId, agentName, agentLevel) {
             $('#newAgentId').val(agentId);
             $('#AgentLevel').val(agentLevel);
             $('#AgentName').val(agentName);
             $("#ajax-form").submit();
         },
-        reRenderAfterPaged: function (currentPage, itemsPerPage) {
+        reRenderAfterPaged: function(currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
                     : gridOptions.pagerOption.currentPage;
@@ -159,46 +157,46 @@ var customerList = (function ($) {
                 url: $('#search-form').attr('action'),
                 type: 'post',
                 data: params,
-                beforeSend: function () {
-                    CORE.blockUI();
+                beforeSend: function() {
+                    core.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                     } else {
                         if (pageContext.IsLastLevel) {
                             gridOptions.pagerOption = {
-                                itemsPerPage: CORE.pageSizes[2],
+                                itemsPerPage: core.pageSizes[2],
                                 currentPage: 0,
-                                itemsPerPageArray: CORE.pageSizes,
+                                itemsPerPageArray: core.pageSizes,
                                 showDetail: true,
-                                afterPagedFunction: function () {
+                                afterPagedFunction: function() {
                                     customerList.gridAfterBinding();
                                 }
                             };
                         } else {
                             gridOptions.pagerOption = {
                                 itemsPerPage: data.ItemsPerPage,
-                                itemsPerPageArray: CORE.pageSizes,
+                                itemsPerPageArray: core.pageSizes,
                                 currentPage: data.CurrentPage,
                                 totalItem: data.TotalItem,
                                 pagerSelectCallBack: customerList.reRenderAfterPaged
                             };
                         }
 
-                        gridOptions.bodyRows = CORE.genGridRows(data.List, gridOptions);
+                        gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                         $('#grid').show().fanexGrid(gridOptions);
 
                         customerList.gridAfterBinding();
                         customerList.resizeBox();
                     }
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function() {
+                    core.unblockUI();
                 }
             });
         },
-        changeStatus: function (target, custId) {
+        changeStatus: function(target, custId) {
             if (!pageContext.IsDirectDownline) {
                 return;
             }
@@ -207,7 +205,7 @@ var customerList = (function ($) {
             newStatus = currentStatus === 0 ? 1 : 0;
             customerList.showAlert(target, custId, newStatus);
         },
-        updateStatus: function (target, custId, statusId) {
+        updateStatus: function(target, custId, statusId) {
             var params, url;
             if (pageContext.IsLastLevel) {
                 params = {
@@ -222,17 +220,16 @@ var customerList = (function ($) {
                 };
             }
 
-            url = pageContext.IsLastLevel
-                ? "~/CustomerList/ChangeMemberStatus"
+            url = pageContext.IsLastLevel ? "~/CustomerList/ChangeMemberStatus"
                 : "~/CustomerList/ChangeAgentStatus";
             $.ajax({
-                url: CORE.resolveUrl(url),
+                url: core.resolveUrl(url),
                 type: 'post',
                 data: params,
-                beforeSend: function () {
-                    CORE.blockUI();
+                beforeSend: function() {
+                    core.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
@@ -252,27 +249,27 @@ var customerList = (function ($) {
                     }
                     $('#' + custId).attr('data-status', statusId);
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function() {
+                    core.unblockUI();
                 }
             });
         },
-        checkAllItem: function (itemAll) {
+        checkAllItem: function(itemAll) {
             if ($(itemAll).hasClass("icon-uncheck-all")) {
                 customerList.checkAll();
             } else {
                 customerList.uncheckAll();
             }
         },
-        checkAll: function () {
+        checkAll: function() {
             $(".icon-uncheck-all").attr("class", "icon-checked-all");
             $(".icon-uncheck").attr("class", "icon-checked");
         },
-        uncheckAll: function () {
+        uncheckAll: function() {
             $(".icon-checked-all").attr("class", "icon-uncheck-all");
             $(".icon-checked").attr("class", "icon-uncheck");
         },
-        selectClick: function (itemSelect) {
+        selectClick: function(itemSelect) {
             if ($(itemSelect).hasClass("icon-uncheck")) {
                 $(itemSelect).removeClass("icon-uncheck");
                 $(itemSelect).addClass("icon-checked");
@@ -285,16 +282,16 @@ var customerList = (function ($) {
                 $(".icon-checked-all").attr("class", "icon-uncheck-all");
             }
         },
-        getSuggestion: function (query, process) {
+        getSuggestion: function(query, process) {
             return $.ajax({
-                url: CORE.resolveUrl('~/CustomerList/CustomerSearchAutoComplete'),
+                url: core.resolveUrl('~/CustomerList/CustomerSearchAutoComplete'),
                 type: 'post',
                 data: {
                     userName: query,
                     agentId: $("#AgentId").val(),
                     agentLevel: $("#AgentLevel").val()
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
@@ -304,18 +301,18 @@ var customerList = (function ($) {
                 }
             });
         },
-        showAlert: function (target, custId, statusId) {
+        showAlert: function(target, custId, statusId) {
             var buttons = [];
             buttons.push({
                 text: 'YES',
-                click: function () {
+                click: function() {
                     customerList.closeDialog();
                     customerList.updateStatus(target, custId, statusId);
                 }
             });
             buttons.push({
                 text: 'NO',
-                click: function () {
+                click: function() {
                     customerList.closeDialog();
                 }
             });
@@ -339,21 +336,21 @@ var customerList = (function ($) {
                 buttons: buttons
             });
         },
-        closeDialog: function () {
+        closeDialog: function() {
             $('#dialog-confirm').dialog('close');
         },
-        getIpInformation: function (ipAddress) {
+        getIpInformation: function(ipAddress) {
             $.ajax({
-                url: CORE.resolveUrl('~/CustomerList/GetIpInformation'),
+                url: core.resolveUrl('~/CustomerList/GetIpInformation'),
                 type: 'post',
                 data: { IpAddress: ipAddress },
-                beforeSend: function () {
-                    CORE.blockUI();
+                beforeSend: function() {
+                    core.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data !== null) {
                         $('#instruction').html(data);
-                        POPUP.openDialog($('#instruction'),
+                        popup.openDialog($('#instruction'),
                             msg.IpInformation, {
                                 modal: false,
                                 clickout: true,
@@ -362,12 +359,12 @@ var customerList = (function ($) {
                         $('.ui-tooltip').remove();
                     }
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function() {
+                    core.unblockUI();
                 }
             });
         },
-        editMember: function (memberId, status) {
+        editMember: function(memberId, status) {
             editMemberId = memberId;
             $.contextMenu({
                 selector: '.cell-' + memberId,
@@ -377,20 +374,20 @@ var customerList = (function ($) {
                 autoHide: true
             });
         },
-        getEditItems: function (status) {
+        getEditItems: function(status) {
             var editItems = {}, items = [], index;
             if (pageContext.IsLastLevel) {
                 items = [
                     {
-                        name: LANGUAGE.getString("Sportsbook"),
+                        name: language.getString("Sportsbook"),
                         callback: customerList.editSportsbook
                     },
                     {
-                        name: LANGUAGE.getString("EditInfo"),
+                        name: language.getString("EditInfo"),
                         callback: customerList.editInfo
                     },
                     {
-                        name: LANGUAGE.getString("ResetPassword"),
+                        name: language.getString("ResetPassword"),
                         callback: customerList.resetPassword
                     },
                     /*{ name: actions.NumberGame, 
@@ -404,22 +401,22 @@ var customerList = (function ($) {
                     { name: actions.Commission, 
                     callback: customerList.editSetting },*/
                     {
-                        name: LANGUAGE.getString("Password"),
+                    name: language.getString("Password"),
                         callback: customerList.editSetting
                     }
                 ];
             } else {
                 items = [
                     {
-                        name: LANGUAGE.getString("Sportsbook"),
+                        name: language.getString("Sportsbook"),
                         callback: customerList.editSportsbook
                     },
                     {
-                        name: LANGUAGE.getString("EditInfo"),
+                        name: language.getString("EditInfo"),
                         callback: customerList.editInfo
                     },
                     {
-                        name: LANGUAGE.getString("ResetPassword"),
+                        name: language.getString("ResetPassword"),
                         callback: customerList.resetPassword
                     },
                     /*{ name: actions.NumberGame, 
@@ -433,7 +430,7 @@ var customerList = (function ($) {
                     { name: actions.Commission, 
                     callback: customerList.editSetting },*/
                     {
-                        name: LANGUAGE.getString("Password"),
+                    name: language.getString("Password"),
                         callback: customerList.editSetting
                     }
                 ];
@@ -441,7 +438,7 @@ var customerList = (function ($) {
 
             if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
                 items.push({
-                    name: LANGUAGE.getString("AddDownline"),
+                    name: language.getString("AddDownline"),
                     callback: customerList.addDownline
                 });
             }
@@ -449,9 +446,8 @@ var customerList = (function ($) {
                 for (index = 0; index < items.length; index++) {
                     editItems[index] = {
                         name: "<span class='action-content'>" +
-                            "<i class='icon-customer-canedit'></i>"
-                            + items[index].name
-                            + "</span>",
+                            "<i class='icon-customer-canedit'></i>" + 
+                            items[index].name + "</span>",
                         callback: items[index].callback
                     };
                 }
@@ -459,9 +455,8 @@ var customerList = (function ($) {
                 for (index = 0; index < items.length; index++) {
                     editItems[index] = {
                         name: "<span class='action-content'>" +
-                            "<i class='icon-customer-canview'></i>"
-                            + items[index].name
-                            + "</span>",
+                            "<i class='icon-customer-canview'></i>" + 
+                            items[index].name + "</span>",
                         callback: items[index].callback
                     };
                 }
@@ -469,7 +464,7 @@ var customerList = (function ($) {
 
             return editItems;
         },
-        editSportsbook: function () {
+        editSportsbook: function() {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerSetting/EditMember?memberId={0}"
@@ -478,12 +473,12 @@ var customerList = (function ($) {
                 url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}"
                     .format(editAgentId, editAgentLevel);
             }
-            POPUP.openDialogFrame(url, { width: 960, height: 680 });
+            popup.openDialogFrame(url, { width: 960, height: 680 });
         },
-        editSetting: function () {
+        editSetting: function() {
             alert('test');
         },
-        editInfo: function () {
+        editInfo: function() {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerList/EditInfoMember?memberId={0}&username={1}"
@@ -492,17 +487,17 @@ var customerList = (function ($) {
                 url = "CustomerList/EditInfoAgent?agentId={0}"
                     .format(editAgentId);
             }
-            POPUP.openDialogFrame(url, { width: 465, height: 520 });
+            popup.openDialogFrame(url, { width: 465, height: 520 });
         },
-        addDownline: function () {
+        addDownline: function() {
             var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
                 .format(editAgentId, editAgentLevel);
-            POPUP.openDialogFrame(url, {
+            popup.openDialogFrame(url, {
                 width: 960,
                 height: 680
             });
         },
-        resetPassword: function () {
+        resetPassword: function() {
             var url;
             if (pageContext.IsLastLevel) {
                 url = "CustomerList/ResetPasswordMember?memberId={0}"
@@ -511,12 +506,12 @@ var customerList = (function ($) {
                 url = "CustomerList/ResetPasswordAgent?agentId={0}&agentLevel={1}"
                     .format(editAgentId, editAgentLevel);
             }
-            POPUP.openDialogFrame(url, { width: 420, height: 400 });
+            popup.openDialogFrame(url, { width: 420, height: 400 });
         }
     };
 }(jQuery));
 
-$(function () {
+$(function() {
     'use strict';
     customerList.init();
 });

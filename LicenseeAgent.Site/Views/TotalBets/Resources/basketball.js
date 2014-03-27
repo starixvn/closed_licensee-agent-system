@@ -1,18 +1,18 @@
-﻿/*global refreshCountDownMethods, reportGridOptions, CORE, LANGUAGE*/
+﻿/*global refreshCountDownMethods, reportGridOptions, core, language*/
 
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
-                { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left", CanResize: true },
+                { HeaderText: language.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 60,
@@ -30,7 +30,7 @@ var Basketball = (function ($) {
             Basketball.initData();
 
             $("#refresh-count-down").refreshCountDown({
-                listTimeInterval: CORE.TimeInterval,
+                listTimeInterval: core.TimeInterval,
                 timeIntervalName: "TimeInterval",
                 timeIntervalValue: $("#server-time-interval").val(),
                 formName: "main-form"
@@ -47,7 +47,7 @@ var Basketball = (function ($) {
         },
 
         initData: function () {
-            CORE.blockUI();
+            core.blockUI();
             Basketball.getLeagueData();
             Basketball.getEventDataByLeague(true);
         },
@@ -59,7 +59,7 @@ var Basketball = (function ($) {
                 checkedAll: Basketball.checkedAllLeague
             };
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetLeagueList"),
+                url: core.resolveUrl("~/Totalbets/GetLeagueList"),
                 type: 'post',
                 data: params,
                 async: false,
@@ -84,13 +84,13 @@ var Basketball = (function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 300,
-                checkAllText: LANGUAGE.getString('AllLeagues'),
-                noItemText: LANGUAGE.getString('NoSelectedLeague'),
-                noneSelectedText: LANGUAGE.getString('PleaseSelectLeague'),
-                selectedText: LANGUAGE.getString('NumberOfSelectedLeagues'),
-                tooltipNoItem: LANGUAGE.getString('NoSelectedLeague'),
+                checkAllText: language.getString('AllLeagues'),
+                noItemText: language.getString('NoSelectedLeague'),
+                noneSelectedText: language.getString('PleaseSelectLeague'),
+                selectedText: language.getString('NumberOfSelectedLeagues'),
+                tooltipNoItem: language.getString('NoSelectedLeague'),
                 useCustomCheckAllText: true,
-                customCheckAllText: LANGUAGE.getString('AllLeagues'),
+                customCheckAllText: language.getString('AllLeagues'),
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
@@ -117,7 +117,7 @@ var Basketball = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetEventsByLeagues"),
+                url: core.resolveUrl("~/Totalbets/GetEventsByLeagues"),
                 type: 'post',
                 data: params,
                 async: false,
@@ -146,13 +146,13 @@ var Basketball = (function ($) {
                 showTooltip: true,
                 maxHeight: 500,
                 minWidth: 250,
-                checkAllText: LANGUAGE.getString('AllEvents'),
-                noItemText: LANGUAGE.getString('NoSelectedEvent'),
-                noneSelectedText: LANGUAGE.getString('PleaseSelectEvent'),
-                selectedText: LANGUAGE.getString('NumberOfSelectedEvents'),
-                tooltipNoItem: LANGUAGE.getString('NoSelectedEvent'),
+                checkAllText: language.getString('AllEvents'),
+                noItemText: language.getString('NoSelectedEvent'),
+                noneSelectedText: language.getString('PleaseSelectEvent'),
+                selectedText: language.getString('NumberOfSelectedEvents'),
+                tooltipNoItem: language.getString('NoSelectedEvent'),
                 useCustomCheckAllText: true,
-                customCheckAllText: LANGUAGE.getString('AllEvents'),
+                customCheckAllText: language.getString('AllEvents'),
                 showParentSelectedText: false,
                 showFooter: true,
                 footerButtonText: 'OK',
@@ -178,11 +178,11 @@ var Basketball = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetBasketballData"),
+                url: core.resolveUrl("~/Totalbets/GetBasketballData"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
@@ -194,7 +194,7 @@ var Basketball = (function ($) {
                     }
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -281,11 +281,11 @@ var Basketball = (function ($) {
             };
 
             $.ajax({
-                url: CORE.resolveUrl("~/Totalbets/GetBasketballBetList"),
+                url: core.resolveUrl("~/Totalbets/GetBasketballBetList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -296,7 +296,7 @@ var Basketball = (function ($) {
                     fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },

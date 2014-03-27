@@ -1,4 +1,4 @@
-﻿/*global CORE*/
+﻿/*global core*/
 
 var Message = (function ($) {
     /*jshint strict:false */
@@ -41,17 +41,17 @@ var Message = (function ($) {
             }
             Message.showAnnouncements(null);
             //            $.ajax({
-            //                url: CORE.resolveUrl("~/Message/GetMessage"),
+            //                url: core.resolveUrl("~/Message/GetMessage"),
             //                type: 'POST',
             //                data: params,
             //                dataType: "json",
             //                beforeSend: function () {
-            //                    CORE.blockUI();
+            //                    core.blockUI();
             //                },
             //                success: function (data) {
             //                },
             //                complete: function () {
-            //                    CORE.unblockUI();
+            //                    core.unblockUI();
             //                }
             //            });
         },
@@ -82,7 +82,7 @@ var Message = (function ($) {
 
             if (messages != null && messages.length > 0) {
                 gridOptions.pagerOption.totalItem = messages.length - 1;
-                gridOptions.bodyRows = CORE.genGridRows(messages, gridOptions);
+                gridOptions.bodyRows = core.genGridRows(messages, gridOptions);
             }
             $('#MessageArea').fanexGrid(gridOptions);
         },

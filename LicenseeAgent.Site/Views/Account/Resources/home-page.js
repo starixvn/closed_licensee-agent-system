@@ -1,9 +1,9 @@
-﻿/*global $, jQuery, CORE */
-var homePage = (function ($) {
+﻿/*global core */
+var homePage = (function($) {
     'use strict';
     return {
-        init: function () {
-            $('.dropdown-button').click(function () {
+        init: function() {
+            $('.dropdown-button').click(function() {
                 var element = $(this),
                     popup = element.next(),
                     url = element.attr('href');
@@ -20,22 +20,22 @@ var homePage = (function ($) {
                 $.ajax({
                     url: url,
                     type: 'get',
-                    beforeSend: function () {
-                        CORE.blockUI();
+                    beforeSend: function() {
+                        core.blockUI();
                     },
-                    success: function (data) {
+                    success: function(data) {
                         popup.html(data);
                         popup.show();
                     },
-                    complete: function () {
-                        CORE.unblockUI();
+                    complete: function() {
+                        core.unblockUI();
                     }
                 });
             });
         }
     };
 }(jQuery));
-$(function () {
+$(function() {
     'use strict';
     homePage.init();
 });

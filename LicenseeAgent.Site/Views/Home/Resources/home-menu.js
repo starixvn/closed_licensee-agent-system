@@ -1,4 +1,4 @@
-﻿/*global LANGUAGE*/
+﻿/*global language*/
 
 var homeMenu = (function ($) {
     /*jshint strict:false */
@@ -56,11 +56,11 @@ var homeMenu = (function ($) {
             var left = 0;
             if ($('.main-box').offset().left !== mainLeftCollapse) {
                 left = mainLeftCollapse;
-                $('.control-box i').attr('title', LANGUAGE.getString('Close'));
+                $('.control-box i').attr('title', language.getString('Close'));
                 $('.control-box i').removeClass('icon-collapse-home').addClass('icon-expand-home');
             }
             else {
-                $('.control-box i').attr('title', LANGUAGE.getString('Open'));
+                $('.control-box i').attr('title', language.getString('Open'));
                 $('.control-box i').removeClass('icon-expand-home').addClass('icon-collapse-home');
             }
             $('.main-box').animate({

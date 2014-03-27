@@ -1,4 +1,4 @@
-﻿/*global POPUP, gridOptions, CORE, context*/
+﻿/*global popup, gridOptions, core, context*/
 
 var creditBalanceList = (function ($) {
     /*jshint strict:false */
@@ -30,7 +30,7 @@ var creditBalanceList = (function ($) {
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -38,10 +38,10 @@ var creditBalanceList = (function ($) {
                         return;
                     }
                     records = data.List;
-                    creditBalanceList.pagerSelectCallBack(0, CORE.pageSizes[2]);
+                    creditBalanceList.pagerSelectCallBack(0, core.pageSizes[2]);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -50,10 +50,10 @@ var creditBalanceList = (function ($) {
                 itemsPerPage: itemsPerPage,
                 currentPage: pageIndex,
                 totalItem: records.length,
-                itemsPerPageArray: CORE.pageSizes,
+                itemsPerPageArray: core.pageSizes,
                 showDetail: true,
                 customRenderFooter: function (bodyRows) {
-                    return CORE.genGridTotalRows(bodyRows, gridOptions);
+                    return core.genGridTotalRows(bodyRows, gridOptions);
                 }
             };
 
@@ -63,16 +63,16 @@ var creditBalanceList = (function ($) {
                 }
             };
 
-            gridOptions.bodyRows = CORE.genGridRows(records, gridOptions);
+            gridOptions.bodyRows = core.genGridRows(records, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
-            POPUP.openDialogFrame(url, { width: 428, height: 200 });
+            popup.openDialogFrame(url, { width: 428, height: 200 });
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {
             var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
-            POPUP.openDialogFrame(url, { width: 428, height: 200 });
+            popup.openDialogFrame(url, { width: 428, height: 200 });
         }
     };
 } (jQuery));

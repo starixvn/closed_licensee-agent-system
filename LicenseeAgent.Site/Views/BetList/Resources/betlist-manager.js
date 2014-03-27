@@ -1,17 +1,17 @@
-﻿/*global CORE, LANGUAGE, showMixParlayDetailurl, custId, _today, _minDate*/
+﻿/*global core, language, showMixParlayDetailurl, custId, _today, _minDate*/
 
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Stake"), Width: 70, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("WinLoss"), Width: 60, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
     gridExpandHeight: 100,
@@ -29,12 +29,12 @@ var betList = (function ($) {
 
             // search
             $('#search-form').submit(function (e) {
-                betList.reRenderAfterPaged(0, CORE.pageSizes[0]);
+                betList.reRenderAfterPaged(0, core.pageSizes[0]);
                 e.preventDefault();
             });
 
             // get bet list
-            betList.reRenderAfterPaged(0, CORE.pageSizes[0]);
+            betList.reRenderAfterPaged(0, core.pageSizes[0]);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
@@ -58,21 +58,21 @@ var betList = (function ($) {
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [9]);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
         renderDatePicker: function () {
-            var lastdate = new Date(CORE.ServerDate);
+            var lastdate = new Date(core.ServerDate);
             $('#month-picker-control').monPickr({
                 plugInId: '#month-picker-control',
-                today: CORE.ServerDate,
+                today: core.ServerDate,
                 maxDate: _today + (lastdate.getFullYear() + 1),
                 minDate: _minDate,
                 showDateRange: true,
@@ -96,7 +96,7 @@ var betList = (function ($) {
                     type: "GET",
                     contentType: "text/html",
                     cache: false,
-                    url: CORE.resolveUrl(url),
+                    url: core.resolveUrl(url),
                     /*jshint unused: false*/
                     error: function (xhRequest, errorText, thrownError) {
                         alert(errorText);
@@ -107,10 +107,10 @@ var betList = (function ($) {
                         $('#BetListGrid').fanexGrid('resizeGrid');
                     },
                     beforeSend: function () {
-                        CORE.blockUI();
+                        core.blockUI();
                     },
                     complete: function () {
-                        CORE.unblockUI();
+                        core.unblockUI();
                     }
                 });
             };

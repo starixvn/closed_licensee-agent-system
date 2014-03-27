@@ -1,4 +1,4 @@
-﻿/*global CORE*/
+﻿/*global core*/
     CORE.DisableRecheckIn = true;
 var underMaintenanceError = (function ($) {
     /*jshint strict:false */
@@ -15,7 +15,7 @@ var underMaintenanceError = (function ($) {
         reCheckUM: function () {
             $.ajax({
                 type: "POST",
-                url: CORE.resolveUrl("~/Notify/UnderMaintenance"),
+                url: core.resolveUrl("~/Notify/UnderMaintenance"),
                 dataType: "json",
                 async: false,
                 timeout: 120000
@@ -31,7 +31,7 @@ var underMaintenanceError = (function ($) {
                     setTimeout(function () { underMaintenanceError.reCheckUM(); }, 30000);
                 }
                 else {
-                    location.href = CORE.UrlRoot;
+                    location.href = core.UrlRoot;
                 }
             });
         }

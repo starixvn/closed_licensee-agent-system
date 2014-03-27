@@ -27,15 +27,15 @@
                         {
                             HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
+                                return core.formatCustomerName(rowData.FirstName, rowData.LastName);
                             }
                         },
                         {
                             HeaderText: "@Las.Status", Width: 55, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return cell.Value == 1
-                                ? '<div class="account-status-open">' + LANGUAGE.getString('Open') + '</div>'
-                                : '<div class="account-status-closed">' + LANGUAGE.getString('Closed') + '</div>';
+                                ? '<div class="account-status-open">' + language.getString('Open') + '</div>'
+                                : '<div class="account-status-closed">' + language.getString('Closed') + '</div>';
                             }
                         },
                         {

@@ -1,4 +1,4 @@
-﻿/*global POPUP, gridOptions, context, CORE, LANGUAGE*/
+﻿/*global popup, gridOptions, context, core, language*/
 
 var transferList = (function ($) {
     /*jshint strict:false */
@@ -11,8 +11,8 @@ var transferList = (function ($) {
                 preventDoubleContext: false
             });
             context.attach('#select-dropdown', [
-                { text: LANGUAGE.getString('All'), href: '#', action: transferList.checkAll },
-                { text: LANGUAGE.getString('None'), href: '#', action: transferList.uncheckAll }
+                { text: language.getString('All'), href: '#', action: transferList.checkAll },
+                { text: language.getString('None'), href: '#', action: transferList.uncheckAll }
             ]);
 
             $('#search-form').submit(function (e) {
@@ -32,7 +32,7 @@ var transferList = (function ($) {
                 type: 'post',
                 data: params,
                 beforeSend: function () {
-                    CORE.blockUI();
+                    core.blockUI();
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
@@ -40,10 +40,10 @@ var transferList = (function ($) {
                         return;
                     }
                     records = data.List;
-                    transferList.pagerSelectCallBack(0, CORE.pageSizes[2]);
+                    transferList.pagerSelectCallBack(0, core.pageSizes[2]);
                 },
                 complete: function () {
-                    CORE.unblockUI();
+                    core.unblockUI();
                 }
             });
         },
@@ -52,10 +52,10 @@ var transferList = (function ($) {
                 itemsPerPage: itemsPerPage,
                 currentPage: pageIndex,
                 totalItem: records.length,
-                itemsPerPageArray: CORE.pageSizes,
+                itemsPerPageArray: core.pageSizes,
                 showDetail: true,
                 customRenderFooter: function (bodyRows) {
-                    return CORE.genGridTotalRows(bodyRows, gridOptions);
+                    return core.genGridTotalRows(bodyRows, gridOptions);
                 }
             };
             gridOptions.tdCssClass = function (rowIndex, colName, rowData) {
@@ -63,7 +63,7 @@ var transferList = (function ($) {
                     return rowData.IsHighlighted ? 'text-highlighted' : '';
                 }
             };
-            gridOptions.bodyRows = CORE.genGridRows(records, gridOptions);
+            gridOptions.bodyRows = core.genGridRows(records, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         },
         toggleCheck: function (target) {
@@ -99,11 +99,11 @@ var transferList = (function ($) {
         },
         transferAgent: function (agentId, agentName, amount) {
             var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
-            POPUP.openDialogFrame(url);
+            popup.openDialogFrame(url);
         },
         transferMember: function (memberId, amount) {
             var url = '~/Transfer/Member?memberId={0}&amount={1}'.format(memberId, amount);
-            POPUP.openDialogFrame(url, { width: 480, height: 300 });
+            popup.openDialogFrame(url, { width: 480, height: 300 });
         }
     };
 } (jQuery));

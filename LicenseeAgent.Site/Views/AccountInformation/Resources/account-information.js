@@ -1,13 +1,14 @@
-﻿/*jslint plusplus: true */
-/*global $, jQuery, alert, document, CORE, internalHeader */
-var accountInformation = (function ($) {
+﻿/*global core, internalHeader */
+var accountInformation = (function($) {
     'use strict';
     var urlSuggestion, urlDownline, urlCurrency;
     return {
-        init: function () {
+        init: function() {
             urlSuggestion = $("#searchUrl").data("suggest");
             urlDownline = $("#searchUrl").data("downline");
             urlCurrency = $("#searchUrl").data("currency");
+
+            var userName;
 
             //scroll left menu
             $(".leftmenu-box").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
@@ -19,8 +20,8 @@ var accountInformation = (function ($) {
             });
 
             //form submit
-            $('#formSearch').submit(function (event) {
-                var userName = $.trim($("#UserName").val());
+            $('#formSearch').submit(function(event) {
+                userName = $.trim($("#UserName").val());
                 if (userName !== '') {
                     $("#UserName").val(userName);
                     $(this).ajaxSubmit({
@@ -33,12 +34,12 @@ var accountInformation = (function ($) {
             });
 
             //search click
-            $('#search').click(function () {
+            $('#search').click(function() {
                 $("#formSearch").submit();
             });
 
             //check exist cookie username. If exist, call search username
-            var userName = $.cookie('username');
+            userName = $.cookie('username');
             if (userName !== null) {
                 $("#UserName").val(userName);
                 $("#formSearch").submit();
@@ -48,12 +49,12 @@ var accountInformation = (function ($) {
                 accountInformation.changeAccountInfoActive();
             }
         },
-        beforeSearchUser: function () {
-            CORE.blockUI();
+        beforeSearchUser: function() {
+            core.blockUI();
             $("#searchAlert").hide();
         },
-        searchResultBinding: function () {
-            CORE.unblockUI();
+        searchResultBinding: function() {
+            core.unblockUI();
 
             $('#tabDownline').on('shown', function () {
                 accountInformation.showScroll();
@@ -68,8 +69,8 @@ var accountInformation = (function ($) {
                     currentPage: pageIndex,
                     numberOfPages: 3,
                     totalPages: totalPages,
-                    pageUrl: function () { return '#'; },
-                    onPageChanged: function (e, oldPage, newPage) {
+                    pageUrl: function() { return '#'; },
+                    onPageChanged: function(e, oldPage, newPage) {
                         if (oldPage !== newPage && e) {
                             accountInformation.getDownline(newPage);
                         }
@@ -77,7 +78,7 @@ var accountInformation = (function ($) {
                 });
             }
             //add trigger event
-            $('.btn-inverse').click(function () {
+            $('.btn-inverse').click(function() {
                 $("#frmMain").attr("src", $(this).data("url"));
             });
 
@@ -89,11 +90,11 @@ var accountInformation = (function ($) {
                     placement: 'right'
                 });
 
-                $(document).click(function (e) {
-                    $('.popover-link').each(function () {
+                $(document).click(function(e) {
+                    $('.popover-link').each(function() {
                         if (!$(this).is(e.target) &&
-                                $(this).has(e.target).length === 0 &&
-                                $('.popover').has(e.target).length === 0) {
+                            $(this).has(e.target).length === 0 &&
+                            $('.popover').has(e.target).length === 0) {
                             $(this).popover('hide');
                             return;
                         }
@@ -103,25 +104,25 @@ var accountInformation = (function ($) {
 
             accountInformation.pagingBinding();
         },
-        pagingBinding: function () {
-            $(".agent-inline").click(function (event) {
+        pagingBinding: function() {
+            $(".agent-inline").click(function(event) {
                 $("#UserName").val($(this).attr('title'));
                 $("#formSearch").submit();
 
                 event.preventDefault();
             });
         },
-        hidePopover: function () {
+        hidePopover: function() {
             $('.popover-link').popover('hide');
         },
-        getSuggestion: function (query, process) {
+        getSuggestion: function(query, process) {
             return $.ajax({
                 url: urlSuggestion,
                 type: 'post',
                 data: {
                     username: query
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode === 0) {
                         return process(data.List);
                     }
@@ -129,7 +130,7 @@ var accountInformation = (function ($) {
             });
         },
         //get downline when click paging
-        getDownline: function (pageIndex) {
+        getDownline: function(pageIndex) {
             $.ajax({
                 url: urlDownline,
                 type: 'post',
@@ -137,20 +138,20 @@ var accountInformation = (function ($) {
                     agentid: $("#AgentId").val(),
                     pageindex: pageIndex - 1
                 },
-                beforeSend: function () {
-                    CORE.blockUI();
+                beforeSend: function() {
+                    core.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode === 0) {
                         accountInformation.bindDownline(data.List);
                     }
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function() {
+                    core.unblockUI();
                 }
             });
         },
-        bindDownline: function (downlines) {
+        bindDownline: function(downlines) {
             var numberDownline = downlines.length,
                 downlineHtml = '',
                 index = 0;
@@ -166,23 +167,23 @@ var accountInformation = (function ($) {
             accountInformation.showScroll();
         },
         //show alert when search username not exist
-        showNoUserAlert: function (message) {
+        showNoUserAlert: function(message) {
             $("#searchAlert").html(message);
             $("#searchAlert").show();
         },
         //show alert when search username exist in another currency
-        showCurrencyAlert: function (currencyId, currencyName, msgQuestion, msgAlert) {
+        showCurrencyAlert: function(currencyId, currencyName, msgQuestion, msgAlert) {
             var buttons = [];
             buttons.push({
                 text: 'YES',
-                click: function () {
+                click: function() {
                     accountInformation.changeCurrencyPage(currencyId, currencyName);
                     accountInformation.closeDialog();
                 }
             });
             buttons.push({
                 text: 'NO',
-                click: function () {
+                click: function() {
                     accountInformation.showNoUserAlert(msgAlert);
                     accountInformation.closeDialog();
                 }
@@ -195,11 +196,11 @@ var accountInformation = (function ($) {
                 buttons: buttons
             });
         },
-        closeDialog: function () {
+        closeDialog: function() {
             $('#dialog-confirm').dialog('close');
         },
         //change currency site
-        changeCurrencyPage: function (currencyId) {
+        changeCurrencyPage: function(currencyId) {
             var data = {
                 licenseeid: $("#licensee").data("licensee-id"),
                 currencyid: currencyId
@@ -208,25 +209,25 @@ var accountInformation = (function ($) {
                 url: urlCurrency,
                 type: 'post',
                 data: data,
-                beforeSend: function () {
-                    CORE.blockUI();
+                beforeSend: function() {
+                    core.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                         return;
                     }
                     if (internalHeader !== undefined) {
-                        $.cookie('username', $("#UserName").val(), { path: '/' });
+                        $.cookie('username', $("#UserName").val(), { path: '/', expires: 1 });
                         internalHeader.setCurrency(currencyId);
                     }
                 },
-                complete: function () {
-                    CORE.unblockUI();
+                complete: function() {
+                    core.unblockUI();
                 }
             });
         },
-        changeAccountInfoActive: function () {
+        changeAccountInfoActive: function() {
             var tab, mainMenuId, accountInfoId;
             tab = $('.leftmenu-box').find('.nav-tabs').first();
             tab.find('li:first').removeClass('active');
@@ -261,7 +262,7 @@ var accountInformation = (function ($) {
     };
 }(jQuery));
 
-$(function () {
+$(function() {
     'use strict';
     accountInformation.init();
 });

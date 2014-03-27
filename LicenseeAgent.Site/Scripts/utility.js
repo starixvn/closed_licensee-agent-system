@@ -1,12 +1,13 @@
 ﻿/* jshint freeze:false */
 
+'use strict';
+
 if ($.fn.tooltip) {
     $.fn.tooltip.defaults.animation = false;
 }
 
 // inject validate unobtrusive
 if (typeof (jQuery.validator.unobtrusive) !== 'undefined') {
-    /*jshint strict:false */
     jQuery.validator.unobtrusive.adapters.add('notequalto', ['other'], function (options) {
         options.rules['notEqualTo'] = '#' + options.params.other;
         if (options.message) {
@@ -52,9 +53,10 @@ $.fn.setBreadCrumb = function (agentId, agentLevel, username) {
     var breadCrumb = agentId + "," + agentLevel + "," + username;
     var newBreadCrumb = "";
     if (currentBreadCrumb.indexOf(breadCrumb) >= 0) {
-        newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
-    }
-    else {
+        {
+            newBreadCrumb = currentBreadCrumb.substring(0, currentBreadCrumb.indexOf(breadCrumb) + breadCrumb.length);
+        }
+    } else {
         newBreadCrumb = currentBreadCrumb + ";" + breadCrumb;
     }
     $(this).val(newBreadCrumb);
@@ -80,7 +82,7 @@ String.prototype.isNumber = function () {
 };
 
 // Getting the number of decimals in a number
-Number.prototype.countDecimals = function () {
+Number.prototype.countDecimals = function() {
     if (Math.floor(this.valueOf()) === this.valueOf()) {
         return 0;
     }

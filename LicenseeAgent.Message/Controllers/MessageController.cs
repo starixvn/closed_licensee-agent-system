@@ -19,21 +19,6 @@ namespace LicenseeAgent.Message.Controllers
     /// </summary>
     public class MessageController : BaseController
     {
-        #region Services
-
-        private readonly IMessageService _messageService;
-
-        #endregion Services
-
-        #region Constructor
-
-        public MessageController(IMessageService messageService)
-        {
-            _messageService = messageService;
-        }
-
-        #endregion Constructor
-
         /// <summary>
         /// Index page of Message.
         /// </summary>
@@ -42,16 +27,6 @@ namespace LicenseeAgent.Message.Controllers
         [HttpGet]
         public ActionResult Index(MessageViewModel model)
         {
-            ////var criteria = new SearchMessageCriteria
-            ////{
-            ////    FromDate = model.FromDate,
-            ////    ToDate = model.ToDate
-            ////};
-            ////var message = _messageService.GetMessageList(criteria);
-            ////return Json(new
-            ////{
-            ////    List = message
-            ////});
             return View(model);
         }
     }

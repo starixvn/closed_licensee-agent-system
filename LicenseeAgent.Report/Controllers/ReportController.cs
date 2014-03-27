@@ -257,11 +257,8 @@ namespace LicenseeAgent.Report.Controllers
         /// <summary>
         /// Outstanding Report.
         /// </summary>
-        /// <param name="agentId">Agent Id Info.</param>
-        /// <param name="agentLevel">Agent Level.</param>
-        /// <param name="breadCrumb">Bread Crumb.</param>
         /// <returns>Return a JSON object.</returns>
-        public ActionResult Outstanding(int? agentId, int? agentLevel, string breadCrumb)
+        public ActionResult Outstanding()
         {
             ViewBag.LoggedInAgentName = CurrentSession.AgentInfo.AgentName;
             ViewBag.LoggedInAgentId = CurrentSession.AgentInfo.AgentId;

@@ -12,6 +12,7 @@ namespace LicenseeAgent.Taiwan.Utility
     using System.Linq;
     using System.Text;
     using System.Web;
+    using System.Xml.Serialization;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
@@ -74,7 +75,9 @@ namespace LicenseeAgent.Taiwan.Utility
                 var listCustId = custIds.Split(',');
                 logInformations.AddRange(listCustId.Select(custId => new LogInformationEntity
                 {
-                    AgentId = Convert.ToInt32(agentIds), MemberId = Convert.ToInt32(custId), Status = (short)LogType.BeforeCall
+                    AgentId = Convert.ToInt32(agentIds),
+                    MemberId = Convert.ToInt32(custId),
+                    Status = (short)LogType.BeforeCall
                 }));
             }
             else if (!string.IsNullOrEmpty(agentIds))
@@ -82,7 +85,8 @@ namespace LicenseeAgent.Taiwan.Utility
                 var listAgentId = agentIds.Split(',');
                 logInformations.AddRange(listAgentId.Select(agentId => new LogInformationEntity
                 {
-                    AgentId = Convert.ToInt32(agentId), Status = (short)LogType.BeforeCall
+                    AgentId = Convert.ToInt32(agentId),
+                    Status = (short)LogType.BeforeCall
                 }));
             }
 
@@ -120,17 +124,21 @@ namespace LicenseeAgent.Taiwan.Utility
             foreach (var property in properties)
             {
                 var propertyValue = property.GetValue(action, null);
-                var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
-
-                if (!ServiceExtension.IsParamRequest(attribute))
+                var serviceAttribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
+                if (!ServiceExtension.IsParamRequest(serviceAttribute))
                 {
                     continue;
                 }
 
-                errorMessage.AppendFormat(
-                    "{0}: {1}\n",
-                    attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
-                    propertyValue != null ? HttpUtility.UrlEncode(propertyValue.ToString()) : string.Empty);
+                var xmlIgnoreAttribute = property.GetCustomAttributes(typeof(XmlIgnoreAttribute), true).FirstOrDefault();
+                if (xmlIgnoreAttribute != null)
+                {
+                    continue;
+                }
+
+                var logName = serviceAttribute != null ? ((ServiceAttribute)serviceAttribute).Name : property.Name;
+                var logValue = propertyValue != null ? HttpUtility.UrlEncode(propertyValue.ToString()) : string.Empty;
+                errorMessage.AppendFormat("{0}: {1}\n", logName, logValue);
             }
 
             errorMessage.Append("Output:\n");

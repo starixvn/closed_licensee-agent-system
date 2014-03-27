@@ -29,7 +29,7 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 Execute(criteria);
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 Logger.HandleException(ex);
             }

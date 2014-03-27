@@ -18,6 +18,13 @@
                 var captchaUrl = $(this).attr('href') + "?" + Date.now();
                 $('#img-captcha').attr('src', captchaUrl);
             });
+
+            $('form').submit(function () {
+                if ($(this).valid()) {
+                    // disable button to avoid multiple submit.
+                    $('#btnSubmit').attr('disabled', true);
+                }
+            });
         },
         setFocus: function (element) {
             setTimeout(function () {

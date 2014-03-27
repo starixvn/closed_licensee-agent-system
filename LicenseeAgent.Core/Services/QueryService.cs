@@ -21,38 +21,6 @@ namespace LicenseeAgent.Core.Services
     public class QueryService
     {
         /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <typeparam name="T">The input object type.</typeparam>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns a list of object T.</returns>
-        public IEnumerable<T> GetEntites<T>(ICriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid Criteria");
-                }
-
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var list = objectDb.Query<T>(param);
-                    UpdateOutput(objectDb, criteria);
-
-                    return list;
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
-        }
-
-        /// <summary>
         /// Gets the entity.
         /// </summary>
         /// <typeparam name="T">The input object type.</typeparam>
@@ -175,6 +143,38 @@ namespace LicenseeAgent.Core.Services
                 {
                     var param = criteria.GetSpParams();
                     return Converter.To<T>(objectDb.ExecuteScalar(param));
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <typeparam name="T">The input object type.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns a list of object T.</returns>
+        public IEnumerable<T> GetEntites<T>(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid Criteria");
+                }
+
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var list = objectDb.Query<T>(param);
+                    UpdateOutput(objectDb, criteria);
+
+                    return list;
                 }
             }
             catch (Exception exception)

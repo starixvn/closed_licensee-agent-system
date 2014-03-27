@@ -107,23 +107,16 @@ namespace LicenseeAgent.Core.Services
                 return maintenanceInfo;
             }
 
-            try
-            {
-                var dateFrom = maintenanceInfo.UmTimeFrom;
-                var dateTo = maintenanceInfo.UmTimeTo;
-                maintenanceInfo.Status = _umservice.isUnderMaintainence(
-                    Sites.LRF,
-                    AppSettings.UnderMaintenanceUrl,
-                    ref dateFrom,
-                    ref dateTo);
+            var dateFrom = maintenanceInfo.UmTimeFrom;
+            var dateTo = maintenanceInfo.UmTimeTo;
+            maintenanceInfo.Status = _umservice.isUnderMaintainence(
+                Sites.LRF,
+                AppSettings.UnderMaintenanceUrl,
+                ref dateFrom,
+                ref dateTo);
 
-                maintenanceInfo.UmTimeFrom = dateFrom;
-                maintenanceInfo.UmTimeTo = dateTo;
-            }
-            catch (Exception exception)
-            {
-                Logger.HandleException(exception);
-            }
+            maintenanceInfo.UmTimeFrom = dateFrom;
+            maintenanceInfo.UmTimeTo = dateTo;
 
             return maintenanceInfo;
         }

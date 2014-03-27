@@ -78,17 +78,17 @@ namespace LicenseeAgent.Core.Entities
             }
         }
 
-        public bool IsLastAgent(int agentLevel)
-        {
-            return ModelHelper.IsLastAgent(agentLevel, NumberOfLevel);
-        }
-
         public PasswordStatus PasswordStatus
         {
             get
             {
                 return PasswordRule.GetPasswordStatus(this, LastLoggedTime);
             }
+        }
+
+        public bool IsLastAgent(int agentLevel)
+        {
+            return ModelHelper.IsLastAgent(agentLevel, NumberOfLevel);
         }
     }
 }

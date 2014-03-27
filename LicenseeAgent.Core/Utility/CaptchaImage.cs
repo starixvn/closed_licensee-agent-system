@@ -157,7 +157,7 @@ namespace LicenseeAgent.Core.Utility
         /// <summary>
         /// List of fonts to random.
         /// </summary>
-        private readonly string[] RandomFontFamily =
+        private readonly string[] randomFontFamily =
         {
             "arial", "arial black", "comic sans ms", "courier new",
             "estrangelo edessa", "franklin gothic medium", "georgia", "lucida console", "lucida sans unicode", "mangal",
@@ -323,7 +323,7 @@ namespace LicenseeAgent.Core.Utility
         /// <returns></returns>
         private string GetRandomFontFamily()
         {
-            return RandomFontFamily[_rand.Next(0, RandomFontFamily.Length)];
+            return randomFontFamily[_rand.Next(0, randomFontFamily.Length)];
         }
 
         /// <summary>

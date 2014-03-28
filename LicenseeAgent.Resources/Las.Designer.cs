@@ -682,11 +682,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1x2 Comm (%).
+        /// </summary>
+        public static string Comm1x2 {
+            get {
+                return ResourceManager.GetString("Comm1x2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string Commission {
             get {
                 return ResourceManager.GetString("Commission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission Group.
+        /// </summary>
+        public static string CommissionGroup {
+            get {
+                return ResourceManager.GetString("CommissionGroup", resourceCulture);
             }
         }
         
@@ -723,6 +741,24 @@ namespace LicenseeAgent.Resources {
         public static string ConfirmPasswordRequired {
             get {
                 return ResourceManager.GetString("ConfirmPasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy all below bet settings from Basketball.
+        /// </summary>
+        public static string CopyAllBetSettingBasketBall {
+            get {
+                return ResourceManager.GetString("CopyAllBetSettingBasketBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy all below bet settings from Soccer.
+        /// </summary>
+        public static string CopyAllBetSettingSoccer {
+            get {
+                return ResourceManager.GetString("CopyAllBetSettingSoccer", resourceCulture);
             }
         }
         
@@ -1051,11 +1087,38 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Handicap.
+        /// </summary>
+        public static string FirstHandicap {
+            get {
+                return ResourceManager.GetString("FirstHandicap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st Over/Under.
+        /// </summary>
+        public static string FirstOverUnder {
+            get {
+                return ResourceManager.GetString("FirstOverUnder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Football.
+        /// </summary>
+        public static string Football {
+            get {
+                return ResourceManager.GetString("Football", resourceCulture);
             }
         }
         
@@ -1141,11 +1204,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given credit must be between 0 and {0}.
+        /// </summary>
+        public static string GivenMaxCredit {
+            get {
+                return ResourceManager.GetString("GivenMaxCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goal.
         /// </summary>
         public static string Goal {
             get {
                 return ResourceManager.GetString("Goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Golf.
+        /// </summary>
+        public static string Golf {
+            get {
+                return ResourceManager.GetString("Golf", resourceCulture);
             }
         }
         
@@ -1159,11 +1240,65 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group A (%).
+        /// </summary>
+        public static string GroupA {
+            get {
+                return ResourceManager.GetString("GroupA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group B (%).
+        /// </summary>
+        public static string GroupB {
+            get {
+                return ResourceManager.GetString("GroupB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group C (%).
+        /// </summary>
+        public static string GroupC {
+            get {
+                return ResourceManager.GetString("GroupC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group D (%).
+        /// </summary>
+        public static string GroupD {
+            get {
+                return ResourceManager.GetString("GroupD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Half Time.
         /// </summary>
         public static string HalfTime {
             get {
                 return ResourceManager.GetString("HalfTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handicap.
+        /// </summary>
+        public static string Handicap {
+            get {
+                return ResourceManager.GetString("Handicap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HDP, OU, OE (%).
+        /// </summary>
+        public static string HdpOuOeComm {
+            get {
+                return ResourceManager.GetString("HdpOuOeComm", resourceCulture);
             }
         }
         
@@ -1344,6 +1479,15 @@ namespace LicenseeAgent.Resources {
         public static string InvalidPhone {
             get {
                 return ResourceManager.GetString("InvalidPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid range, input must be in.
+        /// </summary>
+        public static string InvalidRange {
+            get {
+                return ResourceManager.GetString("InvalidRange", resourceCulture);
             }
         }
         
@@ -1546,6 +1690,42 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Bet.
+        /// </summary>
+        public static string MaxBet {
+            get {
+                return ResourceManager.GetString("MaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be less than or equal to Max Per Match.
+        /// </summary>
+        public static string MaxBetLessThanOrEqualMaxPerMatch {
+            get {
+                return ResourceManager.GetString("MaxBetLessThanOrEqualMaxPerMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be less than or equal to.
+        /// </summary>
+        public static string MaxBetLessThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MaxBetLessThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be greater than or equal to Min Bet.
+        /// </summary>
+        public static string MaxBetMoreThanOrEqualMinBet {
+            get {
+                return ResourceManager.GetString("MaxBetMoreThanOrEqualMinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Credit.
         /// </summary>
         public static string MaxCredit {
@@ -1555,11 +1735,56 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Max Downline.
+        /// </summary>
+        public static string MaxDownline {
+            get {
+                return ResourceManager.GetString("MaxDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match.
+        /// </summary>
+        public static string MaxPerMatch {
+            get {
+                return ResourceManager.GetString("MaxPerMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match must be less than or equal to.
+        /// </summary>
+        public static string MaxPerMatchLessThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MaxPerMatchLessThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match must be greater than or equal to Max Bet.
+        /// </summary>
+        public static string MaxPerMatchMoreThanOrEqualMaxBet {
+            get {
+                return ResourceManager.GetString("MaxPerMatchMoreThanOrEqualMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string Member {
             get {
                 return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Commission.
+        /// </summary>
+        public static string MemberCommission {
+            get {
+                return ResourceManager.GetString("MemberCommission", resourceCulture);
             }
         }
         
@@ -1578,6 +1803,42 @@ namespace LicenseeAgent.Resources {
         public static string MessageAnnouncement {
             get {
                 return ResourceManager.GetString("MessageAnnouncement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet.
+        /// </summary>
+        public static string MinBet {
+            get {
+                return ResourceManager.GetString("MinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet must be less than or equal to Max Bet.
+        /// </summary>
+        public static string MinBetLessThanOrEqualMaxBet {
+            get {
+                return ResourceManager.GetString("MinBetLessThanOrEqualMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet must be greater than or equal to.
+        /// </summary>
+        public static string MinBetMoreThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MinBetMoreThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Min Downline.
+        /// </summary>
+        public static string MinDownline {
+            get {
+                return ResourceManager.GetString("MinDownline", resourceCulture);
             }
         }
         
@@ -1641,6 +1902,15 @@ namespace LicenseeAgent.Resources {
         public static string More {
             get {
                 return ResourceManager.GetString("More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Motor Sports.
+        /// </summary>
+        public static string MotorSports {
+            get {
+                return ResourceManager.GetString("MotorSports", resourceCulture);
             }
         }
         
@@ -1825,6 +2095,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no updating..
+        /// </summary>
+        public static string NoUpdating {
+            get {
+                return ResourceManager.GetString("NoUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Game.
         /// </summary>
         public static string NumberGame {
@@ -1879,6 +2158,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odd/Even.
+        /// </summary>
+        public static string OddEven {
+            get {
+                return ResourceManager.GetString("OddEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odds.
         /// </summary>
         public static string Odds {
@@ -1906,6 +2194,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1 X 2.
+        /// </summary>
+        public static string OneXTwo {
+            get {
+                return ResourceManager.GetString("OneXTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only numbers , (,) between number.
+        /// </summary>
+        public static string OnlyNumberBetweenNumber {
+            get {
+                return ResourceManager.GetString("OnlyNumberBetweenNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % on Member.
+        /// </summary>
+        public static string OnMember {
+            get {
+                return ResourceManager.GetString("OnMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
         public static string Open {
@@ -1929,6 +2244,33 @@ namespace LicenseeAgent.Resources {
         public static string Or {
             get {
                 return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other bet types of Basketball.
+        /// </summary>
+        public static string OtherBettypeOfBasketball {
+            get {
+                return ResourceManager.GetString("OtherBettypeOfBasketball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other bet types of Soccer.
+        /// </summary>
+        public static string OtherBettypeOfSoccer {
+            get {
+                return ResourceManager.GetString("OtherBettypeOfSoccer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others Comm (%).
+        /// </summary>
+        public static string OtherComm {
+            get {
+                return ResourceManager.GetString("OtherComm", resourceCulture);
             }
         }
         
@@ -1974,6 +2316,15 @@ namespace LicenseeAgent.Resources {
         public static string Over {
             get {
                 return ResourceManager.GetString("Over", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Over/Under.
+        /// </summary>
+        public static string OverUnder {
+            get {
+                return ResourceManager.GetString("OverUnder", resourceCulture);
             }
         }
         
@@ -2210,6 +2561,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Preset.
+        /// </summary>
+        public static string Preset {
+            get {
+                return ResourceManager.GetString("Preset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Public Announcements.
         /// </summary>
         public static string PublicAnnouncements {
@@ -2417,6 +2777,42 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy all below position taking settings from Soccer – Dead Ball Handicap.
+        /// </summary>
+        public static string SoccerDeadballCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("SoccerDeadballCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer – Dead Ball Handicap position taking setting is being applied to:.
+        /// </summary>
+        public static string SoccerHandicapCopyPt {
+            get {
+                return ResourceManager.GetString("SoccerHandicapCopyPt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy from Handicap.
+        /// </summary>
+        public static string SoccerHandicapCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("SoccerHandicapCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy from 1X2.
+        /// </summary>
+        public static string SoccerOnexTwoCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("SoccerOnexTwoCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Special Announcements.
         /// </summary>
         public static string SpecialAnnouncements {
@@ -2503,6 +2899,15 @@ namespace LicenseeAgent.Resources {
         public static string Team {
             get {
                 return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tennis.
+        /// </summary>
+        public static string Tennis {
+            get {
+                return ResourceManager.GetString("Tennis", resourceCulture);
             }
         }
         
@@ -2611,6 +3016,15 @@ namespace LicenseeAgent.Resources {
         public static string TotalCash {
             get {
                 return ResourceManager.GetString("TotalCash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Goal.
+        /// </summary>
+        public static string TotalGoal {
+            get {
+                return ResourceManager.GetString("TotalGoal", resourceCulture);
             }
         }
         

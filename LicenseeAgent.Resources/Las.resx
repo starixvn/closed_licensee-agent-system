@@ -1108,7 +1108,7 @@
   <data name="BasketballHandicapCopyPt" xml:space="preserve">
     <value>Basketball - Handicap position taking setting is being applied to:</value>
   </data>
-   <data name="Comm1x2" xml:space="preserve">
+  <data name="Comm1x2" xml:space="preserve">
     <value>1x2 Comm (%)</value>
   </data>
   <data name="CommissionGroup" xml:space="preserve">

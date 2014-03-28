@@ -28,7 +28,9 @@
                     @BootstrapHelper.LeftMenu(Las.AgentWinLoss, Url.Action("AgentWinLoss", "Report"))
                     @BootstrapHelper.LeftMenu(Las.AgentOutstanding, Url.Action("Outstanding", "Report"))
                     @BootstrapHelper.LeftMenu(Las.Results, Url.Action("Results", "Report"))
-                    @BootstrapHelper.LeftMenu(Las.Statement, Url.Action("StatementDetailCurrentUser", "Report"))
+                    @if (!SessionManager.CurrentSession.AgentInfo.IsLevel0){
+                        @BootstrapHelper.LeftMenu(Las.Statement, Url.Action("StatementDetailCurrentUser", "Report"))
+                    }
                     @BootstrapHelper.LeftMenu(Las.DownlineStatement, Url.Action("Statement", "Report"))
                 </ul>
             </li>

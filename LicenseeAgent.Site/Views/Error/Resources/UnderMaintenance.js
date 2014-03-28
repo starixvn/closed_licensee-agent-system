@@ -1,4 +1,5 @@
 ﻿var UNDERMAINTENANCE = function ($) {
+    disableRecheckIn = true;
     return {
         init: function () {
             if ($(window.parent.document).find('iframe').length > 0) {

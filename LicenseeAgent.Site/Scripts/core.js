@@ -1,4 +1,5 @@
 ﻿var CORE = function ($) {
+    disableRecheckIn = false;
     return {
         UrlRoot: appSettings.UrlRoot,
         UrlSignOut: appSettings.UrlRoot + 'Account/SignOut',
@@ -79,7 +80,7 @@
             }
 
             // call if page is not in frame & not be a popup
-            if (window.parent.frmMain == undefined && window.parent.popup == undefined) {
+            if (window.parent.frmMain == undefined && window.parent.popup == undefined && !disableRecheckIn) {
                 setTimeout(function () { CORE.reCheckIn(); }, 1000);
             }
         },

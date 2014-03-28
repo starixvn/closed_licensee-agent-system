@@ -16,14 +16,7 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
     @Scripts.Render("~/js/statementdetail")
-    @if (Model.IsMember)
-    {
-        @Html.Partial("StatementDetail.MemberGrid")
-    }
-    else
-    {
-        @Html.Partial("StatementDetail.AgentGrid")
-    }
+    @Html.Partial("StatementDetail.Grid")
 }
 <div class="legend">
     @ViewBag.Title

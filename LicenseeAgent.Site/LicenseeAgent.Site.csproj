@@ -808,8 +808,7 @@
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
-    <Content Include="Views\Report\StatementDetail.AgentGrid.cshtml" />
-    <Content Include="Views\Report\StatementDetail.MemberGrid.cshtml" />
+    <Content Include="Views\Report\StatementDetail.Grid.cshtml" />
     <Content Include="Views\Report\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Views\TotalBets\SoccerBetList.cshtml" />

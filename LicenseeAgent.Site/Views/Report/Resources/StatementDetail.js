@@ -9,7 +9,7 @@
             });
             STATEMENTDETAIL.dataGridBinding();
         },
-        dataGridBinding: function () {            
+        dataGridBinding: function () {
             if (!$.trim($('#Username').val())) {
                 alert(LANGUAGE.getString('UsernameRequired'));
                 return;
@@ -24,6 +24,7 @@
                 },
                 success: function (data) {
                     if (data.ErrCode == 0) {
+                        var gridOptions = (data.IsAgent ? gridOptionsAgent : gridOptionsMember);
                         gridOptions.pagerOption = {
                             itemsPerPage: CORE.pageSizes[2],
                             currentPage: 0,

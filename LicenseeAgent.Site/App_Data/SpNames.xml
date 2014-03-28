@@ -124,7 +124,7 @@
     <Setting Key="LAS_Statement_AgentTransferDetail" SpName="LAS_Statement_AgentTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Statement_MemberTransferDetail" SpName="LAS_Statement_MemberTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!--Other reports should be appended here-->
-    
+    <Setting Key="LAS_Statement_SelByUsername" SpName="LAS_Statement_SelByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>    
   </Function>
   <Function Name="AccountInformation">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

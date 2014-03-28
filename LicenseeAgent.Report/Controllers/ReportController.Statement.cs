@@ -184,34 +184,21 @@ namespace LicenseeAgent.Report.Controllers
         public JsonResult GetStatementDetailData(StatementDetailReportViewModel model)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-            var result = new List<Statement>();
-            if (model.IsMember)
+            var criteria = new StatementDetailCriteria
             {
-                result = _reportService.StatementReport(new StatementMemberDetailCriteria
-                {
-                    UserId = CurrentSession.AgentInfo.AgentId,
-                    BalanceUpDay = balanceUp.BalanceUpDay,
-                    FromDate = model.FromDate,
-                    ToDate = model.ToDate,
-                    CustUsername = model.Username
-                }).ToList();
-            }
-            else
-            {
-                result = _reportService.StatementReport(new StatementAgentDetailCriteria
-                {
-                    UserId = CurrentSession.AgentInfo.AgentId,
-                    BalanceUpDay = balanceUp.BalanceUpDay,
-                    FromDate = model.FromDate,
-                    ToDate = model.ToDate,
-                    AgentUsername = model.Username
-                }).ToList();
-            }
+                UserId = CurrentSession.AgentInfo.AgentId,
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                Username = model.Username
+            };
+            var result = _reportService.StatementReport(criteria).ToList();
 
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = result
+                List = result,
+                IsAgent = criteria.IsAgent
             });
         }
 

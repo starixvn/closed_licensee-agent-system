@@ -105,6 +105,7 @@
     <Compile Include="Criteria\StatementAgentDetailCriteria.cs" />
     <Compile Include="Criteria\StatementMemberDetailCriteria.cs" />
     <Compile Include="Criteria\TransferDetailMemberCriteria.cs" />
+    <Compile Include="Criteria\StatementDetailCriteria.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
     <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />

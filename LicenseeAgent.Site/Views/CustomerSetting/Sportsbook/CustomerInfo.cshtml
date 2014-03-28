@@ -72,7 +72,7 @@
         <div class="block2">
             <input id="credit" name="credit" type="text" maxlength="24" class="text-right" data-ng-model="custInfo.credit"
                 hint-validator required required-hint="Max Credit is required" auto-numeric-format="0" />
-            <span ng-show="isShowLimitMaxCredit"><= {{custInfo.maxCredit | number : 0}}</span>
+            <span ng-show="isShowLimitMaxCredit">&#60;&#61;{{custInfo.maxCredit | number : 0}}</span>
         </div>
         <div class="block3">
             <span>@Las.Fax</span>

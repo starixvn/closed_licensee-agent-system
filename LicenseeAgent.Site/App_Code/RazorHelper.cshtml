@@ -46,7 +46,7 @@
 }
 @helper DrawFilter(short val)
     {
-    <label for="DrawFilter" class="radio inline">@Las.DrawFilter</label>
+    <label class="radio inline">@Las.DrawFilter</label>
     <label class="radio inline">
         <input type="radio" name="DrawFilter" value="0" @(val == 0 ? "checked" : "") />
         @Las.Normal

@@ -217,7 +217,7 @@ namespace LicenseeAgent.Account
             else
             {
                 var authKey = _internalService.Encode(internalLoginInfo);
-                var directUrl = string.Format("{0}/?authKey={1}", Request.Url.AbsolutePath, authKey);
+                var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
                 return Json(
                     new
                     {

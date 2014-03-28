@@ -31,7 +31,7 @@ var popup = (function ($) {
             if (frame.length === 0) {
                 frame = $('<div id="app-dialog-frame"></div>');
             }
-            frame.html('<iframe class="loading" id="popup" src="' + '" width="100%" height="100%" frameborder="0" border="0">Test</iframe>');
+            frame.html('<iframe class="loading" id="popup" src="' + '">Test</iframe>');
             var iframe = frame.children('iframe');
             iframe.attr('src', url);
             $(iframe).load(function() {

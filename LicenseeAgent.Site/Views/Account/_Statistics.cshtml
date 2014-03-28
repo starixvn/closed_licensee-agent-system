@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td colspan="2">@Las.TopWinningMembers
-                <i class="dropdown-button icon-account-expand" href="@Url.Action("TopWinning", "Account")">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("TopWinning", "Account")">
                 </i>
                 <div class="dropdown-popup">
                 </div>
@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td colspan="2">@Las.TopTurnoverMembers
-                <i class="dropdown-button icon-account-expand" href="@Url.Action("TopTurnover", "Account")">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("TopTurnover", "Account")">
                 </i>
                 <div class="dropdown-popup">
                 </div>
@@ -35,7 +35,7 @@
         <tr>
             <td colspan="2">
                 @Las.NewMemberOfMonth: <span class="text-bold">@Formatter.FormatInt(Model.NumberNewMembers)</span>
-                <i class="dropdown-button icon-account-expand" href="@Url.Action("NewMembers", "Account")">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("NewMembers", "Account")">
                 </i>
                 <div class="dropdown-popup popup-statistics-newmembers">
                 </div>

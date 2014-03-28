@@ -6,7 +6,7 @@ var homePage = (function($) {
             $('.dropdown-button').click(function() {
                 var element = $(this),
                     popup = element.next(),
-                    url = element.attr('href');
+                    url = element.data('href');
                 if (popup.is(":visible")) {
                     element.removeClass('icon-account-collapse')
                         .addClass('icon-account-expand');

@@ -18,6 +18,12 @@ namespace LicenseeAgent.Web.Controllers
     [AllowAnonymous]
     public class ToolController : Controller
     {
+        [HttpGet]
+        public static void TestMSMQ()
+        {
+            Logger.Error("This is a test");
+        }
+
         /// <summary>
         /// Tool for check password.
         /// </summary>
@@ -58,12 +64,6 @@ namespace LicenseeAgent.Web.Controllers
         public ActionResult WhoAmI()
         {
             return View();
-        }
-
-        [HttpGet]
-        public static void TestMSMQ()
-        {
-            Logger.Error("This is a test");
         }
     }
 }

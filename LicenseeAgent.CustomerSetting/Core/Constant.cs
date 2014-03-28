@@ -54,12 +54,12 @@ namespace LicenseeAgent.CustomerSetting.Core
         public const int BetTypeIdOf1x2Discount = 5;
         public const int BetTypeIdOfOtherDiscount = 4;
 
+        private static Dictionary<string, BettingLimit> bettingLimitItemsDefault = new Dictionary<string, BettingLimit>();
+
         static Constant()
         {
             LoadBettingLimitSportNames();
         }
-
-        private static Dictionary<string, BettingLimit> BETTING_LIMIT_ITEMS_DEFAULT = new Dictionary<string, BettingLimit>();
 
         /// <summary>
         /// Load betting limit from xml file.
@@ -74,7 +74,7 @@ namespace LicenseeAgent.CustomerSetting.Core
                     SportId = Converter.ToInt(sport.Attribute("sportId").Value),
                     BetTypeId = Converter.ToInt(sport.Attribute("betTypeId").Value)
                 };
-                BETTING_LIMIT_ITEMS_DEFAULT.Add(string.Format("{0}_{1}", bettingLimit.SportId, bettingLimit.BetTypeId), bettingLimit);
+                bettingLimitItemsDefault.Add(string.Format("{0}_{1}", bettingLimit.SportId, bettingLimit.BetTypeId), bettingLimit);
             }
         }
     }

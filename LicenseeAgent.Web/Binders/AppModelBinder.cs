@@ -51,6 +51,31 @@ namespace LicenseeAgent.Web.Binders
         }
 
         /// <summary>
+        /// Validates the HTML text.
+        /// </summary>
+        /// <param name="controllerContext">The controller context.</param>
+        /// <param name="bindingContext">The binding context.</param>
+        /// <param name="propertyDescriptor">The property descriptor.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>Returns boolean.</returns>
+        protected static bool ValidateHtmlText(
+            ControllerContext controllerContext,
+            ModelBindingContext bindingContext,
+            PropertyDescriptor propertyDescriptor,
+            object value)
+        {
+            var isValidRequest = controllerContext.Controller.ValidateRequest
+                                    && bindingContext.PropertyMetadata[propertyDescriptor.Name].RequestValidationEnabled;
+            if (isValidRequest && IsDangerousString(value.ToString()))
+            {
+                bindingContext.ModelState.AddModelError(propertyDescriptor.Name, Las.HtmlDisallowed);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Sets the specified property by using the specified controller context, binding context, and property value.
         /// </summary>
         /// <param name="controllerContext">The context within which the controller operates.</param>
@@ -102,31 +127,6 @@ namespace LicenseeAgent.Web.Binders
                 : true;
 
             return valid && base.OnPropertyValidating(controllerContext, bindingContext, propertyDescriptor, value);
-        }
-
-        /// <summary>
-        /// Validates the HTML text.
-        /// </summary>
-        /// <param name="controllerContext">The controller context.</param>
-        /// <param name="bindingContext">The binding context.</param>
-        /// <param name="propertyDescriptor">The property descriptor.</param>
-        /// <param name="value">The value.</param>
-        /// <returns>Returns boolean.</returns>
-        protected static bool ValidateHtmlText(
-            ControllerContext controllerContext,
-            ModelBindingContext bindingContext,
-            PropertyDescriptor propertyDescriptor,
-            object value)
-        {
-            var isValidRequest = controllerContext.Controller.ValidateRequest
-                                    && bindingContext.PropertyMetadata[propertyDescriptor.Name].RequestValidationEnabled;
-            if (isValidRequest && IsDangerousString(value.ToString()))
-            {
-                bindingContext.ModelState.AddModelError(propertyDescriptor.Name, Las.HtmlDisallowed);
-                return false;
-            }
-
-            return true;
         }
 
         /// <summary>

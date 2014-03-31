@@ -10,6 +10,12 @@
 
         CORE.initInstruction();
 
+        // reload setting mode from query string
+        settingContext.IsSimpleMode = CORE.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
+        $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
+
+        $scope.settingMode = settingContext.IsSimpleMode;
+        $scope.formId = settingContext.FormId;
         $('#modeSwitcher').on('switch-change', function (e, data) {
             var isSimpleMode = !data.value;
             fanex.hideHint();
@@ -18,9 +24,6 @@
             positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
             $scope.$apply();
         });
-
-        $scope.settingMode = settingContext.IsSimpleMode;
-        $scope.formId = settingContext.FormId;
 
         var encodeMessages = function (messages) {
             var array = [];
@@ -218,7 +221,8 @@
                 if (isSuccess) {
                     if (!POPUP.close()) {
                         setTimeout(function () {
-                            var url = CORE.removeURLParameter(location.href, 'messages') + '&messages=' + encodeMessages(data.Messages);
+                            var orginalUrl = CORE.removeURLParameter(CORE.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
+                            var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
                             location.href = url;
                         }, CORE.RELOAD_INTERVAL);
                     }

@@ -41,15 +41,12 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.FirstName", Width: 100, Name: "FirstName", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return cell.Value == '' ? '---' : cell.Value;
-                            }
-                        },
-                        {
-                            HeaderText: "@Las.LastName", Width: 100, Name: "LastName", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return cell.Value == '' ? '---' : cell.Value;
+                            HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                                if (rowData.FirstName == '---' && rowData.LastName == '---') {
+                                    return rowData.FirstName;
+                                }
+                                return CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
                             }
                         },
                         {

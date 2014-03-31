@@ -2,13 +2,13 @@
     var gridOptions = {
         columns:
             [
-                {
+                /*{
                     HeaderText: '<i class="icon-uncheck-all" onclick="customerList.checkAllItem(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
                     Width: 30, Name: "Select", CellAlign: "center",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
                     }
-                },
+                },*/
                 { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
                 { HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
@@ -50,7 +50,7 @@
         showPager: true,
         allowTruncate: true,
         gridExpandHeight: 125,
-        indexNumberColumn: 1,
+        indexNumberColumn: 0,
         bodyRowHeight: 29
     };
 </script>

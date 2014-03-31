@@ -2,7 +2,7 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "Total", Name: "Select", MergeColNumber: 5 },
+                    { Value: "Total", Name: "AgentId", MergeColNumber: 5 },
                     { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2, IsCalculated: true },
                     { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
                     { Value: "", Name: "Outstanding", MergeColNumber: 2 }
@@ -11,13 +11,13 @@
         ];
               var gridOptions = {
                   columns: [
-                        {
+                        /*{
                             HeaderText: '<i class="icon-uncheck-all" onclick="TRANSFER_LIST.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
                             Width: 30, Name: "Select", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<span class="cell-select icon icon-uncheck" onclick="TRANSFER_LIST.toggleCheck(this);"></span>';
                             }
-                        },
+                        },*/
                         {
                             HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
                         },
@@ -71,7 +71,7 @@
                    ],
                   showPager: true,
                   gridExpandHeight: 125,
-                  indexNumberColumn: 1,
+                  indexNumberColumn: 0,
                   bodyRowHeight: 29,
                   showFooter: true,
                   footerRows: footerRows,

@@ -309,7 +309,7 @@
 	PasswordWillExpired : "Your password will expire on {0}. Do you want to change it now?",
 	PersonalMessage : "Personal Message",
 	Phone : "Phone",
-	PhoneNote : "&lt;div&gt; &lt;p&gt;A valid phone/mobile/fax numbers should contain an international dialing code in front of the number.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt; &lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt; &lt;/div&gt;",
+	PhoneNote: "&lt;div&gt; &lt;p&gt;A valid phone/mobile/fax numbers should contain an international dialing code in front of the number.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt; &lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;",
 	PleaseChooseCurrency : "Please choose a currency",
 	PleaseChooseLicenseeCurrency : "Please choose a licensee and a currency",
 	PleaseSelectEvent : "Please select an event",

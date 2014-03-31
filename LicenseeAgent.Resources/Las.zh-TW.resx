@@ -1058,6 +1058,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;b&gt;有效&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
 &lt;li&gt;無效: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;</value>
   </data>
   <data name="AgentShare" xml:space="preserve">

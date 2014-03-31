@@ -266,7 +266,7 @@
 	PasswordWillExpired : "您的密码将于{0}到期。您是否想现在更改它？",
 	PersonalMessage : "个人公告",
 	Phone : "电话",
-	PhoneNote : "&lt;div&gt; &lt;p&gt;有效的电话号码应包含国际区号在号码前面.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;b&gt;有效&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt; &lt;li&gt; 无效: (44+)020-12341234 | 12341234(+020)&lt;/li&gt; &lt;/div&gt;",
+	PhoneNote: "&lt;div&gt; &lt;p&gt;有效的电话号码应包含国际区号在号码前面.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;b&gt;有效&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt; &lt;li&gt; 无效: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;",
 	PleaseChooseCurrency : "请选择一种货币",
 	PleaseChooseLicenseeCurrency : "请选择一名被许可人和一种货币",
 	PleaseSelectEvent : "请选择赛事",

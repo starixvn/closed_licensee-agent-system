@@ -1744,7 +1744,6 @@ namespace LicenseeAgent.Resources {
             }
         }
         
-        
         /// <summary>
         ///   Looks up a localized string similar to Max Bet.
         /// </summary>
@@ -2562,6 +2561,7 @@ namespace LicenseeAgent.Resources {
         ///&lt;ul&gt;
         ///&lt;li&gt;&lt;b&gt;Matches&lt;/b&gt;: (+44)(0)20-12341234 | 02012341234 | +44 (0) 1234-1234&lt;/li&gt;
         ///&lt;li&gt;Non-Matches: (44+)020-12341234 | 12341234(+020)&lt;/li&gt;
+        ///&lt;/ul&gt;
         ///&lt;/div&gt;.
         /// </summary>
         public static string PhoneNote {

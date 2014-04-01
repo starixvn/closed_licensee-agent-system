@@ -43,9 +43,6 @@
                         {
                             HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                if (rowData.FirstName == '---' && rowData.LastName == '---') {
-                                    return rowData.FirstName;
-                                }
                                 return CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
                             }
                         },

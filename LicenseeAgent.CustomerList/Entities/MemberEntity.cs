@@ -21,6 +21,8 @@ namespace LicenseeAgent.CustomerList.Entities
         [Service(Name = "IBCCustId")]
         public int CustId { get; set; }
 
+        public string SystemId { get; set; }
+
         public string UserName { get; set; }
 
         public string FirstName { get; set; }

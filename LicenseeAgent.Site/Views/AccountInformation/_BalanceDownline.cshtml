@@ -12,7 +12,7 @@
         </ul>
         <div class="tab-content tab-small">
             <div class="tab-pane active in" id="balance">
-                @Html.Partial("_BalanceInformation", Model.Balance)
+                @Html.Partial("_BalanceInformation")
             </div>
         </div>
     }
@@ -25,7 +25,7 @@
         </ul>
         <div class="tab-content tab-small">
             <div class="tab-pane active in" id="balance">
-                @Html.Partial("_BalanceInformation", Model.Balance)
+                @Html.Partial("_BalanceInformation")
             </div>
             <div class="tab-pane fade" id="downlineList">
                 @if (Model.Downlines.Any())

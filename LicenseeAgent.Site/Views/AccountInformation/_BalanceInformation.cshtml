@@ -1,6 +1,9 @@
 ﻿@using LicenseeAgent.AccountInformation.Entities
-@model BalanceEntity
+@using LicenseeAgent.AccountInformation.ViewModels
+@model SearchUserResultViewModel
 @{
+    var balance = Model.Balance;
+    var customer = Model.Customer;    
     var pageContext = (PageContext)ViewBag.PageContext;
 }
 <table class="table table-condensed">
@@ -9,58 +12,58 @@
     {
         <tr>
             <td>@Las.TotalBalance</td>
-            <td>@RazorHelper.FormatNegative(Model.TotalBalance)</td>
+            <td>@RazorHelper.FormatNegative(balance.TotalBalance)</td>
         </tr>
         <tr>
             <td>@Las.YesterdayBalance</td>
-            <td>@RazorHelper.FormatNegative(Model.YesterdayBalance)</td>
+            <td>@RazorHelper.FormatNegative(balance.YesterdayBalance)</td>
         </tr>
         <tr>
             <td>@Las.Outstanding</td>
-            <td>@RazorHelper.FormatNegative(Model.Outstanding)</td>
+            <td>@RazorHelper.FormatNegative(balance.Outstanding)</td>
         </tr>
         <tr>
             <td>@Las.GivenCredit</td>
-            <td>@RazorHelper.FormatNegative(Model.GivenCredit)</td>
+            <td><a href="javascript:accountInformation.agentEditMemberCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a></td>
         </tr>
         <tr>
             <td>@Las.BetCredit</td>
-            <td>@RazorHelper.FormatNegative(Model.BetCredit)</td>
+            <td>@RazorHelper.FormatNegative(balance.BetCredit)</td>
         </tr>
     }
     else
     {
         <tr>
             <td>@Las.TotalCash</td>
-            <td>@RazorHelper.FormatNegative(Model.TotalCash)</td>
+            <td>@RazorHelper.FormatNegative(balance.TotalCash)</td>
         </tr>
         <tr>
             <td>@Las.YesterdayCash</td>
-            <td>@RazorHelper.FormatNegative(Model.YesterdayCash)</td>
+            <td>@RazorHelper.FormatNegative(balance.YesterdayCash)</td>
         </tr>
         <tr>
             <td>@Las.TotalBalance</td>
-            <td>@RazorHelper.FormatNegative(Model.TotalBalance)</td>
+            <td>@RazorHelper.FormatNegative(balance.TotalBalance)</td>
         </tr>
         <tr>
             <td>@Las.YesterdayBalance</td>
-            <td>@RazorHelper.FormatNegative(Model.YesterdayBalance)</td>
+            <td>@RazorHelper.FormatNegative(balance.YesterdayBalance)</td>
         </tr>
         <tr>
             <td>@Las.AgentOutstanding</td>
-            <td>@RazorHelper.FormatNegative(Model.Outstanding)</td>
+            <td>@RazorHelper.FormatNegative(balance.Outstanding)</td>
         </tr>
         <tr>
             <td>@Las.TotalOutstanding</td>
-            <td>@RazorHelper.FormatNegative(Model.TotalOutstanding)</td>
+            <td>@RazorHelper.FormatNegative(balance.TotalOutstanding)</td>
         </tr>
         <tr>
             <td>@Las.GivenCredit</td>
-            <td>@RazorHelper.FormatNegative(Model.GivenCredit)</td>
+            <td><a href="javascript:accountInformation.editAgentCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a></td>
         </tr>
         <tr>
             <td>@Las.UsedCredit</td>
-            <td>@RazorHelper.FormatNegative(Model.UsedCredit)</td>
+            <td>@RazorHelper.FormatNegative(balance.UsedCredit)</td>
         </tr>
         
     }

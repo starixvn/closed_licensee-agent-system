@@ -1246,4 +1246,10 @@
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
   </data>
+  <data name="SystemId" xml:space="preserve">
+    <value>System ID</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
 </root>

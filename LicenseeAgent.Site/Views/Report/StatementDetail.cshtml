@@ -60,7 +60,10 @@
     <div class="clearfix">
         <ul class="breadcrumb">
             <li><a href="@Url.Action("Statement", "Report", new { FromDate = Model.FromDate, ToDate = Model.ToDate })">
-                <strong><i class="icon-arrow-left"></i>BACK</strong></a> </li>
+                @Las.Main</a> <span class="divider">>></span></li>
+                <li>
+                    <span>@Model.Username</span>
+                </li>
         </ul>
     </div>
 }

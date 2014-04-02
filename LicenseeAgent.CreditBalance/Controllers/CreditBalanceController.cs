@@ -191,6 +191,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 else
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
+                    if (editAgentCreditViewModel.IsAccountInfo)
+                        ViewBag.IsAccountInfo = true;
                 }
             }
 
@@ -257,6 +259,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 else
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
+                    if (agentEditMemberCreditViewModel.IsAccountInfo)
+                        ViewBag.IsAccountInfo = true;
                 }
             }
 

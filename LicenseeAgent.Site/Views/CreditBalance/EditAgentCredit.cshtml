@@ -22,6 +22,7 @@
             @Html.HiddenFor(m => m.AgentName)
             @Html.HiddenFor(m => m.MinCreditOutput)
             @Html.HiddenFor(m => m.MaxCreditOutput)
+            @Html.HiddenFor(m => m.IsAccountInfo)
             <table>
                 <colgroup>
                     <col width="150" />
@@ -74,6 +75,12 @@
     {
         <script type="text/javascript">
             POPUP.closeAndReload();
+        </script>
+    }
+    @if (ViewBag.IsAccountInfo != null)
+    {
+        <script type="text/javascript">
+            top.accountInformation.refreshGivenCredit();
         </script>
     }
 }

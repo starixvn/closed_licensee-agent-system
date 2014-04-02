@@ -231,6 +231,19 @@
                 $("#downlineContent").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
             }
             $("#downlineContent").getNiceScroll().resize();
+        },
+        editAgentCredit: function (agentId, agentName, givenCredit) {
+            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}&isAccountInfo=true'.format(agentId, agentName, givenCredit);
+            alert(url);
+            frmMain.POPUP.openDialogFrame(url, { width: 428, height: 200 });
+        },
+        agentEditMemberCredit: function (custId, custName, givenCredit) {
+            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}&isAccountInfo=true'.format(custId, custName, givenCredit);
+            alert(url);
+            frmMain.POPUP.openDialogFrame(url, { width: 428, height: 200 });
+        },
+        refreshGivenCredit: function () {
+            setTimeout("$('#formSearch').submit();", CORE.RELOAD_INTERVAL);
         }
     }
 } (jQuery);

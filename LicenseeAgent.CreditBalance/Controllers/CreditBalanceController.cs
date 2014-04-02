@@ -192,7 +192,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
                     if (editAgentCreditViewModel.IsAccountInfo)
+                    {
                         ViewBag.IsAccountInfo = true;
+                    }
                 }
             }
 
@@ -260,7 +262,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
                     if (agentEditMemberCreditViewModel.IsAccountInfo)
+                    {
                         ViewBag.IsAccountInfo = true;
+                    }
                 }
             }
 

@@ -5,6 +5,7 @@
     var isDirectDonwline = pageContext.IsDirectDownline.Value;
 }
 <div class="controls-row">
+    <div class="row-line"></div>
     <ul class="nav nav-tabs">
         @*<li><a href="#setting" id="tabSetting" data-toggle="tab">@Las.Setting</a></li>*@
         <li class="active"><a href="#action" id="tabAction" data-toggle="tab">@Las.Action</a></li>
@@ -39,12 +40,12 @@
                     </li>
                     @if (pageContext.IsAdmin || (bool)pageContext.IsDirectDownline)
                     {
-                    <li>
-                        <a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { agentId = Model.Customer.CustId }))" target="frmMain">
-                            <i class="icon-downline-arrow"></i>
-                            @Las.EditInfo
-                        </a>
-                    </li>
+                        <li>
+                            <a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                                <i class="icon-downline-arrow"></i>
+                                @Las.EditInfo
+                            </a>
+                        </li>
                     }
                     @if (pageContext.IsAdmin || !pageContext.IsMember)
                     {

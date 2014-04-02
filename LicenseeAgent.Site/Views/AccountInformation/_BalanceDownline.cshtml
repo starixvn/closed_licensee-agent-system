@@ -4,6 +4,7 @@
     var pageContext = (PageContext)ViewBag.PageContext;
 }
 <div class="controls-row">
+    <div class="row-line"></div>
     @if (pageContext.IsMember)
     {
         <ul class="nav nav-tabs">
@@ -34,7 +35,7 @@
                             @foreach (var donwline in Model.Downlines)
                             {
                                 <li><a class="agent-inline" href="#" data-id="@donwline.DownlineCustId" title="@donwline.UserName">
-                                    <i class="icon-downline-arrow"></i>@donwline.UserName</a> </li>
+                                        <i class="icon-downline-arrow"></i>@donwline.UserName</a> </li>
                             }
                         </ul>
                     </div>

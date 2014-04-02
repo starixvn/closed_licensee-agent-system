@@ -7,7 +7,7 @@
             urlCurrency = $("#searchUrl").data("currency");
 
             //scroll left menu
-            $(".leftmenu-box").niceScroll();
+            $(".leftmenu-box").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
 
             // username suggestion
             $("#UserName").typeahead({ source: accountInformation.getSuggestion, minLength: 2 });
@@ -49,8 +49,8 @@
         searchResultBinding: function () {
             CORE.unblockUI();
 
-            $("#tabDownline").click(function () {
-                accountInformation.updateScroll();
+            $('#tabDownline').on('shown', function () {
+                accountInformation.showScroll();
             });
 
             var pageIndex = $('#paging').data('page-index') + 1;
@@ -150,7 +150,7 @@
             }
             $("#downlineContent ul").html(downlineHtml);
             accountInformation.pagingBinding();
-            accountInformation.updateScroll();
+            accountInformation.showScroll();
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {
@@ -225,8 +225,11 @@
             $(accountInfoId).removeClass('fade');
             $(accountInfoId).addClass('active in');
         },
-        updateScroll: function() {
-            $("#downlineContent").niceScroll();
+        showScroll: function () {
+            var niceScroll = $("#downlineContent").getNiceScroll();
+            if (niceScroll.length === 0) {
+                $("#downlineContent").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
+            }
             $("#downlineContent").getNiceScroll().resize();
         }
     }

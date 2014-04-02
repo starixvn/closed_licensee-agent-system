@@ -21,10 +21,6 @@
         }
         <button class="btn btn-inverse" data-url="@Url.Action("StatementDetail", "Report", new { agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">@Las.Statement</button>
     </div>
-
-    <div class="row-line">
-    </div>
-
         if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
         {
     @Html.Partial("_BalanceDownline", Model)

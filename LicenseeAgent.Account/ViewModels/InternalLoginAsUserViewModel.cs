@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Account.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
     /// <summary>
@@ -14,6 +15,7 @@ namespace LicenseeAgent.Account.ViewModels
     /// </summary>
     public class InternalLoginAsUserViewModel
     {
+        [AllowHtml]
         public string UserName { get; set; }
 
         [Required(ErrorMessageResourceName = "LicenseeRequired", ErrorMessageResourceType = typeof(Las))]

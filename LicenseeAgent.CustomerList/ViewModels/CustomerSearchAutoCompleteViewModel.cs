@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerList.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,6 +22,7 @@ namespace LicenseeAgent.CustomerList.ViewModels
 
         [Required]
         [StringLength(50, MinimumLength = 2)]
+        [AllowHtml]
         public string UserName { get; set; }
     }
 }

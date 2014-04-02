@@ -2,7 +2,6 @@
 // <copyright file="ResponseResult.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Results
@@ -19,6 +18,7 @@ namespace LicenseeAgent.Taiwan.Results
         {
             ErrCode = errorCode;
             ErrMsg = errorMessage;
+            LogMsg = errorMessage;
         }
 
         [DataMember]
@@ -26,5 +26,7 @@ namespace LicenseeAgent.Taiwan.Results
 
         [DataMember]
         public string ErrMsg { get; set; }
+
+        public string LogMsg { get; set; }
     }
 }

@@ -9,7 +9,7 @@
   &lt;property name="#LayoutVersion" /&gt;
   &lt;property name="SortInfo"&gt;~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF5EZXZFeHByZXNzLlh0cmFHcmlkLnYxMS4xLCBWZXJzaW9uPTExLjEuMTIuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhBQEAAAA4RGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb0NvbGxlY3Rpb24EAAAACmdyb3VwQ291bnQFY2xvbmUPY2xvbmVHcm91cENvdW50E0NvbGxlY3Rpb25CYXNlK2xpc3QAAwADCLMBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvLCBEZXZFeHByZXNzLlh0cmFHcmlkLnYxMS4xLCBWZXJzaW9uPTExLjEuMTIuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhXV0IHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QCAAAAAAAAAAkDAAAAAAAAAAkEAAAABAMAAACzAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbywgRGV2RXhwcmVzcy5YdHJhR3JpZC52MTEuMSwgVmVyc2lvbj0xMS4xLjEyLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAAAAAAAAAAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAABAAAAAcFAAAAAAEAAAAAAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAABAGAAAABAAAAAkHAAAADQMMCAAAABlEZXZFeHByZXNzLlh0cmFHcmlkLnYxMS4xBQcAAAAuRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbwIAAAAJU29ydE9yZGVyCkNvbHVtbk5hbWUAAQgIAAAAAQAAAAYJAAAACGNvbHpoLUNOCw==&lt;/property&gt;
 &lt;/XtraSerializer&gt;</globalSetting>
-    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items /&gt;</globalSetting>
+    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="3431458292" /&gt;&lt;item type="2" checksum="2209848704" /&gt;&lt;/items&gt;</globalSetting>
     <globalSetting name="ReadOnlyFileOverwriteBehaviour">0</globalSetting>
     <globalSetting name="OmitEmptyItems">True</globalSetting>
     <globalSetting name="ShowCommentsColumnInGrid">True</globalSetting>
@@ -28,22 +28,29 @@
     </userSetting>
     <userSetting name="leo.vo@SPVN.FindText">
     </userSetting>
-    <userSetting name="leo.vo@SPVN.RecentFiles">Las.resx;Las.zh-CN.resx;Las.zh-TW.resx###***###LangMsg.resx;LangMsg.zh-CN.resx;LangMsg.zh-TW.resx</userSetting>
+    <userSetting name="leo.vo@SPVN.RecentFiles">D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.resx;D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.zh-CN.resx;D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.zh-TW.resx###***###D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.resx;D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.zh-CN.resx;D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.zh-TW.resx</userSetting>
     <description>
     </description>
   </configuration>
   <fileGroups>
+    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="60a0f97a-10fb-42a0-9562-3704d210a7f2">
+      <file filePath="ApiMsg.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.resx" uniqueID="68e15ce6-4020-44d4-ae1d-4aa2162cf26d" />
+      <file filePath="ApiMsg.zh-CN.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.zh-CN.resx" uniqueID="a8b0084c-053b-4054-8f73-fd6cb6dc1462" />
+      <file filePath="ApiMsg.zh-TW.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\ApiMsg.zh-TW.resx" uniqueID="a1e57e71-4999-46f6-980d-c6e844ac3dc2" />
+      <remarks>
+      </remarks>
+    </fileGroup>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="98f77102-b83b-4492-84e1-e3285f172119">
-      <file filePath="LangMsg.resx" absoluteFilePath="LangMsg.resx" uniqueID="e50ba38c-dea7-4b65-a599-66780036ff6b" />
-      <file filePath="LangMsg.zh-CN.resx" absoluteFilePath="LangMsg.zh-CN.resx" uniqueID="14c9fcd3-7770-484d-b195-22276aa996fd" />
-      <file filePath="LangMsg.zh-TW.resx" absoluteFilePath="LangMsg.zh-TW.resx" uniqueID="53f6f1f3-6555-4a0f-b455-8eff5954e041" />
+      <file filePath="LangMsg.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.resx" uniqueID="e50ba38c-dea7-4b65-a599-66780036ff6b" />
+      <file filePath="LangMsg.zh-CN.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.zh-CN.resx" uniqueID="14c9fcd3-7770-484d-b195-22276aa996fd" />
+      <file filePath="LangMsg.zh-TW.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\LangMsg.zh-TW.resx" uniqueID="53f6f1f3-6555-4a0f-b455-8eff5954e041" />
       <remarks>
       </remarks>
     </fileGroup>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="43b20528-6173-450c-9383-132b59fd36d7">
-      <file filePath="Las.resx" absoluteFilePath="Las.resx" uniqueID="3d9fdbfc-a845-48e2-9295-553af699ce42" />
-      <file filePath="Las.zh-CN.resx" absoluteFilePath="Las.zh-CN.resx" uniqueID="5ce3cd5a-a47f-45f5-9a95-43fb0b69e192" />
-      <file filePath="Las.zh-TW.resx" absoluteFilePath="Las.zh-TW.resx" uniqueID="1b9f88f2-2216-4b1f-9f63-6ad2c0d922c6" />
+      <file filePath="Las.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\Las.resx" uniqueID="3d9fdbfc-a845-48e2-9295-553af699ce42" />
+      <file filePath="Las.zh-CN.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\Las.zh-CN.resx" uniqueID="5ce3cd5a-a47f-45f5-9a95-43fb0b69e192" />
+      <file filePath="Las.zh-TW.resx" absoluteFilePath="D:\Work\Git\licensee-agent-system\LicenseeAgent.Resources\Las.zh-TW.resx" uniqueID="1b9f88f2-2216-4b1f-9f63-6ad2c0d922c6" />
       <remarks>
       </remarks>
     </fileGroup>

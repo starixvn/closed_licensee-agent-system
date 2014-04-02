@@ -8,15 +8,16 @@
 namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Web;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Results;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,46 +29,53 @@ namespace LicenseeAgent.Taiwan.Utility
         /// </summary>
         /// <typeparam name="T">Type response result.</typeparam>
         /// <param name="action">Action of service.</param>
-        /// <returns>String response data.</returns>
-        public static T GetResponseData<T>(IAction action) where T : class
+        /// <returns>
+        /// String response data.
+        /// </returns>
+        public static T GetActionResponse<T>(BaseAction action) where T : ResponseResult
         {
-            var request = CreateRequest(action.ActionName);
-            SetParams(request, action);
+            var webRequest = CreateActionRequest(action);
+            using (var response = webRequest.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var errorMessage = string.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription);
+                    throw new InvalidOperationException(errorMessage);
+                }
 
-            return MakeRequest<T>(request);
+                var jsonSerializer = new DataContractJsonSerializer(typeof(T));
+                var responseResult = jsonSerializer.ReadObject(response.GetResponseStream()) as T;
+                responseResult.LogMsg = responseResult.ErrMsg;
+                if (responseResult.ErrCode != Result.SuccessValue)
+                {
+                    responseResult.ErrMsg = ApiMsg.ResourceManager.GetString(string.Format("{0}_{1}", action.ActionName, responseResult.ErrCode));
+                    responseResult.ErrCode = Result.ApiError;
+                }
+
+                return responseResult;
+            }
         }
 
         /// <summary>
         /// Create request.
         /// </summary>
-        /// <param name="actionName">Action name for request.</param>
-        /// <returns>Request Object.</returns>
-        private static HttpWebRequest CreateRequest(string actionName)
+        /// <param name="action">The action.</param>
+        /// <returns>
+        /// Request Object.
+        /// </returns>
+        private static WebRequest CreateActionRequest(BaseAction action)
         {
-            var address = new Uri(string.Format(ServiceSetting.UrlAction, AppSettings.TaiwanAPI, actionName));
-            var request = WebRequest.Create(address) as HttpWebRequest;
+            var actionUrl = new Uri(string.Format("{0}/{1}", AppSettings.TaiwanAPI, action.ActionName));
+            var webRequest = WebRequest.Create(actionUrl);
+            webRequest.Method = "POST";
+            webRequest.ContentType = "application/x-www-form-urlencoded";
 
-            request.Method = ServiceSetting.Method;
-            request.ContentType = ServiceSetting.ContentType;
-
-            return request;
-        }
-
-        /// <summary>
-        /// Set parameter for action request.
-        /// </summary>
-        /// <param name="request">Request object.</param>
-        /// <param name="action">Action service.</param>
-        private static void SetParams(HttpWebRequest request, IAction action)
-        {
             var paramData = new StringBuilder();
             var properties = action.GetType().GetProperties();
-
             foreach (var property in properties)
             {
                 var propertyValue = property.GetValue(action, null);
                 var attribute = property.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
-
                 if (!ServiceExtension.IsParamRequest(attribute))
                 {
                     continue;
@@ -75,71 +83,22 @@ namespace LicenseeAgent.Taiwan.Utility
 
                 if (propertyValue != null)
                 {
-                    paramData.Append(string.Format(
-                                                    ServiceSetting.ParamFormat,
-                                                    attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
-                                                    HttpUtility.UrlEncode(propertyValue.ToString())));
+                    var param = string.Format(
+                        "{0}={1}&",
+                        attribute != null ? ((ServiceAttribute)attribute).Name : property.Name,
+                        HttpUtility.UrlEncode(propertyValue.ToString()));
+                    paramData.Append(param);
                 }
             }
 
             byte[] formData = Encoding.UTF8.GetBytes(paramData.ToString(0, paramData.Length - 1));
-            request.ContentLength = formData.Length;
-
-            using (Stream post = request.GetRequestStream())
+            webRequest.ContentLength = formData.Length;
+            using (var requestStream = webRequest.GetRequestStream())
             {
-                post.Write(formData, 0, formData.Length);
-            }
-        }
-
-        /// <summary>
-        /// Make request service.
-        /// </summary>
-        /// <typeparam name="T">Type response result.</typeparam>
-        /// <param name="request">Request object.</param>
-        /// <returns>String response data after request.</returns>
-        private static T MakeRequest<T>(HttpWebRequest request) where T : class
-        {
-            string message = string.Empty;
-
-            try
-            {
-                using (var response = request.GetResponse() as HttpWebResponse)
-                {
-                    if (response != null && response.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new InvalidOperationException(string.Format(ServiceSetting.HttpError, response.StatusCode, response.StatusDescription));
-                    }
-
-                    var jsonSerializer = new DataContractJsonSerializer(typeof(T));
-
-                    return jsonSerializer.ReadObject(response.GetResponseStream()) as T;
-                }
-            }
-            catch (InvalidOperationException exception)
-            {
-                message = exception.Message;
-                Logger.HandleException(message, exception);
+                requestStream.Write(formData, 0, formData.Length);
             }
 
-            return GetResponseError<T>(message);
-        }
-
-        /// <summary>
-        /// Get response error.
-        /// </summary>
-        /// <typeparam name="T">Type response result.</typeparam>
-        /// <param name="message">Message Error.</param>
-        /// <returns>Response error.</returns>
-        private static T GetResponseError<T>(string message) where T : class
-        {
-            var constructorInfo = typeof(T).GetConstructor(new Type[] { typeof(int), typeof(string) });
-
-            if (constructorInfo != null)
-            {
-                return (T)constructorInfo.Invoke(new object[] { ServiceSetting.HttpErrorCode, message });
-            }
-
-            return default(T);
+            return webRequest;
         }
     }
 }

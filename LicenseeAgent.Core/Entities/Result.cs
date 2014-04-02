@@ -22,6 +22,7 @@ namespace LicenseeAgent.Core.Entities
         public const int InvalidModel = -4;
         public const int Unauthorized = -5;
         public const int AccessDenied = -6;
+        public const int ApiError = -7;
 
         public Result()
             : this(SuccessValue, string.Empty)

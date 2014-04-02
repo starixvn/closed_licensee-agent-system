@@ -10,14 +10,12 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class GetMemberInfoListAction : IAction
+    public class GetMemberInfoListAction : BaseAction
     {
-        public string SiteName { get; set; }
-
         public int LASAgentId { get; set; }
 
         [Service]
-        public string ActionName
+        public override string ActionName
         {
             get
             {

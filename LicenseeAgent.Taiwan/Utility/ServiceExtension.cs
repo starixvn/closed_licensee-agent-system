@@ -13,6 +13,7 @@ namespace LicenseeAgent.Taiwan.Utility
     using System.Text;
     using System.Web;
     using System.Xml.Serialization;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
@@ -45,17 +46,17 @@ namespace LicenseeAgent.Taiwan.Utility
         /// </summary>
         /// <param name="logInformations">List log information.</param>
         /// <param name="memberStatusResult">Member status result.</param>
-        public static void UpdateLogInformations(IEnumerable<LogInformationEntity> logInformations, MemberStatusResult memberStatusResult)
+        public static void UpdateLogInformations(IEnumerable<UpdateMemberStatusLogEntity> logInformations, MemberStatusResult memberStatusResult)
         {
-            if (memberStatusResult.ErrCode == 0)
+            if (memberStatusResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObjects<MemberStatusEntity, LogInformationEntity>(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
+                ServiceMapper.MapObjects<MemberStatusEntity, UpdateMemberStatusLogEntity>(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
             }
             else
             {
                 foreach (var logInformation in logInformations)
                 {
-                    logInformation.Status = (short)LogType.Fail;
+                    logInformation.Status = LogType.Fail;
                 }
             }
         }
@@ -66,31 +67,34 @@ namespace LicenseeAgent.Taiwan.Utility
         /// <param name="custIds">Customer information ID.</param>
         /// <param name="agentIds">Agent information ID.</param>
         /// <returns>List log information.</returns>
-        public static IEnumerable<LogInformationEntity> GetLogInformations(string custIds, string agentIds)
+        public static UpdateMemberStatusActionLog CreateUpdateMemberStatusActionLog(string custIds, string agentIds)
         {
-            var logInformations = new List<LogInformationEntity>();
+            var customerLogs = new List<UpdateMemberStatusLogEntity>();
 
             if (!string.IsNullOrEmpty(custIds))
             {
                 var listCustId = custIds.Split(',');
-                logInformations.AddRange(listCustId.Select(custId => new LogInformationEntity
+                customerLogs.AddRange(listCustId.Select(custId => new UpdateMemberStatusLogEntity
                 {
                     AgentId = Convert.ToInt32(agentIds),
                     MemberId = Convert.ToInt32(custId),
-                    Status = (short)LogType.BeforeCall
+                    Status = LogType.BeforeCall
                 }));
             }
             else if (!string.IsNullOrEmpty(agentIds))
             {
                 var listAgentId = agentIds.Split(',');
-                logInformations.AddRange(listAgentId.Select(agentId => new LogInformationEntity
+                customerLogs.AddRange(listAgentId.Select(agentId => new UpdateMemberStatusLogEntity
                 {
                     AgentId = Convert.ToInt32(agentId),
-                    Status = (short)LogType.BeforeCall
+                    Status = LogType.BeforeCall
                 }));
             }
 
-            return logInformations;
+            return new UpdateMemberStatusActionLog
+            {
+                CustomerLogs = customerLogs
+            };
         }
 
         /// <summary>
@@ -108,9 +112,9 @@ namespace LicenseeAgent.Taiwan.Utility
         /// </summary>
         /// <param name="action">Action when call API.</param>
         /// <param name="result">Response Result.</param>
-        public static void WriteError(IAction action, ResponseResult result)
+        public static void WriteError(BaseAction action, ResponseResult result)
         {
-            if (result.ErrCode == 0)
+            if (result.ErrCode == Result.SuccessValue)
             {
                 return;
             }
@@ -143,7 +147,7 @@ namespace LicenseeAgent.Taiwan.Utility
 
             errorMessage.Append("Output:\n");
             errorMessage.AppendFormat("Error Code: {0}\n", result.ErrCode);
-            errorMessage.AppendFormat("Error Message: {0}\n", result.ErrMsg);
+            errorMessage.AppendFormat("Error Message: {0}\n", result.LogMsg);
 
             Logger.Error(errorMessage.ToString());
         }

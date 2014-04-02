@@ -2,20 +2,19 @@
 // <copyright file="ResetPasswordAction.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResetPasswordAction : LogAction, IAction
+    public class ResetPasswordAction : LogAction
     {
-        public string SiteName { get; set; }
-
         public int IBCCustId { get; set; }
 
         [XmlIgnore]
@@ -26,12 +25,24 @@ namespace LicenseeAgent.Taiwan.Actions
         public string EncryptedPassword { get; set; }
 
         [Service]
-        public string ActionName
+        public override string ActionName
         {
             get
             {
                 return "ResetPassword";
             }
+        }
+
+        public override LogActionCriteria CreateCriteria()
+        {
+            return new ResetPasswordMemberCriteria
+            {
+                LicenseeId = LicenseeId,
+                UserId = UserId,
+                CustId = IBCCustId,
+                Status = LogType.BeforeCall,
+                Doing = GetDoingLogXml()
+            };
         }
     }
 }

@@ -6,11 +6,9 @@
 
 namespace LicenseeAgent.Taiwan.Services
 {
-    using System;
     using System.Collections.Generic;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
@@ -25,14 +23,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <param name="criteria">Criteria store procedure.</param>
         public void WriteLog(ICriteria criteria)
         {
-            try
-            {
-                Execute(criteria);
-            }
-            catch (Exception ex)
-            {
-                Logger.HandleException(ex);
-            }
+            Execute(criteria);
         }
 
         /// <summary>
@@ -40,9 +31,9 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         /// <returns>List log information.</returns>
-        public IEnumerable<LogInformationEntity> GetLogInformations(ICriteria criteria)
+        public IEnumerable<UpdateMemberStatusLogEntity> GetUpdateMemberStatusLogs(ICriteria criteria)
         {
-            return GetEntites<LogInformationEntity>(criteria);
+            return GetEntites<UpdateMemberStatusLogEntity>(criteria);
         }
     }
 }

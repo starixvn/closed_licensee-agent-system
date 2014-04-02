@@ -2,15 +2,17 @@
 // <copyright file="MemberService.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Common;
     using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
@@ -38,77 +40,49 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Response result.</returns>
         public ResponseResult CheckUserName(CheckUserNameAction action)
         {
-            return ServiceWrapper.GetResponseData<ResponseResult>(action);
+            return ServiceWrapper.GetActionResponse<ResponseResult>(action);
         }
 
         /// <summary>
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
+        /// <returns>
+        /// Response result.
+        /// </returns>
         public ResponseResult InsertNewMember(InsertNewMemberAction action)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
             action.LastName = action.LastName ?? Constants.EmptyString;
+            action.Phone = action.Phone ?? string.Empty;
+            action.OtherPhone = action.OtherPhone ?? string.Empty;
+            action.Fax = action.Fax ?? string.Empty;
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
-            var criteria = new AddNewMemberCriteria
-            {
-                LicenseeId = action.LicenseeId,
-                UserId = action.UserId,
-                CustId = action.IBCCustId,
-                Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
-            };
-            _logService.WriteLog(criteria);
-
-            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
-
-            criteria.LogId = criteria.LogIdReturn;
-            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
-            criteria.ErrMsg = responseResult.ErrMsg;
-            _logService.WriteLog(criteria);
-
-            ServiceExtension.WriteError(action, responseResult);
-
-            return responseResult;
+            return ExecuteSingleLog(action);
         }
 
         /// <summary>
         /// Reset password.
         /// </summary>
         /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
+        /// <returns>
+        /// Response result.
+        /// </returns>
         public ResponseResult ResetPassword(ResetPasswordAction action)
         {
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
-            var criteria = new ResetPasswordMemberCriteria
-            {
-                LicenseeId = action.LicenseeId,
-                UserId = action.UserId,
-                CustId = action.IBCCustId,
-                Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
-            };
-            _logService.WriteLog(criteria);
 
-            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
-
-            criteria.LogId = criteria.LogIdReturn;
-            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
-            criteria.ErrMsg = responseResult.ErrMsg;
-            _logService.WriteLog(criteria);
-
-            ServiceExtension.WriteError(action, responseResult);
-
-            return responseResult;
+            return ExecuteSingleLog(action);
         }
 
         /// <summary>
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
+        /// <returns>
+        /// Response result.
+        /// </returns>
         public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
@@ -117,63 +91,7 @@ namespace LicenseeAgent.Taiwan.Services
             action.OtherPhone = action.OtherPhone ?? string.Empty;
             action.Fax = action.Fax ?? string.Empty;
 
-            var criteria = new EditInfoMemberCriteria
-            {
-                LicenseeId = action.LicenseeId,
-                UserId = action.UserId,
-                CustId = action.IBCCustId,
-                Status = (int)LogType.BeforeCall,
-                Doing = LogBinder.GetActionInformation(action)
-            };
-            _logService.WriteLog(criteria);
-
-            var responseResult = ServiceWrapper.GetResponseData<ResponseResult>(action);
-
-            criteria.LogId = criteria.LogIdReturn;
-            criteria.Status = responseResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
-            criteria.ErrMsg = responseResult.ErrMsg;
-            _logService.WriteLog(criteria);
-
-            ServiceExtension.WriteError(action, responseResult);
-
-            return responseResult;
-        }
-
-        /// <summary>
-        /// Update member status.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
-        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
-        {
-            var criteria = new ChangeStatusMemberCriteria
-            {
-                LicenseeId = action.LicenseeId,
-                UserId = action.UserId,
-                MemberStatus = LogBinder.GetMembersContent(ServiceExtension.GetLogInformations(action.IBCCustId, action.LASAgentId)),
-                Doing = LogBinder.GetActionInformation(action)
-            };
-
-            var logInformations = _logService.GetLogInformations(criteria);
-            var memberStatusResult = ServiceWrapper.GetResponseData<MemberStatusResult>(action);
-
-            if (ServiceExtension.IsUpdateMultipleStatus(action.IBCCustId))
-            {
-                ServiceExtension.UpdateLogInformations(logInformations, memberStatusResult);
-            }
-            else
-            {
-                logInformations.FirstOrDefault().Status = memberStatusResult.ErrCode != 0 ? (short)LogType.Fail : (short)LogType.Success;
-            }
-
-            criteria.ErrMsg = memberStatusResult.ErrMsg;
-            criteria.MemberStatus = LogBinder.GetMembersContent(logInformations);
-
-            _logService.WriteLog(criteria);
-
-            ServiceExtension.WriteError(action, memberStatusResult);
-
-            return memberStatusResult;
+            return ExecuteSingleLog(action);
         }
 
         /// <summary>
@@ -185,18 +103,17 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>Member entity after merging.</returns>
         public ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action)
         {
-            var memberResult = ServiceWrapper.GetResponseData<MemberResult>(action);
+            var memberResult = ServiceWrapper.GetActionResponse<MemberResult>(action);
 
-            if (memberResult.ErrCode == 0)
+            if (memberResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.MapObject<ServiceMemberEntity, T>(memberResult.Member, memberEntity);
             }
             else
             {
-                memberResult.ErrCode = 0;
+                ServiceExtension.WriteError(action, memberResult);
+                memberResult.ErrCode = Result.SuccessValue;
             }
-
-            ServiceExtension.WriteError(action, memberResult);
 
             return memberResult;
         }
@@ -210,16 +127,94 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>List member entity after merging.</returns>
         public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action)
         {
-            var memberListResult = ServiceWrapper.GetResponseData<MemberListResult>(action);
+            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
 
-            if (memberListResult.ErrCode == 0)
+            if (memberListResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.MapObjects<ServiceMemberEntity, T>(memberListResult.Members, memberEntitys, new MemberFilter());
             }
-
-            ServiceExtension.WriteError(action, memberListResult);
+            else
+            {
+                ServiceExtension.WriteError(action, memberListResult);
+                memberListResult.ErrCode = Result.SuccessValue;
+            }
 
             return memberListResult;
+        }
+
+        /// <summary>
+        /// Update member status.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <returns>Response result.</returns>
+        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
+        {
+            var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
+            var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
+            {
+                return new ResponseResult(Result.ApiError, ResourceManager.GetErrMsg(criteria.ErrCode));
+            }
+
+            var memberStatusResult = ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
+
+            if (ServiceExtension.IsUpdateMultipleStatus(action.IBCCustId))
+            {
+                ServiceExtension.UpdateLogInformations(customerLogs, memberStatusResult);
+            }
+            else
+            {
+                customerLogs.FirstOrDefault().Status = memberStatusResult.ErrCode != Result.SuccessValue ? LogType.Fail : LogType.Success;
+            }
+
+            try
+            {
+                var updateMemberStatusActionLog = new UpdateMemberStatusActionLog
+                {
+                    CustomerLogs = customerLogs.ToList()
+                };
+                criteria.LogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(updateMemberStatusActionLog);
+                criteria.ErrMsg = memberStatusResult.LogMsg;
+                _logService.WriteLog(criteria);
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleException(ex);
+            }
+
+            ServiceExtension.WriteError(action, memberStatusResult);
+            return memberStatusResult;
+        }
+
+        /// <summary>
+        /// Executes the specified action.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns>Return action response result.</returns>
+        private ResponseResult ExecuteSingleLog(LogAction action)
+        {
+            var criteria = (SingleLogActionCriteria)action.CreateCriteria();
+            _logService.WriteLog(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
+            {
+                return new ResponseResult(Result.ApiError, ResourceManager.GetErrMsg(criteria.ErrCode));
+            }
+
+            var responseResult = ServiceWrapper.GetActionResponse<ResponseResult>(action);
+            try
+            {
+                criteria.LogId = criteria.LogIdReturn;
+                criteria.Status = responseResult.ErrCode == Result.SuccessValue ? LogType.Success : LogType.Fail;
+                criteria.ErrMsg = responseResult.LogMsg;
+                _logService.WriteLog(criteria);
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleException(ex);
+            }
+
+            ServiceExtension.WriteError(action, responseResult);
+            return responseResult;
         }
     }
 }

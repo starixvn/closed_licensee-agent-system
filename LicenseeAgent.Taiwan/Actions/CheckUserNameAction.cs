@@ -2,7 +2,6 @@
 // <copyright file="CheckUserNameAction.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Actions
@@ -10,14 +9,12 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CheckUserNameAction : IAction
+    public class CheckUserNameAction : BaseAction
     {
-        public string SiteName { get; set; }
-
         public string UserName { get; set; }
 
         [Service]
-        public string ActionName
+        public override string ActionName
         {
             get
             {

@@ -24,16 +24,11 @@ namespace LicenseeAgent.Taiwan.Entities
         public string Result { get; set; }
 
         [IgnoreDataMember]
-        public short Status
+        public LogType Status
         {
             get
             {
-                if (Result.Equals(ServiceSetting.StatusSuccess, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    return (short)LogType.Success;
-                }
-
-                return (short)LogType.Fail;
+                return Result.Equals(ServiceSetting.StatusSuccess, StringComparison.CurrentCultureIgnoreCase) ? LogType.Success : LogType.Fail;
             }
         }
     }

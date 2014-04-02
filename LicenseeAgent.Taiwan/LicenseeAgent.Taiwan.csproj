@@ -50,10 +50,10 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Actions\BaseAction.cs" />
     <Compile Include="Actions\CheckUserNameAction.cs" />
     <Compile Include="Actions\GetMemberInfoAction.cs" />
     <Compile Include="Actions\GetMemberInfoListAction.cs" />
-    <Compile Include="Actions\IAction.cs" />
     <Compile Include="Actions\InsertNewMemberAction.cs" />
     <Compile Include="Actions\LogAction.cs" />
     <Compile Include="Actions\ResetPasswordAction.cs" />
@@ -63,13 +63,16 @@
     <Compile Include="Criterias\AddNewMemberCriteria.cs" />
     <Compile Include="Criterias\ChangeStatusMemberCriteria.cs" />
     <Compile Include="Criterias\EditInfoMemberCriteria.cs" />
+    <Compile Include="Criterias\LogActionCriteria.cs" />
+    <Compile Include="Criterias\MultipleLogActionCriteria.cs" />
     <Compile Include="Criterias\ResetPasswordMemberCriteria.cs" />
+    <Compile Include="Criterias\SingleLogActionCriteria.cs" />
     <Compile Include="Entities\CustomerEntity.cs" />
-    <Compile Include="Entities\LogContentEntity.cs" />
-    <Compile Include="Entities\LogInformationEntity.cs" />
+    <Compile Include="Entities\UpdateMemberStatusLogEntity.cs" />
     <Compile Include="Entities\MemberStatusEntity.cs" />
     <Compile Include="Entities\ServiceMemberEntity.cs" />
-    <Compile Include="Entities\StatusEntity.cs" />
+    <Compile Include="Entities\UpdateMemberStatusActionLog.cs" />
+    <Compile Include="Enumerations\LogId.cs" />
     <Compile Include="Enumerations\LogType.cs" />
     <Compile Include="Filter\IServiceFilter.cs" />
     <Compile Include="Filter\MemberFilter.cs" />
@@ -80,8 +83,6 @@
     <Compile Include="Results\ResponseResult.cs" />
     <Compile Include="Services\ILogService.cs" />
     <Compile Include="Services\LogService.cs" />
-    <Compile Include="Utility\ExtentedStringWriter.cs" />
-    <Compile Include="Utility\LogBinder.cs" />
     <Compile Include="Attributes\ServiceAttribute.cs" />
     <Compile Include="Utility\ServiceExtension.cs" />
     <Compile Include="Utility\ServiceMapper.cs" />
@@ -93,6 +94,10 @@
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>LicenseeAgent.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

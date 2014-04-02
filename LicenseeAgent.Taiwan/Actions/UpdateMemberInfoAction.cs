@@ -2,18 +2,18 @@
 // <copyright file="UpdateMemberInfoAction.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Actions
 {
+    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Enumerations;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UpdateMemberInfoAction : LogAction, IAction
+    public class UpdateMemberInfoAction : LogAction
     {
-        public string SiteName { get; set; }
-
         public int IBCCustId { get; set; }
 
         public string Phone { get; set; }
@@ -27,12 +27,24 @@ namespace LicenseeAgent.Taiwan.Actions
         public string LastName { get; set; }
 
         [Service]
-        public string ActionName
+        public override string ActionName
         {
             get
             {
                 return "UpdateMemberInfo";
             }
+        }
+
+        public override LogActionCriteria CreateCriteria()
+        {
+            return new EditInfoMemberCriteria
+            {
+                LicenseeId = LicenseeId,
+                UserId = UserId,
+                CustId = IBCCustId,
+                Status = LogType.BeforeCall,
+                Doing = GetDoingLogXml()
+            };
         }
     }
 }

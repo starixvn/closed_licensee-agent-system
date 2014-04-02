@@ -1,18 +1,18 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="LogInformationEntity.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateMemberStatusLogEntity.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Entities
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LogInformationEntity
+    public class UpdateMemberStatusLogEntity
     {
         [XmlAttribute(AttributeName = "MemberID")]
         [Service(Name = "IBCCustID")]
@@ -25,6 +25,6 @@ namespace LicenseeAgent.Taiwan.Entities
         public int LogId { get; set; }
 
         [XmlAttribute(AttributeName = "StatusID")]
-        public short Status { get; set; }
+        public LogType Status { get; set; }
     }
 }

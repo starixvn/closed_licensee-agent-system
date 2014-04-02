@@ -1,8 +1,7 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="IAction.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BaseAction.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Actions
@@ -10,8 +9,10 @@ namespace LicenseeAgent.Taiwan.Actions
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IAction
+    public abstract class BaseAction
     {
-        string ActionName { get; }
+        public string SiteName { get; set; }
+
+        public abstract string ActionName { get; }
     }
 }

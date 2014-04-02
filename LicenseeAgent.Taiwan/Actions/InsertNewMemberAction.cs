@@ -8,14 +8,15 @@
 namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Enumerations;
+    using LicenseeAgent.Taiwan.Utility;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class InsertNewMemberAction : LogAction, IAction
+    public class InsertNewMemberAction : LogAction
     {
-        public string SiteName { get; set; }
-
         public string UserName { get; set; }
 
         [XmlIgnore]
@@ -46,12 +47,24 @@ namespace LicenseeAgent.Taiwan.Actions
         public bool IsClosed { get; set; }
 
         [Service(IsParamAction = false)]
-        public string ActionName
+        public override string ActionName
         {
             get
             {
                 return "InsertNewMember";
             }
+        }
+
+        public override LogActionCriteria CreateCriteria()
+        {
+            return new AddNewMemberCriteria
+            {
+                LicenseeId = LicenseeId,
+                UserId = UserId,
+                CustId = IBCCustId,
+                Status = LogType.BeforeCall,
+                Doing = GetDoingLogXml()
+            };
         }
     }
 }

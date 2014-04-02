@@ -2,7 +2,6 @@
 // <copyright file="ILogService.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Taiwan.Services
@@ -27,6 +26,6 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         /// <returns>List log information.</returns>
-        IEnumerable<LogInformationEntity> GetLogInformations(ICriteria criteria);
+        IEnumerable<UpdateMemberStatusLogEntity> GetUpdateMemberStatusLogs(ICriteria criteria);
     }
 }

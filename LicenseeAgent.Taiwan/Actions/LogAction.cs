@@ -23,6 +23,7 @@ namespace LicenseeAgent.Taiwan.Actions
             Url = AppSettings.TaiwanAPI;
         }
 
+        [XmlAttribute]
         public string Url { get; set; }
 
         [Service]

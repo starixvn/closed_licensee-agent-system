@@ -146,7 +146,7 @@ namespace LicenseeAgent.Taiwan.Utility
             }
 
             errorMessage.Append("Output:\n");
-            errorMessage.AppendFormat("Error Code: {0}\n", result.ErrCode);
+            errorMessage.AppendFormat("Error Code: {0}\n", result.ApiErrCode);
             errorMessage.AppendFormat("Error Message: {0}\n", result.ApiErrMsg);
 
             Logger.Error(errorMessage.ToString());

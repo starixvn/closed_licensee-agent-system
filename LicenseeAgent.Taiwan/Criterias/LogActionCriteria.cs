@@ -32,7 +32,6 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public int ApiErrCode { get; set; }
 
-        [SpParam(SqlParamName = "ErrMsg")]
         public string ApiErrMsg { get; set; }
 
         public override bool IsValid()

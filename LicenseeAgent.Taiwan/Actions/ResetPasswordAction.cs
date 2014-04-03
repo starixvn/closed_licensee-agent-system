@@ -35,12 +35,11 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public override LogActionCriteria CreateCriteria()
         {
-            return new ResetPasswordMemberCriteria
+            return new ResetPasswordMemberCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,
                 CustId = IBCCustId,
-                Status = LogType.BeforeCall,
                 Doing = GetDoingLogXml()
             };
         }

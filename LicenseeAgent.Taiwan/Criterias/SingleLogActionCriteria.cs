@@ -6,6 +6,8 @@
 
 namespace LicenseeAgent.Taiwan.Criterias
 {
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Enumerations;
 
     /// <summary>
@@ -13,13 +15,27 @@ namespace LicenseeAgent.Taiwan.Criterias
     /// </summary>
     public abstract class SingleLogActionCriteria : LogActionCriteria
     {
+        public SingleLogActionCriteria(LogAction logAction)
+            : base(logAction)
+        {
+            LogId = 0;
+        }
+
         /// <summary>
-        /// Gets or sets the status.
+        /// Gets the status.
         /// </summary>
         /// <value>
         /// Status of API action.
         /// </value>
-        public LogType Status { get; set; }
+        public LogType Status
+        {
+            get
+            {
+                return LogId == 0
+                    ? LogType.BeforeCall
+                    : ApiErrCode == Result.SuccessValue ? LogType.Success : LogType.Fail;
+            }
+        }
 
         public long LogId { get; set; }
 

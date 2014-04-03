@@ -57,12 +57,11 @@ namespace LicenseeAgent.Taiwan.Actions
 
         public override LogActionCriteria CreateCriteria()
         {
-            return new AddNewMemberCriteria
+            return new AddNewMemberCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,
                 CustId = IBCCustId,
-                Status = LogType.BeforeCall,
                 Doing = GetDoingLogXml()
             };
         }

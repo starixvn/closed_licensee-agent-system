@@ -7,12 +7,18 @@
 namespace LicenseeAgent.Taiwan.Criterias
 {
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public abstract class MultipleLogActionCriteria : LogActionCriteria
     {
+        public MultipleLogActionCriteria(LogAction logAction)
+            : base(logAction)
+        {
+        }
+
         [SpParam(SqlParamName = "strXML")]
         public string LogXml { get; set; }
 

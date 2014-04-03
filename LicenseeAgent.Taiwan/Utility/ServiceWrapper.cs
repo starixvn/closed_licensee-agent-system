@@ -45,11 +45,12 @@ namespace LicenseeAgent.Taiwan.Utility
 
                 var jsonSerializer = new DataContractJsonSerializer(typeof(T));
                 var responseResult = jsonSerializer.ReadObject(response.GetResponseStream()) as T;
-                responseResult.LogMsg = responseResult.ErrMsg;
+                responseResult.ApiErrCode = responseResult.ErrCode;
+                responseResult.ApiErrMsg = responseResult.ErrMsg;
                 if (responseResult.ErrCode != Result.SuccessValue)
                 {
-                    responseResult.ErrMsg = ApiMsg.ResourceManager.GetString(string.Format("{0}_{1}", action.ActionName, responseResult.ErrCode));
                     responseResult.ErrCode = Result.ApiError;
+                    responseResult.ErrMsg = ApiMsg.ResourceManager.GetString(string.Format("{0}_{1}", action.ActionName, responseResult.ApiErrCode));
                 }
 
                 return responseResult;

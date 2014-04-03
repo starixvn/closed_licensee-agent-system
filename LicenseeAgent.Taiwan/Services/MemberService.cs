@@ -13,6 +13,7 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
@@ -151,13 +152,8 @@ namespace LicenseeAgent.Taiwan.Services
         {
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
             var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
-            if (criteria.ErrCode != Result.SuccessValue)
-            {
-                return new ResponseResult(Result.ApiError, ResourceManager.GetErrMsg(criteria.ErrCode));
-            }
 
             var memberStatusResult = ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
-
             if (ServiceExtension.IsUpdateMultipleStatus(action.IBCCustId))
             {
                 ServiceExtension.UpdateLogInformations(customerLogs, memberStatusResult);
@@ -174,7 +170,8 @@ namespace LicenseeAgent.Taiwan.Services
                     CustomerLogs = customerLogs.ToList()
                 };
                 criteria.LogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(updateMemberStatusActionLog);
-                criteria.ErrMsg = memberStatusResult.LogMsg;
+                criteria.ApiErrCode = memberStatusResult.ApiErrCode;
+                criteria.ApiErrMsg = memberStatusResult.ApiErrMsg;
                 _logService.WriteLog(criteria);
             }
             catch (Exception ex)
@@ -195,17 +192,17 @@ namespace LicenseeAgent.Taiwan.Services
         {
             var criteria = (SingleLogActionCriteria)action.CreateCriteria();
             _logService.WriteLog(criteria);
-            if (criteria.ErrCode != Result.SuccessValue)
+            if (criteria.LogIdReturn == 0)
             {
-                return new ResponseResult(Result.ApiError, ResourceManager.GetErrMsg(criteria.ErrCode));
+                return new ResponseResult(Result.ApiError, Las.HttpError_Default);
             }
 
             var responseResult = ServiceWrapper.GetActionResponse<ResponseResult>(action);
             try
             {
                 criteria.LogId = criteria.LogIdReturn;
-                criteria.Status = responseResult.ErrCode == Result.SuccessValue ? LogType.Success : LogType.Fail;
-                criteria.ErrMsg = responseResult.LogMsg;
+                criteria.ApiErrCode = responseResult.ApiErrCode;
+                criteria.ApiErrMsg = responseResult.ApiErrMsg;
                 _logService.WriteLog(criteria);
             }
             catch (Exception ex)

@@ -35,7 +35,7 @@ namespace LicenseeAgent.Taiwan.Actions
         {
             var actionLog = ServiceExtension.CreateUpdateMemberStatusActionLog(IBCCustId, LASAgentId);
             var actionLogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(actionLog);
-            return new ChangeStatusMemberCriteria
+            return new ChangeStatusMemberCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,

@@ -7,39 +7,33 @@
 namespace LicenseeAgent.Taiwan.Criterias
 {
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public abstract class LogActionCriteria : CriteriaBase
     {
+        public LogActionCriteria(LogAction logAction)
+        {
+            Url = logAction.Url;
+            ApiMethod = logAction.ActionName;
+        }
+
         public int LicenseeId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user call API.
-        /// </value>
         public int UserId { get; set; }
+
+        public string Url { get; private set; }
+
+        public string ApiMethod { get; private set; }
 
         public string Doing { get; set; }
 
-        /// <summary>
-        /// Gets or sets the error message.
-        /// </summary>
-        /// <value>
-        /// Error message from API.
-        /// </value>
-        public string ErrMsg { get; set; }
+        [SpParam(SqlParamName = "ErrMsg")]
+        public int ApiErrCode { get; set; }
 
-        /// <summary>
-        /// Gets or sets the error code.
-        /// </summary>
-        /// <value>
-        /// The error code.
-        /// </value>
-        public int ErrCode { get; set; }
+        public string ApiErrMsg { get; set; }
 
         public override bool IsValid()
         {

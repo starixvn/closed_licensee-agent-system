@@ -18,7 +18,8 @@ namespace LicenseeAgent.Taiwan.Results
         {
             ErrCode = errorCode;
             ErrMsg = errorMessage;
-            LogMsg = errorMessage;
+            ApiErrCode = errorCode;
+            ApiErrMsg = errorMessage;
         }
 
         [DataMember]
@@ -27,6 +28,8 @@ namespace LicenseeAgent.Taiwan.Results
         [DataMember]
         public string ErrMsg { get; set; }
 
-        public string LogMsg { get; set; }
+        public int ApiErrCode { get; set; }
+
+        public string ApiErrMsg { get; set; }
     }
 }

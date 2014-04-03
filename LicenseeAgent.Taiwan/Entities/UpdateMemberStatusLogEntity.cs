@@ -14,6 +14,11 @@ namespace LicenseeAgent.Taiwan.Entities
     /// </summary>
     public class UpdateMemberStatusLogEntity
     {
+        public UpdateMemberStatusLogEntity()
+        {
+            Status = LogType.BeforeCall;
+        }
+
         [XmlAttribute(AttributeName = "MemberID")]
         [Service(Name = "IBCCustID")]
         public int MemberId { get; set; }

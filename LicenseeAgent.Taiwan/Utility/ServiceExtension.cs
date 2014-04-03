@@ -77,8 +77,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 customerLogs.AddRange(listCustId.Select(custId => new UpdateMemberStatusLogEntity
                 {
                     AgentId = Convert.ToInt32(agentIds),
-                    MemberId = Convert.ToInt32(custId),
-                    Status = LogType.BeforeCall
+                    MemberId = Convert.ToInt32(custId)
                 }));
             }
             else if (!string.IsNullOrEmpty(agentIds))
@@ -86,8 +85,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 var listAgentId = agentIds.Split(',');
                 customerLogs.AddRange(listAgentId.Select(agentId => new UpdateMemberStatusLogEntity
                 {
-                    AgentId = Convert.ToInt32(agentId),
-                    Status = LogType.BeforeCall
+                    AgentId = Convert.ToInt32(agentId)
                 }));
             }
 

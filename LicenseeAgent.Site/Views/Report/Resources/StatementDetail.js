@@ -34,6 +34,10 @@
 
                         gridOptions.bodyRows = STATEMENTDETAIL.genGridRows(data.List, gridOptions, $('#IsMember').val());
                         $('#grid').show().fanexGrid(gridOptions);
+
+                        if ($('#spanUsername').length > 0) {
+                            $('#spanUsername').html($('#Username').val());
+                        }
                         CORE.unblockUI();
                     }
                     else {

@@ -37,6 +37,12 @@ var agentIdLevelN = 0;
 var currenctAgentName = '';
 var currenctAgentId = 0;
 var OUTSTANDING = function ($) {
+    var breadCrumbItems = [
+    {
+        agentId: $('#loginAgent').data('id'),
+        agentName: $('#loginAgent').data('name')
+    }];
+
     return {
         init: function () {
             OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], -1);
@@ -196,31 +202,54 @@ var OUTSTANDING = function ($) {
             fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
-            var breadcrumb = $("#breadcrumb > span").html().replace('link-disable', 'l').replace('return;', '');
-            breadcrumb += '&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;';
             if (isLastLevel) {
-                breadcrumb += agentName;
                 OUTSTANDING.reRenderBetListAfterPaged(0, CORE.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
-                breadcrumb += '<a href="#" onclick="javascript:return;OUTSTANDING.breadcrumbDrilldown(\'' + agentName + '\',' + agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
                 OUTSTANDING.reRenderAfterPaged(0, CORE.pageSizes[0], agentId);
             }
-            
-            $("#breadcrumb > span").html(breadcrumb);
+            if (typeof isLastLevel === 'undefined') {
+                OUTSTANDING.createBreadcrumb(agentId, agentName, false);
+            } else {
+                OUTSTANDING.createBreadcrumb(agentId, agentName, true);   
+            }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
             OUTSTANDING.outstandingDrilldown(agentName, agentId);
+        },
+        createBreadcrumb: function(agentId, agentName, isDownline) {
+            var index,
+                numberAgent = breadCrumbItems.length - 1,
+                breadCrumbHtml = '',
+                matchIndex = numberAgent;
+            if (isDownline) {
+                breadCrumbItems.push({
+                    agentId: agentId,
+                    agentName: agentName
+                });
+            } else {
+                for (index = numberAgent; index >= 0; index--) {
+                    if (breadCrumbItems[index].agentId === agentId) {
+                        matchIndex = index;
+                        break;
+                    }
+                }
+                breadCrumbItems.splice(matchIndex + 1);
+            }
 
-            var breadcrumb = $("#breadcrumb > span").html();
-            var indexOfAgentName = breadcrumb.indexOf(agentName + "</");
-            breadcrumb = breadcrumb.substring(0, indexOfAgentName - 3) + 'link-disable">' + agentName + "</a>";
-            $("#breadcrumb > span").html(breadcrumb);
-            var onclickFunction = $("#breadcrumb > span :last-child").attr("onclick").replace('javascript:', 'javascript:return;');
-            $("#breadcrumb > span :last-child").attr("onclick", onclickFunction);
-            $("#breadcrumb > span :last-child").attr("class", "link-disable");
-            $("#breadcrumb > span :last-child").attr("href", "#");
+            numberAgent = breadCrumbItems.length - 1;
+            if (numberAgent > 0) {
+                for (index = 0; index < numberAgent; index ++) {
+                    breadCrumbHtml += '<li><a onclick="javascript:OUTSTANDING.breadcrumbDrilldown(\''
+                        + breadCrumbItems[index].agentName + '\','
+                        + breadCrumbItems[index].agentId + ');" href="#">'
+                        + breadCrumbItems[index].agentName
+                        + '</a><span class="divider">&gt;&gt;</span></li>';
+                }
+                breadCrumbHtml += '<li><span>' + breadCrumbItems[index].agentName + '</span></li>';
+            }
+            $(".breadcrumb").html(breadCrumbHtml);
         }
     }
 } (jQuery);

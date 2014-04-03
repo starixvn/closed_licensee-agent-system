@@ -1,7 +1,5 @@
 ﻿@{
     ViewBag.Title = Las.AgentOutstanding + " - " + Las.Report;
-    var firstBreadcrumbItem = "<a href=\"#\" onclick=\"javascript:return;OUTSTANDING.breadcrumbDrilldown('" + ViewBag.LoggedInAgentName + "\',";
-    firstBreadcrumbItem += ViewBag.LoggedInAgentId + ")\" class=\"link-disable\">" + ViewBag.LoggedInAgentName + "</a>";
 }
 @section css
 {
@@ -17,7 +15,7 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div id="breadcrumb" class="breadcrumb">
-    <span>@Html.Raw(firstBreadcrumbItem)</span></div>
+<input type="hidden" id="loginAgent" data-id="@ViewBag.LoggedInAgentId" data-name="@ViewBag.LoggedInAgentName"/>
+<div class="clearfix"><ul class="breadcrumb"></ul></div>
 <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>

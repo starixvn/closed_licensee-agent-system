@@ -43,7 +43,7 @@ namespace LicenseeAgent.Taiwan.Criterias
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 && UserId > 0;
+            return LicenseeId > 0 && UserId > 0 && !string.IsNullOrEmpty(Doing);
         }
     }
 }

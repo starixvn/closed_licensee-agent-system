@@ -18,14 +18,6 @@ namespace LicenseeAgent.Taiwan.Actions
     [Serializable]
     public abstract class LogAction : BaseAction
     {
-        public LogAction()
-        {
-            Url = AppSettings.TaiwanAPI;
-        }
-
-        [XmlAttribute]
-        public string Url { get; set; }
-
         [Service]
         [XmlIgnore]
         public int LicenseeId { get; set; }

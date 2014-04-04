@@ -35,7 +35,7 @@
                 {
                     HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        var customerName = CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
+                        var customerName = core.formatCustomerName(rowData.FirstName, rowData.LastName);
                         return '<span title="' + customerName + '">' + customerName + '</span>';
                     }
                 },

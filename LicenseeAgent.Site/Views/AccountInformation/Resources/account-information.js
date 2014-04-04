@@ -257,7 +257,7 @@ var accountInformation = (function($) {
             frmMain.POPUP.openDialogFrame(url, { width: 428, height: 200 });
         },
         refreshGivenCredit: function () {
-            setTimeout("$('#formSearch').submit();", CORE.RELOAD_INTERVAL);
+            setTimeout("$('#formSearch').submit();", core.RELOAD_INTERVAL);
         }
     };
 }(jQuery));

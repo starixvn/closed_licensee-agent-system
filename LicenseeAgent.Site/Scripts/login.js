@@ -1,5 +1,6 @@
 ﻿var logIn = (function ($) {
-    CORE.DisableRecheckIn = true;
+    'use strict';
+    core.DisableRecheckIn = true;
     return {
         init: function () {
             if ($(window.parent.document).find('iframe').length > 0) {

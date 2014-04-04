@@ -1,7 +1,8 @@
 ﻿/*global core*/
-    CORE.DisableRecheckIn = true;
+
 var underMaintenanceError = (function ($) {
     /*jshint strict:false */
+    core.DisableRecheckIn = true;
     return {
         init: function () {
             if ($(window.parent.document).find('iframe').length > 0) {

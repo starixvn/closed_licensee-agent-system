@@ -19,13 +19,13 @@ if (fanex.customerSetting) {
 
             core.initInstruction();
 
-        // reload setting mode from query string
-        settingContext.IsSimpleMode = CORE.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
-        $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
+            // reload setting mode from query string
+            settingContext.IsSimpleMode = core.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
+            $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
 
-        $scope.settingMode = settingContext.IsSimpleMode;
-        $scope.formId = settingContext.FormId;
-            $('#modeSwitcher').on('switch-change', function(e, data) {
+            $scope.settingMode = settingContext.IsSimpleMode;
+            $scope.formId = settingContext.FormId;
+            $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
                 $scope.settingMode = isSimpleMode;
@@ -34,7 +34,7 @@ if (fanex.customerSetting) {
                 $scope.$apply();
             });
 
-            var encodeMessages = function(messages) {
+            var encodeMessages = function (messages) {
                 var array = [];
                 var length = messages.length;
                 for (var i = 0; i < length; i++) {
@@ -44,7 +44,7 @@ if (fanex.customerSetting) {
                 }
                 return encodeURIComponent(array.join('|'));
             };
-            var decodeMessages = function(string) {
+            var decodeMessages = function (string) {
                 var array = decodeURIComponent(string).split('|');
                 if (array.length % 2 !== 0) {
                     return;
@@ -63,11 +63,11 @@ if (fanex.customerSetting) {
                 return messages;
             };
 
-            $scope.insertCustomer = function() {
+            $scope.insertCustomer = function () {
                 var custInfoScope = angular.element('#custInfoController').scope();
                 if (custInfoScope.formCustInfo.$invalid) {
                     var keepGoing = true;
-                    angular.forEach(custInfoScope.formCustInfo.$error, function(field) {
+                    angular.forEach(custInfoScope.formCustInfo.$error, function (field) {
                         if (angular.isArray(field)) {
                             if (keepGoing) {
                                 var element = $('#' + field[0].$name);
@@ -101,12 +101,12 @@ if (fanex.customerSetting) {
                     $scope.Messages = null;
                     core.blockUI();
                     $http({
-                            method: 'POST',
-                            url: core.resolveUrl($('#custSetting').data('href')),
-                            headers: { 'Content-Type': 'application/json' },
-                            data: {
-                                settingContext: settingContext,
-                                updateDataSportsbookCustomer:
+                        method: 'POST',
+                        url: core.resolveUrl($('#custSetting').data('href')),
+                        headers: { 'Content-Type': 'application/json' },
+                        data: {
+                            settingContext: settingContext,
+                            updateDataSportsbookCustomer:
                                 {
                                     PositionTakingSetting: positionTakingUpdated,
                                     CustInfo: custInfoScope.custInfo,
@@ -118,9 +118,9 @@ if (fanex.customerSetting) {
                                     },
                                     BettingLimits: bettingLimits
                                 }
-                            }
-                        }).
-                        success(function(data) {
+                        }
+                    }).
+                        success(function (data) {
                             core.unblockUI();
 
                             if (data.ErrCode !== 0) {
@@ -150,19 +150,19 @@ if (fanex.customerSetting) {
                                 }
                             }
                         }).
-                        error(function(data) {
+                        error(function (data) {
                             core.unblockUI();
                             alert(data.ErrMsg);
                         });
                 }
             };
 
-            $scope.updateCustomer = function() {
+            $scope.updateCustomer = function () {
                 $('.messages').hide();
                 $scope.Messages = null;
 
                 var commissionSettingsModel = null,
-                    bettingLimits = null, 
+                    bettingLimits = null,
                     userGroup = null;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
@@ -194,12 +194,12 @@ if (fanex.customerSetting) {
 
                 core.blockUI();
                 $http({
-                        method: 'POST',
-                        url: core.resolveUrl($('#custSetting').data('href')),
-                        headers: { 'Content-Type': 'application/json' },
-                        data: {
-                            settingContext: settingContext,
-                            updateDataSportsbookCustomer:
+                    method: 'POST',
+                    url: core.resolveUrl($('#custSetting').data('href')),
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        settingContext: settingContext,
+                        updateDataSportsbookCustomer:
                             {
                                 PositionTakingSetting: positionTakingUpdated,
                                 CommissionSetting: {
@@ -208,9 +208,9 @@ if (fanex.customerSetting) {
                                 },
                                 BettingLimits: bettingLimits
                             }
-                        }
-                    }).
-                    success(function(data) {
+                    }
+                }).
+                    success(function (data) {
                         core.unblockUI();
 
                         if (data.ErrCode !== 0) {
@@ -233,17 +233,17 @@ if (fanex.customerSetting) {
                             }
                         }
                         if (isSuccess) {
-                    var orginalUrl = CORE.removeURLParameter(CORE.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
-                    var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
-                    location.href = url;
-                    return;
-                }
+                            var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
+                            var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
+                            location.href = url;
+                            return;
+                        }
 
                         $('.messages').show();
                         $scope.Messages = data.Messages;
                         core.scrollTop();
                     }).
-                    error(function(data) {
+                    error(function (data) {
                         core.unblockUI();
                         alert(data.ErrMsg);
                     });
@@ -255,12 +255,12 @@ if (fanex.customerSetting) {
 
             $('#custSetting').show();
 
-        var messagesQueryString = CORE.getParameterByName('messages');
-        if (messagesQueryString !== '') {
-            var messages = decodeMessages(messagesQueryString);
-            $scope.Messages = messages;
-            POPUP.close();
-        }
+            var messagesQueryString = core.getParameterByName('messages');
+            if (messagesQueryString !== '') {
+                var messages = decodeMessages(messagesQueryString);
+                $scope.Messages = messages;
+                popup.close();
+            }
 
             core.unblockUI();
         }

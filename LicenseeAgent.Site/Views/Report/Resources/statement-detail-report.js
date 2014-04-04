@@ -1,4 +1,4 @@
-﻿/*global core, popup, language, moment*/
+﻿/*global core, popup, language, moment, gridOptionsAgent, gridOptionsMember */
 
 var statementDetailReport = (function ($) {
     'use strict';

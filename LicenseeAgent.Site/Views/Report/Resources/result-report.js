@@ -1,21 +1,5 @@
 ﻿/*global core, language, matchSubmit, outrightSubmit */
-
-function matchSubmit() {
-    "use strict";
-    resultReport.matchSubmit($('#matchdatetime').val());
-    return false;
-}
-
-function outrightSubmit() {
-    "use strict";
-    resultReport.outrightSubmit($('#outrightFromDate').val(), $('#outrightToDate').val());
-    return false;
-}
-
-$(function () {
-    "use strict";
-    resultReport.init();
-});
+/* exported matchSubmit, outrightSubmit */
 
 var resultReport = (function ($) {
     "use strict";
@@ -348,3 +332,20 @@ var resultReport = (function ($) {
         }
     };
 } (jQuery));
+
+function matchSubmit() {
+    "use strict";
+    resultReport.matchSubmit($('#matchdatetime').val());
+    return false;
+}
+
+function outrightSubmit() {
+    "use strict";
+    resultReport.outrightSubmit($('#outrightFromDate').val(), $('#outrightToDate').val());
+    return false;
+}
+
+$(function () {
+    "use strict";
+    resultReport.init();
+});

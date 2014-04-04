@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl*/
+﻿/*global core, language, showMixParlayDetailurl */
 
 var outstandingGridOptions = {
     /*jshint strict:false */
@@ -216,9 +216,9 @@ var outstandingReport = (function ($) {
                 outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
-                OUTSTANDING.createBreadcrumb(agentId, agentName, false);
+                outstandingReport.createBreadcrumb(agentId, agentName, false);
             } else {
-                OUTSTANDING.createBreadcrumb(agentId, agentName, true);   
+                outstandingReport.createBreadcrumb(agentId, agentName, true);   
             }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
@@ -247,7 +247,7 @@ var outstandingReport = (function ($) {
             numberAgent = breadCrumbItems.length - 1;
             if (numberAgent > 0) {
                 for (index = 0; index < numberAgent; index ++) {
-                    breadCrumbHtml += '<li><a onclick="javascript:OUTSTANDING.breadcrumbDrilldown(\''
+                    breadCrumbHtml += '<li><a onclick="javascript:outstandingReport.breadcrumbDrilldown(\''
                         + breadCrumbItems[index].agentName + '\','
                         + breadCrumbItems[index].agentId + ');" href="#">'
                         + breadCrumbItems[index].agentName

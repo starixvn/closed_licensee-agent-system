@@ -271,5 +271,5 @@ if (fanex.customerSetting) {
 
             return true;
         }
-    }
+    };
 }

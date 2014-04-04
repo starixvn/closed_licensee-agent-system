@@ -1,4 +1,5 @@
 ﻿@using LicenseeAgent.AccountInformation.ViewModels
+@using LicenseeAgent.Core.Enumerations
 @model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
@@ -47,7 +48,7 @@
                             </a>
                         </li>
                     }
-                    @if (pageContext.IsAdmin || !pageContext.IsMember)
+                    @if (pageContext.IsAdmin && !pageContext.IsMember && Model.Customer.Status == (int)AccountStatus.Open)
                     {
                         <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>

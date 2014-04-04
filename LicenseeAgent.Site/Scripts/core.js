@@ -382,8 +382,11 @@
             $('button[type=submit]').submit();
         },
         formatCustomerName: function (firstName, lastName) {
-            if (firstName || lastName) {
+            if (firstName && lastName) {
                 return '{0} {1}'.format(firstName, lastName);
+            }
+            if (firstName || lastName) {
+                return !firstName ? lastName : firstName;
             }
             return CORE.EMPTY_TEXT_FORMAT;
         },

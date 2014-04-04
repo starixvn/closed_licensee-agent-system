@@ -31,7 +31,8 @@
                 {
                     HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
+                        var customerName = CORE.formatCustomerName(rowData.FirstName, rowData.LastName);
+                        return '<span title="' + customerName + '">' + customerName + '</span>';
                     }
                 },
                 { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },

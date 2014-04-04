@@ -36,6 +36,8 @@ namespace LicenseeAgent.Taiwan.Entities
 
         public int NumberOfLevel { get; set; }
 
+        public short Status { get; set; }
+
         public string FullName
         {
             get

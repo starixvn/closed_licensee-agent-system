@@ -15,7 +15,11 @@
                         return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                     }
                 },
-                { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", CanResize: true },
+                { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", CanResize: true, Formatter:
+                    function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
+                    }
+                },
                 { HeaderText: "@Las.Username", Width: 140, Name: "ShortUserName", HeaderAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
                         return '<span title="' + rowData.UserName + '">' + cell.Value + '</span>';

@@ -1,7 +1,7 @@
 ﻿/*global core, moment, homeMenu*/
 
 var homeHeader = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var currentTime = Date.now;
     var licenseeId, currencyId;
     return {
@@ -11,8 +11,7 @@ var homeHeader = (function ($) {
             currencyId = $('#currency').data('currency-id');
 
             var orginalUsername = $.trim($('.username').text());
-            /*jshint unused: vars */
-            $('.username').dotdotdot().trigger("isTruncated", function (isTruncated) {
+            $('.username').dotdotdot().trigger("isTruncated", function () {
                 $('.username').attr('title', orginalUsername);
             });
 
@@ -89,6 +88,6 @@ var homeHeader = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     homeHeader.init();
 });

@@ -1,5 +1,4 @@
 ﻿/*global appSettings, fanexGridLanguage, fanexGridCurrentLanguage:true, Las_en_US*/
-/* jshint camelcase: false */
 
 var language = (function($) {
     'use strict';
@@ -53,7 +52,8 @@ var language = (function($) {
             }
             return selectedLanguageCode;
         },
-        getString: function(enghlishName) {
+        getString: function (enghlishName) {
+            /* jshint camelcase: false */
             if (enghlishName == null || enghlishName === undefined) {
                 return enghlishName;
             }

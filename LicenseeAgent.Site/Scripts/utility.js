@@ -82,7 +82,7 @@ String.prototype.isNumber = function () {
 };
 
 // Getting the number of decimals in a number
-Number.prototype.countDecimals = function() {
+Number.prototype.countDecimals = function () {
     if (Math.floor(this.valueOf()) === this.valueOf()) {
         return 0;
     }

@@ -1,4 +1,6 @@
-﻿var logIn = (function ($) {
+﻿/*global core */
+
+var logIn = (function ($) {
     'use strict';
     core.DisableRecheckIn = true;
     return {
@@ -64,6 +66,6 @@
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     logIn.init();
 });

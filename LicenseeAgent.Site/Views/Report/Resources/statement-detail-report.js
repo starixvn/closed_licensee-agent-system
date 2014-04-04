@@ -1,7 +1,7 @@
-﻿/*global gridOptions, core, popup, language, moment*/
+﻿/*global core, popup, language, moment*/
 
 var statementDetailReport = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         init: function () {
             $('#fromDatePicker').datepicker();
@@ -121,6 +121,6 @@ var statementDetailReport = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     statementDetailReport.init();
 });

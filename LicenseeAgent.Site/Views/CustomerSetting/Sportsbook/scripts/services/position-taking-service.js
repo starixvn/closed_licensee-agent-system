@@ -3,7 +3,6 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 /*global positionTakingSetting */
-
 'use strict';
 
 if (fanex.customerSetting) {
@@ -269,8 +268,8 @@ if (fanex.customerSetting) {
                     }
                 }
             }
-            
+
             return true;
         }
-    };
+    }
 }

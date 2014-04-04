@@ -1,7 +1,24 @@
-﻿/*global core, language*/
+﻿/*global core, language, matchSubmit, outrightSubmit */
+
+function matchSubmit() {
+    "use strict";
+    resultReport.matchSubmit($('#matchdatetime').val());
+    return false;
+}
+
+function outrightSubmit() {
+    "use strict";
+    resultReport.outrightSubmit($('#outrightFromDate').val(), $('#outrightToDate').val());
+    return false;
+}
+
+$(function () {
+    "use strict";
+    resultReport.init();
+});
 
 var resultReport = (function ($) {
-    /*jshint strict:false */
+    "use strict";
     return {
         init: function () {
             $('.selectpicker').selectpicker();
@@ -331,21 +348,3 @@ var resultReport = (function ($) {
         }
     };
 } (jQuery));
-/*jshint unused:false*/
-function matchSubmit() {
-    /*jshint strict:false */
-    resultReport.matchSubmit($('#matchdatetime').val());
-    return false;
-}
-
-/*jshint unused:false*/
-function outrightSubmit() {
-    /*jshint strict:false */
-    resultReport.outrightSubmit($('#outrightFromDate').val(), $('#outrightToDate').val());
-    return false;
-}
-
-$(function () {
-    /*jshint strict:false */
-    resultReport.init();
-});

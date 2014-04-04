@@ -1,6 +1,6 @@
-﻿/*global appSettings,language, popup, moment */
+﻿/*global appSettings, language, moment, popup */
 
-var core = (function($) {
+var core = (function ($) {
     'use strict';
     return {
         DisableRecheckIn: false,
@@ -14,17 +14,15 @@ var core = (function($) {
         FORMATNUMBER: '0,0.00',
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '700',
-        /* jshint ignore:start */
-        PASSWORD_FORMAT: new RegExp(/(?=^.{8,24}$)(?!.*\s)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/),
         RELOAD_INTERVAL: 10000,
         EMPTY_TEXT_FORMAT: '---',
         ServerTime: appSettings.ServerTime,
         ServerDate: appSettings.ServerDate,
         ServerUtcOffset: appSettings.ServerUtcOffset,
-        init: function() {
+        init: function () {
             // setup ajax.
             $.ajaxSetup({
-                error: function(jqXHR) {
+                error: function (jqXHR) {
                     if (jqXHR.status === 0 || jqXHR.readyState === 0) {
                         // ajax request is aborted.
                         return;
@@ -41,13 +39,13 @@ var core = (function($) {
             }
 
             // set href for button.
-            $("button[data-href]").click(function() {
+            $("button[data-href]").click(function () {
                 location.href = core.resolveUrl($(this).attr("data-href"));
             });
 
             // handle click in iframe.
             if ($('#frmMain').length === 0) {
-                $('html').on('click', function() {
+                $('html').on('click', function () {
                     parent.$('#frmMain').trigger('click');
                 });
             }
@@ -58,13 +56,13 @@ var core = (function($) {
             }
             if ($.fn.fanexGrid) {
                 $.fn.fanexGrid.defaults.language = language.getSelectedLanguage();
-                $.fn.fanexGrid.defaults.timeZone = CORE.ServerUtcOffset;
+                $.fn.fanexGrid.defaults.timeZone = core.ServerUtcOffset;
             }
 
             // handle tooltip.
-            $(document).click(function(e) {
+            $(document).click(function (e) {
                 if ($().tooltip) {
-                    $('.tooltip').prev().each(function(index, element) {
+                    $('.tooltip').prev().each(function (index, element) {
                         if (element === e.target) {
                             return;
                         }
@@ -82,20 +80,20 @@ var core = (function($) {
             // Override the fanexGrid
             var fanexGridOrigin = jQuery.fn.fanexGrid;
             if (fanexGridOrigin !== undefined) {
-                jQuery.fn.fanexGrid = function() {
+                jQuery.fn.fanexGrid = function () {
                     jQuery.fn.fanexGrid = fanexGridOrigin;
                     return fanexGridOrigin.apply(this, arguments);
                 };
             }
 
             // call if page is not in frame & not be a popup
-            if (window.parent.frmMain == undefined && window.parent.popup == undefined && !CORE.DisableRecheckIn) {
+            if (window.parent.frmMain === undefined && window.parent.popup === undefined && !core.DisableRecheckIn) {
                 setTimeout(function () { core.reCheckIn(); }, 1000);
             }
         },
-        initInstruction: function() {
+        initInstruction: function () {
             var containers = $('.instruction-container');
-            containers.each(function() {
+            containers.each(function () {
                 var $this = $(this),
                     thisId = $this.attr('id'),
                     title = $this.attr('title'),
@@ -113,22 +111,22 @@ var core = (function($) {
                             show: null,
                             hide: null
                         })
-                        .click(function() {
+                        .click(function () {
                             popup.openDialog($this, title, { modal: false, clickout: true, openid: $(this).attr('id') });
                             $('.ui-tooltip').remove();
                         });
                 }
             });
         },
-        reCheckIn: function() {
+        reCheckIn: function () {
             $.ajax({
-                    type: "POST",
-                    url: core.resolveUrl("~/Account/ReCheckIn"),
-                    dataType: "json",
-                    async: true,
-                    timeout: 120000
-                })
-                .done(function(result) {
+                type: "POST",
+                url: core.resolveUrl("~/Account/ReCheckIn"),
+                dataType: "json",
+                async: true,
+                timeout: 120000
+            })
+                .done(function (result) {
                     if (result.ErrCode !== 0) {
                         if (result.Reload) {
                             location.reload();
@@ -142,7 +140,7 @@ var core = (function($) {
                     }
                 });
         },
-        resolveUrl: function(url) {
+        resolveUrl: function (url) {
             var urlRoot = core.UrlRoot;
             if (url.substr(0, 2) === '~/') {
                 url = url.substr(2);
@@ -153,7 +151,7 @@ var core = (function($) {
             return urlRoot + url;
         },
         console: {
-            write: function(msg, consoleFunc) {
+            write: function (msg, consoleFunc) {
                 if (typeof console !== 'undefined' && !core.detectBrowser().msie) {
                     consoleFunc(msg);
                 }
@@ -163,7 +161,7 @@ var core = (function($) {
             warn: function (msg) { core.console.write(msg, console.warn); },
             error: function (msg) { core.console.write(msg, console.error); }
         },
-        detectBrowser: function() {
+        detectBrowser: function () {
             var matchedBrowser, browserDectect;
 
             // Use of jQuery.browser is frowned upon.
@@ -201,7 +199,7 @@ var core = (function($) {
             }
             return browserDectect;
         },
-        blockUI: function() {
+        blockUI: function () {
             if ($('.block-overlay').length === 0) {
                 $('body').append('<div class="block-overlay"></div>');
                 $('body').append('<div class="block-loading"></div>');
@@ -210,11 +208,11 @@ var core = (function($) {
             $('.block-overlay').show();
             $('.block-loading').show();
         },
-        unblockUI: function() {
+        unblockUI: function () {
             $('.block-overlay').hide();
             $('.block-loading').hide();
         },
-        getGridColumnId: function(gridOptions, columnName) {
+        getGridColumnId: function (gridOptions, columnName) {
             var length = gridOptions.columns.length;
             for (var i = 0; i < length; i++) {
                 var column = gridOptions.columns[i];
@@ -224,7 +222,7 @@ var core = (function($) {
             }
             return -1;
         },
-        genGridRows: function(list, options) {
+        genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
             var tdCssClass = options.tdCssClass;
@@ -273,7 +271,7 @@ var core = (function($) {
             return {
                 Name: colName,
                 Value: (numberColumn === colIndex) ? rowIndexValue : record[colName],
-                CustomCellRender: function(cell, cellFormated) {
+                CustomCellRender: function (cell, cellFormated) {
                     if (col.Formatter) {
                         return col.Formatter(rIndex, rowData, cell, cellFormated);
                     } else {
@@ -283,7 +281,7 @@ var core = (function($) {
                 TdClass: tdCssClass ? tdCssClass(rowIndex, colName, record) : undefined
             };
         },
-        genGridTotalRows: function(bodyRows, gridOptions) {
+        genGridTotalRows: function (bodyRows, gridOptions) {
             if (gridOptions.footerRows) {
                 var columns = gridOptions.footerRows[0].Columns;
                 var length = columns.length;
@@ -303,7 +301,7 @@ var core = (function($) {
             }
             return undefined;
         },
-        resizeHeightDataGrid: function(gridOptions) {
+        resizeHeightDataGrid: function (gridOptions) {
             var colHeight = $("#gridId").attr('colHeight'),
                 expHeight = $("#gridId").attr('expHeight');
             if ($(".search-form").is(":visible")) {
@@ -313,17 +311,17 @@ var core = (function($) {
             }
             return gridOptions;
         },
-        scrollTop: function() {
+        scrollTop: function () {
             $("html, body").animate({ scrollTop: 0 }, "fast");
         },
-        scrollTo: function(element) {
+        scrollTo: function (element) {
             var viewportHeight = $(window).height(),
                 $element = $(element),
                 elHeight = $element.height(),
                 elOffset = $element.offset();
             $("html, body").animate({ scrollTop: elOffset.top + (elHeight / 2) - (viewportHeight / 2) }, "fast");
         },
-        isScrolledIntoView: function(elem) {
+        isScrolledIntoView: function (elem) {
             var docViewTop = $(window).scrollTop();
             var docViewBottom = docViewTop + $(window).height();
             var elemTop = $(elem).offset().top;
@@ -334,25 +332,24 @@ var core = (function($) {
             var regex = new RegExp(/^true$/i);
             return regex.test(value);
         },
-        showErrorMsg: function(msg) {
+        showErrorMsg: function (msg) {
             var msgWrp = $('.validation-summary-valid');
             msgWrp.show();
             msgWrp.addClass('validation-summary-errors')
                 .find('li:first').html(msg).show();
         },
-        showSuccessMsg: function(msg) {
+        showSuccessMsg: function (msg) {
             var msgWrp = $('.validation-summary-valid');
             msgWrp.show();
-            msgWrp.addClass('success')
-                .find('li:first').html(msg).show();
+            msgWrp.addClass('success').find('li:first').html(msg).show();
         },
-        getParameterByName: function(name) {
+        getParameterByName: function (name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
             return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         },
-        removeURLParameter: function(url, parameter) {
+        removeURLParameter: function (url, parameter) {
             //prefer to use l.search if you have a location/link object
             var urlparts = url.split('?');
             if (urlparts.length >= 2) {
@@ -360,7 +357,7 @@ var core = (function($) {
                 var pars = urlparts[1].split(/[&;]/g);
 
                 //reverse iteration as may be destructive
-                for (var i = pars.length; i-- > 0;) {
+                for (var i = pars.length; i-- > 0; ) {
                     //idiom for string.startsWith
                     if (pars[i].lastIndexOf(prefix, 0) !== -1) {
                         pars.splice(i, 1);
@@ -373,26 +370,26 @@ var core = (function($) {
                 return url;
             }
         },
-        reload: function(timeout) {
+        reload: function (timeout) {
             if (timeout === undefined) {
                 timeout = core.RELOAD_INTERVAL;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 window.parent.location.href = core.UrlRoot;
             }, timeout);
         },
-        reloadPage: function(timeout) {
+        reloadPage: function (timeout) {
             if (timeout === undefined) {
                 timeout = core.RELOAD_INTERVAL;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, timeout);
         },
-        submitPage: function() {
+        submitPage: function () {
             $('button[type=submit]').submit();
         },
-        formatCustomerName: function(firstName, lastName) {
+        formatCustomerName: function (firstName, lastName) {
             if (firstName && lastName) {
                 return '{0} {1}'.format(firstName, lastName);
             }
@@ -401,7 +398,7 @@ var core = (function($) {
             }
             return core.EMPTY_TEXT_FORMAT;
         },
-        handleError: function(data) {
+        handleError: function (data) {
             if (data && data.ErrCode) {
                 if (data.ErrCode === -3) {
                     // UM
@@ -421,7 +418,7 @@ var core = (function($) {
             alert('Your request is temporarily cannot be processed, please try again later!');
         }
     };
-}(jQuery));
+} (jQuery));
 
 $(function () {
     'use strict';

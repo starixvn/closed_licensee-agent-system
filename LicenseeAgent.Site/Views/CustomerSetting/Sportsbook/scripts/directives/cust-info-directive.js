@@ -2,11 +2,10 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-'use strict';
-
 if (fanex.customerSetting) {
     // An agent edit another agent in the simple mode
     fanex.customerSetting.directive('uniqueUserName', ['$timeout', 'fanex.customerSetting.custInfoService', function ($timeout, custInfoService) {
+        'use strict';
         return {
             require: 'ngModel',
             restrict: 'A',

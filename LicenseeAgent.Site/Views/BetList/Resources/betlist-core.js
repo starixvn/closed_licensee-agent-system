@@ -1,5 +1,7 @@
 ﻿/*global popup, language, core*/
+/* exported OpenIPInfo, showMP, showCombMP, ViewResult */
 /*jshint -W079 */
+"use strict";
 
 var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";
 var showBetListDetailsUrl = "~/BetList/Details?transId=";
@@ -7,21 +9,20 @@ var showBetListResultsUrl = "~/BetList/Results";
 var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 
 function OpenIPInfo(ipstring) {
-    /*jshint strict:false */
     fanex.betlist.core.getIpInformation(ipstring);
 }
 
 function showMP(transId) {
-    /*jshint strict:false */
     var divEvent = $('#divEvent_' + transId);
     fanex.betlist.core.showMixParlayDetails(transId, divEvent);
 }
 
 function showCombMP(transId, index) {
-    /*jshint strict:false */
     var divEvent = $('#divEvent_' + transId + "" + index);
     fanex.betlist.core.showMixParlayDetails(transId, divEvent);
 }
+
+var ViewResult = fanex.betlist.core.showResults;
 
 var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
@@ -178,6 +179,3 @@ fanex.betlist.core = {
         });
     }
 };
-
-/*jshint unused: false*/
-var ViewResult = fanex.betlist.core.showResults;

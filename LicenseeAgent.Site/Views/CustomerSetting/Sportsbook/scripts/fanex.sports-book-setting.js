@@ -1,9 +1,12 @@
 ﻿/// <reference path="../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../libs/angular.js" />
 /// <reference path="../../../../Views/Home/Index.cshtml" />
-/*jshint -W079 */
 
-var fanex = fanex || {};
+/*global fanex: true*/
+
+'use strict';
+
+fanex = fanex || {};
 
 fanex.customerSetting = angular.module('fanex.customerSetting', ['fanex.angular']);
 
@@ -23,7 +26,6 @@ fanex.customerSetting.Role = {
 };
 
 fanex.customerSetting.filter('numberOnly', function(input) {
-    'use strict';
     input += 0;
     return input;
 });

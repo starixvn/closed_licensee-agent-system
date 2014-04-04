@@ -19,6 +19,8 @@ namespace LicenseeAgent.CreditBalance.ViewModels
 
         public string AgentName { get; set; }
 
+        public int AgentLevel { get; set; }
+
         public decimal? MaxCreditOutput { get; set; }
 
         public decimal MinCreditOutput { get; set; }

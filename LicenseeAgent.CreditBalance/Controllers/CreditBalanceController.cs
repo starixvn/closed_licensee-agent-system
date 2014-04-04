@@ -21,6 +21,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.
@@ -134,7 +135,11 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 return RedirectToAccessDeniedPage();
             }
 
-            if (SessionManager.CurrentSession.AgentInfo.IsLevel0)
+            var isAgentLevel0 = editAgentCreditViewModel.AgentLevel == 0
+                                ? SessionManager.CurrentSession.AgentInfo.IsLevel0
+                                : ModelHelper.IsAgentLevel0(editAgentCreditViewModel.AgentLevel);
+
+            if (isAgentLevel0)
             {
                 var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
                 {

@@ -232,9 +232,10 @@
             }
             $("#downlineContent").getNiceScroll().resize();
         },
-        editAgentCredit: function (agentId, agentName, givenCredit) {
-            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}&isAccountInfo=true'.format(agentId, agentName, givenCredit);
-            frmMain.POPUP.openDialogFrame(url, { width: 428, height: 200 });
+        editAgentCredit: function (agentId, agentName, agentLevel, givenCredit) {
+            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}&agentLevel={3}&isAccountInfo=true';
+            var urlFormat = url.format(agentId, agentName, givenCredit, agentLevel)
+            frmMain.POPUP.openDialogFrame(urlFormat, { width: 428, height: 200 });
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {
             var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}&isAccountInfo=true'.format(custId, custName, givenCredit);

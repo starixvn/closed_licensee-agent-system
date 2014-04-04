@@ -219,13 +219,10 @@
                     }
                 }
                 if (isSuccess) {
-                    if (!POPUP.close()) {
-                        setTimeout(function () {
-                            var orginalUrl = CORE.removeURLParameter(CORE.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
-                            var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
-                            location.href = url;
-                        }, CORE.RELOAD_INTERVAL);
-                    }
+                    var orginalUrl = CORE.removeURLParameter(CORE.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
+                    var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
+                    location.href = url;
+                    return;
                 }
 
                 $('.messages').show();
@@ -244,8 +241,12 @@
 
         $('#custSetting').show();
 
-        var messages = decodeMessages(CORE.getParameterByName('messages'));
-        $scope.Messages = messages;
+        var messagesQueryString = CORE.getParameterByName('messages');
+        if (messagesQueryString !== '') {
+            var messages = decodeMessages(messagesQueryString);
+            $scope.Messages = messages;
+            POPUP.close();
+        }
 
         CORE.unblockUI();
     } ]);

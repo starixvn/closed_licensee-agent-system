@@ -21,8 +21,6 @@ function showCombMP(transId, index) {
     fanex.betlist.core.showMixParlayDetails(transId, divEvent);
 }
 
-var ViewResult = fanex.betlist.core.showResults;
-
 var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
 fanex.betlist.core = {
@@ -178,3 +176,5 @@ fanex.betlist.core = {
         });
     }
 };
+
+var ViewResult = fanex.betlist.core.showResults;

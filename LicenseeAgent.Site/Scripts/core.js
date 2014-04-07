@@ -112,7 +112,7 @@ var core = (function ($) {
                             hide: null
                         })
                         .click(function () {
-                            popup.openDialog($this, title, { modal: false, clickout: true, openid: $(this).attr('id') });
+                            popup.openDialog($this, title, { width: $($this).width(), height: $($this).height() + 50 });
                             $('.ui-tooltip').remove();
                         });
                 }

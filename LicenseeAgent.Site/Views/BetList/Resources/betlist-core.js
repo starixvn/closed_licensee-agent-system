@@ -50,7 +50,7 @@ fanex.betlist.core = {
             success: function (data) {
                 if (data != null) {
                     var height = 220;
-                    var width = 400;
+                    var width = 420;
                     var details = '<div class=\"instruction-content\">' + data + '</div>';
                     popup.openDialog(details, language.getString("IpInformation"),
                                      { width: width, height: height, modal: false, clickout: true, openid: $(this).attr('id') });

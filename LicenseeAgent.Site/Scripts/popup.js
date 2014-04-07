@@ -8,8 +8,11 @@ var popup = (function ($) {
     return {
         openDialog: function (content, title, options) {
             var target = $('#app-modal-dialog');
-            var htmlBody = content.clone();
-            htmlBody.show();
+            var htmlBody = jQuery.type(content) === "string" ? content : content.clone();
+            if (jQuery.type(content) !== "string") {
+                htmlBody.show();
+            }
+
             if (target.length === 0) {
                 target = $('<div id="app-modal-dialog" class="modal hide fade" tabindex="-1" role="dialog"></div>');
                 var header = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" ' +

@@ -48,7 +48,7 @@
                             </a>
                         </li>
                     }
-                    @if (pageContext.IsAdmin && !pageContext.IsMember && Model.Customer.Status == (int)AccountStatus.Open)
+                    @if (pageContext.IsAdmin && !pageContext.IsMember)
                     {
                         <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>

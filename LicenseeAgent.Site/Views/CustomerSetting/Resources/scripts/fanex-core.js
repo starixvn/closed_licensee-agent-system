@@ -1,7 +1,6 @@
 ﻿/* File Created: October 21, 2013 */
 /*jshint freeze:false */
-/*global core */
-/*jshint -W079 */
+/*global core, fanex:true */
 
 'use strict';
 

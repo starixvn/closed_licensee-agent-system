@@ -1,5 +1,4 @@
-﻿/*global core, language*/
-/*jshint -W079 */
+﻿/*global core, language, fanex:true*/
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },

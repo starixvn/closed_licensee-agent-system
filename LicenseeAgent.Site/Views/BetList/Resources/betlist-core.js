@@ -1,6 +1,5 @@
-﻿/*global popup, language, core*/
+﻿/*global popup, language, core, fanex:true*/
 /* exported OpenIPInfo, showMP, showCombMP, ViewResult */
-/*jshint -W079 */
 "use strict";
 
 var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid=";

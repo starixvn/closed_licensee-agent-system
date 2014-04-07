@@ -211,20 +211,19 @@ var outstandingReport = (function ($) {
                 outstandingReport.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN, [9]);
             }
             else {
-                breadcrumb += agentId + ')" class="link-disable">' + agentName + '</a>';
                 agentIdLevelN = agentId;
                 outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
                 outstandingReport.createBreadcrumb(agentId, agentName, false);
             } else {
-                outstandingReport.createBreadcrumb(agentId, agentName, true);   
+                outstandingReport.createBreadcrumb(agentId, agentName, true);
             }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
             outstandingReport.outstandingDrilldown(agentName, agentId);
         },
-        createBreadcrumb: function(agentId, agentName, isDownline) {
+        createBreadcrumb: function (agentId, agentName, isDownline) {
             var index,
                 numberAgent = breadCrumbItems.length - 1,
                 breadCrumbHtml = '',
@@ -246,7 +245,7 @@ var outstandingReport = (function ($) {
 
             numberAgent = breadCrumbItems.length - 1;
             if (numberAgent > 0) {
-                for (index = 0; index < numberAgent; index ++) {
+                for (index = 0; index < numberAgent; index++) {
                     breadCrumbHtml += '<li><a onclick="javascript:outstandingReport.breadcrumbDrilldown(\''
                         + breadCrumbItems[index].agentName + '\','
                         + breadCrumbItems[index].agentId + ');" href="#">'

@@ -25,19 +25,9 @@ namespace LicenseeAgent.Web.Controllers
         /// Return Index page.
         /// </returns>
         [HttpGet]
-        public ActionResult Index(string act)
+        public ActionResult Index()
         {
             var topMenu = TopMenu.Home;
-            if (!string.IsNullOrEmpty(act))
-            {
-                switch (act.ToLower())
-                {
-                    case "changepassword":
-                        topMenu = TopMenu.Security;
-                        break;
-                }
-            }
-
             var isAgentChangePassword = CurrentSession.IsAgentChangePassword();
             if (isAgentChangePassword)
             {

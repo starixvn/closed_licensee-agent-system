@@ -113,27 +113,6 @@ namespace LicenseeAgent.Site
                 "~/scripts/jquery-validate/jquery.validate.js",
                 "~/scripts/jquery-validate/jquery.validate.unobtrusive.js",
                 "~/scripts/jquery-form/jquery.form.min.js"));
-
-            // Jquery UI
-            bundles.Add(new ScriptBundle("~/js/jqueryui").Include(
-                "~/scripts/jquery-ui/jquery.ui.core.js",
-                "~/scripts/jquery-ui/jquery.ui.widget.js",
-                "~/scripts/jquery-ui/jquery.ui.mouse.js",
-                "~/scripts/jquery-ui/jquery.ui.position.js",
-                "~/scripts/jquery-ui/jquery.ui.draggable.js",
-                "~/scripts/jquery-ui/jquery.ui.droppable.js",
-                "~/scripts/jquery-ui/jquery.ui.resizable.js",
-                "~/scripts/jquery-ui/jquery.ui.selectable.js",
-                "~/scripts/jquery-ui/jquery.ui.sortable.js",
-                "~/scripts/jquery-ui/jquery.ui.button.js",
-                "~/scripts/jquery-ui/jquery.ui.dialog.js",
-                "~/scripts/clickout/jquery.clickout.js"));
-            bundles.Add(new LessBundle("~/css/jqueryui").Include(
-                "~/content/jquery-ui/jquery.ui.core.css",
-                "~/content/jquery-ui/jquery.ui.theme.css",
-                "~/content/jquery-ui/jquery.ui.resizable.css",
-                "~/content/jquery-ui/jquery.ui.button.css",
-                "~/content/jquery-ui/jquery.ui.dialog.css"));
         }
 
         /// <summary>

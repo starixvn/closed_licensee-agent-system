@@ -1,4 +1,4 @@
-﻿/*global appSettings, fanexGridLanguage, fanexGridCurrentLanguage:true, Las_en_US*/
+﻿/*global appSettings, core, fanexGridLanguage, fanexGridCurrentLanguage:true, Las_en_US*/
 
 var language = (function($) {
     'use strict';
@@ -30,7 +30,7 @@ var language = (function($) {
             $.ajax({
                     type: "POST",
                     data: $.param(data),
-                    url: $('.icon-language-arrow').data('href'),
+                    url: core.resolveUrl('~/Account/ChangeLanguage'),
                     dataType: "json",
                     async: false,
                     timeout: 20000

@@ -2,13 +2,13 @@
 
 .flag(@index)
 {
-    background-position: -@index*@flagIconWidth 3px;
+    background-position: -@index*@flagIconWidth 0px;
 }
 
-[class^="icon-flag-"],[class*=" icon-flag-"] {
+[class^="flag-"],[class*=" flag-"] {
     display: inline-block;
     width: @flagIconWidth;
-    height: 24px;
+    height: 18px;
     margin-right: 5px;
     vertical-align: middle;
     background: url(../images/flags.png);
@@ -16,37 +16,37 @@
     background-repeat: no-repeat;
 }
 
-.icon-flag-en-US
+.flag-en-US
 {
     .flag(0);
 }
 
-.icon-flag-zh-TW
+.flag-zh-TW
 {
     .flag(1);
 }
 
-.icon-flag-zh-CN
+.flag-zh-CN
 {
     .flag(2);
 }
 
-.icon-flag-ja-JP
+.flag-ja-JP
 {
     .flag(3);
 }
 
-.icon-flag-ko-KR
+.flag-ko-KR
 {
     .flag(4);
 }
 
-.icon-flag-th-TH
+.flag-th-TH
 {
     .flag(5);
 }
 
-.icon-flag-vi-VN
+.flag-vi-VN
 {
     .flag(6);
 }
@@ -58,7 +58,8 @@
     #nav 
     {
         margin: 0; 
-        padding: 0; 
+        padding: 0;
+        width: 48px;
         padding-top: 20px;
         line-height: normal;
         height: 24px;
@@ -68,31 +69,26 @@
         {
             display: block; 
             border: solid 1px white;
+            padding: 4px;
             position: relative;
             z-index: 10;
             cursor: pointer;
 
-            &.icon-language-arrow
-            {
-                background-image: url("../images/login/sprite.png") !important;
-                background-position: 32px 7px;
-                background-repeat: no-repeat;
-                width: 48px;
-                height: 24px;
-            }
-
             a
             {
-                display: block; 
-                margin-left: 5px;
+                i.icon-language-arrow
+                {
+                    margin-left: 30px;
+                }
             }
         }
 
         ul
         {
             position:absolute; 
-            right:0; 
-            margin-top: 2px;
+            right: -2px;
+            margin: 0;
+            margin-top: 5px;
             background-color: white;
             border: solid 1px #bf4c4c;
             display: none; 

@@ -11,12 +11,12 @@
                 <div class="title">@Las.SignIn</div>
                 <div class="language">
                     <ul id="nav">
-                        <li class="icon-language-arrow" data-href="@Url.Action("ChangeLanguage", "Account")">
-                            <a href="#" class="@string.Format("icon-flag-{0}", Model.Language)"></a>
+                        <li><a href="#" class="@string.Format("flag-{0}", Model.Language)"><i class="icon-language-arrow">
+                        </i></a>
                             <ul id="languages">
                                 @foreach (var language in ModelSettings.Languages)
                                 {
-                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("icon-flag-{0}", language.Value)">
+                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("flag-{0}", language.Value)">
                                     </i>
                                         @language.Text
                                     </a></li>
@@ -47,21 +47,12 @@
         @Html.ValidationSummary()
     }
 </div>
-@if (ViewBag.Result != null)
-{
-    var result = (LicenseeAgent.Account.ViewResults.SignInViewResult)ViewBag.Result;
-    <div id="dialog-confirm" title="@Las.PasswordAlert" data-href="@Url.Action("Index", "Home")">
-        <p>
-            @result.Message
-        </p>
-    </div>
-}
 @section scripts{
     @if (ViewBag.Result != null)
     {
         var result = (LicenseeAgent.Account.ViewResults.SignInViewResult)ViewBag.Result;
         <script type="text/javascript">
-            logIn.showAlert(@result.IsConfirm.ToString().ToLower(), "@Las.ChangePassword");
+            logIn.showPasswordAlert('@result.Message');
         </script>
     }
 }

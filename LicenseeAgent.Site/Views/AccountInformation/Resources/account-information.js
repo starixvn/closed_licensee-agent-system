@@ -1,4 +1,4 @@
-﻿/*global core, internalHeader */
+﻿/*global core, language, popup, internalHeader */
 
 var accountInformation = (function ($) {
     'use strict';
@@ -174,31 +174,23 @@ var accountInformation = (function ($) {
         },
         //show alert when search username exist in another currency
         showCurrencyAlert: function (currencyId, currencyName, msgQuestion, msgAlert) {
-            var buttons = [];
-            buttons.push({
-                text: 'YES',
-                click: function () {
+            var message = msgQuestion;
+            var title = language.getString('Attention');
+            var buttons = [{
+                label: language.getString('Yes'),
+                action: function () {
+                    popup.closeModal();
                     accountInformation.changeCurrencyPage(currencyId, currencyName);
-                    accountInformation.closeDialog();
                 }
-            });
-            buttons.push({
-                text: 'NO',
-                click: function () {
+            }, {
+                label: language.getString('No'),
+                action: function () {
+                    popup.closeModal();
                     accountInformation.showNoUserAlert(msgAlert);
-                    accountInformation.closeDialog();
                 }
-            });
-            $('#dialog-confirm').find('p').html(msgQuestion);
-            $("#dialog-confirm").dialog({
-                resizable: false,
-                width: 400,
-                modal: true,
-                buttons: buttons
-            });
-        },
-        closeDialog: function () {
-            $('#dialog-confirm').dialog('close');
+            }];
+
+            popup.confirm(message, title, buttons);
         },
         //change currency site
         changeCurrencyPage: function (currencyId) {

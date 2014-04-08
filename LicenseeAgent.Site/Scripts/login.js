@@ -1,4 +1,4 @@
-﻿/*global core */
+﻿/*global core, language, popup */
 
 var logIn = (function ($) {
     'use strict';
@@ -35,32 +35,19 @@ var logIn = (function ($) {
                 element.focus();
             }, 1);
         },
-        showAlert: function (isConfirm, confirmButtonText) {
-            var buttons = [];
-            buttons.push({
-                text: confirmButtonText,
-                click: function () {
-                    logIn.redirect(true);
+        showPasswordAlert: function (message) {
+            var title = language.getString('PasswordAlert');
+            var buttons = [{
+                label: language.getString('ChangePassword'),
+                action: function () {
+                    logIn.gotoHome();
                 }
-            });
+            }];
 
-            $("#dialog-confirm").dialog({
-                resizable: false,
-                width: 400,
-                modal: true,
-                buttons: buttons,
-                /*jshint unused:false*/
-                close: function (event, ui) {
-                    logIn.redirect(false);
-                }
-            });
+            popup.confirm(message, title, buttons, logIn.gotoHome);
         },
-        redirect: function (isChangePassword) {
-            var url = $("#dialog-confirm").data('href');
-            if (isChangePassword) {
-                url += '?act=ChangePassword';
-            }
-            window.location.href = url;
+        gotoHome: function () {
+            window.location.href = core.resolveUrl('~/');
         }
     };
 } (jQuery));

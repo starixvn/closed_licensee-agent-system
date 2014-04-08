@@ -4,8 +4,89 @@
 
 var popup = (function ($) {
     var currentOpenDialog = null;
-
     return {
+        createModal: function (id) {
+            var modal = $('#{0}'.format(id));
+            if (modal.length === 0) {
+                modal = $('<div id="{0}" class="modal fade" tabindex="-1"></div>'.format(id));
+            }
+            else {
+                modal.html('');
+            }
+            var modalDialog = $('<div class="modal-dialog"></div>');
+            modal.append(modalDialog);
+            var modalContent = $('<div class="modal-dialog"></div>');
+            modalDialog.append(modalContent);
+            var modalHeader = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal"\
+             aria-hidden="true"></button><h3></h3></div>');
+            var modalBody = $('<div class="modal-body"></div>');
+            var modalFooter = $('<div class="modal-footer"></div>');
+            modalContent.append(modalHeader);
+            modalContent.append(modalBody);
+            modalContent.append(modalFooter);
+            this.$modal = modal;
+            return modal;
+        },
+        setModalTitle: function (title) {
+            this.$modal.find('.modal-header h3').text(title);
+        },
+        setModalBody: function (content) {
+            this.$modal.find('.modal-body').text(content);
+        },
+        addFooterButton: function (button) {
+            var $button = $('<button class="btn"></button>');
+
+            // Label
+            if (typeof button.label !== undefined) {
+                $button.append(button.label);
+            }
+
+            // Css class
+            if (typeof button.cssClass !== undefined && $.trim(button.cssClass) !== '') {
+                $button.addClass(button.cssClass);
+            } else {
+                $button.addClass('btn-primary');
+            }
+
+            // Button on click
+            $button.on('click', { dialog: this, $button: $button, button: button }, function (event) {
+                var dialog = event.data.dialog;
+                var $button = event.data.$button;
+                var button = event.data.button;
+                if (typeof button.action === 'function') {
+                    button.action.call($button, dialog);
+                }
+            });
+
+            this.$modal.find('.modal-footer').append($button);
+
+            return $button;
+        },
+        showModal: function () {
+            this.$modal.modal();
+        },
+        closeModal: function () {
+            this.$modal.modal('hide');
+            this.$modal.remove();
+        },
+        confirm: function (content, title, buttons, onHide) {
+            var $modal = this.createModal('confirm-dialog');
+            this.setModalTitle(title);
+            this.setModalBody(content);
+
+            var $this = this;
+            if (buttons) {
+                $.each(buttons, function (index, button) {
+                    $this.addFooterButton(button);
+                });
+            }
+
+            if (onHide) {
+                $modal.on('hide', onHide);
+            }
+
+            this.showModal();
+        },
         openDialog: function (content, title, options) {
             var target = $('#app-modal-dialog');
             var htmlBody = jQuery.type(content) === "string" ? content : content.clone();

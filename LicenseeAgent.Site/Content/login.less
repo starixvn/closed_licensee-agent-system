@@ -49,7 +49,7 @@ body
                 margin-left: 10px;
                 .control-group
                 {
-                    padding-bottom: 28px;
+                    margin-bottom: 28px;
                     height: 42px;
 
                     #Username, #Password
@@ -76,22 +76,8 @@ body
                     #reload
                     {
                         float: left;
-                        .icon-captcha-reload
-                        {
-                            width: 24px;
-                            height: 32px;
-                            display: inline-block;
-                            background-image: url("../images/login/sprite.png");
-                            background-repeat: no-repeat;
-                            background-position: -11px 5px;
-                        }
-                        &:hover
-                        {
-                            .icon-captcha-reload
-                            {
-                                background-position: -30px 5px;
-                            }
-                        }
+                        width: 28px;
+                        height: 32px;
                     }
                 }
 
@@ -129,7 +115,9 @@ body
     }
 }
 
-input
+input[type="text"],
+input[type="password"],
+textarea
 {
     padding: 8px 0;
     height: 16px;
@@ -137,9 +125,10 @@ input
     background-color:transparent;
     border: 0px solid;
     .placeholder(#acacac);
-}
-
-textarea:focus, input:focus
-{
-    outline: 0;
+    &:focus
+    {
+        border-color: transparent;
+        outline: 0;
+        .box-shadow(none);
+    }
 }

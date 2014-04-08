@@ -302,42 +302,35 @@ var customerList = (function ($) {
             });
         },
         showAlert: function (target, custId, statusId) {
-            var buttons = [];
-            buttons.push({
-                text: 'YES',
-                click: function () {
-                    customerList.closeDialog();
-                    customerList.updateStatus(target, custId, statusId);
-                }
-            });
-            buttons.push({
-                text: 'NO',
-                click: function () {
-                    customerList.closeDialog();
-                }
-            });
+            var message = '';
             if (statusId === statusObj.Close) {
                 if (pageContext.IsLastLevel) {
-                    $('#dialog-confirm').find('p').html(msg.OpenToCloseMember);
+                    message = language.getString('ChangeStatusMember');
                 } else {
-                    $('#dialog-confirm').find('p').html(msg.OpenToCloseAgent);
+                    message = language.getString('ChangeStatusAgent');
                 }
             } else {
                 if (pageContext.IsLastLevel) {
-                    $('#dialog-confirm').find('p').html(msg.CloseToOpenMember);
+                    message = language.getString('ChangeCloseToOpenMember');
                 } else {
-                    $('#dialog-confirm').find('p').html(msg.CloseToOpenAgent);
+                    message = language.getString('ChangeCloseToOpenAgent');
                 }
             }
-            $("#dialog-confirm").dialog({
-                resizable: false,
-                width: 400,
-                modal: true,
-                buttons: buttons
-            });
-        },
-        closeDialog: function () {
-            $('#dialog-confirm').dialog('close');
+            var title = language.getString('ChangeStatus');
+            var buttons = [{
+                label: language.getString('Yes'),
+                action: function () {
+                    popup.closeModal();
+                    customerList.updateStatus(target, custId, statusId);
+                }
+            }, {
+                label: language.getString('No'),
+                action: function () {
+                    popup.closeModal();
+                }
+            }];
+
+            popup.confirm(message, title, buttons);
         },
         getIpInformation: function (ipAddress) {
             $.ajax({

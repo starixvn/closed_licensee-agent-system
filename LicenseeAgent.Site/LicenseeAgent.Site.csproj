@@ -266,7 +266,6 @@
     <Content Include="Content\Results\images\tab_topbg.gif" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
-    <Content Include="Images\login\sprite.png" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ja-JP.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ko-KR.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.th-TH.js" />

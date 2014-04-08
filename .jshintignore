@@ -1,7 +1,6 @@
 **/Scripts/AngularJS
 **/Scripts/autoNumeric
 **/Scripts/bootstrap
-**/Scripts/clickout
 **/Scripts/contextmenu
 **/Scripts/cookie
 **/Scripts/dotdotdot
@@ -10,12 +9,10 @@
 **/Scripts/HeadJS
 **/Scripts/jquery
 **/Scripts/jquery-form
-**/Scripts/jquery-ui
 **/Scripts/jquery-validate
 **/Scripts/moment-datepicker
 **/Scripts/MomentJS
 **/Scripts/MonthPicker
-**/Scripts/ng-grid
 **/Scripts/placeholder
 **/Scripts/refresh.countdown
 **/Scripts/Results

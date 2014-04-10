@@ -38,18 +38,9 @@
             <li class="divider"></li>
             <li><a class="tree-toggler nav-header">@Las.CustomerInformation</a>
                 <ul class="nav nav-list tree" style="display: none">
-                    @if (SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel)
-                    {
-                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "CustomerSetting"))
-                        @BootstrapHelper.LeftMenu(Las.MemberList, Url.Action("Index", "CustomerList"))
-                        @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
-                    }
-                    else
-                    {
-                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
-                        @BootstrapHelper.LeftMenu(Las.AgentList, Url.Action("Index", "CustomerList"))
-                        @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
-                    }
+                    @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.NewMember : Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
+                    @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.MemberList : Las.AgentList, Url.Action("Index", "CustomerList"))
+                    @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
                 </ul>
             </li>
             @*@if (AppSettings.LocalTest && AppSettings.IsAdminSite)

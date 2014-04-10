@@ -1,37 +1,115 @@
 ﻿/*global core */
 /*exported popup*/
-'use strict';
 
-var popup = (function ($) {
-    var currentOpenDialog = null;
-    return {
-        createModal: function (id) {
-            var modal = $('#{0}'.format(id));
+(function ($) {
+    'use strict';
+
+    var Popup = function (options) {
+        this.options = $.extend({}, Popup.defaultOptions, options);
+    };
+
+    Popup.defaultOptions = {
+        title: null,
+        message: null,
+        buttons: [],
+        onHide: null,
+        autoDestroy: true,
+        draggable: false,
+        clickout: false,
+        top: 0, // auto-top
+        left: 0, //auto-left
+        width: 0, // auto-width
+        height: 0 // auto-height
+    };
+
+    Popup.defaultName = 'popup-dialog';
+    Popup.prototype = {
+        init: function () {
+            var modal = $('#{0}'.format(Popup.defaultName));
             if (modal.length === 0) {
-                modal = $('<div id="{0}" class="modal fade" tabindex="-1"></div>'.format(id));
+                modal = $('<div id="{0}" class="modal" tabindex="-1"></div>'.format(Popup.defaultName));
             }
             else {
                 modal.html('');
             }
             var modalDialog = $('<div class="modal-dialog"></div>');
             modal.append(modalDialog);
-            var modalContent = $('<div class="modal-dialog"></div>');
+            var modalContent = $('<div class="modal-content"></div>');
             modalDialog.append(modalContent);
             var modalHeader = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal"\
-             aria-hidden="true"></button><h3></h3></div>');
-            var modalBody = $('<div class="modal-body"></div>');
-            var modalFooter = $('<div class="modal-footer"></div>');
+             aria-hidden="true"></button><h3>&nbsp;</h3></div>');
+            var modalBody = $('<div class="modal-body">&nbsp;</div>');
             modalContent.append(modalHeader);
             modalContent.append(modalBody);
-            modalContent.append(modalFooter);
+
             this.$modal = modal;
-            return modal;
+
+            if (this.options.buttons.length > 0) {
+                var modalFooter = $('<div class="modal-footer"></div>');
+                modalContent.append(modalFooter);
+                var $this = this;
+                $.each(this.options.buttons, function (index, button) {
+                    $this.addButton(button);
+                });
+            }
+
+            if (this.options.onHide == null) {
+                modal.on('hidden', this.options.onHide);
+            }
+
+            if (this.options.autoDestroy) {
+                modal.on('hidden', function () {
+                    modal.remove();
+                });
+            }
+
+            return this;
         },
-        setModalTitle: function (title) {
+        showConfirm: function () {
+            this.init().setTitle(this.options.title).setBodyContent(this.options.message);
+            return this.show();
+        },
+        showFrame: function (url) {
+            this.init();
+            var iframe = $('<iframe id="popup" src="{0}" width="100%" height="100%" frameborder="0" border="0"/>'.format(url));
+            this.setBodyContent(iframe);
+            var modal = this.getModal();
+            modal.css('display', 'none');
+            $('body').append(modal);
+            core.blockUI();
+            var $this = this;
+            $(iframe).load(function () {
+                var popupDocument = document.getElementById("popup").contentDocument;
+                $(popupDocument).find('#mainContainer').addClass("popup");
+                var title = $(popupDocument).attr('title');
+                $this.setTitle(title).calculate().show();
+                core.unblockUI();
+            });
+
+            return this;
+        },
+        showContent: function () {
+            this.init().setTitle(this.options.title).setBodyContent(this.options.message).show().calculate();
+        },
+        getModal: function () {
+            return this.$modal;
+        },
+        setTitle: function (title) {
             this.$modal.find('.modal-header h3').text(title);
+            return this;
         },
-        setModalBody: function (content) {
-            this.$modal.find('.modal-body').text(content);
+        setBodyContent: function (content) {
+            this.$modal.find('.modal-body').html(content);
+            return this;
+        },
+        getModalBody: function () {
+            return this.$modal.find('.modal-body');
+        },
+        getModalHeader: function () {
+            return this.$modal.find('.modal-header');
+        },
+        getModalFooter: function () {
+            return this.$modal.find('.modal-footer');
         },
         addFooterButton: function (button) {
             var $button = $('<button class="btn"></button>');
@@ -58,164 +136,118 @@ var popup = (function ($) {
                 }
             });
 
-            this.$modal.find('.modal-footer').append($button);
-
+            this.getModalFooter().append($button);
             return $button;
         },
-        showModal: function () {
-            this.$modal.modal();
+        calculate: function () {
+            var modalBody = this.getModalBody();
+            var innerBody = modalBody.children();
+            if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
+                innerBody = innerBody.contents();
+            }
+            var width = this.options.width;
+            if (width === 0) {
+                width = innerBody.outerWidth();
+                var maxWidth = $(window).width() - 24;
+                width = Math.min(width, maxWidth);
+            }
+            var height = this.options.height;
+            if (height === 0) {
+                height = innerBody.outerHeight();
+                var maxHeight = $(window).height() - 24;
+                height = Math.min(height, maxHeight);
+            }
+            modalBody.css({
+                width: width,
+                height: height
+            });
+
+            var modal = this.getModal();
+            var left = this.options.left;
+            if (left === 0) {
+                left = ($(window).width() - modal.outerWidth()) / 2;
+            }
+            var top = this.options.top;
+            if (top === 0) {
+                if ($(window).height() > 2 * modal.outerHeight()) {
+                    top = 100;
+                }
+                else {
+                    top = ($(window).height() - modal.outerHeight()) / 2;
+                }
+            }
+            modal.css({
+                left: left,
+                top: top
+            });
+
+            return this;
         },
-        closeModal: function () {
+        show: function () {
+            if (this.options.clickout) {
+                this.$modal.modal();
+            }
+            else {
+                this.$modal.modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+            return this;
+        },
+        hide: function () {
+            this.$modal.modal('hide');
+            return this;
+        },
+        close: function () {
             this.$modal.modal('hide');
             this.$modal.remove();
-        },
-        confirm: function (content, title, buttons, onHide) {
-            var $modal = this.createModal('confirm-dialog');
-            this.setModalTitle(title);
-            this.setModalBody(content);
-
-            var $this = this;
-            if (buttons) {
-                $.each(buttons, function (index, button) {
-                    $this.addFooterButton(button);
-                });
-            }
-
-            if (onHide) {
-                $modal.on('hide', onHide);
-            }
-
-            this.showModal();
-        },
-        openDialog: function (content, title, options) {
-            var target = $('#app-modal-dialog');
-            var htmlBody = jQuery.type(content) === "string" ? content : content.clone();
-            if (jQuery.type(content) !== "string") {
-                htmlBody.show();
-            }
-
-            if (target.length === 0) {
-                target = $('<div id="app-modal-dialog" class="modal hide fade" tabindex="-1" role="dialog"></div>');
-                var header = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" ' +
-                                'data-toggle="modal" aria-hidden="true"></button><h3>Loading ...</h3></div>');
-                target.append(header);
-                var body = $('<div class="modal-body"></div>');
-                target.append(body);
-
-                target.find('.modal-body').html('<iframe class="loading" id="popup" src="' +
-                        '" width="100%" height="100%" frameborder="0" border="0">Test</iframe>');
-                var iframe = target.find('iframe');
-
-                $(iframe).load(function () {
-                    var popupDocument = document.getElementById("popup").contentDocument;
-                    $(popupDocument).find('#mainContainer').addClass("popup");
-                    $('.modal-header h3').html(title);
-                    $('.modal-body').html(htmlBody);
-                    $('#app-modal-dialog').css({ width: options.width,
-                        height: options.height,
-                        left: ($(window).width() - options.width) / 2 + 290
-                    });
-
-                    $('.modal-body').css({ width: 'auto',
-                        height: options.height - 50
-                    });
-                });
-            }
-
-            $('#app-modal-dialog').css({ width: options.width,
-                height: options.height,
-                left: ($(window).width() - options.width) / 2 + 290
-            });
-
-            $('.modal-body').css({ width: 'auto',
-                height: options.height - 50
-            });
-
-            $('.modal-header h3').html(title);
-            $('.modal-body').html(htmlBody);
-
-            currentOpenDialog = target.modal('show');
-            return currentOpenDialog;
-        },
-        openDialogFrame: function (url, options) {
-            url = core.resolveUrl(url);
-            var target = $('#app-modal-dialog');
-            if (target.length === 0) {
-                target = $('<div id="app-modal-dialog" class="modal hide fade" tabindex="-1" role="dialog" ' +
-                                'data-backdrop="static" data-keyboard="false"></div>');
-                var header = $('<div class="modal-header"><button type="button" class="close"  data-dismiss="modal"></button><h3>Loading ...</h3></div>');
-                target.append(header);
-                var body = $('<div class="modal-body"></div>');
-                target.append(body);
-            }
-            target.find('.modal-body').html('<iframe class="loading" id="popup" src="' +
-                        '" width="100%" height="100%" frameborder="0" border="0">Test</iframe>');
-            var iframe = target.find('iframe');
-            iframe.attr('src', url);
-            $(iframe).load(function () {
-                var popupDocument = document.getElementById("popup").contentDocument;
-                //update popup title
-                var popupTitle = popupDocument.title;
-                $('.modal-header h3').html(popupTitle);
-                //hide margin
-                $(popupDocument).find('#mainContainer').addClass("popup");
-                $('#app-modal-dialog').css({ width: options.width,
-                    height: options.height,
-                    left: ($(window).width() - options.width) / 2 + 290
-                });
-
-                $('.modal-body').css({ width: 'auto',
-                    height: options.height - 50
-                });
-            });
-
-            currentOpenDialog = target.modal('show');
-            return currentOpenDialog;
-        },
-        closeDialog: function (target) {
-            if (target === undefined) {
-                target = currentOpenDialog;
-            }
-            if (target != null) {
-                $('#app-modal-dialog').modal('hide');
-            }
-        },
-        resizeDialog: function (width, height) {
-            if (currentOpenDialog && currentOpenDialog.dialog("isOpen")) {
-                currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
-            }
-        },
-        setDialogHeight: function (target, height) {
-            target.dialog("option", "height", height);
-        },
-        openWindow: function (url) {
-            window.open(url, '_blank');
-            window.focus();
-        },
-        close: function (timeout) {
-            if (window.parent && window.parent.popup) {
-                if (timeout === undefined) {
-                    timeout = core.RELOAD_INTERVAL;
-                }
-                setTimeout(function () {
-                    window.parent.popup.closeDialog();
-                }, timeout);
-                return true;
-            }
-            return false;
-        },
-        closeAndReload: function (timeout) {
-            if (window.parent && window.parent.popup) {
-                if (timeout === undefined) {
-                    timeout = core.RELOAD_INTERVAL;
-                }
-                setTimeout(function () {
-                    window.parent.popup.closeDialog();
-                    window.parent.core.submitPage();
-                }, timeout);
-                return true;
-            }
-            return false;
+            return this;
         }
     };
-} (jQuery));
+
+    var popup = {};
+    popup.currentPopup = null;
+    popup.confirm = function (options) {
+        this.currentPopup = new Popup(options).showConfirm();
+    };
+
+    popup.openFrame = function (url, options) {
+        this.currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
+    };
+
+    popup.open = function (options) {
+        this.currentPopup = new Popup(options).showContent();
+    };
+
+    popup.close = function (timeout) {
+        if (window.parent && window.parent.popup) {
+            if (typeof timeout === 'undefined') {
+                timeout = core.RELOAD_INTERVAL;
+            }
+            setTimeout(function () {
+                if (window.parent.popup.currentPopup) {
+                    window.parent.popup.currentPopup.close();
+                }
+            }, timeout);
+            return true;
+        }
+        return false;
+    };
+
+    popup.closeAndReload = function (timeout) {
+        if (window.parent && window.parent.popup) {
+            if (typeof timeout === 'undefined') {
+                timeout = core.RELOAD_INTERVAL;
+            }
+            setTimeout(function () {
+                window.parent.popup.close(0);
+                window.parent.core.submitPage();
+            }, timeout);
+            return true;
+        }
+        return false;
+    };
+
+    window.popup = popup;
+})(jQuery);

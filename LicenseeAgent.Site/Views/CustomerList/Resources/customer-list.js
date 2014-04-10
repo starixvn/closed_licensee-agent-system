@@ -330,7 +330,11 @@ var customerList = (function ($) {
                 }
             }];
 
-            popup.confirm(message, title, buttons);
+            popup.confirm({
+                title: title,
+                message: message,
+                buttons: buttons
+            });
         },
         getIpInformation: function (ipAddress) {
             $.ajax({
@@ -342,13 +346,11 @@ var customerList = (function ($) {
                 },
                 success: function (data) {
                     if (data !== null) {
-                        $('#instruction').html(data);
-                        popup.openDialog($('#instruction'),
-                            msg.IpInformation, {
-                                width: 420,
-                                height: 180
-                            });
-                        $('.ui-tooltip').remove();
+                        popup.open({
+                            title: msg.IpInformation,
+                            message: data,
+                            width: 420
+                        });
                     }
                 },
                 complete: function () {
@@ -465,7 +467,10 @@ var customerList = (function ($) {
                 url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}"
                     .format(editAgentId, editAgentLevel);
             }
-            popup.openDialogFrame(url, { width: 960, height: 680 });
+            popup.openFrame(url, {
+                width: 940,
+                height: 680
+            });
         },
         editSetting: function () {
             alert('test');
@@ -479,13 +484,13 @@ var customerList = (function ($) {
                 url = "CustomerList/EditInfoAgent?agentId={0}"
                     .format(editAgentId);
             }
-            popup.openDialogFrame(url, { width: 465, height: 520 });
+            popup.openFrame(url);
         },
         addDownline: function () {
             var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
                 .format(editAgentId, editAgentLevel);
-            popup.openDialogFrame(url, {
-                width: 960,
+            popup.openFrame(url, {
+                width: 940,
                 height: 680
             });
         },
@@ -498,7 +503,7 @@ var customerList = (function ($) {
                 url = "CustomerList/ResetPasswordAgent?agentId={0}&agentLevel={1}"
                     .format(editAgentId, editAgentLevel);
             }
-            popup.openDialogFrame(url, { width: 420, height: 400 });
+            popup.openFrame(url);
         }
     };
 } (jQuery));

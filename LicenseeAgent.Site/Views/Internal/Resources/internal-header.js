@@ -1,4 +1,4 @@
-﻿/*global core, language, popup*/
+﻿/*global core, language*/
 
 var internalHeader = (function ($) {
     /*jshint strict:false */
@@ -117,7 +117,7 @@ var internalHeader = (function ($) {
                                 location.href = data.DirectUrl;
                             }
                             else {
-                                popup.openWindow(data.DirectUrl);
+                                core.openWindow(data.DirectUrl);
                                 core.unblockUI();
                             }
                         }

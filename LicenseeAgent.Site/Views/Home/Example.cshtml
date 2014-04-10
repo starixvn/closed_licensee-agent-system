@@ -196,7 +196,7 @@
             $("a[data-href]").click(function () {
                 var $this = $(this);
                 var url = $(this).attr("data-href");
-                popup.openDialogFrame(url, { width: 800, height: 680 });
+                popup.openFrame(url, { width: 800, height: 680 });
             });
 
             $("#blockui").click(function () {

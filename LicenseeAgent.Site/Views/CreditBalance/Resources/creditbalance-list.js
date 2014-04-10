@@ -68,11 +68,11 @@ var creditBalanceList = (function ($) {
         },
         editAgentCredit: function (agentId, agentName, givenCredit) {
             var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
-            popup.openDialogFrame(url, { width: 428, height: 200 });
+            popup.openFrame(url);
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {
             var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
-            popup.openDialogFrame(url, { width: 428, height: 200 });
+            popup.openFrame(url);
         }
     };
 } (jQuery));

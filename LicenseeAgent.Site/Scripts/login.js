@@ -44,7 +44,12 @@ var logIn = (function ($) {
                 }
             }];
 
-            popup.confirm(message, title, buttons, logIn.gotoHome);
+            popup.confirm({
+                title: title,
+                message: message,
+                button: buttons,
+                onHide: logIn.gotoHome
+            });
         },
         gotoHome: function () {
             window.location.href = core.resolveUrl('~/');

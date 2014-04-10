@@ -55,12 +55,12 @@ var statementDetailReport = (function ($) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                        .format(agentId, dateTime, dateTime, $('#Username').val(), isMember);
-            popup.openDialogFrame(url, { width: 465, height: 400 });
+            popup.openFrame(url);
         },
         BetList: function (custId, statusIDs, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             var url = "BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
-            popup.openDialogFrame(url, { width: 970, height: 600 });
+            popup.openFrame(url);
         },
         genGridRows: function (list, options) {
             var columns = options.columns;

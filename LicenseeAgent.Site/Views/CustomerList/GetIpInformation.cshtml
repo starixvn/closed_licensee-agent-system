@@ -3,27 +3,27 @@
 @{
     Layout = null;
 }
-<table>
+<table class="ip-information">
     <tr>
-        <td class="col-left">@Las.Ip
+        <td>@Las.Ip
         </td>
-        <td class="col-right" id="instip">@Model.IpAddress
+        <td>@Model.IpAddress
         </td>
     </tr>
     <tr>
-        <td class="col-left">@Las.Country
+        <td>@Las.Country
         </td>
-        <td class="col-right" id="instcountry">@Model.Country
-        </td>
-    </tr>
-    <tr>
-        <td class="col-left">@Las.City
-        </td>
-        <td class="col-right" id="instcity">@Model.City
+        <td>@Model.Country
         </td>
     </tr>
     <tr>
-        <td colspan="2" id="instcontent">
+        <td>@Las.City
+        </td>
+        <td>@Model.City
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
             @Html.Raw(string.Format(Las.IpContent, Model.IpAddress))
         </td>
     </tr>

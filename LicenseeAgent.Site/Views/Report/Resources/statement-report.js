@@ -53,7 +53,7 @@ var statementReport = (function ($) {
         TransferDetail: function (agentId, username) {
             var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                       .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel);
-            popup.openDialogFrame(url, { width: 465, height: 400 });
+            popup.openFrame(url);
         }
     };
 }) (jQuery);

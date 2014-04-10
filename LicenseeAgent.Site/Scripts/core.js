@@ -112,8 +112,12 @@ var core = (function ($) {
                             hide: null
                         })
                         .click(function () {
-                            popup.openDialog($this, title, { width: $($this).width(), height: $($this).height() + 50 });
-                            $('.ui-tooltip').remove();
+                            popup.open({
+                                title: title,
+                                message: $this.html(),
+                                top: 100,
+                                clickout: true
+                            });
                         });
                 }
             });
@@ -385,6 +389,10 @@ var core = (function ($) {
             setTimeout(function () {
                 location.reload();
             }, timeout);
+        },
+        openWindow: function (url) {
+            window.open(url, '_blank');
+            window.focus();
         },
         submitPage: function () {
             $('button[type=submit]').submit();

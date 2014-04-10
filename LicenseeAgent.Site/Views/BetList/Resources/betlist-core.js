@@ -41,7 +41,8 @@ fanex.betlist.core = {
     },
     getIpInformation: function (ipAddress) {
         var urlIpInformation = $("#BetListGrid").data('url-ip');
-        $.ajax({ url: urlIpInformation,
+        $.ajax({
+            url: urlIpInformation,
             type: 'post',
             data: { IpAddress: ipAddress },
             beforeSend: function () {
@@ -49,12 +50,11 @@ fanex.betlist.core = {
             },
             success: function (data) {
                 if (data != null) {
-                    var height = 220;
-                    var width = 420;
-                    var details = '<div class=\"instruction-content\">' + data + '</div>';
-                    popup.openDialog(details, language.getString("IpInformation"),
-                                     { width: width, height: height, modal: false, clickout: true, openid: $(this).attr('id') });
-                    $('.ui-tooltip').remove();
+                    popup.open({
+                        title: language.getString("IpInformation"),
+                        message: data,
+                        clickout: true
+                    });
                 }
             },
             complete: function () {
@@ -74,11 +74,10 @@ fanex.betlist.core = {
                 alert(errorText);
             },
             success: function (response) {
-                var height = 280;
-                var width = 360;
-                var details = '<div>' + response + '</div>';
-                var title = language.getString("BetListDetails") + transId;
-                popup.openDialog(details, title, { width: width, height: height });
+                popup.open({
+                    title: language.getString("BetListDetails") + transId,
+                    message: '<div>' + response + '</div>'
+                });
             },
             beforeSend: function () {
                 core.blockUI();
@@ -133,10 +132,10 @@ fanex.betlist.core = {
                 alert(errorText);
             },
             success: function (response) {
-                var height = 550;
-                var width = 750;
-                var details = '<div><div class="system-parlay-detail-wrapper">' + response + '</div></div>';
-                popup.openDialog(details, betTeam, { width: width, height: height });
+                popup.open({
+                    title: betTeam,
+                    message: '<div class="system-parlay-detail-wrapper">' + response + '</div>'
+                });
             },
             beforeSend: function () {
                 core.blockUI();
@@ -151,7 +150,6 @@ fanex.betlist.core = {
                 ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
                 : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
 
-        //popup.openDialogFrame(url, { width: 720, height: 400 });
         $.ajax({
             type: "GET",
             contentType: "text/html",
@@ -162,10 +160,10 @@ fanex.betlist.core = {
                 alert(errorText);
             },
             success: function (response) {
-                var height = 400;
-                var width = 720;
-                var details = '<div style=\"width:700px; height: 380px;overflow:auto;\">' + response + '</div>';
-                popup.openDialog(details, language.getString("Results"), { width: width, height: height });
+                popup.open({
+                    title: language.getString("Results"),
+                    message: '<div style=\"overflow:auto;\">' + response + '</div>'
+                });
             },
             beforeSend: function () {
                 core.blockUI();

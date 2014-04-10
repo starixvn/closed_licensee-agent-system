@@ -99,11 +99,11 @@ var transferList = (function ($) {
         },
         transferAgent: function (agentId, agentName, amount) {
             var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
-            popup.openDialogFrame(url);
+            popup.openFrame(url);
         },
         transferMember: function (memberId, amount) {
             var url = '~/Transfer/Member?memberId={0}&amount={1}'.format(memberId, amount);
-            popup.openDialogFrame(url, { width: 480, height: 300 });
+            popup.openFrame(url);
         }
     };
 } (jQuery));

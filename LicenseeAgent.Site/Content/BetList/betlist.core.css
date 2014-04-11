@@ -120,7 +120,7 @@ div.match + div.league
 {
     background: url("images/system-parlay-detail-hover.png") no-repeat scroll left center transparent;
 }
-.detail > a
+.freegrid .table-cell > .detail > a
 {
     margin-left: 16px;
 }

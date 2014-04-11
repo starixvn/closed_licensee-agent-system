@@ -38,7 +38,6 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/core").Include(
                 "~/scripts/placeholder/jquery.placeholder.js",
                 "~/scripts/headjs/head.core.js",
-                "~/scripts/jquery-resize/jquery.ba-resize.js",
                 "~/scripts/core.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js"));

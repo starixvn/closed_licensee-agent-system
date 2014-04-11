@@ -86,11 +86,20 @@ var popup = (function ($) {
                 $this.setTitle(title).show();
                 core.unblockUI();
 
-                $(this.contentWindow).resize(function () {
-                    if ($this.$modal) {
+                var content = $(document).find('#popup-iframe').contents();
+                var currentWidth = content.width();
+                var currentHeight = content.height();
+                var checkSize = function () {
+                    if (content.width() !== currentWidth || content.height() !== currentHeight) {
                         $this.calculate();
                     }
-                });
+                    if ($this.$modal) {
+                        setTimeout(function () {
+                            checkSize();
+                        }, 200);
+                    }
+                };
+                checkSize();
             });
 
             return this;

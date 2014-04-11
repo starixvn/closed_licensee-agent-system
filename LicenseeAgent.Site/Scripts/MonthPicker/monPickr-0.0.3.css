@@ -82,7 +82,11 @@
 .ui-monpickr .ui-widget-content a {
 	text-decoration: none !important;
 }
-
+.ui-widget-content {
+    background-color: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+}
 .ui-monpickr li a {
 	display: block;
 	font-weight: normal;

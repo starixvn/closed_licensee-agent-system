@@ -21,7 +21,7 @@ var gridOptions = {
 };
 
 var OtherSports = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         //sportType: 2, //Basketball sporttype
         checkedAllSport: true,
@@ -409,6 +409,6 @@ var OtherSports = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     OtherSports.init();
 });

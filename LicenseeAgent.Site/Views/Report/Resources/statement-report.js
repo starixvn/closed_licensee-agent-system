@@ -1,7 +1,7 @@
 ﻿/*global gridOptions, core, pageContext, popup*/
 
 var statementReport = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         init: function () {
             $('#fromDatePicker').datepicker();
@@ -59,6 +59,6 @@ var statementReport = (function ($) {
 }) (jQuery);
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     statementReport.init();
 });

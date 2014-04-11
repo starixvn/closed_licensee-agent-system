@@ -1,7 +1,7 @@
 ﻿/*global core, language*/
 
 var internalHeader = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var isSelected, licenseeId, newLicenseeId, currencyId, newCurrencyId, userName;
     return {
         init: function () {
@@ -277,6 +277,6 @@ var internalHeader = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     internalHeader.init();
 });

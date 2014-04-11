@@ -1,7 +1,7 @@
 ﻿/*global language*/
 
 var homeMenu = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var mainLeftCollapse = 0;
     return {
         init: function () {
@@ -71,6 +71,6 @@ var homeMenu = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     homeMenu.init();
 });

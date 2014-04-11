@@ -1,5 +1,5 @@
 ﻿var transferPopUp = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var minAmount;
     var maxAmount;
     return {
@@ -48,6 +48,6 @@
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     transferPopUp.init();
 });

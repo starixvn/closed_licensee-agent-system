@@ -1,7 +1,7 @@
 ﻿/*global popup, gridOptions, context, core, language*/
 
 var transferList = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var records;
     return {
         init: function () {
@@ -109,6 +109,6 @@ var transferList = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     transferList.init();
 });

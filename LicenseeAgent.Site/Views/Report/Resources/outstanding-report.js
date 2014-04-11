@@ -1,10 +1,10 @@
 ﻿/*global core, language, showMixParlayDetailurl */
 
 var outstandingGridOptions = {
-    /*jshint strict:false */
     columns: [
                 { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
                     function (rowIndex, rowData, cell) {
+                        'use strict';
                         return '<a href="#" onclick="outstandingReport.outstandingDrilldown(\'' + rowData.Username
                                 + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
                     }
@@ -43,7 +43,7 @@ var gridOptions = {
 var originalBreadcrumb = '';
 var agentIdLevelN = 0;
 var outstandingReport = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var breadCrumbItems = [
     {
         agentId: $('#loginAgent').data('id'),
@@ -260,6 +260,6 @@ var outstandingReport = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     outstandingReport.init();
 });

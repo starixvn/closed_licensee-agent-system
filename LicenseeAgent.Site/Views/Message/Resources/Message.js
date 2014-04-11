@@ -1,7 +1,7 @@
 ﻿/*global core*/
 
 var Message = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var MAX_ROW_PER_PAGE = 1;
     var ITEMS_PER_PAGE_ARRAY = [1, 2, 3, 4];
 
@@ -98,6 +98,6 @@ var Message = (function ($) {
 }) (jQuery);
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     Message.initialize();
 });

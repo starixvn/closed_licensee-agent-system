@@ -19,7 +19,7 @@ var gridOptions = {
 };
 
 var betList = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         init: function () {
 
@@ -125,6 +125,6 @@ var betList = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     betList.init();
 });

@@ -1,7 +1,7 @@
 ﻿/*global gridOptions, core, pageContext, language*/
 
 var agentWinLossReport = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         init: function () {
             $("#tabs-area a:first").tab('show');
@@ -155,6 +155,6 @@ var agentWinLossReport = (function ($) {
 }) (jQuery);
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     agentWinLossReport.init();
 });

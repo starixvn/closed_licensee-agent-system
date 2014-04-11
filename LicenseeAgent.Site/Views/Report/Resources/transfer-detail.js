@@ -1,26 +1,28 @@
 ﻿/*global core, language*/
 
-var gridOptions = {
-    /*jshint strict:false */
-    columns: [
-                { HeaderText: language.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center", 
-                  CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a" },
+var transferDetail = (function ($) {
+    'use strict';
+
+    var gridOptions = {
+        columns: [
+                { HeaderText: language.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center",
+                    CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a"
+                },
                 { HeaderText: language.getString('Remark'), Width: 150, Name: "TransType", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true,
                     Formatter: function (rowIndex, rowData, cell) {
                         return ("<div>" + cell.Value + "<br />" + rowData.TransDesc + "</div>");
                     }
                 },
-                { HeaderText: language.getString('Amount'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", 
-                  CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
+                { HeaderText: language.getString('Amount'), Width: 100, Name: "TransferAmt", HeaderAlign: "center",
+                    CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$'
+                }
             ],
-    gridExpandHeight: 20,
-    bodyRowHeight: 26,
-    showFooter: true,
-    autoResizeColumn: true
-};
+        gridExpandHeight: 20,
+        bodyRowHeight: 26,
+        showFooter: true,
+        autoResizeColumn: true
+    };
 
-var transferDetail = (function ($) {
-    /*jshint strict:false */
     return {
         init: function () {
             transferDetail.dataGridBinding();
@@ -65,6 +67,6 @@ var transferDetail = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     transferDetail.init();
 });

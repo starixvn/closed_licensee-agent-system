@@ -1,7 +1,7 @@
 ﻿/*global core*/
 
 var underMaintenanceError = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     core.DisableRecheckIn = true;
     return {
         init: function () {
@@ -40,6 +40,6 @@ var underMaintenanceError = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     underMaintenanceError.init();
 });

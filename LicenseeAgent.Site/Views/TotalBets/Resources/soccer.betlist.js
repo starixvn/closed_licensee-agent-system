@@ -21,7 +21,7 @@ var gridOptions = {
 };
 
 var SoccerBetList = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         sportType: 1, //Soccer sporttype
         init: function () {
@@ -63,6 +63,6 @@ var SoccerBetList = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     SoccerBetList.init();
 });

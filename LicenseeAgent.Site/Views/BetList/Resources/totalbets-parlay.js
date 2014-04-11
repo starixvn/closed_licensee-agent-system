@@ -22,9 +22,8 @@ var gridOptions = {
 var fanex = fanex || {};
 fanex.totalBets = fanex.totalBets || {};
 fanex.totalBets.parlay = {
-    /*jshint strict:false */
     init: function () {
-
+        'use strict';
         $('.selectpicker').selectpicker();
 
         // search
@@ -45,6 +44,7 @@ fanex.totalBets.parlay = {
         fanex.totalBets.parlay.switchParlayType(true);
     },
     reRenderAfterPaged: function (currentPage, itemsPerPage, betType) {
+        'use strict';
         if (gridOptions && gridOptions.pagerOption) {
             currentPage = currentPage >= 0 ? currentPage
                                                 : gridOptions.pagerOption.currentPage;
@@ -70,6 +70,7 @@ fanex.totalBets.parlay = {
         });
     },
     switchParlayType: function (isMixParlay) {
+        'use strict';
         if (isMixParlay) {
             $("#mixParlayTab").removeClass('inactive-tab');
             $("#mixParlayTab").addClass('active-tab');
@@ -88,5 +89,6 @@ fanex.totalBets.parlay = {
 };
 
 $(function () {
+    'use strict';
     fanex.totalBets.parlay.init();
 });

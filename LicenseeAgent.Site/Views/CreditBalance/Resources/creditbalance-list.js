@@ -1,7 +1,7 @@
 ﻿/*global popup, gridOptions, core, context*/
 
 var creditBalanceList = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     var records;
 
     return {
@@ -78,6 +78,6 @@ var creditBalanceList = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     creditBalanceList.init();
 });

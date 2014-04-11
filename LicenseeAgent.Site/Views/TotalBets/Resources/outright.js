@@ -21,7 +21,7 @@ var gridOptions = {
 };
 
 var Outright = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         checkedAllSport: true,
         checkedAllLeague: true,
@@ -350,6 +350,6 @@ var Outright = (function ($) {
     };
 } (jQuery));
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     Outright.init();
 });

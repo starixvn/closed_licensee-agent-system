@@ -21,7 +21,7 @@ var gridOptions = {
 };
 
 var Soccer = (function ($) {
-    /*jshint strict:false */
+    'use strict';
     return {
         sportType: 1, //Basketball sporttype
         checkedAllLeague: true,
@@ -332,6 +332,6 @@ var Soccer = (function ($) {
 } (jQuery));
 
 $(function () {
-    /*jshint strict:false */
+    'use strict';
     Soccer.init();
 });

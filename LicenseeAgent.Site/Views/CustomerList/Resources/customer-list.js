@@ -92,13 +92,6 @@ var customerList = (function ($) {
             // get customer list
             customerList.reRenderAfterPaged(0, core.pageSizes[2]);
         },
-        initInstruction: function () {
-            $('.instruction-container').each(function () {
-                $(this).click(function () {
-                    customerList.getIpInformation($(this).html());
-                });
-            });
-        },
         updateActionMenus: function (target) {
             if (!pageContext.IsAdmin ||
                 $(target).attr('data-status') === 0 ||
@@ -122,8 +115,6 @@ var customerList = (function ($) {
             }
         },
         gridAfterBinding: function () {
-            customerList.initInstruction();
-
             if (!pageContext.IsDirectDownline) {
                 $(".cust-status").addClass('cust-status-none');
             }
@@ -320,13 +311,13 @@ var customerList = (function ($) {
             var buttons = [{
                 label: language.getString('Yes'),
                 action: function () {
-                    popup.closeModal();
+                    popup.close(0);
                     customerList.updateStatus(target, custId, statusId);
                 }
             }, {
                 label: language.getString('No'),
                 action: function () {
-                    popup.closeModal();
+                    popup.close(0);
                 }
             }];
 
@@ -348,8 +339,7 @@ var customerList = (function ($) {
                     if (data !== null) {
                         popup.open({
                             title: msg.IpInformation,
-                            message: data,
-                            width: 420
+                            message: data
                         });
                     }
                 },
@@ -468,8 +458,7 @@ var customerList = (function ($) {
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
-                width: 940,
-                height: 680
+                hasScroll: true
             });
         },
         editSetting: function () {
@@ -490,8 +479,7 @@ var customerList = (function ($) {
             var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
                 .format(editAgentId, editAgentLevel);
             popup.openFrame(url, {
-                width: 940,
-                height: 680
+                hasScroll: true
             });
         },
         resetPassword: function () {

@@ -1,9 +1,8 @@
 ﻿/*global core */
 /*exported popup*/
 
-(function ($) {
+var popup = (function ($) {
     'use strict';
-
     var Popup = function (options) {
         this.options = $.extend({}, Popup.defaultOptions, options);
     };
@@ -15,6 +14,7 @@
         onHide: null,
         autoDestroy: true,
         draggable: false,
+        hasScroll: false,
         clickout: false,
         top: 0, // auto-top
         left: 0, //auto-left
@@ -23,6 +23,7 @@
     };
 
     Popup.defaultName = 'popup-dialog';
+    Popup.iframeId = 'popup-iframe';
     Popup.prototype = {
         init: function () {
             var modal = $('#{0}'.format(Popup.defaultName));
@@ -49,7 +50,7 @@
                 modalContent.append(modalFooter);
                 var $this = this;
                 $.each(this.options.buttons, function (index, button) {
-                    $this.addButton(button);
+                    $this.addFooterButton(button);
                 });
             }
 
@@ -66,12 +67,11 @@
             return this;
         },
         showConfirm: function () {
-            this.init().setTitle(this.options.title).setBodyContent(this.options.message);
-            return this.show();
+            return this.init().setTitle(this.options.title).setBodyContent(this.options.message).show().calculate();
         },
         showFrame: function (url) {
             this.init();
-            var iframe = $('<iframe id="popup" src="{0}" width="100%" height="100%" frameborder="0" border="0"/>'.format(url));
+            var iframe = $('<iframe id="{0}" src="{1}" width="100%" height="100%" frameborder="0" border="0"/>'.format(Popup.iframeId, url));
             this.setBodyContent(iframe);
             var modal = this.getModal();
             modal.css('display', 'none');
@@ -79,11 +79,15 @@
             core.blockUI();
             var $this = this;
             $(iframe).load(function () {
-                var popupDocument = document.getElementById("popup").contentDocument;
+                var popupDocument = this.contentDocument;
                 $(popupDocument).find('#mainContainer').addClass("popup");
                 var title = $(popupDocument).attr('title');
                 $this.setTitle(title).calculate().show();
                 core.unblockUI();
+
+                $(this).resize(function () {
+                    alert('test');
+                });
             });
 
             return this;
@@ -142,18 +146,23 @@
         calculate: function () {
             var modalBody = this.getModalBody();
             var innerBody = modalBody.children();
-            if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
+            if (innerBody.length === 0) {
+                innerBody = modalBody;
+            } else if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
                 innerBody = innerBody.contents();
             }
             var width = this.options.width;
             if (width === 0) {
-                width = innerBody.outerWidth();
+                width = innerBody.width();
+                if (this.options.hasScroll) {
+                    width += 20;
+                }
                 var maxWidth = $(window).width() - 24;
                 width = Math.min(width, maxWidth);
             }
             var height = this.options.height;
             if (height === 0) {
-                height = innerBody.outerHeight();
+                height = innerBody.height();
                 var maxHeight = $(window).height() - 24;
                 height = Math.min(height, maxHeight);
             }
@@ -206,48 +215,49 @@
         }
     };
 
-    var popup = {};
-    popup.currentPopup = null;
-    popup.confirm = function (options) {
-        this.currentPopup = new Popup(options).showConfirm();
-    };
-
-    popup.openFrame = function (url, options) {
-        this.currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
-    };
-
-    popup.open = function (options) {
-        this.currentPopup = new Popup(options).showContent();
-    };
-
-    popup.close = function (timeout) {
-        if (window.parent && window.parent.popup) {
+    var currentPopup = null;
+    return {
+        confirm: function (options) {
+            currentPopup = new Popup(options).showConfirm();
+        },
+        openFrame: function (url, options) {
+            currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
+        },
+        open: function (options) {
+            currentPopup = new Popup(options).showContent();
+        },
+        isIframe: function () {
+            if (window !== window.parent && window.parent.document.getElementById(Popup.iframeId)) {
+                return true;
+            }
+            return false;
+        },
+        close: function (timeout) {
             if (typeof timeout === 'undefined') {
                 timeout = core.RELOAD_INTERVAL;
             }
-            setTimeout(function () {
-                if (window.parent.popup.currentPopup) {
-                    window.parent.popup.currentPopup.close();
-                }
-            }, timeout);
-            return true;
-        }
-        return false;
-    };
 
-    popup.closeAndReload = function (timeout) {
-        if (window.parent && window.parent.popup) {
+            if (popup.isIframe()) {
+                window.parent.popup.close(timeout);
+            } else if (currentPopup) {
+                setTimeout(function () {
+                    currentPopup.close();
+                }, timeout);
+            }
+        },
+        closeAndReload: function (timeout) {
             if (typeof timeout === 'undefined') {
                 timeout = core.RELOAD_INTERVAL;
             }
-            setTimeout(function () {
-                window.parent.popup.close(0);
-                window.parent.core.submitPage();
-            }, timeout);
-            return true;
-        }
-        return false;
-    };
 
-    window.popup = popup;
-})(jQuery);
+            if (popup.isIframe()) {
+                window.parent.popup.closeAndReload(timeout);
+            } else if (currentPopup) {
+                setTimeout(function () {
+                    currentPopup.close();
+                    core.submitPage();
+                }, timeout);
+            }
+        }
+    };
+} (jQuery));

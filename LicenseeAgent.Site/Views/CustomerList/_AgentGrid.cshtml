@@ -51,11 +51,11 @@
                             HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL
                         },
                         {
-                            HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center",
+                            HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 if (cell.Value == null)
                                     return '';
-                                return '<span id="' + rowData.AgentId + '" class="instruction-container">' + cell.Value + '</span>';
+                                return '<a onclick=customerList.getIpInformation("{0}")>{1}</a>'.format(cell.Value, cell.Value);
                             }
                         }
                    ],

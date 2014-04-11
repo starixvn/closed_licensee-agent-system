@@ -41,7 +41,7 @@ var accountInformation = (function ($) {
 
             //check exist cookie username. If exist, call search username
             userName = $.cookie('username');
-            if (userName !== null) {
+            if (userName !== undefined) {
                 $("#UserName").val(userName);
                 $("#formSearch").submit();
 

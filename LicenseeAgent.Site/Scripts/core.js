@@ -397,15 +397,6 @@ var core = (function ($) {
         submitPage: function () {
             $('button[type=submit]').submit();
         },
-        formatCustomerName: function (firstName, lastName) {
-            if (firstName && lastName) {
-                return '{0} {1}'.format(firstName, lastName);
-            }
-            if (firstName || lastName) {
-                return !firstName ? lastName : firstName;
-            }
-            return core.EMPTY_TEXT_FORMAT;
-        },
         handleError: function (data) {
             if (data && data.ErrCode) {
                 if (data.ErrCode === -3) {

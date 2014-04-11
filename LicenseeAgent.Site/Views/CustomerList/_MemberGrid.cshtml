@@ -20,10 +20,8 @@
                         return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
                     }
                 },
-                { HeaderText: "@Las.Username", Width: 140, Name: "ShortUserName", HeaderAlign: "center", Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
-                        return '<span title="' + rowData.UserName + '">' + cell.Value + '</span>';
-                    }
+                { 
+                    HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200
                 },
                 { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
@@ -33,11 +31,7 @@
                     }
                 },
                 {
-                    HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true,
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        var customerName = core.formatCustomerName(rowData.FirstName, rowData.LastName);
-                        return '<span title="' + customerName + '">' + customerName + '</span>';
-                    }
+                    HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 250
                 },
                 { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },

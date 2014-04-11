@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Transfer.Entities
 {
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan;
 
     /// <summary>
@@ -37,5 +38,13 @@ namespace LicenseeAgent.Transfer.Entities
         public decimal UsedCredit { get; set; }
 
         public bool IsHighlighted { get; set; }
+
+        public string CustomerName
+        {
+            get
+            {
+                return Extensions.FormatCustomerName(FirstName, LastName);
+            }
+        }
     }
 }

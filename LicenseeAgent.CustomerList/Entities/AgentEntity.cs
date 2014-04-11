@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerList.Entities
 {
     using System;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerList.Core;
 
     /// <summary>
@@ -53,16 +54,11 @@ namespace LicenseeAgent.CustomerList.Entities
 
         public int NumberAgentLevel { get; set; }
 
-        public string ShortUserName
+        public string CustomerName
         {
             get
             {
-                if (UserName.Length > Constants.MediumStringLength)
-                {
-                    return string.Format("{0}...", UserName.Substring(0, Constants.MediumStringLength));
-                }
-
-                return UserName;
+                return Extensions.FormatCustomerName(FirstName, LastName); 
             }
         }
     }

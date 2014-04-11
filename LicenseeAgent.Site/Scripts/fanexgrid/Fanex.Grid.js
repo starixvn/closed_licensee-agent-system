@@ -9,6 +9,7 @@
 //          + 02/06/2014: Customize Render footer when auto paging + Update initialize footer.
 //          + 02/27/2014: Update show "..." when auto truncate.
 //          + 03/19/2014: Support Time Zone Config
+//          + 04/08/2014: Support auto resize to full-screen width 
 // </copyright>
 // --------------------------------------------------------------------------
 /*jshint maxdepth:false, maxstatements:false*/
@@ -210,7 +211,8 @@
         autoResizeColumn: false,
         pixelsPerCharacter: 0,
         calTextWidthWithFontSize: true,
-        timeZone: ''
+        timeZone: '',
+        scrollWidth: 22
     };
 
     var Fanex = Fanex || {};
@@ -2020,6 +2022,45 @@
                     else {
                         options.columns[mainColIndex].Width = Fanex.Grid.Helper.ComputeTextWidth(mainContainer, currentResizeObject.rawData) + 20;
                     }
+                }
+            }
+
+            options = Fanex.Grid.Helper.AutoAddWidthForFullScreen(options, mainContainer);
+
+            return options;
+        },
+        AutoAddWidthForFullScreen: function (options, mainContainer) {
+            var currentContainerWidth = mainContainer.width(),
+                totalCalulatedWidth = 0,
+                colLength = options.columns.length,
+                resizeCols = [];
+
+            for (var i = 0; i < colLength; i++) {
+                var currentCol = options.columns[i];
+                if (currentCol.CanResize === true) {
+                    if (typeof (currentCol.MaxResizeWidth) !== 'undefined' && currentCol.Width > currentCol.MaxResizeWidth) {
+                        currentCol.Width = currentCol.MaxResizeWidth;
+                    }
+
+                    resizeCols.push({
+                        colIndex: i,
+                        colName: currentCol.Name,
+                        colWidth: currentCol.Width
+                    });
+                }
+                totalCalulatedWidth += currentCol.Width;
+
+            }
+
+            //// Add width for others columns
+            totalCalulatedWidth += (options.columns.length - 1) * 5 + options.marginRight + (options.hideYBackGroundScroller ? 0 : options.scrollWidth);
+            if (resizeCols.length > 0 && currentContainerWidth > totalCalulatedWidth) {
+                var totalAddWidth = currentContainerWidth - totalCalulatedWidth,
+                    addRowForEachColumn = totalAddWidth / resizeCols.length;
+
+                for (var i = 0; i < resizeCols.length; i++) {
+                    var currentResizeCol = resizeCols[i];
+                    options.columns[currentResizeCol.colIndex].Width = currentResizeCol.colWidth + addRowForEachColumn;
                 }
             }
 

@@ -48,7 +48,7 @@
 .monpickr-arrows .monpickr-next:hover,
 
 .monpickr-arrows .monpickr-down:hover {
-	padding: 2px;
+	
 }
 
 .monpickr-dropdown {
@@ -144,4 +144,26 @@
 	float: left;
 	font-size: .85em;
 	margin: 3px 3px 3px 10px;
+}
+
+.ui-icon {
+    background-image: url("../../images/sprite.png");
+    height: 10px;
+    width: 12px;
+    background-repeat: no-repeat;
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+.ui-icon-circle-triangle-w {
+    background-position: -497px -1px;
+    margin-top: 3px;
+}
+.ui-icon-circle-triangle-e {
+    background-position: -509px 0px;
+    margin-top: 3px;
+}
+.ui-icon-circle-triangle-s {
+    background-position: -132px 0;
+    margin: 4px 3px 0 0;
 }

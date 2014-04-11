@@ -97,10 +97,6 @@ var betList = (function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: core.resolveUrl(url),
-                    /*jshint unused: false*/
-                    error: function (xhRequest, errorText, thrownError) {
-                        alert(errorText);
-                    },
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();

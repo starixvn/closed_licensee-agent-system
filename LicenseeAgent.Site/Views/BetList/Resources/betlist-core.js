@@ -69,10 +69,6 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: core.resolveUrl(url),
-            /*jshint unused: false*/
-            error: function (xhRequest, errorText, thrownError) {
-                alert(errorText);
-            },
             success: function (response) {
                 popup.open({
                     title: language.getString("BetListDetails") + transId,
@@ -95,10 +91,6 @@ fanex.betlist.core = {
                 contentType: "text/html",
                 cache: false,
                 url: core.resolveUrl(url),
-                /*jshint unused: false*/
-                error: function (xhRequest, errorText, thrownError) {
-                    alert(errorText);
-                },
                 success: function (response) {
                     divEvent.html(response);
                     $(".line:last", divEvent).remove();
@@ -127,10 +119,6 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: core.resolveUrl(url),
-            /*jshint unused: false*/
-            error: function (xhRequest, errorText, thrownError) {
-                alert(errorText);
-            },
             success: function (response) {
                 popup.open({
                     title: betTeam,
@@ -145,7 +133,7 @@ fanex.betlist.core = {
             }
         });
     },
-    showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
+    showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay) {
         var url = bettype === 9 || bettype === 29
                 ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
                 : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
@@ -155,10 +143,6 @@ fanex.betlist.core = {
             contentType: "text/html",
             cache: false,
             url: core.resolveUrl(url),
-            /*jshint unused: false*/
-            error: function (xhRequest, errorText, thrownError) {
-                alert(errorText);
-            },
             success: function (response) {
                 popup.open({
                     title: language.getString("Results"),

@@ -90,14 +90,15 @@ var popup = (function ($) {
                 var currentWidth = content.width();
                 var currentHeight = content.height();
                 var checkSize = function () {
+                    if ($this.$modal == null) {
+                        return;
+                    }
                     if (content.width() !== currentWidth || content.height() !== currentHeight) {
                         $this.calculate();
                     }
-                    if ($this.$modal) {
-                        setTimeout(function () {
-                            checkSize();
-                        }, 200);
-                    }
+                    setTimeout(function () {
+                        checkSize();
+                    }, 200);
                 };
                 checkSize();
             });

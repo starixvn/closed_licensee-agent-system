@@ -10,6 +10,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CreditBalance.Criteria;
     using LicenseeAgent.CreditBalance.Entities;
     using LicenseeAgent.CreditBalance.Services;
@@ -21,7 +22,6 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
-    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// TODO: Update summary.

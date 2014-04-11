@@ -20,7 +20,6 @@ namespace LicenseeAgent.Web.Controllers
         /// <summary>
         /// Index Action.
         /// </summary>
-        /// <param name="act">The action.</param>
         /// <returns>
         /// Return Index page.
         /// </returns>

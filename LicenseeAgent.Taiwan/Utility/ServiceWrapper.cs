@@ -50,7 +50,7 @@ namespace LicenseeAgent.Taiwan.Utility
                 if (responseResult.ErrCode != Result.SuccessValue)
                 {
                     responseResult.ErrCode = Result.ApiError;
-                    responseResult.ErrMsg = ApiMsg.ResourceManager.GetString(string.Format("{0}_{1}", action.ActionName, responseResult.ApiErrCode));
+                    responseResult.ErrMsg = ApiMsg.ResourceManager.GetString(string.Format("{0}_{1}", action.ActionName, responseResult.ApiErrCode)) ?? Las.HttpError_Default;
                 }
 
                 return responseResult;

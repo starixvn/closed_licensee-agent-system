@@ -87,7 +87,7 @@ var core = (function ($) {
             }
 
             // call if page is not in frame & not be a popup
-            if (window.parent.frmMain === undefined && window.parent.popup === undefined && !core.DisableRecheckIn) {
+            if (window.parent.frmMain === undefined && !popup.isIframe() && !core.DisableRecheckIn) {
                 setTimeout(function () { core.reCheckIn(); }, 1000);
             }
         },

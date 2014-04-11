@@ -43,12 +43,15 @@ var popup = (function ($) {
             modalContent.append(modalHeader);
             modalContent.append(modalBody);
 
+            modal.css('visibility', 'hidden');
+            $('body').append(modal);
+
             this.$modal = modal;
+            var $this = this;
 
             if (this.options.buttons.length > 0) {
                 var modalFooter = $('<div class="modal-footer"></div>');
                 modalContent.append(modalFooter);
-                var $this = this;
                 $.each(this.options.buttons, function (index, button) {
                     $this.addFooterButton(button);
                 });
@@ -60,40 +63,40 @@ var popup = (function ($) {
 
             if (this.options.autoDestroy) {
                 modal.on('hidden', function () {
-                    modal.remove();
+                    $this.remove();
                 });
             }
 
             return this;
         },
         showConfirm: function () {
-            return this.init().setTitle(this.options.title).setBodyContent(this.options.message).show().calculate();
+            return this.init().setTitle(this.options.title).setBodyContent(this.options.message).show();
         },
         showFrame: function (url) {
             this.init();
             var iframe = $('<iframe id="{0}" src="{1}" width="100%" height="100%" frameborder="0" border="0"/>'.format(Popup.iframeId, url));
             this.setBodyContent(iframe);
-            var modal = this.getModal();
-            modal.css('display', 'none');
-            $('body').append(modal);
             core.blockUI();
             var $this = this;
             $(iframe).load(function () {
                 var popupDocument = this.contentDocument;
-                $(popupDocument).find('#mainContainer').addClass("popup");
+                var mainContainer = $(popupDocument).find('#mainContainer');
+                mainContainer.addClass("popup");
                 var title = $(popupDocument).attr('title');
-                $this.setTitle(title).calculate().show();
+                $this.setTitle(title).show();
                 core.unblockUI();
 
-                $(this).resize(function () {
-                    alert('test');
+                $(this.contentWindow).resize(function () {
+                    if ($this.$modal) {
+                        $this.calculate();
+                    }
                 });
             });
 
             return this;
         },
         showContent: function () {
-            this.init().setTitle(this.options.title).setBodyContent(this.options.message).show().calculate();
+            this.init().setTitle(this.options.title).setBodyContent(this.options.message).show();
         },
         getModal: function () {
             return this.$modal;
@@ -193,6 +196,8 @@ var popup = (function ($) {
             return this;
         },
         show: function () {
+            this.calculate();
+            this.$modal.css('visibility', 'visible');
             if (this.options.clickout) {
                 this.$modal.modal();
             }
@@ -209,8 +214,15 @@ var popup = (function ($) {
             return this;
         },
         close: function () {
-            this.$modal.modal('hide');
-            this.$modal.remove();
+            this.hide();
+            this.remove();
+            return this;
+        },
+        remove: function () {
+            if (this.$modal) {
+                this.$modal.remove();
+                this.$modal = null;
+            }
             return this;
         }
     };
@@ -227,7 +239,8 @@ var popup = (function ($) {
             currentPopup = new Popup(options).showContent();
         },
         isIframe: function () {
-            if (window !== window.parent && window.parent.document.getElementById(Popup.iframeId)) {
+            if ($(document).find('#' + Popup.iframeId).length === 0 &&
+                $(window.parent.document).find('#' + Popup.iframeId).length === 1) {
                 return true;
             }
             return false;

@@ -272,6 +272,7 @@
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.vi-VN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-CN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-TW.js" />
+    <Content Include="Scripts\jquery-resize\jquery.ba-resize.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">

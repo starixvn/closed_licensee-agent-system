@@ -20,8 +20,8 @@
                         return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
                     }
                 },
-                { 
-                    HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200
+                {
+                    HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 200
                 },
                 { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
@@ -31,7 +31,7 @@
                     }
                 },
                 {
-                    HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 250
+                    HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 300
                 },
                 { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },
@@ -46,6 +46,7 @@
         showPager: true,
         gridExpandHeight: 125,
         indexNumberColumn: 0,
-        bodyRowHeight: 29
+        bodyRowHeight: 29,
+        autoResizeColumn: true
     };
 </script>

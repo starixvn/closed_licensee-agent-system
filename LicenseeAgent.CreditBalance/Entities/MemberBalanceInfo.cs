@@ -6,11 +6,8 @@
 
 namespace LicenseeAgent.CreditBalance.Entities
 {
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MemberBalanceInfo
     {
         public long RowNo { get; set; }

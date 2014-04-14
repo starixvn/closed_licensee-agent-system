@@ -3,6 +3,7 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(LicenseeAgent.Site.App_Start.SimpleInjectorInitializer), "Initialize")]
 
 namespace LicenseeAgent.Site.App_Start
@@ -16,7 +17,7 @@ namespace LicenseeAgent.Site.App_Start
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerSetting.Repositories;
-    using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.Message.Services;
     using LicenseeAgent.Report.DataAccess;
     using LicenseeAgent.Report.Services;

@@ -59,36 +59,34 @@ namespace LicenseeAgent.Core.Utility
             {
                 return PasswordStatus.Expired;
             }
-            else
+
+            if (lastLoginTime != null)
             {
-                if (lastLoginTime != null)
+                // User will be notified 3 times: 2 weeks, 1 week, 1 day in advance of password expiration date.
+                var lastLoginTimeValue = lastLoginTime.Value;
+                var expiredTotalDays = agentInfo.PwdExpiry.Subtract(today).TotalDays;
+                var loginTotalDays = agentInfo.PwdExpiry.Subtract(lastLoginTimeValue).TotalDays;
+                if (expiredTotalDays <= 14)
                 {
-                    // User will be notified 3 times: 2 weeks, 1 week, 1 day in advance of password expiration date.
-                    var lastLoginTimeValue = lastLoginTime.Value;
-                    var expiredTotalDays = agentInfo.PwdExpiry.Subtract(today).TotalDays;
-                    var loginTotalDays = agentInfo.PwdExpiry.Subtract(lastLoginTimeValue).TotalDays;
-                    if (expiredTotalDays <= 14)
+                    if (expiredTotalDays > 7)
                     {
-                        if (expiredTotalDays > 7)
+                        if (loginTotalDays > 14)
                         {
-                            if (loginTotalDays > 14)
-                            {
-                                return PasswordStatus.Alert;
-                            }
+                            return PasswordStatus.Alert;
                         }
-                        else if (expiredTotalDays > 1)
+                    }
+                    else if (expiredTotalDays > 1)
+                    {
+                        if (loginTotalDays > 7)
                         {
-                            if (loginTotalDays > 7)
-                            {
-                                return PasswordStatus.Alert;
-                            }
+                            return PasswordStatus.Alert;
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (loginTotalDays > 1)
                         {
-                            if (loginTotalDays > 1)
-                            {
-                                return PasswordStatus.Alert;
-                            }
+                            return PasswordStatus.Alert;
                         }
                     }
                 }
@@ -124,9 +122,6 @@ namespace LicenseeAgent.Core.Utility
 
                 case PasswordStatus.Alert:
                     message = string.Format(Las.PasswordWillExpired, pwdExpiredDate.ToShortDateString());
-                    break;
-
-                default:
                     break;
             }
 

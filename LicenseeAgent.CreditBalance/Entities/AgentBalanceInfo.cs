@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.CreditBalance.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentBalanceInfo
     {
         public long RowNo { get; set; }

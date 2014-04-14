@@ -15,9 +15,6 @@ namespace LicenseeAgent.Web.Mvc
     using System.Web.Mvc.Html;
     using System.Web.Routing;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class HtmlExtensions
     {
         /// <summary>

@@ -9,14 +9,11 @@ namespace LicenseeAgent.Core.Utility
     using System;
     using LicenseeAgent.Core.Configurations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class Extensions
     {
         public static bool Contains(this string source, string toCheck, StringComparison comparison)
         {
-            return string.IsNullOrEmpty(toCheck) ? true : source.IndexOf(toCheck, comparison) >= 0;
+            return string.IsNullOrEmpty(toCheck) || source.IndexOf(toCheck, comparison) >= 0;
         }
 
         /// <summary>

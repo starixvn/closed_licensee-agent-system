@@ -7,12 +7,9 @@
 namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
-    using LicenseeAgent.Taiwan.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ResetPasswordAction : LogAction
     {
         public int IBCCustId { get; set; }

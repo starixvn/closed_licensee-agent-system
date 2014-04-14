@@ -4,9 +4,6 @@ namespace LicenseeAgent.BetList.Criteria
 {
     using System;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BetListSelByMemberCriteria : BetListCriteriaBase
     {
         public string StatusIDs { get; set; }

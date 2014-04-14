@@ -27,11 +27,11 @@ namespace LicenseeAgent.Report.Utilities
 
         public override void Initialize()
         {
-            this.ShowOdds = false;
-            this.StartIndex = 1;
-            this.IsShowMember = false;
-            this.FormatDetail = "outstandingReport.showSystemParlayResult({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: outstandingReport.showBetListDetails({0},'{1}')\"";
+            ShowOdds = false;
+            StartIndex = 1;
+            IsShowMember = false;
+            FormatDetail = "outstandingReport.showSystemParlayResult({0},{1},\"{2}\")";
+            ClickFunction = "onclick=\"javascript: outstandingReport.showBetListDetails({0},'{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

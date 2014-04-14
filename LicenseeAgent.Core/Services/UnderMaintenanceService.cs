@@ -11,12 +11,8 @@ namespace LicenseeAgent.Core.Services
     using Fanex.Caching;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Utility;
     using Sunplus.UMControllerLibrary;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UnderMaintenanceService : IDisposable, IUnderMaintenanceService
     {
         private const int WaitInterval = 1000; // 1 second.
@@ -44,7 +40,7 @@ namespace LicenseeAgent.Core.Services
                 if (_threadMuText.WaitOne(WaitInterval))
                 {
                     maintenanceInfo = InternalGetUnderMaintenanceInfo();
-                    _cacheManager.Set<UnderMaintenanceInfo>(MaintenanceCacheKey, maintenanceInfo, CacheTimeout);
+                    _cacheManager.Set(MaintenanceCacheKey, maintenanceInfo, CacheTimeout);
                     _threadMuText.ReleaseMutex();
                 }
                 else
@@ -97,7 +93,7 @@ namespace LicenseeAgent.Core.Services
                 };
             }
 
-            var maintenanceInfo = new UnderMaintenanceInfo()
+            var maintenanceInfo = new UnderMaintenanceInfo
             {
                 Status = false
             };

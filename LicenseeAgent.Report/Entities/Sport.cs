@@ -10,9 +10,6 @@
 
 namespace LicenseeAgent.Report.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class Sport
     {
         public int SportType { get; set; }

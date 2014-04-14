@@ -26,9 +26,6 @@ namespace LicenseeAgent.AccountInformation.Controllers
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AccountInformationController : BaseController
     {
         private readonly ISearchUserService _searchUserService;
@@ -72,10 +69,8 @@ namespace LicenseeAgent.AccountInformation.Controllers
             {
                 return SearchAdmin(model);
             }
-            else
-            {
-                return SearchAgent(model);
-            }
+            
+            return SearchAgent(model);
         }
 
         /// <summary>
@@ -86,14 +81,9 @@ namespace LicenseeAgent.AccountInformation.Controllers
         [HttpPost]
         public JsonResult Suggest(SuggestionViewModel model)
         {
-            if (CurrentSession.AgentInfo.IsLevel0)
-            {
-                return SuggestAdmin(model);
-            }
-            else
-            {
-                return SuggestAgent(model);
-            }
+            return CurrentSession.AgentInfo.IsLevel0 
+                ? SuggestAdmin(model) 
+                : SuggestAgent(model);
         }
 
         /// <summary>
@@ -252,7 +242,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
         {
             if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
             {
-                var serviceResult = _memberService.GetMemberInformation<CustomerEntity>(
+                var serviceResult = _memberService.GetMemberInformation(
                                     customer,
                                     new GetMemberInfoAction
                                     {
@@ -346,14 +336,9 @@ namespace LicenseeAgent.AccountInformation.Controllers
         [NonAction]
         public BalanceEntity GetBalance(CustomerEntity customer)
         {
-            if (customer.Level == Constants.MemberLevel)
-            {
-                return _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId });
-            }
-            else
-            {
-                return _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
-            }
+            return customer.Level == Constants.MemberLevel 
+                ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId }) 
+                : _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
         }
     }
 }

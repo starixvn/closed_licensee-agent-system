@@ -8,9 +8,6 @@ namespace LicenseeAgent.CustomerList.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class IpSearchViewModel
     {
         [Required]

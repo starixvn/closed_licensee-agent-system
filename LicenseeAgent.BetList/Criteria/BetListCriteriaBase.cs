@@ -5,9 +5,6 @@ namespace LicenseeAgent.BetList.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class BetListCriteriaBase : CriteriaBase
     {
         public int AgentId { get; set; }

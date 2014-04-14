@@ -7,13 +7,9 @@
 namespace LicenseeAgent.Core.Exceptions
 {
     using System;
-    using System.Runtime.Serialization;
     using System.Text;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public class CriteriaException : Exception
     {
@@ -22,7 +18,6 @@ namespace LicenseeAgent.Core.Exceptions
         }
 
         public CriteriaException(ICriteria criteria)
-            : base()
         {
             Criteria = criteria;
         }
@@ -56,11 +51,6 @@ namespace LicenseeAgent.Core.Exceptions
 
                 return stringBuilder.ToString();
             }
-        }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
         }
     }
 }

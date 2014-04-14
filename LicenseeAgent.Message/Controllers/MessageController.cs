@@ -10,7 +10,6 @@
 namespace LicenseeAgent.Message.Controllers
 {
     using System.Web.Mvc;
-    using Services;
     using ViewModels;
     using Web.Controllers;
 

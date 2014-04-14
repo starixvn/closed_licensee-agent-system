@@ -70,7 +70,7 @@ namespace LicenseeAgent.Report.Controllers
             }
 
             var balanceUp = _coreService.GetBalanceUpDay();
-            var result = new List<AgentWinLoss>();
+            List<AgentWinLoss> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
                 var criteria = new WinLossMemberCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);

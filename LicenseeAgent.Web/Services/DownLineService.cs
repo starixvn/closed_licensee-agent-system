@@ -9,9 +9,6 @@ namespace LicenseeAgent.Web.Services
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Criterias;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DownLineService : QueryService, IDownLineService
     {
         /// <summary>

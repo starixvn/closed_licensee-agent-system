@@ -5,9 +5,6 @@ namespace LicenseeAgent.Web.Criterias
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Web.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CheckDownlineBelongCriteria : CriteriaBase
     {
         public int CustId { get; set; }

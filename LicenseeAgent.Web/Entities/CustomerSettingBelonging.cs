@@ -8,9 +8,6 @@ namespace LicenseeAgent.Web.Entities
 {
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerSettingBelonging
     {
         public FormType FormId { get; set; }

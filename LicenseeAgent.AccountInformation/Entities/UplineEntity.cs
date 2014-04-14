@@ -8,9 +8,6 @@ namespace LicenseeAgent.AccountInformation.Entities
 {
     using LicenseeAgent.Core.Configurations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UplineEntity
     {
         public int UplineCustId { get; set; }

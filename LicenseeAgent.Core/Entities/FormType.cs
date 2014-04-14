@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.Core.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public enum FormType : int
+    public enum FormType
     {
         /// <summary>
         /// Add direct agent or member.

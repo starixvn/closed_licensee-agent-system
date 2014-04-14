@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="StatisticCriteria.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class StatisticCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

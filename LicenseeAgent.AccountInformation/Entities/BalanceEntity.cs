@@ -7,9 +7,6 @@
 
 namespace LicenseeAgent.AccountInformation.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BalanceEntity
     {
         public decimal TotalCash { get; set; }

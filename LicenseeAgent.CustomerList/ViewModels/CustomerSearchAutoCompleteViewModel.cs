@@ -9,9 +9,6 @@ namespace LicenseeAgent.CustomerList.ViewModels
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerSearchAutoCompleteViewModel
     {
         [Required]

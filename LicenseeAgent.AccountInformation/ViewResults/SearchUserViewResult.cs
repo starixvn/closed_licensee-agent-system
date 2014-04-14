@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.AccountInformation.ViewResults
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SearchUserViewResult
     {
         public int ErrCode { get; set; }

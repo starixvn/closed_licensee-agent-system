@@ -12,9 +12,6 @@ namespace LicenseeAgent.API.LRF.Services
     using Fanex.Data;
     using LicenseeAgent.API.LRF.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DomainService : IDomainService
     {
         /// <summary>

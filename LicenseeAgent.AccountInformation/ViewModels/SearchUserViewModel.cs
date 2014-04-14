@@ -11,9 +11,6 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SearchUserViewModel
     {
         [Required]

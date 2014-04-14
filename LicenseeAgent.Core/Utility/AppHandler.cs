@@ -9,9 +9,6 @@ namespace LicenseeAgent.Core.Utility
     using System.Net;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class AppHandler
     {
         /// <summary>
@@ -21,7 +18,7 @@ namespace LicenseeAgent.Core.Utility
         /// <returns>Returns the message by HTTP code.</returns>
         public static string GetHttpErrorMessage(int httpCode)
         {
-            var message = string.Empty;
+            string message;
             switch (httpCode)
             {
                 case (int)HttpStatusCode.Forbidden:

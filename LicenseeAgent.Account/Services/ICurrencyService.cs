@@ -10,9 +10,6 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ICurrencyService
     {
         /// <summary>

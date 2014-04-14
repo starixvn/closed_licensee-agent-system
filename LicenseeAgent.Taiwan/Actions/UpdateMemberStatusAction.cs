@@ -7,13 +7,11 @@
 namespace LicenseeAgent.Taiwan.Actions
 {
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UpdateMemberStatusAction : LogAction
     {
         public string IBCCustId { get; set; }

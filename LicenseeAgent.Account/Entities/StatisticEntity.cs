@@ -1,14 +1,11 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="StatisticEntity.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace LicenseeAgent.Account.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class StatisticEntity
     {
         public decimal OutStanding { get; set; }

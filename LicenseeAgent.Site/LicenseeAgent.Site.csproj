@@ -229,13 +229,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Views\Tool\InsertMultipleMember.aspx.cs">
-      <DependentUpon>InsertMultipleMember.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Tool\InsertMultipleMember.aspx.designer.cs">
-      <DependentUpon>InsertMultipleMember.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Sportsbook\PTGrid.xml" />
     <Content Include="App_Data\TotalBets\SoccerDetail.xml">
@@ -310,7 +303,6 @@
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
     <Content Include="Views\Message\Resources\Message.js" />
-    <Content Include="Views\Tool\InsertMultipleMember.aspx" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />

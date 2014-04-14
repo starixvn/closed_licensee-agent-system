@@ -104,7 +104,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin
@@ -139,7 +139,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.ShowLiveTicket = null;
             var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin
@@ -206,7 +206,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetEventsByLeagues(string league, string @event, int sportType, bool checkedAll)
         {
-            var criteria = new EventCriteria() { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
+            var criteria = new EventCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
             var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);
             var eventIds = string.IsNullOrEmpty(@event) ? new List<string>() : @event.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();

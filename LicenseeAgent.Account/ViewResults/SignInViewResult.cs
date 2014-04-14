@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.Account.ViewResults
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SignInViewResult
     {
         /// <summary>

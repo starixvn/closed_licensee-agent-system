@@ -10,9 +10,6 @@ namespace LicenseeAgent.CreditBalance.Services
     using LicenseeAgent.CreditBalance.Criteria;
     using LicenseeAgent.CreditBalance.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ICreditBalanceService
     {
         IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);

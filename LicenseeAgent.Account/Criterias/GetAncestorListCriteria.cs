@@ -9,9 +9,6 @@ namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class GetAncestorListCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

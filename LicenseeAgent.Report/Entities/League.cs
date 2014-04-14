@@ -12,9 +12,6 @@ namespace LicenseeAgent.Report.Entities
 {
     using System;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class League
     {
         public string LeagueName { get; set; }

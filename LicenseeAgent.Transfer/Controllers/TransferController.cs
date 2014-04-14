@@ -22,9 +22,6 @@ namespace LicenseeAgent.Transfer.Controllers
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TransferController : BaseController
     {
         private readonly ITransferService _transferService;

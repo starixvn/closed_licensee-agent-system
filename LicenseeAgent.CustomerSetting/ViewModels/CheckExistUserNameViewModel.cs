@@ -12,9 +12,6 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CheckExistUserNameViewModel
     {
         [Required(ErrorMessageResourceName = "UsernameMinimumLength", ErrorMessageResourceType = typeof(Las))]

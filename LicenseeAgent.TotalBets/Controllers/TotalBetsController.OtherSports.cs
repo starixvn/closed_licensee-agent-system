@@ -21,7 +21,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public partial class TotalBetsController : BaseController
+    public partial class TotalBetsController
     {
         [HttpGet]
         public ActionResult OtherSports()
@@ -114,7 +114,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList, bool checkedAll)
         {
-            var criteria = new OtherSportsEventListCriteria()
+            var criteria = new OtherSportsEventListCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 SportList = sportList,
@@ -153,7 +153,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             if (ModelState.IsValid)
             {
-                OtherSportsCriteria criteria = new OtherSportsCriteria
+                var criteria = new OtherSportsCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     SportList = model.SportList,
@@ -181,7 +181,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin

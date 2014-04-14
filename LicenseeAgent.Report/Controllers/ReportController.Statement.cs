@@ -67,7 +67,7 @@ namespace LicenseeAgent.Report.Controllers
             }
 
             var balanceUp = _coreService.GetBalanceUpDay();
-            var result = new List<Statement>();
+            List<Statement> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
                 result = _reportService.StatementReport(new StatementMemberCriteria
@@ -78,7 +78,7 @@ namespace LicenseeAgent.Report.Controllers
                     ToDate = model.ToDate,
                     Username = model.Username
                 }).ToList();
-                var serviceResult = _memberService.GetMemberInformations<Statement>(
+                var serviceResult = _memberService.GetMemberInformations(
                                     result,
                                     new GetMemberInfoListAction
                                     {
@@ -157,7 +157,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult StatementDetailCurrentUser()
         {
-            StatementDetailReportViewModel model = new StatementDetailReportViewModel
+            var model = new StatementDetailReportViewModel
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 AgentLevel = CurrentSession.AgentInfo.AgentLevel,
@@ -234,7 +234,7 @@ namespace LicenseeAgent.Report.Controllers
         public JsonResult GetTransferData(TransferDetailViewModel model)
         {
             var balanceUp = _coreService.GetBalanceUpDay();
-            var result = new List<Transfer>();
+            List<Transfer> result;
             if (model.IsMember)
             {
                 result = _reportService.TransferDetail(new TransferDetailMemberCriteria

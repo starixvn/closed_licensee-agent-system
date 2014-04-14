@@ -10,9 +10,6 @@ namespace LicenseeAgent.Taiwan.Services
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Taiwan.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     internal interface ILogService
     {
         /// <summary>

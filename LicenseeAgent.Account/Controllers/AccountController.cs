@@ -9,7 +9,6 @@ namespace LicenseeAgent.Account.Controllers
     using System;
     using System.IO;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
@@ -198,14 +197,12 @@ namespace LicenseeAgent.Account.Controllers
             {
                 return Redirect(FormsAuthentication.DefaultUrl);
             }
-            else
+            
+            ViewBag.Result = new SignInViewResult
             {
-                ViewBag.Result = new SignInViewResult
-                {
-                    IsConfirm = passwordStatus == PasswordStatus.Alert,
-                    Message = PasswordRule.GetStatusMessage(passwordStatus, agentInfo.PwdExpiry)
-                };
-            }
+                IsConfirm = passwordStatus == PasswordStatus.Alert,
+                Message = PasswordRule.GetStatusMessage(passwordStatus, agentInfo.PwdExpiry)
+            };
 
             return View(model);
         }
@@ -545,11 +542,9 @@ namespace LicenseeAgent.Account.Controllers
                 ModelState.AddModelError(string.Empty, errorMessage);
                 return false;
             }
-            else
-            {
-                CheckIn(agentInfo, model.Language);
-                return true;
-            }
+
+            CheckIn(agentInfo, model.Language);
+            return true;
         }
 
         /// <summary>

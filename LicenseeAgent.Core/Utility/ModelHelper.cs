@@ -6,19 +6,16 @@
 
 namespace LicenseeAgent.Core.Utility
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class ModelHelper
     {
         public static bool IsAgentLevel0(int agentLevel)
         {
-            return agentLevel == 1 ? true : false;
+            return agentLevel == 1;
         }
 
         public static bool IsAgentLevel1(int agentLevel)
         {
-            return agentLevel == 2 ? true : false;
+            return agentLevel == 2;
         }
 
         public static bool IsLastAgent(int agentLevel, int numberOfLevel)

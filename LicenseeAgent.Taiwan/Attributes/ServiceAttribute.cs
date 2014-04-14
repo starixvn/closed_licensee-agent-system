@@ -5,13 +5,9 @@
 //
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.Taiwan
+namespace LicenseeAgent.Taiwan.Attributes
 {
     using System;
-
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public sealed class ServiceAttribute : Attribute
     {

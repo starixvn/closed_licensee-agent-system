@@ -9,9 +9,6 @@ namespace LicenseeAgent.Web.ViewModels
     using System.Collections.Generic;
     using LicenseeAgent.Web.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentBreadcrumViewModel
     {
         public AgentBreadcrumViewModel()

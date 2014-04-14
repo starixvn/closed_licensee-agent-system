@@ -56,12 +56,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_awayName == null)
-                {
-                    _awayName = DataRefWrapper.GetTeamName(AwayId);
-                }
-
-                return _awayName;
+                return _awayName ?? (_awayName = DataRefWrapper.GetTeamName(AwayId));
             }
 
             set

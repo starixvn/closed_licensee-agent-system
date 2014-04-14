@@ -12,9 +12,6 @@ namespace LicenseeAgent.AccountInformation.Services
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Core.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SearchUserService : QueryService, ISearchUserService
     {
         /// <summary>

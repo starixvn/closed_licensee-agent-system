@@ -8,9 +8,6 @@ namespace LicenseeAgent.Transfer.ViewModels
 {
     using System.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TransferSearchViewModel
     {
         [AllowHtml]

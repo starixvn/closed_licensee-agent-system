@@ -8,9 +8,6 @@ namespace LicenseeAgent.Core.Services
 {
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IUnderMaintenanceService
     {
         UnderMaintenanceInfo GetUnderMaintenanceInfo();

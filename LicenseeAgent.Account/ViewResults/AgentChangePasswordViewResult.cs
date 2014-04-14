@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.Account.ViewResults
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentChangePasswordViewResult
     {
         public string Message { get; set; }

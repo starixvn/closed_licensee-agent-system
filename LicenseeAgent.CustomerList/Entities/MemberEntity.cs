@@ -8,12 +8,8 @@ namespace LicenseeAgent.CustomerList.Entities
 {
     using System;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.CustomerList.Core;
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MemberEntity
     {
         [Service(Name = "LASAgentId")]

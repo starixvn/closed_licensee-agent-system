@@ -13,15 +13,11 @@ namespace LicenseeAgent.BetList.Controllers
     using Entities;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public class ParlayController : BetListBase, IBetListBase
+    public class ParlayController : BetListBase
     {
         private readonly IBetListService _betlistService;
 
@@ -49,14 +45,14 @@ namespace LicenseeAgent.BetList.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var ticketResults = _betlistService.GetParlayList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResults,
                 IsAdmin = CurrentSession.IsAdmin
             };
             var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
 
-            var model = new BetListViewModel()
+            var model = new BetListViewModel
             {
                 TicketTextList = betListTicketBuilder.BuildTickets(),
                 TicketResult = ticketResults

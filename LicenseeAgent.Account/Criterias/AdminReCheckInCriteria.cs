@@ -4,9 +4,6 @@ namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AdminReCheckInCriteria : CriteriaBase
     {
         [SpParam(SqlParamName = "On_AdminId")]

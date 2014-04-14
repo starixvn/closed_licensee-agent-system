@@ -4,7 +4,7 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.WebService
+namespace LicenseeAgentWebService
 {
     using System;
     using System.Web.Services;

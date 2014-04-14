@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="TeamEntity.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TeamEntity
     {
         private string _teamName;
@@ -21,12 +18,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_teamName == null)
-                {
-                    _teamName = DataRefWrapper.GetTeamName(TeamId);
-                }
-
-                return _teamName;
+                return _teamName ?? (_teamName = DataRefWrapper.GetTeamName(TeamId));
             }
 
             set

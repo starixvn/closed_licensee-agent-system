@@ -12,19 +12,17 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.Core.Services;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerSettingServiceBase : QueryService
     {
         protected static JsonSerializerSettings GetJsonSetting
         {
             get
             {
-                var settings = new JsonSerializerSettings();
-                settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.Formatting = Formatting.Indented;
-                return settings;
+                return new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Formatting = Formatting.Indented
+                };
             }
         }
     }

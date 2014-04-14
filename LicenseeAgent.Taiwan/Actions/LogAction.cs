@@ -8,13 +8,10 @@ namespace LicenseeAgent.Taiwan.Actions
 {
     using System;
     using System.Xml.Serialization;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public abstract class LogAction : BaseAction
     {

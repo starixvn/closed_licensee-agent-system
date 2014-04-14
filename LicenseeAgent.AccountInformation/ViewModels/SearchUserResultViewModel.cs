@@ -10,9 +10,6 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Taiwan.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SearchUserResultViewModel
     {
         public CustomerEntity Customer { get; set; }

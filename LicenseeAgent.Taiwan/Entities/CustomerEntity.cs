@@ -7,11 +7,8 @@
 namespace LicenseeAgent.Taiwan.Entities
 {
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerEntity
     {
         [Service(Name = "IBCCustId")]

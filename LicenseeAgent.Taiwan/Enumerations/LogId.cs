@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.Taiwan.Enumerations
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public enum LogId
     {
         /// <summary>

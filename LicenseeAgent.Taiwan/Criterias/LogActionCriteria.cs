@@ -9,12 +9,9 @@ namespace LicenseeAgent.Taiwan.Criterias
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Taiwan.Actions;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class LogActionCriteria : CriteriaBase
     {
-        public LogActionCriteria(LogAction logAction)
+        protected LogActionCriteria(LogAction logAction)
         {
             Url = logAction.Url;
             ApiMethod = logAction.ActionName;

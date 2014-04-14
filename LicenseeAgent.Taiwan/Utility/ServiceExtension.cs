@@ -16,14 +16,12 @@ namespace LicenseeAgent.Taiwan.Utility
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class ServiceExtension
     {
         /// <summary>
@@ -50,7 +48,7 @@ namespace LicenseeAgent.Taiwan.Utility
         {
             if (memberStatusResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObjects<MemberStatusEntity, UpdateMemberStatusLogEntity>(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
+                ServiceMapper.MapObjects(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
             }
             else
             {

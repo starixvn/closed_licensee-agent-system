@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.Account.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LicenseeEntity
     {
         public int LicenseeId { get; set; }

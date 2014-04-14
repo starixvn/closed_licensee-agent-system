@@ -12,9 +12,6 @@ namespace LicenseeAgent.Web.Mvc
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class PageExtensions
     {
         /// <summary>

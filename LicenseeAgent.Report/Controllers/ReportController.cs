@@ -25,7 +25,6 @@ namespace LicenseeAgent.Report.Controllers
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Services;
-    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
     using Services;
     using Utilities;
@@ -43,11 +42,11 @@ namespace LicenseeAgent.Report.Controllers
 
         private readonly IMemberService _memberService;
 
-        private ICoreService _coreService;
+        private readonly ICoreService _coreService;
 
-        private IReportService _reportService;
+        private readonly IReportService _reportService;
 
-        private IBetListService _betlistService;
+        private readonly IBetListService _betlistService;
 
         #endregion Services
 
@@ -104,7 +103,7 @@ namespace LicenseeAgent.Report.Controllers
             if (model.Sports.Count > 0)
             {
                 model.Sports[0].Selected = true;
-                var leagueCriteria = new LeagueCriteria()
+                var leagueCriteria = new LeagueCriteria
                 {
                     IsShowAll = criteria.IsShowAll,
                     EventDate = criteria.EventDate,
@@ -197,7 +196,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetMatchResults(MatchResultsReportCriteria criteria)
         {
-            var leagueCriteria = new LeagueCriteria()
+            var leagueCriteria = new LeagueCriteria
             {
                 SportType = criteria.SportType,
                 EventDate = criteria.EventDate
@@ -218,9 +217,8 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetLeagues(LeagueCriteria criteria)
         {
-            var leagueItems = new List<SelectListItem>();
             var leagues = _reportService.GetLeagues(criteria);
-            leagueItems = leagues.Select(i => new SelectListItem
+            var leagueItems = leagues.Select(i => new SelectListItem
             {
                 Text = DataRefWrapper.GetLeagueName(i.LeagueID),
                 Value = i.LeagueID.ToString()
@@ -309,14 +307,14 @@ namespace LicenseeAgent.Report.Controllers
 
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var betlistTickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = betlistTickets,
                 IsAdmin = CurrentSession.IsAdmin
             };
             var betListTicketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
 
-            var model = new BetListViewModel()
+            var model = new BetListViewModel
             {
                 TicketTextList = betListTicketBuilder.BuildTickets(),
                 TicketResult = betlistTickets
@@ -391,7 +389,7 @@ namespace LicenseeAgent.Report.Controllers
         /// <returns>HTML string.</returns>
         private string GetMatchResultsData(LeagueCriteria criteria, int leagueId)
         {
-            var matchResultsReportCriteria = new MatchResultsReportCriteria()
+            var matchResultsReportCriteria = new MatchResultsReportCriteria
             {
                 CustId = CurrentSession.OnUserId,
                 SportType = criteria.SportType,

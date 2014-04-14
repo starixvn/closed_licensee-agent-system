@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.Core.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CurrencyInfo
     {
         public int Currency { get; set; }

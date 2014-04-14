@@ -10,9 +10,6 @@ namespace LicenseeAgent.Web.Filters
     using System.Web.Mvc;
     using LicenseeAgent.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class BaseActionFilterAttribute : ActionFilterAttribute
     {
         protected static void Unauthorized(ActionExecutingContext filterContext)

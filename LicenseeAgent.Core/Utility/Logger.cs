@@ -10,9 +10,6 @@ namespace LicenseeAgent.Core.Utility
     using Fanex.Logging;
     using LicenseeAgent.Core.Configurations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class Logger
     {
         public static void HandleException(Exception exception)

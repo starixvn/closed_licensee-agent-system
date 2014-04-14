@@ -10,7 +10,7 @@
 namespace LicenseeAgent.Report.Entities
 {
     using System;
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
 
     /// <summary>
     /// Statement Entity.

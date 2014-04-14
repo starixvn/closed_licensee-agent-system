@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SuggestionViewModel.cs" company="Microsoft">
-// TODO: Update copyright text.
+// <copyright file="SuggestionViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -9,9 +9,6 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SuggestionViewModel
     {
         [Required]

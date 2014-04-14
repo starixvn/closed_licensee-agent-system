@@ -8,9 +8,6 @@ namespace LicenseeAgent.Transfer.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TransferToAgentCriteria : CriteriaBase
     {
         public int Updater { get; set; }

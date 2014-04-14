@@ -9,9 +9,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentEditMemIndirectCriteria : CriteriaBase
     {
         public int CustId { get; set; }

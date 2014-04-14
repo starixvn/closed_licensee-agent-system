@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="OutrightLeagueCriteria.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ namespace LicenseeAgent.TotalBets.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class OutrightLeagueCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

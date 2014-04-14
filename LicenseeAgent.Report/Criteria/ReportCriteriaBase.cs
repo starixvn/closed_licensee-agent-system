@@ -12,9 +12,6 @@ namespace LicenseeAgent.Report.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class ReportCriteriaBase : CriteriaBase
     {
         public bool IsShowAll { get; set; }

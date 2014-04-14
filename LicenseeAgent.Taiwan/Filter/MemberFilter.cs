@@ -9,10 +9,8 @@ namespace LicenseeAgent.Taiwan.Filter
 {
     using System;
     using System.Linq;
+    using LicenseeAgent.Taiwan.Attributes;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MemberFilter : IServiceFilter
     {
         /// <summary>

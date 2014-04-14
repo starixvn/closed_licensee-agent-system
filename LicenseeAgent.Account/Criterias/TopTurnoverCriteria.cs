@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="TopTurnoverCriteria.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -9,9 +9,6 @@ namespace LicenseeAgent.Account.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TopTurnoverCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

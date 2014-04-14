@@ -5,9 +5,6 @@ namespace LicenseeAgent.Account.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentLoginCriteria : CriteriaBase
     {
         public AgentLoginCriteria()

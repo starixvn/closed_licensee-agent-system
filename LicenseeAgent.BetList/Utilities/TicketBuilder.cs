@@ -24,18 +24,18 @@ namespace LicenseeAgent.BetList.Utilities
     /// </summary>
     public abstract class TicketBuilder : ITicketBuilder
     {
-        private const string _Feature = "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>";
+        private const string Feature = "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>";
+        private readonly bool _isAdmin;
+        private readonly Collection<TicketText> _ticketTextList;
         private int _startIndex = 1;
-        private bool _showOdds = false;
-        private bool _isShowMember = false;
+        private bool _showOdds;
+        private bool _isShowMember;
         private string _formatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
         private string _clickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
         private TicketResult _ticketResult;
         private BetListHTMLBuilder _builder;
         private TicketHelper _ticketHelper;
-        private bool _isAdmin = false;
-        private Collection<TicketText> _ticketTextList;
-
+        
         protected TicketBuilder(TicketBuilderParameters ticketBuilderParameters)
         {
             _ticketResult = ticketBuilderParameters.TicketResult;
@@ -105,11 +105,11 @@ namespace LicenseeAgent.BetList.Utilities
         /// <returns>Result value.</returns>
         public Collection<TicketText> BuildTickets()
         {
-            this.Initialize();
+            Initialize();
 
-            foreach (var ticket in this._ticketResult.MainTicketList)
+            foreach (var ticket in _ticketResult.MainTicketList)
             {
-                this.BuildOneTicket(ticket);
+                BuildOneTicket(ticket);
             }
 
             return _ticketTextList;
@@ -117,8 +117,8 @@ namespace LicenseeAgent.BetList.Utilities
 
         private void BuildOneTicket(LasTicket ticket)
         {
-            this.InitializeTicketHelperInTheCaseOfSystemParlay(ticket);
-            var ticketText = this.BuildTicketText(ticket);
+            InitializeTicketHelperInTheCaseOfSystemParlay(ticket);
+            var ticketText = BuildTicketText(ticket);
             _ticketTextList.Add(ticketText);
         }
 
@@ -131,27 +131,27 @@ namespace LicenseeAgent.BetList.Utilities
         {
             var ticketText = new TicketText
             {
-                Index = this._startIndex++,
+                Index = _startIndex++,
                 ExternalId = ticket.ExternalId,
                 SystemId = ticket.UserName,
                 TransTime = LasBetListHtmlBuilder.BuildTrans(ticket),
-                Status = this.BuildStatus(ticket),
-                Choice = _builder.BuildChoice(ticket, _ticketHelper, (List<ITicketData>)this._ticketResult.TicketDataList, false),
-                Odds = _builder.BuildOdds(ticket, (List<ITicketData>)this._ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
+                Status = BuildStatus(ticket),
+                Choice = _builder.BuildChoice(ticket, _ticketHelper, (List<ITicketData>)_ticketResult.TicketDataList, false),
+                Odds = _builder.BuildOdds(ticket, (List<ITicketData>)_ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                 Stake = LasBetListHtmlBuilder.BuildLasStake(ticket),
                 AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket),
-                AgentComm = this._isAdmin ? LasBetListHtmlBuilder.BuildAdminAgentComm(ticket) : LasBetListHtmlBuilder.BuildAgentComm(ticket),
+                AgentComm = _isAdmin ? LasBetListHtmlBuilder.BuildAdminAgentComm(ticket) : LasBetListHtmlBuilder.BuildAgentComm(ticket),
                 WinLoss = LasBetListHtmlBuilder.BuildLasWinloss(ticket)
             };
 
-            if (this._isShowMember)
+            if (_isShowMember)
             {
                 ticketText.Member = ticket.UserName2;
             }
 
             ticketText.Feature = string.Format(
-                    _Feature,
-                    this.BuildTheClickFunction(ticket),
+                    Feature,
+                    BuildTheClickFunction(ticket),
                     Las.Details);
             return ticketText;
         }
@@ -159,7 +159,7 @@ namespace LicenseeAgent.BetList.Utilities
         private string BuildTheClickFunction(LasTicket ticket)
         {
             var clickFunction = string.Format(
-                this._clickFunction,
+                _clickFunction,
                 ticket.TransId,
                 ticket.Status);
             return clickFunction;
@@ -175,13 +175,13 @@ namespace LicenseeAgent.BetList.Utilities
             {
                 var betTeam = _ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + _ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
                 _ticketHelper.ClientDetailSystemParlayFunction = string.Format(
-                    this._formatDetail,
+                    _formatDetail,
                     ticket.RefNo,
-                    this.BuildCustId(ticket),
+                    BuildCustId(ticket),
                     betTeam);
             }
 
-            _ticketHelper.IsShowOddsWithChoice = this._showOdds;
+            _ticketHelper.IsShowOddsWithChoice = _showOdds;
         }
     }
 }

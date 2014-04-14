@@ -21,12 +21,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_leagueName == null)
-                {
-                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
-                }
-
-                return _leagueName;
+                return _leagueName ?? (_leagueName = DataRefWrapper.GetLeagueName(LeagueId));
             }
 
             set

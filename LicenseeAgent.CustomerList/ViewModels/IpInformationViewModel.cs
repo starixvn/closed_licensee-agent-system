@@ -7,9 +7,6 @@
 
 namespace LicenseeAgent.CustomerList.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class IpInformationViewModel
     {
         public string IpAddress { get; set; }

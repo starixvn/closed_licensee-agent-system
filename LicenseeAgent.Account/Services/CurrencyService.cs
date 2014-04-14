@@ -11,9 +11,6 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Services;
     
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CurrencyService : QueryService, ICurrencyService
     {
         /// <summary>

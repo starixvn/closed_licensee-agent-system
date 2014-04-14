@@ -22,9 +22,6 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MemberService : IMemberService
     {
         private readonly ILogService _logService;
@@ -108,7 +105,7 @@ namespace LicenseeAgent.Taiwan.Services
 
             if (memberResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObject<ServiceMemberEntity, T>(memberResult.Member, memberEntity);
+                ServiceMapper.MapObject(memberResult.Member, memberEntity);
             }
             else
             {
@@ -132,7 +129,7 @@ namespace LicenseeAgent.Taiwan.Services
 
             if (memberListResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObjects<ServiceMemberEntity, T>(memberListResult.Members, memberEntitys, new MemberFilter());
+                ServiceMapper.MapObjects(memberListResult.Members, memberEntitys, new MemberFilter());
             }
             else
             {

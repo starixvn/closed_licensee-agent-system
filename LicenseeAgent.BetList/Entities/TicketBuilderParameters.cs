@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.BetList.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TicketBuilderParameters
     {
         public TicketResult TicketResult { get; set; }

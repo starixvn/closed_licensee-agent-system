@@ -7,11 +7,8 @@
 namespace LicenseeAgent.Transfer.Entities
 {
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MemberBalanceInfo
     {
         public long RowNo { get; set; }

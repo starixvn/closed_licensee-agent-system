@@ -21,9 +21,6 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class BetListBase : BaseController, IBetListBase
     {
         protected BetListBase(IDownlLinePermissionService permissionService)

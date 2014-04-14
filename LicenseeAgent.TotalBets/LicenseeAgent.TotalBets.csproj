@@ -71,21 +71,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Criterias\BetListByMatchCriteria.cs" />
-    <Compile Include="Criterias\BetListOutrightCriteria.cs" />
-    <Compile Include="Criterias\OtherSportsCriteria.cs" />
-    <Compile Include="Criterias\OtherSportsLeagueListCriteria.cs" />
-    <Compile Include="Criterias\OtherSportsEventListCriteria.cs" />
-    <Compile Include="Criterias\OtherSportsSportListCriteria.cs" />
-    <Compile Include="Criterias\OutrightCriteria.cs" />
-    <Compile Include="Criterias\OutrightLeagueCriteria.cs" />
-    <Compile Include="Criterias\OutrightSportCriteria.cs" />
-    <Compile Include="Criterias\OutrightTeamCriteria.cs" />
-    <Compile Include="Criterias\SoccerDetailCriteria.cs" />
-    <Compile Include="Criterias\BasketballCriteria.cs" />
-    <Compile Include="Criterias\EventCriteria.cs" />
-    <Compile Include="Criterias\SoccerCriteria.cs" />
-    <Compile Include="Criterias\LeagueCriteria.cs" />
+    <Compile Include="Criteria\BetListByMatchCriteria.cs" />
+    <Compile Include="Criteria\BetListOutrightCriteria.cs" />
+    <Compile Include="Criteria\OtherSportsCriteria.cs" />
+    <Compile Include="Criteria\OtherSportsLeagueListCriteria.cs" />
+    <Compile Include="Criteria\OtherSportsEventListCriteria.cs" />
+    <Compile Include="Criteria\OtherSportsSportListCriteria.cs" />
+    <Compile Include="Criteria\OutrightCriteria.cs" />
+    <Compile Include="Criteria\OutrightLeagueCriteria.cs" />
+    <Compile Include="Criteria\OutrightSportCriteria.cs" />
+    <Compile Include="Criteria\OutrightTeamCriteria.cs" />
+    <Compile Include="Criteria\SoccerDetailCriteria.cs" />
+    <Compile Include="Criteria\BasketballCriteria.cs" />
+    <Compile Include="Criteria\EventCriteria.cs" />
+    <Compile Include="Criteria\SoccerCriteria.cs" />
+    <Compile Include="Criteria\LeagueCriteria.cs" />
     <Compile Include="Entities\OutrightEntity.cs" />
     <Compile Include="Entities\SportGroupEntity.cs" />
     <Compile Include="Entities\SportEntity.cs" />

@@ -9,9 +9,6 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IInternalService
     {
         string Encode(InternalLoginInfo internalLoginInfo);

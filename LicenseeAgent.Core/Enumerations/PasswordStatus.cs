@@ -9,7 +9,7 @@ namespace LicenseeAgent.Core.Enumerations
     /// <summary>
     /// Agent Password Status.
     /// </summary>
-    public enum PasswordStatus : int
+    public enum PasswordStatus
     {
         /// <summary>
         /// Password status is normal.

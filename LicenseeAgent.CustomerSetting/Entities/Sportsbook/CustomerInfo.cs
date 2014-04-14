@@ -10,12 +10,9 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.Taiwan;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Web.Validations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerInfo
     {
         public CustomerInfo()

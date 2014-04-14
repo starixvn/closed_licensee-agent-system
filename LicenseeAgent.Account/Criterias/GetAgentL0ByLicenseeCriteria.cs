@@ -4,9 +4,6 @@ namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class GetAgentL0ByLicenseeCriteria : CriteriaBase
     {
         public int LicenseeId { get; set; }

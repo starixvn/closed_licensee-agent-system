@@ -11,9 +11,6 @@ namespace LicenseeAgent.CustomerList.Services
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class IpInformationService : QueryService, IIpInformationService
     {
         /// <summary>

@@ -9,17 +9,14 @@ namespace LicenseeAgent.Taiwan.Actions
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Configurations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public abstract class BaseAction
     {
-        public BaseAction()
+        protected BaseAction()
             : this(AppSettings.TaiwanAPI)
         {
         }
 
-        public BaseAction(string url)
+        protected BaseAction(string url)
         {
             Url = url;
         }

@@ -8,9 +8,6 @@ namespace LicenseeAgent.Account.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CurrencyLicenseeViewModel
     {
         [Required]

@@ -10,9 +10,6 @@ namespace LicenseeAgent.Account.ViewModels
     using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class InternalLoginAsUserViewModel
     {
         [AllowHtml]

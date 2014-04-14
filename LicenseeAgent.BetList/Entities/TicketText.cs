@@ -10,9 +10,6 @@
 
 namespace LicenseeAgent.BetList.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TicketText
     {
         public int Index { get; set; }

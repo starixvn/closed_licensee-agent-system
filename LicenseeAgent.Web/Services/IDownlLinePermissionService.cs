@@ -8,9 +8,6 @@ namespace LicenseeAgent.Web.Services
 {
     using LicenseeAgent.Web.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IDownlLinePermissionService
     {
         bool CheckForEditingCustomerSetting(CustomerSettingBelonging customerSettingBelonging);

@@ -13,9 +13,6 @@ namespace LicenseeAgent.BetList.Entities
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TicketResult
     {
         public TicketResult()

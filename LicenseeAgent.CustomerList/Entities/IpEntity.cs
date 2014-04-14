@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.CustomerList.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class IpEntity
     {
         public short IpKeyFrom { get; set; }

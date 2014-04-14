@@ -12,13 +12,10 @@ namespace LicenseeAgent.Core.Utility
     using System.Security.Cryptography;
     using System.Text;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class RijndaelHelper : IDisposable
     {
-        private Rijndael _rijndael;
-        private UTF8Encoding _encoding;
+        private readonly Rijndael _rijndael;
+        private readonly UTF8Encoding _encoding;
 
         public RijndaelHelper(byte[] key, byte[] vector)
         {

@@ -14,9 +14,6 @@ namespace LicenseeAgent.Web.Mvc
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class Extensions
     {
         public static bool IsPopup(this HttpRequestBase request)

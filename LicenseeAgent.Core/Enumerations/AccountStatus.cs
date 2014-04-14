@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public enum AccountStatus : int
+    public enum AccountStatus
     {
         /// <summary>
         /// The account is closed.

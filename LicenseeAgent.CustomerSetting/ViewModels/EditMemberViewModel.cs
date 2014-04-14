@@ -9,9 +9,6 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class EditMemberViewModel
     {
         [Required]

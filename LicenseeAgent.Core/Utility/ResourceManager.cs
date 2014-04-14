@@ -9,9 +9,6 @@ namespace LicenseeAgent.Core.Utility
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class ResourceManager
     {
         /// <summary>

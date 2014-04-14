@@ -7,9 +7,6 @@
 
 namespace LicenseeAgent.Taiwan.Filter
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IServiceFilter
     {
         /// <summary>

@@ -7,13 +7,9 @@
 namespace LicenseeAgent.Core.Exceptions
 {
     using System;
-    using System.Runtime.Serialization;
     using System.Text;
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public class InvalidAgentException : Exception
     {
@@ -22,7 +18,6 @@ namespace LicenseeAgent.Core.Exceptions
         }
 
         public InvalidAgentException(AgentInfo agentInfo)
-            : base()
         {
             AgentInfo = agentInfo;
         }
@@ -52,11 +47,6 @@ namespace LicenseeAgent.Core.Exceptions
 
                 return stringBuilder.ToString();
             }
-        }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
         }
     }
 }

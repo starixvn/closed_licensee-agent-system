@@ -10,9 +10,6 @@ namespace LicenseeAgent.CreditBalance.ViewModels
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CreditBalanceMemberViewModel
     {
         [Required]

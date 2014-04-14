@@ -9,9 +9,6 @@ namespace LicenseeAgent.Core.Utility
     using System;
     using Fanex.Common;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class DbConverter
     {
         public static decimal? ToDecimal(object value)

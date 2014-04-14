@@ -7,9 +7,8 @@
 
 namespace LicenseeAgent.Taiwan.Actions
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    using LicenseeAgent.Taiwan.Attributes;
+
     public class GetMemberInfoListAction : BaseAction
     {
         public int LASAgentId { get; set; }

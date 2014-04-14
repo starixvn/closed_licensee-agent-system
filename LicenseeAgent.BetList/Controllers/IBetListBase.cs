@@ -15,9 +15,6 @@ namespace LicenseeAgent.BetList.Controllers
     using Fanex.BetList.Core.Entities;
     using LicenseeAgent.BetList.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IBetListBase
     {
         Collection<BetListDetails> FormatRawBetListDetails(IEnumerable<RawBetListDetails> originalData, string status);

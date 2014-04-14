@@ -8,9 +8,6 @@ namespace LicenseeAgent.BetList.ViewModels
 {
     using LicenseeAgent.BetList.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MixParlayDetailsViewModel
     {
         public TicketResult TicketResult { get; set; }

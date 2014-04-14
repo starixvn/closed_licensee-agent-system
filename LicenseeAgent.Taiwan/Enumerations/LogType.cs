@@ -8,9 +8,6 @@ namespace LicenseeAgent.Taiwan.Enumerations
 {
     using System.Xml.Serialization;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public enum LogType
     {
         /// <summary>

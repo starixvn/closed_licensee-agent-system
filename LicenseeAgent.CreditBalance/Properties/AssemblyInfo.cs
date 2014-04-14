@@ -7,7 +7,6 @@
 //   <change who="Paul.Nguyen" date="2014.1.21">Created</change>
 // </history>
 
-using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 

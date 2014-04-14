@@ -7,7 +7,6 @@
 namespace LicenseeAgent.CustomerSetting.Repositories
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -46,8 +45,8 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
-                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    var positionTakingDataList = new Dictionary<string, PositionTaking>();
+                    var reader = objDb.ExecuteReader(criteria.GetSpParams());
                     ReadAgentPositionTakingSettingData(positionTakingDataList, reader);
                     return positionTakingDataList;
                 }
@@ -74,8 +73,8 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
-                    IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+                    var positionTakingDataList = new Dictionary<string, PositionTaking>();
+                    var reader = objDb.ExecuteReader(criteria.GetSpParams());
                     ReadMemberPositionTakingData(positionTakingDataList, reader);
 
                     return positionTakingDataList;
@@ -781,7 +780,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         {
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                var userGroup = string.Empty;
+                string userGroup;
                 ReaderMemberInfoData(custInfo, reader, out userGroup);
                 commissionSetting.UserGroup = userGroup;
             }
@@ -800,7 +799,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                     }
                     else
                     {
-                        ReadAgentCommissionData(commissionSetting.CommissionItems, reader, true);
+                        ReadAgentCommissionData(commissionSetting.CommissionItems, reader);
                     }
                 }
 

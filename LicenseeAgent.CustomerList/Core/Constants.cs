@@ -11,9 +11,6 @@ namespace LicenseeAgent.CustomerList.Core
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class Constants
     {
         public const string Normal = "normal";

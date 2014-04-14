@@ -25,9 +25,6 @@ namespace LicenseeAgent.BetList.Services
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.Core.Exceptions;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BetListService : QueryService, IBetListService
     {
         /// <summary>

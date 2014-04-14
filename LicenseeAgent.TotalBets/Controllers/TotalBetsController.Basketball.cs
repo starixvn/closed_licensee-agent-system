@@ -19,7 +19,7 @@ namespace LicenseeAgent.TotalBets.Controllers
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public partial class TotalBetsController : BaseController
+    public partial class TotalBetsController
     {
         [HttpGet]
         public ActionResult Basketball()
@@ -44,7 +44,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             if (ModelState.IsValid)
             {
-                BasketballCriteria criteria = new BasketballCriteria
+                var criteria = new BasketballCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     LeagueList = model.LeagueList,
@@ -76,7 +76,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin

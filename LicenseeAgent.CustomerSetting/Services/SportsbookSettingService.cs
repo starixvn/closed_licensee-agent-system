@@ -9,7 +9,7 @@
 //   <change who="Ricky.Nguyen" date="2013.4.12">Update New Rules</change>
 // </history>
 
-namespace LicenseeAgent.CustomerSetting.Service
+namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -21,15 +21,14 @@ namespace LicenseeAgent.CustomerSetting.Service
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
+    using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee;
     using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member;
-    using LicenseeAgent.CustomerSetting.Criterias;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
     using LicenseeAgent.CustomerSetting.Repositories;
-    using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using Newtonsoft.Json;
 
@@ -63,11 +62,11 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <returns>Sports book customer setting.</returns>
         public SportsbookCustomer GetSportsbookSettingForInsert(SettingContext settingContext)
         {
-            CustomerInfo custInfo = null;
-            CommissionSetting commissionSetting = null;
-            IList<BettingLimit> bettingLimits = null;
-            Dictionary<string, PositionTaking> positionTakingData = null;
-            ICriteria getAgentSettingCriteria = null;
+            CustomerInfo custInfo;
+            CommissionSetting commissionSetting;
+            IList<BettingLimit> bettingLimits;
+            Dictionary<string, PositionTaking> positionTakingData;
+            ICriteria getAgentSettingCriteria;
             if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
                 getAgentSettingCriteria = new LicenseeGetAgentSettingForInsertCriteria
@@ -121,13 +120,13 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// </returns>
         public SportsbookCustomer GetSportsbookSettingForUpdate(SettingContext settingContext)
         {
-            CustomerInfo custInfo = null;
-            CommissionSetting commissionSetting = null;
-            IList<BettingLimit> bettingLimits = null;
-            Dictionary<string, PositionTaking> positionTakingData = null;
+            CustomerInfo custInfo;
+            CommissionSetting commissionSetting;
+            IList<BettingLimit> bettingLimits;
+            Dictionary<string, PositionTaking> positionTakingData;
             ICriteria getAgentSettingCriteria = InitializeCriteriaForGettingSportsbookSettingForUpdate(settingContext);
 
-            var msgId = 0;
+            int msgId;
             _customerSettingRepository.GetSettingForUpdate(
                 getAgentSettingCriteria,
                 settingContext,
@@ -312,17 +311,10 @@ namespace LicenseeAgent.CustomerSetting.Service
             {
                 return CreateAgentInsertMemberCriteria(criteriaBase, model);
             }
-            else
-            {
-                if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
-                {
-                    return CreateLicenseeInsertAgentCriteria(criteriaBase, model);
-                }
-                else
-                {
-                    return CreateAgentInsertAgentCriteria(criteriaBase, model);
-                }
-            }
+            
+            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1 
+                ? CreateLicenseeInsertAgentCriteria(criteriaBase, model) 
+                : CreateAgentInsertAgentCriteria(criteriaBase, model);
         }
 
         /// <summary>
@@ -350,26 +342,14 @@ namespace LicenseeAgent.CustomerSetting.Service
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                if (model.SettingContext.FormId == FormType.EditIndirectMember)
-                {
-                    return CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model);
-                }
-                else
-                {
-                    return CreateAgentUpdateMemberCriteria(criteriaBase, model);
-                }
+                return model.SettingContext.FormId == FormType.EditIndirectMember 
+                    ? CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model) 
+                    : CreateAgentUpdateMemberCriteria(criteriaBase, model);
             }
-            else
-            {
-                if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
-                {
-                    return CreateLicenseeUpdateAgentCriteria(criteriaBase, model);
-                }
-                else
-                {
-                    return CreateAgentUpdateAgentCriteria(criteriaBase, model);
-                }
-            }
+            
+            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1 
+                ? CreateLicenseeUpdateAgentCriteria(criteriaBase, model) 
+                : CreateAgentUpdateAgentCriteria(criteriaBase, model);
         }
 
         private static ICriteria CreateAgentInsertMemberCriteria(
@@ -578,16 +558,16 @@ namespace LicenseeAgent.CustomerSetting.Service
             Dictionary<string, PositionTaking> positionTakingData,
             int maxLicenseePt = 0)
         {
-            IList<PositionTakingGroup> positionTakingSetting = new List<PositionTakingGroup>();
-            XDocument positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
-            XElement root = positionTakingDoc.Root;
+            var positionTakingSetting = new List<PositionTakingGroup>();
+            var positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
+            var root = positionTakingDoc.Root;
 
             foreach (XElement sport in root.Elements())
             {
                 var betTypeIds = sport.Attribute("betTypeIds").Value;
                 if (!string.IsNullOrEmpty(betTypeIds))
                 {
-                    PositionTakingGroup positionTakingGroup = new PositionTakingGroup
+                    var positionTakingGroup = new PositionTakingGroup
                     {
                         SportId = Converter.ToInt(sport.Attribute("id").Value),
                         IsLive = Converter.ToBool(sport.Attribute("isLive").Value),
@@ -617,16 +597,16 @@ namespace LicenseeAgent.CustomerSetting.Service
         private static IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
             Dictionary<string, PositionTaking> positionTakingData)
         {
-            IList<PositionTakingGroup> positionTakingSetting = new List<PositionTakingGroup>();
-            XDocument positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
-            XElement root = positionTakingDoc.Root;
+            var positionTakingSetting = new List<PositionTakingGroup>();
+            var positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
+            var root = positionTakingDoc.Root;
 
             foreach (XElement sport in root.Elements())
             {
                 var betTypeIds = sport.Attribute("betTypeIds").Value;
                 if (!string.IsNullOrEmpty(betTypeIds))
                 {
-                    PositionTakingGroup positionTakingGroup = new PositionTakingGroup
+                    var positionTakingGroup = new PositionTakingGroup
                     {
                         SportId = Converter.ToInt(sport.Attribute("id").Value),
                         IsLive = Converter.ToBool(sport.Attribute("isLive").Value),
@@ -655,11 +635,11 @@ namespace LicenseeAgent.CustomerSetting.Service
         private static string BuildCommissionSettingXML(SettingContext settingContext, CommissionSetting commissionSetting)
         {
             string xmlStringData = string.Empty;
-            string tempString = string.Empty;
             if (commissionSetting != null
                 && commissionSetting.CommissionItems != null
                 && commissionSetting.CommissionItems.Any())
             {
+                string tempString;
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
                     foreach (CommissionItem comItem in commissionSetting.CommissionItems)
@@ -753,7 +733,7 @@ namespace LicenseeAgent.CustomerSetting.Service
         /// <returns>The xml string for one position taking item.</returns>
         private static string BuildXMLForOnePositionTakingSetting(SettingContext settingContext, PositionTaking positionTaking)
         {
-            string xmlResult = string.Empty;
+            string xmlResult;
 
             if (settingContext.TargetRoleId != (int)Role.Member)
             {

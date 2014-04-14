@@ -11,9 +11,6 @@ namespace LicenseeAgent.AccountInformation.Services
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ISearchUserService
     {
         /// <summary>

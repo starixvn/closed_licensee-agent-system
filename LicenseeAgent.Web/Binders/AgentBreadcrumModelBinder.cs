@@ -11,9 +11,6 @@ namespace LicenseeAgent.Web.Binders
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.ViewModels;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentBreadcrumModelBinder : IModelBinder
     {
         /// <summary>

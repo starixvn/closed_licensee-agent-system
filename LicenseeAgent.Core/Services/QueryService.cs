@@ -200,7 +200,7 @@ namespace LicenseeAgent.Core.Services
                     {
                         var attributeName = property.Name.ToLower();
                         var paramAttributes = property.GetCustomAttributes(typeof(SpParamAttribute), true);
-                        if (paramAttributes != null && paramAttributes.Length == 1)
+                        if (paramAttributes.Length == 1)
                         {
                             var sqlParamName = ((SpParamAttribute)paramAttributes[0]).SqlParamName;
                             if (!string.IsNullOrEmpty(sqlParamName))

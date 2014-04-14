@@ -9,9 +9,6 @@ namespace LicenseeAgent.TotalBets.Entities
     using System.Collections.Generic;
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LeagueGroupEntity
     {
         private string _leagueName;
@@ -24,12 +21,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_leagueName == null)
-                {
-                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
-                }
-
-                return _leagueName;
+                return _leagueName ?? (_leagueName = DataRefWrapper.GetLeagueName(LeagueId));
             }
 
             set

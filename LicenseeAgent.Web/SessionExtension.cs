@@ -8,9 +8,6 @@ namespace LicenseeAgent.Web
 {
     using LicenseeAgent.Core.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class SessionExtension
     {
         public static bool IsViewSelectMenu(this ICurrentSession currentSession)

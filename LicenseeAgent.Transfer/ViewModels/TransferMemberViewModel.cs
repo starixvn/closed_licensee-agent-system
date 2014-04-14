@@ -10,9 +10,6 @@ namespace LicenseeAgent.Transfer.ViewModels
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TransferMemberViewModel
     {
         [Required]

@@ -11,9 +11,6 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web.Filters;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AdminSite]
     [AllowAnonymous]
     public class ToolController : Controller

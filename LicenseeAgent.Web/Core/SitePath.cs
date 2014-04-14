@@ -12,9 +12,6 @@ namespace LicenseeAgent.Web.Core
     using System.IO;
     using System.Web;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class SitePath
     {
         public static readonly string RootPath = HttpContext.Current.Server.MapPath("~");

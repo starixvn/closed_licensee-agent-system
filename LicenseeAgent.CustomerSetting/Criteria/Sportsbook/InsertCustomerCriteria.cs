@@ -11,9 +11,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class InsertCustomerCriteria : CriteriaBase
     {
         public InsertCustomerCriteria()

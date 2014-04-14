@@ -8,9 +8,6 @@ namespace LicenseeAgent.CreditBalance.ViewModels
 {
     using System.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CreditBalanceSearchViewModel
     {
         [AllowHtml]

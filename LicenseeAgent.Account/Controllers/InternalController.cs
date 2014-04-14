@@ -214,17 +214,15 @@ namespace LicenseeAgent.Account.Controllers
                 CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
-            else
-            {
-                var authKey = _internalService.Encode(internalLoginInfo);
-                var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
-                return Json(
-                    new
-                    {
-                        ErrCode = Result.SuccessValue,
-                        DirectUrl = directUrl
-                    });
-            }
+            
+            var authKey = _internalService.Encode(internalLoginInfo);
+            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
+            return Json(
+                new
+                {
+                    ErrCode = Result.SuccessValue,
+                    DirectUrl = directUrl
+                });
         }
 
         /// <summary>
@@ -385,11 +383,9 @@ namespace LicenseeAgent.Account.Controllers
                 ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 return false;
             }
-            else
-            {
-                CheckIn(adminInfo, model.Language);
-                return true;
-            }
+            
+            CheckIn(adminInfo, model.Language);
+            return true;
         }
 
         /// <summary>

@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.Web.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ClientInfo
     {
         public string Ip { get; set; }

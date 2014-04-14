@@ -6,9 +6,8 @@
 
 namespace LicenseeAgent.Taiwan.Actions
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    using LicenseeAgent.Taiwan.Attributes;
+
     public class CheckUserNameAction : BaseAction
     {
         public string UserName { get; set; }

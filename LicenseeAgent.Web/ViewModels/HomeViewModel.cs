@@ -8,9 +8,6 @@ namespace LicenseeAgent.Web.ViewModels
 {
     using LicenseeAgent.Core.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class HomeViewModel
     {
         public TopMenu TopMenu { get; set; }

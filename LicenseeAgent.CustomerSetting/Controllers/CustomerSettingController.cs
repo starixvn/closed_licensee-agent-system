@@ -13,15 +13,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.CustomerSetting.Criterias;
+    using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
-    using LicenseeAgent.CustomerSetting.Service;
+    using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
-    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
@@ -32,7 +31,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// </summary>
     public class CustomerSettingController : BaseController
     {
-        private static ErrCode[] betSettingErrCodes =
+        private static readonly ErrCode[] BetSettingErrCodes =
         {
             ErrCode.Msg_1003,
             ErrCode.Msg_1004,
@@ -44,7 +43,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             ErrCode.Msg_1028
         };
 
-        private static ErrCode[] positionTakingErrCodes =
+        private static readonly ErrCode[] PositionTakingErrCodes =
         {
             ErrCode.Msg_1010,
             ErrCode.Msg_1011,
@@ -260,27 +259,20 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedJson();
             }
 
-            if (model == null
-                || model.SettingContext == null
+            if (model.SettingContext == null
                 || model.UpdateDataSportsbookCustomer == null
                 || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }
 
-            InsertResult result = null;
-            if (model.SettingContext.FormId == FormType.EditIndirectMember)
-            {
-                result = _customerSettingService.UpdateIndirectCustomer(model);
-            }
-            else
-            {
-                result = _customerSettingService.UpdateCustomer(model);
-            }
+            var result = model.SettingContext.FormId == FormType.EditIndirectMember 
+                ? _customerSettingService.UpdateIndirectCustomer(model) 
+                : _customerSettingService.UpdateCustomer(model);
 
-            bool hasUpdateCommission = model.UpdateDataSportsbookCustomer.CommissionSetting != null
+            var hasUpdateCommission = model.UpdateDataSportsbookCustomer.CommissionSetting != null
                 && model.UpdateDataSportsbookCustomer.CommissionSetting.CommissionItems.Count > 0;
-            bool hasUpdateBetSetting = model.UpdateDataSportsbookCustomer.BettingLimits != null
+            var hasUpdateBetSetting = model.UpdateDataSportsbookCustomer.BettingLimits != null
                 && model.UpdateDataSportsbookCustomer.BettingLimits.Count > 0;
             var messages = GenerateMessages(result, true, hasUpdateCommission, hasUpdateBetSetting);
             return Json(new
@@ -426,14 +418,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 if (isUpdate)
                 {
-                    if (betSettingErrCodes.Contains((ErrCode)result.ErrCode))
+                    if (BetSettingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
                         if (hasUpdateCommission)
                         {
                             msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
                         }
                     }
-                    else if (positionTakingErrCodes.Contains((ErrCode)result.ErrCode))
+                    else if (PositionTakingErrCodes.Contains((ErrCode)result.ErrCode))
                     {
                         if (hasUpdateCommission)
                         {
@@ -449,7 +441,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
                 result.MinPTOutput = result.MinPTOutput / 10000;
                 result.MaxPTOutput = result.MaxPTOutput / 10000;
-                var msgContent = result.ErrMsg;
+                string msgContent;
                 switch (result.ErrCode)
                 {
                     case (int)ErrCode.Msg_1003:

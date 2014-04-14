@@ -12,7 +12,6 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CreditBalance.Criteria;
-    using LicenseeAgent.CreditBalance.Entities;
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CreditBalance.ViewModels;
     using LicenseeAgent.Resources;
@@ -23,9 +22,6 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CreditBalanceController : BaseController
     {
         private readonly ICreditBalanceService _creditBalanceService;
@@ -56,14 +52,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost]
         public JsonResult Search(CreditBalanceSearchViewModel model)
         {
-            if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
-            {
-                return SearchMember(model);
-            }
-            else
-            {
-                return SearchAgent(model);
-            }
+            return SessionManager.CurrentSession.AgentInfo.IsLastLevel 
+                ? SearchMember(model) 
+                : SearchAgent(model);
         }
 
         /// <summary>
@@ -81,7 +72,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 IsYBFiltered = false
             });
 
-            _memberService.GetMemberInformations<MemberBalanceInfo>(
+            _memberService.GetMemberInformations(
                                 memberBalanceInfo,
                                 new GetMemberInfoListAction
                                 {

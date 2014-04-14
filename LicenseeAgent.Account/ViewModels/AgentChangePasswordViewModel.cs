@@ -14,9 +14,6 @@ namespace LicenseeAgent.Account.ViewModels
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Validations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentChangePasswordViewModel
     {
         [AllowHtml]

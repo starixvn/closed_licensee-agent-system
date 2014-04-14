@@ -8,13 +8,9 @@
 namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
-    using LicenseeAgent.Taiwan.Enumerations;
-    using LicenseeAgent.Taiwan.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class InsertNewMemberAction : LogAction
     {
         public string UserName { get; set; }

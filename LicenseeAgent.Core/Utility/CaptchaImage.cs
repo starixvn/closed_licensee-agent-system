@@ -205,7 +205,7 @@ namespace LicenseeAgent.Core.Utility
 
         private int _height;
         private int _width;
-        private Random _rand;
+        private readonly Random _rand;
 
         #region Public Properties
 
@@ -242,8 +242,8 @@ namespace LicenseeAgent.Core.Utility
             {
                 if (value <= 60)
                 {
-                    var paramName = "width";
-                    throw new ArgumentOutOfRangeException(paramName, value, "width must be greater than 60.");
+                    const string ParamName = "width";
+                    throw new ArgumentOutOfRangeException(ParamName, value, "width must be greater than 60.");
                 }
 
                 _width = value;
@@ -265,8 +265,8 @@ namespace LicenseeAgent.Core.Utility
             {
                 if (value <= 30)
                 {
-                    var paramName = "height";
-                    throw new ArgumentOutOfRangeException(paramName, value, "height must be greater than 30.");
+                    const string ParamName = "height";
+                    throw new ArgumentOutOfRangeException(ParamName, value, "height must be greater than 30.");
                 }
 
                 _height = value;
@@ -378,7 +378,7 @@ namespace LicenseeAgent.Core.Utility
         /// Returns a GraphicsPath containing the specified string and font.
         /// </summary>
         /// <param name="s">The s.</param>
-        /// <param name="function">The function.</param>
+        /// <param name="f"></param>
         /// <param name="r">The r.</param>
         /// <returns></returns>
         private static GraphicsPath TextPath(string s, Font f, Rectangle r)
@@ -437,7 +437,7 @@ namespace LicenseeAgent.Core.Utility
         /// <returns></returns>
         private Bitmap GenerateImagePrivate()
         {
-            Bitmap bmp = new Bitmap(_width, _height, PixelFormat.Format24bppRgb);
+            var bmp = new Bitmap(_width, _height, PixelFormat.Format24bppRgb);
 
             using (Graphics gr = Graphics.FromImage(bmp))
             {
@@ -446,7 +446,6 @@ namespace LicenseeAgent.Core.Utility
 
                 int charOffset = 0;
                 double charWidth = _width / TextLength;
-                Rectangle rectChar;
 
                 foreach (char c in Text)
                 {
@@ -455,10 +454,10 @@ namespace LicenseeAgent.Core.Utility
                     {
                         using (Brush fontBrush = new SolidBrush(GetRandomColor()))
                         {
-                            rectChar = new Rectangle(Convert.ToInt32(charOffset * charWidth), 0, Convert.ToInt32(charWidth), _height);
+                            var rectChar = new Rectangle(Convert.ToInt32(charOffset * charWidth), 0, Convert.ToInt32(charWidth), _height);
 
                             // warp the character
-                            GraphicsPath gp = TextPath(c.ToString(), fnt, rectChar);
+                            var gp = TextPath(c.ToString(), fnt, rectChar);
                             WarpText(gp, rectChar);
 
                             // draw the character
@@ -469,7 +468,7 @@ namespace LicenseeAgent.Core.Utility
                     }
                 }
 
-                Rectangle rect = new Rectangle(new Point(0, 0), bmp.Size);
+                var rect = new Rectangle(new Point(0, 0), bmp.Size);
                 AddNoise(gr, rect);
                 AddLine(gr, rect);
             }
@@ -515,8 +514,7 @@ namespace LicenseeAgent.Core.Utility
                     return;
             }
 
-            RectangleF rectF;
-            rectF = new RectangleF(Convert.ToSingle(rect.Left), 0, Convert.ToSingle(rect.Width), rect.Height);
+            var rectF = new RectangleF(Convert.ToSingle(rect.Left), 0, Convert.ToSingle(rect.Width), rect.Height);
 
             int hrange = Convert.ToInt32(rect.Height / warpDivisor);
             int wrange = Convert.ToInt32(rect.Width / warpDivisor);
@@ -535,23 +533,23 @@ namespace LicenseeAgent.Core.Utility
                 top = 0;
             }
 
-            if (width > this.Width)
+            if (width > Width)
             {
-                width = this.Width;
+                width = Width;
             }
 
-            if (height > this.Height)
+            if (height > Height)
             {
-                height = this.Height;
+                height = Height;
             }
 
-            PointF leftTop = RandomPoint(left, left + wrange, top, top + hrange);
-            PointF rightTop = RandomPoint(width - wrange, width, top, top + hrange);
-            PointF leftBottom = RandomPoint(left, left + wrange, height - hrange, height);
-            PointF rightBottom = RandomPoint(width - wrange, width, height - hrange, height);
+            var leftTop = RandomPoint(left, left + wrange, top, top + hrange);
+            var rightTop = RandomPoint(width - wrange, width, top, top + hrange);
+            var leftBottom = RandomPoint(left, left + wrange, height - hrange, height);
+            var rightBottom = RandomPoint(width - wrange, width, height - hrange, height);
 
-            PointF[] points = new PointF[] { leftTop, rightTop, leftBottom, rightBottom };
-            Matrix m = new Matrix();
+            var points = new PointF[] { leftTop, rightTop, leftBottom, rightBottom };
+            var m = new Matrix();
             m.Translate(0, 0);
             textPath.Warp(points, rectF, m, WarpMode.Perspective, 0);
         }
@@ -559,7 +557,7 @@ namespace LicenseeAgent.Core.Utility
         /// <summary>
         /// Add a variable level of graphic noise to the image.
         /// </summary>
-        /// <param name="graphics1">The graphics1.</param>
+        /// <param name="graphics"></param>
         /// <param name="rect">The rect.</param>
         private void AddNoise(Graphics graphics, Rectangle rect)
         {

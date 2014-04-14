@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.AccountInformation.Entities
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SuggestionEntity
     {
         public string UserName { get; set; }

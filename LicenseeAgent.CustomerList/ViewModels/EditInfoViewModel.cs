@@ -9,9 +9,6 @@ namespace LicenseeAgent.CustomerList.ViewModels
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class EditInfoViewModel
     {
         public int CustId { get; set; }

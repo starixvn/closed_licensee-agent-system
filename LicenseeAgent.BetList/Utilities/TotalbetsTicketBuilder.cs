@@ -17,7 +17,7 @@ namespace LicenseeAgent.BetList.Utilities
     /// <summary>
     /// Build ticket.
     /// </summary>
-    public class TotalbetsTicketBuilder : TicketBuilder, ITicketBuilder
+    public class TotalbetsTicketBuilder : TicketBuilder
     {
         public TotalbetsTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
             : base(ticketBuilderParameters)
@@ -26,11 +26,11 @@ namespace LicenseeAgent.BetList.Utilities
 
         public override void Initialize()
         {
-            this.ShowOdds = false;
-            this.StartIndex = 1;
-            this.IsShowMember = true;
-            this.FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
+            ShowOdds = false;
+            StartIndex = 1;
+            IsShowMember = true;
+            FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+            ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

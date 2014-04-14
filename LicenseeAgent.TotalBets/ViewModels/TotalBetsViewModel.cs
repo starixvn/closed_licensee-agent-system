@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.TotalBets.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TotalBetsViewModel
     {
         public string LeagueList { get; set; }

@@ -7,9 +7,9 @@
 //   <change who="Ricky.Nguyen" date="2013.3.8">Created</change>
 // </history>
 
-namespace LicenseeAgent.CustomerSetting.Service
+namespace LicenseeAgent.CustomerSetting.Services
 {
-    using LicenseeAgent.CustomerSetting.Criterias;
+    using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
     using LicenseeAgent.CustomerSetting.ViewModels;

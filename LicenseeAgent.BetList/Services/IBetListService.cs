@@ -17,9 +17,6 @@ namespace LicenseeAgent.BetList.Services
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Criteria;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IBetListService
     {
         /// <summary>

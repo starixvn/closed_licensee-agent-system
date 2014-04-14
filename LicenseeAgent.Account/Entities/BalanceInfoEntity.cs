@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="BalanceInfoEntity.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ namespace LicenseeAgent.Account.Entities
 {
     using System;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BalanceInfoEntity
     {
         public string AgentName { get; set; }

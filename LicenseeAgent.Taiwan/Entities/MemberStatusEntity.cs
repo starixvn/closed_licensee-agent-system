@@ -11,9 +11,6 @@ namespace LicenseeAgent.Taiwan.Entities
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [DataContract]
     public class MemberStatusEntity
     {

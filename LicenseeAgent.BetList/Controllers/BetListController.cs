@@ -16,19 +16,12 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Resources;
-    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public class BetListController : BetListBase, IBetListBase
+    public class BetListController : BetListBase
     {
-        private const string BetListCustomerInfo = "BetListCustomerInfo";
-        private const int CacheDuration = 43200;
         private readonly IBetListService _betlistService;
         private readonly ICoreService _coreService;
         private readonly IDownlLinePermissionService _permissionService;
@@ -71,14 +64,14 @@ namespace LicenseeAgent.BetList.Controllers
             criteria.StatusIDs = criteria.StatusIDs == "255" ? null : criteria.StatusIDs; // All
 
             var ticketResults = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResults,
                 IsAdmin = CurrentSession.IsAdmin
             };
             var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
 
-            var model = new BetListViewModel()
+            var model = new BetListViewModel
             {
                 TicketTextList = betListTicketBuilder.BuildTickets(),
                 TicketResult = ticketResults
@@ -120,7 +113,7 @@ namespace LicenseeAgent.BetList.Controllers
             var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
             var ticketResult = _betlistService.GetMixParlayDetails(criteria);
 
-            return this.BuildMixParlayDetails(ticketResult);
+            return BuildMixParlayDetails(ticketResult);
         }
 
         /// <summary>
@@ -148,7 +141,7 @@ namespace LicenseeAgent.BetList.Controllers
             };
 
             var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
-            var systemParlayText = this.BuildSystemParlayDetail(systemParlayData);
+            var systemParlayText = BuildSystemParlayDetail(systemParlayData);
 
             return Content(systemParlayText);
         }
@@ -168,8 +161,10 @@ namespace LicenseeAgent.BetList.Controllers
 
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
-            var viewModel = new BetListDetailsViewModel();
-            viewModel.BetListDetails = this.FormatRawBetListDetails(rawBetListDetails, criteria.Status);
+            var viewModel = new BetListDetailsViewModel
+            {
+                BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status)
+            };
 
             return View(viewModel);
         }

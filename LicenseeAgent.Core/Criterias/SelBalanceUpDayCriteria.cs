@@ -4,9 +4,6 @@ namespace LicenseeAgent.Core.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SelBalanceUpDayCriteria : CriteriaBase
     {
         public override string GetSettingKey()

@@ -6,10 +6,7 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public enum Role : int
+    public enum Role
     {
         /// <summary>
         /// Licensee role.

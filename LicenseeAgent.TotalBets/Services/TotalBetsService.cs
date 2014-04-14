@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="TotalBetsService.cs" company="Microsoft">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -11,9 +11,6 @@ namespace LicenseeAgent.TotalBets.Services
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class TotalBetsService : QueryService, ITotalBetsService
     {
         public IEnumerable<LeagueEntity> GetLeagues(LeagueCriteria criteria)

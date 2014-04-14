@@ -8,12 +8,9 @@ namespace LicenseeAgent.CreditBalance.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UpdateAgentCreditCriteria : CriteriaBase
     {
-        private string _settingKey = string.Empty;
+        private readonly string _settingKey = string.Empty;
 
         public UpdateAgentCreditCriteria(string settingKey)
         {
@@ -32,7 +29,7 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public override string GetSettingKey()
         {
-            return this._settingKey;
+            return _settingKey;
         }
 
         public override bool IsValid()

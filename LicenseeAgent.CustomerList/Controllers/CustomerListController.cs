@@ -9,12 +9,10 @@ namespace LicenseeAgent.CustomerList.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Common;
-    using Fanex.Common.Extensions;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerList.Criteria;
-    using LicenseeAgent.CustomerList.Entities;
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerList.ViewModels;
     using LicenseeAgent.Resources;
@@ -28,9 +26,6 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerListController : BaseController
     {
         private readonly ICustomerService _customerService;
@@ -128,26 +123,10 @@ namespace LicenseeAgent.CustomerList.Controllers
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
             if (isLastLevel)
             {
-                if (isGetAll)
-                {
-                    return GetMembers(model);
-                }
-                else
-                {
-                    return SearchMembers(model);
-                }
+                return isGetAll ? GetMembers(model) : SearchMembers(model);
             }
-            else
-            {
-                if (isGetAll)
-                {
-                    return GetAgents(model);
-                }
-                else
-                {
-                    return SearchAgents(model);
-                }
-            }
+
+            return isGetAll ? GetAgents(model) : SearchAgents(model);
         }
 
         /// <summary>
@@ -223,7 +202,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
-                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
+                var serviceResult = _memberService.GetMemberInformations(
                                     members,
                                     new GetMemberInfoListAction
                                     {
@@ -267,7 +246,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
-                var serviceResult = _memberService.GetMemberInformations<MemberEntity>(
+                var serviceResult = _memberService.GetMemberInformations(
                     members,
                     new GetMemberInfoListAction
                     {
@@ -322,7 +301,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = string.Join(",", agents.Select(a => a.AgentId.ToString()).ToArray<string>()),
+                    LASAgentId = string.Join(",", agents.Select(a => a.AgentId.ToString()).ToArray()),
                     IsClosed = true
                 });
 
@@ -392,14 +371,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             }
 
             var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
-            if (isLastLevel)
-            {
-                return SearchMemberAutoComplete(model);
-            }
-            else
-            {
-                return SearchAgentAutoComplete(model);
-            }
+            return isLastLevel ? SearchMemberAutoComplete(model) : SearchAgentAutoComplete(model);
         }
 
         /// <summary>
@@ -602,7 +574,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             var memberInfo = new CustomerEntity { CustId = memberId };
 
-            _memberService.GetMemberInformation<CustomerEntity>(
+            _memberService.GetMemberInformation(
                 memberInfo,
                 new GetMemberInfoAction
                 {

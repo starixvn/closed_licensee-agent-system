@@ -9,9 +9,6 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UpdateCustomerViewModel
     {
         [Required]

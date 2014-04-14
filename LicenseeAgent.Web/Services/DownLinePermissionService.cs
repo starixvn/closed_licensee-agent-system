@@ -12,9 +12,6 @@ namespace LicenseeAgent.Web.Services
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DownLinePermissionService : IDownlLinePermissionService
     {
         private IDownLineService _downLineService;

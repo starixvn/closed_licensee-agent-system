@@ -11,9 +11,6 @@ namespace LicenseeAgent.Web.Filters
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {

@@ -15,9 +15,6 @@ namespace LicenseeAgent.Web.Validations
     using System.Globalization;
     using System.Web.Mvc;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class NotEqualAttribute : ValidationAttribute, IClientValidatable
     {

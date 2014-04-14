@@ -20,12 +20,12 @@ namespace LicenseeAgent.TotalBets.Controllers
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public partial class TotalBetsController : BaseController
+    public partial class TotalBetsController
     {
         [HttpGet]
         public ViewResult Outright()
         {
-            var model = new OutrightViewModel() { TimeInterval = 15 };
+            var model = new OutrightViewModel { TimeInterval = 15 };
 
             return View(model);
         }
@@ -151,7 +151,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters()
+            var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin

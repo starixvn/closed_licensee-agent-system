@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="TotalBetsUtility.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -14,9 +14,6 @@ namespace LicenseeAgent.TotalBets.Utility
     using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class TotalBetsUtility
     {
         /// <summary>
@@ -31,7 +28,6 @@ namespace LicenseeAgent.TotalBets.Utility
         public static IEnumerable<LeagueGroupEntity> MapTotalBetsMainData(IEnumerable<TotalBetsEntity> dataList)
         {
             var timeLiveTemplate = "{0}-{1}<br /><span class='live'>" + Las.Live + "!</span>";
-            var result = new List<LeagueGroupEntity>();
             var leagueGroupList = dataList.Select(x => new { x.LeagueId, x.LiveIndicator }).Distinct().ToList();
             foreach (var league in leagueGroupList)
             {
@@ -110,10 +106,8 @@ namespace LicenseeAgent.TotalBets.Utility
 
                 return string.Format(template, betCountString, stakeString);
             }
-            else
-            {
-                return string.Empty;
-            }
+
+            return string.Empty;
         }
     }
 }

@@ -15,15 +15,12 @@ namespace LicenseeAgent.Core.Configurations
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class DomainMapper
     {
         private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";
         private const int LicenseeDomainsCacheTimeout = 30 * 60; // 60 minutes
-        private static ICoreService _coreService = DependencyResolver.Current.GetService<ICoreService>();
-        private static ICache _cacheService = CacheService.CreateInstance();
+        private static readonly ICoreService CoreService = DependencyResolver.Current.GetService<ICoreService>();
+        private static readonly ICache CacheService = Fanex.Caching.CacheService.CreateInstance();
 
         /// <summary>
         /// Gets licensee id by URL.
@@ -57,16 +54,16 @@ namespace LicenseeAgent.Core.Configurations
         /// <exception cref="System.Exception">Licensee domains configuration is fail.</exception>
         private static IEnumerable<LicenseeDomain> GetLicenseeDomains()
         {
-            var licenseeDomains = _cacheService.Get<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey);
+            var licenseeDomains = CacheService.Get<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey);
             if (licenseeDomains == null)
             {
-                licenseeDomains = _coreService.GetLicenseeDomains();
-                if (licenseeDomains == null || licenseeDomains.Count() == 0)
+                licenseeDomains = CoreService.GetLicenseeDomains();
+                if (licenseeDomains == null || !licenseeDomains.Any())
                 {
                     throw new InvalidOperationException("Licensee domains configuration is fail.");
                 }
 
-                _cacheService.Set<IEnumerable<LicenseeDomain>>(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
+                CacheService.Set(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
             }
 
             return licenseeDomains;

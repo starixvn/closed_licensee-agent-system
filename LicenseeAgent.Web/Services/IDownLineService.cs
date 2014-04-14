@@ -8,9 +8,6 @@ namespace LicenseeAgent.Web.Services
 {
     using LicenseeAgent.Web.Criterias;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IDownLineService
     {
         bool IsDownLine(CheckDownlineBelongCriteria criteria);

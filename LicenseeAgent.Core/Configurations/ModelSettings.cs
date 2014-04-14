@@ -12,12 +12,9 @@ namespace LicenseeAgent.Core.Configurations
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class ModelSettings
     {
-        private static List<SelectListItem> _languages = new List<SelectListItem>
+        private static readonly List<SelectListItem> AllLanguages = new List<SelectListItem>
         {
             new SelectListItem { Text = "English", Value = "en-US" },
             new SelectListItem { Text = "繁體中文", Value = "zh-TW" },
@@ -28,7 +25,7 @@ namespace LicenseeAgent.Core.Configurations
         {
             get
             {
-                return _languages.First().Value;
+                return AllLanguages.First().Value;
             }
         }
 
@@ -36,7 +33,7 @@ namespace LicenseeAgent.Core.Configurations
         {
             get
             {
-                return _languages;
+                return AllLanguages;
             }
         }
 

@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentInsertAgentSettingCriteria : InsertCustomerCriteria
     {
         public AgentInsertAgentSettingCriteria(InsertCustomerCriteria criteria)

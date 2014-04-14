@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.AccountInformation.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DownlineViewModel
     {
         public int AgentId { get; set; }

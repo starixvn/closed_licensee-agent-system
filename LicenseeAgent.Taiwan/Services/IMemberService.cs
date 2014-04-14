@@ -11,9 +11,6 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IMemberService
     {
         /// <summary>

@@ -8,16 +8,12 @@ namespace LicenseeAgent.CustomerList.Entities
 {
     using System;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.CustomerList.Core;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentEntity
     {
         public AgentEntity()
         {
-            this.AgentLevel = 0;
+            AgentLevel = 0;
         }
 
         public int ParentId { get; set; }

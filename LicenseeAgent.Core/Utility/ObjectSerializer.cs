@@ -12,7 +12,7 @@ namespace LicenseeAgent.Core.Utility
     using System.Xml.Serialization;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// ObjectSerializer class.
     /// </summary>
     /// <typeparam name="T">T is a class used to serialize.</typeparam>
     public static class ObjectSerializer<T> where T : class

@@ -16,9 +16,6 @@ namespace LicenseeAgent.Report.Services
     using Fanex.NAP.Framework.Data;
     using Fanex.Result.Core.DTO;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IReportService
     {
         /// <summary>

@@ -3,7 +3,7 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-using System;
+
 using System.Reflection;
 using System.Runtime.InteropServices;
 

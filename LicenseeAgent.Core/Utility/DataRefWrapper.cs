@@ -12,9 +12,6 @@ namespace LicenseeAgent.Core.Utility
     using LicenseeAgent.Resources;
     using RemotingRef;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class DataRefWrapper
     {
         private static string RefLanguageCode
@@ -67,10 +64,8 @@ namespace LicenseeAgent.Core.Utility
             {
                 return betType == (int)BetType.BetType_9 ? Las.MixSportsParlay : Las.OtherSports;
             }
-            else
-            {
-                return RefData.GetSportName(sportType.ToString(), RefLanguageCode);
-            }
+            
+            return RefData.GetSportName(sportType.ToString(), RefLanguageCode);
         }
 
         public static string GetLeagueName(int leagueId)
@@ -102,247 +97,192 @@ namespace LicenseeAgent.Core.Utility
                 case (int)BetType.BetType_20:
                 case (int)BetType.BetType_25:
                 case (int)BetType.BetType_27:
-                    if (betTeam == "h")
+                    switch (betTeam)
                     {
-                        return Las.HomeTeam;
-                    }
-                    else if (betTeam == "a")
-                    {
-                        return Las.AwayTeam;
+                        case "h":
+                            return Las.HomeTeam;
+                        case "a":
+                            return Las.AwayTeam;
                     }
 
                     break;
 
                 case (int)BetType.BetType_2:
                 case (int)BetType.BetType_12:
-                    if (betTeam == "h")
+                    switch (betTeam)
                     {
-                        return Las.Odd;
-                    }
-                    else if (betTeam == "a")
-                    {
-                        return Las.Even;
+                        case "h":
+                            return Las.Odd;
+                        case "a":
+                            return Las.Even;
                     }
 
                     break;
 
                 case (int)BetType.BetType_3:
                 case (int)BetType.BetType_8:
-                    if (betTeam == "h")
+                    switch (betTeam)
                     {
-                        return Las.Over;
-                    }
-                    else if (betTeam == "a")
-                    {
-                        return Las.Under;
+                        case "h":
+                            return Las.Over;
+                        case "a":
+                            return Las.Under;
                     }
 
                     break;
 
                 case (int)BetType.BetType_4:
-                    if (betTeam == "0:5")
+                    switch (betTeam)
                     {
-                        return "0-5 UP";
-                    }
-                    else if (betTeam == "5:0")
-                    {
-                        return "5-0 UP";
-                    }
-                    else
-                    {
-                        return betTeam.Replace(':', '-');
+                        case "0:5":
+                            return "0-5 UP";
+                        case "5:0":
+                            return "5-0 UP";
+                        default:
+                            return betTeam.Replace(':', '-');
                     }
 
                 case (int)BetType.BetType_5:
                 case (int)BetType.BetType_15:
                 case (int)BetType.BetType_28:
-                    if (betTeam == "1")
+                    switch (betTeam)
                     {
-                        return Las.HomeTeam;
-                    }
-                    else if (betTeam == "x")
-                    {
-                        return Las.Draw;
-                    }
-                    else if (betTeam == "2")
-                    {
-                        return Las.AwayTeam;
+                        case "1":
+                            return Las.HomeTeam;
+                        case "x":
+                            return Las.Draw;
+                        case "2":
+                            return Las.AwayTeam;
                     }
 
                     break;
 
                 case (int)BetType.BetType_6:
-                    if (betTeam == "7-over")
-                    {
-                        return Las.Score7Over;
-                    }
-                    else
-                    {
-                        return betTeam;
-                    }
+                    return betTeam == "7-over" ? Las.Score7Over : betTeam;
 
                 case (int)BetType.BetType_13:
-                    if (betTeam == "hy")
+                    switch (betTeam)
                     {
-                        return Las.HomeYes;
-                    }
-                    else if (betTeam == "hn")
-                    {
-                        return Las.Even;
-                    }
-                    else if (betTeam == "ay")
-                    {
-                        return Las.AwayYes;
-                    }
-                    else if (betTeam == "an")
-                    {
-                        return Las.AwayNo;
+                        case "hy":
+                            return Las.HomeYes;
+                        case "hn":
+                            return Las.Even;
+                        case "ay":
+                            return Las.AwayYes;
+                        case "an":
+                            return Las.AwayNo;
                     }
 
                     break;
 
                 case (int)BetType.BetType_14:
-                    if (betTeam == "1:1")
+                    switch (betTeam)
                     {
-                        return "HF";
-                    }
-                    else if (betTeam == "1:2")
-                    {
-                        return "HL";
-                    }
-                    else if (betTeam == "2:1")
-                    {
-                        return "AF";
-                    }
-                    else if (betTeam == "2:2")
-                    {
-                        return "AL";
-                    }
-                    else if (betTeam == "0:0")
-                    {
-                        return "NG";
+                        case "1:1":
+                            return "HF";
+                        case "1:2":
+                            return "HL";
+                        case "2:1":
+                            return "AF";
+                        case "2:2":
+                            return "AL";
+                        case "0:0":
+                            return "NG";
                     }
 
                     break;
 
                 case (int)BetType.BetType_16:
-                    if (betTeam == "1:1")
+                    switch (betTeam)
                     {
-                        return "HH";
-                    }
-                    else if (betTeam == "1:0")
-                    {
-                        return "HD";
-                    }
-                    else if (betTeam == "1:2")
-                    {
-                        return "HA";
-                    }
-                    else if (betTeam == "2:1")
-                    {
-                        return "AH";
-                    }
-                    else if (betTeam == "2:0")
-                    {
-                        return "AD";
-                    }
-                    else if (betTeam == "2:2")
-                    {
-                        return "AA";
-                    }
-                    else if (betTeam == "0:1")
-                    {
-                        return "DH";
-                    }
-                    else if (betTeam == "0:0")
-                    {
-                        return "DD";
-                    }
-                    else if (betTeam == "0:2")
-                    {
-                        return "DA";
+                        case "1:1":
+                            return "HH";
+                        case "1:0":
+                            return "HD";
+                        case "1:2":
+                            return "HA";
+                        case "2:1":
+                            return "AH";
+                        case "2:0":
+                            return "AD";
+                        case "2:2":
+                            return "AA";
+                        case "0:1":
+                            return "DH";
+                        case "0:0":
+                            return "DD";
+                        case "0:2":
+                            return "DA";
                     }
 
                     break;
 
                 case (int)BetType.BetType_24:
-                    if (betTeam == "1x")
+                    switch (betTeam)
                     {
-                        return Las.HomeOrDraw;
-                    }
-                    else if (betTeam == "12")
-                    {
-                        return Las.HomeOrAway;
-                    }
-                    else if (betTeam == "2x")
-                    {
-                        return Las.AwayOrDraw;
+                        case "1x":
+                            return Las.HomeOrDraw;
+                        case "12":
+                            return Las.HomeOrAway;
+                        case "2x":
+                            return Las.AwayOrDraw;
                     }
 
                     break;
 
                 case (int)BetType.BetType_26:
-                    if (betTeam == "b")
+                    switch (betTeam)
                     {
-                        return Las.Both;
-                    }
-                    else if (betTeam == "o")
-                    {
-                        return Las.One;
-                    }
-                    else if (betTeam == "n")
-                    {
-                        return Las.NoGoal;
+                        case "b":
+                            return Las.Both;
+                        case "o":
+                            return Las.One;
+                        case "n":
+                            return Las.NoGoal;
                     }
 
                     break;
 
                 case (int)BetType.BetType_30:
-                    if (betTeam == "0:4")
+                    switch (betTeam)
                     {
-                        return "0-4 UP";
-                    }
-                    else if (betTeam == "4:0")
-                    {
-                        return "4-0 UP";
-                    }
-                    else
-                    {
-                        return betTeam.Replace(':', '-');
+                        case "0:4":
+                            return "0-4 UP";
+                        case "4:0":
+                            return "4-0 UP";
+                        default:
+                            return betTeam.Replace(':', '-');
                     }
 
                 case (int)BetType.BetType_121:
-                    if (betTeam == "a")
+                    switch (betTeam)
                     {
-                        return Las.AwayTeam;
-                    }
-                    else if (betTeam == "x")
-                    {
-                        return Las.Draw;
+                        case "a":
+                            return Las.AwayTeam;
+                        case "x":
+                            return Las.Draw;
                     }
 
                     break;
 
                 case (int)BetType.BetType_122:
-                    if (betTeam == "h")
+                    switch (betTeam)
                     {
-                        return Las.HomeTeam;
-                    }
-                    else if (betTeam == "x")
-                    {
-                        return Las.Draw;
+                        case "h":
+                            return Las.HomeTeam;
+                        case "x":
+                            return Las.Draw;
                     }
 
                     break;
 
                 case (int)BetType.BetType_123:
-                    if (betTeam == "h")
+                    switch (betTeam)
                     {
-                        return Las.Draw;
-                    }
-                    else if (betTeam == "a")
-                    {
-                        return Las.NoDraw;
+                        case "h":
+                            return Las.Draw;
+                        case "a":
+                            return Las.NoDraw;
                     }
 
                     break;

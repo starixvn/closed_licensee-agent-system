@@ -11,11 +11,9 @@ namespace LicenseeAgent.Taiwan.Utility
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Filter;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     internal class ServiceMapper
     {
         /// <summary>
@@ -68,10 +66,10 @@ namespace LicenseeAgent.Taiwan.Utility
             foreach (var destination in destinations)
             {
                 var source = (from s in sources
-                              where serviceFilter.IsEquals<T1, T2>(s, destination)
+                              where serviceFilter.IsEquals(s, destination)
                               select s).FirstOrDefault();
 
-                ServiceMapper.MapObject<T1, T2>(source, destination);
+                ServiceMapper.MapObject(source, destination);
             }
         }
 

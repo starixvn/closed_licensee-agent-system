@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.Account.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentViewModel
     {
         public int LicenseeId { get; set; }

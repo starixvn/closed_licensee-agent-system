@@ -18,9 +18,9 @@ namespace LicenseeAgent.BetList.Utilities
     /// <summary>
     /// Build ticket.
     /// </summary>
-    public class BetListTicketBuilder : TicketBuilder, ITicketBuilder
+    public class BetListTicketBuilder : TicketBuilder
     {
-        private BetListCriteriaBase _criteria;
+        private readonly BetListCriteriaBase _criteria;
 
         public BetListTicketBuilder(TicketBuilderParameters ticketBuilderParameters, BetListCriteriaBase criteria)
             : base(ticketBuilderParameters)
@@ -30,11 +30,11 @@ namespace LicenseeAgent.BetList.Utilities
 
         public override void Initialize()
         {
-            this.ShowOdds = false;
-            this.StartIndex = 1;
-            this.IsShowMember = false;
-            this.FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
-            this.ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0},'{1}')\"";
+            ShowOdds = false;
+            StartIndex = 1;
+            IsShowMember = false;
+            FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+            ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0},'{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)
@@ -45,7 +45,7 @@ namespace LicenseeAgent.BetList.Utilities
 
         public override long BuildCustId(LasTicket ticket)
         {
-            return this._criteria.CustId != 0 ? ticket.CustId : this._criteria.CustId;
+            return _criteria.CustId != 0 ? ticket.CustId : _criteria.CustId;
         }
     }
 }

@@ -12,9 +12,6 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using System.Collections.Generic;
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SportsbookCustomer
     {
         public Result Result { get; set; }

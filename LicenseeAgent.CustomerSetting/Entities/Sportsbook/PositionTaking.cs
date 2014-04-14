@@ -9,9 +9,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class PositionTaking
     {
         public int SportId { get; set; }

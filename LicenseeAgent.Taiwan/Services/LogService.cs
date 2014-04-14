@@ -11,9 +11,6 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Taiwan.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     internal class LogService : QueryService, ILogService
     {
         /// <summary>

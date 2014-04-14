@@ -11,9 +11,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LicenseeGetAgentSettingForInsertCriteria : CriteriaBase
     {
         public int AgentL0Id { get; set; }

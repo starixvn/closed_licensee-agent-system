@@ -8,9 +8,6 @@ namespace LicenseeAgent.Taiwan.Criterias
 {
     using LicenseeAgent.Taiwan.Actions;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AddNewMemberCriteria : SingleLogActionCriteria
     {
         public AddNewMemberCriteria(LogAction logAction)

@@ -227,8 +227,8 @@ namespace LicenseeAgent.BetList.DataAccess
                 ticket.IP = containsIP ? Converter.ToString2(dataRow["ip"]) : string.Empty;
 
                 // Boolean
-                ticket.IsLive = containsLiveIndicator ? ReadBoolean(dataRow["liveindicator"]) : false;
-                ticket.IsNeutral = containsNeutral ? ReadBoolean(dataRow["isneutral"]) : false;
+                ticket.IsLive = containsLiveIndicator && ReadBoolean(dataRow["liveindicator"]);
+                ticket.IsNeutral = containsNeutral && ReadBoolean(dataRow["isneutral"]);
 
                 // Int
                 ticket.SportTypeId = containsSportType ? Converter.ToInt(dataRow["sporttype"]) : 0;
@@ -321,12 +321,12 @@ namespace LicenseeAgent.BetList.DataAccess
                 return false;
             }
 
-            if (value.GetType() == typeof(bool))
+            if (value is bool)
             {
                 return Convert.ToBoolean(value);
             }
 
-            if (value.GetType() == typeof(int))
+            if (value is int)
             {
                 return Convert.ToInt32(value) > 0;
             }

@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.Web.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ErrorViewModel
     {
         public int StatusCode { get; set; }

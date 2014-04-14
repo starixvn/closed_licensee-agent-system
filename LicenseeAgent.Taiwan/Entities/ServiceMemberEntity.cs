@@ -10,9 +10,6 @@ namespace LicenseeAgent.Taiwan.Entities
     using System.Runtime.Serialization;
     using LicenseeAgent.Core.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [DataContract]
     public class ServiceMemberEntity
     {

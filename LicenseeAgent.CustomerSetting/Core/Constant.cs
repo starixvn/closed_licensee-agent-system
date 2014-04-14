@@ -54,7 +54,7 @@ namespace LicenseeAgent.CustomerSetting.Core
         public const int BetTypeIdOf1x2Discount = 5;
         public const int BetTypeIdOfOtherDiscount = 4;
 
-        private static Dictionary<string, BettingLimit> bettingLimitItemsDefault = new Dictionary<string, BettingLimit>();
+        private static readonly Dictionary<string, BettingLimit> BettingLimitItemsDefault = new Dictionary<string, BettingLimit>();
 
         static Constant()
         {
@@ -69,12 +69,12 @@ namespace LicenseeAgent.CustomerSetting.Core
             var root = SettingConfigurations.BettingLimitSportNameConfig.Root;
             foreach (XElement sport in root.Elements())
             {
-                BettingLimit bettingLimit = new BettingLimit
+                var bettingLimit = new BettingLimit
                 {
                     SportId = Converter.ToInt(sport.Attribute("sportId").Value),
                     BetTypeId = Converter.ToInt(sport.Attribute("betTypeId").Value)
                 };
-                bettingLimitItemsDefault.Add(string.Format("{0}_{1}", bettingLimit.SportId, bettingLimit.BetTypeId), bettingLimit);
+                BettingLimitItemsDefault.Add(string.Format("{0}_{1}", bettingLimit.SportId, bettingLimit.BetTypeId), bettingLimit);
             }
         }
     }

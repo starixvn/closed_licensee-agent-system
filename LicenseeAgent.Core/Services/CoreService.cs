@@ -12,14 +12,11 @@ namespace LicenseeAgent.Core.Services
     using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CoreService : QueryService, ICoreService
     {
         private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";
 
-        private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
+        private readonly ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         /// <summary>
         /// Try to get balance up information from cache and database.

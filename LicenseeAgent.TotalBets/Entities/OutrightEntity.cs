@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="OutrightEntity.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class OutrightEntity
     {
         private string _sportName;
@@ -25,12 +22,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_sportName == null)
-                {
-                    _sportName = DataRefWrapper.GetSportName(SportType);
-                }
-
-                return _sportName;
+                return _sportName ?? (_sportName = DataRefWrapper.GetSportName(SportType));
             }
 
             set
@@ -45,12 +37,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_leagueName == null)
-                {
-                    _leagueName = DataRefWrapper.GetLeagueName(LeagueId);
-                }
-
-                return _leagueName;
+                return _leagueName ?? (_leagueName = DataRefWrapper.GetLeagueName(LeagueId));
             }
 
             set
@@ -65,12 +52,7 @@ namespace LicenseeAgent.TotalBets.Entities
         {
             get
             {
-                if (_teamName == null)
-                {
-                    _teamName = DataRefWrapper.GetTeamName(TeamId);
-                }
-
-                return _teamName;
+                return _teamName ?? (_teamName = DataRefWrapper.GetTeamName(TeamId));
             }
 
             set

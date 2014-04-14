@@ -31,7 +31,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public override bool IsValid()
         {
-            return EventDate != null && SportType > 0;
+            return SportType > 0;
         }
     }
 }

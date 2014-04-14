@@ -11,9 +11,6 @@ namespace LicenseeAgent.Web.Entities
     using System.Web;
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class Breadcrumb : Collection<BreadcrumbItem>
     {
         public Breadcrumb(IList<BreadcrumbItem> list)

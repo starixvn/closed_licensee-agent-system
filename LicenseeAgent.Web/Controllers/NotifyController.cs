@@ -11,9 +11,6 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Filters;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AllowAnonymous]
     public class NotifyController : Controller
     {

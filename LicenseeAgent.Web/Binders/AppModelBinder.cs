@@ -12,9 +12,6 @@ namespace LicenseeAgent.Web.Binders
     using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AppModelBinder : DefaultModelBinder
     {
         private static string[] dangerousStrings = new[] { "<", ">", "&#" };

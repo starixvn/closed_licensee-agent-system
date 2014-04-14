@@ -32,7 +32,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public override bool IsValid()
         {
-            return EventDate != null;
+            return true;
         }
     }
 }

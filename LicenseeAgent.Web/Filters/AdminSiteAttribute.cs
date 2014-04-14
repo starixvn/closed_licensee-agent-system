@@ -10,9 +10,6 @@ namespace LicenseeAgent.Web.Filters
     using System.Web.Mvc;
     using LicenseeAgent.Core.Configurations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class AdminSiteAttribute : BaseActionFilterAttribute
     {

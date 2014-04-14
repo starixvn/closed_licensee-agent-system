@@ -10,9 +10,6 @@
 
 namespace LicenseeAgent.BetList.Criteria
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BetListResultCriteria
     {
         public bool IsSportsbook { get; set; }

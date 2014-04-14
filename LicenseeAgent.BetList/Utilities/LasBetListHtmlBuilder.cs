@@ -22,9 +22,6 @@ namespace LicenseeAgent.BetList.Utilities
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class LasBetListHtmlBuilder
     {
         private const string _TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
@@ -196,17 +193,10 @@ namespace LicenseeAgent.BetList.Utilities
         /// <returns>The html string of Transaction Time.</returns>
         private static ITrans CreateTransBuilder(int bettype)
         {
-            string typeName = string.Join(null, new string[] { _TRANS_BUILDER_NAMESPACE, ".Trans", bettype.ToString() });
-            Type type = Type.GetType(typeName);
+            var typeName = string.Join(null, new[] { _TRANS_BUILDER_NAMESPACE, ".Trans", bettype.ToString() });
+            var type = Type.GetType(typeName);
 
-            if (type == null)
-            {
-                return new LasTrans();
-            }
-            else
-            {
-                return Activator.CreateInstance(type) as ITrans;
-            }
+            return type == null ? new LasTrans() : Activator.CreateInstance(type) as ITrans;
         }
 
         /// <summary>

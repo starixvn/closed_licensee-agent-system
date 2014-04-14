@@ -12,9 +12,6 @@ namespace LicenseeAgent.BetList.Entities
 {
     using Fanex.BetList.Core.Entities;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LasTicket : Ticket
     {
         public string ExternalId { get; set; }

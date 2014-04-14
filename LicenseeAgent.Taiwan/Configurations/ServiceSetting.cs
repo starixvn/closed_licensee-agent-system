@@ -7,9 +7,6 @@
 
 namespace LicenseeAgent.Taiwan
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class ServiceSetting
     {
         public const string HttpError = "Server error (HTTP {0}: {1}).";

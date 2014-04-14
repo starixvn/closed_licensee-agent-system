@@ -6,9 +6,6 @@
 
 namespace LicenseeAgent.CustomerList.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AgentInfoViewModel
     {
         public int AgentId { get; set; }

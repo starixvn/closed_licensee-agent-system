@@ -9,9 +9,6 @@ namespace LicenseeAgent.Core.Entities
     using System;
     using LicenseeAgent.Core.Utility;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public class PageContext
     {

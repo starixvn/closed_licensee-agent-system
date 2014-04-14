@@ -7,11 +7,9 @@
 namespace LicenseeAgent.Taiwan.Entities
 {
     using System.Xml.Serialization;
+    using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Enumerations;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UpdateMemberStatusLogEntity
     {
         public UpdateMemberStatusLogEntity()

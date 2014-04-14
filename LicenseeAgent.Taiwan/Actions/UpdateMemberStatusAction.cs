@@ -31,6 +31,10 @@ namespace LicenseeAgent.Taiwan.Actions
             }
         }
 
+        /// <summary>
+        /// Creates the criteria.
+        /// </summary>
+        /// <returns>Returns criteria.</returns>
         public override LogActionCriteria CreateCriteria()
         {
             var actionLog = ServiceExtension.CreateUpdateMemberStatusActionLog(IBCCustId, LASAgentId);

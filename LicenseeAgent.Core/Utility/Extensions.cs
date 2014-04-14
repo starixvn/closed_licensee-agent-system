@@ -19,6 +19,12 @@ namespace LicenseeAgent.Core.Utility
             return string.IsNullOrEmpty(toCheck) ? true : source.IndexOf(toCheck, comparison) >= 0;
         }
 
+        /// <summary>
+        /// Formats the name of the customer.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <returns>Returns customer name.</returns>
         public static string FormatCustomerName(string firstName, string lastName)
         {
             if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))

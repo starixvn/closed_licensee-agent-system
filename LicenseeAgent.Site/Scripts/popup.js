@@ -42,8 +42,11 @@ var popup = (function ($) {
             var modalBody = $('<div class="modal-body">&nbsp;</div>');
             modalContent.append(modalHeader);
             modalContent.append(modalBody);
-
-            modal.css('visibility', 'hidden');
+            modal.css({
+                'visibility': 'hidden',
+                'top': 0,
+                'left': 0
+            });
             $('body').append(modal);
 
             this.$modal = modal;
@@ -185,11 +188,11 @@ var popup = (function ($) {
             var modal = this.getModal();
             var left = this.options.left;
             if (left === 0) {
-                left = Math.max(($(window).width() - modal.outerWidth()) / 2, 0);
+                left = Math.max(($(window.document).width() - modal.outerWidth()) / 2, 0);
             }
             var top = this.options.top;
             if (top === 0) {
-                var newTop = Math.max(($(window).height() - modal.outerHeight()) / 2, 0);
+                var newTop = Math.max(($(window.document).height() - modal.outerHeight()) / 2, 0);
                 top = Math.min(100, newTop);
             }
             modal.css({

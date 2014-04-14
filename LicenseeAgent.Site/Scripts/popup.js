@@ -47,6 +47,7 @@ var popup = (function ($) {
             $('body').append(modal);
 
             this.$modal = modal;
+            this.$timeout = null;
             var $this = this;
 
             if (this.options.buttons.length > 0) {
@@ -85,22 +86,8 @@ var popup = (function ($) {
                 var title = $(popupDocument).attr('title');
                 $this.setTitle(title).show();
                 core.unblockUI();
-
-                var content = $(document).find('#popup-iframe').contents();
-                var currentWidth = content.width();
-                var currentHeight = content.height();
-                var checkSize = function () {
-                    if ($this.$modal == null) {
-                        return;
-                    }
-                    if (content.width() !== currentWidth || content.height() !== currentHeight) {
-                        $this.calculate();
-                    }
-                    setTimeout(function () {
-                        checkSize();
-                    }, 200);
-                };
-                checkSize();
+                $this.clearTimeout();
+                $this.autoSize();
             });
 
             return this;
@@ -156,13 +143,21 @@ var popup = (function ($) {
             this.getModalFooter().append($button);
             return $button;
         },
-        calculate: function () {
+        getInnerBody: function () {
             var modalBody = this.getModalBody();
             var innerBody = modalBody.children();
             if (innerBody.length === 0) {
                 innerBody = modalBody;
             } else if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
                 innerBody = innerBody.contents();
+            }
+            return innerBody;
+        },
+        calculate: function () {
+            var modalBody = this.getModalBody();
+            var innerBody = this.getInnerBody();
+            if (innerBody[0].body === null) {
+                return;
             }
             var width = this.options.width;
             if (width === 0) {
@@ -220,7 +215,10 @@ var popup = (function ($) {
             return this;
         },
         hide: function () {
-            this.$modal.modal('hide');
+            if (this.$modal != null) {
+                this.$modal.modal('hide');
+            }
+            this.remove();
             return this;
         },
         close: function () {
@@ -234,19 +232,52 @@ var popup = (function ($) {
                 this.$modal = null;
             }
             return this;
+        },
+        clearTimeout: function () {
+            if (this.$timeout != null) {
+                window.clearTimeout(this.$timeout);
+                this.$timeout = null;
+            }
+        },
+        autoSize: function () {
+            if (this.options.width !== 0 && this.options.height !== 0) {
+                return;
+            }
+            var $this = this;
+            var innerBody = this.getInnerBody();
+            var currentWidth = innerBody.width();
+            var currentHeight = innerBody.height();
+            var internalAutoSize = function () {
+                if ($this.$modal == null) {
+                    return;
+                }
+                if (innerBody.width() !== currentWidth || innerBody.height() !== currentHeight) {
+                    $this.calculate();
+                }
+                $this.$timeout = setTimeout(function () {
+                    internalAutoSize();
+                }, 200);
+            };
+            internalAutoSize();
+        },
+        setHideCallback: function (callback) {
+            if (this.$modal != null) {
+                this.$modal.on('hidden', callback);
+            }
         }
     };
 
-    var currentPopup = null;
+    var $currentPopup = null;
+    var $closeTimeout = null;
     return {
         confirm: function (options) {
-            currentPopup = new Popup(options).showConfirm();
+            $currentPopup = new Popup(options).showConfirm();
         },
         openFrame: function (url, options) {
-            currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
+            $currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
         },
         open: function (options) {
-            currentPopup = new Popup(options).showContent();
+            $currentPopup = new Popup(options).showContent();
         },
         isIframe: function () {
             if ($(document).find('#' + Popup.iframeId).length === 0 &&
@@ -262,9 +293,10 @@ var popup = (function ($) {
 
             if (popup.isIframe()) {
                 window.parent.popup.close(timeout);
-            } else if (currentPopup) {
-                setTimeout(function () {
-                    currentPopup.close();
+            } else if ($currentPopup) {
+                this.onHide();
+                $closeTimeout = setTimeout(function () {
+                    $currentPopup.close();
                 }, timeout);
             }
         },
@@ -275,11 +307,24 @@ var popup = (function ($) {
 
             if (popup.isIframe()) {
                 window.parent.popup.closeAndReload(timeout);
-            } else if (currentPopup) {
+            } else if ($currentPopup) {
+                this.onHide();
+                $closeTimeout = setTimeout(function () {
+                    $currentPopup.close();
+                }, timeout);
                 setTimeout(function () {
-                    currentPopup.close();
                     core.submitPage();
                 }, timeout);
+            }
+        },
+        onHide: function () {
+            if ($currentPopup != null) {
+                $currentPopup.setHideCallback(function () {
+                    if ($closeTimeout != null) {
+                        window.clearTimeout($closeTimeout);
+                        $closeTimeout = null;
+                    }
+                });
             }
         }
     };

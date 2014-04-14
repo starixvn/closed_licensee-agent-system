@@ -6,7 +6,9 @@
 
 namespace LicenseeAgent.Web.Controllers
 {
+    using System;
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.ViewModels;
@@ -31,6 +33,24 @@ namespace LicenseeAgent.Web.Controllers
             if (isAgentChangePassword)
             {
                 topMenu = TopMenu.Security;
+            }
+            else
+            {
+                var topMenuCookie = Request.Cookies[Constants.AppCookieTopMenu];
+                if (topMenuCookie != null)
+                {
+                    switch (topMenuCookie.Value)
+                    {
+                        case "security":
+                            topMenu = TopMenu.Security;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    Response.Cookies[Constants.AppCookieTopMenu].Expires = DateTime.Now.AddDays(-1);
+                }
             }
 
             var model = new HomeViewModel

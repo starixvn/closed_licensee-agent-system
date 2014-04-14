@@ -15,6 +15,7 @@ namespace LicenseeAgent.Core.Configurations
     {
         public const string AppSessionCaptcha = "LasCaptcha";
         public const string AppCookieLanguage = "LasLanguage";
+        public const string AppCookieTopMenu = "LasTopMenu";
 
         public const string BETLISTTICKETSTATUSRUNNING = "running";
         public const string BETLISTTICKETSTATUSWAITING = "waiting";

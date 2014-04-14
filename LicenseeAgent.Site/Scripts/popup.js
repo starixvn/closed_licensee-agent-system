@@ -58,7 +58,7 @@ var popup = (function ($) {
                 });
             }
 
-            if (this.options.onHide == null) {
+            if (this.options.onHide != null) {
                 modal.on('hidden', this.options.onHide);
             }
 

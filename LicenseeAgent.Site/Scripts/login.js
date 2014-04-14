@@ -40,6 +40,7 @@ var logIn = (function ($) {
             var buttons = [{
                 label: language.getString('ChangePassword'),
                 action: function () {
+                    $.cookie('LasTopMenu', 'security', { path: '/' });
                     logIn.gotoHome();
                 }
             }];
@@ -47,7 +48,9 @@ var logIn = (function ($) {
             popup.confirm({
                 title: title,
                 message: message,
-                button: buttons,
+                buttons: buttons,
+                top: 120,
+                width: 420,
                 onHide: logIn.gotoHome
             });
         },

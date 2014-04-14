@@ -174,6 +174,7 @@ namespace LicenseeAgent.Site
         private static void RegisterLoginPage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/login").Include(
+                "~/scripts/cookie/jquery.cookie.js",
                 "~/scripts/login.js"));
             bundles.Add(new LessBundle("~/css/login").Include(
                 "~/content/language.less",

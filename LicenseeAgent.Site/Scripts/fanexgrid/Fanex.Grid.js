@@ -9,7 +9,8 @@
 //          + 02/06/2014: Customize Render footer when auto paging + Update initialize footer.
 //          + 02/27/2014: Update show "..." when auto truncate.
 //          + 03/19/2014: Support Time Zone Config
-//          + 04/08/2014: Support auto resize to full-screen width 
+//          + 04/08/2014: Support auto resize to full-screen width
+//          + 04/11/2014: Remove class "Container" 
 // </copyright>
 // --------------------------------------------------------------------------
 /*jshint maxdepth:false, maxstatements:false*/
@@ -589,7 +590,7 @@
                     tableClass = 'grid-fixed-table col_header_content';
                     break;
                 case 'mainbody':
-                    divHeaderClass = 'grid-container container';
+                    divHeaderClass = 'grid-container';
                     divContainerClass = 'content-container';
                     tableClass = 'grid-fixed-table col_body_content';
                     hasId = true;
@@ -2030,7 +2031,7 @@
             return options;
         },
         AutoAddWidthForFullScreen: function (options, mainContainer) {
-            var currentContainerWidth = mainContainer.width(),
+            var currentContainerWidth = mainContainer.parent().width(),
                 totalCalulatedWidth = 0,
                 colLength = options.columns.length,
                 resizeCols = [];
@@ -2151,7 +2152,7 @@
             var o = $(this);
             var xscrollbar = o.find(".x-scrollbar");
             var yscrollbar = o.find(".y-scrollbar");
-            var container = o.find(".container");
+            var container = o.find(".grid-container");
             var rowheader = o.find(".row_header");
             o.parent().removeClass('display-none');
             o.parent().show();
@@ -2264,7 +2265,7 @@
         return this.each(function () {
             var o = $(this);
             var xscrollbar = o.find(".x-scrollbar");
-            var container = o.find(".container");
+            var container = o.find(".grid-container");
             var colHeaderContainer = o.find(".col_header");
             var colFooterContainer = o.find(".col_footer");
 
@@ -2308,7 +2309,7 @@
             var pagerHeight = pager.length > 0 ? pager.height() : 0;
             var xscrollbar = o.find(".x-scrollbar");
             var yscrollbar = o.find(".y-scrollbar");
-            var container = o.find(".container");
+            var container = o.find(".grid-container");
             var tblContent = o.find("#" + options.tblContentId);
 
             var freeCellTop = o.find(".free-top-right");

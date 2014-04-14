@@ -41,6 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Message", "Li
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publish", "Publish", "{EBE20B1E-533F-4D28-8646-32EDAF6EBB84}"
 	ProjectSection(SolutionItems) = preProject
+		app_offline.htm = app_offline.htm
 		deploy.cmd = deploy.cmd
 		publish.cmd = publish.cmd
 		readme.txt = readme.txt

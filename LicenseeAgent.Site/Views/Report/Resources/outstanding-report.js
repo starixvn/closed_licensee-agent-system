@@ -179,9 +179,6 @@ var outstandingReport = (function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: core.resolveUrl(url),
-                    error: function (xhRequest, errorText) {
-                        alert(errorText);
-                    },
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();
@@ -199,6 +196,8 @@ var outstandingReport = (function ($) {
             var dataExisted = $("#divEvent_" + transId).text().length > 0;
             if (!dataExisted) {
                 loadMixParlayDetail(transId);
+            } else {
+                $('#BetListGrid').fanexGrid('resizeGrid');
             }
 
             divEvent.toggle();

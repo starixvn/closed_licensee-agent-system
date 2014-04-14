@@ -107,6 +107,8 @@ fanex.betlist.core = {
         var dataExisted = $("#divEvent_" + transId).text().length > 0;
         if (!dataExisted) {
             loadMixParlayDetail(transId);
+        } else {
+            $('#BetListGrid').fanexGrid('resizeGrid');
         }
 
         divEvent.toggle();

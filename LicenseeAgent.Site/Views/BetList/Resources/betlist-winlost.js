@@ -86,6 +86,8 @@ var betList = (function ($) {
             var dataExisted = $("#divEvent_" + transId).text().length > 0;
             if (!dataExisted) {
                 loadMixParlayDetail(transId);
+            } else {
+                $('#BetListGrid').fanexGrid('resizeGrid');
             }
 
             divEvent.toggle();
@@ -96,7 +98,7 @@ var betList = (function ($) {
         ViewDownline: function (agentId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel
-                                            + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb=" 
+                                            + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb="
                                             + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
         }
     };

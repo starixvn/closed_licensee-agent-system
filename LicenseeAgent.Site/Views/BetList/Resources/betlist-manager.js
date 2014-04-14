@@ -115,6 +115,9 @@ var betList = (function ($) {
             if (!dataExisted) {
                 loadMixParlayDetail(transId);
             }
+            else {
+                $('#BetListGrid').fanexGrid('resizeGrid');
+            }
 
             divEvent.toggle();
         },

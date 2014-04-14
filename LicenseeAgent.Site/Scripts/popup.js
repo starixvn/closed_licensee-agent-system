@@ -49,6 +49,10 @@ var popup = (function ($) {
             this.$modal = modal;
             this.$timeout = null;
             var $this = this;
+            this.$onWindowResize = function () {
+                $this.calculate();
+            };
+            $(window).on('resize', this.$onWindowResize);
 
             if (this.options.buttons.length > 0) {
                 var modalFooter = $('<div class="modal-footer"></div>');
@@ -149,13 +153,16 @@ var popup = (function ($) {
             if (innerBody.length === 0) {
                 innerBody = modalBody;
             } else if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
-                innerBody = innerBody.contents();
+                innerBody = innerBody.contents().find('#mainContainer');
             }
             return innerBody;
         },
         calculate: function () {
             var modalBody = this.getModalBody();
             var innerBody = this.getInnerBody();
+            if (innerBody.length === 0) {
+                return;
+            }
             if (innerBody[0].body === null) {
                 return;
             }
@@ -165,14 +172,10 @@ var popup = (function ($) {
                 if (this.options.hasScroll) {
                     width += 20;
                 }
-                var maxWidth = $(window).width() - 24;
-                width = Math.min(width, maxWidth);
             }
             var height = this.options.height;
             if (height === 0) {
                 height = innerBody.height();
-                var maxHeight = $(window).height() - 24;
-                height = Math.min(height, maxHeight);
             }
             modalBody.css({
                 width: width,
@@ -182,16 +185,12 @@ var popup = (function ($) {
             var modal = this.getModal();
             var left = this.options.left;
             if (left === 0) {
-                left = ($(window).width() - modal.outerWidth()) / 2;
+                left = Math.max(($(window).width() - modal.outerWidth()) / 2, 0);
             }
             var top = this.options.top;
             if (top === 0) {
-                if ($(window).height() > 2 * modal.outerHeight()) {
-                    top = 100;
-                }
-                else {
-                    top = ($(window).height() - modal.outerHeight()) / 2;
-                }
+                var newTop = Math.max(($(window).height() - modal.outerHeight()) / 2, 0);
+                top = Math.min(100, newTop);
             }
             modal.css({
                 left: left,
@@ -227,6 +226,7 @@ var popup = (function ($) {
             return this;
         },
         remove: function () {
+            $(window).off('resize', this.$onWindowResize);
             if (this.$modal) {
                 this.$modal.remove();
                 this.$modal = null;
@@ -253,6 +253,8 @@ var popup = (function ($) {
                 }
                 if (innerBody.width() !== currentWidth || innerBody.height() !== currentHeight) {
                     $this.calculate();
+                    currentWidth = innerBody.width();
+                    currentHeight = innerBody.height();
                 }
                 $this.$timeout = setTimeout(function () {
                     internalAutoSize();

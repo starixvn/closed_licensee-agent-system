@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.Account
+namespace LicenseeAgent.Account.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;

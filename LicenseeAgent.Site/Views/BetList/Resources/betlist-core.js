@@ -104,14 +104,13 @@ fanex.betlist.core = {
             });
         };
 
+        divEvent.toggle();
         var dataExisted = $("#divEvent_" + transId).text().length > 0;
         if (!dataExisted) {
             loadMixParlayDetail(transId);
         } else {
             $('#BetListGrid').fanexGrid('resizeGrid');
         }
-
-        divEvent.toggle();
     },
     showSystemParlayDetails: function (refNo, custId, betTeam) {
         var url = showSystemParlayDetailsUrl + refNo + "&custId=" + custId;

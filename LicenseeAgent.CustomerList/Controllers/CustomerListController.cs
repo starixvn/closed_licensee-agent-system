@@ -70,7 +70,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(CurrentSession.AgentInfo.AgentLevel),
+                IsDirectDownline = CurrentSession.IsDirectDownline(hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel),
                 IsAdmin = CurrentSession.IsAdmin
             };
 

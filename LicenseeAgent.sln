@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Core", "LicenseeAgent.Core\LicenseeAgent.Core.csproj", "{784D23CD-1AF9-4265-9C68-62C31DD84AAC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{2807323E-74AB-4CC0-B127-CC429DCA6E63}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CustomerSetting", "LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj", "{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}"
 EndProject

@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Core.Exceptions
 {
     using System;
+    using System.Runtime.Serialization;
     using System.Text;
     using Fanex.NAP.Framework.Data;
 
@@ -51,6 +52,11 @@ namespace LicenseeAgent.Core.Exceptions
 
                 return stringBuilder.ToString();
             }
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
         }
     }
 }

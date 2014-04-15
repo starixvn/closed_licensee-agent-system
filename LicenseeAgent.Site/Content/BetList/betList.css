@@ -236,21 +236,6 @@ Format styles
     margin-bottom: 0;
 }
 
-.instruction-content table
-{
-    width: 400px;
-}
-
-.instruction-content table .col-left
-{
-    width: 100px;
-}
-
-.instruction-content table .col-right
-{
-    font-weight: bold;
-}
-
 .stake
 {
     font-weight: bold;

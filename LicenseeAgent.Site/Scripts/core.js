@@ -55,6 +55,7 @@ var core = (function ($) {
                 moment.lang(language.getSelectedLanguageCode().toLowerCase());
             }
             if ($.fn.fanexGrid) {
+                //$.fn.fanexGrid.defaults.marginRight = 0;
                 $.fn.fanexGrid.defaults.language = language.getSelectedLanguage();
                 $.fn.fanexGrid.defaults.timeZone = core.ServerUtcOffset;
             }

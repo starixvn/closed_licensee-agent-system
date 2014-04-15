@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
@@ -13,6 +13,9 @@ namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Web.Validations;
 
+    /// <summary>
+    /// CustomerInfo class.
+    /// </summary>
     public class CustomerInfo
     {
         public CustomerInfo()

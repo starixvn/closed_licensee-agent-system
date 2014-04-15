@@ -22,6 +22,9 @@ namespace LicenseeAgent.CreditBalance.Controllers
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
+    /// <summary>
+    /// CreditBalanceController class.
+    /// </summary>
     public class CreditBalanceController : BaseController
     {
         private readonly ICreditBalanceService _creditBalanceService;

@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Utility
     using System;
     using LicenseeAgent.Core.Configurations;
 
+    /// <summary>
+    /// Extensions class.
+    /// </summary>
     public static class Extensions
     {
         public static bool Contains(this string source, string toCheck, StringComparison comparison)

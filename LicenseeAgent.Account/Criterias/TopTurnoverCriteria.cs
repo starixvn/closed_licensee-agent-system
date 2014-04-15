@@ -9,6 +9,9 @@ namespace LicenseeAgent.Account.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// TopTurnoverCriteria class.
+    /// </summary>
     public class TopTurnoverCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

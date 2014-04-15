@@ -11,6 +11,9 @@ namespace LicenseeAgent.CustomerList.ViewModels
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Validations;
 
+    /// <summary>
+    /// ResetPasswordViewModel class.
+    /// </summary>
     public class ResetPasswordViewModel
     {
         public int CustId { get; set; }

@@ -8,6 +8,9 @@ namespace LicenseeAgent.CreditBalance.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// GetMemberBalanceInfoCriteria class.
+    /// </summary>
     public class GetMemberBalanceInfoCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

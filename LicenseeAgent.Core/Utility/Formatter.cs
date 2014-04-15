@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Utility
     using System.Globalization;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Formatter class.
+    /// </summary>
     public static class Formatter
     {
         private static readonly CultureInfo EnglishCultureInfo = CultureInfo.GetCultureInfo("en-US");

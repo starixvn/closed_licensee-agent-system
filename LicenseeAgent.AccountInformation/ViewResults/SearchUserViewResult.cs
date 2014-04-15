@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.AccountInformation.ViewResults
 {
+    /// <summary>
+    /// SearchUserViewResult class.
+    /// </summary>
     public class SearchUserViewResult
     {
         public int ErrCode { get; set; }

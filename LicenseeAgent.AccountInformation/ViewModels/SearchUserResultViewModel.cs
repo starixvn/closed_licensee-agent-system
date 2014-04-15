@@ -10,13 +10,16 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Taiwan.Entities;
 
+    /// <summary>
+    /// SearchUserResultViewModel class.
+    /// </summary>
     public class SearchUserResultViewModel
     {
         public CustomerEntity Customer { get; set; }
 
-        public IEnumerable<UplineEntity> Uplines { get; set; }
+        public IEnumerable<UpLineEntity> Uplines { get; set; }
 
-        public IEnumerable<DownlineEntity> Downlines { get; set; }
+        public IEnumerable<DownLineEntity> Downlines { get; set; }
 
         public BalanceEntity Balance { get; set; }
 

@@ -3,14 +3,14 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Edward.Nguyen" date="2013.4.9">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerList.Core
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Constants class.
+    /// </summary>
     public static class Constants
     {
         public const string Normal = "normal";

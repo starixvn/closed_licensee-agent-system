@@ -8,6 +8,9 @@ namespace LicenseeAgent.Account.Entities
 {
     using System;
 
+    /// <summary>
+    /// BalanceInfoEntity class.
+    /// </summary>
     public class BalanceInfoEntity
     {
         public string AgentName { get; set; }

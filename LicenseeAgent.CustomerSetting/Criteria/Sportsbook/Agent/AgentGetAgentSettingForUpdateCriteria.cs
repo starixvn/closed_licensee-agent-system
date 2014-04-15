@@ -3,10 +3,8 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.5">Created</change>
-// </history>
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
+
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent
 {
     using Fanex.NAP.Framework.Data;
 

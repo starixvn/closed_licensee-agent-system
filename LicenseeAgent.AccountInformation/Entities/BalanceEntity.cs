@@ -2,11 +2,13 @@
 // <copyright file="BalanceEntity.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.AccountInformation.Entities
 {
+    /// <summary>
+    /// BalanceEntity class.
+    /// </summary>
     public class BalanceEntity
     {
         public decimal TotalCash { get; set; }

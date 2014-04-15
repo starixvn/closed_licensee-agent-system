@@ -58,8 +58,8 @@ namespace LicenseeAgent.Site.App_Start
             container.Register<IUnderMaintenanceService, UnderMaintenanceService>();
             container.Register<IAccountService, AccountService>();
             container.Register<ICurrencyService, CurrencyService>();
-            container.Register<ISportsbookSettingRepository, SportsbookSettingRepository>();
-            container.Register<ISportsbookSettingService, SportsbookSettingService>();
+            container.Register<ISportsBookSettingRepository, SportsBookSettingRepository>();
+            container.Register<ISportsBookSettingService, SportsBookSettingService>();
             container.Register<ICustomerService, CustomerService>();
             container.Register<IIpInformationService, IpInformationService>();
             container.Register<ISearchUserService, SearchUserService>();

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="UpdateAgentAccStatusCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateAgentStatusCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -8,7 +8,10 @@ namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    public class UpdateAgentAccStatusCriteria : CriteriaBase
+    /// <summary>
+    /// UpdateAgentStatusCriteria class.
+    /// </summary>
+    public class UpdateAgentStatusCriteria : CriteriaBase
     {
         public int Updater { get; set; }
 

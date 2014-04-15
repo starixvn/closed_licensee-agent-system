@@ -3,10 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
-// <history>
-//     <change who="Paul.Nguyen" date="2014/02/06">Created.</change>
-// </history>
-// ---------------------------------------------------------------------------------
 
 namespace LicenseeAgent.BetList.Utilities
 {

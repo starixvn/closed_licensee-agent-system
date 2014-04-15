@@ -3,9 +3,7 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-// <history>
-//  <change who="Kaden" date="2014.02.24">Created and Implement enum for message type.</change>
-// </history>
+
 namespace LicenseeAgent.Message.Enumerations
 {
     /// <summary>

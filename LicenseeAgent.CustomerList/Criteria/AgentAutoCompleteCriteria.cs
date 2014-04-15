@@ -8,6 +8,9 @@ namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// AgentAutoCompleteCriteria class.
+    /// </summary>
     public class AgentAutoCompleteCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

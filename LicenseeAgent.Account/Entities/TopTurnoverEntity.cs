@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.Account.Entities
 {
+    /// <summary>
+    /// TopTurnoverEntity class.
+    /// </summary>
     public class TopTurnoverEntity
     {
         public int CustId { get; set; }

@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Entities
     using System;
     using LicenseeAgent.Core.Enumerations;
 
+    /// <summary>
+    /// InternalLoginInfo class.
+    /// </summary>
     [Serializable]
     public class InternalLoginInfo
     {

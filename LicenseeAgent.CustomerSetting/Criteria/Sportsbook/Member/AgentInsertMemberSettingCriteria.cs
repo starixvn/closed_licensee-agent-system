@@ -3,12 +3,12 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.30">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
 {
+    /// <summary>
+    /// AgentInsertMemberSettingCriteria class.
+    /// </summary>
     public class AgentInsertMemberSettingCriteria : InsertCustomerCriteria
     {
         public AgentInsertMemberSettingCriteria(InsertCustomerCriteria criteria)

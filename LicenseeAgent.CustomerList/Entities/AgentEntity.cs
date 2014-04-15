@@ -9,6 +9,9 @@ namespace LicenseeAgent.CustomerList.Entities
     using System;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// AgentEntity class.
+    /// </summary>
     public class AgentEntity
     {
         public AgentEntity()

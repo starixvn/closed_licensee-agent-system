@@ -31,7 +31,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
         /// <returns>List agent ID.</returns>
-        IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentAccStatusCriteria criteria);
+        IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria);
 
         /// <summary>
         /// Get member list.
@@ -51,7 +51,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// Update account status of member.
         /// </summary>
         /// <param name="criteria">Update member account status criteria.</param>
-        void UpdateMemberAccStatus(UpdateMemberAccStatusCriteria criteria);
+        void UpdateMemberAccStatus(UpdateMemberStatusCriteria criteria);
 
         /// <summary>
         /// Get agent auto complete.
@@ -86,6 +86,6 @@ namespace LicenseeAgent.CustomerList.Services
         /// <param name="criteria">Edit info Agent Criteria.</param>
         void EditInfoAgent(EditinfoAgentCriteria criteria);
 
-        void CheckMemberUplineStatusForUpdate(CheckMemberUplineStatusForUpdateCriteria criteria);
+        void CheckMemberUplineStatusForUpdate(CheckMemberUpLineStatusForUpdateCriteria criteria);
     }
 }

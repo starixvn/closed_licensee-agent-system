@@ -3,15 +3,14 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/12/25">Created</change>
-//   <change who="" date=""></change>
-// </history>
 
 namespace LicenseeAgent.BetList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// BetListDetailsCriteria class.
+    /// </summary>
     public class BetListDetailsCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

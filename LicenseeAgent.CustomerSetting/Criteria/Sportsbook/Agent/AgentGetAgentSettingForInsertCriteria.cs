@@ -3,11 +3,8 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.29">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent
 {
     using Fanex.NAP.Framework.Data;
 
@@ -24,7 +21,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent
 
         public override string GetSettingKey()
         {
-            return "Las_AgentSportsbookSettingSel";
+            return "Las_AgentSportsBookSettingSel";
         }
 
         public override bool IsValid()

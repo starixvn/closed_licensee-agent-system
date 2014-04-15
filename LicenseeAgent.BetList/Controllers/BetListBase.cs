@@ -3,9 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Paul.Nguyen" date="2014/2/6">Created</change>
-// </history>
 
 namespace LicenseeAgent.BetList.Controllers
 {
@@ -21,6 +18,9 @@ namespace LicenseeAgent.BetList.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Services;
 
+    /// <summary>
+    /// BetListBase class.
+    /// </summary>
     public abstract class BetListBase : BaseController, IBetListBase
     {
         protected BetListBase(IDownlLinePermissionService permissionService)

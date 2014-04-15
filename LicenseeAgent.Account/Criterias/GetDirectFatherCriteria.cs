@@ -2,13 +2,15 @@
 // <copyright file="GetDirectFatherCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// GetDirectFatherCriteria class.
+    /// </summary>
     public class GetDirectFatherCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

@@ -3,9 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Paul.Nguyen" date="2014/1/16">Created.</change>
-// </history>
 
 namespace LicenseeAgent.BetList.Controllers
 {
@@ -17,6 +14,9 @@ namespace LicenseeAgent.BetList.Controllers
     using Services;
     using ViewModels;
 
+    /// <summary>
+    /// ParlayController class.
+    /// </summary>
     public class ParlayController : BetListBase
     {
         private readonly IBetListService _betlistService;

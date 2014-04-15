@@ -95,7 +95,7 @@
     <Compile Include="Criteria\BetListResultCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
-    <Compile Include="Criteria\BetListResultsSportsbookCriteria.cs" />
+    <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
     <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />
     <Compile Include="Criteria\TotalBetsParlayListCriteria.cs" />
     <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
@@ -120,7 +120,7 @@
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
-    <Compile Include="ViewModels\BetListWinlossViewModel.cs" />
+    <Compile Include="ViewModels\BetListWinLossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

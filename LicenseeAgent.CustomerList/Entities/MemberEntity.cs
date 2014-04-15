@@ -10,6 +10,9 @@ namespace LicenseeAgent.CustomerList.Entities
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Attributes;
 
+    /// <summary>
+    /// MemberEntity class.
+    /// </summary>
     public class MemberEntity
     {
         [Service(Name = "LASAgentId")]

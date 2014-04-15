@@ -12,6 +12,9 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// InternalService class.
+    /// </summary>
     public class InternalService : QueryService, IInternalService
     {
         private static readonly byte[] AesKey =

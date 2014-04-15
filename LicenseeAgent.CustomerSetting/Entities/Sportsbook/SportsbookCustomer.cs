@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookCustomer.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsBookCustomer.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.29">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Entities;
 
-    public class SportsbookCustomer
+    /// <summary>
+    /// SportsBookCustomer class.
+    /// </summary>
+    public class SportsBookCustomer
     {
         public Result Result { get; set; }
 

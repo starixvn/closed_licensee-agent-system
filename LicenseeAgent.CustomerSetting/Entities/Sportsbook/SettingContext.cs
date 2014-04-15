@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;

@@ -1,15 +1,17 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="AgentSelMemIndirectForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentSelectMemberIndirectForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
 {
     using Fanex.NAP.Framework.Data;
 
-    public class AgentSelMemIndirectForUpdateCriteria : CriteriaBase
+    /// <summary>
+    /// AgentSelectMemberIndirectForUpdateCriteria class.
+    /// </summary>
+    public class AgentSelectMemberIndirectForUpdateCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 

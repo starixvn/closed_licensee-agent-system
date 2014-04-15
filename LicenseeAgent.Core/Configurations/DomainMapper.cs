@@ -15,6 +15,9 @@ namespace LicenseeAgent.Core.Configurations
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
 
+    /// <summary>
+    /// DomainMapper class.
+    /// </summary>
     public static class DomainMapper
     {
         private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";

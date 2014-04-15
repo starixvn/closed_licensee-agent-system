@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="BetListWinlossViewModel.cs" company="Microsoft">
+// <copyright file="BetListWinLossViewModel.cs" company="Microsoft">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -8,7 +8,10 @@ namespace LicenseeAgent.BetList.ViewModels
 {
     using System;
 
-    public class BetListWinlossViewModel
+    /// <summary>
+    /// BetListWinLossViewModel class.
+    /// </summary>
+    public class BetListWinLossViewModel
     {
         public int CustId { get; set; }
 

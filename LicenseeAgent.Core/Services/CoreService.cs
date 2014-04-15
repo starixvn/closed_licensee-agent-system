@@ -12,6 +12,9 @@ namespace LicenseeAgent.Core.Services
     using LicenseeAgent.Core.Criterias;
     using LicenseeAgent.Core.Entities;
 
+    /// <summary>
+    /// CoreService class.
+    /// </summary>
     public class CoreService : QueryService, ICoreService
     {
         private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";

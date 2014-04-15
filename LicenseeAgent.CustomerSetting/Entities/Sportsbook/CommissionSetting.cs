@@ -3,11 +3,8 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.6">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
     using System.Collections.Generic;
 

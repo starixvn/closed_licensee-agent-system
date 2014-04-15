@@ -3,14 +3,14 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.29">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// LicenseeGetAgentSettingForInsertCriteria class.
+    /// </summary>
     public class LicenseeGetAgentSettingForInsertCriteria : CriteriaBase
     {
         public int AgentL0Id { get; set; }
@@ -23,7 +23,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeSportsbookSettingSel";
+            return "Las_LicenseeSportsBookSettingSel";
         }
 
         public override bool IsValid()

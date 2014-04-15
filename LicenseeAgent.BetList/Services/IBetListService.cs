@@ -3,10 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/12/19">Created</change>
-//   <change who="" date=""></change>
-// </history>
 
 namespace LicenseeAgent.BetList.Services
 {
@@ -61,7 +57,7 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="criteria">Bet List Results Sports book Criteria.</param>
         /// <returns>The list of matches.</returns>
-        IList<Parlay> GetSportsbookResults(BetListResultsSportsbookCriteria criteria);
+        IList<Parlay> GetSportsbookResults(BetListResultsSportsBookCriteria criteria);
 
         /// <summary>
         /// Get Parlay Results.

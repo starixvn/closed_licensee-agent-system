@@ -9,6 +9,9 @@ namespace LicenseeAgent.AccountInformation.ViewModels
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// SuggestionViewModel class.
+    /// </summary>
     public class SuggestionViewModel
     {
         [Required]

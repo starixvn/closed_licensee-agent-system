@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookSettingRepository.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsBookSettingRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -20,12 +20,12 @@ namespace LicenseeAgent.CustomerSetting.Repositories
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
 
     /// <summary>
     /// Customer repository.
     /// </summary>
-    public class SportsbookSettingRepository : ISportsbookSettingRepository
+    public class SportsBookSettingRepository : ISportsBookSettingRepository
     {
         #region Get Setting
 

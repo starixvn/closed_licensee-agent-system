@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.Account.Entities
 {
+    /// <summary>
+    /// TopWinningEntity class.
+    /// </summary>
     public class TopWinningEntity
     {
         public int CustId { get; set; }

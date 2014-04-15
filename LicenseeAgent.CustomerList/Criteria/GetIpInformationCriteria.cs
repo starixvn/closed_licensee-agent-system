@@ -8,6 +8,9 @@ namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get IP InformationCriteria class.
+    /// </summary>
     public class GetIpInformationCriteria : CriteriaBase
     {
         public string Ip { get; set; }

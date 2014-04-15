@@ -4,8 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
 {
+    /// <summary>
+    /// LicenseeInsertAgentSettingCriteria class.
+    /// </summary>
     public class LicenseeInsertAgentSettingCriteria : InsertCustomerCriteria
     {
         public LicenseeInsertAgentSettingCriteria(InsertCustomerCriteria criteria)

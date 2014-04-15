@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Account.ViewModels
 {
@@ -14,6 +11,9 @@ namespace LicenseeAgent.Account.ViewModels
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Validations;
 
+    /// <summary>
+    /// AgentChangePasswordViewModel class.
+    /// </summary>
     public class AgentChangePasswordViewModel
     {
         [AllowHtml]

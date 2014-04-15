@@ -8,6 +8,9 @@ namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// MemberGetByAgentCriteria class.
+    /// </summary>
     public class MemberGetByAgentCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

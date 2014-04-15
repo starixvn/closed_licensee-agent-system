@@ -11,6 +11,9 @@ namespace LicenseeAgent.Core.Exceptions
     using System.Text;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// CriteriaException class.
+    /// </summary>
     [Serializable]
     public class CriteriaException : Exception
     {

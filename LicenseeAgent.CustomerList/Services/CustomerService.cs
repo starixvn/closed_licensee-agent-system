@@ -12,6 +12,9 @@ namespace LicenseeAgent.CustomerList.Services
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Entities;
 
+    /// <summary>
+    /// CustomerService class.
+    /// </summary>
     public class CustomerService : QueryService, ICustomerService
     {
         /// <summary>
@@ -39,7 +42,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
         /// <returns>List agent ID.</returns>
-        public IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentAccStatusCriteria criteria)
+        public IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);
         }
@@ -68,7 +71,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// Update account status of member.
         /// </summary>
         /// <param name="criteria">Update member account status criteria.</param>
-        public void UpdateMemberAccStatus(UpdateMemberAccStatusCriteria criteria)
+        public void UpdateMemberAccStatus(UpdateMemberStatusCriteria criteria)
         {
             Execute(criteria);
         }
@@ -113,7 +116,7 @@ namespace LicenseeAgent.CustomerList.Services
             Execute(criteria);
         }
 
-        public void CheckMemberUplineStatusForUpdate(CheckMemberUplineStatusForUpdateCriteria criteria)
+        public void CheckMemberUplineStatusForUpdate(CheckMemberUpLineStatusForUpdateCriteria criteria)
         {
             Execute(criteria);
         }

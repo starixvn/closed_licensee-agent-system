@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.Core.Entities
 {
+    /// <summary>
+    /// LicenseeDomain class.
+    /// </summary>
     public class LicenseeDomain
     {
         public string DomainName { get; set; }

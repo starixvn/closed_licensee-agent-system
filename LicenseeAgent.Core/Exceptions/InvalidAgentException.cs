@@ -11,6 +11,9 @@ namespace LicenseeAgent.Core.Exceptions
     using System.Text;
     using LicenseeAgent.Core.Entities;
 
+    /// <summary>
+    /// InvalidAgentException class.
+    /// </summary>
     [Serializable]
     public class InvalidAgentException : Exception
     {

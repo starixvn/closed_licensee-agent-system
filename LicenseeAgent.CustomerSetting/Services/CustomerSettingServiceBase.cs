@@ -3,15 +3,15 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.29">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
     using LicenseeAgent.Core.Services;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// CustomerSettingServiceBase class.
+    /// </summary>
     public class CustomerSettingServiceBase : QueryService
     {
         protected static JsonSerializerSettings GetJsonSetting

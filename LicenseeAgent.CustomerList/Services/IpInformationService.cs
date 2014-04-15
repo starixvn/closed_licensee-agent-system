@@ -11,6 +11,9 @@ namespace LicenseeAgent.CustomerList.Services
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Entities;
 
+    /// <summary>
+    /// IP InformationService class.
+    /// </summary>
     public class IpInformationService : QueryService, IIpInformationService
     {
         /// <summary>

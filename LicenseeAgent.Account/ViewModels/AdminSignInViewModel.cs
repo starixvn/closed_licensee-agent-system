@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Account.ViewModels
 {
@@ -13,6 +10,9 @@ namespace LicenseeAgent.Account.ViewModels
     using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// AdminSignInViewModel class.
+    /// </summary>
     public class AdminSignInViewModel
     {
         [Required(ErrorMessageResourceName = "UsernameRequired", ErrorMessageResourceType = typeof(Las))]

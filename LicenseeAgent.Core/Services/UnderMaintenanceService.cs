@@ -13,6 +13,9 @@ namespace LicenseeAgent.Core.Services
     using LicenseeAgent.Core.Entities;
     using Sunplus.UMControllerLibrary;
 
+    /// <summary>
+    /// UnderMaintenanceService class.
+    /// </summary>
     public class UnderMaintenanceService : IDisposable, IUnderMaintenanceService
     {
         private const int WaitInterval = 1000; // 1 second.

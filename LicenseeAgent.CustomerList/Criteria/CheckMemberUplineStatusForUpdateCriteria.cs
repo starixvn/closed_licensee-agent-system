@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CheckMemberUplineStatusForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CheckMemberUpLineStatusForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -8,7 +8,10 @@ namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    public class CheckMemberUplineStatusForUpdateCriteria : CriteriaBase
+    /// <summary>
+    /// CheckMemberUpLineStatusForUpdateCriteria class.
+    /// </summary>
+    public class CheckMemberUpLineStatusForUpdateCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 

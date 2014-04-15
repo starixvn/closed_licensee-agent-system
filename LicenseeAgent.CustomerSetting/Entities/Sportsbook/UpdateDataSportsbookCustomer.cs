@@ -1,17 +1,17 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="UpdateDataSportsbookCustomer.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateDataSportsBookCustomer.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.11.4">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
     using System.Collections.Generic;
 
-    public class UpdateDataSportsbookCustomer
+    /// <summary>
+    /// UpdateDataSportsBookCustomer class.
+    /// </summary>
+    public class UpdateDataSportsBookCustomer
     {
         public CustomerInfo CustInfo { get; set; }
 

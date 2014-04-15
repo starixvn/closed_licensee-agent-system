@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Utility
     using System.Net;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// AppHandler class.
+    /// </summary>
     public static class AppHandler
     {
         /// <summary>

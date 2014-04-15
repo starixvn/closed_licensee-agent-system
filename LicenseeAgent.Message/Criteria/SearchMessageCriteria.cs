@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-// <history>
-//  <change who="Kaden" date="2014.02.25">Created.</change>
-// </history>
 
 namespace LicenseeAgent.Message.Criteria
 {

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="GetDownlineListCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetDownLineListCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -8,7 +8,10 @@ namespace LicenseeAgent.AccountInformation.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    public class GetDownlineListCriteria : CriteriaBase
+    /// <summary>
+    /// GetDownLineListCriteria class.
+    /// </summary>
+    public class GetDownLineListCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

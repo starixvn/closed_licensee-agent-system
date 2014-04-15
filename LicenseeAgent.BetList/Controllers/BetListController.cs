@@ -3,10 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/12/19">Created</change>
-//   <change who="" date=""></change>
-// </history>
 
 namespace LicenseeAgent.BetList.Controllers
 {
@@ -20,6 +16,9 @@ namespace LicenseeAgent.BetList.Controllers
     using Services;
     using ViewModels;
 
+    /// <summary>
+    /// BetListController class.
+    /// </summary>
     public class BetListController : BetListBase
     {
         private readonly IBetListService _betlistService;
@@ -91,7 +90,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="model">Bet List Win loss View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult BetListWinlossReport(BetListWinlossViewModel model)
+        public ActionResult BetListWinlossReport(BetListWinLossViewModel model)
         {
             return View(model);
         }
@@ -200,7 +199,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <returns>JSON object.</returns>
         public string GetSportsbookResults(int matchId, ResultSetting setting)
         {
-            var data = _betlistService.GetSportsbookResults(new BetListResultsSportsbookCriteria { MatchId = matchId });
+            var data = _betlistService.GetSportsbookResults(new BetListResultsSportsBookCriteria { MatchId = matchId });
             return data != null
                 ? ResultEngine.HtmlParser(data, setting)
                 : string.Empty;

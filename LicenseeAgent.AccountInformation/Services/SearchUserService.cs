@@ -12,6 +12,9 @@ namespace LicenseeAgent.AccountInformation.Services
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Core.Services;
 
+    /// <summary>
+    /// SearchUserService class.
+    /// </summary>
     public class SearchUserService : QueryService, ISearchUserService
     {
         /// <summary>
@@ -52,9 +55,9 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
-        public IEnumerable<DownlineEntity> GetDirectDownlines(GetDirectDownlineCriteria criteria)
+        public IEnumerable<DownLineEntity> GetDirectDownlines(GetDirectDownLineCriteria criteria)
         {
-            return GetEntites<DownlineEntity>(criteria);
+            return GetEntites<DownLineEntity>(criteria);
         }
 
         /// <summary>

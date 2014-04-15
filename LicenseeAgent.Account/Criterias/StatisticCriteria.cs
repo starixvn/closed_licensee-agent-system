@@ -8,6 +8,9 @@ namespace LicenseeAgent.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// StatisticCriteria class.
+    /// </summary>
     public class StatisticCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

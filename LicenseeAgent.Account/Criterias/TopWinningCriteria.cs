@@ -9,6 +9,9 @@ namespace LicenseeAgent.Account.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// TopWinningCriteria class.
+    /// </summary>
     public class TopWinningCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

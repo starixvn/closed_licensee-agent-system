@@ -9,6 +9,9 @@ namespace LicenseeAgent.AccountInformation.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// MemberBalanceCriteria class.
+    /// </summary>
     public class MemberBalanceCriteria : CriteriaBase
     {
         public int CustId { get; set; }

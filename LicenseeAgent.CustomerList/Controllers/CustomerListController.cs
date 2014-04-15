@@ -26,6 +26,9 @@ namespace LicenseeAgent.CustomerList.Controllers
     using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
+    /// <summary>
+    /// CustomerListController class.
+    /// </summary>
     public class CustomerListController : BaseController
     {
         private readonly ICustomerService _customerService;
@@ -285,7 +288,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 return RedirectToAccessDeniedJson();
             }
 
-            var criteria = new UpdateAgentAccStatusCriteria
+            var criteria = new UpdateAgentStatusCriteria
             {
                 Updater = CurrentSession.LoginUserId,
                 AgentId = model.AgentId,
@@ -333,7 +336,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
             if (model.Status == (int)AccountStatus.Open)
             {
-                var criteria = new CheckMemberUplineStatusForUpdateCriteria
+                var criteria = new CheckMemberUpLineStatusForUpdateCriteria
                 {
                     CustId = model.MemberId
                 };

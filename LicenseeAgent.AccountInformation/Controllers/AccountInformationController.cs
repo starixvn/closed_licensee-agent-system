@@ -26,6 +26,9 @@ namespace LicenseeAgent.AccountInformation.Controllers
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
 
+    /// <summary>
+    /// AccountInformationController class.
+    /// </summary>
     public class AccountInformationController : BaseController
     {
         private readonly ISearchUserService _searchUserService;
@@ -92,9 +95,9 @@ namespace LicenseeAgent.AccountInformation.Controllers
         /// <param name="model">Down line view model.</param>
         /// <returns>List down line.</returns>
         [HttpPost]
-        public JsonResult GetDownlines(DownlineViewModel model)
+        public JsonResult GetDownlines(DownLineViewModel model)
         {
-            var criteria = new GetDirectDownlineCriteria
+            var criteria = new GetDirectDownLineCriteria
             {
                 AgentId = model.AgentId,
                 PageIndex = model.PageIndex,
@@ -177,11 +180,11 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembers<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
+            var entities = _searchUserService.GetMembers<CustomerEntity, UpLineEntity, DownLineEntity>(criteria);
 
             var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
-            var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
-            var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
+            var uplines = entities[typeof(UpLineEntity).Name] as List<UpLineEntity>;
+            var downlines = entities[typeof(DownLineEntity).Name] as List<DownLineEntity>;
 
             SetAgentView(criteria, customer);
 
@@ -213,11 +216,11 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembers<CustomerEntity, UplineEntity, DownlineEntity>(criteria);
+            var entities = _searchUserService.GetMembers<CustomerEntity, UpLineEntity, DownLineEntity>(criteria);
 
             var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
-            var uplines = entities[typeof(UplineEntity).Name] as List<UplineEntity>;
-            var downlines = entities[typeof(DownlineEntity).Name] as List<DownlineEntity>;
+            var uplines = entities[typeof(UpLineEntity).Name] as List<UpLineEntity>;
+            var downlines = entities[typeof(DownLineEntity).Name] as List<DownLineEntity>;
 
             SetAdminView(criteria, customer);
 

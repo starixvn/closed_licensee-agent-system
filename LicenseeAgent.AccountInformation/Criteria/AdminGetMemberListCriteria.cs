@@ -8,6 +8,9 @@ namespace LicenseeAgent.AccountInformation.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// AdminGetMemberListCriteria class.
+    /// </summary>
     public class AdminGetMemberListCriteria : CriteriaBase
     {
         public int LicenseeId { get; set; }

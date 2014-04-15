@@ -1,18 +1,17 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="BetListResultsSportsbookCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListResultsSportsBookCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2014/02/19">Created</change>
-//   <change who="" date=""></change>
-// </history>
 
 namespace LicenseeAgent.BetList.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
-    public class BetListResultsSportsbookCriteria : CriteriaBase
+    /// <summary>
+    /// BetListResultsSportsBookCriteria class.
+    /// </summary>
+    public class BetListResultsSportsBookCriteria : CriteriaBase
     {
         public int MatchId { get; set; }
 

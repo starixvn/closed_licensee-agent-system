@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.Core.Utility
 {
+    /// <summary>
+    /// ModelHelper class.
+    /// </summary>
     public static class ModelHelper
     {
         public static bool IsAgentLevel0(int agentLevel)

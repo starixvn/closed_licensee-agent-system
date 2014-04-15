@@ -8,6 +8,9 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// GetSettingForUpdateViewModel class.
+    /// </summary>
     public class GetSettingForUpdateViewModel
     {
         [Required]

@@ -8,6 +8,9 @@ namespace LicenseeAgent.CreditBalance.Entities
 {
     using LicenseeAgent.Taiwan.Attributes;
 
+    /// <summary>
+    /// MemberBalanceInfo class.
+    /// </summary>
     public class MemberBalanceInfo
     {
         public long RowNo { get; set; }

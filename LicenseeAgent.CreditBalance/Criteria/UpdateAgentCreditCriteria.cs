@@ -8,6 +8,9 @@ namespace LicenseeAgent.CreditBalance.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// UpdateAgentCreditCriteria class.
+    /// </summary>
     public class UpdateAgentCreditCriteria : CriteriaBase
     {
         private readonly string _settingKey = string.Empty;

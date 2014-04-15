@@ -8,6 +8,9 @@ namespace LicenseeAgent.Core.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// InternalLoginAsUserCriteria class.
+    /// </summary>
     public class InternalLoginAsUserCriteria : CriteriaBase
     {
         public int AdminId { get; set; }

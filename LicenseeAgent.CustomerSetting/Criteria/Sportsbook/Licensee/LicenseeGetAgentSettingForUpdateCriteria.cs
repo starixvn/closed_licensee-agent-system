@@ -3,14 +3,14 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.10.29">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// LicenseeGetAgentSettingForUpdateCriteria class.
+    /// </summary>
     public class LicenseeGetAgentSettingForUpdateCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

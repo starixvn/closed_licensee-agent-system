@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Utility
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// ResourceManager class.
+    /// </summary>
     public static class ResourceManager
     {
         /// <summary>

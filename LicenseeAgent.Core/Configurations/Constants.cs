@@ -8,6 +8,9 @@ namespace LicenseeAgent.Core.Configurations
 {
     using System.Drawing;
 
+    /// <summary>
+    /// Constants class.
+    /// </summary>
     public static class Constants
     {
         public const string AppSessionCaptcha = "LasCaptcha";

@@ -10,7 +10,10 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Account.Criterias;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Services;
-    
+
+    /// <summary>
+    /// CurrencyService class.
+    /// </summary>
     public class CurrencyService : QueryService, ICurrencyService
     {
         /// <summary>

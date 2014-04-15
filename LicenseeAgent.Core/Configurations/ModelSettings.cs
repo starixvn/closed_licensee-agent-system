@@ -12,6 +12,9 @@ namespace LicenseeAgent.Core.Configurations
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// ModelSettings class.
+    /// </summary>
     public static class ModelSettings
     {
         private static readonly List<SelectListItem> AllLanguages = new List<SelectListItem>

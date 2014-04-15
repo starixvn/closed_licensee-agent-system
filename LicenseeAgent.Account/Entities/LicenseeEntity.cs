@@ -3,12 +3,12 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.10.21">Created</change>
-// </history>
 
 namespace LicenseeAgent.Account.Entities
 {
+    /// <summary>
+    /// LicenseeEntity class.
+    /// </summary>
     public class LicenseeEntity
     {
         public int LicenseeId { get; set; }

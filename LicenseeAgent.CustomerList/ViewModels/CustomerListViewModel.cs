@@ -9,6 +9,9 @@ namespace LicenseeAgent.CustomerList.ViewModels
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// CustomerListViewModel class.
+    /// </summary>
     public class CustomerListViewModel
     {
         [Required]

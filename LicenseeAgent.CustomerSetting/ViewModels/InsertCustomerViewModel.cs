@@ -7,14 +7,17 @@
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
-    using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
 
+    /// <summary>
+    /// InsertCustomerViewModel class.
+    /// </summary>
     public class InsertCustomerViewModel
     {
         [Required]
         public SettingContext SettingContext { get; set; }
 
         [Required]
-        public UpdateDataSportsbookCustomer UpdateDataSportsbookCustomer { get; set; }
+        public UpdateDataSportsBookCustomer UpdateDataSportsBookCustomer { get; set; }
     }
 }

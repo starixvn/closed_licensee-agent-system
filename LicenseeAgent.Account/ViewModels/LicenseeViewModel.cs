@@ -10,6 +10,9 @@ namespace LicenseeAgent.Account.ViewModels
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Enumerations;
 
+    /// <summary>
+    /// LicenseeViewModel class.
+    /// </summary>
     public class LicenseeViewModel
     {
         public IEnumerable<LicenseeEntity> Licensees { get; set; }

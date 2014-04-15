@@ -3,10 +3,6 @@
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/12/19">Created</change>
-//   <change who="" date=""></change>
-// </history>
 
 namespace LicenseeAgent.BetList.Utilities
 {
@@ -22,6 +18,9 @@ namespace LicenseeAgent.BetList.Utilities
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// LasBetListHtmlBuilder class.
+    /// </summary>
     public static class LasBetListHtmlBuilder
     {
         private const string _TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";

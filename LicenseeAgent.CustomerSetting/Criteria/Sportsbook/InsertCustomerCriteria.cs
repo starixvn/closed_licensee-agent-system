@@ -3,14 +3,14 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.10.30">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Criteria.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// InsertCustomerCriteria class.
+    /// </summary>
     public class InsertCustomerCriteria : CriteriaBase
     {
         public InsertCustomerCriteria()

@@ -3,12 +3,12 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.9.17">Created</change>
-// </history>
 
-namespace LicenseeAgent.CustomerSetting.Entities.Sportsbook
+namespace LicenseeAgent.CustomerSetting.Entities.SportsBook
 {
+    /// <summary>
+    /// PositionTaking class.
+    /// </summary>
     public class PositionTaking
     {
         public int SportId { get; set; }

@@ -52,7 +52,7 @@
     <Compile Include="Criteria\AgentAutoCompleteCriteria.cs" />
     <Compile Include="Criteria\AgentGetByAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInfoCriteria.cs" />
-    <Compile Include="Criteria\CheckMemberUplineStatusForUpdateCriteria.cs" />
+    <Compile Include="Criteria\CheckMemberUpLineStatusForUpdateCriteria.cs" />
     <Compile Include="Criteria\EditinfoAgentCriteria.cs" />
     <Compile Include="Criteria\GetIpInformationCriteria.cs" />
     <Compile Include="Criteria\MemberAutoCompleteCriteria.cs" />
@@ -60,8 +60,8 @@
     <Compile Include="Criteria\ResetPasswordCriteria.cs" />
     <Compile Include="Criteria\SearchAgentCriteria.cs" />
     <Compile Include="Criteria\SearchMemberCriteria.cs" />
-    <Compile Include="Criteria\UpdateAgentAccStatusCriteria.cs" />
-    <Compile Include="Criteria\UpdateMemberAccStatusCriteria.cs" />
+    <Compile Include="Criteria\UpdateAgentStatusCriteria.cs" />
+    <Compile Include="Criteria\UpdateMemberStatusCriteria.cs" />
     <Compile Include="Entities\AgentEntity.cs" />
     <Compile Include="Entities\IpEntity.cs" />
     <Compile Include="Entities\MemberEntity.cs" />

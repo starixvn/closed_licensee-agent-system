@@ -8,6 +8,9 @@ namespace LicenseeAgent.Account.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// CurrencyLicenseeViewModel class.
+    /// </summary>
     public class CurrencyLicenseeViewModel
     {
         [Required]

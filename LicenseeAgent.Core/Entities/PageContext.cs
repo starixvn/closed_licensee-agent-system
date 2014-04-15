@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Entities
     using System;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// PageContext class.
+    /// </summary>
     [Serializable]
     public class PageContext
     {

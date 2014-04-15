@@ -2,13 +2,15 @@
 // <copyright file="AgentBalanceCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.AccountInformation.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// AgentBalanceCriteria class.
+    /// </summary>
     public class AgentBalanceCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

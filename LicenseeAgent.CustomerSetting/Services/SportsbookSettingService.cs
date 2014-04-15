@@ -1,13 +1,8 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookSettingService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsBookSettingService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.5">Created</change>
-//   <change who="Ricky.Nguyen" date="2013.3.25">Update PT New Rule</change>
-//   <change who="Ricky.Nguyen" date="2013.4.12">Update New Rules</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
@@ -22,12 +17,12 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Criteria.Sportsbook;
-    using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Agent;
-    using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Licensee;
-    using LicenseeAgent.CustomerSetting.Criteria.Sportsbook.Member;
+    using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
+    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent;
+    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee;
+    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using Newtonsoft.Json;
@@ -35,11 +30,11 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// <summary>
     /// Customer Service.
     /// </summary>
-    public class SportsbookSettingService : CustomerSettingServiceBase, ISportsbookSettingService
+    public class SportsBookSettingService : CustomerSettingServiceBase, ISportsBookSettingService
     {
-        private readonly ISportsbookSettingRepository _customerSettingRepository;
+        private readonly ISportsBookSettingRepository _customerSettingRepository;
 
-        public SportsbookSettingService(ISportsbookSettingRepository customerSettingRepository)
+        public SportsBookSettingService(ISportsBookSettingRepository customerSettingRepository)
         {
             _customerSettingRepository = customerSettingRepository;
         }
@@ -60,7 +55,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
         /// <returns>Sports book customer setting.</returns>
-        public SportsbookCustomer GetSportsbookSettingForInsert(SettingContext settingContext)
+        public SportsBookCustomer GetSportsBookSettingForInsert(SettingContext settingContext)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
@@ -96,7 +91,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             if (msgId == 0)
             {
-                return new SportsbookCustomer
+                return new SportsBookCustomer
                 {
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,
@@ -105,7 +100,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 };
             }
 
-            return new SportsbookCustomer
+            return new SportsBookCustomer
             {
                 Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
@@ -118,13 +113,13 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public SportsbookCustomer GetSportsbookSettingForUpdate(SettingContext settingContext)
+        public SportsBookCustomer GetSportsBookSettingForUpdate(SettingContext settingContext)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
             IList<BettingLimit> bettingLimits;
             Dictionary<string, PositionTaking> positionTakingData;
-            ICriteria getAgentSettingCriteria = InitializeCriteriaForGettingSportsbookSettingForUpdate(settingContext);
+            ICriteria getAgentSettingCriteria = InitializeCriteriaForGettingSportsBookSettingForUpdate(settingContext);
 
             int msgId;
             _customerSettingRepository.GetSettingForUpdate(
@@ -138,7 +133,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             if (msgId == 0)
             {
-                return new SportsbookCustomer
+                return new SportsBookCustomer
                 {
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,
@@ -147,7 +142,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 };
             }
 
-            return new SportsbookCustomer
+            return new SportsBookCustomer
             {
                 Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
@@ -163,10 +158,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult InsertCustomer(InsertCustomerViewModel model)
         {
             //// Build XML setting for insert new customer.
-            var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
-            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsbookCustomer.BettingLimits);
+            var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
+            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsBookCustomer.BettingLimits);
             var positionTakingXmlStringData = BuildPositionTakingSettingXML(
-                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var discountXML = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
@@ -190,10 +185,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsbookCustomer.CommissionSetting);
-            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsbookCustomer.BettingLimits);
+            var discountXmlStringData = BuildCommissionSettingXML(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
+            var betLimitXmlStringData = BuildBetLimitSettingXML(model.UpdateDataSportsBookCustomer.BettingLimits);
             var positionTakingXmlStringData = BuildPositionTakingSettingXML(
-                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var discountXML = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
@@ -218,7 +213,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             // Build XML setting for update customer.
             var positionTakingXmlStringData = BuildPositionTakingSettingXML(
-                model.SettingContext, model.UpdateDataSportsbookCustomer.PositionTakingSetting);
+                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var positionTakingXML = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
@@ -236,7 +231,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </returns>
         public string FormatJavascriptReturn(
             SettingContext settingContext,
-            SportsbookCustomer sportsBookCustomer)
+            SportsBookCustomer sportsBookCustomer)
         {
             var result = sportsBookCustomer != null ? sportsBookCustomer.Result : null;
             var custInfo = sportsBookCustomer != null ? sportsBookCustomer.CustInfo : null;
@@ -295,7 +290,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             string betLimitXML,
             string positionTakingXML)
         {
-            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
+            var custInfo = model.UpdateDataSportsBookCustomer.CustInfo;
             var criteriaBase = new InsertCustomerCriteria
             {
                 UserName = custInfo.UserName,
@@ -358,7 +353,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             var criteria = new AgentInsertMemberSettingCriteria(criteriaBase)
             {
-                UGroup = model.UpdateDataSportsbookCustomer.CommissionSetting.UserGroup,
+                UGroup = model.UpdateDataSportsBookCustomer.CommissionSetting.UserGroup,
                 ParentId = model.SettingContext.CustId
             };
 
@@ -393,7 +388,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             UpdateCustomerCriteria criteriaBase,
             UpdateCustomerViewModel model)
         {
-            var criteria = new AgentEditMemIndirectCriteria()
+            var criteria = new AgentEditMemberIndirectCriteria()
             {
                 Updater = model.SettingContext.LoginUserId,
                 AgentId = model.SettingContext.CustId,
@@ -416,8 +411,8 @@ namespace LicenseeAgent.CustomerSetting.Services
             InsertCustomerViewModel model)
         {
             var passwordSalt = Cryptography.CreateSalt();
-            var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsbookCustomer.CustInfo.Password, passwordSalt);
-            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
+            var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsBookCustomer.CustInfo.Password, passwordSalt);
+            var custInfo = model.UpdateDataSportsBookCustomer.CustInfo;
 
             var criteria = new LicenseeInsertAgentSettingCriteria(criteriaBase)
             {
@@ -429,7 +424,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
                 Fax = custInfo.Fax,
-                Status = (byte)model.UpdateDataSportsbookCustomer.CustInfo.Status
+                Status = (byte)model.UpdateDataSportsBookCustomer.CustInfo.Status
             };
 
             return criteria;
@@ -464,8 +459,8 @@ namespace LicenseeAgent.CustomerSetting.Services
             InsertCustomerViewModel model)
         {
             var passwordSalt = Cryptography.CreateSalt();
-            var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsbookCustomer.CustInfo.Password, passwordSalt);
-            var custInfo = model.UpdateDataSportsbookCustomer.CustInfo;
+            var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsBookCustomer.CustInfo.Password, passwordSalt);
+            var custInfo = model.UpdateDataSportsBookCustomer.CustInfo;
 
             var criteria = new AgentInsertAgentSettingCriteria(criteriaBase)
             {
@@ -477,7 +472,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 FirstName = custInfo.FirstName,
                 LastName = custInfo.LastName,
                 Fax = custInfo.Fax,
-                Status = model.UpdateDataSportsbookCustomer.CustInfo.Status
+                Status = model.UpdateDataSportsBookCustomer.CustInfo.Status
             };
 
             return criteria;
@@ -506,7 +501,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Criteria for getting SportsBook setting.</returns>
-        private static ICriteria InitializeCriteriaForGettingSportsbookSettingForUpdate(SettingContext settingContext)
+        private static ICriteria InitializeCriteriaForGettingSportsBookSettingForUpdate(SettingContext settingContext)
         {
             ICriteria getAgentSettingCriteria = null;
 
@@ -514,7 +509,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)
                 {
-                    getAgentSettingCriteria = new AgentSelMemIndirectForUpdateCriteria
+                    getAgentSettingCriteria = new AgentSelectMemberIndirectForUpdateCriteria
                     {
                         AgentId = settingContext.CustId,
                         CustId = settingContext.TargetCustId

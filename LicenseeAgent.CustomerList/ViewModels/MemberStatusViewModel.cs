@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.CustomerList.ViewModels
 {
+    /// <summary>
+    /// MemberStatusViewModel class.
+    /// </summary>
     public class MemberStatusViewModel
     {
         public int MemberId { get; set; }

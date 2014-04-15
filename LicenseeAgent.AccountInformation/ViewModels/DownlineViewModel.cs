@@ -1,12 +1,15 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="DownlineViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DownLineViewModel.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.AccountInformation.ViewModels
 {
-    public class DownlineViewModel
+    /// <summary>
+    /// DownLineViewModel class.
+    /// </summary>
+    public class DownLineViewModel
     {
         public int AgentId { get; set; }
 

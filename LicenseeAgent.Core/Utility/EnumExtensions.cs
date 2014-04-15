@@ -10,6 +10,9 @@ namespace LicenseeAgent.Core.Utility
     using System.Linq;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// ENUM Extensions class.
+    /// </summary>
     public static class EnumExtensions
     {
         public static string EnumToJson(this Type type)

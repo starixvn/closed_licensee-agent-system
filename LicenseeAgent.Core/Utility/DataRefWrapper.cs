@@ -12,6 +12,9 @@ namespace LicenseeAgent.Core.Utility
     using LicenseeAgent.Resources;
     using RemotingRef;
 
+    /// <summary>
+    /// DataRefWrapper class.
+    /// </summary>
     public static class DataRefWrapper
     {
         private static string RefLanguageCode

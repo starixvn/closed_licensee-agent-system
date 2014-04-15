@@ -1,11 +1,8 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ISportsbookSettingRepository.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ISportsBookSettingRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Ricky.Nguyen" date="2013.3.5">Created</change>
-// </history>
 
 namespace LicenseeAgent.CustomerSetting.Repositories
 {
@@ -13,9 +10,9 @@ namespace LicenseeAgent.CustomerSetting.Repositories
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.Sportsbook;
+    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
 
-    public interface ISportsbookSettingRepository
+    public interface ISportsBookSettingRepository
     {
         Result UpdateSetting(ICriteria criteria, ICriteria logCriteria);
 

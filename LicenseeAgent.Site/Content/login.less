@@ -46,7 +46,6 @@ body
             .content-box
             {
                 margin-top: 27px;
-                margin-left: 10px;
                 .control-group
                 {
                     margin-bottom: 28px;
@@ -54,13 +53,14 @@ body
 
                     #Username, #Password
                     {
-                        width: 342px;
-                        height: 26px;
+                        padding: 12px 36px 12px 8px;
+                        width: 350px;
                     }
 
                     #Captcha
                     {
-                        width: 90px;
+                        padding: 8px;
+                        width: 84px;
                         float: left;
                     }
 
@@ -69,15 +69,16 @@ body
                         float: left;
                         width: 109px;
                         height: 32px;
-                        padding-left: 6px;
-                        padding-right: 4px;
+                        margin-left: 6px;
                     }
 
                     #reload
                     {
                         float: left;
-                        width: 28px;
-                        height: 32px;
+                        width: 24px;
+                        height: 26px;
+                        padding-top: 6px;
+                        padding-left: 8px;
                     }
                 }
 
@@ -116,13 +117,12 @@ body
 }
 
 input[type="text"],
-input[type="password"],
-textarea
+input[type="password"]
 {
-    padding: 8px 0;
-    height: 16px;
+    height: 18px;
+    line-height: 18px;
     color: #5c5c5c;
-    background-color:transparent;
+    background-color: transparent;
     border: 0px solid;
     .placeholder(#acacac);
     &:focus

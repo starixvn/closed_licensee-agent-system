@@ -9,6 +9,9 @@ namespace LicenseeAgent.Taiwan.Criterias
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Taiwan.Actions;
 
+    /// <summary>
+    /// MultipleLogActionCriteria class.
+    /// </summary>
     public abstract class MultipleLogActionCriteria : LogActionCriteria
     {
         protected MultipleLogActionCriteria(LogAction logAction)

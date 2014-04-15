@@ -12,6 +12,9 @@ namespace LicenseeAgent.Web.Filters
     using System.Web.Mvc;
     using LicenseeAgent.Web.Mvc;
 
+    /// <summary>
+    /// AjaxOnlyAttribute class.
+    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class AjaxOnlyAttribute : ActionFilterAttribute
     {

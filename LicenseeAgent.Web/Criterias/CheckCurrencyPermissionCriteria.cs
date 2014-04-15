@@ -8,6 +8,9 @@ namespace LicenseeAgent.Web.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Check currency permission criteria.
+    /// </summary>
     public class CheckCurrencyPermissionCriteria : CriteriaBase
     {
         public int AdminId { get; set; }

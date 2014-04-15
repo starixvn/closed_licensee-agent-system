@@ -9,6 +9,9 @@ namespace LicenseeAgent.TotalBets.Entities
     using System.Collections.Generic;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// LeagueGroupEntity class.
+    /// </summary>
     public class LeagueGroupEntity
     {
         private string _leagueName;

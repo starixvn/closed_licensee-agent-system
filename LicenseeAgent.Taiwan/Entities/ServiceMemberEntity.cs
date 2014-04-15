@@ -10,6 +10,9 @@ namespace LicenseeAgent.Taiwan.Entities
     using System.Runtime.Serialization;
     using LicenseeAgent.Core.Enumerations;
 
+    /// <summary>
+    /// ServiceMemberEntity class.
+    /// </summary>
     [DataContract]
     public class ServiceMemberEntity
     {

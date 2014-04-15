@@ -8,6 +8,9 @@ namespace LicenseeAgent.TotalBets.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// OutrightLeagueCriteria class.
+    /// </summary>
     public class OutrightLeagueCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

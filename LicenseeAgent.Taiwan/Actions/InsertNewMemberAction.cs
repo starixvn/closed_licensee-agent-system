@@ -11,6 +11,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
 
+    /// <summary>
+    /// InsertNewMemberAction class.
+    /// </summary>
     public class InsertNewMemberAction : LogAction
     {
         public string UserName { get; set; }

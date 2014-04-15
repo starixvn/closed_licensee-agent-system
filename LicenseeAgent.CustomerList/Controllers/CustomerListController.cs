@@ -56,7 +56,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             var hasAgentModel = model.AgentId != 0;
 
-            var breadModel = new AgentBreadcrumViewModel(
+            var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
                 hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.AgentName,
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
@@ -78,7 +78,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        public ActionResult Index([ModelBinder(typeof(AgentBreadcrumModelBinder))]AgentBreadcrumViewModel model)
+        public ActionResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
         {
             if (!_permissionService.IsDownLineAgent(model.AgentId))
             {

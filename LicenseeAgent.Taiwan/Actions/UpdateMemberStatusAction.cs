@@ -12,6 +12,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Utility;
 
+    /// <summary>
+    /// UpdateMemberStatusAction class.
+    /// </summary>
     public class UpdateMemberStatusAction : LogAction
     {
         public string IBCCustId { get; set; }

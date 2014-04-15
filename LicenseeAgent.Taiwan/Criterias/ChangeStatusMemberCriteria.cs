@@ -8,6 +8,9 @@ namespace LicenseeAgent.Taiwan.Criterias
 {
     using LicenseeAgent.Taiwan.Actions;
 
+    /// <summary>
+    /// ChangeStatusMemberCriteria class.
+    /// </summary>
     public class ChangeStatusMemberCriteria : MultipleLogActionCriteria
     {
         public ChangeStatusMemberCriteria(LogAction logAction)

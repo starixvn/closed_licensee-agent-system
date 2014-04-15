@@ -8,6 +8,9 @@ namespace LicenseeAgent.Transfer.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// GetMemberDetailCriteria class.
+    /// </summary>
     public class GetMemberDetailCriteria : CriteriaBase
     {
         public int CustId { get; set; }

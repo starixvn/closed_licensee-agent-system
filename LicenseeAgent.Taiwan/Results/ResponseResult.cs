@@ -8,6 +8,9 @@ namespace LicenseeAgent.Taiwan.Results
 {
     using System.Runtime.Serialization;
 
+    /// <summary>
+    /// ResponseResult class.
+    /// </summary>
     [DataContract]
     public class ResponseResult
     {

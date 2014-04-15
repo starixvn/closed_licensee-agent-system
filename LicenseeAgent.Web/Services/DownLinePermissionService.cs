@@ -12,6 +12,9 @@ namespace LicenseeAgent.Web.Services
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Enumerations;
 
+    /// <summary>
+    /// Down-line permission service.
+    /// </summary>
     public class DownLinePermissionService : IDownlLinePermissionService
     {
         private IDownLineService _downLineService;

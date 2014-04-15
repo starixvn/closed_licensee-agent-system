@@ -12,6 +12,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
 
+    /// <summary>
+    /// LogAction class.
+    /// </summary>
     [Serializable]
     public abstract class LogAction : BaseAction
     {

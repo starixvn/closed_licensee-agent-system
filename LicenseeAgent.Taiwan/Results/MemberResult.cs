@@ -10,6 +10,9 @@ namespace LicenseeAgent.Taiwan.Results
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Entities;
 
+    /// <summary>
+    /// MemberResult class.
+    /// </summary>
     [DataContract]
     public class MemberResult : ResponseResult
     {

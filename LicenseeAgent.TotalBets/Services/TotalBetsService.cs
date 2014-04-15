@@ -11,6 +11,9 @@ namespace LicenseeAgent.TotalBets.Services
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
 
+    /// <summary>
+    /// TotalBetsService class.
+    /// </summary>
     public class TotalBetsService : QueryService, ITotalBetsService
     {
         public IEnumerable<LeagueEntity> GetLeagues(LeagueCriteria criteria)

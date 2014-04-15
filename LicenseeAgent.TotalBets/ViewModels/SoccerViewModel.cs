@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.TotalBets.ViewModels
 {
+    /// <summary>
+    /// SoccerViewModel class.
+    /// </summary>
     public class SoccerViewModel
     {
         public int TimeInterval { get; set; }

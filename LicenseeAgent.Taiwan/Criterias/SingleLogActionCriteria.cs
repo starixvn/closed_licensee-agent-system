@@ -10,6 +10,9 @@ namespace LicenseeAgent.Taiwan.Criterias
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Enumerations;
 
+    /// <summary>
+    /// SingleLogActionCriteria class.
+    /// </summary>
     public abstract class SingleLogActionCriteria : LogActionCriteria
     {
         protected SingleLogActionCriteria(LogAction logAction)

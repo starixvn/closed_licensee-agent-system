@@ -12,6 +12,9 @@ namespace LicenseeAgent.Web.Binders
     using System.Web.Mvc;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// Application modal binder.
+    /// </summary>
     public class AppModelBinder : DefaultModelBinder
     {
         private static string[] dangerousStrings = new[] { "<", ">", "&#" };

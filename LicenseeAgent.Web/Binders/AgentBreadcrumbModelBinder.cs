@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AgentBreadcrumModelBinder.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentBreadcrumbModelBinder.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -11,7 +11,10 @@ namespace LicenseeAgent.Web.Binders
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.ViewModels;
 
-    public class AgentBreadcrumModelBinder : IModelBinder
+    /// <summary>
+    /// Breadcrumb binder class.
+    /// </summary>
+    public class AgentBreadcrumbModelBinder : IModelBinder
     {
         /// <summary>
         /// Binds the model to a value by using the specified controller context and binding context.
@@ -52,7 +55,7 @@ namespace LicenseeAgent.Web.Binders
                 return null;
             }
 
-            return new AgentBreadcrumViewModel
+            return new AgentBreadcrumbViewModel
             {
                 AgentId = Convert.ToInt32(agentId),
                 AgentName = agentName,

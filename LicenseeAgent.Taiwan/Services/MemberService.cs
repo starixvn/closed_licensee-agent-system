@@ -22,6 +22,9 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Utility;
 
+    /// <summary>
+    /// MemberService class.
+    /// </summary>
     public class MemberService : IMemberService
     {
         private readonly ILogService _logService;

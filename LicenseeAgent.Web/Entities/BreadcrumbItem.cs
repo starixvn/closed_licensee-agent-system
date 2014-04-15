@@ -6,6 +6,9 @@
 
 namespace LicenseeAgent.Web.Entities
 {
+    /// <summary>
+    /// Breadcrumb item.
+    /// </summary>
     public class BreadcrumbItem
     {
         public int AgentId { get; set; }

@@ -9,6 +9,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
 
+    /// <summary>
+    /// UpdateMemberInfoAction class.
+    /// </summary>
     public class UpdateMemberInfoAction : LogAction
     {
         public int IBCCustId { get; set; }

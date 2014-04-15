@@ -9,6 +9,9 @@ namespace LicenseeAgent.Taiwan.Entities
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Attributes;
 
+    /// <summary>
+    /// CustomerEntity class.
+    /// </summary>
     public class CustomerEntity
     {
         [Service(Name = "IBCCustId")]

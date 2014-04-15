@@ -12,6 +12,9 @@ namespace LicenseeAgent.Web.Mvc
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
 
+    /// <summary>
+    /// Page extensions.
+    /// </summary>
     public static class PageExtensions
     {
         /// <summary>

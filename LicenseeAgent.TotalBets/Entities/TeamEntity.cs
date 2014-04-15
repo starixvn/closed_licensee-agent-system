@@ -8,6 +8,9 @@ namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// TeamEntity class.
+    /// </summary>
     public class TeamEntity
     {
         private string _teamName;

@@ -11,6 +11,9 @@ namespace LicenseeAgent.Taiwan.Filter
     using System.Linq;
     using LicenseeAgent.Taiwan.Attributes;
 
+    /// <summary>
+    /// MemberFilter class.
+    /// </summary>
     public class MemberFilter : IServiceFilter
     {
         /// <summary>

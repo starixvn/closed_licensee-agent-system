@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Lewis.Le" date="2013.5.13">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web
 {

@@ -8,6 +8,9 @@ namespace LicenseeAgent.Taiwan.Criterias
 {
     using LicenseeAgent.Taiwan.Actions;
 
+    /// <summary>
+    /// ResetPasswordMemberCriteria class.
+    /// </summary>
     public class ResetPasswordMemberCriteria : SingleLogActionCriteria
     {
         public ResetPasswordMemberCriteria(LogAction logAction)

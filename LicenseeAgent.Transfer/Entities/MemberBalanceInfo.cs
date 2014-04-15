@@ -9,6 +9,9 @@ namespace LicenseeAgent.Transfer.Entities
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Attributes;
 
+    /// <summary>
+    /// MemberBalanceInfo class.
+    /// </summary>
     public class MemberBalanceInfo
     {
         public long RowNo { get; set; }

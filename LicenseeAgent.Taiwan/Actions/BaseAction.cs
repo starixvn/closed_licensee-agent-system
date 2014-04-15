@@ -9,6 +9,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Configurations;
 
+    /// <summary>
+    /// BaseAction class.
+    /// </summary>
     public abstract class BaseAction
     {
         protected BaseAction()

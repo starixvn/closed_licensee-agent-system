@@ -15,6 +15,9 @@ namespace LicenseeAgent.Web.Filters
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
+    /// <summary>
+    /// Application authorize attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public sealed class AppAuthorizeAttribute : AuthorizeAttribute
     {

@@ -14,6 +14,9 @@ namespace LicenseeAgent.Taiwan.Utility
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Filter;
 
+    /// <summary>
+    /// ServiceMapper class.
+    /// </summary>
     internal class ServiceMapper
     {
         /// <summary>

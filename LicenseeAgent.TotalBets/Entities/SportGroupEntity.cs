@@ -9,6 +9,9 @@ namespace LicenseeAgent.TotalBets.Entities
     using System.Collections.Generic;
     using LicenseeAgent.Core.Utility;
 
+    /// <summary>
+    /// SportGroupEntity class.
+    /// </summary>
     public class SportGroupEntity
     {
         private string _sportName;

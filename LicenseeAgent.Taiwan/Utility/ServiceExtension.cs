@@ -22,6 +22,9 @@ namespace LicenseeAgent.Taiwan.Utility
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
 
+    /// <summary>
+    /// ServiceExtension class.
+    /// </summary>
     public static class ServiceExtension
     {
         /// <summary>

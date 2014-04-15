@@ -10,6 +10,9 @@ namespace LicenseeAgent.Taiwan.Actions
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Criterias;
 
+    /// <summary>
+    /// ResetPasswordAction class.
+    /// </summary>
     public class ResetPasswordAction : LogAction
     {
         public int IBCCustId { get; set; }

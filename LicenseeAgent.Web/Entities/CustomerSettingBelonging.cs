@@ -8,6 +8,9 @@ namespace LicenseeAgent.Web.Entities
 {
     using LicenseeAgent.Core.Entities;
 
+    /// <summary>
+    /// Customer settings belonging object.
+    /// </summary>
     public class CustomerSettingBelonging
     {
         public FormType FormId { get; set; }

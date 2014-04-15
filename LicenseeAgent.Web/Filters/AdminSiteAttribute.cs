@@ -10,6 +10,9 @@ namespace LicenseeAgent.Web.Filters
     using System.Web.Mvc;
     using LicenseeAgent.Core.Configurations;
 
+    /// <summary>
+    /// Admin site attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class AdminSiteAttribute : BaseActionFilterAttribute
     {

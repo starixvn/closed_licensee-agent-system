@@ -11,6 +11,9 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Filters;
 
+    /// <summary>
+    /// Notify controller.
+    /// </summary>
     [AllowAnonymous]
     public class NotifyController : Controller
     {

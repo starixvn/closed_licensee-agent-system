@@ -8,6 +8,9 @@ namespace LicenseeAgent.Transfer.Entities
 {
     using System;
 
+    /// <summary>
+    /// MemberDetail class.
+    /// </summary>
     public class MemberDetail
     {
         public string UserName { get; set; }

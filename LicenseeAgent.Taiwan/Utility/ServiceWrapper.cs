@@ -20,6 +20,9 @@ namespace LicenseeAgent.Taiwan.Utility
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Results;
 
+    /// <summary>
+    /// ServiceWrapper class.
+    /// </summary>
     internal static class ServiceWrapper
     {
         /// <summary>

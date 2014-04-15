@@ -3,9 +3,6 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.9.30">Created</change>
-// </history>
 
 namespace LicenseeAgent.Web.Validations
 {
@@ -15,6 +12,9 @@ namespace LicenseeAgent.Web.Validations
     using System.Globalization;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// Not equal attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class NotEqualAttribute : ValidationAttribute, IClientValidatable
     {

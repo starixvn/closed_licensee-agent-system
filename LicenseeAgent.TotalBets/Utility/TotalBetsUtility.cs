@@ -14,6 +14,9 @@ namespace LicenseeAgent.TotalBets.Utility
     using LicenseeAgent.Resources;
     using LicenseeAgent.TotalBets.Entities;
 
+    /// <summary>
+    /// TotalBetsUtility class.
+    /// </summary>
     public static class TotalBetsUtility
     {
         /// <summary>

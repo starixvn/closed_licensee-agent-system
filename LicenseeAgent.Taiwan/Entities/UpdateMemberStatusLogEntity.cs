@@ -10,6 +10,9 @@ namespace LicenseeAgent.Taiwan.Entities
     using LicenseeAgent.Taiwan.Attributes;
     using LicenseeAgent.Taiwan.Enumerations;
 
+    /// <summary>
+    /// UpdateMemberStatusLogEntity class.
+    /// </summary>
     public class UpdateMemberStatusLogEntity
     {
         public UpdateMemberStatusLogEntity()

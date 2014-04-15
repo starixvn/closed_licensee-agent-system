@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AgentBreadcrumViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentBreadcrumbViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -9,13 +9,16 @@ namespace LicenseeAgent.Web.ViewModels
     using System.Collections.Generic;
     using LicenseeAgent.Web.Entities;
 
-    public class AgentBreadcrumViewModel
+    /// <summary>
+    /// Agent breadcrumb view modal.
+    /// </summary>
+    public class AgentBreadcrumbViewModel
     {
-        public AgentBreadcrumViewModel()
+        public AgentBreadcrumbViewModel()
         {
         }
 
-        public AgentBreadcrumViewModel(int agentId, string agentName, short agentLevel)
+        public AgentBreadcrumbViewModel(int agentId, string agentName, short agentLevel)
         {
             AgentId = agentId;
             AgentName = agentName;

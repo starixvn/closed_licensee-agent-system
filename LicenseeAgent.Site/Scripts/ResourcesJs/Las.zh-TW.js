@@ -1,4 +1,6 @@
-﻿var Las_zh_TW = {
+﻿/*jshint: -W101,-W106*/
+
+var Las_zh_TW = {
 	AccessDeniedMsg : "抱歉!您沒有此頁面的權限",
 	AccountInfo : "帳號資料",
 	AccountStatus : "帳戶狀態",

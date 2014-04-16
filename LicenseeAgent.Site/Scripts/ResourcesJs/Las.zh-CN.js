@@ -1,4 +1,6 @@
-﻿var Las_zh_CN = {
+﻿/*jshint: -W101,-W106*/
+
+var Las_zh_CN = {
 	AccessDeniedMsg : "抱歉!您没有此页面的权限",
 	AccountInfo : "账号资料",
 	AccountStatus : "账户状态",

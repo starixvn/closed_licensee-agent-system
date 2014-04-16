@@ -1,4 +1,6 @@
-﻿var Las_en_US = {
+﻿/*jshint: -W101,-W106*/
+
+var Las_en_US = {
 	AccessDeniedMsg : "You do not have permission to access this page.",
 	AccountInfo : "Account Info",
 	AccountStatus : "Account status",

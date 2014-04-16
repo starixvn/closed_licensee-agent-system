@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿/*global core, fanex:true*/
 
 var fanex = fanex || {};
 
@@ -7,6 +7,7 @@ fanex.angularModule = angular.module('fanex.angular', []);
 fanex.angularModule.config([
 '$httpProvider',
 function ($httpProvider) {
+    'use strict';
     var numLoadings = 0;
     $httpProvider.responseInterceptors.push(function () {
         return function (promise) {
@@ -16,7 +17,7 @@ function ($httpProvider) {
                 if (!(--numLoadings)) {
                     core.unblockUI();
                 }
-                if (response.status != 200 && response.status != 404) {
+                if (response.status !== 200 && response.status !== 404) {
                     core.handleError(response.data);
                 }
                 return response;
@@ -27,19 +28,20 @@ function ($httpProvider) {
 } ]);
 
 fanex.angularModule.directive('hintValidator', function () {
+    'use strict';
     return {
         require: 'ngModel',
         restrict: 'A',
         link: function (scope, element, attrs, ngModel) {
             var showHint = function () {
-                var hintMessage = undefined;
+                var hintMessage;
 
                 if (!hintMessage) {
                     var keepGoing = true;
                     angular.forEach(ngModel.$error, function (value, name) {
                         if (keepGoing) {
                             if (value) {
-                                if (name == '') {
+                                if (name === '') {
                                     hintMessage = ngModel.hintMessage;
                                 }
                                 else {
@@ -64,16 +66,16 @@ fanex.angularModule.directive('hintValidator', function () {
                 else {
                     fanex.hideHint();
                 }
-            }
+            };
             var hideHint = function () {
                 fanex.hideHint();
-            }
+            };
 
-            element.bind('focus', function (event) {
+            element.bind('focus', function () {
                 if (ngModel.$invalid) {
                     showHint();
                 }
-            }).bind('blur', function (event) {
+            }).bind('blur', function () {
                 hideHint();
             });
 
@@ -84,18 +86,19 @@ fanex.angularModule.directive('hintValidator', function () {
                 else {
                     hideHint();
                 }
-            }
+            };
 
             scope.$watch(function () { return ngModel.$modelValue; }, validator);
             scope.$watch(function () { return ngModel.$invalid; }, validator);
             scope.$watch(function () { return ngModel.hintMessage; }, validator);
         }
-    }
+    };
 });
 
 fanex.angularModule.directive('autoNumericFormat', [
 '$parse',
  function ($parse) {
+     'use strict';
      return {
          restrict: 'A',
          require: 'ngModel',
@@ -110,7 +113,7 @@ fanex.angularModule.directive('autoNumericFormat', [
 
              var updateModel = function (newValue) {
                  var currentValue = ctrl.$modelValue;
-                 if (currentValue != newValue) {
+                 if (currentValue !== newValue) {
                      ctrl.$dirty = true;
                      ctrl.$viewValue = element.val();
                      ctrl.$modelValue = element.autoNumeric('get');
@@ -119,28 +122,41 @@ fanex.angularModule.directive('autoNumericFormat', [
                      scope.$apply();
                  }
 
-                 if (params != undefined && params['command'] != undefined)
+                 if (params !== undefined && params['command'] !== undefined) {
                      scope.$eval(params['command']);
-             }
+                 }
+             };
 
              var autoNumericOptions = {};
 
-             if (params != undefined) {
-                 if (params['wEmpty'] != undefined)
+             if (params !== undefined) {
+                 if (params['wEmpty'] !== undefined) {
                      autoNumericOptions.wEmpty = params['wEmpty'];
-                 else autoNumericOptions.wEmpty = 'zero';
+                 }
+                 else {
+                     autoNumericOptions.wEmpty = 'zero';
+                 }
 
-                 if (params['vMin'] != undefined)
+                 if (params['vMin'] !== undefined) {
                      autoNumericOptions.vMin = params['vMin'];
-                 else autoNumericOptions.vMin = 0;
+                 }
+                 else {
+                     autoNumericOptions.vMin = 0;
+                 }
 
-                 if (params['vMax'] != undefined)
+                 if (params['vMax'] !== undefined) {
                      autoNumericOptions.vMax = params['vMax'];
-                 else autoNumericOptions.vMax = 9999999999999;
+                 }
+                 else {
+                     autoNumericOptions.vMax = 9999999999999;
+                 }
 
-                 if (params['lZero'] != undefined)
+                 if (params['lZero'] !== undefined) {
                      autoNumericOptions.lZero = params['lZero'];
-                 else autoNumericOptions.lZero = 'deny';
+                 }
+                 else {
+                     autoNumericOptions.lZero = 'deny';
+                 }
              }
 
              element.autoNumeric('init', autoNumericOptions)

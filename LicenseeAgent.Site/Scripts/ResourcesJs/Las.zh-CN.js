@@ -1,4 +1,5 @@
-﻿/*jshint: -W101,-W106,-W044,-W098*/
+﻿/*jshint -W101,-W106,-W044,-W098*/
+/*exported Las_zh_CN*/
 
 var Las_zh_CN = {
 	AccessDeniedMsg : "抱歉!您没有此页面的权限",

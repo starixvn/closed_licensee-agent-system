@@ -1,16 +1,16 @@
 ﻿/*global core, fanex:true */
 
-'use strict';
-
 var fanex = fanex || {};
 
 // Arguments: number to round, number of decimal places
 fanex.roundNumber = function (number, decimals) {
+    'use strict';
     var newnumber = Number(number + '').toFixed(parseInt(decimals));
     return parseFloat(newnumber); // Output the result to the form field (change for your purposes)
 };
 
 fanex.ShowInvalidRangeMessage = function (element, minValue, maxValue) {
+    'use strict';
     fanex.showHint(element, 'Invalid range, input must be in ['
                                 + minValue
                                 + ' - '
@@ -19,6 +19,7 @@ fanex.ShowInvalidRangeMessage = function (element, minValue, maxValue) {
 };
 
 fanex.showHint = function (element, content) {
+    'use strict';
     var option = {
         alignX: 'center'
     };
@@ -26,6 +27,7 @@ fanex.showHint = function (element, content) {
 };
 
 fanex.showHintDown = function (element, content) {
+    'use strict';
     var option = {
         alignX: 'center',
         alignY: 'bottom'
@@ -33,7 +35,8 @@ fanex.showHintDown = function (element, content) {
     fanex.showHintOption(element, content, option);
 };
 
-fanex.showHintOption = function(element, content) {
+fanex.showHintOption = function (element, content) {
+    'use strict';
     if (typeof fanex.hintTarget !== 'undefined' && fanex.hintTarget[0] !== element[0]) {
         fanex.hideHint();
     }
@@ -61,7 +64,8 @@ fanex.showHintOption = function(element, content) {
     fanex.hintTarget = $(element);
 };
 
-fanex.hideHint = function(element) {
+fanex.hideHint = function (element) {
+    'use strict';
     if (typeof element === 'undefined') {
         element = fanex.hintTarget;
     }
@@ -71,6 +75,7 @@ fanex.hideHint = function(element) {
 };
 
 fanex.cloneObject = function (obj) {
+    'use strict';
     var newObj = (obj instanceof Array) ? [] : {};
     for (var i in obj) {
         if (i === 'clone') {
@@ -85,8 +90,9 @@ fanex.cloneObject = function (obj) {
     return newObj;
 };
 
-$.fn.preventSpecialCharacters = function(allowedChars) {
-    this.bind('keypress', function(event) {
+$.fn.preventSpecialCharacters = function (allowedChars) {
+    'use strict';
+    this.bind('keypress', function (event) {
         //"^[0-9]+$": One example for digit numbers
         var regex = new RegExp(allowedChars);
         var key = !event.charCode ? event.which : event.charCode;
@@ -101,7 +107,7 @@ $.fn.preventSpecialCharacters = function(allowedChars) {
         }
     });
 
-    this.bind('keyup', function() {
+    this.bind('keyup', function () {
         if ($(this).val() === '') {
             $(this).val('0');
         }

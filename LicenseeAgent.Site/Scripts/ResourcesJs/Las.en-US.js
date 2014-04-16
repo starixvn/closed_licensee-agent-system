@@ -1,4 +1,5 @@
-﻿/*jshint: -W101,-W106,-W044,-W098*/
+﻿/*jshint -W101,-W106,-W044,-W098*/
+/*exported Las_en_US*/
 
 var Las_en_US = {
 	AccessDeniedMsg : "You do not have permission to access this page.",

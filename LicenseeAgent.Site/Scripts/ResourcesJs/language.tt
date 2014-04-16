@@ -60,9 +60,11 @@
             var index = 0;
             var lastIndex = items.Count() - 1;
 
-            language.AppendLine("/*jshint: -W101,-W106,-W044,-W098*/");
-            language.Append("\r\n");
-            language.AppendFormat("var {0}_{1} = {{", fileOrigin, culture.Replace("-","_"));
+            var objectName = string.Format("{0}_{1}", fileOrigin, culture.Replace("-","_"));
+            language.AppendLine("/*jshint -W101,-W106,-W044,-W098*/");
+            language.AppendFormat("/*exported {0}*/", objectName);
+            language.Append("\r\n\r\n");
+            language.AppendFormat("var {0} = {{", objectName);
             
             foreach (var item in items)
             {

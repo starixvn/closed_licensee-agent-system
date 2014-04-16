@@ -19,9 +19,11 @@ namespace LicenseeAgent.Web.Controllers
     public class ToolController : Controller
     {
         [HttpGet]
-        public static void TestMSMQ()
+        public ActionResult TestMSMQ()
         {
-            Logger.Error("This is a test");
+            var message = "This is a MSMQ test";
+            Logger.Error(message);
+            return Content(message);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿/*jshint: -W101,-W106*/
+﻿/*jshint: -W101,-W106,-W044,-W098*/
 
 if (fanex.customerSetting) {
     fanex.customerSetting.language = fanex.customerSetting.language || {};

@@ -1,4 +1,4 @@
-﻿/*jshint: -W101,-W106*/
+﻿/*jshint: -W101,-W106,-W044,-W098*/
 
 var Las_zh_TW = {
 	AccessDeniedMsg : "抱歉!您沒有此頁面的權限",

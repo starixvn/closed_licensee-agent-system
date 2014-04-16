@@ -60,7 +60,7 @@
             var index = 0;
             var lastIndex = items.Count() - 1;
 
-            language.AppendLine("/*jshint: -W101,-W106*/");
+            language.AppendLine("/*jshint: -W101,-W106,-W044,-W098*/");
             language.Append("\r\n");
             language.AppendFormat("var {0}_{1} = {{", fileOrigin, culture.Replace("-","_"));
             

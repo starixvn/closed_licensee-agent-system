@@ -12,6 +12,9 @@ namespace LicenseeAgent.API.Utils
     using System.Security.Cryptography;
     using System.Text;
 
+    /// <summary>
+    /// RIJNDAEL Helper class.
+    /// </summary>
     public class RijndaelHelper : IDisposable
     {
         private readonly Rijndael _rijndael;

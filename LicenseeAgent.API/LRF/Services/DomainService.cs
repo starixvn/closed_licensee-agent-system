@@ -12,6 +12,9 @@ namespace LicenseeAgent.API.LRF.Services
     using Fanex.Data;
     using LicenseeAgent.API.LRF.Entities;
 
+    /// <summary>
+    /// DomainService class.
+    /// </summary>
     public class DomainService : IDomainService
     {
         /// <summary>

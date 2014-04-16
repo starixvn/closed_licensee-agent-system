@@ -8,6 +8,9 @@ namespace LicenseeAgent.API.LRF.Entities
 {
     using System;
 
+    /// <summary>
+    /// LoginInfo class.
+    /// </summary>
     [Serializable]
     public class LoginInfo
     {

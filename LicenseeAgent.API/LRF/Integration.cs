@@ -11,6 +11,9 @@ namespace LicenseeAgent.API.LRF
     using LicenseeAgent.API.LRF.Services;
     using LicenseeAgent.API.Utils;
 
+    /// <summary>
+    /// Integration class.
+    /// </summary>
     public static class Integration
     {
         private static readonly byte[] AesKey =

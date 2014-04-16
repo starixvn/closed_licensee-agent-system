@@ -97,6 +97,7 @@
     <Compile Include="Entities\PositionTakingItem.cs" />
     <Compile Include="Entities\PositionTakingGroup.cs" />
     <Compile Include="Entities\SettingContext.cs" />
+    <Compile Include="Entities\NumberGame\NumberGameBettingLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\NumberGame\SettingService.cs" />

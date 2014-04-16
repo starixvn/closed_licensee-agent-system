@@ -532,6 +532,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
+    <Folder Include="Views\CustomerSetting\NumberGame\" />
     <Folder Include="Views\CustomerSetting\SportsBook\scripts\filters\" />
   </ItemGroup>
   <ItemGroup>

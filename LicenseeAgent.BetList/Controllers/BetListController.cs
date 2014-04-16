@@ -90,7 +90,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="model">Bet List Win loss View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult BetListWinlossReport(BetListWinLossViewModel model)
+        public ActionResult BetListWinLossReport(BetListWinLossViewModel model)
         {
             return View(model);
         }

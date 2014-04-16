@@ -4,9 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-//[assembly: WebActivator.PreApplicationStartMethod(typeof(LicenseeAgent.Site.App_Start.SimpleInjectorInitializer), "Initialize")]
-
-namespace LicenseeAgent.Site.App_Start
+namespace LicenseeAgent.Site
 {
     using System.Reflection;
     using System.Web.Mvc;

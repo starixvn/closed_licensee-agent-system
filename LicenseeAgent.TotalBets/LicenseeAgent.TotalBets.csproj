@@ -111,7 +111,6 @@
     <None Include="Core\SoccerDetailConfiguration.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">

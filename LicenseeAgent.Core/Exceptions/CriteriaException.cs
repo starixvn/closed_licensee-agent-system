@@ -9,6 +9,7 @@ namespace LicenseeAgent.Core.Exceptions
     using System;
     using System.Runtime.Serialization;
     using System.Text;
+    using Fanex.Data.Configuration;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -18,7 +19,7 @@ namespace LicenseeAgent.Core.Exceptions
     public class CriteriaException : Exception
     {
         public CriteriaException()
-        { 
+        {
         }
 
         public CriteriaException(ICriteria criteria)
@@ -45,7 +46,8 @@ namespace LicenseeAgent.Core.Exceptions
             get
             {
                 var stringBuilder = new StringBuilder(base.Message);
-                stringBuilder.AppendFormat("\nSp Name: {0}", Criteria.GetSettingKey());
+                var setting = DbSettingProviderManager.Current.GetSetting(Criteria.GetSettingKey());
+                stringBuilder.AppendFormat("\nSp Name: {0}", setting.SpName);
                 var param = Criteria.GetSpParams();
                 foreach (var key in param.Keys)
                 {

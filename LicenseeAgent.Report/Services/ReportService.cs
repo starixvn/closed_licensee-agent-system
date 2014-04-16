@@ -76,7 +76,7 @@ namespace LicenseeAgent.Report.Services
             if (criteria.IsValid())
             {
                 var data = _resultsReportDataAccess.GetResults(criteria);
-                return GenerateSportsbookResults(data);
+                return GenerateSportsBookResults(data);
             }
 
             return new List<Sportbook>();
@@ -131,7 +131,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="data">Input data table.</param>
         /// <returns>List of formatted sports book.</returns>
-        private static IList<Sportbook> GenerateSportsbookResults(DataTable data)
+        private static IList<Sportbook> GenerateSportsBookResults(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {

@@ -184,8 +184,8 @@ namespace LicenseeAgent.BetList.Controllers
                 LanguageCode = CurrentSession.Language
             };
 
-            ViewBag.Data = criteria.IsSportsbook
-                ? GetSportsbookResults(criteria.MatchId, setting)
+            ViewBag.Data = criteria.IsSportsBook
+                ? GetSportsBookResults(criteria.MatchId, setting)
                 : GetParlayResults(criteria.RefNo, setting);
 
             return View();
@@ -197,9 +197,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="matchId">Input Match ID.</param>
         /// <param name="setting">Results Setting.</param>
         /// <returns>JSON object.</returns>
-        public string GetSportsbookResults(int matchId, ResultSetting setting)
+        public string GetSportsBookResults(int matchId, ResultSetting setting)
         {
-            var data = _betlistService.GetSportsbookResults(new BetListResultsSportsBookCriteria { MatchId = matchId });
+            var data = _betlistService.GetSportsBookResults(new BetListResultsSportsBookCriteria { MatchId = matchId });
             return data != null
                 ? ResultEngine.HtmlParser(data, setting)
                 : string.Empty;

@@ -163,7 +163,7 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="criteria">Bet List Results Sports book Criteria.</param>
         /// <returns>The list of matches.</returns>
-        public IList<Parlay> GetSportsbookResults(BetListResultsSportsBookCriteria criteria)
+        public IList<Parlay> GetSportsBookResults(BetListResultsSportsBookCriteria criteria)
         {
             try
             {

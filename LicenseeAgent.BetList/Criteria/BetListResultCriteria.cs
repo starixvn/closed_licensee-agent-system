@@ -11,7 +11,7 @@ namespace LicenseeAgent.BetList.Criteria
     /// </summary>
     public class BetListResultCriteria
     {
-        public bool IsSportsbook { get; set; }
+        public bool IsSportsBook { get; set; }
 
         public int MatchId { get; set; }
 

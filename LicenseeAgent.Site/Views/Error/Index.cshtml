@@ -2,21 +2,11 @@
 @using LicenseeAgent.Core.Utility
 @model ErrorViewModel
 @{
-    Layout = null;
     var errMsg = AppHandler.GetHttpErrorMessage(Model.StatusCode);
     var css = Model.StatusCode == (int)HttpStatusCode.InternalServerError ? "internal-error-block" : "error-block";
 }
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>@Las.Error</title>
-    @Styles.Render("~/css/error")
-</head>
-<body>
-    <div class="@css">
-        <div class="block-text">
-            <span>@errMsg</span>
-        </div>
-    </div>
-</body>
-</html>
+<div class="@css">
+</div>
+<div class="block-text">
+    @errMsg
+</div>

@@ -49,6 +49,7 @@ var popup = (function ($) {
             $('body').append(modal);
 
             this.$modal = modal;
+            this.$innerBody = null;
             this.$paddingWidth = modalContent.width() - modalBody.width();
             this.$paddingHeight = modalContent.height() - modalBody.height();
             this.$timeout = null;
@@ -97,7 +98,6 @@ var popup = (function ($) {
                 $this.setTitle(title).show();
                 core.unblockUI();
                 $this.clearTimeout();
-                $this.calculate();
                 $this.autoSize();
                 popupBody.css('overflow', 'auto'); // trick IE
             });

@@ -1,35 +1,29 @@
 ﻿@using LicenseeAgent.Web.Mvc
 @model UnderMaintenanceInfo
 @{
-    Layout = null;
+    ViewBag.Title = Las.UnderMaintenance;
 }
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>@Las.UnderMaintenance</title>
-    @Styles.Render("~/css/error")
+@section scripts
+{
     @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/error/UnderMaintenance")
-</head>
-<body>
-    <div class="um-block">
-        <div class="block-text">
-            <p>
-                We are having server maintenance, website will be unavailable
-                <br />
-                from @Model.UmTimeFrom until @Model.UmTimeTo (GMT +08:00).
-                <br />
-                Sorry for the inconveniences caused!
-            </p>
-            <p>
-                我们正在服务器维护，网站将被从 @Model.UmTimeFrom 至 @Model.UmTimeTo (GMT +08:00) 无法使用。不便之处，敬请原谅！
-            </p>
-            <p>
-                我們正在服務器維護，網站將被從 @Model.UmTimeFrom 至 @Model.UmTimeTo (GMT +08:00) 無法使用。不便之處，敬請原諒！
-            </p>
-        </div>
-    </div>
-</body>
-</html>
+}
+<div class="um-block">
+</div>
+<div class="block-text">
+    <p>
+        We are having server maintenance, website will be unavailable
+        <br />
+        from @Model.UmTimeFrom until @Model.UmTimeTo (GMT +08:00).
+        <br />
+        Sorry for the inconveniences caused!
+    </p>
+    <p>
+        我们正在服务器维护，网站将被从 @Model.UmTimeFrom 至 @Model.UmTimeTo (GMT +08:00) 无法使用。不便之处，敬请原谅！
+    </p>
+    <p>
+        我們正在服務器維護，網站將被從 @Model.UmTimeFrom 至 @Model.UmTimeTo (GMT +08:00) 無法使用。不便之處，敬請原諒！
+    </p>
+</div>

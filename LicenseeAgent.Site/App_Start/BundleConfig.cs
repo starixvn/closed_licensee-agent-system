@@ -112,7 +112,7 @@ namespace LicenseeAgent.Site
                 "~/scripts/jquery/jquery.js",
                 "~/scripts/jquery-validate/jquery.validate.js",
                 "~/scripts/jquery-validate/jquery.validate.unobtrusive.js",
-                "~/scripts/jquery-form/jquery.form.min.js"));
+                "~/scripts/jquery-form/jquery.form.js"));
         }
 
         /// <summary>

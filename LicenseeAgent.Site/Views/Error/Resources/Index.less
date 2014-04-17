@@ -1,145 +1,45 @@
-﻿body {
+﻿body 
+{
     margin: 0;
     padding: 0;
     font-family: Trebuchet MS;
-    color: #333;
+    font-size: 18px;
+    color: #FFFFFF;
+    min-width: 540px;
     background: url(images/background.jpg) repeat-x #c84748;
 }
 
-.error-block{
-    background: url(images/page-not-found.png) no-repeat center;
-    width: 100%;
-    height: 300px;
+[class*="-block"]
+{
+    height: 250px;
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
 }
 
-.internal-error-block{
-    background: url(images/internal-error-page.png) no-repeat center;
-    width: 100%;
-    height: 300px;
+.error-block
+{
+    background-image: url(images/page-not-found.png);
 }
 
-.unauthorized-error-block{
-    background: url(images/unauthorized-access.png) no-repeat center;
-    width: 100%;
-    height: 300px;
+.internal-error-block
+{
+    background-image: url(images/internal-error-page.png);
 }
 
-.block-text {
-    color: #FFFFFF;
-    font-size: 18px;
-    height: 80px;
-    padding-top: 280px;
+.unauthorized-error-block
+{
+    background-image: url(images/unauthorized-access.png);
+}
+
+.um-block
+{
+    background-image: url(images/Under-Maintenace.png);
+}
+
+.block-text 
+{
+    padding: 24px 5px;
     text-align: center;
     text-transform: uppercase;
-    width: 100%;
-}
-
-.um-block{
-    background: url(images/Under-Maintenace.png) no-repeat center;
-    width: 100%;
-    height: 300px;
-}
-
-.container {
-    background: #fff;
-    font-size: 12px;
-    
-    .header, content {
-        float: left;
-        padding: 0 10%;
-    }
-
-    .header {
-        height: 211px;
-        float: left;
-        margin: auto;
-
-        .icon-maintenance {
-            float: left;         
-            height: 161px;
-            width: 268px;
-            margin-top: 35px;
-            margin: 35px 0 0 128px;
-            background: url(images/icon-maintenance.png) no-repeat center;
-        }
-
-        .title {
-            margin: 80px 0 0 10px;
-            float: left;
-            width: 540px;
-
-            .zh-CN, .en-US, .th-TH {
-                color: #413C15;
-                font-weight: bold;
-            }
-            
-            .zh-CN {
-                font-size: 40px;
-            }
-
-            .en-US {
-                font-size: 24px;
-            }
-
-            .th-TH {
-                font-size: 23px;
-            }
-        }
-    }
-
-    .content {
-        float: left;
-        background: url(images/bg-maintenance.png) repeat-x center;
-        height: 221px;
-        width: 100%;
-
-        .content-container {
-            margin: auto;
-            width: 1181px;
-            padding-left: 55px;
-
-            .col {
-                width: 363px;
-                float: left;
-                border-left: 1px dotted #fff;
-                color: #fff;
-                padding: 0 10px 0 20px;
-                margin: 38px 0 0 0;
-                height: 145px;
-
-                .title {
-                    font-size: 29px;
-                    font-weight: bold;
-                    text-shadow: -1px -1px #5E2B00;
-                }
-
-                &:first-child {
-                    border-left: none;		
-                }
-
-                p {
-                    margin-right: 75px;
-
-                    &.thailand {
-                        margin-right: 65px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.eq-ie7 {
-    .container .content .content-container .col {
-        height: 170px;
-        margin-top: 30px;
-
-        p {
-            margin-bottom: 0;
-        }
-
-        .title.thailand {
-            font-size: 25px;
-        }
-    }
 }

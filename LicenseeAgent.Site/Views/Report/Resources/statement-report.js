@@ -23,7 +23,6 @@ var statementReport = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
-
                         gridOptions.pagerOption = {
                             itemsPerPage: core.pageSizes[2],
                             currentPage: 0,
@@ -53,10 +52,13 @@ var statementReport = (function ($) {
         TransferDetail: function (agentId, username) {
             var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                       .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username, pageContext.IsLastLevel);
-            popup.openFrame(url);
+            popup.openFrame(url, {
+                width: 460,
+                height: 400
+            });
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     'use strict';

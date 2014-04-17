@@ -14,7 +14,6 @@ var popup = (function ($) {
         onHide: null,
         autoDestroy: true,
         draggable: false,
-        hasScroll: false,
         clickout: false,
         top: 0, // auto-top
         left: 0, //auto-left
@@ -50,6 +49,8 @@ var popup = (function ($) {
             $('body').append(modal);
 
             this.$modal = modal;
+            this.$paddingWidth = modalContent.width() - modalBody.width();
+            this.$paddingHeight = modalContent.height() - modalBody.height();
             this.$timeout = null;
             var $this = this;
             this.$onWindowResize = function () {
@@ -90,11 +91,15 @@ var popup = (function ($) {
                 var popupDocument = this.contentDocument;
                 var mainContainer = $(popupDocument).find('#mainContainer');
                 mainContainer.addClass("popup");
+                var popupBody = $(iframe).contents().find('body');
+                popupBody.css('overflow', 'hidden'); // trick IE
                 var title = $(popupDocument).attr('title');
                 $this.setTitle(title).show();
                 core.unblockUI();
                 $this.clearTimeout();
+                $this.calculate();
                 $this.autoSize();
+                popupBody.css('overflow', 'auto'); // trick IE
             });
 
             return this;
@@ -156,30 +161,50 @@ var popup = (function ($) {
             if (innerBody.length === 0) {
                 innerBody = modalBody;
             } else if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
-                innerBody = innerBody.contents().find('#mainContainer');
+                var mainContainer = innerBody.contents().find('#mainContainer');
+                if (mainContainer.length === 1) {
+                    innerBody = mainContainer;
+                }
             }
             return innerBody;
         },
-        calculate: function () {
-            var modalBody = this.getModalBody();
+        getInnerBodySize: function () {
+            var modal = this.getModal();
             var innerBody = this.getInnerBody();
             if (innerBody.length === 0) {
-                return;
+                return null;
             }
             if (innerBody[0].body === null) {
+                return null;
+            }
+            var width = innerBody.width();
+            var height = innerBody.height();
+            return {
+                width: width,
+                height: height
+            };
+        },
+        calculate: function () {
+            var innerBodySize = this.getInnerBodySize();
+            if (innerBodySize == null) {
                 return;
             }
+
+            var maxWidth = $(window).width() - this.$paddingWidth;
             var width = this.options.width;
             if (width === 0) {
-                width = innerBody.width();
-                if (this.options.hasScroll) {
-                    width += 20;
-                }
+                width = innerBodySize.width;
             }
+            width = Math.min(width, maxWidth);
+
+            var maxHeight = $(window).height() - this.$paddingHeight;
             var height = this.options.height;
             if (height === 0) {
-                height = innerBody.height();
+                height = innerBodySize.height;
             }
+            height = Math.min(height, maxHeight);
+
+            var modalBody = this.getModalBody();
             modalBody.css({
                 width: width,
                 height: height
@@ -188,12 +213,11 @@ var popup = (function ($) {
             var modal = this.getModal();
             var left = this.options.left;
             if (left === 0) {
-                left = Math.max(($(window.document).width() - modal.outerWidth()) / 2, 0);
+                left = Math.max(($(window).width() - modal.width()) / 2, 0);
             }
             var top = this.options.top;
             if (top === 0) {
-                var newTop = Math.max(($(window.document).height() - modal.outerHeight()) / 2, 0);
-                top = Math.min(100, newTop);
+                top = Math.min(Math.max(($(window).height() - modal.height()) / 2, 0), 100);
             }
             modal.css({
                 left: left,
@@ -247,17 +271,15 @@ var popup = (function ($) {
                 return;
             }
             var $this = this;
-            var innerBody = this.getInnerBody();
-            var currentWidth = innerBody.width();
-            var currentHeight = innerBody.height();
+            var currentSize = this.getInnerBodySize();
             var internalAutoSize = function () {
                 if ($this.$modal == null) {
                     return;
                 }
-                if (innerBody.width() !== currentWidth || innerBody.height() !== currentHeight) {
+                var newSize = $this.getInnerBodySize();
+                if (newSize != null && (currentSize.width !== newSize.width || currentSize.height !== newSize.height)) {
                     $this.calculate();
-                    currentWidth = innerBody.width();
-                    currentHeight = innerBody.height();
+                    currentSize = newSize;
                 }
                 $this.$timeout = setTimeout(function () {
                     internalAutoSize();
@@ -292,6 +314,7 @@ var popup = (function ($) {
             return false;
         },
         close: function (timeout) {
+            window.clearTimeout($closeTimeout);
             if (typeof timeout === 'undefined') {
                 timeout = core.RELOAD_INTERVAL;
             }
@@ -306,6 +329,7 @@ var popup = (function ($) {
             }
         },
         closeAndReload: function (timeout) {
+            window.clearTimeout($closeTimeout);
             if (typeof timeout === 'undefined') {
                 timeout = core.RELOAD_INTERVAL;
             }

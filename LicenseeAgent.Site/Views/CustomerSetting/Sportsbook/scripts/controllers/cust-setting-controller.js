@@ -233,9 +233,17 @@ if (fanex.customerSetting) {
                             }
                         }
                         if (isSuccess) {
-                            var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
-                            var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
-                            location.href = url;
+                            core.blockUI();
+                            var timeout = 0;
+                            if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                                timeout = 3000;
+                            }
+                            setTimeout(function () {
+                                var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
+                                var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
+                                location.href = url;
+                                core.unblockUI();
+                            }, timeout);
                             return;
                         }
 
@@ -261,8 +269,6 @@ if (fanex.customerSetting) {
                 $scope.Messages = messages;
                 popup.close();
             }
-
-            core.unblockUI();
         }
     ]);
 }

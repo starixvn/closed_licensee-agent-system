@@ -74,23 +74,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetBasketballBetList(BetListByMatchCriteria criteria)
         {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-            
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
-            });
+            return BetList(criteria);
         }
     }
 }

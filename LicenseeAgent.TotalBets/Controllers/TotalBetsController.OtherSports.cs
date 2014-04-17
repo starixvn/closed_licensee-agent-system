@@ -82,25 +82,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
             var leagues = _totalBetsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
-            var leagueIds = string.IsNullOrEmpty(leagueList) ? new List<string>() : leagueList.Split(',').ToList();
-            var leagueMultiItems = new List<dynamic>();
-            foreach (var item in leagues)
-            {
-                leagueMultiItems.Add(new
-                {
-                    id = item.LeagueId,
-                    value = item.LeagueId,
-                    text = item.LeagueName,
-                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = leagueMultiItems,
-            });
+            return LeagueListToJson(leagueList, checkedAll, leagues);
         }
 
         /// <summary>
@@ -122,25 +104,7 @@ namespace LicenseeAgent.TotalBets.Controllers
             };
 
             var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName);
-            var eventIds = string.IsNullOrEmpty(eventList) ? new List<string>() : eventList.Split(',').ToList();
-            var eventMultiItems = new List<dynamic>();
-            foreach (var item in events)
-            {
-                eventMultiItems.Add(new
-                {
-                    id = item.MatchId,
-                    value = item.MatchId,
-                    text = item.MatchName,
-                    @checked = checkedAll || eventIds.Contains(item.MatchId.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = eventMultiItems,
-            });
+            return EventListToJson(eventList, checkedAll, events);
         }
 
         /// <summary>
@@ -179,23 +143,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetOtherSportsBetList(BetListByMatchCriteria criteria)
         {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
-            });
+            return BetList(criteria);
         }
 
         /// <summary>

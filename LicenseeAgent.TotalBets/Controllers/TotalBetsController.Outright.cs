@@ -86,25 +86,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport };
             var leagues = _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
-            var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
-            var leagueMultiItems = new List<dynamic>();
-            foreach (var item in leagues)
-            {
-                leagueMultiItems.Add(new
-                {
-                    id = item.LeagueId,
-                    value = item.LeagueId,
-                    text = item.LeagueName,
-                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = leagueMultiItems,
-            });
+            return LeagueListToJson(league, checkedAll, leagues);
         }
 
         /// <summary>
@@ -156,7 +138,6 @@ namespace LicenseeAgent.TotalBets.Controllers
                 TicketResult = tickets,
                 IsAdmin = CurrentSession.IsAdmin
             };
-
             var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
 
             return Json(new

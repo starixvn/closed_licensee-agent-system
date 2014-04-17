@@ -9,11 +9,13 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
@@ -98,23 +100,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetSoccerBetList(BetListByMatchCriteria criteria)
         {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
-            });
+            return BetList(criteria);
         }
 
         [HttpGet]
@@ -132,24 +118,8 @@ namespace LicenseeAgent.TotalBets.Controllers
         [HttpPost]
         public JsonResult GetSoccerMoreBetList(BetListByMatchCriteria criteria)
         {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.ShowLiveTicket = null;
-            var tickets = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
-            });
+            return BetList(criteria);
         }
 
         #region Utilities
@@ -168,25 +138,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new LeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType };
             var leagues = _totalBetsService.GetLeagues(criteria).OrderBy(x => x.LeagueName);
-            var leagueIds = string.IsNullOrEmpty(league) ? new List<string>() : league.Split(',').ToList();
-            var leagueMultiItems = new List<dynamic>();
-            foreach (var item in leagues)
-            {
-                leagueMultiItems.Add(new
-                {
-                    id = item.LeagueId,
-                    value = item.LeagueId,
-                    text = item.LeagueName,
-                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = leagueMultiItems,
-            });
+            return LeagueListToJson(league, checkedAll, leagues);
         }
 
         /// <summary>
@@ -204,6 +156,20 @@ namespace LicenseeAgent.TotalBets.Controllers
         {
             var criteria = new EventCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportType = sportType, LeagueList = league };
             var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);
+            return EventListToJson(@event, checkedAll, events);
+        }
+        #endregion Utilities
+        
+        #region private method
+        /// <summary>
+        /// Generate event list to JSON.
+        /// </summary>
+        /// <param name="event">Event selected list.</param>
+        /// <param name="checkedAll">Checked All.</param>
+        /// <param name="events">All Events.</param>
+        /// <returns>Return JSONRESULT.</returns>
+        private JsonResult EventListToJson(string @event, bool checkedAll, IOrderedEnumerable<EventEntity> events)
+        {
             var eventIds = string.IsNullOrEmpty(@event) ? new List<string>() : @event.Split(',').ToList();
             var eventMultiItems = new List<dynamic>();
             foreach (var item in events)
@@ -225,6 +191,61 @@ namespace LicenseeAgent.TotalBets.Controllers
             });
         }
 
-        #endregion Utilities
+        /// <summary>
+        /// Convert list league to JSON.
+        /// </summary>
+        /// <param name="selectedLeagues">Selected Leagues.</param>
+        /// <param name="checkedAll">Checked All.</param>
+        /// <param name="leagues">List leagues.</param>
+        /// <returns>JSON list league.</returns>
+        private JsonResult LeagueListToJson(string selectedLeagues, bool checkedAll, IEnumerable<LeagueEntity> leagues)
+        {
+            var leagueIds = string.IsNullOrEmpty(selectedLeagues) ? new List<string>() : selectedLeagues.Split(',').ToList();
+            var leagueMultiItems = new List<dynamic>();
+            foreach (var item in leagues)
+            {
+                leagueMultiItems.Add(new
+                {
+                    id = item.LeagueId,
+                    value = item.LeagueId,
+                    text = item.LeagueName,
+                    @checked = checkedAll || leagueIds.Contains(item.LeagueId.ToString()),
+                    enable = true
+                });
+            }
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = leagueMultiItems,
+            });
+        }
+
+        /// <summary>
+        /// Generate Bet List.
+        /// </summary>
+        /// <param name="criteria">Bet List By Match Criteria.</param>
+        /// <returns>Return JSONRESULT.</returns>
+        private JsonResult BetList(BetListByMatchCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var tickets = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = tickets,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+
+            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = betListTicketBuilder.BuildTickets(),
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = criteria.TotalRows
+            });
+        }
+        #endregion
     }
 }

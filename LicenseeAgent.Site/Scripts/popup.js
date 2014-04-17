@@ -169,7 +169,6 @@ var popup = (function ($) {
             return innerBody;
         },
         getInnerBodySize: function () {
-            var modal = this.getModal();
             var innerBody = this.getInnerBody();
             if (innerBody.length === 0) {
                 return null;

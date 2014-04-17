@@ -53,13 +53,13 @@ var statementDetailReport = (function ($) {
         },
         TransferDetail: function (agentId, isMember, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = "Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
+            var url = "/Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                        .format(agentId, dateTime, dateTime, $('#Username').val(), isMember);
             popup.openFrame(url);
         },
         BetList: function (custId, statusIDs, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = "BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
+            var url = "/BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
             popup.openFrame(url);
         },
         genGridRows: function (list, options) {
@@ -78,12 +78,17 @@ var statementDetailReport = (function ($) {
                 rowIndex = currentPage * options.pagerOption.itemsPerPage;
             }
 
+            var rowIndexValue = rowIndex;
+
+            if (options.pagerOption !== undefined) {
+                rowIndexValue = options.pagerOption.itemsPerPage * options.pagerOption.currentPage + 1;
+            }
+
             for (var i = 0; i < len; i++) {
                 var record = list[i];
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-                    var rIndex = rowIndex;
                     var col = columns[j];
                     var colName = col.Name;
                     var isMatchBalance = true;
@@ -100,12 +105,9 @@ var statementDetailReport = (function ($) {
                         }
                     }
 
-                    dataRow.push({
-                        Name: colName,
-                        Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
-                        TdClass: isMatchBalance ? '' : 'td-highlighted'
-                    });
+                    dataRow.push(statementDetailReport.getGridColumn(j, indexNumberColumn, rowIndex, rowIndexValue, record, columns, isMatchBalance));
                 }
+                rowIndexValue++;
 
                 bodyRows.push({
                     Columns: dataRow,
@@ -116,6 +118,25 @@ var statementDetailReport = (function ($) {
                 rowIndex++;
             }
             return bodyRows;
+        },
+        getGridColumn: function (colIndex, numberColumn, rowIndex, rowIndexValue, record, columns, isMatchBalance) {
+            var rIndex = rowIndex;
+            var rowData = record;
+            var col = columns[colIndex];
+            var colName = col.Name;
+
+            return {
+                Name: colName,
+                Value: (numberColumn === colIndex) ? rowIndexValue : record[colName],
+                CustomCellRender: function (cell, cellFormated) {
+                    if (col.Formatter) {
+                        return col.Formatter(rIndex, rowData, cell, cellFormated);
+                    } else {
+                        return cellFormated;
+                    }
+                },
+                TdClass: isMatchBalance ? '' : 'td-highlighted'
+            };
         }
     };
 } (jQuery));

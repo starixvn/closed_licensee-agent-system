@@ -55,8 +55,8 @@ namespace LicenseeAgent.CreditBalance.Controllers
         [HttpPost]
         public JsonResult Search(CreditBalanceSearchViewModel model)
         {
-            return SessionManager.CurrentSession.AgentInfo.IsLastLevel 
-                ? SearchMember(model) 
+            return SessionManager.CurrentSession.AgentInfo.IsLastLevel
+                ? SearchMember(model)
                 : SearchAgent(model);
         }
 
@@ -131,7 +131,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
 
             var isAgentLevel0 = editAgentCreditViewModel.AgentLevel == 0
                                 ? SessionManager.CurrentSession.AgentInfo.IsLevel0
-                                : ModelHelper.IsAgentLevel0(editAgentCreditViewModel.AgentLevel);
+                                : ModelHelper.IsAgentLevel1(editAgentCreditViewModel.AgentLevel);
 
             if (isAgentLevel0)
             {

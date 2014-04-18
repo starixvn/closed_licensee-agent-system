@@ -2,7 +2,6 @@
     ViewBag.Title = Model.Title ?? @Las.BetList;
 }
 @model LicenseeAgent.BetList.ViewModels.BetListWinLossViewModel
-
 @section css
 {
     @Styles.Render("~/css/monthpicker")
@@ -28,9 +27,8 @@
     @Html.HiddenFor(m => m.ToDate)
     @Html.HiddenFor(m => m.StatusIDs)
 }
-@Html.HiddenFor(m => m.DrawFilter)   
-@Html.HiddenFor(m => m.BreadCrumb)   
- 
+@Html.HiddenFor(m => m.DrawFilter)
+@Html.HiddenFor(m => m.BreadCrumb)
 @RazorHelper.BreadCrumb(Model.BreadCrumb)
 <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>

@@ -48,12 +48,11 @@ var popup = (function ($) {
             });
             $('body').append(modal);
 
+            var $this = this;
             this.$modal = modal;
-            this.$innerBody = null;
-            this.$paddingWidth = modalContent.width() - modalBody.width();
+            this.$paddingWidth = modalContent.width() - modalBody.width() + 10;
             this.$paddingHeight = modalContent.height() - modalBody.height();
             this.$timeout = null;
-            var $this = this;
             this.$onWindowResize = function () {
                 $this.calculate();
             };
@@ -84,8 +83,12 @@ var popup = (function ($) {
         },
         showFrame: function (url) {
             this.init();
-            var iframe = $('<iframe id="{0}" src="{1}" width="100%" height="100%" frameborder="0" border="0"/>'.format(Popup.iframeId, url));
+            var iframe = $('<iframe id="{0}" src="{1}" width="100%" height="100px" frameborder="0" border="0"/>'.format(Popup.iframeId, url));
             this.setBodyContent(iframe);
+            this.getModalBody().css({
+                width: 0,
+                height: 0
+            });
             core.blockUI();
             var $this = this;
             $(iframe).load(function () {
@@ -99,13 +102,14 @@ var popup = (function ($) {
                 core.unblockUI();
                 $this.clearTimeout();
                 $this.autoSize();
+                //$this.calculate();
                 popupBody.css('overflow', 'auto'); // trick IE
             });
 
             return this;
         },
         showContent: function () {
-            this.init().setTitle(this.options.title).setBodyContent(this.options.message).show();
+            this.init().setTitle(this.options.title).setBodyContent(this.options.message, true).show();
         },
         getModal: function () {
             return this.$modal;
@@ -114,8 +118,12 @@ var popup = (function ($) {
             this.$modal.find('.modal-header h3').text(title);
             return this;
         },
-        setBodyContent: function (content) {
-            this.$modal.find('.modal-body').html(content);
+        setBodyContent: function (content, hasWrapper) {
+            var html = content;
+            if (hasWrapper) {
+                html = '<div class="modal-body-wrapper">' + content + '</div>';
+            }
+            this.$modal.find('.modal-body').html(html);
             return this;
         },
         getModalBody: function () {
@@ -161,10 +169,7 @@ var popup = (function ($) {
             if (innerBody.length === 0) {
                 innerBody = modalBody;
             } else if (modalBody.children().prop('tagName').toLowerCase() === 'iframe') {
-                var mainContainer = innerBody.contents().find('#mainContainer');
-                if (mainContainer.length === 1) {
-                    innerBody = mainContainer;
-                }
+                innerBody = modalBody.children().contents();
             }
             return innerBody;
         },

@@ -71,7 +71,7 @@ fanex.betlist.core = {
             success: function (response) {
                 popup.open({
                     title: language.getString("BetListDetails") + transId,
-                    message: '<div>' + response + '</div>'
+                    message: response
                 });
             },
             beforeSend: function () {
@@ -122,7 +122,7 @@ fanex.betlist.core = {
             success: function (response) {
                 popup.open({
                     title: betTeam,
-                    message: '<div class="system-parlay-detail-wrapper">' + response + '</div>'
+                    message: response
                 });
             },
             beforeSend: function () {
@@ -146,7 +146,7 @@ fanex.betlist.core = {
             success: function (response) {
                 popup.open({
                     title: language.getString("Results"),
-                    message: '<div style=\"overflow:auto;\">' + response + '</div>'
+                    message: response
                 });
             },
             beforeSend: function () {

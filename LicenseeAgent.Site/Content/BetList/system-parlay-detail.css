@@ -1,9 +1,4 @@
 ﻿/* system parlay detail */
-.system-parlay-detail-wrapper
-{
-    max-height: 450px;
-    overflow-y: auto;
-}
 .system-parlay-detail
 {
     border-color: #dedede;

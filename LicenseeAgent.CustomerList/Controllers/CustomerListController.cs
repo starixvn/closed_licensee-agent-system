@@ -212,6 +212,9 @@ namespace LicenseeAgent.CustomerList.Controllers
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                                         LASAgentId = model.AgentId
                                     });
+                if(!CurrentSession.IsAdmin){
+                    members.ToList().ForEach(r => r.SystemId = string.Empty);
+                }
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
@@ -227,7 +230,7 @@ namespace LicenseeAgent.CustomerList.Controllers
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = members
+                List =  members 
             });
         }
 
@@ -256,6 +259,11 @@ namespace LicenseeAgent.CustomerList.Controllers
                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                         LASAgentId = model.AgentId
                     });
+                
+                if(!CurrentSession.IsAdmin){
+                    members.ToList().ForEach(r => r.SystemId = string.Empty);
+                }
+
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {

@@ -874,6 +874,9 @@
   <data name="DownlineStatement" xml:space="preserve">
     <value>Downline Statement</value>
   </data>
+  <data name="StatementDetail" xml:space="preserve">
+    <value>Statement Detail</value>
+  </data>
   <data name="Betting" xml:space="preserve">
     <value>Betting</value>
   </data>

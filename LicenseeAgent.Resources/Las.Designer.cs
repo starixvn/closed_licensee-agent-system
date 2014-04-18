@@ -2868,6 +2868,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statement Detail.
+        /// </summary>
+        public static string StatementDetail {
+            get {
+                return ResourceManager.GetString("StatementDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {

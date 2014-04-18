@@ -1,4 +1,6 @@
-﻿<script type="text/javascript">
+﻿@using LicenseeAgent.Core.Entities
+@model PageContext
+<script type="text/javascript">
     var gridOptions = {
         columns:
             [
@@ -15,11 +17,15 @@
                         return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                     }
                 },
-                { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", CanResize: true, Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
-                        return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
-                    }
-                },
+                @if (Model.IsAdmin){
+                    <text>
+                    { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", CanResize: true, Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
+                        }
+                    },
+                    </text>
+                }
                 {
                     HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 200
                 },

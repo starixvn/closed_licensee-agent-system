@@ -30,7 +30,7 @@
                 </p>
             }
             @Html.AntiForgeryToken()
-            <table>
+            <table class="no-wrap">
                 <colgroup>
                     <col width="130" />
                     <col width="308" />
@@ -69,7 +69,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="nowrap">
+                        <td>
                             @Html.LabelFor(m => m.Mobile)
                         </td>
                         <td>

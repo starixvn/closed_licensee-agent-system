@@ -51,6 +51,7 @@ var resultReport = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     var currentTime = new Date();
@@ -82,6 +83,7 @@ var resultReport = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     if (data.Leagues != null) {
@@ -112,6 +114,7 @@ var resultReport = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     if (data.Results != null) {
@@ -141,6 +144,7 @@ var resultReport = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
                         return;
                     }
                     if (data.Leagues != null) {
@@ -163,7 +167,7 @@ var resultReport = (function ($) {
             if ($("#OutrightLeague").val() != null) {
                 leagueid = $("#OutrightLeague").val();
             }
-            if (leagueid === "No Data" || sporttype === "No Data") {
+            if (leagueid === "" || sporttype === "") {
                 leagueid = 0;
                 sporttype = 0;
             }
@@ -232,7 +236,7 @@ var resultReport = (function ($) {
             }
 
             if (itemCounter <= 0) {
-                listItemsHtml = '<option>No Data</option>';
+                listItemsHtml = '<option value="0">' + language.getString('NoData') + '</option>';
             }
 
             if (viewMatchResults === 1) {
@@ -253,7 +257,7 @@ var resultReport = (function ($) {
             }
 
             if (itemCounter <= 0) {
-                listItemsHtml = '<option>No Data</option>';
+                listItemsHtml = '<option value="0">' + language.getString('NoData') + '</option>';
             }
 
             if (viewMatchResults === 1) {

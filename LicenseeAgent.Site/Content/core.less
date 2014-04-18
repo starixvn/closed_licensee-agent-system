@@ -1,4 +1,7 @@
-﻿/* Place Holder */
+﻿@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+
+/* Place Holder */
 .placeholder {
     color: #acacac;
  }
@@ -245,10 +248,6 @@ iframe
 {
     width: 100px !important;
 }
-.w130
-{
-    width: 130px !important;
-}
 .w160
 {
     width: 160px !important;
@@ -271,16 +270,6 @@ iframe
     {
         width: 100px !important;
     }
-}
-.text-ellipsis
-{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.nowrap
-{
-    white-space: nowrap;
 }
 
 button.left-button
@@ -431,5 +420,18 @@ table.ip-information
             width: 100px;
             font-weight: normal;
         }
+    }
+}
+
+.text-ellipsis
+{
+    .text-overflow();
+}
+
+table.no-wrap
+{
+    td
+    {
+        .text-overflow();
     }
 }

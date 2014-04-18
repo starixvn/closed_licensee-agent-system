@@ -22,7 +22,7 @@
             @Html.HiddenFor(m => m.BetCredit)
             @Html.HiddenFor(m => m.LastLogin)
             @Html.HiddenFor(m => m.LastTransaction)
-            <table>
+            <table class="no-wrap">
                 <colgroup>
                     <col width="150" />
                     <col />
@@ -64,7 +64,7 @@
                         <td>
                             @Html.LabelFor(m => m.Amount)
                         </td>
-                        <td class="nowrap">
+                        <td>
                             @Html.TextBox("Amount", Formatter.FormatDecimal4n(Model.Amount), new { @class = "w160", @data_min = Model.MinAmount, @data_max = Model.MaxAmount, title = Las.InvalidAmount })
                             <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4n(Model.MinAmount), Formatter.FormatDecimal4n(Model.MaxAmount))</span>
                         </td>

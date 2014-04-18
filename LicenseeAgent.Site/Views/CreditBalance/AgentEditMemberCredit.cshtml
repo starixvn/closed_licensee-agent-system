@@ -23,7 +23,7 @@
             @Html.HiddenFor(m => m.MinCreditOutput)
             @Html.HiddenFor(m => m.MaxCreditOutput)
             @Html.HiddenFor(m => m.IsAccountInfo)
-            <table>
+            <table class="no-wrap">
                 <colgroup>
                     <col width="150" />
                     <col width="250" />
@@ -41,7 +41,7 @@
                         <td>
                             @Las.Credit
                         </td>
-                        <td class="nowrap">
+                        <td>
                             @if (!Model.MaxCreditOutput.HasValue)
                             {
                                 @Html.TextBox("GivenCredit", Formatter.FormatDecimal4n(Model.GivenCredit), new { @class = "w160", data_min = Model.MinCreditOutput, title = Las.InvalidAmount })

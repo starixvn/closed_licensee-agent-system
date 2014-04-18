@@ -192,16 +192,26 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetMatchResults(MatchResultsReportCriteria criteria)
         {
-            var leagueCriteria = new LeagueCriteria
+            var results = string.Empty;
+            if (criteria.SportType == 0)
             {
-                SportType = criteria.SportType,
-                EventDate = criteria.EventDate
-            };
+                results = ResultsMatchNoData();
+            }
+            else
+            {
+                var leagueCriteria = new LeagueCriteria
+                {
+                    SportType = criteria.SportType,
+                    EventDate = criteria.EventDate
+                };
+
+                results = GetMatchResultsData(leagueCriteria, criteria.LeagueId);
+            }
 
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                Results = GetMatchResultsData(leagueCriteria, criteria.LeagueId)
+                Results = results
             });
         }
 
@@ -350,12 +360,12 @@ namespace LicenseeAgent.Report.Controllers
                                 "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
                                 + "<th class='column-match'>{1}</th><th class='column-firsthaftscore'>{2}</th>"
                                 + "<th class='column-finalscore'>{3}</th><th class='column-status'>{4}</th></tr></thead>"
-                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>{5}</td></tr><!--/NoInfo--></tbody></table>", 
-                                 Las.KickOffTime, 
-                                 Las.Match, 
-                                 Las.FirstHalfScore, 
-                                 Las.FinalScore, 
-                                 Las.Status, 
+                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>{5}</td></tr><!--/NoInfo--></tbody></table>",
+                                 Las.KickOffTime,
+                                 Las.Match,
+                                 Las.FirstHalfScore,
+                                 Las.FinalScore,
+                                 Las.Status,
                                  Las.NoData);
             return htmlNoDataStr;
         }
@@ -369,11 +379,11 @@ namespace LicenseeAgent.Report.Controllers
             var htmlNoDataStr = string.Format(
                                 "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
                                 + "<th class='column-match'>{1}</th><th class='column-status'>{2}</th></tr></thead>"
-                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>{3}</td></tr><!--/NoInfo--></tbody></table>", 
-                                 Las.Time, 
-                                 Las.Team, 
-                                 Las.Results, 
-                                 Las.NoData);            
+                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>{3}</td></tr><!--/NoInfo--></tbody></table>",
+                                 Las.Time,
+                                 Las.Team,
+                                 Las.Results,
+                                 Las.NoData);
             return htmlNoDataStr;
         }
 

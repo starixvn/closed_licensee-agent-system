@@ -21,7 +21,7 @@
     </div>
         }
 }
-<div class="container-box">
+<div ng-class="{'container-box': true, 'simple-mode': settingMode}">
     @if (Model.TargetRoleId == (int)Role.AgentLevel1)
     {
         @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button", true)

@@ -162,7 +162,43 @@ input[type="text"], input[type="password"]
     }
 }
 
-.fanex-sportbook-setting {
+.fanex-sportbook-setting
+{
+    .product-group
+    {
+        border: @border;
+        width: 915px;
+        min-width: 915px;
+        margin-bottom: 10px;
+        .product-name
+        {
+            padding: 5px 8px;
+            border-bottom: @border;
+            background: #EDEDED;
+            text-transform: uppercase;
+        }
+        .product-container
+        {
+            padding: 8px;
+            .container-box
+            {
+                width: auto;
+                min-width: 0;
+            }
+            .betting-limit 
+            {
+                .betting-limit-header, .betting-limit-item 
+                {
+                    width: 299px;
+                }
+            }
+            .pt-container-box
+            {
+                margin-bottom: 0;
+            }
+        }
+    }
+
     .edit-setting-warning
     {
         font-style: italic;
@@ -175,7 +211,8 @@ input[type="text"], input[type="password"]
         margin-bottom: 10px;
     }
 
-    .comm-setting {
+    .comm-setting 
+    {
         overflow: hidden;
 
         .comm-group
@@ -192,7 +229,8 @@ input[type="text"], input[type="password"]
                 .cell-block();
                 width: 149px;
 
-                input[type=text], input[type=number] {
+                input[type=text], input[type=number] 
+                {
                     width: 38px;
                     text-align: right;
                 }
@@ -262,7 +300,8 @@ input[type="text"], input[type="password"]
         }
     }
 
-    .betting-limit {
+    .betting-limit 
+    {
         overflow: hidden;
 
         .betting-limit-header 
@@ -297,14 +336,6 @@ input[type="text"], input[type="password"]
             .cell-header();
             width: 156px;
             border-left-width: 0;
-        }
-
-        .simple-mode
-        {
-            .betting-limit-header, .betting-limit-item 
-            {
-                width: 305px;
-            }
         }
     }
 

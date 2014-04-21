@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
+    using System.Text;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.SportsBook;
@@ -25,8 +26,8 @@ namespace LicenseeAgent.CustomerSetting.Services
 
         InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model);
 
-        string FormatJavascriptReturn(
-            SettingContext settingContext,
-            SportsBookCustomer sportsBookCustomer);
+        StringBuilder GetFormatJavascript(
+            SportsBookCustomer customerSetting,
+            SettingContext settingContext);
     }
 }

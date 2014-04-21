@@ -59,16 +59,19 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private readonly ISportsBookSettingService _customerSettingService;
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
+        private readonly INumberGameSettingService _numberGameService;
 
         public CustomerSettingController(
                 ISportsBookSettingService customerSettingService,
                 IMemberService memberService,
-                IDownlLinePermissionService permissionService)
+                IDownlLinePermissionService permissionService,
+                INumberGameSettingService numberGameService)
             : base(permissionService)
         {
             _customerSettingService = customerSettingService;
             _memberService = memberService;
             _permissionService = permissionService;
+            _numberGameService = numberGameService;
         }
 
         /// <summary>
@@ -96,10 +99,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext);
-            string javascriptString = _customerSettingService.FormatJavascriptReturn(
-                    settingContext,
-                    sportsBookCustomer);
-            return JavaScript(javascriptString);
+            var numberGameCustomer = _numberGameService.GetNumberGameSettingForInsert(settingContext);
+
+            var javascriptString = _customerSettingService.GetFormatJavascript(
+                sportsBookCustomer,
+                settingContext).Append(_numberGameService.GetFormatJavascript(numberGameCustomer));
+
+            return JavaScript(javascriptString.ToString());
         }
 
         /// <summary>
@@ -133,7 +139,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
 
-                _memberService.GetMemberInformation<CustomerInfo>(
+                _memberService.GetMemberInformation(
                                     sportsBookCustomer.CustInfo,
                                     new GetMemberInfoAction
                                     {
@@ -142,11 +148,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                                     });
             }
 
-            string javascriptString = _customerSettingService.FormatJavascriptReturn(
-                    settingContext,
-                    sportsBookCustomer);
+            var javascriptString = _customerSettingService.GetFormatJavascript(sportsBookCustomer, settingContext);
 
-            return JavaScript(javascriptString);
+            return JavaScript(javascriptString.ToString());
         }
 
         /// <summary>

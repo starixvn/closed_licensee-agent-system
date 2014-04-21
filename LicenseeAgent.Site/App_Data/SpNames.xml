@@ -41,9 +41,9 @@
     <Setting Key="LAS_HomePage_SelBalanceInfo" SpName="LAS_HomePage_SelBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting">
-    <Setting Key="Las_LicenseeSportsBookSettingSel" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeSportsBookSettingSel" SpName="Las_LicenseeSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_LicenseeInsAgentAdvanceMode" SpName="Las_LicenseeInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentSportsBookSettingSel" SpName="Las_AgentSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentSportsBookSettingSel" SpName="Las_AgentSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentInsAgentAdvanceMode" SpName="Las_AgentInsAgentAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentInsMemAdvanceMode" SpName="Las_AgentInsMemAdvanceMode" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_CheckExistUserName" SpName="Las_CheckExistUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -55,6 +55,8 @@
     <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelMemIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirect" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeNumberGameSettingSel" SpName="Las_LicenseeNumberGameSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentNumberGameSettingSel" SpName="Las_AgentNumberGameSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

@@ -90,6 +90,15 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_OthersComm']
                 });
 
+                // HR Fixed Odds
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[3].DiscountA,
+                    oldDiscount: commissionSettingModel[3].DiscountA,
+                    maxDiscount: commissionSettingModel[3].Upline.DiscountA,
+                    name: language['commissionSetting_HrFixedOdds']
+                });
+
                 return commissionSettingViewModel;
             }
             else {
@@ -136,6 +145,12 @@ if (fanex.customerSetting) {
                             name: language['commissionSetting_OthersComm'],
                             agentCommission: commissionSettingModel[2].Upline.DiscountA,
                             memberCommission: commissionSettingModel[2].DiscountA
+                        },
+                        // HR Fixed Odds Comm
+                        line4: {
+                            name: language['commissionSetting_HrFixedOddsComm'],
+                            agentCommission: commissionSettingModel[3].Upline.DiscountA,
+                            memberCommission: commissionSettingModel[3].Discount,
                         }
                     };
 
@@ -196,6 +211,13 @@ if (fanex.customerSetting) {
                             agentCommission: commissionSettingModel[2].Upline.DiscountA,
                             memberCommission: commissionSettingModel[2].Discount,
                             oldCommission: commissionSettingModel[2].Discount
+                        },
+                        // HR Fixed Odds Comm
+                        line4: {
+                            name: language['commissionSetting_HrFixedOddsComm'],
+                            agentCommission: commissionSettingModel[3].Upline.DiscountA,
+                            memberCommission: commissionSettingModel[3].Discount,
+                            oldCommission: commissionSettingModel[3].Discount
                         }
                     };
 
@@ -313,6 +335,9 @@ if (fanex.customerSetting) {
                 }
                 else if (commissionSettingModel[i].BetTypeId === 4) {
                     result[2] = commissionSettingModel[i];
+                }
+                else if (commissionSettingModel[i].SportId === 154 && commissionSettingModel[i].BetTypeId === 20) {
+                    result[3] = commissionSettingModel[i];
                 }
             }
 

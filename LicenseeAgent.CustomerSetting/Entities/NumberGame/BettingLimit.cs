@@ -1,22 +1,20 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="NumberGameBettingLimit.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
+﻿// ----------------------------------------------------------------------
+// <copyright file="BettingLimit.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//
+// ------------------------------------------------------------------------
 
 namespace LicenseeAgent.CustomerSetting.Entities.NumberGame
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class NumberGameBettingLimit
+    public class BettingLimit
     {
         public int SportId { get; set; }
+
+        public int BetTypeId { get; set; }
 
         public decimal MinBet { get; set; }
 

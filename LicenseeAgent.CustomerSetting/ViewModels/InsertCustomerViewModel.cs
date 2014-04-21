@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Entities.SportsBook;
 
     /// <summary>

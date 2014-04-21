@@ -1262,6 +1262,9 @@
   <data name="Maintenance" xml:space="preserve">
     <value>Maintenance</value>
   </data>
+  <data name="HrFixedOdds" xml:space="preserve">
+    <value>HR Fixed Odds</value>
+  </data>
   <data name="MemberAPIMonitoring" xml:space="preserve">
     <value>Member's API Monitoring</value>
   </data>

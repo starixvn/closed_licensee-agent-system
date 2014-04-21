@@ -298,6 +298,11 @@
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\report-base.js" />
+    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\SportsBook.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportsBook.tt</DependentUpon>
+    </Content>
     <Content Include="Views\Report\Resources\statement-report.js" />
     <Content Include="Views\Report\Resources\transfer-detail.js" />
     <Content Include="Views\Report\Resources\statement-detail-report.js" />
@@ -309,11 +314,6 @@
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
     <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\sports-book-lang.zh-TW.js">
-      <DependentUpon>SportsBook.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\SportsBook.js">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
     <Content Include="Views\Message\Resources\Message.js" />
@@ -532,7 +532,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
-    <Folder Include="Views\CustomerSetting\NumberGame\" />
+    <Folder Include="Views\CustomerSetting\NumberGame\scripts\controllers\" />
+    <Folder Include="Views\CustomerSetting\NumberGame\scripts\directives\" />
+    <Folder Include="Views\CustomerSetting\NumberGame\scripts\languages\" />
     <Folder Include="Views\CustomerSetting\SportsBook\scripts\filters\" />
   </ItemGroup>
   <ItemGroup>

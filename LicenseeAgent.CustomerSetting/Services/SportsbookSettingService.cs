@@ -25,7 +25,6 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.CustomerSetting.Entities.SportsBook;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.ViewModels;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Customer Service.
@@ -61,21 +60,8 @@ namespace LicenseeAgent.CustomerSetting.Services
             CommissionSetting commissionSetting;
             IList<BettingLimit> bettingLimits;
             Dictionary<string, PositionTaking> positionTakingData;
-            ICriteria getAgentSettingCriteria;
-            if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
-            {
-                getAgentSettingCriteria = new LicenseeGetAgentSettingForInsertCriteria
-                {
-                    AgentL0Id = settingContext.CustId,
-                };
-            }
-            else
-            {
-                getAgentSettingCriteria = new AgentGetAgentSettingForInsertCriteria
-                {
-                    AgentId = settingContext.CustId
-                };
-            }
+            
+            ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
 
             var msgId = 0;
             var maxLicenseePt = 0;
@@ -92,18 +78,18 @@ namespace LicenseeAgent.CustomerSetting.Services
             if (msgId == 0)
             {
                 return new SportsBookCustomer
-                {
-                    CustInfo = custInfo,
-                    CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits,
-                    PositionTakingSetting = BuildPositionTakingGroups(settingContext, positionTakingData, maxLicenseePt)
-                };
+                        {
+                            CustInfo = custInfo,
+                            CommissionSetting = commissionSetting,
+                            BettingLimits = bettingLimits,
+                            PositionTakingSetting = BuildPositionTakingGroups(settingContext, positionTakingData, maxLicenseePt)
+                        };
             }
 
             return new SportsBookCustomer
-            {
-                Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
-            };
+                    {
+                        Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
+                    };
         }
 
         /// <summary>
@@ -146,6 +132,11 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
+        }
+
+        public StringBuilder GetFormatJavascript(SportsBookCustomer sportBooksCustomer, SettingContext settingContext)
+        {
+            return FormatJavascript(sportBooksCustomer, settingContext);
         }
 
         /// <summary>
@@ -222,58 +213,24 @@ namespace LicenseeAgent.CustomerSetting.Services
         }
 
         /// <summary>
-        /// Format JSON return to client.
+        /// Get Insert Setting Criteria.
         /// </summary>
-        /// <param name="settingContext">Current Setting Context.</param>
-        /// <param name="sportsBookCustomer">The sports book customer.</param>
-        /// <returns>
-        /// JS object string.
-        /// </returns>
-        public string FormatJavascriptReturn(
-            SettingContext settingContext,
-            SportsBookCustomer sportsBookCustomer)
+        /// <param name="settingContext">Setting Context.</param>
+        /// <returns>Insert Criteria.</returns>
+        private static ICriteria GetInsertSettingCriteria(SettingContext settingContext)
         {
-            var result = sportsBookCustomer != null ? sportsBookCustomer.Result : null;
-            var custInfo = sportsBookCustomer != null ? sportsBookCustomer.CustInfo : null;
-            var commissionSetting = sportsBookCustomer != null ? sportsBookCustomer.CommissionSetting : null;
-            var betLimits = sportsBookCustomer != null ? sportsBookCustomer.BettingLimits : null;
-            var positionTakingSetting = sportsBookCustomer != null ? sportsBookCustomer.PositionTakingSetting : null;
-
-            JsonSerializerSettings jsonSetting = GetJsonSetting;
-            var settingScript = new StringBuilder();
-            if (result != null && result.ErrCode != 0)
+            if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
-                settingScript.Append(string.Format("var result = {0}; \n", JsonConvert.SerializeObject(result, jsonSetting)));
-            }
-            else
-            {
-                if (settingContext != null)
+                return new LicenseeGetAgentSettingForInsertCriteria
                 {
-                    settingScript.Append(string.Format("var settingContext= {0}; \n", JsonConvert.SerializeObject(settingContext, jsonSetting)));
-                }
-
-                if (custInfo != null)
-                {
-                    settingScript.Append(string.Format("var custInfo= {0}; \n", JsonConvert.SerializeObject(custInfo, jsonSetting)));
-                }
-
-                if (commissionSetting != null)
-                {
-                    settingScript.Append(string.Format("var commissionSetting= {0}; \n", JsonConvert.SerializeObject(commissionSetting, jsonSetting)));
-                }
-
-                if (betLimits != null)
-                {
-                    settingScript.Append(string.Format("var betLimits= {0}; \n", JsonConvert.SerializeObject(betLimits, jsonSetting)));
-                }
-
-                if (positionTakingSetting != null)
-                {
-                    settingScript.Append(string.Format("var positionTakingSetting= {0}; \n", JsonConvert.SerializeObject(positionTakingSetting, jsonSetting)));
-                }
+                    AgentL0Id = settingContext.CustId,
+                };
             }
 
-            return settingScript.ToString();
+            return new AgentGetAgentSettingForInsertCriteria
+            {
+                AgentId = settingContext.CustId
+            };
         }
 
         /// <summary>

@@ -89,6 +89,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Enumerations\Product.generated.cs">
+      <DependentUpon>Product.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Enumerations\ErrCode.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +152,10 @@
     <None Include="Enumerations\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Enumerations\Product.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Product.generated.cs</LastGenOutput>
     </None>
     <None Include="Enumerations\ErrCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

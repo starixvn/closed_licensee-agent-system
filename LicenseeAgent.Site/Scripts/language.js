@@ -1,4 +1,4 @@
-﻿/*global appSettings, core, fanexGridLanguage, fanexGridCurrentLanguage:true, Las_en_US*/
+﻿/*global appSettings, core, fanexGridLanguage, Las_en_US*/
 
 var language = (function($) {
     'use strict';
@@ -20,7 +20,7 @@ var language = (function($) {
 
             var selectedLanguage = language.getSelectedLanguage();
             if (typeof fanexGridLanguage !== 'undefined') {
-                fanexGridCurrentLanguage = fanexGridLanguage[selectedLanguage];
+                window.fanexGridCurrentLanguage = fanexGridLanguage[selectedLanguage];
             }
         },
         changeLanguage: function(language) {
@@ -52,10 +52,10 @@ var language = (function($) {
             }
             return selectedLanguageCode;
         },
-        getString: function (enghlishName) {
+        getString: function (englishName) {
             /* jshint camelcase: false */
-            if (enghlishName == null || enghlishName === undefined) {
-                return enghlishName;
+            if (englishName == null || englishName === undefined) {
+                return englishName;
             }
             var keyName = "Las_" + language.getSelectedLanguage().replace("-", "_");
 
@@ -73,19 +73,19 @@ var language = (function($) {
                     return item;
                 }
             };
-            if (enghlishName.indexOf("@") > -1) {
-                var keys = enghlishName.match(/\@{1}\[{1}[a-zA-Z\d\_]+\]{1}/g);
+            if (englishName.indexOf("@") > -1) {
+                var keys = englishName.match(/\@{1}\[{1}[a-zA-Z\d\_]+\]{1}/g);
                 if (keys != null) {
-                    var temp = enghlishName;
+                    var temp = englishName;
                     for (var i = 0; i < keys.length; i++) {
                         var realKey = keys[i].replace("@[", "").replace("]", "");
                         temp = temp.replace(keys[i], mapResource(realKey));
                     }
                     return temp;
                 }
-                return mapResource(enghlishName);
+                return mapResource(englishName);
             } else {
-                return mapResource(enghlishName);
+                return mapResource(englishName);
             }
         }
     };

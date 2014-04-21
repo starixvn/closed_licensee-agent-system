@@ -31,12 +31,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <summary>
         /// Format JSON return to client.
         /// </summary>
-        /// <typeparam name="T1">Bet Limit.</typeparam>
-        /// <typeparam name="T2">Position Taking Group.</typeparam>
         /// <param name="customerSetting">The number game customer.</param>
         /// <param name="settingContext">Setting Context.</param>
         /// <returns>String JAVASCRIPT.</returns>
-        public virtual StringBuilder FormatJavascript<T1, T2>(CustomerSetting<T1, T2> customerSetting, SettingContext settingContext = null)
+        public virtual StringBuilder FormatJavascript(CustomerSetting customerSetting, SettingContext settingContext = null)
         {
             var result = customerSetting != null ? customerSetting.Result : null;
             var custInfo = customerSetting != null ? customerSetting.CustInfo : null;

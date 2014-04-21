@@ -1,14 +1,13 @@
-﻿// ----------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="BettingLimit.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
-// ------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Entities.NumberGame
+namespace LicenseeAgent.CustomerSetting.Entities
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Class name.
     /// </summary>
     public class BettingLimit
     {
@@ -20,14 +19,12 @@ namespace LicenseeAgent.CustomerSetting.Entities.NumberGame
 
         public decimal MaxBet { get; set; }
 
-        public decimal MinMaxPerMatch { get; set; }
-
         public decimal MaxPerMatch { get; set; }
 
         public decimal MinMaxBet { get; set; }
 
         public decimal MaxMinBet { get; set; }
 
-        public decimal MaxPerBall { get; set; }
+        public decimal MinMaxPerMatch { get; set; }
     }
 }

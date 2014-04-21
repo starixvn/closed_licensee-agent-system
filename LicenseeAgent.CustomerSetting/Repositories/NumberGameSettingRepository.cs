@@ -41,7 +41,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             ICriteria criteria,
             SettingContext settingContext,
             out CommissionSetting commissionSetting,
-            out IList<BettingLimit> bettingLimits,
+            out IList<NumberGameBettingLimit> bettingLimits,
             out Dictionary<string, PositionTaking> positionTakingDataList,
             out int msgId,
             out int maxLicenseePt)
@@ -56,7 +56,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 maxLicenseePt = 0;
                 msgId = -1;
                 commissionSetting = new CommissionSetting();
-                bettingLimits = new List<BettingLimit>();
+                bettingLimits = new List<NumberGameBettingLimit>();
                 positionTakingDataList = new Dictionary<string, PositionTaking>();
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
@@ -119,12 +119,12 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="bettingLimits">Bet limits setting after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
-        private static void ReadBetLimitData(IList<BettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
+        private static void ReadBetLimitData(IList<NumberGameBettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
         {
             while (reader.Read())
             {
                 var sportType = reader.ToInt("SportType");
-                var bettingLimit = new BettingLimit
+                var bettingLimit = new NumberGameBettingLimit
                 {
                     SportId = sportType,
                     BetTypeId = reader.ToInt("BetType"),

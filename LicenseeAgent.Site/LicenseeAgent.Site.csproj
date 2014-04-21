@@ -2,7 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <JSLintSkip>|\Views\CustomerSetting\Resources\scripts\fanex-angular.js</JSLintSkip>
+    <JSLintSkip>
+    </JSLintSkip>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -179,7 +180,6 @@
     </Reference>
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -236,7 +236,7 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="App_Data\Sportsbook\PTGrid.xml" />
+    <Content Include="App_Data\CustomerSetting\PTGrid.xml" />
     <Content Include="App_Data\TotalBets\SoccerDetail.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -271,7 +271,6 @@
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.vi-VN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-CN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-TW.js" />
-    <Content Include="Scripts\jquery-form\jquery.form.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">
@@ -327,6 +326,7 @@
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
+    <Content Include="Scripts\jquery-form\jquery.form.min.js" />
     <Content Include="Views\BetList\Resources\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
@@ -451,6 +451,7 @@
     <Content Include="Scripts\jquery-validate\jquery.validate.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Content\moment-datepicker\datepicker.css" />
+    <Content Include="Views\Error\Resources\images\error2.png" />
     <Content Include="Images\loader.gif" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
@@ -463,6 +464,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
+    <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
     <Content Include="Views\Home\Resources\home-header.js" />
@@ -767,8 +770,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SportsBook.js</LastGenOutput>
     </None>
-    <Content Include="Views\Error\_ViewStart.cshtml" />
-    <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.Grid.cshtml" />

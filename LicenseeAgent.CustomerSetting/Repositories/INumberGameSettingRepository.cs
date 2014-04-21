@@ -33,7 +33,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             ICriteria criteria,
             SettingContext settingContext,
             out CommissionSetting commissionSetting,
-            out IList<BettingLimit> bettingLimits,
+            out IList<NumberGameBettingLimit> bettingLimits,
             out Dictionary<string, PositionTaking> positionTakingDataList,
             out int msgId,
             out int maxLicenseePt);

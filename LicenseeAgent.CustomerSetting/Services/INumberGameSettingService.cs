@@ -21,8 +21,8 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
         /// <returns>Number game customer setting.</returns>
-        NumberGameCustomer GetNumberGameSettingForInsert(SettingContext settingContext);
+        CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext);
 
-        StringBuilder GetFormatJavascript(NumberGameCustomer customerSetting);
+        StringBuilder GetFormatJavascript(CustomerSetting customerSetting);
     }
 }

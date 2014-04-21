@@ -40,7 +40,7 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -59,6 +59,7 @@
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\SettingConfigurations.cs" />
+    <Compile Include="Core\ProductType.cs" />
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
     <Compile Include="Criteria\NumberGame\Agent\AgentGetSettingForInsertCriteria.cs" />
     <Compile Include="Criteria\NumberGame\Licensee\LicenseeGetSettingForInsertCriteria.cs" />
@@ -78,22 +79,18 @@
     <Compile Include="Criteria\SportsBook\Member\AgentGetMemberSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Member\AgentInsertMemberSettingCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Member\AgentUpdateMemberSettingCriteria.cs" />
+    <Compile Include="Entities\BettingLimit.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
     <Compile Include="Entities\CommissionSetting.cs" />
     <Compile Include="Entities\CustomerInfo.cs" />
     <Compile Include="Entities\CustomerSetting.cs" />
     <Compile Include="Entities\InsertResult.cs" />
     <Compile Include="Entities\MemberInfo.cs" />
-    <Compile Include="Entities\NumberGame\NumberGameCustomer.cs" />
-    <Compile Include="Entities\NumberGame\PositionTaking.cs" />
-    <Compile Include="Entities\NumberGame\PositionTakingGroup.cs" />
-    <Compile Include="Entities\SportsBook\BettingLimit.cs" />
-    <Compile Include="Entities\SportsBook\PositionTaking.cs" />
-    <Compile Include="Entities\SportsBook\PositionTakingGroup.cs" />
+    <Compile Include="Entities\PositionTaking.cs" />
+    <Compile Include="Entities\PositionTakingGroup.cs" />
     <Compile Include="Entities\SettingContext.cs" />
-    <Compile Include="Entities\SportsBook\SportsBookCustomer.cs" />
     <Compile Include="Entities\SportsBook\UpdateDataSportsBookCustomer.cs" />
-    <Compile Include="Entities\NumberGame\BettingLimit.cs" />
+    <Compile Include="Entities\NumberGame\NumberGameBettingLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\INumberGameSettingRepository.cs" />
     <Compile Include="Repositories\NumberGameSettingRepository.cs" />
@@ -133,9 +130,6 @@
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
     <Folder Include="Criteria\Member\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

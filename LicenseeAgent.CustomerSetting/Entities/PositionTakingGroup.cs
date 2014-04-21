@@ -1,16 +1,15 @@
-﻿// ----------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="PositionTakingGroup.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
-// ------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Entities.NumberGame
+namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
 
     /// <summary>
-    /// NumberGamePositionTakingGroup Class.
+    /// Group of position taking, representative for each sport.
     /// </summary>
     public class PositionTakingGroup
     {

@@ -12,7 +12,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
     /// <summary>
     /// CustomerSetting class.
     /// </summary>
-    public class CustomerSetting<T1, T2>
+    public class CustomerSetting
     {
         public Result Result { get; set; }
 
@@ -20,8 +20,8 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public CommissionSetting CommissionSetting { get; set; }
 
-        public IList<T1> BettingLimits { get; set; }
+        public IList<BettingLimit> BettingLimits { get; set; }
 
-        public IList<T2> PositionTakingSetting { get; set; }
+        public IList<PositionTakingGroup> PositionTakingSetting { get; set; }
     }
 }

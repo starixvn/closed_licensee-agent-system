@@ -10,7 +10,7 @@ namespace LicenseeAgent.CustomerSetting.Core
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.Linq;
     using Fanex.Common;
-    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
+    using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
     /// Constant information.
@@ -22,7 +22,7 @@ namespace LicenseeAgent.CustomerSetting.Core
             Justification = "Reviewed. Suppression is OK here.")]
     public static class Constant
     {
-        public const string PT_GRID_CONFIG = "~/App_Data/SportsBook/PTGrid.xml";
+        public const string PT_GRID_CONFIG = "~/App_Data/CustomerSetting/PTGrid.xml";
         public const int ERROR_CODE_DEFAULT = 1000;
         public const int WARNING_CODE_DEFAULT = 1500;
         public const string WARNING_MESSAGE_DEFAULT = "There is no updating.";

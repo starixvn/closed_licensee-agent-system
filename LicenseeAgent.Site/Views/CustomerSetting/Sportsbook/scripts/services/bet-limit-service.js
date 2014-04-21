@@ -97,9 +97,11 @@ if (fanex.customerSetting) {
             return parseInt(input.toString().replace(/,/gi, ''));
         },
         reformatInputNumberForControl: function (input) {
-            input = input.toString().replace(/,/gi, '');
             var result = "";
-
+            if (input === undefined) {
+                return result;
+            }
+            input = input.toString().replace(/,/gi, '');
             if (input.length > 3) {
                 for (var i = input.length - 3; i > 0; i = i - 3) {
                     var end = i + 3;
@@ -107,11 +109,9 @@ if (fanex.customerSetting) {
                 }
 
                 result = input.substring(0, i + 3) + result;
-            }
-            else {
+            } else {
                 result = input;
             }
-
             return result;
         }
     };

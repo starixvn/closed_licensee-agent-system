@@ -16,9 +16,9 @@ namespace LicenseeAgent.CustomerSetting.Services
     {
         void CheckExistUserName(CheckExistUserNameCriteria criteria);
 
-        SportsBookCustomer GetSportsBookSettingForInsert(SettingContext settingContext);
+        CustomerSetting GetSportsBookSettingForInsert(SettingContext settingContext);
 
-        SportsBookCustomer GetSportsBookSettingForUpdate(SettingContext settingContext);
+        CustomerSetting GetSportsBookSettingForUpdate(SettingContext settingContext);
 
         InsertResult InsertCustomer(InsertCustomerViewModel model);
 
@@ -27,7 +27,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model);
 
         StringBuilder GetFormatJavascript(
-            SportsBookCustomer customerSetting,
+            CustomerSetting customerSetting,
             SettingContext settingContext);
     }
 }

@@ -1,19 +1,13 @@
-﻿// ----------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="PositionTaking.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
-// ------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Entities.NumberGame
+namespace LicenseeAgent.CustomerSetting.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// NumberGamePositionTaking Class.
+    /// PositionTaking class.
     /// </summary>
     public class PositionTaking
     {

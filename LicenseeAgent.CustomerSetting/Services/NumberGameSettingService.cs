@@ -8,6 +8,7 @@
 namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
     using Fanex.Common;
@@ -40,10 +41,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
         /// <returns>Number game customer setting.</returns>
-        public NumberGameCustomer GetNumberGameSettingForInsert(SettingContext settingContext)
+        public CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext)
         {
             CommissionSetting commissionSetting;
-            IList<BettingLimit> bettingLimits;
+            IList<NumberGameBettingLimit> bettingLimits;
             Dictionary<string, PositionTaking> positionTakingData;
 
             ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
@@ -61,21 +62,21 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             if (msgId == 0)
             {
-                return new NumberGameCustomer
+                return new CustomerSetting
                 {
                     CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits,
+                    BettingLimits = bettingLimits.Cast<BettingLimit>().ToList(),
                     PositionTakingSetting = BuildPositionTakingGroups(settingContext, positionTakingData, maxLicenseePt)
                 };
             }
 
-            return new NumberGameCustomer
+            return new CustomerSetting
             {
                 Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
         }
 
-        public StringBuilder GetFormatJavascript(NumberGameCustomer numberGameCustomer)
+        public StringBuilder GetFormatJavascript(CustomerSetting numberGameCustomer)
         {
             return FormatJavascript(numberGameCustomer);
         }
@@ -83,13 +84,11 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <summary>
         /// Format JSON return to client.
         /// </summary>
-        /// <typeparam name="T1">Bet Limit.</typeparam>
-        /// <typeparam name="T2">Position Taking Group.</typeparam>
         /// <param name="customerSetting">The number game customer.</param>
         /// <param name="settingContext">Setting Context.</param>
         /// <returns>String JAVASCRIPT.</returns>
-        public override StringBuilder FormatJavascript<T1, T2>(
-            CustomerSetting<T1, T2> customerSetting,
+        public override StringBuilder FormatJavascript(
+            CustomerSetting customerSetting,
             SettingContext settingContext = null)
         {
             var settingScript = new StringBuilder();
@@ -152,7 +151,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
             var positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
-            var root = positionTakingDoc.Root;
+            var root = positionTakingDoc.Descendants(ProductType.NumberGame.ToString());
 
             foreach (XElement sport in root.Elements())
             {

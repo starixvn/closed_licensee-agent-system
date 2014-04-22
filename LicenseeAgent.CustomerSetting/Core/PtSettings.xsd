@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="PtSettings"
+           targetNamespace="PtSettings"
+           elementFormDefault="qualified"
+           version="2.0">
+
+  <xs:element name="PtSettings" type="PtSettings">
+  </xs:element>
+
+  <xs:complexType name="PtSettings">
+    <xs:sequence maxOccurs="unbounded" minOccurs="1">
+      <xs:element name="Product" type="ProductPtSettings" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ProductPtSettings">
+    <xs:sequence maxOccurs="unbounded" minOccurs="1">
+      <xs:element name="SportType" type="SportTypePtSettings" />
+    </xs:sequence>
+    <xs:attribute name="Id" type="xs:int" use="required" />
+  </xs:complexType>
+  
+  <xs:complexType name="SportTypePtSettings">
+    <xs:attribute name="Id" type="xs:int" use="required"></xs:attribute>
+    <xs:attribute name="IsLive" type="xs:boolean" use="required"></xs:attribute>
+    <xs:attribute name="BetTypeIds" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  
+</xs:schema>

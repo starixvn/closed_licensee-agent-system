@@ -20,7 +20,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
         {
             FormId = FormType.Add;
             IsSimpleMode = true;
-            Language = Constant.DEFAULT_LANGUAGE;
+            Language = Constant.DefaultLanguage;
         }
 
         public SettingContext(ICurrentSession currentSession)
@@ -47,26 +47,14 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public int LoginUserId { get; set; }
 
-        public int SubAccId { get; set; }
-
         public int RoleId { get; set; }
 
-        public string SiteName { get; set; }
-
         public FormType FormId { get; set; }
-
-        public int FormSetting { get; set; }
 
         public string Ip { get; set; }
 
         public string Language { get; set; }
 
-        public string LangKey { get; set; }
-
         public bool IsSimpleMode { get; set; }
-
-        public bool HasMinConstrain { get; set; }
-
-        public bool CanEditComGroup { get; set; }
     }
 }

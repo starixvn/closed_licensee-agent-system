@@ -7,13 +7,12 @@
 namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
-    using System.Xml.Linq;
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
@@ -22,14 +21,13 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee;
     using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
     using LicenseeAgent.CustomerSetting.Repositories;
     using LicenseeAgent.CustomerSetting.ViewModels;
 
     /// <summary>
     /// Customer Service.
     /// </summary>
-    public class SportsBookSettingService : CustomerSettingServiceBase, ISportsBookSettingService
+    public class SportsBookSettingService : QueryService, ISportsBookSettingService
     {
         private readonly ISportsBookSettingRepository _customerSettingRepository;
 
@@ -60,7 +58,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             CommissionSetting commissionSetting;
             IList<BettingLimit> bettingLimits;
             Dictionary<string, PositionTaking> positionTakingData;
-            
+
             ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
 
             var msgId = 0;
@@ -82,7 +80,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                             CustInfo = custInfo,
                             CommissionSetting = commissionSetting,
                             BettingLimits = bettingLimits,
-                            PositionTakingSetting = BuildPositionTakingGroups(settingContext, positionTakingData, maxLicenseePt)
+                            PositionTakingSetting = ServiceUtils.BuildPositionTakingGroups((int)Product.Product_0, settingContext, positionTakingData, maxLicenseePt)
                         };
             }
 
@@ -124,7 +122,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,
                     BettingLimits = bettingLimits,
-                    PositionTakingSetting = BuildPositionTakingGroupsForUpdate(positionTakingData)
+                    PositionTakingSetting = ServiceUtils.BuildPositionTakingGroupsForUpdate((int)Product.Product_0, positionTakingData)
                 };
             }
 
@@ -136,7 +134,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
         public StringBuilder GetFormatJavascript(CustomerSetting sportBooksCustomer, SettingContext settingContext)
         {
-            return FormatJavascript(sportBooksCustomer, settingContext);
+            return ServiceUtils.FormatJavascript(sportBooksCustomer, settingContext);
         }
 
         /// <summary>
@@ -149,9 +147,9 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult InsertCustomer(InsertCustomerViewModel model)
         {
             //// Build XML setting for insert new customer.
-            var discountXmlStringData = BuildCommissionSettingXml(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
-            var betLimitXmlStringData = BuildBetLimitSettingXml(model.UpdateDataSportsBookCustomer.BettingLimits);
-            var positionTakingXmlStringData = BuildPositionTakingSettingXml(
+            var discountXmlStringData = ServiceUtils.BuildCommissionSettingXml(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
+            var betLimitXmlStringData = ServiceUtils.BuildBetLimitSettingXml(model.UpdateDataSportsBookCustomer.BettingLimits);
+            var positionTakingXmlStringData = ServiceUtils.BuildPositionTakingSettingXml(
                 model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
@@ -176,9 +174,9 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var discountXmlStringData = BuildCommissionSettingXml(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
-            var betLimitXmlStringData = BuildBetLimitSettingXml(model.UpdateDataSportsBookCustomer.BettingLimits);
-            var positionTakingXmlStringData = BuildPositionTakingSettingXml(
+            var discountXmlStringData = ServiceUtils.BuildCommissionSettingXml(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
+            var betLimitXmlStringData = ServiceUtils.BuildBetLimitSettingXml(model.UpdateDataSportsBookCustomer.BettingLimits);
+            var positionTakingXmlStringData = ServiceUtils.BuildPositionTakingSettingXml(
                 model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
@@ -203,7 +201,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var positionTakingXmlStringData = BuildPositionTakingSettingXml(
+            var positionTakingXmlStringData = ServiceUtils.BuildPositionTakingSettingXml(
                 model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
             var positionTakingXml = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
@@ -263,9 +261,9 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 return CreateAgentInsertMemberCriteria(criteriaBase, model);
             }
-            
-            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1 
-                ? CreateLicenseeInsertAgentCriteria(criteriaBase, model) 
+
+            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1
+                ? CreateLicenseeInsertAgentCriteria(criteriaBase, model)
                 : CreateAgentInsertAgentCriteria(criteriaBase, model);
         }
 
@@ -294,13 +292,13 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                return model.SettingContext.FormId == FormType.EditIndirectMember 
-                    ? CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model) 
+                return model.SettingContext.FormId == FormType.EditIndirectMember
+                    ? CreateAgentUpdateIndirectMemberCriteria(criteriaBase, model)
                     : CreateAgentUpdateMemberCriteria(criteriaBase, model);
             }
-            
-            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1 
-                ? CreateLicenseeUpdateAgentCriteria(criteriaBase, model) 
+
+            return model.SettingContext.TargetRoleId == (int)Role.AgentLevel1
+                ? CreateLicenseeUpdateAgentCriteria(criteriaBase, model)
                 : CreateAgentUpdateAgentCriteria(criteriaBase, model);
         }
 
@@ -496,301 +494,6 @@ namespace LicenseeAgent.CustomerSetting.Services
             }
 
             return getAgentSettingCriteria;
-        }
-
-        /// <summary>
-        /// Build position taking group from raw data.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingData">Position taking raw data.</param>
-        /// <param name="maxLicenseePt">Get max PT incase  insert new agent level 1.</param>
-        /// <returns>List position taking group.</returns>
-        private static IList<PositionTakingGroup> BuildPositionTakingGroups(
-            SettingContext settingContext,
-            Dictionary<string, PositionTaking> positionTakingData,
-            int maxLicenseePt = 0)
-        {
-            var positionTakingSetting = new List<PositionTakingGroup>();
-            var positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
-            var root = positionTakingDoc.Descendants(ProductType.SportsBook.ToString());
-
-            foreach (XElement sport in root.Elements())
-            {
-                var betTypeIds = sport.Attribute("betTypeIds").Value;
-                if (!string.IsNullOrEmpty(betTypeIds))
-                {
-                    var positionTakingGroup = new PositionTakingGroup
-                    {
-                        SportId = Converter.ToInt(sport.Attribute("id").Value),
-                        IsLive = Converter.ToBool(sport.Attribute("isLive").Value),
-                        PositionTakings = new List<PositionTaking>()
-                    };
-
-                    var betTypeArray = betTypeIds.Split(',');
-                    foreach (string betTypeId in betTypeArray)
-                    {
-                        GetPositionTakingData(settingContext, positionTakingData, maxLicenseePt, positionTakingGroup, betTypeId);
-                    }
-
-                    positionTakingSetting.Add(positionTakingGroup);
-                }
-            }
-
-            return positionTakingSetting;
-        }
-
-        /// <summary>
-        /// Build position taking group from raw data.
-        /// </summary>
-        /// <param name="positionTakingData">Position taking raw data.</param>
-        /// <returns>
-        /// List position taking group.
-        /// </returns>
-        private static IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
-            Dictionary<string, PositionTaking> positionTakingData)
-        {
-            var positionTakingSetting = new List<PositionTakingGroup>();
-            var positionTakingDoc = SettingConfigurations.PositionTakingGridConfig;
-            var root = positionTakingDoc.Root;
-
-            foreach (XElement sport in root.Elements())
-            {
-                var betTypeIds = sport.Attribute("betTypeIds").Value;
-                if (!string.IsNullOrEmpty(betTypeIds))
-                {
-                    var positionTakingGroup = new PositionTakingGroup
-                    {
-                        SportId = Converter.ToInt(sport.Attribute("id").Value),
-                        IsLive = Converter.ToBool(sport.Attribute("isLive").Value),
-                        PositionTakings = new List<PositionTaking>()
-                    };
-
-                    var betTypeArray = betTypeIds.Split(',');
-                    foreach (string betTypeId in betTypeArray)
-                    {
-                        GetPositionTakingDataForUpdate(positionTakingData, positionTakingGroup, betTypeId);
-                    }
-
-                    positionTakingSetting.Add(positionTakingGroup);
-                }
-            }
-
-            return positionTakingSetting;
-        }
-
-        /// <summary>
-        /// Build XML String for Updating.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="commissionSetting">Commission setting data.</param>
-        /// <returns>String data for update to database.</returns>
-        private static string BuildCommissionSettingXml(SettingContext settingContext, CommissionSetting commissionSetting)
-        {
-            string xmlStringData = string.Empty;
-            if (commissionSetting != null
-                && commissionSetting.CommissionItems != null
-                && commissionSetting.CommissionItems.Any())
-            {
-                string tempString;
-                if (settingContext.TargetRoleId != (int)Role.Member)
-                {
-                    foreach (CommissionItem comItem in commissionSetting.CommissionItems)
-                    {
-                        tempString = string.Format(
-                            Constant.FORMAT_AGENT_COMMISSION_SETTING_XML,
-                            comItem.SportId,
-                            comItem.BetTypeId,
-                            comItem.DiscountA / Constant.STEP_MUL_DIV,
-                            comItem.DiscountB / Constant.STEP_MUL_DIV,
-                            comItem.DiscountC / Constant.STEP_MUL_DIV,
-                            comItem.DiscountD / Constant.STEP_MUL_DIV);
-
-                        xmlStringData += tempString;
-                    }
-                }
-                else
-                {
-                    foreach (CommissionItem comItem in commissionSetting.CommissionItems)
-                    {
-                        tempString = string.Format(
-                            Constant.FORMAT_MEMBER_COMMISSION_SETTING_XML,
-                            comItem.SportId,
-                            comItem.BetTypeId,
-                            comItem.Discount / Constant.STEP_MUL_DIV);
-
-                        xmlStringData += tempString;
-                    }
-                }
-            }
-
-            return xmlStringData;
-        }
-
-        /// <summary>
-        /// Build XML String for Updating.
-        /// </summary>
-        /// <param name="bettingLimits">Betting limits data.</param>
-        /// <returns>String data to update database.</returns>
-        private static string BuildBetLimitSettingXml(IList<BettingLimit> bettingLimits)
-        {
-            string xmlStringData = string.Empty;
-            if (bettingLimits != null && bettingLimits.Any())
-            {
-                foreach (BettingLimit betLimit in bettingLimits)
-                {
-                    xmlStringData += string.Format(
-                        Constant.FORMAT_BETTING_LIMIT_XML,
-                        betLimit.SportId,
-                        betLimit.BetTypeId,
-                        betLimit.MinBet,
-                        betLimit.MaxBet,
-                        betLimit.MaxPerMatch);
-                }
-            }
-
-            return xmlStringData;
-        }
-
-        /// <summary>
-        /// Build XML String for Updating.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingSetting">Position taking data.</param>
-        /// <returns>String data to update database.</returns>
-        private static string BuildPositionTakingSettingXml(SettingContext settingContext, IList<PositionTaking> positionTakingSetting)
-        {
-            string xmlStringData = string.Empty;
-
-            if (positionTakingSetting == null || !positionTakingSetting.Any())
-            {
-                return xmlStringData;
-            }
-
-            foreach (PositionTaking positionTaking in positionTakingSetting)
-            {
-                if (positionTaking != null)
-                {
-                    xmlStringData += BuildXmlForOnePositionTakingSetting(settingContext, positionTaking);
-                }
-            }
-
-            return xmlStringData;
-        }
-
-        /// <summary>
-        /// Builds the XML for one position taking setting.
-        /// </summary>
-        /// <param name="settingContext">The setting context.</param>
-        /// <param name="positionTaking">The position taking.</param>
-        /// <returns>The xml string for one position taking item.</returns>
-        private static string BuildXmlForOnePositionTakingSetting(SettingContext settingContext, PositionTaking positionTaking)
-        {
-            string xmlResult;
-
-            if (settingContext.TargetRoleId != (int)Role.Member)
-            {
-                if (settingContext.TargetRoleId == (int)Role.Agent && settingContext.FormId == FormType.Edit)
-                {
-                    xmlResult = string.Format(
-                            Constant.FORMAT_AGENT_EDIT_AGENT_POSITION_TAKING_XML,
-                            positionTaking.SportId,
-                            positionTaking.BetTypeId,
-                            positionTaking.IsLive ? 1 : 0,
-                            (int)(positionTaking.Preset * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Max * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Min * Constant.STEP_MUL_DIV),
-                            positionTaking.ApplyAll ? 1 : 0);
-                }
-                else
-                {
-                    xmlResult = string.Format(
-                            Constant.FORMAT_AGENT_POSITION_TAKING_XML,
-                            positionTaking.SportId,
-                            positionTaking.BetTypeId,
-                            positionTaking.IsLive ? 1 : 0,
-                            (int)(positionTaking.Preset * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Max * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Min * Constant.STEP_MUL_DIV));
-                }
-            }
-            else
-            {
-                xmlResult = string.Format(
-                        Constant.FORMAT_MEMBER_POSITION_TAKING_XML,
-                        positionTaking.SportId,
-                        positionTaking.BetTypeId,
-                        positionTaking.IsLive ? 1 : 0,
-                        (int)(positionTaking.Value * Constant.STEP_MUL_DIV));
-            }
-
-            return xmlResult;
-        }
-
-        /// <summary>
-        /// Get Position taking item.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingData">Position taking to save data.</param>
-        /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
-        /// <param name="positionTakingGroup">Position taking group.</param>
-        /// <param name="betTypeId">Bet Type Id.</param>
-        private static void GetPositionTakingData(
-            SettingContext settingContext,
-            Dictionary<string, PositionTaking> positionTakingData,
-            int maxLicenseePt,
-            PositionTakingGroup positionTakingGroup,
-            string betTypeId)
-        {
-            if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
-            {
-                positionTakingGroup.PositionTakings.Add(new PositionTaking
-                {
-                    SportId = positionTakingGroup.SportId,
-                    IsLive = positionTakingGroup.IsLive,
-                    BetTypeId = Converter.ToInt(betTypeId),
-                    Upline = new PositionTaking
-                    {
-                        Max = maxLicenseePt
-                    },
-                    AllDownLine = new PositionTaking()
-                });
-            }
-            else
-            {
-                string positionTakingKey = string.Format(
-                    "{0}_{1}_{2}",
-                    positionTakingGroup.SportId,
-                    positionTakingGroup.IsLive,
-                    betTypeId);
-
-                if (positionTakingData.ContainsKey(positionTakingKey))
-                {
-                    positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get Position taking item.
-        /// </summary>
-        /// <param name="positionTakingData">Position taking to save data.</param>
-        /// <param name="positionTakingGroup">Position taking group.</param>
-        /// <param name="betTypeId">Bet Type Id.</param>
-        private static void GetPositionTakingDataForUpdate(
-            Dictionary<string, PositionTaking> positionTakingData,
-            PositionTakingGroup positionTakingGroup,
-            string betTypeId)
-        {
-            string positionTakingKey = string.Format(
-                "{0}_{1}_{2}",
-                positionTakingGroup.SportId,
-                positionTakingGroup.IsLive,
-                betTypeId);
-
-            if (positionTakingData.ContainsKey(positionTakingKey))
-            {
-                positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);
-            }
         }
 
         /// <summary>

@@ -6,8 +6,10 @@
 
 namespace LicenseeAgent.CustomerSetting.Core
 {
+    using System.IO;
+    using System.Linq;
     using System.Web;
-    using System.Xml.Linq;
+    using System.Xml.Serialization;
 
     /// <summary>
     /// Configuration Class, read Xml file and save XDocument object.
@@ -16,11 +18,22 @@ namespace LicenseeAgent.CustomerSetting.Core
     {
         static SettingConfigurations()
         {
-            PositionTakingGridConfig = XDocument.Load(HttpContext.Current.Server.MapPath(Constant.PT_GRID_CONFIG));
+            var configFilePath = HttpContext.Current.Server.MapPath(Constant.PT_GRID_CONFIG);
+            using (var reader = new StreamReader(configFilePath))
+            {
+                string xml = reader.ReadToEnd();
+
+                // deserialize XML to object
+                var xs = new XmlSerializer(typeof(PtSettings));
+                PtSettings = (PtSettings)xs.Deserialize(new StringReader(xml));
+            }
         }
 
-        public static XDocument PositionTakingGridConfig { get; set; }
+        public static PtSettings PtSettings { get; private set; }
 
-        public static XDocument BettingLimitSportNameConfig { get; set; }
+        public static ProductPtSettings GetProductPtSettings(int productId)
+        {
+            return PtSettings.Product.Where(x => x.Id == productId).FirstOrDefault();
+        }
     }
 }

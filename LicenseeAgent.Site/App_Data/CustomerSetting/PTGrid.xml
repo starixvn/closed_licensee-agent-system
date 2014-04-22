@@ -1,28 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Products>
-  <SportsBook>
-    <SportType id="1" isLive="false" betTypeIds="1,3,7,8,2,5,4,6,9,10" />
-    <SportType id="1" isLive="true" betTypeIds="1,3,7,8" />
-    <SportType id="2" isLive="false" betTypeIds="1,3,2,20" />
-    <SportType id="3" isLive="false" betTypeIds="1,3,2,20" />
-    <SportType id="5" isLive="false" betTypeIds="1,3,2,20" />
-    <SportType id="8" isLive="false" betTypeIds="1,3,20" />
-    <SportType id="10" isLive="false" betTypeIds="1,3,2,20" />
-    <SportType id="11" isLive="false" betTypeIds="1,20" />
-    <SportType id="99" isLive="false" betTypeIds="1,3,2,20" />
-    <SportType id="99" isLive="false" betTypeIds="9" />
-    <SportType id="154" isLive="false" betTypeIds="20" />
-  </SportsBook>
-  <NumberGame>
-    <SportType id="161" isLive="false" betTypeIds="81,82,83,84,85,86,87,88,89,90" />
-  </NumberGame>
-  <VirtualSports>
-    <SportType id="180" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="181" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="182" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="183" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="184" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="185" isLive="false" betTypeIds="1201,1299" />
-    <SportType id="186" isLive="false" betTypeIds="1201,1299" />
-  </VirtualSports>
-</Products>
+<PtSettings xmlns="PtSettings"
+  xmlns:xsi="PtSettings">
+  <!--Sports book-->
+  <Product Id="0">
+    <SportType Id="1" IsLive="false" BetTypeIds="1,3,7,8,2,5,4,6,9,10" />
+    <SportType Id="1" IsLive="true" BetTypeIds="1,3,7,8" />
+    <SportType Id="2" IsLive="false" BetTypeIds="1,3,2,20" />
+    <SportType Id="3" IsLive="false" BetTypeIds="1,3,2,20" />
+    <SportType Id="5" IsLive="false" BetTypeIds="1,3,2,20" />
+    <SportType Id="8" IsLive="false" BetTypeIds="1,3,20" />
+    <SportType Id="10" IsLive="false" BetTypeIds="1,3,2,20" />
+    <SportType Id="11" IsLive="false" BetTypeIds="1,20" />
+    <SportType Id="99" IsLive="false" BetTypeIds="1,3,2,20" />
+    <SportType Id="99" IsLive="false" BetTypeIds="9" />
+    <SportType Id="154" IsLive="false" BetTypeIds="20" />
+  </Product>
+  <!--Number Game-->
+  <Product Id="2">
+    <SportType Id="161" IsLive="false" BetTypeIds="81,82,83,84,85,86,87,88,89,90" />
+  </Product>
+  <!--Virtual sports-->
+  <Product Id="5">
+    <SportType Id="180" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="181" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="182" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="183" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="184" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="185" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="186" IsLive="false" BetTypeIds="1201,1299" />
+  </Product>
+</PtSettings>

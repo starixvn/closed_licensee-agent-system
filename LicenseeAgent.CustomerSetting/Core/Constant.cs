@@ -10,6 +10,7 @@ namespace LicenseeAgent.CustomerSetting.Core
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.Linq;
     using Fanex.Common;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
@@ -23,9 +24,6 @@ namespace LicenseeAgent.CustomerSetting.Core
     public static class Constant
     {
         public const string PT_GRID_CONFIG = "~/App_Data/CustomerSetting/PTGrid.xml";
-        public const int ERROR_CODE_DEFAULT = 1000;
-        public const int WARNING_CODE_DEFAULT = 1500;
-        public const string WARNING_MESSAGE_DEFAULT = "There is no updating.";
         public const string FORMAT_XML_ROOT = "<ROOT>{0}</ROOT>";
         public const string FORMAT_AGENT_POSITION_TAKING_XML = "<PositionTaking SportType=\"{0}\" BetType=\"{1}\" IsLive=\"{2}\" MaxUpper=\"{3}\" MaxGiven=\"{4}\" MinGiven=\"{5}\"></PositionTaking>";
         public const string FORMAT_AGENT_EDIT_AGENT_POSITION_TAKING_XML = "<PositionTaking SportType=\"{0}\" BetType=\"{1}\" IsLive=\"{2}\" MaxUpper=\"{3}\" MaxGiven=\"{4}\" MinGiven=\"{5}\" ApplyAll=\"{6}\"></PositionTaking>";
@@ -34,44 +32,15 @@ namespace LicenseeAgent.CustomerSetting.Core
         public const string FORMAT_MEMBER_COMMISSION_SETTING_XML = "<Discount SportType=\"{0}\" BetType=\"{1}\" Discount=\"{2}\" ></Discount>";
         public const string FORMAT_BETTING_LIMIT_XML = "<BetLimit SportType=\"{0}\" BetType=\"{1}\" Min=\"{2}\" Max=\"{3}\" MaxPerMatch=\"{4}\"></BetLimit>";
         public const string FORMAT_BETTING_LIMIT_XML_3RD = "<BetLimit SportType=\"{0}\" BetType=\"{1}\" Min=\"{2}\" Max=\"{3}\" MaxPerMatch=\"{4}\"  MaxPerBall=\"{5}\"></BetLimit>";
-        public const int NUMBER_GAME_SPORT_ID = 161;
-        public const int MAX_POSITION_TAKING_AGENT_LEVEL_1 = 100;
-        public const int AGENT_LEVEL_EXCEPTION_SETTING = 2;
         public const int STEP_MUL_DIV = 100;
         public const decimal ROUNDING_NUMBER = 0.0049m;
         public const int NUMBER_DIGIST = 2;
-        public const string DEFAULT_LANGUAGE = "en-US";
 
-        //// Language
-        public const string LANGUAGE_ENGLISH = "EN-en";
-
-        public const string LANGUAGE_CHINESE_SIMPLIFIED = "CHSP-chsp";
-
-        public const int BetTypeIdOfDiscount = 1;
-        public const int BetTypeIdOf1x2Discount = 5;
-        public const int BetTypeIdOfOtherDiscount = 4;
-
-        private static readonly Dictionary<string, BettingLimit> BettingLimitItemsDefault = new Dictionary<string, BettingLimit>();
-
-        static Constant()
+        public static string DefaultLanguage
         {
-            LoadBettingLimitSportNames();
-        }
-
-        /// <summary>
-        /// Load betting limit from xml file.
-        /// </summary>
-        private static void LoadBettingLimitSportNames()
-        {
-            var root = SettingConfigurations.BettingLimitSportNameConfig.Root;
-            foreach (XElement sport in root.Elements())
+            get
             {
-                var bettingLimit = new BettingLimit
-                {
-                    SportId = Converter.ToInt(sport.Attribute("sportId").Value),
-                    BetTypeId = Converter.ToInt(sport.Attribute("betTypeId").Value)
-                };
-                BettingLimitItemsDefault.Add(string.Format("{0}_{1}", bettingLimit.SportId, bettingLimit.BetTypeId), bettingLimit);
+                return ModelSettings.DefaultLanguage;
             }
         }
     }

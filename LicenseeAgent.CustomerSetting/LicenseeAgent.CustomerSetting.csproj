@@ -58,8 +58,12 @@
     </Compile>
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Core\Constant.cs" />
+    <Compile Include="Core\PtSettings.designer.cs">
+      <DependentUpon>PtSettings.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Core\SettingConfigurations.cs" />
-    <Compile Include="Core\ProductType.cs" />
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
     <Compile Include="Criteria\NumberGame\Agent\AgentGetSettingForInsertCriteria.cs" />
     <Compile Include="Criteria\NumberGame\Licensee\LicenseeGetSettingForInsertCriteria.cs" />
@@ -74,7 +78,6 @@
     <Compile Include="Criteria\SportsBook\Agent\AgentInsertAgentSettingCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Licensee\LicenseeInsertAgentSettingCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Agent\AgentUpdateAgentSettingCriteria.cs" />
-    <Compile Include="Criteria\LogCriteria.cs" />
     <Compile Include="Criteria\SportsBook\InsertCustomerCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Member\AgentGetMemberSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\SportsBook\Member\AgentInsertMemberSettingCriteria.cs" />
@@ -96,11 +99,19 @@
     <Compile Include="Repositories\NumberGameSettingRepository.cs" />
     <Compile Include="Repositories\SportsBookSettingRepository.cs" />
     <Compile Include="Repositories\ISportsBookSettingRepository.cs" />
-    <Compile Include="Services\CustomerSettingServiceBase.cs" />
-    <Compile Include="Services\INumberGameSettingService.cs" />
-    <Compile Include="Services\NumberGameSettingService.cs" />
-    <Compile Include="Services\SportsBookSettingService.cs" />
-    <Compile Include="Services\ISportsBookSettingService.cs" />
+    <Compile Include="Services\INumberGameSettingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ISportsBookSettingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\NumberGameSettingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ServiceUtils.cs" />
+    <Compile Include="Services\SportsBookSettingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
@@ -130,6 +141,12 @@
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
     <Folder Include="Criteria\Member\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\PtSettings.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>ProductSettings.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

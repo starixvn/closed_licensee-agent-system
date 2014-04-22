@@ -466,6 +466,7 @@
     <Content Include="Views\Report\Resources\agent-winloss-report.js" />
     <Content Include="Views\Report\Resources\outstanding-report.js" />
     <Content Include="Views\Report\Resources\result-report.js" />
+    <Content Include="Views\Tool\Resources\sync-monitoring.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\soccer.betlist.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
@@ -764,6 +765,7 @@
     <Content Include="Views\Report\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
+    <Content Include="Views\Tool\SyncMonitoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

@@ -79,12 +79,14 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
+    <Compile Include="Criterias\SyncMonitoringCriteria.cs" />
     <Compile Include="Criterias\ReferenceNumberCriteria.cs" />
     <Compile Include="Criterias\TicketDownLineCriteria.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="Filters\AppAuthorizeAttribute.cs" />
     <Compile Include="Filters\BaseActionFilterAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
+    <Compile Include="Services\MonitoringService.cs" />
+    <Compile Include="Services\IMonitoringService.cs" />
     <Compile Include="Services\DownLineService.cs" />
     <Compile Include="Services\IDownLineService.cs" />
     <Compile Include="Services\DownLinePermissionService.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="ViewModels\AgentBreadcrumbViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\SyncMonitoringViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Tool";
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+}
+
+<h2>Monitoring Data Synchronization between Main DB and Deposit DB.</h2>
+
+<div class="table">
+  <div class="form-group">
+    <label for="action">Actions</label>
+    @Html.DropDownList("action", ModelSettings.TaiwanActions, new { @class = "selectpicker w160" })
+  </div>
+  <div class="form-group">
+    <label for="taiwanapiurl">Taiwan API's URL</label>
+    <input type="text" class="form-control" id="taiwanapiurl" value="@AppSettings.TaiwanAPI" />
+  </div>
+  <button type="button" class="btn btn-primary" id="actionmonitoring">Submit</button>
+</div>
+<br />
+<div id="monitoringGrid" class="freegrid content-grid">
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="~/Views/Tool/Resources/sync-monitoring.js"></script>

@@ -59,6 +59,21 @@ namespace LicenseeAgent.Core.Configurations
             }
         }
 
+        public static IList<SelectListItem> TaiwanActions
+        {
+            get
+            {
+                return new List<SelectListItem>
+                {
+                    new SelectListItem { Text = Las.All, Value = "0" },
+                    new SelectListItem { Text = "ResetPassword", Value = "301" },
+                    new SelectListItem { Text = "UpdateMemberInfo", Value = "303" },
+                    new SelectListItem { Text = "InsertNewMember", Value = "304" },
+                    new SelectListItem { Text = "UpdateMemberStatus", Value = "305" },
+                };
+            }
+        }
+
         public static IList<SelectListItem> StatusList
         {
             get

@@ -165,4 +165,7 @@
     <Setting Key="LAS_AddNew_Member_Writelog" SpName="LAS_AddNew_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_ChangeStatus_Member_Writelog" SpName="LAS_ChangeStatus_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
+  <Function name="Monitoring">
+    <Setting Key="Las_SyncMonitoring" SpName="Las_SyncMonitoring" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+  </Function>  
 </Functions>

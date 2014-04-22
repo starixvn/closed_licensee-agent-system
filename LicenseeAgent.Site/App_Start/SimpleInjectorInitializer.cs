@@ -73,6 +73,7 @@ namespace LicenseeAgent.Site
             container.Register<IDownLineService, DownLineService>();
             container.Register<IDownlLinePermissionService, DownLinePermissionService>();
             container.Register<IMessageService, MessageService>();
+            container.Register<IMonitoringService, MonitoringService>();
         }
     }
 }

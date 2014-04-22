@@ -94,5 +94,24 @@ namespace LicenseeAgent.Core.Utility
                 }
             }
         }
+
+        /// <summary>
+        /// Deserializes the list.
+        /// </summary>
+        /// <param name="xml">The XML string.</param>
+        /// <returns>Return list.</returns>
+        public static T Deserialize(string xml)
+        {
+            if (string.IsNullOrEmpty(xml))
+            {
+                return default(T);
+            }
+
+            using (var stringReader = new StringReader(xml))
+            {
+                var serializer = new XmlSerializer(typeof(T));
+                return (T)serializer.Deserialize(stringReader);
+            }
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace LicenseeAgent.Report.Controllers
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
                                 ? model.BreadCrumb
                                 : model.AgentId + "," + model.AgentLevel + "," + model.Username;
+            model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {

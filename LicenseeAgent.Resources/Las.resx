@@ -1256,4 +1256,7 @@
   <data name="Main" xml:space="preserve">
     <value>Main</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
 </root>

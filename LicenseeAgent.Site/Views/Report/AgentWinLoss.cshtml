@@ -51,9 +51,17 @@
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
+    
     <div class="newline">
     </div>
-
+    
+    <div class="controls-row">
+        @RazorHelper.Product(Model.ProductList, Model.Product, "w60")
+    </div>
+    
+    <div class="newline">
+    </div>
+    
     <div class="controls-row">
         @RazorHelper.DrawFilter(Model.DrawFilter)
     </div>
@@ -68,6 +76,7 @@
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.AgentLevel)
     @Html.HiddenFor(m => m.BreadCrumb)
+    @Html.HiddenFor(m => m.Product)
 }
 @RazorHelper.BreadCrumb(Model.BreadCrumb)
 <div id="grid" class="freegrid fix-header-border">

@@ -74,6 +74,7 @@
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Enumerations\Role.cs" />
     <Compile Include="Exceptions\InvalidAgentException.cs" />
     <Compile Include="Exceptions\CriteriaException.cs" />
+    <Compile Include="Criterias\GetProductCriteria.cs" />
     <Compile Include="Services\CoreService.cs" />
     <Compile Include="Services\ICoreService.cs" />
     <Compile Include="Services\IUnderMaintenanceService.cs" />

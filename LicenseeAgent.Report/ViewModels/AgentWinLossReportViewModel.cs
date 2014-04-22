@@ -9,6 +9,8 @@ namespace LicenseeAgent.Report.ViewModels
     using System;
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Core.Entities;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Agent WinLoss Report View Model.
@@ -40,5 +42,9 @@ namespace LicenseeAgent.Report.ViewModels
 
         [Display(Name = "DrawFilter", ResourceType = typeof(Las))]
         public short DrawFilter { get; set; }
+
+        public string Product { get; set; }
+
+        public IEnumerable<Product> ProductList { get; set; }
     }
 }

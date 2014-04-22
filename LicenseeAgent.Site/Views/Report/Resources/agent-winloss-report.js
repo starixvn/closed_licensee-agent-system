@@ -5,13 +5,39 @@ var agentWinLossReport = (function ($) {
     return {
         init: function () {
             $("#tabs-area a:first").tab('show');
+            agentWinLossReport.initDatePicker();
+            agentWinLossReport.registerButtonClickEvent();
+            agentWinLossReport.registerCheckboxClickEvent();
+            agentWinLossReport.dataGridBinding();
+        },
+
+        initDatePicker: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
+        },
 
+        registerCheckboxClickEvent: function () {
+            // add multiple select / deselect functionality
+            $("#selectAll").click(function () {
+                $('.case').prop('checked', this.checked);
+            });
+
+            // if all checkbox are selected, check the selectall checkbox and viceversa
+            $(".case").click(function () {
+                if ($(".case").length === $(".case:checked").length) {
+                    $("#selectAll").prop("checked", true);
+                } else {
+                    $("#selectAll").removeAttr("checked");
+                }
+            });
+        },
+
+        registerButtonClickEvent: function () {
             $('#search').click(function () {
                 agentWinLossReport.dataGridBinding();
                 return false;
             });
+
             $('#today').click(function () {
                 var today = $(this).data('date');
                 $('#fromDatePicker').datepicker('update', today);
@@ -34,11 +60,19 @@ var agentWinLossReport = (function ($) {
                 var agentName = $(this).text();
                 agentWinLossReport.ViewDownline(agentId, agentLevel, agentName);
             });
+        },
 
-            agentWinLossReport.dataGridBinding();
+        setProductHidden: function () {
+            $('#Product').val(""); // Reset Product hidden to empty.
+            $('.case:checked').each(function () {
+                $('#Product').val($('#Product').val() + $(this).val() + ',');
+            });
+
         },
 
         dataGridBinding: function () {
+            agentWinLossReport.setProductHidden();
+
             var submitOptions = $('form').serializeObject();
             $.ajax({
                 url: core.resolveUrl("~/Report/GetAgentWinLossData"),
@@ -138,21 +172,22 @@ var agentWinLossReport = (function ($) {
         },
 
         ViewDownline: function (agentId, agentLevel, username) {
+            agentWinLossReport.setProductHidden();
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username
-                                            + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val() + "&breadcrumb=" 
-                                            + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
+                                + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val() + "&breadcrumb=" + $("#BreadCrumb").val() 
+                                + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#Product").val());
         },
         ViewBetList: function (custId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             var status = (drawFilter === "1" ? "112,113" : "111,112,113");
             location.href = core.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate="
-                                            + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs=" 
+                                            + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs="
                                             + status + "&title=" + document.title);
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     'use strict';

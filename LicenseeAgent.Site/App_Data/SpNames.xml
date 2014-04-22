@@ -3,6 +3,7 @@
   <Function Name="Core">
     <Setting Key="LAS_SelBalanceUpDay" SpName="LAS_SelBalanceUpDay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Licensee_SelProductList" SpName="LAS_Licensee_SelProductList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Login">
     <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

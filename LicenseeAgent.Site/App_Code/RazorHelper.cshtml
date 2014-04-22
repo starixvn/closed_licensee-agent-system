@@ -1,8 +1,11 @@
 ﻿@using System.Web.Mvc
 @using LicenseeAgent.Web.Mvc
+@using LicenseeAgent.Core
 @using LicenseeAgent.Core.Configurations
 @using LicenseeAgent.Resources
 @using LicenseeAgent.AccountInformation.Entities
+@using LicenseeAgent.Core.Entities
+
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -63,6 +66,27 @@
         <input type="radio" name="DrawFilter" value="2" @(val == 2 ? "checked" : "") />
         @Las.NoDrawForTurnoverOnly
     </label>
+}
+@helper Product(IEnumerable<Product> productList, string selectedProducts, string classNameProduct = "")
+{
+    <label class="checkbox inline @classNameProduct">@Las.Product</label>
+    if (productList.Count() > 1)
+    {
+        var productIds = string.IsNullOrEmpty(selectedProducts) ? new List<string>() : selectedProducts.Split(',').ToList();
+        
+        <label class="checkbox inline">
+            <input type="checkbox" id="selectAll" value="0"> 
+            @Las.All
+        </label>
+    
+        foreach (var item in productList)
+        {        
+            <label class="checkbox inline">
+                <input type="checkbox" class="case" value="@item.ProductId" @(productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
+                @item.ProductName
+            </label>
+        }
+    }
 }
 @helper BreadCrumb(string val)
     {

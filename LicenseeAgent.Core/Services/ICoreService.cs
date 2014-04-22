@@ -14,5 +14,7 @@ namespace LicenseeAgent.Core.Services
         SelBalanceUpDay GetBalanceUpDay();
 
         IEnumerable<LicenseeDomain> GetLicenseeDomains();
+
+        IEnumerable<Product> GetProducts(int LicenseeID);
     }
 }

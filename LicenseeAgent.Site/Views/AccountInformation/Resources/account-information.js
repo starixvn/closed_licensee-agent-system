@@ -179,13 +179,13 @@ var accountInformation = (function ($) {
             var buttons = [{
                 label: language.getString('Yes'),
                 action: function () {
-                    popup.closeModal();
+                    popup.close(0);
                     accountInformation.changeCurrencyPage(currencyId, currencyName);
                 }
             }, {
                 label: language.getString('No'),
                 action: function () {
-                    popup.closeModal();
+                    popup.close(0);
                     accountInformation.showNoUserAlert(msgAlert);
                 }
             }];

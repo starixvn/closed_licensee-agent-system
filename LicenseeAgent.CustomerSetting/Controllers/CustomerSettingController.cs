@@ -25,6 +25,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Sport books setting controller.
@@ -56,22 +57,25 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             ErrCode.Msg_1029
         };
 
-        private readonly ISportsBookSettingService _customerSettingService;
+        private static JsonSerializerSettings jsonSerializeSettings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented
+        };
+
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
-        private readonly INumberGameSettingService _numberGameService;
+        private readonly Services.NumberGame.ISettingService _numberGameService = new Services.NumberGame.SettingService();
+        private readonly Services.SportsBook.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
+        private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
 
         public CustomerSettingController(
-                ISportsBookSettingService customerSettingService,
                 IMemberService memberService,
-                IDownlLinePermissionService permissionService,
-                INumberGameSettingService numberGameService)
+                IDownlLinePermissionService permissionService)
             : base(permissionService)
         {
-            _customerSettingService = customerSettingService;
             _memberService = memberService;
             _permissionService = permissionService;
-            _numberGameService = numberGameService;
         }
 
         /// <summary>
@@ -100,22 +104,22 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(ServiceUtils.FormatJavascript(settingContext, "settingContext"));
-            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext, out errCode);
+            stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
+            var sportsBookCustomer = _sportsBookService.GetSettingForInsert(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
-                var numberGameCustomer = _numberGameService.GetNumberGameSettingForInsert(settingContext, out errCode);
+                var numberGameCustomer = _numberGameService.GetSettingForInsert(settingContext, out errCode);
                 if (errCode == Result.SuccessValue)
                 {
-                    stringBuilder.AppendLine(ServiceUtils.FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
-                    stringBuilder.Append(ServiceUtils.FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                    stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
+                    stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
                 }
             }
 
             if (errCode != Result.SuccessValue)
             {
                 var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
-                stringBuilder.Append(ServiceUtils.FormatJavascript(result, "result"));
+                stringBuilder.Append(FormatJavascript(result, "result"));
             }
 
             return JavaScript(stringBuilder.ToString());
@@ -148,8 +152,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(ServiceUtils.FormatJavascript(settingContext, "settingContext"));
-            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForUpdate(settingContext, out errCode);
+            stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
+            var sportsBookCustomer = _sportsBookService.GetSettingForUpdate(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
                 if (model.TargetRoleId == (int)Role.Member && sportsBookCustomer.CustInfo != null)
@@ -164,13 +168,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         });
                 }
 
-                stringBuilder.AppendLine(ServiceUtils.FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
+                stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
             }
 
             if (errCode != Result.SuccessValue)
             {
                 var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
-                stringBuilder.Append(ServiceUtils.FormatJavascript(result, "result"));
+                stringBuilder.Append(FormatJavascript(result, "result"));
             }
 
             return JavaScript(stringBuilder.ToString());
@@ -577,6 +581,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             };
 
             return _permissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
+        }
+
+        private string FormatJavascript(object obj, string name)
+        {
+            return string.Format("var {0} = {1}; \n", name, JsonConvert.SerializeObject(obj, jsonSerializeSettings));
         }
     }
 }

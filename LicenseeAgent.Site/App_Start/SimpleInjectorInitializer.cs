@@ -14,8 +14,6 @@ namespace LicenseeAgent.Site
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CreditBalance.Services;
     using LicenseeAgent.CustomerList.Services;
-    using LicenseeAgent.CustomerSetting.Repositories;
-    using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.Message.Services;
     using LicenseeAgent.Report.DataAccess;
     using LicenseeAgent.Report.Services;
@@ -56,8 +54,6 @@ namespace LicenseeAgent.Site
             container.Register<IUnderMaintenanceService, UnderMaintenanceService>();
             container.Register<IAccountService, AccountService>();
             container.Register<ICurrencyService, CurrencyService>();
-            container.Register<ISportsBookSettingRepository, SportsBookSettingRepository>();
-            container.Register<ISportsBookSettingService, SportsBookSettingService>();
             container.Register<ICustomerService, CustomerService>();
             container.Register<IIpInformationService, IpInformationService>();
             container.Register<ISearchUserService, SearchUserService>();
@@ -74,8 +70,6 @@ namespace LicenseeAgent.Site
             container.Register<IDownlLinePermissionService, DownLinePermissionService>();
             container.Register<IMessageService, MessageService>();
             container.Register<IMonitoringService, MonitoringService>();
-            container.Register<INumberGameSettingService, NumberGameSettingService>();
-            container.Register<INumberGameSettingRepository, NumberGameSettingRepository>();
         }
     }
 }

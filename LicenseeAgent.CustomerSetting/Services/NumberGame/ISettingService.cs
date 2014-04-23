@@ -1,0 +1,18 @@
+﻿// ----------------------------------------------------------------------
+// <copyright file="ISettingService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ------------------------------------------------------------------------
+
+namespace LicenseeAgent.CustomerSetting.Services.NumberGame
+{
+    using LicenseeAgent.CustomerSetting.Entities;
+
+    /// <summary>
+    /// ISettingRepository interface.
+    /// </summary>
+    public interface ISettingService
+    {
+        Entities.NumberGame.CustomerSetting GetSettingForInsert(SettingContext settingContext, out int errCode);
+    }
+}

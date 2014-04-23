@@ -148,7 +148,7 @@ fanex.angularModule.directive('autoNumericFormat', [
                      autoNumericOptions.vMax = params['vMax'];
                  }
                  else {
-                     autoNumericOptions.vMax = 9999999999999;
+                     autoNumericOptions.vMax = 999999999999;
                  }
 
                  if (params['lZero'] !== undefined) {

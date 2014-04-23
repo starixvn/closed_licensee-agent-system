@@ -18,7 +18,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
         CustomerSetting GetSportsBookSettingForInsert(SettingContext settingContext, out int errCode);
 
-        CustomerSetting GetSportsBookSettingForUpdate(SettingContext settingContext);
+        CustomerSetting GetSportsBookSettingForUpdate(SettingContext settingContext, out int errCode);
 
         InsertResult InsertCustomer(InsertCustomerViewModel model);
 

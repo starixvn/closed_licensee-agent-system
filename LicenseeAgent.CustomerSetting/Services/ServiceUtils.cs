@@ -274,56 +274,6 @@ namespace LicenseeAgent.CustomerSetting.Services
         }
 
         /// <summary>
-        /// Format JSON return to client.
-        /// </summary>
-        /// <param name="customerSetting">The number game customer.</param>
-        /// <param name="settingContext">Setting Context.</param>
-        /// <returns>String JAVASCRIPT.</returns>
-        public static StringBuilder FormatJavascript(CustomerSetting customerSetting, SettingContext settingContext = null)
-        {
-            var result = customerSetting != null ? customerSetting.Result : null;
-            var custInfo = customerSetting != null ? customerSetting.CustInfo : null;
-            var commissionSetting = customerSetting != null ? customerSetting.CommissionSetting : null;
-            var betLimits = customerSetting != null ? customerSetting.BettingLimits : null;
-            var positionTakingSetting = customerSetting != null ? customerSetting.PositionTakingSetting : null;
-
-            var settingScript = new StringBuilder();
-            if (result != null && result.ErrCode != 0)
-            {
-                settingScript.Append(string.Format("var result = {0}; \n", JsonConvert.SerializeObject(result, jsonSerializeSettings)));
-            }
-            else
-            {
-                if (settingContext != null)
-                {
-                    settingScript.Append(string.Format("var settingContext= {0}; \n", JsonConvert.SerializeObject(settingContext, jsonSerializeSettings)));
-                }
-
-                if (custInfo != null)
-                {
-                    settingScript.Append(string.Format("var custInfo= {0}; \n", JsonConvert.SerializeObject(custInfo, jsonSerializeSettings)));
-                }
-
-                if (commissionSetting != null)
-                {
-                    settingScript.Append(string.Format("var commissionSetting= {0}; \n", JsonConvert.SerializeObject(commissionSetting, jsonSerializeSettings)));
-                }
-
-                if (betLimits != null)
-                {
-                    settingScript.Append(string.Format("var betLimits= {0}; \n", JsonConvert.SerializeObject(betLimits, jsonSerializeSettings)));
-                }
-
-                if (positionTakingSetting != null)
-                {
-                    settingScript.Append(string.Format("var positionTakingSetting= {0}; \n", JsonConvert.SerializeObject(positionTakingSetting, jsonSerializeSettings)));
-                }
-            }
-
-            return settingScript;
-        }
-
-        /// <summary>
         /// Get Position taking item.
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>

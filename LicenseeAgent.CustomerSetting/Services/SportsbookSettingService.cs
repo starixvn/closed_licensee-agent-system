@@ -12,7 +12,6 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
@@ -93,10 +92,11 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// Get Agent setting for updating.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
+        /// <param name="errCode">The error code.</param>
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public CustomerSetting GetSportsBookSettingForUpdate(SettingContext settingContext)
+        public CustomerSetting GetSportsBookSettingForUpdate(SettingContext settingContext, out int errCode)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
@@ -104,7 +104,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             Dictionary<string, PositionTaking> positionTakingData;
             ICriteria getAgentSettingCriteria = InitializeCriteriaForGettingSportsBookSettingForUpdate(settingContext);
 
-            int msgId;
+            errCode = Result.FailureValue;
             _customerSettingRepository.GetSettingForUpdate(
                 getAgentSettingCriteria,
                 settingContext,
@@ -112,9 +112,9 @@ namespace LicenseeAgent.CustomerSetting.Services
                 out commissionSetting,
                 out bettingLimits,
                 out positionTakingData,
-                out msgId);
+                out errCode);
 
-            if (msgId == 0)
+            if (errCode == Result.SuccessValue)
             {
                 return new CustomerSetting
                 {
@@ -125,10 +125,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 };
             }
 
-            return new CustomerSetting
-            {
-                Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
-            };
+            return null;
         }
 
         /// <summary>

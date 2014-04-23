@@ -2,7 +2,6 @@
 // <copyright file="NumberGameSettingService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-//
 // ------------------------------------------------------------------------
 
 namespace LicenseeAgent.CustomerSetting.Services

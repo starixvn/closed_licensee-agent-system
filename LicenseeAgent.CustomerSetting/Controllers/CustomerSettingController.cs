@@ -99,9 +99,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             var errCode = Result.FailureValue;
-            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext, out errCode);
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(ServiceUtils.FormatJavascript(settingContext, "settingContext"));
+            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
                 var numberGameCustomer = _numberGameService.GetNumberGameSettingForInsert(settingContext, out errCode);
@@ -146,24 +146,34 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedJavascript();
             }
 
-            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForUpdate(settingContext);
-
-            if (model.TargetRoleId == (int)Role.Member && sportsBookCustomer.CustInfo != null)
+            var errCode = Result.FailureValue;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(ServiceUtils.FormatJavascript(settingContext, "settingContext"));
+            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForUpdate(settingContext, out errCode);
+            if (errCode == Result.SuccessValue)
             {
-                sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
+                if (model.TargetRoleId == (int)Role.Member && sportsBookCustomer.CustInfo != null)
+                {
+                    sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
+                    _memberService.GetMemberInformation(
+                        sportsBookCustomer.CustInfo,
+                        new GetMemberInfoAction
+                        {
+                            SiteName = CurrentSession.AgentInfo.LicenseeName,
+                            IBCCustId = model.TargetCustId
+                        });
+                }
 
-                _memberService.GetMemberInformation(
-                                    sportsBookCustomer.CustInfo,
-                                    new GetMemberInfoAction
-                                    {
-                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        IBCCustId = model.TargetCustId
-                                    });
+                stringBuilder.AppendLine(ServiceUtils.FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
             }
 
-            var javascriptString = ServiceUtils.FormatJavascript(sportsBookCustomer, settingContext);
+            if (errCode != Result.SuccessValue)
+            {
+                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
+                stringBuilder.Append(ServiceUtils.FormatJavascript(result, "result"));
+            }
 
-            return JavaScript(javascriptString.ToString());
+            return JavaScript(stringBuilder.ToString());
         }
 
         /// <summary>

@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
+    using System;
     using System.Collections.Generic;
     using Fanex.Common;
     using LicenseeAgent.Core.Enumerations;
@@ -49,7 +50,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingData(settingContext, positionTakingData, maxLicenseePt, positionTakingGroup, betTypeId);
+                        GetPositionTakingData(settingContext, positionTakingData, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -87,7 +88,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingDataForUpdate(positionTakingData, positionTakingGroup, betTypeId);
+                        GetPositionTakingDataForUpdate(positionTakingData, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -95,6 +96,11 @@ namespace LicenseeAgent.CustomerSetting.Services
             });
 
             return positionTakingSetting;
+        }
+
+        private static string GetPositionTakingKey(PositionTakingGroup data, int betTypeId)
+        {
+            return string.Format("{0}_{1}_{2}", data.SportId, data.IsLive, betTypeId);
         }
 
         /// <summary>
@@ -110,7 +116,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             Dictionary<string, PositionTaking> positionTakingData,
             int maxLicenseePt,
             PositionTakingGroup positionTakingGroup,
-            string betTypeId)
+            int betTypeId)
         {
             if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
@@ -150,14 +156,9 @@ namespace LicenseeAgent.CustomerSetting.Services
         private void GetPositionTakingDataForUpdate(
             Dictionary<string, PositionTaking> positionTakingData,
             PositionTakingGroup positionTakingGroup,
-            string betTypeId)
+            int betTypeId)
         {
-            string positionTakingKey = string.Format(
-                "{0}_{1}_{2}",
-                positionTakingGroup.SportId,
-                positionTakingGroup.IsLive,
-                betTypeId);
-
+            var positionTakingKey = GetPositionTakingKey(positionTakingGroup, betTypeId);
             if (positionTakingData.ContainsKey(positionTakingKey))
             {
                 positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);

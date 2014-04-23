@@ -7,7 +7,6 @@
 namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
-    using System.Text;
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
@@ -51,8 +50,11 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// Get Agent setting for insert new.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
-        /// <returns>Sports book customer setting.</returns>
-        public CustomerSetting GetSportsBookSettingForInsert(SettingContext settingContext)
+        /// <param name="errCode">The error code.</param>
+        /// <returns>
+        /// Sports book customer setting.
+        /// </returns>
+        public CustomerSetting GetSportsBookSettingForInsert(SettingContext settingContext, out int errCode)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
@@ -61,7 +63,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
 
-            var msgId = 0;
+            errCode = Result.FailureValue;
             var maxLicenseePt = 0;
             _customerSettingRepository.GetSettingForInsert(
                 getAgentSettingCriteria,
@@ -70,24 +72,21 @@ namespace LicenseeAgent.CustomerSetting.Services
                 out commissionSetting,
                 out bettingLimits,
                 out positionTakingData,
-                out msgId,
+                out errCode,
                 out maxLicenseePt);
 
-            if (msgId == 0)
+            if (errCode == Result.SuccessValue)
             {
                 return new CustomerSetting
-                        {
-                            CustInfo = custInfo,
-                            CommissionSetting = commissionSetting,
-                            BettingLimits = bettingLimits,
-                            PositionTakingSetting = ServiceUtils.BuildPositionTakingGroups((int)Product.Product_0, settingContext, positionTakingData, maxLicenseePt)
-                        };
+                {
+                    CustInfo = custInfo,
+                    CommissionSetting = commissionSetting,
+                    BettingLimits = bettingLimits,
+                    PositionTakingSetting = ServiceUtils.BuildPositionTakingGroups((int)Product.Product_0, settingContext, positionTakingData, maxLicenseePt)
+                };
             }
 
-            return new CustomerSetting
-                    {
-                        Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
-                    };
+            return null;
         }
 
         /// <summary>
@@ -130,11 +129,6 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
             };
-        }
-
-        public StringBuilder GetFormatJavascript(CustomerSetting sportBooksCustomer, SettingContext settingContext)
-        {
-            return ServiceUtils.FormatJavascript(sportBooksCustomer, settingContext);
         }
 
         /// <summary>

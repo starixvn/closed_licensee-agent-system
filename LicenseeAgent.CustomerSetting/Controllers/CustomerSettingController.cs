@@ -9,13 +9,13 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
@@ -98,14 +98,27 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedJavascript();
             }
 
-            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext);
-            var numberGameCustomer = _numberGameService.GetNumberGameSettingForInsert(settingContext);
+            var errCode = Result.FailureValue;
+            var sportsBookCustomer = _customerSettingService.GetSportsBookSettingForInsert(settingContext, out errCode);
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(ServiceUtils.FormatJavascript(settingContext, "settingContext"));
+            if (errCode == Result.SuccessValue)
+            {
+                var numberGameCustomer = _numberGameService.GetNumberGameSettingForInsert(settingContext, out errCode);
+                if (errCode == Result.SuccessValue)
+                {
+                    stringBuilder.AppendLine(ServiceUtils.FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
+                    stringBuilder.Append(ServiceUtils.FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                }
+            }
 
-            var javascriptString = _customerSettingService.GetFormatJavascript(
-                sportsBookCustomer,
-                settingContext).Append(_numberGameService.GetFormatJavascript(numberGameCustomer));
+            if (errCode != Result.SuccessValue)
+            {
+                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
+                stringBuilder.Append(ServiceUtils.FormatJavascript(result, "result"));
+            }
 
-            return JavaScript(javascriptString.ToString());
+            return JavaScript(stringBuilder.ToString());
         }
 
         /// <summary>
@@ -148,7 +161,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                                     });
             }
 
-            var javascriptString = _customerSettingService.GetFormatJavascript(sportsBookCustomer, settingContext);
+            var javascriptString = ServiceUtils.FormatJavascript(sportsBookCustomer, settingContext);
 
             return JavaScript(javascriptString.ToString());
         }
@@ -270,8 +283,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return InvalidModelJsonResult();
             }
 
-            var result = model.SettingContext.FormId == FormType.EditIndirectMember 
-                ? _customerSettingService.UpdateIndirectCustomer(model) 
+            var result = model.SettingContext.FormId == FormType.EditIndirectMember
+                ? _customerSettingService.UpdateIndirectCustomer(model)
                 : _customerSettingService.UpdateCustomer(model);
 
             var hasUpdateCommission = model.UpdateDataSportsBookCustomer.CommissionSetting != null

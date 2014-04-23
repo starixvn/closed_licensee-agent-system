@@ -7,9 +7,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
-    using System.Text;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.NumberGame;
 
     /// <summary>
     /// INumberGameSettingService interface.
@@ -20,9 +18,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// Get Agent setting for insert new.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
-        /// <returns>Number game customer setting.</returns>
-        CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext);
-
-        StringBuilder GetFormatJavascript(CustomerSetting customerSetting);
+        /// <param name="errCode">The error code.</param>
+        /// <returns>
+        /// Number game customer setting.
+        /// </returns>
+        Entities.NumberGame.CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext, out int errCode);
     }
 }

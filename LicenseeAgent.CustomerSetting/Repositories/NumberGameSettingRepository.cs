@@ -19,7 +19,6 @@ namespace LicenseeAgent.CustomerSetting.Repositories
     using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.NumberGame;
 
     /// <summary>
     /// NumberGameSettingRepository class.
@@ -41,7 +40,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             ICriteria criteria,
             SettingContext settingContext,
             out CommissionSetting commissionSetting,
-            out IList<NumberGameBettingLimit> bettingLimits,
+            out IList<Entities.NumberGame.BettingLimit> bettingLimits,
             out Dictionary<string, PositionTaking> positionTakingDataList,
             out int msgId,
             out int maxLicenseePt)
@@ -56,7 +55,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
                 maxLicenseePt = 0;
                 msgId = -1;
                 commissionSetting = new CommissionSetting();
-                bettingLimits = new List<NumberGameBettingLimit>();
+                bettingLimits = new List<Entities.NumberGame.BettingLimit>();
                 positionTakingDataList = new Dictionary<string, PositionTaking>();
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
@@ -119,12 +118,12 @@ namespace LicenseeAgent.CustomerSetting.Repositories
         /// <param name="bettingLimits">Bet limits setting after read.</param>
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
-        private static void ReadBetLimitData(IList<NumberGameBettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
+        private static void ReadBetLimitData(IList<Entities.NumberGame.BettingLimit> bettingLimits, IDataReader reader, bool getUplineBetlimit = false)
         {
             while (reader.Read())
             {
                 var sportType = reader.ToInt("SportType");
-                var bettingLimit = new NumberGameBettingLimit
+                var bettingLimit = new Entities.NumberGame.BettingLimit
                 {
                     SportId = sportType,
                     BetTypeId = reader.ToInt("BetType"),

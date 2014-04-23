@@ -9,9 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
 {
     using System.Collections.Generic;
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.NumberGame;
 
     /// <summary>
     /// INumberGameSettingRepository interface.
@@ -33,7 +31,7 @@ namespace LicenseeAgent.CustomerSetting.Repositories
             ICriteria criteria,
             SettingContext settingContext,
             out CommissionSetting commissionSetting,
-            out IList<NumberGameBettingLimit> bettingLimits,
+            out IList<Entities.NumberGame.BettingLimit> bettingLimits,
             out Dictionary<string, PositionTaking> positionTakingDataList,
             out int msgId,
             out int maxLicenseePt);

@@ -9,18 +9,13 @@ namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Fanex.Common;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria.NumberGame.Agent;
     using LicenseeAgent.CustomerSetting.Criteria.NumberGame.Licensee;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.NumberGame;
     using LicenseeAgent.CustomerSetting.Repositories;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// NumberGameSettingService class.
@@ -38,16 +33,19 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// Get Agent setting for insert new.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
-        /// <returns>Number game customer setting.</returns>
-        public CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext)
+        /// <param name="errCode">The error code.</param>
+        /// <returns>
+        /// Number game customer setting.
+        /// </returns>
+        public Entities.NumberGame.CustomerSetting GetNumberGameSettingForInsert(SettingContext settingContext, out int errCode)
         {
             CommissionSetting commissionSetting;
-            IList<NumberGameBettingLimit> bettingLimits;
+            IList<Entities.NumberGame.BettingLimit> bettingLimits;
             Dictionary<string, PositionTaking> positionTakingData;
 
             ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
 
-            var msgId = 0;
+            errCode = Result.FailureValue;
             var maxLicenseePt = 0;
             _numberGameSettingRepository.GetSettingForInsert(
                 getAgentSettingCriteria,
@@ -55,63 +53,20 @@ namespace LicenseeAgent.CustomerSetting.Services
                 out commissionSetting,
                 out bettingLimits,
                 out positionTakingData,
-                out msgId,
+                out errCode,
                 out maxLicenseePt);
 
-            if (msgId == 0)
+            if (errCode == Result.SuccessValue)
             {
-                return new CustomerSetting
+                return new Entities.NumberGame.CustomerSetting
                 {
                     CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits.Cast<BettingLimit>().ToList(),
+                    BettingLimits = bettingLimits.Cast<Entities.NumberGame.BettingLimit>().ToList(),
                     PositionTakingSetting = ServiceUtils.BuildPositionTakingGroups((int)Product.Product_2, settingContext, positionTakingData, maxLicenseePt)
                 };
             }
 
-            return new CustomerSetting
-            {
-                Result = new Result(msgId, ResourceManager.GetErrMsg(msgId))
-            };
-        }
-
-        public StringBuilder GetFormatJavascript(CustomerSetting numberGameCustomer)
-        {
-            return FormatJavascript(numberGameCustomer);
-        }
-
-        /// <summary>
-        /// Format JSON return to client.
-        /// </summary>
-        /// <param name="customerSetting">The number game customer.</param>
-        /// <param name="settingContext">Setting Context.</param>
-        /// <returns>String JAVASCRIPT.</returns>
-        public StringBuilder FormatJavascript(
-            CustomerSetting customerSetting,
-            SettingContext settingContext = null)
-        {
-            var settingScript = new StringBuilder();
-
-            var commissionSetting = customerSetting != null ? customerSetting.CommissionSetting : null;
-            var betLimits = customerSetting != null ? customerSetting.BettingLimits : null;
-            var positionTakingSetting = customerSetting != null ? customerSetting.PositionTakingSetting : null;
-            JsonSerializerSettings jsonSetting = ServiceUtils.GetJsonSetting;
-
-            if (commissionSetting != null)
-            {
-                settingScript.Append(string.Format("var numberGameCommissionSetting= {0}; \n", JsonConvert.SerializeObject(commissionSetting, jsonSetting)));
-            }
-
-            if (betLimits != null)
-            {
-                settingScript.Append(string.Format("var numberGameBetLimits= {0}; \n", JsonConvert.SerializeObject(betLimits, jsonSetting)));
-            }
-
-            if (positionTakingSetting != null)
-            {
-                settingScript.Append(string.Format("var numberGamePositionTakingSetting= {0}; \n", JsonConvert.SerializeObject(positionTakingSetting, jsonSetting)));
-            }
-
-            return settingScript;
+            return null;
         }
 
         /// <summary>

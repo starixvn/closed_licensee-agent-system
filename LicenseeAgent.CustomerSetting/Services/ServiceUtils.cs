@@ -268,6 +268,11 @@ namespace LicenseeAgent.CustomerSetting.Services
             return xmlResult;
         }
 
+        public static string FormatJavascript(object obj, string name)
+        {
+            return string.Format("var {0} = {1}; \n", name, JsonConvert.SerializeObject(obj, jsonSerializeSettings));
+        }
+
         /// <summary>
         /// Format JSON return to client.
         /// </summary>

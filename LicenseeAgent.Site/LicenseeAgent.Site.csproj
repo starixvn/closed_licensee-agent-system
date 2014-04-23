@@ -538,7 +538,9 @@
     <Folder Include="Views\CustomerSetting\NumberGame\scripts\controllers\" />
     <Folder Include="Views\CustomerSetting\NumberGame\scripts\directives\" />
     <Folder Include="Views\CustomerSetting\NumberGame\scripts\languages\" />
-    <Folder Include="Views\CustomerSetting\SportsBook\scripts\filters\" />
+    <Folder Include="Views\CustomerSetting\Resources\scripts\controllers\" />
+    <Folder Include="Views\CustomerSetting\Resources\scripts\directives\" />
+    <Folder Include="Views\CustomerSetting\Resources\scripts\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

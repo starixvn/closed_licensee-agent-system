@@ -8,7 +8,7 @@ if (fanex.customerSetting) {
     [
         '$scope',
         '$http',
-        function CustSettingController($scope, $http) {
+        function ($scope, $http) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -47,7 +47,7 @@ if (fanex.customerSetting) {
             var decodeMessages = function (string) {
                 var array = decodeURIComponent(string).split('|');
                 if (array.length % 2 !== 0) {
-                    return;
+                    return string;
                 }
                 var length = array.length / 2;
                 var messages = [];

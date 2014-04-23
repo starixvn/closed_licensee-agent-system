@@ -12,9 +12,9 @@
                 trigger: 'manual'
             })
             .autoNumeric('init', {
-                mDec: 4,
-                vMin: Number.MinInt,
-                vMax: Number.MaxInt,
+                mDec: 0,
+                vMin: 0,
+                vMax: 999999999999,
                 lZero: 'deny',
                 wEmpty: 'zero',
                 aPad: false

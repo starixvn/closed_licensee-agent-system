@@ -11,11 +11,13 @@
 namespace LicenseeAgent.Web.Services
 {
     using System.Collections.Generic;
-    using Criterias;
     using Entities;
+    using Fanex.NAP.Framework.Data;
 
     public interface IMonitoringService
     {
-        IEnumerable<SyncMonitoring> GetFailedAPICalls(SyncMonitoringCriteria criteria);
+        IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria);
+
+        void UpdateLogStatus(ICriteria criteria);
     }
 }

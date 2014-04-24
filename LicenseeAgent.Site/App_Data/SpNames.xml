@@ -167,5 +167,6 @@
   </Function>
   <Function name="Monitoring">
     <Setting Key="Las_SyncMonitoring" SpName="Las_SyncMonitoring" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_SyncMonitoring_UpdateLogStatus" SpName="Las_SyncMonitoring_UpdateLogStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>  
 </Functions>

@@ -15,13 +15,19 @@ namespace LicenseeAgent.Web.Entities
     /// </summary>
     public class SyncMonitoring
     {
-        public int CustID { get; set; }
+        public int KeyId { get; set; }
+
+        public int CustId { get; set; }
+
+        public int UserId { get; set; }
 
         public string ActionName { get; set; }
 
-        public int ActionID { get; set; }
+        public int ActionId { get; set; }
 
         public string Command { get; set; }
+
+        public string InputParams { get; set; }
 
         public string Remark { get; set; }
 

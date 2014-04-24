@@ -51,7 +51,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult InsertNewMember(InsertNewMemberAction action)
+        public ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
             action.LastName = action.LastName ?? Constants.EmptyString;
@@ -60,7 +60,7 @@ namespace LicenseeAgent.Taiwan.Services
             action.Fax = action.Fax ?? string.Empty;
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
-            return ExecuteSingleLog(action);
+            return ExecuteSingleLog(action, isReinvoke);
         }
 
         /// <summary>
@@ -70,11 +70,11 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult ResetPassword(ResetPasswordAction action)
+        public ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false)
         {
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
-            return ExecuteSingleLog(action);
+            return ExecuteSingleLog(action, isReinvoke);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action)
+        public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
             action.LastName = action.LastName ?? Constants.EmptyString;
@@ -92,7 +92,7 @@ namespace LicenseeAgent.Taiwan.Services
             action.OtherPhone = action.OtherPhone ?? string.Empty;
             action.Fax = action.Fax ?? string.Empty;
 
-            return ExecuteSingleLog(action);
+            return ExecuteSingleLog(action, isReinvoke);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
+        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false)
         {
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
             var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
@@ -172,7 +172,11 @@ namespace LicenseeAgent.Taiwan.Services
                 criteria.LogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(updateMemberStatusActionLog);
                 criteria.ApiErrCode = memberStatusResult.ApiErrCode;
                 criteria.ApiErrMsg = memberStatusResult.ApiErrMsg;
-                _logService.WriteLog(criteria);
+
+                if (!isReinvoke)
+                {
+                    _logService.WriteLog(criteria);
+                }
             }
             catch (Exception ex)
             {
@@ -188,7 +192,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">The action.</param>
         /// <returns>Return action response result.</returns>
-        private ResponseResult ExecuteSingleLog(LogAction action)
+        private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke)
         {
             var criteria = (SingleLogActionCriteria)action.CreateCriteria();
             _logService.WriteLog(criteria);
@@ -203,7 +207,11 @@ namespace LicenseeAgent.Taiwan.Services
                 criteria.LogId = criteria.LogIdReturn;
                 criteria.ApiErrCode = responseResult.ApiErrCode;
                 criteria.ApiErrMsg = responseResult.ApiErrMsg;
-                _logService.WriteLog(criteria);
+
+                if (!isReinvoke)
+                {
+                    _logService.WriteLog(criteria);
+                }
             }
             catch (Exception ex)
             {

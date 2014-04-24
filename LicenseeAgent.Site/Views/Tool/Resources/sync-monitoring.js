@@ -2,15 +2,23 @@
 
 var gridOptions = {
     columns: [
-                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: "All", Width: 50, Name: "ActionID", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: '<input type="checkbox" id="chkbox_all" class="" onchange="syncmonitoring.checkboxAllOnChange()""></input><button id="btn_multreinvoke" class="btn btn-primary hide" onclick="syncmonitoring.multipleReInvoke()">Re-Invoke</button>',
+                    Width: 100, Name: "", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<input type="checkbox" id="chkbox_{0}" class="" onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;" data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>'.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                    }
+                },
                 { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Input Params", Width: 300, Name: "Command", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Re-Invoke", Width: 50, Name: "", HeaderAlign: "center", CellAlign: "center" }
+                { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button><label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>'.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                    }
+                }
             ],
     showPager: true,
-    gridExpandHeight: 100,
+    gridExpandHeight: 110,
     bodyRowHeight: 29
 };
 
@@ -18,11 +26,9 @@ var syncmonitoring = (function ($) {
     'use strict';
     return {
         init: function () {
-            // search
             $("#actionmonitoring").click(function () {
                 syncmonitoring.reRenderAfterPaged(0, core.pageSizes[0]);
             });
-
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
@@ -35,7 +41,7 @@ var syncmonitoring = (function ($) {
                 actionID: $("#action").val(),
                 taiwanAPIUrl: $("#taiwanapiurl").val()
             };
-            
+
             $.ajax({
                 url: "SyncMonitoring",
                 type: 'post',
@@ -52,9 +58,86 @@ var syncmonitoring = (function ($) {
                     };
                     gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                     $('#monitoringGrid').show().fanexGrid(gridOptions);
+
+                    if (data.TotalItems < 1) {
+                        $('#chkbox_all').addClass('hide');
+                        $('.no-data-not-frozen').width(1020);
+                    }
                 },
                 complete: function () {
                     core.unblockUI();
+                }
+            });
+        },
+        checkboxAllOnChange: function () {
+            if ($('#chkbox_all').prop('checked')) {
+                $('#tblContent_monitoringGrid tbody input').each(function () {
+                    this.checked = true;
+                });
+                $('#btn_multreinvoke').removeClass('hide');
+            }
+            else {
+                $('#tblContent_monitoringGrid tbody input').each(function () {
+                    this.checked = false;
+                });
+                $('#btn_multreinvoke').addClass('hide');
+            }
+        },
+        checkboxOnChange: function () {
+            if ($('#tblContent_monitoringGrid tbody input:checked').length > 0) {
+                $('#btn_multreinvoke').removeClass('hide');
+                if ($('#tblContent_monitoringGrid tbody input').length === $('#tblContent_monitoringGrid tbody input:checked').length) {
+                    $('#chkbox_all').prop('checked', true);
+                }
+                else {
+                    $('#chkbox_all').prop('checked', false);
+                }
+            }
+            else {
+                $('#btn_multreinvoke').addClass('hide');
+            }
+        },
+        singleReInvoke: function (keyid, actionid, custid, userid, command) {
+            var params = {
+                KeyId: keyid,
+                ActionId: actionid,
+                CustId: custid,
+                UserId: userid,
+                Command: command
+            };
+
+            $.ajax({
+                url: "SingleReInvoke",
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (data.IsSuccess == "true") {
+                        $('#chkbox_' + keyid).addClass('hide');
+                        $('#btn_' + keyid).addClass('hide');
+                        $('#lbl_' + keyid).removeClass('hide');
+                    }
+                    else {
+                        alert('Re-Invoke failed for Log ID = {0} !!!'.format(keyid));
+                    }
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
+        },
+        multipleReInvoke: function () {
+            $('#tblContent_monitoringGrid tbody input').each(function () {
+                if ($(this).prop('checked') == true) {
+                    syncmonitoring.singleReInvoke(
+                        $(this).attr('data-keyid'),
+                        $(this).attr('data-actionid'),
+                        $(this).attr('data-custid'),
+                        $(this).attr('data-userid'),
+                        $(this).attr('data-command')
+                    );
                 }
             });
         }

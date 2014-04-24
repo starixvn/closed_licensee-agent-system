@@ -9,10 +9,15 @@ namespace LicenseeAgent.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
+    using Entities;
     using Fanex.Common;
+    using Filters;
+    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Taiwan.Results;
+    using LicenseeAgent.Taiwan.Services;
     using Services;
 
     /// <summary>
@@ -23,10 +28,12 @@ namespace LicenseeAgent.Web.Controllers
     public class ToolController : Controller
     {
         private readonly IMonitoringService _monitoringService;
+        private readonly IMemberService _memberService;
 
-        public ToolController(IMonitoringService monitoringService)
+        public ToolController(IMonitoringService monitoringService, IMemberService memberService)
         {
             _monitoringService = monitoringService;
+            _memberService = memberService;
         }
 
         [HttpGet]
@@ -108,7 +115,7 @@ namespace LicenseeAgent.Web.Controllers
             foreach (var item in failedAPICalls)
             {
                 var inputParamsHtmlString = string.Empty;
-                switch (item.ActionID)
+                switch (item.ActionId)
                 {
                     case 301:
                         inputParamsHtmlString = GenerateInputParamsHtmlString(ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command));
@@ -121,14 +128,14 @@ namespace LicenseeAgent.Web.Controllers
                         break;
                     case 305:
                         var updateMemberAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(item.Command);
-                        updateMemberAction.IBCCustId = item.CustID.ToString();
+                        updateMemberAction.IBCCustId = item.CustId.ToString();
                         inputParamsHtmlString = GenerateInputParamsHtmlString(updateMemberAction);
                         break;
                 }
 
-                item.Command = inputParamsHtmlString;
+                item.InputParams = inputParamsHtmlString;
             }
-            
+
             return Json(new
             {
                 List = failedAPICalls,
@@ -137,10 +144,65 @@ namespace LicenseeAgent.Web.Controllers
         }
 
         /// <summary>
+        /// Re-invoke a failed action.
+        /// </summary>
+        /// <param name="syncData">Synchonization data.</param>
+        /// <returns>JSON object.</returns>
+        [HttpPost]
+        public JsonResult SingleReInvoke(SyncMonitoring syncData)
+        {
+            var responseResult = new ResponseResult(0, string.Empty);
+            var licenseeID = (int)DomainMapper.GetLicenseeId(Request);
+            switch (syncData.ActionId)
+            {
+                case 301:
+                    var resetPasswordAction = ObjectSerializer<ResetPasswordAction>.Deserialize(syncData.Command);
+                    resetPasswordAction.LicenseeId = licenseeID;
+                    resetPasswordAction.UserId = syncData.UserId;
+                    responseResult = _memberService.ResetPassword(resetPasswordAction, true);
+                    break;
+                case 303:
+                    var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(syncData.Command);
+                    updateMemberInfoAction.LicenseeId = licenseeID;
+                    updateMemberInfoAction.UserId = syncData.UserId;
+                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true);
+                    break;
+                case 304:
+                    var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(syncData.Command);
+                    insertNewMemberAction.LicenseeId = licenseeID;
+                    insertNewMemberAction.UserId = syncData.UserId;
+                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true);
+                    break;
+                case 305:
+                    var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(syncData.Command);
+                    updateMemberStatusAction.LicenseeId = licenseeID;
+                    updateMemberStatusAction.UserId = syncData.UserId;
+                    responseResult = _memberService.UpdateMemberStatus(updateMemberStatusAction, true);
+                    break;
+            }
+
+            if (responseResult.ErrCode == Result.SuccessValue)
+            {
+                _monitoringService.UpdateLogStatus(new SyncMonitoringUpdateStatusCriteria
+                {
+                        KeyID = syncData.KeyId,
+                        NewStatusID = 2
+                });
+            }
+
+            return Json(new
+            {
+                ActionID = syncData.ActionId,
+                IsSuccess = responseResult.ErrCode == Result.SuccessValue
+            });
+        }
+
+        /// <summary>
         /// Generate Input Parameters Html String.
         /// </summary>
         /// <param name="logActionObject">Log action object.</param>
         /// <returns>Html string.</returns>
+        [NonAction]
         public string GenerateInputParamsHtmlString(LogAction logActionObject)
         {
             var inputParamsHtmlString = string.Empty;

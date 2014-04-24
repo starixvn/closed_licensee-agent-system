@@ -11,8 +11,8 @@
 namespace LicenseeAgent.Web.Services
 {
     using System.Collections.Generic;
-    using Criterias;
     using Entities;
+    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
 
     /// <summary>
@@ -20,9 +20,14 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public class MonitoringService : QueryService, IMonitoringService
     {
-        public IEnumerable<SyncMonitoring> GetFailedAPICalls(SyncMonitoringCriteria criteria)
+        public IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria)
         {
             return GetEntites<SyncMonitoring>(criteria);
+        }
+        
+        public void UpdateLogStatus(ICriteria criteria)
+        {
+            Execute(criteria);
         }
     }
 }

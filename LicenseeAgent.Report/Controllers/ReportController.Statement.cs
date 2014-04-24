@@ -136,6 +136,12 @@ namespace LicenseeAgent.Report.Controllers
                 ViewBag.ShowBackButton = true;
             }
 
+            var listProducts = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId).ToList();
+            var listProductsNoPlaytechCasino = (from s in listProducts
+                            where s.ProductName != "Playtech Casino"
+                            select s.ProductId).ToList();
+            ViewBag.Product = string.Join(",", listProductsNoPlaytechCasino);
+
             ViewBag.HideUsername = false;
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)

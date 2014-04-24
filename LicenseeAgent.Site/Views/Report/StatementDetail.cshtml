@@ -54,6 +54,7 @@
     </div>
     @Html.HiddenFor(m => m.AgentLevel)
     @Html.HiddenFor(m => m.IsMember)
+    <input type="hidden" id="Product" value="@ViewBag.Product" />
 }
 @if (ViewBag.ShowBackButton != null)
 {

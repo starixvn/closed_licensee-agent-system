@@ -62,7 +62,8 @@ var statementDetailReport = (function ($) {
         },
         BetList: function (custId, statusIDs, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = "/BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}".format(custId, dateTime, dateTime, statusIDs);
+            var url = "/BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}&ProductIds={4}";
+            url = url.format(custId, dateTime, dateTime, statusIDs, $("#Product").val());
             popup.openFrame(url, {
                 width: 970,
                 height: 600

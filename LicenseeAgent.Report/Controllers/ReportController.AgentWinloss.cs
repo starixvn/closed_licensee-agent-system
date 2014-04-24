@@ -70,18 +70,15 @@ namespace LicenseeAgent.Report.Controllers
             List<AgentWinLoss> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
-                var criteria = new WinLossMemberCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                result = _reportService.AgentWinLossReport(new WinLossMemberCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
             }
             else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
             {
-                var criteria = new WinLossSuperViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                result = _reportService.AgentWinLossReport(new WinLossSuperViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
             }
             else
             {
-                var criteria = new WinLossAgentViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                result = _reportService.AgentWinLossReport(new WinLossAgentViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
             }
 
             var totalRow = from x in result

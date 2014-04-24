@@ -440,7 +440,6 @@ var core = (function ($) {
             $('.case:checked').each(function () {
                 $('#Product').val($('#Product').val() + $(this).val() + ',');
             });
-
         }
     };
 } (jQuery));

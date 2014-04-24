@@ -14,7 +14,7 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class WinlossBase : CriteriaBase
     {
-        public WinlossBase(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType)
+        public WinlossBase(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType, string productIds)
         {
             AgentId = agentId;
             FromDate = fromDate;
@@ -22,6 +22,7 @@ namespace LicenseeAgent.Report.Criteria
             MoveBetsDay = moveBetsDay;
             BalanceUpDay = balanceUpDay;
             DrawType = drawType;
+            ProductIds = productIds;
         }
 
         public int AgentId { get; set; }
@@ -35,6 +36,8 @@ namespace LicenseeAgent.Report.Criteria
         public DateTime BalanceUpDay { get; set; }
 
         public short DrawType { get; set; }
+
+        public string ProductIds { get; set; }
 
         public override bool IsValid()
         {

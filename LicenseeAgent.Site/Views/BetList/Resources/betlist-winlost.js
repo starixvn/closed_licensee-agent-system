@@ -97,8 +97,8 @@ var betList = (function ($) {
         ViewDownline: function (agentId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel
-                                            + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb="
-                                            + $("#BreadCrumb").val() + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val());
+                                    + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb=" + $("#BreadCrumb").val() 
+                                    + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#ProductIds").val());
         }
     };
 } (jQuery));

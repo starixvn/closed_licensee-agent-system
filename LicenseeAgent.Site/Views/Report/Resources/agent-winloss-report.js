@@ -155,12 +155,13 @@ var agentWinLossReport = (function ($) {
                                 + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#Product").val());
         },
         ViewBetList: function (custId, agentLevel, username) {
+            core.setProductValue(); // Set Product selected values.
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             var status = (drawFilter === "1" ? "112,113" : "111,112,113");
             location.href = core.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate="
                                             + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs="
-                                            + status + "&title=" + document.title);
+                                            + status + "&ProductIds=" + $("#Product").val() + "&title=" + document.title);
         }
     };
 })(jQuery);

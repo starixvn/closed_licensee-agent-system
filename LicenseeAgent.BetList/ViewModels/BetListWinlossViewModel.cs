@@ -25,6 +25,8 @@ namespace LicenseeAgent.BetList.ViewModels
 
         public string StatusIDs { get; set; }
 
+        public string ProductIds { get; set; }
+
         public string Title { get; set; }
     }
 }

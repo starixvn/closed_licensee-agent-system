@@ -11,6 +11,10 @@ namespace LicenseeAgent.Web.Criterias
 
         public long TransId { get; set; }
 
+        public int SportType { get; set; }
+
+        public int BetType { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_Ticket_CheckBelonging";

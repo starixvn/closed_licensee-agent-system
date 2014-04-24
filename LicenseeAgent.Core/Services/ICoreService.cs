@@ -15,6 +15,6 @@ namespace LicenseeAgent.Core.Services
 
         IEnumerable<LicenseeDomain> GetLicenseeDomains();
 
-        IEnumerable<Product> GetProducts(int LicenseeID);
+        IEnumerable<Product> GetProducts(int licenseeID);
     }
 }

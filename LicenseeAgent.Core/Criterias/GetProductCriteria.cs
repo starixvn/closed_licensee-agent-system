@@ -9,6 +9,9 @@ namespace LicenseeAgent.Core.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get List Product Criteria.
+    /// </summary>
     public class GetProductCriteria : CriteriaBase
     {
         public int LicenseeID { get; set; }

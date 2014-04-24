@@ -27,7 +27,7 @@ namespace LicenseeAgent.BetList.Utilities
         private bool _showOdds;
         private bool _isShowMember;
         private string _formatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
-        private string _clickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}')\"";
+        private string _clickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}', {2}, {3})\"";
         private TicketResult _ticketResult;
         private BetListHTMLBuilder _builder;
         private TicketHelper _ticketHelper;
@@ -157,7 +157,9 @@ namespace LicenseeAgent.BetList.Utilities
             var clickFunction = string.Format(
                 _clickFunction,
                 ticket.TransId,
-                ticket.Status);
+                ticket.Status,
+                ticket.SportTypeId,
+                ticket.BetTypeId);
             return clickFunction;
         }
 

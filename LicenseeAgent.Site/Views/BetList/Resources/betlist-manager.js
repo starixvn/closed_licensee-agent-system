@@ -26,6 +26,7 @@ var betList = (function ($) {
             $('.selectpicker').selectpicker();
 
             betList.renderDatePicker();
+            core.registerCheckboxProductEvent();
 
             // search
             $('#search-form').submit(function (e) {
@@ -43,14 +44,17 @@ var betList = (function ($) {
                 itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
             }
 
+            core.setProductValue(); //Set checked value to input hidden.
             var urlGetBetList = $('#search-form').attr('action');
             var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
             var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
+
             var params = {
                 CustId: custId,
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusIDs: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255'
+                StatusIDs: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255',
+                ProductIds: $("#Product").val()
             };
 
             $.ajax({

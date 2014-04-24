@@ -45,6 +45,7 @@ namespace LicenseeAgent.BetList.Controllers
         public ActionResult BetListSelByMember(int custId)
         {
             ViewBag.CustId = custId;
+            ViewBag.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             return View();
         }
 
@@ -101,9 +102,9 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="transId">Transaction ID.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult MixParlayDetails(long transId)
+        public ActionResult MixParlayDetails(long transId, int sportType, int betType)
         {
-            if (!_permissionService.IsDownLineTransaction(transId))
+            if (!_permissionService.IsDownLineTransaction(transId, sportType, betType))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -153,7 +154,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult Details(BetListDetailsCriteria criteria)
         {
-            if (!_permissionService.IsDownLineTransaction(criteria.TransId))
+            if (!_permissionService.IsDownLineTransaction(criteria.TransId, criteria.SportType, criteria.BetType))
             {
                 return RedirectToAccessDeniedPage();
             }

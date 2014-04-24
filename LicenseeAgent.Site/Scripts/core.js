@@ -417,6 +417,30 @@ var core = (function ($) {
             }
 
             alert('Your request is temporarily cannot be processed, please try again later!');
+        },
+
+        registerCheckboxProductEvent: function () {
+            // add multiple select / deselect functionality
+            $("#selectAll").click(function () {
+                $('.case').prop('checked', this.checked);
+            });
+
+            // if all checkbox are selected, check the selectall checkbox and viceversa
+            $(".case").click(function () {
+                if ($(".case").length === $(".case:checked").length) {
+                    $("#selectAll").prop("checked", true);
+                } else {
+                    $("#selectAll").removeAttr("checked");
+                }
+            });
+        },
+
+        setProductValue: function () {
+            $('#Product').val(""); // Reset Product hidden to empty.
+            $('.case:checked').each(function () {
+                $('#Product').val($('#Product').val() + $(this).val() + ',');
+            });
+
         }
     };
 } (jQuery));

@@ -16,6 +16,10 @@ namespace LicenseeAgent.BetList.Criteria
         public int AgentId { get; set; }
 
         public long TransId { get; set; }
+
+        public int SportType { get; set; }
+
+        public int BetType { get; set; }
         
         [SpParam(Ignored = true)]
         public string Status { get; set; }

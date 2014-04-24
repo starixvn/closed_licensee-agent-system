@@ -159,12 +159,14 @@ namespace LicenseeAgent.Web.Services
             : _downLineService.IsIndirectDownLine(criteria);
         }
 
-        public bool IsDownLineTransaction(long transactionId)
+        public bool IsDownLineTransaction(long transactionId, int sportType, int betType)
         {
             var criteria = new TicketDownLineCriteria
             {
                 AgentId = SessionManager.CurrentSession.AgentInfo.AgentId,
-                TransId = transactionId
+                TransId = transactionId,
+                SportType = sportType,
+                BetType = betType
             };
 
             return _downLineService.IsDownLineTicket(criteria);

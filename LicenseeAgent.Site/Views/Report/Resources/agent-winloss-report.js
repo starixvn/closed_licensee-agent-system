@@ -7,29 +7,13 @@ var agentWinLossReport = (function ($) {
             $("#tabs-area a:first").tab('show');
             agentWinLossReport.initDatePicker();
             agentWinLossReport.registerButtonClickEvent();
-            agentWinLossReport.registerCheckboxClickEvent();
+            core.registerCheckboxProductEvent();
             agentWinLossReport.dataGridBinding();
         },
 
         initDatePicker: function () {
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
-        },
-
-        registerCheckboxClickEvent: function () {
-            // add multiple select / deselect functionality
-            $("#selectAll").click(function () {
-                $('.case').prop('checked', this.checked);
-            });
-
-            // if all checkbox are selected, check the selectall checkbox and viceversa
-            $(".case").click(function () {
-                if ($(".case").length === $(".case:checked").length) {
-                    $("#selectAll").prop("checked", true);
-                } else {
-                    $("#selectAll").removeAttr("checked");
-                }
-            });
         },
 
         registerButtonClickEvent: function () {
@@ -62,16 +46,8 @@ var agentWinLossReport = (function ($) {
             });
         },
 
-        setProductHidden: function () {
-            $('#Product').val(""); // Reset Product hidden to empty.
-            $('.case:checked').each(function () {
-                $('#Product').val($('#Product').val() + $(this).val() + ',');
-            });
-
-        },
-
         dataGridBinding: function () {
-            agentWinLossReport.setProductHidden();
+            core.setProductValue();
 
             var submitOptions = $('form').serializeObject();
             $.ajax({
@@ -172,7 +148,7 @@ var agentWinLossReport = (function ($) {
         },
 
         ViewDownline: function (agentId, agentLevel, username) {
-            agentWinLossReport.setProductHidden();
+            core.setProductValue();
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username
                                 + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val() + "&breadcrumb=" + $("#BreadCrumb").val() 

@@ -7,10 +7,10 @@
 namespace LicenseeAgent.Report.ViewModels
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using LicenseeAgent.Resources;
-    using LicenseeAgent.Core.Entities;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Resources;
 
     /// <summary>
     /// Agent WinLoss Report View Model.

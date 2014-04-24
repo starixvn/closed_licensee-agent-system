@@ -12,6 +12,8 @@ namespace LicenseeAgent.BetList.Criteria
 
         public DateTime BalanceUpDay { get; set; }
 
+        public string ProductIds { get; set; }
+
         public int TotalRows { get; set; }
 
         public override string GetSettingKey()

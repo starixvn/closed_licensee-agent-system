@@ -70,19 +70,20 @@
 @helper Product(IEnumerable<Product> productList, string selectedProducts, string classNameProduct = "")
 {
     <label class="checkbox inline @classNameProduct">@Las.Product</label>
+    var isCheckAll = string.IsNullOrEmpty(selectedProducts) || (selectedProducts.Split(',').Length - 1 == productList.Count());
     if (productList.Count() > 1)
     {
         var productIds = string.IsNullOrEmpty(selectedProducts) ? new List<string>() : selectedProducts.Split(',').ToList();
         
         <label class="checkbox inline">
-            <input type="checkbox" id="selectAll" value="0"> 
+            <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty) > 
             @Las.All
         </label>
     
         foreach (var item in productList)
         {        
             <label class="checkbox inline">
-                <input type="checkbox" class="case" value="@item.ProductId" @(productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
+                <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
                 @item.ProductName
             </label>
         }

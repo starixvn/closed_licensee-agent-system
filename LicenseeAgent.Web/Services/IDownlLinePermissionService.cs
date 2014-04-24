@@ -26,7 +26,7 @@ namespace LicenseeAgent.Web.Services
 
         bool IsIndirectDownLineMember(int memberId);
 
-        bool IsDownLineTransaction(long transactionId);
+        bool IsDownLineTransaction(long transactionId, int sportType, int betType);
 
         bool IsDownLineReferenceNumber(long referenceNumber);
     }

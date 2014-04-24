@@ -28,21 +28,33 @@
         new { @class = "form-inline form-filter ", id = "search-form" }))
     {
         <div id="filter-area" class="clearfix filter-area">
-            <div class="controls-row">
-                <label>@Las.Month</label>
-                <div id="month-picker-control">
+            <div class="controls-row inline">
+                <label class="w60">@Las.Month</label>
+                <div id="month-picker-control" class="inline">
                 </div>
             </div>
             <div class="controls-row">
                 @Html.Label("Status", Las.Status, new { @class = "month" })
                 @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
+    
+            <div class="newline">
+            </div>
+
+            <div class="controls-row">
+                @RazorHelper.Product(ViewBag.ProductList, "", "w60")
+            </div>
+    
+            <div class="newline">
+            </div>
+
             <div class="controls-row">
                 <button class="btn btn-primary" type="submit">
                     @Las.Submit
                 </button>
             </div>
         </div>
+        <input type="hidden" id="Product" />
     }
 </div>
 <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">

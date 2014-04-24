@@ -24,6 +24,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
         ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false);
 
@@ -31,6 +32,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Reset password.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
         ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false);
 
@@ -38,6 +40,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
         ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false);
 
@@ -45,6 +48,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
         ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false);
 

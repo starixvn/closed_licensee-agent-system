@@ -1,4 +1,5 @@
 ﻿/*global core*/
+'use strict';
 
 var gridOptions = {
     columns: [
@@ -23,7 +24,6 @@ var gridOptions = {
 };
 
 var syncmonitoring = (function ($) {
-    'use strict';
     return {
         init: function () {
             $("#actionmonitoring").click(function () {
@@ -114,7 +114,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.IsSuccess == "true") {
+                    if (data.IsSuccess === "true") {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#lbl_' + keyid).removeClass('hide');
@@ -130,7 +130,7 @@ var syncmonitoring = (function ($) {
         },
         multipleReInvoke: function () {
             $('#tblContent_monitoringGrid tbody input').each(function () {
-                if ($(this).prop('checked') == true) {
+                if ($(this).prop('checked') === true) {
                     syncmonitoring.singleReInvoke(
                         $(this).attr('data-keyid'),
                         $(this).attr('data-actionid'),
@@ -145,6 +145,5 @@ var syncmonitoring = (function ($) {
 } (jQuery));
 
 $(function () {
-    'use strict';
     syncmonitoring.init();
 });

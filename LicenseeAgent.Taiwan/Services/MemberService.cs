@@ -48,6 +48,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>
         /// Response result.
         /// </returns>
@@ -67,6 +68,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Reset password.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>
         /// Response result.
         /// </returns>
@@ -81,6 +83,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>
         /// Response result.
         /// </returns>
@@ -147,6 +150,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
         public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false)
         {
@@ -191,6 +195,7 @@ namespace LicenseeAgent.Taiwan.Services
         /// Executes the specified action.
         /// </summary>
         /// <param name="action">The action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Return action response result.</returns>
         private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke)
         {

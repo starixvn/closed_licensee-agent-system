@@ -146,7 +146,7 @@ namespace LicenseeAgent.Web.Controllers
         /// <summary>
         /// Re-invoke a failed action.
         /// </summary>
-        /// <param name="syncData">Synchonization data.</param>
+        /// <param name="syncData">Synchronization data.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
         public JsonResult SingleReInvoke(SyncMonitoring syncData)

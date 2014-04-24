@@ -13,6 +13,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
@@ -65,6 +66,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
+        private readonly ICoreService _coreService = new CoreService();
         private readonly Services.NumberGame.ISettingService _numberGameService = new Services.NumberGame.SettingService();
         private readonly Services.SportsBook.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
         private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
@@ -105,14 +107,18 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             var sportsBookCustomer = _sportsBookService.GetSettingForInsert(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
-                var numberGameCustomer = _numberGameService.GetSettingForInsert(settingContext, out errCode);
-                if (errCode == Result.SuccessValue)
+                stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
+                if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() == 1)
                 {
-                    stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
-                    stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                    var numberGameCustomer = _numberGameService.GetSettingForInsert(settingContext, out errCode);
+                    if (errCode == Result.SuccessValue)
+                    {
+                        stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                    }
                 }
             }
 

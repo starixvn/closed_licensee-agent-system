@@ -70,11 +70,13 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
+    <Compile Include="Criterias\GetProductCriteria.cs" />
     <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Enumerations\LoginType.cs" />
+    <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />

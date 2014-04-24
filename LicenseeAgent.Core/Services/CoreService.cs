@@ -75,5 +75,15 @@ namespace LicenseeAgent.Core.Services
 
             return false;
         }
+
+        public IEnumerable<ProductInfo> GetProducts(int licenseeID)
+        {
+            var criteria = new GetProductCriteria
+            {
+                LicenseeID = licenseeID
+            };
+
+            return GetEntites<ProductInfo>(criteria);
+        }
     }
 }

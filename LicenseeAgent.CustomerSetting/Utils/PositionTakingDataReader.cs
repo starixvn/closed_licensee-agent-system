@@ -51,7 +51,10 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 }
                 else
                 {
-                    positionTakingData.Upline = new PositionTaking { Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV };
+                    positionTakingData.Upline = new PositionTaking
+                    {
+                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
+                    };
                 }
 
                 positionTakingData.AllDownLine = new PositionTaking

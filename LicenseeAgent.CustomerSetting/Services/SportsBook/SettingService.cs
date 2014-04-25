@@ -237,12 +237,16 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// <param name="reader">The reader.</param>
         private static void ParseDataSettingForUpdate(
             SettingContext settingContext,
-            CustomerInfo custInfo,
-            CommissionSetting commissionSetting,
-            IList<BettingLimit> bettingLimits,
-            Dictionary<string, PositionTaking> positionTakingDataList,
+            out CustomerInfo custInfo,
+            out CommissionSetting commissionSetting,
+            out IList<BettingLimit> bettingLimits,
+            out Dictionary<string, PositionTaking> positionTakingDataList,
             IDataReader reader)
         {
+            custInfo = new CustomerInfo();
+            commissionSetting = new CommissionSetting();
+            positionTakingDataList = new Dictionary<string, PositionTaking>();
+            bettingLimits = new List<BettingLimit>();
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
                 var userGroup = string.Empty;
@@ -392,7 +396,13 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 {
                     using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                     {
-                        ParseDataSettingForUpdate(settingContext, custInfo, commissionSetting, bettingLimits, positionTakingDataList, reader);
+                        ParseDataSettingForUpdate(
+                            settingContext, 
+                            out custInfo, 
+                            out commissionSetting, 
+                            out bettingLimits,
+                            out positionTakingDataList, 
+                            reader);
                     }
 
                     var outputParams = objDb.GetOuputParams();

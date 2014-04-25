@@ -303,7 +303,9 @@
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\position-taking-directive.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\number-game-setting.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\commission-setting-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode.html" />

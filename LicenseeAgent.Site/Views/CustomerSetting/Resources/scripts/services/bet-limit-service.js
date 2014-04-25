@@ -6,11 +6,7 @@
 
 if (fanex.customerSetting) {
     //// Helper
-
-    fanex.customerSetting.betLimitService = {
-        config: {
-            maxInput: 15
-        },
+    fanex.customerSetting.commonBetLimitService = {
         showInvalidMessage: function (element, message) {
             fanex.showHint(element, message);
         },
@@ -28,7 +24,6 @@ if (fanex.customerSetting) {
                     }
                 }
             }
-
             return true;
         },
         regIsDigit: function (input) {

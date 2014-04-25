@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global sportsBookSetting */
+/*global numberGameSetting */
 'use strict';
 
 if (fanex.customerSetting) {
@@ -159,9 +159,9 @@ if (fanex.customerSetting) {
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
                 var updatedPt = simpleModeData;
-                dataLength = sportsBookSetting.PositionTakingSetting.length;
+                dataLength = numberGameSetting.PositionTakingSetting.length;
                 for (indexData = 0; indexData < dataLength; indexData++) {
-                    currentGroup = sportsBookSetting.PositionTakingSetting[indexData];
+                    currentGroup = numberGameSetting.PositionTakingSetting[indexData];
                     if (currentGroup) {
                         var groupLength = currentGroup.PositionTakings.length;
                         for (indexGroup = 0; indexGroup < groupLength; indexGroup++) {
@@ -265,7 +265,6 @@ if (fanex.customerSetting) {
                     }
                 }
             }
-
             return true;
         }
     };

@@ -70,7 +70,6 @@ if (fanex.customerSetting) {
         }
     };
 
-
     fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent', function() {
         return {
             restrict: 'E',

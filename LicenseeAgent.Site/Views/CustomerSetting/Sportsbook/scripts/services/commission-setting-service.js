@@ -58,10 +58,9 @@ if (fanex.customerSetting) {
                     minDiscount: 0,
                     discount: commissionSettingModel[4].DiscountA,
                     oldDiscount: commissionSettingModel[4].DiscountA,
-                    maxDiscount: 0, //commissionSettingModel[4].Upline.DiscountA,
+                    maxDiscount: commissionSettingModel[4].Upline.DiscountA,
                     name: language['commissionSetting_NumberGame']
                 });
-
 
                 // GroupB
                 commissionSettingViewModel.push({
@@ -159,6 +158,12 @@ if (fanex.customerSetting) {
                             name: language['commissionSetting_HrFixedOddsComm'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].Discount,
+                        },
+                        // Number Game
+                        line5: {
+                            name: language['commissionSetting_NumberGame'],
+                            agentCommission: commissionSettingModel[4].Upline.DiscountA,
+                            memberCommission: commissionSettingModel[4].Discount,
                         }
                     };
 
@@ -226,6 +231,13 @@ if (fanex.customerSetting) {
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].Discount,
                             oldCommission: commissionSettingModel[3].Discount
+                        },
+                        // Number Game
+                        line5: {
+                            name: language['commissionSetting_NumberGame'],
+                            agentCommission: commissionSettingModel[4].Upline.DiscountA,
+                            memberCommission: commissionSettingModel[4].Discount,
+                            oldCommission: commissionSettingModel[4].Discount
                         }
                     };
 
@@ -329,7 +341,6 @@ if (fanex.customerSetting) {
         },
         arrangeCommissionSettingModel: function(commissionSettingModel) {
             var result = [];
-
             for (var i = 0; i < commissionSettingModel.length; i++) {
                 if (commissionSettingModel[i].BetTypeId === 1) {
                     result[0] = commissionSettingModel[i];

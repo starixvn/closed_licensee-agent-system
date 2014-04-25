@@ -1,5 +1,4 @@
 ﻿/*global core, popup, settingContext, result */
-/*exported custSettingController*/
 
 'use strict';
 
@@ -41,7 +40,15 @@ if (fanex.customerSetting) {
                 return $filter('number')(number, 2);
             };
 
-            $scope.insertCustomer = function() {
+            $scope.insertCustomer = function () {
+                var commissionSettingScope,
+                    bettingLimitScope,
+                    positionTakingScope,
+                    commissionSettings,
+                    bettingLimits,
+                    positionTakings,
+                    numberGameSetting = null;
+
                 var custInfoScope = angular.element('#custInfoController').scope();
                 if (custInfoScope.formCustInfo.$invalid) {
                     var keepGoing = true;
@@ -55,26 +62,24 @@ if (fanex.customerSetting) {
                         }
                     });
                 } else {
-                    // Commission Setting
-                    var commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
-                    if (!commissionSettingScope.isValidData()) {
-                        return;
-                    }
-                    var commissionSettingsModel = commissionSettingScope.saveData();
+                    commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
+                    bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
+                    positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
 
-                    // Betting Limit
-                    var bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
-                    if (!bettingLimitScope.isValidData()) {
+                    if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData() || !positionTakingScope.isValidData()) {
                         return;
                     }
-                    var bettingLimits = bettingLimitScope.saveData();
 
-                    // position taking
-                    var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
-                    if (!positionTakingScope.isValidData()) {
-                        return;
+                    commissionSettings = commissionSettingScope.saveData();
+                    bettingLimits = bettingLimitScope.saveData();
+                    positionTakings = positionTakingScope.saveData();
+
+                    if ($scope.haveNumberGame) {
+                        numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
+                        if (numberGameSetting == null) {
+                            return;
+                        }
                     }
-                    var positionTakingUpdated = positionTakingScope.saveData();
 
                     $scope.Messages = null;
                     core.blockUI();
@@ -86,16 +91,17 @@ if (fanex.customerSetting) {
                                 settingContext: settingContext,
                                 sportsBookSetting:
                                 {
-                                    PositionTakingSetting: positionTakingUpdated,
+                                    PositionTakingSetting: positionTakings,
                                     CustInfo: custInfoScope.custInfo,
                                     CommissionSetting: {
-                                        CommissionItems: commissionSettingsModel,
+                                        CommissionItems: commissionSettings,
                                         UserGroup: bettingLimitScope.settingContext.TargetRoleId === 1
                                             ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
                                             : ''
                                     },
                                     BettingLimits: bettingLimits
-                                }
+                                }, 
+                                numberGameSetting: numberGameSetting
                             }
                         }).
                         success(function(data) {
@@ -139,23 +145,23 @@ if (fanex.customerSetting) {
                 $('.messages').hide();
                 $scope.Messages = null;
 
-                var commissionSettingsModel = null,
+                var commissionSettings = null,
                     bettingLimits = null,
-                    userGroup = null;
+                    positionTakings = null,
+                    userGroup = null,
+                    commissionSettingScope,
+                    bettingLimitScope,
+                    positionTakingScope,
+                    numberGameSetting = null;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
-                    // Commission Setting
-                    var commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
-                    if (!commissionSettingScope.isValidData()) {
-                        return;
-                    }
-                    commissionSettingsModel = commissionSettingScope.saveData();
+                    commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
+                    bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
 
-                    // Betting Limit
-                    var bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
-                    if (!bettingLimitScope.isValidData()) {
+                    if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData()) {
                         return;
                     }
+                    commissionSettings = commissionSettingScope.saveData();
                     bettingLimits = bettingLimitScope.saveData();
 
                     userGroup = bettingLimitScope.settingContext.TargetRoleId === 1
@@ -163,12 +169,18 @@ if (fanex.customerSetting) {
                         : '';
                 }
 
-                // position taking
-                var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
+                positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
                 if (!positionTakingScope.isValidData()) {
                     return;
                 }
-                var positionTakingUpdated = positionTakingScope.saveData();
+                positionTakings = positionTakingScope.saveData();
+
+                if ($scope.haveNumberGame) {
+                    numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
+                    if (numberGameSetting == null) {
+                        return;
+                    }
+                }
 
                 core.blockUI();
                 $http({
@@ -179,13 +191,14 @@ if (fanex.customerSetting) {
                             settingContext: settingContext,
                             sportsBookSetting:
                             {
-                                PositionTakingSetting: positionTakingUpdated,
+                                PositionTakingSetting: positionTakings,
                                 CommissionSetting: {
-                                    CommissionItems: commissionSettingsModel,
+                                    CommissionItems: commissionSettings,
                                     UserGroup: userGroup
                                 },
                                 BettingLimits: bettingLimits
-                            }
+                            },
+                            numberGameSetting: numberGameSetting
                         }
                     }).
                     success(function(data) {

@@ -88,6 +88,28 @@ namespace LicenseeAgent.CustomerSetting.Utils
                     Discount =
                         Math.Round((reader.ToDecimal("Discount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
                 };
+
+                if (getUplineCom)
+                {
+                    commissionItem.Upline = new CommissionItem
+                    {
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountB = Math.Round((reader.ToDecimal("UplineMinDiscountB") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountC = Math.Round((reader.ToDecimal("UplineMinDiscountC") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountD = Math.Round((reader.ToDecimal("UplineMinDiscountD") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                    };
+                }
+                else
+                {
+                    commissionItem.Upline = new CommissionItem
+                    {
+                        DiscountA = commissionItem.DiscountA,
+                        DiscountB = commissionItem.DiscountB,
+                        DiscountC = commissionItem.DiscountC,
+                        DiscountD = commissionItem.DiscountD,
+                    };
+                }
+
                 commissionItems.Add(commissionItem);
             }
 

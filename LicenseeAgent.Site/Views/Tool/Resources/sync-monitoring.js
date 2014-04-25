@@ -1,20 +1,27 @@
-﻿/*global core*/
-'use strict';
+﻿/* global core */
+
+var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
+checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';
+var buttonHtml = '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button>';
+buttonHtml += '<label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>';
 
 var gridOptions = {
     columns: [
-                { HeaderText: '<input type="checkbox" id="chkbox_all" class="" onchange="syncmonitoring.checkboxAllOnChange()""></input><button id="btn_multreinvoke" class="btn btn-primary hide" onclick="syncmonitoring.multipleReInvoke()">Re-Invoke</button>',
+                { HeaderText: '<input type="checkbox" id="chkbox_all" class="" onchange="syncmonitoring.checkboxAllOnChange()""></input>'
+                    + '<button id="btn_multreinvoke" class="btn btn-primary hide" onclick="syncmonitoring.multipleReInvoke()">Re-Invoke</button>',
                     Width: 100, Name: "", HeaderAlign: "center", CellAlign: "center",
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return '<input type="checkbox" id="chkbox_{0}" class="" onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;" data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>'.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                    Formatter: function (rowIndex, rowData) {
+                        'use strict';
+                        return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
                     }
                 },
                 { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button><label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>'.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                    Formatter: function (rowIndex, rowData) {
+                        'use strict';
+                        return buttonHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
                     }
                 }
             ],
@@ -24,6 +31,8 @@ var gridOptions = {
 };
 
 var syncmonitoring = (function ($) {
+    'use strict';
+
     return {
         init: function () {
             $("#actionmonitoring").click(function () {
@@ -145,5 +154,6 @@ var syncmonitoring = (function ($) {
 } (jQuery));
 
 $(function () {
+    'use strict';
     syncmonitoring.init();
 });

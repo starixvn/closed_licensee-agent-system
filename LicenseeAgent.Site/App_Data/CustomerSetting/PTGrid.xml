@@ -17,7 +17,8 @@
   </Product>
   <!--Number Game-->
   <Product Id="2">
-    <SportType Id="161" IsLive="false" BetTypeIds="81,82,83,84,85,86,87,88,89,90" />
+    <SportType Id="161" IsLive="false" BetTypeIds="81,83,86,88" />
+    <SportType Id="161" IsLive="true" BetTypeIds="85,86,87,89,90" />
   </Product>
   <!--Virtual sports-->
   <Product Id="5">

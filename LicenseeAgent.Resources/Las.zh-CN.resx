@@ -1247,4 +1247,46 @@
   <data name="MemberAPIMonitoring" xml:space="preserve">
     <value>Member's API Monitoring</value>
   </data>
+  <data name="MaxPerBall" xml:space="preserve">
+    <value>Max Per Ball</value>
+  </data>
+  <data name="MaxPerBallMoreThanOrEqualMaxBet" xml:space="preserve">
+    <value>Max Per Ball must be greater than or equal to Max Bet</value>
+  </data>
+  <data name="MaxPerMatchMoreThanOrEqualMaxPerBall" xml:space="preserve">
+    <value>Max Per Match must be greater than or equal to Max Per Ball</value>
+  </data>
+  <data name="MaxPerBallLessThanOrEqualTo" xml:space="preserve">
+    <value>Max Per Ball must be less than or equal to</value>
+  </data>
+  <data name="FirstBallOddEven" xml:space="preserve">
+    <value>1st Ball O/E</value>
+  </data>
+  <data name="FirstBallOverUnder" xml:space="preserve">
+    <value>1st Ball O/U</value>
+  </data>
+  <data name="LastBallOddEven" xml:space="preserve">
+    <value>Last Ball O/E</value>
+  </data>
+  <data name="LastBallOverUnder" xml:space="preserve">
+    <value>Last Ball O/U</value>
+  </data>
+  <data name="NextCombo" xml:space="preserve">
+    <value>Next Combo</value>
+  </data>
+  <data name="NextHighLow" xml:space="preserve">
+    <value>Next High/Low</value>
+  </data>
+  <data name="NumberWheel" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
+  <data name="Warrior" xml:space="preserve">
+    <value>Warrior</value>
+  </data>
+  <data name="NumberGamePositionTakingSimpleModeHeader" xml:space="preserve">
+    <value>Position Taking (NG Dead ball 1st O/U)</value>
+  </data>
+  <data name="NumberGameSimpleModeNote" xml:space="preserve">
+    <value>Note: In simple mode, your changes of Number Game Dead Ball 1st O/U will be applied to other bet types as well.</value>
+  </data>
 </root>

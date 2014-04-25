@@ -1,0 +1,29 @@
+﻿<div>
+    <div class="betting-limit-sport">
+        <span>{{betSetting.sportTypeName}}</span>
+    </div>
+    <div class="betting-limit-item-col4">
+        <input type="text" class="input" ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMinBet()"}' readonly="readonly" />
+        <span ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number : 0}}
+        </span>
+    </div>
+    <div class="betting-limit-item-col4">
+        <input type="text" class="input" ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMaxBet()"}' readonly="readonly" />
+        <span ng-show="betSetting.MinMaxBet > 0">&lt;= {{betSetting.MinMaxBet | number : 0}}
+        </span>
+    </div>
+    <div class="betting-limit-item-col4">
+        <input type="text" class="input" ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
+               auto-numeric-format='{"command":"betSetting.actions.onChangeMaxPerMatch()"}' readonly="readonly" />
+        <span ng-show="betSetting.MinMaxPerMatch > 0">&lt;= {{betSetting.MinMaxPerMatch | number
+            : 0}} </span>
+    </div>
+    <div class="betting-limit-item-col4">
+        <input type="text" class="input" ng-model="modelData.MaxPerBall" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"modelData.actions.onChangeMaxPerBall()"}' />
+        <span ng-show="modelData.MaxPerMatch > 0">&lt;= {{modelData.MaxPerMatch | number
+            : 0}}</span>
+    </div>
+</div>

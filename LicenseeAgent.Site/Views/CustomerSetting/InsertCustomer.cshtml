@@ -28,7 +28,7 @@
     @ViewBag.Title
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting" class="fanex-sportbook-setting"
-    ng-controller="customerSetting.custSettingController" data-href="~/CustomerSetting/InsertCustomer">
+    ng-controller="CustomerSettingController" data-href="~/CustomerSetting/InsertCustomer">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
@@ -58,6 +58,7 @@
             </div>
         </div>
     </div>
+
     <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
         <div class="product-name" data-ng-show="settingMode">
             @Las.Sportsbook
@@ -76,6 +77,26 @@
             </div>
         </div>
     </div>
+    
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-show="settingMode && haveNumberGame">
+        <div class="product-name" data-ng-show="settingMode">
+            @Las.NumberGame
+        </div>
+        <div class="product-container">
+            <div class="clearfix">
+                <div class="edit-setting-warning" data-ng-show="settingMode">
+                    @Las.NumberGameSimpleModeNote
+                </div>
+            </div>
+            <div class="clearfix">
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSetting.cshtml", Model)
+            </div>
+            <div class="clearfix">
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTaking.cshtml", Model)
+            </div>
+        </div>
+    </div>
+
     <div class="clearfix">
         <div class="control-group">
             <button class="btn btn-primary" ng-click="insertCustomer($event)">

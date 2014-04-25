@@ -223,9 +223,10 @@ namespace LicenseeAgent.Site
                 "~/views/customersetting/resources/scripts", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
-                "~/views/customersetting/sportsbook/scripts", "*.js", true));
+                "~/views/customersetting/sportsbook/scripts", "*.js", true).IncludeDirectory(
+                "~/views/customersetting/numbergame/scripts", "*.js", true));
             bundles.Add(new LessBundle("~/css/customersetting/sportsbook").Include(
-                "~/views/customersetting/sportsbook/styles/fanex.sportsbookSetting.less"));
+                "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
         }
 
         /// <summary>

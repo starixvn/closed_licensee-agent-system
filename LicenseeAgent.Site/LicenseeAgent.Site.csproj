@@ -236,7 +236,9 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="App_Data\CustomerSetting\PTGrid.xml" />
+    <Content Include="App_Data\CustomerSetting\PTGrid.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\TotalBets\SoccerDetail.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -297,7 +299,29 @@
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\report-base.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\SportsBook.js">
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\bet-limit-controller.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\position-taking-directive.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\position-taking-service.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-simple-mode-readonly.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-simple-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-member-advanced-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-member-simple-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SportsBook.tt</DependentUpon>
@@ -306,13 +330,13 @@
     <Content Include="Views\Report\Resources\transfer-detail.js" />
     <Content Include="Views\Report\Resources\statement-detail-report.js" />
     <Content Include="Views\Error\Resources\under-maintenance-error.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\sports-book-lang.en-US.js">
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.en-US.js">
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\sports-book-lang.zh-CN.js">
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.zh-CN.js">
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\languages\sports-book-lang.zh-TW.js">
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.zh-TW.js">
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
     <Content Include="Views\Message\Resources\Message.js" />
@@ -332,18 +356,15 @@
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\fanex-core.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\cust-setting-controller.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\cust-info-controller.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\bet-limit-controller.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\commission-controller.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\bet-limit-directive.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\commission-directive.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\cust-info-directive.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\fanex.sports-book-setting.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\fanex.customer-setting.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\services\bet-limit-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\services\commission-setting-service.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\services\cust-info-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-simple-mode.html" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
@@ -535,12 +556,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
-    <Folder Include="Views\CustomerSetting\NumberGame\scripts\controllers\" />
-    <Folder Include="Views\CustomerSetting\NumberGame\scripts\directives\" />
-    <Folder Include="Views\CustomerSetting\NumberGame\scripts\languages\" />
-    <Folder Include="Views\CustomerSetting\Resources\scripts\controllers\" />
-    <Folder Include="Views\CustomerSetting\Resources\scripts\directives\" />
-    <Folder Include="Views\CustomerSetting\Resources\scripts\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -579,7 +594,7 @@
     <Content Include="Views\CustomerSetting\SportsBook\Commission.cshtml" />
     <Content Include="Views\CustomerSetting\SportsBook\BetSetting.cshtml" />
     <Content Include="Views\CustomerSetting\SportsBook\CustomerInfo.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\styles\fanex.sportsbookSetting.less" />
+    <Content Include="Views\CustomerSetting\Resources\styles\fanex.customerSetting.less" />
     <Content Include="Views\Account\Resources\home-page.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
@@ -768,7 +783,15 @@
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <None Include="Views\CustomerSetting\SportsBook\scripts\languages\SportsBook.tt">
+    <Content Include="Views\CustomerSetting\NumberGame\BetSetting.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\PositionTaking.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.en-US.js.orig" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.zh-cn.js.orig" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.zh-tw.js.orig" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.tt.orig" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SportsBook.js</LastGenOutput>
     </None>

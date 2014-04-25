@@ -191,6 +191,10 @@ input[type="text"], input[type="password"]
                 {
                     width: 299px;
                 }
+				.betting-limit-header-col4, .betting-limit-item-col4
+                {
+                    width: 224px;
+                }
             }
             .pt-container-box
             {
@@ -318,6 +322,27 @@ input[type="text"], input[type="password"]
         {
             .cell-block();
             width: 253px;
+            input[type=text], input[type=number] 
+            {
+                width: 110px;
+                text-align: right;
+            }
+        }
+
+		.betting-limit-header-col4 
+        {
+            .cell-header();
+			width: 189px;
+            &.min-bet
+            {
+                border-left-width: 0;
+            }
+        }
+
+        .betting-limit-item-col4
+        {
+            .cell-block();
+			width: 189px;
             input[type=text], input[type=number] 
             {
                 width: 110px;

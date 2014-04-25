@@ -1,0 +1,40 @@
+﻿<div ng-controller="NumberGameBetLimitAdvancedModeController">
+    <div>
+        <div class="betting-limit-sport-header">
+            <div class="betting-limit-header-text">
+            </div>
+        </div>
+        <div class="betting-limit-header-col4">
+            <div class="betting-limit-header-text">
+                <span>{{language['bettingLimit_MinBet']}}</span></div>
+        </div>
+        <div class="betting-limit-header-col4">
+            <div class="betting-limit-header-text">
+                <span>{{language['bettingLimit_MaxBet']}}</span></div>
+        </div>
+        <div class="betting-limit-header-col4">
+            <div class="betting-limit-header-text">
+                <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
+        </div>
+         <div class="betting-limit-header-col4">
+            <div class="betting-limit-header-text">
+                <span>{{language['bettingLimit_MaxPerBall']}}</span></div>
+        </div>
+    </div>
+    <div ng-repeat="betSetting in model.bettingLimitsModel">
+        @if (Model.FormId != FormType.ViewIndirectAgent)
+        {
+            <number-game-betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
+                                                     current-index="$index">
+            </number-game-betting-limit-advanced-mode>
+        }
+        else
+        {
+            <number-game-betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel" 
+                                                               bet-setting="betSetting" current-index="$index">
+            </number-game-betting-limit-advanced-mode-read-only>
+        }
+        <div class="clearfix">
+        </div>
+    </div>
+</div>

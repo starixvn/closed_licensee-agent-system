@@ -13,24 +13,23 @@ if (fanex.customerSetting) {
         config: {
             maxInput: 5
         },
-        showInvalidMessage: function (element, message) {
+        showInvalidMessage: function(element, message) {
             fanex.showHint(element, message);
         },
-        isValidData: function (commissionSettings) {
+        isValidData: function(commissionSettings) {
             if (commissionSettings instanceof Array) {
                 for (var i = 0; i < commissionSettings.length; i++) {
                     if (!commissionSettings[i].actions.isValid()) {
                         return false;
                     }
                 }
-            }
-            else {
+            } else {
                 return commissionSettings.actions.isValid();
             }
 
             return true;
         },
-        getCommissionSettingViewModel: function (commissionSettingModel, language, targetRoleId) {
+        getCommissionSettingViewModel: function(commissionSettingModel, language, targetRoleId) {
             var commissionSettingViewModel;
 
             if (targetRoleId !== 1) {
@@ -54,14 +53,15 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_GroupC']
                 });
 
-                // 1x2 Comm
+                // Number Game
                 commissionSettingViewModel.push({
                     minDiscount: 0,
-                    discount: commissionSettingModel[1].DiscountA,
-                    oldDiscount: commissionSettingModel[1].DiscountA,
-                    maxDiscount: commissionSettingModel[1].Upline.DiscountA,
-                    name: language['commissionSetting_1x2Comm']
+                    discount: commissionSettingModel[4].DiscountA,
+                    oldDiscount: commissionSettingModel[4].DiscountA,
+                    maxDiscount: 0, //commissionSettingModel[4].Upline.DiscountA,
+                    name: language['commissionSetting_NumberGame']
                 });
+
 
                 // GroupB
                 commissionSettingViewModel.push({
@@ -81,15 +81,6 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_GroupD']
                 });
 
-                // Others Comm
-                commissionSettingViewModel.push({
-                    minDiscount: 0,
-                    discount: commissionSettingModel[2].DiscountA,
-                    oldDiscount: commissionSettingModel[2].DiscountA,
-                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
-                    name: language['commissionSetting_OthersComm']
-                });
-
                 // HR Fixed Odds
                 commissionSettingViewModel.push({
                     minDiscount: 0,
@@ -99,12 +90,29 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_HrFixedOdds']
                 });
 
+                // 1x2 Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[1].DiscountA,
+                    oldDiscount: commissionSettingModel[1].DiscountA,
+                    maxDiscount: commissionSettingModel[1].Upline.DiscountA,
+                    name: language['commissionSetting_1x2Comm']
+                });
+
+                // Others Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[2].DiscountA,
+                    oldDiscount: commissionSettingModel[2].DiscountA,
+                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
+                    name: language['commissionSetting_OthersComm']
+                });
+
                 return commissionSettingViewModel;
-            }
-            else {
+            } else {
                 // Insert
                 if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
-                        commissionSettingViewModel = {
+                    commissionSettingViewModel = {
                         selectedGroup: 'A',
                         group: [
                             {
@@ -158,7 +166,7 @@ if (fanex.customerSetting) {
                 }
                 // Edit
                 else {
-                        commissionSettingViewModel = {
+                    commissionSettingViewModel = {
                         selectedGroup: commissionSetting.UserGroup,
                         oldSelectedGroup: commissionSetting.UserGroup,
                         group: [
@@ -225,7 +233,7 @@ if (fanex.customerSetting) {
                 }
             }
         },
-        getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+        getCommissionSettingModel: function(commissionSettingModel, commissionSettingViewModel, targetRoleId) {
             // Insert
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {
@@ -241,8 +249,7 @@ if (fanex.customerSetting) {
                     commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
                     // Others Comm
                     commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
-                }
-                else {
+                } else {
                     commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
                     // 1x2 Comm
                     commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
@@ -299,23 +306,20 @@ if (fanex.customerSetting) {
                 return commissionSettings;
             }
         },
-        changeViewModel: function (commissionSettingViewModel) {
+        changeViewModel: function(commissionSettingViewModel) {
             if (commissionSettingViewModel.selectedGroup === 'A') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[0].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[0].memberCommission;
                 commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[0].memberCommission;
-            }
-            else if (commissionSettingViewModel.selectedGroup === 'B') {
+            } else if (commissionSettingViewModel.selectedGroup === 'B') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[1].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[1].memberCommission;
                 commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[1].memberCommission;
-            }
-            else if (commissionSettingViewModel.selectedGroup === 'C') {
+            } else if (commissionSettingViewModel.selectedGroup === 'C') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[2].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[2].memberCommission;
                 commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[2].memberCommission;
-            }
-            else if (commissionSettingViewModel.selectedGroup === 'D') {
+            } else if (commissionSettingViewModel.selectedGroup === 'D') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[3].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[3].memberCommission;
                 commissionSettingViewModel.line1.oldCommission = commissionSettingViewModel.group[3].memberCommission;
@@ -323,21 +327,20 @@ if (fanex.customerSetting) {
 
             return commissionSettingViewModel;
         },
-        arrangeCommissionSettingModel: function (commissionSettingModel) {
+        arrangeCommissionSettingModel: function(commissionSettingModel) {
             var result = [];
 
             for (var i = 0; i < commissionSettingModel.length; i++) {
                 if (commissionSettingModel[i].BetTypeId === 1) {
                     result[0] = commissionSettingModel[i];
-                }
-                else if (commissionSettingModel[i].BetTypeId === 5) {
+                } else if (commissionSettingModel[i].BetTypeId === 5) {
                     result[1] = commissionSettingModel[i];
-                }
-                else if (commissionSettingModel[i].BetTypeId === 4) {
+                } else if (commissionSettingModel[i].BetTypeId === 4) {
                     result[2] = commissionSettingModel[i];
-                }
-                else if (commissionSettingModel[i].SportId === 154 && commissionSettingModel[i].BetTypeId === 20) {
+                } else if (commissionSettingModel[i].SportId === 154 && commissionSettingModel[i].BetTypeId === 20) {
                     result[3] = commissionSettingModel[i];
+                } else if (commissionSettingModel[i].SportId === 161 && commissionSettingModel[i].BetTypeId === 81) {
+                    result[4] = commissionSettingModel[i];
                 }
             }
 

@@ -3,25 +3,23 @@
 /// <reference path="../../../../libs/fanex.core.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global positionTakingSetting, settingContext */
-/*exported positionTakingController*/
+/*global sportsBookSetting, settingContext */
 
 'use strict';
 
 if (fanex.customerSetting) {
-    var positionTakingController = fanex.customerSetting.controller('customerSetting.positionTakingController',
+    fanex.customerSetting.controller('PositionTakingController',
     [
         '$scope',
-        '$filter',
-        function ($scope, $filter) {
+        function($scope) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
-            fanex.customerSetting.positionTakingService.init(positionTakingSetting, $scope.language);
+            fanex.customerSetting.positionTakingService.init(sportsBookSetting.PositionTakingSetting, $scope.language);
             $scope.config = fanex.customerSetting.positionTakingService.config;
             $scope.settingContext = settingContext;
             $scope.positionTakingService = fanex.customerSetting.positionTakingService;
             $scope.ptModel = {
-                ptGroups: fanex.cloneObject(positionTakingSetting),
-                ptFirstData: fanex.cloneObject(positionTakingSetting[0].PositionTakings[0]),
+                ptGroups: fanex.cloneObject(sportsBookSetting.PositionTakingSetting),
+                ptFirstData: fanex.cloneObject(sportsBookSetting.PositionTakingSetting[0].PositionTakings[0]),
                 settingContext: settingContext
             };
 
@@ -32,20 +30,12 @@ if (fanex.customerSetting) {
                     $scope.ptModel.ptGroups);
             };
 
-            $scope.isValidData = function () {
+            $scope.isValidData = function() {
                 return $scope.positionTakingService.isValidData(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
             };
-
-            return {
-                formatNumber: function(number) {
-                    return $filter('number')(number, 2);
-                },
-                getScope: function() {
-                    return $scope;
-                }
-            };
-        } ]);
+        }
+    ]);
 }

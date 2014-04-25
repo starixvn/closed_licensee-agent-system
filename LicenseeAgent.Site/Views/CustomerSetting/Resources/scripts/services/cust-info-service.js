@@ -9,7 +9,7 @@
 if (fanex.customerSetting) {
     //// Helper
 
-    fanex.customerSetting.factory('fanex.customerSetting.custInfoService', [
+    fanex.customerSetting.factory('CustomerInfoService', [
         '$http',
         '$timeout',
         '$rootScope',

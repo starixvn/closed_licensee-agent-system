@@ -1078,6 +1078,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Ball O/E.
+        /// </summary>
+        public static string FirstBallOddEven {
+            get {
+                return ResourceManager.GetString("FirstBallOddEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st Ball O/U.
+        /// </summary>
+        public static string FirstBallOverUnder {
+            get {
+                return ResourceManager.GetString("FirstBallOverUnder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Half Score.
         /// </summary>
         public static string FirstHalfScore {
@@ -1564,6 +1582,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Ball O/E.
+        /// </summary>
+        public static string LastBallOddEven {
+            get {
+                return ResourceManager.GetString("LastBallOddEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Ball O/U.
+        /// </summary>
+        public static string LastBallOverUnder {
+            get {
+                return ResourceManager.GetString("LastBallOverUnder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string LasTitle {
@@ -1771,6 +1807,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Per Ball.
+        /// </summary>
+        public static string MaxPerBall {
+            get {
+                return ResourceManager.GetString("MaxPerBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Ball must be less than or equal to.
+        /// </summary>
+        public static string MaxPerBallLessThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("MaxPerBallLessThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Ball must be greater than or equal to Max Bet.
+        /// </summary>
+        public static string MaxPerBallMoreThanOrEqualMaxBet {
+            get {
+                return ResourceManager.GetString("MaxPerBallMoreThanOrEqualMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Per Match.
         /// </summary>
         public static string MaxPerMatch {
@@ -1794,6 +1857,15 @@ namespace LicenseeAgent.Resources {
         public static string MaxPerMatchMoreThanOrEqualMaxBet {
             get {
                 return ResourceManager.GetString("MaxPerMatchMoreThanOrEqualMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match must be greater than or equal to Max Per Ball.
+        /// </summary>
+        public static string MaxPerMatchMoreThanOrEqualMaxPerBall {
+            get {
+                return ResourceManager.GetString("MaxPerMatchMoreThanOrEqualMaxPerBall", resourceCulture);
             }
         }
         
@@ -1996,6 +2068,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next Combo.
+        /// </summary>
+        public static string NextCombo {
+            get {
+                return ResourceManager.GetString("NextCombo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next High/Low.
+        /// </summary>
+        public static string NextHighLow {
+            get {
+                return ResourceManager.GetString("NextHighLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
@@ -2149,6 +2239,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Position Taking (NG Dead ball 1st O/U).
+        /// </summary>
+        public static string NumberGamePositionTakingSimpleModeHeader {
+            get {
+                return ResourceManager.GetString("NumberGamePositionTakingSimpleModeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: In simple mode, your changes of Number Game Dead Ball 1st O/U will be applied to other bet types as well..
+        /// </summary>
+        public static string NumberGameSimpleModeNote {
+            get {
+                return ResourceManager.GetString("NumberGameSimpleModeNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to # selected events.
         /// </summary>
         public static string NumberOfSelectedEvents {
@@ -2181,6 +2289,15 @@ namespace LicenseeAgent.Resources {
         public static string NumberOfSelectedTeams {
             get {
                 return ResourceManager.GetString("NumberOfSelectedTeams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Wheel.
+        /// </summary>
+        public static string NumberWheel {
+            get {
+                return ResourceManager.GetString("NumberWheel", resourceCulture);
             }
         }
         
@@ -3359,6 +3476,15 @@ namespace LicenseeAgent.Resources {
         public static string Waiting {
             get {
                 return ResourceManager.GetString("Waiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warrior.
+        /// </summary>
+        public static string Warrior {
+            get {
+                return ResourceManager.GetString("Warrior", resourceCulture);
             }
         }
         

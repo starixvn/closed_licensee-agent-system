@@ -9,22 +9,21 @@ if (fanex.customerSetting) {
 
     fanex.customerSetting.commissionSettingActions =
     {
-        licenseeOrAgentEditAgentActions: function (modelData, controller, inputControl, scope) {
+        licenseeOrAgentEditAgentActions: function(modelData, controller, inputControl, scope) {
             return {
-                onChangeDiscountValue: function () {
+                onChangeDiscountValue: function() {
                     var endCharacter = modelData.discount.toString().charAt(modelData.discount.toString().length - 1);
                     if (endCharacter !== '.' && endCharacter !== '0') {
                         modelData.discount = fanex.roundNumber(modelData.discount, 2);
                     }
                     modelData.actions.isValid();
                 },
-                isValid: function () {
+                isValid: function() {
                     var isValid = modelData.discount >= modelData.minDiscount && modelData.discount <= modelData.maxDiscount;
                     if (!isValid) {
                         var message = scope.language["message_ValueIsNotInRange"] + ' [' + modelData.minDiscount + ' - ' + modelData.maxDiscount + ']';
                         fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
-                    }
-                    else {
+                    } else {
                         fanex.hideHint();
                     }
 
@@ -32,7 +31,7 @@ if (fanex.customerSetting) {
                 }
             };
         },
-        agentEditCustomerActions: function (commissionSettingsViewModel, controller, scope) {
+        agentEditCustomerActions: function(commissionSettingsViewModel, controller, scope) {
             return {
                 onChangeDiscountValue: function(modelData, controlId) {
                     var endCharacter = modelData.memberCommission.toString().charAt(modelData.memberCommission.toString().length - 1);
@@ -72,11 +71,11 @@ if (fanex.customerSetting) {
     };
 
 
-    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent', function () {
+    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.commissioncontroller',
+            controller: 'CommissionController',
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
@@ -90,11 +89,11 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly', function () {
+    fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.commissioncontroller',
+            controller: 'CommissionController',
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent-readonly.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
@@ -108,11 +107,11 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('commissionSettingAgentEditMember', function () {
+    fanex.customerSetting.directive('commissionSettingAgentEditMember', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.commissioncontroller',
+            controller: 'CommissionController',
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/agent-edit-customer.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSettingsViewModel = scope.viewModel.commissionSettingsViewModel;

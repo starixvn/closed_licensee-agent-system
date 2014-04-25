@@ -4,11 +4,13 @@
 'use strict';
 
 if (fanex.customerSetting) {
-    var custSettingController = fanex.customerSetting.controller('customerSetting.custSettingController',
+    fanex.customerSetting.controller('CustomerSettingController',
     [
         '$scope',
+        '$filter',
         '$http',
-        function ($scope, $http) {
+        '$window',
+        function($scope, $filter, $http, $window) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -16,7 +18,6 @@ if (fanex.customerSetting) {
                 core.unblockUI();
                 return;
             }
-
             core.initInstruction();
 
             // reload setting mode from query string
@@ -25,49 +26,26 @@ if (fanex.customerSetting) {
 
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
-            $('#modeSwitcher').on('switch-change', function (e, data) {
+            $scope.haveNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
+
+            $('#modeSwitcher').on('switch-change', function(e, data) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
                 $scope.settingMode = isSimpleMode;
-                var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
+                var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
                 positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
                 $scope.$apply();
             });
 
-            var encodeMessages = function (messages) {
-                var array = [];
-                var length = messages.length;
-                for (var i = 0; i < length; i++) {
-                    var message = messages[i];
-                    array.push(message.ErrCode.toString());
-                    array.push(message.ErrMsg);
-                }
-                return encodeURIComponent(array.join('|'));
-            };
-            var decodeMessages = function (string) {
-                var array = decodeURIComponent(string).split('|');
-                if (array.length % 2 !== 0) {
-                    return string;
-                }
-                var length = array.length / 2;
-                var messages = [];
-                for (var i = 0; i < length; i++) {
-                    var errCode = parseInt(array[i * 2]);
-                    var errMsg = array[i * 2 + 1];
-                    var message = {
-                        ErrCode: errCode,
-                        ErrMsg: errMsg
-                    };
-                    messages.push(message);
-                }
-                return messages;
+            $scope.formatNumber = function(number) {
+                return $filter('number')(number, 2);
             };
 
-            $scope.insertCustomer = function () {
+            $scope.insertCustomer = function() {
                 var custInfoScope = angular.element('#custInfoController').scope();
                 if (custInfoScope.formCustInfo.$invalid) {
                     var keepGoing = true;
-                    angular.forEach(custInfoScope.formCustInfo.$error, function (field) {
+                    angular.forEach(custInfoScope.formCustInfo.$error, function(field) {
                         if (angular.isArray(field)) {
                             if (keepGoing) {
                                 var element = $('#' + field[0].$name);
@@ -78,21 +56,21 @@ if (fanex.customerSetting) {
                     });
                 } else {
                     // Commission Setting
-                    var commissionSettingScope = angular.element('[ng-controller="fanex.customersetting.commissioncontroller"]').scope();
+                    var commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
                     if (!commissionSettingScope.isValidData()) {
                         return;
                     }
                     var commissionSettingsModel = commissionSettingScope.saveData();
 
                     // Betting Limit
-                    var bettingLimitScope = angular.element('[ng-controller="fanex.customersetting.betlimitcontroller"]').scope();
+                    var bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
                     if (!bettingLimitScope.isValidData()) {
                         return;
                     }
                     var bettingLimits = bettingLimitScope.saveData();
 
                     // position taking
-                    var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
+                    var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
                     if (!positionTakingScope.isValidData()) {
                         return;
                     }
@@ -101,12 +79,12 @@ if (fanex.customerSetting) {
                     $scope.Messages = null;
                     core.blockUI();
                     $http({
-                        method: 'POST',
-                        url: core.resolveUrl($('#custSetting').data('href')),
-                        headers: { 'Content-Type': 'application/json' },
-                        data: {
-                            settingContext: settingContext,
-                            updateDataSportsbookCustomer:
+                            method: 'POST',
+                            url: core.resolveUrl($('#custSetting').data('href')),
+                            headers: { 'Content-Type': 'application/json' },
+                            data: {
+                                settingContext: settingContext,
+                                sportsBookSetting:
                                 {
                                     PositionTakingSetting: positionTakingUpdated,
                                     CustInfo: custInfoScope.custInfo,
@@ -118,9 +96,9 @@ if (fanex.customerSetting) {
                                     },
                                     BettingLimits: bettingLimits
                                 }
-                        }
-                    }).
-                        success(function (data) {
+                            }
+                        }).
+                        success(function(data) {
                             core.unblockUI();
 
                             if (data.ErrCode !== 0) {
@@ -150,14 +128,14 @@ if (fanex.customerSetting) {
                                 }
                             }
                         }).
-                        error(function (data) {
+                        error(function(data) {
                             core.unblockUI();
                             alert(data.ErrMsg);
                         });
                 }
             };
 
-            $scope.updateCustomer = function () {
+            $scope.updateCustomer = function() {
                 $('.messages').hide();
                 $scope.Messages = null;
 
@@ -167,14 +145,14 @@ if (fanex.customerSetting) {
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
                     // Commission Setting
-                    var commissionSettingScope = angular.element('[ng-controller="fanex.customersetting.commissioncontroller"]').scope();
+                    var commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
                     if (!commissionSettingScope.isValidData()) {
                         return;
                     }
                     commissionSettingsModel = commissionSettingScope.saveData();
 
                     // Betting Limit
-                    var bettingLimitScope = angular.element('[ng-controller="fanex.customersetting.betlimitcontroller"]').scope();
+                    var bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
                     if (!bettingLimitScope.isValidData()) {
                         return;
                     }
@@ -186,7 +164,7 @@ if (fanex.customerSetting) {
                 }
 
                 // position taking
-                var positionTakingScope = angular.element('[ng-controller="customerSetting.positionTakingController"]').scope();
+                var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
                 if (!positionTakingScope.isValidData()) {
                     return;
                 }
@@ -194,12 +172,12 @@ if (fanex.customerSetting) {
 
                 core.blockUI();
                 $http({
-                    method: 'POST',
-                    url: core.resolveUrl($('#custSetting').data('href')),
-                    headers: { 'Content-Type': 'application/json' },
-                    data: {
-                        settingContext: settingContext,
-                        updateDataSportsbookCustomer:
+                        method: 'POST',
+                        url: core.resolveUrl($('#custSetting').data('href')),
+                        headers: { 'Content-Type': 'application/json' },
+                        data: {
+                            settingContext: settingContext,
+                            sportsBookSetting:
                             {
                                 PositionTakingSetting: positionTakingUpdated,
                                 CommissionSetting: {
@@ -208,9 +186,9 @@ if (fanex.customerSetting) {
                                 },
                                 BettingLimits: bettingLimits
                             }
-                    }
-                }).
-                    success(function (data) {
+                        }
+                    }).
+                    success(function(data) {
                         core.unblockUI();
 
                         if (data.ErrCode !== 0) {
@@ -238,9 +216,9 @@ if (fanex.customerSetting) {
                             if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
                                 timeout = 3000;
                             }
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
-                                var url = orginalUrl + '&messages=' + encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
+                                var url = orginalUrl + '&messages=' + core.encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
                                 location.href = url;
                                 core.unblockUI();
                             }, timeout);
@@ -251,7 +229,7 @@ if (fanex.customerSetting) {
                         $scope.Messages = data.Messages;
                         core.scrollTop();
                     }).
-                    error(function (data) {
+                    error(function(data) {
                         core.unblockUI();
                         alert(data.ErrMsg);
                     });
@@ -265,7 +243,7 @@ if (fanex.customerSetting) {
 
             var messagesQueryString = core.getParameterByName('messages');
             if (messagesQueryString !== '') {
-                var messages = decodeMessages(messagesQueryString);
+                var messages = core.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;
                 popup.close();
             }

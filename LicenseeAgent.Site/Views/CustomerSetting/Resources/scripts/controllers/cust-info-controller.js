@@ -1,31 +1,24 @@
-﻿/*global settingContext, custInfo */
-/*exported custInfoController*/
+﻿/*global settingContext, sportsBookSetting */
 
 'use strict';
 
 if (fanex.customerSetting) {
-    var custInfoController = fanex.customerSetting.controller('customerSetting.custInfoController',
+    fanex.customerSetting.controller('CustomerInfoController',
     [
         '$scope',
         '$filter',
-        'fanex.customerSetting.custInfoService',
-        function CustInfoController($scope, $filter) {
+        'CustomerInfoService',
+        function($scope, $filter) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
-
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
-                var isShowMaxCredit = true;
-                if (custInfo.MaxCredit === undefined) {
-                    isShowMaxCredit = false;
-                }
-                $scope.isShowLimitMaxCredit = isShowMaxCredit;
+                $scope.isShowLimitMaxCredit = sportsBookSetting.CustInfo.MaxCredit !== undefined ? true : false;
                 if ($scope.isShowLimitMaxCredit) {
-                    $scope.$watch('custInfo.credit', function (newValue) {
+                    $scope.$watch('custInfo.credit', function(newValue) {
                         if (parseFloat(newValue) > $scope.custInfo.maxCredit) {
                             $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit']
                                 .format($filter('number')($scope.custInfo.maxCredit, 0));
                             $scope.formCustInfo.credit.$setValidity('', false);
-                        }
-                        else {
+                        } else {
                             $scope.formCustInfo.credit.hintMessage = '';
                             $scope.formCustInfo.credit.$setValidity('', true);
                         }
@@ -39,19 +32,19 @@ if (fanex.customerSetting) {
                     phone: '',
                     mobile: '',
                     fax: '',
-                    credit: custInfo.Credit,
-                    maxCredit: custInfo.MaxCredit,
-                    status: custInfo.Status
+                    credit: sportsBookSetting.CustInfo.Credit,
+                    maxCredit: sportsBookSetting.CustInfo.MaxCredit,
+                    status: sportsBookSetting.CustInfo.Status
                 };
-            }
-            else {
+            } else {
                 $scope.custInfo = {
-                    userName: custInfo.UserName,
-                    firstName: custInfo.FirstName,
-                    lastName: custInfo.LastName,
-                    credit: custInfo.Credit,
-                    status: custInfo.Status
+                    userName: sportsBookSetting.CustInfo.UserName,
+                    firstName: sportsBookSetting.CustInfo.FirstName,
+                    lastName: sportsBookSetting.CustInfo.LastName,
+                    credit: sportsBookSetting.CustInfo.Credit,
+                    status: sportsBookSetting.CustInfo.Status
                 };
             }
-        } ]);
+        }
+    ]);
 }

@@ -37,7 +37,7 @@
         @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button", true)
         @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv", false)
     }
-    <div id="betting-limit-current-scope" class="betting-limit" ng-controller="fanex.customersetting.betlimitcontroller">
+    <div id="betting-limit-current-scope" class="betting-limit" ng-controller="BetLimitController">
         <div ng-show="settingContext.IsSimpleMode" class="simple-mode">
             <div>
                 <div class="betting-limit-header min-bet">
@@ -85,16 +85,17 @@
                 @if (Model.FormId != FormType.ViewIndirectAgent)
                 {
                     <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
-                        current-index="$index"></betting-limit-advanced-mode>
+                                                 current-index="$index"></betting-limit-advanced-mode>
                 }
                 else
                 {
                     <betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel"
-                        bet-setting="betSetting" current-index="$index"></betting-limit-advanced-mode-read-only>
+                                                           bet-setting="betSetting" current-index="$index"></betting-limit-advanced-mode-read-only>
                 }
                 <div class="clearfix">
                 </div>
             </div>
+            @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSettingAdvancedMode.cshtml")
         </div>
     </div>
 </div>

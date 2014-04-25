@@ -103,11 +103,11 @@ if (fanex.customerSetting) {
 
 
     // An agent edit another agent in the simple mode
-    fanex.customerSetting.directive('bettingLimitSimpleMode', function () {
+    fanex.customerSetting.directive('bettingLimitSimpleMode', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.betlimitcontroller',
+            controller: 'BetLimitController',
             scope: {
                 modelData: '='
             },
@@ -127,11 +127,11 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('bettingLimitSimpleModeReadOnly', function () {
+    fanex.customerSetting.directive('bettingLimitSimpleModeReadOnly', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.betlimitcontroller',
+            controller: 'BetLimitController',
             scope: {
                 modelData: '='
             },
@@ -151,11 +151,11 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('bettingLimitAdvancedMode', function () {
+    fanex.customerSetting.directive('bettingLimitAdvancedMode', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.betlimitcontroller',
+            controller: 'BetLimitController',
             scope: {
                 bettingLimitsModel: '=',
                 betSetting: '=',
@@ -177,11 +177,11 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('bettingLimitAdvancedModeReadOnly', function () {
+    fanex.customerSetting.directive('bettingLimitAdvancedModeReadOnly', function() {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'fanex.customersetting.betlimitcontroller',
+            controller: 'BetLimitController',
             scope: {
                 bettingLimitsModel: '=',
                 betSetting: '=',

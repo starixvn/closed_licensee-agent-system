@@ -2,25 +2,30 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global commissionSetting, settingContext */
-/*exported commissionController*/
+/*global sportsBookSetting, numberGameSetting, settingContext */
 
 'use strict';
 
 if (fanex.customerSetting) {
-    var commissionController = fanex.customerSetting.controller('fanex.customersetting.commissioncontroller',
+
+    fanex.customerSetting.factory("CommissionModel", function () {
+        return sportsBookSetting.CommissionSetting.CommissionItems.concat(numberGameSetting.CommissionSetting.CommissionItems);
+    });
+
+    fanex.customerSetting.controller('CommissionController',
     [
         '$scope',
-        '$filter',
-        function($scope, $filter) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
+        'CommissionModel',
+        function($scope, CommissionModel) {
 
+            $scope.language = fanex.customerSetting.language[settingContext.Language];
             $scope.config = fanex.customerSetting.commissionSettingService.config;
             $scope.settingContext = settingContext;
             $scope.commissionSettingService = fanex.customerSetting.commissionSettingService;
-            commissionSetting.CommissionItems = fanex.customerSetting.commissionSettingService.arrangeCommissionSettingModel(commissionSetting.CommissionItems);
+
+            CommissionModel = fanex.customerSetting.commissionSettingService.arrangeCommissionSettingModel(CommissionModel);
             var commissionSettingViewModel = fanex.customerSetting.commissionSettingService.getCommissionSettingViewModel(
-                fanex.cloneObject(commissionSetting.CommissionItems),
+                fanex.cloneObject(CommissionModel),
                 $scope.language,
                 settingContext.TargetRoleId);
 
@@ -32,7 +37,7 @@ if (fanex.customerSetting) {
             $scope.saveData = function() {
                 var temp =
                     $scope.commissionSettingService.getCommissionSettingModel(
-                        commissionSetting.CommissionItems,
+                        CommissionModel,
                         $scope.viewModel.commissionSettingsViewModel,
                         settingContext.TargetRoleId);
                 return temp;
@@ -44,15 +49,6 @@ if (fanex.customerSetting) {
 
             $scope.isValidData = function() {
                 return $scope.commissionSettingService.isValidData($scope.viewModel.commissionSettingsViewModel);
-            };
-
-            return {
-                formatNumber: function(number) {
-                    return $filter('number')(number, 2);
-                },
-                getScope: function() {
-                    return $scope;
-                }
             };
         }
     ]);

@@ -1,0 +1,35 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@{
+    Layout = null;
+}
+<div id="positionTakingContainer" ng-controller="NumberGamePositionTakingController"
+    class="pt-setting">
+    <div class="pt-container-box simple-mode" ng-switch="settingContext.TargetRoleId" ng-show="settingContext.IsSimpleMode">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "agent-position-taking-info-button")
+        }
+        else
+        {
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "member-position-taking-info-button")
+        }
+        <div class="pt-group-container" ng-style="ptGroup.WidthStyle">
+            <div class="pt-group-box">
+                <number-game-licensee-edit-agent-one-pt-simple-mode ng-switch-when="3" pt-simple="ptModel.ptFirstData"></number-game-licensee-edit-agent-one-pt-simple-mode>
+                @if (Model.FormId != FormType.ViewIndirectAgent)
+                {
+                    <number-game-agent-edit-agent-pt-simple-mode ng-switch-when="2" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-agent-pt-simple-mode>
+                }
+                else
+                {
+                    <number-game-agent-edit-agent-pt-simple-mode-read-only ng-switch-when="2" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-agent-pt-simple-mode-read-only>
+                }
+                <number-game-agent-edit-member-pt-simple-mode ng-switch-when="1" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-member-pt-simple-mode>
+            </div>
+        </div>
+    </div>
+</div>

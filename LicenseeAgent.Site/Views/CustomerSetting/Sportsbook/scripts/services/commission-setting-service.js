@@ -53,14 +53,15 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_GroupC']
                 });
 
-                // 1x2 Comm
+                // Number Game
                 commissionSettingViewModel.push({
                     minDiscount: 0,
-                    discount: commissionSettingModel[1].DiscountA,
-                    oldDiscount: commissionSettingModel[1].DiscountA,
-                    maxDiscount: commissionSettingModel[1].Upline.DiscountA,
-                    name: language['commissionSetting_1x2Comm']
+                    discount: commissionSettingModel[4].DiscountA,
+                    oldDiscount: commissionSettingModel[4].DiscountA,
+                    maxDiscount: 0, //commissionSettingModel[4].Upline.DiscountA,
+                    name: language['commissionSetting_NumberGame']
                 });
+
 
                 // GroupB
                 commissionSettingViewModel.push({
@@ -78,15 +79,6 @@ if (fanex.customerSetting) {
                     oldDiscount: commissionSettingModel[0].DiscountD,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountD,
                     name: language['commissionSetting_GroupD']
-                });
-
-                // Others Comm
-                commissionSettingViewModel.push({
-                    minDiscount: 0,
-                    discount: commissionSettingModel[2].DiscountA,
-                    oldDiscount: commissionSettingModel[2].DiscountA,
-                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
-                    name: language['commissionSetting_OthersComm']
                 });
 
                 // HR Fixed Odds
@@ -107,6 +99,15 @@ if (fanex.customerSetting) {
                         maxDiscount: commissionSettingModel[4].Upline.DiscountA,
                         name: language['commissionSetting_NumberGame']
                     });
+                // Others Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[2].DiscountA,
+                    oldDiscount: commissionSettingModel[2].DiscountA,
+                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
+                    name: language['commissionSetting_OthersComm']
+                });
+
                 }
 
                 return commissionSettingViewModel;

@@ -299,15 +299,11 @@
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\report-base.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\bet-limit-action.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\position-taking-action.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\bet-limit-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\number-game-setting.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\commission-setting-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
@@ -322,6 +318,10 @@
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.js">
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
@@ -563,7 +563,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
-    <Folder Include="Views\CustomerSetting\NumberGame\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -791,8 +790,8 @@
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\BetSettingSimpleMode.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\PositionTakingSimpleMode.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\BetSetting.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\PositionTaking.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
     <None Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.en-US.js.orig" />

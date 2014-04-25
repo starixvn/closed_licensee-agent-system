@@ -159,6 +159,13 @@ namespace LicenseeAgent.Web.Services
             : _downLineService.IsIndirectDownLine(criteria);
         }
 
+        /// <summary>
+        /// Is Down Line Transaction.
+        /// </summary>
+        /// <param name="transactionId">Transaction Id.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <param name="betType">Bet Type of Transaction.</param>
+        /// <returns>Is down line or not.</returns>
         public bool IsDownLineTransaction(long transactionId, int sportType, int betType)
         {
             var criteria = new TicketDownLineCriteria

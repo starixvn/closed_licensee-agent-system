@@ -66,24 +66,29 @@ namespace LicenseeAgent.Report.Controllers
                 return RedirectToAccessDeniedJson();
             }
 
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balUp = _coreService.GetBalanceUpDay();
             List<AgentWinLoss> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
-                result = _reportService.AgentWinLossReport(new WinLossMemberCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
+                var criteria = new WinLossMemberCriteria(
+                                    model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
+                result = _reportService.AgentWinLossReport(criteria).ToList();
             }
             else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
             {
-                result = _reportService.AgentWinLossReport(new WinLossSuperViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
+                var criteria = new WinLossSuperViewAgentCriteria(
+                        model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
+                result = _reportService.AgentWinLossReport(criteria).ToList();
             }
             else
             {
-                result = _reportService.AgentWinLossReport(new WinLossAgentViewAgentCriteria(model.AgentId, model.FromDate, model.ToDate, balanceUp.MoveBetsDay, balanceUp.BalanceUpDay, model.DrawFilter, model.Product)).ToList();
+                var criteria = new WinLossAgentViewAgentCriteria(
+                        model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
+                result = _reportService.AgentWinLossReport(criteria).ToList();
             }
 
-            var totalRow = from x in result
-                           group x by 1
-                           into g
+            var totalRow = from x in result 
+                           group x by 1 into g 
                            select new
                            {
                                BetCount = g.Sum(x => x.BetCount),
@@ -99,12 +104,7 @@ namespace LicenseeAgent.Report.Controllers
                                UplineStake = g.Sum(x => x.UplineStake),
                                UplineTotal = g.Sum(x => x.UplineTotal)
                            };
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                Total = totalRow,
-                List = result
-            });
+            return Json(new { ErrCode = Result.SuccessValue, Total = totalRow, List = result });
         }
     }
 }

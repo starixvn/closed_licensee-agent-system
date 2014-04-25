@@ -100,6 +100,8 @@ namespace LicenseeAgent.BetList.Controllers
         /// Mix Parlay Details.
         /// </summary>
         /// <param name="transId">Transaction ID.</param>
+        /// <param name="sportType">Sport Type.</param>
+        /// <param name="betType">Bet Type of Transaction.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
         public ActionResult MixParlayDetails(long transId, int sportType, int betType)

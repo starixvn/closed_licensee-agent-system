@@ -15,9 +15,9 @@ var gridOptions = {
                         return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
                     }
                 },
-                { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
                         'use strict';

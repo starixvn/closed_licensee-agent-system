@@ -16,16 +16,16 @@ namespace LicenseeAgent.Taiwan.Enumerations
         /// <summary>
         /// The edit member information log id.
         /// </summary>
-        EditMemberInfo = 303,
+        UpdateMemberInfo = 303,
 
         /// <summary>
         /// The add new member log id.
         /// </summary>
-        AddNewMember = 304,
+        InsertNewMember = 304,
 
         /// <summary>
         /// The change member status log id.
         /// </summary>
-        ChangeMemberStatus = 305
+        UpdateMemberStatus = 305
     }
 }

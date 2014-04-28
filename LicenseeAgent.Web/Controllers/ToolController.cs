@@ -16,6 +16,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
     using Services;
@@ -114,26 +115,33 @@ namespace LicenseeAgent.Web.Controllers
             var failedAPICalls = _monitoringService.GetFailedAPICalls(criteria).ToList();
             foreach (var item in failedAPICalls)
             {
+                LogAction logAction = null;
                 var inputParamsHtmlString = string.Empty;
                 switch (item.ActionId)
                 {
-                    case 301:
-                        inputParamsHtmlString = ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command).GenerateInputs();
+                    case (int)LogId.ResetPassword:
+                        logAction = ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command);
                         break;
-                    case 303:
-                        inputParamsHtmlString = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(item.Command).GenerateInputs();
+
+                    case (int)LogId.UpdateMemberInfo:
+                        logAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(item.Command);
                         break;
-                    case 304:
-                        inputParamsHtmlString = ObjectSerializer<InsertNewMemberAction>.Deserialize(item.Command).GenerateInputs();
+
+                    case (int)LogId.InsertNewMember:
+                        logAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(item.Command);
                         break;
-                    case 305:
+
+                    case (int)LogId.UpdateMemberStatus:
                         var updateMemberAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(item.Command);
                         updateMemberAction.IBCCustId = item.CustId.ToString();
-                        inputParamsHtmlString = updateMemberAction.GenerateInputs();
+                        logAction = updateMemberAction;
                         break;
                 }
 
-                item.InputParams = inputParamsHtmlString;
+                if (logAction != null)
+                {
+                    item.InputParams = logAction.GenerateInputs();
+                }
             }
 
             return Json(new
@@ -161,18 +169,21 @@ namespace LicenseeAgent.Web.Controllers
                     resetPasswordAction.UserId = syncData.UserId;
                     responseResult = _memberService.ResetPassword(resetPasswordAction, true);
                     break;
+
                 case 303:
                     var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(syncData.Command);
                     updateMemberInfoAction.LicenseeId = licenseeID;
                     updateMemberInfoAction.UserId = syncData.UserId;
                     responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true);
                     break;
+
                 case 304:
                     var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(syncData.Command);
                     insertNewMemberAction.LicenseeId = licenseeID;
                     insertNewMemberAction.UserId = syncData.UserId;
                     responseResult = _memberService.InsertNewMember(insertNewMemberAction, true);
                     break;
+
                 case 305:
                     var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(syncData.Command);
                     updateMemberStatusAction.LicenseeId = licenseeID;
@@ -185,8 +196,8 @@ namespace LicenseeAgent.Web.Controllers
             {
                 _monitoringService.UpdateLogStatus(new SyncMonitoringUpdateStatusCriteria
                 {
-                        KeyID = syncData.KeyId,
-                        NewStatusID = 2
+                    KeyID = syncData.KeyId,
+                    NewStatusID = 2
                 });
             }
 

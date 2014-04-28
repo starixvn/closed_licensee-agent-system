@@ -118,18 +118,18 @@ namespace LicenseeAgent.Web.Controllers
                 switch (item.ActionId)
                 {
                     case 301:
-                        inputParamsHtmlString = GenerateInputParamsHtmlString(ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command));
+                        inputParamsHtmlString = ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command).GenerateInputs();
                         break;
                     case 303:
-                        inputParamsHtmlString = GenerateInputParamsHtmlString(ObjectSerializer<UpdateMemberInfoAction>.Deserialize(item.Command));
+                        inputParamsHtmlString = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(item.Command).GenerateInputs();
                         break;
                     case 304:
-                        inputParamsHtmlString = GenerateInputParamsHtmlString(ObjectSerializer<InsertNewMemberAction>.Deserialize(item.Command));
+                        inputParamsHtmlString = ObjectSerializer<InsertNewMemberAction>.Deserialize(item.Command).GenerateInputs();
                         break;
                     case 305:
                         var updateMemberAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(item.Command);
                         updateMemberAction.IBCCustId = item.CustId.ToString();
-                        inputParamsHtmlString = GenerateInputParamsHtmlString(updateMemberAction);
+                        inputParamsHtmlString = updateMemberAction.GenerateInputs();
                         break;
                 }
 
@@ -195,30 +195,6 @@ namespace LicenseeAgent.Web.Controllers
                 ActionID = syncData.ActionId,
                 IsSuccess = responseResult.ErrCode == Result.SuccessValue
             });
-        }
-
-        /// <summary>
-        /// Generate Input Parameters Html String.
-        /// </summary>
-        /// <param name="logActionObject">Log action object.</param>
-        /// <returns>Html string.</returns>
-        [NonAction]
-        public string GenerateInputParamsHtmlString(LogAction logActionObject)
-        {
-            var inputParamsHtmlString = string.Empty;
-            var properties = logActionObject.GetType().GetProperties();
-
-            foreach (var property in properties)
-            {
-                var propertyName = property.Name;
-                var propertyValue = property.GetValue(logActionObject, null);
-
-                inputParamsHtmlString += propertyName == "ActionName"
-                    ? string.Empty
-                    : string.Format("{0}: {1} <br />", propertyName, propertyValue);
-            }
-
-            return inputParamsHtmlString;
         }
     }
 }

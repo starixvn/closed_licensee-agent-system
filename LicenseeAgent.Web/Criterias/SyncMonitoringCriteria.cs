@@ -12,6 +12,9 @@ namespace LicenseeAgent.Web.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// SyncMonitoringCriteria class.
+    /// </summary>
     public class SyncMonitoringCriteria : CriteriaBase
     {
         public int ActionID { get; set; }

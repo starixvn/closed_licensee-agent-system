@@ -12,9 +12,9 @@ if (fanex.customerSetting) {
         function($scope) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            $scope.config = fanex.customerSetting.betLimitService.config;
+            $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
             $scope.settingContext = settingContext;
-            $scope.betLimitService = fanex.customerSetting.betLimitService;
+            $scope.betLimitService = fanex.customerSetting.numberGameBetLimitService;
 
             $scope.model = {
                 // For all sport types
@@ -46,9 +46,9 @@ if (fanex.customerSetting) {
         function($scope) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
-            $scope.config = fanex.customerSetting.betLimitService.config;
+            $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
             $scope.settingContext = settingContext;
-            $scope.betLimitService = fanex.customerSetting.betLimitService;
+            $scope.betLimitService = fanex.customerSetting.numberGameBetLimitService;
             $scope.model = {
                 // For all sport types
                 bettingLimitsModel: fanex.cloneObject(numberGameSetting.BettingLimits),

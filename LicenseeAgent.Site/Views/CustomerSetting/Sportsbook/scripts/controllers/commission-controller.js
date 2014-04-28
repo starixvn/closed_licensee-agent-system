@@ -32,7 +32,7 @@ if (fanex.customerSetting) {
                 fanex.cloneObject(commissionModel),
                 $scope.language,
                 settingContext.TargetRoleId,
-                $scope.$parent.haveNumberGame);
+                $scope.haveNumberGame);
 
             $scope.viewModel = {
                 commissionSettingsViewModel: commissionSettingViewModel,
@@ -53,7 +53,7 @@ if (fanex.customerSetting) {
                     commissionModel,
                     $scope.viewModel.commissionSettingsViewModel,
                     settingContext.TargetRoleId);
-            }
+            };
 
             $scope.commissionSettingsChangeViewModel = function() {
                 $scope.viewModel.commissionSettingsViewModel = $scope.commissionSettingService.changeViewModel($scope.viewModel.commissionSettingsViewModel);

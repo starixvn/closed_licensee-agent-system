@@ -159,7 +159,7 @@ if (fanex.customerSetting) {
                         line4: {
                             name: language['commissionSetting_HrFixedOddsComm'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
-                            memberCommission: commissionSettingModel[3].Discount,
+                            memberCommission: commissionSettingModel[3].Discount
                         }
                     };
 
@@ -168,7 +168,7 @@ if (fanex.customerSetting) {
                         commissionSettingViewModel.line5 = {
                             name: language['commissionSetting_NumberGame'],
                             agentCommission: commissionSettingModel[4].Upline.DiscountA,
-                            memberCommission: commissionSettingModel[4].Discount,
+                            memberCommission: commissionSettingModel[4].Discount
                         };
                     }
 
@@ -269,12 +269,16 @@ if (fanex.customerSetting) {
                     commissionSettingModel[1].DiscountA = commissionSettingViewModel[2].discount;
                     // Others Comm
                     commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
+                    // HR Fixed Odds
+                    commissionSettingModel[3].DiscountA = commissionSettingViewModel[6].discount;
                 } else {
                     commissionSettingModel[0].Discount = commissionSettingViewModel.line1.memberCommission;
                     // 1x2 Comm
                     commissionSettingModel[1].Discount = commissionSettingViewModel.line2.memberCommission;
                     // Others Comm
                     commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
+                    // HR Fixed Odds
+                    commissionSettingModel[3].Discount = commissionSettingViewModel.line4.memberCommission;
                 }
 
                 return commissionSettingModel;
@@ -304,6 +308,11 @@ if (fanex.customerSetting) {
                         commissionSettingModel[2].DiscountA = commissionSettingViewModel[5].discount;
                         commissionSettings.push(commissionSettingModel[2]);
                     }
+                    // HR Fixed Odds
+                    if (commissionSettingViewModel[6].discount !== commissionSettingViewModel[6].oldDiscount) {
+                        commissionSettingModel[3].DiscountA = commissionSettingViewModel[6].discount;
+                        commissionSettings.push(commissionSettingModel[3]);
+                    }
                 } else {
                     if (commissionSettingViewModel.selectedGroup !== commissionSettingViewModel.oldSelectedGroup
                         || (commissionSettingViewModel.selectedGroup === commissionSettingViewModel.oldSelectedGroup &&
@@ -320,6 +329,11 @@ if (fanex.customerSetting) {
                     if (commissionSettingViewModel.line3.memberCommission !== commissionSettingViewModel.line3.oldCommission) {
                         commissionSettingModel[2].Discount = commissionSettingViewModel.line3.memberCommission;
                         commissionSettings.push(commissionSettingModel[2]);
+                    }
+                    // HR Fixed Odds
+                    if (commissionSettingViewModel.line4.memberCommission !== commissionSettingViewModel.line4.oldCommission) {
+                        commissionSettingModel[3].Discount = commissionSettingViewModel.line4.memberCommission;
+                        commissionSettings.push(commissionSettingModel[3]);
                     }
                 }
 

@@ -7,7 +7,7 @@
 if (fanex.customerSetting) {
     fanex.customerSetting.numberGamePositionTakingActions =
     {
-        agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput, controller) {
+        agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput) {
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -95,8 +95,8 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             presetInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfPreset),
-                            controller.formatNumber(currentPt.MaxRangeOfPreset));
+                            scope.formatNumber(currentPt.MinRangeOfPreset),
+                            scope.formatNumber(currentPt.MaxRangeOfPreset));
                         });
                     }
                     return isValid;
@@ -110,8 +110,8 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfMax),
-                            controller.formatNumber(currentPt.MaxRangeOfMax));
+                            scope.formatNumber(currentPt.MinRangeOfMax),
+                            scope.formatNumber(currentPt.MaxRangeOfMax));
                         });
                     }
                     return isValid;
@@ -125,15 +125,15 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfMin),
-                            controller.formatNumber(currentPt.MaxRangeOfMin));
+                            scope.formatNumber(currentPt.MinRangeOfMin),
+                            scope.formatNumber(currentPt.MaxRangeOfMin));
                         });
                     }
                     return isValid;
                 }
             };
         },
-        licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput, controller) {
+        licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput) {
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -191,8 +191,8 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             maxInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfMax),
-                            controller.formatNumber(currentPt.MaxRangeOfMax));
+                            scope.formatNumber(currentPt.MinRangeOfMax),
+                            scope.formatNumber(currentPt.MaxRangeOfMax));
                         });
                     }
                     return isValid;
@@ -206,15 +206,15 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             minInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfMin),
-                            controller.formatNumber(currentPt.MaxRangeOfMin));
+                            scope.formatNumber(currentPt.MinRangeOfMin),
+                            scope.formatNumber(currentPt.MaxRangeOfMin));
                         });
                     }
                     return isValid;
                 }
             };
         },
-        agentEditMemberActions: function (scope, $timeout, currentPt, valueInput, controller) {
+        agentEditMemberActions: function (scope, $timeout, currentPt, valueInput) {
             return {
                 isDataChanged: function () {
                     return currentPt.Value !== currentPt.OldValue;
@@ -242,8 +242,8 @@ if (fanex.customerSetting) {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                             valueInput,
                             scope.language["message_ValueIsNotInRange"],
-                            controller.formatNumber(currentPt.MinRangeOfValue),
-                            controller.formatNumber(currentPt.MaxRangeOfValue));
+                            scope.formatNumber(currentPt.MinRangeOfValue),
+                            scope.formatNumber(currentPt.MaxRangeOfValue));
                         });
                     }
                     return isValid;
@@ -259,7 +259,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'NumberGamePositionTakingAdvancedModeController',
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -271,14 +271,13 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                currentPt.actions = fanex.customerSetting.numberGamePositionTakingActions.agentEditAgentActions(
                     scope,
                     $timeout,
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -297,7 +296,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'NumberGamePositionTakingAdvancedModeController',
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html',
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -309,14 +308,13 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                currentPt.actions = fanex.customerSetting.numberGamePositionTakingActions.agentEditAgentActions(
                     scope,
                     $timeout,
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -335,7 +333,7 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'NumberGamePositionTakingAdvancedModeController',
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
                 var minInput = element.find('.min-input');
@@ -344,13 +342,12 @@ if (fanex.customerSetting) {
                 minInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(
+                currentPt.actions = fanex.customerSetting.numberGamePositionTakingActions.licenseeEditAgentOneActions(
                     scope,
                     $timeout,
                     currentPt,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -370,19 +367,18 @@ if (fanex.customerSetting) {
             replace: true,
             controller: 'NumberGamePositionTakingAdvancedModeController',
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html',
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');
                 var currentPt = scope.pt;
                 valueInput.preventSpecialCharacters("^[0-9.]+$");
 
                 //// Position taking Actions
-                currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(
+                currentPt.actions = fanex.customerSetting.numberGamePositionTakingActions.agentEditMemberActions(
                     scope,
                     $timeout,
                     currentPt,
-                    valueInput,
-                    controller);
+                    valueInput);
 
                 //// Init value
                 currentPt.OldValue = currentPt.Value;
@@ -402,7 +398,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html',
-            link: function(scope, element, attrs, controller) {
+            link: function(scope, element) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -419,8 +415,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -441,7 +436,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html',
-            link: function(scope, element, attrs, controller) {
+            link: function(scope, element) {
                 //// Cache Elements.
                 var presetInput = element.find('.preset-input');
                 var maxInput = element.find('.max-input');
@@ -458,8 +453,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -480,7 +474,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html',
-            link: function(scope, element, attrs, controller) {
+            link: function(scope, element) {
                 //// Cache Elements.
                 var maxInput = element.find('.max-input');
                 var minInput = element.find('.min-input');
@@ -495,8 +489,7 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     maxInput,
-                    minInput,
-                    controller);
+                    minInput);
 
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -519,7 +512,7 @@ if (fanex.customerSetting) {
                 ptSimple: '='
             },
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-simple-mode.html',
-            link: function(scope, element, attrs, controller) {
+            link: function(scope, element) {
                 //// Cache Elements.
                 var valueInput = element.find('.value-input');
                 var currentPt = scope.ptSimple;
@@ -530,8 +523,7 @@ if (fanex.customerSetting) {
                     scope,
                     $timeout,
                     currentPt,
-                    valueInput,
-                    controller);
+                    valueInput);
 
                 //// Init value
                 currentPt.OldValue = currentPt.Value;

@@ -1,6 +1,8 @@
 ﻿
+'use strict';
+
 fanex.customerSetting.numberGameSetting = {
-    getNumberGameSetting: function (isSimpleMode) {
+    getNumberGameSetting: function(isSimpleMode) {
         var commissions,
             bettingLimits,
             positionTakings,
@@ -29,6 +31,6 @@ fanex.customerSetting.numberGameSetting = {
             CommissionSetting: commissions,
             PositionTakingSetting: positionTakings,
             BettingLimits: bettingLimits
-        }
+        };
     }
 };

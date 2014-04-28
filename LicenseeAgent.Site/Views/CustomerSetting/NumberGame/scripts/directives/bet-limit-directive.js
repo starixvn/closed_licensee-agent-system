@@ -139,9 +139,11 @@ if (fanex.customerSetting) {
                 modelData.OldMinBet = modelData.MinBet;
                 modelData.OldMaxBet = modelData.MaxBet;
                 modelData.OldMaxPerMatch = modelData.MaxPerMatch;
+                modelData.OldMaxPerBall = modelData.MaxPerBall;
                 modelData.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
                 modelData.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                modelData.MaxPerBall = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerBall);
                 var inputControl = element.find('.input');
                 modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, controller, inputControl, scope);
             }
@@ -163,9 +165,11 @@ if (fanex.customerSetting) {
                 modelData.OldMinBet = modelData.MinBet;
                 modelData.OldMaxBet = modelData.MaxBet;
                 modelData.OldMaxPerMatch = modelData.MaxPerMatch;
+                modelData.OldMaxPerBall = modelData.MaxPerBall;
                 modelData.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MinBet);
                 modelData.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
+                modelData.MaxPerBall = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerBall);
                 var inputControl = element.find('.input');
                 modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, controller, inputControl, scope);
             }
@@ -191,9 +195,11 @@ if (fanex.customerSetting) {
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;
                 betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+                betSetting.OldMaxPerBall = betSetting.MaxPerBall;
                 betSetting.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
                 betSetting.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
                 betSetting.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+                betSetting.MaxPerBall = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerBall);
             }
         };
     });
@@ -217,9 +223,11 @@ if (fanex.customerSetting) {
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;
                 betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+                betSetting.OldMaxPerBall = betSetting.MaxPerBall;
                 betSetting.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
                 betSetting.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
                 betSetting.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+                betSetting.MaxPerBall = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerBall);
             }
         };
     });

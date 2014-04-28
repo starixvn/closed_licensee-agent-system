@@ -309,8 +309,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var hasUpdateCommission = model.SportsBookSetting.CommissionSetting != null
                 && model.SportsBookSetting.CommissionSetting.CommissionItems.Count > 0;
-            var hasUpdateBetSetting = model.SportsBookSetting.BettingLimits != null
-                && model.SportsBookSetting.BettingLimits.Count > 0;
+            var hasUpdateBetSetting = model.SportsBookSetting.BettingLimitSetting != null
+                && model.SportsBookSetting.BettingLimitSetting.Count > 0;
             var messages = GenerateMessages(result, true, hasUpdateCommission, hasUpdateBetSetting);
             return Json(new
             {

@@ -7,7 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     /// <summary>
-    /// Class name.
+    /// CommissionItem name.
     /// </summary>
     public class CommissionItem
     {

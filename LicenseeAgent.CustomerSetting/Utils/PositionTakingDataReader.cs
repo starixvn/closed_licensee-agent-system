@@ -24,14 +24,14 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="reader">Reader for read data.</param>
         /// <param name="targetRoleId">The target role identifier.</param>
         /// <returns>Returns position taking data.</returns>
-        public static Dictionary<string, PositionTaking> ReadAgentPositionTakingDataForUpdate(
+        public static IList<PositionTakingItem> ReadAgentPositionTakingDataForUpdate(
             IDataReader reader,
             int targetRoleId)
         {
-            var positionTakingDataList = new Dictionary<string, PositionTaking>();
+            var list = new List<PositionTakingItem>();
             while (reader.Read())
             {
-                var positionTakingData = new PositionTaking
+                var positionTakingData = new PositionTakingItem
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
@@ -43,7 +43,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
 
                 if (targetRoleId == (int)Role.Agent)
                 {
-                    positionTakingData.Upline = new PositionTaking
+                    positionTakingData.Upline = new PositionTakingItem
                     {
                         Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV,
                         Min = reader.ToDecimal("ParentMinGivenPositionTaking") / Constant.STEP_MUL_DIV,
@@ -51,21 +51,21 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 }
                 else
                 {
-                    positionTakingData.Upline = new PositionTaking
+                    positionTakingData.Upline = new PositionTakingItem
                     {
                         Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
                     };
                 }
 
-                positionTakingData.AllDownLine = new PositionTaking
+                positionTakingData.AllDownLine = new PositionTakingItem
                 {
                     Max = reader.ToDecimal("MaxOfMaxUpperAndGiven") / Constant.STEP_MUL_DIV
                 };
 
-                positionTakingDataList.Add(GenerateKey(positionTakingData), positionTakingData);
+                list.Add(positionTakingData);
             }
 
-            return positionTakingDataList;
+            return list;
         }
 
         /// <summary>
@@ -74,14 +74,14 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineData">Get up line data or not, in edit form will get this data.</param>
         /// <returns>Returns data.</returns>
-        public static Dictionary<string, PositionTaking> ReadAgentPositionTakingData(
+        public static IList<PositionTakingItem> ReadAgentPositionTakingData(
             IDataReader reader,
             bool getUplineData = true)
         {
-            var positionTakingDataList = new Dictionary<string, PositionTaking>();
+            var list = new List<PositionTakingItem>();
             while (reader.Read())
             {
-                var positionTakingData = new PositionTaking
+                var positionTakingData = new PositionTakingItem
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
@@ -93,19 +93,19 @@ namespace LicenseeAgent.CustomerSetting.Utils
 
                 if (getUplineData)
                 {
-                    positionTakingData.Upline = new PositionTaking
+                    positionTakingData.Upline = new PositionTakingItem
                     {
                         Min = reader.ToDecimal("MinGivenPositionTakingOfParent") / Constant.STEP_MUL_DIV,
                         Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
                     };
-                    positionTakingData.AllDownLine = new PositionTaking
+                    positionTakingData.AllDownLine = new PositionTakingItem
                     {
                         Max = reader.ToDecimal("MinOfMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
                     };
                 }
                 else
                 {
-                    positionTakingData.Upline = new PositionTaking
+                    positionTakingData.Upline = new PositionTakingItem
                     {
                         Min = positionTakingData.Min,
                         Max = positionTakingData.Max
@@ -114,13 +114,13 @@ namespace LicenseeAgent.CustomerSetting.Utils
                     positionTakingData.Value = positionTakingData.Max;
                     positionTakingData.Max = 0;
                     positionTakingData.Min = 0;
-                    positionTakingData.AllDownLine = new PositionTaking();
+                    positionTakingData.AllDownLine = new PositionTakingItem();
                 }
 
-                positionTakingDataList.Add(GenerateKey(positionTakingData), positionTakingData);
+                list.Add(positionTakingData);
             }
 
-            return positionTakingDataList;
+            return list;
         }
 
         /// <summary>
@@ -128,33 +128,33 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// </summary>
         /// <param name="reader">Reader for reading database.</param>
         /// <returns>Returns position taking data.</returns>
-        public static Dictionary<string, PositionTaking> ReadMemberPositionTakingData(IDataReader reader)
+        public static IList<PositionTakingItem> ReadMemberPositionTakingData(IDataReader reader)
         {
-            var positionTakingDataList = new Dictionary<string, PositionTaking>();
+            var list = new List<PositionTakingItem>();
             while (reader.Read())
             {
                 var minPositionTaking = reader.ToDecimal("MinGivenPositionTaking");
                 minPositionTaking = minPositionTaking < 0 ? 0 : minPositionTaking;
-                var positionTakingData = new PositionTaking
+                var positionTakingData = new PositionTakingItem
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
                     IsLive = reader.ToBool("IsLive"),
                     Value = reader.ToDecimal("PositionTaking") / Constant.STEP_MUL_DIV,
-                    Upline = new PositionTaking
+                    Upline = new PositionTakingItem
                     {
                         Min = minPositionTaking / Constant.STEP_MUL_DIV,
                         Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.STEP_MUL_DIV
                     }
                 };
 
-                positionTakingDataList.Add(GenerateKey(positionTakingData), positionTakingData);
+                list.Add(positionTakingData);
             }
 
-            return positionTakingDataList;
+            return list;
         }
 
-        private static string GenerateKey(PositionTaking data)
+        private static string GenerateKey(PositionTakingItem data)
         {
             return string.Format("{0}_{1}_{2}", data.SportId, data.IsLive, data.BetTypeId);
         }

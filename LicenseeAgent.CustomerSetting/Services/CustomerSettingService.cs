@@ -48,7 +48,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             // Build XML setting for insert new customer.
             var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimits);
+            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
             var positionTakingXmlStringData = XmlBuilder.Build(
                 model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
@@ -76,7 +76,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             // Build XML setting for update customer.
             var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimits);
+            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
             var positionTakingXmlStringData = XmlBuilder.Build(
                 model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)

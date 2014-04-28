@@ -15,13 +15,18 @@ namespace LicenseeAgent.CustomerSetting.Entities
     {
         public PositionTakingGroup()
         {
-            PositionTakings = new List<PositionTaking>();
+            PositionTakings = new List<PositionTakingItem>();
         }
 
         public int SportId { get; set; }
 
         public bool IsLive { get; set; }
 
-        public IList<PositionTaking> PositionTakings { get; set; }
+        public IList<PositionTakingItem> PositionTakings { get; set; }
+
+        public string GenerateKey(int betTypeId)
+        {
+            return string.Format("{0}_{1}_{2}", SportId, IsLive, betTypeId);
+        }
     }
 }

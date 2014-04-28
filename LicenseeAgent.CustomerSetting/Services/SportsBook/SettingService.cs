@@ -8,7 +8,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
@@ -39,22 +39,12 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// </returns>
         public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
         {
-            CustomerInfo custInfo;
-            CommissionSetting commissionSetting;
-            IList<BettingLimit> bettingLimits;
-            Dictionary<string, PositionTaking> positionTakingData;
-
-            ICriteria getAgentSettingCriteria = GetCriteriaForInsert(settingContext);
-
+            CustomerSetting customerSetting;
             errCode = Result.FailureValue;
             var maxLicenseePt = 0;
             GetSettingForInsert(
-                getAgentSettingCriteria,
                 settingContext,
-                out custInfo,
-                out commissionSetting,
-                out bettingLimits,
-                out positionTakingData,
+                out customerSetting,
                 out errCode,
                 out maxLicenseePt);
 
@@ -62,10 +52,10 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
             {
                 return new CustomerSetting2
                 {
-                    CustInfo = custInfo,
-                    CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits,
-                    PositionTakingSetting = BuildPositionTakingGroups((int)Product.Product_0, settingContext, positionTakingData, maxLicenseePt)
+                    CustInfo = customerSetting.CustInfo,
+                    CommissionSetting = customerSetting.CommissionSetting,
+                    BettingLimitSetting = customerSetting.BettingLimitSetting,
+                    PositionTakingSetting = BuildPositionTakingGroups((int)Product.Product_0, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
                 };
             }
 
@@ -82,29 +72,21 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// </returns>
         public CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode)
         {
-            CustomerInfo custInfo;
-            CommissionSetting commissionSetting;
-            IList<BettingLimit> bettingLimits;
-            Dictionary<string, PositionTaking> positionTakingData;
-            ICriteria updateCriteria = GetCriteriaForUpdate(settingContext);
+            CustomerSetting customerSetting;
             errCode = Result.FailureValue;
             GetSettingForUpdate(
-                updateCriteria,
                 settingContext,
-                out custInfo,
-                out commissionSetting,
-                out bettingLimits,
-                out positionTakingData,
+                out customerSetting,
                 out errCode);
 
             if (errCode == Result.SuccessValue)
             {
                 return new CustomerSetting2
                 {
-                    CustInfo = custInfo,
-                    CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits,
-                    PositionTakingSetting = BuildPositionTakingGroupsForUpdate((int)Product.Product_0, positionTakingData)
+                    CustInfo = customerSetting.CustInfo,
+                    CommissionSetting = customerSetting.CommissionSetting,
+                    BettingLimitSetting = customerSetting.BettingLimitSetting,
+                    PositionTakingSetting = BuildPositionTakingGroupsForUpdate((int)Product.Product_0, customerSetting.PositionTakingSetting)
                 };
             }
 
@@ -227,92 +209,23 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         }
 
         /// <summary>
-        /// Parses the data setting for update.
-        /// </summary>
-        /// <param name="settingContext">The setting context.</param>
-        /// <param name="custInfo">The customer information.</param>
-        /// <param name="commissionSetting">The commission setting.</param>
-        /// <param name="bettingLimits">The betting limits.</param>
-        /// <param name="positionTakingDataList">The position taking data list.</param>
-        /// <param name="reader">The reader.</param>
-        private static void ParseDataSettingForUpdate(
-            SettingContext settingContext,
-            out CustomerInfo custInfo,
-            out CommissionSetting commissionSetting,
-            out IList<BettingLimit> bettingLimits,
-            out Dictionary<string, PositionTaking> positionTakingDataList,
-            IDataReader reader)
-        {
-            custInfo = new CustomerInfo();
-            commissionSetting = new CommissionSetting();
-            positionTakingDataList = new Dictionary<string, PositionTaking>();
-            bettingLimits = new List<BettingLimit>();
-            if (settingContext.TargetRoleId == (int)Role.Member)
-            {
-                var userGroup = string.Empty;
-                custInfo = CustomerInfoDataReader.ReaderMemberInfo(reader, out userGroup);
-                commissionSetting.UserGroup = userGroup;
-            }
-            else
-            {
-                custInfo = CustomerInfoDataReader.ReaderAgentInfo(reader);
-            }
-
-            if (settingContext.FormId != FormType.EditIndirectMember)
-            {
-                if (reader.NextResult())
-                {
-                    if (settingContext.TargetRoleId == (int)Role.Member)
-                    {
-                        commissionSetting.CommissionItems = CommissionDataReader.ReadMemberCommissionData(reader);
-                    }
-                    else
-                    {
-                        commissionSetting.CommissionItems = CommissionDataReader.ReadAgentCommissionData(reader);
-                    }
-                }
-
-                if (reader.NextResult())
-                {
-                    bettingLimits = BettingLimitDataReader.ReadBetLimitData(reader, true);
-                }
-            }
-
-            if (reader.NextResult())
-            {
-                if (settingContext.TargetRoleId == (int)Role.Member)
-                {
-                    positionTakingDataList = PositionTakingDataReader.ReadMemberPositionTakingData(reader);
-                }
-                else
-                {
-                    positionTakingDataList = PositionTakingDataReader.ReadAgentPositionTakingDataForUpdate(reader, settingContext.TargetRoleId);
-                }
-            }
-        }
-
-        /// <summary>
         /// Get default setting for insert new agent.
         /// </summary>
-        /// <param name="criteria">SP parameters.</param>
         /// <param name="settingContext">Current setting context.</param>
-        /// <param name="custInfo">Customer information.</param>
-        /// <param name="commissionSetting">Commission setting.</param>
-        /// <param name="bettingLimits">Bet limit setting.</param>
-        /// <param name="positionTakingDataList">Position taking setting.</param>
+        /// <param name="customerSetting">The customer setting.</param>
         /// <param name="errCode">The MSG unique identifier.</param>
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
-        /// <exception cref="System.Exception">Throw an invalid criteria exception.</exception>
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
         private void GetSettingForInsert(
-            ICriteria criteria,
             SettingContext settingContext,
-            out CustomerInfo custInfo,
-            out CommissionSetting commissionSetting,
-            out IList<BettingLimit> bettingLimits,
-            out Dictionary<string, PositionTaking> positionTakingDataList,
+            out CustomerSetting customerSetting,
             out int errCode,
             out int maxLicenseePt)
         {
+            var criteria = GetCriteriaForInsert(settingContext);
             try
             {
                 if (!criteria.IsValid())
@@ -321,27 +234,23 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 }
 
                 maxLicenseePt = 0;
-                custInfo = new CustomerInfo();
-                commissionSetting = new CommissionSetting();
-                bettingLimits = new List<BettingLimit>();
-                positionTakingDataList = new Dictionary<string, PositionTaking>();
+                var custInfo = new CustomerInfo();
+                var commissionSetting = new CommissionSetting();
+                IList<BettingLimitItem> bettingLimitList = null;
+                IList<PositionTakingItem> positionTakingList = null;
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                     {
                         commissionSetting.CommissionItems = CommissionDataReader.ReadAgentCommissionData(reader, false);
-
                         if (reader.NextResult())
                         {
-                            bettingLimits = BettingLimitDataReader.ReadBetLimitData(reader, false);
+                            bettingLimitList = BettingLimitDataReader.ReadBetLimitData(reader, false);
                         }
 
-                        if (settingContext.TargetRoleId != (int)Role.AgentLevel1)
+                        if (settingContext.TargetRoleId != (int)Role.AgentLevel1 && reader.NextResult())
                         {
-                            if (reader.NextResult())
-                            {
-                                positionTakingDataList = PositionTakingDataReader.ReadAgentPositionTakingData(reader, false);
-                            }
+                            positionTakingList = PositionTakingDataReader.ReadAgentPositionTakingData(reader, false);
                         }
                     }
 
@@ -353,6 +262,14 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                         maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;
                     }
                 }
+
+                customerSetting = new CustomerSetting
+                {
+                    CustInfo = custInfo,
+                    CommissionSetting = commissionSetting,
+                    BettingLimitSetting = bettingLimitList,
+                    PositionTakingSetting = positionTakingList
+                };
             }
             catch (Exception exception)
             {
@@ -363,23 +280,19 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// <summary>
         /// Get default setting for edit customer.
         /// </summary>
-        /// <param name="criteria">SP parameters.</param>
         /// <param name="settingContext">Current setting context.</param>
-        /// <param name="custInfo">Customer information.</param>
-        /// <param name="commissionSetting">Commission setting.</param>
-        /// <param name="bettingLimits">Bet limit setting.</param>
-        /// <param name="positionTakingDataList">Position taking setting.</param>
+        /// <param name="customerSetting">The customer setting.</param>
         /// <param name="errCode">The MSG unique identifier.</param>
-        /// <exception cref="System.Exception">Throw an invalid criteria exception.</exception>
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
         private void GetSettingForUpdate(
-            ICriteria criteria,
             SettingContext settingContext,
-            out CustomerInfo custInfo,
-            out CommissionSetting commissionSetting,
-            out IList<BettingLimit> bettingLimits,
-            out Dictionary<string, PositionTaking> positionTakingDataList,
+            out CustomerSetting customerSetting,
             out int errCode)
         {
+            var criteria = GetCriteriaForUpdate(settingContext);
             try
             {
                 if (!criteria.IsValid())
@@ -387,26 +300,57 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                     throw new InvalidOperationException("Invalid criteria");
                 }
 
-                custInfo = new CustomerInfo();
-                commissionSetting = new CommissionSetting();
-                bettingLimits = new List<BettingLimit>();
-                positionTakingDataList = new Dictionary<string, PositionTaking>();
-
+                var custInfo = new CustomerInfo();
+                var commissionSetting = new CommissionSetting();
+                IList<BettingLimitItem> bettingLimiList = null;
+                IList<PositionTakingItem> positionTakingList = null;
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                     {
-                        ParseDataSettingForUpdate(
-                            settingContext, 
-                            out custInfo, 
-                            out commissionSetting, 
-                            out bettingLimits,
-                            out positionTakingDataList, 
-                            reader);
+                        if (settingContext.TargetRoleId == (int)Role.Member)
+                        {
+                            var userGroup = string.Empty;
+                            custInfo = CustomerInfoDataReader.ReaderMemberInfo(reader, out userGroup);
+                            commissionSetting.UserGroup = userGroup;
+                        }
+                        else
+                        {
+                            custInfo = CustomerInfoDataReader.ReaderAgentInfo(reader);
+                        }
+
+                        if (settingContext.FormId != FormType.EditIndirectMember)
+                        {
+                            if (reader.NextResult())
+                            {
+                                commissionSetting.CommissionItems = settingContext.TargetRoleId == (int)Role.Member
+                                    ? CommissionDataReader.ReadMemberCommissionData(reader)
+                                    : CommissionDataReader.ReadAgentCommissionData(reader);
+                            }
+
+                            if (reader.NextResult())
+                            {
+                                bettingLimiList = BettingLimitDataReader.ReadBetLimitData(reader, true);
+                            }
+                        }
+
+                        if (reader.NextResult())
+                        {
+                            positionTakingList = settingContext.TargetRoleId == (int)Role.Member
+                                ? PositionTakingDataReader.ReadMemberPositionTakingData(reader)
+                                : PositionTakingDataReader.ReadAgentPositionTakingDataForUpdate(reader, settingContext.TargetRoleId);
+                        }
                     }
 
                     var outputParams = objDb.GetOuputParams();
                     errCode = Converter.ToInt(outputParams["msgid"]);
+                    customerSetting = new CustomerSetting
+                    {
+                        CustInfo = custInfo,
+                        CommissionSetting = commissionSetting,
+                        BettingLimitSetting = bettingLimiList,
+                        PositionTakingSetting = positionTakingList
+                    };
                 }
             }
             catch (Exception exception)
@@ -443,13 +387,13 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// <returns>Criteria for getting SportsBook setting.</returns>
         private ICriteria GetCriteriaForUpdate(SettingContext settingContext)
         {
-            ICriteria getAgentSettingCriteria = null;
+            ICriteria criteria = null;
 
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)
                 {
-                    getAgentSettingCriteria = new AgentSelectMemberIndirectForUpdateCriteria
+                    criteria = new AgentSelectMemberIndirectForUpdateCriteria
                     {
                         AgentId = settingContext.CustId,
                         CustId = settingContext.TargetCustId
@@ -457,7 +401,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 }
                 else
                 {
-                    getAgentSettingCriteria = new AgentGetMemberSettingForUpdateCriteria
+                    criteria = new AgentGetMemberSettingForUpdateCriteria
                     {
                         CustId = settingContext.TargetCustId
                     };
@@ -465,20 +409,20 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
             }
             else if (settingContext.TargetRoleId == (int)Role.Agent)
             {
-                getAgentSettingCriteria = new AgentGetAgentSettingForUpdateCriteria
+                criteria = new AgentGetAgentSettingForUpdateCriteria
                 {
                     AgentId = settingContext.TargetCustId
                 };
             }
             else if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
-                getAgentSettingCriteria = new LicenseeGetAgentSettingForUpdateCriteria
+                criteria = new LicenseeGetAgentSettingForUpdateCriteria
                 {
                     AgentId = settingContext.TargetCustId,
                 };
             }
 
-            return getAgentSettingCriteria;
+            return criteria;
         }
     }
 }

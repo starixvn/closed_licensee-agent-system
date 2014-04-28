@@ -17,7 +17,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public CommissionSetting CommissionSetting { get; set; }
 
-        public IList<BettingLimit> BettingLimits { get; set; }
+        public IList<BettingLimitItem> BettingLimitSetting { get; set; }
 
         public IList<PositionTakingGroup> PositionTakingSetting { get; set; }
     }

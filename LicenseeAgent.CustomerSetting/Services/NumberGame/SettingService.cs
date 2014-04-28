@@ -8,7 +8,6 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
@@ -35,31 +34,24 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
         /// <returns>
         /// Number game customer setting.
         /// </returns>
-        public Entities.NumberGame.CustomerSetting GetSettingForInsert(SettingContext settingContext, out int errCode)
+        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
         {
-            CommissionSetting commissionSetting;
-            IList<Entities.NumberGame.BettingLimit> bettingLimits;
-            Dictionary<string, PositionTaking> positionTakingData;
-            ICriteria getAgentSettingCriteria = GetInsertSettingCriteria(settingContext);
+            CustomerSetting customerSetting;
             errCode = Result.FailureValue;
             var maxLicenseePt = 0;
-
             GetSettingForInsert(
-                getAgentSettingCriteria,
                 settingContext,
-                out commissionSetting,
-                out bettingLimits,
-                out positionTakingData,
+                out customerSetting,
                 out errCode,
                 out maxLicenseePt);
 
             if (errCode == Result.SuccessValue)
             {
-                return new Entities.NumberGame.CustomerSetting
+                return new CustomerSetting2
                 {
-                    CommissionSetting = commissionSetting,
-                    BettingLimits = bettingLimits.Cast<Entities.NumberGame.BettingLimit>().ToList(),
-                    PositionTakingSetting = BuildPositionTakingGroups((int)Product.Product_2, settingContext, positionTakingData, maxLicenseePt)
+                    CommissionSetting = customerSetting.CommissionSetting,
+                    BettingLimitSetting = customerSetting.BettingLimitSetting,
+                    PositionTakingSetting = BuildPositionTakingGroups((int)Product.Product_2, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
                 };
             }
 
@@ -90,23 +82,17 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
         /// <summary>
         /// Get default setting for insert new agent.
         /// </summary>
-        /// <param name="criteria">SP parameters.</param>
         /// <param name="settingContext">Current setting context.</param>
-        /// <param name="commissionSetting">Commission setting.</param>
-        /// <param name="bettingLimits">Bet limit setting.</param>
-        /// <param name="positionTakingDataList">Position taking setting.</param>
-        /// <param name="msgId">The MSG unique identifier.</param>
+        /// <param name="customerSetting">The customer setting.</param>
+        /// <param name="errCode">The MSG unique identifier.</param>
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
-        /// <exception cref="System.Exception">Throw an invalid criteria exception.</exception>
         private void GetSettingForInsert(
-            ICriteria criteria,
             SettingContext settingContext,
-            out CommissionSetting commissionSetting,
-            out IList<Entities.NumberGame.BettingLimit> bettingLimits,
-            out Dictionary<string, PositionTaking> positionTakingDataList,
-            out int msgId,
+            out CustomerSetting customerSetting,
+            out int errCode,
             out int maxLicenseePt)
         {
+            var criteria = GetInsertSettingCriteria(settingContext);
             try
             {
                 if (!criteria.IsValid())
@@ -115,37 +101,40 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 }
 
                 maxLicenseePt = 0;
-                msgId = -1;
-                commissionSetting = new CommissionSetting();
-                bettingLimits = null;
-                positionTakingDataList = null;
+                errCode = Result.FailureValue;
+                var commissionSetting = new CommissionSetting();
+                IList<BettingLimitItem> bettingLimitList = null;
+                IList<PositionTakingItem> positionTakingList = null;
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                     {
                         commissionSetting.CommissionItems = CommissionDataReader.ReadNumberGameAgentCommissionData(reader, false);
-
                         if (reader.NextResult())
                         {
-                            bettingLimits = BettingLimitDataReader.ReadNumberGameBetLimitData(reader, false);
+                            bettingLimitList = BettingLimitDataReader.ReadNumberGameBetLimitData(reader, false);
                         }
 
-                        if (settingContext.TargetRoleId != (int)Role.AgentLevel1)
+                        if (settingContext.TargetRoleId != (int)Role.AgentLevel1 && reader.NextResult())
                         {
-                            if (reader.NextResult())
-                            {
-                                positionTakingDataList = PositionTakingDataReader.ReadAgentPositionTakingData(reader, false);
-                            }
+                            positionTakingList = PositionTakingDataReader.ReadAgentPositionTakingData(reader, false);
                         }
                     }
 
                     var outputParams = objDb.GetOuputParams();
-                    msgId = Converter.ToInt(outputParams["msgid"]);
+                    errCode = Converter.ToInt(outputParams["msgid"]);
                     if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
                     {
                         maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;
                     }
                 }
+
+                customerSetting = new CustomerSetting
+                {
+                    CommissionSetting = commissionSetting,
+                    BettingLimitSetting = bettingLimitList,
+                    PositionTakingSetting = positionTakingList
+                };
             }
             catch (Exception exception)
             {

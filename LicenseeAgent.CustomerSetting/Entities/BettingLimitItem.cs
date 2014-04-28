@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="BettingLimit.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BettingLimitItem.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,9 +7,9 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     /// <summary>
-    /// Class name.
+    /// BettingLimitItem name.
     /// </summary>
-    public class BettingLimit
+    public class BettingLimitItem
     {
         public int SportId { get; set; }
 
@@ -26,5 +26,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public decimal MaxMinBet { get; set; }
 
         public decimal MinMaxPerMatch { get; set; }
+
+        public decimal MaxPerBall { get; set; }
     }
 }

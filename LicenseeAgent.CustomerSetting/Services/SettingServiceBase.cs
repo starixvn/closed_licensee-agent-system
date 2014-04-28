@@ -23,7 +23,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingData">Position taking raw data.</param>
+        /// <param name="positionTakingList">Position taking raw data.</param>
         /// <param name="maxLicenseePt">Get max PT incase  insert new agent level 1.</param>
         /// <returns>
         /// List position taking group.
@@ -31,7 +31,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         protected IList<PositionTakingGroup> BuildPositionTakingGroups(
             int productId,
             SettingContext settingContext,
-            Dictionary<string, PositionTaking> positionTakingData,
+            IList<PositionTakingItem> positionTakingList,
             int maxLicenseePt = 0)
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
@@ -44,13 +44,13 @@ namespace LicenseeAgent.CustomerSetting.Services
                     {
                         SportId = sportType.Id,
                         IsLive = sportType.IsLive,
-                        PositionTakings = new List<PositionTaking>()
+                        PositionTakings = new List<PositionTakingItem>()
                     };
 
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingData(settingContext, positionTakingData, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
+                        GetPositionTakingData(settingContext, positionTakingList, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -64,13 +64,13 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// Build position taking group from raw data.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        /// <param name="positionTakingData">Position taking raw data.</param>
+        /// <param name="positionTakingList">Position taking raw data.</param>
         /// <returns>
         /// List position taking group.
         /// </returns>
         protected IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
             int productId,
-            Dictionary<string, PositionTaking> positionTakingData)
+            IList<PositionTakingItem> positionTakingList)
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
             var productSettings = SettingConfigurations.GetProductPtSettings(productId);
@@ -82,13 +82,13 @@ namespace LicenseeAgent.CustomerSetting.Services
                     {
                         SportId = sportType.Id,
                         IsLive = sportType.IsLive,
-                        PositionTakings = new List<PositionTaking>()
+                        PositionTakings = new List<PositionTakingItem>()
                     };
 
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingDataForUpdate(positionTakingData, positionTakingGroup, Convert.ToInt32(betTypeId));
+                        GetPositionTakingDataForUpdate(positionTakingList, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -98,51 +98,44 @@ namespace LicenseeAgent.CustomerSetting.Services
             return positionTakingSetting;
         }
 
-        private static string GetPositionTakingKey(PositionTakingGroup data, int betTypeId)
-        {
-            return string.Format("{0}_{1}_{2}", data.SportId, data.IsLive, betTypeId);
-        }
-
         /// <summary>
         /// Get Position taking item.
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingData">Position taking to save data.</param>
+        /// <param name="positionTakingList">Position taking to save data.</param>
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
         private void GetPositionTakingData(
             SettingContext settingContext,
-            Dictionary<string, PositionTaking> positionTakingData,
+            IList<PositionTakingItem> positionTakingList,
             int maxLicenseePt,
             PositionTakingGroup positionTakingGroup,
             int betTypeId)
         {
             if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
-                positionTakingGroup.PositionTakings.Add(new PositionTaking
+                positionTakingGroup.PositionTakings.Add(new PositionTakingItem
                 {
                     SportId = positionTakingGroup.SportId,
                     IsLive = positionTakingGroup.IsLive,
                     BetTypeId = Converter.ToInt(betTypeId),
-                    Upline = new PositionTaking
+                    Upline = new PositionTakingItem
                     {
                         Max = maxLicenseePt
                     },
-                    AllDownLine = new PositionTaking()
+                    AllDownLine = new PositionTakingItem()
                 });
             }
             else
             {
-                string positionTakingKey = string.Format(
-                    "{0}_{1}_{2}",
-                    positionTakingGroup.SportId,
-                    positionTakingGroup.IsLive,
-                    betTypeId);
-
-                if (positionTakingData.ContainsKey(positionTakingKey))
+                string positionTakingKey = positionTakingGroup.GenerateKey(betTypeId);
+                foreach (var positionTakingItem in positionTakingList)
                 {
-                    positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);
+                    if (positionTakingItem.GenerateKey() == positionTakingKey)
+                    {
+                        positionTakingGroup.PositionTakings.Add(positionTakingItem);
+                    }
                 }
             }
         }
@@ -150,18 +143,21 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <summary>
         /// Get Position taking item.
         /// </summary>
-        /// <param name="positionTakingData">Position taking to save data.</param>
+        /// <param name="positionTakingList">Position taking to save data.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
         private void GetPositionTakingDataForUpdate(
-            Dictionary<string, PositionTaking> positionTakingData,
+            IList<PositionTakingItem> positionTakingList,
             PositionTakingGroup positionTakingGroup,
             int betTypeId)
         {
-            var positionTakingKey = GetPositionTakingKey(positionTakingGroup, betTypeId);
-            if (positionTakingData.ContainsKey(positionTakingKey))
+            var positionTakingKey = positionTakingGroup.GenerateKey(betTypeId);
+            foreach (var positionTakingItem in positionTakingList)
             {
-                positionTakingGroup.PositionTakings.Add(positionTakingData[positionTakingKey]);
+                if (positionTakingItem.GenerateKey() == positionTakingKey)
+                {
+                    positionTakingGroup.PositionTakings.Add(positionTakingItem);
+                }
             }
         }
     }

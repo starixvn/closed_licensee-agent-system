@@ -71,12 +71,12 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </summary>
         /// <param name="bettingLimits">Betting limits data.</param>
         /// <returns>String data to update database.</returns>
-        public static string Build(IList<BettingLimit> bettingLimits)
+        public static string Build(IList<BettingLimitItem> bettingLimits)
         {
             string xmlStringData = string.Empty;
             if (bettingLimits != null && bettingLimits.Any())
             {
-                foreach (BettingLimit betLimit in bettingLimits)
+                foreach (BettingLimitItem betLimit in bettingLimits)
                 {
                     xmlStringData += string.Format(
                         Constant.FORMAT_BETTING_LIMIT_XML,
@@ -97,7 +97,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingSetting">Position taking data.</param>
         /// <returns>String data to update database.</returns>
-        public static string Build(SettingContext settingContext, IList<PositionTaking> positionTakingSetting)
+        public static string Build(SettingContext settingContext, IList<PositionTakingItem> positionTakingSetting)
         {
             string xmlStringData = string.Empty;
 
@@ -106,7 +106,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 return xmlStringData;
             }
 
-            foreach (PositionTaking positionTaking in positionTakingSetting)
+            foreach (PositionTakingItem positionTaking in positionTakingSetting)
             {
                 if (positionTaking != null)
                 {
@@ -123,7 +123,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <param name="settingContext">The setting context.</param>
         /// <param name="positionTaking">The position taking.</param>
         /// <returns>The xml string for one position taking item.</returns>
-        private static string Build(SettingContext settingContext, PositionTaking positionTaking)
+        private static string Build(SettingContext settingContext, PositionTakingItem positionTaking)
         {
             string xmlResult;
 

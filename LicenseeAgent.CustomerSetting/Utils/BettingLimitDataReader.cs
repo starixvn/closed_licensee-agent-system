@@ -23,15 +23,15 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
         /// <returns>Returns list of Betting limit item.</returns>
-        public static IList<Entities.NumberGame.BettingLimit> ReadNumberGameBetLimitData(
+        public static IList<BettingLimitItem> ReadNumberGameBetLimitData(
             IDataReader reader, 
             bool getUplineBetlimit = false)
         {
-            var bettingLimits = new List<Entities.NumberGame.BettingLimit>();
+            var bettingLimits = new List<BettingLimitItem>();
             while (reader.Read())
             {
                 var sportType = reader.ToInt("SportType");
-                var bettingLimit = new Entities.NumberGame.BettingLimit
+                var bettingLimit = new BettingLimitItem
                 {
                     SportId = sportType,
                     BetTypeId = reader.ToInt("BetType"),
@@ -54,15 +54,15 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="reader">Reader for read data.</param>
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
         /// <returns>Returns list of betting limit item.</returns>
-        public static IList<BettingLimit> ReadBetLimitData(
+        public static IList<BettingLimitItem> ReadBetLimitData(
             IDataReader reader, 
             bool getUplineBetlimit = false)
         {
-            var bettingLimits = new List<BettingLimit>();
+            var bettingLimits = new List<BettingLimitItem>();
             while (reader.Read())
             {
                 var sportType = reader.ToInt("SportType");
-                var bettingLimit = new BettingLimit
+                var bettingLimit = new BettingLimitItem
                 {
                     SportId = sportType,
                     BetTypeId = reader.ToInt("BetType"),

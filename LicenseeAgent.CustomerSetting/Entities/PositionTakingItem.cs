@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PositionTaking.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="PositionTakingItem.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,7 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
     /// <summary>
     /// PositionTaking class.
     /// </summary>
-    public class PositionTaking
+    public class PositionTakingItem
     {
         public int SportId { get; set; }
 
@@ -27,8 +27,13 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public bool ApplyAll { get; set; }
 
-        public PositionTaking Upline { get; set; }
+        public PositionTakingItem Upline { get; set; }
 
-        public PositionTaking AllDownLine { get; set; }
+        public PositionTakingItem AllDownLine { get; set; }
+
+        public string GenerateKey()
+        {
+            return string.Format("{0}_{1}_{2}", SportId, IsLive, BetTypeId);
+        }
     }
 }

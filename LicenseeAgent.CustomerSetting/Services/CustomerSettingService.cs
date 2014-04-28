@@ -46,11 +46,11 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </returns>
         public InsertResult InsertCustomer(InsertCustomerViewModel model)
         {
-            //// Build XML setting for insert new customer.
-            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.UpdateDataSportsBookCustomer.BettingLimits);
+            // Build XML setting for insert new customer.
+            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
+            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimits);
             var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
+                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
@@ -75,10 +75,10 @@ namespace LicenseeAgent.CustomerSetting.Services
         public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             // Build XML setting for update customer.
-            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.UpdateDataSportsBookCustomer.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.UpdateDataSportsBookCustomer.BettingLimits);
+            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
+            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimits);
             var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
+                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
             var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
                 : string.Empty;
@@ -104,7 +104,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         {
             // Build XML setting for update customer.
             var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.UpdateDataSportsBookCustomer.PositionTakingSetting);
+                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
             var positionTakingXml = !string.IsNullOrEmpty(positionTakingXmlStringData)
                 ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
                 : string.Empty;
@@ -131,7 +131,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             string betLimitXml,
             string positionTakingXml)
         {
-            var custInfo = model.UpdateDataSportsBookCustomer.CustInfo;
+            var custInfo = model.SportsBookSetting.CustInfo;
             var criteriaBase = new InsertCustomerCriteria
             {
                 UserName = custInfo.UserName,
@@ -147,7 +147,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 return new AgentInsertMemberSettingCriteria(criteriaBase)
                 {
-                    UGroup = model.UpdateDataSportsBookCustomer.CommissionSetting.UserGroup,
+                    UGroup = model.SportsBookSetting.CommissionSetting.UserGroup,
                     ParentId = model.SettingContext.CustId
                 };
             }
@@ -156,7 +156,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
                 {
                     var passwordSalt = Cryptography.CreateSalt();
-                    var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsBookCustomer.CustInfo.Password, passwordSalt);
+                    var hashPassword = Cryptography.CreateHash(model.SportsBookSetting.CustInfo.Password, passwordSalt);
                     return new LicenseeInsertAgentSettingCriteria(criteriaBase)
                     {
                         AgentL0Id = model.SettingContext.CustId,
@@ -167,13 +167,13 @@ namespace LicenseeAgent.CustomerSetting.Services
                         FirstName = custInfo.FirstName,
                         LastName = custInfo.LastName,
                         Fax = custInfo.Fax,
-                        Status = (byte)model.UpdateDataSportsBookCustomer.CustInfo.Status
+                        Status = (byte)model.SportsBookSetting.CustInfo.Status
                     };
                 }
                 else
                 {
                     var passwordSalt = Cryptography.CreateSalt();
-                    var hashPassword = Cryptography.CreateHash(model.UpdateDataSportsBookCustomer.CustInfo.Password, passwordSalt);
+                    var hashPassword = Cryptography.CreateHash(model.SportsBookSetting.CustInfo.Password, passwordSalt);
                     return new AgentInsertAgentSettingCriteria(criteriaBase)
                     {
                         ParentId = model.SettingContext.CustId,
@@ -184,7 +184,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                         FirstName = custInfo.FirstName,
                         LastName = custInfo.LastName,
                         Fax = custInfo.Fax,
-                        Status = model.UpdateDataSportsBookCustomer.CustInfo.Status
+                        Status = model.SportsBookSetting.CustInfo.Status
                     };
                 }
             }

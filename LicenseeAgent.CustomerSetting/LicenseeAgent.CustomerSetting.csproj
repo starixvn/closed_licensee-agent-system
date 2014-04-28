@@ -87,13 +87,13 @@
     <Compile Include="Entities\CommissionSetting.cs" />
     <Compile Include="Entities\CustomerInfo.cs" />
     <Compile Include="Entities\CustomerSetting.cs" />
+    <Compile Include="Entities\CustomerSetting2.cs" />
     <Compile Include="Entities\InsertResult.cs" />
     <Compile Include="Entities\MemberInfo.cs" />
     <Compile Include="Entities\NumberGame\CustomerSetting.cs" />
     <Compile Include="Entities\PositionTaking.cs" />
     <Compile Include="Entities\PositionTakingGroup.cs" />
     <Compile Include="Entities\SettingContext.cs" />
-    <Compile Include="Entities\SportsBook\UpdateDataSportsBookCustomer.cs" />
     <Compile Include="Entities\NumberGame\BettingLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NumberGame\ISettingService.cs" />
@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
+    <Folder Include="Entities\SportsBook\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Core\PtSettings.xsd">

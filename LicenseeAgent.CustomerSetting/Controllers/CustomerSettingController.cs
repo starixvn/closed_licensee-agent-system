@@ -231,7 +231,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
            Justification = "Reviewed. Suppression is OK here.")]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (model == null || model.SettingContext == null || model.UpdateDataSportsBookCustomer == null
+            if (model == null || model.SettingContext == null || model.SportsBookSetting == null
                 || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
@@ -245,7 +245,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var checkUserNameResult = _memberService.CheckUserName(new CheckUserNameAction
             {
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
-                UserName = model.UpdateDataSportsBookCustomer.CustInfo.UserName
+                UserName = model.SportsBookSetting.CustInfo.UserName
             });
             if (checkUserNameResult.ErrCode != Result.SuccessValue)
             {
@@ -259,19 +259,19 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 {
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId,
-                    UserName = model.UpdateDataSportsBookCustomer.CustInfo.UserName,
-                    Password = model.UpdateDataSportsBookCustomer.CustInfo.Password,
+                    UserName = model.SportsBookSetting.CustInfo.UserName,
+                    Password = model.SportsBookSetting.CustInfo.Password,
                     IBCCustId = result.CustIdReturn,
                     IBCUserName = result.IBCUserName,
                     LASAgentId = model.SettingContext.CustId,
-                    FirstName = model.UpdateDataSportsBookCustomer.CustInfo.FirstName,
-                    LastName = model.UpdateDataSportsBookCustomer.CustInfo.LastName,
-                    Phone = model.UpdateDataSportsBookCustomer.CustInfo.Phone,
-                    OtherPhone = model.UpdateDataSportsBookCustomer.CustInfo.Mobile,
-                    Fax = model.UpdateDataSportsBookCustomer.CustInfo.Fax,
+                    FirstName = model.SportsBookSetting.CustInfo.FirstName,
+                    LastName = model.SportsBookSetting.CustInfo.LastName,
+                    Phone = model.SportsBookSetting.CustInfo.Phone,
+                    OtherPhone = model.SportsBookSetting.CustInfo.Mobile,
+                    Fax = model.SportsBookSetting.CustInfo.Fax,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     Currency = CurrentSession.AgentInfo.CurrencyId,
-                    IsClosed = model.UpdateDataSportsBookCustomer.CustInfo.Status == (int)AccountStatus.Closed
+                    IsClosed = model.SportsBookSetting.CustInfo.Status == (int)AccountStatus.Closed
                 });
                 if (insertResult.ErrCode != Result.SuccessValue)
                 {
@@ -297,7 +297,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             if (model.SettingContext == null
-                || model.UpdateDataSportsBookCustomer == null
+                || model.SportsBookSetting == null
                 || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
@@ -307,10 +307,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 ? _customerSettingService.UpdateIndirectCustomer(model)
                 : _customerSettingService.UpdateCustomer(model);
 
-            var hasUpdateCommission = model.UpdateDataSportsBookCustomer.CommissionSetting != null
-                && model.UpdateDataSportsBookCustomer.CommissionSetting.CommissionItems.Count > 0;
-            var hasUpdateBetSetting = model.UpdateDataSportsBookCustomer.BettingLimits != null
-                && model.UpdateDataSportsBookCustomer.BettingLimits.Count > 0;
+            var hasUpdateCommission = model.SportsBookSetting.CommissionSetting != null
+                && model.SportsBookSetting.CommissionSetting.CommissionItems.Count > 0;
+            var hasUpdateBetSetting = model.SportsBookSetting.BettingLimits != null
+                && model.SportsBookSetting.BettingLimits.Count > 0;
             var messages = GenerateMessages(result, true, hasUpdateCommission, hasUpdateBetSetting);
             return Json(new
             {

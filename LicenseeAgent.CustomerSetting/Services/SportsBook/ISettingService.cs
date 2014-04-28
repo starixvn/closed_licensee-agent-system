@@ -6,17 +6,14 @@
 
 namespace LicenseeAgent.CustomerSetting.Services.SportsBook
 {
-    using System.Collections.Generic;
     using Fanex.NAP.Framework.Data;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Entities.SportsBook;
 
     public interface ISettingService
     {
-        CustomerSetting GetSettingForInsert(SettingContext settingContext, out int errCode);
+        CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode);
 
-        CustomerSetting GetSettingForUpdate(SettingContext settingContext, out int errCode);
+        CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode);
 
         InsertResult InsertCustomer(ICriteria criteria);
 

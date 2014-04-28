@@ -9,7 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
     using System.Collections.Generic;
 
     /// <summary>
-    /// CustomerSetting class.
+    /// TODO: Update summary.
     /// </summary>
     public class CustomerSetting
     {
@@ -19,6 +19,6 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public IList<BettingLimit> BettingLimits { get; set; }
 
-        public IList<PositionTakingGroup> PositionTakingSetting { get; set; }
+        public IList<PositionTaking> PositionTakingSetting { get; set; }
     }
 }

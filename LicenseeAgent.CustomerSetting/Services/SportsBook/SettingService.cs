@@ -37,7 +37,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public CustomerSetting GetSettingForInsert(SettingContext settingContext, out int errCode)
+        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
@@ -60,7 +60,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
 
             if (errCode == Result.SuccessValue)
             {
-                return new CustomerSetting
+                return new CustomerSetting2
                 {
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,
@@ -80,7 +80,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public CustomerSetting GetSettingForUpdate(SettingContext settingContext, out int errCode)
+        public CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode)
         {
             CustomerInfo custInfo;
             CommissionSetting commissionSetting;
@@ -99,7 +99,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
 
             if (errCode == Result.SuccessValue)
             {
-                return new CustomerSetting
+                return new CustomerSetting2
                 {
                     CustInfo = custInfo,
                     CommissionSetting = commissionSetting,

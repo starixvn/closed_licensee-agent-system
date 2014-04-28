@@ -790,8 +790,8 @@
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\PositionTaking.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\BetSettingSimpleMode.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\PositionTakingSimpleMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
     <None Include="Views\CustomerSetting\Resources\scripts\languages\sports-book-lang.en-US.js.orig" />

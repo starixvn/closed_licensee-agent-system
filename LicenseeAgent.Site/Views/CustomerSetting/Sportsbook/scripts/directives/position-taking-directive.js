@@ -107,7 +107,7 @@ if (fanex.customerSetting) {
                         $timeout,
                         currentPt,
                         maxInput,
-                        minInput,
+                        minInput);
                         formatter);
 
                     //// Init value

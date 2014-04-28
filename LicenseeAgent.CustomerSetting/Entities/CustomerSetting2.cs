@@ -9,7 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
     using System.Collections.Generic;
 
     /// <summary>
-    /// CustomerSetting class.
+    /// CustomerSetting2 class.
     /// </summary>
     public class CustomerSetting2
     {

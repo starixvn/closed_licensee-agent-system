@@ -18,9 +18,9 @@ if (fanex.customerSetting) {
 
             $scope.model = {
                 // For all sport types
-                bettingLimitsModel: fanex.cloneObject(sportsBookSetting.BettingLimits),
+                bettingLimitsModel: fanex.cloneObject(sportsBookSetting.BettingLimitSetting),
                 // For only soccer setting
-                firstRecord: fanex.cloneObject(sportsBookSetting.BettingLimits[0]),
+                firstRecord: fanex.cloneObject(sportsBookSetting.BettingLimitSetting[0]),
                 settingContext: settingContext
             };
 

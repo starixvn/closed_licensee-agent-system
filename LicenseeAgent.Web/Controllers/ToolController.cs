@@ -203,7 +203,7 @@ namespace LicenseeAgent.Web.Controllers
 
             return Json(new
             {
-                ActionID = syncData.ActionId,
+                Results = responseResult.ErrMsg,
                 IsSuccess = responseResult.ErrCode == Result.SuccessValue
             });
         }

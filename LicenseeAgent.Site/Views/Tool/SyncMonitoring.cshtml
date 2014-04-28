@@ -21,7 +21,11 @@
     </div>
     <div class="controls-row">
         <label for="taiwanapiurl">Taiwan API's URL</label>
-        <input type="text" class="form-control" id="taiwanapiurl" value="@AppSettings.TaiwanAPI" />
+        <select id="taiwanapiurl">
+          <option value="All">All</option>
+          <option value="http://lastest.net2cast.com/API">http://lastest.net2cast.com/API</option>
+          <option value="http://las.net2cast.net/API">http://las.net2cast.net/API</option>
+        </select>
     </div>
     <div class="controls-row">
         <button type="button" class="btn btn-primary" id="actionmonitoring">Submit</button>

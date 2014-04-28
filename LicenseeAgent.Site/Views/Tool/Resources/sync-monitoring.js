@@ -129,7 +129,7 @@ var syncmonitoring = (function ($) {
                         $('#lbl_' + keyid).removeClass('hide');
                     }
                     else {
-                        alert('Re-Invoke failed for Log ID = {0} !!!'.format(keyid));
+                        alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.Results));
                     }
                 },
                 complete: function () {

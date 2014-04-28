@@ -12,7 +12,7 @@ namespace LicenseeAgent.Report.Criteria
     /// <summary>
     /// Win loss Report Base.
     /// </summary>
-    public class WinlossBase : CriteriaBase
+    public abstract class WinlossBase : CriteriaBase
     {
         public WinlossBase(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType, string productIds)
         {

@@ -30,6 +30,10 @@ namespace LicenseeAgent.Report.ViewModels
         [Display(Name = "Username", ResourceType = typeof(Las))]
         public string Username { get; set; }
 
+        public string Product { get; set; }
+
+        public bool HideUsername { get; set; }
+
         public bool IsMember { get; set; }
     }
 }

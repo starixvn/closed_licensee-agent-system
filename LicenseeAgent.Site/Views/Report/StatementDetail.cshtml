@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="controls-row">
-        @if (ViewBag.HideUsername)
+        @if (Model.HideUsername)
         {
             @Html.HiddenFor(m => m.Username)
         }
@@ -54,7 +54,7 @@
     </div>
     @Html.HiddenFor(m => m.AgentLevel)
     @Html.HiddenFor(m => m.IsMember)
-    <input type="hidden" id="Product" value="@ViewBag.Product" />
+    @Html.HiddenFor(m => m.Product)
 }
 @if (ViewBag.ShowBackButton != null)
 {

@@ -23,7 +23,7 @@ namespace LicenseeAgent.BetList.ViewModels
 
         public string DrawFilter { get; set; }
 
-        public string StatusIDs { get; set; }
+        public string StatusIds { get; set; }
 
         public string ProductIds { get; set; }
 

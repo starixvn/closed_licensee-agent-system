@@ -14,7 +14,7 @@ namespace LicenseeAgent.Core.Criterias
     /// </summary>
     public class GetProductCriteria : CriteriaBase
     {
-        public int LicenseeID { get; set; }
+        public int LicenseeId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -23,7 +23,7 @@ namespace LicenseeAgent.Core.Criterias
 
         public override bool IsValid()
         {
-            return LicenseeID > 0;
+            return LicenseeId > 0;
         }
     }
 }

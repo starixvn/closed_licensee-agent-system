@@ -19,14 +19,14 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List of sports.</returns>
-        IEnumerable<Sport> GetSports(SportCriteria criteria);
+        IList<Sport> GetSports(SportCriteria criteria);
 
        /// <summary>
         /// Get Leagues.
         /// </summary>
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>List of leagues.</returns>
-        IEnumerable<League> GetLeagues(LeagueCriteria criteria);
+        IList<League> GetLeagues(LeagueCriteria criteria);
 
         /// <summary>
         /// Get match results.
@@ -47,12 +47,12 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="criteria">Outstanding Criteria.</param>
         /// <returns>List of agent outstanding results.</returns>
-        IEnumerable<AgentOutstanding> GetOutstandings(ICriteria criteria);
+        IList<AgentOutstanding> GetOutstandings(ICriteria criteria);
 
-        IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
+        IList<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
 
-        IEnumerable<Statement> StatementReport(ICriteria criteria);
+        IList<Statement> StatementReport(ICriteria criteria);
 
-        IEnumerable<Transfer> TransferDetail(ICriteria criteria);
+        IList<Transfer> TransferDetail(ICriteria criteria);
     }
 }

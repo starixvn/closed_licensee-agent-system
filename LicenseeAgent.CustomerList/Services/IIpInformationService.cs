@@ -17,6 +17,6 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns agent information.</returns>
-        IEnumerable<IpEntity> GetIpInformation(GetIpInformationCriteria criteria);
+        IList<IpEntity> GetIpInformation(GetIpInformationCriteria criteria);
     }
 }

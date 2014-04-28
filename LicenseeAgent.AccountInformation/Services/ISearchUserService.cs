@@ -18,14 +18,14 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        IEnumerable<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria);
+        IList<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria);
 
         /// <summary>
         /// Suggest member by Agent.
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        IEnumerable<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria);
+        IList<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria);
 
         /// <summary>
         /// Get members.
@@ -42,7 +42,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
-        IEnumerable<DownLineEntity> GetDirectDownlines(GetDirectDownLineCriteria criteria);
+        IList<DownLineEntity> GetDirectDownlines(GetDirectDownLineCriteria criteria);
 
         /// <summary>
         /// Get agent balance.

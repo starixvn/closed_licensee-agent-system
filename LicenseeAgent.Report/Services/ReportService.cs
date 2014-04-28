@@ -51,7 +51,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List of sports.</returns>
-        public IEnumerable<Sport> GetSports(SportCriteria criteria)
+        public IList<Sport> GetSports(SportCriteria criteria)
         {
             return GetEntites<Sport>(criteria);
         }
@@ -61,7 +61,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>List of leagues.</returns>
-        public IEnumerable<League> GetLeagues(LeagueCriteria criteria)
+        public IList<League> GetLeagues(LeagueCriteria criteria)
         {
             return GetEntites<League>(criteria);
         }
@@ -103,22 +103,22 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         /// <param name="criteria">Outstanding Criteria.</param>
         /// <returns>List of agent outstanding results.</returns>
-        public IEnumerable<AgentOutstanding> GetOutstandings(ICriteria criteria)
+        public IList<AgentOutstanding> GetOutstandings(ICriteria criteria)
         {
             return GetEntites<AgentOutstanding>(criteria);
         }
 
-        public IEnumerable<AgentWinLoss> AgentWinLossReport(ICriteria criteria)
+        public IList<AgentWinLoss> AgentWinLossReport(ICriteria criteria)
         {
             return GetEntites<AgentWinLoss>(criteria);
         }
 
-        public IEnumerable<Statement> StatementReport(ICriteria criteria)
+        public IList<Statement> StatementReport(ICriteria criteria)
         {
             return GetEntites<Statement>(criteria);
         }
 
-        public IEnumerable<Transfer> TransferDetail(ICriteria criteria)
+        public IList<Transfer> TransferDetail(ICriteria criteria)
         {
             return GetEntites<Transfer>(criteria);
         }

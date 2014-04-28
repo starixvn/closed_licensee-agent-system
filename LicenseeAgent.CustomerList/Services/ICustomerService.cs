@@ -17,35 +17,35 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Agent get by agent criteria.</param>
         /// <returns>List agent entity.</returns>
-        IEnumerable<AgentEntity> GetAgentList(AgentGetByAgentCriteria criteria);
+        IList<AgentEntity> GetAgentList(AgentGetByAgentCriteria criteria);
 
         /// <summary>
         /// Search agent.
         /// </summary>
         /// <param name="criteria">Search agent criteria.</param>
         /// <returns>List agent entity.</returns>
-        IEnumerable<AgentEntity> SearchAgent(SearchAgentCriteria criteria);
+        IList<AgentEntity> SearchAgent(SearchAgentCriteria criteria);
 
         /// <summary>
         /// Update account status of agent.
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
         /// <returns>List agent ID.</returns>
-        IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria);
+        IList<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria);
 
         /// <summary>
         /// Get member list.
         /// </summary>
         /// <param name="criteria">Member get by agent criteria.</param>
         /// <returns>List member.</returns>
-        IEnumerable<MemberEntity> GetMemberList(MemberGetByAgentCriteria criteria);
+        IList<MemberEntity> GetMemberList(MemberGetByAgentCriteria criteria);
 
         /// <summary>
         /// Search member.
         /// </summary>
         /// <param name="criteria">Search member criteria.</param>
         /// <returns>List member.</returns>
-        IEnumerable<MemberEntity> SearchMember(SearchMemberCriteria criteria);
+        IList<MemberEntity> SearchMember(SearchMemberCriteria criteria);
 
         /// <summary>
         /// Update account status of member.
@@ -58,14 +58,14 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Agent get by agent criteria.</param>
         /// <returns>List Agent.</returns>
-        IEnumerable<AgentEntity> GetAgentAutoComplete(AgentAutoCompleteCriteria criteria);
+        IList<AgentEntity> GetAgentAutoComplete(AgentAutoCompleteCriteria criteria);
 
         /// <summary>
         /// Get member list.
         /// </summary>
         /// <param name="criteria">Member get by agent criteria.</param>
         /// <returns>List member.</returns>
-        IEnumerable<MemberEntity> GetMemberAutoComplete(MemberAutoCompleteCriteria criteria);
+        IList<MemberEntity> GetMemberAutoComplete(MemberAutoCompleteCriteria criteria);
 
         /// <summary>
         /// Reset Password.

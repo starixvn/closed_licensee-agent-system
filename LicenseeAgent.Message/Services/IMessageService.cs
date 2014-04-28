@@ -15,6 +15,6 @@ namespace LicenseeAgent.Message.Services
     /// </summary>
     public interface IMessageService
     {
-        IEnumerable<MessageEntity> GetMessageList(SearchMessageCriteria criteria);
+        IList<MessageEntity> GetMessageList(SearchMessageCriteria criteria);
     }
 }

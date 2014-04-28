@@ -8,6 +8,7 @@ namespace LicenseeAgent.Core.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Data;
@@ -157,7 +158,7 @@ namespace LicenseeAgent.Core.Services
         /// <typeparam name="T">The input object type.</typeparam>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns a list of object T.</returns>
-        public IEnumerable<T> GetEntites<T>(ICriteria criteria)
+        public IList<T> GetEntites<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -174,7 +175,7 @@ namespace LicenseeAgent.Core.Services
                     var list = objectDb.Query<T>(param);
                     UpdateOutput(objectDb, criteria);
 
-                    return list;
+                    return list.ToList();
                 }
             }
             catch (Exception exception)

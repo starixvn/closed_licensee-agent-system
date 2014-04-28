@@ -36,9 +36,9 @@ namespace LicenseeAgent.Account.Services
 
         void AdminUserLogout(AdminUserLogoutCriteria criteria);
 
-        IEnumerable<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria);
+        IList<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria);
 
-        IEnumerable<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria);
+        IList<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria);
 
         void InternalLoginAsUser(InternalLoginAsUserCriteria criteria);
 
@@ -48,14 +48,14 @@ namespace LicenseeAgent.Account.Services
 
         void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria);
 
-        IEnumerable<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria);
+        IList<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria);
 
-        IEnumerable<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria);
+        IList<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria);
 
-        IEnumerable<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria);
+        IList<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria);
 
-        IEnumerable<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria);
+        IList<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria);
 
-        IEnumerable<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria);
+        IList<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria);
     }
 }

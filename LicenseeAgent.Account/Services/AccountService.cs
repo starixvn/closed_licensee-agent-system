@@ -123,12 +123,12 @@ namespace LicenseeAgent.Account.Services
             Execute(criteria);
         }
 
-        public IEnumerable<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria)
+        public IList<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria)
         {
             return GetEntites<LicenseeEntity>(criteria);
         }
 
-        public IEnumerable<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria)
+        public IList<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria)
         {
             return GetEntites<CurrencyEntity>(criteria);
         }
@@ -153,27 +153,27 @@ namespace LicenseeAgent.Account.Services
             Execute(criteria);
         }
 
-        public IEnumerable<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria)
+        public IList<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria)
         {
             return GetEntites<TopWinningEntity>(criteria);
         }
 
-        public IEnumerable<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria)
+        public IList<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria)
         {
             return GetEntites<TopTurnoverEntity>(criteria);
         }
 
-        public IEnumerable<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria)
+        public IList<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria)
         {
             return GetEntites<NewMemberOfMonthEntity>(criteria);
         }
 
-        public IEnumerable<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria)
+        public IList<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria)
         {
             return GetEntites<StatisticEntity>(criteria);
         }
 
-        public IEnumerable<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria)
+        public IList<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria)
         {
             return GetEntites<BalanceInfoEntity>(criteria);
         }

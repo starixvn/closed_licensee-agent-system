@@ -21,7 +21,7 @@ namespace LicenseeAgent.Message.Services
         /// </summary>
         /// <param name="criteria">Search message criteria.</param>
         /// <returns>List message.</returns>
-        public IEnumerable<MessageEntity> GetMessageList(SearchMessageCriteria criteria)
+        public IList<MessageEntity> GetMessageList(SearchMessageCriteria criteria)
         {
             return GetEntites<MessageEntity>(criteria);
         }

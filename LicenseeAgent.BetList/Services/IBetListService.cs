@@ -41,7 +41,7 @@ namespace LicenseeAgent.BetList.Services
         /// </summary>
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>A list of bet list details.</returns>
-        IEnumerable<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria);
+        IList<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria);
 
         /// <summary>
         /// Get Parlay List.

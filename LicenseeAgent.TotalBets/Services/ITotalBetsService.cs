@@ -15,30 +15,30 @@ namespace LicenseeAgent.TotalBets.Services
     /// </summary>
     public interface ITotalBetsService
     {
-        IEnumerable<LeagueEntity> GetLeagues(LeagueCriteria criteria);
+        IList<LeagueEntity> GetLeagues(LeagueCriteria criteria);
 
-        IEnumerable<EventEntity> GetEventsByLeague(EventCriteria criteria);
+        IList<EventEntity> GetEventsByLeague(EventCriteria criteria);
 
-        IEnumerable<TotalBetsEntity> GetSoccerData(SoccerCriteria criteria);
+        IList<TotalBetsEntity> GetSoccerData(SoccerCriteria criteria);
 
-        IEnumerable<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria);
+        IList<SoccerDetailEntity> GetSoccerDetailData(SoccerDetailCriteria criteria);
 
-        IEnumerable<TotalBetsEntity> GetBasketballData(BasketballCriteria criteria);
+        IList<TotalBetsEntity> GetBasketballData(BasketballCriteria criteria);
 
-        IEnumerable<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria);
+        IList<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria);
 
-        IEnumerable<SportEntity> GetOtherSportsList(OtherSportsSportListCriteria criteria);
+        IList<SportEntity> GetOtherSportsList(OtherSportsSportListCriteria criteria);
 
-        IEnumerable<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria);
+        IList<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria);
 
-        IEnumerable<EventEntity> GetOtherSportsEventsByLeague(OtherSportsEventListCriteria criteria);
+        IList<EventEntity> GetOtherSportsEventsByLeague(OtherSportsEventListCriteria criteria);
 
-        IEnumerable<SportEntity> GetOutrightSports(OutrightSportCriteria criteria);
+        IList<SportEntity> GetOutrightSports(OutrightSportCriteria criteria);
 
-        IEnumerable<LeagueEntity> GetOutrightLeagues(OutrightLeagueCriteria criteria);
+        IList<LeagueEntity> GetOutrightLeagues(OutrightLeagueCriteria criteria);
 
-        IEnumerable<TeamEntity> GetOutrightTeam(OutrightTeamCriteria criteria);
+        IList<TeamEntity> GetOutrightTeam(OutrightTeamCriteria criteria);
 
-        IEnumerable<OutrightEntity> GetOutrightData(OutrightCriteria criteria);
+        IList<OutrightEntity> GetOutrightData(OutrightCriteria criteria);
     }
 }

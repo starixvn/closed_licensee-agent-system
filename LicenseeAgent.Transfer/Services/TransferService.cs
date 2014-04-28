@@ -16,7 +16,7 @@ namespace LicenseeAgent.Transfer.Services
     /// </summary>
     public class TransferService : QueryService, ITransferService
     {
-        public IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria)
+        public IList<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria)
         {
             return GetEntites<AgentBalanceInfo>(criteria);
         }

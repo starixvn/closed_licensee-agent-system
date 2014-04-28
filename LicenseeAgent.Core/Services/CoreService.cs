@@ -43,7 +43,7 @@ namespace LicenseeAgent.Core.Services
         /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
         /// </summary>
         /// <returns>Returns list of licensee domain.</returns>
-        public IEnumerable<LicenseeDomain> GetLicenseeDomains()
+        public IList<LicenseeDomain> GetLicenseeDomains()
         {
             var criteria = new GetLicenseeDomainCriteria
             {
@@ -54,7 +54,7 @@ namespace LicenseeAgent.Core.Services
             return GetEntites<LicenseeDomain>(criteria);
         }
 
-        public IEnumerable<Product> GetProducts(int licenseeId)
+        public IList<Product> GetProducts(int licenseeId)
         {
             var criteria = new GetProductCriteria
             {

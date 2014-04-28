@@ -12,9 +12,9 @@ namespace LicenseeAgent.CreditBalance.Services
 
     public interface ICreditBalanceService
     {
-        IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);
+        IList<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria);
 
-        IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
+        IList<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
 
         void LicenseeGetAgentRangeInfo(LicenseeGetAgentRangeInfoCriteria criteria);
 

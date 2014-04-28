@@ -22,7 +22,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Agent get by agent criteria.</param>
         /// <returns>List agent entity.</returns>
-        public IEnumerable<AgentEntity> GetAgentList(AgentGetByAgentCriteria criteria)
+        public IList<AgentEntity> GetAgentList(AgentGetByAgentCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);
         }
@@ -32,7 +32,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Search agent criteria.</param>
         /// <returns>List agent entity.</returns>
-        public IEnumerable<AgentEntity> SearchAgent(SearchAgentCriteria criteria)
+        public IList<AgentEntity> SearchAgent(SearchAgentCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);
         }
@@ -42,7 +42,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Update agent account status criteria.</param>
         /// <returns>List agent ID.</returns>
-        public IEnumerable<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria)
+        public IList<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);
         }
@@ -52,7 +52,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Member get by agent criteria.</param>
         /// <returns>List member.</returns>
-        public IEnumerable<MemberEntity> GetMemberList(MemberGetByAgentCriteria criteria)
+        public IList<MemberEntity> GetMemberList(MemberGetByAgentCriteria criteria)
         {
             return GetEntites<MemberEntity>(criteria);
         }
@@ -62,7 +62,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Search member criteria.</param>
         /// <returns>List member.</returns>
-        public IEnumerable<MemberEntity> SearchMember(SearchMemberCriteria criteria)
+        public IList<MemberEntity> SearchMember(SearchMemberCriteria criteria)
         {
             return GetEntites<MemberEntity>(criteria);
         }
@@ -81,7 +81,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Agent get by agent criteria.</param>
         /// <returns>List Agent.</returns>
-        public IEnumerable<AgentEntity> GetAgentAutoComplete(AgentAutoCompleteCriteria criteria)
+        public IList<AgentEntity> GetAgentAutoComplete(AgentAutoCompleteCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);
         }
@@ -91,7 +91,7 @@ namespace LicenseeAgent.CustomerList.Services
         /// </summary>
         /// <param name="criteria">Member get by agent criteria.</param>
         /// <returns>List member.</returns>
-        public IEnumerable<MemberEntity> GetMemberAutoComplete(MemberAutoCompleteCriteria criteria)
+        public IList<MemberEntity> GetMemberAutoComplete(MemberAutoCompleteCriteria criteria)
         {
             return GetEntites<MemberEntity>(criteria);
         }

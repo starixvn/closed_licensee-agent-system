@@ -16,12 +16,12 @@ namespace LicenseeAgent.CreditBalance.Services
     /// </summary>
     public class CreditBalanceService : QueryService, ICreditBalanceService
     {
-        public IEnumerable<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria)
+        public IList<AgentBalanceInfo> GetAgentBalanceInfo(GetAgentBalanceInfoCriteria criteria)
         {
             return GetEntites<AgentBalanceInfo>(criteria);
         }
 
-        public IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria)
+        public IList<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria)
         {
             return GetEntites<MemberBalanceInfo>(criteria);
         }

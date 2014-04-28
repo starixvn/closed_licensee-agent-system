@@ -22,7 +22,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        public IEnumerable<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria)
+        public IList<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria)
         {
             return GetEntites<SuggestionEntity>(criteria);
         }
@@ -32,7 +32,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        public IEnumerable<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria)
+        public IList<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria)
         {
             return GetEntites<SuggestionEntity>(criteria);
         }
@@ -55,7 +55,7 @@ namespace LicenseeAgent.AccountInformation.Services
         /// </summary>
         /// <param name="criteria">Down line list criteria.</param>
         /// <returns>List down line.</returns>
-        public IEnumerable<DownLineEntity> GetDirectDownlines(GetDirectDownLineCriteria criteria)
+        public IList<DownLineEntity> GetDirectDownlines(GetDirectDownLineCriteria criteria)
         {
             return GetEntites<DownLineEntity>(criteria);
         }

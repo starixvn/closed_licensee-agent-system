@@ -13,8 +13,8 @@ namespace LicenseeAgent.Core.Services
     {
         SelBalanceUpDay GetBalanceUpDay();
 
-        IEnumerable<LicenseeDomain> GetLicenseeDomains();
+        IList<LicenseeDomain> GetLicenseeDomains();
 
-        IEnumerable<Product> GetProducts(int licenseeId);
+        IList<Product> GetProducts(int licenseeId);
     }
 }

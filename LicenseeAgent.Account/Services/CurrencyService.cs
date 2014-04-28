@@ -21,7 +21,7 @@ namespace LicenseeAgent.Account.Services
         /// </summary>
         /// <param name="criteria">List currency criteria.</param>
         /// <returns>List currency information.</returns>
-        public IEnumerable<CurrencyEntity> GetCurrencyList(GetCurrencyOfLicenseeCriteria criteria)
+        public IList<CurrencyEntity> GetCurrencyList(GetCurrencyOfLicenseeCriteria criteria)
         {
             return GetEntites<CurrencyEntity>(criteria);
         }

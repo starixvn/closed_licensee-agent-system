@@ -25,7 +25,7 @@ if (fanex.customerSetting) {
 
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
-            $scope.haveNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
+            $scope.haveNumberGame = false;// ($window['numberGameSetting'] !== undefined) ? true : false;
 
             $('#modeSwitcher').on('switch-change', function(e, data) {
                 var isSimpleMode = !data.value;

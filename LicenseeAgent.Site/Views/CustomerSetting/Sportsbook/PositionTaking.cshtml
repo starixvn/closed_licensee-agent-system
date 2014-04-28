@@ -18,17 +18,17 @@
             @RazorHelper.RenderInstruction(Las.PositionTaking, "member-position-taking-info-button-adv")
         }
         <div ng-repeat="ptGroup in ptModel.ptGroups" ng-show="!settingContext.IsSimpleMode"
-             class="pt-group-container" ng-style="ptGroup.WidthStyle">
+                class="pt-group-container" ng-style="ptGroup.WidthStyle">
             <div ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
                 <span ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
                     {{ptGroup.Name}}</span> <span class="icon-setting-copy" ng-if="$index == 0 || $index == 2"
-                                                  ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
-                                                  title="{{$index==0 ? language.soccerDeadballCopyPtTooltip : language.basketBallCopyPtTooltip}}"
-                                                  ng-show="settingContext.FormId != 2"></span>
+                                                    ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
+                                                    title="{{$index==0 ? language.soccerDeadballCopyPtTooltip : language.basketBallCopyPtTooltip}}"
+                                                    ng-show="settingContext.FormId != 2"></span>
             </div>
             <div class="pt-group-box">
                 <div ng-repeat="pt in ptGroup.PositionTakings" class="pt-group" ng-show="ptGroup.Expand"
-                     ng-switch="settingContext.TargetRoleId">
+                        ng-switch="settingContext.TargetRoleId">
                     <licensee-edit-agent-one-pt-advanced-mode ng-switch-when="3"></licensee-edit-agent-one-pt-advanced-mode>
                     @if (Model.FormId != FormType.ViewIndirectAgent)
                     {

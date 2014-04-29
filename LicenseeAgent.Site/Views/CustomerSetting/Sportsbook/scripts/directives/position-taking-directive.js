@@ -409,7 +409,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
-                link: function(scope, element) {
+                link: function(scope, element, attrs, controller) {
                     //// Cache Elements.
                     var presetInput = element.find('.preset-input');
                     var maxInput = element.find('.max-input');
@@ -426,7 +426,9 @@ if (fanex.customerSetting) {
                         currentPt,
                         presetInput,
                         maxInput,
-                        minInput);
+                        minInput
+                        );
+                    
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
                     currentPt.OldMax = currentPt.Max;
@@ -489,7 +491,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'),
-                link: function(scope, element) {
+                link: function(scope, element, attrs, controller) {
                     //// Cache Elements.
                     var maxInput = element.find('.max-input');
                     var minInput = element.find('.min-input');
@@ -505,7 +507,7 @@ if (fanex.customerSetting) {
                         currentPt,
                         maxInput,
                         minInput);
-
+                    console.log(controller);
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
                     currentPt.OldMax = currentPt.Max;

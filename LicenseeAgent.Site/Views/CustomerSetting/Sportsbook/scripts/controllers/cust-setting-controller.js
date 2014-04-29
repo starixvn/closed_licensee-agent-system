@@ -40,7 +40,7 @@ if (fanex.customerSetting) {
                 return $filter('number')(number, 2);
             };
 
-            $scope.insertCustomer = function () {
+            $scope.insertCustomer = function() {
                 var commissionSettingScope,
                     bettingLimitScope,
                     positionTakingScope,
@@ -100,7 +100,7 @@ if (fanex.customerSetting) {
                                             : ''
                                     },
                                     BettingLimitSetting: bettingLimitItems
-                                }, 
+                                },
                                 numberGameSetting: numberGameSetting
                             }
                         }).
@@ -261,5 +261,6 @@ if (fanex.customerSetting) {
                 popup.close();
             }
         }
+        
     ]);
 }

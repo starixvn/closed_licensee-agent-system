@@ -99,7 +99,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        DiscountA = commissionItem.Discount,
+                        DiscountA = commissionItem.DiscountA,
                     };
                 }
 

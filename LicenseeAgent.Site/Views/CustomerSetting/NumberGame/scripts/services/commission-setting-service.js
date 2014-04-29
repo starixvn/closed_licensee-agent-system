@@ -12,14 +12,14 @@ if (fanex.customerSetting) {
             var commissionSetting = commissionSettingModel[4];
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {
-                    commissionSetting.DiscountA = commissionSettingViewModel[4].discount;
+                    commissionSetting.Discount = commissionSettingViewModel[7].discount;
                 } else {
                     commissionSetting.Discount = commissionSettingViewModel.line6.memberCommission;
                 }
             } else {
                 if (targetRoleId !== 1) {
-                    if (commissionSettingViewModel[4].discount !== commissionSettingViewModel[4].oldDiscount) {
-                        commissionSetting.DiscountA = commissionSettingViewModel[4].discount;
+                    if (commissionSettingViewModel[7].discount !== commissionSettingViewModel[7].oldDiscount) {
+                        commissionSetting.Discount = commissionSettingViewModel[7].discount;
                     }
                 } else {
                     if (commissionSettingViewModel.line6.memberCommission !== commissionSettingViewModel.line6.oldCommission) {

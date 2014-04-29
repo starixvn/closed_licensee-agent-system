@@ -507,7 +507,6 @@ if (fanex.customerSetting) {
                         currentPt,
                         maxInput,
                         minInput);
-                    console.log(controller);
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
                     currentPt.OldMax = currentPt.Max;

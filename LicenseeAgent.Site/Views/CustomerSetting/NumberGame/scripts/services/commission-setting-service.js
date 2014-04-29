@@ -27,7 +27,9 @@ if (fanex.customerSetting) {
                     }
                 }
             }
-            return [commissionSetting];
+            return {
+                CommissionItems: [commissionSetting]
+            };
         }
     };
 }

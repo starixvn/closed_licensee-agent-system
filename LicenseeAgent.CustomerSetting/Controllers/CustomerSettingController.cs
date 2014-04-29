@@ -242,7 +242,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
            Justification = "Reviewed. Suppression is OK here.")]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
+            if (!ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }
@@ -307,7 +307,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            if (ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
+            if (!ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }

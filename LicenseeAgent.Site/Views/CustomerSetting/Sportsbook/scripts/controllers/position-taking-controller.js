@@ -11,7 +11,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('PositionTakingController',
     [
         '$scope',
-        function ($scope) {
+        '$filter',
+        function ($scope, $filter) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
             fanex.customerSetting.positionTakingService.init(sportsBookSetting.PositionTakingSetting, $scope.language);
             $scope.config = fanex.customerSetting.positionTakingService.config;
@@ -35,6 +36,12 @@ if (fanex.customerSetting) {
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
+            };
+
+            return {
+                formatNumber: function (number) {
+                    return $filter('number')(number, 2);
+                }
             };
         }
     ]);

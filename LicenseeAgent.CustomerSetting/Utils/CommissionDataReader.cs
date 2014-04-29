@@ -92,7 +92,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
                     };
                 }
                 else

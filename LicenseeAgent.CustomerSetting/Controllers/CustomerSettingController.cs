@@ -242,8 +242,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
            Justification = "Reviewed. Suppression is OK here.")]
         public JsonResult InsertCustomer(InsertCustomerViewModel model)
         {
-            if (model == null || model.SettingContext == null || model.SportsBookSetting == null
-                || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
+            if (ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {
                 return InvalidModelJsonResult();
             }
@@ -308,16 +307,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpPost]
         public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
+            if (ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
+            {
+                return InvalidModelJsonResult();
+            }
+
             if (!CheckForEditingCustomerSetting(model.SettingContext))
             {
                 return RedirectToAccessDeniedJson();
-            }
-
-            if (model.SettingContext == null
-                || model.SportsBookSetting == null
-                || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
-            {
-                return InvalidModelJsonResult();
             }
 
             var result = model.SettingContext.FormId == FormType.EditIndirectMember
@@ -608,7 +605,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private string FormatJavascript(object obj, string name)
         {
-            return string.Format("var {0} = {1}; \n", name, JsonConvert.SerializeObject(obj, jsonSerializeSettings));
+            if (obj != null)
+            {
+                return string.Format("var {0} = {1}; \n", name, JsonConvert.SerializeObject(obj, jsonSerializeSettings));
+            }
+
+            return string.Empty;
         }
     }
 }

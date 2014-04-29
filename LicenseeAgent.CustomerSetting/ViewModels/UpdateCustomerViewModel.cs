@@ -6,13 +6,14 @@
 
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
     /// UpdateCustomerViewModel class.
     /// </summary>
-    public class UpdateCustomerViewModel
+    public class UpdateCustomerViewModel : IValidatableObject
     {
         [Required]
         public SettingContext SettingContext { get; set; }
@@ -21,5 +22,10 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         public CustomerSetting SportsBookSetting { get; set; }
 
         public CustomerSetting NumberGameSetting { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return new List<ValidationResult>();
+        }
     }
 }

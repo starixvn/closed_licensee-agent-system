@@ -22,7 +22,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 
         public override string GetSettingKey()
         {
-            return "Las_AgentNumberGameSettingSel";
+            return "Las_AgentGetAgentNumberGameSettingForInsert";
         }
 
         public override bool IsValid()

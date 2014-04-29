@@ -14,5 +14,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
     public interface ISettingService
     {
         CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode);
+
+        CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode);
     }
 }

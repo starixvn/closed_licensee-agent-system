@@ -17,7 +17,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeGetAgentSBSettingForUpdate";
+            return "Las_LicenseeGetAgentSportsBookSettingForUpdate";
         }
 
         public override bool IsValid()

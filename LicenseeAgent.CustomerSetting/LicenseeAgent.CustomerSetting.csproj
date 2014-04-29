@@ -69,11 +69,15 @@
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
     <Compile Include="Criteria\LicenseeInsertAgentCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForInsertCriteria.cs" />
+    <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\NumberGame\AgentGetMemberSettingIndirectForUpdateCriteria.cs" />
+    <Compile Include="Criteria\NumberGame\AgentGetMemberSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\NumberGame\LicenseeGetAgentSettingForInsertCriteria.cs" />
+    <Compile Include="Criteria\NumberGame\LicenseeGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\SportsBook\AgentGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\SportsBook\AgentGetAgentSettingForInsertCriteria.cs" />
     <Compile Include="Criteria\InsertCustomerCriteria.cs" />
-    <Compile Include="Criteria\SportsBook\AgentGetMemberIndirectForUpdateCriteria.cs" />
+    <Compile Include="Criteria\SportsBook\AgentGetMemberSettingIndirectForUpdateCriteria.cs" />
     <Compile Include="Criteria\AgentEditMemberIndirectCriteria.cs" />
     <Compile Include="Criteria\UpdateCustomerCriteria.cs" />
     <Compile Include="Criteria\LicenseeUpdateAgentCriteria.cs" />

@@ -85,5 +85,16 @@ namespace LicenseeAgent.Core.Services
 
             return GetEntites<ProductInfo>(criteria);
         }
+
+        public bool HasProductOffered(int licenseeId, int productId)
+        {
+            var productInfos = GetProducts(licenseeId);
+            if (productInfos.Where(x => x.ProductId == productId).Count() == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

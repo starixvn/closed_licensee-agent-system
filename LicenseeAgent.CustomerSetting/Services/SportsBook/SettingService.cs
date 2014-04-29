@@ -276,7 +276,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)
                 {
-                    criteria = new AgentGetMemberIndirectForUpdateCriteria
+                    criteria = new AgentGetMemberSettingIndirectForUpdateCriteria
                     {
                         AgentId = settingContext.CustId,
                         CustId = settingContext.TargetCustId

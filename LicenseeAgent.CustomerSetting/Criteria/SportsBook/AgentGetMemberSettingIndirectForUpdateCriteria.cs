@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="AgentGetMemberIndirectForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentGetMemberSettingIndirectForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ------------------------------------------------------------------------
@@ -11,7 +11,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
     /// <summary>
     /// AgentGetMemberIndirectForUpdateCriteria class.
     /// </summary>
-    public class AgentGetMemberIndirectForUpdateCriteria : CriteriaBase
+    public class AgentGetMemberSettingIndirectForUpdateCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 
@@ -21,7 +21,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 
         public override string GetSettingKey()
         {
-            return "Las_AgentSelMemIndirectForUpdate";
+            return "Las_AgentGetMemberSportsBookSettingIndirectForUpdate";
         }
 
         public override bool IsValid()

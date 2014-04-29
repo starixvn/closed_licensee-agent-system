@@ -85,21 +85,21 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
-                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                    DiscountA = Math.Round((reader.ToDecimal("DiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
                 };
 
                 if (getUplineCom)
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        Discount = Math.Round((reader.ToDecimal("UplineMinDiscount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
                     };
                 }
                 else
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        Discount = commissionItem.Discount,
+                        DiscountA = commissionItem.Discount,
                     };
                 }
 

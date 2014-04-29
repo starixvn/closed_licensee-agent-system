@@ -23,7 +23,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeSportsBookSettingSel";
+            return "Las_LicenseeGetAgentSportsBookSettingForInsert";
         }
 
         public override bool IsValid()

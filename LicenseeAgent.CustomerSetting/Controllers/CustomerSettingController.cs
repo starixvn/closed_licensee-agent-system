@@ -107,12 +107,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
-            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            var sportsBookCustomer = _sportsBookService.GetSettingForInsert(settingContext, out errCode);
+            var sportsBookSetting = _sportsBookService.GetSettingForInsert(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
-                stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
-                if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() == 1)
+                stringBuilder.AppendLine(FormatJavascript(sportsBookSetting, "sportsBookSetting"));
+                if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
                 {
                     var numberGameCustomer = _numberGameService.GetSettingForInsert(settingContext, out errCode);
                     if (errCode == Result.SuccessValue)
@@ -139,6 +138,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// JAVASCRIPT string object.
         /// </returns>
         [HttpGet]
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
         public JavaScriptResult GetSettingForUpdate(GetSettingForUpdateViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
@@ -159,14 +162,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
-            var sportsBookCustomer = _sportsBookService.GetSettingForUpdate(settingContext, out errCode);
+            var sportsBookSetting = _sportsBookService.GetSettingForUpdate(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
-                if (model.TargetRoleId == (int)Role.Member && sportsBookCustomer.CustInfo != null)
+                if (model.TargetRoleId == (int)Role.Member && sportsBookSetting.CustInfo != null)
                 {
-                    sportsBookCustomer.CustInfo.CustId = model.TargetCustId;
+                    sportsBookSetting.CustInfo.CustId = model.TargetCustId;
                     _memberService.GetMemberInformation(
-                        sportsBookCustomer.CustInfo,
+                        sportsBookSetting.CustInfo,
                         new GetMemberInfoAction
                         {
                             SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -174,7 +177,15 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         });
                 }
 
-                stringBuilder.AppendLine(FormatJavascript(sportsBookCustomer, "sportsBookSetting"));
+                stringBuilder.AppendLine(FormatJavascript(sportsBookSetting, "sportsBookSetting"));
+                if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                {
+                    var numberGameCustomer = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
+                    if (errCode == Result.SuccessValue)
+                    {
+                        stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                    }
+                }
             }
 
             if (errCode != Result.SuccessValue)

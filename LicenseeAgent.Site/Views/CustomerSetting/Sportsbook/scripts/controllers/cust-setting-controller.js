@@ -6,10 +6,9 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
     [
         '$scope',
-        '$filter',
         '$http',
         '$window',
-        function($scope, $filter, $http, $window) {
+        function($scope, $http, $window) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -25,7 +24,7 @@ if (fanex.customerSetting) {
 
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
-            $scope.haveNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
+            $scope.hasOfferedNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
 
             $('#modeSwitcher').on('switch-change', function(e, data) {
                 var isSimpleMode = !data.value;
@@ -35,10 +34,6 @@ if (fanex.customerSetting) {
                 positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
                 $scope.$apply();
             });
-
-            $scope.formatNumber = function(number) {
-                return $filter('number')(number, 2);
-            };
 
             $scope.insertCustomer = function() {
                 var commissionSettingScope,
@@ -74,7 +69,7 @@ if (fanex.customerSetting) {
                     bettingLimitItems = bettingLimitScope.saveData();
                     positionTakingItems = positionTakingScope.saveData();
 
-                    if ($scope.haveNumberGame) {
+                    if ($scope.hasOfferedNumberGame) {
                         numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
                         if (numberGameSetting == null) {
                             return;
@@ -175,7 +170,7 @@ if (fanex.customerSetting) {
                 }
                 positionTakingItems = positionTakingScope.saveData();
 
-                if ($scope.haveNumberGame) {
+                if ($scope.hasOfferedNumberGame) {
                     numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
                     if (numberGameSetting == null) {
                         return;

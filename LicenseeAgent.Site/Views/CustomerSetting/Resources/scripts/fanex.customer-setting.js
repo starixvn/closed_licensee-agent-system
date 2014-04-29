@@ -25,7 +25,10 @@ fanex.customerSetting.Role = {
     Member: 1
 };
 
-fanex.customerSetting.filter('numberOnly', function(input) {
-    input += 0;
-    return input;
-});
+fanex.customerSetting.factory("Formatter", ['$filter', function ($filter) {
+    return {
+        formatNumber: function(number) {
+            return $filter('number')(number, 2); 
+        }
+    };
+}]);

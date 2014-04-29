@@ -29,7 +29,7 @@ if (fanex.customerSetting) {
 
             return true;
         },
-        getCommissionSettingViewModel: function(commissionSettingModel, language, targetRoleId, haveNumberGame) {
+        getCommissionSettingViewModel: function (commissionSettingModel, language, targetRoleId, hasOfferedNumberGame) {
             var commissionSettingViewModel;
 
             if (targetRoleId !== 1) {
@@ -99,12 +99,12 @@ if (fanex.customerSetting) {
                 });
 
                 // Number Game
-                if (haveNumberGame) {
+                if (hasOfferedNumberGame) {
                     commissionSettingViewModel.push({
                         minDiscount: 0,
-                        discount: commissionSettingModel[4].Discount,
-                        oldDiscount: commissionSettingModel[4].Discount,
-                        maxDiscount: commissionSettingModel[4].Upline.Discount,
+                        discount: commissionSettingModel[4].DiscountA,
+                        oldDiscount: commissionSettingModel[4].DiscountA,
+                        maxDiscount: commissionSettingModel[4].Upline.DiscountA,
                         name: language['commissionSetting_NumberGame']
                     });
                 }
@@ -159,16 +159,16 @@ if (fanex.customerSetting) {
                         line4: {
                             name: language['commissionSetting_HrFixedOddsComm'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
-                            memberCommission: commissionSettingModel[3].Discount
+                            memberCommission: commissionSettingModel[3].DiscountA
                         }
                     };
 
                     // Number Game
-                    if (haveNumberGame) {
+                    if (hasOfferedNumberGame) {
                         commissionSettingViewModel.line5 = {
                             name: language['commissionSetting_NumberGame'],
-                            agentCommission: commissionSettingModel[4].Upline.Discount,
-                            memberCommission: commissionSettingModel[4].Discount
+                            agentCommission: commissionSettingModel[4].Upline.DiscountA,
+                            memberCommission: commissionSettingModel[4].DiscountA
                         };
                     }
 
@@ -240,10 +240,10 @@ if (fanex.customerSetting) {
                     };
 
                     // Number Game
-                    if (haveNumberGame) {
+                    if (hasOfferedNumberGame) {
                         commissionSettingViewModel.line5 = {
                             name: language['commissionSetting_NumberGame'],
-                            agentCommission: commissionSettingModel[4].Upline.Discount,
+                            agentCommission: commissionSettingModel[4].Upline.DiscountA,
                             memberCommission: commissionSettingModel[4].Discount,
                             oldCommission: commissionSettingModel[4].Discount
                         };

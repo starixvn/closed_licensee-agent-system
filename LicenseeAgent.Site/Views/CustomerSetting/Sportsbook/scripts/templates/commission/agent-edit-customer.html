@@ -77,7 +77,7 @@
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line3.agentCommission}}]</span>
             </div>
         </div>
-        <div class="comm-group" ng-if="haveNumberGame">
+        <div class="comm-group" ng-if="hasOfferedNumberGame">
             <div class="comm-block">
                 <input id="line4" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line4.memberCommission"
                     maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />

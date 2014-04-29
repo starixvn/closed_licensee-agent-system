@@ -299,6 +299,8 @@
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\report-base.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\bet-limit-action.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\position-taking-action.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\bet-limit-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
@@ -328,6 +330,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
+    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\bet-limit-action.js" />
+    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\commission-action.js" />
+    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\position-taking-action.js" />
     <Content Include="Views\Report\Resources\statement-report.js" />
     <Content Include="Views\Report\Resources\transfer-detail.js" />
     <Content Include="Views\Report\Resources\statement-detail-report.js" />

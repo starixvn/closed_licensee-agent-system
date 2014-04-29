@@ -31,7 +31,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
 
                 //// Init value
@@ -69,7 +69,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
 
                 //// Init value
@@ -103,7 +103,7 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
 
                 //// Init value
@@ -173,7 +173,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -212,7 +212,7 @@ if (fanex.customerSetting) {
                     currentPt,
                     presetInput,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
                 //// Init value
                 currentPt.OldMin = currentPt.Min;
@@ -249,7 +249,7 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     maxInput,
-                    minInput);
+                    minInput,
                     formatter);
 
                 //// Init value
@@ -284,7 +284,7 @@ if (fanex.customerSetting) {
                     scope,
                     $timeout,
                     currentPt,
-                    valueInput);
+                    valueInput,
                     formatter);
 
                 //// Init value

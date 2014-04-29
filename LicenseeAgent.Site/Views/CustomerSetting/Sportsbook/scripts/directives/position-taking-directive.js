@@ -107,7 +107,7 @@ if (fanex.customerSetting) {
                         $timeout,
                         currentPt,
                         maxInput,
-                        minInput);
+                        minInput,
                         formatter);
 
                     //// Init value
@@ -164,7 +164,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
-                link: function(scope, element, attrs, controller) {
+                link: function(scope, element) {
                     //// Cache Elements.
                     var presetInput = element.find('.preset-input');
                     var maxInput = element.find('.max-input');
@@ -247,7 +247,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'),
-                link: function(scope, element, attrs, controller) {
+                link: function(scope, element) {
                     //// Cache Elements.
                     var maxInput = element.find('.max-input');
                     var minInput = element.find('.min-input');

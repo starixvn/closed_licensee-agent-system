@@ -6,7 +6,6 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
     [
         '$scope',
-        '$filter',
         '$http',
         '$window',
         function($scope, $http, $window) {

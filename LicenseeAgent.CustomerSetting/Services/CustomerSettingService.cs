@@ -6,18 +6,16 @@
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
+    using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.ViewModels;
 
@@ -26,8 +24,6 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// </summary>
     public class CustomerSettingService : QueryService, ICustomerSettingService
     {
-        private readonly Services.SportsBook.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
-
         /// <summary>
         /// Check user name.
         /// </summary>
@@ -46,23 +42,39 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </returns>
         public InsertResult InsertCustomer(InsertCustomerViewModel model)
         {
-            // Build XML setting for insert new customer.
-            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
-            var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
-            var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
-                : string.Empty;
-            var betLimitXml = !string.IsNullOrEmpty(betLimitXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData)
-                : string.Empty;
-            var positionTakingXml = !string.IsNullOrEmpty(positionTakingXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
-                : string.Empty;
+            var criteria = CreateInsertCustomerCriteria(model);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            var criteria = CreateInsertCustomerCriteria(model, discountXml, betLimitXml, positionTakingXml);
-            return _sportsBookService.InsertCustomer(criteria);
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
+                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
+                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
+                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
+                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
+                        IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
         }
 
         /// <summary>
@@ -74,23 +86,37 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </returns>
         public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
         {
-            // Build XML setting for update customer.
-            var discountXmlStringData = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
-            var betLimitXmlStringData = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
-            var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
-            var discountXml = !string.IsNullOrEmpty(discountXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData)
-                : string.Empty;
-            var betLimitXml = !string.IsNullOrEmpty(betLimitXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData)
-                : string.Empty;
-            var positionTakingXml = !string.IsNullOrEmpty(positionTakingXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
-                : string.Empty;
+            var criteria = CreateUpdateCustomerCriteria(model);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            var criteria = CreateUpdateCustomerCriteria(model, discountXml, betLimitXml, positionTakingXml);
-            return _sportsBookService.UpdateCustomer(criteria);
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
+                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
+                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
+                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
         }
 
         /// <summary>
@@ -102,37 +128,61 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// </returns>
         public InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
         {
-            // Build XML setting for update customer.
-            var positionTakingXmlStringData = XmlBuilder.Build(
-                model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
-            var positionTakingXml = !string.IsNullOrEmpty(positionTakingXmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData)
-                : string.Empty;
+            var criteria = CreateUpdateCustomerCriteria(model);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
 
-            var criteria = CreateUpdateCustomerCriteria(model, string.Empty, string.Empty, positionTakingXml);
-            return _sportsBookService.UpdateIndirectCustomer(criteria);
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+                    return new InsertResult
+                    {
+                        ErrCode = Converter.ToInt(parameters["msgid"]),
+                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
+                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
+                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
+                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
         }
 
         /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name="discountXml">The discount XML.</param>
-        /// <param name="betLimitXml">The bet limit XML.</param>
-        /// <param name="positionTakingXml">The position taking XML.</param>
-        /// <returns>Returns a criteria.</returns>
+        /// <returns>Returns criteria.</returns>
         [SuppressMessage(
-            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-            "SP2101:MethodMustNotContainMoreLinesThan",
-            Justification = "Reviewed. Suppression is OK here.")]
-        private static ICriteria CreateInsertCustomerCriteria(
-            InsertCustomerViewModel model,
-            string discountXml,
-            string betLimitXml,
-            string positionTakingXml)
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
+        private ICriteria CreateInsertCustomerCriteria(InsertCustomerViewModel model)
         {
+            var discountXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
+            var betLimitXml = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
+            var positionTakingXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
+            var discount3rdXml = string.Empty;
+            var betLimit3rdXml = string.Empty;
+            var positionTaking3rdXml = string.Empty;
+            if (model.NumberGameSetting != null)
+            {
+                discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
+                betLimit3rdXml = XmlBuilder.Build(model.NumberGameSetting.BettingLimitSetting);
+                positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
+            }
+
             var custInfo = model.SportsBookSetting.CustInfo;
-            var criteriaBase = new InsertCustomerCriteria
+            var baseCriteria = new InsertCustomerCriteria
             {
                 UserName = custInfo.UserName,
                 Ip = model.SettingContext.Ip,
@@ -140,12 +190,15 @@ namespace LicenseeAgent.CustomerSetting.Services
                 Credit = custInfo.Credit,
                 Discount = discountXml,
                 BetLimit = betLimitXml,
-                PositionTaking = positionTakingXml
+                PositionTaking = positionTakingXml,
+                Discount3rd = discount3rdXml,
+                BetLimit3rd = betLimit3rdXml,
+                PositionTaking3rd = positionTaking3rdXml
             };
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                return new AgentInsertMemberSettingCriteria(criteriaBase)
+                return new AgentInsertMemberCriteria(baseCriteria)
                 {
                     UGroup = model.SportsBookSetting.CommissionSetting.UserGroup,
                     ParentId = model.SettingContext.CustId
@@ -157,7 +210,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 {
                     var passwordSalt = Cryptography.CreateSalt();
                     var hashPassword = Cryptography.CreateHash(model.SportsBookSetting.CustInfo.Password, passwordSalt);
-                    return new LicenseeInsertAgentSettingCriteria(criteriaBase)
+                    return new LicenseeInsertAgentCriteria(baseCriteria)
                     {
                         AgentL0Id = model.SettingContext.CustId,
                         UserSalt = passwordSalt,
@@ -167,14 +220,14 @@ namespace LicenseeAgent.CustomerSetting.Services
                         FirstName = custInfo.FirstName,
                         LastName = custInfo.LastName,
                         Fax = custInfo.Fax,
-                        Status = (byte)model.SportsBookSetting.CustInfo.Status
+                        Status = model.SportsBookSetting.CustInfo.Status
                     };
                 }
                 else
                 {
                     var passwordSalt = Cryptography.CreateSalt();
                     var hashPassword = Cryptography.CreateHash(model.SportsBookSetting.CustInfo.Password, passwordSalt);
-                    return new AgentInsertAgentSettingCriteria(criteriaBase)
+                    return new AgentInsertAgentCriteria(baseCriteria)
                     {
                         ParentId = model.SettingContext.CustId,
                         UserSalt = passwordSalt,
@@ -191,24 +244,46 @@ namespace LicenseeAgent.CustomerSetting.Services
         }
 
         /// <summary>
-        /// Creates the insert customer criteria.
+        /// Creates the update customer criteria.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name="discountXml">The discount XML.</param>
-        /// <param name="betLimitXml">The bet limit XML.</param>
-        /// <param name="positionTakingXml">The position taking XML.</param>
-        /// <returns>Returns a criteria.</returns>
-        private static ICriteria CreateUpdateCustomerCriteria(
-            UpdateCustomerViewModel model,
-            string discountXml,
-            string betLimitXml,
-            string positionTakingXml)
+        /// <returns>Returns criteria.</returns>
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
+        private ICriteria CreateUpdateCustomerCriteria(UpdateCustomerViewModel model)
         {
-            var criteriaBase = new UpdateCustomerCriteria
+            var discountXml = string.Empty;
+            var betLimitXml = string.Empty;
+            var positionTakingXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
+            var discount3rdXml = string.Empty;
+            var betLimit3rdXml = string.Empty;
+            var positionTaking3rdXml = string.Empty;
+            if (model.NumberGameSetting != null)
+            {
+                positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
+            }
+
+            if (model.SettingContext.FormId != FormType.EditIndirectMember)
+            {
+                discountXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
+                betLimitXml = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
+                if (model.NumberGameSetting != null)
+                {
+                    discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
+                    betLimit3rdXml = XmlBuilder.Build(model.NumberGameSetting.BettingLimitSetting);
+                }
+            }
+
+            var baseCriteria = new UpdateCustomerCriteria
             {
                 Discount = discountXml,
                 BetLimit = betLimitXml,
                 PositionTaking = positionTakingXml,
+                Discount3rd = discount3rdXml,
+                BetLimit3rd = betLimit3rdXml,
+                PositionTaking3rd = positionTaking3rdXml,
                 Ip = model.SettingContext.Ip,
                 Updater = model.SettingContext.LoginUserId
             };
@@ -222,13 +297,14 @@ namespace LicenseeAgent.CustomerSetting.Services
                         Updater = model.SettingContext.LoginUserId,
                         AgentId = model.SettingContext.CustId,
                         CustId = model.SettingContext.TargetCustId,
-                        PositionTaking = criteriaBase.PositionTaking,
-                        Ip = criteriaBase.Ip
+                        PositionTaking = baseCriteria.PositionTaking,
+                        PositionTaking3rd = baseCriteria.PositionTaking3rd,
+                        Ip = baseCriteria.Ip
                     };
                 }
                 else
                 {
-                    return new AgentUpdateMemberSettingCriteria(criteriaBase)
+                    return new AgentUpdateMemberCriteria(baseCriteria)
                     {
                         CustId = model.SettingContext.TargetCustId
                     };
@@ -238,14 +314,14 @@ namespace LicenseeAgent.CustomerSetting.Services
             {
                 if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
                 {
-                    return new LicenseeUpdateAgentSettingCriteria(criteriaBase)
+                    return new LicenseeUpdateAgentCriteria(baseCriteria)
                     {
                         AgentId = model.SettingContext.TargetCustId
                     };
                 }
                 else
                 {
-                    return new AgentUpdateAgentSettingCriteria(criteriaBase)
+                    return new AgentUpdateAgentCriteria(baseCriteria)
                     {
                         AgentId = model.SettingContext.TargetCustId
                     };

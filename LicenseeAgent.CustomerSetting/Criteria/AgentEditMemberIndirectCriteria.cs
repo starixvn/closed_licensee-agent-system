@@ -4,7 +4,7 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
+namespace LicenseeAgent.CustomerSetting.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
@@ -22,6 +22,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
         public int MsgId { get; set; }
 
         public string PositionTaking { get; set; }
+
+        public string PositionTaking3rd { get; set; }
 
         public short MinPTOutput { get; set; }
 

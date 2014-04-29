@@ -1,10 +1,11 @@
-﻿// --------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------
 // <copyright file="LicenseeGetAgentSettingForInsertCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+//
+// ------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 {
     using Fanex.NAP.Framework.Data;
 
@@ -15,15 +16,13 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
     {
         public int AgentL0Id { get; set; }
 
-        public decimal MaxCredit { get; set; }
-
         public int MsgId { get; set; }
 
         public short MaxPTOfLicensee { get; set; }
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeSportsBookSettingSel";
+            return "Las_LicenseeNumberGameSettingSel";
         }
 
         public override bool IsValid()

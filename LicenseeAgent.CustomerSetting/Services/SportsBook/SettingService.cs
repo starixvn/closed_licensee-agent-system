@@ -17,9 +17,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
     using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member;
+    using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.Utils;
@@ -91,121 +89,6 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Insert agent.
-        /// </summary>
-        /// <param name="criteria">Insert information.</param>
-        /// <returns>Result and output parameters.</returns>
-        public InsertResult InsertCustomer(ICriteria criteria)
-        {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var parameters = criteria.GetSpParams();
-                    objDb.ExecuteNonQuery(parameters);
-                    return new InsertResult
-                    {
-                        ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
-                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
-                        IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
-                    };
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
-        }
-
-        /// <summary>
-        /// Insert agent.
-        /// </summary>
-        /// <param name="criteria">Insert information.</param>
-        /// <returns>Result and output parameters.</returns>
-        public InsertResult UpdateCustomer(ICriteria criteria)
-        {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var parameters = criteria.GetSpParams();
-                    objDb.ExecuteNonQuery(parameters);
-                    return new InsertResult
-                    {
-                        ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
-                    };
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
-        }
-
-        /// <summary>
-        /// Insert agent.
-        /// </summary>
-        /// <param name="criteria">Insert information.</param>
-        /// <returns>Result and output parameters.</returns>
-        public InsertResult UpdateIndirectCustomer(ICriteria criteria)
-        {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var parameters = criteria.GetSpParams();
-                    objDb.ExecuteNonQuery(parameters);
-                    return new InsertResult
-                    {
-                        ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
-                    };
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
         }
 
         /// <summary>
@@ -393,7 +276,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)
                 {
-                    criteria = new AgentSelectMemberIndirectForUpdateCriteria
+                    criteria = new AgentGetMemberIndirectForUpdateCriteria
                     {
                         AgentId = settingContext.CustId,
                         CustId = settingContext.TargetCustId

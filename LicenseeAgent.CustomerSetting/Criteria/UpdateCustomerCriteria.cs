@@ -1,42 +1,39 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="InsertCustomerCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateCustomerCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
+namespace LicenseeAgent.CustomerSetting.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// InsertCustomerCriteria class.
+    /// UpdateCustomerCriteria class.
     /// </summary>
-    public class InsertCustomerCriteria : CriteriaBase
+    public class UpdateCustomerCriteria : CriteriaBase
     {
-        public InsertCustomerCriteria()
+        public UpdateCustomerCriteria()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InsertCustomerCriteria"/> class.
+        /// Initializes a new instance of the <see cref="UpdateCustomerCriteria" /> class.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        public InsertCustomerCriteria(InsertCustomerCriteria criteria)
+        public UpdateCustomerCriteria(UpdateCustomerCriteria criteria)
         {
-            UserName = criteria.UserName;
-            Credit = criteria.Credit;
             Ip = criteria.Ip;
-            Creator = criteria.Creator;
+            Updater = criteria.Updater;
             Discount = criteria.Discount;
             PositionTaking = criteria.PositionTaking;
             BetLimit = criteria.BetLimit;
+            Discount3rd = criteria.Discount3rd;
+            PositionTaking3rd = criteria.PositionTaking3rd;
+            BetLimit3rd = criteria.BetLimit3rd;
         }
 
-        public string UserName { get; set; }
-
-        public decimal Credit { get; set; }
-
-        public int Creator { get; set; }
+        public int Updater { get; set; }
 
         public string Ip { get; set; }
 
@@ -46,11 +43,13 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 
         public string BetLimit { get; set; }
 
+        public string Discount3rd { get; set; }
+
+        public string PositionTaking3rd { get; set; }
+
+        public string BetLimit3rd { get; set; }
+
         public int MsgId { get; set; }
-
-        public decimal MaxCreditOutput { get; set; }
-
-        public decimal BetLimitOutput { get; set; }
 
         public int BetLimitSportType { get; set; }
 
@@ -60,11 +59,17 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 
         public int PTBetType { get; set; }
 
+        public short MinPTOutput { get; set; }
+
+        public short MaxPTOutput { get; set; }
+
+        public decimal BetLimitOutput { get; set; }
+
         public bool IsLiveOutput { get; set; }
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(UserName);
+            return true;
         }
     }
 }

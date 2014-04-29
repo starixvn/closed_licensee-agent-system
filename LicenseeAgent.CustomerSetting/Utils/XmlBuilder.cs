@@ -63,7 +63,9 @@ namespace LicenseeAgent.CustomerSetting.Services
                 }
             }
 
-            return xmlStringData;
+            return !string.IsNullOrEmpty(xmlStringData)
+                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                : string.Empty;
         }
 
         /// <summary>
@@ -88,7 +90,9 @@ namespace LicenseeAgent.CustomerSetting.Services
                 }
             }
 
-            return xmlStringData;
+            return !string.IsNullOrEmpty(xmlStringData)
+                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                : string.Empty;
         }
 
         /// <summary>
@@ -114,7 +118,9 @@ namespace LicenseeAgent.CustomerSetting.Services
                 }
             }
 
-            return xmlStringData;
+            return !string.IsNullOrEmpty(xmlStringData)
+                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                : string.Empty;
         }
 
         /// <summary>

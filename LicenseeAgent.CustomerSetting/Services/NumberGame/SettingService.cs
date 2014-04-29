@@ -15,8 +15,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.CustomerSetting.Core;
-    using LicenseeAgent.CustomerSetting.Criteria.NumberGame.Agent;
-    using LicenseeAgent.CustomerSetting.Criteria.NumberGame.Licensee;
+    using LicenseeAgent.CustomerSetting.Criteria.NumberGame;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.Utils;
@@ -67,13 +66,13 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
         {
             if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
-                return new LicenseeGetSettingForInsertCriteria
+                return new LicenseeGetAgentSettingForInsertCriteria
                 {
                     AgentL0Id = settingContext.CustId,
                 };
             }
 
-            return new AgentGetSettingForInsertCriteria
+            return new AgentGetAgentSettingForInsertCriteria
             {
                 AgentId = settingContext.CustId
             };

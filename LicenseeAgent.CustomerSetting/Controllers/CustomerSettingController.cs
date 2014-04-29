@@ -252,6 +252,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return Json(new { ErrCode = checkUserNameResult.ErrCode, ErrMsg = checkUserNameResult.ErrMsg });
             }
 
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() != 1)
+            {
+                model.NumberGameSetting = null;
+            }
+
             var result = _customerSettingService.InsertCustomer(model);
             if (result.ErrCode == Result.SuccessValue && model.SettingContext.TargetRoleId == (int)Role.Member)
             {

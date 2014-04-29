@@ -1,15 +1,16 @@
-﻿// --------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------
 // <copyright file="AgentGetAgentSettingForInsertCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+//
+// ------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent
+namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Get Agent setting for insert new agent.
+    /// AgentGetAgentSettingForInsertCriteria class.
     /// </summary>
     public class AgentGetAgentSettingForInsertCriteria : CriteriaBase
     {
@@ -21,7 +22,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent
 
         public override string GetSettingKey()
         {
-            return "Las_AgentSportsBookSettingSel";
+            return "Las_AgentNumberGameSettingSel";
         }
 
         public override bool IsValid()

@@ -14,11 +14,5 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
         CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode);
 
         CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode);
-
-        InsertResult InsertCustomer(ICriteria criteria);
-
-        InsertResult UpdateCustomer(ICriteria criteria);
-
-        InsertResult UpdateIndirectCustomer(ICriteria criteria);
     }
 }

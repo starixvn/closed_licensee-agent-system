@@ -1,23 +1,26 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeGetAgentSettingForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="LicenseeUpdateAgentCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria
 {
-    using Fanex.NAP.Framework.Data;
-
     /// <summary>
-    /// LicenseeGetAgentSettingForUpdateCriteria class.
+    /// LicenseeUpdateAgentCriteria class.
     /// </summary>
-    public class LicenseeGetAgentSettingForUpdateCriteria : CriteriaBase
+    public class LicenseeUpdateAgentCriteria : UpdateCustomerCriteria
     {
+        public LicenseeUpdateAgentCriteria(UpdateCustomerCriteria updateCustomerCriteria)
+            : base(updateCustomerCriteria)
+        {
+        }
+
         public int AgentId { get; set; }
 
         public override string GetSettingKey()
         {
-            return "Las_LicenseeGetAgentSBSettingForUpdate";
+            return "Las_LicenseeEditAgent";
         }
 
         public override bool IsValid()

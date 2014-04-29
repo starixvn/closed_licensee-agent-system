@@ -44,9 +44,9 @@ if (fanex.customerSetting) {
                 var commissionSettingScope,
                     bettingLimitScope,
                     positionTakingScope,
-                    commissionSettings,
-                    bettingLimits,
-                    positionTakings,
+                    commissionItems,
+                    bettingLimitItems,
+                    positionTakingItems,
                     numberGameSetting = null;
 
                 var custInfoScope = angular.element('#custInfoController').scope();
@@ -70,9 +70,9 @@ if (fanex.customerSetting) {
                         return;
                     }
 
-                    commissionSettings = commissionSettingScope.saveData();
-                    bettingLimits = bettingLimitScope.saveData();
-                    positionTakings = positionTakingScope.saveData();
+                    commissionItems = commissionSettingScope.saveData();
+                    bettingLimitItems = bettingLimitScope.saveData();
+                    positionTakingItems = positionTakingScope.saveData();
 
                     if ($scope.haveNumberGame) {
                         numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
@@ -91,15 +91,15 @@ if (fanex.customerSetting) {
                                 settingContext: settingContext,
                                 sportsBookSetting:
                                 {
-                                    PositionTakingSetting: positionTakings,
+                                    PositionTakingSetting: positionTakingItems,
                                     CustInfo: custInfoScope.custInfo,
                                     CommissionSetting: {
-                                        CommissionItems: commissionSettings,
+                                        CommissionItems: commissionItems,
                                         UserGroup: bettingLimitScope.settingContext.TargetRoleId === 1
                                             ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
                                             : ''
                                     },
-                                    BettingLimits: bettingLimits
+                                    BettingLimitSetting: bettingLimitItems
                                 }, 
                                 numberGameSetting: numberGameSetting
                             }
@@ -145,9 +145,9 @@ if (fanex.customerSetting) {
                 $('.messages').hide();
                 $scope.Messages = null;
 
-                var commissionSettings = null,
-                    bettingLimits = null,
-                    positionTakings = null,
+                var commissionItems = null,
+                    bettingLimitItems = null,
+                    positionTakingItems = null,
                     userGroup = null,
                     commissionSettingScope,
                     bettingLimitScope,
@@ -161,8 +161,8 @@ if (fanex.customerSetting) {
                     if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData()) {
                         return;
                     }
-                    commissionSettings = commissionSettingScope.saveData();
-                    bettingLimits = bettingLimitScope.saveData();
+                    commissionItems = commissionSettingScope.saveData();
+                    bettingLimitItems = bettingLimitScope.saveData();
 
                     userGroup = bettingLimitScope.settingContext.TargetRoleId === 1
                         ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
@@ -173,7 +173,7 @@ if (fanex.customerSetting) {
                 if (!positionTakingScope.isValidData()) {
                     return;
                 }
-                positionTakings = positionTakingScope.saveData();
+                positionTakingItems = positionTakingScope.saveData();
 
                 if ($scope.haveNumberGame) {
                     numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
@@ -191,12 +191,12 @@ if (fanex.customerSetting) {
                             settingContext: settingContext,
                             sportsBookSetting:
                             {
-                                PositionTakingSetting: positionTakings,
+                                PositionTakingSetting: positionTakingItems,
                                 CommissionSetting: {
-                                    CommissionItems: commissionSettings,
+                                    CommissionItems: commissionItems,
                                     UserGroup: userGroup
                                 },
-                                BettingLimits: bettingLimits
+                                BettingLimitSetting: bettingLimitItems
                             },
                             numberGameSetting: numberGameSetting
                         }

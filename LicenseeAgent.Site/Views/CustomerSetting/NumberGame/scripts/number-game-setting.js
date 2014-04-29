@@ -30,7 +30,7 @@ fanex.customerSetting.numberGameSetting = {
         return {
             CommissionSetting: commissions,
             PositionTakingSetting: positionTakings,
-            BettingLimits: bettingLimits
+            BettingLimitSetting: bettingLimits
         };
     }
 };

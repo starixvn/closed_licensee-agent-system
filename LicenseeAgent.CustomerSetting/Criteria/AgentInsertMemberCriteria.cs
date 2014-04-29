@@ -1,17 +1,17 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentInsertMemberSettingCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentInsertMemberCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
+namespace LicenseeAgent.CustomerSetting.Criteria
 {
     /// <summary>
-    /// AgentInsertMemberSettingCriteria class.
+    /// AgentInsertMemberCriteria class.
     /// </summary>
-    public class AgentInsertMemberSettingCriteria : InsertCustomerCriteria
+    public class AgentInsertMemberCriteria : InsertCustomerCriteria
     {
-        public AgentInsertMemberSettingCriteria(InsertCustomerCriteria criteria)
+        public AgentInsertMemberCriteria(InsertCustomerCriteria criteria)
             : base(criteria)
         {
         }
@@ -30,7 +30,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Member
 
         public override string GetSettingKey()
         {
-            return "Las_AgentInsMemAdvanceMode";
+            return "Las_AgentInsertMember";
         }
 
         public override bool IsValid()

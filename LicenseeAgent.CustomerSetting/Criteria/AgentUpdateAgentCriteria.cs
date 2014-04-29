@@ -1,26 +1,30 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeUpdateAgentSettingCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentUpdateAgentCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Licensee
+namespace LicenseeAgent.CustomerSetting.Criteria
 {
     /// <summary>
-    /// LicenseeUpdateAgentSettingCriteria class.
+    /// Criteria information.
     /// </summary>
-    public class LicenseeUpdateAgentSettingCriteria : UpdateCustomerCriteria
+    public class AgentUpdateAgentCriteria : UpdateCustomerCriteria
     {
-        public LicenseeUpdateAgentSettingCriteria(UpdateCustomerCriteria updateCustomerCriteria)
-            : base(updateCustomerCriteria)
+        public AgentUpdateAgentCriteria(UpdateCustomerCriteria criteria)
+            : base(criteria)
         {
         }
 
         public int AgentId { get; set; }
 
+        /// <summary>
+        /// Get Setting key.
+        /// </summary>
+        /// <returns>Current setting key.</returns>
         public override string GetSettingKey()
         {
-            return "Las_LicenseeEditAgent";
+            return "Las_AgentEditAgent";
         }
 
         public override bool IsValid()

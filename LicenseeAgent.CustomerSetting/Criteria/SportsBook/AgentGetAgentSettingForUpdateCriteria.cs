@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook.Agent
+namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 {
     using Fanex.NAP.Framework.Data;
 

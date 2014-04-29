@@ -163,7 +163,6 @@ namespace LicenseeAgent.Report.Controllers
                 Username = CurrentSession.AgentInfo.UserName
             };
 
-
             model.Product = ProductsNoPlaytechCasino();
             model.HideUsername = true;
 
@@ -264,7 +263,7 @@ namespace LicenseeAgent.Report.Controllers
             });
         }
 
-        string ProductsNoPlaytechCasino()
+        private string ProductsNoPlaytechCasino()
         {
             var listProducts = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId).ToList();
             var listProductsNoPlaytechCasino = (from s in listProducts

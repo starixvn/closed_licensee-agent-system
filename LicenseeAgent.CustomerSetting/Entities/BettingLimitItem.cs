@@ -28,5 +28,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public decimal MinMaxPerMatch { get; set; }
 
         public decimal MaxPerBall { get; set; }
+
+        public decimal MinMaxPerBall { get; set; }
     }
 }

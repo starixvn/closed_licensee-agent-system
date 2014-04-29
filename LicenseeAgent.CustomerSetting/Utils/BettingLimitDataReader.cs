@@ -24,7 +24,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
         /// <returns>Returns list of Betting limit item.</returns>
         public static IList<BettingLimitItem> ReadNumberGameBetLimitData(
-            IDataReader reader, 
+            IDataReader reader,
             bool getUplineBetlimit = false)
         {
             var bettingLimits = new List<BettingLimitItem>();
@@ -37,9 +37,24 @@ namespace LicenseeAgent.CustomerSetting.Utils
                     BetTypeId = reader.ToInt("BetType"),
                     MinBet = reader.ToDecimal("MinBet"),
                     MaxBet = reader.ToDecimal("MaxBet"),
-                    MaxPerMatch = reader.ToDecimal("MaxPerMatch"),
-                    MaxPerBall = reader.ToDecimal("MaxPerBall")
+                    MaxPerBall = reader.ToDecimal("MaxPerBall"),
+                    MaxPerMatch = reader.ToDecimal("MaxPerMatch")
                 };
+
+                if (getUplineBetlimit)
+                {
+                    bettingLimit.MaxMinBet = reader.ToDecimal("MaxMinBet");
+                    bettingLimit.MinMaxBet = reader.ToDecimal("MinMaxBet");
+                    bettingLimit.MinMaxPerBall = reader.ToDecimal("MinMaxPerBall");
+                    bettingLimit.MinMaxPerMatch = reader.ToDecimal("MinMaxPerMatch");
+                }
+                else
+                {
+                    bettingLimit.MaxMinBet = bettingLimit.MinBet;
+                    bettingLimit.MinMaxBet = bettingLimit.MaxBet;
+                    bettingLimit.MinMaxPerBall = bettingLimit.MaxPerBall;
+                    bettingLimit.MinMaxPerMatch = bettingLimit.MaxPerMatch;
+                }
 
                 bettingLimits.Add(bettingLimit);
             }
@@ -55,7 +70,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// <param name="getUplineBetlimit">Get up line bet limits or not.</param>
         /// <returns>Returns list of betting limit item.</returns>
         public static IList<BettingLimitItem> ReadBetLimitData(
-            IDataReader reader, 
+            IDataReader reader,
             bool getUplineBetlimit = false)
         {
             var bettingLimits = new List<BettingLimitItem>();

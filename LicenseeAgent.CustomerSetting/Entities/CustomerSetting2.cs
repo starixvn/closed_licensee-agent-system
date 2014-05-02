@@ -20,5 +20,25 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public IList<BettingLimitItem> BettingLimitSetting { get; set; }
 
         public IList<PositionTakingGroup> PositionTakingSetting { get; set; }
+
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>Returns true if entity is valid.</returns>
+        public bool IsValid()
+        {
+            if (CommissionSetting == null
+                    || CommissionSetting.CommissionItems == null
+                    || CommissionSetting.CommissionItems.Count == 0
+                    || BettingLimitSetting == null
+                    || BettingLimitSetting.Count == 0
+                    || PositionTakingSetting == null
+                    || PositionTakingSetting.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

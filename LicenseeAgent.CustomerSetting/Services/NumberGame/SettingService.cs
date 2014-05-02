@@ -45,23 +45,25 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 out errCode,
                 out maxLicenseePt);
 
-            if (errCode == Result.SuccessValue)
+            if (errCode != Result.SuccessValue)
             {
                 return null;
             }
 
-            if (!customerSetting.IsValid())
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
-            return new CustomerSetting2
+            var result = new CustomerSetting2
             {
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_2, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
             };
+
+            if (!result.IsValid())
+            {
+                errCode = Result.FailureValue;
+                return null;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -81,24 +83,25 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 out customerSetting,
                 out errCode);
 
-            if (errCode == Result.SuccessValue)
+            if (errCode != Result.SuccessValue)
             {
                 return null;
             }
 
-            if (!customerSetting.IsValid())
+            var result = new CustomerSetting2
+            {
+                CommissionSetting = customerSetting.CommissionSetting,
+                BettingLimitSetting = customerSetting.BettingLimitSetting,
+                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
+            };
+
+            if (!result.IsValid())
             {
                 errCode = Result.FailureValue;
                 return null;
             }
 
-            return new CustomerSetting2
-            {
-                CustInfo = customerSetting.CustInfo,
-                CommissionSetting = customerSetting.CommissionSetting,
-                BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
-            };
+            return result;
         }
 
         /// <summary>

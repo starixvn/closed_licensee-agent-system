@@ -51,19 +51,21 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 return null;
             }
 
-            if (!customerSetting.IsValid())
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
-            return new CustomerSetting2
+            var result = new CustomerSetting2
             {
                 CustInfo = customerSetting.CustInfo,
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
             };
+
+            if (!result.IsValid())
+            {
+                errCode = Result.FailureValue;
+                return null;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -88,19 +90,21 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 return null;
             }
 
-            if (!customerSetting.IsValid())
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
-            return new CustomerSetting2
+            var result = new CustomerSetting2
             {
                 CustInfo = customerSetting.CustInfo,
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
             };
+
+            if (!result.IsValid())
+            {
+                errCode = Result.FailureValue;
+                return null;
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
 ﻿<div>
     <div class="betting-limit-sport">
-        <span>{{betSetting.sportTypeName}}</span> <span ng-click="betLimitService.copyPartial(betSetting, currentIndex, bettingLimitsModel)"
-            class="icon-setting-copy" ng-if="currentIndex <= 1" title="{{currentIndex==0 ? language.bettingLimit_Soccer_Copy_Tooltip : language.bettingLimit_Basketball_Copy_Tooltip}}">
-        </span>
+        <span>{{betSetting.sportTypeName}}</span>
     </div>
     <div class="betting-limit-item-col4">
         <input type="text" class="input" ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"

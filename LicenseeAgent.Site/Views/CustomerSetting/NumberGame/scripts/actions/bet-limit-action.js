@@ -11,7 +11,8 @@ if (fanex.customerSetting) {
                 isDataChanged: function() {
                     return formatInputNumber(modelData.MinBet) !== modelData.OldMinBet
                         || formatInputNumber(modelData.MaxBet) !== modelData.OldMaxBet
-                        || formatInputNumber(modelData.MaxPerMatch) !== modelData.OldMaxPerMatch;
+                        || formatInputNumber(modelData.MaxPerMatch) !== modelData.OldMaxPerMatch
+                        || formatInputNumber(modelData.MaxPerBall) !== modelData.OldMaxPerBall;
                 },
                 onChangeMinBet: function() {
                     modelData.actions.validMinBet();
@@ -26,9 +27,10 @@ if (fanex.customerSetting) {
                     modelData.actions.validMaxPerBall();
                 },
                 isUnlimited: function() {
-                    return formatInputNumber(modelData.MinBet) === 0 &&
-                        formatInputNumber(modelData.MaxBet) === 0 &&
-                        formatInputNumber(modelData.MaxPerMatch) === 0;
+                    return formatInputNumber(modelData.MinBet) === 0
+                        && formatInputNumber(modelData.MaxBet) === 0
+                        && formatInputNumber(modelData.MaxPerMatch) === 0 
+                        && formatInputNumber(modelData.MaxPerBall) === 0;
                 },
                 validMinBet: function() {
                     var message = "";
@@ -113,7 +115,10 @@ if (fanex.customerSetting) {
                     if (modelData.actions.isUnlimited()) {
                         return true;
                     }
-                    return modelData.actions.validMinBet() && modelData.actions.validMaxBet() && modelData.actions.validMaxPerMatch();
+                    return modelData.actions.validMinBet()
+                            && modelData.actions.validMaxBet()
+                            && modelData.actions.validMaxPerMatch()
+                            && modelData.actions.validMaxPerBall();
                 }
             };
         }

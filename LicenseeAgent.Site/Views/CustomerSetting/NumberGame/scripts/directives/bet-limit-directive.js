@@ -7,7 +7,7 @@
 if (fanex.customerSetting) {
 
     // An agent edit another agent in the simple mode
-    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode', function() {
+    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -16,7 +16,7 @@ if (fanex.customerSetting) {
                 modelData: '='
             },
             templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode.html',
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
                 modelData.OldMinBet = modelData.MinBet;
@@ -63,9 +63,9 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'NumberGameBetLimitAdvancedModeController',
+            controller: 'NumberGameBetLimitController',
             scope: {
-                /*bettingLimitsModel: '=',*/
+                bettingLimitsModel: '=',
                 betSetting: '=',
                 currentIndex: '='
             },
@@ -91,7 +91,7 @@ if (fanex.customerSetting) {
         return {
             restrict: 'E',
             replace: true,
-            controller: 'NumberGameBetLimitAdvancedModeController',
+            controller: 'NumberGameBetLimitController',
             scope: {
                 bettingLimitsModel: '=',
                 betSetting: '=',

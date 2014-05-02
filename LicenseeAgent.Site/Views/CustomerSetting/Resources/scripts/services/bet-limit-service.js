@@ -6,7 +6,7 @@
 
 if (fanex.customerSetting) {
     //// Helper
-    fanex.customerSetting.commonBetLimitService = {
+    fanex.customerSetting.baseBetLimitService = {
         showInvalidMessage: function (element, message) {
             fanex.showHint(element, message);
         },

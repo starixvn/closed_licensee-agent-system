@@ -8,7 +8,7 @@ if (fanex.customerSetting) {
         '$scope',
         '$http',
         '$window',
-        function($scope, $http, $window) {
+        function ($scope, $http, $window) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -26,7 +26,7 @@ if (fanex.customerSetting) {
             $scope.formId = settingContext.FormId;
             $scope.hasOfferedNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
 
-            $('#modeSwitcher').on('switch-change', function(e, data) {
+            $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
                 $scope.settingMode = isSimpleMode;
@@ -35,7 +35,7 @@ if (fanex.customerSetting) {
                 $scope.$apply();
             });
 
-            $scope.insertCustomer = function() {
+            $scope.insertCustomer = function () {
                 var commissionSettingScope,
                     bettingLimitScope,
                     positionTakingScope,
@@ -47,7 +47,7 @@ if (fanex.customerSetting) {
                 var custInfoScope = angular.element('#custInfoController').scope();
                 if (custInfoScope.formCustInfo.$invalid) {
                     var keepGoing = true;
-                    angular.forEach(custInfoScope.formCustInfo.$error, function(field) {
+                    angular.forEach(custInfoScope.formCustInfo.$error, function (field) {
                         if (angular.isArray(field)) {
                             if (keepGoing) {
                                 var element = $('#' + field[0].$name);
@@ -68,23 +68,21 @@ if (fanex.customerSetting) {
                     commissionItems = commissionSettingScope.saveData();
                     bettingLimitItems = bettingLimitScope.saveData();
                     positionTakingItems = positionTakingScope.saveData();
-
                     if ($scope.hasOfferedNumberGame) {
                         numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
                         if (numberGameSetting == null) {
                             return;
                         }
                     }
-
                     $scope.Messages = null;
                     core.blockUI();
                     $http({
-                            method: 'POST',
-                            url: core.resolveUrl($('#custSetting').data('href')),
-                            headers: { 'Content-Type': 'application/json' },
-                            data: {
-                                settingContext: settingContext,
-                                sportsBookSetting:
+                        method: 'POST',
+                        url: core.resolveUrl($('#custSetting').data('href')),
+                        headers: { 'Content-Type': 'application/json' },
+                        data: {
+                            settingContext: settingContext,
+                            sportsBookSetting:
                                 {
                                     PositionTakingSetting: positionTakingItems,
                                     CustInfo: custInfoScope.custInfo,
@@ -96,10 +94,10 @@ if (fanex.customerSetting) {
                                     },
                                     BettingLimitSetting: bettingLimitItems
                                 },
-                                numberGameSetting: numberGameSetting
-                            }
-                        }).
-                        success(function(data) {
+                            numberGameSetting: numberGameSetting
+                        }
+                    }).
+                        success(function (data) {
                             core.unblockUI();
 
                             if (data.ErrCode !== 0) {
@@ -129,14 +127,14 @@ if (fanex.customerSetting) {
                                 }
                             }
                         }).
-                        error(function(data) {
+                        error(function (data) {
                             core.unblockUI();
                             alert(data.ErrMsg);
                         });
                 }
             };
 
-            $scope.updateCustomer = function() {
+            $scope.updateCustomer = function () {
                 $('.messages').hide();
                 $scope.Messages = null;
 
@@ -179,12 +177,12 @@ if (fanex.customerSetting) {
 
                 core.blockUI();
                 $http({
-                        method: 'POST',
-                        url: core.resolveUrl($('#custSetting').data('href')),
-                        headers: { 'Content-Type': 'application/json' },
-                        data: {
-                            settingContext: settingContext,
-                            sportsBookSetting:
+                    method: 'POST',
+                    url: core.resolveUrl($('#custSetting').data('href')),
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        settingContext: settingContext,
+                        sportsBookSetting:
                             {
                                 PositionTakingSetting: positionTakingItems,
                                 CommissionSetting: {
@@ -193,10 +191,10 @@ if (fanex.customerSetting) {
                                 },
                                 BettingLimitSetting: bettingLimitItems
                             },
-                            numberGameSetting: numberGameSetting
-                        }
-                    }).
-                    success(function(data) {
+                        numberGameSetting: numberGameSetting
+                    }
+                }).
+                    success(function (data) {
                         core.unblockUI();
 
                         if (data.ErrCode !== 0) {
@@ -224,7 +222,7 @@ if (fanex.customerSetting) {
                             if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
                                 timeout = 3000;
                             }
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
                                 var url = orginalUrl + '&messages=' + core.encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
                                 location.href = url;
@@ -237,7 +235,7 @@ if (fanex.customerSetting) {
                         $scope.Messages = data.Messages;
                         core.scrollTop();
                     }).
-                    error(function(data) {
+                    error(function (data) {
                         core.unblockUI();
                         alert(data.ErrMsg);
                     });
@@ -256,6 +254,6 @@ if (fanex.customerSetting) {
                 popup.close();
             }
         }
-        
+
     ]);
 }

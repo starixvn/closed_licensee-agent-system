@@ -73,5 +73,5 @@ if (fanex.customerSetting) {
         }
     };
 
-    angular.extend(fanex.customerSetting.betLimitService, fanex.customerSetting.commonBetLimitService);
+    angular.extend(fanex.customerSetting.betLimitService, fanex.customerSetting.baseBetLimitService);
 }

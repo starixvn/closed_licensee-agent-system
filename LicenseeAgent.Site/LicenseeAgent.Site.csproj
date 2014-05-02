@@ -300,7 +300,6 @@
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\Report\Resources\report-base.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\bet-limit-action.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\position-taking-action.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\bet-limit-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
@@ -319,8 +318,10 @@
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-member-simple-mode.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\actions\position-taking-action.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\directives\position-taking-directive.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.js">
@@ -332,9 +333,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\bet-limit-action.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\commission-action.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\position-taking-action.js" />
     <Content Include="Views\Report\Resources\statement-report.js" />
     <Content Include="Views\Report\Resources\transfer-detail.js" />
     <Content Include="Views\Report\Resources\statement-detail-report.js" />

@@ -23,9 +23,9 @@ if (fanex.customerSetting) {
                     modelData.actions.validMaxPerMatch();
                 },
                 isUnlimited: function() {
-                    return formatInputNumber(modelData.MinBet) === 0 &&
-                        formatInputNumber(modelData.MaxBet) === 0 &&
-                        formatInputNumber(modelData.MaxPerMatch) === 0;
+                    return formatInputNumber(modelData.MinBet) === 0
+                        && formatInputNumber(modelData.MaxBet) === 0 
+                        && formatInputNumber(modelData.MaxPerMatch) === 0;
                 },
                 validMinBet: function() {
                     var message = "";
@@ -90,7 +90,9 @@ if (fanex.customerSetting) {
                     if (modelData.actions.isUnlimited()) {
                         return true;
                     }
-                    return modelData.actions.validMinBet() && modelData.actions.validMaxBet() && modelData.actions.validMaxPerMatch();
+                    return modelData.actions.validMinBet()
+                        && modelData.actions.validMaxBet() 
+                        && modelData.actions.validMaxPerMatch();
                 }
             };
         }

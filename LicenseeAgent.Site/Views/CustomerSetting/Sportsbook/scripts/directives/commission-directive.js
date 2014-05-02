@@ -76,7 +76,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'fanex.customersetting.commissioncontroller',
-            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent.html',
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
@@ -94,7 +94,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'fanex.customersetting.commissioncontroller',
-            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent-readonly.html',
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/licensee-or-agent-edit-agent-readonly.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
@@ -112,7 +112,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'fanex.customersetting.commissioncontroller',
-            templateUrl: '/Views/CustomerSetting/Sportsbook/scripts/templates/commission/agent-edit-customer.html',
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/Sportsbook/scripts/templates/commission/agent-edit-customer.html'),
             link: function(scope, element, attrs, controller) {
                 var commissionSettingsViewModel = scope.viewModel.commissionSettingsViewModel;
                 commissionSettingsViewModel.actions = fanex.customerSetting.commissionSettingActions.agentEditCustomerActions(commissionSettingsViewModel,

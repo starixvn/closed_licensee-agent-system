@@ -98,13 +98,12 @@
     <Compile Include="Entities\PositionTakingGroup.cs" />
     <Compile Include="Entities\SettingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\NumberGame\ISettingService.cs" />
+    <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\NumberGame\SettingService.cs" />
-    <Compile Include="Services\SettingServiceBase.cs" />
     <Compile Include="Services\SportsBook\SettingService.cs" />
-    <Compile Include="Services\SportsBook\ISettingService.cs" />
     <Compile Include="Services\CustomerSettingService.cs" />
     <Compile Include="Services\ICustomerSettingService.cs" />
+    <Compile Include="Utils\PositionTakingBuilder.cs" />
     <Compile Include="Utils\XmlBuilder.cs" />
     <Compile Include="Utils\BettingLimitDataReader.cs" />
     <Compile Include="Utils\CommissionDataReader.cs" />

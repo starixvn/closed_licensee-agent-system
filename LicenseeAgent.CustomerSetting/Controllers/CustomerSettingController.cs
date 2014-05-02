@@ -67,8 +67,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
         private readonly ICoreService _coreService = new CoreService();
-        private readonly Services.NumberGame.ISettingService _numberGameService = new Services.NumberGame.SettingService();
-        private readonly Services.SportsBook.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
+        private readonly Services.ISettingService _numberGameService = new Services.NumberGame.SettingService();
+        private readonly Services.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
         private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
 
         public CustomerSettingController(

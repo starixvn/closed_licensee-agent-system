@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Core.Utility
 {
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
 
@@ -22,13 +23,40 @@ namespace LicenseeAgent.Core.Utility
         public static string GetErrMsg(int errorCode)
         {
             var result = string.Empty;
-            if (errorCode != 0)
+            if (errorCode > 0)
             {
                 var key = string.Format("Msg_{0}", errorCode);
                 result = LangMsg.ResourceManager.GetString(key);
                 if (string.IsNullOrEmpty(result))
                 {
                     result = string.Format(Las.UndefinedErrorCode, errorCode);
+                }
+            }
+            else
+            {
+                switch (errorCode)
+                {
+                    case Result.FailureValue:
+                    case Result.InvalidModel:
+                    case Result.ApiError:
+                        result = Las.HttpError_Default;
+                        break;
+
+                    case Result.Unauthorized:
+                        result = Las.UnauthorizedMsg;
+                        break;
+
+                    case Result.UnderMaintenance:
+                        result = Las.UnderMaintenance;
+                        break;
+
+                    case Result.AccessDenied:
+                        result = Las.AccessDeniedMsg;
+                        break;
+
+                    case Result.NoCurrencyPermission:
+                        result = Las.AlertNoCurrencyPermission;
+                        break;
                 }
             }
 

@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SettingServiceBase.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="PositionTakingBuilder.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Services
+namespace LicenseeAgent.CustomerSetting.Utils
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public abstract class SettingServiceBase
+    public static class PositionTakingBuilder
     {
         /// <summary>
         /// Build position taking group from raw data.
@@ -28,7 +28,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <returns>
         /// List position taking group.
         /// </returns>
-        protected IList<PositionTakingGroup> BuildPositionTakingGroups(
+        public static IList<PositionTakingGroup> BuildGroups(
             int productId,
             SettingContext settingContext,
             IList<PositionTakingItem> positionTakingList,
@@ -50,7 +50,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingData(settingContext, positionTakingList, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
+                        BuildGroup(settingContext, positionTakingList, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -68,7 +68,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <returns>
         /// List position taking group.
         /// </returns>
-        protected IList<PositionTakingGroup> BuildPositionTakingGroupsForUpdate(
+        public static IList<PositionTakingGroup> BuildGroups(
             int productId,
             IList<PositionTakingItem> positionTakingList)
         {
@@ -88,7 +88,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        GetPositionTakingDataForUpdate(positionTakingList, positionTakingGroup, Convert.ToInt32(betTypeId));
+                        BuildGroup(positionTakingList, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);
@@ -106,7 +106,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
-        private void GetPositionTakingData(
+        private static void BuildGroup(
             SettingContext settingContext,
             IList<PositionTakingItem> positionTakingList,
             int maxLicenseePt,
@@ -146,7 +146,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <param name="positionTakingList">Position taking to save data.</param>
         /// <param name="positionTakingGroup">Position taking group.</param>
         /// <param name="betTypeId">Bet Type Id.</param>
-        private void GetPositionTakingDataForUpdate(
+        private static void BuildGroup(
             IList<PositionTakingItem> positionTakingList,
             PositionTakingGroup positionTakingGroup,
             int betTypeId)

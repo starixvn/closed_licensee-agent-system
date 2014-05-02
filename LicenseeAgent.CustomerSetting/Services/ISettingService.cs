@@ -4,7 +4,7 @@
 // </copyright>
 // ------------------------------------------------------------------------
 
-namespace LicenseeAgent.CustomerSetting.Services.NumberGame
+namespace LicenseeAgent.CustomerSetting.Services
 {
     using LicenseeAgent.CustomerSetting.Entities;
 

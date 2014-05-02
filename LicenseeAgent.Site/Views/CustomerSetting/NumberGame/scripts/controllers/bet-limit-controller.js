@@ -1,6 +1,5 @@
 ﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../../libs/angular.js" />
-/// <reference path="../fanex.sports-book-setting.js" />
 
 /*global settingContext, numberGameSetting */
 'use strict';

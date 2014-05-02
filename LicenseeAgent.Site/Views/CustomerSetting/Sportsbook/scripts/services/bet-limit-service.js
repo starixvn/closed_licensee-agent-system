@@ -65,11 +65,6 @@ if (fanex.customerSetting) {
                 }
             }
             return bettingLimitsSave;
-            if (input === undefined) {
-                return result;
-            }
-            input = input.toString().replace(/,/gi, '');
-            } else {
         }
     };
 

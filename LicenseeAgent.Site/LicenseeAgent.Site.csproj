@@ -304,7 +304,9 @@
     <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\position-taking-directive.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\number-game-setting.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\commission-setting-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
     <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
@@ -322,17 +324,13 @@
     <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.js">
-    <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\languages\SportsBook.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SportsBook.tt</DependentUpon>
     </Content>
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\bet-limit-action.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\commission-action.js" />

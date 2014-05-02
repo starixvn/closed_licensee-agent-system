@@ -1,6 +1,5 @@
 ﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../../libs/angular.js" />
-/// <reference path="../fanex.sports-book-setting.js" />
 
 'use strict';
 
@@ -15,7 +14,7 @@ if (fanex.customerSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode.html',
+            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode.html'),
             link: function (scope, element) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
@@ -41,7 +40,7 @@ if (fanex.customerSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html',
+            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html'),
             link: function(scope, element) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
@@ -69,7 +68,7 @@ if (fanex.customerSetting) {
                 betSetting: '=',
                 currentIndex: '='
             },
-            templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode.html',
+            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode.html'),
             link: function(scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
@@ -97,7 +96,7 @@ if (fanex.customerSetting) {
                 betSetting: '=',
                 currentIndex: '='
             },
-            templateUrl: '/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html',
+            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html'),
             link: function(scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');

@@ -104,7 +104,7 @@ if (fanex.customerSetting) {
                     //Check addition for Upline
 
                     if (message !== "") {
-                        fanex.customerSetting.betLimitService.showInvalidMessage(inputControl[2], message);
+                        fanex.customerSetting.betLimitService.showInvalidMessage(inputControl[3], message);
                         return false;
                     } else {
                         fanex.hideHint();

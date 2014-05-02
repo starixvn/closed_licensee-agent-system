@@ -14,11 +14,11 @@ if (fanex.customerSetting) {
         '$timeout',
         '$rootScope',
         '$q',
-        function($http, $timeout, $rootScope, $q) {
+        function ($http, $timeout, $rootScope, $q) {
             if ($('#userName').length > 0) {
                 var apiPath = core.resolveUrl($('#userName').data('href'));
                 return {
-                    checkUsername: function(scope, userName) {
+                    checkUsername: function (scope, userName) {
                         var params = {
                             userName: userName
                         };
@@ -27,10 +27,10 @@ if (fanex.customerSetting) {
                             method: 'POST',
                             url: apiPath,
                             data: params
-                        }).success(function(data) {
+                        }).success(function (data) {
                             //Passing data to deferred's resolve function on successful completion
                             deferred.resolve(data);
-                        }).error(function() {
+                        }).error(function () {
                             //Sending a friendly error message in case of failure
                             deferred.reject("An error occured while fetching items");
                         });

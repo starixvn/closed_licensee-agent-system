@@ -97,7 +97,6 @@
     <Compile Include="Entities\PositionTakingItem.cs" />
     <Compile Include="Entities\PositionTakingGroup.cs" />
     <Compile Include="Entities\SettingContext.cs" />
-    <Compile Include="Entities\NumberGame\NumberGameBettingLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\NumberGame\SettingService.cs" />
@@ -139,10 +138,12 @@
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
   </ItemGroup>
+  <ItemGroup>
     <None Include="Core\PtSettings.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>ProductSettings.cs</LastGenOutput>
     </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

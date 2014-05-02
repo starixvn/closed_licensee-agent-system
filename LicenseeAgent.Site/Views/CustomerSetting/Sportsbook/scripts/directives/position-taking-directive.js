@@ -2,6 +2,7 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global core */
 'use strict';
 
 if (fanex.customerSetting) {

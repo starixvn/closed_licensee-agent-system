@@ -1,6 +1,8 @@
 ﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../../libs/angular.js" />
 
+/* global core */
+
 'use strict';
 
 if (fanex.customerSetting) {

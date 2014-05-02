@@ -177,7 +177,7 @@ namespace LicenseeAgent.CustomerSetting.Services
             if (model.NumberGameSetting != null)
             {
                 discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
-                betLimit3rdXml = XmlBuilder.Build(model.NumberGameSetting.BettingLimitSetting);
+                betLimit3rdXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
                 positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
             }
 
@@ -272,7 +272,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 if (model.NumberGameSetting != null)
                 {
                     discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
-                    betLimit3rdXml = XmlBuilder.Build(model.NumberGameSetting.BettingLimitSetting);
+                    betLimit3rdXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
                 }
             }
 

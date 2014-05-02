@@ -96,6 +96,34 @@ namespace LicenseeAgent.CustomerSetting.Services
         }
 
         /// <summary>
+        /// Builds for number game.
+        /// </summary>
+        /// <param name="bettingLimits">The betting limits.</param>
+        /// <returns>String data to update database.</returns>
+        public static string BuildForNumberGame(IList<BettingLimitItem> bettingLimits)
+        {
+            string xmlStringData = string.Empty;
+            if (bettingLimits != null && bettingLimits.Any())
+            {
+                foreach (BettingLimitItem betLimit in bettingLimits)
+                {
+                    xmlStringData += string.Format(
+                        Constant.FORMAT_BETTING_LIMIT_XML_3RD,
+                        betLimit.SportId,
+                        betLimit.BetTypeId,
+                        betLimit.MinBet,
+                        betLimit.MaxBet,
+                        betLimit.MaxPerMatch,
+                        betLimit.MaxPerBall);
+                }
+            }
+
+            return !string.IsNullOrEmpty(xmlStringData)
+                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                : string.Empty;
+        }
+
+        /// <summary>
         /// Build XML String for Updating.
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>

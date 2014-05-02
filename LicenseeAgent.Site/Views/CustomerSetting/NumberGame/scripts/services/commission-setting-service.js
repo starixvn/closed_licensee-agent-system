@@ -4,13 +4,13 @@
 
 if (fanex.customerSetting) {
     fanex.customerSetting.numberGameCommissionService = {
-        getCommissionSetting: function(commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+        getCommissionSetting: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
             var commissionSetting = commissionSettingModel[4];
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {
                     commissionSetting.DiscountA = commissionSettingViewModel[7].discount;
                 } else {
-                    commissionSetting.Discount = commissionSettingViewModel.line6.memberCommission;
+                    commissionSetting.Discount = commissionSettingViewModel.line5.memberCommission;
                 }
             } else {
                 if (targetRoleId !== 1) {
@@ -18,8 +18,8 @@ if (fanex.customerSetting) {
                         commissionSetting.DiscountA = commissionSettingViewModel[7].discount;
                     }
                 } else {
-                    if (commissionSettingViewModel.line6.memberCommission !== commissionSettingViewModel.line6.oldCommission) {
-                        commissionSetting.Discount = commissionSettingViewModel.line6.memberCommission;
+                    if (commissionSettingViewModel.line5.memberCommission !== commissionSettingViewModel.line5.oldCommission) {
+                        commissionSetting.Discount = commissionSettingViewModel.line5.memberCommission;
                     }
                 }
             }

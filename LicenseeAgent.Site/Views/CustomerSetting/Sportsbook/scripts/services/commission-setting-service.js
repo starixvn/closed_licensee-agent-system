@@ -13,10 +13,10 @@ if (fanex.customerSetting) {
         config: {
             maxInput: 5
         },
-        showInvalidMessage: function(element, message) {
+        showInvalidMessage: function (element, message) {
             fanex.showHint(element, message);
         },
-        isValidData: function(commissionSettings) {
+        isValidData: function (commissionSettings) {
             if (commissionSettings instanceof Array) {
                 for (var i = 0; i < commissionSettings.length; i++) {
                     if (!commissionSettings[i].actions.isValid()) {
@@ -53,15 +53,14 @@ if (fanex.customerSetting) {
                     name: language['commissionSetting_GroupC']
                 });
 
-                // Number Game
+                // 1x2 Comm
                 commissionSettingViewModel.push({
                     minDiscount: 0,
-                    discount: commissionSettingModel[4].DiscountA,
-                    oldDiscount: commissionSettingModel[4].DiscountA,
-                    maxDiscount: 0, //commissionSettingModel[4].Upline.DiscountA,
-                    name: language['commissionSetting_NumberGame']
+                    discount: commissionSettingModel[1].DiscountA,
+                    oldDiscount: commissionSettingModel[1].DiscountA,
+                    maxDiscount: commissionSettingModel[1].Upline.DiscountA,
+                    name: language['commissionSetting_1x2Comm']
                 });
-
 
                 // GroupB
                 commissionSettingViewModel.push({
@@ -79,6 +78,15 @@ if (fanex.customerSetting) {
                     oldDiscount: commissionSettingModel[0].DiscountD,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountD,
                     name: language['commissionSetting_GroupD']
+                });
+
+                // Others Comm
+                commissionSettingViewModel.push({
+                    minDiscount: 0,
+                    discount: commissionSettingModel[2].DiscountA,
+                    oldDiscount: commissionSettingModel[2].DiscountA,
+                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
+                    name: language['commissionSetting_OthersComm']
                 });
 
                 // HR Fixed Odds
@@ -99,15 +107,6 @@ if (fanex.customerSetting) {
                         maxDiscount: commissionSettingModel[4].Upline.DiscountA,
                         name: language['commissionSetting_NumberGame']
                     });
-                // Others Comm
-                commissionSettingViewModel.push({
-                    minDiscount: 0,
-                    discount: commissionSettingModel[2].DiscountA,
-                    oldDiscount: commissionSettingModel[2].DiscountA,
-                    maxDiscount: commissionSettingModel[2].Upline.DiscountA,
-                    name: language['commissionSetting_OthersComm']
-                });
-
                 }
 
                 return commissionSettingViewModel;
@@ -158,7 +157,7 @@ if (fanex.customerSetting) {
                         },
                         // HR Fixed Odds Comm
                         line4: {
-                            name: language['commissionSetting_HrFixedOddsComm'],
+                            name: language['commissionSetting_HrFixedOdds'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].DiscountA
                         }
@@ -233,7 +232,7 @@ if (fanex.customerSetting) {
                         },
                         // HR Fixed Odds Comm
                         line4: {
-                            name: language['commissionSetting_HrFixedOddsComm'],
+                            name: language['commissionSetting_HrFixedOdd'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].Discount,
                             oldCommission: commissionSettingModel[3].Discount
@@ -254,7 +253,7 @@ if (fanex.customerSetting) {
                 }
             }
         },
-        getCommissionSettingModel: function(commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+        getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
             // Insert
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {
@@ -341,7 +340,7 @@ if (fanex.customerSetting) {
                 return commissionSettings;
             }
         },
-        changeViewModel: function(commissionSettingViewModel) {
+        changeViewModel: function (commissionSettingViewModel) {
             if (commissionSettingViewModel.selectedGroup === 'A') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[0].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[0].memberCommission;
@@ -362,7 +361,7 @@ if (fanex.customerSetting) {
 
             return commissionSettingViewModel;
         },
-        arrangeCommissionSettingModel: function(commissionSettingModel) {
+        arrangeCommissionSettingModel: function (commissionSettingModel) {
             var result = [];
             for (var i = 0; i < commissionSettingModel.length; i++) {
                 if (commissionSettingModel[i].BetTypeId === 1) {

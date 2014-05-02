@@ -45,6 +45,24 @@
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
+        <div class="comm-group">
+            <div class="comm-block">
+                <span>{{viewModel.commissionSettingsViewModel.line4.name}}</span>
+            </div>
+            <div class="comm-block">
+                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line4.agentCommission"
+                    maxlength="{{config.maxInput}}" />
+            </div>
+        </div>
+        <div class="comm-group" ng-if="hasOfferedNumberGame">
+            <div class="comm-block">
+                <span>{{viewModel.commissionSettingsViewModel.line5.name}}</span>
+            </div>
+            <div class="comm-block">
+                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line5.agentCommission"
+                    maxlength="{{config.maxInput}}" />
+            </div>
+        </div>
     </div>
     <div class="comm-container">
         <div class="comm-header-title">
@@ -77,13 +95,22 @@
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line3.agentCommission}}]</span>
             </div>
         </div>
-        <div class="comm-group" ng-if="hasOfferedNumberGame">
+        <div class="comm-group">
             <div class="comm-block">
                 <input id="line4" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line4.memberCommission"
-                    maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />
+                       maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line4.agentCommission}}]</span>
+            </div>
+        </div>
+        <div class="comm-group" ng-if="hasOfferedNumberGame">
+            <div class="comm-block">
+                <input id="line5" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line5.memberCommission"
+                    maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line5, 'line5')" />
+            </div>
+            <div class="comm-block">
+                <span>[0 - {{viewModel.commissionSettingsViewModel.line5.agentCommission}}]</span>
             </div>
         </div>
     </div>

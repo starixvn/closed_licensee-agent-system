@@ -2922,15 +2922,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well..
-        /// </summary>
-        public static string SimpleModeNote {
-            get {
-                return ResourceManager.GetString("SimpleModeNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Soccer.
         /// </summary>
         public static string Soccer {
@@ -2999,6 +2990,15 @@ namespace LicenseeAgent.Resources {
         public static string Sportsbook {
             get {
                 return ResourceManager.GetString("Sportsbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: In simple mode, your changes of soccers setting will be applied to all sport types/bet types except Number Game..
+        /// </summary>
+        public static string SportsBookSimpleModeNote {
+            get {
+                return ResourceManager.GetString("SportsBookSimpleModeNote", resourceCulture);
             }
         }
         

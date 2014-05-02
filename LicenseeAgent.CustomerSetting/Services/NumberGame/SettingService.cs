@@ -92,7 +92,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
             {
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
+                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_2, customerSetting.PositionTakingSetting)
             };
 
             if (!result.IsValid())

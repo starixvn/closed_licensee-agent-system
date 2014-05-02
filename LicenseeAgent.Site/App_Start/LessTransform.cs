@@ -45,16 +45,6 @@ namespace LicenseeAgent.Site
                 return;
             }
 
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
-
-            if (bundle == null)
-            {
-                throw new ArgumentNullException("bundle");
-            }
-
             context.HttpContext.Response.Cache.SetLastModifiedFromFileDependencies();
             var content = new StringBuilder(bundle.Content.Length);
             var bundleFiles = new List<BundleFile>();
@@ -72,9 +62,6 @@ namespace LicenseeAgent.Site
 
             bundle.ContentType = "text/css";
             bundle.Content = content.ToString();
-
-            var cssMinify = new CssMinify();
-            cssMinify.Process(context, bundle);
         }
 
         /// <summary>
@@ -103,9 +90,9 @@ namespace LicenseeAgent.Site
             {
                 var lessParser = new Parser();
                 var lessEngine = this.CreateLessEngine(lessParser);
-                this.SetCurrentFilePath(lessParser, filePath);
+                SetCurrentFilePath(lessParser, filePath);
                 transformContent = lessEngine.TransformToCss(transformContent, filePath);
-                bundleFiles.AddRange(this.GetFileDependencies(lessParser, bundleFile.VirtualFile));
+                bundleFiles.AddRange(GetFileDependencies(lessParser, bundleFile.VirtualFile));
             }
 
             foreach (var transform in bundleFile.Transforms)
@@ -115,7 +102,7 @@ namespace LicenseeAgent.Site
 
             // apply URL rewrite
             var urlTransform = new CssRewriteUrlTransform();
-            transformContent = urlTransform.Process(bundleFile.IncludedVirtualPath, transformContent);
+            transformContent = urlTransform.Process("~" + VirtualPathUtility.ToAbsolute(bundleFile.IncludedVirtualPath), transformContent);
 
             return transformContent;
         }

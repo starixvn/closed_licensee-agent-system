@@ -193,20 +193,32 @@ namespace LicenseeAgent.Web.Controllers
                     break;
             }
 
+            UpdateLofAfterReInvoke(responseResult, syncData.KeyId);
+
+            return Json(new
+            {
+                Results = responseResult.ApiErrMsg,
+                IsSuccess = responseResult.ErrCode == Result.SuccessValue
+            });
+        }
+
+        private void UpdateLofAfterReInvoke(ResponseResult responseResult, int keyId)
+        {
             if (responseResult.ErrCode == Result.SuccessValue)
             {
                 _monitoringService.UpdateLogStatus(new SyncMonitoringUpdateStatusCriteria
                 {
-                    KeyID = syncData.KeyId,
+                    KeyID = keyId,
                     NewStatusID = 2
                 });
             }
-
-            return Json(new
+            else
             {
-                Results = responseResult.ErrMsg,
-                IsSuccess = responseResult.ErrCode == Result.SuccessValue
-            });
+                _monitoringService.UpdateRunCount(new SyncMonitoringUpdateRunCountCriteria
+                {
+                    KeyID = keyId
+                });
+            }
         }
     }
 }

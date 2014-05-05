@@ -155,6 +155,7 @@ namespace LicenseeAgent.Taiwan.Services
         public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false)
         {
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
+            criteria.IsReInvoke = isReinvoke;
             var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
 
             var memberStatusResult = ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
@@ -200,7 +201,11 @@ namespace LicenseeAgent.Taiwan.Services
         private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke)
         {
             var criteria = (SingleLogActionCriteria)action.CreateCriteria();
-            _logService.WriteLog(criteria);
+            if (!isReinvoke)
+            {
+                _logService.WriteLog(criteria);
+            }
+
             if (criteria.LogIdReturn == 0)
             {
                 return new ResponseResult(Result.ApiError, Las.HttpError_Default);

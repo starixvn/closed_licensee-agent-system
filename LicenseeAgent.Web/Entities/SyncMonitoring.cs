@@ -32,5 +32,7 @@ namespace LicenseeAgent.Web.Entities
         public string Remark { get; set; }
 
         public string Url { get; set; }
+
+        public int RunCount { get; set; }
     }
 }

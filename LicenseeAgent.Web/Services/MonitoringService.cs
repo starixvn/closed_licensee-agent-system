@@ -29,5 +29,10 @@ namespace LicenseeAgent.Web.Services
         {
             Execute(criteria);
         }
+
+        public void UpdateRunCount(ICriteria criteria)
+        {
+            Execute(criteria);
+        }
     }
 }

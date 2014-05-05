@@ -79,6 +79,7 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
+    <Compile Include="Criterias\SyncMonitoringUpdateRunCountCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringUpdateStatusCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringCriteria.cs" />
     <Compile Include="Criterias\ReferenceNumberCriteria.cs" />

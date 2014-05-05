@@ -18,6 +18,7 @@ var gridOptions = {
                 { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Run Count", Width: 80, Name: "RunCount", HeaderAlign: "center", CellAlign: "center", CellCssClass: 'run-count' },
                 { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
                         'use strict';
@@ -60,9 +61,9 @@ var syncmonitoring = (function ($) {
                 },
                 success: function (data) {
                     gridOptions.pagerOption = {
-                        itemsPerPage: core.pageSizes[0],
+                        itemsPerPage: itemsPerPage,
                         itemsPerPageArray: core.pageSizes,
-                        currentPage: 0,
+                        currentPage: currentPage,
                         showDetail: true
                     };
                     gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
@@ -129,6 +130,9 @@ var syncmonitoring = (function ($) {
                         $('#lbl_' + keyid).removeClass('hide');
                     }
                     else {
+                        var currentPage = gridOptions.pagerOption.currentPage;
+                        var currentPageSize = gridOptions.pagerOption.itemsPerPage;
+                        syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
                         alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.Results));
                     }
                 },

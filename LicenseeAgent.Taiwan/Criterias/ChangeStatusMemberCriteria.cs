@@ -16,11 +16,16 @@ namespace LicenseeAgent.Taiwan.Criterias
         public ChangeStatusMemberCriteria(LogAction logAction)
             : base(logAction)
         {
+            IsReInvoke = false;
         }
+
+        public bool IsReInvoke { get; set; }
 
         public override string GetSettingKey()
         {
-            return "LAS_ChangeStatus_Member_Writelog";
+            return IsReInvoke
+                ? "LAS_ChangeStatus_Member_Writelog"
+                : "LAS_ChangeStatus_Member_Writelog";
         }
     }
 }

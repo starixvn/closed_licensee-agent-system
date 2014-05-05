@@ -19,5 +19,7 @@ namespace LicenseeAgent.Web.Services
         IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria);
 
         void UpdateLogStatus(ICriteria criteria);
+
+        void UpdateRunCount(ICriteria criteria);
     }
 }

@@ -1238,4 +1238,10 @@
   <data name="Remark" xml:space="preserve">
     <value>备注</value>
   </data>
+  <data name="Maintenance" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="MemberAPIMonitoring" xml:space="preserve">
+    <value>Member's API Monitoring</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@ namespace LicenseeAgent.Web.Controllers
     using Filters;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Enumerations;
@@ -25,7 +26,7 @@ namespace LicenseeAgent.Web.Controllers
     /// Tool controller.
     /// </summary>
     [AdminSite]
-    [AllowAnonymous]
+    [AccountType(AccountType.CSD_IT)]
     public class ToolController : Controller
     {
         private readonly IMonitoringService _monitoringService;
@@ -159,7 +160,7 @@ namespace LicenseeAgent.Web.Controllers
         [HttpPost]
         public JsonResult SingleReInvoke(SyncMonitoring syncData)
         {
-            var responseResult = new ResponseResult(0, string.Empty);
+            ResponseResult responseResult = null;
             var licenseeID = (int)DomainMapper.GetLicenseeId(Request);
             switch (syncData.ActionId)
             {

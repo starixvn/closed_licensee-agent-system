@@ -170,6 +170,14 @@ namespace LicenseeAgent.Web
             }
         }
 
+        public bool IsCSDIT
+        {
+            get
+            {
+                return AdminInfo != null && string.Equals(AdminInfo.UserRole, "Admin", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         public void UpdateAgent(AgentInfo agentInfo)
         {
             AgentInfo = agentInfo;

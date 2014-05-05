@@ -1681,6 +1681,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maintenance.
+        /// </summary>
+        public static string Maintenance {
+            get {
+                return ResourceManager.GetString("Maintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match.
         /// </summary>
         public static string Match {
@@ -1785,6 +1794,15 @@ namespace LicenseeAgent.Resources {
         public static string Member {
             get {
                 return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member&apos;s API Monitoring.
+        /// </summary>
+        public static string MemberAPIMonitoring {
+            get {
+                return ResourceManager.GetString("MemberAPIMonitoring", resourceCulture);
             }
         }
         

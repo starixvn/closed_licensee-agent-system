@@ -43,16 +43,18 @@
                     @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
                 </ul>
             </li>
-            @*@if (AppSettings.LocalTest && AppSettings.IsAdminSite)
+            @if (AppSettings.IsAdminSite && SessionManager.CurrentSession.IsCSDIT)
             {
                 <li class="divider"></li>
-                <li><a class="tree-toggler nav-header">Las.Integration</a>
+                <li><a class="tree-toggler nav-header">@Las.Maintenance</a>
                     <ul class="nav nav-list tree" style="display: none">
-                        <li><a target="_blank" href="@LicenseeAgent.API.LRF.Integration.GenerateLink(1276, 2185, AppSettings.LocalLicenseeId, ModelSettings.DefaultLanguage)">
-                            <i class="icon-nav-arrow"></i>LRF</a></li>
+                        @BootstrapHelper.LeftMenu(Las.Password, Url.Action("Index", "Tool"))
+                        @BootstrapHelper.LeftMenu(Las.MemberAPIMonitoring, Url.Action("SyncMonitoring", "Tool"))
+                        @*<li><a target="_blank" href="@LicenseeAgent.API.LRF.Integration.GenerateLink(1276, 2185, AppSettings.LocalLicenseeId, ModelSettings.DefaultLanguage)">
+                            <i class="icon-nav-arrow"></i>LRF</a></li>*@
                     </ul>
                 </li>
-            }*@
+            }
         </ul>
     </div>
     <div class="tab-pane fade" id="accountInfo">

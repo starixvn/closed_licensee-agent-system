@@ -27,7 +27,6 @@ namespace LicenseeAgent.Web.Filters
         {
             _permissionServiceBase = DependencyResolver.Current.GetService<IAuthorizeService>();
             IsValidateAgent = true;
-            Role = AccountType.All;
         }
 
         /// <summary>
@@ -37,8 +36,6 @@ namespace LicenseeAgent.Web.Filters
         ///   <c>true</c> if [only authorize]; otherwise, <c>false</c>.
         /// </value>
         public bool IsValidateAgent { get; set; }
-
-        public AccountType Role { get; set; }
 
         /// <summary>
         /// Called when a process requests authorization.
@@ -59,11 +56,6 @@ namespace LicenseeAgent.Web.Filters
             if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
             {
                 AuthorizeSession(filterContext);
-            }
-
-            if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
-            {
-                AuthorizeRole(filterContext);
             }
 
             if (!filterContext.HttpContext.Response.IsRequestBeingRedirected && filterContext.Result == null)
@@ -97,7 +89,7 @@ namespace LicenseeAgent.Web.Filters
             {
                 return;
             }
-            
+
             if (currentSession.LoginAccountType == AccountType.Agent)
             {
                 var passwordStatus = PasswordRule.GetPasswordStatus(currentSession.AgentInfo);
@@ -132,61 +124,6 @@ namespace LicenseeAgent.Web.Filters
             if (criteria.ErrCode != Result.SuccessValue)
             {
                 filterContext.ReturnCurrencyPermissionDenied();
-            }
-        }
-
-        /// <summary>
-        /// Authorizes the permission. Only call this function if the httpContext.Request.IsAuthenticated
-        /// and session is valid.
-        /// </summary>
-        /// <param name="filterContext">The filter context.</param>
-        /// <exception cref="System.NotSupportedException">Please implement here.</exception>
-        /// <exception cref="System.Exception">Please implement here.</exception>
-        private void AuthorizeRole(AuthorizationContext filterContext)
-        {
-            var currentSession = SessionManager.CurrentSession;
-            var isAuthorized = false;
-            switch (Role)
-            {
-                case AccountType.All:
-                    isAuthorized = true;
-                    break;
-
-                case AccountType.Admin:
-                    isAuthorized = currentSession.IsAdmin;
-                    break;
-
-                case AccountType.CSD_IT:
-                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT ? true : false;
-                    break;
-
-                case AccountType.Licensee:
-                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee ? true : false;
-                    break;
-
-                case AccountType.Agent:
-                    isAuthorized = !currentSession.IsAdmin ? true : false;
-                    break;
-
-                case AccountType.AgentLevel0:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0 ? true : false;
-                    break;
-
-                case AccountType.AgentLevel1:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1 ? true : false;
-                    break;
-
-                case AccountType.AgentLeveln:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
-                    break;
-
-                default:
-                    throw new NotSupportedException("Please implement here");
-            }
-
-            if (!isAuthorized)
-            {
-                filterContext.ReturnAccessDenied();
             }
         }
     }

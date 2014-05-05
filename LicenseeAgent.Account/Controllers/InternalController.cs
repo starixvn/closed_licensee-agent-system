@@ -141,7 +141,8 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON.</returns>
         [HttpPost]
-        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
+        [AppAuthorize(IsValidateAgent = false)]
+        [AccountType(AccountType.Admin)]
         public JsonResult LoginAsUser(InternalLoginAsUserViewModel model)
         {
             var clientInfo = Request.GetClientInfo();
@@ -214,7 +215,7 @@ namespace LicenseeAgent.Account.Controllers
                 CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
-            
+
             var authKey = _internalService.Encode(internalLoginInfo);
             var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
             return Json(
@@ -276,7 +277,8 @@ namespace LicenseeAgent.Account.Controllers
         /// <returns>Partial view model.</returns>
         [ChildActionOnly]
         [HttpGet]
-        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
+        [AppAuthorize(IsValidateAgent = false)]
+        [AccountType(AccountType.Admin)]
         public ActionResult SelectMenu()
         {
             if (!CurrentSession.IsViewSelectMenu())
@@ -328,7 +330,8 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">Get currency licensee criteria.</param>
         /// <returns>JSON result.</returns>
         [HttpPost]
-        [AppAuthorize(Role = AccountType.Admin, IsValidateAgent = false)]
+        [AppAuthorize(IsValidateAgent = false)]
+        [AccountType(AccountType.Admin)]
         public JsonResult GetCurrencies(CurrencyLicenseeViewModel model)
         {
             var criteria = new GetCurrencyOfLicenseeCriteria
@@ -383,7 +386,7 @@ namespace LicenseeAgent.Account.Controllers
                 ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 return false;
             }
-            
+
             CheckIn(adminInfo, model.Language);
             return true;
         }

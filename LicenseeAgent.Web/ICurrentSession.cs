@@ -38,6 +38,8 @@ namespace LicenseeAgent.Web
 
         bool IsAdmin { get; }
 
+        bool IsCSDIT { get; }
+
         void UpdateAgent(AgentInfo agentInfo);
     }
 }

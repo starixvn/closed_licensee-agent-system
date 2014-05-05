@@ -1259,4 +1259,10 @@
   <data name="Product" xml:space="preserve">
     <value>Product</value>
   </data>
+  <data name="Maintenance" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="MemberAPIMonitoring" xml:space="preserve">
+    <value>Member's API Monitoring</value>
+  </data>
 </root>

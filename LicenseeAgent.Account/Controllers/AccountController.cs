@@ -197,7 +197,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 return Redirect(FormsAuthentication.DefaultUrl);
             }
-            
+
             ViewBag.Result = new SignInViewResult
             {
                 IsConfirm = passwordStatus == PasswordStatus.Alert,
@@ -212,7 +212,8 @@ namespace LicenseeAgent.Account.Controllers
         /// </summary>
         /// <returns>Returns view.</returns>
         [HttpGet]
-        [AppAuthorize(Role = AccountType.Agent, IsValidateAgent = false)]
+        [AppAuthorize(IsValidateAgent = false)]
+        [AccountType(AccountType.Agent)]
         public ActionResult ChangePassword()
         {
             return View();
@@ -224,7 +225,8 @@ namespace LicenseeAgent.Account.Controllers
         /// <param name="model">The model.</param>
         /// <returns>Returns a result.</returns>
         [HttpPost]
-        [AppAuthorize(Role = AccountType.Agent, IsValidateAgent = false)]
+        [AppAuthorize(IsValidateAgent = false)]
+        [AccountType(AccountType.Agent)]
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(AgentChangePasswordViewModel model)
         {

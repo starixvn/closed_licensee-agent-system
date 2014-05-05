@@ -90,6 +90,7 @@
     <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
+    <Compile Include="Filters\AccountTypeAttribute.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />

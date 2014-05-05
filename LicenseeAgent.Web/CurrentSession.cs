@@ -10,6 +10,7 @@ namespace LicenseeAgent.Web
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     ///  It contains all properties of an authenticated user.
@@ -25,7 +26,7 @@ namespace LicenseeAgent.Web
         /// <param name="adminInfo">The admin information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
-        public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = "en-US")
+        public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
             : this(adminInfo.UserId, adminInfo.UserName, AccountType.CSD_IT, checkinOnUserId, language)
         {
             AdminInfo = adminInfo;
@@ -38,7 +39,7 @@ namespace LicenseeAgent.Web
         /// <param name="licenseeInfo">The licensee information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
-        public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = "en-US")
+        public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
             : this(licenseeInfo.UserId, licenseeInfo.UserName, AccountType.Licensee, checkinOnUserId, language)
         {
             LicenseeInfo = licenseeInfo;
@@ -52,7 +53,7 @@ namespace LicenseeAgent.Web
         /// <param name="agentInfo">The agent information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
-        public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = "en-US")
+        public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
             : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
         {
             AgentInfo = agentInfo;

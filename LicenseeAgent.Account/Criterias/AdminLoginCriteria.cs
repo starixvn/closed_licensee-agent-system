@@ -25,6 +25,8 @@ namespace LicenseeAgent.Account.Criterias
 
         public int UserId { get; set; }
 
+        public string UserRole { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AdminLogin";

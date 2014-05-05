@@ -14,7 +14,8 @@ namespace LicenseeAgent.Core.Utility
     /// </summary>
     public static class LanguageManager
     {
-        private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture("en-US");
+        public const string UsLanguageCode = "en-US";
+        private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture(UsLanguageCode);
 
         public static string TwoLetterISOLanguageName
         {

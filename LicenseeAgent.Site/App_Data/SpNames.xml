@@ -45,18 +45,18 @@
     <Setting Key="Las_LicenseeInsertAgent" SpName="Las_LicenseeInsAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentInsertAgent" SpName="Las_AgentInsAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentInsertMember" SpName="Las_AgentInsMemMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_LicenseeEditAgent" SpName="Las_LicenseeEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeEditAgent" SpName="Las_LicenseeEditAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMemMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirect" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting - SportsBook">
     <Setting Key="Las_LicenseeGetAgentSportsBookSettingForInsert" SpName="Las_LicenseeSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentGetAgentSportsBookSettingForInsert" SpName="Las_AgentSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetAgentSportsBookSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetMemberSportsBookSettingForUpdate" SpName="Las_AgentGetMemberSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetMemberSportsBookSettingIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetAgentSportsBookSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberSportsBookSettingForUpdate" SpName="Las_AgentGetMemberSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberSportsBookSettingIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting - NumberGame">
     <Setting Key="Las_LicenseeGetAgentNumberGameSettingForInsert" SpName="Las_LicenseeNumberGameSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

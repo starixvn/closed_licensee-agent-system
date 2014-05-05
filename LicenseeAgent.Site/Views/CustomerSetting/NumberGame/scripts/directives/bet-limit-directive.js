@@ -60,7 +60,7 @@ if (fanex.customerSetting) {
         };
     });
 
-    fanex.customerSetting.directive('numberGameBettingLimitAdvancedMode', function() {
+    fanex.customerSetting.directive('numberGameBettingLimitAdvancedMode', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -71,7 +71,7 @@ if (fanex.customerSetting) {
                 currentIndex: '='
             },
             templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode.html'),
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
                 betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope);

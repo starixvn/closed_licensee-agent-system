@@ -4,35 +4,35 @@ if (fanex.customerSetting) {
 
     fanex.customerSetting.numberGameBettingLimitActions =
     {
-        actions: function(modelData, inputControl, scope) {
+        actions: function (modelData, inputControl, scope) {
             var formatInputNumber = fanex.customerSetting.betLimitService.formatInputNumber;
             var reformatInputNumberForControl = fanex.customerSetting.betLimitService.reformatInputNumberForControl;
             return {
-                isDataChanged: function() {
+                isDataChanged: function () {
                     return formatInputNumber(modelData.MinBet) !== modelData.OldMinBet
                         || formatInputNumber(modelData.MaxBet) !== modelData.OldMaxBet
                         || formatInputNumber(modelData.MaxPerMatch) !== modelData.OldMaxPerMatch
                         || formatInputNumber(modelData.MaxPerBall) !== modelData.OldMaxPerBall;
                 },
-                onChangeMinBet: function() {
+                onChangeMinBet: function () {
                     modelData.actions.validMinBet();
                 },
-                onChangeMaxBet: function() {
+                onChangeMaxBet: function () {
                     modelData.actions.validMaxBet();
                 },
-                onChangeMaxPerMatch: function() {
+                onChangeMaxPerMatch: function () {
                     modelData.actions.validMaxPerMatch();
                 },
-                onChangeMaxPerBall: function() {
+                onChangeMaxPerBall: function () {
                     modelData.actions.validMaxPerBall();
                 },
-                isUnlimited: function() {
+                isUnlimited: function () {
                     return formatInputNumber(modelData.MinBet) === 0
                         && formatInputNumber(modelData.MaxBet) === 0
-                        && formatInputNumber(modelData.MaxPerMatch) === 0 
+                        && formatInputNumber(modelData.MaxPerMatch) === 0
                         && formatInputNumber(modelData.MaxPerBall) === 0;
                 },
-                validMinBet: function() {
+                validMinBet: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MinBet)) {
@@ -51,7 +51,7 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                validMaxBet: function() {
+                validMaxBet: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxBet)) {
@@ -72,7 +72,7 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                validMaxPerMatch: function() {
+                validMaxPerMatch: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxPerMatch)) {
@@ -91,17 +91,18 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                validMaxPerBall: function() {
+                validMaxPerBall: function () {
                     var message = "";
-
+                    
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxPerBall)) {
                         message = scope.language["bettingLimit_Message_OnlyNumber"];
                     } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerBall)) {
                         message = scope.language["bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet"];
                     } else if (formatInputNumber(modelData.MaxPerBall) > formatInputNumber(modelData.MaxPerMatch)) {
                         message = scope.language["bettingLimit_Message_MaxPerBallLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MaxPerMatch);
+                    } else if (modelData.MinMaxPerBall > 0 && formatInputNumber(modelData.MaxPerBall) > formatInputNumber(modelData.MinMaxPerBall)) {
+                        message = scope.language["bettingLimit_Message_MaxPerBallLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerBall);
                     }
-                    //Check addition for Upline
 
                     if (message !== "") {
                         fanex.customerSetting.betLimitService.showInvalidMessage(inputControl[3], message);
@@ -111,7 +112,7 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                isValid: function() {
+                isValid: function () {
                     if (modelData.actions.isUnlimited()) {
                         return true;
                     }

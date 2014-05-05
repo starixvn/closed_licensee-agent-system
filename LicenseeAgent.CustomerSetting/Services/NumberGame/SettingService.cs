@@ -204,12 +204,12 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                         if (settingContext.FormId != FormType.EditIndirectMember)
                         {
                             commissionSetting.CommissionItems = settingContext.TargetRoleId == (int)Role.Member
-                                ? CommissionDataReader.ReadMemberCommissionData(reader)
+                                ? CommissionDataReader.ReadNumberGameMemberCommissionData(reader)
                                 : CommissionDataReader.ReadNumberGameAgentCommissionData(reader);
 
                             if (reader.NextResult())
                             {
-                                bettingLimiList = BettingLimitDataReader.ReadBetLimitData(reader, true);
+                                bettingLimiList = BettingLimitDataReader.ReadNumberGameBetLimitData(reader, true);
                             }
                         }
 

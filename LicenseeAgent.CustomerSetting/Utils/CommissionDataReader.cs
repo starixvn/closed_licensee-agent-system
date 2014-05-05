@@ -114,6 +114,31 @@ namespace LicenseeAgent.CustomerSetting.Utils
         /// </summary>
         /// <param name="reader">Reader for reading data.</param>
         /// <returns>Returns commission.</returns>
+        public static IList<CommissionItem> ReadNumberGameMemberCommissionData(IDataReader reader)
+        {
+            var commissionItems = new List<CommissionItem>();
+            while (reader.Read())
+            {
+                commissionItems.Add(new CommissionItem
+                {
+                    SportId = reader.ToInt("SportType"),
+                    BetTypeId = reader.ToInt("BetType"),
+                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                    Upline = new CommissionItem
+                    {
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                    }
+                });
+            }
+
+            return commissionItems;
+        }
+
+        /// <summary>
+        /// Read member commission setting data.
+        /// </summary>
+        /// <param name="reader">Reader for reading data.</param>
+        /// <returns>Returns commission.</returns>
         public static IList<CommissionItem> ReadMemberCommissionData(IDataReader reader)
         {
             var commissionItems = new List<CommissionItem>();

@@ -97,40 +97,40 @@ if (fanex.customerSetting) {
                             numberGameSetting: numberGameSetting
                         }
                     }).
-                        success(function (data) {
-                            core.unblockUI();
+                    success(function (data) {
+                        core.unblockUI();
 
-                            if (data.ErrCode !== 0) {
-                                $scope.Messages = [
-                                    {
-                                        ErrCode: -1,
-                                        ErrMsg: data.ErrMsg
-                                    }
-                                ];
-                                return;
-                            }
+                        if (data.ErrCode !== 0) {
+                            $scope.Messages = [
+                                {
+                                    ErrCode: -1,
+                                    ErrMsg: data.ErrMsg
+                                }
+                            ];
+                            return;
+                        }
 
-                            $scope.Messages = data.Messages;
-                            core.scrollTop();
-                            var isSuccess = true;
-                            for (var i = 0; i < data.Messages.length; i++) {
-                                var message = data.Messages[i];
-                                if (message.ErrCode !== 0) {
-                                    isSuccess = false;
-                                    break;
-                                }
+                        $scope.Messages = data.Messages;
+                        core.scrollTop();
+                        var isSuccess = true;
+                        for (var i = 0; i < data.Messages.length; i++) {
+                            var message = data.Messages[i];
+                            if (message.ErrCode !== 0) {
+                                isSuccess = false;
+                                break;
                             }
-                            if (isSuccess) {
-                                popup.close();
-                                if (window.parent.customerList) {
-                                    window.parent.customerList.reRenderAfterPaged();
-                                }
+                        }
+                        if (isSuccess) {
+                            popup.close();
+                            if (window.parent.customerList) {
+                                window.parent.customerList.reRenderAfterPaged();
                             }
-                        }).
-                        error(function (data) {
-                            core.unblockUI();
-                            alert(data.ErrMsg);
-                        });
+                        }
+                    }).
+                    error(function (data) {
+                        core.unblockUI();
+                        alert(data.ErrMsg);
+                    });
                 }
             };
 

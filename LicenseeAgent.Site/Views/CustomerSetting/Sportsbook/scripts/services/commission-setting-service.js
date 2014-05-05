@@ -176,35 +176,36 @@ if (fanex.customerSetting) {
                 }
                 // Edit
                 else {
+                    var groupName = sportsBookSetting.CommissionSetting.UserGroup;
                     commissionSettingViewModel = {
-                        selectedGroup: commissionSetting.UserGroup,
-                        oldSelectedGroup: commissionSetting.UserGroup,
+                        selectedGroup: groupName,
+                        oldSelectedGroup: groupName,
                         group: [
                             {
                                 name: 'A',
                                 agentCommission: commissionSettingModel[0].Upline.DiscountA,
-                                memberCommission: (commissionSetting.UserGroup === 'A'
+                                memberCommission: (groupName === 'A'
                                     ? commissionSettingModel[0].Discount
                                     : commissionSettingModel[0].Upline.DiscountA)
                             },
                             {
                                 name: 'B',
                                 agentCommission: commissionSettingModel[0].Upline.DiscountB,
-                                memberCommission: (commissionSetting.UserGroup === 'B'
+                                memberCommission: (groupName === 'B'
                                     ? commissionSettingModel[0].Discount
                                     : commissionSettingModel[0].Upline.DiscountB)
                             },
                             {
                                 name: 'C',
                                 agentCommission: commissionSettingModel[0].Upline.DiscountC,
-                                memberCommission: (commissionSetting.UserGroup === 'C'
+                                memberCommission: (groupName === 'C'
                                     ? commissionSettingModel[0].Discount
                                     : commissionSettingModel[0].Upline.DiscountC)
                             },
                             {
                                 name: 'D',
                                 agentCommission: commissionSettingModel[0].Upline.DiscountD,
-                                memberCommission: (commissionSetting.UserGroup === 'D'
+                                memberCommission: (groupName === 'D'
                                     ? commissionSettingModel[0].Discount
                                     : commissionSettingModel[0].Upline.DiscountD)
                             }
@@ -254,6 +255,7 @@ if (fanex.customerSetting) {
             }
         },
         getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+            var commissionSettings = [];
             // Insert
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {
@@ -280,13 +282,13 @@ if (fanex.customerSetting) {
                     // HR Fixed Odds
                     commissionSettingModel[3].Discount = commissionSettingViewModel.line4.memberCommission;
                 }
-
-                return commissionSettingModel;
+                commissionSettings.push(commissionSettingModel[0]);
+                commissionSettings.push(commissionSettingModel[1]);
+                commissionSettings.push(commissionSettingModel[2]);
+                commissionSettings.push(commissionSettingModel[3]);
             }
             // Edit
             else {
-                var commissionSettings = [];
-
                 if (targetRoleId !== 1) {
                     if (commissionSettingViewModel[0].discount !== commissionSettingViewModel[0].oldDiscount
                         || commissionSettingViewModel[3].discount !== commissionSettingViewModel[3].oldDiscount
@@ -336,9 +338,9 @@ if (fanex.customerSetting) {
                         commissionSettings.push(commissionSettingModel[3]);
                     }
                 }
-
-                return commissionSettings;
             }
+
+            return commissionSettings;
         },
         changeViewModel: function (commissionSettingViewModel) {
             if (commissionSettingViewModel.selectedGroup === 'A') {

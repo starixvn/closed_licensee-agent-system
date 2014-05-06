@@ -11,15 +11,18 @@
 namespace LicenseeAgent.Web.Criterias
 {
     using Fanex.NAP.Framework.Data;
+    using LicenseeAgent.Taiwan.Enumerations;
 
     /// <summary>
     /// SyncMonitoringUpdateStatusCriteria class.
     /// </summary>
     public class SyncMonitoringUpdateStatusCriteria : CriteriaBase
     {
+        public int UserID { get; set; }
+
         public int KeyID { get; set; }
 
-        public int NewStatusID { get; set; }
+        public LogType NewStatusID { get; set; }
 
         public override string GetSettingKey()
         {

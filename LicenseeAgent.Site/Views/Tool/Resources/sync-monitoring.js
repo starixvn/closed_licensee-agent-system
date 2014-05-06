@@ -3,6 +3,7 @@
 var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
 checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';
 var buttonHtml = '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button>';
+buttonHtml += '<br /><br /><button id="btnIgnore_{0}" class="btn btn-danger" onclick="syncmonitoring.singleIgnore({0})">Ignore</button>';
 buttonHtml += '<label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>';
 
 var gridOptions = {
@@ -15,9 +16,10 @@ var gridOptions = {
                         return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
                     }
                 },
-                { HeaderText: "Action Name", Width: 200, Name: "ActionName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Log ID", Width: 50, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "Action Name", Width: 120, Name: "ActionName", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Remarks", Width: 300, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Remarks", Width: 220, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "Run Count", Width: 80, Name: "RunCount", HeaderAlign: "center", CellAlign: "center", CellCssClass: 'run-count' },
                 { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
@@ -120,6 +122,7 @@ var syncmonitoring = (function ($) {
                 url: "SingleReInvoke",
                 type: 'post',
                 data: params,
+                dataType: "json",
                 beforeSend: function () {
                     core.blockUI();
                 },
@@ -127,6 +130,7 @@ var syncmonitoring = (function ($) {
                     if (data.IsSuccess === "true") {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
+                        $('#btnIgnore_' + keyid).addClass('hide');
                         $('#lbl_' + keyid).removeClass('hide');
                     }
                     else {
@@ -134,6 +138,36 @@ var syncmonitoring = (function ($) {
                         var currentPageSize = gridOptions.pagerOption.itemsPerPage;
                         syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
                         alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.Results));
+                    }
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
+        },
+        singleIgnore: function (keyid) {
+            var params = {
+                KeyId: keyid
+            };
+
+            $.ajax({
+                url: "SingleIgnore",
+                type: 'post',
+                data: params,
+                dataType: "json",
+                beforeSend: function () {
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (data.Results === "success") {
+                        $('#chkbox_' + keyid).addClass('hide');
+                        $('#btn_' + keyid).addClass('hide');
+                        $('#btnIgnore_' + keyid).addClass('hide');
+                        $('#lbl_' + keyid).removeClass('hide');
+                        $('#lbl_' + keyid).text('Ignored');
+                    }
+                    else {
+                        alert('Ignore failed for Log ID = {0}.'.format(keyid));
                     }
                 },
                 complete: function () {

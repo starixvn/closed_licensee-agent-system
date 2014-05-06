@@ -27,7 +27,7 @@ namespace LicenseeAgent.Web.Controllers
     /// </summary>
     [AdminSite]
     [AccountType(AccountType.CSD_IT)]
-    public class ToolController : Controller
+    public class ToolController : BaseController
     {
         private readonly IMonitoringService _monitoringService;
         private readonly IMemberService _memberService;
@@ -189,7 +189,7 @@ namespace LicenseeAgent.Web.Controllers
                     var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(syncData.Command);
                     updateMemberStatusAction.LicenseeId = licenseeID;
                     updateMemberStatusAction.UserId = syncData.UserId;
-                    responseResult = _memberService.UpdateMemberStatus(updateMemberStatusAction, true);
+                    responseResult = _memberService.SyncMonitoringUpdateMemberStatus(updateMemberStatusAction);
                     break;
             }
 
@@ -202,14 +202,43 @@ namespace LicenseeAgent.Web.Controllers
             });
         }
 
+        /// <summary>
+        /// Ignore a failed action.
+        /// </summary>
+        /// <param name="syncData">Synchronization data.</param>
+        /// <returns>JSON object.</returns>
+        [HttpPost]
+        public JsonResult SingleIgnore(SyncMonitoringUpdateStatusCriteria criteria)
+        {
+            try
+            {
+                criteria.UserID = CurrentSession.LoginUserId;
+                criteria.NewStatusID = LogType.Ignore;
+                _monitoringService.UpdateLogStatus(criteria);
+
+                return Json(new
+                {
+                    Results = "success"
+                });
+            }
+            catch
+            {
+                return Json(new
+                {
+                    Results = "failed"
+                });
+            }
+        }
+
         private void UpdateLofAfterReInvoke(ResponseResult responseResult, int keyId)
         {
             if (responseResult.ErrCode == Result.SuccessValue)
             {
                 _monitoringService.UpdateLogStatus(new SyncMonitoringUpdateStatusCriteria
                 {
+                    UserID = CurrentSession.LoginUserId,
                     KeyID = keyId,
-                    NewStatusID = 2
+                    NewStatusID = LogType.Success
                 });
             }
             else

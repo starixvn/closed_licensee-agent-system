@@ -48,9 +48,15 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
-        ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false);
+        ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action);
+
+        /// <summary>
+        /// Synchronization Monitoring - Update member status.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <returns>Response result.</returns>
+        ResponseResult SyncMonitoringUpdateMemberStatus(UpdateMemberStatusAction action);
 
         /// <summary>
         /// Get member information.

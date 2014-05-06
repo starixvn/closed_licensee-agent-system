@@ -32,6 +32,12 @@ namespace LicenseeAgent.Taiwan.Enumerations
         /// After call API, response result is failure.
         /// </summary>
         [XmlEnum("3")]
-        Fail = 3
+        Fail = 3,
+
+        /// <summary>
+        /// Ignore Log.
+        /// </summary>
+        [XmlEnum("4")]
+        Ignore = 4
     }
 }

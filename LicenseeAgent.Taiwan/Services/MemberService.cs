@@ -59,7 +59,9 @@ namespace LicenseeAgent.Taiwan.Services
             action.Phone = action.Phone ?? string.Empty;
             action.OtherPhone = action.OtherPhone ?? string.Empty;
             action.Fax = action.Fax ?? string.Empty;
-            action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
+            action.EncryptedPassword = isReinvoke
+                ? action.Password
+                : Cryptography.CfsEnCrypt(action.Password);
 
             return ExecuteSingleLog(action, isReinvoke);
         }
@@ -150,12 +152,10 @@ namespace LicenseeAgent.Taiwan.Services
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <returns>Response result.</returns>
-        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false)
+        public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
         {
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
-            criteria.IsReInvoke = isReinvoke;
             var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
 
             var memberStatusResult = ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
@@ -178,10 +178,7 @@ namespace LicenseeAgent.Taiwan.Services
                 criteria.ApiErrCode = memberStatusResult.ApiErrCode;
                 criteria.ApiErrMsg = memberStatusResult.ApiErrMsg;
 
-                if (!isReinvoke)
-                {
-                    _logService.WriteLog(criteria);
-                }
+                _logService.WriteLog(criteria);
             }
             catch (Exception ex)
             {
@@ -190,6 +187,16 @@ namespace LicenseeAgent.Taiwan.Services
 
             ServiceExtension.WriteError(action, memberStatusResult);
             return memberStatusResult;
+        }
+
+        /// <summary>
+        /// Synchronization Monitoring - Update member status.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <returns>Response result.</returns>
+        public ResponseResult SyncMonitoringUpdateMemberStatus(UpdateMemberStatusAction action)
+        {
+            return ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
         }
 
         /// <summary>

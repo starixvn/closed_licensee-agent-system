@@ -10,6 +10,8 @@
 
 namespace LicenseeAgent.Web.Entities
 {
+    using System.Web.Mvc;
+
     /// <summary>
     /// Monitoring Data's synchronization.
     /// </summary>
@@ -25,6 +27,7 @@ namespace LicenseeAgent.Web.Entities
 
         public int ActionId { get; set; }
 
+        [AllowHtml]
         public string Command { get; set; }
 
         public string InputParams { get; set; }

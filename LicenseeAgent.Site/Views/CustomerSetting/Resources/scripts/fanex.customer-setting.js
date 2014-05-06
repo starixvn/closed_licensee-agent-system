@@ -31,4 +31,4 @@ fanex.customerSetting.factory("Formatter", ['$filter', function ($filter) {
             return $filter('number')(number, 2); 
         }
     };
-}]);
+} ]);

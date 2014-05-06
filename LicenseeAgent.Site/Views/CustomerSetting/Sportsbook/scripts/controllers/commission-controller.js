@@ -8,12 +8,12 @@
 
 if (fanex.customerSetting) {
 
-    fanex.customerSetting.factory("CommissionModel", function ($window) {
+    fanex.customerSetting.factory("CommissionModel", ["$window", function ($window) {
         if ($window['numberGameSetting'] !== undefined) {
             return sportsBookSetting.CommissionSetting.CommissionItems.concat(numberGameSetting.CommissionSetting.CommissionItems);
         }
         return sportsBookSetting.CommissionSetting.CommissionItems;
-    });
+    }]);
 
     fanex.customerSetting.controller('CommissionController',
     [

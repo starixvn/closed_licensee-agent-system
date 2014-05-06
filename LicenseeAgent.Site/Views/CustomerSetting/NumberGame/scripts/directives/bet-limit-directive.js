@@ -74,7 +74,7 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope);
+                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope);
                 betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;
@@ -102,7 +102,7 @@ if (fanex.customerSetting) {
             link: function(scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope);
+                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope);
                 betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;

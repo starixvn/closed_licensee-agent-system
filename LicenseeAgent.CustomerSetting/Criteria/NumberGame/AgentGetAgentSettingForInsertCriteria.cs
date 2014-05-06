@@ -18,8 +18,6 @@ namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 
         public int MsgId { get; set; }
 
-        public decimal MaxCredit { get; set; }
-
         public override string GetSettingKey()
         {
             return "Las_AgentGetAgentNumberGameSettingForInsert";

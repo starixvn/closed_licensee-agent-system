@@ -13,7 +13,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'NumberGamePositionTakingController',
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditAgentPtAdvancedMode($timeout, scope, element, formatter);
             }
@@ -25,7 +25,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'NumberGamePositionTakingController',
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditAgentPtAdvancedModeReadOnly($timeout, scope, element, formatter);
             }
@@ -37,7 +37,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'NumberGamePositionTakingController',
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtAdvancedMode($timeout, scope, element, formatter);
             }
@@ -49,7 +49,7 @@ if (fanex.customerSetting) {
             restrict: 'E',
             replace: true,
             controller: 'NumberGamePositionTakingController',
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditMemberPtAdvancedMode($timeout, scope, element, formatter);
             }
@@ -65,7 +65,7 @@ if (fanex.customerSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleMode($timeout, scope, element, formatter);
             }
@@ -80,7 +80,7 @@ if (fanex.customerSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleModeReadOnly($timeout, scope, element, formatter);
             }
@@ -95,7 +95,7 @@ if (fanex.customerSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtSimpleMode($timeout, scope, element, formatter);
             }
@@ -110,7 +110,7 @@ if (fanex.customerSetting) {
             scope: {
                 ptSimple: '='
             },
-            templateUrl: core.resolveUrl('/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-simple-mode.html'),
+            templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/positiontaking/agent-edit-member-simple-mode.html'),
             link: function (scope, element) {
                 fanex.customerSetting.positionTakingDirective.agentEditMemberPtSimpleMode($timeout, scope, element, formatter);
             }

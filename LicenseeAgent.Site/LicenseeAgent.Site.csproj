@@ -480,7 +480,6 @@
     <Content Include="Scripts\jquery-validate\jquery.validate.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Content\moment-datepicker\datepicker.css" />
-    <Content Include="Views\Error\Resources\images\error2.png" />
     <Content Include="Images\loader.gif" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
@@ -493,8 +492,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
-    <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
     <Content Include="Views\Home\Resources\home-header.js" />

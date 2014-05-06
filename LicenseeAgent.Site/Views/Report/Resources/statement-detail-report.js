@@ -56,7 +56,7 @@ var statementDetailReport = (function ($) {
             var url = "/Report/TransferDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
                        .format(agentId, dateTime, dateTime, $('#Username').val(), isMember);
             popup.openFrame(url, {
-                width: 460,
+                width: 550,
                 height: 400
             });
         },

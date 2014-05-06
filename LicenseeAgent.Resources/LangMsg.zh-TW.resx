@@ -279,4 +279,10 @@
   <data name="Msg_1035" xml:space="preserve">
     <value>會員不存在</value>
   </data>
+  <data name="Msg_1100" xml:space="preserve">
+    <value>單球最高投註必須少於或相等於單場限額 ({0})</value>
+  </data>
+  <data name="Msg_1101" xml:space="preserve">
+    <value>單球最高投註必須多於或相等於最高投註 ({0})</value>
+  </data>
 </root>

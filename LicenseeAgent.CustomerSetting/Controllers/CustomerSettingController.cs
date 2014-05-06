@@ -42,7 +42,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             ErrCode.Msg_1007,
             ErrCode.Msg_1008,
             ErrCode.Msg_1025,
-            ErrCode.Msg_1028
+            ErrCode.Msg_1028,
+            ErrCode.Msg_1100,
+            ErrCode.Msg_1101
         };
 
         private static readonly ErrCode[] PositionTakingErrCodes =
@@ -498,6 +500,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1003:
                     case (int)ErrCode.Msg_1004:
                     case (int)ErrCode.Msg_1005:
+                    case (int)ErrCode.Msg_1100:
+                    case (int)ErrCode.Msg_1101:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
                             DataRefWrapper.GetSportName(result.BetLimitSportType, result.BetLimitBetType));

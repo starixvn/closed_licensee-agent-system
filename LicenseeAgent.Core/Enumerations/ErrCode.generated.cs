@@ -131,7 +131,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1021 = 1021,
 
         /// <summary>
-        /// The agent does not exist..
+        /// If that is not you, please contact your upline!!!.
         /// </summary>
         Msg_1022 = 1022,
 
@@ -201,12 +201,12 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1034 = 1034,
 
         /// <summary>
-        /// Fail to configurate Licensee domains..
+        /// The member does not exist..
         /// </summary>
         Msg_1035 = 1035,
 
         /// <summary>
-        /// You do not have permission to access this page..
+        /// Your session will be terminated!!!.
         /// </summary>
         Msg_1036 = 1036,
 
@@ -226,7 +226,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1040 = 1040,
 
         /// <summary>
-        /// Sorry, you do not have permission to access this page..
+        /// You do not have permission to access this page..
         /// </summary>
         Msg_1042 = 1042,
 
@@ -239,6 +239,16 @@ namespace LicenseeAgent.Core.Enumerations
         /// Only one transaction is allowed per day for this member..
         /// </summary>
         Msg_107 = 107,
+
+        /// <summary>
+        /// Max Per Ball must be less than or equal to Max Per Match ({0}).
+        /// </summary>
+        Msg_1100 = 1100,
+
+        /// <summary>
+        /// Max Per Ball must be greater than or equal to Max Bet ({0}).
+        /// </summary>
+        Msg_1101 = 1101,
 
         /// <summary>
         /// This user is not active..

@@ -279,4 +279,10 @@
   <data name="Msg_1035" xml:space="preserve">
     <value>会员不存在</value>
   </data>
+  <data name="Msg_1100" xml:space="preserve">
+    <value>单球最高投注必须少于或相等于单场限额 ({0})</value>
+  </data>
+  <data name="Msg_1101" xml:space="preserve">
+    <value>单球最高投注必须多于或相等于最高投注 ({0})</value>
+  </data>
 </root>

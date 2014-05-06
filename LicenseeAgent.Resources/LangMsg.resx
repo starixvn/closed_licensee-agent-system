@@ -281,4 +281,10 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_1035" xml:space="preserve">
     <value>The member does not exist.</value>
   </data>
+  <data name="Msg_1100" xml:space="preserve">
+    <value>Max Per Ball must be less than or equal to Max Per Match ({0})</value>
+  </data>
+  <data name="Msg_1101" xml:space="preserve">
+    <value>Max Per Ball must be greater than or equal to Max Bet ({0})</value>
+  </data>
 </root>

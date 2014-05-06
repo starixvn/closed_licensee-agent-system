@@ -279,6 +279,7 @@
     <Content Include="Views\CustomerList\Resources\customer-list.js" />
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
+    <Content Include="Views\Report\Resources\report-base.js" />
     <Content Include="Views\Report\Resources\statement-report.js" />
     <Content Include="Views\Report\Resources\transfer-detail.js" />
     <Content Include="Views\Report\Resources\statement-detail-report.js" />

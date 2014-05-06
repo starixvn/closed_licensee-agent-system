@@ -40,7 +40,8 @@ namespace LicenseeAgent.Site
                 "~/scripts/headjs/head.core.js",
                 "~/scripts/core.js",
                 "~/scripts/utility.js",
-                "~/scripts/popup.js"));
+                "~/scripts/popup.js",
+                "~/Views/Report/Resources/report-base.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
                 "~/content/core.less"));

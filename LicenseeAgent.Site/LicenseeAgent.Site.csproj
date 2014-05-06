@@ -275,6 +275,7 @@
     <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
       <DependentUpon>Language.tt</DependentUpon>
     </Content>
+    <Content Include="Scripts\scroller\jquery.nicescroll.js" />
     <Content Include="Views\CustomerList\Resources\customer-list.js" />
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
@@ -307,7 +308,6 @@
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
-    <Content Include="Scripts\scroller\jquery.nicescroll.min.js" />
     <Content Include="Views\BetList\Resources\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />

@@ -198,7 +198,7 @@ namespace LicenseeAgent.Site
                 "~/views/home/resources/home-header.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
-                "~/scripts/scroller/jquery.nicescroll.min.js",
+                "~/scripts/scroller/jquery.nicescroll.js",
                 "~/views/accountinformation/resources/account-information.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(

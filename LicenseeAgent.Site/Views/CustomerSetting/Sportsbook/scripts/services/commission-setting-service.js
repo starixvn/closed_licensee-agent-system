@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global commissionSetting, settingContext */
+/*global sportsBookSetting, settingContext */
 
 'use strict';
 

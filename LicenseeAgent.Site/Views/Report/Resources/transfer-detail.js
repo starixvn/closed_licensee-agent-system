@@ -5,10 +5,10 @@ var transferDetail = (function ($) {
 
     var gridOptions = {
         columns: [
-                { HeaderText: language.getString('Date'), Width: 150, Name: "Date", HeaderAlign: "center",
+                { HeaderText: language.getString('Date'), Width: 140, Name: "Date", HeaderAlign: "center",
                     CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a"
                 },
-                { HeaderText: language.getString('Remark'), Width: 150, Name: "TransType", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true,
+                { HeaderText: language.getString('Remark'), Width: 160, Name: "TransType", HeaderAlign: "center", CellAlign: "left", CanResize: true,
                     Formatter: function (rowIndex, rowData, cell) {
                         return ("<div>" + cell.Value + "<br />" + rowData.TransDesc + "</div>");
                     }

@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl, custId, _today, _minDate*/
+﻿/*global core, language, showMixParlayDetailurl, custId, _today, _minDate, report*/
 
 var gridOptions = {
     columns: [
@@ -26,7 +26,7 @@ var betList = (function ($) {
             $('.selectpicker').selectpicker();
 
             betList.renderDatePicker();
-            core.registerCheckboxProductEvent();
+            report.registerCheckboxProductEvent();
 
             // search
             $('#search-form').submit(function (e) {
@@ -44,7 +44,7 @@ var betList = (function ($) {
                 itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
             }
 
-            core.setProductValue(); //Set checked value to input hidden.
+            report.setProductValue(); //Set checked value to input hidden.
             var urlGetBetList = $('#search-form').attr('action');
             var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
             var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");

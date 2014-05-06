@@ -26,12 +26,12 @@
                 { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
                 { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, "101,102,103,111,112,113", rowData.Date);
+                        return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Betting, rowData.Date);
                     }
                 },
                 { HeaderText: "@Las.Outstanding", Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, "0,1", rowData.Date);
+                        return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Outstanding, rowData.Date);
                     }
                 },
                 { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },

@@ -1,4 +1,4 @@
-﻿/*global gridOptions, core, pageContext, language*/
+﻿/*global gridOptions, core, pageContext, language, report*/
 
 var agentWinLossReport = (function ($) {
     'use strict';
@@ -7,7 +7,7 @@ var agentWinLossReport = (function ($) {
             $("#tabs-area a:first").tab('show');
             agentWinLossReport.initDatePicker();
             agentWinLossReport.registerButtonClickEvent();
-            core.registerCheckboxProductEvent();
+            report.registerCheckboxProductEvent();
             agentWinLossReport.dataGridBinding();
         },
 
@@ -47,7 +47,7 @@ var agentWinLossReport = (function ($) {
         },
 
         dataGridBinding: function () {
-            core.setProductValue();
+            report.setProductValue();
 
             var submitOptions = $('form').serializeObject();
             $.ajax({
@@ -148,17 +148,17 @@ var agentWinLossReport = (function ($) {
         },
 
         ViewDownline: function (agentId, agentLevel, username) {
-            core.setProductValue();
+            report.setProductValue();
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel + "&username=" + username
                                 + "&drawFilter=" + $('input[name=DrawFilter]:checked', '#search-form').val() + "&breadcrumb=" + $("#BreadCrumb").val() 
                                 + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#Product").val());
         },
         ViewBetList: function (custId, agentLevel, username) {
-            core.setProductValue(); // Set Product selected values.
+            report.setProductValue(); // Set Product selected values.
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
-            var status = (drawFilter === "1" ? "112,113" : "111,112,113");
+            var status = (drawFilter === "1" ? report.SettledNoDraw : report.SettledHasDraw);
             location.href = core.resolveUrl("~/BetList/BetListWinlossReport?custId=" + custId + "&breadcrumb=" + $("#BreadCrumb").val() + "&FromDate="
                                             + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&drawFilter=" + drawFilter + "&statusIDs="
                                             + status + "&ProductIds=" + $("#Product").val() + "&title=" + document.title);

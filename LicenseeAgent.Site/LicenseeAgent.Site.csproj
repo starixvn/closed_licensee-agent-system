@@ -273,6 +273,7 @@
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.vi-VN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-CN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-TW.js" />
+    <Content Include="Scripts\jquery-form\jquery.form.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">
@@ -358,7 +359,6 @@
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
-    <Content Include="Scripts\jquery-form\jquery.form.min.js" />
     <Content Include="Views\BetList\Resources\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />

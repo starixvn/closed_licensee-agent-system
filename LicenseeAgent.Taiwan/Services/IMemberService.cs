@@ -25,24 +25,27 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>Response result.</returns>
-        ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false);
+        ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false, int logId = 0);
 
         /// <summary>
         /// Reset password.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>Response result.</returns>
-        ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false);
+        ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false, int logId = 0);
 
         /// <summary>
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>Response result.</returns>
-        ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false);
+        ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false, int logId = 0);
 
         /// <summary>
         /// Update member status.

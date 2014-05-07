@@ -168,21 +168,21 @@ namespace LicenseeAgent.Web.Controllers
                     var resetPasswordAction = ObjectSerializer<ResetPasswordAction>.Deserialize(syncData.Command);
                     resetPasswordAction.LicenseeId = licenseeID;
                     resetPasswordAction.UserId = syncData.UserId;
-                    responseResult = _memberService.ResetPassword(resetPasswordAction, true);
+                    responseResult = _memberService.ResetPassword(resetPasswordAction, true, syncData.KeyId);
                     break;
 
                 case 303:
                     var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(syncData.Command);
                     updateMemberInfoAction.LicenseeId = licenseeID;
                     updateMemberInfoAction.UserId = syncData.UserId;
-                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true);
+                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true, syncData.KeyId);
                     break;
 
                 case 304:
                     var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(syncData.Command);
                     insertNewMemberAction.LicenseeId = licenseeID;
                     insertNewMemberAction.UserId = syncData.UserId;
-                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true);
+                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true, syncData.KeyId);
                     break;
 
                 case 305:

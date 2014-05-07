@@ -49,10 +49,11 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false)
+        public ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false, int logId = 0)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
             action.LastName = action.LastName ?? Constants.EmptyString;
@@ -63,7 +64,7 @@ namespace LicenseeAgent.Taiwan.Services
                 ? action.Password
                 : Cryptography.CfsEnCrypt(action.Password);
 
-            return ExecuteSingleLog(action, isReinvoke);
+            return ExecuteSingleLog(action, isReinvoke, logId);
         }
 
         /// <summary>
@@ -71,14 +72,15 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false)
+        public ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false, int logId = 0)
         {
             action.EncryptedPassword = Cryptography.CfsEnCrypt(action.Password);
 
-            return ExecuteSingleLog(action, isReinvoke);
+            return ExecuteSingleLog(action, isReinvoke, logId);
         }
 
         /// <summary>
@@ -86,10 +88,11 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>
         /// Response result.
         /// </returns>
-        public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false)
+        public ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false, int logId = 0)
         {
             action.FirstName = action.FirstName ?? Constants.EmptyString;
             action.LastName = action.LastName ?? Constants.EmptyString;
@@ -97,7 +100,7 @@ namespace LicenseeAgent.Taiwan.Services
             action.OtherPhone = action.OtherPhone ?? string.Empty;
             action.Fax = action.Fax ?? string.Empty;
 
-            return ExecuteSingleLog(action, isReinvoke);
+            return ExecuteSingleLog(action, isReinvoke, logId);
         }
 
         /// <summary>
@@ -204,13 +207,18 @@ namespace LicenseeAgent.Taiwan.Services
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
         /// <returns>Return action response result.</returns>
-        private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke)
+        private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke, int logId)
         {
             var criteria = (SingleLogActionCriteria)action.CreateCriteria();
             if (!isReinvoke)
             {
                 _logService.WriteLog(criteria);
+            }
+            else
+            {
+                criteria.LogIdReturn = logId;
             }
 
             if (criteria.LogIdReturn == 0)

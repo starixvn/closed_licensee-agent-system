@@ -193,7 +193,7 @@ namespace LicenseeAgent.Web.Controllers
                     break;
             }
 
-            UpdateLofAfterReInvoke(responseResult, syncData.KeyId);
+            UpdateLogAfterReInvoke(responseResult, syncData.KeyId);
 
             return Json(new
             {
@@ -205,7 +205,7 @@ namespace LicenseeAgent.Web.Controllers
         /// <summary>
         /// Ignore a failed action.
         /// </summary>
-        /// <param name="syncData">Synchronization data.</param>
+        /// <param name="criteria">Synchronization data.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
         public JsonResult SingleIgnore(SyncMonitoringUpdateStatusCriteria criteria)
@@ -230,7 +230,12 @@ namespace LicenseeAgent.Web.Controllers
             }
         }
 
-        private void UpdateLofAfterReInvoke(ResponseResult responseResult, int keyId)
+        /// <summary>
+        /// Update Log After Re-Invoke.
+        /// </summary>
+        /// <param name="responseResult">Response result.</param>
+        /// <param name="keyId">Input Log ID.</param>
+        private void UpdateLogAfterReInvoke(ResponseResult responseResult, int keyId)
         {
             if (responseResult.ErrCode == Result.SuccessValue)
             {

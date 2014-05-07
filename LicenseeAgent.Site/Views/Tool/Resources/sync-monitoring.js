@@ -20,7 +20,12 @@ var gridOptions = {
                 { HeaderText: "Action Name", Width: 120, Name: "ActionName", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "Remarks", Width: 220, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Run Count", Width: 80, Name: "RunCount", HeaderAlign: "center", CellAlign: "center", CellCssClass: 'run-count' },
+                { HeaderText: "Run Count", Width: 80, Name: "RunCount", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData) {
+                        'use strict';
+                        return '<label id="lblruncount_{0}">{1}</label>'.format(rowData.KeyId, rowData.RunCount);
+                    }
+                },
                 { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
                         'use strict';
@@ -109,6 +114,11 @@ var syncmonitoring = (function ($) {
                 $('#btn_multreinvoke').addClass('hide');
             }
         },
+        refreshGrid: function () {
+            var currentPage = gridOptions.pagerOption.currentPage;
+            var currentPageSize = gridOptions.pagerOption.itemsPerPage;
+            syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
+        },
         singleReInvoke: function (keyid, actionid, custid, userid, command) {
             var params = {
                 KeyId: keyid,
@@ -134,9 +144,8 @@ var syncmonitoring = (function ($) {
                         $('#lbl_' + keyid).removeClass('hide');
                     }
                     else {
-                        var currentPage = gridOptions.pagerOption.currentPage;
-                        var currentPageSize = gridOptions.pagerOption.itemsPerPage;
-                        syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
+                        var newRunCount = parseInt($('#lblruncount_' + keyid).text()) + 1;
+                        $('#lblruncount_' + keyid).text(newRunCount);
                         alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.Results));
                     }
                 },

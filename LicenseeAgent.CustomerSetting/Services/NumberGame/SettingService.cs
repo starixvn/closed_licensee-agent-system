@@ -175,14 +175,13 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                             {
                                 bettingLimiList = BettingLimitDataReader.ReadNumberGameBetLimitData(reader, true);
                             }
+
+                            reader.NextResult();
                         }
 
-                        if (reader.NextResult())
-                        {
-                            positionTakingList = settingContext.TargetRoleId == (int)Role.Member
-                                ? PositionTakingDataReader.ReadMemberPositionTakingData(reader)
-                                : PositionTakingDataReader.ReadAgentPositionTakingDataForUpdate(reader, settingContext.TargetRoleId);
-                        }
+                        positionTakingList = settingContext.TargetRoleId == (int)Role.Member
+                            ? PositionTakingDataReader.ReadMemberPositionTakingData(reader)
+                            : PositionTakingDataReader.ReadAgentPositionTakingDataForUpdate(reader, settingContext.TargetRoleId);
                     }
 
                     var outputParams = objDb.GetOuputParams();

@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
+    using LicenseeAgent.Core.Entities;
 
     /// <summary>
     /// CustomerSetting2 class.
@@ -24,18 +25,29 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// <summary>
         /// Determines whether this instance is valid.
         /// </summary>
-        /// <returns>Returns true if entity is valid.</returns>
-        public bool IsValid()
+        /// <param name="settingContext">The setting context.</param>
+        /// <returns>
+        /// Returns true if entity is valid.
+        /// </returns>
+        public bool IsValid(SettingContext settingContext)
         {
-            if (CommissionSetting == null
+            if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
+            {
+                return false;
+            }
+
+            if (settingContext.FormId == FormType.Add)
+            {
+                if (CommissionSetting == null
                     || CommissionSetting.CommissionItems == null
                     || CommissionSetting.CommissionItems.Count == 0
                     || BettingLimitSetting == null
                     || BettingLimitSetting.Count == 0
                     || PositionTakingSetting == null
                     || PositionTakingSetting.Count == 0)
-            {
-                return false;
+                {
+                    return false;
+                }
             }
 
             return true;

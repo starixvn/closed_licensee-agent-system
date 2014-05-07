@@ -25,7 +25,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
     /// <summary>
     /// Customer repository.
     /// </summary>
-    public class SettingService : ISettingService
+    public class SettingService : SettingServiceBase, ISettingService
     {
         /// <summary>
         /// Get Agent setting for insert new.
@@ -46,26 +46,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 out errCode,
                 out maxLicenseePt);
 
-            if (errCode != Result.SuccessValue)
-            {
-                return null;
-            }
-
-            var result = new CustomerSetting2
-            {
-                CustInfo = customerSetting.CustInfo,
-                CommissionSetting = customerSetting.CommissionSetting,
-                BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
-            };
-
-            if (!result.IsValid())
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
-            return result;
+            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>
@@ -85,26 +66,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 out customerSetting,
                 out errCode);
 
-            if (errCode != Result.SuccessValue)
-            {
-                return null;
-            }
-
-            var result = new CustomerSetting2
-            {
-                CustInfo = customerSetting.CustInfo,
-                CommissionSetting = customerSetting.CommissionSetting,
-                BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
-            };
-
-            if (!result.IsValid())
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
-            return result;
+            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>

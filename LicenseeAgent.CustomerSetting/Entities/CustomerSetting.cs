@@ -8,6 +8,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// CustomerSetting class.
@@ -31,9 +32,12 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </returns>
         public bool IsValid(SettingContext settingContext)
         {
-            if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
+            if (settingContext.FormId != FormType.Add && settingContext.RoleId != (int)Role.AgentLevel0)
             {
-                return false;
+                if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
+                {
+                    return false;
+                }
             }
 
             if (settingContext.FormId != FormType.EditIndirectMember)
@@ -42,9 +46,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
                         || CommissionSetting.CommissionItems == null
                         || CommissionSetting.CommissionItems.Count == 0
                         || BettingLimitSetting == null
-                        || BettingLimitSetting.Count == 0
-                        || PositionTakingSetting == null
-                        || PositionTakingSetting.Count == 0)
+                        || BettingLimitSetting.Count == 0)
                 {
                     return false;
                 }

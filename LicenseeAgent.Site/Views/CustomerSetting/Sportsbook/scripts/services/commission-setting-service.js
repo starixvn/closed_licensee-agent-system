@@ -233,7 +233,7 @@ if (fanex.customerSetting) {
                         },
                         // HR Fixed Odds Comm
                         line4: {
-                            name: language['commissionSetting_HrFixedOdd'],
+                            name: language['commissionSetting_HrFixedOdds'],
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].Discount,
                             oldCommission: commissionSettingModel[3].Discount

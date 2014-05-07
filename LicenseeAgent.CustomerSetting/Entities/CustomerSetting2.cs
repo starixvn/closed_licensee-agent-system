@@ -31,20 +31,18 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </returns>
         public bool IsValid(SettingContext settingContext)
         {
-            if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
+            /*if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
             {
                 return false;
             }
-
+            */
             if (settingContext.FormId == FormType.Add)
             {
                 if (CommissionSetting == null
                     || CommissionSetting.CommissionItems == null
                     || CommissionSetting.CommissionItems.Count == 0
                     || BettingLimitSetting == null
-                    || BettingLimitSetting.Count == 0
-                    || PositionTakingSetting == null
-                    || PositionTakingSetting.Count == 0)
+                    || BettingLimitSetting.Count == 0)
                 {
                     return false;
                 }

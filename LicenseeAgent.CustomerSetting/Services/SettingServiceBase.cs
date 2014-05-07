@@ -45,6 +45,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             var result = new CustomerSetting2
             {
+                CustInfo = customerSetting.CustInfo,
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)

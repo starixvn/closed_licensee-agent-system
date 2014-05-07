@@ -104,6 +104,7 @@
     <Compile Include="Services\SportsBook\SettingService.cs" />
     <Compile Include="Services\CustomerSettingService.cs" />
     <Compile Include="Services\ICustomerSettingService.cs" />
+    <Compile Include="Services\VirtualSports\SettingService.cs" />
     <Compile Include="Utils\PositionTakingBuilder.cs" />
     <Compile Include="Utils\XmlBuilder.cs" />
     <Compile Include="Utils\BettingLimitDataReader.cs" />

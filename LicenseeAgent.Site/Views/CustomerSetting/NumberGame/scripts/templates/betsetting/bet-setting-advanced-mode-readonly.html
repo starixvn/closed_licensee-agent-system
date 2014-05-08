@@ -2,7 +2,7 @@
     <div class="betting-limit-sport">
         <span>{{betSetting.sportTypeName}}</span>
     </div>
-    <div class="betting-limit-item-col4">
+    <div class="betting-limit-item-col4 min-bet">
         <input type="text" class="input" ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
             auto-numeric-format='{"command":"betSetting.actions.onChangeMinBet()"}' readonly="readonly" />
         <span ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number : 0}}

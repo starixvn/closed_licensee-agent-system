@@ -1,5 +1,5 @@
 ﻿<div>
-    <div class="betting-limit-item-col4">
+    <div class="betting-limit-item-col4 min-bet">
         <input type="text" class="input" ng-model="modelData.MinBet" maxlength="{{config.maxInput}}"
             auto-numeric-format='{"command":"modelData.actions.onChangeMinBet();"}' />
         <span ng-show="modelData.MaxMinBet > 0">&gt;= {{modelData.MaxMinBet | number : 0}}</span>

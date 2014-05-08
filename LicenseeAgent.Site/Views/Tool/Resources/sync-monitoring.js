@@ -50,6 +50,7 @@ var syncmonitoring = (function ($) {
     return {
         init: function () {
             $("#actionmonitoring").click(function () {
+                globalCheckAll = false;
                 syncmonitoring.reRenderAfterPaged(0, core.pageSizes[0]);
             });
         },
@@ -77,7 +78,14 @@ var syncmonitoring = (function ($) {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: core.pageSizes,
                         currentPage: currentPage,
-                        showDetail: true
+                        showDetail: true,
+                        afterPagedFunction: function () {
+                            $('#btn_multreinvoke').addClass('hide');
+                            $('#chkbox_all').prop('checked', false);
+                            $('#tblContent_monitoringGrid tbody input').each(function () {
+                                this.checked = false;
+                            });
+                        }
                     };
                     gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                     $('#monitoringGrid').show().fanexGrid(gridOptions);
@@ -147,7 +155,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode !== 0) {
+                    if (data.ErrCode === 0) {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#btnIgnore_' + keyid).addClass('hide');
@@ -178,7 +186,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.ErrCode !== 0) {
+                    if (data.ErrCode === 0) {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#btnIgnore_' + keyid).addClass('hide');

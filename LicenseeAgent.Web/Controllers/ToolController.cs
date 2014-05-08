@@ -216,11 +216,11 @@ namespace LicenseeAgent.Web.Controllers
                 criteria.NewStatusID = LogType.Ignore;
                 _monitoringService.UpdateLogStatus(criteria);
 
-                return Json(new { ErrCode = 0 });
+                return Json(new { ErrCode = Result.SuccessValue });
             }
             catch
             {
-                return Json(new { ErrCode = 1 });
+                return Json(new { ErrCode = Result.FailureValue });
             }
         }
 

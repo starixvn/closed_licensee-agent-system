@@ -46,22 +46,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=1.0.5217.23765, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.BetList.Core-NPOI.2.0.6.1.0.0.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper">
-      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.5217.23766, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.BetList.Core.TicketHelper-NPOI.2.0.6.1.0.0.0\lib\net40\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.62, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+      <HintPath>..\packages\Fanex.Data.0.5.404.62\lib\net40\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
+      <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Result.Core, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.Result.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.Result.Core.1.4.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -163,6 +164,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="App_Data\Fanex.Result\Badminton.xls" />
+    <None Include="App_Data\Fanex.Result\BaseBall.xls" />
+    <None Include="App_Data\Fanex.Result\Basketball.xls" />
+    <None Include="App_Data\Fanex.Result\Billiard.xls" />
+    <None Include="App_Data\Fanex.Result\Hockey.xls" />
+    <None Include="App_Data\Fanex.Result\HorseRacing.xls" />
+    <None Include="App_Data\Fanex.Result\LiveCasino.xls" />
+    <None Include="App_Data\Fanex.Result\NumberGame.xls" />
+    <None Include="App_Data\Fanex.Result\OtherSport.xls" />
+    <None Include="App_Data\Fanex.Result\Outright.xls" />
+    <None Include="App_Data\Fanex.Result\Soccer.xls" />
+    <None Include="App_Data\Fanex.Result\Tennis.xls" />
+    <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
+    <None Include="App_Data\Fanex.Result\VSTennis.xls" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Fanex.Result\fanex.result.css" />
+    <Content Include="Styles\Fanex.Result\images\bg_header03.jpg" />
+    <Content Include="Styles\Fanex.Result\images\first-goal.gif" />
+    <Content Include="Styles\Fanex.Result\images\last-goal.gif" />
+    <Content Include="Styles\Fanex.Result\images\tab_topbg.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

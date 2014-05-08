@@ -166,6 +166,7 @@ namespace LicenseeAgent.Account.Controllers
                     LoginUserId = CurrentSession.LoginUserId,
                     LoginAccountType = CurrentSession.LoginAccountType,
                     LoginUserName = CurrentSession.LoginUserName,
+                    LoginType = CurrentSession.LoginType,
                     OnLoginUserId = CurrentSession.OnUserId,
                     Language = CurrentSession.Language,
                     LicenseeId = criteria.LicenseeId,
@@ -287,7 +288,7 @@ namespace LicenseeAgent.Account.Controllers
             }
 
             var model = new LicenseeViewModel();
-            if (CurrentSession.LoginAccountType == AccountType.CSD_IT)
+            if (CurrentSession.LoginType == LoginType.AdminSite)
             {
                 model.Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria
                 {
@@ -306,7 +307,7 @@ namespace LicenseeAgent.Account.Controllers
                     model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
                 }
             }
-            else if (CurrentSession.LoginAccountType == AccountType.Licensee)
+            else if (CurrentSession.LoginType == LoginType.LRFSite)
             {
                 model.LicenseeId = CurrentSession.OnLicenseeId;
                 model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria

@@ -27,7 +27,7 @@ namespace LicenseeAgent.Web
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(adminInfo.UserId, adminInfo.UserName, AccountType.CSD_IT, checkinOnUserId, language)
+            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, LoginType.AdminSite, checkinOnUserId, language)
         {
             AdminInfo = adminInfo;
         }
@@ -40,7 +40,7 @@ namespace LicenseeAgent.Web
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(licenseeInfo.UserId, licenseeInfo.UserName, AccountType.Licensee, checkinOnUserId, language)
+            : this(licenseeInfo.UserId, licenseeInfo.UserName, AccountType.Licensee, LoginType.LRFSite, checkinOnUserId, language)
         {
             LicenseeInfo = licenseeInfo;
             OnLicenseeId = licenseeInfo.LicenseeId;
@@ -54,7 +54,7 @@ namespace LicenseeAgent.Web
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
+            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, LoginType.AgentSite, checkinOnUserId, language)
         {
             AgentInfo = agentInfo;
             OnLicenseeId = agentInfo.LicenseeId;
@@ -72,6 +72,7 @@ namespace LicenseeAgent.Web
             internalLoginInfo.LoginUserId,
             internalLoginInfo.LoginUserName,
             internalLoginInfo.LoginAccountType,
+            internalLoginInfo.LoginType,
             internalLoginInfo.OnLoginUserId,
             internalLoginInfo.Language)
         {
@@ -80,7 +81,13 @@ namespace LicenseeAgent.Web
             OnValidateAgent(agentInfo);
         }
 
-        protected CurrentSession(int loginUserId, string loginUserName, AccountType loginAccountType, int checkinOnUserId, string language)
+        protected CurrentSession(
+            int loginUserId,
+            string loginUserName,
+            AccountType loginAccountType,
+            LoginType loginType,
+            int checkinOnUserId,
+            string language)
         {
             if (loginAccountType != AccountType.CSD_IT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
             {
@@ -89,6 +96,7 @@ namespace LicenseeAgent.Web
 
             LoginUserId = loginUserId;
             LoginUserName = loginUserName;
+            LoginType = loginType;
             LoginAccountType = loginAccountType;
             OnUserId = checkinOnUserId;
             Language = language;
@@ -136,6 +144,8 @@ namespace LicenseeAgent.Web
         /// </value>
         public AccountType LoginAccountType { get; private set; }
 
+        public LoginType LoginType { get; private set; }
+
         public bool IsDirectSignIn
         {
             get
@@ -153,7 +163,7 @@ namespace LicenseeAgent.Web
         {
             get
             {
-                if (AgentInfo != null && AgentInfo.IsLevel0 && LoginAccountType == AccountType.Agent)
+                if (AgentInfo != null && AgentInfo.IsLevel0 && LoginType == LoginType.AgentSite)
                 {
                     return false;
                 }
@@ -174,7 +184,7 @@ namespace LicenseeAgent.Web
         {
             get
             {
-                return AdminInfo != null && string.Equals(AdminInfo.UserRole, "Admin", StringComparison.OrdinalIgnoreCase);
+                return IsAdmin && LoginAccountType == AccountType.CSD_IT;
             }
         }
 

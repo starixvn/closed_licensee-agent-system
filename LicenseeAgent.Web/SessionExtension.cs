@@ -25,13 +25,13 @@ namespace LicenseeAgent.Web
 
         public static bool IsViewSelectLicensee(this ICurrentSession currentSession)
         {
-            return currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSD_IT;
+            return currentSession.IsAdmin && currentSession.LoginType == LoginType.AdminSite;
         }
 
         public static bool IsViewAccountDropDownMenu(this ICurrentSession currentSession)
         {
             return !(currentSession.LicenseeInfo != null
-                || (currentSession.LoginAccountType == AccountType.Licensee && currentSession.AgentInfo.IsLevel0));
+                || (currentSession.LoginType == LoginType.LRFSite && currentSession.AgentInfo.IsLevel0));
         }
 
         public static bool IsViewChangePassword(this ICurrentSession currentSession)

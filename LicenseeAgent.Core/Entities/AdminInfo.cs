@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Core.Entities
 {
     using System;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// CSD/IT sign-in information.
@@ -19,5 +20,18 @@ namespace LicenseeAgent.Core.Entities
         public string UserName { get; set; }
 
         public string UserRole { get; set; }
+
+        public AccountType AccountType
+        {
+            get
+            {
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    return AccountType.CSD_IT;
+                }
+
+                return AccountType.Licensee;
+            }
+        }
     }
 }

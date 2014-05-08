@@ -26,6 +26,8 @@ namespace LicenseeAgent.Web
 
         AccountType LoginAccountType { get; }
 
+        LoginType LoginType { get; }
+
         int OnUserId { get; }
 
         int OnLicenseeId { get; }

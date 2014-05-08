@@ -31,6 +31,10 @@
                 <commission-setting-licensee-or-agent-edit-agent-read-only></commission-setting-licensee-or-agent-edit-agent-read-only>
             }
         </div>
-        <div data-ng-class="{'comm-block-x1': hasOfferedNumberGame, 'comm-block-x2': !hasOfferedNumberGame}"></div>
+        @if (Model.TargetRoleId != (int)Role.Member)
+        {
+            <div data-ng-class="{'comm-block-x1': hasOfferedNumberGame, 'comm-block-x2': !hasOfferedNumberGame}">
+            </div>
+        }
     </div>
 </div>

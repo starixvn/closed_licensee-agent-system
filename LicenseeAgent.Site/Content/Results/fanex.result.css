@@ -140,6 +140,7 @@ table.fanex-result tr.row-data td.column-match div.first-goal
     width: 14px;
     display: inline;
     padding: 0 4px;
+    margin-left: 3px;
 }
 table.fanex-result tr.row-data td.column-match div.last-goal
 {
@@ -148,6 +149,7 @@ table.fanex-result tr.row-data td.column-match div.last-goal
     width: 14px;
     display: inline;
     padding: 0 4px;
+    margin-left: 3px;
 }
 
 table.fanex-result tr.row-data td.column-lblOEFT

@@ -197,8 +197,8 @@ namespace LicenseeAgent.Web.Controllers
 
             return Json(new
             {
-                Results = responseResult.ApiErrMsg,
-                IsSuccess = responseResult.ErrCode == Result.SuccessValue ? "success" : "failed"
+                ErrMsg = responseResult.ApiErrMsg,
+                ErrCode = responseResult.ErrCode
             });
         }
 
@@ -216,17 +216,11 @@ namespace LicenseeAgent.Web.Controllers
                 criteria.NewStatusID = LogType.Ignore;
                 _monitoringService.UpdateLogStatus(criteria);
 
-                return Json(new
-                {
-                    Results = "success"
-                });
+                return Json(new { ErrCode = 0 });
             }
             catch
             {
-                return Json(new
-                {
-                    Results = "failed"
-                });
+                return Json(new { ErrCode = 1 });
             }
         }
 

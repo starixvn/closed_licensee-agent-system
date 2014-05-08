@@ -147,7 +147,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.IsSuccess === "success") {
+                    if (data.ErrCode !== 0) {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#btnIgnore_' + keyid).addClass('hide');
@@ -156,7 +156,7 @@ var syncmonitoring = (function ($) {
                     else {
                         var newRunCount = parseInt($('#lblruncount_' + keyid).text()) + 1;
                         $('#lblruncount_' + keyid).text(newRunCount);
-                        alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.Results));
+                        alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.ErrMsg));
                     }
                 },
                 complete: function () {
@@ -178,7 +178,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.Results === "success") {
+                    if (data.ErrCode !== 0) {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#btnIgnore_' + keyid).addClass('hide');

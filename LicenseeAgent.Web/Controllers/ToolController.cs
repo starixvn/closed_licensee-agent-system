@@ -198,7 +198,7 @@ namespace LicenseeAgent.Web.Controllers
             return Json(new
             {
                 Results = responseResult.ApiErrMsg,
-                IsSuccess = responseResult.ErrCode == Result.SuccessValue
+                IsSuccess = responseResult.ErrCode == Result.SuccessValue ? "success" : "failed"
             });
         }
 

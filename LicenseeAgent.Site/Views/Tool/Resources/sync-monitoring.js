@@ -1,10 +1,11 @@
 ﻿/* global core */
 
-var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
+var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" {5} onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
 checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';
 var buttonHtml = '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button>';
 buttonHtml += '<br /><br /><button id="btnIgnore_{0}" class="btn btn-danger" onclick="syncmonitoring.singleIgnore({0})">Ignore</button>';
 buttonHtml += '<label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>';
+var globalCheckAll = false;
 
 var gridOptions = {
     columns: [
@@ -13,7 +14,12 @@ var gridOptions = {
                     Width: 100, Name: "", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
                         'use strict';
-                        return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                        if (globalCheckAll === true) {
+                            return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "checked");
+                        }
+                        else {
+                            return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "");
+                        }
                     }
                 },
                 { HeaderText: "Log ID", Width: 50, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
@@ -88,12 +94,14 @@ var syncmonitoring = (function ($) {
         },
         checkboxAllOnChange: function () {
             if ($('#chkbox_all').prop('checked')) {
+                globalCheckAll = true;
                 $('#tblContent_monitoringGrid tbody input').each(function () {
                     this.checked = true;
                 });
                 $('#btn_multreinvoke').removeClass('hide');
             }
             else {
+                globalCheckAll = false;
                 $('#tblContent_monitoringGrid tbody input').each(function () {
                     this.checked = false;
                 });
@@ -105,9 +113,11 @@ var syncmonitoring = (function ($) {
                 $('#btn_multreinvoke').removeClass('hide');
                 if ($('#tblContent_monitoringGrid tbody input').length === $('#tblContent_monitoringGrid tbody input:checked').length) {
                     $('#chkbox_all').prop('checked', true);
+                    globalCheckAll = true;
                 }
                 else {
                     $('#chkbox_all').prop('checked', false);
+                    globalCheckAll = false;
                 }
             }
             else {
@@ -137,7 +147,7 @@ var syncmonitoring = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.IsSuccess === "true") {
+                    if (data.IsSuccess === "success") {
                         $('#chkbox_' + keyid).addClass('hide');
                         $('#btn_' + keyid).addClass('hide');
                         $('#btnIgnore_' + keyid).addClass('hide');

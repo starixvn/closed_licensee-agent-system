@@ -45,7 +45,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 out errCode,
                 out maxLicenseePt);
 
-            return BuildCustomerSetting2(Product.Product_2, customerSetting, settingContext, ref errCode);
+            return BuildCustomerSetting2(Product.Product_2, customerSetting, settingContext, ref errCode, maxLicenseePt);
         }
 
         /// <summary>

@@ -2994,7 +2994,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note: In simple mode, your changes of soccers setting will be applied to all sport types/bet types except Number Game..
+        ///   Looks up a localized string similar to Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well..
         /// </summary>
         public static string SportsBookSimpleModeNote {
             get {

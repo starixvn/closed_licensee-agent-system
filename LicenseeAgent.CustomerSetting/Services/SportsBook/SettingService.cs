@@ -46,7 +46,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 out errCode,
                 out maxLicenseePt);
 
-            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode);
+            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode, maxLicenseePt);
         }
 
         /// <summary>

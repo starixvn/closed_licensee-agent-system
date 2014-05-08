@@ -31,11 +31,6 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </returns>
         public bool IsValid(SettingContext settingContext)
         {
-            /*if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
-            {
-                return false;
-            }
-            */
             if (settingContext.FormId == FormType.Add)
             {
                 if (CommissionSetting == null

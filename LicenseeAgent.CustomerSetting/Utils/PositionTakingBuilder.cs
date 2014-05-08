@@ -12,6 +12,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
+    using LicenseeAgent.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -113,7 +114,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
             PositionTakingGroup positionTakingGroup,
             int betTypeId)
         {
-            if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
+            if (settingContext.FormId == FormType.Add && settingContext.TargetRoleId == (int)Role.AgentLevel1)
             {
                 positionTakingGroup.PositionTakings.Add(new PositionTakingItem
                 {

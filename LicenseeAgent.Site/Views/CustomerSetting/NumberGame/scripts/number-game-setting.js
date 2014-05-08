@@ -20,13 +20,25 @@ fanex.customerSetting.numberGameSetting = {
             bettingLimitScope = angular.element('[ng-controller="NumberGameBetLimitAdvancedModeController"]').scope();
             positionTakingScope = angular.element('[ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
         }
-        
-        if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData() || !positionTakingScope.isValidData()) {
-            return null;
+
+        if (commissionSettingScope !== undefined)
+        { 
+            if(!commissionSettingScope.isValidData()) {
+                return null;
+            }
+            commissions = commissionSettingScope.getNumberGameSetting();
         }
 
-        commissions = commissionSettingScope.getNumberGameSetting();
-        bettingLimits = bettingLimitScope.saveData();
+        if (bettingLimitScope !== undefined) {
+            if (!bettingLimitScope.isValidData()) {
+                return null;
+            }
+            bettingLimits = bettingLimitScope.saveData();
+        }
+
+        if (!positionTakingScope.isValidData()) {
+            return null;
+        }
         positionTakings = positionTakingScope.saveData();
 
         return {

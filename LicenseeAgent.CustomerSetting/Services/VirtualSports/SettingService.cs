@@ -16,7 +16,6 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
     using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.Utils;
 
     /// <summary>
@@ -57,7 +56,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
             };
 
-            if (!result.IsValid(settingContext))
+            if (!result.IsValid(Product.Product_5, settingContext))
             {
                 errCode = Result.FailureValue;
                 return null;

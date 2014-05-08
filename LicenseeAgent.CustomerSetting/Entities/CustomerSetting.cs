@@ -26,11 +26,12 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// <summary>
         /// Determines whether this instance is valid.
         /// </summary>
+        /// <param name="product">The product id.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>
         /// Returns true if entity is valid.
         /// </returns>
-        public bool IsValid(SettingContext settingContext)
+        public bool IsValid(Product product, SettingContext settingContext)
         {
             if (settingContext.FormId != FormType.Add && settingContext.RoleId != (int)Role.AgentLevel0)
             {
@@ -42,11 +43,17 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
             if (settingContext.FormId != FormType.EditIndirectMember)
             {
-                if (CommissionSetting == null
+                if (product != Product.Product_5)
+                {
+                    if (CommissionSetting == null
                         || CommissionSetting.CommissionItems == null
-                        || CommissionSetting.CommissionItems.Count == 0
-                        || BettingLimitSetting == null
-                        || BettingLimitSetting.Count == 0)
+                        || CommissionSetting.CommissionItems.Count == 0)
+                    {
+                        return false;
+                    }
+                }
+
+                if (BettingLimitSetting == null || BettingLimitSetting.Count == 0)
                 {
                     return false;
                 }

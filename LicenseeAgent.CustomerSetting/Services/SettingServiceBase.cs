@@ -37,7 +37,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 return null;
             }
 
-            if (!customerSetting.IsValid(settingContext))
+            if (!customerSetting.IsValid(product, settingContext))
             {
                 errCode = Result.FailureValue;
                 return null;
@@ -51,7 +51,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
             };
 
-            if (!result.IsValid(settingContext))
+            if (!result.IsValid(product, settingContext))
             {
                 errCode = Result.FailureValue;
                 return null;

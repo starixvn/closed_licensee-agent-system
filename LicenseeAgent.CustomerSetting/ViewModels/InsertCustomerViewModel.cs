@@ -8,6 +8,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
@@ -33,12 +34,12 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!SportsBookSetting.IsValid(SettingContext))
+            if (!SportsBookSetting.IsValid(Product.Product_0, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid SportsBook setting"));
             }
 
-            if (NumberGameSetting != null && !NumberGameSetting.IsValid(SettingContext))
+            if (NumberGameSetting != null && !NumberGameSetting.IsValid(Product.Product_2, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid NumberGame setting"));
             }

@@ -9,10 +9,10 @@ namespace LicenseeAgent.CustomerSetting.Utils
     using System;
     using System.Collections.Generic;
     using Fanex.Common;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.

@@ -29,7 +29,7 @@
         <div class="block4">
             <div class="pull-left">
                 <input id="password" autocomplete="off" type="password" name="password" data-placement="bottom" data-html="true"
-                    style="position: relative;" maxlength="24" data-ng-model="custInfo.password" required ng-pattern="/@PasswordRule.PasswordPattern/" hint-validator="@Las.PasswordHint" />
+                    style="position: relative;" maxlength="24" data-ng-model="custInfo.password" required data-ng-pattern="/@PasswordRule.PasswordPattern/" hint-validator="@Las.PasswordHint" />
             </div>
             <div class="pull-left">
                 <span data-ng-class="{'icon-input-invalid': formCustInfo.password.$dirty && formCustInfo.password.$invalid, 'icon-input-valid' : formCustInfo.password.$dirty && formCustInfo.password.$valid}">
@@ -56,13 +56,13 @@
             <span>@Las.Phone</span>
         </div>
         <div class="block2">
-            <input id="phone" name="phone" type="text" maxlength="50" data-ng-model="custInfo.phone" ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="phone" name="phone" type="text" maxlength="50" data-ng-model="custInfo.phone" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
         <div class="block3">
             <span>@Las.MobilePhone</span>
         </div>
         <div class="block4">
-            <input id="mobile" name="mobile" type="text" maxlength="50" data-ng-model="custInfo.mobile" ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="mobile" name="mobile" type="text" maxlength="50" data-ng-model="custInfo.mobile" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
     </div>
     <div class="row-block">
@@ -72,13 +72,13 @@
         <div class="block2">
             <input id="credit" name="credit" type="text" maxlength="15" class="text-right" data-ng-model="custInfo.credit"
                 hint-validator required required-hint="Max Credit is required" auto-numeric-format="0" />
-            <span ng-show="isShowLimitMaxCredit">&#60;&#61;{{custInfo.maxCredit | number : 0}}</span>
+            <span data-ng-show="isShowLimitMaxCredit">&#60;&#61;{{custInfo.maxCredit | number : 0}}</span>
         </div>
         <div class="block3">
             <span>@Las.Fax</span>
         </div>
         <div class="block4">
-            <input id="fax" name="fax" type="text" maxlength="50" data-ng-model="custInfo.fax" ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="fax" name="fax" type="text" maxlength="50" data-ng-model="custInfo.fax" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
     </div>
     <div class="row-block">

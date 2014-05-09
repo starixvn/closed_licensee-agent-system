@@ -8,20 +8,20 @@
     {
         if (simpleMode)
         {
-    <div class="instruction" ng-show="settingMode">
+    <div class="instruction" data-ng-show="settingMode">
         @text
         <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
     </div>
         }
         else
         {
-    <div class="instruction" ng-hide="settingMode">
+    <div class="instruction" data-ng-hide="settingMode">
         @text
         <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
     </div>
         }
 }
-<div ng-class="{'container-box': true, 'simple-mode': settingMode}">
+<div data-ng-class="{'container-box': true, 'simple-mode': settingMode}">
     @if (Model.TargetRoleId == (int)Role.AgentLevel1)
     {
         @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button", true)
@@ -37,8 +37,8 @@
         @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button", true)
         @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv", false)
     }
-    <div id="betting-limit-current-scope" class="betting-limit" ng-controller="BetLimitController">
-        <div ng-show="settingContext.IsSimpleMode" class="simple-mode">
+    <div id="betting-limit-current-scope" class="betting-limit" data-ng-controller="BetLimitController">
+        <div data-ng-show="settingContext.IsSimpleMode" class="simple-mode">
             <div>
                 <div class="betting-limit-header min-bet">
                     <div class="betting-limit-header-text">
@@ -62,7 +62,7 @@
                 <betting-limit-simple-mode-read-only model-data="model.firstRecord"></betting-limit-simple-mode-read-only>
             }
         </div>
-        <div ng-show="!settingContext.IsSimpleMode">
+        <div data-ng-show="!settingContext.IsSimpleMode">
             <div>
                 <div class="betting-limit-sport-header">
                     <div class="betting-limit-header-text">
@@ -81,7 +81,7 @@
                         <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
                 </div>
             </div>
-            <div ng-repeat="betSetting in model.bettingLimitsModel">
+            <div data-ng-repeat="betSetting in model.bettingLimitsModel">
                 @if (Model.FormId != FormType.ViewIndirectAgent)
                 {
                     <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"

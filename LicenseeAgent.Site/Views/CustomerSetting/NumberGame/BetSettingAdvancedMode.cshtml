@@ -1,4 +1,4 @@
-﻿<div ng-controller="NumberGameBetLimitAdvancedModeController" ng-if="hasOfferedNumberGame">
+﻿<div data-ng-controller="NumberGameBetLimitAdvancedModeController" data-ng-if="hasOfferedNumberGame">
     <div>
         <div class="betting-limit-sport-header">
             <div class="betting-limit-header-text">
@@ -21,7 +21,7 @@
                 <span>{{language['bettingLimit_MaxPerBall']}}</span></div>
         </div>
     </div>
-    <div ng-repeat="betSetting in model.bettingLimitsModel">
+    <div data-ng-repeat="betSetting in model.bettingLimitsModel">
         @if (Model.FormId != FormType.ViewIndirectAgent)
         {
             <number-game-betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"

@@ -4,12 +4,12 @@
             <span>{{language['commissionSetting_CommissionGroup']}}</span>
         </div>
         <div class="comm-group">
-            <div class="comm-full-block" ng-show="settingContext.FormId != 0">
+            <div class="comm-full-block" data-ng-show="settingContext.FormId != 0">
                 <span>{{viewModel.commissionSettingsViewModel.selectedGroup}}</span>
             </div>
-            <div class="comm-full-block" ng-show="settingContext.FormId == 0">
-                <select ng-change="commissionSettingsChangeViewModel()" ng-model="viewModel.commissionSettingsViewModel.selectedGroup"
-                    ng-options="item.name as item.name for item in viewModel.commissionSettingsViewModel.group">
+            <div class="comm-full-block" data-ng-show="settingContext.FormId == 0">
+                <select data-ng-change="commissionSettingsChangeViewModel()" data-ng-model="viewModel.commissionSettingsViewModel.selectedGroup"
+                    data-ng-options="item.name as item.name for item in viewModel.commissionSettingsViewModel.group">
                 </select>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <span>{{viewModel.commissionSettingsViewModel.line1.name}}</span>
             </div>
             <div class="comm-block">
-                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line1.agentCommission"
+                <input readonly="readonly" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line1.agentCommission"
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <span>{{viewModel.commissionSettingsViewModel.line2.name}}</span>
             </div>
             <div class="comm-block">
-                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line2.agentCommission"
+                <input readonly="readonly" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line2.agentCommission"
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <span>{{viewModel.commissionSettingsViewModel.line3.name}}</span>
             </div>
             <div class="comm-block">
-                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line3.agentCommission"
+                <input readonly="readonly" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line3.agentCommission"
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
@@ -50,16 +50,16 @@
                 <span>{{viewModel.commissionSettingsViewModel.line4.name}}</span>
             </div>
             <div class="comm-block">
-                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line4.agentCommission"
+                <input readonly="readonly" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line4.agentCommission"
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
-        <div class="comm-group" ng-if="hasOfferedNumberGame">
+        <div class="comm-group" data-ng-if="hasOfferedNumberGame">
             <div class="comm-block">
                 <span>{{viewModel.commissionSettingsViewModel.line5.name}}</span>
             </div>
             <div class="comm-block">
-                <input readonly="readonly" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line5.agentCommission"
+                <input readonly="readonly" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line5.agentCommission"
                     maxlength="{{config.maxInput}}" />
             </div>
         </div>
@@ -70,8 +70,8 @@
         </div>
         <div class="comm-group">
             <div class="comm-block">
-                <input id="line1" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line1.memberCommission"
-                    maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line1, 'line1')" />
+                <input id="line1" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line1.memberCommission"
+                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line1, 'line1')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line1.agentCommission}}]</span>
@@ -79,8 +79,8 @@
         </div>
         <div class="comm-group">
             <div class="comm-block">
-                <input id="line2" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line2.memberCommission"
-                    maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line2, 'line2')" />
+                <input id="line2" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line2.memberCommission"
+                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line2, 'line2')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line2.agentCommission}}]</span>
@@ -88,8 +88,8 @@
         </div>
         <div class="comm-group">
             <div class="comm-block">
-                <input id="line3" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line3.memberCommission"
-                       maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line3, 'line3')" />
+                <input id="line3" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line3.memberCommission"
+                       maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line3, 'line3')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line3.agentCommission}}]</span>
@@ -97,17 +97,17 @@
         </div>
         <div class="comm-group">
             <div class="comm-block">
-                <input id="line4" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line4.memberCommission"
-                       maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />
+                <input id="line4" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line4.memberCommission"
+                       maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line4.agentCommission}}]</span>
             </div>
         </div>
-        <div class="comm-group" ng-if="hasOfferedNumberGame">
+        <div class="comm-group" data-ng-if="hasOfferedNumberGame">
             <div class="comm-block">
-                <input id="line5" type="text" class="input" ng-model="viewModel.commissionSettingsViewModel.line5.memberCommission"
-                    maxlength="{{config.maxInput}}" ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line5, 'line5')" />
+                <input id="line5" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line5.memberCommission"
+                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line5, 'line5')" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line5.agentCommission}}]</span>

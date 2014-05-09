@@ -28,7 +28,7 @@
     @ViewBag.Title
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting" class="fanex-sportbook-setting"
-    ng-controller="CustomerSettingController" data-href="~/CustomerSetting/InsertCustomer">
+    data-ng-controller="CustomerSettingController" data-href="~/CustomerSetting/InsertCustomer">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
@@ -78,7 +78,7 @@
         </div>
     </div>
     
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" ng-if="settingMode && hasOfferedNumberGame">
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
         <div class="product-name">
             @Las.NumberGame
         </div>
@@ -99,7 +99,7 @@
 
     <div class="clearfix">
         <div class="control-group">
-            <button class="btn btn-primary" ng-click="insertCustomer($event)">
+            <button class="btn btn-primary" data-ng-click="insertCustomer($event)">
                 <i class="icon-button-plus"></i>@Las.Add
             </button>
         </div>

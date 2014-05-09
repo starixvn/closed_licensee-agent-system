@@ -3,27 +3,27 @@
         <span>{{betSetting.sportTypeName}}</span>
     </div>
     <div class="betting-limit-item-col4  min-bet">
-        <input type="text" class="input" ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
+        <input type="text" class="input" data-ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
             auto-numeric-format='{"command":"betSetting.actions.onChangeMinBet()"}'>
-        <span ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number : 0}}
+        <span data-ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number : 0}}
         </span>
     </div>
     <div class="betting-limit-item-col4">
-        <input type="text" class="input" ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
+        <input type="text" class="input" data-ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
             auto-numeric-format='{"command":"betSetting.actions.onChangeMaxBet()"}'>
-        <span ng-show="betSetting.MinMaxBet > 0">&lt;= {{betSetting.MinMaxBet | number : 0}}
+        <span data-ng-show="betSetting.MinMaxBet > 0">&lt;= {{betSetting.MinMaxBet | number : 0}}
         </span>
     </div>
     <div class="betting-limit-item-col4">
-        <input type="text" class="input" ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
+        <input type="text" class="input" data-ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
                auto-numeric-format='{"command":"betSetting.actions.onChangeMaxPerMatch()"}'>
-        <span ng-show="betSetting.MinMaxPerMatch > 0">&lt;= {{betSetting.MinMaxPerMatch | number
+        <span data-ng-show="betSetting.MinMaxPerMatch > 0">&lt;= {{betSetting.MinMaxPerMatch | number
             : 0}} </span>
     </div>
     <div class="betting-limit-item-col4">
-        <input type="text" class="input" ng-model="betSetting.MaxPerBall" maxlength="{{config.maxInput}}"
+        <input type="text" class="input" data-ng-model="betSetting.MaxPerBall" maxlength="{{config.maxInput}}"
             auto-numeric-format='{"command":"betSetting.actions.onChangeMaxPerBall()"}' />
-        <span ng-show="betSetting.MinMaxPerBall > 0">&lt;= {{betSetting.MinMaxPerBall | number
+        <span data-ng-show="betSetting.MinMaxPerBall > 0">&lt;= {{betSetting.MinMaxPerBall | number
             : 0}}</span>
     </div>
 </div>

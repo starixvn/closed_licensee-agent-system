@@ -17,11 +17,11 @@
     {
         @RazorHelper.RenderInstruction(Las.Commission, "member-commission-info-button")
     }
-    <div id="commission-current-scope" class="comm-setting" ng-controller="CommissionController">
-        <div ng-show="settingContext.TargetRoleId ==1 ? true: false;">
+    <div id="commission-current-scope" class="comm-setting" data-ng-controller="CommissionController">
+        <div data-ng-show="settingContext.TargetRoleId ==1 ? true: false;">
             <commission-setting-agent-edit-member></commission-setting-agent-edit-member>
         </div>
-        <div ng-show="settingContext.TargetRoleId !=1 ? true: false;" ng-repeat="commissionSetting in viewModel.commissionSettingsViewModel">
+        <div data-ng-show="settingContext.TargetRoleId !=1 ? true: false;" data-ng-repeat="commissionSetting in viewModel.commissionSettingsViewModel">
             @if (Model.FormId != FormType.ViewIndirectAgent)
             {
                 <commission-setting-licensee-or-agent-edit-agent></commission-setting-licensee-or-agent-edit-agent>

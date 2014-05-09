@@ -25,7 +25,7 @@
 }
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
-    class="fanex-sportbook-setting" ng-controller="CustomerSettingController"
+    class="fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
     data-href="@("~/CustomerSetting/UpdateCustomer")">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<div data-ng-class="{'clearfix': true, 'product-group': settingMode}" ng-if="settingMode && hasOfferedNumberGame">
+<div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
     <div class="product-name">
         @Las.NumberGame
     </div>

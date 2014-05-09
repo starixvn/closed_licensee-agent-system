@@ -7,8 +7,10 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
+    using System.Linq;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.CustomerSetting.Core;
 
     /// <summary>
     /// CustomerSetting2 class.
@@ -35,20 +37,33 @@ namespace LicenseeAgent.CustomerSetting.Entities
         {
             if (settingContext.FormId == FormType.Add)
             {
-                if (product != Product.Product_5)
-                {
-                    if (CommissionSetting == null
-                        || CommissionSetting.CommissionItems == null
-                        || CommissionSetting.CommissionItems.Count == 0)
-                    {
-                        return false;
-                    }
-                }
-
-                if (BettingLimitSetting == null
+                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                if (CommissionSetting == null
+                    || CommissionSetting.CommissionItems == null
+                    || CommissionSetting.CommissionItems.Count == 0
+                    || BettingLimitSetting == null
                     || BettingLimitSetting.Count == 0)
                 {
                     return false;
+                }
+
+                if (PositionTakingSetting.Where(x => !productSettings.SportType.Select(item => item.Id).Contains(x.SportId)).ToList().Any())
+                {
+                    return false;
+                }
+
+                foreach (var sportType in productSettings.SportType)
+                {
+                    var betTypes = sportType.BetTypeIds.Split(',');
+                    var sport = PositionTakingSetting.Where(
+                        x => x.SportId == sportType.Id &&
+                        x.IsLive == sportType.IsLive &&
+                        x.PositionTakings.Count == betTypes.Count()).ToList().FirstOrDefault();
+
+                    if (sport.PositionTakings.Where(x => !betTypes.Contains(x.BetTypeId.ToString())).ToList().Any())
+                    {
+                        return false;
+                    }
                 }
             }
 

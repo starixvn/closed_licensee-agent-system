@@ -67,7 +67,7 @@
         @Las.NoDrawForTurnoverOnly
     </label>
 }
-@helper Product(IEnumerable<Product> productList, string selectedProducts, string classNameProduct = "")
+@helper Product(IEnumerable<ProductInfo> productList, string selectedProducts, string classNameProduct = "")
 {
     var isCheckAll = string.IsNullOrEmpty(selectedProducts) || (selectedProducts.Split(',').Length - 1 == productList.Count());
     if (productList.Count() > 1)

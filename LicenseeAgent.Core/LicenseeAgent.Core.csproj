@@ -72,7 +72,7 @@
     <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
-    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
@@ -92,6 +92,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations\Product.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Product.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\SportType.generated.cs">
       <AutoGen>True</AutoGen>
@@ -145,6 +150,10 @@
     <None Include="Enumerations\ErrCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ErrCode.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Enumerations\Product.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Product.generated.cs</LastGenOutput>
     </None>
     <None Include="Enumerations\SportType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

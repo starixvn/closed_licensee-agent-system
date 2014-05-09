@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Product.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ProductInfo.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace LicenseeAgent.Core.Entities
     /// Product Entity.
     /// </summary>
     [Serializable]
-    public class Product
+    public class ProductInfo
     {
         public int ProductId { get; set; }
 

@@ -45,6 +45,6 @@ namespace LicenseeAgent.Report.ViewModels
 
         public string Product { get; set; }
 
-        public IEnumerable<Product> ProductList { get; set; }
+        public IEnumerable<ProductInfo> ProductList { get; set; }
     }
 }

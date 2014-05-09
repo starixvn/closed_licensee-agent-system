@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Core.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.Caching;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criterias;
@@ -54,14 +55,25 @@ namespace LicenseeAgent.Core.Services
             return GetEntites<LicenseeDomain>(criteria);
         }
 
-        public IList<Product> GetProducts(int licenseeId)
+        public IList<ProductInfo> GetProducts(int licenseeId)
         {
             var criteria = new GetProductCriteria
             {
                 LicenseeId = licenseeId
             };
 
-            return GetEntites<Product>(criteria);
+            return GetEntites<ProductInfo>(criteria);
+        }
+
+        public bool HasProductOffered(int licenseeId, int productId)
+        {
+            var productInfos = GetProducts(licenseeId);
+            if (productInfos.Where(x => x.ProductId == productId).Count() == 1)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

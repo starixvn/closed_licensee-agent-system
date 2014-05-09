@@ -15,6 +15,8 @@ namespace LicenseeAgent.Core.Services
 
         IList<LicenseeDomain> GetLicenseeDomains();
 
-        IList<Product> GetProducts(int licenseeId);
+        IList<ProductInfo> GetProducts(int licenseeId);
+
+        bool HasProductOffered(int licenseeId, int productId);
     }
 }

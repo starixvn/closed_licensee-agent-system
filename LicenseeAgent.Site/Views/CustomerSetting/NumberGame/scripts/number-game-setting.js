@@ -10,15 +10,15 @@ fanex.customerSetting.numberGameSetting = {
             positionTakingScope,
             commissionSettingScope;
 
-        commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
+        commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
 
         if (settingMode) {
-            bettingLimitScope = angular.element('[ng-controller="NumberGameBetLimitController"]').scope();
-            positionTakingScope = angular.element('[ng-controller="NumberGamePositionTakingController"]').scope();
+            bettingLimitScope = angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope();
+            positionTakingScope = angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope();
         }
         else {
-            bettingLimitScope = angular.element('[ng-controller="NumberGameBetLimitAdvancedModeController"]').scope();
-            positionTakingScope = angular.element('[ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
+            bettingLimitScope = angular.element('[data-ng-controller="NumberGameBetLimitAdvancedModeController"]').scope();
+            positionTakingScope = angular.element('[data-ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
         }
 
         if (commissionSettingScope !== undefined)

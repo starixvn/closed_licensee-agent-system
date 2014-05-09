@@ -43,7 +43,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publish", "Publish", "{EBE2
 		app_offline.htm = app_offline.htm
 		deploy.cmd = deploy.cmd
 		publish.cmd = publish.cmd
-		readme.txt = readme.txt
 	EndProjectSection
 EndProject
 Global

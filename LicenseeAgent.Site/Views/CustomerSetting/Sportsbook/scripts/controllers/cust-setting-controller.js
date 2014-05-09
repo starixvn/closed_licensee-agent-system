@@ -30,7 +30,8 @@ if (fanex.customerSetting) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
                 $scope.settingMode = isSimpleMode;
-                var positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
+                var positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
+                console.log(positionTakingScope);
                 positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
                 $scope.$apply();
             });
@@ -57,9 +58,9 @@ if (fanex.customerSetting) {
                         }
                     });
                 } else {
-                    commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
-                    bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
-                    positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
+                    commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
+                    bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
+                    positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
 
                     if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData() || !positionTakingScope.isValidData()) {
                         return;
@@ -148,8 +149,8 @@ if (fanex.customerSetting) {
                     numberGameSetting = null;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
-                    commissionSettingScope = angular.element('[ng-controller="CommissionController"]').scope();
-                    bettingLimitScope = angular.element('[ng-controller="BetLimitController"]').scope();
+                    commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
+                    bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
 
                     if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData()) {
                         return;
@@ -162,7 +163,7 @@ if (fanex.customerSetting) {
                         : '';
                 }
 
-                positionTakingScope = angular.element('[ng-controller="PositionTakingController"]').scope();
+                positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
                 if (!positionTakingScope.isValidData()) {
                     return;
                 }

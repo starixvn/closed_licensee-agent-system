@@ -58,8 +58,8 @@ if (fanex.customerSetting) {
                         message = scope.language["bettingLimit_Message_OnlyNumber"];
                     } else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
                         message = scope.language["bettingLimit_Message_MaxBetMoreThanOrEqualMinBet"];
-                    } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch"];
+                    } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerBall)) {
+                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerBall"];
                     } else if (modelData.MinMaxBet > 0 && formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
                         message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxBet);
                     }

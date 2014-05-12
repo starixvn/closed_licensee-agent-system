@@ -2,20 +2,20 @@
 @{
     Layout = null;
 }
-<div id="positionTakingContainer" data-ng-controller="NumberGamePositionTakingController"
+<div id="positionTakingContainerNG" data-ng-controller="NumberGamePositionTakingController"
     class="pt-setting">
     <div class="pt-container-box simple-mode" data-ng-switch="settingContext.TargetRoleId" data-ng-show="settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "licensee-position-taking-info-button-ng")
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "agent-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "agent-position-taking-info-button-ng")
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "member-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.NumberGamePositionTakingSimpleModeHeader, "member-position-taking-info-button-ng")
         }
         <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
             <div class="pt-group-box">

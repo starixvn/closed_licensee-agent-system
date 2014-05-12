@@ -78,7 +78,7 @@
         </div>
     </div>
     
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-show="settingMode && hasOfferedNumberGame">
         <div class="product-name">
             @Las.NumberGame
         </div>
@@ -129,6 +129,13 @@
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSettingNG",
+        trigger = "licensee-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -141,6 +148,13 @@
     {
         key = "LicenseePositionTakingSettingAdv",
         trigger = "licensee-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSetting",
+        trigger = "licensee-position-taking-info-button-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -169,6 +183,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSettingNG",
+        trigger = "agent-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -181,6 +202,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
     {
         key = "AgentPositionTakingSettingAdv",
         trigger = "agent-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentPositionTakingSetting",
+        trigger = "agent-position-taking-info-button-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -209,6 +237,13 @@ else
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSettingNG",
+        trigger = "member-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -221,6 +256,13 @@ else
     {
         key = "MemberPositionTakingSettingAdv",
         trigger = "member-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSetting",
+        trigger = "member-position-taking-info-button-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })

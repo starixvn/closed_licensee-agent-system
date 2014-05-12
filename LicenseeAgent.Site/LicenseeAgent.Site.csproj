@@ -800,6 +800,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SportsBook.js</LastGenOutput>
     </None>
+    <Content Include="Views\Instruction\en-US\LicenseeBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\en-US\AgentBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\en-US\MemberBetSettingNG.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.Grid.cshtml" />

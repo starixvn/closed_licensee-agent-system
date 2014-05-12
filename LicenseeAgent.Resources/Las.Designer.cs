@@ -1078,24 +1078,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Ball O/E.
-        /// </summary>
-        public static string FirstBallOddEven {
-            get {
-                return ResourceManager.GetString("FirstBallOddEven", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1st Ball O/U.
-        /// </summary>
-        public static string FirstBallOverUnder {
-            get {
-                return ResourceManager.GetString("FirstBallOverUnder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First Half Score.
         /// </summary>
         public static string FirstHalfScore {
@@ -1110,6 +1092,24 @@ namespace LicenseeAgent.Resources {
         public static string FirstHandicap {
             get {
                 return ResourceManager.GetString("FirstHandicap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st/Last O/E.
+        /// </summary>
+        public static string FirstLastBallOddEven {
+            get {
+                return ResourceManager.GetString("FirstLastBallOddEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st/Last O/U.
+        /// </summary>
+        public static string FirstLastBallOverUnder {
+            get {
+                return ResourceManager.GetString("FirstLastBallOverUnder", resourceCulture);
             }
         }
         
@@ -1762,6 +1762,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Bet must be less than or equal to Max Per Ball.
+        /// </summary>
+        public static string MaxBetLessThanOrEqualMaxPerBall {
+            get {
+                return ResourceManager.GetString("MaxBetLessThanOrEqualMaxPerBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Bet must be less than or equal to Max Per Match.
         /// </summary>
         public static string MaxBetLessThanOrEqualMaxPerMatch {
@@ -2239,7 +2248,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position Taking (NG Dead ball 1st O/U).
+        ///   Looks up a localized string similar to Position Taking (NG Dead Ball 1st/Last O/U).
         /// </summary>
         public static string NumberGamePositionTakingSimpleModeHeader {
             get {

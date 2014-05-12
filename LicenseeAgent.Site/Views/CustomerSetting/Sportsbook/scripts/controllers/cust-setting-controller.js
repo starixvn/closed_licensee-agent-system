@@ -1,7 +1,6 @@
 ﻿/*global core, popup, settingContext, result */
 
 'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
     [
@@ -17,7 +16,6 @@ if (fanex.customerSetting) {
                 return;
             }
             core.initInstruction();
-
             // reload setting mode from query string
             settingContext.IsSimpleMode = core.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
             $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
@@ -31,7 +29,6 @@ if (fanex.customerSetting) {
                 fanex.hideHint();
                 $scope.settingMode = isSimpleMode;
                 var positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
-                console.log(positionTakingScope);
                 positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
                 $scope.$apply();
             });

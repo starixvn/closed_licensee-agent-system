@@ -1259,12 +1259,6 @@
   <data name="MaxPerBallLessThanOrEqualTo" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to</value>
   </data>
-  <data name="FirstBallOddEven" xml:space="preserve">
-    <value>1st Ball O/E</value>
-  </data>
-  <data name="FirstBallOverUnder" xml:space="preserve">
-    <value>1st Ball O/U</value>
-  </data>
   <data name="LastBallOddEven" xml:space="preserve">
     <value>Last Ball O/E</value>
   </data>
@@ -1284,9 +1278,18 @@
     <value>Warrior</value>
   </data>
   <data name="NumberGamePositionTakingSimpleModeHeader" xml:space="preserve">
-    <value>Position Taking (NG Dead ball 1st O/U)</value>
+    <value>Position Taking (NG Dead Ball 1st/Last O/U)</value>
   </data>
   <data name="NumberGameSimpleModeNote" xml:space="preserve">
     <value>Note: In simple mode, your changes of Number Game Dead Ball 1st O/U will be applied to other bet types as well.</value>
+  </data>
+  <data name="FirstLastBallOddEven" xml:space="preserve">
+    <value>1st/Last O/E</value>
+  </data>
+  <data name="FirstLastBallOverUnder" xml:space="preserve">
+    <value>1st/Last O/U</value>
+  </data>
+  <data name="MaxBetLessThanOrEqualMaxPerBall" xml:space="preserve">
+    <value>Max Bet must be less than or equal to Max Per Ball</value>
   </data>
 </root>

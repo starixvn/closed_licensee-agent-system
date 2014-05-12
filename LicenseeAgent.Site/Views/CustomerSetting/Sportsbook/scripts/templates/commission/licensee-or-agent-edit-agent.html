@@ -1,5 +1,5 @@
 ﻿<div class="comm-group">
-    <div class="comm-header">
+    <div data-ng-class="{'comm-header first':$index%3==0,'comm-header': $index%3!=0}">
         <span>{{commissionSetting.name}}</span>
     </div>
     <div class="comm-content">

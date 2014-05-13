@@ -17,14 +17,20 @@ if (fanex.customerSetting) {
                     if (commissionSettingViewModel[7].discount !== commissionSettingViewModel[7].oldDiscount) {
                         commissionSetting.DiscountA = commissionSettingViewModel[7].discount;
                     }
+                    else {
+                        commissionSetting = null;
+                    }
                 } else {
                     if (commissionSettingViewModel.line5.memberCommission !== commissionSettingViewModel.line5.oldCommission) {
                         commissionSetting.Discount = commissionSettingViewModel.line5.memberCommission;
                     }
+                    else {
+                        commissionSetting = null;
+                    }
                 }
             }
             return {
-                CommissionItems: [commissionSetting]
+                CommissionItems: commissionSetting === null ? null : [commissionSetting]
             };
         }
     };

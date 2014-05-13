@@ -4,7 +4,8 @@
     </div>
     <div class="comm-content">
         <input type="text" data-ng-model="commissionSetting.discount" maxlength="{{config.maxInput}}"
-            data-ng-change="commissionSetting.actions.onChangeDiscountValue()" class="input value-input">
+            auto-numeric-format='{"mDec": "2", "command":"commissionSetting.actions.onChangeDiscountValue()"}'
+            class="input value-input" />
         <span>[{{commissionSetting.minDiscount}} - {{commissionSetting.maxDiscount}}]</span>
     </div>
 </div>

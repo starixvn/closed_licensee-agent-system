@@ -7,10 +7,6 @@ if (fanex.customerSetting) {
         licenseeOrAgentEditAgentActions: function(modelData, inputControl, scope) {
             return {
                 onChangeDiscountValue: function() {
-                    var endCharacter = modelData.discount.toString().charAt(modelData.discount.toString().length - 1);
-                    if (endCharacter !== '.' && endCharacter !== '0') {
-                        modelData.discount = fanex.roundNumber(modelData.discount, 2);
-                    }
                     modelData.actions.isValid();
                 },
                 isValid: function() {
@@ -29,10 +25,6 @@ if (fanex.customerSetting) {
         agentEditCustomerActions: function(commissionSettingsViewModel, scope) {
             return {
                 onChangeDiscountValue: function(modelData, controlId) {
-                    var endCharacter = modelData.memberCommission.toString().charAt(modelData.memberCommission.toString().length - 1);
-                    if (endCharacter !== '.' && endCharacter !== '0') {
-                        modelData.memberCommission = fanex.roundNumber(modelData.memberCommission, 2);
-                    }
                     commissionSettingsViewModel.actions.isValidLine(modelData, controlId);
                 },
                 isValidLine: function(modelData, controlId) {

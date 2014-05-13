@@ -127,9 +127,18 @@ fanex.angularModule.directive('autoNumericFormat', [
                  }
              };
 
-             var autoNumericOptions = {};
+             var autoNumericOptions = {
+                 aPad: false
+             };
 
              if (params !== undefined) {
+                 if (params['mDec'] !== undefined) {
+                     autoNumericOptions.mDec = params['mDec'];
+                 }
+                 else {
+                     autoNumericOptions.mDec = 0;
+                 }
+
                  if (params['wEmpty'] !== undefined) {
                      autoNumericOptions.wEmpty = params['wEmpty'];
                  }

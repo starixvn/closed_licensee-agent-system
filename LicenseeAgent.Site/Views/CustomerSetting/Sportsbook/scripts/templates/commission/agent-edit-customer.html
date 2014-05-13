@@ -71,7 +71,8 @@
         <div class="comm-group">
             <div class="comm-block">
                 <input id="line1" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line1.memberCommission"
-                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line1, 'line1')" />
+                    auto-numeric-format='{"mDec": "2", "command":"viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line1, \"line1\")"}'
+                    maxlength="{{config.maxInput}}" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line1.agentCommission}}]</span>
@@ -80,7 +81,8 @@
         <div class="comm-group">
             <div class="comm-block">
                 <input id="line2" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line2.memberCommission"
-                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line2, 'line2')" />
+                    auto-numeric-format='{"mDec": "2", "command":"viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line2, \"line2\")"}'
+                    maxlength="{{config.maxInput}}" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line2.agentCommission}}]</span>
@@ -89,7 +91,8 @@
         <div class="comm-group">
             <div class="comm-block">
                 <input id="line3" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line3.memberCommission"
-                       maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line3, 'line3')" />
+                    auto-numeric-format='{"mDec": "2", "command":"viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line3, \"line3\")"}'
+                    maxlength="{{config.maxInput}}" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line3.agentCommission}}]</span>
@@ -98,7 +101,8 @@
         <div class="comm-group">
             <div class="comm-block">
                 <input id="line4" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line4.memberCommission"
-                       maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, 'line4')" />
+                    auto-numeric-format='{"mDec": "2", "command":"viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line4, \"line4\")"}'
+                    maxlength="{{config.maxInput}}" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line4.agentCommission}}]</span>
@@ -107,7 +111,8 @@
         <div class="comm-group" data-ng-if="hasOfferedNumberGame">
             <div class="comm-block">
                 <input id="line5" type="text" class="input" data-ng-model="viewModel.commissionSettingsViewModel.line5.memberCommission"
-                    maxlength="{{config.maxInput}}" data-ng-change="viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line5, 'line5')" />
+                    auto-numeric-format='{"mDec": "2", "command":"viewModel.commissionSettingsViewModel.actions.onChangeDiscountValue(viewModel.commissionSettingsViewModel.line5, \"line5\")"}'
+                    maxlength="{{config.maxInput}}" />
             </div>
             <div class="comm-block">
                 <span>[0 - {{viewModel.commissionSettingsViewModel.line5.agentCommission}}]</span>

@@ -458,7 +458,7 @@ var customerList = (function ($) {
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
-                width: 936,
+                width: 1016,
                 height: 680
             });
         },
@@ -480,7 +480,7 @@ var customerList = (function ($) {
             var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
                 .format(editAgentId, editAgentLevel);
             popup.openFrame(url, {
-                width: 936,
+                width: 1016,
                 height: 680
             });
         },

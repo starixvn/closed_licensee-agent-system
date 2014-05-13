@@ -2248,6 +2248,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy from 1st/Last O/U.
+        /// </summary>
+        public static string NumberGameFirstLastOverUnderCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("NumberGameFirstLastOverUnderCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy from Over/Under.
+        /// </summary>
+        public static string NumberGameOverUnderCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("NumberGameOverUnderCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position Taking (NG Dead Ball 1st/Last O/U).
         /// </summary>
         public static string NumberGamePositionTakingSimpleModeHeader {

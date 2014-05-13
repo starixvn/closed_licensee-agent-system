@@ -7,7 +7,7 @@
     <div class="pt-content-box">
         <div class="pt-content">
             <input class="value-input" type="text" maxlength="{{config.maxInput}}" data-ng-model="ptSimple.Value"
-                data-ng-change="ptSimple.actions.onChangeValue()" />
+                auto-numeric-format='{"mDec":"2","command":"ptSimple.actions.onChangeValue()"}' />
             <span>[{{ptSimple.MinRangeOfValue | number:config.decNumber}} - {{ptSimple.MaxRangeOfValue
                 | number:config.decNumber}}]</span>
         </div>

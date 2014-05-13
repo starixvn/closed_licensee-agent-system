@@ -98,6 +98,8 @@ if (fanex.customerSetting) {
         soccerOnexTwoCopyPtTooltip: 'Copy from 1X2',
         soccerHandicapCopyPt: 'Soccer – Dead Ball Handicap position taking setting is being applied to:',
         basketballHandicapCopyPt: 'Basketball - Handicap position taking setting is being applied to:',
+		numberGameFirstLastOverUnderCopyPtTooltip: 'Copy from 1st/Last O/U',
+		numberGameOverUnderCopyPtTooltip: 'Copy from Over/Under',
         otherBettypeOfSoccer: 'Other bet types of Soccer',
         otherBettypeOfBasketball: 'Other bet types of Basketball',
         applyForAllMembers: 'Apply for all members'

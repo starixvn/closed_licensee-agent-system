@@ -128,6 +128,8 @@ if (fanex.customerSetting) {
         soccerOnexTwoCopyPtTooltip: '<#= resourceXSet.GetString("SoccerOnexTwoCopyPtTooltip")#>',
         soccerHandicapCopyPt: '<#= resourceXSet.GetString("SoccerHandicapCopyPt")#>',
         basketballHandicapCopyPt: '<#= resourceXSet.GetString("BasketballHandicapCopyPt")#>',
+		numberGameFirstLastOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameFirstLastOverUnderCopyPtTooltip")#>',
+		numberGameOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameOverUnderCopyPtTooltip")#>',
         otherBettypeOfSoccer: '<#= resourceXSet.GetString("OtherBettypeOfSoccer")#>',
         otherBettypeOfBasketball: '<#= resourceXSet.GetString("OtherBettypeOfBasketball")#>',
         applyForAllMembers: '<#= resourceXSet.GetString("ApplyForAllMembers")#>'

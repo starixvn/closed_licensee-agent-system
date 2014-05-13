@@ -1292,4 +1292,10 @@
   <data name="MaxBetLessThanOrEqualMaxPerBall" xml:space="preserve">
     <value>Max Bet must be less than or equal to Max Per Ball</value>
   </data>
+  <data name="NumberGameFirstLastOverUnderCopyPtTooltip" xml:space="preserve">
+    <value>Copy from 1st/Last O/U</value>
+  </data>
+  <data name="NumberGameOverUnderCopyPtTooltip" xml:space="preserve">
+    <value>Copy from Over/Under</value>
+  </data>
 </root>

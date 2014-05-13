@@ -98,6 +98,8 @@ if (fanex.customerSetting) {
         soccerOnexTwoCopyPtTooltip: '复制1X2占成数',
         soccerHandicapCopyPt: '足球死球让分盘的宣示价位设置适用于：',
         basketballHandicapCopyPt: '篮球让分盘所占份额的设置适用于：',
+		numberGameFirstLastOverUnderCopyPtTooltip: 'Copy from 1st/Last O/U',
+		numberGameOverUnderCopyPtTooltip: 'Copy from Over/Under',
         otherBettypeOfSoccer: '其他投注类型的足球',
         otherBettypeOfBasketball: '其他投注类型的篮球',
         applyForAllMembers: '所有會員立刻生效'

@@ -803,6 +803,12 @@
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\AgentBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\LicenseeBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\MemberBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\AgentBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\LicenseeBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\MemberBetSettingNG.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.Grid.cshtml" />

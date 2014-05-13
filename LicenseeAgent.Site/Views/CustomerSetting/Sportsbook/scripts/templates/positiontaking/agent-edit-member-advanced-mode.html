@@ -15,7 +15,7 @@
         </div>
         <div class="pt-content">
             <input class="value-input" type="text" maxlength="{{config.maxInput}}" data-ng-model="pt.Value"
-                data-ng-change="pt.actions.onChangeValue()" />
+                auto-numeric-format='{"mDec":"2","command":"pt.actions.onChangeValue()"}' />
             <span>[{{pt.MinRangeOfValue | number:config.decNumber}} - {{pt.MaxRangeOfValue | number:config.decNumber}}]</span>
         </div>
     </div>

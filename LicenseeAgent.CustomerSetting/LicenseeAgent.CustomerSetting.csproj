@@ -86,6 +86,7 @@
     <Compile Include="Criteria\AgentUpdateAgentCriteria.cs" />
     <Compile Include="Criteria\SportsBook\AgentGetMemberSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\AgentUpdateMemberCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\LicenseeGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Entities\BettingLimitItem.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
     <Compile Include="Entities\CommissionSetting.cs" />

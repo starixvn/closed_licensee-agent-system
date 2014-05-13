@@ -31,9 +31,9 @@
     <Setting Key="Las_AgentInternalLogin" SpName="Las_AgentInternalLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AdminCheckInLicensee" SpName="Las_AdminCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentReCheckInLicensee" SpName="Las_AgentReCheckInLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>    
+    <Setting Key="Las_LicenseeAdminLogin" SpName="Las_LicenseeAdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
-  <Function Name="HomePage">    
+  <Function Name="HomePage">
     <Setting Key="Las_AgentSelStatisticsInfo" SpName="Las_AgentSelStatisticsInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelNewMemOfMonth" SpName="Las_AgentSelNewMemOfMonth" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentSelTopWinningMembers" SpName="Las_AgentSelTopWinningMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -65,6 +65,10 @@
     <Setting Key="Las_AgentGetAgentNumberGameSettingForUpdate" SpName="Las_AgentGetAgentNGSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentGetMemberNumberGameSettingForUpdate" SpName="Las_AgentGetMemberNGSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentGetMemberNumberGameSettingIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdateNG" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+  </Function>
+  <Function Name="CustomerSetting - VirtualSports">
+    <Setting Key="Las_LicenseeGetAgentVirtualSportsSettingForUpdate" SpName="Las_LicenseeGetAgentVSSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeEditAgentVirtualSports" SpName="Las_LicenseeEditAgentVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -111,7 +115,7 @@
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    
+
     <!-- Totalbets - Betlist-->
     <Setting Key="LAS_Betlist_SelRunningByBettypeMatch" SpName="LAS_Betlist_SelRunningByBettypeMatch" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelRunningOutrightTickets" SpName="LAS_Betlist_SelRunningOutrightTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -135,7 +139,7 @@
     <Setting Key="LAS_Statement_AgentTransferDetail" SpName="LAS_Statement_AgentTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Statement_MemberTransferDetail" SpName="LAS_Statement_MemberTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!--Other reports should be appended here-->
-    <Setting Key="LAS_Statement_SelByUsername" SpName="LAS_Statement_SelByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>    
+    <Setting Key="LAS_Statement_SelByUsername" SpName="LAS_Statement_SelByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="AccountInformation">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

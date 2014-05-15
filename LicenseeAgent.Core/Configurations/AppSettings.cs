@@ -7,7 +7,9 @@
 namespace LicenseeAgent.Core.Configurations
 {
     using System;
+    using System.Collections.Generic;
     using System.Configuration;
+    using System.Linq;
     using Fanex.Logging;
 
     /// <summary>
@@ -28,7 +30,7 @@ namespace LicenseeAgent.Core.Configurations
             LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
             IsDownTime = GetValue("IsDownTime") == "1";
             TaiwanAPI = GetValue("TaiwanAPI");
-            TrustedAdmins = GetValue("TrustedAdmins");
+            TrustedAdmins = GetValue("TrustedAdmins").Split(';').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
         }
 
         public static bool IsAdminSite { get; private set; }
@@ -49,7 +51,7 @@ namespace LicenseeAgent.Core.Configurations
 
         public static string TaiwanAPI { get; private set; }
 
-        public static string TrustedAdmins { get; private set; }
+        public static List<string> TrustedAdmins { get; private set; }
 
         /// <summary>
         /// Gets the value.

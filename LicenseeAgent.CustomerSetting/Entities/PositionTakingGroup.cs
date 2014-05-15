@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
+    using LicenseeAgent.CustomerSetting.Utils;
 
     /// <summary>
     /// Group of position taking, representative for each sport.
@@ -23,10 +24,5 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public bool IsLive { get; set; }
 
         public IList<PositionTakingItem> PositionTakings { get; set; }
-
-        public string GenerateKey(int betTypeId)
-        {
-            return string.Format("{0}_{1}_{2}", SportId, IsLive, betTypeId);
-        }
     }
 }

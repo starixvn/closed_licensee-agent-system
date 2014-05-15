@@ -56,12 +56,6 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
             };
 
-            if (!result.IsValid(Product.Product_5, settingContext))
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
             return result;
         }
 

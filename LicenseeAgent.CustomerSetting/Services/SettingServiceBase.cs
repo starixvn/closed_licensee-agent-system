@@ -51,12 +51,6 @@ namespace LicenseeAgent.CustomerSetting.Services
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
             };
 
-            if (!result.IsValid(product, settingContext))
-            {
-                errCode = Result.FailureValue;
-                return null;
-            }
-
             return result;
         }
     }

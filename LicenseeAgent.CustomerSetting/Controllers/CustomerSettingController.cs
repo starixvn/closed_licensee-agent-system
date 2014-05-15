@@ -522,7 +522,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         msgContent = string.Format(
                         ResourceManager.GetErrMsg(result.ErrCode),
                             GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            DataRefWrapper.GetBetTypeName(result.PTBetType));
+                            GetBetTypeName(result.PTBetType));
                         break;
 
                     case (int)ErrCode.Msg_1015:
@@ -531,7 +531,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
                             GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            DataRefWrapper.GetBetTypeName(result.PTBetType));
+                            GetBetTypeName(result.PTBetType));
                         break;
 
                     case (int)ErrCode.Msg_1013:
@@ -542,7 +542,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                             Formatter.FormatPercent(result.MinPTOutput),
                             Formatter.FormatPercent(result.MaxPTOutput),
                             GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            DataRefWrapper.GetBetTypeName(result.PTBetType));
+                            GetBetTypeName(result.PTBetType));
                         break;
 
                     case (int)ErrCode.Msg_1016:
@@ -568,6 +568,25 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return sportType == (int)SportType.SportType_1
                 ? string.Format("{0} - {1}", sportName, isLive ? Las.Live : Las.DeadBall)
                 : sportName;
+        }
+
+        /// <summary>
+        /// Gets the name of the bet type.
+        /// </summary>
+        /// <param name="betType">Type of the bet.</param>
+        /// <returns>Returns name of bet type.</returns>
+        private static string GetBetTypeName(int betType)
+        {
+            if (betType == (int)BetType.BetType_81)
+            {
+                return Las.FirstLastBallOverUnder;
+            }
+            else if (betType == (int)BetType.BetType_83)
+            {
+                return Las.FirstLastBallOddEven;
+            }
+
+            return DataRefWrapper.GetBetTypeName(betType);
         }
 
         /// <summary>

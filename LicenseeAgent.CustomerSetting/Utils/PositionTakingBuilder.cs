@@ -19,6 +19,11 @@ namespace LicenseeAgent.CustomerSetting.Utils
     /// </summary>
     public static class PositionTakingBuilder
     {
+        public static string GenerateKey(int sportId, bool isLive, int betTypeId)
+        {
+            return string.Format("{0}_{1}_{2}", sportId, isLive, betTypeId);
+        }
+
         /// <summary>
         /// Build position taking group from raw data.
         /// </summary>
@@ -130,10 +135,10 @@ namespace LicenseeAgent.CustomerSetting.Utils
             }
             else
             {
-                string positionTakingKey = positionTakingGroup.GenerateKey(betTypeId);
+                string positionTakingKey = PositionTakingBuilder.GenerateKey(positionTakingGroup.SportId, positionTakingGroup.IsLive, betTypeId);
                 foreach (var positionTakingItem in positionTakingList)
                 {
-                    if (positionTakingItem.GenerateKey() == positionTakingKey)
+                    if (PositionTakingBuilder.GenerateKey(positionTakingItem.SportId, positionTakingItem.IsLive, positionTakingItem.BetTypeId) == positionTakingKey)
                     {
                         positionTakingGroup.PositionTakings.Add(positionTakingItem);
                     }
@@ -152,10 +157,10 @@ namespace LicenseeAgent.CustomerSetting.Utils
             PositionTakingGroup positionTakingGroup,
             int betTypeId)
         {
-            var positionTakingKey = positionTakingGroup.GenerateKey(betTypeId);
+            var positionTakingKey = PositionTakingBuilder.GenerateKey(positionTakingGroup.SportId, positionTakingGroup.IsLive, betTypeId);
             foreach (var positionTakingItem in positionTakingList)
             {
-                if (positionTakingItem.GenerateKey() == positionTakingKey)
+                if (PositionTakingBuilder.GenerateKey(positionTakingItem.SportId, positionTakingItem.IsLive, positionTakingItem.BetTypeId) == positionTakingKey)
                 {
                     positionTakingGroup.PositionTakings.Add(positionTakingItem);
                 }

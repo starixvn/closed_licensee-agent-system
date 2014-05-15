@@ -6,9 +6,13 @@
 
 namespace LicenseeAgent.CustomerSetting.Entities
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.CustomerSetting.Core;
+    using LicenseeAgent.CustomerSetting.Utils;
 
     /// <summary>
     /// CustomerSetting class.
@@ -28,34 +32,152 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </summary>
         /// <param name="product">The product id.</param>
         /// <param name="settingContext">The setting context.</param>
+        /// <param name="isStrict">If set to <c>true</c> mean that settings is from DB.</param>
         /// <returns>
         /// Returns true if entity is valid.
         /// </returns>
-        public bool IsValid(Product product, SettingContext settingContext)
+        public bool IsValid(Product product, SettingContext settingContext, bool isStrict = false)
         {
-            if (settingContext.FormId != FormType.Add && settingContext.RoleId != (int)Role.AgentLevel0)
+            if (!ValidateBetSetting(product, settingContext))
             {
+                return false;
+            }
+
+            if (!ValidateCommissionSetting(product, settingContext))
+            {
+                return false;
+            }
+
+            if (!ValidatePositionTakingSetting(product, settingContext, isStrict))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates the bet setting.
+        /// </summary>
+        /// <param name="product">The product.</param>
+        /// <param name="settingContext">The setting context.</param>
+        /// <returns>Returns true if valid.</returns>
+        private bool ValidateBetSetting(Product product, SettingContext settingContext)
+        {
+            if (settingContext.FormId == FormType.Add)
+            {
+                if (BettingLimitSetting == null
+                    || BettingLimitSetting.Count == 0)
+                {
+                    return false;
+                }
+            }
+
+            if (BettingLimitSetting != null)
+            {
+                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                foreach (var item in BettingLimitSetting)
+                {
+                    if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates the commission setting.
+        /// </summary>
+        /// <param name="product">The product.</param>
+        /// <param name="settingContext">The setting context.</param>
+        /// <returns>Returns true if valid.</returns>
+        private bool ValidateCommissionSetting(Product product, SettingContext settingContext)
+        {
+            if (product == Product.Product_5)
+            {
+                return true;
+            }
+
+            if (settingContext.FormId == FormType.Add)
+            {
+                if (CommissionSetting == null
+                    || CommissionSetting.CommissionItems == null
+                    || CommissionSetting.CommissionItems.Count == 0)
+                {
+                    return false;
+                }
+            }
+
+            if (CommissionSetting != null && CommissionSetting.CommissionItems != null)
+            {
+                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                foreach (var item in CommissionSetting.CommissionItems)
+                {
+                    if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates the position taking setting.
+        /// </summary>
+        /// <param name="product">The product.</param>
+        /// <param name="settingContext">The setting context.</param>
+        /// <param name="isStrict">If set to <c>true</c> [is strict].</param>
+        /// <returns>Returns true if valid.</returns>
+        private bool ValidatePositionTakingSetting(Product product, SettingContext settingContext, bool isStrict)
+        {
+            if (settingContext.FormId == FormType.Add)
+            {
+                if (settingContext.RoleId == (int)Role.AgentLevel0 && !isStrict)
+                {
+                    return true;
+                }
+
                 if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
                 {
                     return false;
                 }
             }
 
-            if (settingContext.FormId != FormType.EditIndirectMember)
+            if (PositionTakingSetting != null)
             {
-                if (product != Product.Product_5)
+                var configKeys = new List<string>();
+                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                foreach (var sportType in productSettings.SportType)
                 {
-                    if (CommissionSetting == null
-                        || CommissionSetting.CommissionItems == null
-                        || CommissionSetting.CommissionItems.Count == 0)
+                    var betTypeIds = sportType.BetTypeIds.Split(',');
+                    foreach (var betTypeId in betTypeIds)
                     {
-                        return false;
+                        configKeys.Add(PositionTakingBuilder.GenerateKey(sportType.Id, sportType.IsLive, Convert.ToInt32(betTypeId)));
                     }
                 }
 
-                if (BettingLimitSetting == null || BettingLimitSetting.Count == 0)
+                var inputKeys = new List<string>();
+                foreach (var item in PositionTakingSetting)
+                {
+                    inputKeys.Add(PositionTakingBuilder.GenerateKey(item.SportId, item.IsLive, item.BetTypeId));
+                }
+
+                if (settingContext.FormId == FormType.Add && inputKeys.Count != configKeys.Count)
                 {
                     return false;
+                }
+
+                foreach (var key in inputKeys)
+                {
+                    if (!configKeys.Contains(key))
+                    {
+                        return false;
+                    }
                 }
             }
 

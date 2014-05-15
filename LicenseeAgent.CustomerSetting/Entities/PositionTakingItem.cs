@@ -30,10 +30,5 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public PositionTakingItem Upline { get; set; }
 
         public PositionTakingItem AllDownLine { get; set; }
-
-        public string GenerateKey()
-        {
-            return string.Format("{0}_{1}_{2}", SportId, IsLive, BetTypeId);
-        }
     }
 }

@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web
 {
+    using System;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Enumerations;
 
@@ -73,9 +74,11 @@ namespace LicenseeAgent.Web
 
         public static bool IsShowMaintenance(this ICurrentSession currentSession)
         {
+            var isTrusted = AppSettings.TrustedAdmins == "*"
+                || AppSettings.TrustedAdmins.IndexOf(currentSession.LoginUserName, StringComparison.OrdinalIgnoreCase) != -1;
             return AppSettings.IsAdminSite
                 && currentSession.IsCSDIT
-                && AppSettings.TrustedAdmins.Contains(currentSession.LoginUserName);
+                && isTrusted;
         }
     }
 }

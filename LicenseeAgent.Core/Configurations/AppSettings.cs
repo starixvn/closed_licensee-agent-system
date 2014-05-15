@@ -28,6 +28,7 @@ namespace LicenseeAgent.Core.Configurations
             LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
             IsDownTime = GetValue("IsDownTime") == "1";
             TaiwanAPI = GetValue("TaiwanAPI");
+            TrustedAdmins = GetValue("TrustedAdmins");
         }
 
         public static bool IsAdminSite { get; private set; }
@@ -47,6 +48,8 @@ namespace LicenseeAgent.Core.Configurations
         public static int LocalLicenseeId { get; private set; }
 
         public static string TaiwanAPI { get; private set; }
+
+        public static string TrustedAdmins { get; private set; }
 
         /// <summary>
         /// Gets the value.

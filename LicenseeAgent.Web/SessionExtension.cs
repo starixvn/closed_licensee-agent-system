@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web
 {
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
@@ -68,6 +69,13 @@ namespace LicenseeAgent.Web
         {
             return currentSession.AgentInfo.IsLevel0
                 || agentLevel == currentSession.AgentInfo.AgentLevel;
+        }
+
+        public static bool IsShowMaintenance(this ICurrentSession currentSession)
+        {
+            return AppSettings.IsAdminSite
+                && currentSession.IsCSDIT
+                && AppSettings.TrustedAdmins.Contains(currentSession.LoginUserName);
         }
     }
 }

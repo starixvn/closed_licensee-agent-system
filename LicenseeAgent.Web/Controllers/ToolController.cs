@@ -27,6 +27,7 @@ namespace LicenseeAgent.Web.Controllers
     /// Tool controller.
     /// </summary>
     [AdminSite]
+    [TrustedAdmin]
     [AccountType(AccountType.CSD_IT)]
     public class ToolController : BaseController
     {

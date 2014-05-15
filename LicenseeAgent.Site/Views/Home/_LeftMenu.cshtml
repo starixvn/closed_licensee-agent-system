@@ -43,7 +43,7 @@
                     @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
                 </ul>
             </li>
-            @if (AppSettings.IsAdminSite && SessionManager.CurrentSession.IsCSDIT)
+            @if (SessionManager.CurrentSession.IsShowMaintenance())
             {
                 <li class="divider"></li>
                 <li><a class="tree-toggler nav-header">@Las.Maintenance</a>

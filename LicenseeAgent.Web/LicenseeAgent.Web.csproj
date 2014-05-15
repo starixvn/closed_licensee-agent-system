@@ -79,6 +79,7 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
+    <Compile Include="Criterias\SyncMonitoringGetAPIUrlCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringUpdateRunCountCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringUpdateStatusCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringCriteria.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\SyncMonitoringAPIUrl.cs" />
     <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />

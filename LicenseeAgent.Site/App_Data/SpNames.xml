@@ -166,6 +166,7 @@
     <Setting Key="LAS_ChangeStatus_Member_Writelog" SpName="LAS_ChangeStatus_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function name="Monitoring">
+    <Setting Key="Las_SyncMonitoring_GetAPIUrls" SpName="Las_SyncMonitoring_GetAPIUrls" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SyncMonitoring" SpName="Las_SyncMonitoring" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SyncMonitoring_UpdateLogStatus" SpName="Las_SyncMonitoring_UpdateLogStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SyncMonitoring_UpdateRunCount" SpName="Las_SyncMonitoring_UpdateRunCount" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LicenseeAgent.Web.ViewModels.SyncMonitoringViewModel
+@{
     ViewBag.Title = "Tool";
 }
 @section css
@@ -23,8 +24,10 @@
         <label for="taiwanapiurl">Taiwan API's URL</label>
         <select id="taiwanapiurl">
           <option value="All">All</option>
-          <option value="http://lastest.net2cast.com/API">http://lastest.net2cast.com/API</option>
-          <option value="http://las.net2cast.net/API">http://las.net2cast.net/API</option>
+          @foreach (var apiUrl in Model.APIUrls)
+          {
+              <option value="@apiUrl.Text">@apiUrl.Text</option>
+          }
         </select>
     </div>
     <div class="controls-row">

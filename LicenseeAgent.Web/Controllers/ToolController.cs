@@ -20,6 +20,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Web.ViewModels;
     using Services;
 
     /// <summary>
@@ -95,7 +96,17 @@ namespace LicenseeAgent.Web.Controllers
         [HttpGet]
         public ActionResult SyncMonitoring()
         {
-            return View();
+            var viewModel = new SyncMonitoringViewModel();
+            var apiUrls = _monitoringService.GetAPIUrls(new SyncMonitoringGetAPIUrlCriteria { });
+            foreach (var apiUrl in apiUrls)
+            {
+                viewModel.APIUrls.Add(new SelectListItem
+                {
+                    Text = apiUrl.Url,
+                    Value = apiUrl.Url
+                });
+            }
+            return View(viewModel);
         }
 
         /// <summary>
@@ -244,7 +255,8 @@ namespace LicenseeAgent.Web.Controllers
             {
                 _monitoringService.UpdateRunCount(new SyncMonitoringUpdateRunCountCriteria
                 {
-                    KeyID = keyId
+                    KeyID = keyId,
+                    Remark = responseResult.ApiErrMsg
                 });
             }
         }

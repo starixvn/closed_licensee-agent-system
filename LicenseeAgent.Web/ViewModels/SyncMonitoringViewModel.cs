@@ -10,7 +10,6 @@
 
 namespace LicenseeAgent.Web.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
 
@@ -21,11 +20,9 @@ namespace LicenseeAgent.Web.ViewModels
     {
         public SyncMonitoringViewModel()
         {
-            Actions = new List<SelectListItem>();
+            APIUrls = new List<SelectListItem>();
         }
 
-        public string TaiwanAPIUrl { get; set; }
-
-        public IList<SelectListItem> Actions { get; set; }
+        public IList<SelectListItem> APIUrls { get; set; }
     }
 }

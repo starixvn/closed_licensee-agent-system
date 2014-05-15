@@ -20,6 +20,11 @@ namespace LicenseeAgent.Web.Services
     /// </summary>
     public class MonitoringService : QueryService, IMonitoringService
     {
+        public IEnumerable<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria)
+        {
+            return GetEntites<SyncMonitoringAPIUrl>(criteria);
+        }
+
         public IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria)
         {
             return GetEntites<SyncMonitoring>(criteria);

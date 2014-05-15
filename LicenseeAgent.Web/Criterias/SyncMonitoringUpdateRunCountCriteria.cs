@@ -19,6 +19,8 @@ namespace LicenseeAgent.Web.Criterias
     {
         public int KeyID { get; set; }
 
+        public string Remark { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_SyncMonitoring_UpdateRunCount";

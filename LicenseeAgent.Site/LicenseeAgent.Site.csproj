@@ -812,7 +812,6 @@
     <Content Include="Views\CustomerSetting\NumberGame\PositionTakingSimpleMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
-    <Content Include="Views\CustomerSetting\EditVirtualSportsCustomer.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\BetSetting.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\CustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\PositionTaking.cshtml" />

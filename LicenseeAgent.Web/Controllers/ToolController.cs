@@ -106,6 +106,7 @@ namespace LicenseeAgent.Web.Controllers
                     Value = apiUrl.Url
                 });
             }
+
             return View(viewModel);
         }
 

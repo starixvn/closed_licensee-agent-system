@@ -1304,6 +1304,9 @@
   <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
     <value>Updated position taking {0} successfully.</value>
   </data>
+  <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
+    <value>Updated position taking {0} successfully.</value>
+  </data>
   <data name="EditVirtualSportsMember" xml:space="preserve">
     <value>Edit Virtual Sports Member</value>
   </data>

@@ -247,6 +247,7 @@ namespace LicenseeAgent.Taiwan.Services
             {
                 ServiceExtension.WriteError(action, responseResult);
             }
+
             return responseResult;
         }
     }

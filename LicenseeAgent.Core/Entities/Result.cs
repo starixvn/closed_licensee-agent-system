@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Core.Entities
 {
     using System;
+    using System.Xml.Serialization;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>

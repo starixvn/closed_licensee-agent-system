@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Services
 {
+    using System.Collections.Generic;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.ViewModels;
@@ -19,8 +20,8 @@ namespace LicenseeAgent.CustomerSetting.Services
 
         InsertResult InsertCustomer(InsertCustomerViewModel model);
 
-        InsertResult UpdateCustomer(UpdateCustomerViewModel model);
+        IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);
 
-        InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model);
+        IList<UpdateResult> UpdateIndirectCustomer(UpdateCustomerViewModel model);
     }
 }

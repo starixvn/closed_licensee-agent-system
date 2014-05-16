@@ -287,4 +287,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_1101" xml:space="preserve">
     <value>Max Per Ball must be greater than or equal to Max Bet ({0})</value>
   </data>
+  <data name="Msg_1102" xml:space="preserve">
+    <value>Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0}).</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@
 namespace LicenseeAgent.CustomerSetting.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
@@ -15,6 +16,7 @@ namespace LicenseeAgent.CustomerSetting.Services
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.ViewModels;
@@ -57,15 +59,17 @@ namespace LicenseeAgent.CustomerSetting.Services
                     return new InsertResult
                     {
                         ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        MaxCreditOutput = Converter.ToDecimal(parameters["maxcreditoutput"]),
-                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
+                        MinPT = Converter.To<short>(parameters["minptoutput"]),
+                        MaxPT = Converter.To<short>(parameters["maxptoutput"]),
+                        MaxCredit = Converter.ToDecimal(parameters["maxcreditoutput"]),
+                        BetLimit = Converter.ToDecimal(parameters["betlimitoutput"]),
+                        SportType = Converter.ToInt(parameters["betlimitsporttype"]) == 0 
+                                    ? Converter.ToInt(parameters["ptsporttype"]) 
+                                    : Converter.ToInt(parameters["betlimitsporttype"]),
+                        BetType = Converter.ToInt(parameters["betlimitbettype"]) == 0 
+                                    ? Converter.ToInt(parameters["ptbettype"]) 
+                                    : Converter.ToInt(parameters["betlimitbettype"]),
+                        IsLive = Converter.ToBool(parameters["isliveoutput"]),
                         CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
                         IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
                     };
@@ -84,7 +88,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <returns>
         /// Status of insert command.
         /// </returns>
-        public InsertResult UpdateCustomer(UpdateCustomerViewModel model)
+        public IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model)
         {
             var criteria = CreateUpdateCustomerCriteria(model);
             try
@@ -98,19 +102,8 @@ namespace LicenseeAgent.CustomerSetting.Services
                 {
                     var parameters = criteria.GetSpParams();
                     objDb.ExecuteNonQuery(parameters);
-                    return new InsertResult
-                    {
-                        ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        BetLimitOutput = Converter.ToDecimal(parameters["betlimitoutput"]),
-                        BetLimitSportType = Converter.ToInt(parameters["betlimitsporttype"]),
-                        BetLimitBetType = Converter.ToInt(parameters["betlimitbettype"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"]),
-                        CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"])
-                    };
+
+                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
                 }
             }
             catch (Exception exception)
@@ -126,7 +119,7 @@ namespace LicenseeAgent.CustomerSetting.Services
         /// <returns>
         /// Status of insert command.
         /// </returns>
-        public InsertResult UpdateIndirectCustomer(UpdateCustomerViewModel model)
+        public IList<UpdateResult> UpdateIndirectCustomer(UpdateCustomerViewModel model)
         {
             var criteria = CreateUpdateCustomerCriteria(model);
             try
@@ -140,15 +133,8 @@ namespace LicenseeAgent.CustomerSetting.Services
                 {
                     var parameters = criteria.GetSpParams();
                     objDb.ExecuteNonQuery(parameters);
-                    return new InsertResult
-                    {
-                        ErrCode = Converter.ToInt(parameters["msgid"]),
-                        MinPTOutput = Converter.To<short>(parameters["minptoutput"]),
-                        MaxPTOutput = Converter.To<short>(parameters["maxptoutput"]),
-                        PTSportType = Converter.ToInt(parameters["ptsporttype"]),
-                        PTBetType = Converter.ToInt(parameters["ptbettype"]),
-                        IsLiveOutput = Converter.ToBool(parameters["isliveoutput"])
-                    };
+
+                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
                 }
             }
             catch (Exception exception)

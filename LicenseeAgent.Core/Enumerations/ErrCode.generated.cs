@@ -251,6 +251,11 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1101 = 1101,
 
         /// <summary>
+        /// Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0})..
+        /// </summary>
+        Msg_1102 = 1102,
+
+        /// <summary>
         /// This user is not active..
         /// </summary>
         Msg_200022 = 200022,

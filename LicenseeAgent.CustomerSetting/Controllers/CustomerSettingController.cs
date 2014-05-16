@@ -15,6 +15,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Services;
@@ -379,15 +380,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedJson();
             }
 
-            var result = model.SettingContext.FormId == FormType.EditIndirectMember
+            var results = model.SettingContext.FormId == FormType.EditIndirectMember
                 ? _customerSettingService.UpdateIndirectCustomer(model)
                 : _customerSettingService.UpdateCustomer(model);
-
-            var hasUpdateCommission = model.SportsBookSetting.CommissionSetting != null
-                && model.SportsBookSetting.CommissionSetting.CommissionItems.Count > 0;
-            var hasUpdateBetSetting = model.SportsBookSetting.BettingLimitSetting != null
-                && model.SportsBookSetting.BettingLimitSetting.Count > 0;
-            var messages = GenerateMessages(result, true, hasUpdateCommission, hasUpdateBetSetting);
+            var messages = new List<Result>();
+            
+            foreach (var result in results)
+            {
+                messages.Add(GenerateMessages(result, true));
+            }
+            
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -535,8 +537,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </summary>
         /// <param name="result">The result.</param>
         /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
-        /// <param name="hasUpdateCommission">If set to <c>true</c> [has update commission].</param>
-        /// <param name="hasUpdateBetSetting">If set to <c>true</c> [has update bet setting].</param>
         /// <returns>
         /// Returns a list of result.
         /// </returns>
@@ -544,55 +544,28 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        private static IList<Result> GenerateMessages(
-            InsertResult result,
-            bool isUpdate = false,
-            bool hasUpdateCommission = false,
-            bool hasUpdateBetSetting = false)
+        private static Result GenerateMessages(dynamic result, bool isUpdate = false)
         {
-            var msgContents = new List<Result>();
-            if (result.ErrCode == 0)
+            if ((int)result.ErrCode == 0)
             {
-                msgContents.Add(new Result(Result.SuccessValue, isUpdate ? Las.UpdateSuccessfully : Las.InsertSuccessfully));
+                return isUpdate ? GetUpdateMessageSuccess(result) : new Result(Result.SuccessValue, Las.InsertSuccessfully);
             }
             else
             {
-                if (isUpdate)
-                {
-                    if (BetSettingErrCodes.Contains((ErrCode)result.ErrCode))
-                    {
-                        if (hasUpdateCommission)
-                        {
-                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
-                        }
-                    }
-                    else if (PositionTakingErrCodes.Contains((ErrCode)result.ErrCode))
-                    {
-                        if (hasUpdateCommission)
-                        {
-                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateCommissionSuccessfully));
-                        }
-
-                        if (hasUpdateBetSetting)
-                        {
-                            msgContents.Add(new Result(Result.SuccessValue, Las.UpdateBetSettingSuccessfully));
-                        }
-                    }
-                }
-
-                result.MinPTOutput = result.MinPTOutput / 10000;
-                result.MaxPTOutput = result.MaxPTOutput / 10000;
+                result.MinPT = result.MinPT / 10000;
+                result.MaxPT = result.MaxPT / 10000;
                 string msgContent;
-                switch (result.ErrCode)
+                switch ((int)result.ErrCode)
                 {
                     case (int)ErrCode.Msg_1003:
                     case (int)ErrCode.Msg_1004:
                     case (int)ErrCode.Msg_1005:
                     case (int)ErrCode.Msg_1100:
                     case (int)ErrCode.Msg_1101:
+                    case (int)ErrCode.Msg_1102:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
-                            DataRefWrapper.GetSportName(result.BetLimitSportType, result.BetLimitBetType));
+                            DataRefWrapper.GetSportName(result.SportType, result.BetType));
                         break;
 
                     case (int)ErrCode.Msg_1006:
@@ -600,8 +573,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1008:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
-                            Formatter.FormatInt(result.BetLimitOutput),
-                            DataRefWrapper.GetSportName(result.BetLimitSportType, result.BetLimitBetType));
+                            Formatter.FormatInt(result.BetLimit),
+                            DataRefWrapper.GetSportName(result.SportType, result.BetType));
                         break;
 
                     case (int)ErrCode.Msg_1010:
@@ -609,17 +582,17 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1012:
                         msgContent = string.Format(
                         ResourceManager.GetErrMsg(result.ErrCode),
-                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            GetBetTypeName(result.PTBetType));
+                            GetSportName(result.SportType, result.BetType, result.IsLive),
+                            GetBetTypeName(result.BetType));
                         break;
 
                     case (int)ErrCode.Msg_1015:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
-                            Formatter.FormatPercent(result.MinPTOutput),
-                            Formatter.FormatPercent(result.MaxPTOutput),
-                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            GetBetTypeName(result.PTBetType));
+                            Formatter.FormatPercent(result.MinPT),
+                            Formatter.FormatPercent(result.MaxPT),
+                            GetSportName(result.SportType, result.BetType, result.IsLive),
+                            GetBetTypeName(result.BetType));
                         break;
 
                     case (int)ErrCode.Msg_1013:
@@ -627,16 +600,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1021:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
-                            Formatter.FormatPercent(result.MinPTOutput),
-                            Formatter.FormatPercent(result.MaxPTOutput),
-                            GetSportName(result.PTSportType, result.PTBetType, result.IsLiveOutput),
-                            GetBetTypeName(result.PTBetType));
+                            Formatter.FormatPercent(result.MinPT),
+                            Formatter.FormatPercent(result.MaxPT),
+                            GetSportName(result.SportType, result.BetType, result.IsLive),
+                            GetBetTypeName(result.BetType));
                         break;
 
                     case (int)ErrCode.Msg_1016:
                         msgContent = string.Format(
                             ResourceManager.GetErrMsg(result.ErrCode),
-                            Formatter.FormatInt(result.MaxCreditOutput));
+                            Formatter.FormatInt(result.MaxCredit));
                         break;
 
                     default:
@@ -644,10 +617,36 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         break;
                 }
 
-                msgContents.Add(new Result(result.ErrCode, msgContent));
+                return new Result(result.ErrCode, msgContent);
+            }
+        }
+
+        /// <summary>
+        /// Get update message success.
+        /// </summary>
+        /// <param name="result">Insert or Update Result.</param>
+        /// <returns>Result Information.</returns>
+        private static Result GetUpdateMessageSuccess(dynamic result)
+        {
+            var productName = (int)result.SportType == (int)SportType.SportType_1
+                                    ? Las.Sportsbook 
+                                    : DataRefWrapper.GetSportName((int)result.SportType);
+            var msgContent = string.Empty;
+
+            switch ((ErrorType)result.ErrType)
+            {
+                case ErrorType.Commission:
+                    msgContent = string.Format(Las.UpdateCommissionSuccessfully, productName);
+                    break;
+                case ErrorType.BetSetting:
+                    msgContent = string.Format(Las.UpdateBetSettingSuccessfully, productName);
+                    break;
+                case ErrorType.PositionTaking:
+                    msgContent = string.Format(Las.UpdatePositionTakingSuccessfully, productName);
+                    break;
             }
 
-            return msgContents;
+            return new Result(Result.SuccessValue, msgContent);
         }
 
         private static string GetSportName(int sportType, int betType, bool isLive)

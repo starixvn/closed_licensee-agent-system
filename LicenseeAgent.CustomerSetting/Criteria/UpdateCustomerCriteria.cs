@@ -49,23 +49,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria
 
         public string BetLimit3rd { get; set; }
 
-        public int MsgId { get; set; }
-
-        public int BetLimitSportType { get; set; }
-
-        public int BetLimitBetType { get; set; }
-
-        public int PTSportType { get; set; }
-
-        public int PTBetType { get; set; }
-
-        public short MinPTOutput { get; set; }
-
-        public short MaxPTOutput { get; set; }
-
-        public decimal BetLimitOutput { get; set; }
-
-        public bool IsLiveOutput { get; set; }
+        public string SettingOutput { get; set; }
 
         public override bool IsValid()
         {

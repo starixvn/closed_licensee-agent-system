@@ -3408,7 +3408,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated bet setting successfully..
+        ///   Looks up a localized string similar to Updated bet setting {0} successfully..
         /// </summary>
         public static string UpdateBetSettingSuccessfully {
             get {
@@ -3417,7 +3417,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated commission setting successfully..
+        ///   Looks up a localized string similar to Updated commission setting {0} successfully..
         /// </summary>
         public static string UpdateCommissionSuccessfully {
             get {
@@ -3431,6 +3431,15 @@ namespace LicenseeAgent.Resources {
         public static string UpdateCredit {
             get {
                 return ResourceManager.GetString("UpdateCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated position taking {0} successfully..
+        /// </summary>
+        public static string UpdatePositionTakingSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatePositionTakingSuccessfully", resourceCulture);
             }
         }
         

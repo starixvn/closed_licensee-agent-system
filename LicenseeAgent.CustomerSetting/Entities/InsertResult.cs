@@ -28,22 +28,18 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public string IBCUserName { get; set; }
 
-        public decimal MinPTOutput { get; set; }
+        public decimal MinPT { get; set; }
 
-        public decimal MaxPTOutput { get; set; }
+        public decimal MaxPT { get; set; }
 
-        public decimal MaxCreditOutput { get; set; }
+        public decimal MaxCredit { get; set; }
 
-        public decimal BetLimitOutput { get; set; }
+        public decimal BetLimit { get; set; }
 
-        public bool IsLiveOutput { get; set; }
+        public bool IsLive { get; set; }
 
-        public int BetLimitSportType { get; set; }
+        public int SportType { get; set; }
 
-        public int BetLimitBetType { get; set; }
-
-        public int PTSportType { get; set; }
-
-        public int PTBetType { get; set; }
+        public int BetType { get; set; }
     }
 }

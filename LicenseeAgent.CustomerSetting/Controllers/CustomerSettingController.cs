@@ -358,7 +358,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 }
             }
 
-            var messages = GenerateMessages(result);
+            var messages = new List<Result> { GenerateMessages(result) };
+
             return Json(new { ErrCode = Result.SuccessValue, Messages = messages });
         }
 

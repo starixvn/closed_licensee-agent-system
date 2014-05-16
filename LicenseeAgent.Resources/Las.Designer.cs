@@ -2491,6 +2491,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other sport types of Virtual Soccer.
+        /// </summary>
+        public static string OtherSporttypeOfVirtualSoccer {
+            get {
+                return ResourceManager.GetString("OtherSporttypeOfVirtualSoccer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outright.
         /// </summary>
         public static string Outright {
@@ -3575,6 +3584,15 @@ namespace LicenseeAgent.Resources {
         public static string VirtualSoccer {
             get {
                 return ResourceManager.GetString("VirtualSoccer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Soccer position taking setting is being applied to:.
+        /// </summary>
+        public static string VirtualSoccerCopyPt {
+            get {
+                return ResourceManager.GetString("VirtualSoccerCopyPt", resourceCulture);
             }
         }
         

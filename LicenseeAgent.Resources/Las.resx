@@ -1364,4 +1364,10 @@
   <data name="VirtualSoccerCopyPtTooltip" xml:space="preserve">
     <value>Copy all below position taking settings from Virtual Soccer</value>
   </data>
+  <data name="VirtualSoccerCopyPt" xml:space="preserve">
+    <value>Virtual Soccer position taking setting is being applied to:</value>
+  </data>
+  <data name="OtherSporttypeOfVirtualSoccer" xml:space="preserve">
+    <value>Other sport types of Virtual Soccer</value>
+  </data>
 </root>

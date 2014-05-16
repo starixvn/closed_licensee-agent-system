@@ -59,6 +59,43 @@ if (fanex.customerSetting) {
                 }
             }
             return positionTakingSave;
+        },
+        copyVirtualSoccer: function (fromIndex, ptGroup, ptGroups, lang, scope) {
+            var pt = ptGroup.PositionTakings[0];
+            if (!pt.actions.isValid()) {
+                return;
+            }
+
+            var self = this,
+                groupLength = ptGroups.length,
+                copyAllMessage = [];
+
+            if (!ptGroup.Expand) {
+                scope.positionTakingService.onCollapseExpand(ptGroup);
+            }
+
+            copyAllMessage.push(lang.virtualSoccerCopyPt);
+            copyAllMessage.push('<ul>');
+            copyAllMessage.push('<li>' + lang.otherSporttypeOfVirtualSoccer + '</li>');
+
+            for (var i = fromIndex; i < groupLength; i++) {
+                var currentGroup = ptGroups[i];
+                if (currentGroup) {
+                    var ptListLength = currentGroup.PositionTakings.length;
+                    for (var j = (i === fromIndex ? 1 : 0); j < ptListLength; j++) {
+                        var currentPtNeedCopy = currentGroup.PositionTakings[j];
+                        self.copyAction(currentPtNeedCopy, pt);
+                    }
+                }
+            }
+            copyAllMessage.push('</ul>');
+
+            //// Show Message Copy All
+            setTimeout(function () {
+                self.showCopyAllMessage(
+                            $('#copy_sport_' + pt.SportId + '_bettype_' + pt.BetTypeId),
+                            copyAllMessage.join(''));
+            }, 100);
         }
     };
 

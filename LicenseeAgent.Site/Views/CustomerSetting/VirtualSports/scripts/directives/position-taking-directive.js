@@ -52,7 +52,30 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtAdvancedMode($timeout, scope, element, formatter);
+                    //// Cache Elements.
+                    var maxInput = element.find('.max-input');
+                    var minInput = element.find('.min-input');
+                    var currentPt = scope.pt.PositionTakings[0];
+                    maxInput.preventSpecialCharacters("^[0-9.]+$");
+                    minInput.preventSpecialCharacters("^[0-9.]+$");
+
+                    //// Position taking Actions
+                    currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(
+                        scope,
+                        $timeout,
+                        currentPt,
+                        maxInput,
+                        minInput,
+                        formatter);
+
+                    //// Init value
+                    currentPt.OldMin = currentPt.Min;
+                    currentPt.OldMax = currentPt.Max;
+                    currentPt.OldPreset = currentPt.Preset;
+                    currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
+                    currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
+                    currentPt.MinRangeOfMin = 0;
+                    currentPt.MaxRangeOfMin = currentPt.Max;
                 }
             };
         }

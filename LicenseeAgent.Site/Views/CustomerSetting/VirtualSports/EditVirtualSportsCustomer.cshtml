@@ -25,7 +25,7 @@
 }
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
-    class="fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
+    class="fanex-virtual-sports-setting" data-ng-controller="CustomerSettingController"
     data-href="@("~/CustomerSetting/UpdateCustomer")">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
@@ -56,31 +56,33 @@
             </div>
         </div>
     </div>
-    <div class="product-container">
-        <div class="clearfix">
-            <div class="edit-setting-warning" data-ng-show="settingMode">
-                @Las.VirtualSportsSimpleModeNote
-            </div>
-        </div>
-        @if (Model.FormId != FormType.EditIndirectMember)
-        {
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
+        <div class="product-container">
             <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/VirtualSports/BetSetting.cshtml", Model)
+                <div class="edit-setting-warning" data-ng-show="settingMode">
+                    @Las.VirtualSportsSimpleModeNote
+                </div>
             </div>
-        }
-        <div class="clearfix">
-            @Html.Partial("~/Views/CustomerSetting/VirtualSports/PositionTaking.cshtml", Model)
+            @if (Model.FormId != FormType.EditIndirectMember)
+            {
+                <div class="clearfix">
+                    @Html.Partial("~/Views/CustomerSetting/VirtualSports/BetSetting.cshtml", Model)
+                </div>
+            }
+            <div class="clearfix">
+                @Html.Partial("~/Views/CustomerSetting/VirtualSports/PositionTaking.cshtml", Model)
+            </div>
         </div>
-    </div>
-    <div class="clearfix">
-        @if (Model.FormId != FormType.ViewIndirectAgent)
-        {
-            <div class="control-group">
-                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                    @Las.Update
-                </button>
-            </div>
-        }
+        <div class="clearfix">
+            @if (Model.FormId != FormType.ViewIndirectAgent)
+            {
+                <div class="control-group">
+                    <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                        @Las.Update
+                    </button>
+                </div>
+            }
+        </div>
     </div>
 @if (Model.TargetRoleId == (int)Role.AgentLevel1)
 {

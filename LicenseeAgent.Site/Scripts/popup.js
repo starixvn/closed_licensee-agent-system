@@ -1,4 +1,4 @@
-﻿/*global core */
+﻿/*global core, language */
 /*exported popup*/
 
 var popup = (function ($) {

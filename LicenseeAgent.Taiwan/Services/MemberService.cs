@@ -243,7 +243,10 @@ namespace LicenseeAgent.Taiwan.Services
                 Logger.HandleException(ex);
             }
 
-            ServiceExtension.WriteError(action, responseResult);
+            if (!isReinvoke)
+            {
+                ServiceExtension.WriteError(action, responseResult);
+            }
             return responseResult;
         }
     }

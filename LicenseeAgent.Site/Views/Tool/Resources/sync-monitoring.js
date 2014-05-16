@@ -1,4 +1,4 @@
-﻿/* global core */
+﻿/* global core, popup */
 
 var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" {5} onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
 checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';

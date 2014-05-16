@@ -1298,4 +1298,46 @@
   <data name="NumberGameOverUnderCopyPtTooltip" xml:space="preserve">
     <value>Copy from Over/Under</value>
   </data>
+  <data name="EditVirtualSportsAgent" xml:space="preserve">
+    <value>Edit Virtual Sports Agent</value>
+  </data>
+  <data name="EditVirtualSportsMember" xml:space="preserve">
+    <value>Edit Virtual Sports Member</value>
+  </data>
+  <data name="ViewVirtualSportsAgent" xml:space="preserve">
+    <value>View Virtual Sports Agent</value>
+  </data>
+  <data name="VirtualSportsSimpleModeNote" xml:space="preserve">
+    <value>Note: In simple mode, your changes of virtual soccer setting will be applied to all sport types as well.</value>
+  </data>
+  <data name="VirtualSoccer" xml:space="preserve">
+    <value>Virtual Soccer</value>
+  </data>
+  <data name="VirtualHorseRacing" xml:space="preserve">
+    <value>Virtual Horse Racing</value>
+  </data>
+  <data name="VirtualGreyhounds" xml:space="preserve">
+    <value>Virtual Greyhounds</value>
+  </data>
+  <data name="VirtualSpeedway" xml:space="preserve">
+    <value>Virtual Speedway</value>
+  </data>
+  <data name="VirtualMotorsports" xml:space="preserve">
+    <value>Virtual Motorsports</value>
+  </data>
+  <data name="VirtualCycling" xml:space="preserve">
+    <value>Virtual Cycling</value>
+  </data>
+  <data name="VirtualTennis" xml:space="preserve">
+    <value>Virtual Tennis</value>
+  </data>
+  <data name="CopyAllBetSettingVirtualSoccer" xml:space="preserve">
+    <value>Copy all below bet settings from Virtual Soccer</value>
+  </data>
+  <data name="PositionTakingVirtualSoccerSimpleModeHeader" xml:space="preserve">
+    <value>Position Taking (Virtual Soccer)</value>
+  </data>
+  <data name="VirtualSoccerCopyPtTooltip" xml:space="preserve">
+    <value>Copy all below position taking settings from Virtual Soccer</value>
+  </data>
 </root>

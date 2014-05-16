@@ -227,6 +227,9 @@ namespace LicenseeAgent.Site
                 "~/views/customersetting/numbergame/scripts", "*.js", true));
             bundles.Add(new LessBundle("~/css/customersetting/sportsbook").Include(
                 "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
+
+            bundles.Add(new ScriptBundle("~/js/customersetting/virtualsports").IncludeDirectory(
+               "~/views/customersetting/virtualsports/scripts", "*.js", true));
         }
 
         /// <summary>

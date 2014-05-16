@@ -1,0 +1,246 @@
+﻿@using LicenseeAgent.Core.Enumerations;
+@using LicenseeAgent.CustomerSetting.Entities;
+@model SettingContext
+@{
+    if (Model.TargetRoleId == (int)Role.Member)
+    {
+        ViewBag.Title = Las.EditVirtualSportsMember;
+    }
+    else
+    {
+        ViewBag.Title = Model.FormId == FormType.ViewIndirectAgent ? Las.ViewVirtualSportsAgent : Las.EditVirtualSportsAgent;
+    }
+}
+@section css
+{
+    @Styles.Render("~/css/customersetting/sportsbook")
+}
+@section scripts
+{
+    <script type="text/javascript" src=@Url.Content(string.Format("~/CustomerSetting/GetSettingVirtualSportsForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId))></script>
+    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/customersetting")
+    @Scripts.Render("~/js/customersetting/virtualsports")
+}
+@RazorHelper.Legend(ViewBag.Title)
+<div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
+    class="fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
+    data-href="@("~/CustomerSetting/UpdateCustomer")">
+    <div class="clearfix">
+        <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
+            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
+                <i data-ng-class="{'icon-message-success': message.ErrCode == 0, 'icon-message-error' : message.ErrCode != 0}">
+                </i>{{message.ErrMsg}}
+            </p>
+        </div>
+    </div>
+    <div class="clearfix">
+        @if (Model.FormId != FormType.ViewIndirectAgent)
+        {
+            <div class="control-group" data-ng-hide="settingMode">
+                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                    @Las.Update
+                </button>
+            </div>
+        }
+    </div>
+    <div class="clearfix">
+        @Html.Partial("~/Views/CustomerSetting/VirtualSports/ViewCustomerInfo.cshtml")
+    </div>
+    <div class="clearfix">
+        <div class="container-mode">
+            <span class="mode-text">@Las.AdvancedMode</span>
+            <div class="make-switch switch-small" id="modeSwitcher">
+                <input type="checkbox" />
+            </div>
+        </div>
+    </div>
+    <div class="product-container">
+        <div class="clearfix">
+            <div class="edit-setting-warning" data-ng-show="settingMode">
+                @Las.VirtualSportsSimpleModeNote
+            </div>
+        </div>
+        @if (Model.FormId != FormType.EditIndirectMember)
+        {
+            <div class="clearfix">
+                @Html.Partial("~/Views/CustomerSetting/VirtualSports/BetSetting.cshtml", Model)
+            </div>
+        }
+        <div class="clearfix">
+            @Html.Partial("~/Views/CustomerSetting/VirtualSports/PositionTaking.cshtml", Model)
+        </div>
+    </div>
+    <div class="clearfix">
+        @if (Model.FormId != FormType.ViewIndirectAgent)
+        {
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                    @Las.Update
+                </button>
+            </div>
+        }
+    </div>
+@if (Model.TargetRoleId == (int)Role.AgentLevel1)
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeCommissionSetting",
+        trigger = "licensee-commission-info-button",
+        title = Las.CommissionSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSetting",
+        trigger = "licensee-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSettingAdv",
+        trigger = "licensee-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSettingNG",
+        trigger = "licensee-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSetting",
+        trigger = "licensee-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSettingAdv",
+        trigger = "licensee-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSetting",
+        trigger = "licensee-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}
+else if (Model.TargetRoleId == (int)Role.Agent)
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentCommissionSetting",
+        trigger = "agent-commission-info-button",
+        title = Las.CommissionSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSetting",
+        trigger = "agent-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSettingAdv",
+        trigger = "agent-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSettingNG",
+        trigger = "agent-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentEditAgentPositionTakingSetting",
+        trigger = "agent-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentEditAgentPositionTakingSettingAdv",
+        trigger = "agent-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentEditAgentPositionTakingSetting",
+        trigger = "agent-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}
+else
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberCommissionSetting",
+        trigger = "member-commission-info-button",
+        title = Las.CommissionSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSetting",
+        trigger = "member-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSettingAdv",
+        trigger = "member-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSettingNG",
+        trigger = "member-bet-limit-info-button-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSetting",
+        trigger = "member-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSettingAdv",
+        trigger = "member-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSetting",
+        trigger = "member-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}

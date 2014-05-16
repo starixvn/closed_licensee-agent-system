@@ -71,6 +71,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private readonly ICoreService _coreService = new CoreService();
         private readonly Services.ISettingService _numberGameService = new Services.NumberGame.SettingService();
         private readonly Services.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
+        private readonly Services.VirtualSports.SettingService _virtualSportsService = new Services.VirtualSports.SettingService();
         private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
 
         public CustomerSettingController(
@@ -188,6 +189,65 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
                     }
                 }
+            }
+
+            if (errCode != Result.SuccessValue)
+            {
+                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
+                stringBuilder.Append(FormatJavascript(result, "result"));
+            }
+
+            return JavaScript(stringBuilder.ToString());
+        }
+
+        /// <summary>
+        /// Get Setting for updating customer.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JAVASCRIPT string object.
+        /// </returns>
+        [HttpGet]
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
+        public JavaScriptResult GetSettingVirtualSportsForUpdate(GetSettingForUpdateViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = (FormType)model.FormId,
+                CustId = model.CustId,
+                RoleId = model.RoleId,
+                TargetCustId = model.TargetCustId,
+                TargetRoleId = model.TargetRoleId,
+                Ip = Request.GetClientIp()
+            };
+
+            if (!CheckForEditingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedJavascript();
+            }
+
+            var errCode = Result.FailureValue;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
+            var virtualSportsSetting = _virtualSportsService.GetSettingForUpdate(settingContext, out errCode);
+            if (errCode == Result.SuccessValue)
+            {
+                if (model.TargetRoleId == (int)Role.Member && virtualSportsSetting.CustInfo != null)
+                {
+                    virtualSportsSetting.CustInfo.CustId = model.TargetCustId;
+                    _memberService.GetMemberInformation(
+                        virtualSportsSetting.CustInfo,
+                        new GetMemberInfoAction
+                        {
+                            SiteName = CurrentSession.AgentInfo.LicenseeName,
+                            IBCCustId = model.TargetCustId
+                        });
+                }
+
+                stringBuilder.AppendLine(FormatJavascript(virtualSportsSetting, "sportsBookSetting"));
             }
 
             if (errCode != Result.SuccessValue)
@@ -361,6 +421,34 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return View("~/Views/CustomerSetting/EditCustomer.cshtml", settingContext);
+        }
+
+        /// <summary>
+        /// Edits the agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns view.
+        /// </returns>
+        [HttpGet]
+        public ActionResult EditVirtualSportsAgent(EditAgentViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
+                    ? FormType.Edit
+                    : FormType.ViewIndirectAgent,
+                TargetCustId = model.AgentId,
+                TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
+                Ip = Request.GetClientIp()
+            };
+
+            if (!CheckForEditingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
+            return View("~/Views/CustomerSetting/VirtualSports/EditVirtualSportsCustomer.cshtml", settingContext);
         }
 
         /// <summary>

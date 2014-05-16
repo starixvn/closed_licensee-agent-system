@@ -16,17 +16,15 @@
         {
             @RazorHelper.RenderInstruction(Las.PositionTaking, "member-position-taking-info-button-adv")
         }
-        <div data-ng-repeat="ptGroup in ptModel.ptGroups" data-ng-show="!settingContext.IsSimpleMode"
-            class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
-            <div data-ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
-                <span data-ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
-                    {{ptGroup.Name}}</span> <span class="icon-setting-copy" data-ng-if="$index == 0 || $index == 2"
-                        data-ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
-                        title="{{$index==0 ? language.soccerDeadballCopyPtTooltip : language.basketBallCopyPtTooltip}}"
-                        data-ng-show="settingContext.FormId != 2"></span>
+        <div data-ng-show="!settingContext.IsSimpleMode" class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
+            <div data-ng-class="{'pt-group-header expand': true, 'pt-group-header': true}">
+                <span class="collapse-expand-button ">{{language.virtualSports}}</span> <span class="icon-setting-copy"
+                    data-ng-click="positionTakingService.copyAll($index, ptModel.ptGroups[0], ptModel.ptGroups, language, this);"
+                    title="{{language.virtualSoccerCopyPtTooltip}}" data-ng-show="settingContext.FormId != 2">
+                </span>
             </div>
             <div class="pt-group-box">
-                <div data-ng-repeat="pt in ptGroup.PositionTakings" class="pt-group" data-ng-show="ptGroup.Expand"
+                <div data-ng-repeat="pt in ptModel.ptGroups" class="pt-group" data-ng-show="!settingContext.IsSimpleMode"
                     data-ng-switch="settingContext.TargetRoleId">
                     <licensee-edit-agent-one-pt-advanced-mode data-ng-switch-when="3"></licensee-edit-agent-one-pt-advanced-mode>
                     @if (Model.FormId != FormType.ViewIndirectAgent)
@@ -46,15 +44,15 @@
         data-ng-show="settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "licensee-position-taking-info-button")
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "agent-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "agent-position-taking-info-button")
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "member-position-taking-info-button")
+            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "member-position-taking-info-button")
         }
         <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
             <div class="pt-group-box">

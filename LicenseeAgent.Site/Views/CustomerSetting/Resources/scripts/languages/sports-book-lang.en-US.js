@@ -41,6 +41,13 @@ if (fanex.customerSetting) {
         sport_99_9: 'Mix Sports Parlay',
 		sport_154_20: 'HR Fixed Odds',
 		sport_161_81: 'Number Game',
+		sport_180_1201: 'Virtual Soccer',
+        sport_181_1231: 'Virtual Horse Racing',
+        sport_182_1231: 'Virtual Greyhounds',
+        sport_183_1231: 'Virtual Speedway',
+        sport_184_1231: 'Virtual Motorsports',
+        sport_185_1231: 'Virtual Cycling',
+        sport_186_1220: 'Virtual Tennis',
         bettingLimit_Message_OnlyNumber: 'Only numbers , (,) between number',
         bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "Min Bet must be less than or equal to Max Bet",
         bettingLimit_Message_MinBetMoreThanOrEqualTo: "Min Bet must be greater than or equal to ",
@@ -102,7 +109,9 @@ if (fanex.customerSetting) {
 		numberGameOverUnderCopyPtTooltip: 'Copy from Over/Under',
         otherBettypeOfSoccer: 'Other bet types of Soccer',
         otherBettypeOfBasketball: 'Other bet types of Basketball',
-        applyForAllMembers: 'Apply for all members'
+        applyForAllMembers: 'Apply for all members',
+		virtualSports: 'Virtual Sports',
+		virtualSoccerCopyPtTooltip: 'Copy all below position taking settings from Virtual Soccer',
     };
 }
 else {

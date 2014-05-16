@@ -25,11 +25,10 @@ if (fanex.customerSetting) {
                     width: currentGroup.TitleWidth + 'px'
                 };
 
-                currentGroup.Name = language["sport_" + currentGroup.SportId + "_" + currentGroup.IsLive + "_" + currentGroup.PositionTakings[0].BetTypeId];
+                currentGroup.Name = language["sport_" + currentGroup.SportId + "_" + currentGroup.BetTypeId];
             }
 
             positionTakingSetting[0].Expand = true;
-            positionTakingSetting[1].Expand = true;
         },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];

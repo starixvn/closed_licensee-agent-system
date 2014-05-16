@@ -22,12 +22,12 @@
   </Product>
   <!--Virtual sports-->
   <Product Id="5">
-    <SportType Id="180" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="181" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="182" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="183" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="184" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="185" IsLive="false" BetTypeIds="1201,1299" />
-    <SportType Id="186" IsLive="false" BetTypeIds="1201,1299" />
+    <SportType Id="180" IsLive="false" BetTypeIds="1201" />
+    <SportType Id="181" IsLive="false" BetTypeIds="1231" />
+    <SportType Id="182" IsLive="false" BetTypeIds="1231" />
+    <SportType Id="183" IsLive="false" BetTypeIds="1231" />
+    <SportType Id="184" IsLive="false" BetTypeIds="1231" />
+    <SportType Id="185" IsLive="false" BetTypeIds="1231" />
+    <SportType Id="186" IsLive="false" BetTypeIds="1220" />
   </Product>
 </PtSettings>

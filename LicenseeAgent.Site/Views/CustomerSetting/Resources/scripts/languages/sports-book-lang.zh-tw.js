@@ -41,6 +41,13 @@ if (fanex.customerSetting) {
         sport_99_9: '混合過關',
 		sport_154_20: 'HR Fixed Odds',
 		sport_161_81: '百鍊賽',
+		sport_180_1201: 'Virtual Soccer',
+        sport_181_1231: 'Virtual Horse Racing',
+        sport_182_1231: 'Virtual Greyhounds',
+        sport_183_1231: 'Virtual Speedway',
+        sport_184_1231: 'Virtual Motorsports',
+        sport_185_1231: 'Virtual Cycling',
+        sport_186_1220: 'Virtual Tennis',
         bettingLimit_Message_OnlyNumber: '數位間只能有數位(,)',
         bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "最小投注額必須小於或等於最大投注額",
         bettingLimit_Message_MinBetMoreThanOrEqualTo: "最大投注額必須大於或等於 ",
@@ -102,7 +109,9 @@ if (fanex.customerSetting) {
 		numberGameOverUnderCopyPtTooltip: 'Copy from Over/Under',
         otherBettypeOfSoccer: '其他投注類型足球',
         otherBettypeOfBasketball: '其他投注類型籃球',
-        applyForAllMembers: '所有會員立刻生效'
+        applyForAllMembers: '所有會員立刻生效',
+		virtualSports: '虚拟运动',
+		virtualSoccerCopyPtTooltip: 'Copy all below position taking settings from Virtual Soccer',
     };
 }
 else {

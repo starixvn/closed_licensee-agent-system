@@ -71,6 +71,13 @@ if (fanex.customerSetting) {
         sport_99_9: '<#= resourceXSet.GetString("MixSportsParlay")#>',
 		sport_154_20: '<#= resourceXSet.GetString("HrFixedOdds")#>',
 		sport_161_81: '<#= resourceXSet.GetString("NumberGame")#>',
+		sport_180_1201: '<#= resourceXSet.GetString("VirtualSoccer")#>',
+        sport_181_1231: '<#= resourceXSet.GetString("VirtualHorseRacing")#>',
+        sport_182_1231: '<#= resourceXSet.GetString("VirtualGreyhounds")#>',
+        sport_183_1231: '<#= resourceXSet.GetString("VirtualSpeedway")#>',
+        sport_184_1231: '<#= resourceXSet.GetString("VirtualMotorsports")#>',
+        sport_185_1231: '<#= resourceXSet.GetString("VirtualCycling")#>',
+        sport_186_1220: '<#= resourceXSet.GetString("VirtualTennis")#>',
         bettingLimit_Message_OnlyNumber: '<#= resourceXSet.GetString("OnlyNumberBetweenNumber")#>',
         bettingLimit_Message_MinBetLessThanOrEqualMaxBet: "<#= resourceXSet.GetString("MinBetLessThanOrEqualMaxBet")#>",
         bettingLimit_Message_MinBetMoreThanOrEqualTo: "<#= resourceXSet.GetString("MinBetMoreThanOrEqualTo")#> ",
@@ -132,7 +139,9 @@ if (fanex.customerSetting) {
 		numberGameOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameOverUnderCopyPtTooltip")#>',
         otherBettypeOfSoccer: '<#= resourceXSet.GetString("OtherBettypeOfSoccer")#>',
         otherBettypeOfBasketball: '<#= resourceXSet.GetString("OtherBettypeOfBasketball")#>',
-        applyForAllMembers: '<#= resourceXSet.GetString("ApplyForAllMembers")#>'
+        applyForAllMembers: '<#= resourceXSet.GetString("ApplyForAllMembers")#>',
+		virtualSports: '<#= resourceXSet.GetString("VirtualSports")#>',
+		virtualSoccerCopyPtTooltip: '<#= resourceXSet.GetString("VirtualSoccerCopyPtTooltip")#>',
     };
 }
 else {

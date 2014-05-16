@@ -14,7 +14,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
-    using LicenseeAgent.CustomerSetting.Criteria.SportsBook;
+    using LicenseeAgent.CustomerSetting.Criteria.VirtualSports;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Utils;
 
@@ -53,7 +53,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
             {
                 CustInfo = customerSetting.CustInfo,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_0, customerSetting.PositionTakingSetting)
+                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_5, customerSetting.PositionTakingSetting)
             };
 
             return result;
@@ -177,7 +177,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
 
             if (settingContext.TargetRoleId == (int)Role.Agent)
             {
-                criteria = new AgentGetAgentSettingForUpdateCriteria
+                criteria = new LicenseeGetAgentSettingForUpdateCriteria
                 {
                     AgentId = settingContext.TargetCustId
                 };
@@ -204,21 +204,21 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
 
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                if (settingContext.FormId == FormType.EditIndirectMember)
-                {
-                    criteria = new AgentGetMemberSettingIndirectForUpdateCriteria
-                    {
-                        CustId = settingContext.TargetCustId,
-                        AgentId = settingContext.CustId
-                    };
-                }
-                else
-                {
-                    criteria = new AgentGetMemberSettingForUpdateCriteria
-                    {
-                        CustId = settingContext.TargetCustId
-                    };
-                }
+                //if (settingContext.FormId == FormType.EditIndirectMember)
+                //{
+                //    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                //    {
+                //        CustId = settingContext.TargetCustId,
+                //        AgentId = settingContext.CustId
+                //    };
+                //}
+                //else
+                //{
+                //    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                //    {
+                //        CustId = settingContext.TargetCustId
+                //    };
+                //}
             }
 
             return criteria;

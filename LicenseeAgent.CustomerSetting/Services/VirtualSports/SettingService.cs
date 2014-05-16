@@ -204,21 +204,20 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
 
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                //if (settingContext.FormId == FormType.EditIndirectMember)
-                //{
-                //    criteria = new LicenseeGetAgentSettingForUpdateCriteria
-                //    {
-                //        CustId = settingContext.TargetCustId,
-                //        AgentId = settingContext.CustId
-                //    };
-                //}
-                //else
-                //{
-                //    criteria = new LicenseeGetAgentSettingForUpdateCriteria
-                //    {
-                //        CustId = settingContext.TargetCustId
-                //    };
-                //}
+                if (settingContext.FormId == FormType.EditIndirectMember)
+                {
+                    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                    {
+                        AgentId = settingContext.CustId
+                    };
+                }
+                else
+                {
+                    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                    {
+                        AgentId = settingContext.CustId
+                    };
+                }
             }
 
             return criteria;

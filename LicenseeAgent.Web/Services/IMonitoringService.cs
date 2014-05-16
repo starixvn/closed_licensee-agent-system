@@ -16,9 +16,11 @@ namespace LicenseeAgent.Web.Services
 
     public interface IMonitoringService
     {
-        IEnumerable<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria);
+        IList<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria);
 
-        IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria);
+        IList<SyncMonitoring> GetFailedAPICalls(ICriteria criteria);
+
+        SyncMonitoring GetLogData(int keyId);
 
         void UpdateLogStatus(ICriteria criteria);
 

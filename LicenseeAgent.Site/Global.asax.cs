@@ -82,9 +82,16 @@ namespace LicenseeAgent.Site
                 return;
             }
 
-            var exception = Server.GetLastError();
-            HandleRequest(exception);
-            LogException(exception);
+            try
+            {
+                var exception = Server.GetLastError();
+                HandleRequest(exception);
+                LogException(exception);
+            }
+            catch (Exception interException)
+            {
+                Logger.HandleException(interException);
+            }
         }
 
         /// <summary>

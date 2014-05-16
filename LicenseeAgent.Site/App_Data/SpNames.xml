@@ -2,7 +2,7 @@
 <Functions>
   <Function Name="Core">
     <Setting Key="LAS_SelBalanceUpDay" SpName="LAS_SelBalanceUpDay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Licensee_SelProductList" SpName="LAS_Licensee_SelProductList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Login">
@@ -156,9 +156,6 @@
     <Setting Key="Las_AgentUpdAgentCredit" SpName="Las_AgentUpdAgentCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentUpdMemberCredit" SpName="Las_AgentUpdMemberCredit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
-  <Function Name="LRF">
-    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-  </Function>
   <Function name="TaiwanAPILog">
     <Setting Key="LAS_ResetPassword_Member_Writelog" SpName="LAS_ResetPassword_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_EditInfo_Member_Writelog" SpName="LAS_EditInfo_Member_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -170,5 +167,6 @@
     <Setting Key="Las_SyncMonitoring" SpName="Las_SyncMonitoring" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SyncMonitoring_UpdateLogStatus" SpName="Las_SyncMonitoring_UpdateLogStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_SyncMonitoring_UpdateRunCount" SpName="Las_SyncMonitoring_UpdateRunCount" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_SyncMonitoring_GetLogData" SpName="Las_SyncMonitoring_GetLogData" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
 </Functions>

@@ -13,13 +13,9 @@ namespace LicenseeAgent.Core.Entities
     {
         public string DomainName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the value.
-        /// </summary>
-        /// <value>
-        /// Licensee id.
-        /// </value>
         public int LicenseeId { get; set; }
+
+        public string LicenseeName { get; set; }
 
         public string Environment { get; set; }
     }

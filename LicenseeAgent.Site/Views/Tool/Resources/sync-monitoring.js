@@ -22,11 +22,12 @@ var gridOptions = {
                         }
                     }
                 },
-                { HeaderText: "Log ID", Width: 50, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "Log ID", Width: 36, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "Log Date", Width: 72, Name: "LogDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },
                 { HeaderText: "Action Name", Width: 120, Name: "ActionName", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Input Params", Width: 300, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Remarks", Width: 220, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Run Count", Width: 80, Name: "RunCount", HeaderAlign: "center", CellAlign: "center",
+                { HeaderText: "Input Params", Width: 280, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Remarks", Width: 198, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "Run Count", Width: 60, Name: "RunCount", HeaderAlign: "center", CellAlign: "center",
                     Formatter: function (rowIndex, rowData) {
                         'use strict';
                         return '<label id="lblruncount_{0}">{1}</label>'.format(rowData.KeyId, rowData.RunCount);
@@ -40,7 +41,7 @@ var gridOptions = {
                 }
             ],
     showPager: true,
-    gridExpandHeight: 110,
+    gridExpandHeight: 125,
     bodyRowHeight: 29
 };
 
@@ -137,13 +138,9 @@ var syncmonitoring = (function ($) {
             var currentPageSize = gridOptions.pagerOption.itemsPerPage;
             syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
         },
-        singleReInvoke: function (keyid, actionid, custid, userid, command) {
+        singleReInvoke: function (keyid) {
             var params = {
-                KeyId: keyid,
-                ActionId: actionid,
-                CustId: custid,
-                UserId: userid,
-                Command: command
+                KeyId: keyid
             };
 
             $.ajax({
@@ -164,7 +161,10 @@ var syncmonitoring = (function ($) {
                     else {
                         var newRunCount = parseInt($('#lblruncount_' + keyid).text()) + 1;
                         $('#lblruncount_' + keyid).text(newRunCount);
-                        alert('Re-Invoke failed for Log ID = {0}: {1} .'.format(keyid, data.ErrMsg));
+                        var message = '<div>Re-Invoke failed for Log ID = {0}<br>{1}</div>'.format(keyid, data.ErrMsg);
+                        popup.error({
+                            message: message
+                        });
                     }
                 },
                 complete: function () {
@@ -194,7 +194,10 @@ var syncmonitoring = (function ($) {
                         $('#lbl_' + keyid).text('Ignored');
                     }
                     else {
-                        alert('Ignore failed for Log ID = {0}.'.format(keyid));
+                        var message = 'Ignore failed for Log ID = {0}.'.format(keyid);
+                        popup.error({
+                            message: message
+                        });
                     }
                 },
                 complete: function () {
@@ -206,11 +209,7 @@ var syncmonitoring = (function ($) {
             $('#tblContent_monitoringGrid tbody input').each(function () {
                 if ($(this).prop('checked') === true) {
                     syncmonitoring.singleReInvoke(
-                        $(this).attr('data-keyid'),
-                        $(this).attr('data-actionid'),
-                        $(this).attr('data-custid'),
-                        $(this).attr('data-userid'),
-                        $(this).attr('data-command')
+                        $(this).attr('data-keyid')
                     );
                 }
             });

@@ -9,7 +9,6 @@ namespace LicenseeAgent.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
-    using Entities;
     using Fanex.Common;
     using Filters;
     using LicenseeAgent.Core.Configurations;
@@ -174,45 +173,47 @@ namespace LicenseeAgent.Web.Controllers
         /// <summary>
         /// Re-invoke a failed action.
         /// </summary>
-        /// <param name="syncData">Synchronization data.</param>
-        /// <returns>JSON object.</returns>
+        /// <param name="keyId">The key identifier.</param>
+        /// <returns>
+        /// JSON object.
+        /// </returns>
         [HttpPost]
-        public JsonResult SingleReInvoke(SyncMonitoring syncData)
+        public JsonResult SingleReInvoke(int keyId)
         {
             ResponseResult responseResult = null;
-            var licenseeID = (int)DomainMapper.GetLicenseeId(Request);
-            switch (syncData.ActionId)
+            var logData = _monitoringService.GetLogData(keyId);
+            switch (logData.ActionId)
             {
-                case 301:
-                    var resetPasswordAction = ObjectSerializer<ResetPasswordAction>.Deserialize(syncData.Command);
-                    resetPasswordAction.LicenseeId = licenseeID;
-                    resetPasswordAction.UserId = syncData.UserId;
-                    responseResult = _memberService.ResetPassword(resetPasswordAction, true, syncData.KeyId);
+                case (int)LogId.ResetPassword:
+                    var resetPasswordAction = ObjectSerializer<ResetPasswordAction>.Deserialize(logData.Command);
+                    resetPasswordAction.LicenseeId = CurrentSession.OnLicenseeId;
+                    resetPasswordAction.UserId = CurrentSession.LoginUserId;
+                    responseResult = _memberService.ResetPassword(resetPasswordAction, true, logData.KeyId);
                     break;
 
-                case 303:
-                    var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(syncData.Command);
-                    updateMemberInfoAction.LicenseeId = licenseeID;
-                    updateMemberInfoAction.UserId = syncData.UserId;
-                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true, syncData.KeyId);
+                case (int)LogId.UpdateMemberInfo:
+                    var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(logData.Command);
+                    updateMemberInfoAction.LicenseeId = CurrentSession.OnLicenseeId;
+                    updateMemberInfoAction.UserId = CurrentSession.LoginUserId;
+                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true, logData.KeyId);
                     break;
 
-                case 304:
-                    var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(syncData.Command);
-                    insertNewMemberAction.LicenseeId = licenseeID;
-                    insertNewMemberAction.UserId = syncData.UserId;
-                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true, syncData.KeyId);
+                case (int)LogId.InsertNewMember:
+                    var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(logData.Command);
+                    insertNewMemberAction.LicenseeId = CurrentSession.OnLicenseeId;
+                    insertNewMemberAction.UserId = CurrentSession.LoginUserId;
+                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true, logData.KeyId);
                     break;
 
-                case 305:
-                    var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(syncData.Command);
-                    updateMemberStatusAction.LicenseeId = licenseeID;
-                    updateMemberStatusAction.UserId = syncData.UserId;
+                case (int)LogId.UpdateMemberStatus:
+                    var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(logData.Command);
+                    updateMemberStatusAction.LicenseeId = CurrentSession.OnLicenseeId;
+                    updateMemberStatusAction.UserId = CurrentSession.LoginUserId;
                     responseResult = _memberService.SyncMonitoringUpdateMemberStatus(updateMemberStatusAction);
                     break;
             }
 
-            UpdateLogAfterReInvoke(responseResult, syncData.KeyId);
+            UpdateLogAfterReInvoke(responseResult, logData.KeyId);
 
             return Json(new
             {

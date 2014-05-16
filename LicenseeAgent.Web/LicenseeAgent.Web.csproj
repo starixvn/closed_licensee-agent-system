@@ -80,6 +80,7 @@
     <Compile Include="Criterias\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringGetAPIUrlCriteria.cs" />
+    <Compile Include="Criterias\SyncMonitoringGetLogDataCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringUpdateRunCountCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringUpdateStatusCriteria.cs" />
     <Compile Include="Criterias\SyncMonitoringCriteria.cs" />

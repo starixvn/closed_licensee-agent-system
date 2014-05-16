@@ -14,22 +14,23 @@ namespace LicenseeAgent.Web.Services
     using Entities;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Web.Criterias;
 
     /// <summary>
     /// MonitoringService class.
     /// </summary>
     public class MonitoringService : QueryService, IMonitoringService
     {
-        public IEnumerable<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria)
+        public IList<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria)
         {
             return GetEntites<SyncMonitoringAPIUrl>(criteria);
         }
 
-        public IEnumerable<SyncMonitoring> GetFailedAPICalls(ICriteria criteria)
+        public IList<SyncMonitoring> GetFailedAPICalls(ICriteria criteria)
         {
             return GetEntites<SyncMonitoring>(criteria);
         }
-        
+
         public void UpdateLogStatus(ICriteria criteria)
         {
             Execute(criteria);
@@ -38,6 +39,18 @@ namespace LicenseeAgent.Web.Services
         public void UpdateRunCount(ICriteria criteria)
         {
             Execute(criteria);
+        }
+
+        public SyncMonitoring GetLogData(int keyId)
+        {
+            var criteria = new SyncMonitoringGetLogDataCriteria
+            {
+                KeyId = keyId
+            };
+
+            var logData = GetEntity<SyncMonitoring>(criteria);
+            logData.KeyId = keyId;
+            return logData;
         }
     }
 }

@@ -301,6 +301,19 @@ var popup = (function ($) {
     var $currentPopup = null;
     var $closeTimeout = null;
     return {
+        error: function (options) {
+            var defaultOptions = {
+                title: language.getString('Error'),
+                buttons: [{
+                    label: language.getString('OK'),
+                    action: function () {
+                        popup.close(0);
+                    }
+                }]
+            };
+            var $options = $.extend({}, defaultOptions, options);
+            popup.confirm($options);
+        },
         confirm: function (options) {
             $currentPopup = new Popup(options).showConfirm();
         },

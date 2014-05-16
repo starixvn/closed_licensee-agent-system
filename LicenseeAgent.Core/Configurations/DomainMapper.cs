@@ -30,7 +30,7 @@ namespace LicenseeAgent.Core.Configurations
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// Returns domain name.
+        /// Returns licensee id.
         /// </returns>
         public static int? GetLicenseeId(HttpRequestBase request)
         {
@@ -42,7 +42,31 @@ namespace LicenseeAgent.Core.Configurations
                 return licenseeDomains.First().LicenseeId;
             }
 
-            if (AppSettings.LocalTest || request.IsLocal)
+            if (AppSettings.LocalTest)
+            {
+                return AppSettings.LocalLicenseeId;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the licensee identifier.
+        /// </summary>
+        /// <param name="licenseeName">Name of the licensee.</param>
+        /// <returns>Returns licensee id.</returns>
+        public static int? GetLicenseeId(string licenseeName)
+        {
+            var licenseeDomains = GetLicenseeDomains();
+            licenseeDomains = licenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.OrdinalIgnoreCase)
+                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
+
+            if (licenseeDomains.Count() == 1)
+            {
+                return licenseeDomains.First().LicenseeId;
+            }
+
+            if (AppSettings.LocalTest)
             {
                 return AppSettings.LocalLicenseeId;
             }

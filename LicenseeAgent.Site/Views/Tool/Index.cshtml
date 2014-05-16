@@ -1,59 +1,30 @@
 ﻿@{
-    ViewBag.Title = "Tool";
+    ViewBag.Title = "Encrypt / Decrypt Password";
 }
-
-<h2>Tool Encrypt/Decrypt password when write log.</h2>
-
-<div class="table">
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="text" class="form-control" id="password"/>
-  </div>
-  <div class="form-group">
-    <label for="encodepassword">Encrypted Password</label>
-    <input type="text" class="form-control" id="encodepassword"/>
-  </div>
-  <button type="button" class="btn btn-primary" id="encode" data-url="@Url.Action("PasswordEncode")">Encrypt</button>
+@section scripts
+{
+    @Scripts.Render("~/js/tool/password")
+}
+<div class="legend">
+    @ViewBag.Title
 </div>
-<br />
 <div class="table">
-  <div class="form-group">
-    <label for="passwordencode">Encrypted Password</label>
-    <input type="text" class="form-control" id="passwordencode">
-  </div>
-  <div class="form-group">
-    <label for="decodepassword">Password</label>
-    <input type="text" class="form-control" id="decodepassword">
-  </div>
-  <button type="button" class="btn btn-primary" id="decode" data-url="@Url.Action("PasswordDecode")">Decrypt</button>
+    <div class="form-group">
+        <label for="password">
+            Password
+        </label>
+        <input type="text" class="form-control" id="password" />
+    </div>
+    <div class="form-group">
+        <label for="encodepassword">
+            Encrypted Password
+        </label>
+        <input type="text" class="form-control" id="encodepassword" />
+    </div>
+    <button type="button" class="btn btn-primary" id="encode" data-url="@Url.Action("PasswordEncode")">
+        Encrypt
+    </button>
+    <button type="button" class="btn btn-primary" id="decode" data-url="@Url.Action("PasswordDecode")">
+        Decrypt
+    </button>
 </div>
-
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#encode").click(function () {
-            $.ajax({
-                type: "POST",
-                url: $(this).data("url"),
-                data: { password: $("#password").val() }
-            })
-            .done(function (msg) {
-                $("#encodepassword").val(msg);
-            });
-            return false;
-        });
-        $("#decode").click(function () {
-            var url = $(this).data("url");
-            $.ajax({
-                type: "POST",
-                url: $(this).data("url"),
-                data: { encodedpassword: $("#passwordencode").val() }
-            })
-            .done(function (msg) {
-                $("#decodepassword").val(msg);
-            });
-            return false;
-        });
-    });
-</script>

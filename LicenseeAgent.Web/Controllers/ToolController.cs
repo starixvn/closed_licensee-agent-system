@@ -67,8 +67,11 @@ namespace LicenseeAgent.Web.Controllers
         public JsonResult PasswordEncode(string password)
         {
             var encodedPassword = Cryptography.CfsEnCrypt(password);
-
-            return Json(encodedPassword);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Value = encodedPassword
+            });
         }
 
         /// <summary>
@@ -80,8 +83,11 @@ namespace LicenseeAgent.Web.Controllers
         public JsonResult PasswordDecode(string encodedpassword)
         {
             var password = Cryptography.CfsDeCrypt(encodedpassword);
-
-            return Json(password);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Value = password
+            });
         }
 
         [HttpGet]

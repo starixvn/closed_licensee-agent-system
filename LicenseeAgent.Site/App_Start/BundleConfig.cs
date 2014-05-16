@@ -158,6 +158,7 @@ namespace LicenseeAgent.Site
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
             RegisterMessagePage(bundles);
+            RegisterToolPage(bundles);
         }
 
         private static void RegisterErrorPage(BundleCollection bundles)
@@ -388,6 +389,14 @@ namespace LicenseeAgent.Site
 
             bundles.Add(new ScriptBundle("~/js/message").Include(
                 "~/views/message/resources/message.js"));
+        }
+
+        private static void RegisterToolPage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/tool/password").Include(
+                "~/views/tool/resources/password-tool.js"));
+            bundles.Add(new ScriptBundle("~/js/tool/sync-monitoring").Include(
+                "~/views/tool/resources/sync-monitoring.js"));
         }
 
         #endregion Pages

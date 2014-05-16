@@ -1,6 +1,6 @@
 ﻿@model LicenseeAgent.Web.ViewModels.SyncMonitoringViewModel
 @{
-    ViewBag.Title = "Tool";
+    ViewBag.Title = "Monitoring Data Synchronization between Main DB and Deposit DB";
 }
 @section css
 {
@@ -11,32 +11,35 @@
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/tool/sync-monitoring")
 }
-
-<h2>Monitoring Data Synchronization between Main DB and Deposit DB</h2>
-
-<div class="form-inline form-filter">
+<div class="legend">
+    @ViewBag.Title
+</div>
+<form class="form-inline form-filter">
     <div class="controls-row">
-        <label for="action">Actions</label>
+        <label for="action">
+            Actions
+        </label>
         @Html.DropDownList("action", ModelSettings.TaiwanActions, new { @class = "selectpicker w160" })
     </div>
     <div class="controls-row">
-        <label for="taiwanapiurl">Taiwan API's URL</label>
+        <label for="taiwanapiurl">
+            Taiwan API's URL
+        </label>
         <select id="taiwanapiurl">
-          <option value="All">All</option>
-          @foreach (var apiUrl in Model.APIUrls)
-          {
-              <option value="@apiUrl.Text">@apiUrl.Text</option>
-          }
+            <option value="All">All</option>
+            @foreach (var apiUrl in Model.APIUrls)
+            {
+                <option value="@apiUrl.Text">@apiUrl.Text</option>
+            }
         </select>
     </div>
     <div class="controls-row">
-        <button type="button" class="btn btn-primary" id="actionmonitoring">Submit</button>
+        <button type="button" class="btn btn-primary" id="actionmonitoring">
+            Submit
+        </button>
     </div>
-</div>
-<br />
+</form>
 <div id="monitoringGrid" class="freegrid content-grid">
 </div>
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="~/Views/Tool/Resources/sync-monitoring.js"></script>

@@ -114,6 +114,7 @@ if (fanex.customerSetting) {
 		virtualSoccerCopyPtTooltip: 'Copy all below position taking settings from Virtual Soccer',
 		virtualSoccerCopyPt: 'Virtual Soccer position taking setting is being applied to:',
 		otherSporttypeOfVirtualSoccer: 'Other sport types of Virtual Soccer',
+		NoChangeToUpdate: '沒有更新!'
     };
 }
 else {

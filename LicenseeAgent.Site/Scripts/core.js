@@ -429,6 +429,34 @@ var core = (function ($) {
             }
 
             alert('Your request is temporarily cannot be processed, please try again later!');
+        },
+        encodeMessages: function (messages) {
+            var array = [];
+            var length = messages.length;
+            for (var i = 0; i < length; i++) {
+                var message = messages[i];
+                array.push(message.ErrCode.toString());
+                array.push(message.ErrMsg);
+            }
+            return encodeURIComponent(array.join('|'));
+        },
+        decodeMessages: function (string) {
+            var array = decodeURIComponent(string).split('|');
+            if (array.length % 2 !== 0) {
+                return string;
+            }
+            var length = array.length / 2;
+            var messages = [];
+            for (var i = 0; i < length; i++) {
+                var errCode = parseInt(array[i * 2]);
+                var errMsg = array[i * 2 + 1];
+                var message = {
+                    ErrCode: errCode,
+                    ErrMsg: errMsg
+                };
+                messages.push(message);
+            }
+            return messages;
         }
     };
 } (jQuery));

@@ -536,6 +536,46 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         }
 
         /// <summary>
+        /// Edits the agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns view.
+        /// </returns>
+        public ActionResult EditVirtualSportsMember(EditMemberViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = FormType.Edit,
+                TargetCustId = model.MemberId,
+                TargetRoleId = (int)Role.Member,
+                Ip = Request.GetClientIp()
+            };
+
+            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
+            {
+                settingContext.FormId = FormType.Edit;
+            }
+            else
+            {
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
+                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                    settingContext.CustId = agentId;
+                }
+            }
+
+            if (!CheckForEditingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
+            return View("~/Views/CustomerSetting/VirtualSports/EditVirtualSportsCustomer.cshtml", settingContext);
+        }
+
+        /// <summary>
         /// Validates the username is existed.
         /// </summary>
         /// <param name="model">The model.</param>

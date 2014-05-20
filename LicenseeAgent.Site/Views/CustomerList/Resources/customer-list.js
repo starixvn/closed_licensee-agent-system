@@ -476,7 +476,7 @@ var customerList = (function ($) {
         editVirttualSports: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerSetting/EditMember?memberId={0}"
+                url = "CustomerSetting/EditVirtualSportsMember?memberId={0}"
                     .format(editMemberId);
             } else {
                 url = "CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}"

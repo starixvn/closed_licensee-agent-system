@@ -13,7 +13,11 @@ namespace LicenseeAgent.CustomerSetting.Criteria.VirtualSports
     /// </summary>
     public class AgentGetMemberIndirectSettingForUpdateCriteria : CriteriaBase
     {
+        public int CustId { get; set; }
+
         public int AgentId { get; set; }
+
+        public int MsgId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -22,7 +26,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria.VirtualSports
 
         public override bool IsValid()
         {
-            return AgentId > 0;
+            return CustId > 0 && AgentId > 0;
         }
     }
 }

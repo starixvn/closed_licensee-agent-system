@@ -274,6 +274,8 @@
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-CN.js" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.zh-TW.js" />
     <Content Include="Scripts\jquery-form\jquery.form.js" />
+    <Content Include="Scripts\mutate\events.js" />
+    <Content Include="Scripts\mutate\mutate.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
     <Content Include="Scripts\ResourcesJs\Language.js">
@@ -290,7 +292,7 @@
     <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
       <DependentUpon>Language.tt</DependentUpon>
     </Content>
-    <Content Include="Scripts\scroller\jquery.nicescroll.js" />
+    <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
     <Content Include="Styles\Fanex.Result\fanex.result.css" />
     <Content Include="Styles\Fanex.Result\images\bg_header03.jpg" />
     <Content Include="Styles\Fanex.Result\images\first-goal.gif" />

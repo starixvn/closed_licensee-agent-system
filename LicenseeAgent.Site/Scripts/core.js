@@ -38,6 +38,18 @@ var core = (function ($) {
                 $('.datepicker').data('datepicker-format', core.DATE_FORMAT);
             }
 
+            // customize scrollbars.
+            if ($.fn.niceScroll) {
+                $('html').niceScroll({
+                    cursorcolor:"#8a8a8a",
+                    autohidemode: false
+                });
+
+                $('body').mutate('height width', function () {
+                    $('html').getNiceScroll().resize();
+                });
+            }
+
             // set href for button.
             $("button[data-href]").click(function () {
                 location.href = core.resolveUrl($(this).attr("data-href"));
@@ -105,6 +117,7 @@ var core = (function ($) {
                 trigger = thisId === 'page-info'
                     ? $('<div class="page-info" />').appendTo('#header_main')
                     : $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
+
                 if (trigger.length > 0) {
                     trigger.attr('title', tipTitle ? tipTitle : title)
                         .tooltip({
@@ -416,34 +429,6 @@ var core = (function ($) {
             }
 
             alert('Your request is temporarily cannot be processed, please try again later!');
-        },
-        encodeMessages: function (messages) {
-            var array = [];
-            var length = messages.length;
-            for (var i = 0; i < length; i++) {
-                var message = messages[i];
-                array.push(message.ErrCode.toString());
-                array.push(message.ErrMsg);
-            }
-            return encodeURIComponent(array.join('|'));
-        },
-        decodeMessages: function (string) {
-            var array = decodeURIComponent(string).split('|');
-            if (array.length % 2 !== 0) {
-                return string;
-            }
-            var length = array.length / 2;
-            var messages = [];
-            for (var i = 0; i < length; i++) {
-                var errCode = parseInt(array[i * 2]);
-                var errMsg = array[i * 2 + 1];
-                var message = {
-                    ErrCode: errCode,
-                    ErrMsg: errMsg
-                };
-                messages.push(message);
-            }
-            return messages;
         }
     };
 } (jQuery));

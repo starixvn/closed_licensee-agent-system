@@ -38,6 +38,9 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/core").Include(
                 "~/scripts/placeholder/jquery.placeholder.js",
                 "~/scripts/headjs/head.core.js",
+                "~/scripts/mutate/events.js",
+                "~/scripts/mutate/mutate.js",
+                "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
@@ -200,7 +203,6 @@ namespace LicenseeAgent.Site
                 "~/views/home/resources/home-header.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
-                "~/scripts/scroller/jquery.nicescroll.js",
                 "~/views/accountinformation/resources/account-information.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/internal").Include(

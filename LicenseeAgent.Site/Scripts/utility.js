@@ -2,6 +2,7 @@
 
 'use strict';
 
+// Overwrite tooltip defaults.
 if ($.fn.tooltip) {
     $.fn.tooltip.defaults.animation = false;
 }
@@ -62,15 +63,13 @@ $.fn.setBreadCrumb = function (agentId, agentLevel, username) {
     $(this).val(newBreadCrumb);
 };
 
-// First, checks if it isn't implemented yet.
+// Implement string.format.
+// Example: 'Hello {0}'.format('world') -> 'Hello world'
 if (!String.prototype.format) {
     String.prototype.format = function () {
         var args = arguments;
         return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] !== 'undefined'
-        ? args[number]
-        : match
-      ;
+            return typeof args[number] !== 'undefined' ? args[number] : match;
         });
     };
 }

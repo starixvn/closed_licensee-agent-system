@@ -12,7 +12,10 @@ var accountInformation = (function ($) {
             var userName;
 
             //scroll left menu
-            $(".leftmenu-box").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
+            $(".leftmenu-box").niceScroll({
+                cursorcolor: "#8a8a8a",
+                autohidemode: "leave"
+            });
 
             // username suggestion
             $("#UserName").typeahead({
@@ -240,7 +243,10 @@ var accountInformation = (function ($) {
         showScroll: function () {
             var niceScroll = $("#downlineContent").getNiceScroll();
             if (niceScroll.length === 0) {
-                $("#downlineContent").niceScroll({ cursoropacitymax: 0.7, autohidemode: "leave" });
+                $("#downlineContent").niceScroll({
+                    cursorcolor: "#8a8a8a",
+                    autohidemode: "leave"
+                });
             }
             $("#downlineContent").getNiceScroll().resize();
         },

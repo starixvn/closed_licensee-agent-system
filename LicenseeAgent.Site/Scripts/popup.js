@@ -101,9 +101,9 @@ var popup = (function ($) {
                 $this.setTitle(title).show();
                 core.unblockUI();
                 $this.clearTimeout();
+                popupBody.css('overflow', ''); // trick IE
+                $this.calculate();
                 $this.autoSize();
-                //$this.calculate();
-                popupBody.css('overflow', 'auto'); // trick IE
             });
 
             return this;

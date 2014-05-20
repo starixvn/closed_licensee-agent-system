@@ -152,7 +152,23 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-member-advanced-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditMemberPtAdvancedMode($timeout, scope, element, formatter);
+                    //// Cache Elements.
+                    var valueInput = element.find('.value-input');
+                    var currentPt = scope.pt.PositionTakings[0];
+                    valueInput.preventSpecialCharacters("^[0-9.]+$");
+
+                    //// Position taking Actions
+                    currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(
+                    scope,
+                    $timeout,
+                    currentPt,
+                    valueInput,
+                    formatter);
+
+                    //// Init value
+                    currentPt.OldValue = currentPt.Value;
+                    currentPt.MinRangeOfValue = currentPt.Upline.Min;
+                    currentPt.MaxRangeOfValue = currentPt.Upline.Max;
                 }
             };
         }

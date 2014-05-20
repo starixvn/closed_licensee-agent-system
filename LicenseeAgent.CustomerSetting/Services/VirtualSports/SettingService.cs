@@ -249,7 +249,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                 {
                     criteria = new AgentGetMemberSettingForUpdateCriteria
                     {
-                        AgentId = settingContext.CustId
+                        CustId = settingContext.CustId
                     };
                 }
             }

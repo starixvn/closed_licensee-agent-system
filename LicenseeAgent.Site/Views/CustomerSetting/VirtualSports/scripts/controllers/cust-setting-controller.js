@@ -1,4 +1,4 @@
-﻿/*global core, popup, settingContext, result */
+﻿/*global core, popup, language, settingContext, result */
 
 'use strict';
 if (fanex.customerSetting) {
@@ -21,6 +21,7 @@ if (fanex.customerSetting) {
 
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
+            $scope.result = fanex.customerSetting.Result;
 
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
@@ -59,6 +60,16 @@ if (fanex.customerSetting) {
                 }
 
                 positionTakingItems = positionTakingScope.saveData();
+                if (positionTakingItems.length === 0 && bettingLimitItems.length === 0) {
+                    $('.messages').show();
+                    $scope.Messages = [
+                        {
+                            ErrCode: $scope.result.NoChange,
+                            ErrMsg: language.getString('NoChangeToUpdate')
+                        }
+                    ];
+                    return;
+                }
 
                 core.blockUI();
                 $http({

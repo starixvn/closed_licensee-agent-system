@@ -69,6 +69,12 @@
   <Function Name="CustomerSetting - VirtualSports">
     <Setting Key="Las_LicenseeGetAgentVirtualSportsSettingForUpdate" SpName="Las_LicenseeGetAgentVSSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_LicenseeEditAgentVirtualSports" SpName="Las_LicenseeEditAgentVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetAgentVirtualSportsSettingForUpdate" SpName="Las_AgentGetAgentVSSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentEditAgentVirtualSports" SpName="Las_AgentEditAgentVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberVirtualSportsSettingForUpdate" SpName="Las_AgentGetMemberVSSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentEditMemberVirtualSports" SpName="Las_AgentEditMemVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberIndirectForUpdateVirtualSports" SpName="Las_AgentSelMemIndirectForUpdateVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentEditMemberIndirectVirtualSports" SpName="Las_AgentEditMemIndirectVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

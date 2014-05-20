@@ -26,7 +26,7 @@
         var culture = cultureIndex > 0 ? fileName.Substring(cultureIndex + 1) : "en-US";
         var resourceXSet = new ResXResourceSet(filePath);
 
-        manager.StartNewFile(string.Format("sports-book-lang.{0}.js", culture));
+        manager.StartNewFile(string.Format("languages.{0}.js", culture));
 #>
 /*jshint -W101,-W106,-W044,-W098*/
 

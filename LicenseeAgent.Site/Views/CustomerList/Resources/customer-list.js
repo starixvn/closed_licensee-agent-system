@@ -32,7 +32,7 @@ var customerList = (function ($) {
                 {
                     id: 'menuVirtualSports',
                     icon: 'icon-customer-canedit',
-                    text: 'Edit Virtual Sports',
+                    text: language.getString('VirtualSports'),
                     href: '#',
                     action: customerList.editVirttualSports
                 },

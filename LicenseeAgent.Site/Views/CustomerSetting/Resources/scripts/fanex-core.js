@@ -90,6 +90,16 @@ fanex.cloneObject = function (obj) {
     return newObj;
 };
 
+fanex.isChangedData = function (productSetting) {
+    'use strict';
+    if (productSetting === null) {
+        return true;
+    }
+    return productSetting.CommissionSetting.CommissionItems.length > 0
+            || productSetting.BettingLimitSetting.length > 0
+            || productSetting.PositionTakingSetting.length > 0;
+};
+
 $.fn.preventSpecialCharacters = function (allowedChars) {
     'use strict';
     this.bind('keypress', function (event) {

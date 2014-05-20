@@ -10,7 +10,7 @@
     [XmlType("SettingOutput")]
     public class UpdateResult : Result
     {
-        public int ErrType { get; set; }
+        public ErrorType ErrType { get; set; }
 
         public int BetType { get; set; }
 

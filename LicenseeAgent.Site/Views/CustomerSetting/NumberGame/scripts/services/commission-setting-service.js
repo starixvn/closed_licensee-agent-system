@@ -30,7 +30,7 @@ if (fanex.customerSetting) {
                 }
             }
             return {
-                CommissionItems: commissionSetting === null ? null : [commissionSetting]
+                CommissionItems: commissionSetting === null ? [] : [commissionSetting]
             };
         }
     };

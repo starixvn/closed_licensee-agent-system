@@ -25,6 +25,12 @@ fanex.customerSetting.Role = {
     Member: 1
 };
 
+fanex.customerSetting.Result = {
+    Success: 0,
+    Error: -1,
+    NoChange: -8
+};
+
 fanex.customerSetting.factory("Formatter", ['$filter', function ($filter) {
     return {
         formatNumber: function(number) {

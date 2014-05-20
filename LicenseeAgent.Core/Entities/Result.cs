@@ -24,6 +24,7 @@ namespace LicenseeAgent.Core.Entities
         public const int Unauthorized = -5;
         public const int AccessDenied = -6;
         public const int ApiError = -7;
+        public const int NoChange = -8;
 
         public Result()
             : this(SuccessValue, string.Empty)

@@ -879,10 +879,10 @@
     <value>無限</value>
   </data>
   <data name="UpdateBetSettingSuccessfully" xml:space="preserve">
-    <value>成功更新投注設置。</value>
+    <value>{0} - 成功更新投注設置。</value>
   </data>
   <data name="UpdateCommissionSuccessfully" xml:space="preserve">
-    <value>成功更新傭金設置</value>
+    <value>{0} - 成功更新傭金設置</value>
   </data>
   <data name="TransferTimeWarning" xml:space="preserve">
     <value>您只可在12點到11：59分（GMT-4）之間進行轉帳。</value>
@@ -1302,10 +1302,7 @@
     <value>Edit Virtual Sports Agent</value>
   </data>
   <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
-    <value>Updated position taking {0} successfully.</value>
-  </data>
-  <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
-    <value>Updated position taking {0} successfully.</value>
+    <value>{0} - Updated position taking successfully.</value>
   </data>
   <data name="EditVirtualSportsMember" xml:space="preserve">
     <value>Edit Virtual Sports Member</value>
@@ -1351,5 +1348,8 @@
   </data>
   <data name="OtherSporttypeOfVirtualSoccer" xml:space="preserve">
     <value>Other sport types of Virtual Soccer</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>沒有更新!</value>
   </data>
 </root>

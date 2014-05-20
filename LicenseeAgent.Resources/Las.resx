@@ -502,10 +502,10 @@
     <value>Please enter your username.</value>
   </data>
   <data name="UpdateBetSettingSuccessfully" xml:space="preserve">
-    <value>Updated bet setting {0} successfully.</value>
+    <value>{0} - Updated bet setting successfully.</value>
   </data>
   <data name="UpdateCommissionSuccessfully" xml:space="preserve">
-    <value>Updated commission setting {0} successfully.</value>
+    <value>{0} - Updated commission setting successfully.</value>
   </data>
   <data name="InsertSuccessfully" xml:space="preserve">
     <value>Insert Successfully.</value>
@@ -1320,7 +1320,7 @@
     <value>Copy from Over/Under</value>
   </data>
   <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
-    <value>Updated position taking {0} successfully.</value>
+    <value>{0} - Updated position taking successfully.</value>
   </data>
   <data name="EditVirtualSportsAgent" xml:space="preserve">
     <value>Edit Virtual Sports Agent</value>
@@ -1369,5 +1369,8 @@
   </data>
   <data name="OtherSporttypeOfVirtualSoccer" xml:space="preserve">
     <value>Other sport types of Virtual Soccer</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update!</value>
   </data>
 </root>

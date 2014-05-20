@@ -386,9 +386,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 : _customerSettingService.UpdateCustomer(model);
             var messages = new List<Result>();
 
-            foreach (var result in results)
+            if (results.Count > 0)
             {
-                messages.Add(GenerateMessages(result, true));
+                foreach (var result in results)
+                {
+                    messages.Add(GenerateMessages(result, true));
+                }
+            }
+            else
+            {
+                messages.Add(new Result(Result.NoChange, Las.NoChangeToUpdate));
             }
 
             return Json(new

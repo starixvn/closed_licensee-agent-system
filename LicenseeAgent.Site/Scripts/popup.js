@@ -50,7 +50,7 @@ var popup = (function ($) {
 
             var $this = this;
             this.$modal = modal;
-            this.$paddingWidth = modalContent.width() - modalBody.width() + 10;
+            this.$paddingWidth = modalContent.width() - modalBody.width() + 4;
             this.$paddingHeight = modalContent.height() - modalBody.height();
             this.$timeout = null;
             this.$onWindowResize = function () {

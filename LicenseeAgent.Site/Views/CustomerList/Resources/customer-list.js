@@ -30,6 +30,13 @@ var customerList = (function ($) {
                     action: customerList.editSportsbook
                 },
                 {
+                    id: 'menuVirtualSports',
+                    icon: 'icon-customer-canedit',
+                    text: 'Edit Virtual Sports',
+                    href: '#',
+                    action: customerList.editVirttualSports
+                },
+                {
                     id: 'menuEditInfo',
                     icon: 'icon-customer-canedit',
                     text: language.getString('EditInfo'),
@@ -112,6 +119,10 @@ var customerList = (function ($) {
             } else {
                 editAgentId = parseInt($(target).data('agentid'), null);
                 editAgentLevel = parseInt($(target).data('agentlevel'), null);
+            }
+
+            if (!pageContext.IsOfferedVirtualSports) {
+                $('#menuVirtualSports').hide();
             }
         },
         gridAfterBinding: function () {
@@ -455,6 +466,20 @@ var customerList = (function ($) {
                     .format(editMemberId);
             } else {
                 url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}"
+                    .format(editAgentId, editAgentLevel);
+            }
+            popup.openFrame(url, {
+                width: 1016,
+                height: 680
+            });
+        },
+        editVirttualSports: function () {
+            var url;
+            if (pageContext.IsLastLevel) {
+                url = "CustomerSetting/EditMember?memberId={0}"
+                    .format(editMemberId);
+            } else {
+                url = "CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}"
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {

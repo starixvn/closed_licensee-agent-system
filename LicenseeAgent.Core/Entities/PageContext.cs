@@ -41,5 +41,7 @@ namespace LicenseeAgent.Core.Entities
         public bool IsAdmin { get; set; }
 
         public bool IsMember { get; set; }
+
+        public bool IsOfferedVirtualSports { get; set; }
     }
 }

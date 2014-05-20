@@ -67,7 +67,7 @@ if (fanex.customerSetting) {
                     headers: { 'Content-Type': 'application/json' },
                     data: {
                         settingContext: settingContext,
-                        sportsBookSetting:
+                        virtualSportsSetting:
                             {
                                 PositionTakingSetting: positionTakingItems,
                                 BettingLimitSetting: bettingLimitItems

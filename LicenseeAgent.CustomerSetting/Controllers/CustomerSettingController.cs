@@ -385,12 +385,46 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 ? _customerSettingService.UpdateIndirectCustomer(model)
                 : _customerSettingService.UpdateCustomer(model);
             var messages = new List<Result>();
-            
+
             foreach (var result in results)
             {
                 messages.Add(GenerateMessages(result, true));
             }
-            
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Messages = messages
+            });
+        }
+
+        /// <summary>
+        /// Inserts the customer.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON result.</returns>
+        [HttpPost]
+        public JsonResult UpdateVirtualSportsCustomer(UpdateVirtualSportsCustomerViewModel model)
+        {
+            if (!ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
+            {
+                return InvalidModelJsonResult();
+            }
+
+            if (!CheckForEditingCustomerSetting(model.SettingContext))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var results = _virtualSportsService.UpdateCustomer(model);
+
+            var messages = new List<Result>();
+
+            foreach (var result in results)
+            {
+                messages.Add(GenerateMessages(result, true));
+            }
+
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -630,7 +664,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private static Result GetUpdateMessageSuccess(dynamic result)
         {
             var productName = (int)result.SportType == (int)SportType.SportType_1
-                                    ? Las.Sportsbook 
+                                    ? Las.Sportsbook
                                     : DataRefWrapper.GetSportName((int)result.SportType);
             var msgContent = string.Empty;
 

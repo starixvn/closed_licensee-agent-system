@@ -18,7 +18,37 @@ if (fanex.customerSetting) {
                 controller: 'PositionTakingController',
                 templateUrl: core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtAdvancedMode($timeout, scope, element, formatter);
+                    //// Cache Elements.
+                    var presetInput = element.find('.preset-input');
+                    var maxInput = element.find('.max-input');
+                    var minInput = element.find('.min-input');
+                    var currentPt = scope.pt.PositionTakings[0];
+
+                    presetInput.preventSpecialCharacters("^[0-9.]+$");
+                    maxInput.preventSpecialCharacters("^[0-9.]+$");
+                    minInput.preventSpecialCharacters("^[0-9.]+$");
+
+                    //// Position taking Actions
+                    currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                        scope,
+                        $timeout,
+                        currentPt,
+                        presetInput,
+                        maxInput,
+                        minInput,
+                        formatter);
+
+                    //// Init value
+                    currentPt.OldMin = currentPt.Min;
+                    currentPt.OldMax = currentPt.Max;
+                    currentPt.OldPreset = currentPt.Preset;
+                    currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
+                    currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
+                    currentPt.MinRangeOfMin = 0;
+                    currentPt.MaxRangeOfMin = currentPt.Max;
+                    currentPt.MinRangeOfPreset = 0;
+                    currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+                    currentPt.actions.whenPresetChange();
                 }
             };
         }
@@ -35,7 +65,37 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtAdvancedModeReadOnly($timeout, scope, element, formatter);
+                    //// Cache Elements.
+                    var presetInput = element.find('.preset-input');
+                    var maxInput = element.find('.max-input');
+                    var minInput = element.find('.min-input');
+                    var currentPt = scope.pt.PositionTakings[0];
+
+                    presetInput.preventSpecialCharacters("^[0-9.]+$");
+                    maxInput.preventSpecialCharacters("^[0-9.]+$");
+                    minInput.preventSpecialCharacters("^[0-9.]+$");
+
+                    //// Position taking Actions
+                    currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
+                        scope,
+                        $timeout,
+                        currentPt,
+                        presetInput,
+                        maxInput,
+                        minInput,
+                        formatter);
+
+                    //// Init value
+                    currentPt.OldMin = currentPt.Min;
+                    currentPt.OldMax = currentPt.Max;
+                    currentPt.OldPreset = currentPt.Preset;
+                    currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
+                    currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
+                    currentPt.MinRangeOfMin = 0;
+                    currentPt.MaxRangeOfMin = currentPt.Max;
+                    currentPt.MinRangeOfPreset = 0;
+                    currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+                    currentPt.actions.whenPresetChange();
                 }
             };
         }

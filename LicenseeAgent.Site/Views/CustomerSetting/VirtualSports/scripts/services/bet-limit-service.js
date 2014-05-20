@@ -37,8 +37,7 @@ if (fanex.customerSetting) {
                     bettingLimit = bettingLimitsData[index];
                     if (self.formatInputNumber(bettingLimit.MinBet) !== self.formatInputNumber(firstRecordData.MinBet)
                     || self.formatInputNumber(bettingLimit.MaxBet) !== self.formatInputNumber(firstRecordData.MaxBet)
-                    || self.formatInputNumber(bettingLimit.MaxPerMatch) !== self.formatInputNumber(firstRecordData.MaxPerMatch)
-                    || settingContext.FormId === fanex.customerSetting.FormType.Add) {
+                    || self.formatInputNumber(bettingLimit.MaxPerMatch) !== self.formatInputNumber(firstRecordData.MaxPerMatch)) {
                         bettingLimitsSave.push({
                             MinBet: self.formatInputNumber(firstRecordData.MinBet),
                             MaxBet: self.formatInputNumber(firstRecordData.MaxBet),
@@ -52,8 +51,7 @@ if (fanex.customerSetting) {
             else {
                 for (index = 0; index < bettingLimitsData.length; index++) {
                     bettingLimit = bettingLimitsData[index];
-                    if (bettingLimit.actions.isDataChanged()
-                    || settingContext.FormId === fanex.customerSetting.FormType.Add) {
+                    if (bettingLimit.actions.isDataChanged()) {
                         bettingLimitsSave.push({
                             MinBet: self.formatInputNumber(bettingLimit.MinBet),
                             MaxBet: self.formatInputNumber(bettingLimit.MaxBet),

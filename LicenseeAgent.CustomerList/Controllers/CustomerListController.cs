@@ -11,6 +11,7 @@ namespace LicenseeAgent.CustomerList.Controllers
     using Fanex.Common;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Services;
@@ -35,6 +36,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         private readonly IIpInformationService _ipService;
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
+        private readonly ICoreService _coreService = new CoreService();
 
         public CustomerListController(
             ICustomerService agentService,
@@ -58,6 +60,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         public ActionResult Index(AgentInfoViewModel model)
         {
             var hasAgentModel = model.AgentId != 0;
+            var hasVirtualSports = false;
 
             var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
@@ -65,11 +68,17 @@ namespace LicenseeAgent.CustomerList.Controllers
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
 
             var isLastLevel = hasAgentModel ? ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel) : CurrentSession.AgentInfo.IsLastLevel;
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
+            {
+                hasVirtualSports = true;
+            }
 
             ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
             {
                 IsDirectDownline = CurrentSession.IsDirectDownline(hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsOfferedVirtualSports = hasVirtualSports
             };
 
             return View(breadModel);
@@ -83,6 +92,8 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public ActionResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
         {
+            var hasVirtualSports = false;
+
             if (!_permissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
@@ -100,10 +111,17 @@ namespace LicenseeAgent.CustomerList.Controllers
                 return InvalidModelViewResult();
             }
 
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
+            {
+                hasVirtualSports = true;
+            }
+
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {
                 IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsOfferedVirtualSports = hasVirtualSports
             };
 
             return View(model);
@@ -261,8 +279,8 @@ namespace LicenseeAgent.CustomerList.Controllers
                         SiteName = CurrentSession.AgentInfo.LicenseeName,
                         LASAgentId = model.AgentId
                     });
-                
-                if (!CurrentSession.IsAdmin) 
+
+                if (!CurrentSession.IsAdmin)
                 {
                     members.ToList().ForEach(r => r.SystemId = string.Empty);
                 }

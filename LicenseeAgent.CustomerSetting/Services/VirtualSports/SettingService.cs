@@ -14,9 +14,11 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
+    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria.VirtualSports;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Utils;
+    using LicenseeAgent.CustomerSetting.ViewModels;
 
     /// <summary>
     /// Customer repository.
@@ -57,6 +59,37 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
             };
 
             return result;
+        }
+
+        /// <summary>
+        /// Insert customer setting.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Status of insert command.
+        /// </returns>
+        public IList<UpdateResult> UpdateCustomer(UpdateVirtualSportsCustomerViewModel model)
+        {
+            var criteria = CreateUpdateCustomerCriteria(model);
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var parameters = criteria.GetSpParams();
+                    objDb.ExecuteNonQuery(parameters);
+
+                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
         }
 
         /// <summary>
@@ -177,7 +210,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
 
             if (settingContext.TargetRoleId == (int)Role.Agent)
             {
-                criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                criteria = new AgentGetAgentSettingForUpdateCriteria
                 {
                     AgentId = settingContext.TargetCustId
                 };
@@ -206,14 +239,14 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)
                 {
-                    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                    criteria = new AgentGetMemberIndirectSettingForUpdateCriteria
                     {
                         AgentId = settingContext.CustId
                     };
                 }
                 else
                 {
-                    criteria = new LicenseeGetAgentSettingForUpdateCriteria
+                    criteria = new AgentGetMemberSettingForUpdateCriteria
                     {
                         AgentId = settingContext.CustId
                     };
@@ -241,6 +274,60 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                 BettingLimitSetting = bettingLimiList,
                 PositionTakingSetting = positionTakingList
             };
+        }
+
+        /// <summary>
+        /// Creates the update customer criteria.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns criteria.</returns>
+        private ICriteria CreateUpdateCustomerCriteria(UpdateVirtualSportsCustomerViewModel model)
+        {
+            var betLimit3rdXml = string.Empty;
+            var positionTaking3rdXml = string.Empty;
+            positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.VirtualSportsSetting.PositionTakingSetting);
+
+            if (model.SettingContext.FormId != FormType.EditIndirectMember)
+            {
+                betLimit3rdXml = XmlBuilder.Build(model.VirtualSportsSetting.BettingLimitSetting);
+            }
+
+            if (model.SettingContext.TargetRoleId == (int)Role.Member)
+            {
+                return new AgentUpdateMemberCriteria()
+                {
+                    AgentId = model.SettingContext.TargetCustId,
+                    BetLimit3rd = betLimit3rdXml,
+                    PositionTaking3rd = positionTaking3rdXml,
+                    Ip = model.SettingContext.Ip,
+                    Updater = model.SettingContext.LoginUserId
+                };
+            }
+            else
+            {
+                if (model.SettingContext.TargetRoleId == (int)Role.AgentLevel1)
+                {
+                    return new LicenseeUpdateAgentCriteria()
+                    {
+                        AgentId = model.SettingContext.TargetCustId,
+                        BetLimit3rd = betLimit3rdXml,
+                        PositionTaking3rd = positionTaking3rdXml,
+                        Ip = model.SettingContext.Ip,
+                        Updater = model.SettingContext.LoginUserId
+                    };
+                }
+                else
+                {
+                    return new AgentUpdateAgentCriteria()
+                    {
+                        AgentId = model.SettingContext.TargetCustId,
+                        BetLimit3rd = betLimit3rdXml,
+                        PositionTaking3rd = positionTaking3rdXml,
+                        Ip = model.SettingContext.Ip,
+                        Updater = model.SettingContext.LoginUserId
+                    };
+                }
+            }
         }
     }
 }

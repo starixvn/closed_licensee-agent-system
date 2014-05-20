@@ -88,7 +88,14 @@
     <Compile Include="Criteria\AgentUpdateAgentCriteria.cs" />
     <Compile Include="Criteria\SportsBook\AgentGetMemberSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\AgentUpdateMemberCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentGetAgentSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentUpdateAgentCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentGetMemberSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentUpdateMemberCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentGetMemberIndirectSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\AgentUpdateMemberIndirectCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeGetAgentSettingForUpdateCriteria.cs" />
+    <Compile Include="Criteria\VirtualSports\LicenseeUpdateAgentCriteria.cs" />
     <Compile Include="Entities\BettingLimitItem.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
     <Compile Include="Entities\CommissionSetting.cs" />
@@ -116,6 +123,7 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditMemberViewModel.cs" />

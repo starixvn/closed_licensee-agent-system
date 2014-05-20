@@ -191,7 +191,7 @@ if (fanex.customerSetting) {
                     $scope.Messages = [
                         {
                             ErrCode: $scope.result.NoChange,
-                            ErrMsg: $scope.language.noChangeToUpdate
+                            ErrMsg: $scope.language.NoChangeToUpdate
                         }
                     ];
                     return;

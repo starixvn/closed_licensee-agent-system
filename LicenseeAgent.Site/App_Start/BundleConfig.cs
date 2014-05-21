@@ -227,11 +227,11 @@ namespace LicenseeAgent.Site
             bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
                 "~/views/customersetting/sportsbook/scripts", "*.js", true).IncludeDirectory(
                 "~/views/customersetting/numbergame/scripts", "*.js", true));
-            bundles.Add(new LessBundle("~/css/customersetting/sportsbook").Include(
-                "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
-
             bundles.Add(new ScriptBundle("~/js/customersetting/virtualsports").IncludeDirectory(
                "~/views/customersetting/virtualsports/scripts", "*.js", true));
+
+            bundles.Add(new LessBundle("~/css/customersetting").Include(
+                "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
         }
 
         /// <summary>

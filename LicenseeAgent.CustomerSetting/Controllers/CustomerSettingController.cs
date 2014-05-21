@@ -438,7 +438,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedPage();
             }
 
-            return View("~/Views/CustomerSetting/VirtualSports/EditVirtualSportsCustomer.cshtml", settingContext);
+            return View("~/Views/CustomerSetting/VirtualSports/EditCustomer.cshtml", settingContext);
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 return RedirectToAccessDeniedPage();
             }
 
-            return View("~/Views/CustomerSetting/VirtualSports/EditVirtualSportsCustomer.cshtml", settingContext);
+            return View("~/Views/CustomerSetting/VirtualSports/EditCustomer.cshtml", settingContext);
         }
 
         /// <summary>

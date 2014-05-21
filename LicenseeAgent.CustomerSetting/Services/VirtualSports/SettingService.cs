@@ -307,7 +307,8 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
             {
                 return new AgentUpdateMemberCriteria()
                 {
-                    AgentId = model.SettingContext.TargetCustId,
+                    AgentId = model.SettingContext.CustId,
+                    CustId = model.SettingContext.TargetCustId,
                     BetLimit3rd = betLimit3rdXml,
                     PositionTaking3rd = positionTaking3rdXml,
                     Ip = model.SettingContext.Ip,

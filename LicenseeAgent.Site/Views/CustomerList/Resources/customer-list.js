@@ -31,7 +31,11 @@ var customerList = (function ($) {
                 },
                 {
                     id: 'menuVirtualSports',
-                    icon: 'icon-customer-canedit',
+                    icon: (pageContext.IsAdmin ||
+                        pageContext.IsLastLevel ||
+                        pageContext.IsDirectDownline ?
+                        'icon-customer-canedit'
+                        : 'icon-customer-canview'),
                     text: language.getString('VirtualSports'),
                     href: '#',
                     action: customerList.editVirttualSports

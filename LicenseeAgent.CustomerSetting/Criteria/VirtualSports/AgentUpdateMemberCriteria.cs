@@ -15,6 +15,8 @@ namespace LicenseeAgent.CustomerSetting.Criteria.VirtualSports
     {
         public int AgentId { get; set; }
 
+        public int CustId { get; set; }
+
         public int Updater { get; set; }
 
         public string Ip { get; set; }

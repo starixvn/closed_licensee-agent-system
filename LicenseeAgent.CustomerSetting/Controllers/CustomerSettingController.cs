@@ -85,6 +85,111 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         }
 
         /// <summary>
+        /// Edits the product agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns view to edit product settings.</returns>
+        [HttpGet]
+        public ViewResult EditProductAgent(EditProductAgentViewModel model)
+        {
+            var custInfo = new CustomerInfo
+            {
+                UserName = "pgmleo",
+                Status = 1,
+                FirstName = "Leo",
+                LastName = "Vo"
+            };
+
+            var editProductItems = new List<EditProductItem>();
+            var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
+            foreach (var product in products)
+            {
+                var url = string.Empty;
+                switch (product.ProductId)
+                {
+                    case (int)Product.Product_0:
+                        url = Url.Content(string.Format("~/CustomerSetting/EditAgent?agentId={0}&agentLevel={1}", model.AgentId, model.AgentLevel));
+                        break;
+
+                    case (int)Product.Product_5:
+                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}", model.AgentId, model.AgentLevel));
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    editProductItems.Add(new EditProductItem
+                    {
+                        ProductId = product.ProductId,
+                        ProductName = DataRefWrapper.GetProductName(product.ProductId),
+                        Url = url
+                    });
+                }
+            }
+
+            var viewModel = new EditProductViewModel
+            {
+                ProductId = model.ProductId,
+                CustInfo = custInfo,
+                Products = editProductItems
+            };
+            return View("~/Views/CustomerSetting/EditProduct.cshtml", viewModel);
+        }
+
+        /// <summary>
+        /// Edits the product member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns view to edit product settings.</returns>
+        [HttpGet]
+        public ViewResult EditProductMember(EditProductMemberViewModel model)
+        {
+            var custInfo = new CustomerInfo
+            {
+                UserName = "pgmleo",
+                Status = 1,
+                FirstName = "Leo",
+                LastName = "Vo"
+            };
+
+            var editProductItems = new List<EditProductItem>();
+            var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
+            foreach (var product in products)
+            {
+                var url = string.Empty;
+                switch (product.ProductId)
+                {
+                    case (int)Product.Product_0:
+                        url = Url.Content(string.Format("~/CustomerSetting/EditMember?memberId={0}", model.CustId));
+                        break;
+
+                    case (int)Product.Product_5:
+                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsMember?memberId={0}", model.CustId));
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    editProductItems.Add(new EditProductItem
+                    {
+                        ProductId = product.ProductId,
+                        ProductName = DataRefWrapper.GetProductName(product.ProductId),
+                        Url = url
+                    });
+                }
+            }
+
+            var viewModel = new EditProductViewModel
+            {
+                ProductId = model.ProductId,
+                CustInfo = custInfo,
+                Products = editProductItems
+            };
+
+            return View("~/Views/CustomerSetting/EditProduct.cshtml", viewModel);
+        }
+
+        /// <summary>
         /// Get Setting Context For Insert.
         /// </summary>
         /// <param name="model">The model.</param>

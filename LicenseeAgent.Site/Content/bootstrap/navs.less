@@ -102,6 +102,7 @@
   padding-right: 12px;
   padding-left: 12px;
   line-height: 16px; // keeps the overall height an even number
+  background: #ededed;
 }
 
 // TABS
@@ -117,24 +118,26 @@
 }
 // Actual tabs (as links)
 .nav-tabs > li > a {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   line-height: @baseLineHeight;
-  border: 1px solid transparent;
-  .border-radius(4px 4px 0 0);
+  border: 1px solid #dedede;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
   &:hover,
   &:focus {
-    border-color: @grayLighter @grayLighter #ddd;
+    color: #d93b3c;
   }
 }
 // Active state, and it's :hover/:focus to override normal :hover/:focus
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
-  color: @gray;
   background-color: @bodyBackground;
-  border: 1px solid #ddd;
-  border-bottom-color: transparent;
+  border-top: #d93b3c 2px solid;
+  border-bottom: 0;
   cursor: default;
 }
 

@@ -39,6 +39,8 @@ namespace LicenseeAgent.CustomerSetting.Entities
 
         public string UserName { get; set; }
 
+        public int ProductId { get; set; }
+
         public string TargetCustIds { get; set; }
 
         public int TargetCustId { get; set; }

@@ -103,6 +103,7 @@
     <Compile Include="Entities\CustomerInfo.cs" />
     <Compile Include="Entities\CustomerSetting.cs" />
     <Compile Include="Entities\CustomerSetting2.cs" />
+    <Compile Include="Entities\EditProductItem.cs" />
     <Compile Include="Entities\InsertResult.cs" />
     <Compile Include="Entities\MemberInfo.cs" />
     <Compile Include="Entities\PositionTakingItem.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\EditProductAgentViewModel.cs" />
+    <Compile Include="ViewModels\EditProductMemberViewModel.cs" />
+    <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />

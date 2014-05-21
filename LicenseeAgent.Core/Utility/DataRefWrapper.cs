@@ -67,7 +67,7 @@ namespace LicenseeAgent.Core.Utility
             {
                 return betType == (int)BetType.BetType_9 ? Las.MixSportsParlay : Las.OtherSports;
             }
-            
+
             return RefData.GetSportName(sportType.ToString(), RefLanguageCode);
         }
 
@@ -79,6 +79,28 @@ namespace LicenseeAgent.Core.Utility
         public static string GetTeamName(int teamId)
         {
             return RefData.GetTeamName(teamId.ToString(), RefLanguageCode);
+        }
+
+        /// <summary>
+        /// Gets the name of the product.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>Returns product name.</returns>
+        public static string GetProductName(int productId)
+        {
+            switch (productId)
+            {
+                case (int)Product.Product_0:
+                    return Las.Sportsbook;
+
+                case (int)Product.Product_2:
+                    return Las.NumberGame;
+
+                case (int)Product.Product_5:
+                    return Las.VirtualSports;
+            }
+
+            return string.Format("Undefined product name {0}", productId);
         }
 
         /// <summary>

@@ -144,6 +144,7 @@ if (fanex.customerSetting) {
 		virtualSoccerCopyPtTooltip: '<#= resourceXSet.GetString("VirtualSoccerCopyPtTooltip")#>',
 		bettingLimit_Virtual_Sport_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingVirtualSoccer")#>',
 		virtualSoccerCopyPt: '<#= resourceXSet.GetString("VirtualSoccerCopyPt")#>',
+		otherSporttypeOfVirtualSoccer: '<#= resourceXSet.GetString("OtherSporttypeOfVirtualSoccer")#>',
 		NoChangeToUpdate: '<#= resourceXSet.GetString("NoChangeToUpdate")#>'
     };
 }

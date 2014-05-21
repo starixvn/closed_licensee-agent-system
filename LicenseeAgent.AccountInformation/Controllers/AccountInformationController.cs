@@ -17,6 +17,8 @@ namespace LicenseeAgent.AccountInformation.Controllers
     using LicenseeAgent.AccountInformation.ViewResults;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
@@ -33,6 +35,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
     {
         private readonly ISearchUserService _searchUserService;
         private readonly IMemberService _memberService;
+        private readonly ICoreService _coreService = new CoreService();
 
         public AccountInformationController(
             ISearchUserService searchUserService,
@@ -72,7 +75,7 @@ namespace LicenseeAgent.AccountInformation.Controllers
             {
                 return SearchAdmin(model);
             }
-            
+
             return SearchAgent(model);
         }
 
@@ -84,8 +87,8 @@ namespace LicenseeAgent.AccountInformation.Controllers
         [HttpPost]
         public JsonResult Suggest(SuggestionViewModel model)
         {
-            return CurrentSession.AgentInfo.IsLevel0 
-                ? SuggestAdmin(model) 
+            return CurrentSession.AgentInfo.IsLevel0
+                ? SuggestAdmin(model)
                 : SuggestAgent(model);
         }
 
@@ -289,11 +292,19 @@ namespace LicenseeAgent.AccountInformation.Controllers
             }
             else
             {
+                var hasVirtualSports = false;
+                var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+                if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
+                {
+                    hasVirtualSports = true;
+                }
+
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
                     IsDirectDownline = true,
                     IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
-                    IsMember = customer.Level == Constants.MemberLevel
+                    IsMember = customer.Level == Constants.MemberLevel,
+                    IsOfferedVirtualSports = hasVirtualSports
                 };
             }
         }
@@ -322,11 +333,19 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 var isDirectDownline = (isLastLevel && isMember)
                                         || CurrentSession.IsDirectDownline(customer.CustId == CurrentSession.AgentInfo.AgentId ? customer.Level : customer.Level - 1);
 
+                var hasVirtualSports = false;
+                var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+                if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
+                {
+                    hasVirtualSports = true;
+                }
+
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
                     IsDirectDownline = isDirectDownline,
                     IsLastLevel = isLastLevel,
                     IsMember = isMember,
+                    IsOfferedVirtualSports = hasVirtualSports
                 };
             }
         }
@@ -339,8 +358,8 @@ namespace LicenseeAgent.AccountInformation.Controllers
         [NonAction]
         public BalanceEntity GetBalance(CustomerEntity customer)
         {
-            return customer.Level == Constants.MemberLevel 
-                ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId }) 
+            return customer.Level == Constants.MemberLevel
+                ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId })
                 : _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
         }
     }

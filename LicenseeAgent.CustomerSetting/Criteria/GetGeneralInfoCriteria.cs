@@ -13,9 +13,9 @@ namespace LicenseeAgent.CustomerSetting.Criteria
     /// </summary>
     public class GetGeneralInfoCriteria : CriteriaBase
     {
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
 
-        public int CustId { get; set; }
+        public int? CustId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -24,8 +24,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria
 
         public override bool IsValid()
         {
-            return AgentId > 0 &&
-                CustId > 0;
+            return true;
         }
     }
 }

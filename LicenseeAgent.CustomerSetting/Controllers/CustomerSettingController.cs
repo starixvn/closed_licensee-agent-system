@@ -92,13 +92,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpGet]
         public ViewResult EditProductAgent(EditProductAgentViewModel model)
         {
-            var custInfo = new CustomerInfo
-            {
-                UserName = "pgmleo",
-                Status = 1,
-                FirstName = "Leo",
-                LastName = "Vo"
-            };
+            var custInfo = _customerSettingService.GetGeneralInfoAgent(model);
 
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
@@ -107,12 +101,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 var url = string.Empty;
                 switch (product.ProductId)
                 {
-                    case (int)Product.Product_0:
-                        url = Url.Content(string.Format("~/CustomerSetting/EditAgent?agentId={0}&agentLevel={1}", model.AgentId, model.AgentLevel));
-                        break;
-
                     case (int)Product.Product_5:
-                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}", model.AgentId, model.AgentLevel));
+                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}&isEditProduct=true", model.AgentId, model.AgentLevel));
                         break;
                 }
 
@@ -535,7 +525,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
-                Ip = Request.GetClientIp()
+                Ip = Request.GetClientIp(),
+                IsEditProduct = model.IsEditProduct ?? false
             };
 
             if (!CheckForEditingCustomerSetting(settingContext))

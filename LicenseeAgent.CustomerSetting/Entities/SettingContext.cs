@@ -58,5 +58,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
         public string Language { get; set; }
 
         public bool IsSimpleMode { get; set; }
+
+        public bool IsEditProduct { get; set; }
     }
 }

@@ -1373,4 +1373,10 @@
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>There is no change to update!</value>
   </data>
+  <data name="EditVirtualSports" xml:space="preserve">
+    <value>Edit Virtual Sports</value>
+  </data>
+  <data name="ViewVirtualSports" xml:space="preserve">
+    <value>View Virtual Sports</value>
+  </data>
 </root>

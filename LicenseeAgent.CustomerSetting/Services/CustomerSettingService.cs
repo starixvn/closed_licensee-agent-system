@@ -35,6 +35,26 @@ namespace LicenseeAgent.CustomerSetting.Services
             Execute(criteria);
         }
 
+        public CustomerInfo GetGeneralInfoAgent(EditProductAgentViewModel model)
+        {
+            var criteria = new GetGeneralInfoCriteria
+            {
+                AgentId = model.AgentId
+            };
+
+            return GetEntity<CustomerInfo>(criteria);
+        }
+
+        public CustomerInfo GetGeneralInfoMember(EditProductMemberViewModel model)
+        {
+            var criteria = new GetGeneralInfoCriteria
+            {
+                CustId = model.CustId
+            };
+
+            return GetEntity<CustomerInfo>(criteria);
+        }
+
         /// <summary>
         /// Insert customer setting.
         /// </summary>
@@ -63,11 +83,11 @@ namespace LicenseeAgent.CustomerSetting.Services
                         MaxPT = Converter.To<short>(parameters["maxptoutput"]),
                         MaxCredit = Converter.ToDecimal(parameters["maxcreditoutput"]),
                         BetLimit = Converter.ToDecimal(parameters["betlimitoutput"]),
-                        SportType = Converter.ToInt(parameters["betlimitsporttype"]) == 0 
-                                    ? Converter.ToInt(parameters["ptsporttype"]) 
+                        SportType = Converter.ToInt(parameters["betlimitsporttype"]) == 0
+                                    ? Converter.ToInt(parameters["ptsporttype"])
                                     : Converter.ToInt(parameters["betlimitsporttype"]),
-                        BetType = Converter.ToInt(parameters["betlimitbettype"]) == 0 
-                                    ? Converter.ToInt(parameters["ptbettype"]) 
+                        BetType = Converter.ToInt(parameters["betlimitbettype"]) == 0
+                                    ? Converter.ToInt(parameters["ptbettype"])
                                     : Converter.ToInt(parameters["betlimitbettype"]),
                         IsLive = Converter.ToBool(parameters["isliveoutput"]),
                         CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),

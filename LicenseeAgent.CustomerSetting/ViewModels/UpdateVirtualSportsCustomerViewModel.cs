@@ -32,7 +32,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!VirtualSportsSetting.IsValid(Product.Product_5, SettingContext, true))
+            if (!VirtualSportsSetting.IsValid(Product.Product_5, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid Virtual Sports setting"));
                 return results;

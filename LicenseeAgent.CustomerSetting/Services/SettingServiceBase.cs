@@ -37,7 +37,7 @@ namespace LicenseeAgent.CustomerSetting.Services
                 return null;
             }
 
-            if (!customerSetting.IsValid(product, settingContext))
+            if (!customerSetting.IsValid(product, settingContext, true))
             {
                 errCode = Result.FailureValue;
                 return null;

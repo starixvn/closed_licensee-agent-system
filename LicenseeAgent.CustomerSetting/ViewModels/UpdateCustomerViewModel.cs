@@ -34,13 +34,13 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!SportsBookSetting.IsValid(Product.Product_0, SettingContext, true))
+            if (!SportsBookSetting.IsValid(Product.Product_0, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid SportsBook setting"));
                 return results;
             }
 
-            if (NumberGameSetting != null && !NumberGameSetting.IsValid(Product.Product_2, SettingContext, true))
+            if (NumberGameSetting != null && !NumberGameSetting.IsValid(Product.Product_2, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid NumberGame setting"));
                 return results;

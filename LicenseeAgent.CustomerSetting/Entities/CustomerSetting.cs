@@ -32,11 +32,11 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </summary>
         /// <param name="product">The product id.</param>
         /// <param name="settingContext">The setting context.</param>
-        /// <param name="isStrict">If set to <c>true</c> mean that settings is from DB.</param>
+        /// <param name="isGet">If set to <c>true</c> mean that settings is get from DB.</param>
         /// <returns>
         /// Returns true if entity is valid.
         /// </returns>
-        public bool IsValid(Product product, SettingContext settingContext, bool isStrict = false)
+        public bool IsValid(Product product, SettingContext settingContext, bool isGet = false)
         {
             if (!ValidateBetSetting(product, settingContext))
             {
@@ -48,7 +48,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
                 return false;
             }
 
-            if (!ValidatePositionTakingSetting(product, settingContext, isStrict))
+            if (!ValidatePositionTakingSetting(product, settingContext, isGet))
             {
                 return false;
             }
@@ -131,21 +131,22 @@ namespace LicenseeAgent.CustomerSetting.Entities
         /// </summary>
         /// <param name="product">The product.</param>
         /// <param name="settingContext">The setting context.</param>
-        /// <param name="isStrict">If set to <c>true</c> [is strict].</param>
+        /// <param name="isGet">If set to <c>true</c> [is strict].</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidatePositionTakingSetting(Product product, SettingContext settingContext, bool isStrict)
+        private bool ValidatePositionTakingSetting(Product product, SettingContext settingContext, bool isGet)
         {
             if (settingContext.FormId == FormType.Add)
             {
-                if (settingContext.RoleId == (int)Role.AgentLevel0 && !isStrict)
+                if (settingContext.RoleId == (int)Role.AgentLevel0 && !isGet)
                 {
                     return true;
                 }
+            }
 
-                if (PositionTakingSetting == null || PositionTakingSetting.Count == 0)
-                {
-                    return false;
-                }
+            if ((settingContext.FormId == FormType.Add || isGet)
+                && (PositionTakingSetting == null || PositionTakingSetting.Count == 0))
+            {
+                return false;
             }
 
             if (PositionTakingSetting != null)
@@ -167,7 +168,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
                     inputKeys.Add(PositionTakingBuilder.GenerateKey(item.SportId, item.IsLive, item.BetTypeId));
                 }
 
-                if (settingContext.FormId == FormType.Add && inputKeys.Count != configKeys.Count)
+                if ((settingContext.FormId == FormType.Add || isGet) && inputKeys.Count != configKeys.Count)
                 {
                     return false;
                 }

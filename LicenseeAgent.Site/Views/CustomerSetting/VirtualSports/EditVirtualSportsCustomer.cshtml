@@ -17,7 +17,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content(string.Format("~/CustomerSetting/GetSettingVirtualSportsForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId))></script>
+    <script type="text/javascript" src=@Url.Content(string.Format("~/CustomerSetting/GetSettingForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}&productId={5}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId, (int)Product.Product_5))></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/customersetting")
@@ -46,7 +46,7 @@
         }
     </div>
     <div class="clearfix">
-        @Html.Partial("~/Views/CustomerSetting/VirtualSports/ViewCustomerInfo.cshtml")
+        @Html.Partial("~/Views/CustomerSetting/ViewCustomerInfo.cshtml")
     </div>
     <div class="clearfix">
         <div class="container-mode">

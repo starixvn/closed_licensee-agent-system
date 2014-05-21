@@ -7,12 +7,16 @@
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// GetSettingForUpdateViewModel class.
     /// </summary>
     public class GetSettingForUpdateViewModel
     {
+        [Required]
+        public Product ProductId { get; set; }
+
         [Required]
         public int CustId { get; set; }
 

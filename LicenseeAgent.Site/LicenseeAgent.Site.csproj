@@ -620,7 +620,6 @@
     <Content Include="Views\CustomerSetting\SportsBook\PositionTaking.cshtml" />
     <Content Include="Views\CustomerSetting\SportsBook\Commission.cshtml" />
     <Content Include="Views\CustomerSetting\SportsBook\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\CustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\Resources\styles\fanex.customerSetting.less" />
     <Content Include="Views\Account\Resources\home-page.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
@@ -647,7 +646,7 @@
     <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\CustomerList\_Link.cshtml" />
     <Content Include="Views\CustomerSetting\EditCustomer.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\ViewCustomerInfo.cshtml" />
+    <Content Include="Views\CustomerSetting\ViewCustomerInfo.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSettingAdv.cshtml" />
@@ -815,9 +814,8 @@
     <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\VirtualSports\CustomerInfo.cshtml" />
+    <Content Include="Views\CustomerSetting\CustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\PositionTaking.cshtml" />
-    <Content Include="Views\CustomerSetting\VirtualSports\ViewCustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\EditVirtualSportsCustomer.cshtml" />
     <None Include="Views\CustomerSetting\Resources\scripts\languages\languages.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

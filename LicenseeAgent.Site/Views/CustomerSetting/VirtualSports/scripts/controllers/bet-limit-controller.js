@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global settingContext, sportsBookSetting */
+/*global settingContext, virtualSportsSetting */
 
 'use strict';
 
@@ -18,9 +18,9 @@ if (fanex.customerSetting) {
 
             $scope.model = {
                 // For all sport types
-                bettingLimitsModel: fanex.cloneObject(sportsBookSetting.BettingLimitSetting),
+                bettingLimitsModel: fanex.cloneObject(virtualSportsSetting.BettingLimitSetting),
                 // For only soccer setting
-                firstRecord: fanex.cloneObject(sportsBookSetting.BettingLimitSetting[0]),
+                firstRecord: fanex.cloneObject(virtualSportsSetting.BettingLimitSetting[0]),
                 settingContext: settingContext
             };
 

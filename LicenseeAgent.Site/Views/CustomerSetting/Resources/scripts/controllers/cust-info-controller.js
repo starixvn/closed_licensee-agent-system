@@ -1,4 +1,4 @@
-﻿/*global settingContext, sportsBookSetting */
+﻿/*global settingContext */
 
 'use strict';
 
@@ -7,13 +7,12 @@ if (fanex.customerSetting) {
     [
         '$scope',
         '$filter',
-        'CustomerInfoService',
-        function($scope, $filter) {
+        function ($scope, $filter) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
-                $scope.isShowLimitMaxCredit = sportsBookSetting.CustInfo.MaxCredit !== undefined ? true : false;
+                $scope.isShowLimitMaxCredit = $scope.custInfo.MaxCredit !== undefined ? true : false;
                 if ($scope.isShowLimitMaxCredit) {
-                    $scope.$watch('custInfo.credit', function(newValue) {
+                    $scope.$watch('custInfo.credit', function (newValue) {
                         if (parseFloat(newValue) > $scope.custInfo.maxCredit) {
                             $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit']
                                 .format($filter('number')($scope.custInfo.maxCredit, 0));
@@ -24,27 +23,21 @@ if (fanex.customerSetting) {
                         }
                     });
                 }
+
+
                 $scope.custInfo = {
-                    userName: '',
-                    password: '',
-                    firstName: '',
-                    lastName: '',
-                    phone: '',
-                    mobile: '',
-                    fax: '',
-                    credit: sportsBookSetting.CustInfo.Credit,
-                    maxCredit: sportsBookSetting.CustInfo.MaxCredit,
-                    status: sportsBookSetting.CustInfo.Status
+                    UserName: '',
+                    Password: '',
+                    FirstName: '',
+                    LastName: '',
+                    Phone: '',
+                    Mobile: '',
+                    Fax: ''
                 };
             } else {
-                $scope.custInfo = {
-                    userName: sportsBookSetting.CustInfo.UserName,
-                    firstName: sportsBookSetting.CustInfo.FirstName,
-                    lastName: sportsBookSetting.CustInfo.LastName,
-                    credit: sportsBookSetting.CustInfo.Credit,
-                    status: sportsBookSetting.CustInfo.Status
-                };
+                $scope.custInfo = {};
             }
+            angular.extend($scope.custInfo, $scope.$parent.custInfo);
         }
     ]);
 }

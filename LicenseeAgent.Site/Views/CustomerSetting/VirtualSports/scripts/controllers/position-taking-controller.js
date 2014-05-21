@@ -3,7 +3,7 @@
 /// <reference path="../../../../libs/fanex.core.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global sportsBookSetting, settingContext */
+/*global virtualSportsSetting, settingContext */
 
 'use strict';
 
@@ -13,13 +13,13 @@ if (fanex.customerSetting) {
         '$scope',
         function ($scope) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
-            fanex.customerSetting.positionTakingService.init(sportsBookSetting.PositionTakingSetting, $scope.language);
+            fanex.customerSetting.positionTakingService.init(virtualSportsSetting.PositionTakingSetting, $scope.language);
             $scope.config = fanex.customerSetting.positionTakingService.config;
             $scope.settingContext = settingContext;
             $scope.positionTakingService = fanex.customerSetting.positionTakingService;
             $scope.ptModel = {
-                ptGroups: fanex.cloneObject(sportsBookSetting.PositionTakingSetting),
-                ptFirstData: fanex.cloneObject(sportsBookSetting.PositionTakingSetting[0].PositionTakings[0]),
+                ptGroups: fanex.cloneObject(virtualSportsSetting.PositionTakingSetting),
+                ptFirstData: fanex.cloneObject(virtualSportsSetting.PositionTakingSetting[0].PositionTakings[0]),
                 settingContext: settingContext
             };
 

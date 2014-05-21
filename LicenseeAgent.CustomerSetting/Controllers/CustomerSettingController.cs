@@ -166,14 +166,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
-            var sportsBookSetting = _sportsBookService.GetSettingForUpdate(settingContext, out errCode);
+
+            var settingService = GetSettingsService(model.ProductId);
+            var productSetting = settingService.GetSettingForUpdate(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
-                if (model.TargetRoleId == (int)Role.Member && sportsBookSetting.CustInfo != null)
+                if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
                 {
-                    sportsBookSetting.CustInfo.CustId = model.TargetCustId;
+                    productSetting.CustInfo.CustId = model.TargetCustId;
                     _memberService.GetMemberInformation(
-                        sportsBookSetting.CustInfo,
+                        productSetting.CustInfo,
                         new GetMemberInfoAction
                         {
                             SiteName = CurrentSession.AgentInfo.LicenseeName,
@@ -181,74 +183,18 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                         });
                 }
 
-                stringBuilder.AppendLine(FormatJavascript(sportsBookSetting, "sportsBookSetting"));
-                if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                stringBuilder.AppendLine(FormatJavascript(productSetting, settingService.Name));
+                if (model.ProductId == Product.Product_0)
                 {
-                    var numberGameCustomer = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
-                    if (errCode == Result.SuccessValue)
+                    if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
                     {
-                        stringBuilder.Append(FormatJavascript(numberGameCustomer, "numberGameSetting"));
+                        var numberGameSetting = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
+                        if (errCode == Result.SuccessValue)
+                        {
+                            stringBuilder.Append(FormatJavascript(numberGameSetting, _numberGameService.Name));
+                        }
                     }
                 }
-            }
-
-            if (errCode != Result.SuccessValue)
-            {
-                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
-                stringBuilder.Append(FormatJavascript(result, "result"));
-            }
-
-            return JavaScript(stringBuilder.ToString());
-        }
-
-        /// <summary>
-        /// Get Setting for updating customer.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// JAVASCRIPT string object.
-        /// </returns>
-        [HttpGet]
-        [SuppressMessage(
-           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-           "SP2101:MethodMustNotContainMoreLinesThan",
-           Justification = "Reviewed. Suppression is OK here.")]
-        public JavaScriptResult GetSettingVirtualSportsForUpdate(GetSettingForUpdateViewModel model)
-        {
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                FormId = (FormType)model.FormId,
-                CustId = model.CustId,
-                RoleId = model.RoleId,
-                TargetCustId = model.TargetCustId,
-                TargetRoleId = model.TargetRoleId,
-                Ip = Request.GetClientIp()
-            };
-
-            if (!CheckForEditingCustomerSetting(settingContext))
-            {
-                return RedirectToAccessDeniedJavascript();
-            }
-
-            var errCode = Result.FailureValue;
-            var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(FormatJavascript(settingContext, "settingContext"));
-            var virtualSportsSetting = _virtualSportsService.GetSettingForUpdate(settingContext, out errCode);
-            if (errCode == Result.SuccessValue)
-            {
-                if (model.TargetRoleId == (int)Role.Member && virtualSportsSetting.CustInfo != null)
-                {
-                    virtualSportsSetting.CustInfo.CustId = model.TargetCustId;
-                    _memberService.GetMemberInformation(
-                        virtualSportsSetting.CustInfo,
-                        new GetMemberInfoAction
-                        {
-                            SiteName = CurrentSession.AgentInfo.LicenseeName,
-                            IBCCustId = model.TargetCustId
-                        });
-                }
-
-                stringBuilder.AppendLine(FormatJavascript(virtualSportsSetting, "sportsBookSetting"));
             }
 
             if (errCode != Result.SuccessValue)
@@ -720,9 +666,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 case ErrorType.Commission:
                     msgContent = string.Format(Las.UpdateCommissionSuccessfully, productName);
                     break;
+
                 case ErrorType.BetSetting:
                     msgContent = string.Format(Las.UpdateBetSettingSuccessfully, productName);
                     break;
+
                 case ErrorType.PositionTaking:
                     msgContent = string.Format(Las.UpdatePositionTakingSuccessfully, productName);
                     break;
@@ -756,6 +704,28 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return DataRefWrapper.GetBetTypeName(betType);
+        }
+
+        /// <summary>
+        /// Gets the settings service.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>Setting Service.</returns>
+        private ISettingService GetSettingsService(Product productId)
+        {
+            switch (productId)
+            {
+                case Product.Product_0:
+                    return _sportsBookService;
+
+                case Product.Product_2:
+                    return _numberGameService;
+
+                case Product.Product_5:
+                    return _virtualSportsService;
+            }
+
+            return null;
         }
 
         /// <summary>

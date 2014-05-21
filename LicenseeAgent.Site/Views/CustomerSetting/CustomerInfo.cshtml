@@ -15,7 +15,7 @@
         </div>
         <div class="block2">
             <div class="pull-left">
-                <input id="userName" name="userName" type="text" data-placement="bottom" maxlength="50" data-ng-model="custInfo.userName"
+                <input id="userName" name="userName" type="text" data-placement="bottom" maxlength="50" data-ng-model="custInfo.UserName"
                     required data-ng-minlength="6" unique-user-name hint-validator="@Las.UsernameMinimumLength" data-href="~/CustomerSetting/CheckExistUsername" />
             </div>
             <div class="pull-left">
@@ -29,7 +29,7 @@
         <div class="block4">
             <div class="pull-left">
                 <input id="password" autocomplete="off" type="password" name="password" data-placement="bottom" data-html="true"
-                    style="position: relative;" maxlength="24" data-ng-model="custInfo.password" required data-ng-pattern="/@PasswordRule.PasswordPattern/" hint-validator="@Las.PasswordHint" />
+                    style="position: relative;" maxlength="24" data-ng-model="custInfo.Password" required data-ng-pattern="/@PasswordRule.PasswordPattern/" hint-validator="@Las.PasswordHint" />
             </div>
             <div class="pull-left">
                 <span data-ng-class="{'icon-input-invalid': formCustInfo.password.$dirty && formCustInfo.password.$invalid, 'icon-input-valid' : formCustInfo.password.$dirty && formCustInfo.password.$valid}">
@@ -42,13 +42,13 @@
             <span>@Las.FirstName</span>
         </div>
         <div class="block2">
-            <input type="text" maxlength="50" data-ng-model="custInfo.firstName" />
+            <input type="text" maxlength="50" data-ng-model="custInfo.FirstName" />
         </div>
         <div class="block3">
             <span>@Las.LastName</span>
         </div>
         <div class="block4">
-            <input type="text" maxlength="50" data-ng-model="custInfo.lastName" />
+            <input type="text" maxlength="50" data-ng-model="custInfo.LastName" />
         </div>
     </div>
     <div class="row-block">
@@ -56,13 +56,13 @@
             <span>@Las.Phone</span>
         </div>
         <div class="block2">
-            <input id="phone" name="phone" type="text" maxlength="50" data-ng-model="custInfo.phone" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="phone" name="phone" type="text" maxlength="50" data-ng-model="custInfo.Phone" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
         <div class="block3">
             <span>@Las.MobilePhone</span>
         </div>
         <div class="block4">
-            <input id="mobile" name="mobile" type="text" maxlength="50" data-ng-model="custInfo.mobile" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="mobile" name="mobile" type="text" maxlength="50" data-ng-model="custInfo.Mobile" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
     </div>
     <div class="row-block">
@@ -70,15 +70,15 @@
             <span class="require"></span><span>@Las.MaxCredit</span>
         </div>
         <div class="block2">
-            <input id="credit" name="credit" type="text" maxlength="15" class="text-right" data-ng-model="custInfo.credit"
+            <input id="credit" name="credit" type="text" maxlength="15" class="text-right" data-ng-model="custInfo.Credit"
                 hint-validator required required-hint="Max Credit is required" auto-numeric-format="0" />
-            <span data-ng-show="isShowLimitMaxCredit">&#60;&#61;{{custInfo.maxCredit | number : 0}}</span>
+            <span data-ng-show="isShowLimitMaxCredit">&#60;&#61;{{custInfo.MaxCredit | number : 0}}</span>
         </div>
         <div class="block3">
             <span>@Las.Fax</span>
         </div>
         <div class="block4">
-            <input id="fax" name="fax" type="text" maxlength="50" data-ng-model="custInfo.fax" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
+            <input id="fax" name="fax" type="text" maxlength="50" data-ng-model="custInfo.Fax" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
         </div>
     </div>
     <div class="row-block">
@@ -88,11 +88,11 @@
         <div class="block2">
             &nbsp;
             <label class="radio inline">
-                <input type="radio" name="AccountStatus" data-ng-model="custInfo.status" value="@((int)AccountStatus.Open)" />
+                <input type="radio" name="AccountStatus" data-ng-model="custInfo.Status" value="@((int)AccountStatus.Open)" />
                 @Las.Open
             </label>
             <label class="radio inline">
-                <input type="radio" name="AccountStatus" data-ng-model="custInfo.status" value="@((int)AccountStatus.Closed)" />
+                <input type="radio" name="AccountStatus" data-ng-model="custInfo.Status" value="@((int)AccountStatus.Closed)" />
                 @Las.Closed
             </label>
         </div>

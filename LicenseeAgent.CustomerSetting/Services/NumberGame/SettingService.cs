@@ -26,6 +26,22 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
     /// </summary>
     public class SettingService : SettingServiceBase, ISettingService
     {
+        public Product ProductId
+        {
+            get
+            {
+                return Product.Product_2;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return "numberGameSetting";
+            }
+        }
+
         /// <summary>
         /// Get Agent setting for insert new.
         /// </summary>
@@ -45,7 +61,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 out errCode,
                 out maxLicenseePt);
 
-            return BuildCustomerSetting2(Product.Product_2, customerSetting, settingContext, ref errCode, maxLicenseePt);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode, maxLicenseePt);
         }
 
         /// <summary>
@@ -65,7 +81,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
                 out customerSetting,
                 out errCode);
 
-            return BuildCustomerSetting2(Product.Product_2, customerSetting, settingContext, ref errCode);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>

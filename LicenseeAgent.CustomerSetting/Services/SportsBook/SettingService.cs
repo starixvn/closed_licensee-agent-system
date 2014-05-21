@@ -27,6 +27,22 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
     /// </summary>
     public class SettingService : SettingServiceBase, ISettingService
     {
+        public Product ProductId
+        {
+            get
+            {
+                return Product.Product_0;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return "sportsBookSetting";
+            }
+        }
+
         /// <summary>
         /// Get Agent setting for insert new.
         /// </summary>
@@ -46,7 +62,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 out errCode,
                 out maxLicenseePt);
 
-            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode, maxLicenseePt);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode, maxLicenseePt);
         }
 
         /// <summary>
@@ -66,7 +82,7 @@ namespace LicenseeAgent.CustomerSetting.Services.SportsBook
                 out customerSetting,
                 out errCode);
 
-            return BuildCustomerSetting2(Product.Product_0, customerSetting, settingContext, ref errCode);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>

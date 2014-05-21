@@ -1,4 +1,4 @@
-﻿/*global core, popup, settingContext, result */
+﻿/*global core, popup, settingContext, result, sportsBookSetting */
 
 'use strict';
 if (fanex.customerSetting) {
@@ -26,6 +26,7 @@ if (fanex.customerSetting) {
             $scope.formId = settingContext.FormId;
             $scope.hasOfferedNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
             $scope.result = fanex.customerSetting.Result;
+            $scope.custInfo = sportsBookSetting.CustInfo;
 
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;

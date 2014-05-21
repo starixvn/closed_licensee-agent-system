@@ -23,8 +23,30 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
     /// <summary>
     /// Customer repository.
     /// </summary>
-    public class SettingService
+    public class SettingService : SettingServiceBase, ISettingService
     {
+        public Product ProductId
+        {
+            get
+            {
+                return Product.Product_5;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return "virtualSportsSetting";
+            }
+        }
+
+        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
+        {
+            errCode = Result.FailureValue;
+            return null;
+        }
+
         /// <summary>
         /// Get customer setting for updating.
         /// </summary>
@@ -46,19 +68,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                 GetSettingForUpdateAgent(settingContext, out customerSetting, out errCode);
             }
 
-            if (errCode != Result.SuccessValue)
-            {
-                return null;
-            }
-
-            var result = new CustomerSetting2
-            {
-                CustInfo = customerSetting.CustInfo,
-                BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)Product.Product_5, customerSetting.PositionTakingSetting)
-            };
-
-            return result;
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>

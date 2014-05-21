@@ -13,13 +13,13 @@ if (fanex.customerSetting) {
             return sportsBookSetting.CommissionSetting.CommissionItems.concat(numberGameSetting.CommissionSetting.CommissionItems);
         }
         return sportsBookSetting.CommissionSetting.CommissionItems;
-    }]);
+    } ]);
 
     fanex.customerSetting.controller('CommissionController',
     [
         '$scope',
         'CommissionModel',
-        function($scope, commissionModel) {
+        function ($scope, commissionModel) {
 
             $scope.language = fanex.customerSetting.language[settingContext.Language];
             $scope.config = fanex.customerSetting.commissionSettingService.config;
@@ -39,7 +39,7 @@ if (fanex.customerSetting) {
                 settingContext: settingContext
             };
 
-            $scope.saveData = function() {
+            $scope.saveData = function () {
                 var temp =
                     $scope.commissionSettingService.getCommissionSettingModel(
                         commissionModel,
@@ -48,18 +48,18 @@ if (fanex.customerSetting) {
                 return temp;
             };
 
-            $scope.getNumberGameSetting = function() {
+            $scope.getNumberGameSetting = function () {
                 return $scope.numberGameCommissionService.getCommissionSetting(
                     commissionModel,
                     $scope.viewModel.commissionSettingsViewModel,
                     settingContext.TargetRoleId);
             };
 
-            $scope.commissionSettingsChangeViewModel = function() {
+            $scope.commissionSettingsChangeViewModel = function () {
                 $scope.viewModel.commissionSettingsViewModel = $scope.commissionSettingService.changeViewModel($scope.viewModel.commissionSettingsViewModel);
             };
 
-            $scope.isValidData = function() {
+            $scope.isValidData = function () {
                 return $scope.commissionSettingService.isValidData($scope.viewModel.commissionSettingsViewModel);
             };
         }

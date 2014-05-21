@@ -19,23 +19,13 @@ namespace LicenseeAgent.CustomerSetting.Criteria
 
         public int Updater { get; set; }
 
-        public int MsgId { get; set; }
-
         public string PositionTaking { get; set; }
 
         public string PositionTaking3rd { get; set; }
 
-        public short MinPTOutput { get; set; }
-
-        public short MaxPTOutput { get; set; }
-
-        public int PTSportType { get; set; }
-
-        public int PTBetType { get; set; }
-
-        public bool IsLiveOutput { get; set; }
-
         public string Ip { get; set; }
+
+        public string SettingOutput { get; set; }
 
         public override string GetSettingKey()
         {

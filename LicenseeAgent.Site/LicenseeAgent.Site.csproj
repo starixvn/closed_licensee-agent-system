@@ -340,6 +340,7 @@
       <DependentUpon>languages.tt</DependentUpon>
     </Content>
     <Content Include="Views\CustomerSetting\Resources\edit-product.less" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-setting-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\language-service.js" />
     <Content Include="Views\CustomerSetting\VirtualSports\scripts\actions\bet-limit-action.js" />
     <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\bet-limit-controller.js" />

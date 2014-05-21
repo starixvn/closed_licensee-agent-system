@@ -95,9 +95,12 @@ fanex.isChangedData = function (productSetting) {
     if (productSetting === null) {
         return true;
     }
-    return productSetting.CommissionSetting.CommissionItems.length > 0
-            || productSetting.BettingLimitSetting.length > 0
-            || productSetting.PositionTakingSetting.length > 0;
+
+    return (productSetting.CommissionSetting !== null &&
+            productSetting.CommissionSetting.CommissionItems !== null && 
+            productSetting.CommissionSetting.CommissionItems.length > 0)
+        || (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0)
+        || productSetting.PositionTakingSetting.length > 0;
 };
 
 $.fn.preventSpecialCharacters = function (allowedChars) {

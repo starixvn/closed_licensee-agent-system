@@ -3,9 +3,9 @@
 
 fanex.customerSetting.numberGameSetting = {
     getNumberGameSetting: function (settingMode) {
-        var commissions,
-            bettingLimits,
-            positionTakings,
+        var commissions = null,
+            bettingLimits = null,
+            positionTakings = null,
             bettingLimitScope,
             positionTakingScope,
             commissionSettingScope;
@@ -21,9 +21,8 @@ fanex.customerSetting.numberGameSetting = {
             positionTakingScope = angular.element('[data-ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
         }
 
-        if (commissionSettingScope !== undefined)
-        { 
-            if(!commissionSettingScope.isValidData()) {
+        if (commissionSettingScope !== undefined) {
+            if (!commissionSettingScope.isValidData()) {
                 return null;
             }
             commissions = commissionSettingScope.getNumberGameSetting();
@@ -46,5 +45,17 @@ fanex.customerSetting.numberGameSetting = {
             PositionTakingSetting: positionTakings,
             BettingLimitSetting: bettingLimits
         };
+    },
+    updateSetting: function (isEditIndirectMember) {
+        if (isEditIndirectMember) {
+            commissionSettingScope3rd = angular.element('[data-ng-controller="NumberGameCommissionController"]').scope();
+            bettingLimitScope3rd = angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope();
+
+            commissionSettingScope3rd.updateSetting();
+            bettingLimitScope3rd.updateSetting();
+        }
+
+        positionTakingScope3rd = angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope();
+        positionTakingScope3rd.updateSetting();
     }
 };

@@ -112,8 +112,8 @@ if (fanex.customerSetting) {
         applyForAllMembers: '所有會員立刻生效',
 		virtualSports: '虚拟运动',
 		virtualSoccerCopyPtTooltip: 'Copy all below position taking settings from Virtual Soccer',
+		bettingLimit_Virtual_Sport_Copy_Tooltip: 'Copy all below bet settings from Virtual Soccer',
 		virtualSoccerCopyPt: 'Virtual Soccer position taking setting is being applied to:',
-		otherSporttypeOfVirtualSoccer: 'Other sport types of Virtual Soccer',
 		NoChangeToUpdate: '沒有更新!'
     };
 }

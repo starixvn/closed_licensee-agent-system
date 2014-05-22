@@ -1,7 +1,7 @@
-﻿/*jshint -W101,-W106,-W044,-W098*/
-/*exported Las_zh_TW*/
+﻿/*global language*/
+/*jshint -W101,-W106,-W044,-W098*/
 
-var Las_zh_TW = {
+language.Las['zh-TW'] = {
 	AccessDeniedMsg : "抱歉!您沒有此頁面的權限",
 	AccountInfo : "帳號資料",
 	AccountStatus : "帳戶狀態",

@@ -1,4 +1,4 @@
-﻿/*global appSettings, core, fanexGridLanguage, Las_en_US*/
+﻿/*global appSettings, core, fanexGridLanguage*/
 
 var language = (function ($) {
     'use strict';
@@ -54,52 +54,23 @@ var language = (function ($) {
             return selectedLanguageCode;
         },
         getString: function (englishName) {
-            /* jshint camelcase: false */
             if (englishName == null || englishName === undefined) {
                 return englishName;
             }
-            var keyName = "Las_" + language.getSelectedLanguage().replace("-", "_");
-
-            var resources = window[keyName];
-            if (!resources) {
-                resources = Las_en_US;
-            }
-
-            var mapResource = function (key) {
-                var item = resources[key];
-                if (item === undefined) {
-                    item = Las_en_US[key];
-                    return item !== undefined ? item : key;
-                } else {
-                    return item;
-                }
-            };
-            if (englishName.indexOf("@") > -1) {
-                var keys = englishName.match(/\@{1}\[{1}[a-zA-Z\d\_]+\]{1}/g);
-                if (keys != null) {
-                    var temp = englishName;
-                    for (var i = 0; i < keys.length; i++) {
-                        var realKey = keys[i].replace("@[", "").replace("]", "");
-                        temp = temp.replace(keys[i], mapResource(realKey));
-                    }
-                    return temp;
-                }
-                return mapResource(englishName);
-            } else {
-                return mapResource(englishName);
-            }
+            
+            return language.getResourceString(language.Las, englishName);
         },
         getSportName: function (sportTypeId) {
-            return language.getResourceString('SportType_', sportTypeId);
+            return language.getResourceString(language.SportType, sportTypeId);
         },
         getBetTypeName: function (betTypeId) {
-            return language.getResourceString('BetType_', betTypeId);
+            return language.getResourceString(language.BetType, betTypeId);
         },
-        getResourceString: function (prefix, key) {
-            var langObj = prefix + language.getSelectedLanguage().replace('-', '_');
-            var value = langObj[key.ToString()];
+        getResourceString: function (object, key) {
+            var langObj = object[language.getSelectedLanguage()];
+            var value = langObj[key.toString()];
             if (!value) {
-                value = prefix + defaultLanguageCode.replace('-', '_');
+                value = object[defaultLanguageCode];
             }
             return value;
         }

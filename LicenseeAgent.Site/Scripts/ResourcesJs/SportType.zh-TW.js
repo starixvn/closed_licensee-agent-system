@@ -1,4 +1,6 @@
-﻿var SportType_zh_TW = {
+﻿/*global language*/
+
+language.SportType['zh-TW'] = {
 	'1' : '足球',
 	'2' : '篮球',
 	'3' : '美式足球',

@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Resources"#>
-<#@ include file="$(ProjectDir)\\Scripts\\ResourcesJs\\TemplateFileManagerV2.1.ttinclude" #>
+<#@ include file="$(ProjectDir)\\Scripts\\ResourcesJs\\TemplateFilemanager.CS.ttinclude" #>
 
 <#
     var solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
@@ -45,8 +45,8 @@ if (fanex.customerSetting) {
         commissionSetting_GroupD: '<#= resourceXSet.GetString("GroupD")#>',
         commissionSetting_1x2Comm: '<#= resourceXSet.GetString("Comm1x2")#>',
         commissionSetting_OthersComm: '<#= resourceXSet.GetString("OtherComm")#>',
-		commissionSetting_HrFixedOdds: '<#= resourceXSet.GetString("HrFixedOdds")#>',
-		commissionSetting_NumberGame: '<#= resourceXSet.GetString("NumberGame")#>',
+        commissionSetting_HrFixedOdds: '<#= resourceXSet.GetString("HrFixedOdds")#>',
+        commissionSetting_NumberGame: '<#= resourceXSet.GetString("NumberGame")#>',
         commissionSetting_CommissionGroup: '<#= resourceXSet.GetString("CommissionGroup")#>',
         commissionSetting_AgentCommission: '<#= resourceXSet.GetString("AgentCommission")#>',
         commissionSetting_MemberCommission: '<#= resourceXSet.GetString("MemberCommission")#>',
@@ -57,7 +57,7 @@ if (fanex.customerSetting) {
         bettingLimit_MinBet: '<#= resourceXSet.GetString("MinBet")#>',
         bettingLimit_MaxBet: '<#= resourceXSet.GetString("MaxBet")#>',
         bettingLimit_MaxPerMatch: '<#= resourceXSet.GetString("MaxPerMatch")#>',
-		bettingLimit_MaxPerBall: '<#= resourceXSet.GetString("MaxPerBall")#>',
+        bettingLimit_MaxPerBall: '<#= resourceXSet.GetString("MaxPerBall")#>',
         bettingLimit_Soccer_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingSoccer")#>',
         bettingLimit_Basketball_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingBasketBall")#>',
         sport_1_1: '<#= resourceXSet.GetString("Soccer")#>',
@@ -69,9 +69,9 @@ if (fanex.customerSetting) {
         sport_11_1: '<#= resourceXSet.GetString("MotorSports")#>',
         sport_99_1: '<#= resourceXSet.GetString("OtherSports")#>',
         sport_99_9: '<#= resourceXSet.GetString("MixSportsParlay")#>',
-		sport_154_20: '<#= resourceXSet.GetString("HrFixedOdds")#>',
-		sport_161_81: '<#= resourceXSet.GetString("NumberGame")#>',
-		sport_180_1201: '<#= resourceXSet.GetString("VirtualSoccer")#>',
+        sport_154_20: '<#= resourceXSet.GetString("HrFixedOdds")#>',
+        sport_161_81: '<#= resourceXSet.GetString("NumberGame")#>',
+        sport_180_1201: '<#= resourceXSet.GetString("VirtualSoccer")#>',
         sport_181_1231: '<#= resourceXSet.GetString("VirtualHorseRacing")#>',
         sport_182_1231: '<#= resourceXSet.GetString("VirtualGreyhounds")#>',
         sport_183_1231: '<#= resourceXSet.GetString("VirtualSpeedway")#>',
@@ -83,13 +83,13 @@ if (fanex.customerSetting) {
         bettingLimit_Message_MinBetMoreThanOrEqualTo: "<#= resourceXSet.GetString("MinBetMoreThanOrEqualTo")#> ",
         bettingLimit_Message_MaxBetMoreThanOrEqualMinBet: "<#= resourceXSet.GetString("MaxBetMoreThanOrEqualMinBet")#>",
         bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualMaxPerMatch")#>",
-		bettingLimit_Message_MaxBetLessThanOrEqualMaxPerBall: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualMaxPerBall")#>",
+        bettingLimit_Message_MaxBetLessThanOrEqualMaxPerBall: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualMaxPerBall")#>",
         bettingLimit_Message_MaxBetLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxBetLessThanOrEqualTo")#> ",
         bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet: "<#= resourceXSet.GetString("MaxPerMatchMoreThanOrEqualMaxBet")#>",
         bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerMatchLessThanOrEqualTo")#> ",
-		bettingLimit_Message_MaxPerBallLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerBallLessThanOrEqualTo")#> ",
-		bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet: "<#= resourceXSet.GetString("MaxPerBallMoreThanOrEqualMaxBet")#> ",
-		bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall: "<#= resourceXSet.GetString("MaxPerMatchMoreThanOrEqualMaxPerBall")#> ",
+        bettingLimit_Message_MaxPerBallLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerBallLessThanOrEqualTo")#> ",
+        bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet: "<#= resourceXSet.GetString("MaxPerBallMoreThanOrEqualMaxBet")#> ",
+        bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall: "<#= resourceXSet.GetString("MaxPerMatchMoreThanOrEqualMaxPerBall")#> ",
         customerInfo_Message_MaxCredit: '<#= resourceXSet.GetString("GivenMaxCredit")#>',
 
         // Position taking messages
@@ -103,9 +103,9 @@ if (fanex.customerSetting) {
         sport_11_false_1: '<#= resourceXSet.GetString("MotorSports")#>',
         sport_99_false_1: '<#= resourceXSet.GetString("OtherSports")#>',
         sport_99_false_9: '<#= resourceXSet.GetString("MixSportsParlay")#>',
-		sport_154_false_20: '<#= resourceXSet.GetString("HrFixedOdds")#>',
-		sport_161_false_81: '<#= resourceXSet.GetString("NumberGame")#> - <#= resourceXSet.GetString("DeadBall")#>',
-		sport_161_true_85: '<#= resourceXSet.GetString("NumberGame")#> - <#= resourceXSet.GetString("Live")#>',
+        sport_154_false_20: '<#= resourceXSet.GetString("HrFixedOdds")#>',
+        sport_161_false_81: '<#= resourceXSet.GetString("NumberGame")#> - <#= resourceXSet.GetString("DeadBall")#>',
+        sport_161_true_85: '<#= resourceXSet.GetString("NumberGame")#> - <#= resourceXSet.GetString("Live")#>',
         bettype_1: '<#= resourceXSet.GetString("Handicap")#>',
         bettype_2: '<#= resourceXSet.GetString("OddEven")#>',
         bettype_3: '<#= resourceXSet.GetString("OverUnder")#>',
@@ -117,14 +117,10 @@ if (fanex.customerSetting) {
         bettype_9: '<#= resourceXSet.GetString("MixParlay")#>',
         bettype_10: '<#= resourceXSet.GetString("Outright")#>',
         bettype_20: '<#= resourceXSet.GetString("MoneyLine")#>',
-		bettype_81: '<#= resourceXSet.GetString("FirstLastBallOverUnder")#>',
-		bettype_83: '<#= resourceXSet.GetString("FirstLastBallOddEven")#>',
-		bettype_85: '<#= resourceXSet.GetString("OverUnder")#>',
-		bettype_86: '<#= resourceXSet.GetString("OddEven")#>',
-		bettype_87: '<#= resourceXSet.GetString("NextHighLow")#>',
-		bettype_88: '<#= resourceXSet.GetString("Warrior")#>',
-		bettype_89: '<#= resourceXSet.GetString("NextCombo")#>',
-		bettype_90: '<#= resourceXSet.GetString("NumberWheel")#>',
+        bettype_81: '<#= resourceXSet.GetString("FirstLastBallOverUnder")#>',
+        bettype_83: '<#= resourceXSet.GetString("FirstLastBallOddEven")#>',
+        bettype_85: '<#= resourceXSet.GetString("OverUnder")#>',
+        bettype_86: '<#= resourceXSet.GetString("OddEven")#>',
         maxPt: '<#= resourceXSet.GetString("MaxDownline")#>',
         minPt: '<#= resourceXSet.GetString("MinDownline")#>',
         presetPt: '<#= resourceXSet.GetString("Preset")#>',
@@ -135,17 +131,17 @@ if (fanex.customerSetting) {
         soccerOnexTwoCopyPtTooltip: '<#= resourceXSet.GetString("SoccerOnexTwoCopyPtTooltip")#>',
         soccerHandicapCopyPt: '<#= resourceXSet.GetString("SoccerHandicapCopyPt")#>',
         basketballHandicapCopyPt: '<#= resourceXSet.GetString("BasketballHandicapCopyPt")#>',
-		numberGameFirstLastOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameFirstLastOverUnderCopyPtTooltip")#>',
-		numberGameOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameOverUnderCopyPtTooltip")#>',
+        numberGameFirstLastOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameFirstLastOverUnderCopyPtTooltip")#>',
+        numberGameOverUnderCopyPtTooltip: '<#= resourceXSet.GetString("NumberGameOverUnderCopyPtTooltip")#>',
         otherBettypeOfSoccer: '<#= resourceXSet.GetString("OtherBettypeOfSoccer")#>',
         otherBettypeOfBasketball: '<#= resourceXSet.GetString("OtherBettypeOfBasketball")#>',
         applyForAllMembers: '<#= resourceXSet.GetString("ApplyForAllMembers")#>',
-		virtualSports: '<#= resourceXSet.GetString("VirtualSports")#>',
-		virtualSoccerCopyPtTooltip: '<#= resourceXSet.GetString("VirtualSoccerCopyPtTooltip")#>',
-		bettingLimit_Virtual_Sport_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingVirtualSoccer")#>',
-		virtualSoccerCopyPt: '<#= resourceXSet.GetString("VirtualSoccerCopyPt")#>',
-		otherSporttypeOfVirtualSoccer: '<#= resourceXSet.GetString("OtherSporttypeOfVirtualSoccer")#>',
-		NoChangeToUpdate: '<#= resourceXSet.GetString("NoChangeToUpdate")#>'
+        virtualSports: '<#= resourceXSet.GetString("VirtualSports")#>',
+        virtualSoccerCopyPtTooltip: '<#= resourceXSet.GetString("VirtualSoccerCopyPtTooltip")#>',
+        bettingLimit_Virtual_Sport_Copy_Tooltip: '<#= resourceXSet.GetString("CopyAllBetSettingVirtualSoccer")#>',
+        virtualSoccerCopyPt: '<#= resourceXSet.GetString("VirtualSoccerCopyPt")#>',
+        otherSporttypeOfVirtualSoccer: '<#= resourceXSet.GetString("OtherSporttypeOfVirtualSoccer")#>',
+        NoChangeToUpdate: '<#= resourceXSet.GetString("NoChangeToUpdate")#>'
     };
 }
 else {

@@ -1,7 +1,7 @@
-﻿/*jshint -W101,-W106,-W044,-W098*/
-/*exported Las_en_US*/
+﻿/*global language*/
+/*jshint -W101,-W106,-W044,-W098*/
 
-var Las_en_US = {
+language.Las['en-US'] = {
 	AccessDeniedMsg : "You do not have permission to access this page.",
 	AccountInfo : "Account Info",
 	AccountStatus : "Account status",

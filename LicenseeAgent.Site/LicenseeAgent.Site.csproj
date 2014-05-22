@@ -282,9 +282,9 @@
       <DependentUpon>BetType.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\ResourcesJs\BetType.js">
-      <DependentUpon>BetType.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>BetType.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\ResourcesJs\BetType.zh-CN.js">
       <DependentUpon>BetType.tt</DependentUpon>
@@ -292,19 +292,19 @@
     <Content Include="Scripts\ResourcesJs\BetType.zh-TW.js">
       <DependentUpon>BetType.tt</DependentUpon>
     </Content>
-    <Content Include="Scripts\ResourcesJs\Language.js">
+    <Content Include="Scripts\ResourcesJs\Las.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Language.tt</DependentUpon>
+      <DependentUpon>Las.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\ResourcesJs\Las.en-US.js">
-      <DependentUpon>Language.tt</DependentUpon>
+      <DependentUpon>Las.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\ResourcesJs\Las.zh-CN.js">
-      <DependentUpon>Language.tt</DependentUpon>
+      <DependentUpon>Las.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\ResourcesJs\Las.zh-TW.js">
-      <DependentUpon>Language.tt</DependentUpon>
+      <DependentUpon>Las.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
     <Content Include="Scripts\ResourcesJs\SportType.en-US.js">
@@ -340,6 +340,7 @@
       <DependentUpon>languages.tt</DependentUpon>
     </Content>
     <Content Include="Views\CustomerSetting\Resources\edit-product.less" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\services\language-service.js" />
     <Content Include="Views\CustomerSetting\VirtualSports\scripts\actions\bet-limit-action.js" />
     <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\bet-limit-controller.js" />
     <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\cust-setting-controller.js" />
@@ -797,11 +798,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SportType.js</LastGenOutput>
     </None>
-    <None Include="Scripts\ResourcesJs\Language.tt">
+    <None Include="Scripts\ResourcesJs\Las.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
 &lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
-      <LastGenOutput>Language.js</LastGenOutput>
+      <LastGenOutput>Las.js</LastGenOutput>
     </None>
     <Content Include="Views\Transfer\Index.cshtml" />
     <Content Include="Views\Transfer\Agent.cshtml" />
@@ -840,7 +841,7 @@
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
-    <None Include="Scripts\ResourcesJs\TemplateFileManagerV2.1.ttinclude" />
+    <None Include="Scripts\ResourcesJs\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSetting.cshtml">
       <SubType>Code</SubType>
     </Content>

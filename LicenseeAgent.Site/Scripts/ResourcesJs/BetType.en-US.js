@@ -1,4 +1,6 @@
-﻿var BetType_en_US = {
+﻿/*global language*/
+
+language.BetType['en-US'] = {
 	'1' : 'Handicap',
 	'2' : 'Odd/Even',
 	'3' : 'Over/Under',

@@ -1,4 +1,6 @@
-﻿var SportType_en_US = {
+﻿/*global language*/
+
+language.SportType['en-US'] = {
 	'1' : 'Soccer',
 	'2' : 'Basketball',
 	'3' : 'Football',

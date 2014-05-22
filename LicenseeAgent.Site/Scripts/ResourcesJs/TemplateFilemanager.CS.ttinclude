@@ -39,6 +39,8 @@
 The TemplateFileManager is based on EntityFrameworkTemplateFileManager (EFTFM) from MS.
 
 Differences to EFTFM
+Version 2.1.2
+- Bugfix Exception when solution contains wix-projects, reported by jturner
 Version 2.1:
 - Replace Enum BuildAction with class for more flexibility
 Version 2:
@@ -156,6 +158,7 @@ public class TemplateFileManager
 	/// </summary>
 	/// <returns></returns>
 	public bool CanOverrideExistingFile { get; set; }
+	public bool CanOverwriteExistingFile { get { return this.CanOverrideExistingFile; } set { this.CanOverrideExistingFile = value;} }
 	
 	/// <summary>
 	/// If set to true, output files (c#, vb) are formatted based on the vs settings.
@@ -481,7 +484,7 @@ public class TemplateFileManager
         }
 
         // Remove unused items from the project
-        /*foreach (var pair in projectFiles)
+        foreach (var pair in projectFiles)
         {
 			bool isNotFound = keepFileNames.Where(f=>f.FileName == pair.Key).Count() == 0;
             if (isNotFound == true
@@ -489,7 +492,7 @@ public class TemplateFileManager
             {
                 pair.Value.Delete();
             }
-        }*/
+        }
 
         // Add missing files to the project
         foreach (var fileName in keepFileNameSet)
@@ -892,13 +895,14 @@ public class VSHelper
 		}
 		else if (prj != null && String.IsNullOrEmpty(block.FolderName) == false)
 		{
-			item = GetAllProjectItemsRecursive(prj.ProjectItems).Where(i=>i.Name == block.FolderName).First();
+			item = FindFolderByName(prj.ProjectItems, block.FolderName);
 		}
 		else if (String.IsNullOrEmpty(block.FolderName) == false)
 		{
-			item = GetAllProjectItemsRecursive(
-				dte.ActiveDocument.ProjectItem.ContainingProject.ProjectItems).
-				Where(i=>i.Name == block.FolderName).First();
+			if (dte.ActiveDocument == null)
+				throw new Exception(
+					"ActiveDocument is not available. Please run this template when any project file is open and active in VS.");
+			item = FindFolderByName(dte.ActiveDocument.ProjectItem.ContainingProject.ProjectItems, block.FolderName);
 		}
 		
 		if (item != null)
@@ -908,6 +912,50 @@ public class VSHelper
 		
 		return defaultPath;
 	}
+
+	public static EnvDTE.ProjectItem FindFolderByName(EnvDTE.ProjectItems inItems, string withName)
+	{
+		var folders = withName.Split(new char[] {'.', '/', '\\'});
+
+		if (folders.Length == 1)
+		{
+			var items = GetAllProjectItemsRecursive(inItems).Where(p => p.Name == withName);
+
+			if (items.Count() == 1)
+				return items.First();
+
+			foreach (EnvDTE.ProjectItem r in items)
+			{
+				if (r.Collection.Parent is EnvDTE.Project)
+					return r;
+			}
+
+			return items.First();
+		}
+
+		var startItemEnumerator = GetAllProjectItemsRecursive(inItems).Where(p => p.Name == folders[0])
+			.Cast<ProjectItem>().GetEnumerator();
+		EnvDTE.ProjectItem item = null;
+		int idx = 1;
+		string joinedNames = string.Empty;
+		while (startItemEnumerator.MoveNext() && item == null)
+		{
+			item = startItemEnumerator.Current;
+			for (idx = 1; idx < folders.Length; idx++)
+			{
+				var subItems = item.ProjectItems.Cast<ProjectItem>();
+				joinedNames = string.Join(", ", subItems.Select(i => i.Name));
+				item = subItems.Where(i => i.Name == folders[idx]).FirstOrDefault();
+				if (item == null)
+					break;
+			}
+		}
+		if (item == null)
+			throw new ArgumentException(folders[idx] + " not found in path " + withName + " among " + joinedNames);
+
+		return item;
+	}
+
 	public static string GetTemplatePlaceholderName(EnvDTE.ProjectItem item)
 	{
 		return String.Format("{0}.txt4", Path.GetFileNameWithoutExtension(item.Name));
@@ -941,9 +989,7 @@ public class VSHelper
 		}
 		else if (String.IsNullOrEmpty(file.FolderName) == false)
 		{
-			item = GetAllProjectItemsRecursive(
-				dte.ActiveDocument.ProjectItem.ContainingProject.ProjectItems).
-				Where(i=>i.Name == file.FolderName).First();
+			item = FindFolderByName(dte.ActiveDocument.ProjectItem.ContainingProject.ProjectItems, file.FolderName);
 		}
 		
 		if (item != null)
@@ -1005,6 +1051,9 @@ public class VSHelper
 	
 	public static string GetProjectItemFullPath(EnvDTE.ProjectItem item)
 	{
+		if (item == null)
+			return null;
+
 		return item.Properties.Item("FullPath").Value.ToString();
 	}
 	

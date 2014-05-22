@@ -50,8 +50,19 @@ namespace LicenseeAgent.Site
                 "~/content/core.less"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
-                "~/scripts/language.js").IncludeDirectory(
-                "~/scripts/ResourcesJs", "*.js", true));
+                "~/scripts/language.js",
+                "~/scripts/ResourcesJs/Las.js",
+                "~/scripts/ResourcesJs/Las.en-US.js",
+                "~/scripts/ResourcesJs/Las.zh-CN.js",
+                "~/scripts/ResourcesJs/Las.zh-TW.js",
+                "~/scripts/ResourcesJs/SportType.js",
+                "~/scripts/ResourcesJs/SportType.en-US.js",
+                "~/scripts/ResourcesJs/SportType.zh-CN.js",
+                "~/scripts/ResourcesJs/SportType.zh-TW.js",
+                "~/scripts/ResourcesJs/BetType.js",
+                "~/scripts/ResourcesJs/BetType.en-US.js",
+                "~/scripts/ResourcesJs/BetType.zh-CN.js",
+                "~/scripts/ResourcesJs/BetType.zh-TW.js"));
         }
 
         #endregion Core

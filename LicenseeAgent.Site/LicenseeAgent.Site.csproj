@@ -278,6 +278,20 @@
     <Content Include="Scripts\mutate\mutate.js" />
     <Content Include="Scripts\jquery\jquery.js" />
     <Content Include="Scripts\marquee\jquery.marquee.js" />
+    <Content Include="Scripts\ResourcesJs\BetType.en-US.js">
+      <DependentUpon>BetType.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\BetType.js">
+      <DependentUpon>BetType.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\BetType.zh-CN.js">
+      <DependentUpon>BetType.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\BetType.zh-TW.js">
+      <DependentUpon>BetType.tt</DependentUpon>
+    </Content>
     <Content Include="Scripts\ResourcesJs\Language.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -293,6 +307,20 @@
       <DependentUpon>Language.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
+    <Content Include="Scripts\ResourcesJs\SportType.en-US.js">
+      <DependentUpon>SportType.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\SportType.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportType.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\SportType.zh-CN.js">
+      <DependentUpon>SportType.tt</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ResourcesJs\SportType.zh-TW.js">
+      <DependentUpon>SportType.tt</DependentUpon>
+    </Content>
     <Content Include="Styles\Fanex.Result\fanex.result.css" />
     <Content Include="Styles\Fanex.Result\images\bg_header03.jpg" />
     <Content Include="Styles\Fanex.Result\images\first-goal.gif" />
@@ -761,6 +789,14 @@
     <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
     <Content Include="Views\TotalBets\Outright.cshtml" />
     <Content Include="Views\TotalBets\Outright.Script.cshtml" />
+    <None Include="Scripts\ResourcesJs\BetType.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BetType.js</LastGenOutput>
+    </None>
+    <None Include="Scripts\ResourcesJs\SportType.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SportType.js</LastGenOutput>
+    </None>
     <None Include="Scripts\ResourcesJs\Language.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;

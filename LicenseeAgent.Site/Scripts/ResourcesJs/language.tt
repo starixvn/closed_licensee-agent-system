@@ -3,7 +3,7 @@
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System" #>
-<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Security" #>
@@ -32,17 +32,6 @@
         Path.Combine(resourcePath, "Las.zh-TW.resx")
     };
 
-    /*var dialog = new OpenFileDialog();
-    dialog.InitialDirectory = "";
-    dialog.Filter = "Resource files (*.resx)|*.resx" ;
-    dialog.FilterIndex = 1 ;
-    dialog.RestoreDirectory = true ;
-    dialog.Multiselect = true;
-    if(dialog.ShowDialog() == DialogResult.OK)
-    {
-        fileNames = dialog.FileNames;
-    }*/
-
     var manager = TemplateFileManager.Create(this);
     foreach (string filePath in fileNames) 
     {
@@ -68,7 +57,7 @@
             
             foreach (var item in items)
             {
-                var isLast = index < lastIndex;
+                var isLast = index == lastIndex;
                 var valueItem = item.Descendants("value").FirstOrDefault();
 
                 language.Append(CreateJsonPropertise(item.Attribute("name").Value, valueItem.Value, isLast));
@@ -93,7 +82,7 @@
 string CreateJsonPropertise(string name, string value, bool isLast)
 {
     var pattern = "\r\n\t{0} : \"{1}\"{2}";
-    var separate = isLast ?  "," : string.Empty;
+    var separate = isLast ?  string.Empty: "," ;
 
     return string.Format(pattern, name, SecurityElement.Escape(value.Trim().Replace("\n", " ")), separate);
 }

@@ -1292,12 +1292,6 @@
   <data name="LastBallOverUnder" xml:space="preserve">
     <value>Last Ball O/U</value>
   </data>
-  <data name="NextCombo" xml:space="preserve">
-    <value>Next Combo</value>
-  </data>
-  <data name="NextHighLow" xml:space="preserve">
-    <value>Next High/Low</value>
-  </data>
   <data name="NumberWheel" xml:space="preserve">
     <value>Number Wheel</value>
   </data>

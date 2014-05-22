@@ -155,7 +155,7 @@ namespace LicenseeAgent.Core.Enumerations
         BetType_29 = 29,
                 
         /// <summary>
-        /// HT Correct Score.
+        /// 1H Correct Score.
         /// </summary>
         BetType_30 = 30,
                 
@@ -335,9 +335,19 @@ namespace LicenseeAgent.Core.Enumerations
         BetType_124 = 124,
                 
         /// <summary>
-        /// 1st 1X2 HDP.
+        /// 1H 1X2 HDP.
         /// </summary>
         BetType_125 = 125,
+                
+        /// <summary>
+        /// 1H Total Goal.
+        /// </summary>
+        BetType_126 = 126,
+                
+        /// <summary>
+        /// 1H First Goal/Last Goal.
+        /// </summary>
+        BetType_127 = 127,
                 
         /// <summary>
         /// P2P Games.

@@ -1,5 +1,4 @@
-﻿ 
-
+﻿
 // <copyright file="Language.js" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved. 
 // </copyright>
@@ -9,7 +8,7 @@
 // </summary>
 //
 // <history>
-// Lasted generated date: 5/20/2014 6:56:57 PM
+// Lasted generated date: 5/22/2014 11:35:23 AM
 // </history>
 // Generated helper templates
 // Generated items

@@ -1248,7 +1248,7 @@
     <value>Member's API Monitoring</value>
   </data>
   <data name="MaxPerBall" xml:space="preserve">
-    <value>Max Per Ball</value>
+    <value>单球上限</value>
   </data>
   <data name="MaxPerBallMoreThanOrEqualMaxBet" xml:space="preserve">
     <value>Max Per Ball must be greater than or equal to Max Bet</value>
@@ -1265,17 +1265,11 @@
   <data name="LastBallOverUnder" xml:space="preserve">
     <value>Last Ball O/U</value>
   </data>
-  <data name="NextCombo" xml:space="preserve">
-    <value>Next Combo</value>
-  </data>
-  <data name="NextHighLow" xml:space="preserve">
-    <value>Next High/Low</value>
-  </data>
   <data name="NumberWheel" xml:space="preserve">
-    <value>Number Wheel</value>
+    <value>包牌</value>
   </data>
   <data name="Warrior" xml:space="preserve">
-    <value>Warrior</value>
+    <value>斗士</value>
   </data>
   <data name="NumberGamePositionTakingSimpleModeHeader" xml:space="preserve">
     <value>Position Taking (NG Dead Ball 1st/Last O/U)</value>
@@ -1314,10 +1308,10 @@
     <value>Note: In simple mode, your changes of virtual soccer setting will be applied to all sport types as well.</value>
   </data>
   <data name="VirtualSoccer" xml:space="preserve">
-    <value>Virtual Soccer</value>
+    <value>虚拟足球</value>
   </data>
   <data name="VirtualHorseRacing" xml:space="preserve">
-    <value>Virtual Horse Racing</value>
+    <value>虚拟赛马</value>
   </data>
   <data name="VirtualGreyhounds" xml:space="preserve">
     <value>Virtual Greyhounds</value>
@@ -1332,7 +1326,7 @@
     <value>Virtual Cycling</value>
   </data>
   <data name="VirtualTennis" xml:space="preserve">
-    <value>Virtual Tennis</value>
+    <value>虚拟网球</value>
   </data>
   <data name="CopyAllBetSettingVirtualSoccer" xml:space="preserve">
     <value>Copy all below bet settings from Virtual Soccer</value>
@@ -1351,5 +1345,20 @@
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>没有更新！</value>
+  </data>
+  <data name="SportsBookSimpleModeNote" xml:space="preserve">
+    <value>注意：如果在简单模式，你的设定将套用到所有运动项目</value>
+  </data>
+  <data name="StatementDetail" xml:space="preserve">
+    <value>Statement Detail</value>
+  </data>
+  <data name="SystemId" xml:space="preserve">
+    <value>System ID</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="EditVirtualSports" xml:space="preserve">
+    <value>编辑虚拟运动</value>
   </data>
 </root>

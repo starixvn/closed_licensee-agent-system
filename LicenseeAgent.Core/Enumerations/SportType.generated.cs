@@ -40,7 +40,7 @@ namespace LicenseeAgent.Core.Enumerations
         SportType_6 = 6,
                 
         /// <summary>
-        /// Billiard.
+        /// Snooker/Pool.
         /// </summary>
         SportType_7 = 7,
                 

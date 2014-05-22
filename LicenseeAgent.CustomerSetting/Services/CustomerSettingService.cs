@@ -35,26 +35,6 @@ namespace LicenseeAgent.CustomerSetting.Services
             Execute(criteria);
         }
 
-        public CustomerInfo GetGeneralInfoAgent(EditProductAgentViewModel model)
-        {
-            var criteria = new GetGeneralInfoCriteria
-            {
-                AgentId = model.AgentId
-            };
-
-            return GetEntity<CustomerInfo>(criteria);
-        }
-
-        public CustomerInfo GetGeneralInfoMember(EditProductMemberViewModel model)
-        {
-            var criteria = new GetGeneralInfoCriteria
-            {
-                CustId = model.CustId
-            };
-
-            return GetEntity<CustomerInfo>(criteria);
-        }
-
         /// <summary>
         /// Insert customer setting.
         /// </summary>

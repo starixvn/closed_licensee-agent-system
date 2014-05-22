@@ -491,20 +491,6 @@ var customerList = (function ($) {
                 height: 680
             });
         },
-        editProducts: function () {
-            var url;
-            if (pageContext.IsLastLevel) {
-                url = "CustomerSetting/EditVirtualSportsMember?memberId={0}"
-                    .format(editMemberId);
-            } else {
-                url = "CustomerSetting/EditProductAgent?agentId={0}&agentLevel={1}&productId = Product.Product_5"
-                    .format(editAgentId, editAgentLevel);
-            }
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
         editSetting: function () {
             alert('test');
         },

@@ -20,7 +20,5 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Required]
         [Range(1, short.MaxValue)]
         public int AgentLevel { get; set; }
-
-        public bool? IsEditProduct { get; set; }
     }
 }

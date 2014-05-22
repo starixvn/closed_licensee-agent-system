@@ -18,10 +18,6 @@ namespace LicenseeAgent.CustomerSetting.Services
     {
         void CheckExistUserName(CheckExistUserNameCriteria criteria);
 
-        CustomerInfo GetGeneralInfoAgent(EditProductAgentViewModel model);
-
-        CustomerInfo GetGeneralInfoMember(EditProductMemberViewModel model);
-
         InsertResult InsertCustomer(InsertCustomerViewModel model);
 
         IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);

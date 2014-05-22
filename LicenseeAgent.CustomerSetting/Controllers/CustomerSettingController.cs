@@ -92,8 +92,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpGet]
         public ViewResult EditProductAgent(EditProductAgentViewModel model)
         {
-            var custInfo = _customerSettingService.GetGeneralInfoAgent(model);
-
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
             foreach (var product in products)
@@ -102,7 +100,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 switch (product.ProductId)
                 {
                     case (int)Product.Product_5:
-                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}&isEditProduct=true", model.AgentId, model.AgentLevel));
+                        url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}", model.AgentId, model.AgentLevel));
                         break;
                 }
 
@@ -119,10 +117,10 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var viewModel = new EditProductViewModel
             {
-                ProductId = model.ProductId,
-                CustInfo = custInfo,
+                ProductId = Product.Product_5,
                 Products = editProductItems
             };
+
             return View("~/Views/CustomerSetting/EditProduct.cshtml", viewModel);
         }
 
@@ -134,14 +132,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         [HttpGet]
         public ViewResult EditProductMember(EditProductMemberViewModel model)
         {
-            var custInfo = new CustomerInfo
-            {
-                UserName = "pgmleo",
-                Status = 1,
-                FirstName = "Leo",
-                LastName = "Vo"
-            };
-
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
             foreach (var product in products)
@@ -149,10 +139,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 var url = string.Empty;
                 switch (product.ProductId)
                 {
-                    case (int)Product.Product_0:
-                        url = Url.Content(string.Format("~/CustomerSetting/EditMember?memberId={0}", model.CustId));
-                        break;
-
                     case (int)Product.Product_5:
                         url = Url.Content(string.Format("~/CustomerSetting/EditVirtualSportsMember?memberId={0}", model.CustId));
                         break;
@@ -171,8 +157,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var viewModel = new EditProductViewModel
             {
-                ProductId = model.ProductId,
-                CustInfo = custInfo,
+                ProductId = Product.Product_5,
                 Products = editProductItems
             };
 
@@ -401,7 +386,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var messages = new List<Result> { GenerateMessages(result) };
 
-            return Json(new { ErrCode = Result.SuccessValue, Messages = messages });
+            return Json(new { ErrCode = Result.SuccessValue, Messages = messages, CustId = result.CustIdReturn });
         }
 
         /// <summary>
@@ -525,8 +510,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
-                Ip = Request.GetClientIp(),
-                IsEditProduct = model.IsEditProduct ?? false
+                Ip = Request.GetClientIp()
             };
 
             if (!CheckForEditingCustomerSetting(settingContext))

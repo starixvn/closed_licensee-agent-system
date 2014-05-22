@@ -69,7 +69,6 @@
     <Compile Include="Criteria\AgentInsertAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInsertMemberCriteria.cs" />
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
-    <Compile Include="Criteria\GetGeneralInfoCriteria.cs" />
     <Compile Include="Criteria\LicenseeInsertAgentCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForInsertCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForUpdateCriteria.cs" />

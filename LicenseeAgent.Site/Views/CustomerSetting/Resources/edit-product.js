@@ -1,10 +1,9 @@
-﻿/*global custInfo, products*/
+﻿/*global products*/
 
 var editProductModule = angular.module('customerSetting.editProduct', []);
 editProductModule.controller('EditProductController', ['$scope',
     function EditProductController($scope) {
         'use strict';
-        $scope.custInfo = custInfo;
         $scope.products = products;
         $scope.activeUrl = function (productId) {
             var url = '';

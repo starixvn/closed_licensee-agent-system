@@ -23,10 +23,7 @@
     @Scripts.Render("~/js/customersetting")
     @Scripts.Render("~/js/customersetting/virtualsports")
 }
-@if (!Model.IsEditProduct)
-{
-    @RazorHelper.Legend(ViewBag.Title)
-}
+@RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
     class="fanex-virtual-sports-setting" data-ng-controller="CustomerSettingController"
     data-href="@("~/CustomerSetting/UpdateVirtualSportsCustomer")">
@@ -49,10 +46,7 @@
         }
     </div>
     <div class="clearfix">
-        @if (!Model.IsEditProduct)
-        {
-            @Html.Partial("~/Views/CustomerSetting/ViewCustomerInfo.cshtml")
-        }
+        @Html.Partial("~/Views/CustomerSetting/ViewCustomerInfo.cshtml")
     </div>
     <div class="clearfix">
         <div class="container-mode">

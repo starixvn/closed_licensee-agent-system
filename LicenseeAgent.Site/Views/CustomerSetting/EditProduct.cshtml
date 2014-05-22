@@ -4,7 +4,7 @@
 @using LicenseeAgent.Web.Mvc
 @model EditProductViewModel
 @{
-    ViewBag.Title = "Edit Product";
+    ViewBag.Title = "Edit Products";
 }
 @section css
 {
@@ -16,15 +16,11 @@
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/customersetting/editproduct")
     <script language="javascript" type="text/javascript">
-        @Html.Javascript(Model.CustInfo, "custInfo")
         @Html.Javascript(Model.Products, "products")
     </script>
 }
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" data-ng-app="customerSetting.editProduct" data-ng-controller="EditProductController">
-    <div class="clearfix">
-        @Html.Partial("~/Views/CustomerSetting/ViewCustomerInfo.cshtml")
-    </div>
     <ul class="nav nav-tabs">
         <li data-ng-repeat="product in products" data-ng-class="{'active': product.ProductId==@((int)Model.ProductId)}">
             <a href="#" data-toggle="tab" data-ng-click="loadUrl(product.Url)">{{product.ProductName}}</a>

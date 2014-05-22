@@ -123,9 +123,18 @@ if (fanex.customerSetting) {
                             }
                         }
                         if (isSuccess) {
-                            if (window.parent.customerList) {
-                                window.parent.customerList.editProducts();
+                            var url;
+                            if (settingContext.TargetRoleId === 1) {
+                                url = "~/CustomerSetting/EditProductMember?CustId={0}"
+                                    .format(data.CustId);
+                            } else {
+                                url = "~/CustomerSetting/EditProductAgent?agentId={0}&agentLevel={1}"
+                                    .format(data.CustId, settingContext.TargetRoleId - 1);
                             }
+
+                            setTimeout(function () {
+                                window.location.href = core.resolveUrl(url);
+                            }, 3000);
                         }
                     }).
                     error(function (data) {

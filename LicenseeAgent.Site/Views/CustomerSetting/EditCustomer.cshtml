@@ -62,51 +62,49 @@
             </div>
         </div>
     </div>
-<div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
-    <div class="product-name" data-ng-show="settingMode">
-        @Las.Sportsbook
-    </div>
-    <div class="product-container">
-        <div class="clearfix">
-            <div class="edit-setting-warning" data-ng-show="settingMode">
-                @Las.SportsBookSimpleModeNote
-            </div>
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
+        <div class="product-name" data-ng-show="settingMode">
+            @Las.Sportsbook
         </div>
-        @if (Model.FormId != FormType.EditIndirectMember)
-        {
+        <div class="product-container">
             <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/Sportsbook/BetSetting.cshtml", Model)
+                <div class="edit-setting-warning" data-ng-show="settingMode">
+                    @Las.SportsBookSimpleModeNote
+                </div>
             </div>
-        }
-        <div class="clearfix">
-            @Html.Partial("~/Views/CustomerSetting/Sportsbook/PositionTaking.cshtml", Model)
-        </div>
-    </div>
-</div>
-
-<div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-show="settingMode && hasOfferedNumberGame">
-    <div class="product-name">
-        @Las.NumberGame
-    </div>
-    <div class="product-container">
-        <div class="clearfix">
-            <div class="edit-setting-warning">
-                @Las.NumberGameSimpleModeNote
-            </div>
-        </div>
-        @if (Model.FormId != FormType.EditIndirectMember)
-        {
+            @if (Model.FormId != FormType.EditIndirectMember)
+            {
+                <div class="clearfix">
+                    @Html.Partial("~/Views/CustomerSetting/Sportsbook/BetSetting.cshtml", Model)
+                </div>
+            }
             <div class="clearfix">
-                 @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSettingSimpleMode.cshtml", Model)
+                @Html.Partial("~/Views/CustomerSetting/Sportsbook/PositionTaking.cshtml", Model)
             </div>
-        }
-        <div class="clearfix">
-            @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTakingSimpleMode.cshtml", Model)
         </div>
     </div>
-</div>
-
-<div class="clearfix">
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
+        <div class="product-name">
+            @Las.NumberGame
+        </div>
+        <div class="product-container">
+            <div class="clearfix">
+                <div class="edit-setting-warning">
+                    @Las.NumberGameSimpleModeNote
+                </div>
+            </div>
+            @if (Model.FormId != FormType.EditIndirectMember)
+            {
+                <div class="clearfix">
+                    @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSettingSimpleMode.cshtml", Model)
+                </div>
+            }
+            <div class="clearfix">
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTakingSimpleMode.cshtml", Model)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
         @if (Model.FormId != FormType.ViewIndirectAgent)
         {
             <div class="control-group">
@@ -216,7 +214,7 @@ else if (Model.TargetRoleId == (int)Role.Agent)
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
-   @Html.Action("Index", "Instruction", new
+    @Html.Action("Index", "Instruction", new
     {
         key = "AgentEditAgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button-ng",

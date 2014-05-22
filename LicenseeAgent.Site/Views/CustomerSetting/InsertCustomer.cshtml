@@ -58,7 +58,6 @@
             </div>
         </div>
     </div>
-
     <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
         <div class="product-name" data-ng-show="settingMode">
             @Las.Sportsbook
@@ -77,8 +76,7 @@
             </div>
         </div>
     </div>
-    
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-show="settingMode && hasOfferedNumberGame">
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
         <div class="product-name">
             @Las.NumberGame
         </div>
@@ -96,7 +94,6 @@
             </div>
         </div>
     </div>
-
     <div class="clearfix">
         <div class="control-group">
             <button class="btn btn-primary" data-ng-click="insertCustomer($event)">

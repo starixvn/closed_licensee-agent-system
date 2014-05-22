@@ -16,12 +16,12 @@ if (fanex.customerSetting) {
                 core.unblockUI();
                 return;
             }
-            
+
             core.initInstruction();
             // reload setting mode from query string
             settingContext.IsSimpleMode = core.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
             $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
-            
+
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
             $scope.hasOfferedNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
@@ -123,9 +123,8 @@ if (fanex.customerSetting) {
                             }
                         }
                         if (isSuccess) {
-                            popup.close();
                             if (window.parent.customerList) {
-                                window.parent.customerList.reRenderAfterPaged();
+                                window.parent.customerList.editProducts();
                             }
                         }
                     }).
@@ -261,7 +260,10 @@ if (fanex.customerSetting) {
             }
 
             $('#custSetting').show();
-
+            setTimeout(function () {
+                core.scrollTop();
+                $('#userName').focus();
+            }, 100);
             var messagesQueryString = core.getParameterByName('messages');
             if (messagesQueryString !== '') {
                 var messages = core.decodeMessages(messagesQueryString);

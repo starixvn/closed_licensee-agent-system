@@ -137,7 +137,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
         {
             if (settingContext.FormId == FormType.Add)
             {
-                if (settingContext.RoleId == (int)Role.AgentLevel0 && !isGet)
+                if (settingContext.RoleId == (int)Role.AgentLevel0 && isGet)
                 {
                     return true;
                 }

@@ -20,13 +20,13 @@
                     <li>
                         @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
                         {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel))" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                             if (pageContext.IsOfferedVirtualSports)
                             {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel))" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditVirtualSportsMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>

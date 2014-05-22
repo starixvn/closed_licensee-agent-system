@@ -5,7 +5,6 @@
 @using LicenseeAgent.Resources
 @using LicenseeAgent.AccountInformation.Entities
 @using LicenseeAgent.Core.Entities
-
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -38,17 +37,18 @@
         var className = value < 0 ? "number-negative" : string.Empty;
     <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(value)</span>
 }
-@helper FormatNegative(long value){
-    var className = value < 0 ? "number-negative" : string.Empty;
+@helper FormatNegative(long value)
+    {
+        var className = value < 0 ? "number-negative" : string.Empty;
     <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatInt(value)</span>
 }
-@helper RenderPopover(int memberId, IList<UpLineEntity> uplines, int numberOfLevel)
+@helper RenderPopover(int memberId, IList<UpLineEntity> uplines, int numberOfLevel, string actionName)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
         var numberUpline = uplines.Count;
         for (int index = numberUpline - 1; index >= 0; index--)
         {
-    <a href='@(url.Action("EditMember", "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
+    <a href='@(url.Action(actionName, "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
         }
 }
 @helper DrawFilter(short val)
@@ -68,31 +68,29 @@
     </label>
 }
 @helper Product(IEnumerable<ProductInfo> productList, string selectedProducts, string classNameProduct = "")
-{
-    var isCheckAll = string.IsNullOrEmpty(selectedProducts) || (selectedProducts.Split(',').Length - 1 == productList.Count());
-    if (productList.Count() > 1)
     {
-        var productIds = string.IsNullOrEmpty(selectedProducts) ? new List<string>() : selectedProducts.Split(',').ToList();
-        <div class="controls-row">
-        
-            <label class="checkbox @classNameProduct">@Las.Product</label>
+        var isCheckAll = string.IsNullOrEmpty(selectedProducts) || (selectedProducts.Split(',').Length - 1 == productList.Count());
+        if (productList.Count() > 1)
+        {
+            var productIds = string.IsNullOrEmpty(selectedProducts) ? new List<string>() : selectedProducts.Split(',').ToList();
+    <div class="controls-row">
+        <label class="checkbox @classNameProduct">@Las.Product</label>
+        <label class="checkbox inline">
+            <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty) >
+            @Las.All
+        </label>
+        @foreach (var item in productList)
+        {
             <label class="checkbox inline">
-                <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty) > 
-                @Las.All
+                <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
+                @item.ProductName
             </label>
-    
-            @foreach (var item in productList)
-            {        
-                <label class="checkbox inline">
-                    <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
-                    @item.ProductName
-                </label>
-            }
-        </div>
-    
-        <div class="newline">
-        </div>
-    }
+        }
+    </div>
+
+    <div class="newline">
+    </div>
+        }
 }
 @helper BreadCrumb(string val)
     {

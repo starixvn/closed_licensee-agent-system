@@ -59,6 +59,7 @@ if (fanex.customerSetting) {
         bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "最大单场比赛投注额必须小于或等于 ",
         bettingLimit_Message_MaxPerBallLessThanOrEqualTo: "Max Per Ball must be less than or equal to ",
         bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet: "Max Per Ball must be greater than or equal to Max Bet ",
+		bettingLimit_Message_MaxPerBallLessThanOrEqualMaxPerMatch: "Max Per Ball must be less than or equal to Max Per Match",
         bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall: "Max Per Match must be greater than or equal to Max Per Ball ",
         customerInfo_Message_MaxCredit: '给定信贷额必须在0和{0}之间',
 

@@ -59,6 +59,7 @@ if (fanex.customerSetting) {
         bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "Max Per Match must be less than or equal to ",
         bettingLimit_Message_MaxPerBallLessThanOrEqualTo: "Max Per Ball must be less than or equal to ",
         bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet: "Max Per Ball must be greater than or equal to Max Bet ",
+		bettingLimit_Message_MaxPerBallLessThanOrEqualMaxPerMatch: "Max Per Ball must be less than or equal to Max Per Match",
         bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall: "Max Per Match must be greater than or equal to Max Per Ball ",
         customerInfo_Message_MaxCredit: 'Given credit must be between 0 and {0}',
 

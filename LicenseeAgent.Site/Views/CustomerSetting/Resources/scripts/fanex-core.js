@@ -92,9 +92,6 @@ fanex.cloneObject = function (obj) {
 
 fanex.isChangedData = function (productSetting) {
     'use strict';
-    if (productSetting === null) {
-        return true;
-    }
 
     return (productSetting.CommissionSetting !== null &&
             productSetting.CommissionSetting.CommissionItems !== null && 

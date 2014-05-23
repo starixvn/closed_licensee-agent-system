@@ -29,6 +29,10 @@ if (fanex.customerSetting) {
             $scope.result = fanex.customerSetting.Result;
             $scope.custInfo = sportsBookSetting.CustInfo;
 
+            if (!$scope.hasOfferedNumberGame) {
+                angular.element(".hasOfferedNumberGame").hide();
+            }
+
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
@@ -164,7 +168,8 @@ if (fanex.customerSetting) {
                     bettingLimitScope,
                     positionTakingScope,
                     sportsBookSetting = null,
-                    numberGameSetting = null;
+                    numberGameSetting = null,
+                    isChangeData = true;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
                     commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
@@ -203,7 +208,13 @@ if (fanex.customerSetting) {
                     }
                 }
 
-                if (!fanex.isChangedData(sportsBookSetting) && !fanex.isChangedData(numberGameSetting)) {
+                isChangeData = fanex.isChangedData(sportsBookSetting);
+
+                if (!isChangeData && $scope.hasOfferedNumberGame && !fanex.isChangedData(numberGameSetting)) {
+                    isChangeData = false;
+                }
+
+                if (!isChangeData) {
                     $('.messages').show();
                     $scope.Messages = [
                         {

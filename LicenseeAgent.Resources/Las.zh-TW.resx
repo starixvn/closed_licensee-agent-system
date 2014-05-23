@@ -1361,4 +1361,7 @@
   <data name="EditVirtualSports" xml:space="preserve">
     <value>编辑虚拟运动</value>
   </data>
+  <data name="MaxPerBallLessThanOrEqualMaxPerMatch" xml:space="preserve">
+    <value>Max Per Ball must be less than or equal to Max Per Match</value>
+  </data>
 </root>

@@ -89,6 +89,7 @@ if (fanex.customerSetting) {
         bettingLimit_Message_MaxPerMatchLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerMatchLessThanOrEqualTo")#> ",
         bettingLimit_Message_MaxPerBallLessThanOrEqualTo: "<#= resourceXSet.GetString("MaxPerBallLessThanOrEqualTo")#> ",
         bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet: "<#= resourceXSet.GetString("MaxPerBallMoreThanOrEqualMaxBet")#> ",
+		bettingLimit_Message_MaxPerBallLessThanOrEqualMaxPerMatch: "<#= resourceXSet.GetString("MaxPerBallLessThanOrEqualMaxPerMatch")#>",
         bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall: "<#= resourceXSet.GetString("MaxPerMatchMoreThanOrEqualMaxPerBall")#> ",
         customerInfo_Message_MaxCredit: '<#= resourceXSet.GetString("GivenMaxCredit")#>',
 

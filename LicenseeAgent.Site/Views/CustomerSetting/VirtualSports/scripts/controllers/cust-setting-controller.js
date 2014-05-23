@@ -112,7 +112,7 @@ if (fanex.customerSetting) {
                             core.blockUI();
                             var timeout = 0;
                             if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
-                                timeout = 3000;
+                                timeout = 7000;
                             }
                             setTimeout(function () {
                                 var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');

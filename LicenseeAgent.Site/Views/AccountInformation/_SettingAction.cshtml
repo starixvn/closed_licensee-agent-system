@@ -24,6 +24,18 @@
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
+                        }
+                        else
+                        {
+                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                                <i class="icon-downline-arrow"></i>
+                                @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
+                            </a>
+                        }
+                    </li>
+                    <li>
+                        @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
+                        {
                             if (pageContext.IsOfferedVirtualSports)
                             {
                             <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditVirtualSportsMember"))" data-original-title="" class="popover-link">
@@ -34,10 +46,6 @@
                         }
                         else
                         {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
-                                <i class="icon-downline-arrow"></i>
-                                @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
-                            </a>
                             if (pageContext.IsOfferedVirtualSports)
                             {
                             <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">

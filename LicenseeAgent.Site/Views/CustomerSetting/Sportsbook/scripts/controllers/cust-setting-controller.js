@@ -134,7 +134,7 @@ if (fanex.customerSetting) {
 
                             setTimeout(function () {
                                 window.location.href = core.resolveUrl(url);
-                            }, 3000);
+                            }, 5000);
                         }
                     }).
                     error(function (data) {

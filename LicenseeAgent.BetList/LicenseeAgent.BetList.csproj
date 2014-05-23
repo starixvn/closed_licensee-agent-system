@@ -67,6 +67,7 @@
       <HintPath>..\packages\Fanex.Result.Core.1.4.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,7 @@
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListResultCriteria.cs" />
+    <Compile Include="Criteria\BetListResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
     <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Utilities\TicketBuilder.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
     <Compile Include="Utilities\LasTrans.cs" />
+    <Compile Include="ViewModels\BetListResultViewModel.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
     <Compile Include="ViewModels\BetListWinLossViewModel.cs" />
@@ -157,28 +160,7 @@
     <Folder Include="CodeAnalysis\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\Fanex.Result\Badminton.xls" />
-    <None Include="App_Data\Fanex.Result\BaseBall.xls" />
-    <None Include="App_Data\Fanex.Result\Basketball.xls" />
-    <None Include="App_Data\Fanex.Result\Billiard.xls" />
-    <None Include="App_Data\Fanex.Result\Hockey.xls" />
-    <None Include="App_Data\Fanex.Result\HorseRacing.xls" />
-    <None Include="App_Data\Fanex.Result\LiveCasino.xls" />
-    <None Include="App_Data\Fanex.Result\NumberGame.xls" />
-    <None Include="App_Data\Fanex.Result\OtherSport.xls" />
-    <None Include="App_Data\Fanex.Result\Outright.xls" />
-    <None Include="App_Data\Fanex.Result\Soccer.xls" />
-    <None Include="App_Data\Fanex.Result\Tennis.xls" />
-    <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
-    <None Include="App_Data\Fanex.Result\VSTennis.xls" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Styles\Fanex.Result\fanex.result.css" />
-    <Content Include="Styles\Fanex.Result\images\bg_header03.jpg" />
-    <Content Include="Styles\Fanex.Result\images\first-goal.gif" />
-    <Content Include="Styles\Fanex.Result\images\last-goal.gif" />
-    <Content Include="Styles\Fanex.Result\images\tab_topbg.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

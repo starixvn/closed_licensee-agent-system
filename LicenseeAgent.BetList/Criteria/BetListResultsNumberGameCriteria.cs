@@ -1,0 +1,32 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="BetListResultsNumberGameCriteria.cs" company="">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace LicenseeAgent.BetList.Criteria
+{
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class BetListResultsNumberGameCriteria : CriteriaBase
+    {
+        public int MatchId { get; set; }
+
+        /// <summary>
+        /// Get SP name.
+        /// </summary>
+        /// <returns>Setting key.</returns>
+        public override string GetSettingKey()
+        {
+            return "LAS_Betlist_SelMatchResultNumberGame";
+        }
+
+        public override bool IsValid()
+        {
+            return MatchId > 0;
+        }
+    }
+}

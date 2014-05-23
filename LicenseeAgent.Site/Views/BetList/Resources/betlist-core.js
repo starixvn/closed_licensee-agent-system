@@ -4,7 +4,6 @@
 
 var showMixParlayDetailUrl = "~/BetList/MixParlayDetails?transid={0}&sportType={1}&betType={2}";
 var showBetListDetailsUrl = "~/BetList/Details?transId={0}&status={1}&SportType={2}&BetType={3}";
-var showBetListResultsUrl = "~/BetList/Results";
 var showSystemParlayDetailsUrl = "~/BetList/SystemParlayResult?refNo=";
 var sportTypeParlay = 0;
 var betTypeMixParlay = 9;
@@ -136,10 +135,20 @@ fanex.betlist.core = {
             }
         });
     },
-    showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay) {
-        var url = bettype === betTypeMixParlay || bettype === betTypeSystemParlay
-                ? showBetListResultsUrl + "?refNo=" + refnoMixParlay + "&isSportsbook=false&sportType=" + sporttype
-                : showBetListResultsUrl + "?matchId=" + matchid + "&isSportsbook=true&sportType=" + sporttype;
+    showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
+        var data = {
+            matchId: matchid,
+            raceNo: raceNo,
+            betType: bettype,
+            sportType: sporttype,
+            refNo: refno,
+            userName: username,
+            winlostDate: winlostdate,
+            refnoMixParlay: refnoMixParlay,
+            leagueId: league,
+            isOutright: isOutright
+        };
+        var url = '~/BetList/Results?' + $.param(data);
 
         $.ajax({
             type: "GET",

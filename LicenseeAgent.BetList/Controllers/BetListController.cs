@@ -174,38 +174,66 @@ namespace LicenseeAgent.BetList.Controllers
         /// <summary>
         /// Bet List Results.
         /// </summary>
-        /// <param name="criteria">Bet list result criteria.</param>
-        /// <returns>JSON result.</returns>
-        public ActionResult Results(BetListResultCriteria criteria)
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JSON result.
+        /// </returns>
+        public ActionResult Results(BetListResultViewModel model)
         {
+            var isParlayPopup = 
+                model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_9
+                || model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_29;
             var setting = new ResultSetting
             {
-                SportType = 0,
-                IsOutRight = false,
-                IsParlayPopUp = true,
+                SportType = (SportType)model.SportType,
+                IsOutRight = model.IsOutright,
+                IsParlayPopUp = isParlayPopup,
                 IsPopUp = true,
                 LanguageCode = CurrentSession.Language
             };
 
-            ViewBag.Data = criteria.IsSportsBook
-                ? GetSportsBookResults(criteria.MatchId, setting)
-                : GetParlayResults(criteria.RefNo, setting);
+            var data = string.Empty;
+            if (setting.IsParlayPopUp)
+            {
+                data = GetParlayResults(model.RefNoMixParlay.Value, setting);
+            }
+            else
+            {
+                data = GetResultNormalData(model, setting);
+            }
 
-            return View();
+            return View((object)data);
         }
 
         /// <summary>
-        /// Get Sports book Results.
+        /// Gets the result normal data.
         /// </summary>
-        /// <param name="matchId">Input Match ID.</param>
-        /// <param name="setting">Results Setting.</param>
-        /// <returns>JSON object.</returns>
-        public string GetSportsBookResults(int matchId, ResultSetting setting)
+        /// <param name="model">The model.</param>
+        /// <param name="setting">The setting.</param>
+        /// <returns>Returns result string.</returns>
+        private string GetResultNormalData(BetListResultViewModel model, ResultSetting setting)
         {
-            var data = _betlistService.GetSportsBookResults(new BetListResultsSportsBookCriteria { MatchId = matchId });
-            return data != null
-                ? ResultEngine.HtmlParser(data, setting)
-                : string.Empty;
+            switch ((SportType)model.SportType)
+            {
+                case SportType.HorseRacing:
+                case SportType.Greyhound:
+                case SportType.Harness:
+                case SportType.VirtualHorseRacing:
+                case SportType.VirtualMotorRacing:
+                case SportType.VirtualGreyhounds:
+                    return string.Empty;
+
+                case SportType.LiveCasino:
+                    return string.Empty;
+
+                case SportType.NumberGame:
+                    var numberGameData = _betlistService.GetNumberGameResults(model.MatchId.Value);
+                    return numberGameData != null ? ResultEngine.HtmlParser(numberGameData, setting) : string.Empty;
+
+                default:
+                    var sportsBookData = _betlistService.GetSportsBookResults(model.MatchId.Value);
+                    return sportsBookData != null ? ResultEngine.HtmlParser(sportsBookData, setting) : string.Empty;
+            }
         }
 
         /// <summary>
@@ -214,7 +242,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// <param name="refNo">Reference Number.</param>
         /// <param name="setting">Results Setting.</param>
         /// <returns>JSON object.</returns>
-        public string GetParlayResults(long refNo, ResultSetting setting)
+        private string GetParlayResults(long refNo, ResultSetting setting)
         {
             var data = _betlistService.GetParlayResults(new BetListResultsParlayCriteria { RefNo = refNo });
             return data != null

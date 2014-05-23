@@ -55,9 +55,13 @@ namespace LicenseeAgent.BetList.Services
         /// <summary>
         /// Get Sports book Results.
         /// </summary>
-        /// <param name="criteria">Bet List Results Sports book Criteria.</param>
-        /// <returns>The list of matches.</returns>
-        IList<Parlay> GetSportsBookResults(BetListResultsSportsBookCriteria criteria);
+        /// <param name="matchId">The match identifier.</param>
+        /// <returns>
+        /// The list of matches.
+        /// </returns>
+        IList<NumberGame> GetNumberGameResults(int matchId);
+
+        IList<Sportbook> GetSportsBookResults(int matchId);
 
         /// <summary>
         /// Get Parlay Results.

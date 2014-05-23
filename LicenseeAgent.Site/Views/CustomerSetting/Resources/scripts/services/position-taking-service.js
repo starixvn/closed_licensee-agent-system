@@ -2,6 +2,8 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global settingContext */
+
 'use strict';
 
 if (fanex.customerSetting) {
@@ -215,6 +217,63 @@ if (fanex.customerSetting) {
                 }
             }
             return true;
+        },
+        changeSettingValidation: function (currentPt) {
+            if (settingContext.TargetRoleId === fanex.customerSetting.Role.AgentLevel1) {
+                currentPt.OldMin = currentPt.Min;
+                currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
+                currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
+                currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
+                currentPt.MinRangeOfMin = 0;
+                currentPt.MaxRangeOfMin = currentPt.Max;
+            }
+            if (settingContext.TargetRoleId === fanex.customerSetting.Role.Agent) {
+                currentPt.OldMin = currentPt.Min;
+                currentPt.OldMax = currentPt.Max;
+                currentPt.OldPreset = currentPt.Preset;
+                currentPt.MinRangeOfPreset = 0;
+                currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+            }
+            if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                currentPt.OldValue = currentPt.Value;
+                currentPt.MinRangeOfValue = currentPt.Upline.Min;
+                currentPt.MaxRangeOfValue = currentPt.Upline.Max;
+            }
+        },
+        updateScope: function ($scope, settings) {
+            $scope.positionTakingService.init(settings, $scope.language);
+
+            angular.extend($scope.ptModel.ptFirstData, settings[0].PositionTakings[0]);
+            $scope.positionTakingService.changeSettingValidation($scope.ptModel.ptFirstData);
+
+            angular.forEach($scope.ptModel.ptGroups, function (ptGroup) {
+                angular.forEach(ptGroup.PositionTakings, function (positionTaking) {
+                    var setting = $scope.positionTakingService.getPositionTakingSetting(
+                                    positionTaking.SportId,
+                                    positionTaking.IsLive,
+                                    positionTaking.BetTypeId, settings);
+                    if (setting !== null) {
+                        angular.extend(positionTaking, setting);
+                        $scope.positionTakingService.changeSettingValidation(positionTaking);
+                    }
+                });
+            });
+        },
+        getPositionTakingSetting: function (sportId, isLive, betTypeId, settings) {
+            var setting = null;
+
+            angular.forEach(settings, function (ptGroup) {
+                if (ptGroup.SportId === sportId && ptGroup.IsLive === isLive) {
+                    angular.forEach(ptGroup.PositionTakings, function (positionTaking) {
+                        if (positionTaking.BetTypeId === betTypeId) {
+                            setting = positionTaking;
+                        }
+                    });
+                }
+            });
+
+            return setting;
         }
     };
 }

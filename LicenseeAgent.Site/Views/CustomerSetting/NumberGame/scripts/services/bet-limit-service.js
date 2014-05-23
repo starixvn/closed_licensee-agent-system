@@ -10,7 +10,7 @@ if (fanex.customerSetting) {
         config: {
             maxInput: 15
         },
-        copyPartial: function(betSetting, index, bettingLimitsModel) {
+        copyPartial: function (betSetting, index, bettingLimitsModel) {
             if (!betSetting.actions.isValid()) {
                 return;
             }
@@ -20,7 +20,7 @@ if (fanex.customerSetting) {
                 self.copyAction(betSetting, bettingLimitsModel[i]);
             }
         },
-        copyAction: function(source, destination) {
+        copyAction: function (source, destination) {
             destination.MinBet = fanex.customerSetting.numberGameBetLimitService.reformatInputNumberForControl(source.MinBet);
             destination.actions.validMinBet();
 
@@ -33,7 +33,7 @@ if (fanex.customerSetting) {
             destination.MaxPerBall = fanex.customerSetting.numberGameBetLimitService.reformatInputNumberForControl(source.MaxPerBall);
             destination.actions.validMaxPerBall();
         },
-        getbettingLimits: function(settingContext, bettingLimitsData, firstRecordData) {
+        getbettingLimits: function (settingContext, bettingLimitsData, firstRecordData) {
             var bettingLimitsSave = [], self = this, index, bettingLimit;
 
             if (settingContext.IsSimpleMode) {
@@ -70,8 +70,17 @@ if (fanex.customerSetting) {
                     }
                 }
             }
-
             return bettingLimitsSave;
+        },
+        changeSettingValidation: function (betSetting) {
+            betSetting.OldMinBet = betSetting.MinBet;
+            betSetting.OldMaxBet = betSetting.MaxBet;
+            betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+            betSetting.OldMaxPerBall = betSetting.MaxPerBall;
+            betSetting.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
+            betSetting.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
+            betSetting.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
+            betSetting.MaxPerBall = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerBall);
         }
     };
 

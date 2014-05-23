@@ -17,20 +17,25 @@ if (fanex.customerSetting) {
             $scope.config = fanex.customerSetting.positionTakingService.config;
             $scope.settingContext = settingContext;
             $scope.positionTakingService = fanex.customerSetting.positionTakingService;
+
             $scope.ptModel = {
                 ptGroups: fanex.cloneObject(sportsBookSetting.PositionTakingSetting),
                 ptFirstData: fanex.cloneObject(sportsBookSetting.PositionTakingSetting[0].PositionTakings[0]),
                 settingContext: settingContext
             };
 
-            $scope.saveData = function() {
+            $scope.updateSettingModel = function () {
+                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(sportsBookSetting.PositionTakingSetting));
+            };
+
+            $scope.saveData = function () {
                 return $scope.positionTakingService.getPositionTakingUpdate(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
             };
 
-            $scope.isValidData = function() {
+            $scope.isValidData = function () {
                 return $scope.positionTakingService.isValidData(
                     settingContext,
                     $scope.ptModel.ptFirstData,

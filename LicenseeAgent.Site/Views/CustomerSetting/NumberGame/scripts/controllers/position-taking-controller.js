@@ -13,22 +13,27 @@ if (fanex.customerSetting) {
             fanex.customerSetting.numberGamePositionTakingService.init(numberGameSetting.PositionTakingSetting, $scope.language);
             $scope.config = fanex.customerSetting.numberGamePositionTakingService.config;
             $scope.settingContext = settingContext;
-            $scope.numberGamePositionTakingService = fanex.customerSetting.numberGamePositionTakingService;
+            $scope.positionTakingService = fanex.customerSetting.numberGamePositionTakingService;
+
             $scope.ptModel = {
                 ptGroups: fanex.cloneObject(numberGameSetting.PositionTakingSetting),
                 ptFirstData: fanex.cloneObject(numberGameSetting.PositionTakingSetting[0].PositionTakings[0]),
                 settingContext: settingContext
             };
 
+            $scope.updateSettingModel = function () {
+                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(numberGameSetting.PositionTakingSetting));
+            };
+
             $scope.saveData = function () {
-                return $scope.numberGamePositionTakingService.getPositionTakingUpdate(
+                return $scope.positionTakingService.getPositionTakingUpdate(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
             };
 
             $scope.isValidData = function () {
-                return $scope.numberGamePositionTakingService.isValidData(
+                return $scope.positionTakingService.isValidData(
                     settingContext,
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);

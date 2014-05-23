@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global sportsBookSetting, settingContext */
+/*global sportsBookSetting,numberGameSetting, settingContext */
 
 'use strict';
 
@@ -380,6 +380,41 @@ if (fanex.customerSetting) {
             }
 
             return result;
+        },
+        getCommissionModel: function (hasOfferedNumberGame) {
+            if (hasOfferedNumberGame) {
+                return sportsBookSetting.CommissionSetting.CommissionItems.concat(numberGameSetting.CommissionSetting.CommissionItems);
+            }
+            return sportsBookSetting.CommissionSetting.CommissionItems;
+        },
+        updateScope: function ($scope) {
+            var numberDiscount, index;
+            var commissionModel = this.arrangeCommissionSettingModel($scope.commissionSettingService.getCommissionModel($scope.hasOfferedNumberGame));
+            var commissionViewModel = this.getCommissionSettingViewModel(
+                                                                            fanex.cloneObject(commissionModel),
+                                                                            $scope.language,
+                                                                            $scope.settingContext.TargetRoleId,
+                                                                            $scope.hasOfferedNumberGame);
+
+            if ($scope.settingContext.TargetRoleId !== fanex.customerSetting.Role.Member) {
+                numberDiscount = commissionViewModel.length;
+                for (index = 0; index < numberDiscount; index++) {
+                    angular.extend($scope.viewModel.commissionSettingsViewModel[index], commissionViewModel[index]);
+                }
+            }
+            else {
+                numberDiscount = commissionViewModel.group.length;
+                for (index = 0; index < numberDiscount; index++) {
+                    angular.extend($scope.viewModel.commissionSettingsViewModel.group[index], commissionViewModel.group[index]);
+                }
+                angular.extend($scope.viewModel.commissionSettingsViewModel.line1, commissionViewModel.line1);
+                angular.extend($scope.viewModel.commissionSettingsViewModel.line2, commissionViewModel.line2);
+                angular.extend($scope.viewModel.commissionSettingsViewModel.line3, commissionViewModel.line3);
+                angular.extend($scope.viewModel.commissionSettingsViewModel.line4, commissionViewModel.line4);
+                if ($scope.hasOfferedNumberGame) {
+                    angular.extend($scope.viewModel.commissionSettingsViewModel.line5, commissionViewModel.line5);
+                }
+            }
         }
     };
 }

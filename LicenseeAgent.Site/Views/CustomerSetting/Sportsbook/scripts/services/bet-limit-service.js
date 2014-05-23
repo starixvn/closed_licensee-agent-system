@@ -1,6 +1,9 @@
 ﻿/// <reference path="../../../../libs/angular.js" />
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
+
+/*global settingContext, sportsBookSetting */
+
 'use strict';
 
 if (fanex.customerSetting) {
@@ -64,6 +67,23 @@ if (fanex.customerSetting) {
                 }
             }
             return bettingLimitsSave;
+        },
+        getSettingModel: function () {
+            return {
+                // For all sport types
+                bettingLimitsModel: fanex.cloneObject(sportsBookSetting.BettingLimitSetting),
+                // For only soccer setting
+                firstRecord: fanex.cloneObject(sportsBookSetting.BettingLimitSetting[0]),
+                settingContext: settingContext
+            };
+        },
+        changeSettingValidation: function (betSetting) {
+            betSetting.OldMinBet = betSetting.MinBet;
+            betSetting.OldMaxBet = betSetting.MaxBet;
+            betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+            betSetting.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
+            betSetting.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
+            betSetting.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
         }
     };
 

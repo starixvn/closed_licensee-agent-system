@@ -26,7 +26,7 @@
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
     class="fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
-    data-href="@("~/CustomerSetting/UpdateCustomer")" data-updatedUrl="@("~/CustomerSetting/GetUpdatedSetting")">
+    data-href="@("~/CustomerSetting/UpdateCustomer")" data-updated-href="@("~/CustomerSetting/GetUpdatedSetting")" data-product="@((int)Product.Product_0)">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == result.Success, 'warning': message.ErrCode == result.NoChange, 'error' : message.ErrCode != result.Success && message.ErrCode != result.NoChange}">

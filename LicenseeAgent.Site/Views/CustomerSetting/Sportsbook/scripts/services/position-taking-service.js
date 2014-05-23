@@ -2,7 +2,8 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/* global sportsBookSetting */
+/*global sportsBookSetting */
+
 'use strict';
 
 if (fanex.customerSetting) {

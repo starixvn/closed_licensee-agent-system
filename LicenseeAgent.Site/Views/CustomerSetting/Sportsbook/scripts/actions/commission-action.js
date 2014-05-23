@@ -4,12 +4,13 @@ if (fanex.customerSetting) {
 
     fanex.customerSetting.commissionSettingActions =
     {
-        licenseeOrAgentEditAgentActions: function(modelData, inputControl, scope) {
+        licenseeOrAgentEditAgentActions: function (modelData, inputControl, scope) {
             return {
-                onChangeDiscountValue: function() {
+                onChangeDiscountValue: function () {
+                    modelData.discount = fanex.roundNumber(modelData.discount, 2);
                     modelData.actions.isValid();
                 },
-                isValid: function() {
+                isValid: function () {
                     var isValid = modelData.discount >= modelData.minDiscount && modelData.discount <= modelData.maxDiscount;
                     if (!isValid) {
                         var message = scope.language["message_ValueIsNotInRange"] + ' [' + modelData.minDiscount + ' - ' + modelData.maxDiscount + ']';
@@ -22,12 +23,12 @@ if (fanex.customerSetting) {
                 }
             };
         },
-        agentEditCustomerActions: function(commissionSettingsViewModel, scope) {
+        agentEditCustomerActions: function (commissionSettingsViewModel, scope) {
             return {
-                onChangeDiscountValue: function(modelData, controlId) {
+                onChangeDiscountValue: function (modelData, controlId) {
                     commissionSettingsViewModel.actions.isValidLine(modelData, controlId);
                 },
-                isValidLine: function(modelData, controlId) {
+                isValidLine: function (modelData, controlId) {
                     var isValid = modelData.memberCommission >= 0 && modelData.memberCommission <= modelData.agentCommission;
                     if (!isValid) {
                         var inputControl = $('#' + controlId);
@@ -40,7 +41,7 @@ if (fanex.customerSetting) {
 
                     return isValid;
                 },
-                isValid: function() {
+                isValid: function () {
                     if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line1, 'line1')) {
                         return false;
                     }
@@ -50,7 +51,12 @@ if (fanex.customerSetting) {
                     if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line3, 'line3')) {
                         return false;
                     }
-
+                    if (!commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line4, 'line4')) {
+                        return false;
+                    }
+                    if (scope.hasOfferedNumberGame && !commissionSettingsViewModel.actions.isValidLine(commissionSettingsViewModel.line5, 'line5')) {
+                        return false;
+                    }
                     return true;
                 }
             };

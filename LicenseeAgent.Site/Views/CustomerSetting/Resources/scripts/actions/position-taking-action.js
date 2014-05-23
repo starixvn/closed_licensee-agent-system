@@ -11,26 +11,30 @@ if (fanex.customerSetting) {
                         || currentPt.Preset !== currentPt.OldPreset;
                 },
                 onChangePreset: function () {
+                    currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     if (currentPt.actions.validPreset(true)) {
                         fanex.hideHint();
                     }
                 },
                 onBlurPreset: function () {
+                    currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     if (!currentPt.actions.validPreset(false)) {
                         return;
                     }
-
+                    
                     currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
                     currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
                     currentPt.actions.whenPresetChange();
                     fanex.hideHint();
                 },
                 onChangeMax: function () {
+                    currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     if (currentPt.actions.validMax(true)) {
                         fanex.hideHint();
                     }
                 },
                 onBlurMax: function () {
+                    currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     if (!currentPt.actions.validMax(false)) {
                         return;
                     }
@@ -41,6 +45,7 @@ if (fanex.customerSetting) {
                     fanex.hideHint();
                 },
                 onChangeMin: function () {
+                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
                     currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
 
@@ -112,12 +117,14 @@ if (fanex.customerSetting) {
                         || currentPt.Max !== currentPt.OldMax;
                 },
                 onChangeMax: function () {
+                    currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     if (!currentPt.actions.validMax(true)) {
                         return;
                     }
                     fanex.hideHint();
                 },
                 onBlurMax: function () {
+                    currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
                     if (!currentPt.actions.validMax(false)) {
                         return;
                     }
@@ -130,6 +137,7 @@ if (fanex.customerSetting) {
                 onChangeMin: function () {
                     currentPt.Preset = fanex.roundNumber(currentPt.Preset, 2);
                     currentPt.Max = fanex.roundNumber(currentPt.Max, 2);
+                    currentPt.Min = fanex.roundNumber(currentPt.Min, 2);
 
                     if (!currentPt.actions.validMin(true)) {
                         return;
@@ -177,6 +185,7 @@ if (fanex.customerSetting) {
                     return currentPt.Value !== currentPt.OldValue;
                 },
                 onChangeValue: function () {
+                    currentPt.Value = fanex.roundNumber(currentPt.Value, 2);
                     if (!currentPt.actions.validValue(true)) {
                         return;
                     }

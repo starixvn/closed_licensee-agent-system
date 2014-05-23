@@ -1,50 +1,47 @@
-﻿
+﻿/*global core, settingContext */
+
 'use strict';
 
 if (fanex.customerSetting) {
-    fanex.customerSetting.service('CustomerSettingService', ['$http', "$rootScope", function ($http, $rootScope) {
-        this.updateSetting = function () {
+    fanex.customerSetting.service('CustomerSettingService', ['$http', function ($http) {
+        this.updateSettingModel = function () {
             $http({
                 method: 'POST',
-                url: core.resolveUrl($('#custSetting').data('updatedUrl')),
+                url: core.resolveUrl($('#custSetting').data('updated-href')),
                 headers: { 'Content-Type': 'application/json' },
                 data: {
-                    settingContext: settingContext
+                    ProductId: $('#custSetting').data('product'),
+                    CustId: settingContext.CustId,
+                    RoleId: settingContext.RoleId,
+                    TargetCustId: settingContext.TargetCustId,
+                    TargetRoleId: settingContext.TargetRoleId,
+                    FormId: settingContext.FormId
                 }
             }).
             success(function (data) {
                 core.unblockUI();
 
-                if (data.ErrCode !== 0) {
-                    $('.messages').show();
-                    $scope.Messages = [{
-                        ErrCode: fanex.customerSetting.Error,
-                        ErrMsg: data.ErrMsg
-
-                    }];
-                    return;
-                }
-                var commissionSettingScope,
+                var customerSettingScope,
+                    commissionSettingScope,
                     bettingLimitScope,
-                    positionTakingScope,
-                    isEditIndirectMember;
+                    positionTakingScope;
 
-                isEditIndirectMember = settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember;
+                customerSettingScope = angular.element('[data-ng-controller="CustomerSettingController"]').scope();
+                customerSettingScope.updateProductSetting(data);
 
-                if (isEditIndirectMember) {
+                if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
                     commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
                     bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
 
-                    commissionSettingScope.updateSetting();
-                    bettingLimitScope.updateSetting();
+                    commissionSettingScope.updateSettingModel();
+                    bettingLimitScope.updateSettingModel();
                 }
 
                 positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
-                positionTakingScope.updateSetting();
+                positionTakingScope.updateSettingModel();
 
-
-                if ($rootScope.hasOfferedNumberGame) {
-                    fanex.customerSetting.numberGameSetting.updateSetting(isEditIndirectMember);
+                if (customerSettingScope.hasOfferedNumberGame) {
+                    fanex.customerSetting.numberGameSetting.updateSettingModel();
                 }
             }).
             error(function (data) {

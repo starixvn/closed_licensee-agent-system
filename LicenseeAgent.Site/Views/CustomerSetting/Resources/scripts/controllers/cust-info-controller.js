@@ -12,10 +12,10 @@ if (fanex.customerSetting) {
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 $scope.isShowLimitMaxCredit = $scope.custInfo.MaxCredit !== undefined ? true : false;
                 if ($scope.isShowLimitMaxCredit) {
-                    $scope.$watch('custInfo.credit', function (newValue) {
-                        if (parseFloat(newValue) > $scope.custInfo.maxCredit) {
+                    $scope.$watch('custInfo.Credit', function (newValue) {
+                        if (parseFloat(newValue) > $scope.custInfo.MaxCredit) {
                             $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit']
-                                .format($filter('number')($scope.custInfo.maxCredit, 0));
+                                .format($filter('number')($scope.custInfo.MaxCredit, 0));
                             $scope.formCustInfo.credit.$setValidity('', false);
                         } else {
                             $scope.formCustInfo.credit.hintMessage = '';

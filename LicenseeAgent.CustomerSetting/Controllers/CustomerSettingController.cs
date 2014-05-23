@@ -286,6 +286,64 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return JavaScript(stringBuilder.ToString());
         }
 
+        [HttpPost]
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Reviewed. Suppression is OK here.")]
+        public JsonResult GetUpdatedSetting(GetSettingForUpdateViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = (FormType)model.FormId,
+                CustId = model.CustId,
+                RoleId = model.RoleId,
+                TargetCustId = model.TargetCustId,
+                TargetRoleId = model.TargetRoleId,
+                Ip = Request.GetClientIp()
+            };
+
+            if (!CheckForEditingCustomerSetting(settingContext))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var errCode = Result.FailureValue;
+
+            var settingService = GetSettingsService(model.ProductId);
+            var productSetting = settingService.GetSettingForUpdate(settingContext, out errCode);
+            dynamic numberGameSetting = null;
+
+            if (errCode == Result.SuccessValue)
+            {
+                if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
+                {
+                    productSetting.CustInfo.CustId = model.TargetCustId;
+                    _memberService.GetMemberInformation(
+                        productSetting.CustInfo,
+                        new GetMemberInfoAction
+                        {
+                            SiteName = CurrentSession.AgentInfo.LicenseeName,
+                            IBCCustId = model.TargetCustId
+                        });
+                }
+
+                if (model.ProductId == Product.Product_0)
+                {
+                    if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                    {
+                        numberGameSetting = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
+                    }
+                }
+            }
+
+            return Json(new {
+                            settingContext = settingContext,
+                            productSetting = productSetting,
+                            productSetting3rd = numberGameSetting
+                        });
+        }
+
         /// <summary>
         /// Inserts the customer.
         /// </summary>

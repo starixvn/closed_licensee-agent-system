@@ -2,6 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 
 /*global numberGameSetting */
+
 'use strict';
 
 if (fanex.customerSetting) {

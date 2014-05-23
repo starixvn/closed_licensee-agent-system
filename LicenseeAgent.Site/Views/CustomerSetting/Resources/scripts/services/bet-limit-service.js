@@ -50,6 +50,19 @@ if (fanex.customerSetting) {
                 result = input;
             }
             return result;
+        },
+        updateScope: function ($scope, settings) {
+            angular.extend($scope.model.firstRecord, settings[0]);
+            $scope.betLimitService.changeSettingValidation($scope.model.firstRecord);
+
+            angular.forEach($scope.model.bettingLimitsModel, function (model) {
+                angular.forEach(settings, function (setting) {
+                    if (model.SportId === setting.SportId && model.BetTypeId === setting.BetTypeId) {
+                        angular.extend(model, setting);
+                        $scope.betLimitService.changeSettingValidation(model);
+                    }
+                });
+            });
         }
     };
 }

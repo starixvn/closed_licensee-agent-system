@@ -24,11 +24,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfPreset = 0;
-            currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
         agentEditAgentPtAdvancedModeReadOnly: function ($timeout, scope, element, formatter) {
@@ -53,11 +49,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfPreset = 0;
-            currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
         licenseeEditAgentOnePtAdvancedMode: function ($timeout, scope, element, formatter) {
@@ -78,13 +70,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
-            currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
-            currentPt.MinRangeOfMin = 0;
-            currentPt.MaxRangeOfMin = currentPt.Max;
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
         agentEditMemberPtAdvancedMode: function ($timeout, scope, element, formatter) {
             //// Cache Elements.
@@ -101,9 +87,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldValue = currentPt.Value;
-            currentPt.MinRangeOfValue = currentPt.Upline.Min;
-            currentPt.MaxRangeOfValue = currentPt.Upline.Max;
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
         agentEditAgentPtSimpleMode: function ($timeout, scope, element, formatter) {
             //// Cache Elements.
@@ -125,11 +109,7 @@ if (fanex.customerSetting) {
                     minInput,
                     formatter);
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfPreset = 0;
-            currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
         agentEditAgentPtSimpleModeReadOnly: function ($timeout, scope, element, formatter) {
@@ -152,11 +132,7 @@ if (fanex.customerSetting) {
                     minInput,
                     formatter);
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfPreset = 0;
-            currentPt.MaxRangeOfPreset = fanex.roundNumber(currentPt.Upline.Max - currentPt.AllDownLine.Max, 2);
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
         licenseeEditAgentOnePtSimpleMode: function ($timeout, scope, element, formatter) {
@@ -178,13 +154,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldMin = currentPt.Min;
-            currentPt.OldMax = currentPt.Max;
-            currentPt.OldPreset = currentPt.Preset;
-            currentPt.MinRangeOfMax = Math.max(0, currentPt.AllDownLine.Max);
-            currentPt.MaxRangeOfMax = fanex.roundNumber(currentPt.Upline.Max, 2);
-            currentPt.MinRangeOfMin = 0;
-            currentPt.MaxRangeOfMin = currentPt.Max;
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
         agentEditMemberPtSimpleMode: function ($timeout, scope, element, formatter) {
             //// Cache Elements.
@@ -201,9 +171,7 @@ if (fanex.customerSetting) {
                     formatter);
 
             //// Init value
-            currentPt.OldValue = currentPt.Value;
-            currentPt.MinRangeOfValue = currentPt.Upline.Min;
-            currentPt.MaxRangeOfValue = currentPt.Upline.Max;
+            fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         }
     };
 }

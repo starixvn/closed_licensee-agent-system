@@ -1,13 +1,15 @@
 ﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../../libs/angular.js" />
 
-/*global settingContext, numberGameSetting */
+/*global core, settingContext, numberGameSetting */
 'use strict';
 
 if (fanex.customerSetting) {
 
     fanex.customerSetting.BetLimitController = {
         updateScope: function ($scope) {
+            core.initInstruction();
+
             $scope.language = fanex.customerSetting.language[settingContext.Language];
 
             $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
@@ -20,6 +22,10 @@ if (fanex.customerSetting) {
                 // For only soccer setting
                 firstRecord: fanex.cloneObject(numberGameSetting.BettingLimitSetting[0]),
                 settingContext: settingContext
+            };
+
+            $scope.updateSettingModel = function () {
+                $scope.betLimitService.updateScope($scope, fanex.cloneObject(numberGameSetting.BettingLimitSetting));
             };
 
             $scope.saveData = function () {

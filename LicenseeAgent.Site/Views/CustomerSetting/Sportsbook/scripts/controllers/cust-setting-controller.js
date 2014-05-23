@@ -1,4 +1,4 @@
-﻿/*global core, popup, settingContext, result, sportsBookSetting */
+﻿/*global core, popup, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
 
 'use strict';
 if (fanex.customerSetting) {
@@ -7,7 +7,8 @@ if (fanex.customerSetting) {
         '$scope',
         '$http',
         '$window',
-        function ($scope, $http, $window) {
+        'CustomerSettingService',
+        function ($scope, $http, $window, custSettingService) {
             $scope.language = fanex.customerSetting.language[settingContext.Language];
             core.blockUI();
             if (typeof result !== 'undefined') {
@@ -36,6 +37,13 @@ if (fanex.customerSetting) {
                 positionTakingScope.settingContext.IsSimpleMode = isSimpleMode;
                 $scope.$apply();
             });
+
+            $scope.updateProductSetting = function (data) {
+                sportsBookSetting = data.productSetting;
+                if ($scope.hasOfferedNumberGame) {
+                    numberGameSetting = data.productSetting3rd;
+                }
+            };
 
             $scope.insertCustomer = function () {
                 var commissionSettingScope,
@@ -218,44 +226,32 @@ if (fanex.customerSetting) {
                     }
                 }).
                 success(function (data) {
+                    var timeout = 0;
+
                     core.unblockUI();
 
                     if (data.ErrCode !== 0) {
-                        $('.messages').show();
                         $scope.Messages = [
                             {
                                 ErrCode: $scope.result.Error,
                                 ErrMsg: data.ErrMsg
                             }
                         ];
-                        return;
+                    }
+                    else {
+                        $scope.Messages = data.Messages;
                     }
 
-                    var isSuccess = true;
-                    for (var i = 0; i < data.Messages.length; i++) {
-                        var message = data.Messages[i];
-                        if (message.ErrCode !== $scope.result.Success) {
-                            isSuccess = false;
-                            break;
-                        }
+                    if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                        timeout = 3000;
                     }
-                    if (isSuccess) {
-                        core.blockUI();
-                        var timeout = 0;
-                        if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
-                            timeout = 3000;
-                        }
-                        setTimeout(function () {
-                            var orginalUrl = core.removeURLParameter(core.removeURLParameter(location.href, 'messages'), 'isSimpleMode');
-                            var url = orginalUrl + '&messages=' + core.encodeMessages(data.Messages) + '&isSimpleMode=' + $scope.settingMode;
-                            location.href = url;
-                            core.unblockUI();
-                        }, timeout);
-                        return;
-                    }
+
+                    core.blockUI();
+                    setTimeout(function () {
+                        custSettingService.updateSettingModel();
+                    }, timeout);
 
                     $('.messages').show();
-                    $scope.Messages = data.Messages;
                     core.scrollTop();
                 }).
                 error(function (data) {

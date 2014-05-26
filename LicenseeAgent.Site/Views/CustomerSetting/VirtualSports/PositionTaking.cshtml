@@ -44,15 +44,15 @@
         data-ng-show="settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "licensee-position-taking-info-button")
+            @RazorHelper.RenderInstruction(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSports), "licensee-position-taking-info-button")
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "agent-position-taking-info-button")
+            @RazorHelper.RenderInstruction(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSports), "agent-position-taking-info-button")
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingVirtualSoccerSimpleModeHeader, "member-position-taking-info-button")
+            @RazorHelper.RenderInstruction(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSports), "member-position-taking-info-button")
         }
         <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
             <div class="pt-group-box">

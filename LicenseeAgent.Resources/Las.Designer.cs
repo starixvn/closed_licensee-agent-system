@@ -2787,15 +2787,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position Taking (Virtual Soccer).
-        /// </summary>
-        public static string PositionTakingVirtualSoccerSimpleModeHeader {
-            get {
-                return ResourceManager.GetString("PositionTakingVirtualSoccerSimpleModeHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string Preset {
@@ -3561,38 +3552,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virtual Cycling.
-        /// </summary>
-        public static string VirtualCycling {
-            get {
-                return ResourceManager.GetString("VirtualCycling", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Greyhounds.
-        /// </summary>
-        public static string VirtualGreyhounds {
-            get {
-                return ResourceManager.GetString("VirtualGreyhounds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Virtual Horse Racing.
         /// </summary>
         public static string VirtualHorseRacing {
             get {
                 return ResourceManager.GetString("VirtualHorseRacing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Motorsports.
-        /// </summary>
-        public static string VirtualMotorsports {
-            get {
-                return ResourceManager.GetString("VirtualMotorsports", resourceCulture);
             }
         }
         
@@ -3620,15 +3584,6 @@ namespace LicenseeAgent.Resources {
         public static string VirtualSoccerCopyPtTooltip {
             get {
                 return ResourceManager.GetString("VirtualSoccerCopyPtTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Speedway.
-        /// </summary>
-        public static string VirtualSpeedway {
-            get {
-                return ResourceManager.GetString("VirtualSpeedway", resourceCulture);
             }
         }
         

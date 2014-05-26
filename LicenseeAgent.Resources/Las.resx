@@ -1192,6 +1192,7 @@
   </data>
   <data name="OneXTwo" xml:space="preserve">
     <value>1 X 2</value>
+    <comment>No need to translate</comment>
   </data>
   <data name="OnlyNumberBetweenNumber" xml:space="preserve">
     <value>Only numbers , (,) between number</value>
@@ -1334,26 +1335,11 @@
   <data name="VirtualHorseRacing" xml:space="preserve">
     <value>Virtual Horse Racing</value>
   </data>
-  <data name="VirtualGreyhounds" xml:space="preserve">
-    <value>Virtual Greyhounds</value>
-  </data>
-  <data name="VirtualSpeedway" xml:space="preserve">
-    <value>Virtual Speedway</value>
-  </data>
-  <data name="VirtualMotorsports" xml:space="preserve">
-    <value>Virtual Motorsports</value>
-  </data>
-  <data name="VirtualCycling" xml:space="preserve">
-    <value>Virtual Cycling</value>
-  </data>
   <data name="VirtualTennis" xml:space="preserve">
     <value>Virtual Tennis</value>
   </data>
   <data name="CopyAllBetSettingVirtualSoccer" xml:space="preserve">
     <value>Copy all below bet settings from Virtual Soccer</value>
-  </data>
-  <data name="PositionTakingVirtualSoccerSimpleModeHeader" xml:space="preserve">
-    <value>Position Taking (Virtual Soccer)</value>
   </data>
   <data name="VirtualSoccerCopyPtTooltip" xml:space="preserve">
     <value>Copy all below position taking settings from Virtual Soccer</value>

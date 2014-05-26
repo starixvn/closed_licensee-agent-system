@@ -1137,7 +1137,7 @@
     <value>最大投注額必須小於或等於最大單場比賽投注額</value>
   </data>
   <data name="MaxBetLessThanOrEqualTo" xml:space="preserve">
-    <value>最大投注額必須小於或等於</value>
+    <value>最大投注額必須小於或等於 {0}</value>
   </data>
   <data name="MaxBetMoreThanOrEqualMinBet" xml:space="preserve">
     <value>最大投注額必須大於或等於最小投注額</value>
@@ -1149,7 +1149,7 @@
     <value>單場限額</value>
   </data>
   <data name="MaxPerMatchLessThanOrEqualTo" xml:space="preserve">
-    <value>最大單場比賽投注額必須小於或等於</value>
+    <value>最大單場比賽投注額必須小於或等於 {0}</value>
   </data>
   <data name="MaxPerMatchMoreThanOrEqualMaxBet" xml:space="preserve">
     <value>最大單場比賽投注額必須大於或等於最大投注額</value>
@@ -1164,7 +1164,7 @@
     <value>最小投注額必須小於或等於最大投注額</value>
   </data>
   <data name="MinBetMoreThanOrEqualTo" xml:space="preserve">
-    <value>最大投注額必須大於或等於</value>
+    <value>最大投注額必須大於或等於 {0}</value>
   </data>
   <data name="MinDownline" xml:space="preserve">
     <value>百分之的最小下線值</value>
@@ -1251,13 +1251,13 @@
     <value>單球上限</value>
   </data>
   <data name="MaxPerBallMoreThanOrEqualMaxBet" xml:space="preserve">
-    <value>Max Per Ball must be greater than or equal to Max Bet</value>
+    <value>單球最高投註必須多於或相等於最高投註</value>
   </data>
   <data name="MaxPerMatchMoreThanOrEqualMaxPerBall" xml:space="preserve">
     <value>Max Per Match must be greater than or equal to Max Per Ball</value>
   </data>
   <data name="MaxPerBallLessThanOrEqualTo" xml:space="preserve">
-    <value>Max Per Ball must be less than or equal to</value>
+    <value>單粒球最高投注必須少於或相等於 {0}</value>
   </data>
   <data name="LastBallOddEven" xml:space="preserve">
     <value>Last Ball O/E</value>
@@ -1278,10 +1278,10 @@
     <value>Note: In simple mode, your changes of Number Game Dead Ball 1st O/U will be applied to other bet types as well.</value>
   </data>
   <data name="FirstLastBallOddEven" xml:space="preserve">
-    <value>1st/Last O/E</value>
+    <value>第一球/最後一球 單/雙</value>
   </data>
   <data name="FirstLastBallOverUnder" xml:space="preserve">
-    <value>1st/Last O/U</value>
+    <value>第一球/最後一球 大/小</value>
   </data>
   <data name="MaxBetLessThanOrEqualMaxPerBall" xml:space="preserve">
     <value>Max Bet must be less than or equal to Max Per Ball</value>
@@ -1313,26 +1313,11 @@
   <data name="VirtualHorseRacing" xml:space="preserve">
     <value>虛擬賽馬</value>
   </data>
-  <data name="VirtualGreyhounds" xml:space="preserve">
-    <value>Virtual Greyhounds</value>
-  </data>
-  <data name="VirtualSpeedway" xml:space="preserve">
-    <value>Virtual Speedway</value>
-  </data>
-  <data name="VirtualMotorsports" xml:space="preserve">
-    <value>Virtual Motorsports</value>
-  </data>
-  <data name="VirtualCycling" xml:space="preserve">
-    <value>Virtual Cycling</value>
-  </data>
   <data name="VirtualTennis" xml:space="preserve">
     <value>虛擬網球</value>
   </data>
   <data name="CopyAllBetSettingVirtualSoccer" xml:space="preserve">
     <value>Copy all below bet settings from Virtual Soccer</value>
-  </data>
-  <data name="PositionTakingVirtualSoccerSimpleModeHeader" xml:space="preserve">
-    <value>Position Taking (Virtual Soccer)</value>
   </data>
   <data name="VirtualSoccerCopyPtTooltip" xml:space="preserve">
     <value>Copy all below position taking settings from Virtual Soccer</value>
@@ -1362,6 +1347,12 @@
     <value>编辑虚拟运动</value>
   </data>
   <data name="MaxPerBallLessThanOrEqualMaxPerMatch" xml:space="preserve">
-    <value>Max Per Ball must be less than or equal to Max Per Match</value>
+    <value>單球最高投註必須少於或相等於單場限額</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ViewVirtualSports" xml:space="preserve">
+    <value>View Virtual Sports</value>
   </data>
 </root>

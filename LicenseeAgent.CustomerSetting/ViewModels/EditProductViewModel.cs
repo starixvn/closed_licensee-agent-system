@@ -15,7 +15,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
     /// </summary>
     public class EditProductViewModel
     {
-        public Product ProductId { get; set; }
+        public int ProductId { get; set; }
 
         public List<EditProductItem> Products { get; set; }
     }

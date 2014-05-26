@@ -22,12 +22,12 @@
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" data-ng-app="customerSetting.editProduct" data-ng-controller="EditProductController">
     <ul class="nav nav-tabs">
-        <li data-ng-repeat="product in products" data-ng-class="{'active': product.ProductId==@((int)Model.ProductId)}">
+        <li data-ng-repeat="product in products" data-ng-class="{'active': product.ProductId==@(Model.ProductId)}">
             <a href="#" data-toggle="tab" data-ng-click="loadUrl(product.Url)">{{product.ProductName}}</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-        <iframe id="tabFrame" frameborder="0" data-ng-src="{{activeUrl(@((int)Model.ProductId))}}">
+        <iframe id="tabFrame" frameborder="0" data-ng-src="{{activeUrl(@(Model.ProductId))}}">
         </iframe>
     </div>
 </div>

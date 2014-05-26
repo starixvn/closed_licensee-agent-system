@@ -787,8 +787,10 @@
     </None>
     <None Include="Scripts\ResourcesJs\Las.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
-&lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
+      <Parameters>
+        &lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
+        &lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;
+      </Parameters>
       <LastGenOutput>Las.js</LastGenOutput>
     </None>
     <Content Include="Views\Transfer\Index.cshtml" />
@@ -853,6 +855,33 @@
     <Content Include="Views\Instruction\zh-TW\AgentBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\zh-TW\LicenseeBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberBetSettingNG.cshtml" />
+    <Content Include="Views\Instruction\en-US\AgentBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\en-US\LicenseeBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\en-US\LicenseeBetSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\MemberPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\en-US\MemberPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\AgentBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\LicenseeBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\LicenseeBetSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\LicenseePositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\LicenseePositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\AgentBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\LicenseeBetSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\LicenseeBetSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\LicenseePositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\LicenseePositionTakingSettingVirtualSportsAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingVirtualSports.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingVirtualSportsAdv.cshtml" />
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.Grid.cshtml" />
@@ -968,7 +997,7 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

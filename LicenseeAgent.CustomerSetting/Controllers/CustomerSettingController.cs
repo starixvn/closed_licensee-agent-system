@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Controllers
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -94,7 +95,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
-            foreach (var product in products)
+            var listProducts3rd = GetProducts3rd(products);
+            foreach (var product in listProducts3rd)
             {
                 var url = string.Empty;
                 switch (product.ProductId)
@@ -117,7 +119,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var viewModel = new EditProductViewModel
             {
-                ProductId = Product.Product_5,
+                ProductId = editProductItems.FirstOrDefault().ProductId,
                 Products = editProductItems
             };
 
@@ -134,7 +136,8 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
-            foreach (var product in products)
+            var listProducts3rd = GetProducts3rd(products);
+            foreach (var product in listProducts3rd)
             {
                 var url = string.Empty;
                 switch (product.ProductId)
@@ -157,7 +160,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var viewModel = new EditProductViewModel
             {
-                ProductId = Product.Product_5,
+                ProductId = editProductItems.FirstOrDefault().ProductId,
                 Products = editProductItems
             };
 
@@ -923,6 +926,53 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Get products 3RD.
+        /// </summary>
+        /// <param name="productInfos">List products info.</param>
+        /// <returns>List products 3RD.</returns>
+        private List<ProductInfo> GetProducts3rd(IList<ProductInfo> productInfos)
+        {
+            var listProducts3rd = new List<ProductInfo>();
+            var product = productInfos.Where(x => x.ProductId == (int)Product.Product_1);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            product = productInfos.Where(x => x.ProductId == (int)Product.Product_6);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            product = productInfos.Where(x => x.ProductId == (int)Product.Product_7);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            product = productInfos.Where(x => x.ProductId == (int)Product.Product_4);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            product = productInfos.Where(x => x.ProductId == (int)Product.Product_5);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            product = productInfos.Where(x => x.ProductId == (int)Product.Product_8);
+            if (product.Any())
+            {
+                listProducts3rd.Add(product.FirstOrDefault());
+            }
+
+            return listProducts3rd;
         }
     }
 }

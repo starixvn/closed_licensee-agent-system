@@ -286,6 +286,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             return JavaScript(stringBuilder.ToString());
         }
 
+        /// <summary>
+        /// Get Setting after updating customer.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>JSON object.</returns>
         [HttpPost]
         [SuppressMessage(
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
@@ -337,11 +342,12 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 }
             }
 
-            return Json(new {
-                            settingContext = settingContext,
-                            productSetting = productSetting,
-                            productSetting3rd = numberGameSetting
-                        });
+            return Json(new
+            {
+                settingContext = settingContext,
+                productSetting = productSetting,
+                productSetting3rd = numberGameSetting
+            });
         }
 
         /// <summary>

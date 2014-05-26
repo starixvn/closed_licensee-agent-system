@@ -29,7 +29,7 @@ if (fanex.customerSetting) {
 
             return true;
         },
-        getCommissionSettingViewModel: function (commissionSettingModel, language, targetRoleId, hasOfferedNumberGame) {
+        getCommissionSettingViewModel: function (commissionSettingModel, languageService, targetRoleId, hasOfferedNumberGame) {
             var commissionSettingViewModel;
 
             if (targetRoleId !== 1) {
@@ -41,7 +41,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[0].DiscountA,
                     oldDiscount: commissionSettingModel[0].DiscountA,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountA,
-                    name: language['commissionSetting_GroupA']
+                    name: languageService.getString('GroupA')
                 });
 
                 // GroupC
@@ -50,7 +50,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[0].DiscountC,
                     oldDiscount: commissionSettingModel[0].DiscountC,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountC,
-                    name: language['commissionSetting_GroupC']
+                    name: languageService.getString('GroupC')
                 });
 
                 // 1x2 Comm
@@ -59,7 +59,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[1].DiscountA,
                     oldDiscount: commissionSettingModel[1].DiscountA,
                     maxDiscount: commissionSettingModel[1].Upline.DiscountA,
-                    name: language['commissionSetting_1x2Comm']
+                    name: languageService.getString('Comm1x2')
                 });
 
                 // GroupB
@@ -68,7 +68,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[0].DiscountB,
                     oldDiscount: commissionSettingModel[0].DiscountB,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountB,
-                    name: language['commissionSetting_GroupB']
+                    name: languageService.getString('GroupB')
                 });
 
                 // GroupD
@@ -77,7 +77,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[0].DiscountD,
                     oldDiscount: commissionSettingModel[0].DiscountD,
                     maxDiscount: commissionSettingModel[0].Upline.DiscountD,
-                    name: language['commissionSetting_GroupD']
+                    name: languageService.getString('GroupD')
                 });
 
                 // Others Comm
@@ -86,7 +86,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[2].DiscountA,
                     oldDiscount: commissionSettingModel[2].DiscountA,
                     maxDiscount: commissionSettingModel[2].Upline.DiscountA,
-                    name: language['commissionSetting_OthersComm']
+                    name: languageService.getString('OtherComm')
                 });
 
                 // HR Fixed Odds
@@ -95,7 +95,7 @@ if (fanex.customerSetting) {
                     discount: commissionSettingModel[3].DiscountA,
                     oldDiscount: commissionSettingModel[3].DiscountA,
                     maxDiscount: commissionSettingModel[3].Upline.DiscountA,
-                    name: language['commissionSetting_HrFixedOdds']
+                    name: languageService.getSportName(154)
                 });
 
                 // Number Game
@@ -105,7 +105,7 @@ if (fanex.customerSetting) {
                         discount: commissionSettingModel[4].DiscountA,
                         oldDiscount: commissionSettingModel[4].DiscountA,
                         maxDiscount: commissionSettingModel[4].Upline.DiscountA,
-                        name: language['commissionSetting_NumberGame']
+                        name: languageService.getSportName(161)
                     });
                 }
 
@@ -139,25 +139,25 @@ if (fanex.customerSetting) {
                         ],
                         // GroupA, GroupB, GroupC, GroupD
                         line1: {
-                            name: language['commissionSetting_HDP_OU_OE_Comm'],
+                            name: languageService.getString('HdpOuOeComm'),
                             agentCommission: commissionSettingModel[0].Upline.DiscountA,
                             memberCommission: commissionSettingModel[0].DiscountA
                         },
                         // 1x2 Comm
                         line2: {
-                            name: language['commissionSetting_1x2Comm'],
+                            name: languageService.getString('Comm1x2'),
                             agentCommission: commissionSettingModel[1].Upline.DiscountA,
                             memberCommission: commissionSettingModel[1].DiscountA
                         },
                         // Others Comm
                         line3: {
-                            name: language['commissionSetting_OthersComm'],
+                            name: languageService.getString('OtherComm'),
                             agentCommission: commissionSettingModel[2].Upline.DiscountA,
                             memberCommission: commissionSettingModel[2].DiscountA
                         },
                         // HR Fixed Odds Comm
                         line4: {
-                            name: language['commissionSetting_HrFixedOdds'],
+                            name: languageService.getSportName(154),
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].DiscountA
                         }
@@ -166,7 +166,7 @@ if (fanex.customerSetting) {
                     // Number Game
                     if (hasOfferedNumberGame) {
                         commissionSettingViewModel.line5 = {
-                            name: language['commissionSetting_NumberGame'],
+                            name: languageService.getSportName(161),
                             agentCommission: commissionSettingModel[4].Upline.DiscountA,
                             memberCommission: commissionSettingModel[4].DiscountA
                         };
@@ -212,28 +212,28 @@ if (fanex.customerSetting) {
                         ],
                         // GroupA, GroupB, GroupC, GroupD
                         line1: {
-                            name: language['commissionSetting_HDP_OU_OE_Comm'],
+                            name: languageService.getString('HdpOuOeComm'),
                             agentCommission: 0,
                             memberCommission: 0,
                             oldCommission: 0
                         },
                         // 1x2 Comm
                         line2: {
-                            name: language['commissionSetting_1x2Comm'],
+                            name: languageService.getString('Comm1x2'),
                             agentCommission: commissionSettingModel[1].Upline.DiscountA,
                             memberCommission: commissionSettingModel[1].Discount,
                             oldCommission: commissionSettingModel[1].Discount
                         },
                         // Others Comm
                         line3: {
-                            name: language['commissionSetting_OthersComm'],
+                            name: languageService.getString('OtherComm'),
                             agentCommission: commissionSettingModel[2].Upline.DiscountA,
                             memberCommission: commissionSettingModel[2].Discount,
                             oldCommission: commissionSettingModel[2].Discount
                         },
                         // HR Fixed Odds Comm
                         line4: {
-                            name: language['commissionSetting_HrFixedOdds'],
+                            name: languageService.getSportName(154),
                             agentCommission: commissionSettingModel[3].Upline.DiscountA,
                             memberCommission: commissionSettingModel[3].Discount,
                             oldCommission: commissionSettingModel[3].Discount
@@ -243,7 +243,7 @@ if (fanex.customerSetting) {
                     // Number Game
                     if (hasOfferedNumberGame) {
                         commissionSettingViewModel.line5 = {
-                            name: language['commissionSetting_NumberGame'],
+                            name: languageService.getSportName(161),
                             agentCommission: commissionSettingModel[4].Upline.DiscountA,
                             memberCommission: commissionSettingModel[4].Discount,
                             oldCommission: commissionSettingModel[4].Discount
@@ -387,12 +387,12 @@ if (fanex.customerSetting) {
             }
             return sportsBookSetting.CommissionSetting.CommissionItems;
         },
-        updateScope: function ($scope) {
+        updateScope: function ($scope, languageService) {
             var numberDiscount, index;
             var commissionModel = this.arrangeCommissionSettingModel($scope.commissionSettingService.getCommissionModel($scope.hasOfferedNumberGame));
             var commissionViewModel = this.getCommissionSettingViewModel(
                                                                             fanex.cloneObject(commissionModel),
-                                                                            $scope.language,
+                                                                            languageService,
                                                                             $scope.settingContext.TargetRoleId,
                                                                             $scope.hasOfferedNumberGame);
 

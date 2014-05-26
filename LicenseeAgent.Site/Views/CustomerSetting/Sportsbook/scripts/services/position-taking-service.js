@@ -10,7 +10,7 @@ if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.positionTakingService = {
-        init: function (positionTakingSetting, language) {
+        init: function (positionTakingSetting, languageService) {
             var self = this,
                 groupLength = positionTakingSetting.length;
 
@@ -26,7 +26,7 @@ if (fanex.customerSetting) {
                     width: currentGroup.TitleWidth + 'px'
                 };
 
-                currentGroup.Name = language["sport_" + currentGroup.SportId + "_" + currentGroup.IsLive + "_" + currentGroup.PositionTakings[0].BetTypeId];
+                currentGroup.Name = languageService.getSportName(currentGroup.SportId, currentGroup.PositionTakings[0].BetTypeId, currentGroup.IsLive);
             }
 
             positionTakingSetting[0].Expand = true;

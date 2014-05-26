@@ -10,7 +10,7 @@ if (fanex.customerSetting) {
     
     fanex.customerSetting.directive('agentEditAgentPtAdvancedMode', [
         '$timeout',
-        'Formatter', 
+        'Formatter',
         function ($timeout, formatter) {
             return {
                 restrict: 'E',

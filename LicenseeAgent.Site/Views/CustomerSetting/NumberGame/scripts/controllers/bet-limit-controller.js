@@ -5,13 +5,9 @@
 'use strict';
 
 if (fanex.customerSetting) {
-
     fanex.customerSetting.BetLimitController = {
         updateScope: function ($scope) {
             core.initInstruction();
-
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
-
             $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
             $scope.settingContext = settingContext;
             $scope.betLimitService = fanex.customerSetting.numberGameBetLimitService;
@@ -47,7 +43,9 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('NumberGameBetLimitController',
     [
         '$scope',
-        function ($scope) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
             fanex.customerSetting.BetLimitController.updateScope($scope);
         }
     ]);
@@ -55,7 +53,9 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('NumberGameBetLimitAdvancedModeController',
     [
         '$scope',
-        function ($scope) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
             fanex.customerSetting.BetLimitController.updateScope($scope);
         }
     ]);

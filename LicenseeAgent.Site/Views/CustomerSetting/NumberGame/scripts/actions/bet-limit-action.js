@@ -1,10 +1,9 @@
 ﻿'use strict';
 
 if (fanex.customerSetting) {
-
     fanex.customerSetting.numberGameBettingLimitActions =
     {
-        actions: function (modelData, inputControl, scope) {
+        actions: function (modelData, inputControl, scope, languageService) {
             var formatInputNumber = fanex.customerSetting.betLimitService.formatInputNumber;
             var reformatInputNumberForControl = fanex.customerSetting.betLimitService.reformatInputNumberForControl;
             return {
@@ -36,11 +35,11 @@ if (fanex.customerSetting) {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MinBet)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_MinBetLessThanOrEqualMaxBet"];
+                        message = languageService.getString("MinBetLessThanOrEqualMaxBet");
                     } else if (modelData.MaxMinBet > 0 && formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
-                        message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + reformatInputNumberForControl(modelData.MaxMinBet);
+                        message = languageService.getFormatString("MinBetMoreThanOrEqualTo", + reformatInputNumberForControl(modelData.MaxMinBet));
                     }
 
                     if (message !== "") {
@@ -55,13 +54,13 @@ if (fanex.customerSetting) {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_MaxBetMoreThanOrEqualMinBet"];
+                        message = languageService.getString("MaxBetMoreThanOrEqualMinBet");
                     } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerBall)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerBall"];
+                        message = languageService.getString("MaxBetLessThanOrEqualMaxPerBall");
                     } else if (modelData.MinMaxBet > 0 && formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxBet);
+                        message = languageService.getFormatString("MaxBetLessThanOrEqualTo", reformatInputNumberForControl(modelData.MinMaxBet));
                     }
 
                     if (message !== "") {
@@ -76,11 +75,11 @@ if (fanex.customerSetting) {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MaxPerBall) > formatInputNumber(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxPerBall"];
+                        message = languageService.getString("MaxPerMatchMoreThanOrEqualMaxPerBall");
                     } else if (modelData.MinMaxPerMatch > 0 && formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerMatch);
+                        message = languageService.getFormatString("MaxPerMatchLessThanOrEqualTo", reformatInputNumberForControl(modelData.MinMaxPerMatch));
                     }
 
                     if (message !== "") {
@@ -93,15 +92,15 @@ if (fanex.customerSetting) {
                 },
                 validMaxPerBall: function () {
                     var message = "";
-                    
+
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxPerBall)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerBall)) {
-                        message = scope.language["bettingLimit_Message_MaxPerBallMoreThanOrEqualMaxBet"];
+                        message = languageService.getString("MaxPerBallMoreThanOrEqualMaxBet");
                     } else if (formatInputNumber(modelData.MaxPerBall) > formatInputNumber(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerBallLessThanOrEqualMaxPerMatch"];
+                        message = languageService.getString("MaxPerBallLessThanOrEqualMaxPerMatch");
                     } else if (modelData.MinMaxPerBall > 0 && formatInputNumber(modelData.MaxPerBall) > formatInputNumber(modelData.MinMaxPerBall)) {
-                        message = scope.language["bettingLimit_Message_MaxPerBallLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerBall);
+                        message = languageService.getFormatString("MaxPerBallLessThanOrEqualTo", reformatInputNumberForControl(modelData.MinMaxPerBall));
                     }
 
                     if (message !== "") {

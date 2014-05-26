@@ -8,9 +8,8 @@
 
 if (fanex.customerSetting) {
     fanex.customerSetting.PositionTakingController = {
-        updateScope: function ($scope) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
-            fanex.customerSetting.numberGamePositionTakingService.init(numberGameSetting.PositionTakingSetting, $scope.language);
+        updateScope: function ($scope, languageService) {
+            fanex.customerSetting.numberGamePositionTakingService.init(numberGameSetting.PositionTakingSetting, languageService);
             $scope.config = fanex.customerSetting.numberGamePositionTakingService.config;
             $scope.settingContext = settingContext;
             $scope.positionTakingService = fanex.customerSetting.numberGamePositionTakingService;
@@ -44,16 +43,20 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('NumberGamePositionTakingController',
     [
         '$scope',
-        function ($scope) {
-            fanex.customerSetting.PositionTakingController.updateScope($scope);
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
+            fanex.customerSetting.PositionTakingController.updateScope($scope, languageService);
         }
     ]);
 
     fanex.customerSetting.controller('NumberGamePositionTakingAdvancedModeController',
     [
         '$scope',
-        function ($scope) {
-            fanex.customerSetting.PositionTakingController.updateScope($scope);
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
+            fanex.customerSetting.PositionTakingController.updateScope($scope, languageService);
         }
     ]);
 }

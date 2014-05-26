@@ -3,7 +3,7 @@
 if (fanex.customerSetting) {
     fanex.customerSetting.positionTakingActions =
     {
-        agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput, formatter) {
+        agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput, formatter, languageService) {
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -21,7 +21,7 @@ if (fanex.customerSetting) {
                     if (!currentPt.actions.validPreset(false)) {
                         return;
                     }
-                    
+
                     currentPt.Max = fanex.roundNumber(currentPt.Upline.Max - currentPt.Preset, 2);
                     currentPt.Min = Math.min(currentPt.Min, fanex.roundNumber(currentPt.Max, 2));
                     currentPt.actions.whenPresetChange();
@@ -64,14 +64,14 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validPreset(true) && currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
                 validPreset: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Preset,2) >= fanex.roundNumber(currentPt.MinRangeOfPreset,2) &&
-                        fanex.roundNumber(currentPt.Preset,2) <= fanex.roundNumber(currentPt.MaxRangeOfPreset,2);
+                    var isValid = fanex.roundNumber(currentPt.Preset, 2) >= fanex.roundNumber(currentPt.MinRangeOfPreset, 2) &&
+                        fanex.roundNumber(currentPt.Preset, 2) <= fanex.roundNumber(currentPt.MaxRangeOfPreset, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 presetInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfPreset),
                                 formatter.formatNumber(currentPt.MaxRangeOfPreset));
                         });
@@ -79,14 +79,14 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMax: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Max,2) >= fanex.roundNumber(currentPt.MinRangeOfMax,2) &&
-                        fanex.roundNumber(currentPt.Max,2) <= fanex.roundNumber(currentPt.MaxRangeOfMax,2);
+                    var isValid = fanex.roundNumber(currentPt.Max, 2) >= fanex.roundNumber(currentPt.MinRangeOfMax, 2) &&
+                        fanex.roundNumber(currentPt.Max, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMax, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 maxInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfMax),
                                 formatter.formatNumber(currentPt.MaxRangeOfMax));
                         });
@@ -94,14 +94,14 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMin: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Min,2) >= fanex.roundNumber(currentPt.MinRangeOfMin,2) &&
-                        fanex.roundNumber(currentPt.Min,2) <= fanex.roundNumber(currentPt.MaxRangeOfMin,2);
+                    var isValid = fanex.roundNumber(currentPt.Min, 2) >= fanex.roundNumber(currentPt.MinRangeOfMin, 2) &&
+                        fanex.roundNumber(currentPt.Min, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMin, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 minInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfMin),
                                 formatter.formatNumber(currentPt.MaxRangeOfMin));
                         });
@@ -148,14 +148,15 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
                 validMax: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Max,2) >= fanex.roundNumber(currentPt.MinRangeOfMax,2) &&
-                        fanex.roundNumber(currentPt.Max,2) <= fanex.roundNumber(currentPt.MaxRangeOfMax,2);
+                    var languageService = languageService;
+                    var isValid = fanex.roundNumber(currentPt.Max, 2) >= fanex.roundNumber(currentPt.MinRangeOfMax, 2) &&
+                        fanex.roundNumber(currentPt.Max, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMax, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 maxInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfMax),
                                 formatter.formatNumber(currentPt.MaxRangeOfMax));
                         });
@@ -163,14 +164,15 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMin: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Min,2) >= fanex.roundNumber(currentPt.MinRangeOfMin,2) &&
-                        fanex.roundNumber(currentPt.Min,2) <= fanex.roundNumber(currentPt.MaxRangeOfMin,2);
+                    var languageService = languageService;
+                    var isValid = fanex.roundNumber(currentPt.Min, 2) >= fanex.roundNumber(currentPt.MinRangeOfMin, 2) &&
+                        fanex.roundNumber(currentPt.Min, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMin, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 minInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfMin),
                                 formatter.formatNumber(currentPt.MaxRangeOfMin));
                         });
@@ -195,14 +197,15 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validValue(true);
                 },
                 validValue: function (showHint) {
-                    var isValid = fanex.roundNumber(currentPt.Value,2) >= fanex.roundNumber(currentPt.MinRangeOfValue,2) &&
-                        fanex.roundNumber(currentPt.Value,2) <= fanex.roundNumber(currentPt.MaxRangeOfValue,2);
+                    var languageService = languageService;
+                    var isValid = fanex.roundNumber(currentPt.Value, 2) >= fanex.roundNumber(currentPt.MinRangeOfValue, 2) &&
+                        fanex.roundNumber(currentPt.Value, 2) <= fanex.roundNumber(currentPt.MaxRangeOfValue, 2);
                     if (!isValid && showHint) {
                         fanex.customerSetting.positionTakingService.expandGroup(scope.$parent.$parent.ptGroup);
                         $timeout(function () {
                             fanex.customerSetting.positionTakingService.showInvalidRangeMessage(
                                 valueInput,
-                                scope.language["message_ValueIsNotInRange"],
+                                languageService.getString("InvalidRange"),
                                 formatter.formatNumber(currentPt.MinRangeOfValue),
                                 formatter.formatNumber(currentPt.MaxRangeOfValue));
                         });

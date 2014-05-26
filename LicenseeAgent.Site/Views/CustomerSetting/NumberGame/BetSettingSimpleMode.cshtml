@@ -10,14 +10,16 @@
         {
     <div class="instruction" data-ng-show="settingMode">
         @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
+        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
+        </span>
     </div>
         }
         else
         {
     <div class="instruction" data-ng-hide="settingMode">
         @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id"></span>
+        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
+        </span>
     </div>
         }
 }
@@ -39,19 +41,19 @@
             <div>
                 <div class="betting-limit-header-col4 min-bet">
                     <div class="betting-limit-header-text">
-                        <span>{{language['bettingLimit_MinBet']}}</span></div>
+                        <span>@Las.MinBet</span></div>
                 </div>
                 <div class="betting-limit-header-col4">
                     <div class="betting-limit-header-text">
-                        <span>{{language['bettingLimit_MaxBet']}}</span></div>
+                        <span>@Las.MaxBet</span></div>
                 </div>
                 <div class="betting-limit-header-col4">
                     <div class="betting-limit-header-text">
-                        <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
+                        <span>@Las.MaxPerMatch</span></div>
                 </div>
                 <div class="betting-limit-header-col4">
                     <div class="betting-limit-header-text">
-                        <span>{{language['bettingLimit_MaxPerBall']}}</span></div>
+                        <span>@Las.MaxPerBall</span></div>
                 </div>
             </div>
             @if (Model.FormId != FormType.ViewIndirectAgent)

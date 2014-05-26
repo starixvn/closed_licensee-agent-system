@@ -1,41 +1,40 @@
 ﻿'use strict';
 
 if (fanex.customerSetting) {
-
     fanex.customerSetting.bettingLimitActions =
     {
-        actions: function(modelData, inputControl, scope) {
+        actions: function (modelData, inputControl, scope, languageService) {
             var formatInputNumber = fanex.customerSetting.betLimitService.formatInputNumber;
             var reformatInputNumberForControl = fanex.customerSetting.betLimitService.reformatInputNumberForControl;
             return {
-                isDataChanged: function() {
+                isDataChanged: function () {
                     return formatInputNumber(modelData.MinBet) !== modelData.OldMinBet
                         || formatInputNumber(modelData.MaxBet) !== modelData.OldMaxBet
                         || formatInputNumber(modelData.MaxPerMatch) !== modelData.OldMaxPerMatch;
                 },
-                onChangeMinBet: function() {
+                onChangeMinBet: function () {
                     modelData.actions.validMinBet();
                 },
-                onChangeMaxBet: function() {
+                onChangeMaxBet: function () {
                     modelData.actions.validMaxBet();
                 },
-                onChangeMaxPerMatch: function() {
+                onChangeMaxPerMatch: function () {
                     modelData.actions.validMaxPerMatch();
                 },
-                isUnlimited: function() {
+                isUnlimited: function () {
                     return formatInputNumber(modelData.MinBet) === 0
-                        && formatInputNumber(modelData.MaxBet) === 0 
+                        && formatInputNumber(modelData.MaxBet) === 0
                         && formatInputNumber(modelData.MaxPerMatch) === 0;
                 },
-                validMinBet: function() {
+                validMinBet: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MinBet)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_MinBetLessThanOrEqualMaxBet"];
+                        message = languageService.getString("MinBetLessThanOrEqualMaxBet");
                     } else if (modelData.MaxMinBet > 0 && formatInputNumber(modelData.MinBet) < formatInputNumber(modelData.MaxMinBet)) {
-                        message = scope.language["bettingLimit_Message_MinBetMoreThanOrEqualTo"] + reformatInputNumberForControl(modelData.MaxMinBet);
+                        message = languageService.getFormatString("MinBetMoreThanOrEqualTo", reformatInputNumberForControl(modelData.MaxMinBet));
                     }
 
                     if (message !== "") {
@@ -46,17 +45,17 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                validMaxBet: function() {
+                validMaxBet: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MinBet) > formatInputNumber(modelData.MaxBet)) {
-                        message = scope.language["bettingLimit_Message_MaxBetMoreThanOrEqualMinBet"];
+                        message = languageService.getString("MaxBetMoreThanOrEqualMinBet");
                     } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualMaxPerMatch"];
+                        message = languageService.getString("MaxBetLessThanOrEqualMaxPerMatch");
                     } else if (modelData.MinMaxBet > 0 && formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MinMaxBet)) {
-                        message = scope.language["bettingLimit_Message_MaxBetLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxBet);
+                        message = languageService.getFormatString("MaxBetLessThanOrEqualTo", reformatInputNumberForControl(modelData.MinMaxBet));
                     }
 
                     if (message !== "") {
@@ -67,15 +66,15 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                validMaxPerMatch: function() {
+                validMaxPerMatch: function () {
                     var message = "";
 
                     if (!fanex.customerSetting.betLimitService.regIsDigit(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_OnlyNumber"];
+                        message = languageService.getString("OnlyNumberBetweenNumber");
                     } else if (formatInputNumber(modelData.MaxBet) > formatInputNumber(modelData.MaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerMatchMoreThanOrEqualMaxBet"];
+                        message = languageService.getString("MaxPerMatchMoreThanOrEqualMaxBet");
                     } else if (modelData.MinMaxPerMatch > 0 && formatInputNumber(modelData.MaxPerMatch) > formatInputNumber(modelData.MinMaxPerMatch)) {
-                        message = scope.language["bettingLimit_Message_MaxPerMatchLessThanOrEqualTo"] + reformatInputNumberForControl(modelData.MinMaxPerMatch);
+                        message = languageService.getFormatString("MaxPerMatchLessThanOrEqualTo", reformatInputNumberForControl(modelData.MinMaxPerMatch));
                     }
 
                     if (message !== "") {
@@ -86,12 +85,12 @@ if (fanex.customerSetting) {
                         return true;
                     }
                 },
-                isValid: function() {
+                isValid: function () {
                     if (modelData.actions.isUnlimited()) {
                         return true;
                     }
                     return modelData.actions.validMinBet()
-                        && modelData.actions.validMaxBet() 
+                        && modelData.actions.validMaxBet()
                         && modelData.actions.validMaxPerMatch();
                 }
             };

@@ -10,9 +10,9 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('CommissionController',
     [
         '$scope',
-        function ($scope) {
-
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.commissionSettingService.config;
             $scope.settingContext = settingContext;
             $scope.commissionSettingService = fanex.customerSetting.commissionSettingService;
@@ -22,7 +22,7 @@ if (fanex.customerSetting) {
                                                                             $scope.commissionSettingService.getCommissionModel($scope.hasOfferedNumberGame));
             var commissionSettingViewModel = fanex.customerSetting.commissionSettingService.getCommissionSettingViewModel(
                 fanex.cloneObject(commissionModel),
-                $scope.language,
+                languageService,
                 $scope.settingContext.TargetRoleId,
                 $scope.hasOfferedNumberGame);
 
@@ -32,7 +32,7 @@ if (fanex.customerSetting) {
             };
 
             $scope.updateSettingModel = function () {
-                $scope.commissionSettingService.updateScope($scope);
+                $scope.commissionSettingService.updateScope($scope, languageService);
             };
 
             $scope.saveData = function () {

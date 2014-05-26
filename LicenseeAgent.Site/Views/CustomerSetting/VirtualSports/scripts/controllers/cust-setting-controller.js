@@ -1,4 +1,4 @@
-﻿/*global core, popup, language, settingContext, result, virtualSportsSetting */
+﻿/*global core, popup, settingContext, result, virtualSportsSetting */
 
 'use strict';
 if (fanex.customerSetting) {
@@ -6,7 +6,8 @@ if (fanex.customerSetting) {
     [
         '$scope',
         '$http',
-        function ($scope, $http) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, $http, languageService) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -66,7 +67,7 @@ if (fanex.customerSetting) {
                     $scope.Messages = [
                         {
                             ErrCode: $scope.result.NoChange,
-                            ErrMsg: language.getString('NoChangeToUpdate')
+                            ErrMsg: languageService.getString('NoChangeToUpdate')
                         }
                     ];
                     return;

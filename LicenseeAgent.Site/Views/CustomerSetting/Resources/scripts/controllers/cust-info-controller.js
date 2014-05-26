@@ -7,14 +7,14 @@ if (fanex.customerSetting) {
     [
         '$scope',
         '$filter',
-        function ($scope, $filter) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, $filter, languageService) {
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 $scope.isShowLimitMaxCredit = $scope.custInfo.MaxCredit !== undefined ? true : false;
                 if ($scope.isShowLimitMaxCredit) {
                     $scope.$watch('custInfo.Credit', function (newValue) {
                         if (parseFloat(newValue) > $scope.custInfo.MaxCredit) {
-                            $scope.formCustInfo.credit.hintMessage = $scope.language['customerInfo_Message_MaxCredit']
+                            $scope.formCustInfo.credit.hintMessage = languageService.getString('GivenMaxCredit')
                                 .format($filter('number')($scope.custInfo.MaxCredit, 0));
                             $scope.formCustInfo.credit.$setValidity('', false);
                         } else {

@@ -1,33 +1,4 @@
 ﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*global language*/
 
 language.BetType = {};

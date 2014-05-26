@@ -57,8 +57,13 @@ var language = (function ($) {
             if (englishName == null || englishName === undefined) {
                 return englishName;
             }
-            
+
             return language.getResourceString(language.Las, englishName);
+        },
+        getFormatString: function (englishName) {
+            var value = language.getString(englishName);
+            var args = Array.prototype.slice.call(arguments, 1);
+            return String.prototype.format.apply(value, args);
         },
         getSportName: function (sportTypeId) {
             return language.getResourceString(language.SportType, sportTypeId);
@@ -70,9 +75,15 @@ var language = (function ($) {
             var langObj = object[language.getSelectedLanguage()];
             var value = langObj[key.toString()];
             if (!value) {
-                value = object[defaultLanguageCode];
+                value = object[defaultLanguageCode][key];
+                if (!value) {
+                    value = key;
+                }
             }
             return value;
+        },
+        getObject: function () {
+            return language.Las[appSettings.SelectedLanguage];
         }
     };
 } (jQuery));

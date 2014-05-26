@@ -10,8 +10,9 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('BetLimitController',
     [
         '$scope',
-        function ($scope) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.betLimitService.config;
             $scope.settingContext = settingContext;
             $scope.betLimitService = fanex.customerSetting.betLimitService;

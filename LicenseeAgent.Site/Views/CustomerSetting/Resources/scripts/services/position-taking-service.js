@@ -39,7 +39,7 @@ if (fanex.customerSetting) {
                 }
             }
         },
-        copyAll: function (fromIndex, ptGroup, ptGroups, lang, scope) {
+        copyAll: function (fromIndex, ptGroup, ptGroups, languageService, scope) {
             var pt = ptGroup.PositionTakings[0];
             if (!pt.actions.isValid()) {
                 return;
@@ -54,14 +54,14 @@ if (fanex.customerSetting) {
             }
 
             if (pt.SportId === 1) {
-                copyAllMessage.push(lang.soccerHandicapCopyPt);
+                copyAllMessage.push(languageService.getString('SoccerHandicapCopyPt'));
                 copyAllMessage.push('<ul>');
-                copyAllMessage.push('<li>' + lang.otherBettypeOfSoccer + '</li>');
+                copyAllMessage.push('<li>' + languageService.getString('OtherBettypeOfSoccer') + '</li>');
             }
             else {
-                copyAllMessage.push(lang.basketballHandicapCopyPt);
+                copyAllMessage.push(languageService.getString('BasketballHandicapCopyPt'));
                 copyAllMessage.push('<ul>');
-                copyAllMessage.push('<li>' + lang.otherBettypeOfBasketball + '</li>');
+                copyAllMessage.push('<li>' + languageService.getString('OtherBettypeOfBasketball') + '</li>');
             }
 
             for (var i = fromIndex; i < groupLength; i++) {
@@ -241,8 +241,8 @@ if (fanex.customerSetting) {
                 currentPt.MaxRangeOfValue = currentPt.Upline.Max;
             }
         },
-        updateScope: function ($scope, settings) {
-            $scope.positionTakingService.init(settings, $scope.language);
+        updateScope: function ($scope, settings, languageService) {
+            $scope.positionTakingService.init(settings, languageService);
 
             angular.extend($scope.ptModel.ptFirstData, settings[0].PositionTakings[0]);
             $scope.positionTakingService.changeSettingValidation($scope.ptModel.ptFirstData);

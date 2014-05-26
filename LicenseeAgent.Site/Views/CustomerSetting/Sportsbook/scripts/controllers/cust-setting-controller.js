@@ -8,8 +8,8 @@ if (fanex.customerSetting) {
         '$http',
         '$window',
         'CustomerSettingService',
-        function ($scope, $http, $window, custSettingService) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, $http, $window, custSettingService, languageService) {
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
@@ -223,7 +223,7 @@ if (fanex.customerSetting) {
                     $scope.Messages = [
                         {
                             ErrCode: $scope.result.NoChange,
-                            ErrMsg: $scope.language.NoChangeToUpdate
+                            ErrMsg: languageService.getString('NoChangeToUpdate')
                         }
                     ];
                     return;

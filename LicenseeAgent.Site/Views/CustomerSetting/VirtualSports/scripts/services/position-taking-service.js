@@ -9,7 +9,7 @@ if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.positionTakingService = {
-        init: function (positionTakingSetting, language) {
+        init: function (positionTakingSetting, languageService) {
             var self = this,
                 groupLength = positionTakingSetting.length;
 
@@ -25,7 +25,7 @@ if (fanex.customerSetting) {
                     width: currentGroup.TitleWidth + 'px'
                 };
 
-                currentGroup.Name = language["sport_" + currentGroup.SportId + "_" + currentGroup.BetTypeId];
+                currentGroup.Name = languageService.getSportName(currentGroup.SportId, currentGroup.BetTypeId);
             }
 
             positionTakingSetting[0].Expand = true;
@@ -60,7 +60,7 @@ if (fanex.customerSetting) {
             }
             return positionTakingSave;
         },
-        copyVirtualSoccer: function (fromIndex, ptGroup, ptGroups, lang, scope) {
+        copyVirtualSoccer: function (fromIndex, ptGroup, ptGroups, languageService, scope) {
             var pt = ptGroup.PositionTakings[0];
             if (!pt.actions.isValid()) {
                 return;
@@ -74,9 +74,9 @@ if (fanex.customerSetting) {
                 scope.positionTakingService.onCollapseExpand(ptGroup);
             }
 
-            copyAllMessage.push(lang.virtualSoccerCopyPt);
+            copyAllMessage.push(languageService.getString('VirtualSoccerCopyPt'));
             copyAllMessage.push('<ul>');
-            copyAllMessage.push('<li>' + lang.otherSporttypeOfVirtualSoccer + '</li>');
+            copyAllMessage.push('<li>' + languageService.getString('OtherSporttypeOfVirtualSoccer') + '</li>');
 
             for (var i = fromIndex; i < groupLength; i++) {
                 var currentGroup = ptGroups[i];

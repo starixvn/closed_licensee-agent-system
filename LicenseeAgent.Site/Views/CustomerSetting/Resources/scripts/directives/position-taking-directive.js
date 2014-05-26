@@ -2,7 +2,7 @@
 
 if (fanex.customerSetting) {
     fanex.customerSetting.positionTakingDirective = {
-        agentEditAgentPtAdvancedMode: function ($timeout, scope, element, formatter) {
+        agentEditAgentPtAdvancedMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var presetInput = element.find('.preset-input');
             var maxInput = element.find('.max-input');
@@ -21,13 +21,14 @@ if (fanex.customerSetting) {
                     presetInput,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
-        agentEditAgentPtAdvancedModeReadOnly: function ($timeout, scope, element, formatter) {
+        agentEditAgentPtAdvancedModeReadOnly: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var presetInput = element.find('.preset-input');
             var maxInput = element.find('.max-input');
@@ -46,13 +47,14 @@ if (fanex.customerSetting) {
                     presetInput,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
-        licenseeEditAgentOnePtAdvancedMode: function ($timeout, scope, element, formatter) {
+        licenseeEditAgentOnePtAdvancedMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var maxInput = element.find('.max-input');
             var minInput = element.find('.min-input');
@@ -67,12 +69,13 @@ if (fanex.customerSetting) {
                     currentPt,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
-        agentEditMemberPtAdvancedMode: function ($timeout, scope, element, formatter) {
+        agentEditMemberPtAdvancedMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var valueInput = element.find('.value-input');
             var currentPt = scope.pt;
@@ -84,12 +87,13 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     valueInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
-        agentEditAgentPtSimpleMode: function ($timeout, scope, element, formatter) {
+        agentEditAgentPtSimpleMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var presetInput = element.find('.preset-input');
             var maxInput = element.find('.max-input');
@@ -107,12 +111,13 @@ if (fanex.customerSetting) {
                     presetInput,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
-        agentEditAgentPtSimpleModeReadOnly: function ($timeout, scope, element, formatter) {
+        agentEditAgentPtSimpleModeReadOnly: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var presetInput = element.find('.preset-input');
             var maxInput = element.find('.max-input');
@@ -130,12 +135,13 @@ if (fanex.customerSetting) {
                     presetInput,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
             currentPt.actions.whenPresetChange();
         },
-        licenseeEditAgentOnePtSimpleMode: function ($timeout, scope, element, formatter) {
+        licenseeEditAgentOnePtSimpleMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var maxInput = element.find('.max-input');
             var minInput = element.find('.min-input');
@@ -151,12 +157,13 @@ if (fanex.customerSetting) {
                     currentPt,
                     maxInput,
                     minInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);
         },
-        agentEditMemberPtSimpleMode: function ($timeout, scope, element, formatter) {
+        agentEditMemberPtSimpleMode: function ($timeout, scope, element, formatter, languageService) {
             //// Cache Elements.
             var valueInput = element.find('.value-input');
             var currentPt = scope.ptSimple;
@@ -168,7 +175,8 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     valueInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
             //// Init value
             fanex.customerSetting.positionTakingService.changeSettingValidation(currentPt);

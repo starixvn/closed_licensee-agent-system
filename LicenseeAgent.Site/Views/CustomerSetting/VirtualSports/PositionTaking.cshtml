@@ -18,9 +18,9 @@
         }
         <div data-ng-show="!settingContext.IsSimpleMode" class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
             <div data-ng-class="{'pt-group-header expand': true, 'pt-group-header': true}">
-                <span class="collapse-expand-button ">{{language.virtualSports}}</span> <span class="icon-setting-copy"
+                <span class="collapse-expand-button ">@Las.VirtualSports</span> <span class="icon-setting-copy"
                     data-ng-click="positionTakingService.copyVirtualSoccer(0, ptModel.ptGroups[0], ptModel.ptGroups, language, this);"
-                    title="{{language.virtualSoccerCopyPtTooltip}}" data-ng-show="settingContext.FormId != 2">
+                    title="{{languageService.getString('VirtualSoccerCopyPtTooltip')}}" data-ng-show="settingContext.FormId != 2">
                 </span>
             </div>
             <div class="pt-group-box">

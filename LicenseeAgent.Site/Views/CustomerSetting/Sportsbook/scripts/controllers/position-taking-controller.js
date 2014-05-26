@@ -11,9 +11,10 @@ if (fanex.customerSetting) {
     fanex.customerSetting.controller('PositionTakingController',
     [
         '$scope',
-        function ($scope) {
-            $scope.language = fanex.customerSetting.language[settingContext.Language];
-            fanex.customerSetting.positionTakingService.init(sportsBookSetting.PositionTakingSetting, $scope.language);
+        'Fanex.CustomerSetting.LanguageService',
+        function ($scope, languageService) {
+            fanex.customerSetting.positionTakingService.init(sportsBookSetting.PositionTakingSetting, languageService);
+            $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.positionTakingService.config;
             $scope.settingContext = settingContext;
             $scope.positionTakingService = fanex.customerSetting.positionTakingService;
@@ -25,7 +26,7 @@ if (fanex.customerSetting) {
             };
 
             $scope.updateSettingModel = function () {
-                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(sportsBookSetting.PositionTakingSetting));
+                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(sportsBookSetting.PositionTakingSetting), languageService);
             };
 
             $scope.saveData = function () {

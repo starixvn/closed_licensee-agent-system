@@ -1,10 +1,9 @@
 ﻿'use strict';
 
 if (fanex.customerSetting) {
-
     fanex.customerSetting.commissionSettingActions =
     {
-        licenseeOrAgentEditAgentActions: function (modelData, inputControl, scope) {
+        licenseeOrAgentEditAgentActions: function (modelData, inputControl, scope, languageService) {
             return {
                 onChangeDiscountValue: function () {
                     modelData.discount = fanex.roundNumber(modelData.discount, 2);
@@ -13,7 +12,7 @@ if (fanex.customerSetting) {
                 isValid: function () {
                     var isValid = modelData.discount >= modelData.minDiscount && modelData.discount <= modelData.maxDiscount;
                     if (!isValid) {
-                        var message = scope.language["message_ValueIsNotInRange"] + ' [' + modelData.minDiscount + ' - ' + modelData.maxDiscount + ']';
+                        var message = languageService.getString("InvalidRange") + ' [' + modelData.minDiscount + ' - ' + modelData.maxDiscount + ']';
                         fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
                     } else {
                         fanex.hideHint();
@@ -23,7 +22,7 @@ if (fanex.customerSetting) {
                 }
             };
         },
-        agentEditCustomerActions: function (commissionSettingsViewModel, scope) {
+        agentEditCustomerActions: function (commissionSettingsViewModel, scope, languageService) {
             return {
                 onChangeDiscountValue: function (modelData, controlId) {
                     modelData.memberCommission = fanex.roundNumber(modelData.memberCommission, 2);
@@ -34,7 +33,7 @@ if (fanex.customerSetting) {
                     if (!isValid) {
                         var inputControl = $('#' + controlId);
                         inputControl.preventSpecialCharacters("^[0-9.]+$");
-                        var message = scope.language["message_ValueIsNotInRange"] + ' [0' + ' - ' + modelData.agentCommission + ']';
+                        var message = languageService.getString("InvalidRange") + ' [0' + ' - ' + modelData.agentCommission + ']';
                         fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
                     } else {
                         fanex.hideHint();

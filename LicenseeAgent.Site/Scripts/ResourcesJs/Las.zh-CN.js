@@ -201,6 +201,7 @@ language.Las['zh-CN'] = {
 	MaxCredit : "最大信贷额",
 	MaxDownline : "百分之的最大下线值",
 	MaxPerBall : "单球上限",
+	MaxPerBallLessThanOrEqualMaxPerMatch : "Max Per Ball must be less than or equal to Max Per Match",
 	MaxPerBallLessThanOrEqualTo : "Max Per Ball must be less than or equal to",
 	MaxPerBallMoreThanOrEqualMaxBet : "Max Per Ball must be greater than or equal to Max Bet",
 	MaxPerMatch : "单场限额",

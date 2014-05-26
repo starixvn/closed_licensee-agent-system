@@ -6,32 +6,32 @@
         </div>
         <div class="betting-limit-header-col4 min-bet">
             <div class="betting-limit-header-text">
-                <span>{{language['bettingLimit_MinBet']}}</span></div>
+                <span>@Las.MinBet</span></div>
         </div>
         <div class="betting-limit-header-col4">
             <div class="betting-limit-header-text">
-                <span>{{language['bettingLimit_MaxBet']}}</span></div>
+                <span>@Las.MaxBet</span></div>
         </div>
         <div class="betting-limit-header-col4">
             <div class="betting-limit-header-text">
-                <span>{{language['bettingLimit_MaxPerMatch']}}</span></div>
+                <span>@Las.MaxPerMatch</span></div>
         </div>
-         <div class="betting-limit-header-col4">
+        <div class="betting-limit-header-col4">
             <div class="betting-limit-header-text">
-                <span>{{language['bettingLimit_MaxPerBall']}}</span></div>
+                <span>@Las.MaxPerBall</span></div>
         </div>
     </div>
     <div data-ng-repeat="betSetting in model.bettingLimitsModel">
         @if (Model.FormId != FormType.ViewIndirectAgent)
         {
-            <number-game-betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
-                                                     current-index="$index">
+            <number-game-betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel"
+                bet-setting="betSetting" current-index="$index">
             </number-game-betting-limit-advanced-mode>
         }
         else
         {
-            <number-game-betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel" 
-                                                               bet-setting="betSetting" current-index="$index">
+            <number-game-betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel"
+                bet-setting="betSetting" current-index="$index">
             </number-game-betting-limit-advanced-mode-read-only>
         }
         <div class="clearfix">

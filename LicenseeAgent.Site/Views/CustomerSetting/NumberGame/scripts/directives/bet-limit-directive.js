@@ -8,7 +8,8 @@
 if (fanex.customerSetting) {
 
     // An agent edit another agent in the simple mode
-    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode', function () {
+    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode', 
+        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -19,15 +20,16 @@ if (fanex.customerSetting) {
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode.html'),
             link: function (scope, element) {
                 var modelData = scope.modelData;
-                modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
+                modelData.sportTypeName = languageService.getSportName(modelData.SportId, modelData.BetTypeId);
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(modelData);
                 var inputControl = element.find('.input');
-                modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope);
+                modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
-    });
+    }]);
 
-    fanex.customerSetting.directive('numberGameBettingLimitSimpleModeReadOnly', function() {
+    fanex.customerSetting.directive('numberGameBettingLimitSimpleModeReadOnly',
+        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -38,15 +40,16 @@ if (fanex.customerSetting) {
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html'),
             link: function(scope, element) {
                 var modelData = scope.modelData;
-                modelData.sportTypeName = scope.language["sport_" + modelData.SportId + "_" + modelData.BetTypeId];
+                modelData.sportTypeName = languageService.getSportName(modelData.SportId, modelData.BetTypeId);
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(modelData);
                 var inputControl = element.find('.input');
-                modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope);
+                modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
-    });
+    }]);
 
-    fanex.customerSetting.directive('numberGameBettingLimitAdvancedMode', function () {
+    fanex.customerSetting.directive('numberGameBettingLimitAdvancedMode',
+        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -60,14 +63,15 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope);
-                betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
+                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope, languageService);
+                betSetting.sportTypeName = languageService.getSportName(betSetting.SportId, betSetting.BetTypeId);
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(betSetting);
             }
         };
-    });
+    }]);
 
-    fanex.customerSetting.directive('numberGameBettingLimitAdvancedModeReadOnly', function() {
+    fanex.customerSetting.directive('numberGameBettingLimitAdvancedModeReadOnly',
+        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -81,10 +85,10 @@ if (fanex.customerSetting) {
             link: function(scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope);
-                betSetting.sportTypeName = scope.language["sport_" + betSetting.SportId + "_" + betSetting.BetTypeId];
+                betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope, languageService);
+                betSetting.sportTypeName = languageService.getSportName(betSetting.SportId, betSetting.BetTypeId);
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(betSetting);
             }
         };
-    });
+    }]);
 }

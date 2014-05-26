@@ -29,10 +29,6 @@ if (fanex.customerSetting) {
             $scope.result = fanex.customerSetting.Result;
             $scope.custInfo = sportsBookSetting.CustInfo;
 
-            if (!$scope.hasOfferedNumberGame) {
-                angular.element(".hasOfferedNumberGame").hide();
-            }
-
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
                 fanex.hideHint();
@@ -210,8 +206,8 @@ if (fanex.customerSetting) {
 
                 isChangeData = fanex.isChangedData(sportsBookSetting);
 
-                if (!isChangeData && $scope.hasOfferedNumberGame && !fanex.isChangedData(numberGameSetting)) {
-                    isChangeData = false;
+                if ($scope.hasOfferedNumberGame) {
+                    isChangeData = isChangeData ? true : fanex.isChangedData(numberGameSetting);
                 }
 
                 if (!isChangeData) {

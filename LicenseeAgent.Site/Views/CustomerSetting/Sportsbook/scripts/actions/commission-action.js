@@ -26,6 +26,7 @@ if (fanex.customerSetting) {
         agentEditCustomerActions: function (commissionSettingsViewModel, scope) {
             return {
                 onChangeDiscountValue: function (modelData, controlId) {
+                    modelData.memberCommission = fanex.roundNumber(modelData.memberCommission, 2);
                     commissionSettingsViewModel.actions.isValidLine(modelData, controlId);
                 },
                 isValidLine: function (modelData, controlId) {

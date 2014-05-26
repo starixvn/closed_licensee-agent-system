@@ -988,6 +988,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Setting Of Other Products.
+        /// </summary>
+        public static string EditSettingOfOtherProducts {
+            get {
+                return ResourceManager.GetString("EditSettingOfOtherProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Sportsbook.
         /// </summary>
         public static string EditSportsbook {

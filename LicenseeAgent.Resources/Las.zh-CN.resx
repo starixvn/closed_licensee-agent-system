@@ -1355,4 +1355,7 @@
   <data name="ViewVirtualSports" xml:space="preserve">
     <value>View Virtual Sports</value>
   </data>
+  <data name="EditSettingOfOtherProducts" xml:space="preserve">
+    <value>Edit Setting Of Other Products</value>
+  </data>
 </root>

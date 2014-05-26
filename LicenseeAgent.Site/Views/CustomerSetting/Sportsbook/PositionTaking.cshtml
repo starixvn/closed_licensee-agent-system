@@ -22,7 +22,7 @@
             <div data-ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
                 <span data-ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
                     {{ptGroup.Name}}</span> <span class="icon-setting-copy" data-ng-if="$index == 0 || $index == 2"
-                                                    data-ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, language, this);"
+                                                    data-ng-click="positionTakingService.copyAll($index, ptGroup, ptModel.ptGroups, languageService, this);"
                                                     title="{{$index==0 ? languageService.getString('SoccerDeadballCopyPtTooltip') : languageService.getString('BasketBallCopyPtTooltip')}}"
                                                     data-ng-show="settingContext.FormId != 2"></span>
             </div>

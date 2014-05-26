@@ -305,15 +305,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                return new AgentUpdateMemberCriteria()
-                {
-                    AgentId = model.SettingContext.CustId,
-                    CustId = model.SettingContext.TargetCustId,
-                    BetLimit3rd = betLimit3rdXml,
-                    PositionTaking3rd = positionTaking3rdXml,
-                    Ip = model.SettingContext.Ip,
-                    Updater = model.SettingContext.LoginUserId
-                };
+                return CreateUpdateMemberCriteria(model, positionTaking3rdXml, betLimit3rdXml);
             }
             else
             {
@@ -339,6 +331,40 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
                         Updater = model.SettingContext.LoginUserId
                     };
                 }
+            }
+        }
+
+        /// <summary>
+        /// Creates the update customer criteria.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="positionTaking">The position taking 3RD.</param>
+        /// <param name="betLimit">The betLimit 3RD.</param>
+        /// <returns>Returns criteria.</returns>
+        private ICriteria CreateUpdateMemberCriteria(UpdateVirtualSportsCustomerViewModel model, string positionTaking, string betLimit)
+        {
+            if (model.SettingContext.FormId == FormType.EditIndirectMember)
+            {
+                return new AgentUpdateMemberIndirectCriteria
+                {
+                    AgentId = model.SettingContext.CustId,
+                    CustId = model.SettingContext.TargetCustId,
+                    PositionTaking3rd = positionTaking,
+                    Ip = model.SettingContext.Ip,
+                    Updater = model.SettingContext.LoginUserId
+                };
+            }
+            else
+            {
+                return new AgentUpdateMemberCriteria()
+                {
+                    AgentId = model.SettingContext.CustId,
+                    CustId = model.SettingContext.TargetCustId,
+                    PositionTaking3rd = positionTaking,
+                    BetLimit3rd = betLimit,
+                    Ip = model.SettingContext.Ip,
+                    Updater = model.SettingContext.LoginUserId
+                };
             }
         }
     }

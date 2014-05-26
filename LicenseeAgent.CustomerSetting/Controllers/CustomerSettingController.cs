@@ -416,9 +416,15 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            var hasOffered3rd = false;
             if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() != 1)
             {
                 model.NumberGameSetting = null;
+            }
+
+            if (productInfos.Where(x => x.ProductId == (int)Product.Product_5 || x.ProductId == (int)Product.Product_4 || x.ProductId == (int)Product.Product_8).Any())
+            {
+                hasOffered3rd = true;
             }
 
             var result = _customerSettingService.InsertCustomer(model);
@@ -450,7 +456,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var messages = new List<Result> { GenerateMessages(result) };
 
-            return Json(new { ErrCode = Result.SuccessValue, Messages = messages, CustId = result.CustIdReturn });
+            return Json(new { ErrCode = Result.SuccessValue, Messages = messages, CustId = result.CustIdReturn, HasOffered3rd = hasOffered3rd });
         }
 
         /// <summary>

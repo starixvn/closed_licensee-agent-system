@@ -132,17 +132,25 @@ if (fanex.customerSetting) {
                         }
                         if (isSuccess) {
                             var url;
-                            if (settingContext.TargetRoleId === 1) {
-                                url = "~/CustomerSetting/EditProductMember?CustId={0}"
-                                    .format(data.CustId);
-                            } else {
-                                url = "~/CustomerSetting/EditProductAgent?agentId={0}&agentLevel={1}"
-                                    .format(data.CustId, settingContext.TargetRoleId - 1);
-                            }
 
-                            setTimeout(function () {
-                                window.location.href = core.resolveUrl(url);
-                            }, 5000);
+                            if (data.HasOffered3rd) {
+                                if (settingContext.TargetRoleId === 1) {
+                                    url = "~/CustomerSetting/EditProductMember?CustId={0}"
+                                    .format(data.CustId);
+                                } else {
+                                    url = "~/CustomerSetting/EditProductAgent?agentId={0}&agentLevel={1}"
+                                    .format(data.CustId, settingContext.TargetRoleId - 1);
+                                }
+
+                                setTimeout(function () {
+                                    window.location.href = core.resolveUrl(url);
+                                }, 5000);
+                            }
+                            else if (window.parent.customerList) {
+                                popup.close();
+                                window.parent.customerList.reRenderAfterPaged();
+                                window.parent.customerList.editProducts();
+                            }
                         }
                     }).
                     error(function (data) {

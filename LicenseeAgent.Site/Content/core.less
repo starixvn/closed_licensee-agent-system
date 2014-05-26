@@ -194,42 +194,28 @@ iframe
     .nav-tabs
     {
         margin-bottom: 0px;
-        border-color: #eceeed;
-
+        border-bottom-color: #eceeed;
         li
         {
             margin-left: 10px;
-
             a
             {
-                padding-top: 5px;
-                padding-bottom: 5px;
+                text-transform: none;
                 border-left-color: #eceeed;
                 border-right-color: #eceeed;
-                border-top-color: #eceeed;
-
-                &:hover,
-                &:focus
-                {
-                    border-bottom-color: #f4f8fb;
-                    border-top: #d93b3c 2px solid;
-                    background-color: #f4f8fb;
-                }
+                border-bottom-color: #eceeed;
+                font-weight: normal;
+                background-color: transparent;
             }
-
             &.active
             {
                 a
                 {
                     background-color: #f4f8fb;
-                    border-left-color: #eceeed;
-                    border-right-color: #eceeed;
-                    border-top: #d93b3c 2px solid;
                 }
             }
         }
     }
-
     .tab-content
     {
         overflow: visible;

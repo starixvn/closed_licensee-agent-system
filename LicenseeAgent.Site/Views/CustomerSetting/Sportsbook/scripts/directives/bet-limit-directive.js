@@ -8,7 +8,9 @@
 if (fanex.customerSetting) {
     // An agent edit another agent in the simple mode
     fanex.customerSetting.directive('bettingLimitSimpleMode',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -27,7 +29,9 @@ if (fanex.customerSetting) {
     } ]);
 
     fanex.customerSetting.directive('bettingLimitSimpleModeReadOnly',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -47,7 +51,9 @@ if (fanex.customerSetting) {
     } ]);
 
     fanex.customerSetting.directive('bettingLimitAdvancedMode',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -69,7 +75,9 @@ if (fanex.customerSetting) {
     } ]);
 
     fanex.customerSetting.directive('bettingLimitAdvancedModeReadOnly',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,

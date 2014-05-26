@@ -6,10 +6,11 @@
 'use strict';
 
 if (fanex.customerSetting) {
-
     // An agent edit another agent in the simple mode
-    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode', 
-        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    fanex.customerSetting.directive('numberGameBettingLimitSimpleMode',
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -26,10 +27,12 @@ if (fanex.customerSetting) {
                 modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
-    }]);
+    } ]);
 
     fanex.customerSetting.directive('numberGameBettingLimitSimpleModeReadOnly',
-        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -38,7 +41,7 @@ if (fanex.customerSetting) {
                 modelData: '='
             },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-simple-mode-readonly.html'),
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = languageService.getSportName(modelData.SportId, modelData.BetTypeId);
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(modelData);
@@ -46,10 +49,12 @@ if (fanex.customerSetting) {
                 modelData.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
-    }]);
+    } ]);
 
     fanex.customerSetting.directive('numberGameBettingLimitAdvancedMode',
-        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -68,10 +73,12 @@ if (fanex.customerSetting) {
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(betSetting);
             }
         };
-    }]);
+    } ]);
 
     fanex.customerSetting.directive('numberGameBettingLimitAdvancedModeReadOnly',
-        ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -82,7 +89,7 @@ if (fanex.customerSetting) {
                 currentIndex: '='
             },
             templateUrl: core.resolveUrl('~/Views/CustomerSetting/NumberGame/scripts/templates/betsetting/bet-setting-advanced-mode-readonly.html'),
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
                 betSetting.actions = fanex.customerSetting.numberGameBettingLimitActions.actions(betSetting, inputControl, scope, languageService);
@@ -90,5 +97,5 @@ if (fanex.customerSetting) {
                 fanex.customerSetting.numberGameBetLimitService.changeSettingValidation(betSetting);
             }
         };
-    }]);
+    } ]);
 }

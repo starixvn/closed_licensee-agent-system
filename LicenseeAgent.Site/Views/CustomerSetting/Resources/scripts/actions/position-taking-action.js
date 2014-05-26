@@ -110,7 +110,7 @@ if (fanex.customerSetting) {
                 }
             };
         },
-        licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput, formatter) {
+        licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput, formatter, languageService) {
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -148,7 +148,6 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validMax(true) && currentPt.actions.validMin(true);
                 },
                 validMax: function (showHint) {
-                    var languageService = languageService;
                     var isValid = fanex.roundNumber(currentPt.Max, 2) >= fanex.roundNumber(currentPt.MinRangeOfMax, 2) &&
                         fanex.roundNumber(currentPt.Max, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMax, 2);
                     if (!isValid && showHint) {
@@ -164,7 +163,6 @@ if (fanex.customerSetting) {
                     return isValid;
                 },
                 validMin: function (showHint) {
-                    var languageService = languageService;
                     var isValid = fanex.roundNumber(currentPt.Min, 2) >= fanex.roundNumber(currentPt.MinRangeOfMin, 2) &&
                         fanex.roundNumber(currentPt.Min, 2) <= fanex.roundNumber(currentPt.MaxRangeOfMin, 2);
                     if (!isValid && showHint) {
@@ -181,7 +179,7 @@ if (fanex.customerSetting) {
                 }
             };
         },
-        agentEditMemberActions: function (scope, $timeout, currentPt, valueInput, formatter) {
+        agentEditMemberActions: function (scope, $timeout, currentPt, valueInput, formatter, languageService) {
             return {
                 isDataChanged: function () {
                     return currentPt.Value !== currentPt.OldValue;
@@ -197,7 +195,6 @@ if (fanex.customerSetting) {
                     return currentPt.actions.validValue(true);
                 },
                 validValue: function (showHint) {
-                    var languageService = languageService;
                     var isValid = fanex.roundNumber(currentPt.Value, 2) >= fanex.roundNumber(currentPt.MinRangeOfValue, 2) &&
                         fanex.roundNumber(currentPt.Value, 2) <= fanex.roundNumber(currentPt.MaxRangeOfValue, 2);
                     if (!isValid && showHint) {

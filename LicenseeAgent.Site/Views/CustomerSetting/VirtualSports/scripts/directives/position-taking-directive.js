@@ -11,7 +11,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditAgentPtAdvancedMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -36,7 +37,8 @@ if (fanex.customerSetting) {
                         presetInput,
                         maxInput,
                         minInput,
-                        formatter);
+                        formatter,
+                        languageService);
 
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
@@ -57,7 +59,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditAgentPtAdvancedModeReadOnly', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -83,7 +86,8 @@ if (fanex.customerSetting) {
                         presetInput,
                         maxInput,
                         minInput,
-                        formatter);
+                        formatter,
+                        languageService);
 
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
@@ -104,7 +108,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('licenseeEditAgentOnePtAdvancedMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -126,7 +131,8 @@ if (fanex.customerSetting) {
                         currentPt,
                         maxInput,
                         minInput,
-                        formatter);
+                        formatter,
+                        languageService);
 
                     //// Init value
                     currentPt.OldMin = currentPt.Min;
@@ -144,7 +150,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditMemberPtAdvancedMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -163,7 +170,8 @@ if (fanex.customerSetting) {
                     $timeout,
                     currentPt,
                     valueInput,
-                    formatter);
+                    formatter,
+                    languageService);
 
                     //// Init value
                     currentPt.OldValue = currentPt.Value;
@@ -178,7 +186,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditAgentPtSimpleMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -189,7 +198,12 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleMode($timeout, scope, element, formatter);
+                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleMode(
+                        $timeout,
+                        scope,
+                        element,
+                        formatter,
+                        languageService);
                 }
             };
         }
@@ -198,7 +212,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditAgentPtSimpleModeReadOnly', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -209,7 +224,12 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleModeReadOnly($timeout, scope, element, formatter);
+                    fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleModeReadOnly(
+                        $timeout,
+                        scope,
+                        element,
+                        formatter,
+                        languageService);
                 }
             };
         }
@@ -218,7 +238,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('licenseeEditAgentOnePtSimpleMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -229,7 +250,12 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtSimpleMode($timeout, scope, element, formatter);
+                    fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtSimpleMode(
+                        $timeout,
+                        scope,
+                        element,
+                        formatter,
+                        languageService);
                 }
             };
         }
@@ -238,7 +264,8 @@ if (fanex.customerSetting) {
     fanex.customerSetting.directive('agentEditMemberPtSimpleMode', [
         '$timeout',
         'Formatter',
-        function ($timeout, formatter) {
+        'Fanex.CustomerSetting.LanguageService',
+        function ($timeout, formatter, languageService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -249,7 +276,12 @@ if (fanex.customerSetting) {
                 templateUrl:
                     core.resolveUrl('~/Views/CustomerSetting/VirtualSports/scripts/templates/positiontaking/agent-edit-member-simple-mode.html'),
                 link: function (scope, element) {
-                    fanex.customerSetting.positionTakingDirective.agentEditMemberPtSimpleMode($timeout, scope, element, formatter);
+                    fanex.customerSetting.positionTakingDirective.agentEditMemberPtSimpleMode(
+                        $timeout,
+                        scope,
+                        element,
+                        formatter,
+                        languageService);
                 }
             };
         }

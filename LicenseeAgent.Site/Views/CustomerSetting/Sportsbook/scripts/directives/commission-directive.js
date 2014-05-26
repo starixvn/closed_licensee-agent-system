@@ -7,7 +7,9 @@
 
 if (fanex.customerSetting) {
     fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -26,7 +28,9 @@ if (fanex.customerSetting) {
     } ]);
 
     fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgentReadOnly',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,
@@ -45,7 +49,9 @@ if (fanex.customerSetting) {
     } ]);
 
     fanex.customerSetting.directive('commissionSettingAgentEditMember',
-    ['Fanex.CustomerSetting.LanguageService', function (languageService) {
+    [
+    'Fanex.CustomerSetting.LanguageService',
+    function (languageService) {
         return {
             restrict: 'E',
             replace: true,

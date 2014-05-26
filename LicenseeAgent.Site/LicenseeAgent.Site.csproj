@@ -330,6 +330,15 @@
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
     <Content Include="Views\CustomerSetting\Resources\edit-product.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\languages.en-US.js">
+      <DependentUpon>languages.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\languages.zh-CN.js">
+      <DependentUpon>languages.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\languages.zh-TW.js">
+      <DependentUpon>languages.tt</DependentUpon>
+    </Content>
     <Content Include="Views\CustomerSetting\Resources\edit-product.less" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-setting-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\language-service.js" />
@@ -379,6 +388,11 @@
     <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\directives\position-taking-directive.js" />
+    <Content Include="Views\CustomerSetting\Resources\scripts\languages\languages.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>languages.tt</DependentUpon>
+    </Content>
     <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
     <Content Include="Views\CustomerSetting\Resources\scripts\services\position-taking-service.js" />
@@ -844,6 +858,10 @@
     <Content Include="Views\CustomerSetting\VirtualSports\PositionTaking.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\EditCustomer.cshtml" />
     <Content Include="Views\CustomerSetting\EditProduct.cshtml" />
+    <None Include="Views\CustomerSetting\Resources\scripts\languages\languages.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>languages.js</LastGenOutput>
+    </None>
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingNG.cshtml" />

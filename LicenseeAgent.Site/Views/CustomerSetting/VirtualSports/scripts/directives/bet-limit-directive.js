@@ -29,7 +29,7 @@ if (fanex.customerSetting) {
                 modelData.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
                 var inputControl = element.find('.input');
-                modelData.actions = fanex.customerSetting.bettingLimitActions.actions(modelData, inputControl, scope);
+                modelData.actions = fanex.customerSetting.bettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
     } ]);
@@ -56,7 +56,7 @@ if (fanex.customerSetting) {
                 modelData.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxBet);
                 modelData.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(modelData.MaxPerMatch);
                 var inputControl = element.find('.input');
-                modelData.actions = fanex.customerSetting.bettingLimitActions.actions(modelData, inputControl, scope);
+                modelData.actions = fanex.customerSetting.bettingLimitActions.actions(modelData, inputControl, scope, languageService);
             }
         };
     } ]);
@@ -78,7 +78,7 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope);
+                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope, languageService);
                 betSetting.sportTypeName = languageService.getSportName(betSetting.SportId, betSetting.BetTypeId);
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;
@@ -107,7 +107,7 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
-                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope);
+                betSetting.actions = fanex.customerSetting.bettingLimitActions.actions(betSetting, inputControl, scope, languageService);
                 betSetting.sportTypeName = languageService.getSportName(betSetting.SportId, betSetting.BetTypeId);
                 betSetting.OldMinBet = betSetting.MinBet;
                 betSetting.OldMaxBet = betSetting.MaxBet;

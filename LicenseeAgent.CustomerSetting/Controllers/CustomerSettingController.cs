@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.CustomerSetting.Controllers
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -35,33 +34,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
     /// </summary>
     public class CustomerSettingController : BaseController
     {
-        private static readonly ErrCode[] BetSettingErrCodes =
-        {
-            ErrCode.Msg_1003,
-            ErrCode.Msg_1004,
-            ErrCode.Msg_1005,
-            ErrCode.Msg_1006,
-            ErrCode.Msg_1007,
-            ErrCode.Msg_1008,
-            ErrCode.Msg_1025,
-            ErrCode.Msg_1028,
-            ErrCode.Msg_1100,
-            ErrCode.Msg_1101
-        };
-
-        private static readonly ErrCode[] PositionTakingErrCodes =
-        {
-            ErrCode.Msg_1010,
-            ErrCode.Msg_1011,
-            ErrCode.Msg_1012,
-            ErrCode.Msg_1013,
-            ErrCode.Msg_1014,
-            ErrCode.Msg_1015,
-            ErrCode.Msg_1021,
-            ErrCode.Msg_1026,
-            ErrCode.Msg_1029
-        };
-
         private static JsonSerializerSettings jsonSerializeSettings = new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore,

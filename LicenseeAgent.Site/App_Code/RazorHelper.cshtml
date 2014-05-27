@@ -5,6 +5,7 @@
 @using LicenseeAgent.Resources
 @using LicenseeAgent.AccountInformation.Entities
 @using LicenseeAgent.Core.Entities
+@using LicenseeAgent.Core.Utility
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -83,7 +84,7 @@
         {
             <label class="checkbox inline">
                 <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
-                @item.ProductName
+                @DataRefWrapper.GetProductName(item.ProductId)
             </label>
         }
     </div>

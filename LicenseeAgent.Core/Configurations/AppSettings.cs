@@ -29,6 +29,7 @@ namespace LicenseeAgent.Core.Configurations
             IsDownTime = GetValue("IsDownTime") == "1";
             TaiwanAPI = GetValue("TaiwanAPI");
             TrustedAdmins = GetValue("TrustedAdmins");
+            OfferedProducts = GetValue("OfferedProducts");
         }
 
         public static bool IsAdminSite { get; private set; }
@@ -50,6 +51,8 @@ namespace LicenseeAgent.Core.Configurations
         public static string TaiwanAPI { get; private set; }
 
         public static string TrustedAdmins { get; private set; }
+
+        public static string OfferedProducts { get; private set; }
 
         /// <summary>
         /// Gets the value.

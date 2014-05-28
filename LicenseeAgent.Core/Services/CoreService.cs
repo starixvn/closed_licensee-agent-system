@@ -55,6 +55,11 @@ namespace LicenseeAgent.Core.Services
             return GetEntites<LicenseeDomain>(criteria);
         }
 
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <returns>Returns list of offered products.</returns>
         public IList<ProductInfo> GetProducts(int licenseeId)
         {
             var criteria = new GetProductCriteria
@@ -62,7 +67,14 @@ namespace LicenseeAgent.Core.Services
                 LicenseeId = licenseeId
             };
 
-            return GetEntites<ProductInfo>(criteria);
+            var products = GetEntites<ProductInfo>(criteria);
+            if (AppSettings.OfferedProducts != "*")
+            {
+                var offeredProducts = AppSettings.OfferedProducts.Split(',');
+                products = products.Where(x => offeredProducts.Contains(x.ProductId.ToString())).ToList();
+            }
+
+            return products;
         }
 
         public bool HasProductOffered(int licenseeId, int productId)

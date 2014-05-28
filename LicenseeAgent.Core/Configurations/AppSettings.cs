@@ -8,7 +8,7 @@ namespace LicenseeAgent.Core.Configurations
 {
     using System;
     using System.Configuration;
-    using Fanex.Logging;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// Provide static accessing function for setting key from app setting.config.
@@ -65,10 +65,11 @@ namespace LicenseeAgent.Core.Configurations
             {
                 return ConfigurationManager.AppSettings[key].ToLower();
             }
-            catch (Exception ex)
+            catch
             {
-                LogService.Error(ex.Message, ex);
-                throw;
+                var exception = new Exception(string.Format("Key '{0}' not found in appSettings.", key));
+                Logger.HandleException(exception);
+                throw exception;
             }
         }
     }

@@ -1,7 +1,5 @@
 ﻿/*global settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerInfoController',
     [
@@ -9,6 +7,7 @@ if (fanex.customerSetting) {
         '$filter',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, $filter, languageService) {
+            'use strict';
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 $scope.isShowLimitMaxCredit = $scope.custInfo.MaxCredit !== undefined ? true : false;
                 if ($scope.isShowLimitMaxCredit) {

@@ -4,8 +4,6 @@
 
 /*global settingContext, sportsBookSetting */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
     fanex.customerSetting.betLimitService = {
@@ -13,6 +11,7 @@ if (fanex.customerSetting) {
             maxInput: 15
         },
         copyPartial: function (betSetting, index, bettingLimitsModel) {
+            'use strict';
             if (!betSetting.actions.isValid()) {
                 return;
             }
@@ -22,6 +21,7 @@ if (fanex.customerSetting) {
             }
         },
         copyAction: function (source, destination) {
+            'use strict';
             destination.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(source.MinBet);
             destination.actions.validMinBet();
 
@@ -32,6 +32,7 @@ if (fanex.customerSetting) {
             destination.actions.validMaxPerMatch();
         },
         getbettingLimits: function (settingContext, bettingLimitsData, firstRecordData) {
+            'use strict';
             var bettingLimitsSave = [], self = this, index, bettingLimit;
 
             if (settingContext.IsSimpleMode) {
@@ -69,6 +70,7 @@ if (fanex.customerSetting) {
             return bettingLimitsSave;
         },
         getSettingModel: function () {
+            'use strict';
             return {
                 // For all sport types
                 bettingLimitsModel: fanex.cloneObject(sportsBookSetting.BettingLimitSetting),
@@ -78,6 +80,7 @@ if (fanex.customerSetting) {
             };
         },
         changeSettingValidation: function (betSetting) {
+            'use strict';
             betSetting.OldMinBet = betSetting.MinBet;
             betSetting.OldMaxBet = betSetting.MaxBet;
             betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;

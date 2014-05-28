@@ -3,13 +3,13 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 /*global core */
-'use strict';
 
 if (fanex.customerSetting) {
     fanex.customerSetting.directive('commissionSettingLicenseeOrAgentEditAgent',
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -31,6 +31,7 @@ if (fanex.customerSetting) {
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -52,6 +53,7 @@ if (fanex.customerSetting) {
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,

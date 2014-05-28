@@ -4,8 +4,6 @@
 
 /*global sportsBookSetting,numberGameSetting, settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
@@ -14,9 +12,11 @@ if (fanex.customerSetting) {
             maxInput: 5
         },
         showInvalidMessage: function (element, message) {
+            'use strict';
             fanex.showHint(element, message);
         },
         isValidData: function (commissionSettings) {
+            'use strict';
             if (commissionSettings instanceof Array) {
                 for (var i = 0; i < commissionSettings.length; i++) {
                     if (!commissionSettings[i].actions.isValid()) {
@@ -30,6 +30,7 @@ if (fanex.customerSetting) {
             return true;
         },
         getCommissionSettingViewModel: function (commissionSettingModel, languageService, targetRoleId, hasOfferedNumberGame) {
+            'use strict';
             var commissionSettingViewModel;
 
             if (targetRoleId !== 1) {
@@ -255,6 +256,7 @@ if (fanex.customerSetting) {
             }
         },
         getCommissionSettingModel: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+            'use strict';
             var commissionSettings = [];
             // Insert
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
@@ -343,6 +345,7 @@ if (fanex.customerSetting) {
             return commissionSettings;
         },
         changeViewModel: function (commissionSettingViewModel) {
+            'use strict';
             if (commissionSettingViewModel.selectedGroup === 'A') {
                 commissionSettingViewModel.line1.agentCommission = commissionSettingViewModel.group[0].agentCommission;
                 commissionSettingViewModel.line1.memberCommission = commissionSettingViewModel.group[0].memberCommission;
@@ -364,6 +367,7 @@ if (fanex.customerSetting) {
             return commissionSettingViewModel;
         },
         arrangeCommissionSettingModel: function (commissionSettingModel) {
+            'use strict';
             var result = [];
             for (var i = 0; i < commissionSettingModel.length; i++) {
                 if (commissionSettingModel[i].BetTypeId === 1) {
@@ -382,12 +386,14 @@ if (fanex.customerSetting) {
             return result;
         },
         getCommissionModel: function (hasOfferedNumberGame) {
+            'use strict';
             if (hasOfferedNumberGame) {
                 return sportsBookSetting.CommissionSetting.CommissionItems.concat(numberGameSetting.CommissionSetting.CommissionItems);
             }
             return sportsBookSetting.CommissionSetting.CommissionItems;
         },
         updateScope: function ($scope, languageService) {
+            'use strict';
             var numberDiscount, index;
             var commissionModel = this.arrangeCommissionSettingModel($scope.commissionSettingService.getCommissionModel($scope.hasOfferedNumberGame));
             var commissionViewModel = this.getCommissionSettingViewModel(

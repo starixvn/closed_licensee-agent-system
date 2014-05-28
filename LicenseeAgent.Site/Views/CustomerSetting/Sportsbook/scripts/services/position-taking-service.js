@@ -4,13 +4,12 @@
 
 /*global sportsBookSetting */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.positionTakingService = {
         init: function (positionTakingSetting, languageService) {
+            'use strict';
             var self = this,
                 groupLength = positionTakingSetting.length;
 
@@ -33,6 +32,7 @@ if (fanex.customerSetting) {
             positionTakingSetting[1].Expand = true;
         },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
+            'use strict';
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
                 var updatedPt = simpleModeData;

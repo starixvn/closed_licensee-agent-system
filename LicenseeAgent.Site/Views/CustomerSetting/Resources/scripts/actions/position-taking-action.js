@@ -1,9 +1,8 @@
-﻿'use strict';
-
-if (fanex.customerSetting) {
+﻿if (fanex.customerSetting) {
     fanex.customerSetting.positionTakingActions =
     {
         agentEditAgentActions: function (scope, $timeout, currentPt, presetInput, maxInput, minInput, formatter, languageService) {
+            'use strict';
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -111,6 +110,7 @@ if (fanex.customerSetting) {
             };
         },
         licenseeEditAgentOneActions: function (scope, $timeout, currentPt, maxInput, minInput, formatter, languageService) {
+            'use strict';
             return {
                 isDataChanged: function () {
                     return currentPt.Min !== currentPt.OldMin
@@ -180,6 +180,7 @@ if (fanex.customerSetting) {
             };
         },
         agentEditMemberActions: function (scope, $timeout, currentPt, valueInput, formatter, languageService) {
+            'use strict';
             return {
                 isDataChanged: function () {
                     return currentPt.Value !== currentPt.OldValue;

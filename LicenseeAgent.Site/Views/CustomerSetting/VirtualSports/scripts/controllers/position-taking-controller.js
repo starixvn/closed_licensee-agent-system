@@ -5,14 +5,13 @@
 
 /*global virtualSportsSetting, settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('PositionTakingController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             fanex.customerSetting.positionTakingService.init(virtualSportsSetting.PositionTakingSetting, languageService);
             $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.positionTakingService.config;

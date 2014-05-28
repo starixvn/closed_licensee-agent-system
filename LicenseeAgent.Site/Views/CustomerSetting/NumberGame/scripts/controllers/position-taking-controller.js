@@ -4,11 +4,10 @@
 
 /*global numberGameSetting , settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.PositionTakingController = {
         updateScope: function ($scope, languageService) {
+            'use strict';
             fanex.customerSetting.numberGamePositionTakingService.init(numberGameSetting.PositionTakingSetting, languageService);
             $scope.config = fanex.customerSetting.numberGamePositionTakingService.config;
             $scope.settingContext = settingContext;
@@ -45,6 +44,7 @@ if (fanex.customerSetting) {
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             fanex.customerSetting.PositionTakingController.updateScope($scope, languageService);
         }
@@ -55,6 +55,7 @@ if (fanex.customerSetting) {
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             fanex.customerSetting.PositionTakingController.updateScope($scope, languageService);
         }

@@ -1,6 +1,5 @@
 ﻿/*global core, popup, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
 
-'use strict';
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
     [
@@ -10,6 +9,7 @@ if (fanex.customerSetting) {
         'CustomerSettingService',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, $http, $window, custSettingService, languageService) {
+            'use strict';
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);

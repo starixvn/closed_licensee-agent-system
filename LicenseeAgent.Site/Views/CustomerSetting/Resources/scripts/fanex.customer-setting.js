@@ -4,8 +4,6 @@
 
 /*global fanex: true*/
 
-'use strict';
-
 fanex = fanex || {};
 
 fanex.customerSetting = angular.module('fanex.customerSetting', ['fanex.angular']);
@@ -32,6 +30,7 @@ fanex.customerSetting.Result = {
 };
 
 fanex.customerSetting.factory("Formatter", ['$filter', function ($filter) {
+    'use strict';
     return {
         formatNumber: function(number) {
             return $filter('number')(number, 2); 

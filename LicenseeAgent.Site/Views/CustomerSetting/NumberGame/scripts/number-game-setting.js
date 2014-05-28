@@ -1,9 +1,8 @@
 ﻿/*global settingContext */
 
-'use strict';
-
 fanex.customerSetting.numberGameSetting = {
     getNumberGameSetting: function (settingMode) {
+        'use strict';
         var commissions = null,
             bettingLimits = null,
             positionTakings = null,
@@ -41,6 +40,7 @@ fanex.customerSetting.numberGameSetting = {
         };
     },
     updateSettingModel: function () {
+        'use strict';
         var bettingLimitSimpleModeScope,
             positionTakingSimpleModeScope,
             bettingLimitAdvancedModeScope,

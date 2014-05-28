@@ -4,8 +4,6 @@
 
 /*global settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
@@ -19,6 +17,7 @@ if (fanex.customerSetting) {
             collapseWidth: 280
         },
         copyPartial: function (pt, ptGroup, breakNewLine) {
+            'use strict';
             if (!pt.actions.isValid()) {
                 return;
             }
@@ -40,6 +39,7 @@ if (fanex.customerSetting) {
             }
         },
         copyAll: function (fromIndex, ptGroup, ptGroups, languageService, scope) {
+            'use strict';
             var pt = ptGroup.PositionTakings[0];
             if (!pt.actions.isValid()) {
                 return;
@@ -88,6 +88,7 @@ if (fanex.customerSetting) {
             }, 100);
         },
         copyAction: function (currentPtNeedCopy, pt) {
+            'use strict';
             if (currentPtNeedCopy) {
                 currentPtNeedCopy.Preset = pt.Preset;
                 if (currentPtNeedCopy.actions.onBlurPreset) {
@@ -109,6 +110,7 @@ if (fanex.customerSetting) {
             }
         },
         showInvalidRangeMessage: function (element, message, minValue, maxValue) {
+            'use strict';
             fanex.showHint(element, message + ' ['
                                         + minValue
                                         + ' - '
@@ -117,9 +119,11 @@ if (fanex.customerSetting) {
             element.focus();
         },
         showCopyAllMessage: function (element, message) {
+            'use strict';
             fanex.showHint(element, message);
         },
         onCollapseExpand: function (ptGroup) {
+            'use strict';
             var self = this;
             if (ptGroup.Expand) {
                 ptGroup.TitleWidth = self.config.collapseWidth;
@@ -131,6 +135,7 @@ if (fanex.customerSetting) {
             ptGroup.Expand = !ptGroup.Expand;
         },
         expandGroup: function (ptGroup) {
+            'use strict';
             if (angular.isDefined(ptGroup)) {
                 if (!ptGroup.Expand) {
                     fanex.customerSetting.positionTakingService.onCollapseExpand(ptGroup);
@@ -138,6 +143,7 @@ if (fanex.customerSetting) {
             }
         },
         getSimpleModePositionTaking: function (settingContext, updatedPt, currentPositionTaking, positionTakingSave) {
+            'use strict';
             if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
                 if (currentPositionTaking.Value !== updatedPt.Value
                 || settingContext.FormId === fanex.customerSetting.FormType.Add) {
@@ -168,6 +174,7 @@ if (fanex.customerSetting) {
             }
         },
         getAdvancedModePositionTaking: function (settingContext, currentPositionTaking, positionTakingSave) {
+            'use strict';
             if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
                 if (currentPositionTaking.Value !== currentPositionTaking.OldValue
                     || settingContext.FormId === fanex.customerSetting.FormType.Add) {
@@ -198,6 +205,7 @@ if (fanex.customerSetting) {
             }
         },
         isValidData: function (settingContext, simpleModeData, advancedModeData) {
+            'use strict';
             if (settingContext.IsSimpleMode) {
                 return simpleModeData.actions.isValid();
             }
@@ -219,6 +227,7 @@ if (fanex.customerSetting) {
             return true;
         },
         changeSettingValidation: function (currentPt) {
+            'use strict';
             if (settingContext.TargetRoleId === fanex.customerSetting.Role.AgentLevel1) {
                 currentPt.OldMin = currentPt.Min;
                 currentPt.OldMax = currentPt.Max;
@@ -242,6 +251,7 @@ if (fanex.customerSetting) {
             }
         },
         updateScope: function ($scope, settings, languageService) {
+            'use strict';
             $scope.positionTakingService.init(settings, languageService);
 
             angular.extend($scope.ptModel.ptFirstData, settings[0].PositionTakings[0]);
@@ -261,6 +271,7 @@ if (fanex.customerSetting) {
             });
         },
         getPositionTakingSetting: function (sportId, isLive, betTypeId, settings) {
+            'use strict';
             var setting = null;
 
             angular.forEach(settings, function (ptGroup) {

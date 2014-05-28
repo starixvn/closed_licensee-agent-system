@@ -3,8 +3,6 @@
 
 /* global core */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Edit position taking advanced mode.
     fanex.customerSetting.directive('numberGameAgentEditAgentPtAdvancedMode',
@@ -13,6 +11,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -30,6 +29,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -47,6 +47,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -64,6 +65,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
      function ($timeout, formatter, languageService) {
+         'use strict';
          return {
              restrict: 'E',
              replace: true,
@@ -82,6 +84,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -102,6 +105,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -122,6 +126,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -142,6 +147,7 @@ if (fanex.customerSetting) {
     'Formatter',
     'Fanex.CustomerSetting.LanguageService',
     function ($timeout, formatter, languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,

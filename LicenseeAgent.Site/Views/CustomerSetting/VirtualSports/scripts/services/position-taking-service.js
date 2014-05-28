@@ -3,13 +3,13 @@
 /// <reference path="../fanex.sports-book-setting.js" />
 
 /* global virtualSportsSetting */
-'use strict';
 
 if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.positionTakingService = {
         init: function (positionTakingSetting, languageService) {
+            'use strict';
             var self = this,
                 groupLength = positionTakingSetting.length;
 
@@ -31,6 +31,7 @@ if (fanex.customerSetting) {
             positionTakingSetting[0].Expand = true;
         },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
+            'use strict';
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
                 var updatedPt = simpleModeData;
@@ -61,6 +62,7 @@ if (fanex.customerSetting) {
             return positionTakingSave;
         },
         copyVirtualSoccer: function (fromIndex, ptGroup, ptGroups, languageService, scope) {
+            'use strict';
             var pt = ptGroup.PositionTakings[0];
             if (!pt.actions.isValid()) {
                 return;

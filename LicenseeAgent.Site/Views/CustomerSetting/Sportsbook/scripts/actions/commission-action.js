@@ -1,9 +1,8 @@
-﻿'use strict';
-
-if (fanex.customerSetting) {
+﻿if (fanex.customerSetting) {
     fanex.customerSetting.commissionSettingActions =
     {
         licenseeOrAgentEditAgentActions: function (modelData, inputControl, scope, languageService) {
+            'use strict';
             return {
                 onChangeDiscountValue: function () {
                     modelData.discount = fanex.roundNumber(modelData.discount, 2);
@@ -23,6 +22,7 @@ if (fanex.customerSetting) {
             };
         },
         agentEditCustomerActions: function (commissionSettingsViewModel, scope, languageService) {
+            'use strict';
             return {
                 onChangeDiscountValue: function (modelData, controlId) {
                     modelData.memberCommission = fanex.roundNumber(modelData.memberCommission, 2);

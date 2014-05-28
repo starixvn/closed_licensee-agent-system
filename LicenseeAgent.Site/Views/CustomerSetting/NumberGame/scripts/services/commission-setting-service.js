@@ -1,10 +1,9 @@
 ﻿/*global settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.numberGameCommissionService = {
         getCommissionSetting: function (commissionSettingModel, commissionSettingViewModel, targetRoleId) {
+            'use strict';
             var commissionSetting = commissionSettingModel[4];
             if (settingContext.FormId === fanex.customerSetting.FormType.Add) {
                 if (targetRoleId !== 1) {

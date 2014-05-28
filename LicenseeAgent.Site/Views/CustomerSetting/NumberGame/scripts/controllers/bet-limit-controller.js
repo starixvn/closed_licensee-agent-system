@@ -2,11 +2,11 @@
 /// <reference path="../../../../libs/angular.js" />
 
 /*global core, settingContext, numberGameSetting */
-'use strict';
 
 if (fanex.customerSetting) {
     fanex.customerSetting.BetLimitController = {
         updateScope: function ($scope) {
+            'use strict';
             core.initInstruction();
             $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
             $scope.settingContext = settingContext;
@@ -45,6 +45,7 @@ if (fanex.customerSetting) {
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             fanex.customerSetting.BetLimitController.updateScope($scope);
         }
@@ -55,6 +56,7 @@ if (fanex.customerSetting) {
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             fanex.customerSetting.BetLimitController.updateScope($scope);
         }

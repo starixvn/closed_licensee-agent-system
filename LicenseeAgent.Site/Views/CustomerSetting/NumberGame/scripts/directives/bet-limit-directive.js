@@ -3,14 +3,13 @@
 
 /* global core */
 
-'use strict';
-
 if (fanex.customerSetting) {
     // An agent edit another agent in the simple mode
     fanex.customerSetting.directive('numberGameBettingLimitSimpleMode',
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -33,6 +32,7 @@ if (fanex.customerSetting) {
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -55,6 +55,7 @@ if (fanex.customerSetting) {
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,
@@ -79,6 +80,7 @@ if (fanex.customerSetting) {
     [
     'Fanex.CustomerSetting.LanguageService',
     function (languageService) {
+        'use strict';
         return {
             restrict: 'E',
             replace: true,

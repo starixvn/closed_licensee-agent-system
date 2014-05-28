@@ -1,9 +1,8 @@
 ﻿/*global core, settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.service('CustomerSettingService', ['$http', function ($http) {
+        'use strict';
         this.updateSettingModel = function () {
             $http({
                 method: 'POST',

@@ -4,12 +4,11 @@
 
 /*global language */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.factory('Fanex.CustomerSetting.LanguageService', function () {
+        'use strict';
         return {
             getSportName: function (sportTypeId, betTypeId, isLive) {
                 var result = '';

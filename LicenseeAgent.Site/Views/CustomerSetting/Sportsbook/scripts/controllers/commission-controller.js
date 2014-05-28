@@ -4,14 +4,13 @@
 
 /*global settingContext */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CommissionController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.commissionSettingService.config;
             $scope.settingContext = settingContext;

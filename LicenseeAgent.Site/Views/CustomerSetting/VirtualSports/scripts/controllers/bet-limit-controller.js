@@ -4,14 +4,13 @@
 
 /*global settingContext, virtualSportsSetting */
 
-'use strict';
-
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('BetLimitController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, languageService) {
+            'use strict';
             $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.betLimitService.config;
             $scope.settingContext = settingContext;

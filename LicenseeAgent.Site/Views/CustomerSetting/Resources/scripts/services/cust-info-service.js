@@ -4,8 +4,6 @@
 
 /*global core */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
@@ -15,6 +13,7 @@ if (fanex.customerSetting) {
         '$rootScope',
         '$q',
         function ($http, $timeout, $rootScope, $q) {
+            'use strict';
             if ($('#userName').length > 0) {
                 var apiPath = core.resolveUrl($('#userName').data('href'));
                 return {

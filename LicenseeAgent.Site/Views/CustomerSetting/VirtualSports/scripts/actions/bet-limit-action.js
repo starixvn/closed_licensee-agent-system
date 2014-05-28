@@ -1,9 +1,8 @@
-﻿'use strict';
-
-if (fanex.customerSetting) {
+﻿if (fanex.customerSetting) {
     fanex.customerSetting.bettingLimitActions =
     {
         actions: function (modelData, inputControl, scope, languageService) {
+            'use strict';
             var formatInputNumber = fanex.customerSetting.betLimitService.formatInputNumber;
             var reformatInputNumberForControl = fanex.customerSetting.betLimitService.reformatInputNumberForControl;
             return {

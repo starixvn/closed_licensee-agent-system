@@ -1,6 +1,5 @@
 ﻿/*global core, popup, settingContext, result, virtualSportsSetting */
 
-'use strict';
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
     [
@@ -8,6 +7,7 @@ if (fanex.customerSetting) {
         '$http',
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, $http, languageService) {
+            'use strict';
             core.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);

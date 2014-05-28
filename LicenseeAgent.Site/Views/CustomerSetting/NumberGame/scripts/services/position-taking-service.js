@@ -3,13 +3,12 @@
 
 /*global numberGameSetting */
 
-'use strict';
-
 if (fanex.customerSetting) {
     //// Helper
 
     fanex.customerSetting.numberGamePositionTakingService = {
         init: function (positionTakingSetting, languageService) {
+            'use strict';
             var self = this,
                 groupLength = positionTakingSetting.length;
 
@@ -29,6 +28,7 @@ if (fanex.customerSetting) {
             }
         },
         getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
+            'use strict';
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
                 var updatedPt = simpleModeData;

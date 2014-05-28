@@ -18,7 +18,6 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
-                inputControl.preventSpecialCharacters("^[0-9.]+$");
                 commissionSetting.actions = fanex.customerSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting,
                     inputControl,
                     scope,
@@ -40,7 +39,6 @@ if (fanex.customerSetting) {
             link: function (scope, element) {
                 var commissionSetting = scope.commissionSetting;
                 var inputControl = element.find('.input');
-                inputControl.preventSpecialCharacters("^[0-9.]+$");
                 commissionSetting.actions = fanex.customerSetting.commissionSettingActions.licenseeOrAgentEditAgentActions(commissionSetting,
                     inputControl,
                     scope,

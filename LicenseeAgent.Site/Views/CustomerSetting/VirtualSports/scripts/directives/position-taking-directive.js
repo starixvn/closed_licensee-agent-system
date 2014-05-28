@@ -25,10 +25,6 @@ if (fanex.customerSetting) {
                     var minInput = element.find('.min-input');
                     var currentPt = scope.pt.PositionTakings[0];
 
-                    presetInput.preventSpecialCharacters("^[0-9.]+$");
-                    maxInput.preventSpecialCharacters("^[0-9.]+$");
-                    minInput.preventSpecialCharacters("^[0-9.]+$");
-
                     //// Position taking Actions
                     currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
                         scope,
@@ -75,10 +71,6 @@ if (fanex.customerSetting) {
                     var minInput = element.find('.min-input');
                     var currentPt = scope.pt.PositionTakings[0];
 
-                    presetInput.preventSpecialCharacters("^[0-9.]+$");
-                    maxInput.preventSpecialCharacters("^[0-9.]+$");
-                    minInput.preventSpecialCharacters("^[0-9.]+$");
-
                     //// Position taking Actions
                     currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditAgentActions(
                         scope,
@@ -123,8 +115,6 @@ if (fanex.customerSetting) {
                     var maxInput = element.find('.max-input');
                     var minInput = element.find('.min-input');
                     var currentPt = scope.pt.PositionTakings[0];
-                    maxInput.preventSpecialCharacters("^[0-9.]+$");
-                    minInput.preventSpecialCharacters("^[0-9.]+$");
 
                     //// Position taking Actions
                     currentPt.actions = fanex.customerSetting.positionTakingActions.licenseeEditAgentOneActions(
@@ -165,7 +155,6 @@ if (fanex.customerSetting) {
                     //// Cache Elements.
                     var valueInput = element.find('.value-input');
                     var currentPt = scope.pt.PositionTakings[0];
-                    valueInput.preventSpecialCharacters("^[0-9.]+$");
 
                     //// Position taking Actions
                     currentPt.actions = fanex.customerSetting.positionTakingActions.agentEditMemberActions(

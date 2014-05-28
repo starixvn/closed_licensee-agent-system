@@ -99,27 +99,3 @@ fanex.isChangedData = function (productSetting) {
         || (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0)
         || productSetting.PositionTakingSetting.length > 0;
 };
-
-$.fn.preventSpecialCharacters = function (allowedChars) {
-    'use strict';
-    this.bind('keypress', function (event) {
-        //"^[0-9]+$": One example for digit numbers
-        var regex = new RegExp(allowedChars);
-        var key = !event.charCode ? event.which : event.charCode;
-        var keyChar = String.fromCharCode(key);
-
-        if ((key == null) || (key === 0) || (key === 8) || (key === 9) || (key === 13) || (key === 27)) {
-            return true;
-        }
-        if (!regex.test(keyChar)) {
-            event.preventDefault();
-            return false;
-        }
-    });
-
-    this.bind('keyup', function () {
-        if ($(this).val() === '') {
-            $(this).val('0');
-        }
-    });
-};

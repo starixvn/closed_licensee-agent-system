@@ -32,7 +32,6 @@
                     var isValid = modelData.memberCommission >= 0 && modelData.memberCommission <= modelData.agentCommission;
                     if (!isValid) {
                         var inputControl = $('#' + controlId);
-                        inputControl.preventSpecialCharacters("^[0-9.]+$");
                         var message = languageService.getString("InvalidRange") + ' [0' + ' - ' + modelData.agentCommission + ']';
                         fanex.customerSetting.commissionSettingService.showInvalidMessage(inputControl[0], message);
                     } else {

@@ -69,10 +69,10 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Criterias\GetLicenseeDomainCriteria.cs" />
-    <Compile Include="Criterias\GetProductCriteria.cs" />
-    <Compile Include="Criterias\InternalLoginAsUserCriteria.cs" />
-    <Compile Include="Criterias\SelBalanceUpDayCriteria.cs" />
+    <Compile Include="Criteria\GetLicenseeDomainCriteria.cs" />
+    <Compile Include="Criteria\GetProductCriteria.cs" />
+    <Compile Include="Criteria\InternalLoginAsUserCriteria.cs" />
+    <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Enumerations\LoginType.cs" />

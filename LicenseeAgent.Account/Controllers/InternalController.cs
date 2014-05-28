@@ -10,11 +10,11 @@ namespace LicenseeAgent.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.API.LRF;
-    using LicenseeAgent.Core.Criterias;
+    using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;

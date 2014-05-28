@@ -10,7 +10,7 @@ namespace LicenseeAgent.Taiwan.Actions
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Attributes;
-    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Criteria;
 
     /// <summary>
     /// LogAction class.

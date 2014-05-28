@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.Account.Services
 {
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Core.Entities;
 
     public interface IInternalService

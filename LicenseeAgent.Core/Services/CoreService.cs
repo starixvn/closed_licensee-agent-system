@@ -10,7 +10,7 @@ namespace LicenseeAgent.Core.Services
     using System.Linq;
     using Fanex.Caching;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Criterias;
+    using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
 
     /// <summary>

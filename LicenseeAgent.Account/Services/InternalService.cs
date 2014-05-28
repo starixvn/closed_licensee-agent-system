@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Account.Services
 {
     using System.Web;
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;

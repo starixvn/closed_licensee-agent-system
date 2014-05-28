@@ -15,7 +15,7 @@ namespace LicenseeAgent.Taiwan.Services
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Criteria;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Filter;

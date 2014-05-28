@@ -14,7 +14,7 @@ namespace LicenseeAgent.Web.Services
     using Entities;
     using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Criteria;
 
     /// <summary>
     /// MonitoringService class.

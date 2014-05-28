@@ -7,9 +7,9 @@
 namespace LicenseeAgent.Account.Services
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Account.Entities;
-    using LicenseeAgent.Core.Criterias;
+    using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
 
     public interface IAccountService

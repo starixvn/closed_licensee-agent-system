@@ -258,7 +258,6 @@
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
-    <Content Include="Content\ng-grid\ng-grid.css" />
     <Content Include="Content\Results\results.css" />
     <Content Include="Content\Results\fanex.result.css" />
     <Content Include="Content\Results\images\bg_header03.jpg" />

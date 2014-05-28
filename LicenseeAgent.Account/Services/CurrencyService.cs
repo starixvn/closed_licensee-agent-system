@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Account.Services
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Services;
 

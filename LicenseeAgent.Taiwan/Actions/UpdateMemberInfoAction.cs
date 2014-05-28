@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Taiwan.Actions
 {
     using LicenseeAgent.Taiwan.Attributes;
-    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Criteria;
 
     /// <summary>
     /// UpdateMemberInfoAction class.

@@ -13,7 +13,7 @@ namespace LicenseeAgent.Account.Controllers
     using System.Web.Security;
     using System.Web.SessionState;
     using Fanex.Common;
-    using LicenseeAgent.Account.Criterias;
+    using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;

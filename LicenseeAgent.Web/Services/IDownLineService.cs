@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.Web.Services
 {
-    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Criteria;
 
     public interface IDownLineService
     {

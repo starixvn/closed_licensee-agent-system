@@ -8,7 +8,7 @@ namespace LicenseeAgent.Web.Services
 {
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Criteria;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Enumerations;
 

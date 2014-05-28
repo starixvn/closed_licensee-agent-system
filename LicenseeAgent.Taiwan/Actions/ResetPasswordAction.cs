@@ -8,7 +8,7 @@ namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
     using LicenseeAgent.Taiwan.Attributes;
-    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Criteria;
 
     /// <summary>
     /// ResetPasswordAction class.

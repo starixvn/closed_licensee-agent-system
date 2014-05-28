@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Web.Services
 {
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Criteria;
 
     /// <summary>
     /// AuthorizeService class.

@@ -8,7 +8,7 @@ namespace LicenseeAgent.Taiwan.Actions
 {
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Attributes;
-    using LicenseeAgent.Taiwan.Criterias;
+    using LicenseeAgent.Taiwan.Criteria;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Utility;
 

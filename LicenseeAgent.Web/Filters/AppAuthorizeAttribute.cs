@@ -11,7 +11,7 @@ namespace LicenseeAgent.Web.Filters
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Web.Criterias;
+    using LicenseeAgent.Web.Criteria;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 

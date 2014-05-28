@@ -8,10 +8,8 @@ namespace LicenseeAgent.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Criterias;
     using Fanex.Common;
     using Filters;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
@@ -19,6 +17,7 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Web.Criteria;
     using LicenseeAgent.Web.ViewModels;
     using Services;
 

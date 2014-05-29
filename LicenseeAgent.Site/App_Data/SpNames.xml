@@ -2,7 +2,7 @@
 <Functions>
   <Function Name="Core">
     <Setting Key="LAS_SelBalanceUpDay" SpName="LAS_SelBalanceUpDay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_GetLicenseeDomain" SpName="Las_GetLicenseeDomain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Licensee_SelProductList" SpName="LAS_Licensee_SelProductList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="Login">
@@ -52,11 +52,11 @@
     <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirectMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting - SportsBook">
-    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForInsert" SpName="Las_LicenseeSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetAgentSportsBookSettingForInsert" SpName="Las_AgentSportsbookSettingSel_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetAgentSportsBookSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_AgentGetMemberSportsBookSettingForUpdate" SpName="Las_AgentGetMemberSBSettingForUpdate_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForInsert" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetAgentSportsBookSettingForInsert" SpName="Las_AgentSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_LicenseeGetAgentSportsBookSettingForUpdate" SpName="Las_LicenseeGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetAgentSportsBookSettingForUpdate" SpName="Las_AgentGetAgentSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_AgentGetMemberSportsBookSettingForUpdate" SpName="Las_AgentGetMemberSBSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_AgentGetMemberSportsBookSettingIndirectForUpdate" SpName="Las_AgentSelMemIndirectForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="CustomerSetting - NumberGame">
@@ -116,7 +116,7 @@
     <Setting Key="LAS_TotalBet_SelParlayTickets" SpName="LAS_TotalBet_SelParlayTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="BetList">
-    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelParlayDetail" SpName="LAS_Betlist_SelParlayDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
@@ -137,7 +137,7 @@
     <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_SuperViewAgent" SpName="LAS_Rpt_WinLoss_SuperViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="Las_Rpt_Outstanding" SpName="Las_Rpt_Outstanding" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-    <Setting Key="Las_BetlistOutStanding_SelByMember" SpName="Las_BetlistOutStanding_SelByMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="Las_BetlistOutStanding_SelByMember" SpName="Las_BetlistOutStanding_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_AgentViewAgent" SpName="LAS_Rpt_WinLoss_AgentViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Rpt_WinLoss_Member" SpName="LAS_Rpt_WinLoss_Member" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Statement_SelDownlineAgents" SpName="LAS_Statement_SelDownlineAgents" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

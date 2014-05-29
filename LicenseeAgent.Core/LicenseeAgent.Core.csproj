@@ -134,6 +134,7 @@
     <Compile Include="Utility\ModelHelper.cs" />
     <Compile Include="Utility\ObjectSerializer.cs" />
     <Compile Include="Utility\PasswordRule.cs" />
+    <Compile Include="Utility\RegLib.cs" />
     <Compile Include="Utility\ResourceManager.cs" />
     <Compile Include="Utility\RijndaelHelper.cs" />
   </ItemGroup>

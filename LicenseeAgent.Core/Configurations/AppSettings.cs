@@ -29,7 +29,16 @@ namespace LicenseeAgent.Core.Configurations
             IsDownTime = GetValue("IsDownTime") == "1";
             TaiwanAPI = GetValue("TaiwanAPI");
             TrustedAdmins = GetValue("TrustedAdmins");
+            if (!RegLib.ValidateListOfString(TrustedAdmins))
+            {
+                throw new InvalidOperationException("Key 'TrustedAdmins' has an invalid value");
+            }
+
             OfferedProducts = GetValue("OfferedProducts");
+            if (!RegLib.ValidateListOfInt(OfferedProducts))
+            {
+                throw new InvalidOperationException("Key 'OfferedProducts' has an invalid value");
+            }
         }
 
         public static bool IsAdminSite { get; private set; }
@@ -67,7 +76,7 @@ namespace LicenseeAgent.Core.Configurations
             }
             catch
             {
-                var exception = new Exception(string.Format("Key '{0}' not found in appSettings.", key));
+                var exception = new InvalidOperationException(string.Format("Key '{0}' not found in appSettings.", key));
                 Logger.HandleException(exception);
                 throw exception;
             }

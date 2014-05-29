@@ -57,6 +57,14 @@ namespace LicenseeAgent.Core.Utility
                     case Result.NoCurrencyPermission:
                         result = Las.AlertNoCurrencyPermission;
                         break;
+
+                    case Result.NoChange:
+                        result = Las.NoChangeToUpdate;
+                        break;
+
+                    case Result.InvalidDbData:
+                        result = "Invalid DB data.";
+                        break;
                 }
             }
 

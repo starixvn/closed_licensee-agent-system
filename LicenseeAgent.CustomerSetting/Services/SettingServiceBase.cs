@@ -39,8 +39,7 @@ namespace LicenseeAgent.CustomerSetting.Services
 
             if (!customerSetting.IsValid(product, settingContext, true))
             {
-                errCode = Result.FailureValue;
-                return null;
+                errCode = Result.InvalidDbData;
             }
 
             var result = new CustomerSetting2

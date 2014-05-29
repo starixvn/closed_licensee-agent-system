@@ -7,7 +7,6 @@
 namespace LicenseeAgent.Core.Entities
 {
     using System;
-    using System.Xml.Serialization;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -25,6 +24,7 @@ namespace LicenseeAgent.Core.Entities
         public const int AccessDenied = -6;
         public const int ApiError = -7;
         public const int NoChange = -8;
+        public const int InvalidDbData = -9;
 
         public Result()
             : this(SuccessValue, string.Empty)

@@ -66,7 +66,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         public ViewResult EditProductAgent(EditProductAgentViewModel model)
         {
             var editProductItems = new List<EditProductItem>();
-            var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
+            var products = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             var listProducts3rd = GetProducts3rd(products);
             foreach (var product in listProducts3rd)
             {
@@ -107,7 +107,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         public ViewResult EditProductMember(EditProductMemberViewModel model)
         {
             var editProductItems = new List<EditProductItem>();
-            var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
+            var products = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             var listProducts3rd = GetProducts3rd(products);
             foreach (var product in listProducts3rd)
             {
@@ -267,10 +267,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <param name="model">The model.</param>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        [SuppressMessage(
-           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-           "SP2101:MethodMustNotContainMoreLinesThan",
-           Justification = "Reviewed. Suppression is OK here.")]
         public JsonResult GetUpdatedSetting(GetSettingForUpdateViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
@@ -289,31 +285,26 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             var errCode = Result.FailureValue;
-
             var settingService = GetSettingsService(model.ProductId);
             var productSetting = settingService.GetSettingForUpdate(settingContext, out errCode);
-            dynamic numberGameSetting = null;
-
-            if (errCode == Result.SuccessValue)
+            CustomerSetting2 numberGameSetting = null;
+            if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
             {
-                if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
-                {
-                    productSetting.CustInfo.CustId = model.TargetCustId;
-                    _memberService.GetMemberInformation(
-                        productSetting.CustInfo,
-                        new GetMemberInfoAction
-                        {
-                            SiteName = CurrentSession.AgentInfo.LicenseeName,
-                            IBCCustId = model.TargetCustId
-                        });
-                }
-
-                if (model.ProductId == Product.Product_0)
-                {
-                    if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                productSetting.CustInfo.CustId = model.TargetCustId;
+                _memberService.GetMemberInformation(
+                    productSetting.CustInfo,
+                    new GetMemberInfoAction
                     {
-                        numberGameSetting = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
-                    }
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        IBCCustId = model.TargetCustId
+                    });
+            }
+
+            if (model.ProductId == Product.Product_0)
+            {
+                if (_coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                {
+                    numberGameSetting = _numberGameService.GetSettingForUpdate(settingContext, out errCode);
                 }
             }
 

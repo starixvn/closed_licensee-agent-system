@@ -31,13 +31,15 @@ namespace LicenseeAgent.Core.Configurations
             TrustedAdmins = GetValue("TrustedAdmins");
             if (!RegLib.ValidateListOfString(TrustedAdmins))
             {
-                throw new InvalidOperationException("Key 'TrustedAdmins' has an invalid value");
+                TrustedAdmins = "*";
+                Logger.Error("Key 'TrustedAdmins' has an invalid value");
             }
 
             OfferedProducts = GetValue("OfferedProducts");
             if (!RegLib.ValidateListOfInt(OfferedProducts))
             {
-                throw new InvalidOperationException("Key 'OfferedProducts' has an invalid value");
+                OfferedProducts = "*";
+                Logger.Error("Key 'OfferedProducts' has an invalid value");
             }
         }
 

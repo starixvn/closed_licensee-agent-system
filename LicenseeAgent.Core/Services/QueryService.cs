@@ -8,6 +8,7 @@ namespace LicenseeAgent.Core.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using Fanex.Common;
     using Fanex.Common.Helper;
@@ -176,6 +177,38 @@ namespace LicenseeAgent.Core.Services
                     UpdateOutput(objectDb, criteria);
 
                     return list.ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Get data table.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// Returns data table.
+        /// </returns>
+        public DataTable ExecuteDataTable(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid Criteria");
+                }
+
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+                    UpdateOutput(objectDb, criteria);
+                    return dataset.Tables[0];
                 }
             }
             catch (Exception exception)

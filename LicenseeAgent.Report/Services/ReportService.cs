@@ -8,8 +8,6 @@ namespace LicenseeAgent.Report.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
     using Core.Services;
     using Criteria;
     using DataAccess;
@@ -29,7 +27,7 @@ namespace LicenseeAgent.Report.Services
         /// </summary>
         private readonly IResultsReportDataAccess _resultsReportDataAccess;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -69,17 +67,46 @@ namespace LicenseeAgent.Report.Services
         /// <summary>
         /// Get match results.
         /// </summary>
-        /// <param name="criteria">System parlay result criteria.</param>
-        /// <returns>List of sports book results.</returns>
-        public IList<Sportbook> GetMatchResults(ICriteria criteria)
+        /// <param name="eventDate">The event date.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="isShowAll">If set to <c>true</c> [is show all].</param>
+        /// <returns>
+        /// List of sports book results.
+        /// </returns>
+        public IList<Sportbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll)
         {
-            if (criteria.IsValid())
+            var criteria = new MatchResultsReportCriteria
             {
-                var data = _resultsReportDataAccess.GetResults(criteria);
-                return GenerateSportsBookResults(data);
-            }
+                CustId = 0,
+                EventDate = eventDate,
+                LeagueId = leagueId,
+                SportType = sportType,
+                IsShowAll = isShowAll
+            };
 
-            return new List<Sportbook>();
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingSportsBook(dataTable);
+        }
+
+        /// <summary>
+        /// Gets the match results number game.
+        /// </summary>
+        /// <param name="eventDate">The event date.</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="isShowAll">If set to <c>true</c> [is show all].</param>
+        /// <returns>List of number game results.</returns>
+        public IList<NumberGame> GetMatchResultsNumberGame(DateTime eventDate, int leagueId, bool isShowAll)
+        {
+            var criteria = new MatchResultsNumberGameCriteria
+            {
+                EventDate = eventDate,
+                LeagueId = leagueId,
+                IsShowAll = isShowAll
+            };
+
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingNumberGame(dataTable);
         }
 
         /// <summary>
@@ -92,7 +119,7 @@ namespace LicenseeAgent.Report.Services
             if (criteria.IsValid())
             {
                 var data = _resultsReportDataAccess.GetResults(criteria);
-                return GenerateOutrightResults(data);
+                return ResultBinder.BindingOutRight(data);
             }
 
             return new List<OutRight>();
@@ -122,91 +149,7 @@ namespace LicenseeAgent.Report.Services
         {
             return GetEntites<Transfer>(criteria);
         }
-        #endregion
 
-        #region Utilities
-
-        /// <summary>
-        /// Generate Sports book Results.
-        /// </summary>
-        /// <param name="data">Input data table.</param>
-        /// <returns>List of formatted sports book.</returns>
-        private static IList<Sportbook> GenerateSportsBookResults(DataTable data)
-        {
-            if (data != null && data.Rows.Count > 0)
-            {
-                return
-                    data.AsEnumerable()
-                        .Select(
-                            i =>
-                                new Sportbook
-                                {
-                                    AwayId = int.Parse(i["awayID"].ToString()),
-                                    HomeId = int.Parse(i["homeID"].ToString()),
-                                    BetStatus =
-                                        i["betstatus"] != DBNull.Value ? i["betstatus"].ToString() : string.Empty,
-                                    LeagueId = int.Parse(i["leagueid"].ToString()),
-                                    MatchId = int.Parse(i["matchid"].ToString()),
-                                    EventStatus = i["eventstatus"].ToString(),
-                                    FinalAwayScore =
-                                        i["finalawayscore"] != DBNull.Value
-                                            ? int.Parse(i["finalawayscore"].ToString())
-                                            : new int?(),
-                                    HtAwayScore =
-                                        i["htawayscore"] != DBNull.Value ? int.Parse(i["htawayscore"].ToString()) : new int?(),
-                                    Color = i.Table.Columns.Contains("lcolor") && i["lcolor"] != DBNull.Value ? i["lcolor"].ToString() : string.Empty,
-                                    FinalHomeScore =
-                                        i["finalhomescore"] != DBNull.Value
-                                            ? int.Parse(i["finalhomescore"].ToString())
-                                            : new int?(),
-                                    HtHomeScore =
-                                        i["hthomescore"] != DBNull.Value
-                                            ? int.Parse(i["hthomescore"].ToString())
-                                            : new int?(),
-                                    EventDate = DateTime.Parse(i["eventdate"].ToString()),
-                                    IsNeutral = bool.Parse(i["IsNeutral"].ToString()),
-                                    IsPending = bool.Parse(i["IsPending"].ToString()),
-                                    KickOffTime = DateTime.Parse(i["kickofftime"].ToString()),
-                                    MatchCode = i["matchcode"].ToString(),
-                                    GoalRecord = i["goalrecord"].ToString(),
-                                    ResultValue = "6-1 *30-40 40-30* *40-0 40-0* *40-0 40-0* *40-0",
-                                    IsHTCal = Convert.ToBoolean(i["IsHTCal"]),
-                                    Calculate = Convert.ToBoolean(i["Calculate"]),
-                                    RefNo = "12"
-                                })
-                        .ToList();
-            }
-
-            return new List<Sportbook>();
-        }
-
-        /// <summary>
-        /// Generate Outright Results.
-        /// </summary>
-        /// <param name="data">Input data table.</param>
-        /// <returns>List of formatted outright.</returns>
-        private static IList<OutRight> GenerateOutrightResults(DataTable data)
-        {
-            if (data != null && data.Rows.Count > 0)
-            {
-                return
-                    data.AsEnumerable()
-                        .Select(
-                            i =>
-                                new OutRight
-                                {
-                                    EventDate = DateTime.Parse(i["eventdate"].ToString()),
-                                    SportType = int.Parse(i["sporttype"].ToString()),
-                                    LeagueId = int.Parse(i["leagueid"].ToString()),
-                                    TeamId = int.Parse(i["teamid"].ToString()),
-                                    Status = i["status"].ToString()
-                                })
-                        .ToList();
-            }
-
-            return new List<OutRight>();
-        }
-
-        #endregion
+        #endregion Methods
     }
 }

@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Report.Services
 {
+    using System;
     using System.Collections.Generic;
     using Criteria;
     using Entities;
@@ -21,19 +22,16 @@ namespace LicenseeAgent.Report.Services
         /// <returns>List of sports.</returns>
         IList<Sport> GetSports(SportCriteria criteria);
 
-       /// <summary>
+        /// <summary>
         /// Get Leagues.
         /// </summary>
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>List of leagues.</returns>
         IList<League> GetLeagues(LeagueCriteria criteria);
 
-        /// <summary>
-        /// Get match results.
-        /// </summary>
-        /// <param name="criteria">System parlay result criteria.</param>
-        /// <returns>List of match results.</returns>
-        IList<Sportbook> GetMatchResults(ICriteria criteria);
+        IList<Sportbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll);
+
+        IList<NumberGame> GetMatchResultsNumberGame(DateTime eventDate, int leagueId, bool isShowAll);
 
         /// <summary>
         /// Get outright results.

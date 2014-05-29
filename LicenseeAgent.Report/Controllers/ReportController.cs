@@ -94,7 +94,11 @@ namespace LicenseeAgent.Report.Controllers
             criteria.IsShowAll = _includeTestData;
             var sports = _reportService.GetSports(criteria);
             var model = new ResultsReportViewModel();
-            model.Sports = sports.Select(i => new SelectListItem { Text = DataRefWrapper.GetSportName(i.SportType), Value = i.SportType.ToString() }).ToList();
+            model.Sports = sports.Select(i => new SelectListItem
+            {
+                Text = DataRefWrapper.GetSportName(i.SportType),
+                Value = i.SportType.ToString()
+            }).ToList();
 
             if (model.Sports.Count > 0)
             {
@@ -395,27 +399,33 @@ namespace LicenseeAgent.Report.Controllers
         /// <returns>HTML string.</returns>
         private string GetMatchResultsData(LeagueCriteria criteria, int leagueId)
         {
-            var matchResultsReportCriteria = new MatchResultsReportCriteria
-            {
-                CustId = CurrentSession.OnUserId,
-                SportType = criteria.SportType,
-                LeagueId = leagueId,
-                EventDate = criteria.EventDate
-            };
-
             var setting = new ResultSetting
             {
                 SportType = (SportType)criteria.SportType,
-                LanguageCode = LanguageManager.Language
+                LanguageCode = CurrentSession.Language
             };
 
-            var data = _reportService.GetMatchResults(matchResultsReportCriteria);
-            if (data != null)
+            switch ((SportType)criteria.SportType)
             {
-                return ResultEngine.HtmlParser(data, setting);
-            }
+                case SportType.HorseRacing:
+                case SportType.Greyhound:
+                case SportType.Harness:
+                case SportType.VirtualHorseRacing:
+                case SportType.VirtualMotorRacing:
+                case SportType.VirtualGreyhounds:
+                    return string.Empty;
 
-            return string.Empty;
+                case SportType.LiveCasino:
+                    return string.Empty;
+
+                case SportType.NumberGame:
+                    var numberGameData = _reportService.GetMatchResultsNumberGame(criteria.EventDate, leagueId, _includeTestData);
+                    return numberGameData != null ? ResultEngine.HtmlParser(numberGameData, setting) : string.Empty;
+
+                default:
+                    var sportsBookData = _reportService.GetMatchResults(criteria.EventDate, criteria.SportType, leagueId, _includeTestData);
+                    return sportsBookData != null ? ResultEngine.HtmlParser(sportsBookData, setting) : string.Empty;
+            }
         }
 
         #endregion Utilities

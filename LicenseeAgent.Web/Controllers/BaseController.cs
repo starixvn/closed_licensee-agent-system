@@ -7,6 +7,7 @@
 namespace LicenseeAgent.Web.Controllers
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -128,6 +129,25 @@ namespace LicenseeAgent.Web.Controllers
         protected static string GetErrMsg(int errCode)
         {
             return ResourceManager.GetErrMsg(errCode);
+        }
+
+        /// <summary>
+        /// Renders the razor view to string.
+        /// </summary>
+        /// <param name="viewName">Name of the view.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns string from view.</returns>
+        protected string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
         /// <summary>

@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+<table class='fanex-result'>
+    <thead>
+        <tr class='row-header'>
+            <th class='column-kickofftime'>
+                @Las.Time
+            </th>
+            <th class='column-match'>
+                @Las.Team
+            </th>
+            <th class='column-status'>
+                @Las.Results
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class='row-noinfo'>
+            <td colspan='3'>
+                @Las.NoData
+            </td>
+        </tr>
+    </tbody>
+</table>

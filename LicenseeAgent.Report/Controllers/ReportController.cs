@@ -19,7 +19,6 @@ namespace LicenseeAgent.Report.Controllers
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Services;
     using Services;
@@ -358,37 +357,18 @@ namespace LicenseeAgent.Report.Controllers
         /// Return match no data.
         /// </summary>
         /// <returns>HTML string.</returns>
-        private static string ResultsMatchNoData()
+        private string ResultsMatchNoData()
         {
-            var htmlNoDataStr = string.Format(
-                                "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
-                                + "<th class='column-match'>{1}</th><th class='column-firsthaftscore'>{2}</th>"
-                                + "<th class='column-finalscore'>{3}</th><th class='column-status'>{4}</th></tr></thead>"
-                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='5'>{5}</td></tr><!--/NoInfo--></tbody></table>",
-                                 Las.KickOffTime,
-                                 Las.Match,
-                                 Las.FirstHalfScore,
-                                 Las.FinalScore,
-                                 Las.Status,
-                                 Las.NoData);
-            return htmlNoDataStr;
+            return RenderRazorViewToString("~/Views/Report/ResultsMatch.NoData.cshtml", null);
         }
 
         /// <summary>
         /// Return outright no data.
         /// </summary>
         /// <returns>HTML string.</returns>
-        private static string ResultsOutrightNoData()
+        private string ResultsOutrightNoData()
         {
-            var htmlNoDataStr = string.Format(
-                                "<table class='fanex-result'><thead><tr class='row-header'><th class='column-kickofftime'>{0}</th>"
-                                + "<th class='column-match'>{1}</th><th class='column-status'>{2}</th></tr></thead>"
-                                + "<tbody><!--NoInfo--><tr class='row-noinfo'><td colspan='3'>{3}</td></tr><!--/NoInfo--></tbody></table>",
-                                 Las.Time,
-                                 Las.Team,
-                                 Las.Results,
-                                 Las.NoData);
-            return htmlNoDataStr;
+            return RenderRazorViewToString("~/Views/Report/ResultsOutright.NoData.cshtml", null);
         }
 
         /// <summary>
@@ -407,13 +387,9 @@ namespace LicenseeAgent.Report.Controllers
 
             switch ((SportType)criteria.SportType)
             {
-                case SportType.HorseRacing:
-                case SportType.Greyhound:
-                case SportType.Harness:
                 case SportType.VirtualHorseRacing:
-                case SportType.VirtualMotorRacing:
-                case SportType.VirtualGreyhounds:
-                    return string.Empty;
+                    var data = _reportService.GetMatchResultsVirtualHorseRacing(criteria.EventDate, criteria.SportType, leagueId, _includeTestData);
+                    return data != null ? ResultEngine.HtmlParser(data, setting) : string.Empty;
 
                 case SportType.LiveCasino:
                     return string.Empty;

@@ -63,11 +63,9 @@
     <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Enyim.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.5217.23765, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core-NPOI.2.0.6.1.0.0.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.5217.23766, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.TicketHelper-NPOI.2.0.6.1.0.0.0\lib\net40\Fanex.BetList.Core.TicketHelper.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.BetList.Core.2.0.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Fanex.Caching.dll</HintPath>
@@ -84,14 +82,15 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Result.Core, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Result.Core.1.4.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
+    <Reference Include="Fanex.Result.Core, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Result.Core.1.5.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IBCFile.1.0.0\lib\net40\IBCFile.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core-NPOI.2.0.6.1.0.0.0\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -123,7 +122,8 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core-NPOI.2.0.6.1.0.0.0\lib\net40\NPOI.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
@@ -258,12 +258,14 @@
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
-    <Content Include="Content\Results\results.css" />
-    <Content Include="Content\Results\fanex.result.css" />
-    <Content Include="Content\Results\images\bg_header03.jpg" />
-    <Content Include="Content\Results\images\first-goal.gif" />
-    <Content Include="Content\Results\images\last-goal.gif" />
-    <Content Include="Content\Results\images\tab_topbg.gif" />
+    <Content Include="Content\Fanex.Result\fanex.result.css" />
+    <Content Include="Content\Fanex.Result\images\1F.gif" />
+    <Content Include="Content\Fanex.Result\images\1L.gif" />
+    <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
+    <Content Include="Content\Fanex.Result\images\first-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\last-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
+    <Content Include="Content\Fanex.Result\fanex.result.override.css" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ja-JP.js" />
@@ -320,11 +322,6 @@
     <Content Include="Scripts\ResourcesJs\SportType.zh-TW.js">
       <DependentUpon>SportType.tt</DependentUpon>
     </Content>
-    <Content Include="Styles\Fanex.Result\fanex.result.css" />
-    <Content Include="Styles\Fanex.Result\images\bg_header03.jpg" />
-    <Content Include="Styles\Fanex.Result\images\first-goal.gif" />
-    <Content Include="Styles\Fanex.Result\images\last-goal.gif" />
-    <Content Include="Styles\Fanex.Result\images\tab_topbg.gif" />
     <Content Include="Views\CustomerList\Resources\customer-list.js" />
     <Content Include="Views\CustomerList\Resources\customer-list.less" />
     <Content Include="Views\CustomerList\Resources\reset-password.js" />
@@ -888,6 +885,8 @@
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
     <Content Include="Views\Tool\SyncMonitoring.cshtml" />
+    <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
+    <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

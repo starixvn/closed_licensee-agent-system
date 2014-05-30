@@ -110,6 +110,28 @@ namespace LicenseeAgent.Report.Services
         }
 
         /// <summary>
+        /// Gets the match results virtual horse racing.
+        /// </summary>
+        /// <param name="eventDate">The event date.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="isShowAll">If set to <c>true</c> [is show all].</param>
+        /// <returns>Returns list of Virtual Horse Racing.</returns>
+        public IList<Racing> GetMatchResultsVirtualHorseRacing(DateTime eventDate, int sportType, int leagueId, bool isShowAll)
+        {
+            var criteria = new MatchResultsVirtualHorseRacingCriteria
+            {
+                EventDate = eventDate,
+                SportType = sportType,
+                LeagueId = leagueId,
+                IsShowAll = isShowAll
+            };
+
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingVirtualHorseRacing(dataTable);
+        }
+
+        /// <summary>
         /// Get outright results.
         /// </summary>
         /// <param name="criteria">Bet List Details Criteria.</param>

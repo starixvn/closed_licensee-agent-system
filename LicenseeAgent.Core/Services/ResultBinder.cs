@@ -160,32 +160,34 @@ namespace LicenseeAgent.Core.Services
         /// </summary>
         /// <param name="data">The data table.</param>
         /// <returns>The racing data list.</returns>
-        public static IList<Racing> BindingRacing(DataTable data)
+        public static IList<Racing> BindingVirtualHorseRacing(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {
-                return
+                var result =
                     data.AsEnumerable()
                         .Select(
                             i =>
                                 new Racing
                                 {
-                                    LeagueId = int.Parse(i["meetingid"].ToString()),
+                                    LeagueId = int.Parse(i["leagueid"].ToString()),
                                     EngineId = i["HorseId"].ToString(),
                                     EngineNo = i["HorseNo"].ToString(),
                                     IsFavor = i["IsFavor"] != DBNull.Value && i["IsFavor"].ToString().Equals("1") ? true : false,
-                                    IsSCR = i["IsSCR"] != DBNull.Value && i["IsSCR"].ToString().Equals("1") ? true : false,
+                                    IsSCR = false,
                                     Place = int.Parse(i["place"].ToString()),
                                     PlaceOdds = decimal.Parse(i["placeodds"].ToString()),
-                                    WinOdds = decimal.Parse(i["odds"].ToString()),
-                                    RaceName = i["racename"] != DBNull.Value ? int.Parse(i["racename"].ToString()) : 0,
-                                    KickOffTime = i["kickofftime"] != DBNull.Value ? DateTime.Parse(i["kickofftime"].ToString()) : DateTime.MinValue,
+                                    WinOdds = decimal.Parse(i["winodds"].ToString()),
+                                    RaceName = 0,
+                                    KickOffTime = i["eventtime"] != DBNull.Value ? DateTime.Parse(i["eventtime"].ToString()) : DateTime.MinValue,
                                     Favourite = i["IsFavor"] != DBNull.Value ? i["IsFavor"].ToString() : string.Empty,
-                                    RowCount = int.Parse(i["rowcount"].ToString()),
-                                    SCROfMatch = i["SCR"].ToString(),
-                                    TFOfMatch = i["TF"].ToString()
+                                    SCROfMatch = string.Empty,
+                                    TFOfMatch = string.Empty
                                 })
                         .ToList();
+
+                result.ForEach(x => x.RowCount = result.Count(y => y.KickOffTime == x.KickOffTime));
+                return result;
             }
 
             return new List<Racing>();

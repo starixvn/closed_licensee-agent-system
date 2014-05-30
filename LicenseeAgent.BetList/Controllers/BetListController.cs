@@ -215,14 +215,6 @@ namespace LicenseeAgent.BetList.Controllers
         {
             switch ((SportType)model.SportType)
             {
-                case SportType.HorseRacing:
-                case SportType.Greyhound:
-                case SportType.Harness:
-                case SportType.VirtualHorseRacing:
-                case SportType.VirtualMotorRacing:
-                case SportType.VirtualGreyhounds:
-                    return string.Empty;
-
                 case SportType.LiveCasino:
                     return string.Empty;
 

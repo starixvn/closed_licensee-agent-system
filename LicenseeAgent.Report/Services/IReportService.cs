@@ -33,6 +33,8 @@ namespace LicenseeAgent.Report.Services
 
         IList<NumberGame> GetMatchResultsNumberGame(DateTime eventDate, int leagueId, bool isShowAll);
 
+        IList<Racing> GetMatchResultsVirtualHorseRacing(DateTime eventDate, int sportType, int leagueId, bool isShowAll);
+
         /// <summary>
         /// Get outright results.
         /// </summary>

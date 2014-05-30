@@ -71,7 +71,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core-NPOI.2.0.6.1.0.0.0\lib\net40\TplCore.dll</HintPath>
+      <HintPath>..\packages\TplCore.1.0.4694.29951\lib\net40\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

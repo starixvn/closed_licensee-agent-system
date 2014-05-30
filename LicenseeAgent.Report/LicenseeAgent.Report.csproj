@@ -57,8 +57,7 @@
       <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Result.Core, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Fanex.Result.Core.1.5.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.Result.Core-NPOI.2.0.6.1.5.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

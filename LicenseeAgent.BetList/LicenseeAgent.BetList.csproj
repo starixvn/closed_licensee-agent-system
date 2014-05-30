@@ -89,6 +89,7 @@
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
     <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
     <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />
+    <Compile Include="Criteria\BetListResultsVirtualRacingCriteria.cs" />
     <Compile Include="Criteria\TotalBetsParlayListCriteria.cs" />
     <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
     <Compile Include="Criteria\MixParlayDetailsCriteria.cs" />

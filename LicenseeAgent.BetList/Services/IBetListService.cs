@@ -61,6 +61,8 @@ namespace LicenseeAgent.BetList.Services
         /// </returns>
         IList<NumberGame> GetNumberGameResults(int matchId);
 
+        IList<Racing> GetVirtualRacingResults(int matchId, string raceNo);
+
         IList<Sportbook> GetSportsBookResults(int matchId);
 
         /// <summary>

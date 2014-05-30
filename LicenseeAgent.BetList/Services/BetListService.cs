@@ -177,8 +177,32 @@ namespace LicenseeAgent.BetList.Services
                     throw new InvalidOperationException("Invalid criteria");
                 }
 
-                var dataTable = _betlistDataAccess.GetBetListResults(criteria);
+                var dataTable = ExecuteDataTable(criteria);
                 return ResultBinder.BindingNumberGame(dataTable);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
+        }
+
+        public IList<Racing> GetVirtualRacingResults(int matchId, string raceNo)
+        {
+            var criteria = new BetListResultsVirtualRacingCriteria
+            {
+                MatchId = matchId,
+                RaceNo = raceNo
+            };
+
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                var dataTable = ExecuteDataTable(criteria);
+                return ResultBinder.BindingVirtualHorseRacing(dataTable);
             }
             catch (Exception exception)
             {
@@ -207,7 +231,7 @@ namespace LicenseeAgent.BetList.Services
                     throw new InvalidOperationException("Invalid criteria");
                 }
 
-                var dataTable = _betlistDataAccess.GetBetListResults(criteria);
+                var dataTable = ExecuteDataTable(criteria);
                 return ResultBinder.BindingSportsBook(dataTable);
             }
             catch (Exception exception)
@@ -230,7 +254,7 @@ namespace LicenseeAgent.BetList.Services
                     throw new InvalidOperationException("Invalid criteria");
                 }
 
-                var dataTable = _betlistDataAccess.GetBetListResults(criteria);
+                var dataTable = ExecuteDataTable(criteria);
                 return ResultBinder.BindingParlay(dataTable, criteria.RefNo);
             }
             catch (Exception exception)

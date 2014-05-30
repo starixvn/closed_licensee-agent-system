@@ -215,6 +215,14 @@ namespace LicenseeAgent.BetList.Controllers
         {
             switch ((SportType)model.SportType)
             {
+                case SportType.VirtualHorseRacing:
+                case SportType.VirtualGreyhounds:
+                case SportType.VirtualSpeedway:
+                case SportType.VirtualMotorRacing:
+                case SportType.VirtualCycling:
+                    var racingData = _betlistService.GetVirtualRacingResults(model.MatchId.Value, model.RaceNo);
+                    return racingData != null ? ResultEngine.HtmlParser(racingData, setting) : string.Empty;
+
                 case SportType.LiveCasino:
                     return string.Empty;
 

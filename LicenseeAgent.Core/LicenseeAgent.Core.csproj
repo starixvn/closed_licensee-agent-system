@@ -46,8 +46,9 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Result.Core">
-      <HintPath>..\packages\Fanex.Result.Core.1.4.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
+    <Reference Include="Fanex.Result.Core, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Result.Core.1.5.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -150,6 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Enumerations\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.generated.cs</LastGenOutput>
@@ -174,6 +176,13 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+    <Content Include="Content\Fanex.Result\fanex.result.css" />
+    <Content Include="Content\Fanex.Result\images\1F.gif" />
+    <Content Include="Content\Fanex.Result\images\1L.gif" />
+    <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
+    <Content Include="Content\Fanex.Result\images\first-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\last-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

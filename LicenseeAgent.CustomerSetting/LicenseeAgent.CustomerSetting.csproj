@@ -157,6 +157,7 @@
     <Folder Include="CodeAnalysis\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Core\PtSettings.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>ProductSettings.cs</LastGenOutput>

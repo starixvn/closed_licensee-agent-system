@@ -24,7 +24,7 @@ namespace LicenseeAgent.BetList.ViewModels
 
         public long? RefNo { get; set; }
 
-        public long? RaceNo { get; set; }
+        public string RaceNo { get; set; }
 
         public int? MatchId { get; set; }
 

@@ -44,12 +44,5 @@ namespace LicenseeAgent.BetList.DataAccess
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
         TicketResult GetParlayList(ICriteria criteria);
-
-        /// <summary>
-        /// Get Bet List Results.
-        /// </summary>
-        /// <param name="criteria">Bet List Results Criteria.</param>
-        /// <returns>The list of matches.</returns>
-        DataTable GetBetListResults(ICriteria criteria);
     }
 }

@@ -116,14 +116,14 @@
     <Setting Key="LAS_TotalBet_SelParlayTickets" SpName="LAS_TotalBet_SelParlayTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
   </Function>
   <Function Name="BetList">
-    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
+    <Setting Key="LAS_Betlist_SelByMember" SpName="LAS_Betlist_SelByMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelParlayDetail" SpName="LAS_Betlist_SelParlayDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelAgentPTComm" SpName="LAS_Betlist_SelAgentPTComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SystemParlayResult" SpName="LAS_Betlist_SystemParlayResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResult" SpName="LAS_BetList_SelMatchResult" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_BetList_SelMatchResultParlay" SpName="LAS_BetList_SelMatchResultParlay" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelMatchResultNumberGame" SpName="LAS_Betlist_SelMatchResultNumberGame" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
-
+    <Setting Key="LAS_BetList_SelMatchResultVirtualRacing" SpName="LAS_BetList_SelMatchResultVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <!-- Totalbets - Betlist-->
     <Setting Key="LAS_Betlist_SelRunningByBettypeMatch" SpName="LAS_Betlist_SelRunningByBettypeMatch" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>
     <Setting Key="LAS_Betlist_SelRunningOutrightTickets" SpName="LAS_Betlist_SelRunningOutrightTickets" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600"/>

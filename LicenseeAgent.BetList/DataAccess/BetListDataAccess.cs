@@ -112,22 +112,6 @@ namespace LicenseeAgent.BetList.DataAccess
             }
         }
 
-        /// <summary>
-        /// Get Bet List Results.
-        /// </summary>
-        /// <param name="criteria">Bet List Results Criteria.</param>
-        /// <returns>The list of matches.</returns>
-        public DataTable GetBetListResults(ICriteria criteria)
-        {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
-
-                return dataset.Tables[0];
-            }
-        }
-
         #region BetList.Utilities
 
         /// <summary>

@@ -117,19 +117,7 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>A list of bet list details.</returns>
         public IList<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria)
         {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                return GetEntites<RawBetListDetails>(criteria);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            return GetEntites<RawBetListDetails>(criteria);
         }
 
         /// <summary>
@@ -170,20 +158,8 @@ namespace LicenseeAgent.BetList.Services
                 MatchId = matchId
             };
 
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var dataTable = ExecuteDataTable(criteria);
-                return ResultBinder.BindingNumberGame(dataTable);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingNumberGame(dataTable);
         }
 
         /// <summary>
@@ -200,20 +176,8 @@ namespace LicenseeAgent.BetList.Services
                 RaceNo = raceNo
             };
 
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var dataTable = ExecuteDataTable(criteria);
-                return ResultBinder.BindingVirtualHorseRacing(dataTable);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingVirtualHorseRacing(dataTable);
         }
 
         /// <summary>
@@ -230,20 +194,8 @@ namespace LicenseeAgent.BetList.Services
                 MatchId = matchId
             };
 
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var dataTable = ExecuteDataTable(criteria);
-                return ResultBinder.BindingSportsBook(dataTable);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingSportsBook(dataTable);
         }
 
         /// <summary>
@@ -253,20 +205,8 @@ namespace LicenseeAgent.BetList.Services
         /// <returns>The parlay list.</returns>
         public IList<Parlay> GetParlayResults(BetListResultsParlayCriteria criteria)
         {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var dataTable = ExecuteDataTable(criteria);
-                return ResultBinder.BindingParlay(dataTable, criteria.RefNo);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            var dataTable = ExecuteDataTable(criteria);
+            return ResultBinder.BindingParlay(dataTable, criteria.RefNo);
         }
     }
 }

@@ -422,7 +422,14 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             var messages = new List<Result> { GenerateMessages(result) };
 
-            return Json(new { ErrCode = Result.SuccessValue, Messages = messages, CustId = result.CustIdReturn, HasOffered3rd = hasOffered3rd });
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                Messages = messages,
+                CustId = result.CustIdReturn,
+                HasOffered3rd = hasOffered3rd,
+                CustomerLevel = CurrentSession.AgentInfo.AgentLevel + 1
+            });
         }
 
         /// <summary>

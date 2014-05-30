@@ -139,7 +139,7 @@ if (fanex.customerSetting) {
                                     .format(data.CustId);
                                 } else {
                                     url = "~/CustomerSetting/EditProductAgent?agentId={0}&agentLevel={1}"
-                                    .format(data.CustId, settingContext.TargetRoleId - 1);
+                                    .format(data.CustId, data.CustomerLevel);
                                 }
 
                                 setTimeout(function () {

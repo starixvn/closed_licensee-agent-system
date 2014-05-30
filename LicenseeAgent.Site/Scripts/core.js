@@ -41,7 +41,7 @@ var core = (function ($) {
             // customize scrollbars.
             if ($.fn.niceScroll) {
                 $('html').niceScroll({
-                    cursorcolor:"#8a8a8a",
+                    cursorcolor: "#8a8a8a",
                     autohidemode: false
                 });
 
@@ -408,8 +408,18 @@ var core = (function ($) {
             window.open(url, '_blank');
             window.focus();
         },
-        submitPage: function () {
-            $('button[type=submit]').submit();
+        submitPage: function (timeout) {
+            if (typeof timeout === 'undefined') {
+                timeout = core.RELOAD_INTERVAL;
+            }
+
+            if (popup.isIframe()) {
+                window.parent.popup.submitPage(timeout);
+            } else {
+                setTimeout(function () {
+                    $('button[type=submit]').submit();
+                }, timeout);
+            }
         },
         handleError: function (data) {
             if (data && data.ErrCode) {

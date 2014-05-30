@@ -186,6 +186,12 @@ namespace LicenseeAgent.BetList.Services
             }
         }
 
+        /// <summary>
+        /// Gets the virtual racing results.
+        /// </summary>
+        /// <param name="matchId">The match identifier.</param>
+        /// <param name="raceNo">The race no.</param>
+        /// <returns>Returns list of Racing item.</returns>
         public IList<Racing> GetVirtualRacingResults(int matchId, string raceNo)
         {
             var criteria = new BetListResultsVirtualRacingCriteria

@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publish", "Publish", "{EBE2
 		publish.cmd = publish.cmd
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Tests", "LicenseeAgent.Tests\LicenseeAgent.Tests.csproj", "{0DF7E413-3FF3-4020-ACE6-B43049660B0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -214,6 +216,16 @@ Global
 		{EA04AEE5-B144-43EE-8449-563F2C6847AF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EA04AEE5-B144-43EE-8449-563F2C6847AF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EA04AEE5-B144-43EE-8449-563F2C6847AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0DF7E413-3FF3-4020-ACE6-B43049660B0F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

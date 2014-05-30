@@ -388,6 +388,10 @@ namespace LicenseeAgent.Report.Controllers
             switch ((SportType)criteria.SportType)
             {
                 case SportType.VirtualHorseRacing:
+                case SportType.VirtualGreyhounds:
+                case SportType.VirtualSpeedway:
+                case SportType.VirtualMotorRacing:
+                case SportType.VirtualCycling:
                     var data = _reportService.GetMatchResultsVirtualHorseRacing(criteria.EventDate, criteria.SportType, leagueId, _includeTestData);
                     return data != null ? ResultEngine.HtmlParser(data, setting) : string.Empty;
 

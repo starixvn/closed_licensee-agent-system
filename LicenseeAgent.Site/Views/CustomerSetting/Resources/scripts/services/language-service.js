@@ -40,11 +40,22 @@ if (fanex.customerSetting) {
                 return result;
             },
             getBetTypeName: function (betTypeId) {
-                return language.getBetTypeName(betTypeId);
+                var result = '';
+                switch (betTypeId) {
+                    case 81:
+                        result = language.getString('FirstLastBallOverUnder');
+                        break;
+                    case 83:
+                        result = language.getString('FirstLastBallOddEven');
+                        break;
+                    default:
+                        result = language.getBetTypeName(betTypeId);
+                }
+                return result;
             },
             getString: function (key) {
                 return language.getString(key);
-            }, 
+            },
             getFormatString: function () {
                 return language.getFormatString.apply(language, arguments);
             }

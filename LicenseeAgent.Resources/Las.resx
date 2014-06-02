@@ -1365,4 +1365,10 @@
   <data name="EditSettingOfOtherProducts" xml:space="preserve">
     <value>Edit Setting Of Other Products</value>
   </data>
+  <data name="PlaytechCasino" xml:space="preserve">
+    <value>Playtech Casino</value>
+  </data>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>Live Casino</value>
+  </data>
 </root>

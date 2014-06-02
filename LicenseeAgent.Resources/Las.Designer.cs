@@ -1717,6 +1717,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live Casino.
+        /// </summary>
+        public static string LiveCasino {
+            get {
+                return ResourceManager.GetString("LiveCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked.
         /// </summary>
         public static string Locked {
@@ -2711,6 +2720,15 @@ namespace LicenseeAgent.Resources {
         public static string PhoneNote {
             get {
                 return ResourceManager.GetString("PhoneNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playtech Casino.
+        /// </summary>
+        public static string PlaytechCasino {
+            get {
+                return ResourceManager.GetString("PlaytechCasino", resourceCulture);
             }
         }
         

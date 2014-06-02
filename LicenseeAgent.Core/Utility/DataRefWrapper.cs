@@ -96,8 +96,14 @@ namespace LicenseeAgent.Core.Utility
                 case (int)Product.Product_2:
                     return Las.NumberGame;
 
+                case (int)Product.Product_4:
+                    return Las.LiveCasino;
+
                 case (int)Product.Product_5:
                     return Las.VirtualSports;
+
+                case (int)Product.Product_9:
+                    return Las.PlaytechCasino;
             }
 
             return string.Format("Undefined product name {0}", productId);

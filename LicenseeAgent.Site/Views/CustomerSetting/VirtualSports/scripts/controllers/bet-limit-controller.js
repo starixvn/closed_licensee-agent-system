@@ -24,14 +24,18 @@ if (fanex.customerSetting) {
                 settingContext: settingContext
             };
 
-            $scope.saveData = function() {
+            $scope.updateSettingModel = function () {
+                $scope.betLimitService.updateScope($scope, fanex.cloneObject(virtualSportsSetting.BettingLimitSetting));
+            };
+
+            $scope.saveData = function () {
                 return $scope.betLimitService.getbettingLimits(
                     settingContext,
                     $scope.model.bettingLimitsModel,
                     $scope.model.firstRecord);
             };
 
-            $scope.isValidData = function() {
+            $scope.isValidData = function () {
                 return $scope.betLimitService.isValidData(
                     settingContext,
                     $scope.model.bettingLimitsModel,

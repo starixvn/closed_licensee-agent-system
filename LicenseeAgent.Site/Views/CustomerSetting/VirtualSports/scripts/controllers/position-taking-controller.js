@@ -23,6 +23,10 @@ if (fanex.customerSetting) {
                 settingContext: settingContext
             };
 
+            $scope.updateSettingModel = function () {
+                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(virtualSportsSetting.PositionTakingSetting), languageService);
+            };
+
             $scope.saveData = function () {
                 return $scope.positionTakingService.getPositionTakingUpdate(
                     settingContext,

@@ -64,6 +64,15 @@ if (fanex.customerSetting) {
                 }
             }
             return bettingLimitsSave;
+        },
+        changeSettingValidation: function (betSetting) {
+            'use strict';
+            betSetting.OldMinBet = betSetting.MinBet;
+            betSetting.OldMaxBet = betSetting.MaxBet;
+            betSetting.OldMaxPerMatch = betSetting.MaxPerMatch;
+            betSetting.MinBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MinBet);
+            betSetting.MaxBet = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxBet);
+            betSetting.MaxPerMatch = fanex.customerSetting.betLimitService.reformatInputNumberForControl(betSetting.MaxPerMatch);
         }
     };
 

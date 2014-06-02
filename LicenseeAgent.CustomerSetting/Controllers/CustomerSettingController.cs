@@ -40,6 +40,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             Formatting = Formatting.Indented
         };
 
+        private static List<int> _virtualSportsTypeIds;
         private readonly IMemberService _memberService;
         private readonly IDownlLinePermissionService _permissionService;
         private readonly ICoreService _coreService = new CoreService();
@@ -47,6 +48,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         private readonly Services.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
         private readonly Services.VirtualSports.SettingService _virtualSportsService = new Services.VirtualSports.SettingService();
         private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
+
+        static CustomerSettingController()
+        {
+            _virtualSportsTypeIds = SettingConfigurations.GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
+        }
 
         public CustomerSettingController(
                 IMemberService memberService,
@@ -739,7 +745,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
                     case (int)ErrCode.Msg_1015:
                         msgContent = string.Format(
-                            ResourceManager.GetErrMsg(result.ErrCode),
+                            GetErrMsg(result.ErrCode, result.SportType),
                             Formatter.FormatPercent(result.MinPT),
                             Formatter.FormatPercent(result.MaxPT),
                             GetSportName(result.SportType, result.BetType, result.IsLive),
@@ -750,7 +756,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     case (int)ErrCode.Msg_1014:
                     case (int)ErrCode.Msg_1021:
                         msgContent = string.Format(
-                            ResourceManager.GetErrMsg(result.ErrCode),
+                            GetErrMsg(result.ErrCode, result.SportType),
                             Formatter.FormatPercent(result.MinPT),
                             Formatter.FormatPercent(result.MaxPT),
                             GetSportName(result.SportType, result.BetType, result.IsLive),
@@ -827,6 +833,18 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return DataRefWrapper.GetBetTypeName(betType);
+        }
+
+        private static string GetErrMsg(int errCode, int sportType)
+        {
+            var errMsg = ResourceManager.GetErrMsg(errCode);
+
+            if (_virtualSportsTypeIds.Contains(sportType))
+            {
+                errMsg = errMsg.Replace(" - {3}", string.Empty);
+            }
+
+            return errMsg;
         }
 
         /// <summary>

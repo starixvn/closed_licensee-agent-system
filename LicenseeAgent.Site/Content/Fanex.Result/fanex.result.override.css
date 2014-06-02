@@ -9,7 +9,7 @@ table.fanex-result tr.row-data td.column-league
     background: #DEDEDE;
 }
 
-table.fanex-result .ball 
+table.fanex-result .ball
 {
     padding: 1px;
     font-size: 11px;
@@ -40,22 +40,26 @@ table.fanex-result tr.row-data:hover
     background: #E2FFFF;
 }
 
-table.fanex-result tr.row-data td.column-match div.first-goal,
-table.fanex-result tr.row-data td.column-match div.last-goal,
-table.fanex-result tr.row-data td.column-match div.first-half-first-goal
+table.fanex-result tr.row-data td.column-match div.first-goal, table.fanex-result tr.row-data td.column-match div.last-goal, table.fanex-result tr.row-data td.column-match div.first-half-first-goal
 {
     font-size: 12px;
 }
 
-table.fanex-result tr.row-data td.column-kickofftime 
+table.fanex-result tr.row-data td.column-kickofftime
 {
     font-size: 12px !important;
+}
+
+table.fanex-result tr.row-data td, table.fanex-result tr.row-header th
+{
+    padding: 0px 5px;
+    min-width: 30px;
+    font-size: 12px;
 }
 
 table.fanex-result tr.row-header th, table.fanex-result-tenis-setdetail tr.row-header td
 {
     color: #FFFFFF;
-    font-size: 12px;
     font-weight: bold;
     background: #8A8A8A;
     border: 1px solid #fff;
@@ -70,10 +74,10 @@ table.fanex-result tr.row-header th:first-child, table.fanex-result-tenis-setdet
 table.fanex-result tr.row-data td, table.fanex-result-tenis-setdetail tr.row-data-setScore td, table.fanex-result-tenis-setdetail tr.row-data-SetScore td
 {
     border: 1px solid #dedede;
-    font-size: 12px;
 }
 
-#ResultsArea {
+#ResultsArea
+{
 }
 
 /*no-info*/
@@ -91,36 +95,40 @@ table.fanex-result .row-noinfo td
 }
 
 /*Date time picker*/
-.datepicker th.switch, .table-condensed th {
+.datepicker th.switch, .table-condensed th
+{
     color: #238FD0;
 }
 
-.datepicker th.prev, .datepicker th.next {
+.datepicker th.prev, .datepicker th.next
+{
     font-size: 1.3em;
 }
 
-.datepicker table tr td.active, .datepicker table tr td.active:hover,
-.datepicker table tr td.active, .datepicker table tr td.active:hover {
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active, .datepicker table tr td.active:hover
+{
     background-image: -moz-linear-gradient(center top, #0088CC, #238FD0);
 }
 
-.bl-sport-type {
+.bl-sport-type
+{
     color: #0088CC;
 }
 
-.bl-league-name {
+.bl-league-name
+{
     color: black;
     font-weight: bold !important;
 }
 
-.sporttype {
+.sporttype
+{
     background-color: #dedede;
     text-align: center;
     height: 30px;
 }
 
-table.fanex-result tr.row-data td.column-result,
-table.fanex-result tr.row-data td.column-engine-no
+table.fanex-result tr.row-data td.column-result, table.fanex-result tr.row-data td.column-engine-no
 {
     font-weight: bold;
 }

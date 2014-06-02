@@ -37,14 +37,12 @@
                 @Html.Label("Status", Las.Status, new { @class = "month" })
                 @Html.DropDownList("Status", ModelSettings.BetListStatuses, new { @class = "selectpicker w100" })
             </div>
-    
             <div class="newline">
             </div>
-
             @RazorHelper.Product(ViewBag.ProductList, "", "w60")
-
             <div class="controls-row">
-                <label class="w60"></label>
+                <label class="w60">
+                </label>
                 <button class="btn btn-primary" type="submit">
                     @Las.Submit
                 </button>

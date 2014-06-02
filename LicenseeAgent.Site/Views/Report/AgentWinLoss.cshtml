@@ -40,30 +40,26 @@
     <div class="controls-row">
         @Html.LabelFor(m => m.FromDate)
         <div class="input-append date datepicker" id="fromDatePicker" data-date="@Model.FromDate">
-            @Html.TextBoxFor(m => m.FromDate, new { @class = "span2"})
+            @Html.TextBoxFor(m => m.FromDate, new { @class = "span2" })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
     <div class="controls-row">
         @Html.LabelFor(m => m.ToDate, new { @class = "small-label" })
         <div class="input-append date datepicker" id="toDatePicker" data-date="@Model.ToDate">
-            @Html.TextBoxFor(m => m.ToDate, new { @class = "span2"})
+            @Html.TextBoxFor(m => m.ToDate, new { @class = "span2" })
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
-    
     <div class="newline">
     </div>
-    
     @RazorHelper.Product(Model.ProductList, Model.Product, "inline w60")
-    
     <div class="controls-row">
         @RazorHelper.DrawFilter(Model.DrawFilter)
     </div>
     <div class="newline">
     </div>
-
-    <div class="offset1 controls-row">
+    <div class="l80 controls-row">
         <button class="btn btn-primary left-button" id="search">@Las.Generate</button>
         <button class="btn btn-primary" id="today" data-date="@DateTime.Now.ToString("MM/dd/yyyy")">@Las.Today</button>
         <button class="btn btn-primary" id="yesterday" data-date="@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")">@Las.Yesterday</button>

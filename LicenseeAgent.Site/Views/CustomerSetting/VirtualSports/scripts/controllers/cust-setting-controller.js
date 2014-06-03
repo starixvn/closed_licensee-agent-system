@@ -1,4 +1,4 @@
-﻿/*global core, popup, settingContext, result, virtualSportsSetting:true */
+﻿/*global core, settingContext, result, virtualSportsSetting:true */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
@@ -136,7 +136,6 @@ if (fanex.customerSetting) {
             if (messagesQueryString !== '') {
                 var messages = core.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;
-                popup.close();
             }
         }
 

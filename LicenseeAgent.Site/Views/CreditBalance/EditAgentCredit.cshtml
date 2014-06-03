@@ -71,12 +71,6 @@
 {
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/creditbalance-popup")
-    @if (ViewBag.Result != null)
-    {
-        <script type="text/javascript">
-            popup.closeAndReload();
-        </script>
-    }
     @if (ViewBag.IsAccountInfo != null)
     {
         <script type="text/javascript">

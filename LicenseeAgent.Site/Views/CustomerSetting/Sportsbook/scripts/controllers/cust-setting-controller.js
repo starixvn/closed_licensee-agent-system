@@ -1,4 +1,4 @@
-﻿/*global core, popup, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
+﻿/*global core, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
@@ -147,9 +147,7 @@ if (fanex.customerSetting) {
                                 }, 5000);
                             }
                             else if (window.parent.customerList) {
-                                popup.close();
                                 window.parent.customerList.reRenderAfterPaged();
-                                window.parent.customerList.editProducts();
                             }
                         }
                     }).
@@ -288,7 +286,6 @@ if (fanex.customerSetting) {
             if (messagesQueryString !== '') {
                 var messages = core.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;
-                popup.close();
             }
         }
 

@@ -32,7 +32,10 @@ if (fanex.customerSetting) {
                     commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
                     bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
 
-                    commissionSettingScope.updateSettingModel();
+                    if (commissionSettingScope) {
+                        commissionSettingScope.updateSettingModel();
+                    }
+
                     bettingLimitScope.updateSettingModel();
                 }
 

@@ -46,7 +46,9 @@ if (fanex.customerSetting) {
                 var bettingLimitItems = null,
                     positionTakingItems = null,
                     userGroup = null,
+                    isChangeData = true,
                     bettingLimitScope,
+                    virtualSportsSetting = null,
                     positionTakingScope;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
@@ -67,7 +69,14 @@ if (fanex.customerSetting) {
                 }
 
                 positionTakingItems = positionTakingScope.saveData();
-                if (positionTakingItems.length === 0 && bettingLimitItems.length === 0) {
+                virtualSportsSetting = {
+                    PositionTakingSetting: positionTakingItems,
+                    BettingLimitSetting: bettingLimitItems
+                };
+
+                isChangeData = fanex.isChangedData(virtualSportsSetting);
+
+                if (!isChangeData) {
                     $('.messages').show();
                     $scope.Messages = [
                         {
@@ -85,11 +94,7 @@ if (fanex.customerSetting) {
                     headers: { 'Content-Type': 'application/json' },
                     data: {
                         settingContext: settingContext,
-                        virtualSportsSetting:
-                            {
-                                PositionTakingSetting: positionTakingItems,
-                                BettingLimitSetting: bettingLimitItems
-                            }
+                        virtualSportsSetting: virtualSportsSetting
                     }
                 }).
                     success(function (data) {

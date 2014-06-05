@@ -7,6 +7,11 @@ editProductModule.controller('EditProductController', ['$scope',
         $scope.products = products;
         $scope.activeUrl = function (productId) {
             var url = '';
+
+            if ($('.popup').length > 0) {
+                $('.tab-content').height(640);
+            }
+
             angular.forEach(products, function (value) {
                 if (value.ProductId === productId) {
                     url = value.Url;

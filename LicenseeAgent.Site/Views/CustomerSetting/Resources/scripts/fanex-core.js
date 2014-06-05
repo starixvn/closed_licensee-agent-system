@@ -92,10 +92,12 @@ fanex.cloneObject = function (obj) {
 
 fanex.isChangedData = function (productSetting) {
     'use strict';
+    var isChangedCommission = productSetting.CommissionSetting === undefined ? false :
+                                (productSetting.CommissionSetting !== null &&
+                                productSetting.CommissionSetting.CommissionItems !== null &&
+                                productSetting.CommissionSetting.CommissionItems.length > 0);
 
-    return (productSetting.CommissionSetting !== null &&
-            productSetting.CommissionSetting.CommissionItems !== null && 
-            productSetting.CommissionSetting.CommissionItems.length > 0)
+    return isChangedCommission
         || (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0)
         || productSetting.PositionTakingSetting.length > 0;
 };

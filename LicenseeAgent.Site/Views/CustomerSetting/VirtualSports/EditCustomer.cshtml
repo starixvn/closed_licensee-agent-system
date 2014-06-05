@@ -29,8 +29,8 @@
     data-href="@("~/CustomerSetting/UpdateVirtualSportsCustomer")" data-updated-href="@("~/CustomerSetting/GetUpdatedSetting")" data-product="@((int)Product.Product_5)">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
-            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == 0, 'error' : message.ErrCode != 0}">
-                <i data-ng-class="{'icon-message-success': message.ErrCode == 0, 'icon-message-error' : message.ErrCode != 0}">
+            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == result.Success, 'warning': message.ErrCode == result.NoChange, 'error' : message.ErrCode != result.Success && message.ErrCode != result.NoChange}">
+                <i data-ng-class="{'icon-message-success': message.ErrCode == result.Success, 'icon-message-warning': message.ErrCode == result.NoChange, 'icon-message-error' : message.ErrCode != result.Success && message.ErrCode != result.NoChange}">
                 </i>{{message.ErrMsg}}
             </p>
         </div>

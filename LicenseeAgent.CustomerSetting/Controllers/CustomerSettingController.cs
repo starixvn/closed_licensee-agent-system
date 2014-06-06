@@ -784,9 +784,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// <returns>Result Information.</returns>
         private static Result GetUpdateMessageSuccess(UpdateResult result)
         {
-            var productName = (int)result.SportType == (int)SportType.SportType_1
-                                    ? Las.Sportsbook
-                                    : DataRefWrapper.GetSportName((int)result.SportType);
+            var productId = DataRefWrapper.GetProductIdBySportType((int)result.SportType);
+            var productName = DataRefWrapper.GetProductName(productId);
+
             var msgContent = string.Empty;
 
             switch ((ErrorType)result.ErrType)
@@ -796,11 +796,11 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                     break;
 
                 case ErrorType.BetSetting:
-                    msgContent = string.Format(Las.UpdateBetSettingSuccessfully, productName);
+                    msgContent = string.Format(GetSuccessMsg(productId, Las.UpdateBetSettingSuccessfully), productName);
                     break;
 
                 case ErrorType.PositionTaking:
-                    msgContent = string.Format(Las.UpdatePositionTakingSuccessfully, productName);
+                    msgContent = string.Format(GetSuccessMsg(productId, Las.UpdatePositionTakingSuccessfully), productName);
                     break;
             }
 
@@ -844,6 +844,18 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             }
 
             return errMsg;
+        }
+
+        private static string GetSuccessMsg(int productId, string message)
+        {
+            var msgSuccess = message;
+
+            if (productId == (int)Product.Product_5)
+            {
+                msgSuccess = msgSuccess.Replace("{0} - ", string.Empty);
+            }
+
+            return msgSuccess;
         }
 
         /// <summary>

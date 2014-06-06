@@ -82,6 +82,38 @@ namespace LicenseeAgent.Core.Utility
         }
 
         /// <summary>
+        /// Gets the ID of the product.
+        /// </summary>
+        /// <param name="sportTypeId">The sport identifier.</param>
+        /// <returns>Returns product ID.</returns>
+        public static int GetProductIdBySportType(int sportTypeId)
+        {
+            switch (sportTypeId)
+            {
+                case (int)SportType.SportType_162:
+                    return (int)Product.Product_4;
+
+                case (int)SportType.SportType_202:
+                    return (int)Product.Product_8;
+
+                case (int)SportType.SportType_161:
+                    return (int)Product.Product_2;
+
+                case (int)SportType.SportType_180:
+                case (int)SportType.SportType_181:
+                case (int)SportType.SportType_182:
+                case (int)SportType.SportType_183:
+                case (int)SportType.SportType_184:
+                case (int)SportType.SportType_185:
+                case (int)SportType.SportType_186:
+                    return (int)Product.Product_5;
+
+                default:
+                    return (int)Product.Product_0;
+            }
+        }
+
+        /// <summary>
         /// Gets the name of the product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>

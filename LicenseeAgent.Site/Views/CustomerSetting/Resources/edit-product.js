@@ -8,7 +8,7 @@ editProductModule.controller('EditProductController', ['$scope',
         $scope.activeUrl = function (productId) {
             var url = '';
 
-            if ($('.popup').length > 0) {
+            if ($(window.parent.document).find('#popup-dialog').length > 0) {
                 $('.tab-content').height(640);
             }
 

@@ -99,6 +99,7 @@
     <Compile Include="Criteria\VirtualSports\AgentUpdateMemberIndirectCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeUpdateAgentCriteria.cs" />
+    <Compile Include="Entities\ISettingResult.cs" />
     <Compile Include="Entities\BettingLimitItem.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
     <Compile Include="Entities\CommissionSetting.cs" />

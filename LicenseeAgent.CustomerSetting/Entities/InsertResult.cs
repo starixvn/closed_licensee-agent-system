@@ -11,7 +11,7 @@ namespace LicenseeAgent.CustomerSetting.Entities
     /// <summary>
     /// Result of insert command.
     /// </summary>
-    public class InsertResult : Result
+    public class InsertResult : Result, ISettingResult
     {
         public InsertResult()
             : this(0, string.Empty)

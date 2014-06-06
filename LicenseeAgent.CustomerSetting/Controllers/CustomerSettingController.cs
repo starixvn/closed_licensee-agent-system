@@ -465,7 +465,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             {
                 foreach (var result in results)
                 {
-                    messages.Add(GenerateMessages(result, true));
+                    messages.Add(GenerateMessages(result));
                 }
             }
             else
@@ -504,7 +504,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
             foreach (var result in results)
             {
-                messages.Add(GenerateMessages(result, true));
+                messages.Add(GenerateMessages(result));
             }
 
             return Json(new
@@ -693,7 +693,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// Re-update message content.
         /// </summary>
         /// <param name="result">The result.</param>
-        /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
         /// <returns>
         /// Returns a list of result.
         /// </returns>
@@ -701,16 +700,16 @@ namespace LicenseeAgent.CustomerSetting.Controllers
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        private static Result GenerateMessages(dynamic result, bool isUpdate = false)
+        private static Result GenerateMessages(ISettingResult result)
         {
-            if ((int)result.ErrCode == 0)
+            if ((int)result.ErrCode == Result.SuccessValue)
             {
-                return isUpdate ? GetUpdateMessageSuccess(result) : new Result(Result.SuccessValue, Las.InsertSuccessfully);
+                return result is UpdateResult ? GetUpdateMessageSuccess((UpdateResult)result) : new Result(Result.SuccessValue, Las.InsertSuccessfully);
             }
             else
             {
-                result.MinPT = result.MinPT / 10000;
-                result.MaxPT = result.MaxPT / 10000;
+                result.MinPT = result.MinPT / Constant.PT_RATE;
+                result.MaxPT = result.MaxPT / Constant.PT_RATE;
                 string msgContent;
                 switch ((int)result.ErrCode)
                 {
@@ -783,7 +782,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         /// </summary>
         /// <param name="result">Insert or Update Result.</param>
         /// <returns>Result Information.</returns>
-        private static Result GetUpdateMessageSuccess(dynamic result)
+        private static Result GetUpdateMessageSuccess(UpdateResult result)
         {
             var productName = (int)result.SportType == (int)SportType.SportType_1
                                     ? Las.Sportsbook

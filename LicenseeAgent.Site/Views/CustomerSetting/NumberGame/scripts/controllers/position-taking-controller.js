@@ -20,7 +20,7 @@ if (fanex.customerSetting) {
             };
 
             $scope.updateSettingModel = function () {
-                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(numberGameSetting.PositionTakingSetting));
+                $scope.positionTakingService.updateScope($scope, fanex.cloneObject(numberGameSetting.PositionTakingSetting), languageService);
             };
 
             $scope.saveData = function () {

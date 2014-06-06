@@ -8,7 +8,7 @@
     /// TODO: Update summary.
     /// </summary>
     [XmlType("SettingOutput")]
-    public class UpdateResult : Result
+    public class UpdateResult : Result, ISettingResult
     {
         public ErrorType ErrType { get; set; }
 
@@ -25,14 +25,19 @@
         public decimal MaxPT { get; set; }
 
         [XmlElement(ElementName = "IsLive")]
-        public int BetStatus { get; set; }
+        public int IsLiveInternal { get; set; }
 
         [XmlIgnore]
-        public bool IsLive 
+        public bool IsLive
         {
             get
             {
-                return BetStatus == 1;
+                return IsLiveInternal == 1;
+            }
+
+            set
+            {
+                IsLiveInternal = value ? 1 : 0;
             }
         }
     }

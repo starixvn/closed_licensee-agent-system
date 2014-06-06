@@ -6,12 +6,8 @@
 
 namespace LicenseeAgent.CustomerSetting.Core
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Xml.Linq;
-    using Fanex.Common;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
     /// Constant information.
@@ -35,6 +31,7 @@ namespace LicenseeAgent.CustomerSetting.Core
         public const int STEP_MUL_DIV = 100;
         public const decimal ROUNDING_NUMBER = 0.0049m;
         public const int NUMBER_DIGIST = 2;
+        public const int PT_RATE = 10000;
 
         public static string DefaultLanguage
         {

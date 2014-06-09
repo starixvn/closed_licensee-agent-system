@@ -7,10 +7,7 @@
     @if (ViewBag.Result != null)
     {
         <script type="text/javascript">
-            $(function () {
-                if (window.parent.customerList)
-                    window.parent.customerList.reRenderAfterPaged();
-            });
+            core.submitPage();
         </script>
     }
 }

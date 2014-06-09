@@ -330,38 +330,25 @@ var popup = (function ($) {
             }
             return false;
         },
-        close: function (timeout) {
-            window.clearTimeout($closeTimeout);
-            if (typeof timeout === 'undefined') {
-                timeout = core.RELOAD_INTERVAL;
-            }
-
+        close: function () {
             if (popup.isIframe()) {
-                window.parent.popup.close(timeout);
+                window.parent.popup.close();
             } else if ($currentPopup) {
                 this.onHide();
-                $closeTimeout = setTimeout(function () {
-                    $currentPopup.close();
-                }, timeout);
+                $currentPopup.close();
             }
         },
-        closeAndReload: function (timeout) {
-            window.clearTimeout($closeTimeout);
-            if (typeof timeout === 'undefined') {
-                timeout = core.RELOAD_INTERVAL;
+        block: function () {
+            if ($('#popup-dialog>.block-overlay').length === 0) {
+                $('#popup-dialog').append('<div class="block-overlay"></div>');
+                $('#popup-dialog').append('<div class="block-loading"></div>');
             }
-
-            if (popup.isIframe()) {
-                window.parent.popup.closeAndReload(timeout);
-            } else if ($currentPopup) {
-                this.onHide();
-                $closeTimeout = setTimeout(function () {
-                    $currentPopup.close();
-                }, timeout);
-                setTimeout(function () {
-                    core.submitPage();
-                }, timeout);
-            }
+            $('#popup-dialog>.block-overlay').show();
+            $('#popup-dialog>.block-loading').show();
+        },
+        unblock: function () {
+            $('#popup-dialog>.block-overlay').hide();
+            $('#popup-dialog>.block-loading').hide();
         },
         onHide: function () {
             if ($currentPopup != null) {

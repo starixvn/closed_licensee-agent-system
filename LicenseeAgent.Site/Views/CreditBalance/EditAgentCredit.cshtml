@@ -57,7 +57,7 @@
                 </tbody>
             </table>
             <div class="button-group row-fluid">
-                <button type="button" class="btn btn-primary pull-right" onclick="popup.close(0);">
+                <button type="button" class="btn btn-primary pull-right" onclick="popup.close();">
                     @Las.Cancel
                 </button>
                 <button type="submit" class="btn btn-primary pull-right">
@@ -71,10 +71,19 @@
 {
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/creditbalance-popup")
-    @if (ViewBag.IsAccountInfo != null)
+    @if (ViewBag.Result != null)
     {
-        <script type="text/javascript">
-            top.accountInformation.refreshGivenCredit();
-        </script>
+        if (ViewBag.IsAccountInfo != null)
+        {
+            <script type="text/javascript">
+                top.accountInformation.refreshGivenCredit(false);
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+                core.submitPage(false);
+            </script>
+        }
     }
 }

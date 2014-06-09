@@ -326,10 +326,14 @@ var customerList = (function ($) {
             var buttons = [{
                 label: language.getString('Yes'),
                 action: function () {
+                    popup.close();
                     customerList.updateStatus(target, custId, statusId);
                 }
             }, {
-                label: language.getString('No')
+                label: language.getString('No'),
+                action: function () {
+                    popup.close();
+                }
             }];
 
             popup.confirm({

@@ -72,7 +72,7 @@
                 </tbody>
             </table>
             <div class="button-group row-fluid">
-                <button type="button" class="btn btn-primary pull-right" onclick="popup.close(0);">
+                <button type="button" class="btn btn-primary pull-right" onclick="popup.close();">
                     @Las.Cancel
                 </button>
                 <button type="submit" class="btn btn-primary pull-right">
@@ -86,4 +86,10 @@
 {
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/transfer-popup")
+    @if (ViewBag.Result != null)
+    {
+        <script type="text/javascript">
+            core.submitPage(true);
+        </script>
+    }
 }

@@ -182,13 +182,13 @@ var accountInformation = (function ($) {
             var buttons = [{
                 label: language.getString('Yes'),
                 action: function () {
-                    popup.close(0);
+                    popup.close();
                     accountInformation.changeCurrencyPage(currencyId, currencyName);
                 }
             }, {
                 label: language.getString('No'),
                 action: function () {
-                    popup.close(0);
+                    popup.close();
                     accountInformation.showNoUserAlert(msgAlert);
                 }
             }];
@@ -260,8 +260,16 @@ var accountInformation = (function ($) {
                 custId, custName, givenCredit);
             popup.openFrame(url);
         },
-        refreshGivenCredit: function () {
-            setTimeout(function () { $('#formSearch').submit(); }, core.RELOAD_INTERVAL);
+        refreshGivenCredit: function (hasReplication) {
+            var timeout = 0;
+            if (hasReplication === true) {
+                timeout = core.REPLICATION_INTERVAL;
+            }
+            popup.block();
+            setTimeout(function () {
+                $('#formSearch').submit();
+                popup.unblock();
+            }, timeout);
         }
     };
 } (jQuery));

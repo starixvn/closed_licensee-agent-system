@@ -14,7 +14,8 @@ var core = (function ($) {
         FORMATNUMBER: '0,0.00',
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '700',
-        RELOAD_INTERVAL: 10000,
+        RELOAD_INTERVAL: 5000,
+        REPLICATION_INTERVAL: 5000,
         EMPTY_TEXT_FORMAT: '---',
         ServerTime: appSettings.ServerTime,
         ServerDate: appSettings.ServerDate,
@@ -218,17 +219,17 @@ var core = (function ($) {
             return browserDectect;
         },
         blockUI: function () {
-            if ($('.block-overlay').length === 0) {
+            if ($('body>.block-overlay').length === 0) {
                 $('body').append('<div class="block-overlay"></div>');
                 $('body').append('<div class="block-loading"></div>');
             }
 
-            $('.block-overlay').show();
-            $('.block-loading').show();
+            $('body>.block-overlay').show();
+            $('body>.block-loading').show();
         },
         unblockUI: function () {
-            $('.block-overlay').hide();
-            $('.block-loading').hide();
+            $('body>.block-overlay').hide();
+            $('body>.block-loading').hide();
         },
         getGridColumnId: function (gridOptions, columnName) {
             var length = gridOptions.columns.length;
@@ -388,7 +389,7 @@ var core = (function ($) {
                 return url;
             }
         },
-        reload: function (timeout) {
+        gotoHomePage: function (timeout) {
             if (timeout === undefined) {
                 timeout = core.RELOAD_INTERVAL;
             }
@@ -396,7 +397,7 @@ var core = (function ($) {
                 window.parent.location.href = core.UrlRoot;
             }, timeout);
         },
-        reloadPage: function (timeout) {
+        reloadCurrentPage: function (timeout) {
             if (timeout === undefined) {
                 timeout = core.RELOAD_INTERVAL;
             }
@@ -408,16 +409,22 @@ var core = (function ($) {
             window.open(url, '_blank');
             window.focus();
         },
-        submitPage: function (timeout) {
-            if (typeof timeout === 'undefined') {
-                timeout = core.RELOAD_INTERVAL;
-            }
-
+        submitPage: function (hasReplication) {
             if (popup.isIframe()) {
-                window.parent.popup.submitPage(timeout);
+                window.parent.core.submitPage(hasReplication);
             } else {
+                var timeout = 0;
+                if (hasReplication === true) {
+                    timeout = core.REPLICATION_INTERVAL;
+                } else {
+                    if (pageContext !== undefined && pageContext.IsLastLevel) {
+                        timeout = core.REPLICATION_INTERVAL;
+                    }
+                }
+                popup.block();
                 setTimeout(function () {
                     $('button[type=submit]').submit();
+                    popup.unblock();
                 }, timeout);
             }
         },

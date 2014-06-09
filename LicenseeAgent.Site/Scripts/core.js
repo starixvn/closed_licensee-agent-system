@@ -1,4 +1,4 @@
-﻿/*global appSettings, language, moment, popup */
+﻿/*global appSettings, language, moment, popup, pageContext */
 
 var core = (function ($) {
     'use strict';

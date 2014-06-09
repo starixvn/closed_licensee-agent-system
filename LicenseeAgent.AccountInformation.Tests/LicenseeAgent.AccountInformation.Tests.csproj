@@ -31,11 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute, Version=1.7.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.7.2.0\lib\NET40\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +53,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountInformationControllersTests.cs" />
+    <Compile Include="Fake\FakeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">
+      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
+      <Name>LicenseeAgent.AccountInformation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>LicenseeAgent.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>LicenseeAgent.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Taiwan\LicenseeAgent.Taiwan.csproj">
+      <Project>{0AA1A19E-A3FB-49C1-9AEF-738122579250}</Project>
+      <Name>LicenseeAgent.Taiwan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Web\LicenseeAgent.Web.csproj">
+      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
+      <Name>LicenseeAgent.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

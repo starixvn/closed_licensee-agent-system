@@ -44,7 +44,6 @@
     <PackageAsSingleFile>false</PackageAsSingleFile>
     <ExcludeApp_Data>false</ExcludeApp_Data>
     <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
-    <ExcludeFilesFromDeployment>*.config</ExcludeFilesFromDeployment>
     <DesktopBuildPackageLocation>obj\Release\Package</DesktopBuildPackageLocation>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
@@ -235,6 +234,21 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Web.ConnectionStrings.Local.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpNames.Uat.xml">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpNames.Prod.xml">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpNames.Local.xml">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
     <Content Include="App_Data\CustomerSetting\PTGrid.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -555,6 +569,11 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web.Config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -609,12 +628,12 @@
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Home\Resources\home.less" />
     <Content Include="Views\Account\SignIn.cshtml" />
-    <Content Include="Web.AppSettings.config">
+    <None Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.ConnectionString.config">
+    </None>
+    <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Views\Tool\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
@@ -705,7 +724,7 @@
     <None Include="App_Data\Fanex.Result\Tennis.xls" />
     <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
-    <None Include="Properties\PublishProfiles\Server 209.pubxml" />
+    <None Include="Properties\PublishProfiles\GitDeploy.pubxml" />
     <None Include="Scripts\bootstrap\.jshintrc" />
     <Content Include="Content\bootstrap\accordion.less" />
     <Content Include="Content\bootstrap\alerts.less" />
@@ -825,7 +844,6 @@
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
-    <None Include="Scripts\ResourcesJs\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSetting.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -877,6 +895,10 @@
     <Content Include="Views\Instruction\zh-CN\LicenseePositionTakingSettingVirtualSportsAdv.cshtml" />
     <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingVirtualSports.cshtml" />
     <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingVirtualSportsAdv.cshtml" />
+    <None Include="Web.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Config.txt</LastGenOutput>
+    </None>
     <None Include="Views\Message\Resources\Message.less" />
     <Content Include="Views\Report\StatementDetail.cshtml" />
     <Content Include="Views\Report\StatementDetail.Grid.cshtml" />
@@ -886,6 +908,49 @@
     <Content Include="Views\Tool\SyncMonitoring.cshtml" />
     <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
     <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />
+    <Content Include="Web.ConnectionStrings.Prod.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.Uat.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Local.Admin.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Local.Agent.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Prod.Admin.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Prod.Agent.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Uat.Admin.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Uat.Agent.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Local.Admin.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Local.Agent.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Uat.Admin.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Uat.Agent.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Prod.Admin.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Prod.Agent.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">

@@ -133,6 +133,8 @@ language.BetType['en-US'] = {
 	'1507' : 'Massac',
 	'1508' : 'Ohio',
 	'1509' : 'Malta',
+	'1511' : 'Kentucky',
+	'1513' : 'Michigan',
 	'19999' : 'SUM',
 	'20000' : 'Bal',
 	'21001' : 'Dep',

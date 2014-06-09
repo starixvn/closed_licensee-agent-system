@@ -1,0 +1,9 @@
+﻿
+// Generated helper templates
+// Generated items
+// LicenseeAgent.Site\Web.Prod.Agent.config
+// LicenseeAgent.Site\Web.Prod.Admin.config
+// LicenseeAgent.Site\Web.Uat.Agent.config
+// LicenseeAgent.Site\Web.Uat.Admin.config
+// LicenseeAgent.Site\Web.Local.Agent.config
+// LicenseeAgent.Site\Web.Local.Admin.config

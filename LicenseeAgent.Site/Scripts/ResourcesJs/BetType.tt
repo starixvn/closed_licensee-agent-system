@@ -13,7 +13,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Windows.Forms" #>
-<#@ include file="TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
 /*global language*/
 
 language.BetType = {};

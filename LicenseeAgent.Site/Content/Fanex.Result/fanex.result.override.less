@@ -1,0 +1,176 @@
+﻿/*Results table*/
+
+table.fanex-result
+{
+    min-width: 600px;
+    font-size: 12px !important;
+    .ball
+    {
+        padding: 1px;
+        font-size: 11px;
+    }
+
+    tr
+    {
+        td
+        {
+            border: 1px solid #FFFFFF;
+            font-size: 12px !important;
+        }
+
+        &.format-even
+        {
+            background: #F5F6FA;
+        }
+
+        &.format-odd
+        {
+            background: #EDF0F0;
+        }
+
+        &.row-data
+        {
+            &:hover
+            {
+                background: #E2FFFF;
+            }
+
+            td, th
+            {
+                padding: 0px 5px;
+                min-width: 30px;
+            }
+
+            td
+            {
+                border: 1px solid #dedede;
+
+                &.column-league
+                {
+                    background: #DEDEDE;
+                }
+
+                &.column-match
+                {
+                    div.first-goal,
+                    div.last-goal,
+                    div.first-half-first-goal
+                    {
+                        font-size: 12px;
+                    }
+                }
+
+                &.column-kickofftime
+                {
+                    font-size: 12px !important;
+                    width: 90px;
+                }
+
+                &.column-eventstatus
+                {
+                    width: 70px;
+                }
+
+                &.column-result, &.column-engine-no
+                {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &.row-header
+        {
+            th
+            {
+                color: #FFFFFF;
+                font-weight: bold;
+                font-size: 12px;
+                background: #8A8A8A;
+                border: 1px solid #fff;
+                border-bottom-width: 0;
+                
+                &:first-child
+                {
+                    border-left: 1px solid #FFFFFF;
+                }
+            }
+        }
+
+        /*no-info*/
+        &.row-noinfo td
+        {
+            color: #FF0000;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            border-left: 1px solid #FFFFFF;
+            border-top-width: 0;
+            background: #EDF0F0;
+            height: 50px;
+        }
+    }
+}
+
+table.fanex-result-tenis-setdetail
+{
+    min-width: 600px;
+    font-size: 12px !important;
+
+    tr.row-header
+    {
+        td
+        {
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 12px;
+            background: #8A8A8A;
+            border: 1px solid #fff;
+            border-bottom-width: 0;
+
+            &:first-child
+            {
+                border-left: 1px solid #FFFFFF;
+            }
+        }
+    }
+
+    tr.row-data-setScore td, tr.row-data-SetScore td
+    {
+        border: 1px solid #dedede;
+    }
+}
+
+/*Date time picker*/
+.datepicker th.switch, .table-condensed th
+{
+    color: #238FD0;
+}
+
+.datepicker th.prev, .datepicker th.next
+{
+    font-size: 1.3em;
+}
+
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active, .datepicker table tr td.active:hover
+{
+    background-image: -moz-linear-gradient(center top, #0088CC, #238FD0);
+}
+
+.bl-sport-type
+{
+    color: #0088CC;
+}
+
+.bl-league-name
+{
+    color: black;
+    font-weight: bold !important;
+}
+
+.sporttype
+{
+    background-color: #dedede;
+    text-align: center;
+    height: 30px;
+}

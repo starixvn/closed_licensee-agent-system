@@ -260,7 +260,7 @@
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Content\Fanex.Result\fanex.result.css" />
-    <Content Include="Content\Fanex.Result\fanex.result.override.css" />
+    <Content Include="Content\Fanex.Result\fanex.result.override.less" />
     <Content Include="Content\Fanex.Result\images\1F.gif" />
     <Content Include="Content\Fanex.Result\images\1L.gif" />
     <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />

@@ -297,7 +297,7 @@ namespace LicenseeAgent.Site
                 "~/content/betlist/betlist.css",
                 "~/content/betlist/system-parlay-detail.css",
                 "~/Content/Fanex.Result/fanex.result.css",
-                "~/Content/Fanex.Result/fanex.result.override.css"));
+                "~/Content/Fanex.Result/fanex.result.override.less"));
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
             bundles.Add(new ScriptBundle("~/js/betlist").Include(
@@ -321,7 +321,7 @@ namespace LicenseeAgent.Site
                 "~/Views/Report/Resources/result-report.js"));
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Fanex.Result/fanex.result.css",
-                "~/Content/Fanex.Result/fanex.result.override.css"));
+                "~/Content/Fanex.Result/fanex.result.override.less"));
 
             bundles.Add(new LessBundle("~/css/outstandingreport").Include(
                  "~/Views/Report/Resources/Outstanding.less"));

@@ -59,8 +59,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 bettingLimits.Add(bettingLimit);
             }
 
-            bettingLimits.OrderBy(bt => bt.SportId).OrderBy(bt => bt.BetTypeId).ToList();
-            return bettingLimits;
+            return bettingLimits.OrderBy(bt => bt.SportId).OrderBy(bt => bt.BetTypeId).ToList();
         }
 
         /// <summary>
@@ -102,8 +101,7 @@ namespace LicenseeAgent.CustomerSetting.Utils
                 bettingLimits.Add(bettingLimit);
             }
 
-            bettingLimits.OrderBy(bt => bt.SportId).OrderBy(bt => bt.BetTypeId).ToList();
-            return bettingLimits;
+            return bettingLimits.OrderBy(bt => bt.SportId).OrderBy(bt => bt.BetTypeId).ToList();
         }
     }
 }

@@ -24,6 +24,10 @@ if (fanex.customerSetting) {
             };
 
             $scope.updateSettingModel = function () {
+                angular.forEach($scope.ptModel.ptGroups, function (ptGroup) {
+                    ptGroup.ApplyAll = false;
+                });
+
                 $scope.positionTakingService.updateScope($scope, fanex.cloneObject(virtualSportsSetting.PositionTakingSetting), languageService);
             };
 

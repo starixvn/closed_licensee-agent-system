@@ -52,10 +52,9 @@ if (fanex.customerSetting) {
                 for (indexData = 0; indexData < dataLength; indexData++) {
                     currentGroup = updatedData[indexData];
                     if (currentGroup) {
-                        for (indexGroup = 0; indexGroup < currentGroup.PositionTakings.length; indexGroup++) {
-                            currentPositionTaking = currentGroup.PositionTakings[indexGroup];
-                            self.getAdvancedModePositionTaking(settingContext, currentPositionTaking, positionTakingSave);
-                        }
+                        currentPositionTaking = currentGroup.PositionTakings[0];
+                        currentPositionTaking.ApplyAll = currentGroup.ApplyAll;
+                        self.getAdvancedModePositionTaking(settingContext, currentPositionTaking, positionTakingSave);
                     }
                 }
             }

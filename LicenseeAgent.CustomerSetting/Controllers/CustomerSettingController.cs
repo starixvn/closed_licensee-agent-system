@@ -562,7 +562,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Ip = Request.GetClientIp()
             };
 
-            if (!CheckForEditingCustomerSetting(settingContext))
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+
+            if (!productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any() || !CheckForEditingCustomerSetting(settingContext))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -642,7 +644,9 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 }
             }
 
-            if (!CheckForEditingCustomerSetting(settingContext))
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+
+            if (!productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any() || !CheckForEditingCustomerSetting(settingContext))
             {
                 return RedirectToAccessDeniedPage();
             }

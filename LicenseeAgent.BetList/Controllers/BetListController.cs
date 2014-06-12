@@ -189,6 +189,7 @@ namespace LicenseeAgent.BetList.Controllers
                 IsOutRight = model.IsOutright,
                 IsParlayPopUp = isParlayPopup,
                 IsPopUp = true,
+                IsShowTitle = true,
                 LanguageCode = CurrentSession.Language
             };
 

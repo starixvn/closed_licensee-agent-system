@@ -19,6 +19,19 @@ table.fanex-result, table.fanex-result-tenis-setdetail
 /*#region header row*/
 table.fanex-result tr.row-header
 {
+    
+}
+table.fanex-result tr.row-title
+{
+    background: #edf0f0;
+}
+table.fanex-result tr.row-title th.column-title
+{
+    border: 1px solid #dedede;
+    text-align: center;
+    vertical-align: middle;
+    height: 22px;
+    padding: 2px;
 }
 table.fanex-result tr.row-header th:first-child, table.fanex-result-tenis-setdetail tr.row-header td:first-child
 {

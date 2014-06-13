@@ -434,7 +434,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 Messages = messages,
                 CustId = result.CustIdReturn,
                 HasOffered3rd = hasOffered3rd,
-                CustomerLevel = CurrentSession.AgentInfo.AgentLevel + 1
+                CustomerLevel = ModelHelper.IsAgentLevel1(model.SettingContext.TargetRoleId - 1) ? (int)Role.Agent : (int)Role.AgentLevel1
             });
         }
 

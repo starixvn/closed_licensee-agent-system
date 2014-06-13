@@ -5,7 +5,7 @@
         SelectedLanguage: '@LanguageManager.Language',
         ServerTime: '@DateTime.Now.ToString()',
         ServerDate: '@DateTime.Now.ToShortDateString()',
-        ServerUtcOffset: '@TimeZoneInfo.Local.BaseUtcOffset'
+        ServerUtcOffset: '@DateTime.Now.ToString("zzz")'
     };
     @if (ViewBag.PageContext != null)
     {

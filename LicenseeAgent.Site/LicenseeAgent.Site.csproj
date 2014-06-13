@@ -628,6 +628,8 @@
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Home\Resources\home.less" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Error\Shared\_Layout.cshtml" />
+    <Content Include="Views\Error\_ViewStart.cshtml" />
     <None Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
     </None>

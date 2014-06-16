@@ -42,6 +42,9 @@ if (fanex.customerSetting) {
             getBetTypeName: function (betTypeId) {
                 var result = '';
                 switch (betTypeId) {
+                    case 5:
+                        result = language.getString('OneXTwo');
+                        break;
                     case 81:
                         result = language.getString('FirstLastBallOverUnder');
                         break;

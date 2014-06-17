@@ -186,7 +186,11 @@ namespace LicenseeAgent.Core.Services
                                 })
                         .ToList();
 
-                result.ForEach(x => x.RowCount = result.Count(y => y.KickOffTime == x.KickOffTime));
+                result.ForEach(x =>
+                {
+                    x.RowCount = result.Count(y => y.KickOffTime == x.KickOffTime);
+                    x.WinOdds = x.Place == 1 ? x.WinOdds : 0;
+                });
                 return result;
             }
 

@@ -1364,4 +1364,10 @@
   <data name="LiveCasino" xml:space="preserve">
     <value>娱乐厅</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
+  </data>
+  <data name="Bingo" xml:space="preserve">
+    <value>Bingo</value>
+  </data>
 </root>

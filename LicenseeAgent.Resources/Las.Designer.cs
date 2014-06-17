@@ -502,6 +502,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bingo.
+        /// </summary>
+        public static string Bingo {
+            get {
+                return ResourceManager.GetString("Bingo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Both.
         /// </summary>
         public static string Both {
@@ -1587,6 +1596,15 @@ namespace LicenseeAgent.Resources {
         public static string IpInformation {
             get {
                 return ResourceManager.GetString("IpInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keno.
+        /// </summary>
+        public static string Keno {
+            get {
+                return ResourceManager.GetString("Keno", resourceCulture);
             }
         }
         

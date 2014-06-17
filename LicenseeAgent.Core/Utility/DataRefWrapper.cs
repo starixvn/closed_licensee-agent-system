@@ -125,6 +125,9 @@ namespace LicenseeAgent.Core.Utility
                 case (int)Product.Product_0:
                     return Las.Sportsbook;
 
+                case (int)Product.Product_1:
+                    return "Horse Racing, Greyhound and Harness";
+
                 case (int)Product.Product_2:
                     return Las.NumberGame;
 
@@ -133,6 +136,12 @@ namespace LicenseeAgent.Core.Utility
 
                 case (int)Product.Product_5:
                     return Las.VirtualSports;
+
+                case (int)Product.Product_7:
+                    return Las.Bingo;
+
+                case (int)Product.Product_8:
+                    return Las.Keno;
 
                 case (int)Product.Product_9:
                     return Las.PlaytechCasino;

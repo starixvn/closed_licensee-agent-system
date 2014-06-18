@@ -39,7 +39,7 @@ namespace LicenseeAgent.Core.Utility
 
         public static string FormatPercent(object value)
         {
-            return string.Format(EnglishCultureInfo.NumberFormat, "{0:P}", value);
+            return string.Format(EnglishCultureInfo.NumberFormat, "{0:#,##0.####%}", value);
         }
 
         public static string FormatDateTime(object value)

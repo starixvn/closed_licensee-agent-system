@@ -117,6 +117,7 @@
     <Compile Include="DataAccess\IBetListDataAccess.cs" />
     <Compile Include="Entities\BetListCustomerInfo.cs" />
     <Compile Include="Entities\BetListDetails.cs" />
+    <Compile Include="Entities\LasTicketData.cs" />
     <Compile Include="Entities\TicketBuilderParameters.cs" />
     <Compile Include="Entities\RawBetListDetails.cs" />
     <Compile Include="Entities\LasTicket.cs" />

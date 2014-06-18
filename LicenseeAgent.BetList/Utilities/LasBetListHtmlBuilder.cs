@@ -8,13 +8,14 @@ namespace LicenseeAgent.BetList.Utilities
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Criteria;
     using Entities;
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
@@ -40,7 +41,7 @@ namespace LicenseeAgent.BetList.Utilities
             this BetListHTMLBuilder builder,
             LasTicket ticket,
             ITicketHelper ticketHelper,
-            IList<ITicketData> ticketData,
+            List<ITicketData> ticketData,
             BetListCriteriaBase criteria,
             int currencyID,
             string currencyName)
@@ -64,7 +65,7 @@ namespace LicenseeAgent.BetList.Utilities
                     return statusNormalText;
 
                 default:
-                    return builder.BuildStatus(ticket, ticketHelper, (List<ITicketData>)ticketData, true);
+                    return builder.BuildStatus(ticket, ticketHelper, ticketData, true);
             }
         }
 
@@ -117,7 +118,7 @@ namespace LicenseeAgent.BetList.Utilities
         /// <returns>Ticket win loss text.</returns>
         public static string BuildLasWinloss(Ticket ticket)
         {
-            if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
+            if (ticket.Status == BetStatus.Running || ticket.Status == BetStatus.Waiting)
             {
                 return "-";
             }
@@ -133,44 +134,103 @@ namespace LicenseeAgent.BetList.Utilities
         /// Get ticket Agent PT.
         /// </summary>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket agent position taking text.</returns>
-        public static string BuildAgentPT(LasTicket ticket)
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>
+        /// Ticket agent position taking text.
+        /// </returns>
+        public static string BuildAgentPT(LasTicket ticket, List<ITicketData> ticketData)
         {
-            var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
-            var agentPTHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100) + "%</div>";
-            agentPTHtmlStr += (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
-                ? string.Empty
-                : "<div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>";
-            return agentPTHtmlStr;
+            var stringBuilder = new StringBuilder();
+            switch (ticket.BetTypeId)
+            {
+                case (int)BetType.BetType_1233:
+                    var winTickets = ticketData.Where(x => x.BetTypeId == (int)BetType.BetType_1231 && x.RefNo == ticket.RefNo);
+                    if (winTickets.Count() > 0)
+                    {
+                        var winTicket = (LasTicketData)winTickets.First();
+                        stringBuilder.Append(string.Format(
+                            "<span class='blue' style='font-weight:normal;'>{0}: <b>{1}</b></span><br />",
+                            CoreBetList.win,
+                            Formatter.FormatPercent(winTicket.AgentPTPercent)));
+                    }
+
+                    var placeTickets = ticketData.Where(x => x.BetTypeId == (int)BetType.BetType_1232 && x.RefNo == ticket.RefNo);
+                    if (placeTickets.Count() > 0)
+                    {
+                        var placeTicket = (LasTicketData)placeTickets.First();
+                        stringBuilder.Append(string.Format(
+                            "<span style='font-weight:normal;'>{0}: <b>{1}</b></span>",
+                            CoreBetList.place,
+                            Formatter.FormatPercent(placeTicket.AgentPTPercent)));
+                    }
+
+                    break;
+
+                default:
+                    stringBuilder.Append("<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentPTPercent * 100) + "%</div>");
+                    break;
+            }
+
+            if (ticket.Status != BetStatus.Running && ticket.Status != BetStatus.Waiting)
+            {
+                var colorValue = ticket.AgentPositionTaking >= 0 ? "\"stake\">" : "\"red-text\">";
+                stringBuilder.Append("<div class=" + colorValue + Formatter.FormatDecimal(ticket.AgentPositionTaking) + "</div>");
+            }
+
+            return stringBuilder.ToString();
         }
 
         /// <summary>
         /// Get ticket Agent Commission.
         /// </summary>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket agent commission text.</returns>
-        public static string BuildAgentComm(LasTicket ticket)
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isAdmin">If set to <c>true</c> [is admin].</param>
+        /// <returns>
+        /// Ticket agent commission text.
+        /// </returns>
+        public static string BuildAgentComm(LasTicket ticket, List<ITicketData> ticketData, bool isAdmin)
         {
-            var agentCommHtmlStr = "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100) + "%</div>";
-            agentCommHtmlStr += (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
-                ? string.Empty
-                : "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
-            return agentCommHtmlStr;
-        }
-
-        /// <summary>
-        /// Get ticket Admin Agent Commission.
-        /// </summary>
-        /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket Admin agent commission text.</returns>
-        public static string BuildAdminAgentComm(Ticket ticket)
-        {
-            if (ticket.Status == Constants.BETLISTTICKETSTATUSRUNNING || ticket.Status == Constants.BETLISTTICKETSTATUSWAITING)
+            var stringBuilder = new StringBuilder();
+            if (!isAdmin)
             {
-                return "-";
+                switch (ticket.BetTypeId)
+                {
+                    case (int)BetType.BetType_1233:
+                        var winTickets = ticketData.Where(x => x.BetTypeId == (int)BetType.BetType_1231 && x.RefNo == ticket.RefNo);
+                        if (winTickets.Count() > 0)
+                        {
+                            var winTicket = (LasTicketData)winTickets.First();
+                            stringBuilder.Append(string.Format(
+                                "<span class='blue' style='font-weight:normal;'>{0}: <b>{1}</b></span><br />",
+                                CoreBetList.win,
+                                Formatter.FormatPercent(winTicket.AgentCommPercent)));
+                        }
+
+                        var placeTickets = ticketData.Where(x => x.BetTypeId == (int)BetType.BetType_1232 && x.RefNo == ticket.RefNo);
+                        if (placeTickets.Count() > 0)
+                        {
+                            var placeTicket = (LasTicketData)placeTickets.First();
+                            stringBuilder.Append(string.Format(
+                                "<span style='font-weight:normal;'>{0}: <b>{1}</b></span>",
+                                CoreBetList.place,
+                                Formatter.FormatPercent(placeTicket.AgentCommPercent)));
+                        }
+
+                        break;
+
+                    default:
+                        stringBuilder.Append("<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.AgentCommPercent * 100) + "%</div>");
+                        break;
+                }
             }
 
-            return "<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>";
+            if (ticket.Status != BetStatus.Running && ticket.Status != BetStatus.Waiting)
+            {
+                stringBuilder.Append("<div class=\"stake\">" + Formatter.FormatDecimal(ticket.AgentComm) + "</div>");
+            }
+
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -219,51 +279,48 @@ namespace LicenseeAgent.BetList.Utilities
             return param;
         }
 
+        private static string GetStatusText(LasTicket ticket)
+        {
+            return GetStatusText(ticket.Status);
+        }
+
         /// <summary>
         /// Get status text by status id.
         /// </summary>
-        /// <param name="ticket">LRF ticket object.</param>
-        /// <returns>Status text.</returns>
-        private static string GetStatusText(LasTicket ticket)
+        /// <param name="status">The status.</param>
+        /// <returns>
+        /// Status text.
+        /// </returns>
+        private static string GetStatusText(string status)
         {
-            var statusText = string.Empty;
-
-            switch (ticket.Status.ToLower())
+            switch (status.ToLower())
             {
                 case BetStatus.Running:
-                    statusText = CoreBetList.running;
-                    break;
+                    return CoreBetList.running;
 
                 case BetStatus.Reject:
-                    statusText = CoreBetList.reject;
-                    break;
+                    return CoreBetList.reject;
 
                 case BetStatus.Won:
-                    statusText = CoreBetList.won;
-                    break;
+                    return CoreBetList.won;
 
                 case BetStatus.Lose:
-                    statusText = CoreBetList.lose;
-                    break;
+                    return CoreBetList.lose;
 
                 case BetStatus.Draw:
-                    statusText = CoreBetList.draw;
-                    break;
+                    return CoreBetList.draw;
 
                 case BetStatus.Waiting:
-                    statusText = CoreBetList.waiting;
-                    break;
+                    return CoreBetList.waiting;
 
                 case BetStatus.Void:
-                    statusText = CoreBetList.voided;
-                    break;
+                    return CoreBetList.voided;
 
                 case BetStatus.Refund:
-                    statusText = CoreBetList.refund;
-                    break;
+                    return CoreBetList.refund;
             }
 
-            return statusText;
+            return string.Empty;
         }
     }
 }

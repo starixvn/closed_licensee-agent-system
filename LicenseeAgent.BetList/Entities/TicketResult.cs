@@ -20,9 +20,9 @@ namespace LicenseeAgent.BetList.Entities
             TicketDataList = new List<ITicketData>();
         }
 
-        public IList<LasTicket> MainTicketList { get; set; }
+        public List<LasTicket> MainTicketList { get; set; }
 
-        public IList<ITicketData> TicketDataList { get; set; }
+        public List<ITicketData> TicketDataList { get; set; }
 
         public int TotalRows { get; set; }
     }

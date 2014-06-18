@@ -124,7 +124,7 @@ namespace LicenseeAgent.BetList.DataAccess
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        private static IList<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
+        private static List<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
         {
             var playerCommCol = "playercomm" + baseCurrency;
             var commCol = "comm" + baseCurrency;
@@ -262,12 +262,11 @@ namespace LicenseeAgent.BetList.DataAccess
         private static List<ITicketData> ReadReferenceTicket(DataTable data, string baseCurrency)
         {
             var result = new List<ITicketData>();
-
             var containsBetTeam = data.Columns.Contains("betteam");
             var containsStake = data.Columns.Contains("stake");
             foreach (DataRow dataRow in data.Rows)
             {
-                var ticket = new TicketData();
+                var ticket = new LasTicketData();
 
                 // string
                 ticket.BetTeam = containsBetTeam ? dataRow["betteam"].ToString() : string.Empty;
@@ -282,6 +281,9 @@ namespace LicenseeAgent.BetList.DataAccess
 
                 // Decimal
                 ticket.Odds = Convert.ToDecimal(dataRow["odds"]);
+
+                ticket.AgentPTPercent = Convert.ToDecimal(dataRow["agentptpercent"]);
+                ticket.AgentCommPercent = Convert.ToDecimal(dataRow["agentcommpercent"]);
 
                 result.Add(ticket);
             }

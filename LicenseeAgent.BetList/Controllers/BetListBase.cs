@@ -71,7 +71,7 @@ namespace LicenseeAgent.BetList.Controllers
             var stringBuilder = new StringBuilder();
             foreach (var ticket in ticketResult.MainTicketList)
             {
-                var choice = builder.BuildChoice(ticket, ticketHelper, (List<ITicketData>)ticketResult.TicketDataList, false);
+                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
                 stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
             }
 
@@ -82,7 +82,7 @@ namespace LicenseeAgent.BetList.Controllers
         {
             var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
             var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
-            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
+            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
                 ? string.Empty
                 : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
 
@@ -94,7 +94,7 @@ namespace LicenseeAgent.BetList.Controllers
             var htmlString = data.AgentLevel == 1
                 ? string.Empty
                 : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
-            htmlString += (status == Constants.BETLISTTICKETSTATUSRUNNING || status == Constants.BETLISTTICKETSTATUSWAITING)
+            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
                 ? (data.AgentLevel == 1 ? "-" : string.Empty)
                 : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
 

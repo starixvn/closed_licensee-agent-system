@@ -6,8 +6,6 @@
 
 namespace LicenseeAgent.Report.Utilities
 {
-    using System.Collections.Generic;
-    using Fanex.BetList.Core.Entities;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Utilities;
 
@@ -32,8 +30,7 @@ namespace LicenseeAgent.Report.Utilities
 
         public override string BuildStatus(LasTicket ticket)
         {
-            return Builder.BuildTotalBetsParlayStatus(
-                                    ticket, TicketHelper, (List<ITicketData>)TicketResult.TicketDataList);
+            return Builder.BuildTotalBetsParlayStatus(ticket, TicketHelper, TicketResult.TicketDataList);
         }
 
         public override long BuildCustId(LasTicket ticket)

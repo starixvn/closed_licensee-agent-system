@@ -17,9 +17,6 @@ namespace LicenseeAgent.Core.Configurations
         public const string AppCookieLanguage = "LasLanguage";
         public const string AppCookieTopMenu = "LasTopMenu";
 
-        public const string BETLISTTICKETSTATUSRUNNING = "running";
-        public const string BETLISTTICKETSTATUSWAITING = "waiting";
-
         public const int MinimumUsernameLength = 6;
         public const int MaximumUsernameLength = 50;
         public const int ShortStringLength = 15;

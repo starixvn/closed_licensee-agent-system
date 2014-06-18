@@ -31,7 +31,7 @@ namespace LicenseeAgent.BetList.Utilities
         private TicketResult _ticketResult;
         private BetListHTMLBuilder _builder;
         private TicketHelper _ticketHelper;
-        
+
         protected TicketBuilder(TicketBuilderParameters ticketBuilderParameters)
         {
             _ticketResult = ticketBuilderParameters.TicketResult;
@@ -132,11 +132,11 @@ namespace LicenseeAgent.BetList.Utilities
                 SystemId = ticket.UserName,
                 TransTime = LasBetListHtmlBuilder.BuildTrans(ticket),
                 Status = BuildStatus(ticket),
-                Choice = _builder.BuildChoice(ticket, _ticketHelper, (List<ITicketData>)_ticketResult.TicketDataList, false),
-                Odds = _builder.BuildOdds(ticket, (List<ITicketData>)_ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
+                Choice = _builder.BuildChoice(ticket, _ticketHelper, _ticketResult.TicketDataList, false),
+                Odds = _builder.BuildOdds(ticket, _ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
                 Stake = LasBetListHtmlBuilder.BuildLasStake(ticket),
-                AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket),
-                AgentComm = _isAdmin ? LasBetListHtmlBuilder.BuildAdminAgentComm(ticket) : LasBetListHtmlBuilder.BuildAgentComm(ticket),
+                AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket, _ticketResult.TicketDataList),
+                AgentComm = LasBetListHtmlBuilder.BuildAgentComm(ticket, _ticketResult.TicketDataList, _isAdmin),
                 WinLoss = LasBetListHtmlBuilder.BuildLasWinloss(ticket)
             };
 

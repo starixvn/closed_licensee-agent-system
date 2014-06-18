@@ -51,7 +51,7 @@ namespace LicenseeAgent.BetList.Utilities
 
             switch (ticket.BetTypeId)
             {
-                case 71:
+                case (int)BetType.BetType_71:
                     string casinoHandTemplate = "<div id='casino-hand-history-{0}'";
                     casinoHandTemplate += "'result casino-hand-history-link' url-param='{1}' onclick='BetList.ViewCasinoHandHistory({0});'>{2}</div>";
                     return statusNormalText + string.Format(
@@ -59,8 +59,8 @@ namespace LicenseeAgent.BetList.Utilities
                         ticket.RefNo,
                         GetCasinoHandHistoryParam(ticket, criteria, currencyID, currencyName),
                         "Results");
-                case 72:
-                case 73:
+                case (int)BetType.BetType_72:
+                case (int)BetType.BetType_73:
                     return statusNormalText;
 
                 default:

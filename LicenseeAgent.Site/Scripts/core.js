@@ -417,7 +417,7 @@ var core = (function ($) {
                 if (hasReplication === true) {
                     timeout = core.REPLICATION_INTERVAL;
                 } else {
-                    if (pageContext !== undefined && pageContext.IsLastLevel) {
+                    if ((typeof pageContext !== 'undefined') && pageContext.IsLastLevel) {
                         timeout = core.REPLICATION_INTERVAL;
                     }
                 }

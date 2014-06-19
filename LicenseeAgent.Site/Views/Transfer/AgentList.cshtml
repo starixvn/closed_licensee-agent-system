@@ -21,7 +21,7 @@
                             }
                         },*/
                         {
-                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
+                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
                         },
                         {
                             HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true
@@ -30,7 +30,7 @@
                             HeaderText: "@Las.FullName", Width: 125, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true
                         },
                         {
-                            HeaderText: "@Las.Status", Width: 55, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.Status", Width: 55, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return cell.Value == 1
                                 ? '<div class="account-status-open">' + language.getString('Open') + '</div>'
@@ -38,56 +38,35 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', MergeHeaderColNumber: 2, CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.YesterdayBalance", Width: 80, Name: "YesterdayBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', MergeHeaderColNumber: 2
                         },
                         {
-                            HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center",
+                            HeaderText: "", Width: 20, Name: "TransferIcon", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<i class="icon-transfer" onclick="transferList.transferAgent({0}, \'{1}\', {2})" title="{3}"></i>'.format(rowData.AgentId, rowData.UserName, -rowData.YesterdayBalance, '@Las.Transfer');
                             }
                         },
                         {
-                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.TotalBalance", Width: 80, Name: "TotalBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                         },
                         {
-                            HeaderText: "@Las.YesterdayCash", Width: 80, Name: "YesterdayCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.YesterdayCash", Width: 80, Name: "YesterdayCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                         },
                         {
-                            HeaderText: "@Las.TotalCash", Width: 80, Name: "TotalCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.TotalCash", Width: 80, Name: "TotalCash", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                         },
                         {
-                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                         },
                         {
-                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.GivenCredit", Width: 80, Name: "GivenCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00"
                         },
                         {
-                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", CanResize: true,
-                            CalResizeFunction: function (value) {
-                                return value.toString().length * 9;
-                            }
+                            HeaderText: "@Las.UsedCredit", Width: 80, Name: "UsedCredit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00"
                         }
                    ],
         showPager: true,
-        gridExpandHeight: 125,
+        gridExpandHeight: 150,
         indexNumberColumn: 0,
         bodyRowHeight: 29,
         showFooter: true,

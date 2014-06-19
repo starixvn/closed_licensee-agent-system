@@ -13,23 +13,23 @@
             }
         ],
         columns: [
-                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "center",
+                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
                             return ("<a href='javascript:agentWinLossReport.ViewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
                         }
                     },
-                    { HeaderText: "@Las.BetCount", Width: 200, Name: "BetCount", HeaderAlign: "center", AllowTruncate: true, CanResize: true },
-                    { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Commission", Width: 100, Name: "PlayerComm", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Total", Width: 100, Name: "MemberTotal", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "DownlineStake", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Total", Width: 100, Name: "DownlineTotal", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "AWinLost", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Commission", Width: 100, Name: "AComm", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "UplineStake", HeaderAlign: "center", CellAlign: "right", CanResize: true },
-                    { HeaderText: "@Las.Total", Width: 100, Name: "UplineTotal", HeaderAlign: "center", CellAlign: "right", CanResize: true }
+                    { HeaderText: "@Las.BetCount", Width: 200, Name: "BetCount", HeaderAlign: "center", AllowTruncate: true },
+                    { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Commission", Width: 100, Name: "PlayerComm", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Total", Width: 100, Name: "MemberTotal", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "DownlineStake", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Total", Width: 100, Name: "DownlineTotal", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.WinLoss", Width: 100, Name: "AWinLost", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Commission", Width: 100, Name: "AComm", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "UplineStake", HeaderAlign: "center", CellAlign: "right" },
+                    { HeaderText: "@Las.Total", Width: 100, Name: "UplineTotal", HeaderAlign: "center", CellAlign: "right" }
 
                 ],
         gridExpandHeight: 200,

@@ -11,15 +11,19 @@
         return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
         }
         },*/
-                {HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center" },
-                { HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
+                {
+                    HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center", CanResize: false
+                },
+                {
+                    HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                     }
                 },
-                @if (Model.IsAdmin){
+                @if (Model.IsAdmin)
+                {
                     <text>
-                    { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", CanResize: true, Formatter:
+                    { HeaderText: "@Las.SystemId", Width: 140, Name: "SystemId", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
                         }
@@ -27,21 +31,21 @@
                     </text>
                 }
                 {
-                    HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 200
+                    HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200
                 },
-                { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", Formatter:
-                    function (rowIndex, rowData, cell, cellFormated) {
+                { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.CustId + ')">'
                             + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
                             + '</div>';
                     }
                 },
                 {
-                    HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 300
+                    HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300
                 },
-                { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },
-                { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center",
+                { HeaderText: "@Las.Group", Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+                { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL },
+                { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         if (cell.Value == null)
                             return '';

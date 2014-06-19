@@ -5,16 +5,16 @@ var transferDetail = (function ($) {
 
     var gridOptions = {
         columns: [
-                { HeaderText: language.getString('Date'), Width: 140, Name: "Date", HeaderAlign: "center",
+                { HeaderText: language.getString('Date'), Width: 140, Name: "Date", HeaderAlign: "center", CanResize: false,
                     CellAlign: "left", FormatDateTime: "MM/DD/YYYY h:mm:ss a"
                 },
-                { HeaderText: language.getString('Remark'), Width: 240, Name: "TransType", HeaderAlign: "center", CellAlign: "left", CanResize: true,
+                { HeaderText: language.getString('Remark'), Width: 240, Name: "TransType", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function (rowIndex, rowData, cell) {
                         return ("<div>" + cell.Value + "<br />" + rowData.TransDesc + "</div>");
                     }
                 },
                 { HeaderText: language.getString('Amount'), Width: 100, Name: "TransferAmt", HeaderAlign: "center",
-                    CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$'
+                    CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                 }
             ],
         gridExpandHeight: 20,

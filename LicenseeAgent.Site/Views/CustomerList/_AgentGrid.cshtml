@@ -9,19 +9,19 @@
                             }
                         },*/
                         {
-                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center"
+                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
                         },
                         {
-                            HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.Action", Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<i id="{0}" class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}" data-status="{2}"></i>'.format(rowData.AgentId, rowData.AgentLevel, rowData.Status);
                             }
                         },
                         {
-                            HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", CanResize: true, AllowTruncate: true, MaxResizeWidth: 200
+                            HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200
                         },
                         {
-                            HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.AgentId + ')">'
                                     + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
@@ -29,7 +29,7 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.Downline", Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.Downline", Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 if (cell.Value == 0) {
                                     return '<span class="downline">' + cell.Value + '</span>';
@@ -38,13 +38,13 @@
                             }
                         },
                         {
-                            HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center",CanResize: true, AllowTruncate: true, MaxResizeWidth: 300
+                            HeaderText: "@Las.FullName", Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300
                         },
                         {
-                            HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL
+                            HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL
                         },
                         {
-                            HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center",
+                            HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
                                 if (cell.Value == null)
                                     return '';

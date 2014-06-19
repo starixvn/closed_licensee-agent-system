@@ -31,7 +31,6 @@ var statementReport = (function ($) {
                         };
 
                         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                        gridOptions.columns[1].Width = 100; //Resize username column
                         $('#grid').show().fanexGrid(gridOptions);
                         core.unblockUI();
                     }

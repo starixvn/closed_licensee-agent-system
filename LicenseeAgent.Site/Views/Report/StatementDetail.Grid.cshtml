@@ -1,16 +1,16 @@
 ﻿<script type="text/javascript">
     var gridOptionsAgent = {
         columns: [
-                { HeaderText: "@Las.Date", Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY" },
-                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.WinLoss", Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
+                { HeaderText: "@Las.Date", Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
+                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.WinLoss", Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a class='num-link' href='javascript:statementDetailReport.TransferDetail({0}, false, {1});'>" + cellFormated + "</a>").format(rowData.AgentId, rowData.Date);
                     }
                 },
-                { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
+                { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
             ],
         gridExpandHeight: 125,
         showNumberColumn: false,
@@ -21,26 +21,26 @@
     
     var gridOptionsMember = {
         columns: [
-                { HeaderText: "@Las.Date", Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY" },
-                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' },
-                { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$',
+                { HeaderText: "@Las.Date", Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
+                { HeaderText: "@Las.OpeningBalance", Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.Turnover", Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+                { HeaderText: "@Las.Betting", Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Betting, rowData.Date);
                     }
                 },
-                { HeaderText: "@Las.Outstanding", Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$',
+                { HeaderText: "@Las.Outstanding", Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a class='num-link' href='javascript:statementDetailReport.BetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Outstanding, rowData.Date);
                     }
                 },
-                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
+                { HeaderText: "@Las.Commission", Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+                { HeaderText: "@Las.TransferAmt", Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return ("<a class='num-link' href='javascript:statementDetailReport.TransferDetail({0}, true, {1});'>" + cellFormated + "</a>").format(rowData.CustId, rowData.Date);
                     }
                 },
-                { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", CanResize: true, FormatNumber: "0,0.00", FormatNegative: '$' }
+                { HeaderText: "@Las.ClosingBalance", Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
             ],
         gridExpandHeight: 125,
         showNumberColumn: false,

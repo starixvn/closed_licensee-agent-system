@@ -241,7 +241,26 @@ var core = (function ($) {
             }
             return -1;
         },
+        rebuildGridOptions: function (options) {
+            // always auto resize on alls columns that don't define CanResize
+            if (options.autoResizeColumn) {
+                var columns = options.columns;
+                var calResizeFunction = function (value) {
+                    return value.toString().length * 10;
+                };
+                for (var j = 0; j < columns.length; j++) {
+                    var column = columns[j];
+                    if (column.CanResize === undefined) {
+                        column.CanResize = true;
+                        if (column.CalResizeFunction === undefined) {
+                            column.CalResizeFunction = calResizeFunction;
+                        }
+                    }
+                }
+            }
+        },
         genGridRows: function (list, options) {
+            core.rebuildGridOptions(options);
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
             var tdCssClass = options.tdCssClass;
@@ -257,7 +276,6 @@ var core = (function ($) {
             }
 
             var rowIndexValue = rowIndex;
-
             if (options.pagerOption !== undefined) {
                 rowIndexValue = options.pagerOption.itemsPerPage * options.pagerOption.currentPage + 1;
             }

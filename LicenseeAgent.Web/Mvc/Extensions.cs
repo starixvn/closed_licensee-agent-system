@@ -87,7 +87,7 @@ namespace LicenseeAgent.Web.Mvc
         private static bool IsAjaxRequestInternal(HttpRequestBase httpRequest)
         {
             var ajaxRequest = httpRequest.IsAjaxRequest();
-            var jsonRequest = httpRequest.AcceptTypes.Contains("application/json");
+            var jsonRequest = httpRequest.AcceptTypes != null && httpRequest.AcceptTypes.Contains("application/json");
 
             return ajaxRequest || jsonRequest;
         }

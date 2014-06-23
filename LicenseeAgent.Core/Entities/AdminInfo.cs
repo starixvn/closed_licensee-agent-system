@@ -25,7 +25,7 @@ namespace LicenseeAgent.Core.Entities
         {
             get
             {
-                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(UserRole, "Admin", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return AccountType.CSD_IT;
                 }

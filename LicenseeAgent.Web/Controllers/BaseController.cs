@@ -27,15 +27,8 @@ namespace LicenseeAgent.Web.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
-        private readonly IDownlLinePermissionService _permissionService;
-
-        protected BaseController()
+        public BaseController()
         {
-        }
-
-        protected BaseController(IDownlLinePermissionService permissionService)
-        {
-            _permissionService = permissionService;
         }
 
         protected static ICurrentSession CurrentSession

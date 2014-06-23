@@ -128,9 +128,9 @@ namespace LicenseeAgent.AccountInformation.Tests.Fake
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
-        public static IDownlLinePermissionService GetDownlLinePermissionService()
+        public static IDownLinePermissionService GetDownlLinePermissionService()
         {
-            return Substitute.For<IDownlLinePermissionService>();
+            return Substitute.For<IDownLinePermissionService>();
         }
 
         /// <summary>

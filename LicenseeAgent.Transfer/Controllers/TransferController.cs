@@ -29,17 +29,21 @@ namespace LicenseeAgent.Transfer.Controllers
     {
         private readonly ITransferService _transferService;
         private readonly IMemberService _memberService;
-        private readonly IDownlLinePermissionService _permissionService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        public TransferController()
+            : this(null, null, null)
+        {
+        }
 
         public TransferController(
             ITransferService transferService,
             IMemberService memberService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+            IDownLinePermissionService downLinePermissionService)
         {
-            _transferService = transferService;
-            _memberService = memberService;
-            _permissionService = permissionService;
+            _transferService = transferService ?? new TransferService();
+            _memberService = memberService ?? new MemberService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         public ActionResult Index()
@@ -114,7 +118,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 return Json(response);
             }
 
-            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) &&
+            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.InvariantCultureIgnoreCase) &&
                 (model.Status == null || x.Status == model.Status));
             return Json(new
             {
@@ -133,7 +137,7 @@ namespace LicenseeAgent.Transfer.Controllers
         [HttpGet]
         public ActionResult Agent(TransferAgentViewModel model)
         {
-            if (!_permissionService.IsDirectDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -163,7 +167,7 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineAgent(model.AgentId))
+                if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -200,7 +204,7 @@ namespace LicenseeAgent.Transfer.Controllers
         [HttpGet]
         public ActionResult Member(TransferMemberViewModel model)
         {
-            if (!_permissionService.IsDirectDownLineMember(model.MemberId))
+            if (!_downLinePermissionService.IsDirectDownLineMember(model.MemberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -240,7 +244,7 @@ namespace LicenseeAgent.Transfer.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineMember(model.MemberId))
+                if (!_downLinePermissionService.IsDirectDownLineMember(model.MemberId))
                 {
                     return RedirectToAccessDeniedPage();
                 }

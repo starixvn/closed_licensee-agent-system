@@ -32,10 +32,15 @@ namespace LicenseeAgent.Web.Controllers
         private readonly IMonitoringService _monitoringService;
         private readonly IMemberService _memberService;
 
+        public ToolController()
+            : this(null, null)
+        {
+        }
+
         public ToolController(IMonitoringService monitoringService, IMemberService memberService)
         {
-            _monitoringService = monitoringService;
-            _memberService = memberService;
+            _monitoringService = monitoringService ?? new MonitoringService();
+            _memberService = memberService ?? new MemberService();
         }
 
         [HttpGet]

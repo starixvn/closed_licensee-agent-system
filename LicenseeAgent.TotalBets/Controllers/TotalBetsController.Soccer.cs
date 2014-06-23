@@ -13,7 +13,6 @@ namespace LicenseeAgent.TotalBets.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
@@ -35,14 +34,21 @@ namespace LicenseeAgent.TotalBets.Controllers
 
         private readonly IBetListService _betlistService;
 
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        public TotalBetsController()
+            : this(null, null, null)
+        {
+        }
+
         public TotalBetsController(
             TotalBetsService totalBetsService,
             BetListService betlistService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+            IDownLinePermissionService downLinePermissionService)
         {
-            _totalBetsService = totalBetsService;
-            _betlistService = betlistService;
+            _totalBetsService = totalBetsService ?? new TotalBetsService();
+            _betlistService = betlistService ?? new BetListService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         [HttpGet]
@@ -162,9 +168,11 @@ namespace LicenseeAgent.TotalBets.Controllers
             var events = _totalBetsService.GetEventsByLeague(criteria).OrderBy(x => x.MatchName);
             return EventListToJson(@event, checkedAll, events);
         }
+
         #endregion Utilities
-        
+
         #region private method
+
         /// <summary>
         /// Generate event list to JSON.
         /// </summary>
@@ -250,6 +258,7 @@ namespace LicenseeAgent.TotalBets.Controllers
                 TotalItem = criteria.TotalRows
             });
         }
-        #endregion
+
+        #endregion private method
     }
 }

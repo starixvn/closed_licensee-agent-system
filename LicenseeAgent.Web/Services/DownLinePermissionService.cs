@@ -15,13 +15,18 @@ namespace LicenseeAgent.Web.Services
     /// <summary>
     /// Down-line permission service.
     /// </summary>
-    public class DownLinePermissionService : IDownlLinePermissionService
+    public class DownLinePermissionService : IDownLinePermissionService
     {
         private IDownLineService _downLineService;
 
+        public DownLinePermissionService()
+            : this(null)
+        {
+        }
+
         public DownLinePermissionService(IDownLineService downLineService)
         {
-            _downLineService = downLineService;
+            _downLineService = downLineService ?? new DownLineService();
         }
 
         public bool CheckForEditingCustomerSetting(CustomerSettingBelonging editingCustomerSettingBelonging)

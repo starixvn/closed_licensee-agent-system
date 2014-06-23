@@ -10,7 +10,6 @@ namespace LicenseeAgent.BetList.Controllers
     using Entities;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
 
@@ -21,12 +20,15 @@ namespace LicenseeAgent.BetList.Controllers
     {
         private readonly IBetListService _betlistService;
 
-        public ParlayController(
-            IBetListService betlistService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+        public ParlayController()
+            : this(null)
         {
-            _betlistService = betlistService;
+        }
+
+        public ParlayController(
+            IBetListService betlistService)
+        {
+            _betlistService = betlistService ?? new BetListService();
         }
 
         [HttpGet]

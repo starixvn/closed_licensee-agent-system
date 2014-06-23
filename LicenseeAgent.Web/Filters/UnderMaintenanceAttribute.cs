@@ -20,8 +20,13 @@ namespace LicenseeAgent.Web.Filters
         private IUnderMaintenanceService _maintenanceService;
 
         public UnderMaintenanceAttribute()
+            : this(null)
         {
-            _maintenanceService = DependencyResolver.Current.GetService<IUnderMaintenanceService>();
+        }
+
+        public UnderMaintenanceAttribute(IUnderMaintenanceService maintenanceService)
+        {
+            _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
         }
 
         public bool Ignore { get; set; }

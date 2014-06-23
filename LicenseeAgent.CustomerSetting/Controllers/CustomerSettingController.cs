@@ -42,25 +42,39 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
         private static List<int> _virtualSportsTypeIds;
         private readonly IMemberService _memberService;
-        private readonly IDownlLinePermissionService _permissionService;
-        private readonly ICoreService _coreService = new CoreService();
-        private readonly Services.ISettingService _numberGameService = new Services.NumberGame.SettingService();
-        private readonly Services.ISettingService _sportsBookService = new Services.SportsBook.SettingService();
-        private readonly Services.VirtualSports.SettingService _virtualSportsService = new Services.VirtualSports.SettingService();
-        private readonly ICustomerSettingService _customerSettingService = new CustomerSettingService();
+        private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICoreService _coreService;
+        private readonly Services.ISettingService _numberGameService;
+        private readonly Services.ISettingService _sportsBookService;
+        private readonly Services.VirtualSports.SettingService _virtualSportsService;
+        private readonly ICustomerSettingService _customerSettingService;
 
         static CustomerSettingController()
         {
             _virtualSportsTypeIds = SettingConfigurations.GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
         }
 
-        public CustomerSettingController(
-                IMemberService memberService,
-                IDownlLinePermissionService permissionService)
-            : base(permissionService)
+        public CustomerSettingController()
+            : this(null, null, null, null, null, null, null)
         {
-            _memberService = memberService;
-            _permissionService = permissionService;
+        }
+
+        public CustomerSettingController(
+            IMemberService memberService,
+            ICoreService coreService,
+            ICustomerSettingService customerSettingService,
+            Services.ISettingService numberGameService,
+            Services.ISettingService sportsBookService,
+            Services.VirtualSports.SettingService virtualSportsService,
+            IDownLinePermissionService downLinePermissionService)
+        {
+            _memberService = memberService ?? new MemberService();
+            _coreService = coreService ?? new CoreService();
+            _customerSettingService = customerSettingService ?? new CustomerSettingService();
+            _numberGameService = numberGameService ?? new Services.NumberGame.SettingService();
+            _sportsBookService = sportsBookService ?? new Services.SportsBook.SettingService();
+            _virtualSportsService = virtualSportsService ?? new Services.VirtualSports.SettingService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         /// <summary>
@@ -901,7 +915,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetRoleId = settingContext.TargetRoleId
             };
 
-            return _permissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
+            return _downLinePermissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
         }
 
         /// <summary>
@@ -919,7 +933,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
                 TargetRoleId = settingContext.TargetRoleId
             };
 
-            return _permissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
+            return _downLinePermissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
         }
 
         private string FormatJavascript(object obj, string name)

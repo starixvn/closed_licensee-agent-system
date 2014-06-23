@@ -77,12 +77,12 @@ namespace LicenseeAgent.Site
         /// </returns>
         public string GetFullPath(string filePath)
         {
-            if (filePath.StartsWith("~"))
+            if (filePath.StartsWith("~", StringComparison.OrdinalIgnoreCase))
             {
                 filePath = VirtualPathUtility.ToAbsolute(filePath);
             }
 
-            if (filePath.StartsWith("/"))
+            if (filePath.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 filePath = HostingEnvironment.MapPath(filePath);
             }

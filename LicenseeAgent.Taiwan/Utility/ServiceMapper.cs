@@ -48,7 +48,7 @@ namespace LicenseeAgent.Taiwan.Utility
                         propertyName = ((ServiceAttribute)attribute).Name;
                     }
 
-                    if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.CurrentCultureIgnoreCase))
+                    if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.InvariantCultureIgnoreCase))
                     {
                         destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, sourceProperty.GetValue(source, null)), null);
                     }

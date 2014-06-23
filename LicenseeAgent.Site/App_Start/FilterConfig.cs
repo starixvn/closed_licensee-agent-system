@@ -12,7 +12,7 @@ namespace LicenseeAgent.Site
     /// <summary>
     /// MVC Global Filter Configuration.
     /// </summary>
-    public class FilterConfig
+    public static class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {

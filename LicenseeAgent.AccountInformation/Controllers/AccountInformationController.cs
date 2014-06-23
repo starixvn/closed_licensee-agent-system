@@ -36,17 +36,23 @@ namespace LicenseeAgent.AccountInformation.Controllers
         private readonly ISearchUserService _searchUserService;
         private readonly IMemberService _memberService;
         private readonly ICoreService _coreService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        public AccountInformationController()
+            : this(null, null, null, null)
+        {
+        }
 
         public AccountInformationController(
             ISearchUserService searchUserService,
             IMemberService memberService,
-            IDownlLinePermissionService permissionService,
+            IDownLinePermissionService downLinePermissionService,
             ICoreService coreService)
-            : base(permissionService)
         {
-            _searchUserService = searchUserService;
-            _memberService = memberService;
-            _coreService = coreService;
+            _searchUserService = searchUserService ?? new SearchUserService();
+            _memberService = memberService ?? new MemberService();
+            _coreService = coreService ?? new CoreService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         /// <summary>

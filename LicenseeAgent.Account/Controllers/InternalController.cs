@@ -33,17 +33,23 @@ namespace LicenseeAgent.Account.Controllers
         private readonly IAccountService _accountService;
         private readonly ICurrencyService _currencyService;
         private readonly IInternalService _internalService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        public InternalController()
+            : this(null, null, null, null)
+        {
+        }
 
         public InternalController(
             IAccountService accountService,
             ICurrencyService currencyService,
             IInternalService internalService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+            IDownLinePermissionService downLinePermissionService)
         {
-            _accountService = accountService;
-            _currencyService = currencyService;
-            _internalService = internalService;
+            _accountService = accountService ?? new AccountService();
+            _currencyService = currencyService ?? new CurrencyService();
+            _internalService = internalService ?? new InternalService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         [HttpGet]

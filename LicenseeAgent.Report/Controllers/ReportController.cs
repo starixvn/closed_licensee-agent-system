@@ -33,7 +33,7 @@ namespace LicenseeAgent.Report.Controllers
     {
         #region Services
 
-        private readonly IDownlLinePermissionService _permissionService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
 
         private readonly IMemberService _memberService;
 
@@ -53,19 +53,23 @@ namespace LicenseeAgent.Report.Controllers
 
         #region Constructor
 
+        public ReportController()
+            : this(null, null, null, null, null)
+        {
+        }
+
         public ReportController(
             ICoreService coreService,
             IReportService reportService,
             IBetListService betlistService,
-            IDownlLinePermissionService permissionService,
+            IDownLinePermissionService downLinePermissionService,
             IMemberService memberService)
-            : base(permissionService)
         {
-            _coreService = coreService;
-            _reportService = reportService;
-            _betlistService = betlistService;
-            _permissionService = permissionService;
-            _memberService = memberService;
+            _coreService = coreService ?? new CoreService();
+            _reportService = reportService ?? new ReportService();
+            _betlistService = betlistService ?? new BetListService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _memberService = memberService ?? new MemberService();
         }
 
         #endregion Constructor
@@ -280,7 +284,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult Outstanding(OutstandingReportCriteria criteria)
         {
-            if (criteria.AgentId != -1 && !_permissionService.IsDownLineAgent(criteria.AgentId))
+            if (criteria.AgentId != -1 && !_downLinePermissionService.IsDownLineAgent(criteria.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -309,7 +313,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult OutstandingBetList(OutstandingReportBetListCriteria criteria)
         {
-            if (!_permissionService.IsDownLineMember(criteria.CustId))
+            if (!_downLinePermissionService.IsDownLineMember(criteria.CustId))
             {
                 return RedirectToAccessDeniedJson();
             }

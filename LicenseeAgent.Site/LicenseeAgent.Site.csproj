@@ -117,18 +117,6 @@
     <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RemotingRef.1.0.0\lib\net40\RemotingRef.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector, Version=2.5.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.2.5.0\lib\net40-client\SimpleInjector.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleInjector.Diagnostics, Version=2.5.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.2.5.0\lib\net40-client\SimpleInjector.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleInjector.Integration.Web, Version=2.5.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.Integration.Web.2.5.0\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.2.5.0\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
     </Reference>
@@ -216,14 +204,12 @@
     <Compile Include="App_Start\LessBundle.cs" />
     <Compile Include="App_Start\LessTransform.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -597,7 +583,9 @@
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CodeAnalysis\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

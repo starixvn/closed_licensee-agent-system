@@ -23,17 +23,21 @@ namespace LicenseeAgent.BetList.Controllers
     {
         private readonly IBetListService _betlistService;
         private readonly ICoreService _coreService;
-        private readonly IDownlLinePermissionService _permissionService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        public BetListController()
+            : this(null, null, null)
+        {
+        }
 
         public BetListController(
             IBetListService betlistService,
             ICoreService coreService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+            IDownLinePermissionService downLinePermissionService)
         {
-            _betlistService = betlistService;
-            _coreService = coreService;
-            _permissionService = permissionService;
+            _betlistService = betlistService ?? new BetListService();
+            _coreService = coreService ?? new CoreService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult MixParlayDetails(long transId, int sportType, int betType)
         {
-            if (!_permissionService.IsDownLineTransaction(transId, sportType, betType))
+            if (!_downLinePermissionService.IsDownLineTransaction(transId, sportType, betType))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -126,7 +130,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult SystemParlayResult(long refNo)
         {
-            if (!_permissionService.IsDownLineReferenceNumber(refNo))
+            if (!_downLinePermissionService.IsDownLineReferenceNumber(refNo))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -156,7 +160,7 @@ namespace LicenseeAgent.BetList.Controllers
         [HttpGet]
         public ActionResult Details(BetListDetailsCriteria criteria)
         {
-            if (!_permissionService.IsDownLineTransaction(criteria.TransId, criteria.SportType, criteria.BetType))
+            if (!_downLinePermissionService.IsDownLineTransaction(criteria.TransId, criteria.SportType, criteria.BetType))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -180,7 +184,7 @@ namespace LicenseeAgent.BetList.Controllers
         /// </returns>
         public ActionResult Results(BetListResultViewModel model)
         {
-            var isParlayPopup = 
+            var isParlayPopup =
                 model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_9
                 || model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_29;
             var setting = new ResultSetting

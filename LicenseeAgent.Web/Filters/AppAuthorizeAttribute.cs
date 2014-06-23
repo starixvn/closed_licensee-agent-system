@@ -21,11 +21,16 @@ namespace LicenseeAgent.Web.Filters
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public sealed class AppAuthorizeAttribute : AuthorizeAttribute
     {
-        private IAuthorizeService _permissionServiceBase;
+        private IAuthorizeService _authorizeService;
 
         public AppAuthorizeAttribute()
+            : this(null)
         {
-            _permissionServiceBase = DependencyResolver.Current.GetService<IAuthorizeService>();
+        }
+
+        public AppAuthorizeAttribute(IAuthorizeService authorizeService)
+        {
+            _authorizeService = authorizeService ?? new AuthorizeService();
             IsValidateAgent = true;
         }
 
@@ -120,7 +125,7 @@ namespace LicenseeAgent.Web.Filters
                 CurrencyId = currentSession.AgentInfo.CurrencyId
             };
 
-            _permissionServiceBase.CheckCurrencyPermission(criteria);
+            _authorizeService.CheckCurrencyPermission(criteria);
             if (criteria.ErrCode != Result.SuccessValue)
             {
                 filterContext.ReturnCurrencyPermissionDenied();

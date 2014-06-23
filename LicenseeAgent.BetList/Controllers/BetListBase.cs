@@ -14,20 +14,13 @@ namespace LicenseeAgent.BetList.Controllers
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Entities;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// BetListBase class.
     /// </summary>
     public abstract class BetListBase : BaseController, IBetListBase
     {
-        protected BetListBase(IDownlLinePermissionService permissionService)
-            : base(permissionService)
-        {
-        }
-
         /// <summary>
         /// Format raw bet list details.
         /// </summary>

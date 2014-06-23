@@ -33,22 +33,26 @@ namespace LicenseeAgent.CustomerList.Controllers
     public class CustomerListController : BaseController
     {
         private readonly ICustomerService _customerService;
-        private readonly IIpInformationService _ipService;
+        private readonly IIpInformationService _ipInformationService;
         private readonly IMemberService _memberService;
-        private readonly IDownlLinePermissionService _permissionService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
         private readonly ICoreService _coreService = new CoreService();
 
-        public CustomerListController(
-            ICustomerService agentService,
-            IIpInformationService ipService,
-            IMemberService memberService,
-            IDownlLinePermissionService permissionService)
-            : base(permissionService)
+        public CustomerListController()
+            : this(null, null, null, null)
         {
-            _customerService = agentService;
-            _ipService = ipService;
-            _memberService = memberService;
-            _permissionService = permissionService;
+        }
+
+        public CustomerListController(
+            ICustomerService customerService,
+            IIpInformationService ipInformationService,
+            IMemberService memberService,
+            IDownLinePermissionService downLinePermissionService)
+        {
+            _customerService = customerService ?? new CustomerService();
+            _ipInformationService = ipInformationService ?? new IpInformationService();
+            _memberService = memberService ?? new MemberService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             var hasVirtualSports = false;
 
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -135,7 +139,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult GetCustomerList(CustomerListViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -311,7 +315,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
-            if (!_permissionService.IsDirectDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -357,7 +361,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
         {
-            if (!_permissionService.IsDirectDownLineMember(model.MemberId))
+            if (!_downLinePermissionService.IsDirectDownLineMember(model.MemberId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -396,7 +400,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public JsonResult CustomerSearchAutoComplete(CustomerSearchAutoCompleteViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -458,7 +462,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         public ActionResult GetIpInformation(IpSearchViewModel model)
         {
             var criteria = new GetIpInformationCriteria { Ip = model.IpAddress };
-            var ipInformation = _ipService.GetIpInformation(criteria).FirstOrDefault();
+            var ipInformation = _ipInformationService.GetIpInformation(criteria).FirstOrDefault();
 
             return View(new IpInformationViewModel
             {
@@ -476,7 +480,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordMember(int memberId)
         {
-            if (!_permissionService.IsDownLineMember(memberId))
+            if (!_downLinePermissionService.IsDownLineMember(memberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -499,7 +503,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDownLineMember(model.CustId))
+                if (!_downLinePermissionService.IsDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -536,7 +540,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
         {
-            if (!_permissionService.IsDownLineAgent(agentId))
+            if (!_downLinePermissionService.IsDownLineAgent(agentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -560,7 +564,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDownLineAgent(model.CustId))
+                if (!_downLinePermissionService.IsDownLineAgent(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -598,7 +602,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoMember(int memberId, string username)
         {
-            if (!_permissionService.IsDirectDownLineMember(memberId))
+            if (!_downLinePermissionService.IsDirectDownLineMember(memberId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -637,7 +641,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineMember(model.CustId))
+                if (!_downLinePermissionService.IsDirectDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -677,7 +681,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpGet]
         public ActionResult EditInfoAgent(int agentId)
         {
-            if (!_permissionService.IsDirectDownLineAgent(agentId))
+            if (!_downLinePermissionService.IsDirectDownLineAgent(agentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -714,7 +718,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_permissionService.IsDirectDownLineAgent(model.CustId))
+                if (!_downLinePermissionService.IsDirectDownLineAgent(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }

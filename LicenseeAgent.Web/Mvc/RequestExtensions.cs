@@ -74,7 +74,7 @@ namespace LicenseeAgent.Web.Mvc
         {
             foreach (var itemIPA in Dns.GetHostAddresses(hostAddress))
             {
-                if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.OrdinalIgnoreCase))
+                if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return itemIPA;
                 }

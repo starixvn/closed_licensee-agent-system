@@ -31,7 +31,7 @@ namespace LicenseeAgent.Report.Controllers
         {
             var isAdmin = CurrentSession.IsAdmin;
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -61,7 +61,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }

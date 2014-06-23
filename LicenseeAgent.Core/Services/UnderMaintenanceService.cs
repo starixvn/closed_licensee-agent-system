@@ -26,9 +26,14 @@ namespace LicenseeAgent.Core.Services
         private readonly UMBusiness _umservice;
 
         public UnderMaintenanceService()
+            : this(null)
+        {
+        }
+
+        public UnderMaintenanceService(UMBusiness umservice)
         {
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
-            _umservice = new UMBusiness();
+            _umservice = umservice ?? new UMBusiness();
         }
 
         /// <summary>

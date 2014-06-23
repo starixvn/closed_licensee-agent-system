@@ -21,9 +21,14 @@ namespace LicenseeAgent.Web.Controllers
     {
         private IUnderMaintenanceService _maintenanceService;
 
+        public ErrorController()
+            : this(null)
+        {
+        }
+
         public ErrorController(IUnderMaintenanceService maintenanceService)
         {
-            _maintenanceService = maintenanceService;
+            _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
         }
 
         /// <summary>

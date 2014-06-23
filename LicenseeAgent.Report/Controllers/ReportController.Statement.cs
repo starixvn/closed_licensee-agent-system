@@ -31,7 +31,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpGet]
         public ActionResult Statement(StatementReportViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -57,7 +57,7 @@ namespace LicenseeAgent.Report.Controllers
         [HttpPost]
         public JsonResult GetStatementData(StatementReportViewModel model)
         {
-            if (!_permissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -115,12 +115,12 @@ namespace LicenseeAgent.Report.Controllers
         {
             if (model.IsMember)
             {
-                if (!_permissionService.IsDownLineMember(model.AgentId))
+                if (!_downLinePermissionService.IsDownLineMember(model.AgentId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
             }
-            else if (!_permissionService.IsDownLineAgent(model.AgentId))
+            else if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -211,12 +211,12 @@ namespace LicenseeAgent.Report.Controllers
         {
             if (model.IsMember)
             {
-                if (!_permissionService.IsDownLineMember(model.AgentId))
+                if (!_downLinePermissionService.IsDownLineMember(model.AgentId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
             }
-            else if (!_permissionService.IsDownLineAgent(model.AgentId))
+            else if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }

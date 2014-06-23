@@ -28,7 +28,7 @@ namespace LicenseeAgent.Taiwan.Entities
         {
             get
             {
-                return Result.Equals(ServiceSetting.StatusSuccess, StringComparison.CurrentCultureIgnoreCase) ? LogType.Success : LogType.Fail;
+                return Result.Equals(ServiceSetting.StatusSuccess, StringComparison.InvariantCultureIgnoreCase) ? LogType.Success : LogType.Fail;
             }
         }
     }

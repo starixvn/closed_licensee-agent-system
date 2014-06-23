@@ -40,10 +40,15 @@ namespace LicenseeAgent.Account.Controllers
 
         private readonly ICoreService _coreService;
 
+        public AccountController()
+            : this(null, null)
+        {
+        }
+
         public AccountController(IAccountService accountService, ICoreService coreService)
         {
-            _accountService = accountService;
-            _coreService = coreService;
+            _accountService = accountService ?? new AccountService();
+            _coreService = coreService ?? new CoreService();
         }
 
         /// <summary>

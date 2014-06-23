@@ -31,6 +31,11 @@ namespace LicenseeAgent.Report.Services
 
         #region Constructor
 
+        public ReportService()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportService" /> class.
         /// </summary>

@@ -52,6 +52,7 @@ var outstandingReport = (function ($) {
 
     return {
         init: function () {
+            $(".breadcrumb").hide();
             outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], -1);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
@@ -243,6 +244,7 @@ var outstandingReport = (function ($) {
 
             numberAgent = breadCrumbItems.length - 1;
             if (numberAgent > 0) {
+                $(".breadcrumb").show();
                 for (index = 0; index < numberAgent; index++) {
                     breadCrumbHtml += '<li><a onclick="javascript:outstandingReport.breadcrumbDrilldown(\''
                         + breadCrumbItems[index].agentName + '\','
@@ -251,8 +253,11 @@ var outstandingReport = (function ($) {
                         + '</a><span class="divider">&gt;&gt;</span></li>';
                 }
                 breadCrumbHtml += '<li><span>' + breadCrumbItems[index].agentName + '</span></li>';
+                $(".breadcrumb").html(breadCrumbHtml);
             }
-            $(".breadcrumb").html(breadCrumbHtml);
+            else {
+                $(".breadcrumb").hide();
+            }
         }
     };
 } (jQuery));

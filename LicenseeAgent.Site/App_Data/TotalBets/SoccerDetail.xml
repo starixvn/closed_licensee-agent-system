@@ -72,12 +72,30 @@
     </Table>
   </Group>
   <Group>
+    <!--1H Total Goal-->
+    <Table BetType="126" NumberOfColumn="2">
+      <Row BetTeam="0-1" />
+      <Row BetTeam="4-over" />
+      <Row BetTeam="2-3" ColSpan="2" />
+    </Table>
+  </Group>
+  <Group>
     <!--Total Goal-->
     <Table BetType="6" NumberOfColumn="2">
       <Row BetTeam="0-1" />
       <Row BetTeam="4-6" />
       <Row BetTeam="2-3" />
       <Row BetTeam="7-over" />
+    </Table>
+  </Group>
+  <Group>
+    <!--1H First Goal / Last Goal-->
+    <Table BetType="127" NumberOfColumn="3">
+      <Row BetTeam="1:1" />
+      <Row BetTeam="2:1" />
+      <Row BetTeam="0:0" />
+      <Row BetTeam="1:2" />
+      <Row BetTeam="2:2" ColSpan="2" />
     </Table>
   </Group>
   <Group>

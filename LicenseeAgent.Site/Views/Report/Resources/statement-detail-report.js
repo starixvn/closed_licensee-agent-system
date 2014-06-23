@@ -35,7 +35,7 @@ var statementDetailReport = (function ($) {
                             totalItem: data.List.length
                         };
 
-                        gridOptions.bodyRows = statementDetailReport.genGridRows(data.List, gridOptions, $('#IsMember').val());
+                        gridOptions.bodyRows = statementDetailReport.genGridRows(data.List, gridOptions);
                         $('#grid').show().fanexGrid(gridOptions);
 
                         if ($('#spanUsername').length > 0) {

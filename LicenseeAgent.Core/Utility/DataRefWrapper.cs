@@ -206,6 +206,7 @@ namespace LicenseeAgent.Core.Utility
 
                     break;
 
+                case (int)BetType.BetType_127:
                 case (int)BetType.BetType_14:
                     switch (betTeam)
                     {
@@ -317,6 +318,9 @@ namespace LicenseeAgent.Core.Utility
                     }
 
                     break;
+
+                case (int)BetType.BetType_126:
+                    return betTeam == "4-over" ? Las.Score4Over : betTeam;
             }
 
             throw new InvalidOperationException(string.Format("Undefined bet team name ({0}, {1})", betType, betTeam));

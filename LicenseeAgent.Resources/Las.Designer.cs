@@ -2931,6 +2931,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 4&amp;Over.
+        /// </summary>
+        public static string Score4Over {
+            get {
+                return ResourceManager.GetString("Score4Over", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 7&amp;Over.
         /// </summary>
         public static string Score7Over {

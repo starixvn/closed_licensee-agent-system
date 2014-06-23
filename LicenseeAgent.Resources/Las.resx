@@ -980,6 +980,9 @@
   <data name="Score7Over" xml:space="preserve">
     <value>7&amp;Over</value>
   </data>
+  <data name="Score4Over" xml:space="preserve">
+    <value>4&amp;Over</value>
+  </data>
   <data name="Under" xml:space="preserve">
     <value>Under</value>
   </data>

@@ -72,22 +72,29 @@ td.agent-name
     text-align: right !important;
 }
 
-.firstGoal
+.firstGoal,.lastGoal,.fhFirstGoal,.fhLastGoal
 {
     background: url(../../Images/sprite.png) no-repeat -786px -1px;
     display: inline;
     height: 10px;
     padding: 0 4px;
     width: 14px;
+    margin-right: 2px;
 }
 
 .lastGoal
 {
-    background: url(../../Images/sprite.png) no-repeat -807px -1px;
-    display: inline;
-    height: 10px;
-    padding: 0 4px;
-    width: 14px;
+    background-position: -807px -1px;
+}
+
+.fhFirstGoal
+{
+    background-position: -786px -17px;
+}
+
+.fhLastGoal
+{
+    background-position: -807px -17px;
 }
 
 .line

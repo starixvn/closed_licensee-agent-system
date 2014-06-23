@@ -53,8 +53,8 @@
         showHeader: true,
         showFooter: false,
         showTooltip: true,
-        maxHeight: 400,
-        minWidth: 200,
+        maxHeight: 400, 
+        minWidth: 200, 
         checkAllText: 'Check All',
         noItemText: 'No item.',
         footerButtonText: 'Update Result Table',
@@ -73,7 +73,7 @@
         customCheckAllText: 'All Checked',
         showParentSelectedText: false,
         onLeave: function () { },
-        onCheck: function () { },
+        onCheck: function () { }, 
         onOpen: function () { },
         onCheckAll: function () { },
         onFooterButtonClick: function () { }
@@ -106,6 +106,7 @@
             me.browser = fanex.MultiSelect.helper.detectBrowser();
             me.isOpenning = false;
             me.checkShowGroup();
+            me.bodyId = 'fanex-multiselect-options-' + id;
             html.push(me.renderInterface(id, options.disabled, options.noneSelectedText));
             html.push('<div class="fanex-multiselect-options fanex-multiselect-treeview fanex-multiselect-shadow" >');
             if (options.listData.length > 0) {
@@ -119,7 +120,7 @@
                 html.push(me.renderFooter());
             }
             html.push('</div>');
-            me.bodyId = 'fanex-multiselect-options-' + id;
+           
             //add global variable
             me.$multiSelect = me.$multiSelect.after(html.join('')).next('a.fanex-multiselect');
             me.$options = me.$multiSelect.next('div.fanex-multiselect-options');
@@ -267,7 +268,7 @@
                 //    tempHtml.push('<li class="' + liClasses + '" style="' + liStyle + '">');
                 //}
                 //else {
-                tempHtml.push('<li class="' + liClasses + '">');
+                    tempHtml.push('<li class="' + liClasses + '">');
                 //}
 
                 if (me.isShowGroup) {
@@ -431,14 +432,14 @@
                 options = me.options;
             // build header links
             me.$headerCheckbox.click(function (e) {
-                var $this = $(this);
-                if ($this.prop('checked')) {
-                    me.$allCheckBoxInputs.prop('checked', true);
-                }
-                else {
-                    me.$allCheckBoxInputs.prop('checked', false);
-                }
-            });
+                    var $this = $(this);
+                    if ($this.prop('checked')) {
+                        me.$allCheckBoxInputs.prop('checked', true);
+                    }
+                    else {
+                        me.$allCheckBoxInputs.prop('checked', false);
+                    }
+                });
             //build footer link
             if (options.showFooter) {
                 me.$footer.find('a').click(function (e) {
@@ -754,5 +755,6 @@
 
 
 })(jQuery);
+
 
 

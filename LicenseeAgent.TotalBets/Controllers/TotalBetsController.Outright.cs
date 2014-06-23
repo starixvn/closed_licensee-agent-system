@@ -15,7 +15,6 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.ViewModels;
-    using LicenseeAgent.Web.Controllers;
 
     /// <summary>
     /// Account controllers.
@@ -78,7 +77,7 @@ namespace LicenseeAgent.TotalBets.Controllers
         /// Get Leagues by sports.
         /// </summary>
         /// <param name="sport">Sport value.</param>
-        /// <param name="league">League Type.</param>        
+        /// <param name="league">League Type.</param>
         /// <param name="checkedAll">Checked All.</param>
         /// <returns>League list.</returns>
         [HttpPost]

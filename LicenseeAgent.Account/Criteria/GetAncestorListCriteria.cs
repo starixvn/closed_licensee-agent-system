@@ -14,7 +14,7 @@ namespace LicenseeAgent.Account.Criteria
     public class GetAncestorListCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "Las_GetAncestorList";

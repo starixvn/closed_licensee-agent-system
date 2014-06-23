@@ -38,7 +38,7 @@ namespace LicenseeAgent.Taiwan.Filter
             {
                 var propertyName = destinationProperty.Name;
                 var attribute = destinationProperty.GetCustomAttributes(typeof(ServiceAttribute), true).FirstOrDefault();
-                
+
                 if (attribute != null)
                 {
                     propertyName = ((ServiceAttribute)attribute).Name;

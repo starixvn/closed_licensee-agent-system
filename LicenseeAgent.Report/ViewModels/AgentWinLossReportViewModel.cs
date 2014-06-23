@@ -29,7 +29,7 @@ namespace LicenseeAgent.Report.ViewModels
         public int AgentLevel { get; set; }
 
         public string Username { get; set; }
-        
+
         public string BreadCrumb { get; set; }
 
         [Required]

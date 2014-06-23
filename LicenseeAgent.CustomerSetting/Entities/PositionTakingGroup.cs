@@ -7,7 +7,6 @@
 namespace LicenseeAgent.CustomerSetting.Entities
 {
     using System.Collections.Generic;
-    using LicenseeAgent.CustomerSetting.Utils;
 
     /// <summary>
     /// Group of position taking, representative for each sport.

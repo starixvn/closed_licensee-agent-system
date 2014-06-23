@@ -9,7 +9,7 @@ namespace LicenseeAgent.Web
     using System.Web;
 
     /// <summary>
-    /// <see cref="http://msdn.microsoft.com/en-us/library/ff650316.aspx"/> 
+    /// <see cref="http://msdn.microsoft.com/en-us/library/ff650316.aspx"/>
     /// </summary>
     public static class SessionManager
     {

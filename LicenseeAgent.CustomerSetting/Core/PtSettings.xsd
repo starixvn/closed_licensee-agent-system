@@ -20,11 +20,10 @@
     </xs:sequence>
     <xs:attribute name="Id" type="xs:int" use="required" />
   </xs:complexType>
-  
+
   <xs:complexType name="SportTypePtSettings">
     <xs:attribute name="Id" type="xs:int" use="required"></xs:attribute>
     <xs:attribute name="IsLive" type="xs:boolean" use="required"></xs:attribute>
     <xs:attribute name="BetTypeIds" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
-  
 </xs:schema>

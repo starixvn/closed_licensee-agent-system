@@ -22,7 +22,7 @@ namespace LicenseeAgent.Core.Configurations
             new SelectListItem { Text = "English", Value = "en-US" },
             new SelectListItem { Text = "繁體中文", Value = "zh-TW" },
             new SelectListItem { Text = "简体中文", Value = "zh-CN" }
-        };      
+        };
 
         public static string DefaultLanguage
         {

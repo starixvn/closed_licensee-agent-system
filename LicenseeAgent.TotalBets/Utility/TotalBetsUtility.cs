@@ -46,7 +46,7 @@ namespace LicenseeAgent.TotalBets.Utility
                     {
                         MatchId = matches.FirstOrDefault().MatchId,
                         LiveIndicator = matchGroup.LiveIndicator,
-                        Time = matchGroup.LiveIndicator 
+                        Time = matchGroup.LiveIndicator
                             ? string.Format(timeLiveTemplate, matchGroup.LiveHomeScore, matchGroup.LiveAwayScore)
                             : matches.FirstOrDefault().ShowTime,
                         LiveHomeScore = matchGroup.LiveHomeScore,
@@ -77,7 +77,7 @@ namespace LicenseeAgent.TotalBets.Utility
                     });
                 }
 
-                var orderedMatchList = matchList                        
+                var orderedMatchList = matchList
                         .OrderByDescending(x => x.LiveHomeScore)
                         .ThenByDescending(a => a.LiveAwayScore);
                 yield return new LeagueGroupEntity

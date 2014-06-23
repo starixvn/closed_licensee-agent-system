@@ -57,7 +57,7 @@ namespace LicenseeAgent.CustomerList.Entities
         {
             get
             {
-                return Extensions.FormatCustomerName(FirstName, LastName); 
+                return Extensions.FormatCustomerName(FirstName, LastName);
             }
         }
     }

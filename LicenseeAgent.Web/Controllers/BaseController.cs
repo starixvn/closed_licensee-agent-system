@@ -18,7 +18,6 @@ namespace LicenseeAgent.Web.Controllers
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Web.Mvc;
-    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login

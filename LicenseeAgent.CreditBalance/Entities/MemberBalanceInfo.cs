@@ -30,7 +30,7 @@ namespace LicenseeAgent.CreditBalance.Entities
 
         public bool Status
         {
-            get 
+            get
             {
                 return IsClosed;
             }

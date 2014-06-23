@@ -71,14 +71,14 @@ namespace LicenseeAgent.AccountInformation.Services
 
             return new BalanceEntity
                     {
-                         GivenCredit = criteria.GivenCredit,
-                         Outstanding = criteria.Outstanding,
-                         TotalBalance = criteria.TotalBalance,
-                         TotalCash = criteria.TotalCash,
-                         TotalOutstanding = criteria.TotalOutstanding,
-                         UsedCredit  = criteria.UsedCredit,
-                         YesterdayBalance = criteria.YesterdayBalance,
-                         YesterdayCash  = criteria.YesterdayCash
+                        GivenCredit = criteria.GivenCredit,
+                        Outstanding = criteria.Outstanding,
+                        TotalBalance = criteria.TotalBalance,
+                        TotalCash = criteria.TotalCash,
+                        TotalOutstanding = criteria.TotalOutstanding,
+                        UsedCredit = criteria.UsedCredit,
+                        YesterdayBalance = criteria.YesterdayBalance,
+                        YesterdayCash = criteria.YesterdayCash
                     };
         }
 

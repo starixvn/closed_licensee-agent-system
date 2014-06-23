@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.BetList.DataAccess
 {
-    using System.Data;
     using Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;

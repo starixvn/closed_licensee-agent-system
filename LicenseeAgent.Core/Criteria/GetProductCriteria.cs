@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.Core.Criteria
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

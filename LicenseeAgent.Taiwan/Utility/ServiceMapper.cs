@@ -35,7 +35,7 @@ namespace LicenseeAgent.Taiwan.Utility
 
             var sourceProperties = source.GetType().GetProperties();
             var destinationProperties = destination.GetType().GetProperties();
-            
+
             foreach (var sourceProperty in sourceProperties)
             {
                 foreach (var destinationProperty in destinationProperties)

@@ -22,7 +22,7 @@ namespace LicenseeAgent.Report.Criteria
             short drawType,
             string productIds)
             : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType, productIds)
-        { 
+        {
         }
 
         public override string GetSettingKey()

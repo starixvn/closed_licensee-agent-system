@@ -7,7 +7,6 @@
 namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>

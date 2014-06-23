@@ -19,7 +19,7 @@ namespace LicenseeAgent.Report.ViewModels
         public int AgentLevel { get; set; }
 
         public int NumberOfLevel { get; set; }
-        
+
         public string BreadCrumb { get; set; }
 
         public IEnumerable<AgentOutstanding> AgentOutstandings { get; set; }

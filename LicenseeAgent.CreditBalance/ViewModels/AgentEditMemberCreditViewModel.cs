@@ -23,7 +23,7 @@ namespace LicenseeAgent.CreditBalance.ViewModels
 
         public decimal MinCreditOutput { get; set; }
 
-        public bool IsAccountInfo { get; set; }        
+        public bool IsAccountInfo { get; set; }
 
         [Required]
         [Display(Name = "Amount", ResourceType = typeof(Las))]

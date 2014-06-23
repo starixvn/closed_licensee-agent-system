@@ -14,7 +14,7 @@ namespace LicenseeAgent.Report.Services
     using Fanex.Result.Core.DTO;
 
     public interface IReportService
-    {        
+    {
         /// <summary>
         /// Get Sports.
         /// </summary>

@@ -9,7 +9,7 @@ namespace LicenseeAgent.Web
     using System.Configuration;
 
     //// http://haacked.com/archive/2007/03/11/custom-configuration-sections-in-3-easy-steps.aspx
-    
+
     /// <summary>
     /// Custom URLs for application.
     /// </summary>

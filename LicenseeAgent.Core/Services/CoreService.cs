@@ -12,7 +12,6 @@ namespace LicenseeAgent.Core.Services
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// CoreService class.

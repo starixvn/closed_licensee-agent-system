@@ -10,7 +10,7 @@ namespace LicenseeAgent.TotalBets.ViewModels
     /// OutrightViewModel class.
     /// </summary>
     public class OutrightViewModel
-    {           
-        public int TimeInterval { get; set; }        
+    {
+        public int TimeInterval { get; set; }
     }
 }

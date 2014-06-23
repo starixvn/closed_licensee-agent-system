@@ -8,13 +8,10 @@ namespace LicenseeAgent.TotalBets.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.BetList.Entities;
-    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
-    using LicenseeAgent.Web.Controllers;
 
     /// <summary>
     /// Account controllers.

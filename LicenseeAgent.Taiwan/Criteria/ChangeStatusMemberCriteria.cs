@@ -17,7 +17,7 @@ namespace LicenseeAgent.Taiwan.Criteria
             : base(logAction)
         {
         }
-        
+
         public override string GetSettingKey()
         {
             return "LAS_ChangeStatus_Member_Writelog";

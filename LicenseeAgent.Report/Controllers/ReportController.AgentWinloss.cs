@@ -87,8 +87,8 @@ namespace LicenseeAgent.Report.Controllers
                 result = _reportService.AgentWinLossReport(criteria).ToList();
             }
 
-            var totalRow = from x in result 
-                           group x by 1 into g 
+            var totalRow = from x in result
+                           group x by 1 into g
                            select new
                            {
                                BetCount = g.Sum(x => x.BetCount),

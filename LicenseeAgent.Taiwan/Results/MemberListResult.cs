@@ -18,7 +18,7 @@ namespace LicenseeAgent.Taiwan.Results
     public class MemberListResult : ResponseResult
     {
         public MemberListResult(int errorCode, string errorMessage)
-               : base(errorCode, errorMessage)
+            : base(errorCode, errorMessage)
         {
         }
 

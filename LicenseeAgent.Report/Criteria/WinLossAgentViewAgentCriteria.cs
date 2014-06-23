@@ -21,7 +21,7 @@ namespace LicenseeAgent.Report.Criteria
             DateTime balanceUpDay,
             short drawType,
             string productIds)
-            : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType, productIds) 
+            : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType, productIds)
         {
         }
 

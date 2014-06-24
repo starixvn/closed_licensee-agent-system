@@ -1,11 +1,8 @@
 ﻿namespace LicenseeAgent.Transfer.Tests.Fakes
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Taiwan.Actions;
-
-    using LicenseeAgent.Taiwan.Entities;
 
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
@@ -69,9 +66,9 @@
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
-        public static IDownlLinePermissionService GetDownlLinePermissionService()
+        public static IDownLinePermissionService GetDownlLinePermissionService()
         {
-            return Substitute.For<IDownlLinePermissionService>();
+            return Substitute.For<IDownLinePermissionService>();
         }
 
         /// <summary>

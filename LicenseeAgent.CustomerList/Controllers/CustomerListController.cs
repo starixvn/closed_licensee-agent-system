@@ -39,7 +39,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         private readonly ICoreService _coreService;
 
         public CustomerListController()
-            : this(null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -47,14 +47,14 @@ namespace LicenseeAgent.CustomerList.Controllers
             ICustomerService customerService,
             IIpInformationService ipInformationService,
             IMemberService memberService,
-            IDownLinePermissionService downLinePermissionService)
+            IDownLinePermissionService downLinePermissionService,
             ICoreService coreService)
         {
             _customerService = customerService ?? new CustomerService();
             _ipInformationService = ipInformationService ?? new IpInformationService();
             _memberService = memberService ?? new MemberService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
-            _coreService = coreService;
+            _coreService = coreService ?? new CoreService();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace LicenseeAgent.CustomerList.Controllers
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
 
             var isLastLevel = hasAgentModel ? ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel) : CurrentSession.AgentInfo.IsLastLevel;
-            
+
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
 
             ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)

@@ -59,11 +59,6 @@ namespace LicenseeAgent.CustomerSetting.Controllers
         {
         }
 
-        static CustomerSettingController()
-        {
-            _virtualSportsTypeIds = SettingConfigurations.GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
-        }
-
         public CustomerSettingController(
             IMemberService memberService,
             ICoreService coreService,

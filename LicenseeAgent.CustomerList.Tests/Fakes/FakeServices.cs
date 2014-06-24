@@ -14,7 +14,6 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
     using LicenseeAgent.CustomerList.Entities;
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Services;
@@ -37,8 +36,8 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
         {
             var customerService = Substitute.For<ICustomerService>();
 
-            var agents = new List<AgentEntity> 
-            { 
+            var agents = new List<AgentEntity>
+            {
                 new AgentEntity { AgentId = 101, AgentLevel = 2, UserName = "AgentAAA1" },
                 new AgentEntity { AgentId = 102, AgentLevel = 2, UserName = "AgentAAA2" },
                 new AgentEntity { AgentId = 103, AgentLevel = 2, UserName = "AgentBBB1" },
@@ -51,8 +50,8 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
                 new MemberEntity { AgentId = 101, CustId = 101, Status = 1 }
             };
 
-            var failureAgents = new List<AgentEntity> 
-            { 
+            var failureAgents = new List<AgentEntity>
+            {
                 new AgentEntity { AgentId = 201, AgentLevel = 2, UserName = "AgentAAA1" },
                 new AgentEntity { AgentId = 202, AgentLevel = 2, UserName = "AgentAAA2" }
             };
@@ -60,20 +59,20 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
             customerService.GetAgentList(Arg.Any<AgentGetByAgentCriteria>()).Returns(agents);
             customerService.SearchAgent(Arg.Any<SearchAgentCriteria>()).Returns(agents);
             customerService.GetMemberList(Arg.Any<MemberGetByAgentCriteria>())
-                        .Returns(args => 
-                        { 
+                        .Returns(args =>
+                        {
                             var criteria = (MemberGetByAgentCriteria)args[0];
                             criteria.MsgId = Result.SuccessValue;
 
-                            return members; 
+                            return members;
                         });
             customerService.SearchMember(Arg.Any<SearchMemberCriteria>())
-                        .Returns(args => 
-                        { 
+                        .Returns(args =>
+                        {
                             var criteria = (SearchMemberCriteria)args[0];
                             criteria.MsgId = Result.SuccessValue;
 
-                            return members; 
+                            return members;
                         });
 
             customerService.UpdateAgentAccStatus(Arg.Is<UpdateAgentStatusCriteria>(x => x.AgentId == 100)).Returns(agents);
@@ -86,7 +85,7 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
                             });
             customerService.GetAgentAutoComplete(Arg.Any<AgentAutoCompleteCriteria>()).Returns(agents);
             customerService.GetMemberAutoComplete(Arg.Any<MemberAutoCompleteCriteria>()).Returns(members);
-            
+
             customerService.When(x => x.ResetPassword(Arg.Is<ResetPasswordCriteria>(c => c.AgentId != 100)))
                             .Do(args =>
                             {
@@ -113,7 +112,7 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
             var ipInformationService = Substitute.For<IIpInformationService>();
 
             ipInformationService.GetIpInformation(Arg.Any<GetIpInformationCriteria>())
-                            .Returns(args => 
+                            .Returns(args =>
                             {
                                 return new List<IpEntity>
                                 {
@@ -155,9 +154,9 @@ namespace LicenseeAgent.CustomerList.Tests.Fakes
         /// Get down line service.
         /// </summary>
         /// <returns>Down line service.</returns>
-        public static IDownlLinePermissionService GetDownlineService()
+        public static IDownLinePermissionService GetDownlineService()
         {
-            var downlineService = Substitute.For<IDownlLinePermissionService>();
+            var downlineService = Substitute.For<IDownLinePermissionService>();
 
             downlineService.IsDownLineAgent(Arg.Is<int>(x => x == 100 || x == 200)).Returns(true);
             downlineService.IsDownLineMember(Arg.Is<int>(x => x == 1000 || x == 2000)).Returns(true);

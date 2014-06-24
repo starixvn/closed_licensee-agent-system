@@ -109,7 +109,7 @@ namespace LicenseeAgent.Account.Controllers
         public ActionResult Lrf(string authKey)
         {
             var loginInfo = Integration.Decrypt(authKey);
-            if (loginInfo.IsExpired)
+            if (_internalService.IsExpired(loginInfo))
             {
                 return Content(Las.SessionExpired);
             }

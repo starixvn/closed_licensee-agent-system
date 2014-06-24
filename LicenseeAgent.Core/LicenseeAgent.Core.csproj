@@ -146,7 +146,6 @@
     <Compile Include="Utility\PasswordRule.cs" />
     <Compile Include="Utility\RegLib.cs" />
     <Compile Include="Utility\ResourceManager.cs" />
-    <Compile Include="Utility\RijndaelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">

@@ -1,0 +1,1 @@
+call template.bat LicenseeAgent.API.Tests

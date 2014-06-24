@@ -6,28 +6,28 @@
 
 namespace LicenseeAgent.Account.Services
 {
+    using System;
     using System.Web;
     using LicenseeAgent.Account.Criteria;
+    using LicenseeAgent.API.LRF.Entities;
+    using LicenseeAgent.API.Utility;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// InternalService class.
     /// </summary>
     public class InternalService : QueryService, IInternalService
     {
-        private static readonly byte[] AesKey =
+        public bool IsExpired(LoginInfo loginInfo)
         {
-            123, 217, 19, 11, 24, 26, 85, 45, 114, 184, 27, 162, 37,
-            112, 222, 209, 241, 24, 175, 144, 173, 53, 196, 29, 24, 26, 17, 218, 131, 236, 53, 209
-        };
-
-        private static readonly byte[] AesVector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 221, 112, 79, 32, 114, 156 };
+            return DateTime.Now.AddMinutes(Constants.LrfAuthMinuteTimeout).ToUniversalTime() > loginInfo.CreatedTime;
+        }
 
         public string Encode(InternalLoginInfo internalLoginInfo)
         {
-            using (var rijndaelHelper = new RijndaelHelper(AesKey, AesVector))
+            using (var rijndaelHelper = new RijndaelHelper())
             {
                 var authKey = HttpUtility.UrlEncode(rijndaelHelper.EncryptObject(internalLoginInfo));
                 return authKey;
@@ -41,7 +41,7 @@ namespace LicenseeAgent.Account.Services
         /// <returns>Returns internal login information.</returns>
         public InternalLoginInfo Decode(string authKey)
         {
-            using (var rijndaelHelper = new RijndaelHelper(AesKey, AesVector))
+            using (var rijndaelHelper = new RijndaelHelper())
             {
                 return rijndaelHelper.DecryptObject<InternalLoginInfo>(authKey);
             }

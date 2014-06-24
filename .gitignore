@@ -3,6 +3,9 @@
 [Oo]bj/
 CodeAnalysis/
 
+# CodeCoverage
+CodeCoverage/output
+
 # mstest test results
 TestResults
 

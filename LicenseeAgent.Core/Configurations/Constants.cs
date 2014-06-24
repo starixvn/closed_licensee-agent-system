@@ -17,6 +17,7 @@ namespace LicenseeAgent.Core.Configurations
         public const string AppCookieLanguage = "LasLanguage";
         public const string AppCookieTopMenu = "LasTopMenu";
 
+        public const int LrfAuthMinuteTimeout = 5;
         public const int MinimumUsernameLength = 6;
         public const int MaximumUsernameLength = 50;
         public const int ShortStringLength = 15;

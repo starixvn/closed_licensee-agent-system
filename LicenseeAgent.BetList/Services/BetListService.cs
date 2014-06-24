@@ -12,7 +12,7 @@ namespace LicenseeAgent.BetList.Services
     using DataAccess;
     using Entities;
     using Fanex.BetList.Core.Entities;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.Core.Exceptions;

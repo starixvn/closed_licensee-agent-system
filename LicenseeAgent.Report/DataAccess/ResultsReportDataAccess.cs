@@ -9,7 +9,7 @@ namespace LicenseeAgent.Report.DataAccess
     using System;
     using System.Data;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Exceptions;
 
     /// <summary>

@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Message.Criteria
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Search Message Criteria.

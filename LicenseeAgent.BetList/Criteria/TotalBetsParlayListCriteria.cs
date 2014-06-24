@@ -2,7 +2,7 @@
 
 namespace LicenseeAgent.BetList.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     public class TotalBetsParlayListCriteria : CriteriaBase
     {

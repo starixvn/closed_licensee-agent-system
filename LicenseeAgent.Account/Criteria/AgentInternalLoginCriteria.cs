@@ -3,7 +3,7 @@
 namespace LicenseeAgent.Account.Criteria
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     public class AgentInternalLoginCriteria : CriteriaBase
     {

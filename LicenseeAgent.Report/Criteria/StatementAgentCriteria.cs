@@ -6,7 +6,7 @@
 namespace LicenseeAgent.Report.Criteria
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Statement Agent Criteria.

@@ -34,8 +34,8 @@ namespace LicenseeAgent.Core.Configurations
         public static int? GetLicenseeId(HttpRequestBase request)
         {
             var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.InvariantCultureIgnoreCase) != -1
-                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
+            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1
+                && string.Compare(x.Environment, AppSettings.Environment, StringComparison.OrdinalIgnoreCase) == 0);
             if (licenseeDomains.Count() == 1)
             {
                 return licenseeDomains.First().LicenseeId;
@@ -57,8 +57,8 @@ namespace LicenseeAgent.Core.Configurations
         public static int? GetLicenseeId(string licenseeName)
         {
             var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.InvariantCultureIgnoreCase)
-                && string.Compare(x.Environment, AppSettings.Environment, true) == 0);
+            licenseeDomains = licenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.OrdinalIgnoreCase)
+                && string.Compare(x.Environment, AppSettings.Environment, StringComparison.OrdinalIgnoreCase) == 0);
 
             if (licenseeDomains.Count() == 1)
             {

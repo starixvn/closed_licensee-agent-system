@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.TotalBets.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// OutrightCriteria class.

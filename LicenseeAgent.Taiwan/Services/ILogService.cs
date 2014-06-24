@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Taiwan.Services
 {
     using System.Collections.Generic;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Taiwan.Entities;
 
     internal interface ILogService

@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Criteria.SportsBook
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Get Agent setting for insert new agent.

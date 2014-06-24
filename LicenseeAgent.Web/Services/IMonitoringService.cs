@@ -12,7 +12,7 @@ namespace LicenseeAgent.Web.Services
 {
     using System.Collections.Generic;
     using Entities;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     public interface IMonitoringService
     {

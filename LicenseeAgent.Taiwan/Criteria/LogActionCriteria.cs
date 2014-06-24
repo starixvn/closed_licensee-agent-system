@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.Taiwan.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Taiwan.Actions;
 
     /// <summary>

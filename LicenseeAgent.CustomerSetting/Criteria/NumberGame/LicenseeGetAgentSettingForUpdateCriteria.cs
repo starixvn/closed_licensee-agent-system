@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// LicenseeGetAgentSettingForUpdateCriteria class.

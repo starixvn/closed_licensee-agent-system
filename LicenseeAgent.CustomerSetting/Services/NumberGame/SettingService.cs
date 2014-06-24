@@ -11,7 +11,7 @@ namespace LicenseeAgent.CustomerSetting.Services.NumberGame
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;

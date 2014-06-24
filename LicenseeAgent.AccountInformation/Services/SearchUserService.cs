@@ -7,7 +7,7 @@
 namespace LicenseeAgent.AccountInformation.Services
 {
     using System.Collections.Generic;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Core.Services;

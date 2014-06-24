@@ -2,8 +2,8 @@
 
 namespace LicenseeAgent.Web.Criteria
 {
-    using Fanex.NAP.Framework.Data;
     using LicenseeAgent.Web.Enumerations;
+    using Fanex.Data.Repository;
 
     public class CheckDownlineBelongCriteria : CriteriaBase
     {

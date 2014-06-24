@@ -2,6 +2,9 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {
+    using System.Runtime.CompilerServices;
+
+    [CompilerGeneratedAttribute]
     public enum Product : int
     {
         

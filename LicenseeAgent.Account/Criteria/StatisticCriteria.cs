@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.Account.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// StatisticCriteria class.

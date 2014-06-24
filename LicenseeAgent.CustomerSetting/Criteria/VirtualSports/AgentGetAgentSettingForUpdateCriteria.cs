@@ -6,7 +6,7 @@
 
 namespace LicenseeAgent.CustomerSetting.Criteria.VirtualSports
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// AgentGetAgentSettingForUpdateCriteria class.

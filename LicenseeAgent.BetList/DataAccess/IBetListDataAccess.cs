@@ -8,7 +8,7 @@ namespace LicenseeAgent.BetList.DataAccess
 {
     using Entities;
     using Fanex.BetList.Core.Entities;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.BetList.Criteria;
 
     /// <summary>

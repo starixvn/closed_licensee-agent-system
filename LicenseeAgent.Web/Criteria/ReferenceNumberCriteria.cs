@@ -2,7 +2,7 @@
 
 namespace LicenseeAgent.Web.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     public class ReferenceNumberCriteria : CriteriaBase
     {

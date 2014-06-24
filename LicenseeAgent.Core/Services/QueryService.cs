@@ -13,7 +13,7 @@ namespace LicenseeAgent.Core.Services
     using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Exceptions;
 
     /// <summary>

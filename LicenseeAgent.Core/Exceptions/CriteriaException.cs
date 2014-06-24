@@ -10,7 +10,7 @@ namespace LicenseeAgent.Core.Exceptions
     using System.Runtime.Serialization;
     using System.Text;
     using Fanex.Data.Configuration;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// CriteriaException class.

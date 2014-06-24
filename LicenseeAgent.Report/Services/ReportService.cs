@@ -12,7 +12,7 @@ namespace LicenseeAgent.Report.Services
     using Criteria;
     using DataAccess;
     using Entities;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using Fanex.Result.Core.DTO;
 
     /// <summary>

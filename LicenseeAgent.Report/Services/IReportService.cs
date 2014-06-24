@@ -10,7 +10,7 @@ namespace LicenseeAgent.Report.Services
     using System.Collections.Generic;
     using Criteria;
     using Entities;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using Fanex.Result.Core.DTO;
 
     public interface IReportService

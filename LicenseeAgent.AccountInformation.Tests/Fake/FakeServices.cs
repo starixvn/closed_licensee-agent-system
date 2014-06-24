@@ -8,7 +8,7 @@ namespace LicenseeAgent.AccountInformation.Tests.Fake
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.AccountInformation.Services;

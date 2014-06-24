@@ -7,7 +7,7 @@
 namespace LicenseeAgent.Report.DataAccess
 {
     using System.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Interface Account.

@@ -10,7 +10,7 @@ namespace LicenseeAgent.CustomerSetting.Services.VirtualSports
     using System.Collections.Generic;
     using Fanex.Common;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;

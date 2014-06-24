@@ -300,19 +300,14 @@ namespace LicenseeAgent.AccountInformation.Controllers
             }
             else
             {
-                var hasVirtualSports = false;
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
-                {
-                    hasVirtualSports = true;
-                }
 
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
                     IsDirectDownline = true,
                     IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel,
-                    IsOfferedVirtualSports = hasVirtualSports
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
                 };
             }
         }
@@ -341,19 +336,14 @@ namespace LicenseeAgent.AccountInformation.Controllers
                 var isDirectDownline = (isLastLevel && isMember)
                                         || CurrentSession.IsDirectDownline(customer.CustId == CurrentSession.AgentInfo.AgentId ? customer.Level : customer.Level - 1);
 
-                var hasVirtualSports = false;
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
-                {
-                    hasVirtualSports = true;
-                }
 
                 ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
                 {
                     IsDirectDownline = isDirectDownline,
                     IsLastLevel = isLastLevel,
                     IsMember = isMember,
-                    IsOfferedVirtualSports = hasVirtualSports
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
                 };
             }
         }

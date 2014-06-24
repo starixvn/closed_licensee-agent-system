@@ -77,15 +77,28 @@ namespace LicenseeAgent.Core.Services
             return products;
         }
 
+        /// <summary>
+        /// Has product offered.
+        /// </summary>
+        /// <param name="licenseeId">ID of Licensee.</param>
+        /// <param name="productId">ID of Product.</param>
+        /// <returns>If has product offered return true, else return false.</returns>
         public bool HasProductOffered(int licenseeId, int productId)
         {
             var productInfos = GetProducts(licenseeId);
-            if (productInfos.Where(x => x.ProductId == productId).Count() == 1)
-            {
-                return true;
-            }
 
-            return false;
+            return HasProductOffered(productInfos, productId);
+        }
+
+        /// <summary>
+        /// Has product offered.
+        /// </summary>
+        /// <param name="productInfos">Product Information.</param>
+        /// <param name="productId">ID of Product.</param>
+        /// <returns>If has product offered return true, else return false.</returns>
+        public bool HasProductOffered(IList<ProductInfo> productInfos, int productId)
+        {
+            return productInfos.Where(x => x.ProductId == productId).Count() == 1;
         }
     }
 }

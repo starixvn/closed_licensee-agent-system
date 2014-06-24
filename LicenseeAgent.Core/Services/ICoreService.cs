@@ -18,5 +18,7 @@ namespace LicenseeAgent.Core.Services
         IList<ProductInfo> GetProducts(int licenseeId);
 
         bool HasProductOffered(int licenseeId, int productId);
+
+        bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
     }
 }

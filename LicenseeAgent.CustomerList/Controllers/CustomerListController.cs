@@ -36,7 +36,7 @@ namespace LicenseeAgent.CustomerList.Controllers
         private readonly IIpInformationService _ipInformationService;
         private readonly IMemberService _memberService;
         private readonly IDownLinePermissionService _downLinePermissionService;
-        private readonly ICoreService _coreService = new CoreService();
+        private readonly ICoreService _coreService;
 
         public CustomerListController()
             : this(null, null, null, null)
@@ -48,11 +48,13 @@ namespace LicenseeAgent.CustomerList.Controllers
             IIpInformationService ipInformationService,
             IMemberService memberService,
             IDownLinePermissionService downLinePermissionService)
+            ICoreService coreService)
         {
             _customerService = customerService ?? new CustomerService();
             _ipInformationService = ipInformationService ?? new IpInformationService();
             _memberService = memberService ?? new MemberService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _coreService = coreService;
         }
 
         /// <summary>
@@ -64,7 +66,6 @@ namespace LicenseeAgent.CustomerList.Controllers
         public ActionResult Index(AgentInfoViewModel model)
         {
             var hasAgentModel = model.AgentId != 0;
-            var hasVirtualSports = false;
 
             var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
@@ -72,17 +73,14 @@ namespace LicenseeAgent.CustomerList.Controllers
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
 
             var isLastLevel = hasAgentModel ? ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel) : CurrentSession.AgentInfo.IsLastLevel;
+            
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
-            {
-                hasVirtualSports = true;
-            }
 
             ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
             {
                 IsDirectDownline = CurrentSession.IsDirectDownline(hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel),
                 IsAdmin = CurrentSession.IsAdmin,
-                IsOfferedVirtualSports = hasVirtualSports
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
             };
 
             return View(breadModel);
@@ -96,8 +94,6 @@ namespace LicenseeAgent.CustomerList.Controllers
         [HttpPost]
         public ActionResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
         {
-            var hasVirtualSports = false;
-
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
@@ -116,16 +112,12 @@ namespace LicenseeAgent.CustomerList.Controllers
             }
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            if (productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any())
-            {
-                hasVirtualSports = true;
-            }
 
             ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
             {
                 IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
                 IsAdmin = CurrentSession.IsAdmin,
-                IsOfferedVirtualSports = hasVirtualSports
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
             };
 
             return View(model);

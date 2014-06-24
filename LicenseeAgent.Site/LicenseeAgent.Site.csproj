@@ -887,6 +887,7 @@
     </Content>
     <Content Include="Web.Local.Admin.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Local.Agent.config">
       <DependentUpon>Web.Config.tt</DependentUpon>

@@ -1,19 +1,19 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Demo.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Tests
+﻿namespace LicenseeAgent.Tests
 {
+    using System;
     using NUnit.Framework;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Demo class.
     /// </summary>
     [TestFixture]
-    public class Demo
+    public class Demo : IDisposable
     {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
         [Test]
         public void TestPassed()
         {
@@ -30,6 +30,17 @@ namespace LicenseeAgent.Tests
             var y = 20;
             var total = x + y;
             total.ShouldEqual(31);
+        }
+
+        [TearDown]
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
         }
     }
 }

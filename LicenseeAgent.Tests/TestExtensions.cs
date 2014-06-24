@@ -8,25 +8,35 @@
     /// </summary>
     public static class TestExtensions
     {
-        public static T ShouldNotNull<T>(this T obj)
+        public static void ShouldBeNull(this object obj)
+        {
+            Assert.IsNull(obj);
+        }
+
+        public static T ShouldBeNull<T>(this T obj)
         {
             Assert.IsNull(obj);
             return obj;
         }
 
-        public static T ShouldNotNull<T>(this T obj, string message)
+        public static T ShouldBeNull<T>(this T obj, string message)
         {
             Assert.IsNull(obj, message);
             return obj;
         }
 
-        public static T ShouldNotBeNull<T>(this T obj)
+        public static void ShouldBeNotNull(this object obj)
+        {
+            Assert.IsNotNull(obj);
+        }
+
+        public static T ShouldBeNotNull<T>(this T obj)
         {
             Assert.IsNotNull(obj);
             return obj;
         }
 
-        public static T ShouldNotBeNull<T>(this T obj, string message)
+        public static T ShouldBeNotNull<T>(this T obj, string message)
         {
             Assert.IsNotNull(obj, message);
             return obj;
@@ -38,20 +48,18 @@
             return actual;
         }
 
-        /// <summary>
-        /// Asserts that two objects are equal.
-        /// </summary>
-        /// <param name="actual">The actual.</param>
-        /// <param name="expected">The expected.</param>
-        /// <param name="message">The message.</param>
         public static void ShouldEqual(this object actual, object expected, string message)
         {
             Assert.AreEqual(expected, actual);
         }
 
-        public static Exception ShouldBeThrownBy(this Type exceptionType, TestDelegate testDelegate)
+        public static void ShouldEqualIgnoreCase(this string actual, string expected)
         {
-            return Assert.Throws(exceptionType, testDelegate);
+            if (!string.Equals(actual, expected, StringComparison.InvariantCultureIgnoreCase))
+            {
+                var message = string.Format("Expected {0} but was {1}", expected, actual);
+                throw new AssertionException(message);
+            }
         }
 
         public static void ShouldBe<T>(this object actual)
@@ -59,9 +67,14 @@
             Assert.IsInstanceOf<T>(actual);
         }
 
-        public static void ShouldBeNull(this object actual)
+        public static void ShouldBeTrue(this bool source)
         {
-            Assert.IsNull(actual);
+            Assert.IsTrue(source);
+        }
+
+        public static void ShouldBeFalse(this bool source)
+        {
+            Assert.IsFalse(source);
         }
 
         public static void ShouldBeTheSameAs(this object actual, object expected)
@@ -79,28 +92,9 @@
             return (T)source;
         }
 
-        public static void ShouldBeTrue(this bool source)
+        public static Exception ShouldBeThrownBy(this Type exceptionType, TestDelegate testDelegate)
         {
-            Assert.IsTrue(source);
-        }
-
-        public static void ShouldBeFalse(this bool source)
-        {
-            Assert.IsFalse(source);
-        }
-
-        /// <summary>
-        /// Compares the two strings (case-insensitive).
-        /// </summary>
-        /// <param name="actual">The actual.</param>
-        /// <param name="expected">The expected.</param>
-        public static void AssertSameStringAs(this string actual, string expected)
-        {
-            if (!string.Equals(actual, expected, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var message = string.Format("Expected {0} but was {1}", expected, actual);
-                throw new AssertionException(message);
-            }
+            return Assert.Throws(exceptionType, testDelegate);
         }
     }
 }

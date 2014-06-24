@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LoginInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.API.LRF.Entities
+﻿namespace LicenseeAgent.API.LRF.Entities
 {
     using System;
 
@@ -12,11 +6,11 @@ namespace LicenseeAgent.API.LRF.Entities
     /// LoginInfo class.
     /// </summary>
     [Serializable]
-    public class LoginInfo
+    public class LoginInfo : IEquatable<LoginInfo>
     {
         public LoginInfo()
         {
-            Timeout = DateTime.Now.AddMinutes(3).ToUniversalTime();
+            CreatedTime = DateTime.Now.ToUniversalTime();
         }
 
         public int UserId { get; set; }
@@ -27,14 +21,15 @@ namespace LicenseeAgent.API.LRF.Entities
 
         public string Language { get; set; }
 
-        public DateTime Timeout { get; private set; }
+        public DateTime CreatedTime { get; private set; }
 
-        public bool IsExpired
+        public bool Equals(LoginInfo other)
         {
-            get
-            {
-                return DateTime.Now.ToUniversalTime() > Timeout;
-            }
+            return CreatedTime == other.CreatedTime
+                && UserId == other.UserId
+                && OnUserId == other.OnUserId
+                && LicenseeId == other.LicenseeId
+                && Language == other.Language;
         }
     }
 }

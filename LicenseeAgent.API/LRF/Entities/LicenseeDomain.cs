@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeDomain.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.API.LRF.Entities
+﻿namespace LicenseeAgent.API.LRF.Entities
 {
     /// <summary>
     /// LicenseeDomain class.

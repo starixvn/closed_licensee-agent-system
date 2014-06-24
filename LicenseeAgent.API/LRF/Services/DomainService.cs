@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DomainService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.API.LRF.Services
+﻿namespace LicenseeAgent.API.LRF.Services
 {
     using System;
     using System.Configuration;

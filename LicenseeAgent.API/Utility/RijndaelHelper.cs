@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RijndaelHelper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.API.Utils
+﻿namespace LicenseeAgent.API.Utility
 {
     using System;
     using System.IO;
@@ -17,8 +11,21 @@ namespace LicenseeAgent.API.Utils
     /// </summary>
     public class RijndaelHelper : IDisposable
     {
+        private static readonly byte[] AesKey =
+        {
+            123, 217, 19, 11, 24, 26, 85, 45, 114, 184, 27, 162, 37,
+            112, 222, 209, 241, 24, 175, 144, 173, 53, 196, 29, 24, 26, 17, 218, 131, 236, 53, 209
+        };
+
+        private static readonly byte[] AesVector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 221, 112, 79, 32, 114, 156 };
+
         private readonly Rijndael _rijndael;
         private readonly UTF8Encoding _encoding;
+
+        public RijndaelHelper()
+            : this(AesKey, AesVector)
+        {
+        }
 
         public RijndaelHelper(byte[] key, byte[] vector)
         {

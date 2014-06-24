@@ -1,14 +1,7 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="LAS_WS.asmx.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgentWebService
+﻿namespace LicenseeAgentWebService
 {
     using System;
     using System.Web.Services;
-    using Fanex.Common;
     using Fanex.Data;
     using Fanex.Logging;
 
@@ -46,7 +39,7 @@ namespace LicenseeAgentWebService
                 {
                     objDb.ExecuteReader(criteria.GetSpParams());
 
-                    var errorCode = Converter.ToInt(objDb.GetParameterValue("ErrCode"));
+                    var errorCode = Convert.ToInt32(objDb.GetParameterValue("ErrCode"));
                     if (errorCode != 0)
                     {
                         return true;

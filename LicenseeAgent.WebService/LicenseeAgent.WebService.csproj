@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
@@ -82,11 +85,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\CheckAgentUsernameCriteria.cs" />
     <Compile Include="LAS_WS.asmx.cs">
       <DependentUpon>LAS_WS.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CustomerCriteria.cs" />
+    <Compile Include="Criteria\CheckUserNameCriteria.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

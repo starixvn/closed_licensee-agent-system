@@ -1,0 +1,29 @@
+﻿namespace LicenseeAgentWebService.Criteria
+{
+    using Fanex.Data.Repository;
+
+    /// <summary>
+    /// Criteria information.
+    /// </summary>
+    public class CheckUserNameCriteria : CriteriaBase
+    {
+        public string UserName { get; set; }
+
+        public string SiteName { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Las_CheckUserName";
+        }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrEmpty(UserName)
+                && !string.IsNullOrEmpty(SiteName);
+        }
+    }
+}

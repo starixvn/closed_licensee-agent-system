@@ -2,5 +2,6 @@
 <Functions>
   <Function Name="Customer">
     <Setting Key="Las_CheckUserName" SpName="Las_APICheckUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_CheckAgentUsername" SpName="Las_API_CheckAgentUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
   </Function>
 </Functions>

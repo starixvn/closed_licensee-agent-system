@@ -1,15 +1,19 @@
-﻿namespace LicenseeAgentWebService
+﻿namespace LicenseeAgentWebService.Criteria
 {
     using Fanex.Data.Repository;
 
     /// <summary>
     /// Criteria information.
     /// </summary>
-    public class CutomerCriteria : CriteriaBase
+    public class CheckAgentUsernameCriteria : CriteriaBase
     {
-        public string UserName { get; set; }
+        public string AgentUsername { get; set; }
 
         public string SiteName { get; set; }
+
+        public int AgentId { get; set; }
+
+        public string AgentCurrency { get; set; }
 
         public int ErrCode { get; set; }
 
@@ -17,12 +21,12 @@
 
         public override string GetSettingKey()
         {
-            return "Las_CheckUserName";
+            return "Las_CheckAgentUsername";
         }
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(UserName)
+            return !string.IsNullOrEmpty(AgentUsername)
                 && !string.IsNullOrEmpty(SiteName);
         }
     }

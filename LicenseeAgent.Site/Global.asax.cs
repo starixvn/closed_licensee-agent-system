@@ -146,8 +146,9 @@ namespace LicenseeAgent.Site
                 return;
             }
 
+            var stringBuilder = new StringBuilder(exception.Message);
             var baseException = exception.GetBaseException();
-            var stringBuilder = new StringBuilder(baseException.Message);
+            stringBuilder.AppendFormat("\nBase message: {0}", baseException.Message);
             stringBuilder.AppendFormat("\nSource: {0}", baseException.Source);
             stringBuilder.AppendFormat("\nUrl: {0}", Request.Url.ToString());
             stringBuilder.AppendFormat("\nForm: {0}", Request.Form.ToString());
@@ -159,10 +160,9 @@ namespace LicenseeAgent.Site
                 if (SessionManager.CurrentSession.AgentInfo != null)
                 {
                     var agentInfo = SessionManager.CurrentSession.AgentInfo;
-                    stringBuilder.AppendFormat("\nAgentId: {0}", agentInfo.AgentId);
-                    stringBuilder.AppendFormat("\nAgentName: {0}", agentInfo.UserName);
-                    stringBuilder.AppendFormat("\nLicenseeId: {0}", agentInfo.LicenseeId);
-                    stringBuilder.AppendFormat("\nCurrencyId: {0}", agentInfo.CurrencyId);
+                    stringBuilder.AppendFormat("\nAgent: {0} ({1})", agentInfo.UserName, agentInfo.AgentId);
+                    stringBuilder.AppendFormat("\nLicensee: {0} ({1})", agentInfo.LicenseeName, agentInfo.LicenseeId);
+                    stringBuilder.AppendFormat("\nCurrency: {0} ({1})", agentInfo.CurrencyName, agentInfo.CurrencyId);
                 }
             }
 

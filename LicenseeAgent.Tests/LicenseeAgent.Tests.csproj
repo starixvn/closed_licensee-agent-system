@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2F5C695A-1973-4025-B4EE-6322954A1C52}</ProjectGuid>
+    <ProjectGuid>{0DF7E413-3FF3-4020-ACE6-B43049660B0F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LicenseeAgent.Tests</RootNamespace>

@@ -2,9 +2,7 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {    
-	using System.Runtime.CompilerServices;
-
-    [CompilerGeneratedAttribute]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public enum BetType : int
     {
         /// <summary>

@@ -148,7 +148,11 @@ namespace LicenseeAgent.Site
 
             var stringBuilder = new StringBuilder(exception.Message);
             var baseException = exception.GetBaseException();
-            stringBuilder.AppendFormat("\nBase message: {0}", baseException.Message);
+            if (exception != baseException)
+            {
+                stringBuilder.AppendFormat("\nBase message: {0}", baseException.Message);
+            }
+
             stringBuilder.AppendFormat("\nSource: {0}", baseException.Source);
             stringBuilder.AppendFormat("\nUrl: {0}", Request.Url.ToString());
             stringBuilder.AppendFormat("\nForm: {0}", Request.Form.ToString());

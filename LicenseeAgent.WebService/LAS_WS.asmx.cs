@@ -1,11 +1,12 @@
-﻿namespace LicenseeAgentWebService
+﻿namespace LicenseeAgent.WebService
 {
     using System;
     using System.Web.Services;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.Logging;
-    using LicenseeAgentWebService.Criteria;
+    using LicenseeAgent.WebService.Criteria;
+    using LicenseeAgent.WebService.Entities;
 
     /// <summary>
     /// Customer information.
@@ -15,21 +16,24 @@
     [System.ComponentModel.ToolboxItem(false)]
     public class LAS_WS : WebService
     {
+        public const int SuccessValue = 0;
+        public const int FailureValue = -1;
+
         /// <summary>
         /// Check Username.
         /// </summary>
         /// <param name="username">Username input to check.</param>
-        /// <param name="licenseeName">Licensee name.</param>
+        /// <param name="siteName">Licensee name.</param>
         /// <returns>Username is exist or not.</returns>
         [WebMethod]
-        public bool CheckUsernameExist(string username, string licenseeName)
+        public bool CheckUsernameExist(string username, string siteName)
         {
             try
             {
                 var criteria = new CheckUserNameCriteria
                 {
                     UserName = username,
-                    SiteName = licenseeName
+                    SiteName = siteName
                 };
 
                 if (!criteria.IsValid())
@@ -42,7 +46,7 @@
                     objDb.ExecuteReader(criteria.GetSpParams());
 
                     var errorCode = Convert.ToInt32(objDb.GetParameterValue("ErrCode"));
-                    if (errorCode != 0)
+                    if (errorCode != SuccessValue)
                     {
                         return true;
                     }
@@ -58,58 +62,43 @@
         }
 
         /// <summary>
-        /// Checks the agent username.
+        /// Checks the agent name for cash system.
         /// </summary>
-        /// <param name="agentUsername">The agent username.</param>
-        /// <param name="licenseeName">Name of the licensee.</param>
-        /// <param name="agentId">The agent identifier.</param>
-        /// <param name="agentCurrency">The agent currency.</param>
-        /// <param name="errCode">The error code.</param>
-        /// <param name="errMsg">The error MSG.</param>
-        /// <returns>Agent username is existing or not existing.</returns>
+        /// <param name="userName">Name of the agent.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>Returns result of cash agent.</returns>
         [WebMethod]
-        public bool CheckAgentUsername(
-            string agentUsername,
-            string licenseeName,
-            out int agentId,
-            out string agentCurrency,
-            out int errCode,
-            out string errMsg)
+        public CheckAgentUsernameResult CheckAgentUsername(string userName, string siteName)
         {
             try
             {
-                agentId = 0;
-                agentCurrency = string.Empty;
-                errCode = 0;
-                errMsg = string.Empty;
                 var criteria = new CheckAgentUsernameCriteria
                 {
-                    AgentUsername = agentUsername,
-                    SiteName = licenseeName
+                    AgentUsername = userName,
+                    SiteName = siteName
                 };
 
                 if (!criteria.IsValid())
                 {
-                    return false;
+                    return new CheckAgentUsernameResult
+                    {
+                        ErrCode = FailureValue,
+                        ErrMsg = "Invalid criteria"
+                    };
                 }
 
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     objDb.ExecuteReader(criteria.GetSpParams());
-
                     var outputParams = objDb.GetOuputParams();
-                    agentId = Converter.ToInt(outputParams["agentid"]);
-                    agentCurrency = Converter.ToString2(outputParams["agentcurrency"]);
-                    errCode = Converter.ToInt(outputParams["errcode"]);
-                    errMsg = Converter.ToString2(outputParams["errmsg"]);
-
-                    if (errCode == 0)
+                    return new CheckAgentUsernameResult
                     {
-                        return true;
-                    }
+                        AgentId = Converter.ToInt(outputParams["agentid"]),
+                        AgentCurrency = Converter.ToString2(outputParams["agentcurrency"]),
+                        ErrCode = Converter.ToInt(outputParams["errcode"]),
+                        ErrMsg = Converter.ToString2(outputParams["errmsg"])
+                    };
                 }
-
-                return false;
             }
             catch (Exception exception)
             {

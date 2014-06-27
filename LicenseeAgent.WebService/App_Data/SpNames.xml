@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Customer">
-    <Setting Key="Las_CheckUserName" SpName="Las_APICheckUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
-    <Setting Key="Las_CheckAgentUsername" SpName="Las_API_CheckAgentUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Las_CheckUserName" SpName="Las_APICheckUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_CheckAgentUsername" SpName="Las_API_CheckAgentUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
 </Functions>

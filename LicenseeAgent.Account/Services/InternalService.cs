@@ -14,6 +14,7 @@ namespace LicenseeAgent.Account.Services
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Core.Utility;
 
     /// <summary>
     /// InternalService class.
@@ -54,11 +55,10 @@ namespace LicenseeAgent.Account.Services
         /// <returns>Returns agent information.</returns>
         public AgentInfo AgentInternalLogin(AgentInternalLoginCriteria criteria)
         {
-            AgentInfo result = null;
             Execute(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
             {
-                result = new AgentInfo
+                return new AgentInfo
                 {
                     UserName = criteria.UserName,
                     UserSalt = criteria.UserSalt,
@@ -77,8 +77,10 @@ namespace LicenseeAgent.Account.Services
                     LicenseeName = criteria.LicenseeName
                 };
             }
-
-            return result;
+            else
+            {
+                throw new InvalidOperationException(ResourceManager.GetErrMsg(criteria.ErrCode));
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgentWebService.Criteria
+﻿namespace LicenseeAgent.WebService.Criteria
 {
     using Fanex.Data.Repository;
 

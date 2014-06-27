@@ -17,6 +17,8 @@ namespace LicenseeAgent.Transfer.Entities
 
         public decimal BetCredit { get; set; }
 
+        public decimal YesterdayBalance { get; set; }
+
         public DateTime LastLogin { get; set; }
 
         public DateTime LastTransaction { get; set; }

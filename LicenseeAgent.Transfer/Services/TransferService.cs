@@ -40,5 +40,10 @@ namespace LicenseeAgent.Transfer.Services
         {
             Execute(criteria);
         }
+
+        public AgentTransferInfo GetTransferAgentDetail(GetTransferAgentDetailCriteria criteria)
+        {
+            return GetEntity<AgentTransferInfo>(criteria);
+        }
     }
 }

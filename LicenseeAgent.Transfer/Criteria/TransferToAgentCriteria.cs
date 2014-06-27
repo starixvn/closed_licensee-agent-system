@@ -23,6 +23,8 @@ namespace LicenseeAgent.Transfer.Criteria
 
         public decimal Amount { get; set; }
 
+        public decimal YesterdayBalance { get; set; }
+
         public int ErrCode { get; set; }
 
         public override string GetSettingKey()

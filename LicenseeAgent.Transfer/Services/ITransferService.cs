@@ -21,5 +21,7 @@ namespace LicenseeAgent.Transfer.Services
         MemberDetail GetMemberDetail(GetMemberDetailCriteria criteria);
 
         void TransferToMember(TransferToMemberCriteria criteria);
+
+        AgentTransferInfo GetTransferAgentDetail(GetTransferAgentDetailCriteria criteria);
     }
 }

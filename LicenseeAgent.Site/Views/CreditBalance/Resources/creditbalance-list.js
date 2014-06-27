@@ -66,12 +66,12 @@ var creditBalanceList = (function ($) {
             gridOptions.bodyRows = core.genGridRows(records, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         },
-        editAgentCredit: function (agentId, agentName, givenCredit) {
-            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}'.format(agentId, agentName, givenCredit);
+        editAgentCredit: function (agentId, agentName) {
+            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}'.format(agentId, agentName);
             popup.openFrame(url);
         },
-        agentEditMemberCredit: function (custId, custName, givenCredit) {
-            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}'.format(custId, custName, givenCredit);
+        agentEditMemberCredit: function (custId, custName) {
+            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}'.format(custId, custName);
             popup.openFrame(url);
         }
     };

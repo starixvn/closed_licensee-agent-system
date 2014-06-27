@@ -167,6 +167,7 @@
     <Setting Key="LAS_Transfer_AgentToAgent" SpName="LAS_Transfer_AgentToAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Transfer_MemberBalanceInfo" SpName="LAS_Balance_MemberBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Transfer_MemberDetail" SpName="LAS_Transfer_MemberDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_Transfer_AgentDetail" SpName="LAS_Transfer_AgentDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Transfer_AgentToMember" SpName="LAS_Transfer_AgentToMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="CreditBalance">

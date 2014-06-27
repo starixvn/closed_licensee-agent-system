@@ -97,12 +97,12 @@ var transferList = (function ($) {
             $(".icon-checked-all").attr("class", "icon-uncheck-all");
             $(".icon-checked").attr("class", "icon-uncheck");
         },
-        transferAgent: function (agentId, agentName, amount) {
-            var url = '~/Transfer/Agent?agentId={0}&agentName={1}&amount={2}'.format(agentId, agentName, amount);
+        transferAgent: function (agentId, agentName) {
+            var url = '~/Transfer/Agent?agentId={0}&agentName={1}'.format(agentId, agentName);
             popup.openFrame(url);
         },
-        transferMember: function (memberId, amount) {
-            var url = '~/Transfer/Member?memberId={0}&amount={1}'.format(memberId, amount);
+        transferMember: function (memberId) {
+            var url = '~/Transfer/Member?memberId={0}'.format(memberId);
             popup.openFrame(url);
         }
     };

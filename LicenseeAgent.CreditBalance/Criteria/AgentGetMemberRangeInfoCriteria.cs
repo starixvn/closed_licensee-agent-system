@@ -19,6 +19,8 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public decimal MinCreditOutput { get; set; }
 
+        public decimal GivenCredit { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AgentSelMemberCredit";

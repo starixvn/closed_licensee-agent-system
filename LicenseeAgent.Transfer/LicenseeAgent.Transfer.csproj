@@ -55,6 +55,8 @@
     <Compile Include="Criteria\GetAgentBalanceInfoCriteria.cs" />
     <Compile Include="Entities\MemberDetail.cs" />
     <Compile Include="Entities\MemberBalanceInfo.cs" />
+    <Compile Include="Criteria\GetTransferAgentDetail.cs" />
+    <Compile Include="Entities\AgentTransferInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TransferService.cs" />
     <Compile Include="Services\ITransferService.cs" />

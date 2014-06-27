@@ -142,16 +142,13 @@ namespace LicenseeAgent.Transfer.Controllers
                 return RedirectToAccessDeniedPage();
             }
 
-            if (model.Amount > 0)
-            {
-                model.MinAmount = 0;
-                model.MaxAmount = model.Amount;
-            }
-            else
-            {
-                model.MinAmount = model.Amount;
-                model.MaxAmount = 0;
-            }
+            var agentTransfer = _transferService.GetTransferAgentDetail(
+                                                new GetTransferAgentDetailCriteria
+                                                {
+                                                    AgentID = model.AgentId
+                                                });
+
+            SetModelAgentAmount(model, agentTransfer.YesterdayBalance);
 
             return View(model);
         }
@@ -188,6 +185,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 else
                 {
                     ViewBag.Result = Las.TransferSuccessfully;
+                    SetModelAgentAmount(model, criteria.YesterdayBalance);
                 }
             }
 
@@ -219,16 +217,7 @@ namespace LicenseeAgent.Transfer.Controllers
             model.BetCredit = memberDetail.BetCredit;
             model.LastLogin = memberDetail.LastLogin;
             model.LastTransaction = memberDetail.LastTransaction;
-            if (model.Amount > 0)
-            {
-                model.MinAmount = 0;
-                model.MaxAmount = model.Amount;
-            }
-            else
-            {
-                model.MinAmount = model.Amount;
-                model.MaxAmount = 0;
-            }
+            SetModelAmount(model, memberDetail.YesterdayBalance);
 
             return View(model);
         }
@@ -265,10 +254,27 @@ namespace LicenseeAgent.Transfer.Controllers
                 else
                 {
                     ViewBag.Result = Las.TransferSuccessfully;
+                    SetModelAmount(model, criteria.YesterdayBalance);
                 }
             }
 
             return View(model);
+        }
+
+        void SetModelAmount(TransferMemberViewModel model, decimal amount)
+        {
+            // Transfer Amount must be opposite Yesterday Balance.
+            model.Amount = -amount;
+            model.MinAmount = model.Amount > 0 ? 0 : model.Amount;
+            model.MaxAmount = model.Amount > 0 ? model.Amount : 0;
+        }
+
+        void SetModelAgentAmount(TransferAgentViewModel model, decimal amount)
+        {
+            // Transfer Amount must be opposite Yesterday Balance.
+            model.Amount = -amount;
+            model.MinAmount = model.Amount > 0 ? 0 : model.Amount;
+            model.MaxAmount = model.Amount > 0 ? model.Amount : 0;
         }
     }
 }

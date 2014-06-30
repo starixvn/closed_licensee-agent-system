@@ -147,7 +147,8 @@ namespace LicenseeAgent.Transfer.Controllers
                                                 {
                                                     AgentID = model.AgentId
                                                 });
-
+            
+            model.AgentName = agentTransfer.Username;
             SetModelAgentAmount(model, agentTransfer.YesterdayBalance);
 
             return View(model);
@@ -261,7 +262,7 @@ namespace LicenseeAgent.Transfer.Controllers
             return View(model);
         }
 
-        void SetModelAmount(TransferMemberViewModel model, decimal amount)
+        private void SetModelAmount(TransferMemberViewModel model, decimal amount)
         {
             // Transfer Amount must be opposite Yesterday Balance.
             model.Amount = -amount;
@@ -269,7 +270,7 @@ namespace LicenseeAgent.Transfer.Controllers
             model.MaxAmount = model.Amount > 0 ? model.Amount : 0;
         }
 
-        void SetModelAgentAmount(TransferAgentViewModel model, decimal amount)
+        private void SetModelAgentAmount(TransferAgentViewModel model, decimal amount)
         {
             // Transfer Amount must be opposite Yesterday Balance.
             model.Amount = -amount;

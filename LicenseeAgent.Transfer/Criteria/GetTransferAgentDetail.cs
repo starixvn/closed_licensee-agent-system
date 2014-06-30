@@ -3,6 +3,9 @@ namespace LicenseeAgent.Transfer.Criteria
     using System;
     using Fanex.Data.Repository;
 
+    /// <summary>
+    /// Get Transfer Agent Detail Criteria.
+    /// </summary>
     public class GetTransferAgentDetailCriteria : CriteriaBase
     {
         public int AgentID { get; set; }

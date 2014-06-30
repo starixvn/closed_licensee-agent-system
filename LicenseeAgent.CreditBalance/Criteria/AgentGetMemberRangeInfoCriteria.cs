@@ -15,6 +15,8 @@ namespace LicenseeAgent.CreditBalance.Criteria
     {
         public int CustId { get; set; }
 
+        public string Username { get; set; }
+
         public decimal? MaxCreditOutput { get; set; }
 
         public decimal MinCreditOutput { get; set; }

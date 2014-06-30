@@ -1,11 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <!--Do not modify this file-->
-    <Setting Key="LAS_Transfer_AgentToAgent" SpName="LAS_Transfer_AgentToAgent_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Transfer_MemberDetail" SpName="LAS_Transfer_MemberDetail_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Transfer_AgentDetail" SpName="LAS_Transfer_AgentDetail_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Transfer_AgentToMember" SpName="LAS_Transfer_AgentToMember_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_LicenseeSelAgentCredit" SpName="Las_LicenseeSelAgentCredit_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_AgentSelAgentCredit" SpName="Las_AgentSelAgentCredit_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_AgentSelMemberCredit" SpName="Las_AgentSelMemberCredit_xtest" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
 </Functions>

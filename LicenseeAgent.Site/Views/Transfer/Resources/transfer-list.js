@@ -97,8 +97,8 @@ var transferList = (function ($) {
             $(".icon-checked-all").attr("class", "icon-uncheck-all");
             $(".icon-checked").attr("class", "icon-uncheck");
         },
-        transferAgent: function (agentId, agentName) {
-            var url = '~/Transfer/Agent?agentId={0}&agentName={1}'.format(agentId, agentName);
+        transferAgent: function (agentId) {
+            var url = '~/Transfer/Agent?agentId={0}'.format(agentId);
             popup.openFrame(url);
         },
         transferMember: function (memberId) {

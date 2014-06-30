@@ -147,6 +147,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 editAgentCreditViewModel.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
                 editAgentCreditViewModel.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
                 editAgentCreditViewModel.GivenCredit = licenseeGetAgentRangeInfoCriteria.GivenCredit;
+                editAgentCreditViewModel.AgentName = licenseeGetAgentRangeInfoCriteria.Username;
             }
             else
             {
@@ -158,6 +159,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 editAgentCreditViewModel.MinCreditOutput = agentGetAgentRangeInfoCriteria.MinCreditOutput;
                 editAgentCreditViewModel.MaxCreditOutput = agentGetAgentRangeInfoCriteria.MaxCreditOutput;
                 editAgentCreditViewModel.GivenCredit = agentGetAgentRangeInfoCriteria.GivenCredit;
+                editAgentCreditViewModel.AgentName = agentGetAgentRangeInfoCriteria.Username;
             }
 
             return View(editAgentCreditViewModel);
@@ -230,6 +232,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
             agentEditMemberCreditViewModel.MinCreditOutput = agentGetMemberRangeInfoCriteria.MinCreditOutput;
             agentEditMemberCreditViewModel.MaxCreditOutput = agentGetMemberRangeInfoCriteria.MaxCreditOutput;
             agentEditMemberCreditViewModel.GivenCredit = agentGetMemberRangeInfoCriteria.GivenCredit;
+            agentEditMemberCreditViewModel.MemberName = agentGetMemberRangeInfoCriteria.Username;
 
             return View(agentEditMemberCreditViewModel);
         }

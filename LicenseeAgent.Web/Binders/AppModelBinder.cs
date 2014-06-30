@@ -6,6 +6,7 @@
 
 namespace LicenseeAgent.Web.Binders
 {
+    using System;
     using System.ComponentModel;
     using System.Linq;
     using System.Web;
@@ -139,7 +140,7 @@ namespace LicenseeAgent.Web.Binders
         /// </returns>
         private static bool IsDangerousString(string text)
         {
-            return dangerousStrings.Any(s => text.IndexOf(s) >= 0);
+            return dangerousStrings.Any(s => text.IndexOf(s, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

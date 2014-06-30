@@ -1,6 +1,5 @@
 namespace LicenseeAgent.Transfer.Criteria
 {
-    using System;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -8,7 +7,7 @@ namespace LicenseeAgent.Transfer.Criteria
     /// </summary>
     public class GetTransferAgentDetailCriteria : CriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -17,7 +16,7 @@ namespace LicenseeAgent.Transfer.Criteria
 
         public override bool IsValid()
         {
-            return AgentID > 0;
+            return AgentId > 0;
         }
     }
 }

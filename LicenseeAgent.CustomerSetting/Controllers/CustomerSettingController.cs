@@ -697,11 +697,7 @@ namespace LicenseeAgent.CustomerSetting.Controllers
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
+                    return JsonResult(serviceResult);
                 }
             }
 

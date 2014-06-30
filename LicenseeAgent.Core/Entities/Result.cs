@@ -42,6 +42,14 @@ namespace LicenseeAgent.Core.Entities
             ErrMsg = errMsg;
         }
 
+        public bool IsSuccessful
+        {
+            get
+            {
+                return ErrCode == Result.SuccessValue;
+            }
+        }
+
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }

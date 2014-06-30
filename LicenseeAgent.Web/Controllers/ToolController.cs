@@ -234,18 +234,10 @@ namespace LicenseeAgent.Web.Controllers
         [HttpPost]
         public JsonResult SingleIgnore(SyncMonitoringUpdateStatusCriteria criteria)
         {
-            try
-            {
-                criteria.UserID = CurrentSession.LoginUserId;
-                criteria.NewStatusID = LogType.Ignore;
-                _monitoringService.UpdateLogStatus(criteria);
-
-                return Json(new { ErrCode = Result.SuccessValue });
-            }
-            catch
-            {
-                return Json(new { ErrCode = Result.FailureValue });
-            }
+            criteria.UserId = CurrentSession.LoginUserId;
+            criteria.NewStatusID = LogType.Ignore;
+            _monitoringService.UpdateLogStatus(criteria);
+            return Json(new { ErrCode = Result.SuccessValue });
         }
 
         /// <summary>
@@ -259,8 +251,8 @@ namespace LicenseeAgent.Web.Controllers
             {
                 _monitoringService.UpdateLogStatus(new SyncMonitoringUpdateStatusCriteria
                 {
-                    UserID = CurrentSession.LoginUserId,
-                    KeyID = keyId,
+                    UserId = CurrentSession.LoginUserId,
+                    KeyId = keyId,
                     NewStatusID = LogType.Success
                 });
             }

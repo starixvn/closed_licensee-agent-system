@@ -58,7 +58,7 @@ namespace LicenseeAgent.Web.Mvc
 
         public static bool IsJsonRequest(this ControllerContext context)
         {
-            return IsAjaxRequest(context) && context.HttpContext.Request.ContentType.IndexOf("text/html", StringComparison.InvariantCultureIgnoreCase) == -1;
+            return IsAjaxRequest(context) && context.HttpContext.Request.ContentType.IndexOf("text/html", StringComparison.OrdinalIgnoreCase) == -1;
         }
 
         public static bool IsAjaxRequest(this HttpContext context)
@@ -69,7 +69,7 @@ namespace LicenseeAgent.Web.Mvc
 
         public static bool IsJsonRequest(this HttpContext context)
         {
-            return IsAjaxRequest(context) && context.Request.ContentType.IndexOf("text/html", StringComparison.InvariantCultureIgnoreCase) == -1;
+            return IsAjaxRequest(context) && context.Request.ContentType.IndexOf("text/html", StringComparison.OrdinalIgnoreCase) == -1;
         }
 
         public static void WriteJson(this HttpResponse httpResponse, Result jsonResult)

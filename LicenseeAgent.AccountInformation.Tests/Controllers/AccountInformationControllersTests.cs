@@ -103,7 +103,7 @@ namespace LicenseeAgent.AccountInformation.Tests.Controllers
 
             // Act
             var validationResults = ValidateModel(viewModel);
-            
+
             foreach (var validationResult in validationResults)
             {
                 controller.ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
@@ -250,10 +250,9 @@ namespace LicenseeAgent.AccountInformation.Tests.Controllers
         {
             var searchUserService = FakeServices.GetSearchUserService();
             var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownlLinePermissionService();
             var coreService = FakeServices.GetCoreService();
 
-            return new AccountInformationController(searchUserService, memberService, downlineService, coreService);
+            return new AccountInformationController(searchUserService, memberService, coreService);
         }
 
         /// <summary>

@@ -186,7 +186,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 {
                     AgentId = editAgentCreditViewModel.AgentId,
                     Credit = editAgentCreditViewModel.GivenCredit,
-                    Ip = Request.GetClientIp(),
+                    IP = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId
                 };
                 _creditBalanceService.UpdateAgentCredit(criteria);
@@ -258,7 +258,7 @@ namespace LicenseeAgent.CreditBalance.Controllers
                 {
                     CustId = agentEditMemberCreditViewModel.CustId,
                     Credit = agentEditMemberCreditViewModel.GivenCredit,
-                    Ip = Request.GetClientIp(),
+                    IP = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId
                 };
                 _creditBalanceService.AgentUpdateMemberCredit(criteria);

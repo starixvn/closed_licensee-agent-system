@@ -6,7 +6,7 @@ namespace LicenseeAgent.BetList.Criteria
 
     public class BetListSelByMemberCriteria : BetListCriteriaBase
     {
-        public string StatusIDs { get; set; }
+        public string StatusIds { get; set; }
 
         public DateTime MoveBetsDay { get; set; }
 

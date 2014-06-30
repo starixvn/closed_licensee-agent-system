@@ -118,7 +118,7 @@ namespace LicenseeAgent.Transfer.Controllers
                 return Json(response);
             }
 
-            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.InvariantCultureIgnoreCase) &&
+            list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) &&
                 (model.Status == null || x.Status == model.Status));
             return Json(new
             {
@@ -145,7 +145,7 @@ namespace LicenseeAgent.Transfer.Controllers
             var agentTransfer = _transferService.GetTransferAgentDetail(
                                                 new GetTransferAgentDetailCriteria
                                                 {
-                                                    AgentID = model.AgentId
+                                                    AgentId = model.AgentId
                                                 });
             
             model.AgentName = agentTransfer.Username;
@@ -175,7 +175,7 @@ namespace LicenseeAgent.Transfer.Controllers
                     Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToAgentId = model.AgentId,
-                    Ip = Request.GetClientIp(),
+                    IP = Request.GetClientIp(),
                     Amount = model.Amount
                 };
                 _transferService.TransferToAgent(criteria);
@@ -244,7 +244,7 @@ namespace LicenseeAgent.Transfer.Controllers
                     Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     ToCustId = model.MemberId,
-                    Ip = Request.GetClientIp(),
+                    IP = Request.GetClientIp(),
                     Amount = model.Amount
                 };
                 _transferService.TransferToMember(criteria);

@@ -52,10 +52,10 @@ namespace LicenseeAgent.Web.Mvc
 
         public static IHtmlString Javascript(
             this HtmlHelper htmlHelper,
-            object obj,
+            object value,
             string name)
         {
-            return MvcHtmlString.Create(Formatter.FormatJson(name, obj));
+            return MvcHtmlString.Create(Formatter.FormatJson(name, value));
         }
     }
 }

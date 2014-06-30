@@ -17,7 +17,7 @@ namespace LicenseeAgent.Web.Filters
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
-        private IUnderMaintenanceService _maintenanceService;
+        private readonly IUnderMaintenanceService _maintenanceService;
 
         public UnderMaintenanceAttribute()
             : this(null)

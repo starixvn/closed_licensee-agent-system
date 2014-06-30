@@ -15,7 +15,7 @@ namespace LicenseeAgent.Account.Criteria
         [SpParam(SqlParamName = "On_AdminId")]
         public int OnAdminId { get; set; }
 
-        public string Ip { get; set; }
+        public string IP { get; set; }
 
         public override string GetSettingKey()
         {
@@ -25,7 +25,7 @@ namespace LicenseeAgent.Account.Criteria
         public override bool IsValid()
         {
             return AdminId > 0 &&
-                !string.IsNullOrEmpty(Ip) &&
+                !string.IsNullOrEmpty(IP) &&
                 !string.IsNullOrEmpty(NetSessionId);
         }
     }

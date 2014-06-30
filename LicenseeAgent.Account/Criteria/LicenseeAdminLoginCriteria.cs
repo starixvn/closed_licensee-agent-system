@@ -10,7 +10,7 @@ namespace LicenseeAgent.Account.Criteria
 
         public int UserId { get; set; }
 
-        public string LoginIp { get; set; }
+        public string LoginIP { get; set; }
 
         public string BrowserName { get; set; }
 
@@ -29,7 +29,7 @@ namespace LicenseeAgent.Account.Criteria
 
         public override bool IsValid()
         {
-            return LicenseeId > 0 && UserId > 0 && !string.IsNullOrEmpty(LoginIp);
+            return LicenseeId > 0 && UserId > 0 && !string.IsNullOrEmpty(LoginIP);
         }
     }
 }

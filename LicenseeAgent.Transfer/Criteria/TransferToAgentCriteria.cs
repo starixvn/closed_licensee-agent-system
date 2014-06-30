@@ -19,7 +19,7 @@ namespace LicenseeAgent.Transfer.Criteria
 
         public int ToAgentId { get; set; }
 
-        public string Ip { get; set; }
+        public string IP { get; set; }
 
         public decimal Amount { get; set; }
 

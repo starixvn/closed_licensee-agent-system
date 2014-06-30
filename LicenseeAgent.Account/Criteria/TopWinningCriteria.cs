@@ -14,7 +14,7 @@ namespace LicenseeAgent.Account.Criteria
     /// </summary>
     public class TopWinningCriteria : CriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
 
@@ -27,7 +27,7 @@ namespace LicenseeAgent.Account.Criteria
 
         public override bool IsValid()
         {
-            return AgentID > 0;
+            return AgentId > 0;
         }
     }
 }

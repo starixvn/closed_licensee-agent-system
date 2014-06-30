@@ -11,6 +11,6 @@ namespace LicenseeAgent.TotalBets.Core
     /// </summary>
     public static class Constant
     {
-        public const string SOCCERDETAILCONFIG = "~/App_Data/TotalBets/SoccerDetail.xml";
+        public const string SoccerDetailConfigFile = "~/App_Data/TotalBets/SoccerDetail.xml";
     }
 }

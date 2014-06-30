@@ -26,7 +26,6 @@ namespace LicenseeAgent.AccountInformation.Controllers
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
-    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// AccountInformationController class.
@@ -36,23 +35,20 @@ namespace LicenseeAgent.AccountInformation.Controllers
         private readonly ISearchUserService _searchUserService;
         private readonly IMemberService _memberService;
         private readonly ICoreService _coreService;
-        private readonly IDownLinePermissionService _downLinePermissionService;
 
         public AccountInformationController()
-            : this(null, null, null, null)
+            : this(null, null, null)
         {
         }
 
         public AccountInformationController(
             ISearchUserService searchUserService,
             IMemberService memberService,
-            IDownLinePermissionService downLinePermissionService,
             ICoreService coreService)
         {
             _searchUserService = searchUserService ?? new SearchUserService();
             _memberService = memberService ?? new MemberService();
             _coreService = coreService ?? new CoreService();
-            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         /// <summary>

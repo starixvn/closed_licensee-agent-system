@@ -66,7 +66,7 @@ namespace LicenseeAgent.Account.Controllers
 
             if (CurrentSession.AgentInfo != null)
             {
-                var statisticCriteria = new StatisticCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+                var statisticCriteria = new StatisticCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
                 var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
 
                 var balanceUp = _coreService.GetBalanceUpDay();
@@ -155,7 +155,7 @@ namespace LicenseeAgent.Account.Controllers
                 }
                 else
                 {
-                    if ((AppSettings.LocalTest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, true) == 0)
+                    if ((AppSettings.LocalTest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         var licenseeId = DomainMapper.GetLicenseeId(Request);
                         if (licenseeId == null)
@@ -464,7 +464,7 @@ namespace LicenseeAgent.Account.Controllers
             var balanceUp = _coreService.GetBalanceUpDay();
             var criteria = new TopWinningCriteria
             {
-                AgentID = CurrentSession.AgentInfo.AgentId,
+                AgentId = CurrentSession.AgentInfo.AgentId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
                 MoveBetsDay = balanceUp.MoveBetsDay
             };
@@ -482,7 +482,7 @@ namespace LicenseeAgent.Account.Controllers
             var balanceUp = _coreService.GetBalanceUpDay();
             var criteria = new TopTurnoverCriteria
             {
-                AgentID = CurrentSession.AgentInfo.AgentId,
+                AgentId = CurrentSession.AgentInfo.AgentId,
                 BalanceUpDay = balanceUp.BalanceUpDay,
                 MoveBetsDay = balanceUp.MoveBetsDay
             };
@@ -497,7 +497,7 @@ namespace LicenseeAgent.Account.Controllers
         /// <returns>View result.</returns>
         public ViewResult NewMembers()
         {
-            var criteria = new NewMemberOfMonthCriteria { AgentID = CurrentSession.AgentInfo.AgentId };
+            var criteria = new NewMemberOfMonthCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
             var newMemberData = _accountService.GetNewMemberOfMonth(criteria);
 
             return View(newMemberData);

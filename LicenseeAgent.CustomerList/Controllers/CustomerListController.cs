@@ -216,7 +216,6 @@ namespace LicenseeAgent.CustomerList.Controllers
             };
 
             var members = _customerService.GetMemberList(criteria);
-
             if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
                 var serviceResult = _memberService.GetMemberInformations(
@@ -234,11 +233,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
+                    return JsonResult(serviceResult);
                 }
             }
 
@@ -265,7 +260,6 @@ namespace LicenseeAgent.CustomerList.Controllers
             };
 
             var members = _customerService.SearchMember(criteria);
-
             if (criteria.MsgId == Result.SuccessValue && members.Any())
             {
                 var serviceResult = _memberService.GetMemberInformations(
@@ -283,11 +277,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
+                    return JsonResult(serviceResult);
                 }
             }
 
@@ -334,11 +324,7 @@ namespace LicenseeAgent.CustomerList.Controllers
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
-                    return Json(new
-                    {
-                        ErrCode = serviceResult.ErrCode,
-                        ErrMsg = serviceResult.ErrMsg
-                    });
+                    return JsonResult(serviceResult);
                 }
             }
 

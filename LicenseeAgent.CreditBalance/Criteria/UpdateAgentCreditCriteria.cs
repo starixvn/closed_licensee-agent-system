@@ -28,7 +28,7 @@ namespace LicenseeAgent.CreditBalance.Criteria
 
         public int Updater { get; set; }
 
-        public string Ip { get; set; }
+        public string IP { get; set; }
 
         public override string GetSettingKey()
         {

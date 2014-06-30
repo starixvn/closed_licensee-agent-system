@@ -22,7 +22,6 @@ namespace LicenseeAgent.Account.Controllers
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
-    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Internal Login Controller.
@@ -33,23 +32,20 @@ namespace LicenseeAgent.Account.Controllers
         private readonly IAccountService _accountService;
         private readonly ICurrencyService _currencyService;
         private readonly IInternalService _internalService;
-        private readonly IDownLinePermissionService _downLinePermissionService;
 
         public InternalController()
-            : this(null, null, null, null)
+            : this(null, null, null)
         {
         }
 
         public InternalController(
             IAccountService accountService,
             ICurrencyService currencyService,
-            IInternalService internalService,
-            IDownLinePermissionService downLinePermissionService)
+            IInternalService internalService)
         {
             _accountService = accountService ?? new AccountService();
             _currencyService = currencyService ?? new CurrencyService();
             _internalService = internalService ?? new InternalService();
-            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         [HttpGet]
@@ -119,7 +115,7 @@ namespace LicenseeAgent.Account.Controllers
             {
                 LicenseeId = loginInfo.LicenseeId,
                 UserId = loginInfo.UserId,
-                LoginIp = clientInfo.Ip,
+                LoginIP = clientInfo.Ip,
                 BrowserName = clientInfo.BrowserName,
                 Platform = clientInfo.Platform,
                 CountryCode = clientInfo.CountryCode
@@ -408,7 +404,7 @@ namespace LicenseeAgent.Account.Controllers
             var criteria = new AdminCheckInCriteria
             {
                 AdminId = adminInfo.UserId,
-                Ip = Request.GetClientIp(),
+                IP = Request.GetClientIp(),
                 NetSessionId = Session.SessionID
             };
 
@@ -428,7 +424,7 @@ namespace LicenseeAgent.Account.Controllers
             var criteria = new AdminCheckInCriteria
             {
                 AdminId = licenseeInfo.UserId,
-                Ip = Request.GetClientIp(),
+                IP = Request.GetClientIp(),
                 NetSessionId = Session.SessionID,
                 LicenseeId = licenseeInfo.LicenseeId
             };

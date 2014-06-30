@@ -6,7 +6,6 @@
 
 namespace LicenseeAgent.Core.Utility
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
@@ -364,7 +363,7 @@ namespace LicenseeAgent.Core.Utility
                     return betTeam == "4-over" ? Las.Score4Over : betTeam;
             }
 
-            throw new InvalidOperationException(string.Format("Undefined bet team name ({0}, {1})", betType, betTeam));
+            return string.Format("Undefined bet team name ({0}, {1})", betType, betTeam);
         }
     }
 }

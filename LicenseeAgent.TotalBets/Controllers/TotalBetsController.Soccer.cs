@@ -23,7 +23,6 @@ namespace LicenseeAgent.TotalBets.Controllers
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Account controllers.
@@ -34,21 +33,17 @@ namespace LicenseeAgent.TotalBets.Controllers
 
         private readonly IBetListService _betlistService;
 
-        private readonly IDownLinePermissionService _downLinePermissionService;
-
         public TotalBetsController()
-            : this(null, null, null)
+            : this(null, null)
         {
         }
 
         public TotalBetsController(
             TotalBetsService totalBetsService,
-            BetListService betlistService,
-            IDownLinePermissionService downLinePermissionService)
+            BetListService betlistService)
         {
             _totalBetsService = totalBetsService ?? new TotalBetsService();
             _betlistService = betlistService ?? new BetListService();
-            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         [HttpGet]

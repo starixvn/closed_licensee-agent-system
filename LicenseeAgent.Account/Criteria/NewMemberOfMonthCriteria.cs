@@ -6,7 +6,7 @@ namespace LicenseeAgent.Account.Criteria
 
     public class NewMemberOfMonthCriteria : CriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -15,7 +15,7 @@ namespace LicenseeAgent.Account.Criteria
 
         public override bool IsValid()
         {
-            return AgentID > 0;
+            return AgentId > 0;
         }
     }
 }

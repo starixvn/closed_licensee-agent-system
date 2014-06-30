@@ -17,7 +17,7 @@ namespace LicenseeAgent.TotalBets.Core
     {
         static SettingConfigurations()
         {
-            var configFilePath = HttpContext.Current.Server.MapPath(Constant.SOCCERDETAILCONFIG);
+            var configFilePath = HttpContext.Current.Server.MapPath(Constant.SoccerDetailConfigFile);
             using (var reader = new StreamReader(configFilePath))
             {
                 string xml = reader.ReadToEnd();

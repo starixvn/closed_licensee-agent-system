@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AccountInformationControllersTests.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.Tests.Controllers
+﻿namespace LicenseeAgent.AccountInformation.Tests.Controllers
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

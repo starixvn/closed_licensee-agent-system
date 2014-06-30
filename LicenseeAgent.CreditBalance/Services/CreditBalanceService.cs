@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CreditBalanceService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.Services
+﻿namespace LicenseeAgent.CreditBalance.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Services;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CoreService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Services
+﻿namespace LicenseeAgent.Core.Services
 {
     using System.Collections.Generic;
     using System.Linq;

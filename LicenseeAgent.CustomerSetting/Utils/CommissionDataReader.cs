@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CommissionDataReader.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Utils
+﻿namespace LicenseeAgent.CustomerSetting.Utils
 {
     using System;
     using System.Collections.Generic;

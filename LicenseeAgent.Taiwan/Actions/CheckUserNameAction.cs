@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="CheckUserNameAction.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Actions
+﻿namespace LicenseeAgent.Taiwan.Actions
 {
     using LicenseeAgent.Taiwan.Attributes;
 

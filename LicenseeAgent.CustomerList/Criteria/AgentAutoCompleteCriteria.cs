@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AgentAutoCompleteCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.Criteria
+﻿namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.Data.Repository;
 

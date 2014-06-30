@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="IBetListDataAccess.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.DataAccess
+﻿namespace LicenseeAgent.BetList.DataAccess
 {
     using Entities;
     using Fanex.BetList.Core.Entities;

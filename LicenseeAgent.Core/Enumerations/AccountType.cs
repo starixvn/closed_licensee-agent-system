@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AccountType.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Enumerations
+﻿namespace LicenseeAgent.Core.Enumerations
 {
     /// <summary>
     /// List of account types in LAS system.

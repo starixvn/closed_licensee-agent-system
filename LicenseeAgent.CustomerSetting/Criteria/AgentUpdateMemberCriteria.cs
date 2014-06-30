@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AgentUpdateMemberCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Criteria
+﻿namespace LicenseeAgent.CustomerSetting.Criteria
 {
     /// <summary>
     /// AgentUpdateMemberCriteria class.

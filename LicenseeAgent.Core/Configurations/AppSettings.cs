@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AppSettings.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Configurations
+﻿namespace LicenseeAgent.Core.Configurations
 {
     using System;
     using System.Configuration;

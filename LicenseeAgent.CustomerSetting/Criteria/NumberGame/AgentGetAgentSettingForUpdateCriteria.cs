@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AgentGetAgentSettingForUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
+﻿namespace LicenseeAgent.CustomerSetting.Criteria.NumberGame
 {
     using Fanex.Data.Repository;
 

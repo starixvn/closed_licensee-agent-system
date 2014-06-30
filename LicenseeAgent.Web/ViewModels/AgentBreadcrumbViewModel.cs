@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AgentBreadcrumbViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.ViewModels
+﻿namespace LicenseeAgent.Web.ViewModels
 {
     using System.Collections.Generic;
     using LicenseeAgent.Web.Entities;

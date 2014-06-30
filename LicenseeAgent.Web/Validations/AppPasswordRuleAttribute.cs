@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AppPasswordRuleAttribute.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Validations
+﻿namespace LicenseeAgent.Web.Validations
 {
     using System;
     using System.ComponentModel.DataAnnotations;

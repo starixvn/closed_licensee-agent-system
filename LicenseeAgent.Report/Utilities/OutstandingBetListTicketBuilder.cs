@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="OutstandingBetListTicketBuilder.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Report.Utilities
+﻿namespace LicenseeAgent.Report.Utilities
 {
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Utilities;

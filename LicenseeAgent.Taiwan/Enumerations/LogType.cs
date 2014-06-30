@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="LogType.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Enumerations
+﻿namespace LicenseeAgent.Taiwan.Enumerations
 {
     using System.Xml.Serialization;
 

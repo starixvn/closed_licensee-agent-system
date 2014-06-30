@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="StatisticCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Criteria
+﻿namespace LicenseeAgent.Account.Criteria
 {
     using Fanex.Data.Repository;
 

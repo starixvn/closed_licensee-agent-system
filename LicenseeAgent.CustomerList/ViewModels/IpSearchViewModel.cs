@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IpSearchViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.ViewModels
+﻿namespace LicenseeAgent.CustomerList.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 

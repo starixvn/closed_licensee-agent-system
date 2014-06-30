@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CheckCurrencyPermissionCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Criteria
+﻿namespace LicenseeAgent.Web.Criteria
 {
     using Fanex.Data.Repository;
 

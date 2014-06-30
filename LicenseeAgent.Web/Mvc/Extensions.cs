@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Mvc
+﻿namespace LicenseeAgent.Web.Mvc
 {
     using System;
     using System.Linq;

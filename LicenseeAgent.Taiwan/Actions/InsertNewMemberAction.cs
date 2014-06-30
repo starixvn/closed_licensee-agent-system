@@ -1,11 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="InsertNewMemberAction.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-//
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Actions
+﻿namespace LicenseeAgent.Taiwan.Actions
 {
     using System.Xml.Serialization;
     using LicenseeAgent.Taiwan.Attributes;

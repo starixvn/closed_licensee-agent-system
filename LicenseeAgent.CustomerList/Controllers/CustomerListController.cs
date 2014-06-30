@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerListController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.Controllers
+﻿namespace LicenseeAgent.CustomerList.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;

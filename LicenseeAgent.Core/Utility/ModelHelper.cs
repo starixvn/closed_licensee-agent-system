@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ModelHelper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Utility
+﻿namespace LicenseeAgent.Core.Utility
 {
     /// <summary>
     /// ModelHelper class.

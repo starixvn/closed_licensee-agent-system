@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SportGroupEntity.cs" company="Nexcel Solutions Vietnam">
-// LeagueGroupEntity.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Entities
+﻿namespace LicenseeAgent.TotalBets.Entities
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Utility;

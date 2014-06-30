@@ -1,9 +1,3 @@
-// --------------------------------------------------------------------------
-// <copyright file="GetProductCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
 namespace LicenseeAgent.Core.Criteria
 {
     using Fanex.Data.Repository;

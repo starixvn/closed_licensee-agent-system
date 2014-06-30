@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BetListResultViewModel.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.ViewModels
+﻿namespace LicenseeAgent.BetList.ViewModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;

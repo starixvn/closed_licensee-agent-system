@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ITotalBetsService.cs" company="Nexcel Solutions Vietnam">
-// ITotalBetsService.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Services
+﻿namespace LicenseeAgent.TotalBets.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.TotalBets.Criteria;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopMenu.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Enumerations
+﻿namespace LicenseeAgent.Core.Enumerations
 {
     public enum TopMenu
     {

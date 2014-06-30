@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SitePath.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Core
+﻿namespace LicenseeAgent.Web.Core
 {
     using System.IO;
     using System.Web;

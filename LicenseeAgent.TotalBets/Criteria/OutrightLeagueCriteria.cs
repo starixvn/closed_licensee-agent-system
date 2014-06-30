@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="OutrightLeagueCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Criteria
+﻿namespace LicenseeAgent.TotalBets.Criteria
 {
     using Fanex.Data.Repository;
 

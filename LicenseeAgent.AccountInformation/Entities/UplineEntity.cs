@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="UpLineEntity.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.Entities
+﻿namespace LicenseeAgent.AccountInformation.Entities
 {
     using LicenseeAgent.Core.Configurations;
 

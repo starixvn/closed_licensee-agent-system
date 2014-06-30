@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="TicketText.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.Entities
+﻿namespace LicenseeAgent.BetList.Entities
 {
     /// <summary>
     /// TicketText class.

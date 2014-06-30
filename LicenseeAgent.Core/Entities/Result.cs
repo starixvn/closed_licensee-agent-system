@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Result.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Entities
+﻿namespace LicenseeAgent.Core.Entities
 {
     using System;
     using LicenseeAgent.Core.Utility;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SettingService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Services.SportsBook
+﻿namespace LicenseeAgent.CustomerSetting.Services.SportsBook
 {
     using System;
     using System.Collections.Generic;

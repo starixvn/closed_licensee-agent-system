@@ -1,9 +1,3 @@
-// --------------------------------------------------------------------------
-// <copyright file="ResetPasswordCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
 namespace LicenseeAgent.CustomerList.Criteria
 {
     using Fanex.Data.Repository;

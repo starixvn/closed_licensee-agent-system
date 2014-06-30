@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TeamEntity.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Entities
+﻿namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 

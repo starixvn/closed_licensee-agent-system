@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberDetail.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Transfer.Entities
+﻿namespace LicenseeAgent.Transfer.Entities
 {
     using System;
 

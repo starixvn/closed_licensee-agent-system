@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Entities
+﻿namespace LicenseeAgent.CustomerSetting.Entities
 {
     /// <summary>
     /// Class name.

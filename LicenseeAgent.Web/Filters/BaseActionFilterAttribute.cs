@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseActionFilterAttribute.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Filters
+﻿namespace LicenseeAgent.Web.Filters
 {
     using System.IO;
     using System.Web.Mvc;

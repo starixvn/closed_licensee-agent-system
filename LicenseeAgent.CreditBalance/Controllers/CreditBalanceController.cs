@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CreditBalanceController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.Controllers
+﻿namespace LicenseeAgent.CreditBalance.Controllers
 {
     using System;
     using System.Linq;

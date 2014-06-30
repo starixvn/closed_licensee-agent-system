@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FakeSession.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Tests.Fakes
+﻿namespace LicenseeAgent.Tests.Fakes
 {
     using System.IO;
     using System.Reflection;

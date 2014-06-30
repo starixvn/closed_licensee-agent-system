@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="SportCriteria.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Report.Criteria
+﻿namespace LicenseeAgent.Report.Criteria
 {
     using System;
     using Fanex.Data.Repository;

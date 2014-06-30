@@ -1,11 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="ServiceExtension.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-//
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Utility
+﻿namespace LicenseeAgent.Taiwan.Utility
 {
     using System;
     using System.Collections.Generic;

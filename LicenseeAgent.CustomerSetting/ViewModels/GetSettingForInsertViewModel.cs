@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="GetSettingForInsertViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.ViewModels
+﻿namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 

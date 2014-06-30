@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TransferMemberViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Transfer.ViewModels
+﻿namespace LicenseeAgent.Transfer.ViewModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;

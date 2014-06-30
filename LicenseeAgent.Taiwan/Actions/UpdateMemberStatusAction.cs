@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="UpdateMemberStatusAction.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Actions
+﻿namespace LicenseeAgent.Taiwan.Actions
 {
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Attributes;

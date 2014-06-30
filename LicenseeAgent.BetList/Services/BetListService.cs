@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="BetListService.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.Services
+﻿namespace LicenseeAgent.BetList.Services
 {
     using System;
     using System.Collections.Generic;

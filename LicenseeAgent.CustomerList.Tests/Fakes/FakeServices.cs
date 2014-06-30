@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FakeServices.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.Tests.Fakes
+﻿namespace LicenseeAgent.CustomerList.Tests.Fakes
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

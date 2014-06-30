@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Constant.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Core
+﻿namespace LicenseeAgent.CustomerSetting.Core
 {
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Configurations;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Constant.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Core
+﻿namespace LicenseeAgent.TotalBets.Core
 {
     /// <summary>
     /// Constant Class.

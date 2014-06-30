@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="IInternalService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Services
+﻿namespace LicenseeAgent.Account.Services
 {
     using LicenseeAgent.Account.Criteria;
     using LicenseeAgent.API.LRF.Entities;

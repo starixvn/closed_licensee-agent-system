@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberBalanceInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.Entities
+﻿namespace LicenseeAgent.CreditBalance.Entities
 {
     using LicenseeAgent.Taiwan.Attributes;
 

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AgentEditMemberCreditViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.ViewModels
+﻿namespace LicenseeAgent.CreditBalance.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Resources;

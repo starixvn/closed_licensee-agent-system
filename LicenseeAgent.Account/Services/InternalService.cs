@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="InternalService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Services
+﻿namespace LicenseeAgent.Account.Services
 {
     using System;
     using System.Web;

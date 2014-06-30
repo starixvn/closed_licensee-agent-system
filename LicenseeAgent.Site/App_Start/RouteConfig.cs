@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RouteConfig.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Site
+﻿namespace LicenseeAgent.Site
 {
     using System.Web.Mvc;
     using System.Web.Routing;

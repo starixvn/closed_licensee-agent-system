@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EventCriteria.cs" company="Nexcel Solutions Vietnam">
-// SoccerEventCriteria.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Criteria
+﻿namespace LicenseeAgent.TotalBets.Criteria
 {
     using Fanex.Data.Repository;
 

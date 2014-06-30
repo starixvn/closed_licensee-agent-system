@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IpEntity.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.Entities
+﻿namespace LicenseeAgent.CustomerList.Entities
 {
     /// <summary>
     /// IP Entity class.

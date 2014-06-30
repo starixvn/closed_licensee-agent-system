@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="SearchUserService.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.Services
+﻿namespace LicenseeAgent.AccountInformation.Services
 {
     using System.Collections.Generic;
     using Fanex.Data.Repository;

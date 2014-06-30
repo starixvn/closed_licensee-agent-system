@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MessageController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Message.Controllers
+﻿namespace LicenseeAgent.Message.Controllers
 {
     using System.Web.Mvc;
     using ViewModels;

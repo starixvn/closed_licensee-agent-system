@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BetListWinLossViewModel.cs" company="Microsoft">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.ViewModels
+﻿namespace LicenseeAgent.BetList.ViewModels
 {
     using System;
 

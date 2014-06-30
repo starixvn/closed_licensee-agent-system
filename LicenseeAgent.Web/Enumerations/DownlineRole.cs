@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DownlineRole.cs" company="Nexcel">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Enumerations
+﻿namespace LicenseeAgent.Web.Enumerations
 {
     public enum DownLineRole : int
     {

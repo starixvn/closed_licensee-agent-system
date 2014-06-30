@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="InternalLoginAsUserViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.ViewModels
+﻿namespace LicenseeAgent.Account.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CreditBalanceMemberViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.ViewModels
+﻿namespace LicenseeAgent.CreditBalance.ViewModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;

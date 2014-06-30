@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="CustomerEntity.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Entities
+﻿namespace LicenseeAgent.Taiwan.Entities
 {
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Taiwan.Attributes;

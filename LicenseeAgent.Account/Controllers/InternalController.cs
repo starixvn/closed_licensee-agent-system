@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="InternalController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Controllers
+﻿namespace LicenseeAgent.Account.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RegLib.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Utility
+﻿namespace LicenseeAgent.Core.Utility
 {
     using System.Text.RegularExpressions;
 

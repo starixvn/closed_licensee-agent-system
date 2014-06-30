@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SettingContext.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Entities
+﻿namespace LicenseeAgent.CustomerSetting.Entities
 {
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;

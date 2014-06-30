@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="ReportController.Statement.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Report.Controllers
+﻿namespace LicenseeAgent.Report.Controllers
 {
     using System;
     using System.Collections.Generic;

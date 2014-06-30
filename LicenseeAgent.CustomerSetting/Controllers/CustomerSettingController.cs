@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CustomerSettingController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Controllers
+﻿namespace LicenseeAgent.CustomerSetting.Controllers
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

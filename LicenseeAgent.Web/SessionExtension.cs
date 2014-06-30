@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SessionExtension.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web
+﻿namespace LicenseeAgent.Web
 {
     using System;
     using LicenseeAgent.Core.Configurations;

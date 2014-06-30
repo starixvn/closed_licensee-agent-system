@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IMessageService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Message.Services
+﻿namespace LicenseeAgent.Message.Services
 {
     using System.Collections.Generic;
     using Criteria;

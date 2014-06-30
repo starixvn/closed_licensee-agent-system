@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Breadcrumb.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Entities
+﻿namespace LicenseeAgent.Web.Entities
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

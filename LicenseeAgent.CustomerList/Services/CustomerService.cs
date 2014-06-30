@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerList.Services
+﻿namespace LicenseeAgent.CustomerList.Services
 {
     using System.Collections.Generic;
     using Fanex.Common;

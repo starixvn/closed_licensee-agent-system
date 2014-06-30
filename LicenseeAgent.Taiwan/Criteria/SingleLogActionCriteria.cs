@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="SingleLogActionCriteria.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Criteria
+﻿namespace LicenseeAgent.Taiwan.Criteria
 {
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Taiwan.Actions;

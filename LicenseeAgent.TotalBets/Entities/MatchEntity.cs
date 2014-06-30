@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MatchEntity.cs" company="Nexcel Solutions Vietnam">
-// MatchEntity.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Entities
+﻿namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 

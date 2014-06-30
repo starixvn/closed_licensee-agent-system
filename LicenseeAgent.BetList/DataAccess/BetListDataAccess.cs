@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="BetListDataAccess.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.DataAccess
+﻿namespace LicenseeAgent.BetList.DataAccess
 {
     using System;
     using System.Collections.Generic;

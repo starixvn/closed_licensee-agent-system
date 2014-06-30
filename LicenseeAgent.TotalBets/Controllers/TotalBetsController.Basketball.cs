@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsController.Basketball.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Controllers
+﻿namespace LicenseeAgent.TotalBets.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;

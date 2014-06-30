@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MessageViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Message.ViewModels
+﻿namespace LicenseeAgent.Message.ViewModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;

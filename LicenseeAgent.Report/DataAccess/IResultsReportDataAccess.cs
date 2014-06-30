@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="IResultsReportDataAccess.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Report.DataAccess
+﻿namespace LicenseeAgent.Report.DataAccess
 {
     using System.Data;
     using Fanex.Data.Repository;

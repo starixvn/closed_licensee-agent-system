@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TopTurnoverEntity.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Entities
+﻿namespace LicenseeAgent.Account.Entities
 {
     /// <summary>
     /// TopTurnoverEntity class.

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BetListResultsVirtualRacingCriteria.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.Criteria
+﻿namespace LicenseeAgent.BetList.Criteria
 {
     using Fanex.Data.Repository;
 

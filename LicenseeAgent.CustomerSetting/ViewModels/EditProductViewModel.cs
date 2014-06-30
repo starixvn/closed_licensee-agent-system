@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EditProductViewModel.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.ViewModels
+﻿namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.Collections.Generic;
     using LicenseeAgent.CustomerSetting.Entities;

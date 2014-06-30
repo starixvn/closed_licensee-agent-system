@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SoccerDetailEntity.cs" company="Nexcel Solutions Vietnam">
-// SoccerDetailEntity.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Entities
+﻿namespace LicenseeAgent.TotalBets.Entities
 {
     using LicenseeAgent.Core.Utility;
 

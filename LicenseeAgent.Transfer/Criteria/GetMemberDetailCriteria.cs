@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="GetMemberDetailCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Transfer.Criteria
+﻿namespace LicenseeAgent.Transfer.Criteria
 {
     using Fanex.Data.Repository;
 

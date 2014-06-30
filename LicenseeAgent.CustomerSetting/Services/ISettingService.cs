@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="ISettingService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Services
+﻿namespace LicenseeAgent.CustomerSetting.Services
 {
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Entities;

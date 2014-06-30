@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AppHandler.cs" company="Nexcel">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Utility
+﻿namespace LicenseeAgent.Core.Utility
 {
     using System.Net;
     using LicenseeAgent.Resources;

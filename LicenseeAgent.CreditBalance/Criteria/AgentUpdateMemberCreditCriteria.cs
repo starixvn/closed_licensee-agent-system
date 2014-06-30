@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AgentUpdateMemberCreditCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.CreditBalance.Criteria
+﻿namespace LicenseeAgent.CreditBalance.Criteria
 {
     using Fanex.Data.Repository;
 

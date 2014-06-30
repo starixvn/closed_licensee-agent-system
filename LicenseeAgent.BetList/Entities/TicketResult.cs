@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="TicketResult.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.Entities
+﻿namespace LicenseeAgent.BetList.Entities
 {
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;

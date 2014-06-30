@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ITransferService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Transfer.Services
+﻿namespace LicenseeAgent.Transfer.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.Transfer.Criteria;

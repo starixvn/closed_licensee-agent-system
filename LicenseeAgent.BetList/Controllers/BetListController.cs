@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="BetListController.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.BetList.Controllers
+﻿namespace LicenseeAgent.BetList.Controllers
 {
     using System.Web.Mvc;
     using Entities;

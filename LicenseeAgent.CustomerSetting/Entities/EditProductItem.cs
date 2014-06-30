@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EditProductItem.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Entities
+﻿namespace LicenseeAgent.CustomerSetting.Entities
 {
     /// <summary>
     /// TODO: Update summary.

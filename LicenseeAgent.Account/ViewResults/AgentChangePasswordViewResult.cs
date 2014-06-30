@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AgentChangePasswordViewResult.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.ViewResults
+﻿namespace LicenseeAgent.Account.ViewResults
 {
     /// <summary>
     /// AgentChangePasswordViewResult class.

@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="ReportService.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Report.Services
+﻿namespace LicenseeAgent.Report.Services
 {
     using System;
     using System.Collections.Generic;

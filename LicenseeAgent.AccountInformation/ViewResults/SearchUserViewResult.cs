@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="SearchUserViewResult.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.ViewResults
+﻿namespace LicenseeAgent.AccountInformation.ViewResults
 {
     /// <summary>
     /// SearchUserViewResult class.

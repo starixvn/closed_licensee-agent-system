@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DataRefWrapper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Utility
+﻿namespace LicenseeAgent.Core.Utility
 {
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Enumerations;

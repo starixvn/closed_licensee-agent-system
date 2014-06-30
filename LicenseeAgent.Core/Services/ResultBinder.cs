@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ResultBinder.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Core.Services
+﻿namespace LicenseeAgent.Core.Services
 {
     using System;
     using System.Collections.Generic;

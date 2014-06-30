@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TotalBetsUtility.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.Utility
+﻿namespace LicenseeAgent.TotalBets.Utility
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

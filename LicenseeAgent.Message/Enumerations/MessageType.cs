@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MessageType.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Message.Enumerations
+﻿namespace LicenseeAgent.Message.Enumerations
 {
     /// <summary>
     /// Message type.

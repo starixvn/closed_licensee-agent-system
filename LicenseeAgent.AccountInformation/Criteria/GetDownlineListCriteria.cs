@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="GetDownLineListCriteria.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.Criteria
+﻿namespace LicenseeAgent.AccountInformation.Criteria
 {
     using Fanex.Data.Repository;
 

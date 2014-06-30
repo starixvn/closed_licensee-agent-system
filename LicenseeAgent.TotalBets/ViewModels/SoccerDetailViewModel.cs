@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SoccerDetailViewModel.cs" company="Nexcel Solutions Vietnam">
-// SoccerDetailViewModel.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.TotalBets.ViewModels
+﻿namespace LicenseeAgent.TotalBets.ViewModels
 {
     using System.Collections.Generic;
     using LicenseeAgent.TotalBets.Entities;

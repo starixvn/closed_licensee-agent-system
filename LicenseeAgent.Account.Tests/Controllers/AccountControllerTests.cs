@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AccountControllerTests.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Account.Tests.Controllers
+﻿namespace LicenseeAgent.Account.Tests.Controllers
 {
     using System;
     using System.Collections.Generic;

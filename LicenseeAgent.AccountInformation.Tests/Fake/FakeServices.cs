@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FakeServices.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.AccountInformation.Tests.Fake
+﻿namespace LicenseeAgent.AccountInformation.Tests.Fake
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

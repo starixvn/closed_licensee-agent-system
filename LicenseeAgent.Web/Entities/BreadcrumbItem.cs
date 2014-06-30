@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BreadcrumbItem.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.Web.Entities
+﻿namespace LicenseeAgent.Web.Entities
 {
     /// <summary>
     /// Breadcrumb item.

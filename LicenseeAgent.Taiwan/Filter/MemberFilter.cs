@@ -1,11 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="MemberFilter.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-//
-// ------------------------------------------------------------------------
-
-namespace LicenseeAgent.Taiwan.Filter
+﻿namespace LicenseeAgent.Taiwan.Filter
 {
     using System;
     using System.Linq;

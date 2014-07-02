@@ -11,6 +11,18 @@
     [AllowAnonymous]
     public class NotifyController : Controller
     {
+        private readonly IUnderMaintenanceService _maintenanceService;
+
+        public NotifyController()
+            : this(null)
+        {
+        }
+
+        public NotifyController(IUnderMaintenanceService maintenanceService)
+        {
+            _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
+        }
+
         /// <summary>
         /// Under Maintenance.
         /// </summary>
@@ -19,8 +31,7 @@
         [UnderMaintenance(Ignore = true)]
         public JsonResult UnderMaintenance()
         {
-            var maintenanceService = new UnderMaintenanceService();
-            var maintenanceInfo = maintenanceService.GetUnderMaintenanceInfo();
+            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

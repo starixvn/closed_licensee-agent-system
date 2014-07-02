@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.SessionState;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Web;
 
     /// <summary>
@@ -53,8 +54,16 @@
                                                     LicenseeName = "yq355",
                                                     NumberOfLevel = 3
                                                 },
-                                                0,
-                                                "en-US");
+                                                new InternalLoginInfo
+                                                {
+                                                    AgentName = "Agent",
+                                                    CurrencyId = 20,
+                                                    LicenseeId = 1,
+                                                    LoginType = LoginType.AdminSite,
+                                                    LoginAccountType = AccountType.CSD_IT,
+                                                    LoginUserId = 10,
+                                                    Language = "en-US"
+                                                });
         }
 
         /// <summary>

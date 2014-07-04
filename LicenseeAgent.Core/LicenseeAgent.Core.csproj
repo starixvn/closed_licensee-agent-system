@@ -108,6 +108,7 @@
     <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
+    <Compile Include="Enumerations\LegendType.cs" />
     <Compile Include="Enumerations\Licensee.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -58,6 +58,8 @@ namespace LicenseeAgent.Account.Criteria
 
         public DateTime LastLoggedTime { get; set; }
 
+        public short LegendType { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AgentLogin";

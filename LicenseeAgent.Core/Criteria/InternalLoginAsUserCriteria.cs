@@ -23,6 +23,8 @@
 
         public string CountryCode { get; set; }
 
+        public short LegendType { get; set; }
+
         public int ErrCode { get; set; }
 
         public override string GetSettingKey()

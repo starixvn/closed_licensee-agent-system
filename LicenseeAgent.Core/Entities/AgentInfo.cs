@@ -40,6 +40,8 @@
 
         public DateTime LastLoggedTime { get; set; }
 
+        public LegendType LegendType { get; set; }
+
         public bool IsLevel0
         {
             get
@@ -77,6 +79,22 @@
             get
             {
                 return PasswordRule.GetPasswordStatus(this, LastLoggedTime);
+            }
+        }
+
+        public bool IsDeposit
+        {
+            get
+            {
+                return LegendType == LegendType.Deposit;
+            }
+        }
+
+        public bool IsCredit
+        {
+            get
+            {
+                return LegendType == LegendType.Credit;
             }
         }
 

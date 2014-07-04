@@ -6,6 +6,7 @@
     using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
 
     /// <summary>
@@ -41,7 +42,8 @@
                     LicenseeId = criteria.LicenseeId,
                     IsNickName = criteria.IsNickName,
                     LastLoggedTime = criteria.LastLoggedTime,
-                    LicenseeName = criteria.LicenseeName
+                    LicenseeName = criteria.LicenseeName,
+                    LegendType = (LegendType)criteria.LegendType
                 };
             }
 

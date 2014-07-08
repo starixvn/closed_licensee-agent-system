@@ -12,8 +12,8 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Entities;
-    using LicenseeAgent.Tests;
     using LicenseeAgent.Tests.Fakes;
+    using LicenseeAgent.Tests.Helpers;
     using NUnit.Framework;
 
     /// <summary>
@@ -77,7 +77,7 @@
             var message = string.Format("<div class='alert alert-error' style='display: block;'>{0}</div>", Las.NoInfo);
 
             // Act
-            var validationResults = TestExtensions.ValidateModel(viewModel);
+            var validationResults = TestHelper.ValidateModel(viewModel);
 
             foreach (var validationResult in validationResults)
             {
@@ -407,7 +407,6 @@
         {
             var searchUserService = FakeServices.GetSearchUserService();
             var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownlLinePermissionService();
             var coreService = FakeServices.GetCoreService();
 
             return new AccountInformationController(searchUserService, memberService, coreService);

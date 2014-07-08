@@ -1,8 +1,6 @@
 ﻿namespace LicenseeAgent.Web.Tests.Controllers
 {
     using System.Web.Mvc;
-    using System.Web.Routing;
-    using LicenseeAgent.Tests;
     using LicenseeAgent.Tests.Fakes;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Tests.Fakes;
@@ -43,12 +41,12 @@
         public void UnderMaintenanceAction_Should_ReturnJsonResult()
         {
             // Arrange
-            
+
             // Act
             var result = _controller.UnderMaintenance();
 
             // Assert
-            TestExtensions.ShouldBe<JsonResult>(result);
+            Assert.IsInstanceOf<JsonResult>(result);
         }
 
         /// <summary>

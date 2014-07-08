@@ -1,7 +1,5 @@
 ﻿namespace LicenseeAgent.Web.Tests.Validations
 {
-    using System.ComponentModel.DataAnnotations;
-    using LicenseeAgent.Tests;
     using LicenseeAgent.Web.Validations;
     using NUnit.Framework;
 
@@ -24,7 +22,7 @@
             var result = appPassword.IsValid("^");
 
             // Assert
-            TestExtensions.ShouldBeFalse(result);
+            Assert.IsFalse(result);
         }
 
         /// <summary>
@@ -40,7 +38,7 @@
             var result = appPassword.IsValid("abcdABCD1234");
 
             // Assert
-            TestExtensions.ShouldBeTrue(result);
+            Assert.IsTrue(result);
         }
     }
 }

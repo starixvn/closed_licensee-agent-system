@@ -1,7 +1,6 @@
 ﻿namespace LicenseeAgent.Web.Tests.Controllers
 {
     using System.Web.Mvc;
-    using LicenseeAgent.Tests;
     using LicenseeAgent.Tests.Fakes;
     using LicenseeAgent.Web.Controllers;
     using NUnit.Framework;
@@ -50,7 +49,7 @@
             var result = _controller.Index(key) as ViewResult;
 
             // Assert
-            TestExtensions.ShouldEqual(viewName, result.ViewName);
+            Assert.AreEqual(viewName, result.ViewName);
         }
 
         /// <summary>

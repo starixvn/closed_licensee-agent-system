@@ -52,7 +52,7 @@
             var result = _controller.Index() as ViewResult;
 
             // Assert
-            TestExtensions.ShouldBe<HomeViewModel>(result.Model);
+            Assert.IsInstanceOf<HomeViewModel>(result.Model);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@
             var result = _controller.Index() as ViewResult;
 
             // Assert
-            TestExtensions.ShouldBe<HomeViewModel>(result.Model);
+            Assert.IsInstanceOf<HomeViewModel>(result.Model);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@
             var result = _controller.Help() as ViewResult;
 
             // Assert
-            TestExtensions.ShouldEqual(viewName, result.ViewName);
+            Assert.AreEqual(viewName, result.ViewName);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@
             var result = _controller.Help() as ViewResult;
 
             // Assert
-            TestExtensions.ShouldEqual(viewName, result.ViewName);
+            Assert.AreEqual(viewName, result.ViewName);
         }
 
         /// <summary>

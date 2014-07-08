@@ -5,7 +5,7 @@
     /// </summary>
     public class RawBetListDetails
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public int AgentLevel { get; set; }
 

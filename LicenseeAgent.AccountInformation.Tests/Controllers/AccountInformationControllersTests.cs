@@ -205,7 +205,7 @@
         /// Test when get down line.
         /// </summary>
         [Test]
-        public void GetDownlinesAction_Should_ReturnJson()
+        public void GetDownLinesAction_Should_ReturnJson()
         {
             // Arrange
             var controller = CreateAccountInformationController();
@@ -222,18 +222,18 @@
         /// Test when get down line.
         /// </summary>
         [Test]
-        public void GetDownlinesAction_Should_ReturnDownlines()
+        public void GetDownLinesAction_Should_ReturnDownlines()
         {
             // Arrange
             var controller = CreateAccountInformationController();
-            var downlineViewMode = new DownLineViewModel();
+            var downLineViewMode = new DownLineViewModel();
 
             // Act
-            var result = controller.GetDownlines(downlineViewMode);
+            var result = controller.GetDownlines(downLineViewMode);
 
             // Assert
-            var downlines = (List<DownLineEntity>)((dynamic)result.Data).List;
-            Assert.IsTrue(downlines.Count > 0);
+            var downLines = (List<DownLineEntity>)((dynamic)result.Data).List;
+            Assert.IsTrue(downLines.Count > 0);
         }
 
         /// <summary>

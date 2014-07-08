@@ -3,10 +3,8 @@
     using System.Collections.Generic;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Taiwan.Actions;
-
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
-
     using LicenseeAgent.Transfer.Criteria;
     using LicenseeAgent.Transfer.Entities;
     using LicenseeAgent.Transfer.Services;
@@ -16,7 +14,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class FakeServices
+    public static class FakeServices
     {
         /// <summary>
         /// Get transfer service.
@@ -66,7 +64,7 @@
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
-        public static IDownLinePermissionService GetDownlLinePermissionService()
+        public static IDownLinePermissionService GetDownLinePermissionService()
         {
             return Substitute.For<IDownLinePermissionService>();
         }

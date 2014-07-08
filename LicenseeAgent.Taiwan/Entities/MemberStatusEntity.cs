@@ -21,7 +21,7 @@
         {
             get
             {
-                return Result.Equals(ServiceSetting.StatusSuccess, StringComparison.InvariantCultureIgnoreCase) ? LogType.Success : LogType.Fail;
+                return Result.Equals(ServiceSetting.StatusSuccess, StringComparison.OrdinalIgnoreCase) ? LogType.Success : LogType.Fail;
             }
         }
     }

@@ -1,11 +1,14 @@
 ﻿namespace LicenseeAgent.Core.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using Fanex.Caching;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// CoreService class.
@@ -13,8 +16,20 @@
     public class CoreService : QueryService, ICoreService
     {
         private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";
+        private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";
+        private const int LicenseeDomainsCacheTimeout = 30 * 60; // 60 minutes
 
-        private readonly ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
+        private readonly ICache _cache;
+
+        public CoreService()
+            : this(null)
+        {
+        }
+
+        public CoreService(ICache cache)
+        {
+            _cache = cache ?? CacheService.CreateInstance();
+        }
 
         /// <summary>
         /// Try to get balance up information from cache and database.
@@ -35,18 +50,74 @@
         }
 
         /// <summary>
-        /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
+        /// Gets licensee id by URL.
         /// </summary>
-        /// <returns>Returns list of licensee domain.</returns>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// Returns licensee id.
+        /// </returns>
+        public int? GetLicenseeId(HttpRequestBase request)
+        {
+            var licenseeDomains = GetLicenseeDomains();
+            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1
+                && string.Compare(x.Environment, AppSettings.DomainEnvironment, StringComparison.OrdinalIgnoreCase) == 0).ToList();
+            if (licenseeDomains.Count() == 1)
+            {
+                return licenseeDomains.First().LicenseeId;
+            }
+
+            if (AppSettings.IsLocalRequest)
+            {
+                return (int)Licensee.Licensee_27;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the licensee identifier.
+        /// </summary>
+        /// <param name="licenseeName">Name of the licensee.</param>
+        /// <returns>Returns licensee id.</returns>
+        public int? GetLicenseeId(string licenseeName)
+        {
+            var licenseeDomains = GetLicenseeDomains();
+            licenseeDomains = licenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.OrdinalIgnoreCase)
+                && string.Compare(x.Environment, AppSettings.DomainEnvironment, StringComparison.OrdinalIgnoreCase) == 0).ToList();
+
+            if (licenseeDomains.Count() == 1)
+            {
+                return licenseeDomains.First().LicenseeId;
+            }
+
+            if (AppSettings.IsLocalRequest)
+            {
+                return (int)Licensee.Licensee_27;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the licensee domains.
+        /// </summary>
+        /// <returns>Returns list of licensee domains.</returns>
+        /// <exception cref="System.Exception">Licensee domains configuration is fail.</exception>
         public IList<LicenseeDomain> GetLicenseeDomains()
         {
-            var criteria = new GetLicenseeDomainCriteria
+            var licenseeDomains = _cache.Get<IList<LicenseeDomain>>(LicenseDomainsCacheKey);
+            if (licenseeDomains == null)
             {
-                LicenseeId = 0,
-                Environment = AppSettings.Environment
-            };
+                licenseeDomains = InternalGetLicenseeDomains();
+                if (licenseeDomains == null || !licenseeDomains.Any())
+                {
+                    throw new InvalidOperationException("Licensee domains configuration is fail.");
+                }
 
-            return GetEntites<LicenseeDomain>(criteria);
+                _cache.Set(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
+            }
+
+            return licenseeDomains;
         }
 
         /// <summary>
@@ -80,7 +151,6 @@
         public bool HasProductOffered(int licenseeId, int productId)
         {
             var productInfos = GetProducts(licenseeId);
-
             return HasProductOffered(productInfos, productId);
         }
 
@@ -93,6 +163,21 @@
         public bool HasProductOffered(IList<ProductInfo> productInfos, int productId)
         {
             return productInfos.Where(x => x.ProductId == productId).Count() == 1;
+        }
+
+        /// <summary>
+        /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
+        /// </summary>
+        /// <returns>Returns list of licensee domain.</returns>
+        private IList<LicenseeDomain> InternalGetLicenseeDomains()
+        {
+            var criteria = new GetLicenseeDomainCriteria
+            {
+                LicenseeId = 0,
+                Environment = AppSettings.DomainEnvironment
+            };
+
+            return GetEntites<LicenseeDomain>(criteria);
         }
     }
 }

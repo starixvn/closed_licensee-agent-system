@@ -9,7 +9,7 @@
     {
         public string LeagueName { get; set; }
 
-        public int LeagueID { get; set; }
+        public int LeagueId { get; set; }
 
         public DateTime EventDate { get; set; }
 

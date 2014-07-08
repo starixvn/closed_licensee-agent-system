@@ -2,7 +2,7 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {    
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public enum BetType : int
     {
         /// <summary>
@@ -749,6 +749,11 @@ namespace LicenseeAgent.Core.Enumerations
         /// Michigan.
         /// </summary>
         BetType_1513 = 1513,
+                
+        /// <summary>
+        /// Others.
+        /// </summary>
+        BetType_9999 = 9999,
                 
         /// <summary>
         /// SUM.

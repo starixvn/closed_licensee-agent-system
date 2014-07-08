@@ -8,7 +8,7 @@
     /// </summary>
     public abstract class WinlossBase : CriteriaBase
     {
-        public WinlossBase(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType, string productIds)
+        protected WinlossBase(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType, string productIds)
         {
             AgentId = agentId;
             FromDate = fromDate;

@@ -7,7 +7,7 @@
     /// </summary>
     public class SyncMonitoringCriteria : CriteriaBase
     {
-        public int ActionID { get; set; }
+        public int ActionId { get; set; }
 
         public string TaiwanAPIUrl { get; set; }
 
@@ -18,7 +18,7 @@
 
         public override bool IsValid()
         {
-            return ActionID >= 0 && !string.IsNullOrEmpty(TaiwanAPIUrl);
+            return ActionId >= 0 && !string.IsNullOrEmpty(TaiwanAPIUrl);
         }
     }
 }

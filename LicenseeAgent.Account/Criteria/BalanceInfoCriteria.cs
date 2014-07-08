@@ -7,7 +7,7 @@ namespace LicenseeAgent.Account.Criteria
 
     public class BalanceInfoCriteria : CriteriaBase
     {
-        public int AgentID { get; set; }
+        public int AgentId { get; set; }
 
         public DateTime MoveBetDay { get; set; }
 
@@ -18,7 +18,7 @@ namespace LicenseeAgent.Account.Criteria
 
         public override bool IsValid()
         {
-            return AgentID > 0;
+            return AgentId > 0;
         }
     }
 }

@@ -19,7 +19,7 @@
         {
             get
             {
-                if (string.Equals(UserRole, "Admin", StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
                 {
                     return AccountType.CSD_IT;
                 }

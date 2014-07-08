@@ -717,8 +717,8 @@
             }
             else
             {
-                result.MinPT = result.MinPT / Constant.PT_RATE;
-                result.MaxPT = result.MaxPT / Constant.PT_RATE;
+                result.MinPT = result.MinPT / Constant.PTRate;
+                result.MaxPT = result.MaxPT / Constant.PTRate;
                 string msgContent;
                 switch ((int)result.ErrCode)
                 {

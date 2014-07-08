@@ -141,6 +141,8 @@
     <Compile Include="Filters\BaseActionFilterAttribute.cs" />
     <Compile Include="Filters\TrustedAdminAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
+    <Compile Include="Services\AuthenticateService.cs" />
+    <Compile Include="Services\IAuthenticateService.cs" />
     <Compile Include="Services\MonitoringService.cs" />
     <Compile Include="Services\IMonitoringService.cs" />
     <Compile Include="Services\DownLineService.cs" />

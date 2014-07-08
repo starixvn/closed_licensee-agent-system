@@ -130,7 +130,7 @@
                     custInfo.MaxCredit = DbConverter.ToDecimal(outputParams["maxcredit"]);
                     if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
                     {
-                        maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.STEP_MUL_DIV;
+                        maxLicenseePt = Converter.ToInt(outputParams["maxptoflicensee"]) / Constant.StepMulDiv;
                     }
                 }
 

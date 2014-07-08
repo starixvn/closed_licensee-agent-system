@@ -23,17 +23,17 @@
             _downLineService = downLineService ?? new DownLineService();
         }
 
-        public bool CheckForEditingCustomerSetting(CustomerSettingBelonging editingCustomerSettingBelonging)
+        public bool CheckForEditingCustomerSetting(CustomerSettingBelonging customerSettingBelonging)
         {
-            return editingCustomerSettingBelonging.TargetRoleId == (int)Role.Member
-                ? CheckForEditingMemberSetting(editingCustomerSettingBelonging)
-                : CheckForEditingAgentSetting(editingCustomerSettingBelonging);
+            return customerSettingBelonging.TargetRoleId == (int)Role.Member
+                ? CheckForEditingMemberSetting(customerSettingBelonging)
+                : CheckForEditingAgentSetting(customerSettingBelonging);
         }
 
-        public bool CheckForInsertingCustomerSetting(CustomerSettingBelonging insertingCustomerSettingBelonging)
+        public bool CheckForInsertingCustomerSetting(CustomerSettingBelonging customerSettingBelonging)
         {
-            return insertingCustomerSettingBelonging.FormId == FormType.Add
-                && IsDirectDownLineAgent(insertingCustomerSettingBelonging.CustId)
+            return customerSettingBelonging.FormId == FormType.Add
+                && IsDirectDownLineAgent(customerSettingBelonging.CustId)
                 ? true
                 : false;
         }

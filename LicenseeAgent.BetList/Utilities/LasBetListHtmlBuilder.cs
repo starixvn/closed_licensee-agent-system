@@ -28,7 +28,7 @@
         /// <param name="ticketHelper">Ticket helper.</param>
         /// <param name="ticketData">List of ticket data.</param>
         /// <param name="criteria">Meta model.</param>
-        /// <param name="currencyID">Currency ID.</param>
+        /// <param name="currencyId">Currency ID.</param>
         /// <param name="currencyName">Currency Name.</param>
         /// <returns>Ticket status text.</returns>
         public static string BuildLasBetListResultStatus(
@@ -37,7 +37,7 @@
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
             BetListCriteriaBase criteria,
-            int currencyID,
+            int currencyId,
             string currencyName)
         {
             const string StatusTemp = "<div class='status'>{0}</div>";
@@ -52,7 +52,7 @@
                     return statusNormalText + string.Format(
                         casinoHandTemplate,
                         ticket.RefNo,
-                        GetCasinoHandHistoryParam(ticket, criteria, currencyID, currencyName),
+                        GetCasinoHandHistoryParam(ticket, criteria, currencyId, currencyName),
                         "Results");
                 case (int)BetType.BetType_72:
                 case (int)BetType.BetType_73:

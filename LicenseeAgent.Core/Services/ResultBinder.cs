@@ -11,7 +11,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ResultBinder
+    public static class ResultBinder
     {
         /// <summary>
         /// Mapping data to Sport-book DTO.

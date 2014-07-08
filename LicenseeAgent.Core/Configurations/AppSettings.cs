@@ -2,6 +2,8 @@
 {
     using System;
     using System.Configuration;
+    using System.Web;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -16,10 +18,23 @@
             EndTime = downTimes[1].Trim();
 
             IsAdminSite = GetValue("IsAdminSite") == "1";
-            Environment = GetValue("Environment");
+            var siteEnvironment = GetValue("SiteEnvironment").ToLower();
+            switch (siteEnvironment)
+            {
+                case "production":
+                    SiteEnvironment = SiteEnvironment.Production;
+                    break;
+
+                case "uat":
+                    SiteEnvironment = SiteEnvironment.Uat;
+                    break;
+
+                default:
+                    SiteEnvironment = SiteEnvironment.Local;
+                    break;
+            }
+
             UnderMaintenanceUrl = GetValue("UnderMaintenanceUrl");
-            LocalTest = GetValue("LocalTest") == "1";
-            LocalLicenseeId = Convert.ToInt32(GetValue("LocalLicenseeId"));
             IsDownTime = GetValue("IsDownTime") == "1";
             TaiwanAPI = GetValue("TaiwanAPI");
             TrustedAdmins = GetValue("TrustedAdmins");
@@ -39,7 +54,22 @@
 
         public static bool IsAdminSite { get; private set; }
 
-        public static string Environment { get; private set; }
+        public static SiteEnvironment SiteEnvironment { get; private set; }
+
+        public static string DomainEnvironment
+        {
+            get
+            {
+                switch (SiteEnvironment)
+                {
+                    case SiteEnvironment.Production:
+                        return "PRO";
+
+                    default:
+                        return "UAT";
+                }
+            }
+        }
 
         public static string UnderMaintenanceUrl { get; private set; }
 
@@ -49,9 +79,13 @@
 
         public static string EndTime { get; private set; }
 
-        public static bool LocalTest { get; private set; }
-
-        public static int LocalLicenseeId { get; private set; }
+        public static bool IsLocalRequest
+        {
+            get
+            {
+                return SiteEnvironment == SiteEnvironment.Local && HttpContext.Current.Request.IsLocal;
+            }
+        }
 
         public static string TaiwanAPI { get; private set; }
 

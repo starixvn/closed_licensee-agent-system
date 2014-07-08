@@ -31,13 +31,13 @@
                     foreach (CommissionItem comItem in commissionSetting.CommissionItems)
                     {
                         tempString = string.Format(
-                            Constant.FORMAT_AGENT_COMMISSION_SETTING_XML,
+                            Constant.FormatAgentCommissionSettingXml,
                             comItem.SportId,
                             comItem.BetTypeId,
-                            comItem.DiscountA / Constant.STEP_MUL_DIV,
-                            comItem.DiscountB / Constant.STEP_MUL_DIV,
-                            comItem.DiscountC / Constant.STEP_MUL_DIV,
-                            comItem.DiscountD / Constant.STEP_MUL_DIV);
+                            comItem.DiscountA / Constant.StepMulDiv,
+                            comItem.DiscountB / Constant.StepMulDiv,
+                            comItem.DiscountC / Constant.StepMulDiv,
+                            comItem.DiscountD / Constant.StepMulDiv);
 
                         xmlStringData += tempString;
                     }
@@ -47,10 +47,10 @@
                     foreach (CommissionItem comItem in commissionSetting.CommissionItems)
                     {
                         tempString = string.Format(
-                            Constant.FORMAT_MEMBER_COMMISSION_SETTING_XML,
+                            Constant.FormatMemberCommissionSettingXml,
                             comItem.SportId,
                             comItem.BetTypeId,
-                            comItem.Discount / Constant.STEP_MUL_DIV);
+                            comItem.Discount / Constant.StepMulDiv);
 
                         xmlStringData += tempString;
                     }
@@ -58,7 +58,7 @@
             }
 
             return !string.IsNullOrEmpty(xmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                ? string.Format(Constant.FormatRootXml, xmlStringData)
                 : string.Empty;
         }
 
@@ -75,7 +75,7 @@
                 foreach (BettingLimitItem betLimit in bettingLimits)
                 {
                     xmlStringData += string.Format(
-                        Constant.FORMAT_BETTING_LIMIT_XML,
+                        Constant.FormatBettingLimitXml,
                         betLimit.SportId,
                         betLimit.BetTypeId,
                         betLimit.MinBet,
@@ -85,7 +85,7 @@
             }
 
             return !string.IsNullOrEmpty(xmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                ? string.Format(Constant.FormatRootXml, xmlStringData)
                 : string.Empty;
         }
 
@@ -102,7 +102,7 @@
                 foreach (BettingLimitItem betLimit in bettingLimits)
                 {
                     xmlStringData += string.Format(
-                        Constant.FORMAT_BETTING_LIMIT_XML_3RD,
+                        Constant.FormatBettingLimit3rdXml,
                         betLimit.SportId,
                         betLimit.BetTypeId,
                         betLimit.MinBet,
@@ -113,7 +113,7 @@
             }
 
             return !string.IsNullOrEmpty(xmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                ? string.Format(Constant.FormatRootXml, xmlStringData)
                 : string.Empty;
         }
 
@@ -141,7 +141,7 @@
             }
 
             return !string.IsNullOrEmpty(xmlStringData)
-                ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData)
+                ? string.Format(Constant.FormatRootXml, xmlStringData)
                 : string.Empty;
         }
 
@@ -160,35 +160,35 @@
                 if (settingContext.TargetRoleId == (int)Role.Agent && settingContext.FormId == FormType.Edit)
                 {
                     xmlResult = string.Format(
-                            Constant.FORMAT_AGENT_EDIT_AGENT_POSITION_TAKING_XML,
+                            Constant.FormatAgentEditAgentPositionTakingXml,
                             positionTaking.SportId,
                             positionTaking.BetTypeId,
                             positionTaking.IsLive ? 1 : 0,
-                            (int)(positionTaking.Preset * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Max * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Min * Constant.STEP_MUL_DIV),
+                            (int)(positionTaking.Preset * Constant.StepMulDiv),
+                            (int)(positionTaking.Max * Constant.StepMulDiv),
+                            (int)(positionTaking.Min * Constant.StepMulDiv),
                             positionTaking.ApplyAll ? 1 : 0);
                 }
                 else
                 {
                     xmlResult = string.Format(
-                            Constant.FORMAT_AGENT_POSITION_TAKING_XML,
+                            Constant.FormatAgentPositionTakingXml,
                             positionTaking.SportId,
                             positionTaking.BetTypeId,
                             positionTaking.IsLive ? 1 : 0,
-                            (int)(positionTaking.Preset * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Max * Constant.STEP_MUL_DIV),
-                            (int)(positionTaking.Min * Constant.STEP_MUL_DIV));
+                            (int)(positionTaking.Preset * Constant.StepMulDiv),
+                            (int)(positionTaking.Max * Constant.StepMulDiv),
+                            (int)(positionTaking.Min * Constant.StepMulDiv));
                 }
             }
             else
             {
                 xmlResult = string.Format(
-                        Constant.FORMAT_MEMBER_POSITION_TAKING_XML,
+                        Constant.FormatMemberPositionTakingXml,
                         positionTaking.SportId,
                         positionTaking.BetTypeId,
                         positionTaking.IsLive ? 1 : 0,
-                        (int)(positionTaking.Value * Constant.STEP_MUL_DIV));
+                        (int)(positionTaking.Value * Constant.StepMulDiv));
             }
 
             return xmlResult;

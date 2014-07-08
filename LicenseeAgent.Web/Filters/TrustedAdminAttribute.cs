@@ -1,11 +1,13 @@
 ﻿namespace LicenseeAgent.Web.Filters
 {
+    using System;
     using System.Web.Mvc;
 
     /// <summary>
     /// TrustedAdminAttribute class.
     /// </summary>
-    public class TrustedAdminAttribute : BaseActionFilterAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = true)]
+    public sealed class TrustedAdminAttribute : BaseActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

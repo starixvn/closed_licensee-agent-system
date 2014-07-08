@@ -68,7 +68,7 @@
         {
             foreach (var itemIPA in Dns.GetHostAddresses(hostAddress))
             {
-                if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.InvariantCultureIgnoreCase))
+                if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.OrdinalIgnoreCase))
                 {
                     return itemIPA;
                 }

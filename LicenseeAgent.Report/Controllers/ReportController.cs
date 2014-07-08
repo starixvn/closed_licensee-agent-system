@@ -110,8 +110,8 @@
                 var leagues = _reportService.GetLeagues(leagueCriteria);
                 model.Leagues = leagues.Select(i => new SelectListItem
                 {
-                    Text = DataRefWrapper.GetLeagueName(i.LeagueID),
-                    Value = i.LeagueID.ToString()
+                    Text = DataRefWrapper.GetLeagueName(i.LeagueId),
+                    Value = i.LeagueId.ToString()
                 }).OrderBy(j => j.Text).ToList();
 
                 return Json(new
@@ -227,8 +227,8 @@
             var leagues = _reportService.GetLeagues(criteria);
             var leagueItems = leagues.Select(i => new SelectListItem
             {
-                Text = DataRefWrapper.GetLeagueName(i.LeagueID),
-                Value = i.LeagueID.ToString()
+                Text = DataRefWrapper.GetLeagueName(i.LeagueId),
+                Value = i.LeagueId.ToString()
             }).OrderBy(j => j.Text).ToList();
 
             return Json(new

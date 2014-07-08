@@ -38,7 +38,7 @@
         }
 
         [HttpGet]
-        public ActionResult TestMSMQ()
+        public ActionResult TestMsmq()
         {
             var message = "This is a MSMQ test";
             Logger.Error(message);
@@ -117,15 +117,15 @@
         /// <summary>
         /// Monitoring Data's synchronization.
         /// </summary>
-        /// <param name="actionID">Action Identification.</param>
+        /// <param name="actionId">Action Identification.</param>
         /// <param name="taiwanAPIUrl">Taiwan API's URL.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public JsonResult SyncMonitoring(int actionID, string taiwanAPIUrl)
+        public JsonResult SyncMonitoring(int actionId, string taiwanAPIUrl)
         {
             var criteria = new SyncMonitoringCriteria
             {
-                ActionID = actionID,
+                ActionId = actionId,
                 TaiwanAPIUrl = taiwanAPIUrl
             };
 
@@ -133,7 +133,6 @@
             foreach (var item in failedAPICalls)
             {
                 LogAction logAction = null;
-                var inputParamsHtmlString = string.Empty;
                 switch (item.ActionId)
                 {
                     case (int)LogId.ResetPassword:
@@ -229,7 +228,7 @@
         public JsonResult SingleIgnore(SyncMonitoringUpdateStatusCriteria criteria)
         {
             criteria.UserId = CurrentSession.LoginUserId;
-            criteria.NewStatusID = LogType.Ignore;
+            criteria.NewStatusId = LogType.Ignore;
             _monitoringService.UpdateLogStatus(criteria);
             return Json(new { ErrCode = Result.SuccessValue });
         }
@@ -247,7 +246,7 @@
                 {
                     UserId = CurrentSession.LoginUserId,
                     KeyId = keyId,
-                    NewStatusID = LogType.Success
+                    NewStatusId = LogType.Success
                 });
             }
             else

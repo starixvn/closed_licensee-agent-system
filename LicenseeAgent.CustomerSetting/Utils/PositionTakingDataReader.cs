@@ -10,7 +10,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PositionTakingDataReader
+    public static class PositionTakingDataReader
     {
         /// <summary>
         /// Read agent position taking setting.
@@ -30,30 +30,30 @@
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
                     IsLive = reader.ToBool("IsLive"),
-                    Preset = reader.ToDecimal("MaxUpperPositionTaking") / Constant.STEP_MUL_DIV,
-                    Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.STEP_MUL_DIV,
-                    Min = reader.ToDecimal("MinGivenPositionTaking") / Constant.STEP_MUL_DIV,
+                    Preset = reader.ToDecimal("MaxUpperPositionTaking") / Constant.StepMulDiv,
+                    Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.StepMulDiv,
+                    Min = reader.ToDecimal("MinGivenPositionTaking") / Constant.StepMulDiv,
                 };
 
                 if (targetRoleId == (int)Role.Agent)
                 {
                     positionTakingData.Upline = new PositionTakingItem
                     {
-                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV,
-                        Min = reader.ToDecimal("ParentMinGivenPositionTaking") / Constant.STEP_MUL_DIV,
+                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.StepMulDiv,
+                        Min = reader.ToDecimal("ParentMinGivenPositionTaking") / Constant.StepMulDiv,
                     };
                 }
                 else
                 {
                     positionTakingData.Upline = new PositionTakingItem
                     {
-                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
+                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.StepMulDiv
                     };
                 }
 
                 positionTakingData.AllDownLine = new PositionTakingItem
                 {
-                    Max = reader.ToDecimal("MaxOfMaxUpperAndGiven") / Constant.STEP_MUL_DIV
+                    Max = reader.ToDecimal("MaxOfMaxUpperAndGiven") / Constant.StepMulDiv
                 };
 
                 list.Add(positionTakingData);
@@ -80,21 +80,21 @@
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
                     IsLive = reader.ToBool("IsLive"),
-                    Preset = reader.ToDecimal("MaxUpperPositionTaking") / Constant.STEP_MUL_DIV,
-                    Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.STEP_MUL_DIV,
-                    Min = reader.ToDecimal("MinGivenPositionTaking") / Constant.STEP_MUL_DIV
+                    Preset = reader.ToDecimal("MaxUpperPositionTaking") / Constant.StepMulDiv,
+                    Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.StepMulDiv,
+                    Min = reader.ToDecimal("MinGivenPositionTaking") / Constant.StepMulDiv
                 };
 
                 if (getUplineData)
                 {
                     positionTakingData.Upline = new PositionTakingItem
                     {
-                        Min = reader.ToDecimal("MinGivenPositionTakingOfParent") / Constant.STEP_MUL_DIV,
-                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
+                        Min = reader.ToDecimal("MinGivenPositionTakingOfParent") / Constant.StepMulDiv,
+                        Max = reader.ToDecimal("ParentMaxGivenPositionTaking") / Constant.StepMulDiv
                     };
                     positionTakingData.AllDownLine = new PositionTakingItem
                     {
-                        Max = reader.ToDecimal("MinOfMaxGivenPositionTaking") / Constant.STEP_MUL_DIV
+                        Max = reader.ToDecimal("MinOfMaxGivenPositionTaking") / Constant.StepMulDiv
                     };
                 }
                 else
@@ -134,11 +134,11 @@
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
                     IsLive = reader.ToBool("IsLive"),
-                    Value = reader.ToDecimal("PositionTaking") / Constant.STEP_MUL_DIV,
+                    Value = reader.ToDecimal("PositionTaking") / Constant.StepMulDiv,
                     Upline = new PositionTakingItem
                     {
-                        Min = minPositionTaking / Constant.STEP_MUL_DIV,
-                        Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.STEP_MUL_DIV
+                        Min = minPositionTaking / Constant.StepMulDiv,
+                        Max = reader.ToDecimal("MaxGivenPositionTaking") / Constant.StepMulDiv
                     }
                 };
 

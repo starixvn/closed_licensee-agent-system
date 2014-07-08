@@ -40,8 +40,8 @@
             var decryptedObject = _rijndaelHelper.DecryptObject<LoginInfo>(encryptedString);
 
             // Assert
-            decryptedObject.ShouldBeNotNull();
-            decryptedObject.ShouldEqual<LoginInfo>(loginInfo);
+            Assert.IsNotNull(decryptedObject);
+            Assert.AreEqual(decryptedObject, loginInfo);
         }
 
         /// <summary>
@@ -58,8 +58,8 @@
             var after = _rijndaelHelper.DecryptString(encryptedText);
 
             // Assert
-            after.ShouldBeNotNull();
-            after.ShouldEqual(before);
+            Assert.IsNotNull(after);
+            Assert.AreEqual(before, after);
         }
 
         [TearDown]

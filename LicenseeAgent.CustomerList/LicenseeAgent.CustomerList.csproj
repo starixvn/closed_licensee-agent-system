@@ -49,7 +49,6 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\CustomerListController.cs" />
-    <Compile Include="Core\Constants.cs" />
     <Compile Include="Criteria\AgentAutoCompleteCriteria.cs" />
     <Compile Include="Criteria\AgentGetByAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInfoCriteria.cs" />

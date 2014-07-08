@@ -16,7 +16,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class FakeServices
+    public static class FakeServices
     {
         /// <summary>
         /// Get search user service.
@@ -122,7 +122,7 @@
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
-        public static IDownLinePermissionService GetDownlLinePermissionService()
+        public static IDownLinePermissionService GetDownLinePermissionService()
         {
             return Substitute.For<IDownLinePermissionService>();
         }

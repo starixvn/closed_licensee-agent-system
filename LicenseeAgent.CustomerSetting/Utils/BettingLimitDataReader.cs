@@ -9,7 +9,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BettingLimitDataReader
+    public static class BettingLimitDataReader
     {
         /// <summary>
         /// Read bet limits setting.

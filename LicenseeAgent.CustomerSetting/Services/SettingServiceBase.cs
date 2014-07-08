@@ -17,14 +17,14 @@
         /// <param name="customerSetting">The customer setting.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <param name="errCode">The error code.</param>
-        /// <param name="maxLicenseePt">The maximum licensee PT.</param>
+        /// <param name="maxLicenseePT">The maximum licensee PT.</param>
         /// <returns>Returns customer setting 2.</returns>
         public CustomerSetting2 BuildCustomerSetting2(
             Product product,
             CustomerSetting customerSetting,
             SettingContext settingContext,
             ref int errCode,
-            int maxLicenseePt = 0)
+            int maxLicenseePT = 0)
         {
             if (errCode != Result.SuccessValue)
             {
@@ -33,7 +33,7 @@
 
             if (!customerSetting.IsValid(product, settingContext, true))
             {
-                errCode = Result.InvalidDbData;
+                errCode = Result.InvalidDBData;
             }
 
             var result = new CustomerSetting2
@@ -41,7 +41,7 @@
                 CustInfo = customerSetting.CustInfo,
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
-                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePt)
+                PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePT)
             };
 
             return result;

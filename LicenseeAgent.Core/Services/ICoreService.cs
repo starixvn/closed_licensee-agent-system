@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Core.Services
 {
     using System.Collections.Generic;
+    using System.Web;
     using LicenseeAgent.Core.Entities;
 
     public interface ICoreService
@@ -8,6 +9,10 @@
         SelBalanceUpDay GetBalanceUpDay();
 
         IList<LicenseeDomain> GetLicenseeDomains();
+
+        int? GetLicenseeId(string licenseeName);
+
+        int? GetLicenseeId(HttpRequestBase request);
 
         IList<ProductInfo> GetProducts(int licenseeId);
 

@@ -86,7 +86,7 @@
         public void SearchMember_ReturnFail()
         {
             // Arrange
-            var viewModel = new TransferSearchViewModel();
+            ////var viewModel = new TransferSearchViewModel();
             var transferService = FakeServices.GetTransferService();
             var memberService = FakeServices.GetMemberService();
             var list = transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria());
@@ -99,7 +99,7 @@
                    LASAgentId = 1,
                    SiteName = "yq355"
                });
-            var result = _controller.SearchMember(viewModel) as JsonResult;
+            ////var result = _controller.SearchMember(viewModel) as JsonResult;
 
             // Assert
             Assert.AreNotEqual(Result.SuccessValue, response.ErrCode);
@@ -112,7 +112,7 @@
         private TransferController CreateTransferController()
         {
             var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownlLinePermissionService();
+            var downlineService = FakeServices.GetDownLinePermissionService();
             var transferService = FakeServices.GetTransferService();
 
             return new TransferController(transferService, memberService, downlineService);

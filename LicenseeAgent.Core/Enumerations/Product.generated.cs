@@ -2,7 +2,7 @@
 
 namespace LicenseeAgent.Core.Enumerations
 {    
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public enum Product : int
     {
         

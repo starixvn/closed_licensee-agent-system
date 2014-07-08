@@ -10,7 +10,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CommissionDataReader
+    public static class CommissionDataReader
     {
         /// <summary>
         /// Read agent commission.
@@ -29,20 +29,20 @@
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
-                    DiscountA = Math.Round((reader.ToDecimal("DiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                    DiscountB = Math.Round((reader.ToDecimal("DiscountB") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                    DiscountC = Math.Round((reader.ToDecimal("DiscountC") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                    DiscountD = Math.Round((reader.ToDecimal("DiscountD") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                    DiscountA = Math.Round((reader.ToDecimal("DiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                    DiscountB = Math.Round((reader.ToDecimal("DiscountB") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                    DiscountC = Math.Round((reader.ToDecimal("DiscountC") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                    DiscountD = Math.Round((reader.ToDecimal("DiscountD") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist)
                 };
 
                 if (getUplineCom)
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountB = Math.Round((reader.ToDecimal("UplineMinDiscountB") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountC = Math.Round((reader.ToDecimal("UplineMinDiscountC") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountD = Math.Round((reader.ToDecimal("UplineMinDiscountD") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountB = Math.Round((reader.ToDecimal("UplineMinDiscountB") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountC = Math.Round((reader.ToDecimal("UplineMinDiscountC") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountD = Math.Round((reader.ToDecimal("UplineMinDiscountD") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist)
                     };
                 }
                 else
@@ -79,14 +79,14 @@
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
-                    DiscountA = Math.Round((reader.ToDecimal("DiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                    DiscountA = Math.Round((reader.ToDecimal("DiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist)
                 };
 
                 if (getUplineCom)
                 {
                     commissionItem.Upline = new CommissionItem
                     {
-                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
                     };
                 }
                 else
@@ -117,10 +117,10 @@
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
-                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
                     Upline = new CommissionItem
                     {
-                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
                     }
                 });
             }
@@ -142,13 +142,13 @@
                 {
                     SportId = reader.ToInt("SportType"),
                     BetTypeId = reader.ToInt("BetType"),
-                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
+                    Discount = Math.Round((reader.ToDecimal("Discount") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
                     Upline = new CommissionItem
                     {
-                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountB = Math.Round((reader.ToDecimal("UplineMinDiscountB") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountC = Math.Round((reader.ToDecimal("UplineMinDiscountC") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST),
-                        DiscountD = Math.Round((reader.ToDecimal("UplineMinDiscountD") * Constant.STEP_MUL_DIV) - Constant.ROUNDING_NUMBER, Constant.NUMBER_DIGIST)
+                        DiscountA = Math.Round((reader.ToDecimal("UplineMinDiscountA") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountB = Math.Round((reader.ToDecimal("UplineMinDiscountB") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountC = Math.Round((reader.ToDecimal("UplineMinDiscountC") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist),
+                        DiscountD = Math.Round((reader.ToDecimal("UplineMinDiscountD") * Constant.StepMulDiv) - Constant.RoundingNumber, Constant.NumberDigist)
                     }
                 });
             }

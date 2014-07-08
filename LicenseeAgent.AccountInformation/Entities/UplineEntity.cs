@@ -17,9 +17,9 @@
         {
             get
             {
-                if (UserName.Length > Constants.ShortStringLength)
+                if (UserName.Length > Constants.SmallStringLength)
                 {
-                    return string.Format("{0}...", UserName.Substring(0, Constants.ShortStringLength));
+                    return string.Format("{0}...", UserName.Substring(0, Constants.SmallStringLength));
                 }
 
                 return UserName;

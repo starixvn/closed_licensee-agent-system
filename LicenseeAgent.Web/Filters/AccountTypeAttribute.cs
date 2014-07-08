@@ -24,7 +24,7 @@
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var isAuthorized = AuthorizeRole(filterContext);
+            var isAuthorized = AuthorizeRole();
             if (!isAuthorized)
             {
                 Unauthorized(filterContext);
@@ -35,11 +35,10 @@
         /// Authorizes the permission. Only call this function if the httpContext.Request.IsAuthenticated
         /// and session is valid.
         /// </summary>
-        /// <param name="filterContext">The filter context.</param>
-        /// <returns>Returns the state.</returns>
-        /// <exception cref="System.NotSupportedException">Please implement here.</exception>
-        /// <exception cref="System.Exception">Please implement here.</exception>
-        private bool AuthorizeRole(ActionExecutingContext filterContext)
+        /// <returns>
+        /// Returns the state.
+        /// </returns>
+        private bool AuthorizeRole()
         {
             var currentSession = SessionManager.CurrentSession;
             var isAuthorized = false;

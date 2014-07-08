@@ -16,7 +16,7 @@
 
         public static void HandleException(string message, Exception exception)
         {
-            if (AppSettings.LocalTest)
+            if (AppSettings.IsLocalRequest)
             {
                 throw exception;
             }
@@ -26,7 +26,7 @@
 
         public static void Error(string message)
         {
-            if (AppSettings.LocalTest)
+            if (AppSettings.IsLocalRequest)
             {
                 return;
             }

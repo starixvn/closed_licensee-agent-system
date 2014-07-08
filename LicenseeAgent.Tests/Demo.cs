@@ -20,7 +20,7 @@
             var x = 10;
             var y = 20;
             var total = x + y;
-            total.ShouldEqual(30);
+            Assert.AreEqual(total, 30);
         }
 
         [Test]
@@ -29,7 +29,7 @@
             var x = 10;
             var y = 20;
             var total = x + y;
-            total.ShouldEqual(31);
+            Assert.AreEqual(total, 31);
         }
 
         [TearDown]

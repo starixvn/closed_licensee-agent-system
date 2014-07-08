@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -40,26 +40,26 @@
     </Compile>
     <Compile Include="ApiMsg.Designer.cs">
       <DependentUpon>ApiMsg.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="LangMsg.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>LangMsg.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Las.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Las.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApiMsg.resx">
+      <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ApiMsg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ApiMsg.zh-CN.resx">
       <SubType>Designer</SubType>
@@ -67,18 +67,18 @@
     <EmbeddedResource Include="ApiMsg.zh-TW.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="LangMsg.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LangMsg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LangMsg.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="LangMsg.zh-CN.resx" />
     <EmbeddedResource Include="LangMsg.zh-TW.resx" />
     <EmbeddedResource Include="Las.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Las.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Las.zh-CN.resx">

@@ -24,7 +24,7 @@
         /// <param name="productId">The product identifier.</param>
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingList">Position taking raw data.</param>
-        /// <param name="maxLicenseePt">Get max PT incase  insert new agent level 1.</param>
+        /// <param name="maxLicenseePT">Get max PT incase  insert new agent level 1.</param>
         /// <returns>
         /// List position taking group.
         /// </returns>
@@ -32,7 +32,7 @@
             int productId,
             SettingContext settingContext,
             IList<PositionTakingItem> positionTakingList,
-            int maxLicenseePt = 0)
+            int maxLicenseePT = 0)
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
             var productSettings = SettingConfigurations.GetProductPtSettings(productId);
@@ -50,7 +50,7 @@
                     var betTypeArray = sportType.BetTypeIds.Split(',');
                     foreach (string betTypeId in betTypeArray)
                     {
-                        BuildGroup(settingContext, positionTakingList, maxLicenseePt, positionTakingGroup, Convert.ToInt32(betTypeId));
+                        BuildGroup(settingContext, positionTakingList, maxLicenseePT, positionTakingGroup, Convert.ToInt32(betTypeId));
                     }
 
                     positionTakingSetting.Add(positionTakingGroup);

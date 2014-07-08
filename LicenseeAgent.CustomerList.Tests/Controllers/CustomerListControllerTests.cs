@@ -10,8 +10,8 @@
     using LicenseeAgent.CustomerList.Tests.Fakes;
     using LicenseeAgent.CustomerList.ViewModels;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.Tests;
     using LicenseeAgent.Tests.Fakes;
+    using LicenseeAgent.Tests.Helpers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.ViewModels;
     using NUnit.Framework;
@@ -545,7 +545,7 @@
 
             // Act
             var result = _controller.ChangeMemberStatus(viewModel);
-            var error = (dynamic)result.Data;
+            ////var error = (dynamic)result.Data;
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);
@@ -685,7 +685,7 @@
             var result = _controller.ResetPasswordMember(memberId);
 
             // Assert
-            Assert.IsInstanceOf<RedirectResult>(result); 
+            Assert.IsInstanceOf<RedirectResult>(result);
         }
 
         /// <summary>
@@ -738,7 +738,7 @@
             var viewModel = new ResetPasswordViewModel { Password = password, ConfirmPassword = confirmPassword };
 
             // Act
-            var validationResults = TestExtensions.ValidateModel(viewModel);
+            var validationResults = TestHelper.ValidateModel(viewModel);
 
             // Assert
             Assert.IsTrue(validationResults.Count > 0);
@@ -875,7 +875,7 @@
             var viewModel = new ResetPasswordViewModel { Password = password, ConfirmPassword = confirmPassword };
 
             // Act
-            var validationResults = TestExtensions.ValidateModel(viewModel);
+            var validationResults = TestHelper.ValidateModel(viewModel);
 
             // Assert
             Assert.IsTrue(validationResults.Count > 0);
@@ -1012,7 +1012,7 @@
             var viewModel = new EditInfoViewModel { CustId = 1000, UserName = "member", Phone = phone, Mobile = mobile, Fax = fax };
 
             // Act
-            var validationResults = TestExtensions.ValidateModel(viewModel);
+            var validationResults = TestHelper.ValidateModel(viewModel);
 
             // Assert
             Assert.IsTrue(validationResults.Count > 0);
@@ -1150,7 +1150,7 @@
             var viewModel = new EditInfoViewModel { CustId = 100, UserName = "agent", Phone = phone, Mobile = mobile, Fax = fax };
 
             // Act
-            var validationResults = TestExtensions.ValidateModel(viewModel);
+            var validationResults = TestHelper.ValidateModel(viewModel);
 
             // Assert
             Assert.IsTrue(validationResults.Count > 0);
@@ -1229,7 +1229,7 @@
             var customerService = FakeServices.GetCustomerService();
             var ipInformationService = FakeServices.GetIpInformationService();
             var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownlineService();
+            var downlineService = FakeServices.GetDownLineService();
             var coreService = FakeServices.GetCoreService();
 
             return new CustomerListController(customerService, ipInformationService, memberService, downlineService, coreService);

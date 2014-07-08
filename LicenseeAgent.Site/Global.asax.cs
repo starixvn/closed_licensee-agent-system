@@ -30,7 +30,7 @@
         protected void Application_BeginRequest()
         {
             // or any number of other checks, up to you
-            if (AppSettings.LocalTest)
+            if (AppSettings.IsLocalRequest)
             {
                 // MiniProfiler.Start();
             }
@@ -39,7 +39,7 @@
         protected void Application_EndRequest()
         {
             // stop as early as you can, even earlier with MvcMiniProfiler.MiniProfiler.Stop(discardResults: true);
-            if (AppSettings.LocalTest)
+            if (AppSettings.IsLocalRequest)
             {
                 // MiniProfiler.Stop();
             }
@@ -70,7 +70,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            if (AppSettings.LocalTest)
+            if (AppSettings.IsLocalRequest)
             {
                 return;
             }

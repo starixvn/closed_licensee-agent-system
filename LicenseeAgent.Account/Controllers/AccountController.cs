@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Account.Controllers
 {
     using System;
+    using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -23,6 +24,7 @@
     using LicenseeAgent.Web.Core;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Account controllers.
@@ -34,15 +36,25 @@
 
         private readonly ICoreService _coreService;
 
+        private readonly CaptchaImage _captchaImage;
+
+        private readonly IAuthenticateService _authenticateService;
+
         public AccountController()
-            : this(null, null)
+            : this(null, null, null, null)
         {
         }
 
-        public AccountController(IAccountService accountService, ICoreService coreService)
+        public AccountController(
+            IAccountService accountService,
+            ICoreService coreService,
+            CaptchaImage captchaImage,
+            IAuthenticateService authenticateService)
         {
             _accountService = accountService ?? new AccountService();
             _coreService = coreService ?? new CoreService();
+            _captchaImage = captchaImage ?? new CaptchaImage();
+            _authenticateService = authenticateService ?? new AuthenticateService();
         }
 
         /// <summary>
@@ -66,7 +78,7 @@
                 var balanceUp = _coreService.GetBalanceUpDay();
                 var balanceInfoCriteria = new BalanceInfoCriteria
                 {
-                    AgentID = CurrentSession.AgentInfo.AgentId,
+                    AgentId = CurrentSession.AgentInfo.AgentId,
                     MoveBetDay = balanceUp.MoveBetsDay
                 };
                 var balanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
@@ -91,19 +103,13 @@
         [AllowAnonymous]
         public ActionResult CaptchaImage()
         {
-            var captchaImage = new CaptchaImage
+            using (var memoryStream = new MemoryStream())
             {
-                Width = 119,
-                Height = 32
-            };
-
-            using (var mem = new MemoryStream())
-            {
-                var img = captchaImage.RenderImage();
-                Session[Constants.AppSessionCaptcha] = captchaImage.Text;
-                img.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
-
-                return File(mem.GetBuffer(), "image/png");
+                _captchaImage.RandomText();
+                Session[Constants.AppSessionCaptcha] = _captchaImage.Text;
+                var image = _captchaImage.RenderImage();
+                image.Save(memoryStream, ImageFormat.Png);
+                return File(memoryStream.GetBuffer(), "image/png");
             }
         }
 
@@ -124,7 +130,7 @@
             var model = new AgentSignInViewModel
             {
                 Language = currentLanguage,
-                Captcha = AppSettings.LocalTest ? "999999" : string.Empty
+                Captcha = AppSettings.IsLocalRequest ? "999999" : string.Empty
             };
 
             return View(model);
@@ -149,9 +155,9 @@
                 }
                 else
                 {
-                    if ((AppSettings.LocalTest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, StringComparison.OrdinalIgnoreCase) == 0)
+                    if ((AppSettings.IsLocalRequest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        var licenseeId = DomainMapper.GetLicenseeId(Request);
+                        var licenseeId = _coreService.GetLicenseeId(Request);
                         if (licenseeId == null)
                         {
                             ModelState.AddModelError(string.Empty, string.Format(Las.NoLicenseeDomainFound, Request.Url.Host));
@@ -172,7 +178,7 @@
             }
 
             // Always remove captcha value from input because it can't be reused.
-            if (!ModelState.IsValid && !AppSettings.LocalTest)
+            if (!ModelState.IsValid && !AppSettings.IsLocalRequest)
             {
                 ModelState.Remove("Captcha");
                 model.Captcha = string.Empty;
@@ -383,7 +389,7 @@
                 }
             }
 
-            FormsAuthentication.SignOut();
+            _authenticateService.Logout();
             SessionManager.ClearAll();
         }
 
@@ -564,7 +570,7 @@
 
             _accountService.AgentCheckIn(criteria);
             SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
-            FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
+            _authenticateService.Login(agentInfo.UserName);
         }
     }
 }

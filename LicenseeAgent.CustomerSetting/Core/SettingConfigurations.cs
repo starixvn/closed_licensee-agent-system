@@ -12,7 +12,7 @@
     {
         static SettingConfigurations()
         {
-            var configFilePath = HttpContext.Current.Server.MapPath(Constant.PT_GRID_CONFIG);
+            var configFilePath = HttpContext.Current.Server.MapPath(Constant.PTGridConfig);
             using (var reader = new StreamReader(configFilePath))
             {
                 string xml = reader.ReadToEnd();

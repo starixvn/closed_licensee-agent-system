@@ -15,7 +15,7 @@
     {
         private AgentInfo _alertLoginAgent2Week;
         private AgentInfo _alertLoginAgent1Week;
-        private AgentInfo _alertLoginAgent1Day;
+        ////private AgentInfo _alertLoginAgent1Day;
         private AgentInfo _alertLoginAgent2Week_False;
         private AgentInfo _alertLoginAgent1Week_False;
         private AgentInfo _alertLoginAgent1Day_False;
@@ -34,18 +34,18 @@
                 LastLoggedTime = today.AddDays(-15),
                 IsFirstLogin = false
             };
-            _alertLoginAgent1Week = new AgentInfo
-            {
-                PwdExpiry = today.AddDays(6),
-                LastLoggedTime = today.AddDays(-8),
-                IsFirstLogin = false
-            };
-            _alertLoginAgent1Day = new AgentInfo
-            {
-                PwdExpiry = today,
-                LastLoggedTime = today.AddDays(-2),
-                IsFirstLogin = false
-            };
+            ////_alertLoginAgent1Week = new AgentInfo
+            ////{
+            ////    PwdExpiry = today.AddDays(6),
+            ////    LastLoggedTime = today.AddDays(-8),
+            ////    IsFirstLogin = false
+            ////};
+            ////_alertLoginAgent1Day = new AgentInfo
+            ////{
+            ////    PwdExpiry = today,
+            ////    LastLoggedTime = today.AddDays(-2),
+            ////    IsFirstLogin = false
+            ////};
 
             _alertLoginAgent2Week_False = new AgentInfo
             {
@@ -158,7 +158,7 @@
             // ACT.
             var result2Week = PasswordRule.GetPasswordStatus(_alertLoginAgent2Week, _alertLoginAgent2Week.LastLoggedTime);
             var result1Week = PasswordRule.GetPasswordStatus(_alertLoginAgent1Week, _alertLoginAgent1Week.LastLoggedTime);
-            var result1Day = PasswordRule.GetPasswordStatus(_alertLoginAgent1Day, _alertLoginAgent1Day.LastLoggedTime);
+            ////var result1Day = PasswordRule.GetPasswordStatus(_alertLoginAgent1Day, _alertLoginAgent1Day.LastLoggedTime);
             var result2Week_False = PasswordRule.GetPasswordStatus(_alertLoginAgent2Week_False, _alertLoginAgent2Week_False.LastLoggedTime);
             var result1Week_False = PasswordRule.GetPasswordStatus(_alertLoginAgent1Week_False, _alertLoginAgent1Week_False.LastLoggedTime);
             var result1Day_False = PasswordRule.GetPasswordStatus(_alertLoginAgent1Day_False, _alertLoginAgent1Day_False.LastLoggedTime);
@@ -202,7 +202,7 @@
         {
             _alertLoginAgent2Week = null;
             _alertLoginAgent1Week = null;
-            _alertLoginAgent1Day = null;
+            ////_alertLoginAgent1Day = null;
             _alertLoginAgent2Week_False = null;
             _alertLoginAgent1Week_False = null;
             _alertLoginAgent1Day_False = null;

@@ -3,6 +3,11 @@
     public enum LogId
     {
         /// <summary>
+        /// Unused log ID.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// The reset password log id.
         /// </summary>
         ResetPassword = 301,

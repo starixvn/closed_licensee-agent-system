@@ -10,7 +10,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class FakeSession
+    public static class FakeSession
     {
         /// <summary>
         /// Initialize HTTP Context.

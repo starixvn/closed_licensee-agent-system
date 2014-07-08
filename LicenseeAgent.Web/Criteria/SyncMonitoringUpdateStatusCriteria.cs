@@ -12,7 +12,7 @@
 
         public int KeyId { get; set; }
 
-        public LogType NewStatusID { get; set; }
+        public LogType NewStatusId { get; set; }
 
         public override string GetSettingKey()
         {

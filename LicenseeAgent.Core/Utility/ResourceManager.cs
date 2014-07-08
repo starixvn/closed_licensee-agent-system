@@ -56,7 +56,7 @@
                         result = Las.NoChangeToUpdate;
                         break;
 
-                    case Result.InvalidDbData:
+                    case Result.InvalidDBData:
                         result = "Invalid DB data.";
                         break;
                 }

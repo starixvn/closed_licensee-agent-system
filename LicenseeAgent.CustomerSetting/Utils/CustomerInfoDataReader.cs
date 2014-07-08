@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CustomerInfoDataReader
+    public static class CustomerInfoDataReader
     {
         /// <summary>
         /// Readers the customer information data.

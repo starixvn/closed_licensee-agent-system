@@ -84,6 +84,11 @@
     <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
+    <Compile Include="Enumerations\Licensee.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Licensee.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\LoginType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
@@ -109,6 +114,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Product.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enumerations\SiteEnvironment.cs" />
     <Compile Include="Enumerations\SportType.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,8 +133,7 @@
     <Compile Include="Utility\AppHandler.cs" />
     <Compile Include="Enumerations\AccountStatus.cs" />
     <Compile Include="Utility\DataRefWrapper.cs" />
-    <Compile Include="Configurations\DomainMapper.cs" />
-    <Compile Include="Utility\CaptchaImage.cs" />
+    <Compile Include="Services\CaptchaImage.cs" />
     <Compile Include="Configurations\Constants.cs" />
     <Compile Include="Configurations\ModelSettings.cs" />
     <Compile Include="Entities\AdminInfo.cs" />
@@ -158,6 +163,10 @@
     <None Include="Enumerations\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Enumerations\Licensee.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Licensee.generated.cs</LastGenOutput>
     </None>
     <None Include="Enumerations\Product.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

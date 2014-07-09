@@ -132,7 +132,6 @@
         public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action)
         {
             var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
-
             if (memberListResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.MapObjects(memberListResult.Members, memberEntitys, new MemberFilter());

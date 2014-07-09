@@ -59,6 +59,11 @@
         /// <param name="serviceFilter">Service filter.</param>
         public static void MapObjects<T1, T2>(IEnumerable<T1> sources, IEnumerable<T2> destinations, IServiceFilter serviceFilter)
         {
+            if (sources == null || destinations == null)
+            {
+                return;
+            }
+
             foreach (var destination in destinations)
             {
                 var source = (from s in sources

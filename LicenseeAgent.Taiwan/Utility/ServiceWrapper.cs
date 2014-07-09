@@ -8,6 +8,7 @@
     using System.Web;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Attributes;
@@ -28,6 +29,12 @@
         /// </returns>
         public static T GetActionResponse<T>(BaseAction action) where T : ResponseResult
         {
+            // Simulate member site API to support for local environment
+            if (AppSettings.SiteEnvironment == SiteEnvironment.Local && string.Compare(action.SiteName, "yq355", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                return (T)Activator.CreateInstance(typeof(T), Result.SuccessValue, string.Empty);
+            }
+
             var webRequest = CreateActionRequest(action);
             using (var response = webRequest.GetResponse() as HttpWebResponse)
             {

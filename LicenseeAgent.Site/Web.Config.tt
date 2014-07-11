@@ -14,45 +14,14 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Windows.Forms" #>
 <#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="SiteConfiguration.ttinclude" #>
 <#
-    var sites = new SiteInfo[]{
-        new SiteInfo
-        {
-            IsAdmin = true,
-            Environment = SiteEnvironment.Local
-        },
-        new SiteInfo
-        {
-            IsAdmin = false,
-            Environment = SiteEnvironment.Local
-        },
-        new SiteInfo
-        {
-            IsAdmin = true,
-            Environment = SiteEnvironment.Uat
-        },
-        new SiteInfo
-        {
-            IsAdmin = false,
-            Environment = SiteEnvironment.Uat
-        },
-        new SiteInfo
-        {
-            IsAdmin = true,
-            Environment = SiteEnvironment.Prod
-        },
-        new SiteInfo
-        {
-            IsAdmin = false,
-            Environment = SiteEnvironment.Prod
-        }
-    };
-
     var manager = TemplateFileManager.Create(this);
     foreach(var site in sites)
     {
         var x = site.ToString();
-        manager.StartNewFile(site.ToString());
+        var fileName = string.Format("Web.{0}.{1}.config", site.Environment, site.IsAdmin ? "Admin" : "Agent");
+        manager.StartNewFile(fileName);
 #>
 <configuration>
   <configSections>
@@ -181,69 +150,4 @@
 <#
     }
     manager.Process();
-#>
-<#+
-    enum SiteEnvironment
-    {
-        Local,
-        Uat,
-        Prod
-    }
-
-    class SiteInfo
-    {
-        public bool IsAdmin { get; set; }
-        public SiteEnvironment Environment { get; set; }
-        public string AppSettingsFile
-        {
-            get
-            {
-                return "Web.AppSettings.config";
-            }
-        }
-        public string ConnectionStringsConfigSource
-        { 
-            get
-            {
-                return string.Format("Web.ConnectionStrings.{0}.config", Environment);
-            }
-        }
-        public string SpNamesResourcePath
-        { 
-            get
-            {
-                return string.Format("~/App_Data/SpNames.{0}.xml", Environment);
-            }
-        }
-        public string LoggingMsmqPath
-        {
-            get
-            {
-                return Environment == SiteEnvironment.Local
-                    ? @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib"
-                    : @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
-            }
-        }
-        public string LoggingDefaultCategory
-        {
-            get
-            {
-                switch(Environment)
-                {
-                    case SiteEnvironment.Uat:
-                        return "LAS-UAT";
-
-                    case SiteEnvironment.Prod:
-                        return "LAS-Live";
-
-                    default:
-                        return "Licensee-Agency-Local";
-                }
-            }
-        }
-        public override string ToString()
-        {
-            return string.Format("Web.{0}.{1}.config", Environment, IsAdmin ? "Admin" : "Agent");
-        }
-    }
 #>

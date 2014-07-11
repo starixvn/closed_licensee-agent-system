@@ -26,6 +26,7 @@
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ICustomerService GetCustomerService()
         {
             var customerService = Substitute.For<ICustomerService>();
@@ -101,6 +102,7 @@
         /// Get IP information service.
         /// </summary>
         /// <returns>IP information service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IIpInformationService GetIpInformationService()
         {
             var ipInformationService = Substitute.For<IIpInformationService>();
@@ -121,6 +123,7 @@
         /// Get member service.
         /// </summary>
         /// <returns>Member service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IMemberService GetMemberService()
         {
             var memberService = Substitute.For<IMemberService>();
@@ -148,6 +151,7 @@
         /// Get down line service.
         /// </summary>
         /// <returns>Down line service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IDownLinePermissionService GetDownLineService()
         {
             var downlineService = Substitute.For<IDownLinePermissionService>();
@@ -164,6 +168,7 @@
         /// Get core service.
         /// </summary>
         /// <returns>Core service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ICoreService GetCoreService()
         {
             var coreService = Substitute.For<ICoreService>();

@@ -54,7 +54,7 @@
                 LicenseeId = LicenseeId,
                 UserId = UserId,
                 CustId = IBCCustId,
-                Doing = GetDoingLogXml()
+                Doing = DoingLogXml
             };
         }
     }

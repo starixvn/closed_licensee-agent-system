@@ -26,72 +26,69 @@
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ISearchUserService GetSearchUserService()
         {
             var searchUserService = Substitute.For<ISearchUserService>();
 
             searchUserService.SuggestAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
-                new List<SuggestionEntity> 
-                { 
+                new List<SuggestionEntity>
+                {
                     new SuggestionEntity
-                    { 
-                        CustId  = 1, 
+                    {
+                        CustId  = 1,
                         UserName = "Agent1"
                     }
                 });
 
             searchUserService.SuggestAgent(Arg.Any<AgentSuggestSearchMemberCriteria>()).Returns(
-                new List<SuggestionEntity> 
-                { 
+                new List<SuggestionEntity>
+                {
                     new SuggestionEntity
-                    { 
-                        CustId  = 2, 
+                    {
+                        CustId  = 2,
                         UserName = "Agent2"
                     }
                 });
 
-            searchUserService.GetMembers<CustomerEntity, UpLineEntity, DownLineEntity>(Arg.Any<ICriteria>()).Returns(
-                    x => 
-                    { 
-                        var result = new Dictionary<string, object>();
-                        result.Add(
-                                "CustomerEntity", 
-                                new List<CustomerEntity>()
-                                {
-                                    new CustomerEntity
-                                    { 
-                                        UserName = "Customer name"
-                                    }
-                                });
-                        result.Add(
-                                "UpLineEntity", 
-                                new List<UpLineEntity>()
-                                {
-                                    new UpLineEntity
-                                    { 
-                                        UserName = "upline"
-                                    }
-                                });
-                        result.Add(
-                                "DownLineEntity", 
-                                new List<DownLineEntity>()
-                                {
-                                    new DownLineEntity
-                                    { 
-                                        UserName = "downline"
-                                    }
-                                });
+            searchUserService.GetMembers(Arg.Any<ICriteria>()).Returns(
+                    x =>
+                    {
+                        var customer = new CustomerEntity
+                        {
+                            UserName = "Customer name"
+                        };
 
-                        return result;
+                        var upLines = new List<UpLineEntity>()
+                        {
+                            new UpLineEntity
+                            {
+                                UserName = "upline"
+                            }
+                        };
+                        var downLines = new List<DownLineEntity>()
+                        {
+                            new DownLineEntity
+                            {
+                                UserName = "downline"
+                            }
+                        };
+
+                        return new SearchMemberEntity
+                        {
+                            Customer = customer,
+                            UpLines = upLines,
+                            DownLines = downLines
+                        };
                     });
 
             searchUserService.GetDirectDownlines(Arg.Any<GetDirectDownLineCriteria>()).Returns(
-                new List<DownLineEntity> 
-                { 
+                new List<DownLineEntity>
+                {
                     new DownLineEntity
-                    { 
-                        DownlineCustId = 1, 
-                        Level = 1, 
+                    {
+                        DownlineCustId = 1,
+                        Level = 1,
                         UserName = "Downline"
                     }
                 });
@@ -113,6 +110,7 @@
         /// Get member service.
         /// </summary>
         /// <returns>Member service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IMemberService GetMemberService()
         {
             return Substitute.For<IMemberService>();
@@ -122,6 +120,7 @@
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IDownLinePermissionService GetDownLinePermissionService()
         {
             return Substitute.For<IDownLinePermissionService>();
@@ -131,13 +130,14 @@
         /// Get core service.
         /// </summary>
         /// <returns>Core service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ICoreService GetCoreService()
         {
             var coreService = Substitute.For<ICoreService>();
 
             coreService.GetProducts(Arg.Any<int>()).Returns(
                     new List<ProductInfo>
-                    { 
+                    {
                     });
 
             return coreService;

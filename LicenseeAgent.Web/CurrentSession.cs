@@ -83,7 +83,7 @@
             int checkinOnUserId,
             string language)
         {
-            if (loginAccountType != AccountType.CSD_IT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
+            if (loginAccountType != AccountType.CSDIT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
             {
                 throw new InvalidOperationException(string.Format("Invalid account type {0}", loginAccountType));
             }
@@ -178,7 +178,7 @@
         {
             get
             {
-                return IsAdmin && LoginAccountType == AccountType.CSD_IT;
+                return IsAdmin && LoginAccountType == AccountType.CSDIT;
             }
         }
 

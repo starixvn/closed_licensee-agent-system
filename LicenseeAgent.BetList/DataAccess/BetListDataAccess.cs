@@ -118,6 +118,7 @@
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         private static List<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
         {
             var playerCommCol = "playercomm" + baseCurrency;

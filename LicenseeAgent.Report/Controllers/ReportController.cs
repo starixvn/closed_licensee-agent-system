@@ -244,9 +244,9 @@
         /// </summary>
         /// <returns>JSON object.</returns>
         [HttpPost]
-        public JsonResult GetBalanceUpMoveBet()
+        public JsonResult BalanceUpMoveBet()
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

@@ -1,6 +1,6 @@
 ﻿@using LicenseeAgent.Core.Enumerations
 <div class="content">
-    @Html.Raw(SessionManager.CurrentSession.LoginAccountType == AccountType.CSD_IT ? Las.PleaseChooseLicenseeCurrency : Las.PleaseChooseCurrency)
+    @Html.Raw(SessionManager.CurrentSession.LoginAccountType == AccountType.CSDIT ? Las.PleaseChooseLicenseeCurrency : Las.PleaseChooseCurrency)
 </div>
 <div class="wrapper">
     <label class="checkbox">

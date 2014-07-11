@@ -41,7 +41,7 @@
                         propertyName = ((ServiceAttribute)attribute).Name;
                     }
 
-                    if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.InvariantCultureIgnoreCase))
+                    if (destinationProperty.CanWrite && propertyName.Equals(sourceProperty.Name, StringComparison.OrdinalIgnoreCase))
                     {
                         destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, sourceProperty.GetValue(source, null)), null);
                     }

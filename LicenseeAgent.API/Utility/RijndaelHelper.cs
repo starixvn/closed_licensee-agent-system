@@ -35,9 +35,9 @@
             _rijndael.IV = vector;
         }
 
-        public string EncryptObject(object obj)
+        public string EncryptObject(object value)
         {
-            var bytes = ObjectToByteArray(obj);
+            var bytes = ObjectToByteArray(value);
             var encode = Convert.ToBase64String(bytes);
             return EncryptString(encode);
         }

@@ -85,7 +85,6 @@
     </Compile>
     <Compile Include="Controllers\AccountInformationControllersTests.cs" />
     <Compile Include="Fake\FakeServices.cs" />
-    <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

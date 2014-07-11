@@ -55,7 +55,7 @@
         [HttpPost]
         public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             criteria.MoveBetsDay = balanceUp.MoveBetsDay;
             criteria.BalanceUpDay = balanceUp.BalanceUpDay;
@@ -130,7 +130,7 @@
             }
 
             var agentId = CurrentSession.AgentInfo.AgentId;
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
 
             var criteria = new SystemParlayResultCriteria
             {

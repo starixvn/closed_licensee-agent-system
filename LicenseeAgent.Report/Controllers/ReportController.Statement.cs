@@ -56,7 +56,7 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             List<Statement> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
@@ -172,7 +172,7 @@
         [HttpPost]
         public JsonResult GetStatementDetailData(StatementDetailReportViewModel model)
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             var criteria = new StatementDetailCriteria
             {
                 UserId = CurrentSession.AgentInfo.AgentId,
@@ -222,7 +222,7 @@
         [HttpPost]
         public JsonResult GetTransferData(TransferDetailViewModel model)
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             List<Transfer> result;
             if (model.IsMember)
             {

@@ -66,7 +66,7 @@
                         </td>
                         <td>
                             @Html.TextBox("Amount", Model.Amount, new { @class = "w160", @data_min = Model.MinAmount, @data_max = Model.MaxAmount, title = Las.InvalidAmount })
-                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4n(Model.MinAmount), Formatter.FormatDecimal4n(Model.MaxAmount))</span>
+                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4(Model.MinAmount), Formatter.FormatDecimal4(Model.MaxAmount))</span>
                         </td>
                     </tr>
                 </tbody>

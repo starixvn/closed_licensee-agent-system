@@ -18,7 +18,7 @@
         /// <summary>
         /// Account type is CSD/IT.
         /// </summary>
-        CSD_IT,
+        CSDIT,
 
         /// <summary>
         /// Account type is Licensee.

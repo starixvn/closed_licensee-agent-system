@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Site
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Text;
     using System.Web;
@@ -68,6 +69,7 @@
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Verified.")]
         protected void Application_Error(object sender, EventArgs e)
         {
             if (AppSettings.IsLocalRequest)

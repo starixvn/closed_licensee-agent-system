@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Utils
 {
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Extensions;
     using LicenseeAgent.CustomerSetting.Entities;
 
@@ -35,6 +36,7 @@
         /// <param name="reader">The reader.</param>
         /// <param name="userGroup">The user group.</param>
         /// <returns>Returns member information.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Verified.")]
         public static CustomerInfo ReaderMemberInfo(IDataReader reader, out string userGroup)
         {
             var customerInfo = new CustomerInfo();

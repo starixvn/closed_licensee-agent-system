@@ -34,7 +34,7 @@
             Formatting = Formatting.Indented
         };
 
-        private static List<int> _virtualSportsTypeIds;
+        private static List<int> _virtualSportsTypeIds = SettingConfigurations.VirtualSportsTypeIds;
         private readonly IMemberService _memberService;
         private readonly IDownLinePermissionService _downLinePermissionService;
         private readonly ICoreService _coreService;
@@ -42,11 +42,6 @@
         private readonly Services.ISettingService _sportsBookService;
         private readonly Services.VirtualSports.SettingService _virtualSportsService;
         private readonly ICustomerSettingService _customerSettingService;
-
-        static CustomerSettingController()
-        {
-            _virtualSportsTypeIds = SettingConfigurations.GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
-        }
 
         public CustomerSettingController()
             : this(null, null, null, null, null, null, null)
@@ -81,8 +76,8 @@
         {
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            var listProducts3rd = GetProducts3rd(products);
-            foreach (var product in listProducts3rd)
+            var listProducts3RD = GetProducts3RD(products);
+            foreach (var product in listProducts3RD)
             {
                 var url = string.Empty;
                 switch (product.ProductId)
@@ -122,8 +117,8 @@
         {
             var editProductItems = new List<EditProductItem>();
             var products = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            var listProducts3rd = GetProducts3rd(products);
-            foreach (var product in listProducts3rd)
+            var listProducts3RD = GetProducts3RD(products);
+            foreach (var product in listProducts3RD)
             {
                 var url = string.Empty;
                 switch (product.ProductId)
@@ -326,7 +321,7 @@
             {
                 settingContext = settingContext,
                 productSetting = productSetting,
-                productSetting3rd = numberGameSetting
+                productSetting3RD = numberGameSetting
             });
         }
 
@@ -396,7 +391,7 @@
             }
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            var hasOffered3rd = false;
+            var hasOffered3RD = false;
             if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() != 1)
             {
                 model.NumberGameSetting = null;
@@ -404,7 +399,7 @@
 
             if (productInfos.Where(x => x.ProductId == (int)Product.Product_5 || x.ProductId == (int)Product.Product_4 || x.ProductId == (int)Product.Product_8).Any())
             {
-                hasOffered3rd = true;
+                hasOffered3RD = true;
             }
 
             var result = _customerSettingService.InsertCustomer(model);
@@ -441,7 +436,7 @@
                 ErrCode = Result.SuccessValue,
                 Messages = messages,
                 CustId = result.CustIdReturn,
-                HasOffered3rd = hasOffered3rd,
+                HasOffered3RD = hasOffered3RD,
                 CustomerLevel = ModelHelper.IsAgentLevel1(model.SettingContext.TargetRoleId - 1) ?
                                             (int)Role.Agent : CurrentSession.AgentInfo.IsLevel0 ? (int)Role.AgentLevel1 : CurrentSession.AgentInfo.AgentLevel + 1
             });
@@ -713,7 +708,15 @@
         {
             if ((int)result.ErrCode == Result.SuccessValue)
             {
-                return result is UpdateResult ? GetUpdateMessageSuccess((UpdateResult)result) : new Result(Result.SuccessValue, Las.InsertSuccessfully);
+                var updateResult = result as UpdateResult;
+                if (updateResult != null)
+                {
+                    return GetUpdateMessageSuccess(updateResult);
+                }
+                else
+                {
+                    return new Result(Result.SuccessValue, Las.InsertSuccessfully);
+                }
             }
             else
             {
@@ -941,46 +944,46 @@
         /// </summary>
         /// <param name="productInfos">List products info.</param>
         /// <returns>List products 3RD.</returns>
-        private List<ProductInfo> GetProducts3rd(IList<ProductInfo> productInfos)
+        private List<ProductInfo> GetProducts3RD(IList<ProductInfo> productInfos)
         {
-            var listProducts3rd = new List<ProductInfo>();
+            var listProducts3RD = new List<ProductInfo>();
             var product = productInfos.Where(x => x.ProductId == (int)Product.Product_1);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
             product = productInfos.Where(x => x.ProductId == (int)Product.Product_6);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
             product = productInfos.Where(x => x.ProductId == (int)Product.Product_7);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
             product = productInfos.Where(x => x.ProductId == (int)Product.Product_4);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
             product = productInfos.Where(x => x.ProductId == (int)Product.Product_5);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
             product = productInfos.Where(x => x.ProductId == (int)Product.Product_8);
             if (product.Any())
             {
-                listProducts3rd.Add(product.FirstOrDefault());
+                listProducts3RD.Add(product.FirstOrDefault());
             }
 
-            return listProducts3rd;
+            return listProducts3RD;
         }
     }
 }

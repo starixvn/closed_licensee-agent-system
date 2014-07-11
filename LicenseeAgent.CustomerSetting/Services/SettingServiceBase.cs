@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Services
 {
+    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Entities;
@@ -19,6 +20,7 @@
         /// <param name="errCode">The error code.</param>
         /// <param name="maxLicenseePT">The maximum licensee PT.</param>
         /// <returns>Returns customer setting 2.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Verified.")]
         public CustomerSetting2 BuildCustomerSetting2(
             Product product,
             CustomerSetting customerSetting,
@@ -33,7 +35,7 @@
 
             if (!customerSetting.IsValid(product, settingContext, true))
             {
-                errCode = Result.InvalidDBData;
+                errCode = Result.InvalidDbData;
             }
 
             var result = new CustomerSetting2

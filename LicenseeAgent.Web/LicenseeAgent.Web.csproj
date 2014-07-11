@@ -33,7 +33,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -64,8 +64,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="MiniProfiler, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\MiniProfiler.3.1\lib\net40\MiniProfiler.dll</HintPath>
+    <Reference Include="MiniProfiler, Version=3.1.1.139, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MiniProfiler.3.1.1.139\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="SPSRemoting">
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
@@ -117,7 +118,7 @@
     <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criteria\CheckCurrencyPermissionCriteria.cs" />
-    <Compile Include="Criteria\CheckDownlineBelongCriteria.cs" />
+    <Compile Include="Criteria\CheckDownLineBelongCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringGetAPIUrlCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringGetLogDataCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringUpdateRunCountCriteria.cs" />
@@ -129,7 +130,6 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
-    <Compile Include="Entities\SyncMonitoringAPIUrl.cs" />
     <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />

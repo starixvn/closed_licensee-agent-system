@@ -56,7 +56,7 @@
         protected static bool ValidateHtmlText(
             ControllerContext controllerContext,
             ModelBindingContext bindingContext,
-            PropertyDescriptor propertyDescriptor,
+            MemberDescriptor propertyDescriptor,
             object value)
         {
             var isValidRequest = controllerContext.Controller.ValidateRequest

@@ -63,29 +63,29 @@
         /// <summary>
         /// Returns the absolute path for the specified imported file path.
         /// </summary>
-        /// <param name="filePath">
+        /// <param name="path">
         /// The imported file path.
         /// </param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string GetFullPath(string filePath)
+        public string GetFullPath(string path)
         {
-            if (filePath.StartsWith("~", StringComparison.OrdinalIgnoreCase))
+            if (path.StartsWith("~", StringComparison.OrdinalIgnoreCase))
             {
-                filePath = VirtualPathUtility.ToAbsolute(filePath);
+                path = VirtualPathUtility.ToAbsolute(path);
             }
 
-            if (filePath.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
-                filePath = HostingEnvironment.MapPath(filePath);
+                path = HostingEnvironment.MapPath(path);
             }
-            else if (!Path.IsPathRooted(filePath))
+            else if (!Path.IsPathRooted(path))
             {
-                filePath = Path.GetFullPath(Path.Combine(this._currentFileDirectory, filePath));
+                path = Path.GetFullPath(Path.Combine(this._currentFileDirectory, path));
             }
 
-            return filePath;
+            return path;
         }
     }
 }

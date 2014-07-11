@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.Taiwan.Actions
 {
+    using System;
     using System.Xml.Serialization;
     using LicenseeAgent.Core.Configurations;
 
@@ -9,17 +10,17 @@
     public abstract class BaseAction
     {
         protected BaseAction()
-            : this(AppSettings.TaiwanAPI)
+            : this(AppSettings.TaiwanAPIUrl)
         {
         }
 
-        protected BaseAction(string url)
+        protected BaseAction(Uri url)
         {
             Url = url;
         }
 
         [XmlIgnore]
-        public string Url { get; private set; }
+        public Uri Url { get; private set; }
 
         public string SiteName { get; set; }
 

@@ -11,7 +11,7 @@
         public const string UsLanguageCode = "en-US";
         private static readonly CultureInfo USCulture = CultureInfo.CreateSpecificCulture(UsLanguageCode);
 
-        public static string TwoLetterISOLanguageName
+        public static string LanguageCode
         {
             get
             {

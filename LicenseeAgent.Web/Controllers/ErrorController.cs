@@ -63,7 +63,7 @@
         [UnderMaintenance(Ignore = true)]
         public ActionResult UnderMaintenance()
         {
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+            var maintenanceInfo = _maintenanceService.UnderMaintenanceInfo;
             if (maintenanceInfo.Status)
             {
                 return View(maintenanceInfo);

@@ -17,13 +17,13 @@
 
         public static Breadcrumb FromString(string xml)
         {
-            var list = ObjectSerializer<BreadcrumbItem>.DeserializeList(HttpUtility.HtmlDecode(xml));
+            var list = ObjectSerializer.DeserializeList<BreadcrumbItem>(HttpUtility.HtmlDecode(xml));
             return new Breadcrumb(list);
         }
 
         public override string ToString()
         {
-            return HttpUtility.HtmlEncode(ObjectSerializer<BreadcrumbItem>.SerializeList(this));
+            return HttpUtility.HtmlEncode(ObjectSerializer.SerializeList<BreadcrumbItem>(this));
         }
 
         /// <summary>

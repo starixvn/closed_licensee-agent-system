@@ -9,7 +9,7 @@
     /// UnderMaintenanceAttribute class.
     /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
-    public class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
+    public sealed class UnderMaintenanceAttribute : ActionFilterAttribute, IDisposable
     {
         private readonly IUnderMaintenanceService _maintenanceService;
 
@@ -21,6 +21,14 @@
         public UnderMaintenanceAttribute(IUnderMaintenanceService maintenanceService)
         {
             _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
+        }
+
+        public IUnderMaintenanceService MaintenanceService
+        {
+            get
+            {
+                return _maintenanceService;
+            }
         }
 
         public bool Ignore { get; set; }
@@ -36,7 +44,7 @@
                 return;
             }
 
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+            var maintenanceInfo = _maintenanceService.UnderMaintenanceInfo;
             if (maintenanceInfo.Status)
             {
                 filterContext.ReturnUnderMaintenance();
@@ -57,9 +65,12 @@
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c>
         /// to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
+        public void Dispose(bool disposing)
         {
-            _maintenanceService.Dispose();
+            if (disposing)
+            {
+                _maintenanceService.Dispose();
+            }
         }
     }
 }

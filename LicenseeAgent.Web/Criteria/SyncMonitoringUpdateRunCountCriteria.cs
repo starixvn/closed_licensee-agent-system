@@ -7,7 +7,7 @@
     /// </summary>
     public class SyncMonitoringUpdateRunCountCriteria : CriteriaBase
     {
-        public int KeyID { get; set; }
+        public int KeyId { get; set; }
 
         public string Remark { get; set; }
 
@@ -18,7 +18,7 @@
 
         public override bool IsValid()
         {
-            return KeyID > 0;
+            return KeyId > 0;
         }
     }
 }

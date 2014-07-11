@@ -4,7 +4,7 @@
 
     public interface IUnderMaintenanceService
     {
-        UnderMaintenanceInfo GetUnderMaintenanceInfo();
+        UnderMaintenanceInfo UnderMaintenanceInfo { get; }
 
         void Dispose();
     }

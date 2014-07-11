@@ -15,7 +15,7 @@
 
         public string PositionTaking { get; set; }
 
-        public string PositionTaking3rd { get; set; }
+        public string PositionTaking3RD { get; set; }
 
         public string Ip { get; set; }
 

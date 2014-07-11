@@ -11,9 +11,9 @@
     /// </summary>
     public class MonitoringService : QueryService, IMonitoringService
     {
-        public IList<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria)
+        public IList<string> GetAPIUrls(ICriteria criteria)
         {
-            return GetEntites<SyncMonitoringAPIUrl>(criteria);
+            return GetEntites<string>(criteria);
         }
 
         public IList<SyncMonitoring> GetFailedAPICalls(ICriteria criteria)

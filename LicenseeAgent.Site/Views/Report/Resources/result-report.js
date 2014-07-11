@@ -43,7 +43,7 @@ var resultReport = (function ($) {
 
         getBalanceUpMoveBet: function () {
             $.ajax({
-                url: core.resolveUrl("~/Report/GetBalanceUpMoveBet"),
+                url: core.resolveUrl("~/Report/BalanceUpMoveBet"),
                 type: 'POST',
                 dataType: "json",
                 beforeSend: function () {

@@ -26,7 +26,7 @@
             return string.Format(EnglishCultureInfo.NumberFormat, "{0:#,##0.00}", value);
         }
 
-        public static string FormatDecimal4n(object value)
+        public static string FormatDecimal4(object value)
         {
             return string.Format(EnglishCultureInfo.NumberFormat, "{0:#,##0.####}", value);
         }

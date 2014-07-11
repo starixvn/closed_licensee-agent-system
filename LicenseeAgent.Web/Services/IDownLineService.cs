@@ -4,11 +4,11 @@
 
     public interface IDownLineService
     {
-        bool IsDownLine(CheckDownlineBelongCriteria criteria);
+        bool IsDownLine(CheckDownLineBelongCriteria criteria);
 
-        bool IsDirectDownLine(CheckDownlineBelongCriteria criteria);
+        bool IsDirectDownLine(CheckDownLineBelongCriteria criteria);
 
-        bool IsIndirectDownLine(CheckDownlineBelongCriteria criteria);
+        bool IsIndirectDownLine(CheckDownLineBelongCriteria criteria);
 
         bool IsDownLineTicket(TicketDownLineCriteria criteria);
 

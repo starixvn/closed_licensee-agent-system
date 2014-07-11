@@ -21,7 +21,7 @@
             {
                 if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
                 {
-                    return AccountType.CSD_IT;
+                    return AccountType.CSDIT;
                 }
 
                 return AccountType.Licensee;

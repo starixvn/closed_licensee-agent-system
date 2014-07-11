@@ -16,7 +16,7 @@
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/customersetting/editproduct")
     <script language="javascript" type="text/javascript">
-        @Html.Javascript(Model.Products, "products")
+        @HtmlExtensions.Javascript(Model.Products, "products")
     </script>
 }
 @RazorHelper.Legend(ViewBag.Title)

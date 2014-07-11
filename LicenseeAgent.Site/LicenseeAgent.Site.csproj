@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PackageAsSingleFile>false</PackageAsSingleFile>
@@ -98,8 +98,9 @@
     <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
-    <Reference Include="MiniProfiler, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\MiniProfiler.3.1\lib\net40\MiniProfiler.dll</HintPath>
+    <Reference Include="MiniProfiler, Version=3.1.1.139, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MiniProfiler.3.1.1.139\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -111,8 +112,9 @@
     <Reference Include="RazorEngine, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RemotingRef.1.0.0\lib\net40\RemotingRef.dll</HintPath>
+    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RemotingRef.1.0.0.1\lib\net40\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
@@ -207,6 +209,11 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Web.AppSettings.Config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -595,9 +602,29 @@
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\_ViewStart.cshtml" />
-    <None Include="Web.AppSettings.config">
-      <SubType>Designer</SubType>
+    <None Include="Web.AppSettings.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
     </None>
+    <None Include="SiteConfiguration.ttinclude" />
+    <Content Include="Web.AppSettings.Local.Admin.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Local.Agent.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Prod.Admin.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Prod.Agent.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Uat.Admin.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Uat.Agent.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>
@@ -867,42 +894,22 @@
     <Content Include="Web.ConnectionStrings.Uat.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.Local.Admin.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.Local.Agent.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.Prod.Admin.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.Prod.Agent.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.Uat.Admin.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.Uat.Agent.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
     <Content Include="Web.Local.Admin.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Local.Agent.config">
-      <DependentUpon>Web.Config.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Uat.Admin.config">
-      <DependentUpon>Web.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.Uat.Agent.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
     <Content Include="Web.Prod.Admin.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
     <Content Include="Web.Prod.Agent.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Uat.Admin.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Uat.Agent.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
   </ItemGroup>

@@ -147,10 +147,5 @@
 
             return list;
         }
-
-        private static string GenerateKey(PositionTakingItem data)
-        {
-            return string.Format("{0}_{1}_{2}", data.SportId, data.IsLive, data.BetTypeId);
-        }
     }
 }

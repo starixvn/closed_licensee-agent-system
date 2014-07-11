@@ -87,7 +87,7 @@
                     var parameters = criteria.GetSpParams();
                     objDb.ExecuteNonQuery(parameters);
 
-                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
+                    return ObjectSerializer.DeserializeList<UpdateResult>(Convert.ToString(parameters["settingoutput"]));
                 }
             }
             catch (Exception exception)
@@ -288,18 +288,18 @@
         /// <returns>Returns criteria.</returns>
         private ICriteria CreateUpdateCustomerCriteria(UpdateVirtualSportsCustomerViewModel model)
         {
-            var betLimit3rdXml = string.Empty;
-            var positionTaking3rdXml = string.Empty;
-            positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.VirtualSportsSetting.PositionTakingSetting);
+            var betLimit3RDXml = string.Empty;
+            var positionTaking3RDXml = string.Empty;
+            positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.VirtualSportsSetting.PositionTakingSetting);
 
             if (model.SettingContext.FormId != FormType.EditIndirectMember)
             {
-                betLimit3rdXml = XmlBuilder.Build(model.VirtualSportsSetting.BettingLimitSetting);
+                betLimit3RDXml = XmlBuilder.Build(model.VirtualSportsSetting.BettingLimitSetting);
             }
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
             {
-                return CreateUpdateMemberCriteria(model, positionTaking3rdXml, betLimit3rdXml);
+                return CreateUpdateMemberCriteria(model, positionTaking3RDXml, betLimit3RDXml);
             }
             else
             {
@@ -308,8 +308,8 @@
                     return new LicenseeUpdateAgentCriteria()
                     {
                         AgentId = model.SettingContext.TargetCustId,
-                        BetLimit3rd = betLimit3rdXml,
-                        PositionTaking3rd = positionTaking3rdXml,
+                        BetLimit3RD = betLimit3RDXml,
+                        PositionTaking3RD = positionTaking3RDXml,
                         Ip = model.SettingContext.Ip,
                         Updater = model.SettingContext.LoginUserId
                     };
@@ -319,8 +319,8 @@
                     return new AgentUpdateAgentCriteria()
                     {
                         AgentId = model.SettingContext.TargetCustId,
-                        BetLimit3rd = betLimit3rdXml,
-                        PositionTaking3rd = positionTaking3rdXml,
+                        BetLimit3RD = betLimit3RDXml,
+                        PositionTaking3RD = positionTaking3RDXml,
                         Ip = model.SettingContext.Ip,
                         Updater = model.SettingContext.LoginUserId
                     };
@@ -343,19 +343,19 @@
                 {
                     AgentId = model.SettingContext.CustId,
                     CustId = model.SettingContext.TargetCustId,
-                    PositionTaking3rd = positionTaking,
+                    PositionTaking3RD = positionTaking,
                     Ip = model.SettingContext.Ip,
                     Updater = model.SettingContext.LoginUserId
                 };
             }
             else
             {
-                return new AgentUpdateMemberCriteria()
+                return new AgentUpdateMemberCriteria
                 {
                     AgentId = model.SettingContext.CustId,
                     CustId = model.SettingContext.TargetCustId,
-                    PositionTaking3rd = positionTaking,
-                    BetLimit3rd = betLimit,
+                    PositionTaking3RD = positionTaking,
+                    BetLimit3RD = betLimit,
                     Ip = model.SettingContext.Ip,
                     Updater = model.SettingContext.LoginUserId
                 };

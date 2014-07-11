@@ -60,7 +60,7 @@
         /// </returns>
         private static WebRequest CreateActionRequest(BaseAction action)
         {
-            var actionUrl = new Uri(string.Format("{0}/{1}", AppSettings.TaiwanAPI, action.ActionName));
+            var actionUrl = new Uri(string.Format("{0}/{1}", AppSettings.TaiwanAPIUrl, action.ActionName));
             var webRequest = WebRequest.Create(actionUrl);
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded";

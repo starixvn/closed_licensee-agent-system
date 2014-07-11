@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.Taiwan.Criteria
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.Data.Repository;
     using LicenseeAgent.Taiwan.Actions;
 
@@ -10,7 +11,7 @@
     {
         protected LogActionCriteria(LogAction logAction)
         {
-            Url = logAction.Url;
+            Url = logAction.Url.ToString();
             ApiMethod = logAction.ActionName;
         }
 
@@ -18,6 +19,7 @@
 
         public int UserId { get; set; }
 
+        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Verified.")]
         public string Url { get; private set; }
 
         public string ApiMethod { get; private set; }

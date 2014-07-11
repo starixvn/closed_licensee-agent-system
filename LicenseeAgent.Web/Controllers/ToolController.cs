@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.Web.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Common;
@@ -20,7 +21,7 @@
     /// </summary>
     [AdminSite]
     [TrustedAdmin]
-    [AccountType(AccountType.CSD_IT)]
+    [AccountType(AccountType.CSDIT)]
     public class ToolController : BaseController
     {
         private readonly IMonitoringService _monitoringService;
@@ -106,8 +107,8 @@
             {
                 viewModel.APIUrls.Add(new SelectListItem
                 {
-                    Text = apiUrl.Url,
-                    Value = apiUrl.Url
+                    Text = apiUrl,
+                    Value = apiUrl
                 });
             }
 
@@ -121,6 +122,7 @@
         /// <param name="taiwanAPIUrl">Taiwan API's URL.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Justification = "Verified")]
         public JsonResult SyncMonitoring(int actionId, string taiwanAPIUrl)
         {
             var criteria = new SyncMonitoringCriteria
@@ -136,19 +138,19 @@
                 switch (item.ActionId)
                 {
                     case (int)LogId.ResetPassword:
-                        logAction = ObjectSerializer<ResetPasswordAction>.Deserialize(item.Command);
+                        logAction = ObjectSerializer.Deserialize<ResetPasswordAction>(item.Command);
                         break;
 
                     case (int)LogId.UpdateMemberInfo:
-                        logAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(item.Command);
+                        logAction = ObjectSerializer.Deserialize<UpdateMemberInfoAction>(item.Command);
                         break;
 
                     case (int)LogId.InsertNewMember:
-                        logAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(item.Command);
+                        logAction = ObjectSerializer.Deserialize<InsertNewMemberAction>(item.Command);
                         break;
 
                     case (int)LogId.UpdateMemberStatus:
-                        var updateMemberAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(item.Command);
+                        var updateMemberAction = ObjectSerializer.Deserialize<UpdateMemberStatusAction>(item.Command);
                         updateMemberAction.IBCCustId = item.CustId.ToString();
                         logAction = updateMemberAction;
                         break;
@@ -182,28 +184,28 @@
             switch (logData.ActionId)
             {
                 case (int)LogId.ResetPassword:
-                    var resetPasswordAction = ObjectSerializer<ResetPasswordAction>.Deserialize(logData.Command);
+                    var resetPasswordAction = ObjectSerializer.Deserialize<ResetPasswordAction>(logData.Command);
                     resetPasswordAction.LicenseeId = CurrentSession.OnLicenseeId;
                     resetPasswordAction.UserId = CurrentSession.LoginUserId;
                     responseResult = _memberService.ResetPassword(resetPasswordAction, true, logData.KeyId);
                     break;
 
                 case (int)LogId.UpdateMemberInfo:
-                    var updateMemberInfoAction = ObjectSerializer<UpdateMemberInfoAction>.Deserialize(logData.Command);
+                    var updateMemberInfoAction = ObjectSerializer.Deserialize<UpdateMemberInfoAction>(logData.Command);
                     updateMemberInfoAction.LicenseeId = CurrentSession.OnLicenseeId;
                     updateMemberInfoAction.UserId = CurrentSession.LoginUserId;
                     responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true, logData.KeyId);
                     break;
 
                 case (int)LogId.InsertNewMember:
-                    var insertNewMemberAction = ObjectSerializer<InsertNewMemberAction>.Deserialize(logData.Command);
+                    var insertNewMemberAction = ObjectSerializer.Deserialize<InsertNewMemberAction>(logData.Command);
                     insertNewMemberAction.LicenseeId = CurrentSession.OnLicenseeId;
                     insertNewMemberAction.UserId = CurrentSession.LoginUserId;
                     responseResult = _memberService.InsertNewMember(insertNewMemberAction, true, logData.KeyId);
                     break;
 
                 case (int)LogId.UpdateMemberStatus:
-                    var updateMemberStatusAction = ObjectSerializer<UpdateMemberStatusAction>.Deserialize(logData.Command);
+                    var updateMemberStatusAction = ObjectSerializer.Deserialize<UpdateMemberStatusAction>(logData.Command);
                     updateMemberStatusAction.LicenseeId = CurrentSession.OnLicenseeId;
                     updateMemberStatusAction.UserId = CurrentSession.LoginUserId;
                     responseResult = _memberService.SyncMonitoringUpdateMemberStatus(updateMemberStatusAction);
@@ -253,7 +255,7 @@
             {
                 _monitoringService.UpdateRunCount(new SyncMonitoringUpdateRunCountCriteria
                 {
-                    KeyID = keyId,
+                    KeyId = keyId,
                     Remark = responseResult.ApiErrMsg
                 });
             }

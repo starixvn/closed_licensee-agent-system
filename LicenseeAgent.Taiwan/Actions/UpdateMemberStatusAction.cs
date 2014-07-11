@@ -33,13 +33,13 @@
         public override LogActionCriteria CreateCriteria()
         {
             var actionLog = ServiceExtension.CreateUpdateMemberStatusActionLog(IBCCustId, LASAgentId);
-            var actionLogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(actionLog);
+            var actionLogXml = ObjectSerializer.Serialize<UpdateMemberStatusActionLog>(actionLog);
             return new ChangeStatusMemberCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,
                 LogXml = actionLogXml,
-                Doing = GetDoingLogXml()
+                Doing = DoingLogXml
             };
         }
     }

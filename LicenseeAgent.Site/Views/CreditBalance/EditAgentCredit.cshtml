@@ -45,12 +45,12 @@
                             @if (!Model.MaxCreditOutput.HasValue)
                             {
                                 @Html.TextBox("GivenCredit", Model.GivenCredit, new { @class = "w160", data_min = Model.MinCreditOutput, title = Las.InvalidAmount, maxlength = 15 })
-                                <span>@string.Format(">= {0}", Formatter.FormatDecimal4n(Model.MinCreditOutput))</span>
+                                <span>@string.Format(">= {0}", Formatter.FormatDecimal4(Model.MinCreditOutput))</span>
                             }
                             else
                             {
                                 @Html.TextBox("GivenCredit", Model.GivenCredit, new { @class = "w160", data_min = Model.MinCreditOutput, data_max = Model.MaxCreditOutput, title = Las.InvalidAmount, maxlength = 15 })
-                                <span>@string.Format("[{0} - {1}]", Formatter.FormatDecimal4n(Model.MinCreditOutput), Formatter.FormatDecimal4n(Model.MaxCreditOutput))</span>
+                                <span>@string.Format("[{0} - {1}]", Formatter.FormatDecimal4(Model.MinCreditOutput), Formatter.FormatDecimal4(Model.MaxCreditOutput))</span>
                             }
                         </td>
                     </tr>

@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Tests.Fakes
 {
     using System.Collections.Specialized;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Reflection;
     using System.Web;
@@ -72,6 +73,7 @@
         {
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Verified")]
         public FakeControllerContext(FakeHttpContext fakeHttpContext, ControllerBase controller)
             : base(fakeHttpContext, new RouteData(), controller)
         {

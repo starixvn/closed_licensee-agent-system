@@ -32,21 +32,53 @@
         }
 
         /// <summary>
-        /// Try to get balance up information from cache and database.
+        /// Gets the balance up day.
         /// </summary>
-        /// <returns>Balance Up Information.</returns>
-        public SelBalanceUpDay GetBalanceUpDay()
+        /// <value>
+        /// The balance up day.
+        /// </value>
+        public SelBalanceUpDay BalanceUpDay
         {
-            if (_cache.Contains(BalanceUpDayCacheKey))
+            get
             {
-                return _cache.Get<SelBalanceUpDay>(BalanceUpDayCacheKey);
+                if (_cache.Contains(BalanceUpDayCacheKey))
+                {
+                    return _cache.Get<SelBalanceUpDay>(BalanceUpDayCacheKey);
+                }
+
+                var criteria = new SelBalanceUpDayCriteria();
+                var balanceUpDay = GetEntity<SelBalanceUpDay>(criteria);
+                _cache.Set(BalanceUpDayCacheKey, balanceUpDay);
+
+                return balanceUpDay;
             }
+        }
 
-            var criteria = new SelBalanceUpDayCriteria();
-            var balanceUpDay = GetEntity<SelBalanceUpDay>(criteria);
-            _cache.Set(BalanceUpDayCacheKey, balanceUpDay);
+        /// <summary>
+        /// Gets the licensee domains.
+        /// </summary>
+        /// <value>
+        /// The licensee domains.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Licensee domains configuration is fail.</exception>
+        public IList<LicenseeDomain> LicenseeDomains
+        {
+            get
+            {
+                var licenseeDomains = _cache.Get<IList<LicenseeDomain>>(LicenseDomainsCacheKey);
+                if (licenseeDomains == null)
+                {
+                    licenseeDomains = InternalGetLicenseeDomains();
+                    if (licenseeDomains == null || !licenseeDomains.Any())
+                    {
+                        throw new InvalidOperationException("Licensee domains configuration is fail.");
+                    }
 
-            return balanceUpDay;
+                    _cache.Set(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
+                }
+
+                return licenseeDomains;
+            }
         }
 
         /// <summary>
@@ -58,12 +90,11 @@
         /// </returns>
         public int? GetLicenseeId(HttpRequestBase request)
         {
-            var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1
+            var selectedLicenseeDomains = LicenseeDomains.Where(x => x.DomainName.IndexOf(request.Url.Host, StringComparison.OrdinalIgnoreCase) != -1
                 && string.Compare(x.Environment, AppSettings.DomainEnvironment, StringComparison.OrdinalIgnoreCase) == 0).ToList();
-            if (licenseeDomains.Count() == 1)
+            if (selectedLicenseeDomains.Count() == 1)
             {
-                return licenseeDomains.First().LicenseeId;
+                return selectedLicenseeDomains.First().LicenseeId;
             }
 
             if (AppSettings.IsLocalRequest)
@@ -81,13 +112,12 @@
         /// <returns>Returns licensee id.</returns>
         public int? GetLicenseeId(string licenseeName)
         {
-            var licenseeDomains = GetLicenseeDomains();
-            licenseeDomains = licenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.OrdinalIgnoreCase)
+            var selectedLicenseeDomains = LicenseeDomains.Where(x => x.LicenseeName.Equals(licenseeName, StringComparison.OrdinalIgnoreCase)
                 && string.Compare(x.Environment, AppSettings.DomainEnvironment, StringComparison.OrdinalIgnoreCase) == 0).ToList();
 
-            if (licenseeDomains.Count() == 1)
+            if (selectedLicenseeDomains.Count() == 1)
             {
-                return licenseeDomains.First().LicenseeId;
+                return selectedLicenseeDomains.First().LicenseeId;
             }
 
             if (AppSettings.IsLocalRequest)
@@ -96,28 +126,6 @@
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Gets the licensee domains.
-        /// </summary>
-        /// <returns>Returns list of licensee domains.</returns>
-        /// <exception cref="System.Exception">Licensee domains configuration is fail.</exception>
-        public IList<LicenseeDomain> GetLicenseeDomains()
-        {
-            var licenseeDomains = _cache.Get<IList<LicenseeDomain>>(LicenseDomainsCacheKey);
-            if (licenseeDomains == null)
-            {
-                licenseeDomains = InternalGetLicenseeDomains();
-                if (licenseeDomains == null || !licenseeDomains.Any())
-                {
-                    throw new InvalidOperationException("Licensee domains configuration is fail.");
-                }
-
-                _cache.Set(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
-            }
-
-            return licenseeDomains;
         }
 
         /// <summary>

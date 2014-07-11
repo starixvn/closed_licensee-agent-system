@@ -7,7 +7,8 @@
     /// <summary>
     /// AccountTypeAttribute class.
     /// </summary>
-    public class AccountTypeAttribute : BaseActionFilterAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    public sealed class AccountTypeAttribute : BaseActionFilterAttribute
     {
         public AccountTypeAttribute(AccountType role)
         {
@@ -15,12 +16,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the account role.
+        /// Gets the account type.
         /// </summary>
         /// <value>
-        /// The account role.
+        /// The account type.
         /// </value>
-        public AccountType Role { get; set; }
+        public AccountType Role { get; private set; }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -52,7 +53,7 @@
                     isAuthorized = currentSession.IsAdmin;
                     break;
 
-                case AccountType.CSD_IT:
+                case AccountType.CSDIT:
                     isAuthorized = currentSession.IsCSDIT;
                     break;
 

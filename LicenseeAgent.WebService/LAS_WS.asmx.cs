@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.WebService
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Services;
     using Fanex.Common;
     using Fanex.Data;
@@ -14,6 +15,8 @@
     [WebService]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
+    [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores",
+        Justification = "Web service name. Can't change because it is being used on Production.")]
     public class LAS_WS : WebService
     {
         public const int SuccessValue = 0;

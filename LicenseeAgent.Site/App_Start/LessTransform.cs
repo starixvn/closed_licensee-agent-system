@@ -26,13 +26,13 @@
         /// <param name="context">
         /// The context.
         /// </param>
-        /// <param name="bundle">
+        /// <param name="response">
         /// The bundle.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// Argument NULL Exception.
         /// </exception>
-        public void Process(BundleContext context, BundleResponse bundle)
+        public void Process(BundleContext context, BundleResponse response)
         {
             if (!BundleTable.EnableOptimizations)
             {
@@ -40,10 +40,10 @@
             }
 
             context.HttpContext.Response.Cache.SetLastModifiedFromFileDependencies();
-            var content = new StringBuilder(bundle.Content.Length);
+            var content = new StringBuilder(response.Content.Length);
             var bundleFiles = new List<BundleFile>();
 
-            foreach (var bundleFile in bundle.Files)
+            foreach (var bundleFile in response.Files)
             {
                 bundleFiles.Add(bundleFile);
                 var transformContent = Transform(bundleFile, bundleFiles);
@@ -52,10 +52,10 @@
             }
 
             // include imports in bundle files to register cache dependencies
-            bundle.Files = bundleFiles.Distinct();
+            response.Files = bundleFiles.Distinct();
 
-            bundle.ContentType = "text/css";
-            bundle.Content = content.ToString();
+            response.ContentType = "text/css";
+            response.Content = content.ToString();
         }
 
         /// <summary>
@@ -68,12 +68,12 @@
         {
             var filePath = bundleFile.IncludedVirtualPath;
             filePath = filePath.Replace('\\', '/');
-            if (filePath.StartsWith("~"))
+            if (filePath.StartsWith("~", StringComparison.Ordinal))
             {
                 filePath = VirtualPathUtility.ToAbsolute(filePath);
             }
 
-            if (filePath.StartsWith("/"))
+            if (filePath.StartsWith("/", StringComparison.Ordinal))
             {
                 filePath = HostingEnvironment.MapPath(filePath);
             }

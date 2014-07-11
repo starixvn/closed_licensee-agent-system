@@ -69,7 +69,7 @@
         public static bool IsShowMaintenance(this ICurrentSession currentSession)
         {
             var isTrusted = AppSettings.TrustedAdmins == "*"
-                || AppSettings.TrustedAdmins.IndexOf(currentSession.LoginUserName, StringComparison.InvariantCultureIgnoreCase) != -1;
+                || AppSettings.TrustedAdmins.IndexOf(currentSession.LoginUserName, StringComparison.OrdinalIgnoreCase) != -1;
             return AppSettings.IsAdminSite
                 && currentSession.IsCSDIT
                 && isTrusted;

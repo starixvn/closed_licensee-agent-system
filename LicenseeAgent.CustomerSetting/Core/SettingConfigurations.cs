@@ -1,9 +1,11 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Core
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web;
     using System.Xml.Serialization;
+    using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
     /// Configuration Class, read Xml file and save XDocument object.
@@ -24,6 +26,14 @@
         }
 
         public static PtSettings PtSettings { get; private set; }
+
+        public static List<int> VirtualSportsTypeIds
+        {
+            get
+            {
+                return GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
+            }
+        }
 
         public static ProductPtSettings GetProductPtSettings(int productId)
         {

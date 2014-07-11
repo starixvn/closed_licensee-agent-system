@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Web.Entities
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Monitoring Data's synchronization.
@@ -25,6 +26,7 @@
 
         public string Remark { get; set; }
 
+        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Verified")]
         public string Url { get; set; }
 
         public int RunCount { get; set; }

@@ -41,7 +41,7 @@ if (fanex.customerSetting) {
             $scope.updateProductSetting = function (data) {
                 sportsBookSetting = data.productSetting;
                 if ($scope.hasOfferedNumberGame) {
-                    numberGameSetting = data.productSetting3rd;
+                    numberGameSetting = data.productSetting3RD;
                 }
             };
 
@@ -133,7 +133,7 @@ if (fanex.customerSetting) {
                         if (isSuccess) {
                             var url;
 
-                            if (data.HasOffered3rd) {
+                            if (data.HasOffered3RD) {
                                 if (settingContext.TargetRoleId === 1) {
                                     url = "~/CustomerSetting/EditProductMember?CustId={0}"
                                     .format(data.CustId);

@@ -6,7 +6,7 @@
 
     public interface IMonitoringService
     {
-        IList<SyncMonitoringAPIUrl> GetAPIUrls(ICriteria criteria);
+        IList<string> GetAPIUrls(ICriteria criteria);
 
         IList<SyncMonitoring> GetFailedAPICalls(ICriteria criteria);
 

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Fanex.Common;
     using Fanex.Common.Helper;
@@ -14,6 +15,7 @@
     /// This class encapsulate dynamic repository to provide
     /// a flexible way to get data from database by using Stored Procedure.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "Verified")]
     public class QueryService
     {
         /// <summary>
@@ -54,6 +56,7 @@
         /// <typeparam name="T3">Type of data 3 wanted receipt.</typeparam>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns a list of object T.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Verified.")]
         public static IDictionary<string, object> GetEntites<T1, T2, T3>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -73,9 +76,9 @@
 
                     using (var multiTable = objectDb.QueryMultiple(param))
                     {
-                        result.Add(typeof(T1).Name, multiTable.Read<T1>());
-                        result.Add(typeof(T2).Name, multiTable.Read<T2>());
-                        result.Add(typeof(T3).Name, multiTable.Read<T3>());
+                        result.Add(typeof(T1).Name, multiTable.Read<T1>().ToList());
+                        result.Add(typeof(T2).Name, multiTable.Read<T2>().ToList());
+                        result.Add(typeof(T3).Name, multiTable.Read<T3>().ToList());
                     }
 
                     UpdateOutput(objectDb, criteria);
@@ -86,6 +89,48 @@
             catch (Exception exception)
             {
                 throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Updates the output in the specified criteria.
+        /// </summary>
+        /// <param name="objectDb">The object database.</param>
+        /// <param name="criteria">The criteria.</param>
+        public static void UpdateOutput(ObjectDb objectDb, ICriteria criteria)
+        {
+            var outputParams = objectDb.GetOuputParams();
+            if (outputParams != null)
+            {
+                foreach (string outputParam in outputParams.Keys)
+                {
+                    var properties = criteria.GetType().GetProperties();
+                    foreach (var property in properties)
+                    {
+                        var attributeName = property.Name.ToLower();
+                        var paramAttributes = property.GetCustomAttributes(typeof(SpParamAttribute), true);
+                        if (paramAttributes.Length == 1)
+                        {
+                            var sqlParamName = ((SpParamAttribute)paramAttributes[0]).SqlParamName;
+                            if (!string.IsNullOrEmpty(sqlParamName))
+                            {
+                                attributeName = sqlParamName.ToLower();
+                            }
+                        }
+
+                        if (property.CanWrite && attributeName == outputParam)
+                        {
+                            var value = outputParams[outputParam];
+                            if (value == DBNull.Value)
+                            {
+                                var type = property.GetType();
+                                value = type.IsValueType ? Activator.CreateInstance(type) : null;
+                            }
+
+                            property.SetValue(criteria, value, null);
+                        }
+                    }
+                }
             }
         }
 
@@ -153,7 +198,7 @@
         /// <typeparam name="T">The input object type.</typeparam>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns a list of object T.</returns>
-        public IList<T> GetEntites<T>(ICriteria criteria)
+        public static IList<T> GetEntites<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -186,7 +231,7 @@
         /// <returns>
         /// Returns data table.
         /// </returns>
-        public DataTable ExecuteDataTable(ICriteria criteria)
+        public static DataTable ExecuteDataTable(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -212,44 +257,34 @@
         }
 
         /// <summary>
-        /// Updates the output in the specified criteria.
+        /// Get data set.
         /// </summary>
-        /// <param name="objectDb">The object database.</param>
         /// <param name="criteria">The criteria.</param>
-        private static void UpdateOutput(ObjectDb objectDb, ICriteria criteria)
+        /// <returns>
+        /// Returns data set.
+        /// </returns>
+        public static DataSet ExecuteDataSet(ICriteria criteria)
         {
-            var outputParams = objectDb.GetOuputParams();
-            if (outputParams != null)
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
             {
-                foreach (string outputParam in outputParams.Keys)
+                if (!criteria.IsValid())
                 {
-                    var properties = criteria.GetType().GetProperties();
-                    foreach (var property in properties)
-                    {
-                        var attributeName = property.Name.ToLower();
-                        var paramAttributes = property.GetCustomAttributes(typeof(SpParamAttribute), true);
-                        if (paramAttributes.Length == 1)
-                        {
-                            var sqlParamName = ((SpParamAttribute)paramAttributes[0]).SqlParamName;
-                            if (!string.IsNullOrEmpty(sqlParamName))
-                            {
-                                attributeName = sqlParamName.ToLower();
-                            }
-                        }
-
-                        if (property.CanWrite && attributeName == outputParam)
-                        {
-                            var value = outputParams[outputParam];
-                            if (value == DBNull.Value)
-                            {
-                                var type = property.GetType();
-                                value = type.IsValueType ? Activator.CreateInstance(type) : null;
-                            }
-
-                            property.SetValue(criteria, value, null);
-                        }
-                    }
+                    throw new InvalidOperationException("Invalid Criteria");
                 }
+
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+                    var dataset = objectDb.ExecuteDataSet(param);
+                    UpdateOutput(objectDb, criteria);
+                    return dataset;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
     }

@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="criteria">Down line criteria.</param>
         /// <returns>Return boolean value indicating the down line value.</returns>
-        public bool IsDownLine(CheckDownlineBelongCriteria criteria)
+        public bool IsDownLine(CheckDownLineBelongCriteria criteria)
         {
             if (criteria.CustId == criteria.TargetCustId)
             {
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="criteria">Down line criteria.</param>
         /// <returns>Return boolean value indicating the direct down line value.</returns>
-        public bool IsDirectDownLine(CheckDownlineBelongCriteria criteria)
+        public bool IsDirectDownLine(CheckDownLineBelongCriteria criteria)
         {
             if (criteria.CustId == criteria.TargetCustId)
             {
@@ -40,7 +40,7 @@
             return criteria.IsBelongTo && criteria.IsDirectDownLine;
         }
 
-        public bool IsIndirectDownLine(CheckDownlineBelongCriteria criteria)
+        public bool IsIndirectDownLine(CheckDownLineBelongCriteria criteria)
         {
             if (criteria.CustId == criteria.TargetCustId)
             {

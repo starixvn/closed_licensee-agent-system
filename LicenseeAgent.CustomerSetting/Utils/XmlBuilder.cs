@@ -102,7 +102,7 @@
                 foreach (BettingLimitItem betLimit in bettingLimits)
                 {
                     xmlStringData += string.Format(
-                        Constant.FormatBettingLimit3rdXml,
+                        Constant.FormatBettingLimit3RDXml,
                         betLimit.SportId,
                         betLimit.BetTypeId,
                         betLimit.MinBet,

@@ -22,9 +22,9 @@
             Discount = criteria.Discount;
             PositionTaking = criteria.PositionTaking;
             BetLimit = criteria.BetLimit;
-            Discount3rd = criteria.Discount3rd;
-            PositionTaking3rd = criteria.PositionTaking3rd;
-            BetLimit3rd = criteria.BetLimit3rd;
+            Discount3RD = criteria.Discount3RD;
+            PositionTaking3RD = criteria.PositionTaking3RD;
+            BetLimit3RD = criteria.BetLimit3RD;
         }
 
         public int Updater { get; set; }
@@ -37,11 +37,11 @@
 
         public string BetLimit { get; set; }
 
-        public string Discount3rd { get; set; }
+        public string Discount3RD { get; set; }
 
-        public string PositionTaking3rd { get; set; }
+        public string PositionTaking3RD { get; set; }
 
-        public string BetLimit3rd { get; set; }
+        public string BetLimit3RD { get; set; }
 
         public string SettingOutput { get; set; }
 

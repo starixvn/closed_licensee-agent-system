@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Entities;
@@ -13,6 +14,7 @@
     /// <summary>
     /// Report Controller.
     /// </summary>
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Verified")]
     public partial class ReportController
     {
         /// <summary>
@@ -53,6 +55,7 @@
         /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
         {
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
@@ -60,7 +63,7 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            var balUp = _coreService.GetBalanceUpDay();
+            var balUp = _coreService.BalanceUpDay;
             List<AgentWinLoss> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {

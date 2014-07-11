@@ -20,11 +20,14 @@
         [XmlIgnore]
         public int UserId { get; set; }
 
-        public abstract LogActionCriteria CreateCriteria();
-
-        protected string GetDoingLogXml()
+        protected string DoingLogXml
         {
-            return ObjectSerializer<LogAction>.Serialize(this);
+            get
+            {
+                return ObjectSerializer.Serialize<LogAction>(this);
+            }
         }
+
+        public abstract LogActionCriteria CreateCriteria();
     }
 }

@@ -60,7 +60,7 @@
                                                     CurrencyId = 20,
                                                     LicenseeId = 1,
                                                     LoginType = LoginType.AdminSite,
-                                                    LoginAccountType = AccountType.CSD_IT,
+                                                    LoginAccountType = AccountType.CSDIT,
                                                     LoginUserId = 10,
                                                     Language = "en-US"
                                                 });

@@ -2,16 +2,17 @@
 
 namespace LicenseeAgent.Web.Criteria
 {
-    using LicenseeAgent.Web.Enumerations;
     using Fanex.Data.Repository;
+    using LicenseeAgent.Web.Enumerations;
 
-    public class CheckDownlineBelongCriteria : CriteriaBase
+    public class CheckDownLineBelongCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 
         public int TargetCustId { get; set; }
 
-        public int Type { get; set; }
+        [SpParam(SqlParamName = "Type")]
+        public int Role { get; set; }
 
         public bool IsBelongTo { get; set; }
 
@@ -26,7 +27,7 @@ namespace LicenseeAgent.Web.Criteria
         {
             return CustId > 0
                 && TargetCustId > 0
-                && (Type == (int)DownLineRole.Agent || Type == (int)DownLineRole.Member);
+                && (Role == (int)DownLineRole.Agent || Role == (int)DownLineRole.Member);
         }
     }
 }

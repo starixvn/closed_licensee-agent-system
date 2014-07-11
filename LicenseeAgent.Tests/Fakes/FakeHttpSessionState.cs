@@ -3,12 +3,14 @@
     using System;
     using System.Collections;
     using System.Collections.Specialized;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.SessionState;
 
     /// <summary>
     /// FakeHttpSessionState class.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1035:ICollectionImplementationsHaveStronglyTypedMembers", Justification = "Verified")]
     public class FakeHttpSessionState : HttpSessionStateBase
     {
         private readonly SessionStateItemCollection _sessionItems;

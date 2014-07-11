@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Account.Controllers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
@@ -30,6 +31,7 @@
     /// Account controllers.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Fix later.")]
     public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;
@@ -75,7 +77,7 @@
                 var statisticCriteria = new StatisticCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
                 var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
 
-                var balanceUp = _coreService.GetBalanceUpDay();
+                var balanceUp = _coreService.BalanceUpDay;
                 var balanceInfoCriteria = new BalanceInfoCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
@@ -282,7 +284,7 @@
         public JsonResult ReCheckIn()
         {
             var errCode = Result.FailureValue;
-            if (CurrentSession.LoginAccountType == AccountType.CSD_IT
+            if (CurrentSession.LoginAccountType == AccountType.CSDIT
                 || CurrentSession.LoginAccountType == AccountType.Licensee)
             {
                 errCode = AdminReCheckIn();
@@ -461,7 +463,7 @@
         /// <returns>View result.</returns>
         public ViewResult TopWinning()
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             var criteria = new TopWinningCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
@@ -479,7 +481,7 @@
         /// <returns>View result.</returns>
         public ViewResult TopTurnover()
         {
-            var balanceUp = _coreService.GetBalanceUpDay();
+            var balanceUp = _coreService.BalanceUpDay;
             var criteria = new TopTurnoverCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,

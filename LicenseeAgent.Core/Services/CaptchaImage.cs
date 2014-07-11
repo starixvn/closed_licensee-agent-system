@@ -97,15 +97,15 @@
     /// <seealso href="http://www.codinghorror.com">Original By Jeff Atwood.</seealso>
     public class CaptchaImage
     {
-        public const string TextChars = "acdefghjknpqruvxyzACDEFGHJKLNPQRTUVXYZ2346789";
+        private const string TextChars = "acdefghjknpqruvxyzACDEFGHJKLNPQRTUVXYZ2346789";
 
-        public const int MinWidth = 60;
+        private const int MinWidth = 60;
 
-        public const int MinHeight = 30;
+        private const int MinHeight = 30;
 
-        public const int TextLength = 6;
+        private const int TextLength = 6;
 
-        public static readonly string[] FontFamilies =
+        private static readonly string[] FontFamilies =
         {
             "arial", "arial black", "comic sans ms", "courier new",
             "estrangelo edessa", "franklin gothic medium", "georgia", "lucida console", "lucida sans unicode", "mangal",
@@ -115,12 +115,19 @@
 
         private static Random random = new Random();
 
-        private int _height;
-        private int _width;
-
         public CaptchaImage(int width, int height)
             : this()
         {
+            if (width <= MinWidth)
+            {
+                throw new ArgumentOutOfRangeException("width", width, "width must be greater than 60.");
+            }
+
+            if (height <= MinHeight)
+            {
+                throw new ArgumentOutOfRangeException("height", height, "height must be greater than 30.");
+            }
+
             Width = width;
             Height = height;
         }
@@ -145,41 +152,9 @@
 
         public string Text { get; private set; }
 
-        public int Width
-        {
-            get
-            {
-                return _width;
-            }
+        public int Width { get; private set; }
 
-            set
-            {
-                if (value <= MinWidth)
-                {
-                    throw new ArgumentOutOfRangeException("width", value, "width must be greater than 60.");
-                }
-
-                _width = value;
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                return _height;
-            }
-
-            set
-            {
-                if (value <= MinHeight)
-                {
-                    throw new ArgumentOutOfRangeException("height", value, "height must be greater than 30.");
-                }
-
-                _height = value;
-            }
-        }
+        public int Height { get; private set; }
 
         /// <summary>
         /// Forces a new Captcha image to be generated using current property value settings.
@@ -285,23 +260,23 @@
                     goto default;
 
                 case FontWarpFactor.Low:
-                    fontSize = Convert.ToInt32(_height * 0.8);
+                    fontSize = Convert.ToInt32(Height * 0.8);
                     break;
 
                 case FontWarpFactor.Medium:
-                    fontSize = Convert.ToInt32(_height * 0.85);
+                    fontSize = Convert.ToInt32(Height * 0.85);
                     break;
 
                 case FontWarpFactor.High:
-                    fontSize = Convert.ToInt32(_height * 0.9);
+                    fontSize = Convert.ToInt32(Height * 0.9);
                     break;
 
                 case FontWarpFactor.Extreme:
-                    fontSize = Convert.ToInt32(_height * 0.95);
+                    fontSize = Convert.ToInt32(Height * 0.95);
                     break;
 
                 default:
-                    fontSize = Convert.ToInt32(_height * 0.7);
+                    fontSize = Convert.ToInt32(Height * 0.7);
                     break;
             }
 
@@ -314,7 +289,7 @@
         /// <returns>Returns captcha image.</returns>
         private Bitmap GenerateImagePrivate()
         {
-            var bmp = new Bitmap(_width, _height, PixelFormat.Format24bppRgb);
+            var bmp = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
 
             using (Graphics gr = Graphics.FromImage(bmp))
             {
@@ -322,7 +297,7 @@
                 gr.Clear(BackColor);
 
                 int charOffset = 0;
-                double charWidth = _width / TextLength;
+                double charWidth = Width / TextLength;
 
                 foreach (char c in Text)
                 {
@@ -331,7 +306,7 @@
                     {
                         using (Brush fontBrush = new SolidBrush(GetRandomColor()))
                         {
-                            var rectChar = new Rectangle(Convert.ToInt32(charOffset * charWidth), 0, Convert.ToInt32(charWidth), _height);
+                            var rectChar = new Rectangle(Convert.ToInt32(charOffset * charWidth), 0, Convert.ToInt32(charWidth), Height);
 
                             // warp the character
                             var gp = TextPath(c.ToString(), fnt, rectChar);
@@ -476,25 +451,25 @@
 
                 case LineNoiseLevel.Low:
                     length = 4;
-                    width = Convert.ToSingle(_height / 31.25);
+                    width = Convert.ToSingle(Height / 31.25);
                     linecount = 1;
                     break;
 
                 case LineNoiseLevel.Medium:
                     length = 5;
-                    width = Convert.ToSingle(_height / 27.7777);
+                    width = Convert.ToSingle(Height / 27.7777);
                     linecount = 1;
                     break;
 
                 case LineNoiseLevel.High:
                     length = 3;
-                    width = Convert.ToSingle(_height / 25);
+                    width = Convert.ToSingle(Height / 25);
                     linecount = 2;
                     break;
 
                 case LineNoiseLevel.Extreme:
                     length = 3;
-                    width = Convert.ToSingle(_height / 22.7272);
+                    width = Convert.ToSingle(Height / 22.7272);
                     linecount = 3;
                     break;
 

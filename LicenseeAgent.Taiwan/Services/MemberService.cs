@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Fanex.Common;
     using LicenseeAgent.Core.Configurations;
@@ -150,6 +151,7 @@
         /// </summary>
         /// <param name="action">Service action.</param>
         /// <returns>Response result.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Verified.")]
         public ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action)
         {
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
@@ -171,7 +173,7 @@
                 {
                     CustomerLogs = customerLogs.ToList()
                 };
-                criteria.LogXml = ObjectSerializer<UpdateMemberStatusActionLog>.Serialize(updateMemberStatusActionLog);
+                criteria.LogXml = ObjectSerializer.Serialize<UpdateMemberStatusActionLog>(updateMemberStatusActionLog);
                 criteria.ApiErrCode = memberStatusResult.ApiErrCode;
                 criteria.ApiErrMsg = memberStatusResult.ApiErrMsg;
 
@@ -203,6 +205,7 @@
         /// <param name="isReinvoke">Is Re-invoke.</param>
         /// <param name="logId">Input Log ID.</param>
         /// <returns>Return action response result.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Verified.")]
         private ResponseResult ExecuteSingleLog(LogAction action, bool isReinvoke, int logId)
         {
             var criteria = (SingleLogActionCriteria)action.CreateCriteria();

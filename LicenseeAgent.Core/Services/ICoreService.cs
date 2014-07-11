@@ -6,9 +6,9 @@
 
     public interface ICoreService
     {
-        SelBalanceUpDay GetBalanceUpDay();
+        SelBalanceUpDay BalanceUpDay { get; }
 
-        IList<LicenseeDomain> GetLicenseeDomains();
+        IList<LicenseeDomain> LicenseeDomains { get; }
 
         int? GetLicenseeId(string licenseeName);
 

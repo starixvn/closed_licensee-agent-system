@@ -15,43 +15,49 @@
         private const int WaitInterval = 1000; // 1 second.
         private const int CacheTimeout = 60; // 60 seconds.
         private const string MaintenanceCacheKey = "Las.Maintenance"; // Cache Key.
-        private readonly Mutex _threadMuText = new Mutex();
+        private readonly Mutex _mutext;
         private readonly ICache _cacheManager;
         private readonly UMBusiness _umservice;
 
         public UnderMaintenanceService()
-            : this(null)
+            : this(null, null, null)
         {
         }
 
-        public UnderMaintenanceService(UMBusiness umservice)
+        public UnderMaintenanceService(UMBusiness umservice, ICache cacheManager, Mutex mutex)
         {
-            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
             _umservice = umservice ?? new UMBusiness();
+            _cacheManager = cacheManager ?? CacheService.CreateInstance(CacheType.MemoryCache);
+            _mutext = mutex ?? new Mutex();
         }
 
         /// <summary>
         /// Gets the under maintenance information.
         /// </summary>
-        /// <returns>Returns object.</returns>
-        public UnderMaintenanceInfo GetUnderMaintenanceInfo()
+        /// <value>
+        /// The under maintenance information.
+        /// </value>
+        public UnderMaintenanceInfo UnderMaintenanceInfo
         {
-            var maintenanceInfo = _cacheManager.Get<UnderMaintenanceInfo>(MaintenanceCacheKey);
-            if (maintenanceInfo == null)
+            get
             {
-                if (_threadMuText.WaitOne(WaitInterval))
+                var maintenanceInfo = _cacheManager.Get<UnderMaintenanceInfo>(MaintenanceCacheKey);
+                if (maintenanceInfo == null)
                 {
-                    maintenanceInfo = InternalGetUnderMaintenanceInfo();
-                    _cacheManager.Set(MaintenanceCacheKey, maintenanceInfo, CacheTimeout);
-                    _threadMuText.ReleaseMutex();
+                    if (_mutext.WaitOne(WaitInterval))
+                    {
+                        maintenanceInfo = InternalGetUnderMaintenanceInfo();
+                        _cacheManager.Set(MaintenanceCacheKey, maintenanceInfo, CacheTimeout);
+                        _mutext.ReleaseMutex();
+                    }
+                    else
+                    {
+                        maintenanceInfo = new UnderMaintenanceInfo { Status = false };
+                    }
                 }
-                else
-                {
-                    maintenanceInfo = new UnderMaintenanceInfo { Status = false };
-                }
-            }
 
-            return maintenanceInfo;
+                return maintenanceInfo;
+            }
         }
 
         /// <summary>
@@ -72,9 +78,9 @@
         {
             if (disposing)
             {
-                if (_threadMuText != null)
+                if (_mutext != null)
                 {
-                    _threadMuText.Dispose();
+                    _mutext.Dispose();
                 }
             }
         }
@@ -90,8 +96,8 @@
                 return new UnderMaintenanceInfo
                 {
                     Status = true,
-                    UmTimeFrom = AppSettings.BeginTime,
-                    UmTimeTo = AppSettings.EndTime
+                    TimeFrom = AppSettings.BeginTime,
+                    TimeTo = AppSettings.EndTime
                 };
             }
 
@@ -105,16 +111,16 @@
                 return maintenanceInfo;
             }
 
-            var dateFrom = maintenanceInfo.UmTimeFrom;
-            var dateTo = maintenanceInfo.UmTimeTo;
+            var dateFrom = maintenanceInfo.TimeFrom;
+            var dateTo = maintenanceInfo.TimeTo;
             maintenanceInfo.Status = _umservice.isUnderMaintainence(
                 Sites.LRF,
                 AppSettings.UnderMaintenanceUrl,
                 ref dateFrom,
                 ref dateTo);
 
-            maintenanceInfo.UmTimeFrom = dateFrom;
-            maintenanceInfo.UmTimeTo = dateTo;
+            maintenanceInfo.TimeFrom = dateFrom;
+            maintenanceInfo.TimeTo = dateTo;
 
             return maintenanceInfo;
         }

@@ -1,0 +1,218 @@
+﻿<#@ import namespace="System" #>
+<#
+    var sites = new SiteInfo[]{
+        new SiteInfo
+        {
+            IsAdmin = true,
+            Environment = SiteEnvironment.Local
+        },
+        new SiteInfo
+        {
+            IsAdmin = false,
+            Environment = SiteEnvironment.Local
+        },
+        new SiteInfo
+        {
+            IsAdmin = true,
+            Environment = SiteEnvironment.Uat
+        },
+        new SiteInfo
+        {
+            IsAdmin = false,
+            Environment = SiteEnvironment.Uat
+        },
+        new SiteInfo
+        {
+            IsAdmin = true,
+            Environment = SiteEnvironment.Prod
+        },
+        new SiteInfo
+        {
+            IsAdmin = false,
+            Environment = SiteEnvironment.Prod
+        }
+    };
+#>
+
+<#+
+    enum SiteEnvironment
+    {
+        Local,
+        Uat,
+        Prod
+    }
+
+    class SiteInfo
+    {
+        public bool IsAdmin { get; set; }
+        public SiteEnvironment Environment { get; set; }
+        public string AppSettingsFile
+        {
+            get
+            {
+                return "Web.AppSettings.config";
+            }
+        }
+        public string ConnectionStringsConfigSource
+        { 
+            get
+            {
+                return string.Format("Web.ConnectionStrings.{0}.config", Environment);
+            }
+        }
+        public string SpNamesResourcePath
+        { 
+            get
+            {
+                return string.Format("~/App_Data/SpNames.{0}.xml", Environment);
+            }
+        }
+        public string LoggingMsmqPath
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
+
+                    case SiteEnvironment.Uat:
+                        return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
+
+                    case SiteEnvironment.Local:
+                        return @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string LoggingDefaultCategory
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "LAS-Live";
+
+                    case SiteEnvironment.Uat:
+                        return "LAS-UAT";
+
+                    case SiteEnvironment.Local:
+                        return "Licensee-Agency-Local";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string TaiwanAPIUrl
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "http://10.40.40.109:8088/API";
+
+                    case SiteEnvironment.Uat:
+                        return "http://10.40.40.109:8089/API";
+
+                    case SiteEnvironment.Local:
+                        return "http://lastest.net2cast.com/API";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string TrustedAdmins
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "pgmPeter,pgmAnn,pgmleo,pgmmuller,pgmlong,pgmAda,pgmHarmony,pgmWilliam,pgmMartin,pgmCasey,pgmJim,pgmDon";
+
+                    case SiteEnvironment.Uat:
+                        return "pgmPeter,pgmAnn,pgmleo,pgmmuller,pgmlong,pgmAda,pgmHarmony,pgmWilliam,pgmMartin,pgmCasey,pgmJim,pgmDon";
+
+                    case SiteEnvironment.Local:
+                        return "*";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string OfferedProducts
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "*";
+
+                    case SiteEnvironment.Uat:
+                        return "*";
+
+                    case SiteEnvironment.Local:
+                        return "*";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string RemotingRefUrl
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "tcp://10.40.40.29:8098/CallGetRefFunction";
+
+                    case SiteEnvironment.Uat:
+                        return "tcp://10.40.40.29:8098/CallGetRefFunction";
+
+                    case SiteEnvironment.Local:
+                        return "tcp://10.18.200.209:8888/CallGetRefFunction";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string IsAdminSite
+        {
+            get
+            {
+                return IsAdmin? "1" : "0";
+            }
+        }
+        public string UnderMaintenanceUrl
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "tcp://10.40.40.150:8990/UMControllerInterface";
+
+                    case SiteEnvironment.Uat:
+                        return "tcp://10.40.40.150:8990/UMControllerInterface";
+
+                    case SiteEnvironment.Local:
+                        return string.Empty;
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+    }
+#>

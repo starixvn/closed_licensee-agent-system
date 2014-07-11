@@ -47,11 +47,11 @@
         /// </returns>
         public bool IsDownLineMember(int memberId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = memberId,
-                Type = (int)DownLineRole.Member
+                Role = (int)DownLineRole.Member
             };
 
             return _downLineService.IsDownLine(criteria);
@@ -66,11 +66,11 @@
         /// </returns>
         public bool IsDownLineAgent(int agentId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = agentId,
-                Type = (int)DownLineRole.Agent
+                Role = (int)DownLineRole.Agent
             };
 
             return _downLineService.IsDownLine(criteria);
@@ -85,11 +85,11 @@
         /// </returns>
         public bool IsDirectDownLineAgent(int agentId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = agentId,
-                Type = (int)DownLineRole.Agent
+                Role = (int)DownLineRole.Agent
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0
@@ -106,11 +106,11 @@
         /// </returns>
         public bool IsDirectDownLineMember(int memberId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = memberId,
-                Type = (int)DownLineRole.Member
+                Role = (int)DownLineRole.Member
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0
@@ -127,11 +127,11 @@
         /// </returns>
         public bool IsIndirectDownLineAgent(int agentId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = agentId,
-                Type = (int)DownLineRole.Agent
+                Role = (int)DownLineRole.Agent
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0
@@ -146,11 +146,11 @@
         /// <returns>Returns true if indirect.</returns>
         public bool IsIndirectDownLineMember(int memberId)
         {
-            var criteria = new CheckDownlineBelongCriteria
+            var criteria = new CheckDownLineBelongCriteria
             {
                 CustId = SessionManager.CurrentSession.AgentInfo.AgentId,
                 TargetCustId = memberId,
-                Type = (int)DownLineRole.Member
+                Role = (int)DownLineRole.Member
             };
 
             return SessionManager.CurrentSession.AgentInfo.IsLevel0

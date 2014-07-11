@@ -58,12 +58,12 @@
     <Compile Include="Controllers\InstructionControllerTests.cs" />
     <Compile Include="Controllers\NotifyControllerTests.cs" />
     <Compile Include="Fakes\FakeServices.cs" />
-    <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\AppPasswordRuleAttributeTests.cs" />
     <Compile Include="Validations\NotEqualAttributeTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

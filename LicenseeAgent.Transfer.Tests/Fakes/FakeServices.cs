@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Transfer.Tests.Fakes
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
@@ -20,6 +21,7 @@
         /// Get transfer service.
         /// </summary>
         /// <returns>Transfer service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ITransferService GetTransferService()
         {
             var transferService = Substitute.For<ITransferService>();
@@ -51,6 +53,7 @@
         /// Get core service.
         /// </summary>
         /// <returns>Core service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static ICoreService GetCoreService()
         {
             var coreService = Substitute.For<ICoreService>();
@@ -64,6 +67,7 @@
         /// Get down line permission service.
         /// </summary>
         /// <returns>Down line permission service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IDownLinePermissionService GetDownLinePermissionService()
         {
             return Substitute.For<IDownLinePermissionService>();
@@ -73,6 +77,7 @@
         /// Get member service.
         /// </summary>
         /// <returns>Member service.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
         public static IMemberService GetMemberService()
         {
             var memberService = Substitute.For<IMemberService>();

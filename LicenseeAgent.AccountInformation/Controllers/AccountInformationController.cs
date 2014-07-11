@@ -1,7 +1,6 @@
 ﻿namespace LicenseeAgent.AccountInformation.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.AccountInformation.Criteria;
@@ -181,20 +180,15 @@
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembers<CustomerEntity, UpLineEntity, DownLineEntity>(criteria);
-
-            var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
-            var uplines = entities[typeof(UpLineEntity).Name] as List<UpLineEntity>;
-            var downlines = entities[typeof(DownLineEntity).Name] as List<DownLineEntity>;
-
-            SetAgentView(criteria, customer);
+            var searchMemberEntity = _searchUserService.GetMembers(criteria);
+            SetAgentView(criteria, searchMemberEntity.Customer);
 
             return View(new SearchUserResultViewModel
             {
-                Customer = GetFullInformation(customer),
-                Uplines = uplines,
-                Downlines = downlines,
-                Balance = customer == null ? null : GetBalance(customer),
+                Customer = GetFullInformation(searchMemberEntity.Customer),
+                Uplines = searchMemberEntity.UpLines,
+                Downlines = searchMemberEntity.DownLines,
+                Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
             });
@@ -217,20 +211,15 @@
                 PageSize = Constants.PageSize
             };
 
-            var entities = _searchUserService.GetMembers<CustomerEntity, UpLineEntity, DownLineEntity>(criteria);
-
-            var customer = (entities[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
-            var uplines = entities[typeof(UpLineEntity).Name] as List<UpLineEntity>;
-            var downlines = entities[typeof(DownLineEntity).Name] as List<DownLineEntity>;
-
-            SetAdminView(criteria, customer);
+            var searchMemberEntity = _searchUserService.GetMembers(criteria);
+            SetAdminView(criteria, searchMemberEntity.Customer);
 
             return View(new SearchUserResultViewModel
             {
-                Customer = GetFullInformation(customer),
-                Uplines = uplines,
-                Downlines = downlines,
-                Balance = customer == null ? null : GetBalance(customer),
+                Customer = GetFullInformation(searchMemberEntity.Customer),
+                Uplines = searchMemberEntity.UpLines,
+                Downlines = searchMemberEntity.DownLines,
+                Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
             });

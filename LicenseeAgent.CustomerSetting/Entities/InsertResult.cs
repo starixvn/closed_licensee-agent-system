@@ -7,17 +7,6 @@
     /// </summary>
     public class InsertResult : Result, ISettingResult
     {
-        public InsertResult()
-            : this(0, string.Empty)
-        {
-        }
-
-        public InsertResult(int msgId, string msgContent)
-        {
-            ErrCode = msgId;
-            ErrMsg = msgContent;
-        }
-
         public int CustIdReturn { get; set; }
 
         public string IBCUserName { get; set; }

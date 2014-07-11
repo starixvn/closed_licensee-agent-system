@@ -15,7 +15,7 @@
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public sealed class AppAuthorizeAttribute : AuthorizeAttribute
     {
-        private IAuthorizeService _authorizeService;
+        private readonly IAuthorizeService _authorizeService;
 
         public AppAuthorizeAttribute()
             : this(null)
@@ -26,6 +26,14 @@
         {
             _authorizeService = authorizeService ?? new AuthorizeService();
             IsValidateAgent = true;
+        }
+
+        public IAuthorizeService AuthorizeService
+        {
+            get
+            {
+                return _authorizeService;
+            }
         }
 
         /// <summary>

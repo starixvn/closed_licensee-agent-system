@@ -72,7 +72,6 @@
     </Compile>
     <Compile Include="Controllers\CustomerListControllerTests.cs" />
     <Compile Include="Fakes\FakeServices.cs" />
-    <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

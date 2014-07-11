@@ -1,10 +1,12 @@
 ﻿namespace LicenseeAgent.AccountInformation.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.Data.Repository;
     using LicenseeAgent.AccountInformation.Criteria;
     using LicenseeAgent.AccountInformation.Entities;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
     /// SearchUserService class.
@@ -34,14 +36,23 @@
         /// <summary>
         /// Get members.
         /// </summary>
-        /// <typeparam name="T1">Type output 1.</typeparam>
-        /// <typeparam name="T2">Type output 2.</typeparam>
-        /// <typeparam name="T3">Type output 3.</typeparam>
         /// <param name="criteria">Get member list criteria.</param>
-        /// <returns>Search user result.</returns>
-        public IDictionary<string, object> GetMembers<T1, T2, T3>(ICriteria criteria)
+        /// <returns>
+        /// Search user result.
+        /// </returns>
+        public SearchMemberEntity GetMembers(ICriteria criteria)
         {
-            return GetEntites<T1, T2, T3>(criteria);
+            var dict = GetEntites<CustomerEntity, UpLineEntity, DownLineEntity>(criteria);
+            var customer = (dict[typeof(CustomerEntity).Name] as List<CustomerEntity>).FirstOrDefault();
+            var uplines = dict[typeof(UpLineEntity).Name] as List<UpLineEntity>;
+            var downlines = dict[typeof(DownLineEntity).Name] as List<DownLineEntity>;
+
+            return new SearchMemberEntity
+            {
+                Customer = customer,
+                UpLines = uplines,
+                DownLines = downlines
+            };
         }
 
         /// <summary>

@@ -24,12 +24,11 @@
         /// <summary>
         /// Get members.
         /// </summary>
-        /// <typeparam name="T1">Type output 1.</typeparam>
-        /// <typeparam name="T2">Type output 2.</typeparam>
-        /// <typeparam name="T3">Type output 3.</typeparam>
         /// <param name="criteria">Get member list criteria.</param>
-        /// <returns>Search user result.</returns>
-        IDictionary<string, object> GetMembers<T1, T2, T3>(ICriteria criteria);
+        /// <returns>
+        /// Search user result.
+        /// </returns>
+        SearchMemberEntity GetMembers(ICriteria criteria);
 
         /// <summary>
         /// Get down line list.

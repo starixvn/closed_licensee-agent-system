@@ -97,7 +97,7 @@
                     var parameters = criteria.GetSpParams();
                     objDb.ExecuteNonQuery(parameters);
 
-                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
+                    return ObjectSerializer.DeserializeList<UpdateResult>(Convert.ToString(parameters["settingoutput"]));
                 }
             }
             catch (Exception exception)
@@ -128,7 +128,7 @@
                     var parameters = criteria.GetSpParams();
                     objDb.ExecuteNonQuery(parameters);
 
-                    return ObjectSerializer<UpdateResult>.DeserializeList(Convert.ToString(parameters["settingoutput"]));
+                    return ObjectSerializer.DeserializeList<UpdateResult>(Convert.ToString(parameters["settingoutput"]));
                 }
             }
             catch (Exception exception)
@@ -151,14 +151,14 @@
             var discountXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
             var betLimitXml = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
             var positionTakingXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
-            var discount3rdXml = string.Empty;
-            var betLimit3rdXml = string.Empty;
-            var positionTaking3rdXml = string.Empty;
+            var discount3RDXml = string.Empty;
+            var betLimit3RDXml = string.Empty;
+            var positionTaking3RDXml = string.Empty;
             if (model.NumberGameSetting != null)
             {
-                discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
-                betLimit3rdXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
-                positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
+                discount3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
+                betLimit3RDXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
+                positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
             }
 
             var custInfo = model.SportsBookSetting.CustInfo;
@@ -171,9 +171,9 @@
                 Discount = discountXml,
                 BetLimit = betLimitXml,
                 PositionTaking = positionTakingXml,
-                Discount3rd = discount3rdXml,
-                BetLimit3rd = betLimit3rdXml,
-                PositionTaking3rd = positionTaking3rdXml
+                Discount3RD = discount3RDXml,
+                BetLimit3RD = betLimit3RDXml,
+                PositionTaking3RD = positionTaking3RDXml
             };
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
@@ -237,12 +237,12 @@
             var discountXml = string.Empty;
             var betLimitXml = string.Empty;
             var positionTakingXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
-            var discount3rdXml = string.Empty;
-            var betLimit3rdXml = string.Empty;
-            var positionTaking3rdXml = string.Empty;
+            var discount3RDXml = string.Empty;
+            var betLimit3RDXml = string.Empty;
+            var positionTaking3RDXml = string.Empty;
             if (model.NumberGameSetting != null)
             {
-                positionTaking3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
+                positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
             }
 
             if (model.SettingContext.FormId != FormType.EditIndirectMember)
@@ -251,8 +251,8 @@
                 betLimitXml = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
                 if (model.NumberGameSetting != null)
                 {
-                    discount3rdXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
-                    betLimit3rdXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
+                    discount3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
+                    betLimit3RDXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
                 }
             }
 
@@ -261,9 +261,9 @@
                 Discount = discountXml,
                 BetLimit = betLimitXml,
                 PositionTaking = positionTakingXml,
-                Discount3rd = discount3rdXml,
-                BetLimit3rd = betLimit3rdXml,
-                PositionTaking3rd = positionTaking3rdXml,
+                Discount3RD = discount3RDXml,
+                BetLimit3RD = betLimit3RDXml,
+                PositionTaking3RD = positionTaking3RDXml,
                 Ip = model.SettingContext.Ip,
                 Updater = model.SettingContext.LoginUserId
             };
@@ -278,7 +278,7 @@
                         AgentId = model.SettingContext.CustId,
                         CustId = model.SettingContext.TargetCustId,
                         PositionTaking = baseCriteria.PositionTaking,
-                        PositionTaking3rd = baseCriteria.PositionTaking3rd,
+                        PositionTaking3RD = baseCriteria.PositionTaking3RD,
                         Ip = baseCriteria.Ip
                     };
                 }

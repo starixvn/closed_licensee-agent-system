@@ -31,7 +31,7 @@
         [UnderMaintenance(Ignore = true)]
         public JsonResult UnderMaintenance()
         {
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceInfo();
+            var maintenanceInfo = _maintenanceService.UnderMaintenanceInfo;
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

@@ -85,6 +85,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Criteria\CheckAgentUsernameCriteria.cs" />
     <Compile Include="Entities\CheckAgentUsernameResult.cs" />
     <Compile Include="Entities\Result.cs" />

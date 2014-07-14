@@ -2,6 +2,8 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Services;
     using Fanex.Common;
     using Fanex.Data;
@@ -14,7 +16,7 @@
     /// </summary>
     [WebService]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [System.ComponentModel.ToolboxItem(false)]
+    [ToolboxItem(false)]
     [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores",
         Justification = "Web service name. Can't change because it is being used on Production.")]
     public class LAS_WS : WebService
@@ -67,18 +69,22 @@
         /// <summary>
         /// Checks the agent name for cash system.
         /// </summary>
-        /// <param name="userName">Name of the agent.</param>
         /// <param name="siteName">Name of the site.</param>
-        /// <returns>Returns result of cash agent.</returns>
+        /// <param name="userName">Name of the agent.</param>
+        /// <param name="currency">The currency.</param>
+        /// <returns>
+        /// Returns result of cash agent.
+        /// </returns>
         [WebMethod]
-        public CheckAgentUsernameResult CheckAgentUsername(string userName, string siteName)
+        public CheckAgentUsernameResult CheckAgentUsername(string siteName, string userName, string currency)
         {
             try
             {
                 var criteria = new CheckAgentUsernameCriteria
                 {
+                    SiteName = siteName,
                     AgentUsername = userName,
-                    SiteName = siteName
+                    MemberCurrency = currency
                 };
 
                 if (!criteria.IsValid())
@@ -97,7 +103,6 @@
                     return new CheckAgentUsernameResult
                     {
                         AgentId = Converter.ToInt(outputParams["agentid"]),
-                        AgentCurrency = Converter.ToString2(outputParams["agentcurrency"]),
                         ErrCode = Converter.ToInt(outputParams["errcode"]),
                         ErrMsg = Converter.ToString2(outputParams["errmsg"])
                     };

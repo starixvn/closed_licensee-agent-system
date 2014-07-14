@@ -7,13 +7,13 @@
     /// </summary>
     public class CheckAgentUsernameCriteria : CriteriaBase
     {
-        public string AgentUsername { get; set; }
-
         public string SiteName { get; set; }
 
-        public int AgentId { get; set; }
+        public string AgentUsername { get; set; }
 
-        public string AgentCurrency { get; set; }
+        public string MemberCurrency { get; set; }
+
+        public int AgentId { get; set; }
 
         public int ErrCode { get; set; }
 
@@ -27,6 +27,7 @@
         public override bool IsValid()
         {
             return !string.IsNullOrEmpty(AgentUsername)
+                && !string.IsNullOrEmpty(MemberCurrency)
                 && !string.IsNullOrEmpty(SiteName);
         }
     }

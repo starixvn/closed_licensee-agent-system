@@ -41,6 +41,17 @@ if (fanex.customerSetting) {
                     $scope.model.bettingLimitsModel,
                     $scope.model.firstRecord);
             };
+
+            $scope.updatePartial = function () {
+                if (!$scope.isValidData()) {
+                    return;
+                }
+                var settings = {
+                    sportsBookSetting: { BettingLimitSetting: $scope.saveData() }
+                };
+
+                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings.sportsBookSetting));
+            };
         }
     ]);
 }

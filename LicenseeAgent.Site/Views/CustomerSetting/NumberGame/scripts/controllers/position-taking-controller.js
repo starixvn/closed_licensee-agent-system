@@ -36,21 +36,22 @@ if (fanex.customerSetting) {
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
             };
+
+            $scope.updatePartial = function () {
+                if (!$scope.isValidData()) {
+                    return;
+                }
+                var settings = {
+                    sportsBookSetting: null,
+                    numberGameSetting: { PositionTakingSetting: $scope.saveData() }
+                };
+
+                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings.numberGameSetting));
+            };
         }
     };
 
     fanex.customerSetting.controller('NumberGamePositionTakingController',
-    [
-        '$scope',
-        'Fanex.CustomerSetting.LanguageService',
-        function ($scope, languageService) {
-            'use strict';
-            $scope.languageService = languageService;
-            fanex.customerSetting.PositionTakingController.updateScope($scope, languageService);
-        }
-    ]);
-
-    fanex.customerSetting.controller('NumberGamePositionTakingAdvancedModeController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',

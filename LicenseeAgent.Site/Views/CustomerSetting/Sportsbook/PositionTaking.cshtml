@@ -42,7 +42,6 @@
                 </div>
             </div>
         </div>
-        @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTakingAdvancedMode.cshtml")
     </div>
     <div class="pt-container-box simple-mode" data-ng-switch="settingContext.TargetRoleId" data-ng-show="settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
@@ -72,4 +71,15 @@
             </div>
         </div>
     </div>
+
+    @if (Model.IsDeposit && Model.FormId != FormType.ViewIndirectAgent && Model.FormId != FormType.Add)
+    {
+        <div class="box-update clearfix">
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updatePartial($event)">
+                    @Las.Update
+                </button>
+            </div>
+        </div>
+    }
 </div>

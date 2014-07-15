@@ -28,6 +28,7 @@ if (fanex.customerSetting) {
             $scope.hasOfferedNumberGame = ($window['numberGameSetting'] !== undefined) ? true : false;
             $scope.result = fanex.customerSetting.Result;
             $scope.custInfo = sportsBookSetting.CustInfo;
+            $scope.isDeposit = settingContext.IsDeposit;
 
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
@@ -52,7 +53,8 @@ if (fanex.customerSetting) {
                     commissionItems,
                     bettingLimitItems,
                     positionTakingItems,
-                    numberGameSetting = null;
+                    numberGameSetting = null,
+                    userGroup = null;
 
                 var custInfoScope = angular.element('#custInfoController').scope();
                 if (custInfoScope.formCustInfo.$invalid) {
@@ -67,23 +69,33 @@ if (fanex.customerSetting) {
                         }
                     });
                 } else {
-                    commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
                     bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
                     positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
+                    if (settingContext.IsCredit) {
+                        commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
+                        if (!commissionSettingScope.isValidData()) {
+                            return;
+                        }
+                        commissionItems = commissionSettingScope.saveData();
 
-                    if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData() || !positionTakingScope.isValidData()) {
+                        userGroup = bettingLimitScope.settingContext.TargetRoleId === 1
+                                            ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
+                                            : '';
+                    }
+
+                    if (!bettingLimitScope.isValidData() || !positionTakingScope.isValidData()) {
                         return;
                     }
 
-                    commissionItems = commissionSettingScope.saveData();
                     bettingLimitItems = bettingLimitScope.saveData();
                     positionTakingItems = positionTakingScope.saveData();
                     if ($scope.hasOfferedNumberGame) {
-                        numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
+                        numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.isDeposit);
                         if (numberGameSetting == null) {
                             return;
                         }
                     }
+
                     $scope.Messages = null;
                     core.blockUI();
                     $http({
@@ -98,9 +110,7 @@ if (fanex.customerSetting) {
                                     CustInfo: custInfoScope.custInfo,
                                     CommissionSetting: {
                                         CommissionItems: commissionItems,
-                                        UserGroup: bettingLimitScope.settingContext.TargetRoleId === 1
-                                            ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
-                                            : ''
+                                        UserGroup: userGroup
                                     },
                                     BettingLimitSetting: bettingLimitItems
                                 },
@@ -174,18 +184,22 @@ if (fanex.customerSetting) {
                     isChangeData = true;
 
                 if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
-                    commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
                     bettingLimitScope = angular.element('[data-ng-controller="BetLimitController"]').scope();
+                    if (settingContext.IsCredit) {
+                        commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
+                        if (!commissionSettingScope.isValidData()) {
+                            return;
+                        }
+                        commissionItems = commissionSettingScope.saveData();
 
-                    if (!commissionSettingScope.isValidData() || !bettingLimitScope.isValidData()) {
-                        return;
-                    }
-                    commissionItems = commissionSettingScope.saveData();
-                    bettingLimitItems = bettingLimitScope.saveData();
-
-                    userGroup = bettingLimitScope.settingContext.TargetRoleId === 1
+                        userGroup = bettingLimitScope.settingContext.TargetRoleId === 1
                         ? commissionSettingScope.viewModel.commissionSettingsViewModel.selectedGroup
                         : '';
+                    }
+                    if (!bettingLimitScope.isValidData()) {
+                        return;
+                    }
+                    bettingLimitItems = bettingLimitScope.saveData();
                 }
 
                 positionTakingScope = angular.element('[data-ng-controller="PositionTakingController"]').scope();
@@ -204,7 +218,7 @@ if (fanex.customerSetting) {
                 };
 
                 if ($scope.hasOfferedNumberGame) {
-                    numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.settingMode);
+                    numberGameSetting = fanex.customerSetting.numberGameSetting.getNumberGameSetting($scope.isDeposit);
                     if (numberGameSetting == null) {
                         return;
                     }
@@ -227,16 +241,35 @@ if (fanex.customerSetting) {
                     return;
                 }
 
+                $scope.callUpdate({
+                    settingContext: settingContext,
+                    sportsBookSetting: sportsBookSetting,
+                    numberGameSetting: numberGameSetting
+                });
+            };
+
+            $scope.updatePartial = function (productSetting, isChangedData) {
+                if (!isChangedData) {
+                    $('.messages').show();
+                    $scope.Messages = [{
+                        ErrCode: $scope.result.NoChange,
+                        ErrMsg: languageService.getString('NoChangeToUpdate')
+                    }];
+                    return;
+                }
+
+                productSetting.settingContext = settingContext;
+
+                $scope.callUpdate(productSetting);
+            };
+
+            $scope.callUpdate = function (productSetting) {
                 core.blockUI();
                 $http({
                     method: 'POST',
                     url: core.resolveUrl($('#custSetting').data('href')),
                     headers: { 'Content-Type': 'application/json' },
-                    data: {
-                        settingContext: settingContext,
-                        sportsBookSetting: sportsBookSetting,
-                        numberGameSetting: numberGameSetting
-                    }
+                    data: productSetting
                 }).
                 success(function (data) {
                     var timeout = 0;

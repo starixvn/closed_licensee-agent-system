@@ -136,10 +136,10 @@
     <value>添加下線人員</value>
   </data>
   <data name="AddNewAgent" xml:space="preserve">
-    <value>新增代理</value>
+    <value>新增代理 {0}</value>
   </data>
   <data name="AddNewMember" xml:space="preserve">
-    <value>增加会员</value>
+    <value>增加会员 {0}</value>
   </data>
   <data name="AdvancedMode" xml:space="preserve">
     <value>進階模式</value>
@@ -1369,5 +1369,8 @@
   </data>
   <data name="Bingo" xml:space="preserve">
     <value>Bingo</value>
+  </data>
+  <data name="UpdateAll" xml:space="preserve">
+    <value>Update All</value>
   </data>
 </root>

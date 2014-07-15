@@ -37,21 +37,21 @@ if (fanex.customerSetting) {
                     $scope.model.bettingLimitsModel,
                     $scope.model.firstRecord);
             };
+            $scope.updatePartial = function () {
+                if (!$scope.isValidData()) {
+                    return;
+                }
+                var settings = {
+                    sportsBookSetting: null,
+                    numberGameSetting: { BettingLimitSetting: $scope.saveData() }
+                };
+
+                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings.numberGameSetting));
+            };
         }
     };
 
     fanex.customerSetting.controller('NumberGameBetLimitController',
-    [
-        '$scope',
-        'Fanex.CustomerSetting.LanguageService',
-        function ($scope, languageService) {
-            'use strict';
-            $scope.languageService = languageService;
-            fanex.customerSetting.BetLimitController.updateScope($scope);
-        }
-    ]);
-
-    fanex.customerSetting.controller('NumberGameBetLimitAdvancedModeController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',

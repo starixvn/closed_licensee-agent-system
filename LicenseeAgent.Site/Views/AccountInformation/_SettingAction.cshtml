@@ -28,7 +28,7 @@
                         }
                         else
                         {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
@@ -49,7 +49,7 @@
                         {
                             if (pageContext.IsOfferedVirtualSports)
                             {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(isDirectDonwline || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
@@ -67,9 +67,9 @@
                             @Las.EditInfo
                         </a></li>
                     }
-                    @if (SessionManager.CurrentSession.IsAdmin && !pageContext.IsMember)
+                    @if (SessionManager.CurrentSession.IsAdmin && !pageContext.IsMember && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
                     {
-                        <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                        <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.AddDownline
                         </a>

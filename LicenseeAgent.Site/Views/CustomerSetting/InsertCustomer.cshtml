@@ -5,11 +5,11 @@
     var currentSession = SessionManager.CurrentSession;
     if (Model.TargetRoleId == (int)Role.Member)
     {
-        ViewBag.Title = Las.AddNewMember;
+        ViewBag.Title = string.Format(Las.AddNewMember, Model.UserName);
     }
     else
     {
-        ViewBag.Title = Las.AddNewAgent;
+        ViewBag.Title = string.Format(Las.AddNewAgent, Model.UserName);
     }
 }
 @section css
@@ -27,7 +27,7 @@
 <div class="legend @(Request.IsPopup() ? "popup" : "")">
     @ViewBag.Title
 </div>
-<div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting" class="fanex-sportbook-setting"
+<div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting" class="fanex-customer-setting fanex-sportbook-setting"
     data-ng-controller="CustomerSettingController" data-href="~/CustomerSetting/InsertCustomer">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
@@ -47,10 +47,13 @@
     <div class="clearfix">
         @Html.Partial("~/Views/CustomerSetting/CustomerInfo.cshtml")
     </div>
+    @if (!Model.IsDeposit)
+    {
     <div class="clearfix">
         @Html.Partial("~/Views/CustomerSetting/Sportsbook/Commission.cshtml", Model)
     </div>
-    <div class="clearfix">
+    }
+    <div class="clearfix" data-ng-if="false">
         <div class="container-mode">
             <span class="mode-text">@Las.AdvancedMode</span>
             <div class="make-switch switch-small" id="modeSwitcher">
@@ -58,8 +61,8 @@
             </div>
         </div>
     </div>
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
-        <div class="product-name" data-ng-show="settingMode">
+    <div data-ng-class="{'clearfix': true}" class="product-group">
+        <div class="product-name">
             @Las.Sportsbook
         </div>
         <div class="product-container">
@@ -76,21 +79,21 @@
             </div>
         </div>
     </div>
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
+    <div data-ng-class="{'clearfix': true}" data-ng-if="hasOfferedNumberGame" class="product-group">
         <div class="product-name">
             @Las.NumberGame
         </div>
         <div class="product-container">
             <div class="clearfix">
-                <div class="edit-setting-warning">
+                <div class="edit-setting-warning" data-ng-show="settingMode">
                     @Las.NumberGameSimpleModeNote
                 </div>
             </div>
-            <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSettingSimpleMode.cshtml", Model)
+            <div class="clearfix box-bottom">
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSetting.cshtml", Model)
             </div>
-            <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTakingSimpleMode.cshtml", Model)
+            <div class="clearfix box-bottom">
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>
@@ -132,6 +135,13 @@
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSettingAdvNG",
+        trigger = "licensee-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -151,6 +161,13 @@
     {
         key = "LicenseePositionTakingSetting",
         trigger = "licensee-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSettingAdv",
+        trigger = "licensee-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -186,6 +203,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSettingAdv",
+        trigger = "agent-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -205,6 +229,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
     {
         key = "AgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentPositionTakingSettingAdv",
+        trigger = "agent-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -240,6 +271,13 @@ else
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSettingAdv",
+        trigger = "member-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
     
     @Html.Action("Index", "Instruction", new
     {
@@ -259,6 +297,13 @@ else
     {
         key = "MemberPositionTakingSetting",
         trigger = "member-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSettingAdv",
+        trigger = "member-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })

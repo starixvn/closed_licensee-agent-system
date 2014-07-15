@@ -37,7 +37,7 @@
                 return false;
             }
 
-            if (!ValidateCommissionSetting(product, settingContext))
+            if (settingContext.IsCredit && !ValidateCommissionSetting(product, settingContext))
             {
                 return false;
             }

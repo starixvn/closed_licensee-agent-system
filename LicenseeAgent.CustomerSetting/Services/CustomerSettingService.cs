@@ -252,23 +252,40 @@
         {
             var discountXml = string.Empty;
             var betLimitXml = string.Empty;
-            var positionTakingXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting);
+            var positionTakingXml = string.Empty;
             var discount3RDXml = string.Empty;
             var betLimit3RDXml = string.Empty;
             var positionTaking3RDXml = string.Empty;
+
+            if (model.SportsBookSetting != null)
+            {
+                positionTakingXml = model.SportsBookSetting.PositionTakingSetting != null
+                                            ? XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.PositionTakingSetting)
+                                            : string.Empty;
+
+                if (model.SettingContext.FormId != FormType.EditIndirectMember)
+                {
+                    discountXml = model.SportsBookSetting.CommissionSetting != null 
+                                    ? XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting)
+                                    : string.Empty;
+                    betLimitXml = model.SportsBookSetting.BettingLimitSetting != null
+                                    ? XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting)
+                                    : string.Empty;
+                }
+            }
+
             if (model.NumberGameSetting != null)
             {
                 positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.PositionTakingSetting);
-            }
 
-            if (model.SettingContext.FormId != FormType.EditIndirectMember)
-            {
-                discountXml = XmlBuilder.Build(model.SettingContext, model.SportsBookSetting.CommissionSetting);
-                betLimitXml = XmlBuilder.Build(model.SportsBookSetting.BettingLimitSetting);
-                if (model.NumberGameSetting != null)
+                if (model.SettingContext.FormId != FormType.EditIndirectMember)
                 {
-                    discount3RDXml = XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting);
-                    betLimit3RDXml = XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting);
+                    discount3RDXml = model.NumberGameSetting.CommissionSetting != null 
+                                        ? XmlBuilder.Build(model.SettingContext, model.NumberGameSetting.CommissionSetting)
+                                        : string.Empty;
+                    betLimit3RDXml = model.NumberGameSetting.BettingLimitSetting != null
+                                        ? XmlBuilder.BuildForNumberGame(model.NumberGameSetting.BettingLimitSetting)
+                                        : string.Empty;
                 }
             }
 

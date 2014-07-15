@@ -1,7 +1,7 @@
 ﻿/*global settingContext */
 
 fanex.customerSetting.numberGameSetting = {
-    getNumberGameSetting: function (settingMode) {
+    getNumberGameSetting: function (isDeposit) {
         'use strict';
         var commissions = null,
             bettingLimits = null,
@@ -11,20 +11,18 @@ fanex.customerSetting.numberGameSetting = {
             commissionSettingScope;
 
         if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
-            commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
-            commissions = commissionSettingScope.getNumberGameSetting();
-
-            bettingLimitScope = settingMode ? angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope()
-                                        : angular.element('[data-ng-controller="NumberGameBetLimitAdvancedModeController"]').scope();
-
+            if (!isDeposit) {
+                commissionSettingScope = angular.element('[data-ng-controller="CommissionController"]').scope();
+                commissions = commissionSettingScope.getNumberGameSetting();
+            }
+            bettingLimitScope = angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope();
             if (!bettingLimitScope.isValidData()) {
                 return null;
             }
             bettingLimits = bettingLimitScope.saveData();
         }
 
-        positionTakingScope = settingMode ? angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope()
-                                           : angular.element('[data-ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
+        positionTakingScope = angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope();
 
         if (positionTakingScope !== undefined) {
             if (!positionTakingScope.isValidData()) {
@@ -41,29 +39,19 @@ fanex.customerSetting.numberGameSetting = {
     },
     updateSettingModel: function () {
         'use strict';
-        var bettingLimitSimpleModeScope,
-            positionTakingSimpleModeScope,
-            bettingLimitAdvancedModeScope,
-            positionTakingAdvancedModeScope;
+        var bettingLimitScope,
+            positionTakingScope;
 
         if (settingContext.FormId !== fanex.customerSetting.FormType.EditIndirectMember) {
-            bettingLimitSimpleModeScope = angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope();
-            bettingLimitAdvancedModeScope = angular.element('[data-ng-controller="NumberGameBetLimitAdvancedModeController"]').scope();
-            if (bettingLimitSimpleModeScope !== undefined) {
-                bettingLimitSimpleModeScope.updateSettingModel();
-            }
-            if (bettingLimitAdvancedModeScope !== undefined) {
-                bettingLimitAdvancedModeScope.updateSettingModel();
+            bettingLimitScope = angular.element('[data-ng-controller="NumberGameBetLimitController"]').scope();
+            if (bettingLimitScope !== undefined) {
+                bettingLimitScope.updateSettingModel();
             }
         }
 
-        positionTakingSimpleModeScope = angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope();
-        positionTakingAdvancedModeScope = angular.element('[data-ng-controller="NumberGamePositionTakingAdvancedModeController"]').scope();
-        if (positionTakingSimpleModeScope !== undefined) {
-            positionTakingSimpleModeScope.updateSettingModel();
-        }
-        if (positionTakingAdvancedModeScope !== undefined) {
-            positionTakingAdvancedModeScope.updateSettingModel();
+        positionTakingScope = angular.element('[data-ng-controller="NumberGamePositionTakingController"]').scope();
+        if (positionTakingScope !== undefined) {
+            positionTakingScope.updateSettingModel();
         }
     }
 };

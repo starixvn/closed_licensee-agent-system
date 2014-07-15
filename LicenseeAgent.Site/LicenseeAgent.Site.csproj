@@ -608,6 +608,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
     </None>
+    <Content Include="Views\CustomerSetting\NumberGame\BetSetting.cshtml" />
+    <Content Include="Views\CustomerSetting\NumberGame\PositionTaking.cshtml" />
+    <Content Include="Views\Instruction\en-US\AgentBetSettingAdvNG.cshtml" />
+    <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdvNG.cshtml" />
     <None Include="SiteConfiguration.ttinclude" />
     <Content Include="Web.AppSettings.Local.Admin.config">
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
@@ -838,10 +842,6 @@
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\BetSettingSimpleMode.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\PositionTakingSimpleMode.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\BetSettingAdvancedMode.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\PositionTakingAdvancedMode.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\BetSetting.cshtml" />
     <Content Include="Views\CustomerSetting\CustomerInfo.cshtml" />
     <Content Include="Views\CustomerSetting\VirtualSports\PositionTaking.cshtml" />

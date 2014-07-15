@@ -475,7 +475,7 @@ var customerList = (function ($) {
                 url = "CustomerSetting/EditMember?memberId={0}"
                     .format(editMemberId);
             } else {
-                url = "CustomerSetting/EditAgent?agentId={0}&agentLevel={1}"
+                url = "CustomerSetting/EditAgent?agentId={0}"
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
@@ -489,7 +489,7 @@ var customerList = (function ($) {
                 url = "CustomerSetting/EditVirtualSportsMember?memberId={0}"
                     .format(editMemberId);
             } else {
-                url = "CustomerSetting/EditVirtualSportsAgent?agentId={0}&agentLevel={1}"
+                url = "CustomerSetting/EditVirtualSportsAgent?agentId={0}"
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
@@ -512,7 +512,7 @@ var customerList = (function ($) {
             popup.openFrame(url);
         },
         addDownline: function () {
-            var url = "CustomerSetting/InsertCustomer?agentId={0}&agentLevel={1}"
+            var url = "CustomerSetting/InsertCustomer?agentId={0}"
                 .format(editAgentId, editAgentLevel);
             popup.openFrame(url, {
                 width: 1008,

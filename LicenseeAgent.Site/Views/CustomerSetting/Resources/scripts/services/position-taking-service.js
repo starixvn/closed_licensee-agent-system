@@ -12,8 +12,8 @@ if (fanex.customerSetting) {
             decNumber: 2,
             breakNewLine: 5,
             maxInput: 5,
-            headerBoxWidth: 161,
-            ptBoxWidth: 165,
+            headerBoxWidth: 160,
+            ptBoxWidth: 162,
             collapseWidth: 280
         },
         copyPartial: function (pt, ptGroup, breakNewLine) {

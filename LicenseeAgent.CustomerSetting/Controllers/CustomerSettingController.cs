@@ -332,23 +332,27 @@
         /// Inserts the customer.
         /// </summary>
         /// <param name="agentId">The agent identifier.</param>
-        /// <param name="agentLevel">The agent level.</param>
         /// <returns>
         /// Action Result.
         /// </returns>
         [HttpGet]
-        public ActionResult InsertCustomer(int? agentId, int? agentLevel)
+        public ActionResult InsertCustomer(int? agentId)
         {
             var settingContext = new SettingContext(CurrentSession)
             {
                 Ip = Request.GetClientIp()
             };
 
-            if (agentId != null && agentLevel != null)
+            var agentInfo = agentId == null ? _coreService.GetAgentInfo(CurrentSession.AgentInfo.AgentId) : _coreService.GetAgentInfo(agentId.Value);
+            
+            settingContext.AgentLevel = agentInfo.AgentLevel;
+            settingContext.UserName = agentInfo.UserName;
+
+            if (agentId != null)
             {
                 settingContext.CustId = agentId.Value;
                 settingContext.RoleId = (int)Role.Agent;
-                settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentLevel.Value)
+                settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentInfo.AgentLevel)
                     ? (int)Role.Member
                     : (int)Role.Agent;
             }
@@ -535,14 +539,17 @@
         [HttpGet]
         public ActionResult EditAgent(EditAgentViewModel model)
         {
+            var agentInfo = _coreService.GetAgentInfo(model.AgentId);
+
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || agentInfo.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
                     ? FormType.Edit
                     : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
-                TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
-                Ip = Request.GetClientIp()
+                TargetRoleId = ModelHelper.IsAgentLevel1(agentInfo.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
+                Ip = Request.GetClientIp(),
+                UserName = agentInfo.UserName
             };
 
             if (!CheckForEditingCustomerSetting(settingContext))
@@ -563,13 +570,15 @@
         [HttpGet]
         public ActionResult EditVirtualSportsAgent(EditAgentViewModel model)
         {
+            var agentInfo = _coreService.GetAgentInfo(model.AgentId);
+
             var settingContext = new SettingContext(CurrentSession)
             {
-                FormId = (CurrentSession.AgentInfo.IsLevel0 || model.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
+                FormId = (CurrentSession.AgentInfo.IsLevel0 || agentInfo.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
                     ? FormType.Edit
                     : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
-                TargetRoleId = ModelHelper.IsAgentLevel1(model.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
+                TargetRoleId = ModelHelper.IsAgentLevel1(agentInfo.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
                 Ip = Request.GetClientIp()
             };
 

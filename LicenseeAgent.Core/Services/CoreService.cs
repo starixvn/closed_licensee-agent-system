@@ -174,6 +174,21 @@
         }
 
         /// <summary>
+        /// Get agent information.
+        /// </summary>
+        /// <param name="agentId">Agent ID for get agent information.</param>
+        /// <returns>Agent Information.</returns>
+        public AgentInfo GetAgentInfo(int agentId)
+        {
+            var criteria = new GetAgentInfoCriteria
+            {
+                AgentId = agentId
+            };
+
+            return GetEntity<AgentInfo>(criteria);
+        }
+
+        /// <summary>
         /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
         /// </summary>
         /// <returns>Returns list of licensee domain.</returns>

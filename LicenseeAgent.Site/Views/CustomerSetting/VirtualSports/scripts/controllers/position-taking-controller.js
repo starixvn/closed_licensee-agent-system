@@ -44,6 +44,19 @@ if (fanex.customerSetting) {
                     $scope.ptModel.ptFirstData,
                     $scope.ptModel.ptGroups);
             };
+
+            $scope.updatePartial = function () {
+                if (!$scope.isValidData()) {
+                    return;
+                }
+                var settings = {
+                    virtualSportsSetting: {
+                        PositionTakingSetting: $scope.saveData()
+                    }
+                };
+
+                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings.virtualSportsSetting));
+            };
         }
     ]);
 }

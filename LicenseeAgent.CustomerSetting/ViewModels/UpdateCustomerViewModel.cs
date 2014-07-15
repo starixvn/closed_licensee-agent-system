@@ -13,7 +13,6 @@
         [Required]
         public SettingContext SettingContext { get; set; }
 
-        [Required]
         public CustomerSetting SportsBookSetting { get; set; }
 
         public CustomerSetting NumberGameSetting { get; set; }
@@ -28,7 +27,7 @@
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!SportsBookSetting.IsValid(Product.Product_0, SettingContext))
+            if (SportsBookSetting != null && !SportsBookSetting.IsValid(Product.Product_0, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid SportsBook setting"));
                 return results;

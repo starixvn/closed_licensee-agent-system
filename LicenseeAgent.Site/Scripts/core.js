@@ -112,16 +112,13 @@ var core = (function ($) {
                 var $this = $(this),
                     thisId = $this.attr('id'),
                     title = $this.attr('title'),
-                    tipTitle = $this.attr('tip-title'),
                     trigger;
-
                 trigger = thisId === 'page-info'
                     ? $('<div class="page-info" />').appendTo('#header_main')
                     : $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
 
                 if (trigger.length > 0) {
-                    trigger.attr('title', tipTitle ? tipTitle : title)
-                        .tooltip({
+                    trigger.tooltip({
                             position: { my: "right-10 center", at: "center center+5" },
                             show: null,
                             hide: null

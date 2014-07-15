@@ -102,6 +102,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
     <Compile Include="Criteria\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criteria\GetProductCriteria.cs" />
     <Compile Include="Criteria\InternalLoginAsUserCriteria.cs" />

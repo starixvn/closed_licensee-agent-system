@@ -25,7 +25,7 @@
 }
 @RazorHelper.Legend(ViewBag.Title)
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
-    class="fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
+    class="fanex-customer-setting fanex-sportbook-setting" data-ng-controller="CustomerSettingController"
     data-href="@("~/CustomerSetting/UpdateCustomer")" data-updated-href="@("~/CustomerSetting/GetUpdatedSetting")" data-product="@((int)Product.Product_0)">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
@@ -40,7 +40,7 @@
         {
             <div class="control-group" data-ng-hide="settingMode">
                 <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                    @Las.Update
+                    @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
                 </button>
             </div>
         }
@@ -48,13 +48,13 @@
     <div class="clearfix">
         @Html.Partial("~/Views/CustomerSetting/ViewCustomerInfo.cshtml")
     </div>
-    @if (Model.FormId != FormType.EditIndirectMember)
+    @if (!Model.IsDeposit && Model.FormId != FormType.EditIndirectMember)
     {
         <div class="clearfix">
             @Html.Partial("~/Views/CustomerSetting/Sportsbook/Commission.cshtml", Model)
         </div>
     }
-    <div class="clearfix">
+    <div class="clearfix" data-ng-if="false">
         <div class="container-mode">
             <span class="mode-text">@Las.AdvancedMode</span>
             <div class="make-switch switch-small" id="modeSwitcher">
@@ -62,8 +62,8 @@
             </div>
         </div>
     </div>
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
-        <div class="product-name" data-ng-show="settingMode">
+    <div data-ng-class="{'clearfix': true}" class="product-group">
+        <div class="product-name">
             @Las.Sportsbook
         </div>
         <div class="product-container">
@@ -83,24 +83,24 @@
             </div>
         </div>
     </div>
-    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}" data-ng-if="settingMode && hasOfferedNumberGame">
+    <div data-ng-class="{'clearfix': true}" data-ng-if="hasOfferedNumberGame" class="product-group">
         <div class="product-name">
             @Las.NumberGame
         </div>
         <div class="product-container">
             <div class="clearfix">
-                <div class="edit-setting-warning">
+                <div class="edit-setting-warning" data-ng-show="settingMode">
                     @Las.NumberGameSimpleModeNote
                 </div>
             </div>
             @if (Model.FormId != FormType.EditIndirectMember)
             {
                 <div class="clearfix">
-                    @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSettingSimpleMode.cshtml", Model)
+                    @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSetting.cshtml", Model)
                 </div>
             }
             <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTakingSimpleMode.cshtml", Model)
+                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
         {
             <div class="control-group">
                 <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                    @Las.Update
+                    @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
                 </button>
             </div>
         }
@@ -145,6 +145,13 @@
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseeBetSettingAdv",
+        trigger = "licensee-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -164,6 +171,13 @@
     {
         key = "LicenseePositionTakingSetting",
         trigger = "licensee-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "LicenseePositionTakingSettingAdv",
+        trigger = "licensee-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -199,6 +213,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentBetSettingAdv",
+        trigger = "agent-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -218,6 +239,13 @@ else if (Model.TargetRoleId == (int)Role.Agent)
     {
         key = "AgentEditAgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentEditAgentPositionTakingSettingAdv",
+        trigger = "agent-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
@@ -253,6 +281,13 @@ else
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberBetSettingAdv",
+        trigger = "member-bet-limit-info-button-adv-ng",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
 
     @Html.Action("Index", "Instruction", new
     {
@@ -272,6 +307,13 @@ else
     {
         key = "MemberPositionTakingSetting",
         trigger = "member-position-taking-info-button-ng",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberPositionTakingSettingAdv",
+        trigger = "member-position-taking-info-button-adv-ng",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions
     })

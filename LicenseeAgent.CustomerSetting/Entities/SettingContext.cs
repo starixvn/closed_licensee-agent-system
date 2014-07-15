@@ -13,7 +13,7 @@
         public SettingContext()
         {
             FormId = FormType.Add;
-            IsSimpleMode = true;
+            IsSimpleMode = false;
             Language = Constant.DefaultLanguage;
         }
 
@@ -27,6 +27,8 @@
                 ? (int)Role.AgentLevel1
                 : currentSession.AgentInfo.IsLastLevel ? (int)Role.Member : (int)Role.Agent;
             Language = currentSession.Language;
+            IsDeposit = currentSession.AgentInfo.IsDeposit;
+            IsCredit = currentSession.AgentInfo.IsCredit;
         }
 
         public int CustId { get; set; }
@@ -52,5 +54,11 @@
         public string Language { get; set; }
 
         public bool IsSimpleMode { get; set; }
+
+        public bool IsCredit { get; set; }
+
+        public bool IsDeposit { get; set; }
+
+        public int AgentLevel { get; set; }
     }
 }

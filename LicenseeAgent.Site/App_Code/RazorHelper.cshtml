@@ -29,7 +29,7 @@
     {
     <div class="instruction">
         @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
         </span>
     </div>
 }
@@ -129,4 +129,24 @@
     <div class="legend @(Request.IsPopup() ? "popup" : "")">
         @title
     </div>
+}
+
+@helper RenderInstruction(string text, string id, bool simpleMode)
+{
+        if (simpleMode)
+        {
+    <div class="instruction" data-ng-show="settingMode">
+        @text
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
+        </span>
+    </div>
+        }
+        else
+        {
+    <div class="instruction" data-ng-hide="settingMode">
+        @text
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
+        </span>
+    </div>
+        }
 }

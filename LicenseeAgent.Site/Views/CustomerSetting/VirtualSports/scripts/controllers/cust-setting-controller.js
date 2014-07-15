@@ -25,6 +25,7 @@ if (fanex.customerSetting) {
             $scope.formId = settingContext.FormId;
             $scope.result = fanex.customerSetting.Result;
             $scope.custInfo = virtualSportsSetting.CustInfo;
+            $scope.isDeposit = settingContext.IsDeposit;
 
             $('#modeSwitcher').on('switch-change', function (e, data) {
                 var isSimpleMode = !data.value;
@@ -131,6 +132,60 @@ if (fanex.customerSetting) {
                     });
             };
 
+            $scope.updatePartial = function (productSetting, isChangedData) {
+                if (!isChangedData) {
+                    $('.messages').show();
+                    $scope.Messages = [{
+                        ErrCode: $scope.result.NoChange,
+                        ErrMsg: languageService.getString('NoChangeToUpdate')
+                    }];
+                    return;
+                }
+
+                productSetting.settingContext = settingContext;
+
+                core.blockUI();
+                $http({
+                    method: 'POST',
+                    url: core.resolveUrl($('#custSetting').data('href')),
+                    headers: { 'Content-Type': 'application/json' },
+                    data: productSetting
+                }).
+                success(function (data) {
+                    var timeout = 0;
+
+                    core.unblockUI();
+
+                    if (data.ErrCode !== 0) {
+                        $scope.Messages = [
+                            {
+                                ErrCode: $scope.result.Error,
+                                ErrMsg: data.ErrMsg
+                            }
+                        ];
+                    }
+                    else {
+                        $scope.Messages = data.Messages;
+                    }
+
+                    if (settingContext.TargetRoleId === fanex.customerSetting.Role.Member) {
+                        timeout = 3000;
+                    }
+
+                    core.blockUI();
+                    setTimeout(function () {
+                        custSettingService.updateSettingModel();
+                    }, timeout);
+
+                    $('.messages').show();
+                    core.scrollTop();
+                }).
+                error(function (data) {
+                    core.unblockUI();
+                    alert(data.ErrMsg);
+                });
+            };
+            
             if (typeof settingContext === 'undefined') {
                 $('#custSetting').html("It has a problem about data.");
             }
@@ -143,6 +198,5 @@ if (fanex.customerSetting) {
                 $scope.Messages = messages;
             }
         }
-
     ]);
 }

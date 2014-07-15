@@ -19,5 +19,7 @@
         bool HasProductOffered(int licenseeId, int productId);
 
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
+
+        AgentInfo GetAgentInfo(int agentId);
     }
 }

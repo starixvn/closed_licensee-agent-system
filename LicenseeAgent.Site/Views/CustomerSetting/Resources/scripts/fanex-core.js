@@ -96,8 +96,10 @@ fanex.isChangedData = function (productSetting) {
                                 (productSetting.CommissionSetting !== null &&
                                 productSetting.CommissionSetting.CommissionItems !== null &&
                                 productSetting.CommissionSetting.CommissionItems.length > 0);
+    var isChangedBetSetting = productSetting.BettingLimitSetting === undefined ? false :
+                                (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0);
+    var isChangedPositionTaking = productSetting.PositionTakingSetting === undefined ? false :
+                                    (productSetting.PositionTakingSetting != null && productSetting.PositionTakingSetting.length > 0);
 
-    return isChangedCommission
-        || (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0)
-        || productSetting.PositionTakingSetting.length > 0;
+    return isChangedCommission || isChangedBetSetting || isChangedPositionTaking;
 };

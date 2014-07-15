@@ -29,11 +29,18 @@ if (fanex.customerSetting) {
                         result = language.getSportName(sportTypeId);
                 }
 
-                if (isLive !== undefined && sportTypeId === 1 || sportTypeId === 161) {
+                if (isLive !== undefined) {
+                    var status;
                     if (isLive === true) {
-                        result = result + ' - ' + language.getString('Live');
+                        status = language.getString('Live');
                     } else if (isLive === false) {
-                        result = result + ' - ' + language.getString('DeadBall');
+                        status = language.getString('DeadBall');
+                    }
+                    if (sportTypeId === 1) {
+                        result = result + ' - ' + status;
+                    }
+                    if (sportTypeId === 161) {
+                        result = status;
                     }
                 }
 

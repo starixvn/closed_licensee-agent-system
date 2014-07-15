@@ -7,7 +7,7 @@
   </Function>
   <Function Name="Login">
     <Setting Key="Las_AgentLogin" SpName="Las_AgentLogin_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AdminLogin" SpName="Las_AdminLogin_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentSaltSel" SpName="Las_AgentSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AdminSaltSel" SpName="Las_AdminSaltSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentCheckIn" SpName="Las_AgentCheckIn" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

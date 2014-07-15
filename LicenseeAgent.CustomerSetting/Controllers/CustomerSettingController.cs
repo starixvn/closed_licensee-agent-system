@@ -1068,7 +1068,7 @@
                 NewAgentName = model.NewAgentName,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                UpdatedBy = CurrentSession.AdminInfo.UserId,
+                UpdatedBy = CurrentSession.LoginUserId,
                 Ip = Request.GetClientIp()
             };
             _customerSettingService.MemberReArrangement(criteria);
@@ -1088,7 +1088,7 @@
                 AgentName = model.AgentName,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                UpdatedBy = CurrentSession.AdminInfo.UserId,
+                UpdatedBy = CurrentSession.LoginUserId,
                 Ip = Request.GetClientIp()
             };
             _customerSettingService.SwitchUserFromNormalToLegend(criteria);

@@ -47,8 +47,7 @@
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var isAuthorized = Authorize(LegendType);
-            if (!isAuthorized)
+            if (!Authorize(LegendType))
             {
                 NotFound(filterContext);
             }

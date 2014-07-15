@@ -40,10 +40,23 @@
             <li class="divider"></li>
             <li><a class="tree-toggler nav-header">@Las.CustomerInformation</a>
                 <ul class="nav nav-list tree" style="display: none">
-                    @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.NewMember : Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
+                    @if (SessionManager.CurrentSession.AgentInfo != null)
+                    {
+                        if (!SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+                        {
+                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
+                        }
+                        else if (LegendTypeAttribute.Authorize(LegendType.Credit))
+                        {
+                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "CustomerSetting"))
+                        }
+                    }
                     @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.MemberList : Las.AgentList, Url.Action("Index", "CustomerList"))
-                    @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
-                    @if (AccountTypeAttribute.AuthorizeRole(AccountType.Admin) && LegendTypeAttribute.AuthorizeRole(LegendType.Deposit))
+                    @if (LegendTypeAttribute.Authorize(LegendType.Credit))
+                    {
+                        @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
+                    }
+                    @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
                         @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("MemberArrangement", "CustomerSetting"))
                     }

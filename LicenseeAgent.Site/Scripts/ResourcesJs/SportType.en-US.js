@@ -59,6 +59,7 @@ language.SportType['en-US'] = {
 	'186' : 'Virtual Tennis',
 	'201' : 'Financials',
 	'202' : 'Keno',
+	'203' : 'Cricket',
 	'251' : 'Casino',
 	'252' : 'Bingo',
 	'253' : 'Games'

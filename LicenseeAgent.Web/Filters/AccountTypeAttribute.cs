@@ -10,9 +10,9 @@
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class AccountTypeAttribute : BaseActionFilterAttribute
     {
-        public AccountTypeAttribute(AccountType role)
+        public AccountTypeAttribute(AccountType accountType)
         {
-            Role = role;
+            AccountType = accountType;
         }
 
         /// <summary>
@@ -21,18 +21,18 @@
         /// <value>
         /// The account type.
         /// </value>
-        public AccountType Role { get; private set; }
+        public AccountType AccountType { get; private set; }
 
         /// <summary>
         /// Authorizes the role.
         /// </summary>
-        /// <param name="role">The role of User.</param>
+        /// <param name="accountType">The role of User.</param>
         /// <returns>True or False.</returns>
-        public static bool AuthorizeRole(AccountType role)
+        public static bool Authorize(AccountType accountType)
         {
             var currentSession = SessionManager.CurrentSession;
             var isAuthorized = false;
-            switch (role)
+            switch (accountType)
             {
                 case AccountType.All:
                     isAuthorized = true;
@@ -75,15 +75,10 @@
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!AuthorizeRole())
+            if (!Authorize(AccountType))
             {
                 Unauthorized(filterContext);
             }
-        }
-
-        private bool AuthorizeRole()
-        {
-            return AuthorizeRole(Role);
         }
     }
 }

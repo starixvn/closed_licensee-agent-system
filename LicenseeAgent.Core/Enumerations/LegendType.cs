@@ -3,16 +3,16 @@
     /// <summary>
     /// LegendType class.
     /// </summary>
-    public enum LegendType
+    public enum LegendType : int
     {
         /// <summary>
         /// Credit model.
         /// </summary>
-        Credit,
+        Credit = 0,
 
         /// <summary>
         /// Deposit model.
         /// </summary>
-        Deposit
+        Deposit = 1
     }
 }

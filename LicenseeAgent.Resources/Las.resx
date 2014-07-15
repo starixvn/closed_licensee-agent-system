@@ -1386,9 +1386,6 @@
   <data name="OldAgent" xml:space="preserve">
     <value>Old Agent</value>
   </data>
-  <data name="NewAgent" xml:space="preserve">
-    <value>New Agent</value>
-  </data>
   <data name="MemberReArrangement" xml:space="preserve">
     <value>Member re-arrangement</value>
   </data>

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CreditBalance.Criteria;
     using LicenseeAgent.CreditBalance.Services;
@@ -13,12 +14,14 @@
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// CreditBalanceController class.
     /// </summary>
+    [LegendType(LegendType.Credit)]
     public class CreditBalanceController : BaseController
     {
         private readonly ICreditBalanceService _creditBalanceService;

@@ -237,7 +237,6 @@ language.Las['en-US'] = {
 	More : "More",
 	MotorSports : "Motor Sports",
 	NewAgent : "New Agent",
-	NewAgent : "New Agent",
 	NewAgentIsEmpty : "New Agent username is empty.",
 	NewMember : "New Member",
 	NewMemberOfMonth : "New members of the month",

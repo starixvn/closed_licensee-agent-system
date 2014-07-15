@@ -736,6 +736,25 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to save the change?\n
+        ///Please note that this action cannot be undone..
+        /// </summary>
+        public static string ConfirmMemberReArangement {
+            get {
+                return ResourceManager.GetString("ConfirmMemberReArangement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         public static string ConfirmPassword {
@@ -1708,6 +1727,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legend Agent.
+        /// </summary>
+        public static string LegendAgent {
+            get {
+                return ResourceManager.GetString("LegendAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legend Agent username is empty..
+        /// </summary>
+        public static string LegengAgentIsEmpty {
+            get {
+                return ResourceManager.GetString("LegengAgentIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licensee.
         /// </summary>
         public static string Licensee {
@@ -1987,11 +2024,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member username is empty..
+        /// </summary>
+        public static string MemberIsEmpty {
+            get {
+                return ResourceManager.GetString("MemberIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member List.
         /// </summary>
         public static string MemberList {
             get {
                 return ResourceManager.GetString("MemberList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member re-arrangement.
+        /// </summary>
+        public static string MemberReArrangement {
+            get {
+                return ResourceManager.GetString("MemberReArrangement", resourceCulture);
             }
         }
         
@@ -2118,6 +2173,15 @@ namespace LicenseeAgent.Resources {
         public static string NewAgent {
             get {
                 return ResourceManager.GetString("NewAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Agent username is empty..
+        /// </summary>
+        public static string NewAgentIsEmpty {
+            get {
+                return ResourceManager.GetString("NewAgentIsEmpty", resourceCulture);
             }
         }
         
@@ -2433,6 +2497,24 @@ namespace LicenseeAgent.Resources {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Agent.
+        /// </summary>
+        public static string OldAgent {
+            get {
+                return ResourceManager.GetString("OldAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Agent username is empty..
+        /// </summary>
+        public static string OldAgentIsEmpty {
+            get {
+                return ResourceManager.GetString("OldAgentIsEmpty", resourceCulture);
             }
         }
         

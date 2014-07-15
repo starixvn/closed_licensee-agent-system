@@ -17,5 +17,11 @@
         IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);
 
         IList<UpdateResult> UpdateIndirectCustomer(UpdateCustomerViewModel model);
+
+        bool MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria);
+
+        void MemberReArrangement(ReArrangementMemberCriteria criteria);
+
+        void SwitchUserFromNormalToLegend(SwitchUserFromNormalToLegendCriteria criteria);
     }
 }

@@ -8,11 +8,11 @@
         /// <summary>
         /// Credit model.
         /// </summary>
-        Credit = 0,
+        Credit,
 
         /// <summary>
         /// Deposit model.
         /// </summary>
-        Deposit = 1
+        Deposit
     }
 }

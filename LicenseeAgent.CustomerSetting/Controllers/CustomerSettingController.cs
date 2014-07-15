@@ -12,6 +12,7 @@
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
+    using LicenseeAgent.CustomerSetting.Enumerations;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
@@ -19,6 +20,7 @@
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
     using Newtonsoft.Json;
@@ -693,6 +695,56 @@
             return JsonResult(criteria.MsgId);
         }
 
+        [AccountType(AccountType.Admin)]
+        [HttpGet]
+        [LegendType(LegendType.Deposit)]
+        public ViewResult MemberArrangement()
+        {
+            return View(new MemberArrangementViewModel()
+            {
+                Mode = ArrangementMode.SwitchFromNormalCash
+            });
+        }
+
+        /// <summary>
+        /// Members the arrangement.
+        /// </summary>
+        /// <param name="model">The Member Arrangement View model.</param>
+        /// <returns>View Result.</returns>
+        [AccountType(AccountType.Admin)]
+        [HttpPost]
+        [LegendType(LegendType.Deposit)]
+        public ViewResult MemberArrangement(MemberArrangementViewModel model)
+        {
+            int errCode = 0;
+            MemberIsFirstDepositCriteria memberIsFirstDepositCriterium = new MemberIsFirstDepositCriteria()
+            {
+                LicenseeId = BaseController.CurrentSession.AgentInfo.LicenseeId,
+                MemberName = model.MemberName
+            };
+
+            if (_customerSettingService.MemberIsFirstDeposit(memberIsFirstDepositCriterium))
+            {
+                errCode = model.Mode != ArrangementMode.AssignMember ? SwitchUserFromNormalToLegend(model) : ReArrangeMember(model);
+            }
+            else
+            {
+                // Call API to Update AgentId here.
+                errCode = 2070;
+            }
+
+            if (errCode == 0)
+            {
+                ViewBag.Result = Las.UpdateSuccessfully;
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
+            }
+
+            return View(model);
+        }
+
         /// <summary>
         /// Re-update message content.
         /// </summary>
@@ -984,6 +1036,47 @@
             }
 
             return listProducts3RD;
+        }
+
+        /// <summary>
+        /// Arrangement member.
+        /// </summary>
+        /// <param name="model">The Member Arrangement View model.</param>
+        /// <returns>Error Code.</returns>
+        private int ReArrangeMember(MemberArrangementViewModel model)
+        {
+            var criteria = new ReArrangementMemberCriteria()
+            {
+                MemberName = model.MemberName,
+                OldAgentName = model.OldAgentName,
+                NewAgentName = model.NewAgentName,
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                UpdatedBy = CurrentSession.AdminInfo.UserId,
+                Ip = Request.GetClientIp()
+            };
+            _customerSettingService.MemberReArrangement(criteria);
+            return criteria.ErrCode;
+        }
+
+        /// <summary>
+        /// Switch User From Normal To Legend.
+        /// </summary>
+        /// <param name="model">The Member Arrangement View model.</param>
+        /// <returns>Error Code.</returns>
+        private int SwitchUserFromNormalToLegend(MemberArrangementViewModel model)
+        {
+            var criteria = new SwitchUserFromNormalToLegendCriteria()
+            {
+                MemberName = model.MemberName,
+                AgentName = model.AgentName,
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                UpdatedBy = CurrentSession.AdminInfo.UserId,
+                Ip = Request.GetClientIp()
+            };
+            _customerSettingService.SwitchUserFromNormalToLegend(criteria);
+            return criteria.ErrCode;
         }
     }
 }

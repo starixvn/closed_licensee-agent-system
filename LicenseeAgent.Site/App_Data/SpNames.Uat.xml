@@ -77,6 +77,11 @@
     <Setting Key="Las_AgentGetMemberIndirectForUpdateVirtualSports" SpName="Las_AgentSelMemIndirectForUpdateVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditMemberIndirectVirtualSports" SpName="Las_AgentEditMemIndirectVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
+  <Function Name="CustomerSetting - Member Re-arrangement">
+    <Setting Key="Las_Cash_SwitchUserFromNormalToLegend" SpName="Las_Cash_SwitchUserFromNormalToLegend" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_ReArrangementMember" SpName="Las_Cash_ReArrangementMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_HasFirstDeposit" SpName="Las_Cash_HasFirstDeposit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_CheckDownlineBelong" SpName="Las_CheckDownlineBelong" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

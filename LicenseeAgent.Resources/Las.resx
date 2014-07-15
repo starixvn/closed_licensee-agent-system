@@ -1380,4 +1380,35 @@
   <data name="Bingo" xml:space="preserve">
     <value>Bingo</value>
   </data>
+  <data name="LegendAgent" xml:space="preserve">
+    <value>Legend Agent</value>
+  </data>
+  <data name="OldAgent" xml:space="preserve">
+    <value>Old Agent</value>
+  </data>
+  <data name="NewAgent" xml:space="preserve">
+    <value>New Agent</value>
+  </data>
+  <data name="MemberReArrangement" xml:space="preserve">
+    <value>Member re-arrangement</value>
+  </data>
+  <data name="ConfirmMemberReArangement" xml:space="preserve">
+    <value>Are you sure you want to save the change?\n
+Please note that this action cannot be undone.</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="MemberIsEmpty" xml:space="preserve">
+    <value>Member username is empty.</value>
+  </data>
+  <data name="LegengAgentIsEmpty" xml:space="preserve">
+    <value>Legend Agent username is empty.</value>
+  </data>
+  <data name="OldAgentIsEmpty" xml:space="preserve">
+    <value>Old Agent username is empty.</value>
+  </data>
+  <data name="NewAgentIsEmpty" xml:space="preserve">
+    <value>New Agent username is empty.</value>
+  </data>
 </root>

@@ -380,6 +380,24 @@ var core = (function ($) {
             msgWrp.show();
             msgWrp.addClass('success').find('li:first').html(msg).show();
         },
+        showErrors: function (validator) {  // 'this' is the form element
+            var container = $('[data-valmsg-summary=true]');
+            var list = container.find("ul");
+
+            if (list && list.length && validator.errorList.length) {
+                list.empty();
+                container.addClass("validation-summary-errors");
+                container.show();
+
+                $.each(validator.errorList, function () {
+                    $("<li />").html(this.message).appendTo(list);
+                });
+            }
+        },
+        hideErrors: function () {  // 'this' is the form element
+            var container = $('.validation-summary-valid');
+            container.hide();
+        },
         getParameterByName: function (name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),

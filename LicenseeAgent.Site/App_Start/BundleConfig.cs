@@ -240,6 +240,9 @@
                 "~/views/customersetting/resources/edit-product.js"));
             bundles.Add(new LessBundle("~/css/customersetting/editproduct").Include(
                 "~/views/customersetting/resources/edit-product.less"));
+
+            bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
+                "~/views/customersetting/Resources/MemberArrangement.js"));
         }
 
         /// <summary>

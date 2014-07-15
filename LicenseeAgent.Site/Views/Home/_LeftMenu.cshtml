@@ -1,4 +1,6 @@
-﻿<ul class="nav nav-tabs">
+﻿@using LicenseeAgent.Web.Filters
+@using LicenseeAgent.Core.Enumerations
+<ul class="nav nav-tabs">
     <li class="active"><a href="#MainMenu" id="tabMainMenu" data-toggle="tab">@Las.MainMenu</a></li>
     <li><a href="#accountInfo" id="tabAccInfo" data-toggle="tab">@Las.AccountInfo</a></li>
 </ul>
@@ -41,6 +43,10 @@
                     @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.NewMember : Las.NewAgent, Url.Action("InsertCustomer", "CustomerSetting"))
                     @BootstrapHelper.LeftMenu(SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel ? Las.MemberList : Las.AgentList, Url.Action("Index", "CustomerList"))
                     @BootstrapHelper.LeftMenu(Las.CreditBalance, Url.Action("Index", "CreditBalance"))
+                    @if (AccountTypeAttribute.AuthorizeRole(AccountType.Admin) && LegendTypeAttribute.AuthorizeRole(LegendType.Deposit))
+                    {
+                        @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("MemberArrangement", "CustomerSetting"))
+                    }
                 </ul>
             </li>
             @if (SessionManager.CurrentSession.IsShowMaintenance())

@@ -290,4 +290,175 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_1102" xml:space="preserve">
     <value>Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0}).</value>
   </data>
+  <data name="Msg_2001" xml:space="preserve">
+    <value>Member does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2003" xml:space="preserve">
+    <value>Fail to insert member. Please try again.</value>
+  </data>
+  <data name="Msg_2002" xml:space="preserve">
+    <value>Legend Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2005" xml:space="preserve">
+    <value>Fail to insert member. Please try again.</value>
+  </data>
+  <data name="Msg_2004" xml:space="preserve">
+    <value>Fail to insert member. Please try again.</value>
+  </data>
+  <data name="Msg_2010" xml:space="preserve">
+    <value>Legend Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2011" xml:space="preserve">
+    <value>Cannot assign member to this agent.</value>
+  </data>
+  <data name="Msg_2012" xml:space="preserve">
+    <value>Currencies of Member and Legend Agent do not match.</value>
+  </data>
+  <data name="Msg_2013" xml:space="preserve">
+    <value>Cannot assign member to this agent.</value>
+  </data>
+  <data name="Msg_2018" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2019" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2023" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2022" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2021" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2020" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2029" xml:space="preserve">
+    <value>Faild to update Bet Setting of Sportsbook.</value>
+  </data>
+  <data name="Msg_2028" xml:space="preserve">
+    <value>Faild to update Max Per Match of Sportsbook.</value>
+  </data>
+  <data name="Msg_2032" xml:space="preserve">
+    <value>Faild to update Live Casino.</value>
+  </data>
+  <data name="Msg_2033" xml:space="preserve">
+    <value>Faild to update Max Per Match of Virtual Sports.</value>
+  </data>
+  <data name="Msg_2030" xml:space="preserve">
+    <value>Faild to update Max Per Match of Number Game.</value>
+  </data>
+  <data name="Msg_2031" xml:space="preserve">
+    <value>Faild to update Bet Setting of Number Game.</value>
+  </data>
+  <data name="Msg_2034" xml:space="preserve">
+    <value>Faild to update Bet Setting of Virtual Sports.</value>
+  </data>
+  <data name="Msg_2035" xml:space="preserve">
+    <value>Faild to update setting of Keno.</value>
+  </data>
+  <data name="Msg_2045" xml:space="preserve">
+    <value>Member username is empty.</value>
+  </data>
+  <data name="Msg_2047" xml:space="preserve">
+    <value>New Agent username is empty.</value>
+  </data>
+  <data name="Msg_2046" xml:space="preserve">
+    <value>Legend Agent username is empty.</value>
+  </data>
+  <data name="Msg_2049" xml:space="preserve">
+    <value>Currencies of Member and Legend Agent do not match.</value>
+  </data>
+  <data name="Msg_2048" xml:space="preserve">
+    <value>Member does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2054" xml:space="preserve">
+    <value>Member has been reassigned. Please check again.</value>
+  </data>
+  <data name="Msg_2055" xml:space="preserve">
+    <value>Old Agent and New Agent is the same. Please check again.</value>
+  </data>
+  <data name="Msg_2050" xml:space="preserve">
+    <value>Old Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2051" xml:space="preserve">
+    <value>New Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2052" xml:space="preserve">
+    <value>This member is not a downline of Old Agent.</value>
+  </data>
+  <data name="Msg_2053" xml:space="preserve">
+    <value>Member placed bet, cannot be reassigned.</value>
+  </data>
+  <data name="Msg_2063" xml:space="preserve">
+    <value>Failed to assign member. Please try again.</value>
+  </data>
+  <data name="Msg_2062" xml:space="preserve">
+    <value>Failed to assign member. Please try again.</value>
+  </data>
+  <data name="Msg_2061" xml:space="preserve">
+    <value>Failed to assign member. Please try again.</value>
+  </data>
+  <data name="Msg_2060" xml:space="preserve">
+    <value>New Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2069" xml:space="preserve">
+    <value>Agent username is empty.</value>
+  </data>
+  <data name="Msg_2068" xml:space="preserve">
+    <value>Member username is empty.</value>
+  </data>
+  <data name="Msg_2074" xml:space="preserve">
+    <value>Member has been reassigned. Please check again.</value>
+  </data>
+  <data name="Msg_2072" xml:space="preserve">
+    <value>Legend Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2073" xml:space="preserve">
+    <value>Member placed bet, cannot be reassigned.</value>
+  </data>
+  <data name="Msg_2070" xml:space="preserve">
+    <value>Member does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2071" xml:space="preserve">
+    <value>Currencies of Member and Legend Agent do not match.</value>
+  </data>
+  <data name="Msg_2078" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2079" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2081" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2080" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2083" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2082" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2085" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_2084" xml:space="preserve">
+    <value>Faild to switch user. Please try again.</value>
+  </data>
+  <data name="Msg_3" xml:space="preserve">
+    <value>Invalid level.</value>
+  </data>
+  <data name="Msg_2" xml:space="preserve">
+    <value>Invalid currency.</value>
+  </data>
+  <data name="Msg_1" xml:space="preserve">
+    <value>Agent username does not exist.</value>
+  </data>
+  <data name="Msg_4" xml:space="preserve">
+    <value>Invalid sitename.</value>
+  </data>
 </root>

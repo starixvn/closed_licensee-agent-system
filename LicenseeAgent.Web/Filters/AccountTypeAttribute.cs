@@ -23,27 +23,16 @@
         /// </value>
         public AccountType Role { get; private set; }
 
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var isAuthorized = AuthorizeRole();
-            if (!isAuthorized)
-            {
-                Unauthorized(filterContext);
-            }
-        }
-
         /// <summary>
-        /// Authorizes the permission. Only call this function if the httpContext.Request.IsAuthenticated
-        /// and session is valid.
+        /// Authorizes the role.
         /// </summary>
-        /// <returns>
-        /// Returns the state.
-        /// </returns>
-        private bool AuthorizeRole()
+        /// <param name="role">The role of User.</param>
+        /// <returns>True or False.</returns>
+        public static bool AuthorizeRole(AccountType role)
         {
             var currentSession = SessionManager.CurrentSession;
             var isAuthorized = false;
-            switch (Role)
+            switch (role)
             {
                 case AccountType.All:
                     isAuthorized = true;
@@ -82,6 +71,19 @@
             }
 
             return isAuthorized;
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!AuthorizeRole())
+            {
+                Unauthorized(filterContext);
+            }
+        }
+
+        private bool AuthorizeRole()
+        {
+            return AuthorizeRole(Role);
         }
     }
 }

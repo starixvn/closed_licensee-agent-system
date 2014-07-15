@@ -137,6 +137,22 @@
             }
         }
 
+        public bool MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+            return criteria.HasFirstDeposit;
+        }
+
+        public void MemberReArrangement(ReArrangementMemberCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+        }
+
+        public void SwitchUserFromNormalToLegend(SwitchUserFromNormalToLegendCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+        }
+
         /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>

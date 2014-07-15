@@ -104,9 +104,9 @@ var customerList = (function ($) {
             customerList.reRenderAfterPaged(0, core.pageSizes[2]);
         },
         updateActionMenus: function (target) {
-            if (!pageContext.IsAdmin ||
-                $(target).attr('data-status') === 0 ||
-                pageContext.IsLastLevel) {
+            if (!pageContext.IsAdmin
+                || $(target).attr('data-status') === 0
+                || pageContext.IsLastLevel) {
                 $('#menuAddDownline').hide();
             } else {
                 $('#menuAddDownline').show();
@@ -117,16 +117,22 @@ var customerList = (function ($) {
             } else {
                 $('#menuEditInfo').hide();
             }
+
+            if (!pageContext.IsOfferedVirtualSports) {
+                $('#menuVirtualSports').hide();
+            }
+
+            if (pageContext.LegendType === 1
+                && pageContext.AgentLevel === pageContext.NumberOfLevel) {
+                $('#menuAddDownline').hide();
+            }
+
             if (pageContext.IsLastLevel) {
                 editMemberId = parseInt($(target).data('memberid'), null);
                 editUsername = $(target).data('username');
             } else {
                 editAgentId = parseInt($(target).data('agentid'), null);
                 editAgentLevel = parseInt($(target).data('agentlevel'), null);
-            }
-
-            if (!pageContext.IsOfferedVirtualSports) {
-                $('#menuVirtualSports').hide();
             }
         },
         gridAfterBinding: function () {

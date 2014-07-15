@@ -10,6 +10,7 @@
     using LicenseeAgent.Report.Entities;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using ViewModels;
 
     /// <summary>
@@ -34,12 +35,7 @@
             model.AgentLevel = CurrentSession.AgentInfo.AgentLevel;
             model.FromDate = model.FromDate.GetHashCode() == 0 ? DateTime.Now.AddDays(-1) : model.FromDate;
             model.ToDate = model.ToDate.GetHashCode() == 0 ? DateTime.Now : model.ToDate;
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View(model);
         }
 
@@ -128,12 +124,7 @@
 
             model.Product = ProductsNoPlaytechCasino();
             model.HideUsername = false;
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View(model);
         }
 
@@ -155,12 +146,7 @@
 
             model.Product = ProductsNoPlaytechCasino();
             model.HideUsername = true;
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View("StatementDetail", model);
         }
 

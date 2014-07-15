@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
@@ -13,12 +14,14 @@
     using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.ViewModels;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// TransferController class.
     /// </summary>
+    [LegendType(LegendType.Credit)]
     public class TransferController : BaseController
     {
         private readonly ITransferService _transferService;
@@ -141,7 +144,7 @@
                                                 {
                                                     AgentId = model.AgentId
                                                 });
-            
+
             model.AgentName = agentTransfer.Username;
             SetModelAgentAmount(model, agentTransfer.YesterdayBalance);
 

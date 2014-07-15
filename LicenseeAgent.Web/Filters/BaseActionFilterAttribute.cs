@@ -19,6 +19,11 @@
             filterContext.ReturnAccessDenied();
         }
 
+        protected static void NotFound(ActionExecutingContext filterContext)
+        {
+            filterContext.ReturnNotFound();
+        }
+
         /// <summary>
         /// Read text from request input stream.
         /// Seek to begin of stream before reading.

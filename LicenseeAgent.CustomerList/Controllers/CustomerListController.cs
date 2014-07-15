@@ -6,7 +6,6 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerList.Criteria;
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerList.ViewModels;
@@ -66,14 +65,9 @@
                 hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.AgentName,
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
 
-            var isLastLevel = hasAgentModel ? ModelHelper.IsLastAgent(model.AgentLevel, model.NumberOfLevel) : CurrentSession.AgentInfo.IsLastLevel;
-
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-            ViewBag.PageContext = new PageContext(breadModel.AgentId, isLastLevel)
+            ViewBag.PageContext = new PageContext(CurrentSession, breadModel.AgentId, breadModel.AgentLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin,
                 IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
             };
 
@@ -106,11 +100,8 @@
             }
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
             {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin,
                 IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
             };
 

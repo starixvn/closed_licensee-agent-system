@@ -9,11 +9,12 @@
     using LicenseeAgent.AccountInformation.Tests.Fake;
     using LicenseeAgent.AccountInformation.ViewModels;
     using LicenseeAgent.AccountInformation.ViewResults;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Tests.Fakes;
     using LicenseeAgent.Tests.Helpers;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using NUnit.Framework;
 
     /// <summary>
@@ -270,10 +271,13 @@
             // Arrange
             var customer = new CustomerEntity { CustId = 1, UserName = "Member" };
             var agentId = 1;
-            var isLastLevel = true;
+            var agentLevel = 3;
 
             FakeSession.SetAdminLevel();
-            _controller.ViewBag.PageContext = new PageContext(agentId, isLastLevel) { IsMember = true };
+            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, agentId, agentLevel)
+            {
+                IsMember = true
+            };
 
             // Act
             var result = _controller.GetFullInformation(customer);
@@ -295,10 +299,13 @@
             // Arrange
             var customer = new CustomerEntity { CustId = 1, UserName = "Agent" };
             var agentId = 1;
-            var isLastLevel = true;
+            var agentLevel = 3;
 
             FakeSession.SetAdminLevel();
-            _controller.ViewBag.PageContext = new PageContext(agentId, isLastLevel) { IsMember = false };
+            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, agentId, agentLevel)
+            {
+                IsMember = false
+            };
 
             // Act
             var result = _controller.GetFullInformation(customer);

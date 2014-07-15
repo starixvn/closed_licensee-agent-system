@@ -130,6 +130,8 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\ErrorPageInfo.cs" />
+    <Compile Include="Entities\PageContext.cs" />
     <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />

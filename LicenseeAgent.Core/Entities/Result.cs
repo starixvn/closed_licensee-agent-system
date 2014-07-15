@@ -19,6 +19,7 @@
         public const int ApiError = -7;
         public const int NoChange = -8;
         public const int InvalidDbData = -9;
+        public const int NotFound = -10;
 
         public Result()
             : this(SuccessValue, string.Empty)

@@ -9,6 +9,7 @@
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Entities;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using ViewModels;
 
     /// <summary>
@@ -40,12 +41,7 @@
                                 ? model.BreadCrumb
                                 : model.AgentId + "," + model.AgentLevel + "," + model.Username;
             model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-            ViewBag.PageContext = new PageContext(model.AgentId, model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel)
-            {
-                IsDirectDownline = CurrentSession.IsDirectDownline(model.AgentLevel),
-                IsAdmin = CurrentSession.IsAdmin
-            };
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View(model);
         }
 

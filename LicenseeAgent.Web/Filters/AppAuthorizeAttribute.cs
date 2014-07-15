@@ -1,10 +1,13 @@
 ﻿namespace LicenseeAgent.Web.Filters
 {
     using System;
+    using System.Net;
     using System.Web.Mvc;
+    using System.Web.Security;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Criteria;
     using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
@@ -76,12 +79,36 @@
             }
         }
 
+        /// <summary>
+        /// Authorizes the session.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         private static void AuthorizeSession(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
             if (currentSession == null || !currentSession.IsValid)
             {
-                filterContext.ReturnUnauthorized();
+                var response = filterContext.HttpContext.Response;
+                if (response.IsRequestBeingRedirected)
+                {
+                    return;
+                }
+
+                response.Clear();
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
+                response.TrySkipIisCustomErrors = true;
+                if (filterContext.IsAjaxRequest())
+                {
+                    response.WriteJson(new Result(Result.AccessDenied, Las.UnauthorizedMsg));
+                    response.End();
+                }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    filterContext.HttpContext.Session.Abandon();
+                    filterContext.HttpContext.Response.Cookies.Clear();
+                    filterContext.Result = new RedirectResult(FormsAuthentication.LoginUrl);
+                }
             }
         }
 
@@ -115,7 +142,10 @@
         private void AuthorizeCurrencyPermission(AuthorizationContext filterContext)
         {
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession == null || currentSession.LoginAccountType == AccountType.Agent || currentSession.AgentInfo == null || !IsValidateAgent)
+            if (currentSession == null
+                || currentSession.LoginAccountType == AccountType.Agent
+                || currentSession.AgentInfo == null
+                || !IsValidateAgent)
             {
                 return;
             }

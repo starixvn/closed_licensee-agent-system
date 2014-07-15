@@ -1,5 +1,6 @@
 ﻿@using LicenseeAgent.AccountInformation.Entities
 @using LicenseeAgent.AccountInformation.ViewModels
+@using LicenseeAgent.Web.Entities
 @model SearchUserResultViewModel
 @{
     var balance = Model.Balance;
@@ -31,7 +32,7 @@
             <tr>
                 <td>@Las.GivenCredit
                 </td>
-                @if (pageContext.IsDirectDownline.HasValue && pageContext.IsDirectDownline.Value)
+                @if (pageContext.IsDirectDownline)
                 {
                     <td>
                         <a href="javascript:accountInformation.agentEditMemberCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a>
@@ -91,7 +92,7 @@
             <tr>
                 <td>@Las.GivenCredit
                 </td>
-                @if (pageContext.IsDirectDownline.HasValue && pageContext.IsDirectDownline.Value)
+                @if (pageContext.IsDirectDownline)
                 {
                     <td>
                         <a href="javascript:accountInformation.editAgentCredit(@customer.CustId, '@customer.UserName', @customer.Level, @balance.GivenCredit);">@RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))</a>

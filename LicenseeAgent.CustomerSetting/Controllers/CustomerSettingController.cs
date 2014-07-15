@@ -115,6 +115,7 @@
         /// <param name="model">The model.</param>
         /// <returns>Returns view to edit product settings.</returns>
         [HttpGet]
+        [LegendType(LegendType.Credit)]
         public ViewResult EditProductMember(EditProductMemberViewModel model)
         {
             var editProductItems = new List<EditProductItem>();
@@ -352,7 +353,8 @@
                     : (int)Role.Agent;
             }
 
-            if (!CheckForInsertingCustomerSetting(settingContext))
+            if (!CheckForInsertingCustomerSetting(settingContext)
+                || (settingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -377,7 +379,8 @@
                 return InvalidModelJsonResult();
             }
 
-            if (!CheckForInsertingCustomerSetting(model.SettingContext))
+            if (!CheckForInsertingCustomerSetting(model.SettingContext)
+                || (model.SettingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -457,7 +460,8 @@
                 return InvalidModelJsonResult();
             }
 
-            if (!CheckForEditingCustomerSetting(model.SettingContext))
+            if (!CheckForEditingCustomerSetting(model.SettingContext)
+                || (model.SettingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -499,7 +503,8 @@
                 return InvalidModelJsonResult();
             }
 
-            if (!CheckForEditingCustomerSetting(model.SettingContext))
+            if (!CheckForEditingCustomerSetting(model.SettingContext)
+                || (model.SettingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -585,6 +590,7 @@
         /// <returns>
         /// Returns view.
         /// </returns>
+        [LegendType(LegendType.Credit)]
         public ActionResult EditMember(EditMemberViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)
@@ -625,6 +631,7 @@
         /// <returns>
         /// Returns view.
         /// </returns>
+        [LegendType(LegendType.Credit)]
         public ActionResult EditVirtualSportsMember(EditMemberViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)

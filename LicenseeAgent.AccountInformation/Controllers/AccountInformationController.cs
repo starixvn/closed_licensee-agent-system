@@ -12,12 +12,12 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
 
     /// <summary>
@@ -280,11 +280,8 @@
             else
             {
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                ViewBag.PageContext = new PageContext(CurrentSession, customer.CustId, customer.Level)
                 {
-                    IsDirectDownline = true,
-                    IsLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel),
                     IsMember = customer.Level == Constants.MemberLevel,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
                 };
@@ -310,17 +307,9 @@
             else
             {
                 var isMember = customer.Level == Constants.MemberLevel;
-                var isLastLevel = ModelHelper.IsLastAgent(customer.Level, customer.NumberOfLevel)
-                                    || ModelHelper.IsLastAgent(CurrentSession.AgentInfo.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel);
-                var isDirectDownline = (isLastLevel && isMember)
-                                        || CurrentSession.IsDirectDownline(customer.CustId == CurrentSession.AgentInfo.AgentId ? customer.Level : customer.Level - 1);
-
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-                ViewBag.PageContext = new PageContext(customer.CustId, customer.Level, customer.NumberOfLevel)
+                ViewBag.PageContext = new PageContext(CurrentSession, customer.CustId, customer.Level)
                 {
-                    IsDirectDownline = isDirectDownline,
-                    IsLastLevel = isLastLevel,
                     IsMember = isMember,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
                 };

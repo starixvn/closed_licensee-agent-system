@@ -1,45 +1,45 @@
-namespace LicenseeAgent.Web.Filters
+﻿namespace LicenseeAgent.Web.Filters
 {
     using System;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Web;
 
     /// <summary>
-    /// Legend Type Attribute.
+    /// LegendTypeAttribute class.
     /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class LegendTypeAttribute : BaseActionFilterAttribute
     {
-        public LegendTypeAttribute(LegendType role)
+        public LegendTypeAttribute(LegendType legendType)
         {
-            Role = role;
+            LegendType = legendType;
         }
 
-        public LegendType Role { get; private set; }
+        public LegendType LegendType { get; private set; }
 
         /// <summary>
-        /// Authorize Role.
+        /// Authorizes the specified legend type.
         /// </summary>
-        /// <param name="role">Role of User.</param>
-        /// <returns>True or False.</returns>
-        public static bool AuthorizeRole(LegendType role)
+        /// <param name="legendType">Type of the legend.</param>
+        /// <returns>Returns boolean.</returns>
+        public static bool Authorize(LegendType legendType)
         {
-            bool isAuthorized = false;
-            ICurrentSession currentSession = SessionManager.CurrentSession;
-            if (currentSession.AgentInfo != null)
+            var currentSession = SessionManager.CurrentSession;
+            if (currentSession.AgentInfo == null)
             {
-                switch (role)
-                {
-                    case LegendType.Credit:
-                        isAuthorized = currentSession.AgentInfo.IsCredit;
-                        break;
-                    case LegendType.Deposit:
-                        isAuthorized = currentSession.AgentInfo.IsDeposit;
-                        break;
-                    default:
-                        throw new NotSupportedException("Please implement here");
-                }
+                return false;
+            }
+
+            var isAuthorized = false;
+            switch (legendType)
+            {
+                case LegendType.Credit:
+                    isAuthorized = currentSession.AgentInfo.LegendType == LegendType.Credit;
+                    break;
+
+                case LegendType.Deposit:
+                    isAuthorized = currentSession.AgentInfo.LegendType == LegendType.Deposit;
+                    break;
             }
 
             return isAuthorized;
@@ -47,15 +47,11 @@ namespace LicenseeAgent.Web.Filters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!AuthorizeRole())
+            var isAuthorized = Authorize(LegendType);
+            if (!isAuthorized)
             {
-                Unauthorized(filterContext);
+                NotFound(filterContext);
             }
-        }
-
-        private bool AuthorizeRole()
-        {
-            return AuthorizeRole(Role);
         }
     }
 }

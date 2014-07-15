@@ -36,7 +36,7 @@
     </providers>
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath="<#=site.LoggingMsmqPath#>" defaultCategory="<#=site.LoggingDefaultCategory#>" />
-  <LicenseeAgent.AppURLs ChangePassword="~/Account/ChangePassword" AccessDenied="~/AccessDenied" CurrencyPermissionDenied="~/CurrencyPermissionDenied" Error="~/Error" Unauthorized="~/Unauthorized" UnderMaintenance="~/UnderMaintenance" SignOut="~/Account/SignOut" />
+  <LicenseeAgent.AppURLs ChangePassword="~/Account/ChangePassword" AccessDenied="~/AccessDenied" CurrencyPermissionDenied="~/CurrencyPermissionDenied" Error="~/Error" NotFound="~/Error/404" Unauthorized="~/Unauthorized" UnderMaintenance="~/UnderMaintenance" SignOut="~/Account/SignOut" />
   <connectionStrings configSource="<#=site.ConnectionStringsConfigSource#>" />
   <appSettings file="<#=site.AppSettingsFile#>">
     <add key="webpages:Version" value="2.0.0.0" />

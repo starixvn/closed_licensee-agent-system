@@ -1,9 +1,10 @@
 ﻿@using LicenseeAgent.AccountInformation.ViewModels
 @using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.Web.Entities
 @model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    var isDirectDonwline = pageContext.IsDirectDownline.Value;
+    var isDirectDonwline = pageContext.IsDirectDownline;
 }
 <div class="controls-row">
     <div class="row-line">

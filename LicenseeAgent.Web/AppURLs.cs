@@ -47,6 +47,13 @@
             set { this["Error"] = value; }
         }
 
+        [ConfigurationProperty("NotFound", IsRequired = true)]
+        public string NotFound
+        {
+            get { return (string)this["NotFound"]; }
+            set { this["NotFound"] = value; }
+        }
+
         [ConfigurationProperty("Unauthorized", IsRequired = true)]
         public string Unauthorized
         {

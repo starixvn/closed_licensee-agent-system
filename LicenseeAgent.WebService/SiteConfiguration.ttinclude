@@ -1,0 +1,92 @@
+﻿<#@ import namespace="System" #>
+<#
+    var sites = new SiteInfo[]{
+        new SiteInfo
+        {
+            Environment = SiteEnvironment.Local
+        },
+        new SiteInfo
+        {
+            Environment = SiteEnvironment.Uat
+        },
+        new SiteInfo
+        {
+            Environment = SiteEnvironment.Prod
+        }
+    };
+#>
+
+<#+
+    enum SiteEnvironment
+    {
+        Local,
+        Uat,
+        Prod
+    }
+
+    class SiteInfo
+    {
+        public SiteEnvironment Environment { get; set; }
+        public string AppSettingsFile
+        {
+            get
+            {
+                return "Web.AppSettings.config";
+            }
+        }
+        public string ConnectionStringsConfigSource
+        { 
+            get
+            {
+                return "Web.ConnectionStrings.config";
+            }
+        }
+        public string SpNamesResourcePath
+        { 
+            get
+            {
+                return "~/App_Data/SpNames.xml";
+            }
+        }
+        public string LoggingMsmqPath
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
+
+                    case SiteEnvironment.Uat:
+                        return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
+
+                    case SiteEnvironment.Local:
+                        return @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        public string LoggingDefaultCategory
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.Prod:
+                        return "LAS-Live";
+
+                    case SiteEnvironment.Uat:
+                        return "LAS-UAT";
+
+                    case SiteEnvironment.Local:
+                        return "Licensee-Agency-Local";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+    }
+#>

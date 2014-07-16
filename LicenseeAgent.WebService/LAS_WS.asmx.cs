@@ -76,15 +76,15 @@
         /// Returns result of cash agent.
         /// </returns>
         [WebMethod]
-        public CheckAgentUsernameResult CheckAgentUsername(string siteName, string userName, string currency)
+        public CheckAgentUsernameResult CheckAgentUsername(string siteName, string userName, int currency)
         {
             try
             {
                 var criteria = new CheckAgentUsernameCriteria
                 {
                     SiteName = siteName,
-                    AgentUsername = userName,
-                    MemberCurrency = currency
+                    UserName = userName,
+                    Currency = currency
                 };
 
                 if (!criteria.IsValid())
@@ -102,7 +102,7 @@
                     var outputParams = objDb.GetOuputParams();
                     return new CheckAgentUsernameResult
                     {
-                        AgentId = Converter.ToInt(outputParams["agentid"]),
+                        LASAgentId = Converter.ToInt(outputParams["agentid"]),
                         ErrCode = Converter.ToInt(outputParams["errcode"]),
                         ErrMsg = Converter.ToString2(outputParams["errmsg"])
                     };

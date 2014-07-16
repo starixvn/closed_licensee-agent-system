@@ -119,10 +119,10 @@ var core = (function ($) {
 
                 if (trigger.length > 0) {
                     trigger.tooltip({
-                            position: { my: "right-10 center", at: "center center+5" },
-                            show: null,
-                            hide: null
-                        })
+                        position: { my: "right-10 center", at: "center center+5" },
+                        show: null,
+                        hide: null
+                    })
                         .click(function () {
                             popup.open({
                                 title: title,
@@ -243,7 +243,7 @@ var core = (function ($) {
             if (options.autoResizeColumn) {
                 var columns = options.columns;
                 var calResizeFunction = function (value) {
-                    return value.toString().length * 10;
+                    return value === null ? 0 : value.toString().length * 10;
                 };
                 for (var j = 0; j < columns.length; j++) {
                     var column = columns[j];

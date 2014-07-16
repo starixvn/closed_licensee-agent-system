@@ -1,0 +1,8 @@
+﻿
+
+
+// Generated helper templates
+// Generated items
+// D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Prod.config
+// D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Uat.config
+// D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Local.config

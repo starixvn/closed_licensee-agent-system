@@ -1,0 +1,65 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ Assembly Name="System.Data" #>
+<#@ Import Namespace="System.Data" #>
+<#@ Import Namespace="System.Data.SqlClient" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Security" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="SiteConfiguration.ttinclude" #>
+<#
+    var manager = TemplateFileManager.Create(this);
+    foreach(var site in sites)
+    {
+        var x = site.ToString();
+        var fileName = string.Format("Web.{0}.config", site.Environment);
+        manager.StartNewFile(fileName);
+#>
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="Fanex.Logging" type="Fanex.Logging.Configuration.LoggingSettings, Fanex.Logging" />
+    <section name="Fanex.Data.DbSettingProvider" type="Fanex.Data.Configuration.DbSettingProviderConfigurationSection, Fanex.Data" />
+  </configSections>
+  <Fanex.Data.DbSettingProvider default="XmlDbSettingProvider">
+    <providers>
+      <add name="XmlDbSettingProvider" type="Fanex.Data.Configuration.XmlDbSettingProvider, Fanex.Data" resourcePath="<#=site.SpNamesResourcePath#>" enableWatching="1" />
+    </providers>
+  </Fanex.Data.DbSettingProvider>
+  <Fanex.Logging msmqPath="<#=site.LoggingMsmqPath#>" defaultCategory="<#=site.LoggingDefaultCategory#>" />
+  <connectionStrings configSource="<#=site.ConnectionStringsConfigSource#>" />
+  <appSettings file="<#=site.AppSettingsFile#>" />
+  <system.web>
+    <compilation debug="false" targetFramework="4.0" />
+    <authentication mode="None" />
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID" />
+<#
+if(site.Environment != SiteEnvironment.Local)
+{
+#>
+    <sessionState mode="StateServer" timeout="20" stateConnectionString="tcpip=10.2.180.14:42424" cookieless="false"  />
+<#
+}
+#>
+    <webServices>
+      <protocols>
+        <add name="HttpSoap12" />
+        <add name="HttpSoap" />
+        <add name="HttpGet" />
+        <add name="HttpPost" />
+      </protocols>
+    </webServices>
+  </system.web>
+</configuration>
+<#
+    }
+    manager.Process();
+#>

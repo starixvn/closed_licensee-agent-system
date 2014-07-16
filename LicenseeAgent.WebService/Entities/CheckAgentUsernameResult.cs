@@ -5,6 +5,6 @@
     /// </summary>
     public class CheckAgentUsernameResult : Result
     {
-        public int AgentId { get; set; }
+        public int LASAgentId { get; set; }
     }
 }

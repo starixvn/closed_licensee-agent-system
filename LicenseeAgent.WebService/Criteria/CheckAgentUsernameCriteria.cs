@@ -9,9 +9,9 @@
     {
         public string SiteName { get; set; }
 
-        public string AgentUsername { get; set; }
+        public string UserName { get; set; }
 
-        public string MemberCurrency { get; set; }
+        public int Currency { get; set; }
 
         public int AgentId { get; set; }
 
@@ -26,8 +26,7 @@
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(AgentUsername)
-                && !string.IsNullOrEmpty(MemberCurrency)
+            return !string.IsNullOrEmpty(UserName)
                 && !string.IsNullOrEmpty(SiteName);
         }
     }

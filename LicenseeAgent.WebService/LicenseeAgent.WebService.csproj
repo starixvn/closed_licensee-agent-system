@@ -77,6 +77,11 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web.Config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -116,6 +121,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\legend-api.pubxml" />
+    <None Include="SiteConfiguration.ttinclude" />
+    <None Include="Web.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Config.txt</LastGenOutput>
+    </None>
+    <Content Include="Web.Local.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Uat.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Prod.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

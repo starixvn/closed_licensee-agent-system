@@ -4,41 +4,22 @@
 @{
     Layout = null;
 }
-@helper RenderInstruction(string text, string id, bool simpleMode)
-    {
-        if (simpleMode)
-        {
-    <div class="instruction" data-ng-show="settingMode">
-        @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
-        </span>
-    </div>
-        }
-        else
-        {
-    <div class="instruction" data-ng-hide="settingMode">
-        @text
-        <span class="icon-instruction-exclamation" title="@Las.ClickToViewInstructions" id="@id">
-        </span>
-    </div>
-        }
-}
 <div class="box-bottom" data-ng-controller="BetLimitController">
     <div data-ng-class="{'container-box': true, 'simple-mode': settingMode}">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button", true)
-            @RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button-adv", false)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button", true)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button-adv", false)
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button", true)
-            @RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button-adv", false)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button", true)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button-adv", false)
         }
         else
         {
-            @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button", true)
-            @RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv", false)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "member-bet-limit-info-button", true)
+            @RazorHelper.RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv", false)
         }
         <div id="betting-limit-current-scope" class="betting-limit">
             <div data-ng-show="settingContext.IsSimpleMode" class="simple-mode">

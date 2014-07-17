@@ -62,7 +62,7 @@
 
             var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
-                hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.AgentName,
+                hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.UserName,
                 hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);

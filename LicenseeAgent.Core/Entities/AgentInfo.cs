@@ -10,7 +10,20 @@
     [Serializable]
     public class AgentInfo
     {
-        public string UserName { get; set; }
+        private string _userName;
+
+        public string UserName
+        {
+            get
+            {
+                return IsLevel0 ? LicenseeName : _userName;
+            }
+
+            set
+            {
+                _userName = value;
+            }
+        }
 
         public string UserSalt { get; set; }
 
@@ -63,14 +76,6 @@
             get
             {
                 return ModelHelper.IsLastAgent(AgentLevel, NumberOfLevel);
-            }
-        }
-
-        public string AgentName
-        {
-            get
-            {
-                return IsLevel0 ? LicenseeName : UserName;
             }
         }
 

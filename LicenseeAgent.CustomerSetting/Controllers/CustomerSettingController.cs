@@ -464,8 +464,7 @@
                 return InvalidModelJsonResult();
             }
 
-            if (!CheckForEditingCustomerSetting(model.SettingContext)
-                || (model.SettingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
+            if (!CheckForEditingCustomerSetting(model.SettingContext))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -507,8 +506,7 @@
                 return InvalidModelJsonResult();
             }
 
-            if (!CheckForEditingCustomerSetting(model.SettingContext)
-                || (model.SettingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit)))
+            if (!CheckForEditingCustomerSetting(model.SettingContext))
             {
                 return RedirectToAccessDeniedJson();
             }
@@ -599,7 +597,6 @@
         /// <returns>
         /// Returns view.
         /// </returns>
-        [LegendType(LegendType.Credit)]
         public ActionResult EditMember(EditMemberViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)

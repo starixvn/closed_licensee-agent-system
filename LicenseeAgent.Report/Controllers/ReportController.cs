@@ -265,7 +265,7 @@
         /// <returns>Return a JSON object.</returns>
         public ActionResult Outstanding()
         {
-            ViewBag.LoggedInAgentName = CurrentSession.AgentInfo.AgentName;
+            ViewBag.LoggedInAgentName = CurrentSession.AgentInfo.UserName;
             ViewBag.LoggedInAgentId = CurrentSession.AgentInfo.AgentId;
             return View();
         }

@@ -2,10 +2,7 @@
     Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
 }
 <div class="instruction-content">
-    <p data-ng-if="!hasOfferedNumberGame">
-        Min Bet, Max Bet and Max Per Match for each product are defined here.
-    </p>
-    <p data-ng-if="hasOfferedNumberGame">
+    <p>
         Min Bet, Max Bet and Max Per Match for each product are defined here.
     </p>
 
@@ -13,7 +10,6 @@
         <li>Min Bet: the minimum stake allowed on a bet.</li>
         <li>Max Bet: the maximum stake allowed on a bet.</li>
         <li>Max Per Match: the maximum stake allowed on a match.</li>
-        <li data-ng-if="hasOfferedNumberGame">Max Per Ball: the maximum stake allowed on a ball.</li>
     </ul>
     <p>
         <span class="note">Note:</span> decimal numbers are not allowed. For instance, 100.25

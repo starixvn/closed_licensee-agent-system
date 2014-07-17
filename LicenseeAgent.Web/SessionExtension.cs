@@ -57,7 +57,7 @@
         /// <returns>Returns display name on home page.</returns>
         public static string DisplayName(this ICurrentSession currentSession)
         {
-            return currentSession.IsAdmin ? currentSession.LoginUserName : currentSession.AgentInfo.AgentName;
+            return currentSession.IsAdmin ? currentSession.LoginUserName : currentSession.AgentInfo.UserName;
         }
 
         public static bool IsDirectDownline(this ICurrentSession currentSession, int agentLevel)

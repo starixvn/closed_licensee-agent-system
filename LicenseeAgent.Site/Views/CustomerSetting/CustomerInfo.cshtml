@@ -98,25 +98,5 @@
                 <input id="fax" name="fax" type="text" maxlength="50" data-ng-model="custInfo.Fax" data-ng-pattern="/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/" hint-validator="@Las.PhoneNote" data-html="true" />
             </div>
         </div>
-        <div class="row-block">
-            <div class="block1">
-                <span>@Las.Status</span>
-            </div>
-            <div class="block2">
-                &nbsp;
-                <label class="radio inline">
-                    <input type="radio" name="AccountStatus" data-ng-model="custInfo.Status" value="@((int)AccountStatus.Open)" />
-                    @Las.Open
-                </label>
-                <label class="radio inline">
-                    <input type="radio" name="AccountStatus" data-ng-model="custInfo.Status" value="@((int)AccountStatus.Closed)" />
-                    @Las.Closed
-                </label>
-            </div>
-            <div class="block3 no-border">
-            </div>
-            <div class="block4 no-border">
-            </div>
-        </div>
     }
 </div>

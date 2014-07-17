@@ -42,7 +42,7 @@
                             @Las.Username
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.MemberName)
+                            @Html.TextBoxFor(m => m.MemberName, new { autocomplete = "off" })
                             <span id="iconValid">&nbsp;</span>
                         </td>
                     </tr>
@@ -51,7 +51,7 @@
                             @Las.LegendAgent
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.AgentName)
+                            @Html.TextBoxFor(m => m.AgentName, new { autocomplete = "off" })
                         </td>
                     </tr>
                     <tr class="assignMember">
@@ -59,7 +59,7 @@
                             @Las.OldAgent
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.OldAgentName)
+                            @Html.TextBoxFor(m => m.OldAgentName, new { autocomplete = "off" })
                         </td>
                     </tr>
                     <tr class="assignMember">
@@ -67,7 +67,7 @@
                             @Las.NewAgent
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.NewAgentName)
+                            @Html.TextBoxFor(m => m.NewAgentName, new { autocomplete = "off" })
                         </td>
                     </tr>
                 </tbody>

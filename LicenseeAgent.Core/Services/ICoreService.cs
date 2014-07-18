@@ -10,6 +10,8 @@
 
         IList<LicenseeDomain> LicenseeDomains { get; }
 
+        string GetLicenseeDomain(int licenseeId);
+
         int? GetLicenseeId(string licenseeName);
 
         int? GetLicenseeId(HttpRequestBase request);

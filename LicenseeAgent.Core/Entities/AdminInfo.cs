@@ -4,27 +4,31 @@
     using LicenseeAgent.Core.Enumerations;
 
     /// <summary>
-    /// CSD/IT sign-in information.
+    /// Information for CSD/IT and Licensee Admin.
     /// </summary>
     [Serializable]
     public class AdminInfo
     {
+        private AccountType _accountType;
+
         public int UserId { get; set; }
 
         public string UserName { get; set; }
-
-        public string UserRole { get; set; }
 
         public AccountType AccountType
         {
             get
             {
-                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
-                {
-                    return AccountType.CSDIT;
-                }
+                return _accountType;
+            }
 
-                return AccountType.Licensee;
+            set
+            {
+                _accountType = value;
+                if (_accountType != AccountType.CSDIT && _accountType != AccountType.Licensee)
+                {
+                    throw new InvalidOperationException("Invalid admin role.");
+                }
             }
         }
     }

@@ -22,8 +22,6 @@
 
         public string LoginUserName { get; set; }
 
-        public LoginType LoginType { get; set; }
-
         public int OnLoginUserId { get; set; }
 
         public string Language { get; set; }

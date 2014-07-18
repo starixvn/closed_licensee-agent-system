@@ -8,9 +8,11 @@
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.API.LRF;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -26,20 +28,23 @@
         private readonly IAccountService _accountService;
         private readonly ICurrencyService _currencyService;
         private readonly IInternalService _internalService;
+        private readonly ICoreService _coreService;
 
         public InternalController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         public InternalController(
             IAccountService accountService,
             ICurrencyService currencyService,
-            IInternalService internalService)
+            IInternalService internalService,
+            ICoreService coreService)
         {
             _accountService = accountService ?? new AccountService();
             _currencyService = currencyService ?? new CurrencyService();
             _internalService = internalService ?? new InternalService();
+            _coreService = coreService ?? new CoreService();
         }
 
         [HttpGet]
@@ -120,15 +125,45 @@
                 return Content(GetErrMsg(criteria.ErrCode));
             }
 
-            var licenseeInfo = new LicenseeInfo
+            var adminInfo = new AdminInfo
             {
-                LicenseeId = criteria.LicenseeId,
                 UserId = criteria.UserId,
                 UserName = criteria.UserName
             };
 
-            CheckIn(licenseeInfo, loginInfo.Language);
+            CheckIn(adminInfo, criteria.LicenseeId, loginInfo.Language);
             return Redirect(FormsAuthentication.DefaultUrl);
+        }
+
+        /// <summary>
+        /// Update user role.
+        /// </summary>
+        /// <param name="authKey">The authentication key.</param>
+        /// <returns>
+        /// JSON null when update user role.
+        /// </returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult LoginAsUser(string authKey)
+        {
+            if (string.IsNullOrEmpty(authKey))
+            {
+                return Content(Las.TicketNotFound);
+            }
+
+            var internalLoginInfo = _internalService.Decode(authKey);
+            if (internalLoginInfo == null || internalLoginInfo.IsExpired)
+            {
+                return Content(Las.TicketInvalidExpired);
+            }
+
+            if ((string.IsNullOrEmpty(internalLoginInfo.AgentName) && !AppSettings.IsAdminSite)
+                || (!string.IsNullOrEmpty(internalLoginInfo.AgentName) && AppSettings.IsAdminSite))
+            {
+                return Content("Ticket invalid");
+            }
+
+            return AdminLoginAsAgent(internalLoginInfo);
         }
 
         /// <summary>
@@ -162,7 +197,6 @@
                     LoginUserId = CurrentSession.LoginUserId,
                     LoginAccountType = CurrentSession.LoginAccountType,
                     LoginUserName = CurrentSession.LoginUserName,
-                    LoginType = CurrentSession.LoginType,
                     OnLoginUserId = CurrentSession.OnUserId,
                     Language = CurrentSession.Language,
                     LicenseeId = criteria.LicenseeId,
@@ -214,38 +248,18 @@
             }
 
             var authKey = _internalService.Encode(internalLoginInfo);
-            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
-            return Json(
-                new
-                {
-                    ErrCode = Result.SuccessValue,
-                    DirectUrl = directUrl
-                });
-        }
-
-        /// <summary>
-        /// Update user role.
-        /// </summary>
-        /// <param name="authKey">The authentication key.</param>
-        /// <returns>
-        /// JSON null when update user role.
-        /// </returns>
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult LoginAsUser(string authKey)
-        {
-            if (string.IsNullOrEmpty(authKey))
+            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsoluteUri, authKey);
+            if (!string.IsNullOrEmpty(internalLoginInfo.AgentName))
             {
-                return Content(Las.TicketNotFound);
+                var licenseDomainUrl = _coreService.GetLicenseeDomain(internalLoginInfo.LicenseeId);
+                directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~/", licenseDomainUrl), authKey);
             }
 
-            var internalLoginInfo = _internalService.Decode(authKey);
-            if (internalLoginInfo == null || internalLoginInfo.IsExpired)
+            return Json(new
             {
-                return Content(Las.TicketInvalidExpired);
-            }
-
-            return AdminLoginAsAgent(internalLoginInfo);
+                ErrCode = Result.SuccessValue,
+                DirectUrl = directUrl
+            });
         }
 
         /// <summary>
@@ -284,7 +298,7 @@
             }
 
             var model = new LicenseeViewModel();
-            if (CurrentSession.LoginType == LoginType.AdminSite)
+            if (CurrentSession.IsCSDIT)
             {
                 model.Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria
                 {
@@ -303,7 +317,7 @@
                     model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
                 }
             }
-            else if (CurrentSession.LoginType == LoginType.LRFSite)
+            else if (CurrentSession.IsLicensee)
             {
                 model.LicenseeId = CurrentSession.OnLicenseeId;
                 model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
@@ -389,7 +403,7 @@
         }
 
         /// <summary>
-        /// Save current user session.
+        /// CSD/IT check-in when direct sign-in.
         /// </summary>
         /// <param name="adminInfo">The admin information.</param>
         /// <param name="language">The language.</param>
@@ -409,24 +423,25 @@
         }
 
         /// <summary>
-        /// Checks the in.
+        /// CSD/IT or Licensee Admin check-in when internal log-in from LRF.
         /// </summary>
-        /// <param name="licenseeInfo">The licensee information.</param>
+        /// <param name="adminInfo">The admin information.</param>
+        /// <param name="licenseeId">The licensee identifier.</param>
         /// <param name="language">The language.</param>
-        private void CheckIn(LicenseeInfo licenseeInfo, string language)
+        private void CheckIn(AdminInfo adminInfo, int licenseeId, string language)
         {
             var criteria = new AdminCheckInCriteria
             {
-                AdminId = licenseeInfo.UserId,
+                AdminId = adminInfo.UserId,
                 IP = Request.GetClientIp(),
                 NetSessionId = Session.SessionID,
-                LicenseeId = licenseeInfo.LicenseeId
+                LicenseeId = licenseeId
             };
 
             _accountService.AdminCheckIn(criteria);
-            var currentSession = new CurrentSession(licenseeInfo, criteria.OnAdminId, language);
+            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, licenseeId, language);
             SessionManager.CurrentSession = currentSession;
-            FormsAuthentication.SetAuthCookie(licenseeInfo.UserName, true);
+            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
         }
     }
 }

@@ -115,12 +115,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Licensee.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enumerations\LoginType.cs" />
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Entities\LicenseeDomain.cs" />
-    <Compile Include="Entities\LicenseeInfo.cs" />
     <Compile Include="Entities\UnderMaintenanceInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Enumerations\AccountType.cs" />

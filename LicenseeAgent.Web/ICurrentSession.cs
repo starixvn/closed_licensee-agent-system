@@ -10,8 +10,6 @@
     {
         AdminInfo AdminInfo { get; }
 
-        LicenseeInfo LicenseeInfo { get; }
-
         AgentInfo AgentInfo { get; }
 
         int LoginUserId { get; }
@@ -20,7 +18,7 @@
 
         AccountType LoginAccountType { get; }
 
-        LoginType LoginType { get; }
+        bool IsInternal { get; }
 
         int OnUserId { get; }
 
@@ -28,13 +26,13 @@
 
         string Language { get; set; }
 
-        bool IsDirectSignIn { get; }
-
         bool IsValid { get; }
 
         bool IsAdmin { get; }
 
         bool IsCSDIT { get; }
+
+        bool IsLicensee { get; }
 
         void UpdateAgent(AgentInfo agentInfo);
     }

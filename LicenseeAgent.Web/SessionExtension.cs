@@ -21,13 +21,12 @@
 
         public static bool IsViewSelectLicensee(this ICurrentSession currentSession)
         {
-            return currentSession.IsAdmin && currentSession.LoginType == LoginType.AdminSite;
+            return currentSession.IsCSDIT;
         }
 
         public static bool IsViewAccountDropDownMenu(this ICurrentSession currentSession)
         {
-            return !(currentSession.LicenseeInfo != null
-                || (currentSession.LoginType == LoginType.LRFSite && currentSession.AgentInfo.IsLevel0));
+            return !currentSession.IsLicensee;
         }
 
         public static bool IsViewChangePassword(this ICurrentSession currentSession)

@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Web
 {
     using System;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Exceptions;
@@ -21,23 +22,36 @@
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, LoginType.AdminSite, checkinOnUserId, language)
+            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, language)
         {
+            if (adminInfo.AccountType != AccountType.CSDIT)
+            {
+                throw new InvalidOperationException(string.Format("Invalid account type."));
+            }
+
             AdminInfo = adminInfo;
+            IsInternal = false;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentSession"/> class.
-        /// Licensee direct login from LRF.
-        /// </summary>ger
-        /// <param name="licenseeInfo">The licensee information.</param>
+        /// Initializes a new instance of the <see cref="CurrentSession" /> class.
+        /// CSD/IT or Licensee Admin internal sign-in.
+        /// </summary>
+        /// <param name="adminInfo">The admin information.</param>
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
+        /// <param name="checkinOnLicenseeId">The check-in on licensee identifier.</param>
         /// <param name="language">The language.</param>
-        public CurrentSession(LicenseeInfo licenseeInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(licenseeInfo.UserId, licenseeInfo.UserName, AccountType.Licensee, LoginType.LRFSite, checkinOnUserId, language)
+        public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, int checkinOnLicenseeId, string language = LanguageManager.UsLanguageCode)
+            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, language)
         {
-            LicenseeInfo = licenseeInfo;
-            OnLicenseeId = licenseeInfo.LicenseeId;
+            if (adminInfo.AccountType != AccountType.CSDIT && adminInfo.AccountType != AccountType.Licensee)
+            {
+                throw new InvalidOperationException(string.Format("Invalid account type."));
+            }
+
+            AdminInfo = adminInfo;
+            IsInternal = true;
+            OnLicenseeId = checkinOnLicenseeId;
         }
 
         /// <summary>
@@ -48,16 +62,17 @@
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, LoginType.AgentSite, checkinOnUserId, language)
+            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
         {
             AgentInfo = agentInfo;
+            IsInternal = false;
             OnLicenseeId = agentInfo.LicenseeId;
             OnValidateAgent(agentInfo);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrentSession" /> class.
-        /// Agent indirect login.
+        /// Agent internal login.
         /// </summary>
         /// <param name="agentInfo">The agent information.</param>
         /// <param name="internalLoginInfo">The internal login information.</param>
@@ -66,11 +81,11 @@
             internalLoginInfo.LoginUserId,
             internalLoginInfo.LoginUserName,
             internalLoginInfo.LoginAccountType,
-            internalLoginInfo.LoginType,
             internalLoginInfo.OnLoginUserId,
             internalLoginInfo.Language)
         {
             AgentInfo = agentInfo;
+            IsInternal = true;
             OnLicenseeId = internalLoginInfo.LicenseeId;
             OnValidateAgent(agentInfo);
         }
@@ -79,18 +94,11 @@
             int loginUserId,
             string loginUserName,
             AccountType loginAccountType,
-            LoginType loginType,
             int checkinOnUserId,
             string language)
         {
-            if (loginAccountType != AccountType.CSDIT && loginAccountType != AccountType.Licensee && loginAccountType != AccountType.Agent)
-            {
-                throw new InvalidOperationException(string.Format("Invalid account type {0}", loginAccountType));
-            }
-
             LoginUserId = loginUserId;
             LoginUserName = loginUserName;
-            LoginType = loginType;
             LoginAccountType = loginAccountType;
             OnUserId = checkinOnUserId;
             Language = language;
@@ -103,14 +111,6 @@
         /// The admin information.
         /// </value>
         public AdminInfo AdminInfo { get; private set; }
-
-        /// <summary>
-        /// Gets the licensee account information after login.
-        /// </summary>
-        /// <value>
-        /// The licensee information.
-        /// </value>
-        public LicenseeInfo LicenseeInfo { get; private set; }
 
         /// <summary>
         /// Gets the agent account information after login or internal login.
@@ -138,28 +138,46 @@
         /// </value>
         public AccountType LoginAccountType { get; private set; }
 
-        public LoginType LoginType { get; private set; }
-
-        public bool IsDirectSignIn
-        {
-            get
-            {
-                if (AdminInfo != null || LicenseeInfo != null)
-                {
-                    return true;
-                }
-
-                return AgentInfo == null || AgentInfo.AgentId == LoginUserId ? true : false;
-            }
-        }
+        public bool IsInternal { get; private set; }
 
         public bool IsValid
         {
             get
             {
-                if (AgentInfo != null && AgentInfo.IsLevel0 && LoginType == LoginType.AgentSite)
+                if (AppSettings.IsAdminSite)
                 {
-                    return false;
+                    // Only CSD/IT to login, not accept internal.
+                    if (LoginAccountType != AccountType.CSDIT)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (AdminInfo != null)
+                    {
+                        return false;
+                    }
+
+                    if (AgentInfo == null)
+                    {
+                        if (LoginAccountType == AccountType.Agent)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (AgentInfo.IsLevel0 && (!IsInternal || LoginAccountType != AccountType.Licensee))
+                        {
+                            return false;
+                        }
+
+                        if (!IsInternal && LoginAccountType == AccountType.Licensee)
+                        {
+                            return false;
+                        }
+                    }
                 }
 
                 return true;
@@ -170,7 +188,7 @@
         {
             get
             {
-                return AdminInfo != null || LicenseeInfo != null || AgentInfo.IsLevel0;
+                return AdminInfo != null || AgentInfo.IsLevel0;
             }
         }
 
@@ -179,6 +197,14 @@
             get
             {
                 return IsAdmin && LoginAccountType == AccountType.CSDIT;
+            }
+        }
+
+        public bool IsLicensee
+        {
+            get
+            {
+                return IsAdmin && LoginAccountType == AccountType.Licensee;
             }
         }
 

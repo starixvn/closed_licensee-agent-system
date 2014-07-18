@@ -59,7 +59,6 @@
                                                     AgentName = "Agent",
                                                     CurrencyId = 20,
                                                     LicenseeId = 1,
-                                                    LoginType = LoginType.AdminSite,
                                                     LoginAccountType = AccountType.CSDIT,
                                                     LoginUserId = 10,
                                                     Language = "en-US"

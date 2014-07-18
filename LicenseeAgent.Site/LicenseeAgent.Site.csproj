@@ -607,6 +607,7 @@
     <Content Include="Views\Error\_ViewStart.cshtml" />
     <Content Include="Views\CustomerSetting\MemberArrangement.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingAdvNG.cshtml" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>

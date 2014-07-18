@@ -22,6 +22,8 @@
         {
             LoginUserId = currentSession.LoginUserId;
             CustId = currentSession.AgentInfo.AgentId;
+            UserName = currentSession.AgentInfo.UserName;
+            AgentLevel = currentSession.AgentInfo.AgentLevel;
             RoleId = currentSession.AgentInfo.IsLevel0 ? (int)Role.AgentLevel0 : (int)Role.Agent;
             TargetRoleId = currentSession.AgentInfo.IsLevel0
                 ? (int)Role.AgentLevel1

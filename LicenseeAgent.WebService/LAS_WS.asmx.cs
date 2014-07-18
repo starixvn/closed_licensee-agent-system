@@ -76,6 +76,7 @@
         /// Returns result of cash agent.
         /// </returns>
         [WebMethod]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Verified")]
         public CheckAgentUsernameResult CheckAgentUsername(string siteName, string userName, int currency)
         {
             try
@@ -91,7 +92,7 @@
                 {
                     return new CheckAgentUsernameResult
                     {
-                        ErrCode = FailureValue,
+                        ErrCode = 2,
                         ErrMsg = "Invalid criteria"
                     };
                 }
@@ -104,14 +105,18 @@
                     {
                         LASAgentId = Converter.ToInt(outputParams["agentid"]),
                         ErrCode = Converter.ToInt(outputParams["errcode"]),
-                        ErrMsg = Converter.ToString2(outputParams["errmsg"])
+                        ErrMsg = string.Empty
                     };
                 }
             }
             catch (Exception exception)
             {
                 LogService.Error(exception.Message);
-                throw;
+                return new CheckAgentUsernameResult
+                {
+                    ErrCode = 2,
+                    ErrMsg = exception.Message
+                };
             }
         }
     }

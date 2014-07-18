@@ -344,10 +344,8 @@
             };
 
             var agentInfo = agentId == null ? _coreService.GetAgentInfo(CurrentSession.AgentInfo.AgentId) : _coreService.GetAgentInfo(agentId.Value);
-            
             settingContext.AgentLevel = agentInfo.AgentLevel;
-            settingContext.UserName = agentInfo.UserName;
-
+            settingContext.UserName = agentInfo.UserName ?? CurrentSession.AgentInfo.LicenseeName;
             if (agentId != null)
             {
                 settingContext.CustId = agentId.Value;
@@ -538,7 +536,6 @@
         public ActionResult EditAgent(EditAgentViewModel model)
         {
             var agentInfo = _coreService.GetAgentInfo(model.AgentId);
-
             var settingContext = new SettingContext(CurrentSession)
             {
                 FormId = (CurrentSession.AgentInfo.IsLevel0 || agentInfo.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
@@ -546,8 +543,7 @@
                     : FormType.ViewIndirectAgent,
                 TargetCustId = model.AgentId,
                 TargetRoleId = ModelHelper.IsAgentLevel1(agentInfo.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
-                Ip = Request.GetClientIp(),
-                UserName = agentInfo.UserName
+                Ip = Request.GetClientIp()
             };
 
             if (!CheckForEditingCustomerSetting(settingContext))

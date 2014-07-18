@@ -197,16 +197,12 @@
             Assert.AreEqual(true, isValid);
             Assert.IsNotNull(SessionManager.CurrentSession);
             Assert.IsTrue(SessionManager.CurrentSession.IsValid);
-            Assert.IsTrue(SessionManager.CurrentSession.IsDirectSignIn);
-            Assert.IsNull(SessionManager.CurrentSession.LicenseeInfo);
             Assert.IsNull(SessionManager.CurrentSession.AdminInfo);
             Assert.IsNotNull(SessionManager.CurrentSession.AgentInfo);
             Assert.AreSame(agentInfo, SessionManager.CurrentSession.AgentInfo);
             Assert.IsFalse(SessionManager.CurrentSession.IsAdmin);
             Assert.IsFalse(SessionManager.CurrentSession.IsCSDIT);
-            Assert.IsTrue(SessionManager.CurrentSession.IsDirectSignIn);
             Assert.AreEqual(SessionManager.CurrentSession.LoginAccountType, AccountType.AgentLevelk);
-            Assert.AreEqual(SessionManager.CurrentSession.LoginType, LoginType.AgentSite);
             Assert.AreEqual(SessionManager.CurrentSession.LoginUserId, agentInfo.AgentId);
             Assert.AreEqual(SessionManager.CurrentSession.LoginUserName, agentInfo.UserName);
             Assert.AreEqual(SessionManager.CurrentSession.OnUserId, 1);

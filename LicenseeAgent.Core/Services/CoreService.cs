@@ -81,6 +81,12 @@
             }
         }
 
+        public string GetLicenseeDomain(int licenseeId)
+        {
+            var licenseeDomains = LicenseeDomains;
+            return licenseeDomains.Where(x => x.LicenseeId == licenseeId).Select(x => x.DomainName).FirstOrDefault();
+        }
+
         /// <summary>
         /// Gets licensee id by URL.
         /// </summary>

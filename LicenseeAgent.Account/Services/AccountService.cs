@@ -57,20 +57,19 @@
         /// <returns>Return admin information.</returns>
         public AdminInfo AuthenticateAdmin(AdminLoginCriteria criteria)
         {
-            var result = new AdminInfo();
             criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
             Execute(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
             {
-                result = new AdminInfo
+                return new AdminInfo
                 {
                     UserId = criteria.UserId,
                     UserName = criteria.UserName,
-                    UserRole = criteria.UserRole
+                    AccountType = AccountType.CSDIT
                 };
             }
 
-            return result;
+            return null;
         }
 
         public string GetAgentSalt(AgentSaltSelCriteria criteria)

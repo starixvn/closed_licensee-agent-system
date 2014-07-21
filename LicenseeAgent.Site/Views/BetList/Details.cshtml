@@ -9,9 +9,12 @@
             <th style="width: 120px">
                 @Las.PositionTaking
             </th>
-            <th style="width: 120px">
-                @Las.Commission
-            </th>
+            @if (!Model.IsDeposit)
+            {
+                <th style="width: 120px">
+                    @Las.Commission
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -23,11 +26,14 @@
                 </td>
                 <td>@Html.Raw(detail.PositionTaking)
                 </td>
-                <td>@Html.Raw(detail.Commission)
-                </td>
+                @if (!Model.IsDeposit)
+                {
+                    <td>@Html.Raw(detail.Commission)
+                    </td>
+                }
             </tr>
-            
-            rowIndex++;
+
+                rowIndex++;
         }
     </tbody>
 </table>

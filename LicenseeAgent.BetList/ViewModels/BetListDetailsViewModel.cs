@@ -14,5 +14,7 @@
         }
 
         public Collection<BetListDetails> BetListDetails { get; set; }
+
+        public bool IsDeposit { get; set; }
     }
 }

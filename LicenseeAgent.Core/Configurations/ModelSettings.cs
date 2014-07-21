@@ -40,7 +40,7 @@
             {
                 return new List<SelectListItem>
                 {
-                    new SelectListItem { Text = Las.All, Value = "255" },
+                    new SelectListItem { Text = Las.All, Value = string.Empty },
                     new SelectListItem { Text = Las.Waiting, Value = "1" },
                     new SelectListItem { Text = Las.Running, Value = "0" },
                     new SelectListItem { Text = Las.Won, Value = "112" },

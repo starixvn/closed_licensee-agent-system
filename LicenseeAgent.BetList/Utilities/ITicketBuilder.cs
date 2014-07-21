@@ -1,6 +1,6 @@
 ﻿namespace LicenseeAgent.BetList.Utilities
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using LicenseeAgent.BetList.Entities;
 
     /// <summary>
@@ -8,9 +8,7 @@
     /// </summary>
     public interface ITicketBuilder
     {
-        Collection<TicketText> BuildTickets();
-
-        void Initialize();
+        IList<TicketText> BuildTickets();
 
         string BuildStatus(LasTicket ticket);
 

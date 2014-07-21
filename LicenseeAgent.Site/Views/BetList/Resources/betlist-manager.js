@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl, custId, _today, _minDate, report*/
+﻿/*global core, language, showMixParlayDetailurl, pageContext, report*/
 
 var gridOptions = {
     columns: [
@@ -14,6 +14,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 200,
     bodyRowHeight: 29
 };
@@ -22,7 +23,6 @@ var betList = (function ($) {
     'use strict';
     return {
         init: function () {
-
             $('.selectpicker').selectpicker();
 
             betList.renderDatePicker();
@@ -33,6 +33,15 @@ var betList = (function ($) {
                 betList.reRenderAfterPaged(0, core.pageSizes[0]);
                 e.preventDefault();
             });
+
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(8);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(9);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
 
             // get bet list
             betList.reRenderAfterPaged(0, core.pageSizes[0]);
@@ -50,7 +59,7 @@ var betList = (function ($) {
             var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
 
             var params = {
-                CustId: custId,
+                CustId: pageContext.CustId,
                 FromDate: fromDate,
                 ToDate: toDate,
                 StatusIDs: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255',
@@ -65,7 +74,7 @@ var betList = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [9]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
                 },
                 complete: function () {
                     core.unblockUI();
@@ -77,8 +86,8 @@ var betList = (function ($) {
             $('#month-picker-control').monPickr({
                 plugInId: '#month-picker-control',
                 today: core.ServerDate,
-                maxDate: _today + (lastdate.getFullYear() + 1),
-                minDate: _minDate,
+                maxDate: new Date(pageContext.MaxDate),
+                minDate: new Date(pageContext.MinDate),
                 showDateRange: true,
                 fromDayId: 'spFrom',
                 toDayId: 'spTo',

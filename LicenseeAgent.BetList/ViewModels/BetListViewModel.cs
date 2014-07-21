@@ -1,6 +1,6 @@
 ﻿namespace LicenseeAgent.BetList.ViewModels
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using Entities;
 
     /// <summary>
@@ -8,7 +8,7 @@
     /// </summary>
     public class BetListViewModel
     {
-        public Collection<TicketText> TicketTextList { get; set; }
+        public IList<TicketText> TicketTextList { get; set; }
 
         public TicketResult TicketResult { get; set; }
 

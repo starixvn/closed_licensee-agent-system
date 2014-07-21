@@ -1,4 +1,4 @@
-﻿/*global core, language*/
+﻿/*global core, language, pageContext*/
 
 var gridOptions = {
     columns: [
@@ -15,6 +15,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 60,
     bodyRowHeight: 29,
     autoResizeColumn: true
@@ -26,6 +27,16 @@ var SoccerBetList = (function ($) {
         sportType: 1, //Soccer sporttype
         init: function () {
             core.blockUI();
+
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(9);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(10);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
+
             SoccerBetList.showBetList();
         },
 
@@ -52,7 +63,7 @@ var SoccerBetList = (function ($) {
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
                 },
                 complete: function () {
                     core.unblockUI();

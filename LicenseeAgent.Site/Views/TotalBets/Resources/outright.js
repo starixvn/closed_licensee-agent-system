@@ -1,4 +1,4 @@
-﻿/*global refreshCountDownMethods, reportGridOptions, core, language*/
+﻿/*global refreshCountDownMethods, reportGridOptions, core, language, pageContext*/
 
 var gridOptions = {
     columns: [
@@ -15,6 +15,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 60,
     bodyRowHeight: 29,
     autoResizeColumn: true
@@ -27,6 +28,15 @@ var Outright = (function ($) {
         checkedAllLeague: true,
         checkedAllEvent: true,
         init: function () {
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(9);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(10);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
+
             Outright.initData();
 
             $("#refresh-count-down").refreshCountDown({
@@ -210,7 +220,7 @@ var Outright = (function ($) {
                 showFooter: true,
                 footerButtonText: 'OK',
                 onLeave: function () {
-                    //Outright.selectedEvent(); 
+                    //Outright.selectedEvent();
                 },
                 onFooterButtonClick: function () {
                     //Outright.selectedEvent();
@@ -268,7 +278,6 @@ var Outright = (function ($) {
                 var leagues = sport.LeagueList;
                 var numLeagues = leagues.length;
                 for (var i = 0; i < numLeagues; i++) {//League
-
                     var league = leagues[i];
                     //Push League row
                     bodyRows.push({
@@ -298,7 +307,6 @@ var Outright = (function ($) {
                         bodyRows.push({
                             Columns: teamRow
                         });
-
                     }
                 }
             }
@@ -327,7 +335,7 @@ var Outright = (function ($) {
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
                 },
                 complete: function () {
                     core.unblockUI();

@@ -8,6 +8,7 @@
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
+    using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// Account controllers.
@@ -17,6 +18,7 @@
         [HttpGet]
         public ActionResult OtherSports()
         {
+            ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View();
         }
 

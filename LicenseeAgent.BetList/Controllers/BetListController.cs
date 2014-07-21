@@ -5,7 +5,10 @@
     using Fanex.Result.Core;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.BetList.ViewResults;
     using LicenseeAgent.Core.Services;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
@@ -42,42 +45,52 @@
         [HttpGet]
         public ActionResult BetListSelByMember(int custId)
         {
-            ViewBag.CustId = custId;
-            ViewBag.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            return View();
+            var productList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            ViewBag.PageContext = new PageContext(CurrentSession, custId);
+            var viewResult = new BetListSelectByMemberViewResult
+            {
+                CustId = custId,
+                ProductList = productList,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+            return View(viewResult);
         }
 
         /// <summary>
         /// Index page of Bet List.
         /// </summary>
-        /// <param name="criteria">Bet List By Member Criteria.</param>
-        /// <returns>JSON object.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JSON object.
+        /// </returns>
         [HttpPost]
-        public JsonResult BetListSelByMember(BetListSelByMemberCriteria criteria)
+        public JsonResult BetListSelByMember(BetListSelectByMemberViewModel model)
         {
             var balanceUp = _coreService.BalanceUpDay;
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            criteria.MoveBetsDay = balanceUp.MoveBetsDay;
-            criteria.BalanceUpDay = balanceUp.BalanceUpDay;
-            criteria.StatusIds = criteria.StatusIds == "255" ? null : criteria.StatusIds; // All
-
+            var criteria = new BetListSelByMemberCriteria
+            {
+                CustId = model.CustId,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                StatusIds = model.StatusIds,
+                ProductIds = model.ProductIds,
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                MoveBetsDay = balanceUp.MoveBetsDay,
+                BalanceUpDay = balanceUp.BalanceUpDay
+            };
             var ticketResults = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResults,
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewCommission = CurrentSession.IsViewCommission()
             };
+
             var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
-
-            var model = new BetListViewModel
-            {
-                TicketTextList = betListTicketBuilder.BuildTickets(),
-                TicketResult = ticketResults
-            };
-
+            var ticketTextList = betListTicketBuilder.BuildTickets();
             return Json(new
             {
-                List = model.TicketTextList,
+                List = ticketTextList,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = criteria.TotalRows
             });
@@ -91,6 +104,7 @@
         [HttpGet]
         public ActionResult BetListWinLossReport(BetListWinLossViewModel model)
         {
+            ViewBag.PageContext = new PageContext(CurrentSession, model.CustId);
             return View(model);
         }
 
@@ -131,7 +145,6 @@
 
             var agentId = CurrentSession.AgentInfo.AgentId;
             var balanceUp = _coreService.BalanceUpDay;
-
             var criteria = new SystemParlayResultCriteria
             {
                 AgentId = agentId,
@@ -163,7 +176,8 @@
             var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
             var viewModel = new BetListDetailsViewModel
             {
-                BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status)
+                BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status),
+                IsDeposit = CurrentSession.AgentInfo.IsDeposit
             };
 
             return View(viewModel);

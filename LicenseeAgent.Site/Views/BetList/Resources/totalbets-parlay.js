@@ -1,4 +1,4 @@
-﻿/*global core, language, fanex:true*/
+﻿/*global core, language, fanex:true, pageContext*/
 var gridOptions = {
     columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
@@ -14,6 +14,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 100,
     bodyRowHeight: 29,
     autoResizeColumn: true
@@ -25,6 +26,15 @@ fanex.totalBets.parlay = {
     init: function () {
         'use strict';
         $('.selectpicker').selectpicker();
+
+        var hiddenColumns = [];
+        if (pageContext.LegendType === 1) {
+            hiddenColumns.push(9);
+        }
+        if (pageContext.IsLastLevel) {
+            hiddenColumns.push(10);
+        }
+        gridOptions.hiddenColumns = hiddenColumns;
 
         // search
         $('#search-form').submit(function (e) {
@@ -62,7 +72,7 @@ fanex.totalBets.parlay = {
                 core.blockUI();
             },
             success: function (data) {
-                fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
+                fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
             },
             complete: function () {
                 core.unblockUI();

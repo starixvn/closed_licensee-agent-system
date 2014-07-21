@@ -59,10 +59,15 @@
             return currentSession.IsAdmin ? currentSession.LoginUserName : currentSession.AgentInfo.UserName;
         }
 
-        public static bool IsDirectDownline(this ICurrentSession currentSession, int agentLevel)
+        public static bool IsDirectDownLine(this ICurrentSession currentSession, int agentLevel)
         {
             return currentSession.AgentInfo.IsLevel0
                 || agentLevel == currentSession.AgentInfo.AgentLevel;
+        }
+
+        public static bool IsViewCommission(this ICurrentSession currentSession)
+        {
+            return !(!currentSession.IsAdmin && currentSession.AgentInfo.IsDeposit);
         }
 
         public static bool IsShowMaintenance(this ICurrentSession currentSession)

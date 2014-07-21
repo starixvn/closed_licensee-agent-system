@@ -8,6 +8,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
 
     /// <summary>
@@ -40,7 +41,11 @@
         public string BuildSystemParlayDetail(SystemParlayData systemParlayData)
         {
             var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper() { ShowSystemParlayPlayerComm = true };
+            var ticketHelper = new TicketHelper()
+            {
+                ShowSystemParlayPlayerComm = CurrentSession.IsViewCommission()
+            };
+
             var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
             return systemParlayText;
         }

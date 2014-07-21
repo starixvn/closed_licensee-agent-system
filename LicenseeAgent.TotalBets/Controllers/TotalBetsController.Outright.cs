@@ -9,6 +9,8 @@
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.ViewModels;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// Account controllers.
@@ -18,8 +20,8 @@
         [HttpGet]
         public ViewResult Outright()
         {
+            ViewBag.PageContext = new PageContext(CurrentSession, 0);
             var model = new OutrightViewModel { TimeInterval = 15 };
-
             return View(model);
         }
 
@@ -129,14 +131,16 @@
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = tickets,
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewCommission = CurrentSession.IsViewCommission()
             };
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
 
+            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = betListTicketBuilder.BuildTickets(),
+                List = ticketTextList,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = criteria.TotalRows
             });

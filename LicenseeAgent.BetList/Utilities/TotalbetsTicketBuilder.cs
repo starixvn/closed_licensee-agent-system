@@ -5,17 +5,12 @@
     /// <summary>
     /// Build ticket.
     /// </summary>
-    public class TotalbetsTicketBuilder : TicketBuilder
+    public class TotalBetsTicketBuilder : TicketBuilder
     {
-        public TotalbetsTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
+        public TotalBetsTicketBuilder(TicketBuilderParameters ticketBuilderParameters)
             : base(ticketBuilderParameters)
         {
-        }
-
-        public override void Initialize()
-        {
             ShowOdds = false;
-            StartIndex = 1;
             IsShowMember = true;
             FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
             ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}',{2},{3})\"";
@@ -23,7 +18,7 @@
 
         public override string BuildStatus(LasTicket ticket)
         {
-            return Builder.BuildTotalBetsParlayStatus(ticket, TicketHelper, TicketResult.TicketDataList);
+            return BetListBuilder.BuildTotalBetsParlayStatus(ticket, TicketHelper, TicketResult.TicketDataList);
         }
 
         public override long BuildCustId(LasTicket ticket)

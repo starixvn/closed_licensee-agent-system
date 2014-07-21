@@ -87,8 +87,8 @@
         {
             // Arrange
             ////var viewModel = new TransferSearchViewModel();
-            var transferService = FakeServices.GetTransferService();
-            var memberService = FakeServices.GetMemberService();
+            var transferService = FakeServices.TransferService;
+            var memberService = FakeServices.MemberService;
             var list = transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria());
 
             // Act
@@ -111,9 +111,9 @@
         /// <returns> Transfer controller.</returns>
         private TransferController CreateTransferController()
         {
-            var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownLinePermissionService();
-            var transferService = FakeServices.GetTransferService();
+            var memberService = FakeServices.MemberService;
+            var downlineService = FakeServices.DownLinePermissionService;
+            var transferService = FakeServices.TransferService;
 
             return new TransferController(transferService, memberService, downlineService);
         }

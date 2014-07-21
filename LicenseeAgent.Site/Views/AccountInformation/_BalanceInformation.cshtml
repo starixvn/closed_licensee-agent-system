@@ -32,7 +32,7 @@
             <tr>
                 <td>@Las.GivenCredit
                 </td>
-                @if (pageContext.IsDirectDownline)
+                @if (pageContext.IsDirectDownLine)
                 {
                     <td>
                         <a href="javascript:accountInformation.agentEditMemberCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a>
@@ -92,7 +92,7 @@
             <tr>
                 <td>@Las.GivenCredit
                 </td>
-                @if (pageContext.IsDirectDownline)
+                @if (pageContext.IsDirectDownLine)
                 {
                     <td>
                         <a href="javascript:accountInformation.editAgentCredit(@customer.CustId, '@customer.UserName', @customer.Level, @balance.GivenCredit);">@RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))</a>

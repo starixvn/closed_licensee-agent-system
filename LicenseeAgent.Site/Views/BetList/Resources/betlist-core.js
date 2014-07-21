@@ -28,7 +28,7 @@ function showCombMP(transId, index) {
 var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
 fanex.betlist.core = {
-    reRenderAfterPagedSuccessfully: function (gridOptions, data, hidedColumn) {
+    reRenderAfterPagedSuccessfully: function (gridOptions, data) {
         'use strict';
         gridOptions.pagerOption = {
             itemsPerPage: core.pageSizes[0],
@@ -38,10 +38,6 @@ fanex.betlist.core = {
         };
         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
         $('#BetListGrid').show().fanexGrid(gridOptions);
-
-        if (data.IsLastLevel === true) {
-            $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
-        }
     },
     getIpInformation: function (ipAddress) {
         'use strict';

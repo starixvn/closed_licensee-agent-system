@@ -22,7 +22,7 @@ var customerList = (function ($) {
                     id: 'menuSportsbook',
                     icon: (pageContext.IsAdmin ||
                         pageContext.IsLastLevel ||
-                        pageContext.IsDirectDownline ?
+                        pageContext.IsDirectDownLine ?
                         'icon-customer-canedit'
                         : 'icon-customer-canview'),
                     text: language.getString('Sportsbook'),
@@ -33,7 +33,7 @@ var customerList = (function ($) {
                     id: 'menuVirtualSports',
                     icon: (pageContext.IsAdmin ||
                         pageContext.IsLastLevel ||
-                        pageContext.IsDirectDownline ?
+                        pageContext.IsDirectDownLine ?
                         'icon-customer-canedit'
                         : 'icon-customer-canview'),
                     text: language.getString('VirtualSports'),
@@ -112,7 +112,7 @@ var customerList = (function ($) {
                 $('#menuAddDownline').show();
             }
 
-            if (pageContext.IsAdmin || pageContext.IsDirectDownline) {
+            if (pageContext.IsAdmin || pageContext.IsDirectDownLine) {
                 $('#menuEditInfo').show();
             } else {
                 $('#menuEditInfo').hide();
@@ -136,7 +136,7 @@ var customerList = (function ($) {
             }
         },
         gridAfterBinding: function () {
-            if (!pageContext.IsDirectDownline) {
+            if (!pageContext.IsDirectDownLine) {
                 $(".cust-status").addClass('cust-status-none');
             }
         },
@@ -209,7 +209,7 @@ var customerList = (function ($) {
             });
         },
         changeStatus: function (target, custId) {
-            if (!pageContext.IsDirectDownline) {
+            if (!pageContext.IsDirectDownLine) {
                 return;
             }
             var currentStatus, newStatus;
@@ -447,7 +447,7 @@ var customerList = (function ($) {
                     callback: customerList.addDownline
                 });
             }
-            if (pageContext.IsDirectDownline) {
+            if (pageContext.IsDirectDownLine) {
                 for (index = 0; index < items.length; index++) {
                     editItems[index] = {
                         name: "<span class='action-content'>" +

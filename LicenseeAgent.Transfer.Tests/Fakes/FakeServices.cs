@@ -1,7 +1,6 @@
 ﻿namespace LicenseeAgent.Transfer.Tests.Fakes
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
@@ -18,16 +17,19 @@
     public static class FakeServices
     {
         /// <summary>
-        /// Get transfer service.
+        /// Gets transfer service.
         /// </summary>
-        /// <returns>Transfer service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static ITransferService GetTransferService()
+        /// <value>
+        /// Returns transfer service.
+        /// </value>
+        public static ITransferService TransferService
         {
-            var transferService = Substitute.For<ITransferService>();
+            get
+            {
+                var transferService = Substitute.For<ITransferService>();
 
-            transferService.GetAgentBalanceInfo(Arg.Any<GetAgentBalanceInfoCriteria>()).Returns(
-                new List<AgentBalanceInfo>
+                transferService.GetAgentBalanceInfo(Arg.Any<GetAgentBalanceInfoCriteria>()).Returns(
+                    new List<AgentBalanceInfo>
                 {
                     new AgentBalanceInfo
                     {
@@ -36,8 +38,8 @@
                     }
                 });
 
-            transferService.GetMemberBalanceInfo(Arg.Any<GetMemberBalanceInfoCriteria>()).Returns(
-                new List<MemberBalanceInfo>
+                transferService.GetMemberBalanceInfo(Arg.Any<GetMemberBalanceInfoCriteria>()).Returns(
+                    new List<MemberBalanceInfo>
                 {
                     new MemberBalanceInfo
                     {
@@ -46,48 +48,59 @@
                     }
                 });
 
-            return transferService;
+                return transferService;
+            }
         }
 
         /// <summary>
-        /// Get core service.
+        /// Gets core service.
         /// </summary>
-        /// <returns>Core service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static ICoreService GetCoreService()
+        /// <value>
+        /// Returns core service.
+        /// </value>
+        public static ICoreService CoreService
         {
-            var coreService = Substitute.For<ICoreService>();
-
-            coreService.HasProductOffered(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
-
-            return coreService;
+            get
+            {
+                var coreService = Substitute.For<ICoreService>();
+                coreService.HasProductOffered(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
+                return coreService;
+            }
         }
 
         /// <summary>
-        /// Get down line permission service.
+        /// Gets down line permission service.
         /// </summary>
-        /// <returns>Down line permission service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static IDownLinePermissionService GetDownLinePermissionService()
+        /// <value>
+        /// Returns Down line permission service.
+        /// </value>
+        public static IDownLinePermissionService DownLinePermissionService
         {
-            return Substitute.For<IDownLinePermissionService>();
+            get
+            {
+                return Substitute.For<IDownLinePermissionService>();
+            }
         }
 
         /// <summary>
-        /// Get member service.
+        /// Gets member service.
         /// </summary>
-        /// <returns>Member service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static IMemberService GetMemberService()
+        /// <value>
+        /// Returns member service.
+        /// </value>
+        public static IMemberService MemberService
         {
-            var memberService = Substitute.For<IMemberService>();
-            memberService.GetMemberInformations<MemberBalanceInfo>(Arg.Any<List<MemberBalanceInfo>>(), Arg.Any<GetMemberInfoListAction>())
-                .Returns(arg =>
-                    {
-                        return new ResponseResult(1, "Fail.");
-                    });
+            get
+            {
+                var memberService = Substitute.For<IMemberService>();
+                memberService.GetMemberInformations<MemberBalanceInfo>(Arg.Any<List<MemberBalanceInfo>>(), Arg.Any<GetMemberInfoListAction>())
+                    .Returns(arg =>
+                        {
+                            return new ResponseResult(1, "Fail.");
+                        });
 
-            return memberService;
+                return memberService;
+            }
         }
     }
 }

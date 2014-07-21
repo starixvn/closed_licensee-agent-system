@@ -1,6 +1,5 @@
 ﻿namespace LicenseeAgent.Web.Tests.Fakes
 {
-    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using NSubstitute;
@@ -11,17 +10,19 @@
     public static class FakeServices
     {
         /// <summary>
-        /// Get member service.
+        /// Gets member service.
         /// </summary>
-        /// <returns>Member service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static IUnderMaintenanceService GetUnderMaintenanceService()
+        /// <value>
+        /// Returns under maintenance service.
+        /// </value>
+        public static IUnderMaintenanceService UnderMaintenanceService
         {
-            var maintenanceService = Substitute.For<IUnderMaintenanceService>();
-
-            maintenanceService.UnderMaintenanceInfo.Returns(new UnderMaintenanceInfo());
-
-            return maintenanceService;
+            get
+            {
+                var maintenanceService = Substitute.For<IUnderMaintenanceService>();
+                maintenanceService.UnderMaintenanceInfo.Returns(new UnderMaintenanceInfo());
+                return maintenanceService;
+            }
         }
     }
 }

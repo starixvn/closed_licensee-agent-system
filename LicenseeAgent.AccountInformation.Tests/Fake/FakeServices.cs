@@ -19,20 +19,23 @@
     public static class FakeServices
     {
         /// <summary>
-        /// Get search user service.
+        /// Gets search user service.
         /// </summary>
-        /// <returns>Search user service.</returns>
+        /// <value>
+        /// Returns search user service.
+        /// </value>
         [SuppressMessage(
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static ISearchUserService GetSearchUserService()
+        public static ISearchUserService SearchUserService
         {
-            var searchUserService = Substitute.For<ISearchUserService>();
+            get
+            {
+                var searchUserService = Substitute.For<ISearchUserService>();
 
-            searchUserService.SuggestAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
-                new List<SuggestionEntity>
+                searchUserService.SuggestAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
+                    new List<SuggestionEntity>
                 {
                     new SuggestionEntity
                     {
@@ -41,8 +44,8 @@
                     }
                 });
 
-            searchUserService.SuggestAgent(Arg.Any<AgentSuggestSearchMemberCriteria>()).Returns(
-                new List<SuggestionEntity>
+                searchUserService.SuggestAgent(Arg.Any<AgentSuggestSearchMemberCriteria>()).Returns(
+                    new List<SuggestionEntity>
                 {
                     new SuggestionEntity
                     {
@@ -51,22 +54,22 @@
                     }
                 });
 
-            searchUserService.GetMembers(Arg.Any<ICriteria>()).Returns(
-                    x =>
-                    {
-                        var customer = new CustomerEntity
+                searchUserService.GetMembers(Arg.Any<ICriteria>()).Returns(
+                        x =>
                         {
-                            UserName = "Customer name"
-                        };
+                            var customer = new CustomerEntity
+                            {
+                                UserName = "Customer name"
+                            };
 
-                        var upLines = new List<UpLineEntity>()
+                            var upLines = new List<UpLineEntity>()
                         {
                             new UpLineEntity
                             {
                                 UserName = "upline"
                             }
                         };
-                        var downLines = new List<DownLineEntity>()
+                            var downLines = new List<DownLineEntity>()
                         {
                             new DownLineEntity
                             {
@@ -74,16 +77,16 @@
                             }
                         };
 
-                        return new SearchMemberEntity
-                        {
-                            Customer = customer,
-                            UpLines = upLines,
-                            DownLines = downLines
-                        };
-                    });
+                            return new SearchMemberEntity
+                            {
+                                Customer = customer,
+                                UpLines = upLines,
+                                DownLines = downLines
+                            };
+                        });
 
-            searchUserService.GetDirectDownlines(Arg.Any<GetDirectDownLineCriteria>()).Returns(
-                new List<DownLineEntity>
+                searchUserService.GetDirectDownlines(Arg.Any<GetDirectDownLineCriteria>()).Returns(
+                    new List<DownLineEntity>
                 {
                     new DownLineEntity
                     {
@@ -93,54 +96,67 @@
                     }
                 });
 
-            searchUserService.GetAgentBalance(Arg.Any<AgentBalanceCriteria>()).Returns(
-                new BalanceEntity
-                {
-                });
-
-            searchUserService.GetMemberBalance(Arg.Any<MemberBalanceCriteria>()).Returns(
-                new BalanceEntity
-                {
-                });
-
-            return searchUserService;
-        }
-
-        /// <summary>
-        /// Get member service.
-        /// </summary>
-        /// <returns>Member service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static IMemberService GetMemberService()
-        {
-            return Substitute.For<IMemberService>();
-        }
-
-        /// <summary>
-        /// Get down line permission service.
-        /// </summary>
-        /// <returns>Down line permission service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static IDownLinePermissionService GetDownLinePermissionService()
-        {
-            return Substitute.For<IDownLinePermissionService>();
-        }
-
-        /// <summary>
-        /// Get core service.
-        /// </summary>
-        /// <returns>Core service.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Verified")]
-        public static ICoreService GetCoreService()
-        {
-            var coreService = Substitute.For<ICoreService>();
-
-            coreService.GetProducts(Arg.Any<int>()).Returns(
-                    new List<ProductInfo>
+                searchUserService.GetAgentBalance(Arg.Any<AgentBalanceCriteria>()).Returns(
+                    new BalanceEntity
                     {
                     });
 
-            return coreService;
+                searchUserService.GetMemberBalance(Arg.Any<MemberBalanceCriteria>()).Returns(
+                    new BalanceEntity
+                    {
+                    });
+
+                return searchUserService;
+            }
+        }
+
+        /// <summary>
+        /// Gets member service.
+        /// </summary>
+        /// <value>
+        /// Returns member service.
+        /// </value>
+        public static IMemberService MemberService
+        {
+            get
+            {
+                return Substitute.For<IMemberService>();
+            }
+        }
+
+        /// <summary>
+        /// Gets down line permission service.
+        /// </summary>
+        /// <value>
+        /// Returns Down line permission service.
+        /// </value>
+        public static IDownLinePermissionService DownLinePermissionService
+        {
+            get
+            {
+                return Substitute.For<IDownLinePermissionService>();
+            }
+        }
+
+        /// <summary>
+        /// Gets core service.
+        /// </summary>
+        /// <value>
+        /// Returns core service.
+        /// </value>
+        public static ICoreService CoreService
+        {
+            get
+            {
+                var coreService = Substitute.For<ICoreService>();
+
+                coreService.GetProducts(Arg.Any<int>()).Returns(
+                        new List<ProductInfo>
+                        {
+                        });
+
+                return coreService;
+            }
         }
     }
 }

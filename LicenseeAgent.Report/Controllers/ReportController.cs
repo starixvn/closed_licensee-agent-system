@@ -11,9 +11,9 @@
     using Fanex.Result.Core.DTO;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
-    using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Services;
     using Services;
     using Utilities;
@@ -317,21 +317,17 @@
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = betlistTickets,
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewCommission = CurrentSession.IsViewCommission()
             };
+
             var betListTicketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
-
-            var model = new BetListViewModel
-            {
-                TicketTextList = betListTicketBuilder.BuildTickets(),
-                TicketResult = betlistTickets
-            };
-
+            var ticketTextList = betListTicketBuilder.BuildTickets();
             return Json(new
             {
-                List = model.TicketTextList,
+                List = ticketTextList,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = model.TicketTextList.Count(),
+                TotalItem = ticketTextList.Count(),
                 ErrCode = Result.SuccessValue
             });
         }

@@ -18,12 +18,10 @@
     /// </summary>
     public static class LasBetListHtmlBuilder
     {
-        private const string _TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
-
         /// <summary>
         /// Get ticket status.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
+        /// <param name="betListBuilder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <param name="ticketHelper">Ticket helper.</param>
         /// <param name="ticketData">List of ticket data.</param>
@@ -31,8 +29,8 @@
         /// <param name="currencyId">Currency ID.</param>
         /// <param name="currencyName">Currency Name.</param>
         /// <returns>Ticket status text.</returns>
-        public static string BuildLasBetListResultStatus(
-            this BetListHTMLBuilder builder,
+        public static string BuildBetListResultStatus(
+            this BetListHTMLBuilder betListBuilder,
             LasTicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
@@ -59,14 +57,14 @@
                     return statusNormalText;
 
                 default:
-                    return builder.BuildStatus(ticket, ticketHelper, ticketData, true);
+                    return betListBuilder.BuildStatus(ticket, ticketHelper, ticketData, true);
             }
         }
 
         /// <summary>
         /// Get ticket status.
         /// </summary>
-        /// <param name="builder">Bet list builder.</param>
+        /// <param name="betListBuilder">Bet list builder.</param>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <param name="ticketHelper">Ticket helper.</param>
         /// <param name="ticketData">List of ticket data.</param>
@@ -74,7 +72,7 @@
         /// Ticket status text.
         /// </returns>
         public static string BuildTotalBetsParlayStatus(
-            this BetListHTMLBuilder builder,
+            this BetListHTMLBuilder betListBuilder,
             LasTicket ticket,
             ITicketHelper ticketHelper,
             IList<ITicketData> ticketData)
@@ -91,7 +89,7 @@
                     return statusNormalText;
 
                 default:
-                    return builder.BuildStatus(ticket, ticketHelper, (List<ITicketData>)ticketData, true);
+                    return betListBuilder.BuildStatus(ticket, ticketHelper, (List<ITicketData>)ticketData, true);
             }
         }
 
@@ -100,7 +98,7 @@
         /// </summary>
         /// <param name="ticket">Affiliate ticket object.</param>
         /// <returns>Ticket Stake text.</returns>
-        public static string BuildLasStake(Ticket ticket)
+        public static string BuildStake(Ticket ticket)
         {
             return "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.Stake) + "</div>";
         }
@@ -109,19 +107,28 @@
         /// Get ticket Win loss.
         /// </summary>
         /// <param name="ticket">Affiliate ticket object.</param>
-        /// <returns>Ticket win loss text.</returns>
-        public static string BuildLasWinloss(Ticket ticket)
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>
+        /// Ticket win loss text.
+        /// </returns>
+        public static string BuildWinloss(Ticket ticket, TicketBuilderParameters parameters)
         {
             if (ticket.Status == BetStatus.Running || ticket.Status == BetStatus.Waiting)
             {
                 return "-";
             }
 
-            var lasWinlossHtmlString = ticket.Winlost >= 0
+            var winLostText = ticket.Winlost >= 0
                 ? string.Format("{0:#,##0.00}", ticket.Winlost) + "<br />"
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
 
-            return lasWinlossHtmlString + string.Format("{0:#,##0.00}", ticket.PlayerComm);
+            if (!parameters.IsViewCommission)
+            {
+                return winLostText;
+            }
+
+            var commText = string.Format("{0:#,##0.00}", ticket.PlayerComm);
+            return string.Join(string.Empty, winLostText, commText);
         }
 
         /// <summary>
@@ -246,7 +253,7 @@
         /// <returns>The html string of Transaction Time.</returns>
         private static ITrans CreateTransBuilder(int bettype)
         {
-            var typeName = string.Join(null, new[] { _TRANS_BUILDER_NAMESPACE, ".Trans", bettype.ToString() });
+            var typeName = string.Format("Fanex.BetList.Core.Builder.TransBuilder.Trans{0}", bettype.ToString());
             var type = Type.GetType(typeName);
 
             return type == null ? new LasTrans() : Activator.CreateInstance(type) as ITrans;

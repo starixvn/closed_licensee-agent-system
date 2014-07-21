@@ -4,7 +4,7 @@
 @model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    var isDirectDonwline = pageContext.IsDirectDownline;
+    var isDirectDonwline = pageContext.IsDirectDownLine;
 }
 <div class="controls-row">
     <div class="row-line">
@@ -60,7 +60,7 @@
                         <i class="icon-downline-arrow"></i>
                         @Las.ResetPassword
                     </a></li>
-                    @if (SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownline)
+                    @if (SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine)
                     {
                         <li><a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>

@@ -159,16 +159,18 @@
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="Utilities\BetListTicketBuilder.cs" />
-    <Compile Include="Utilities\TotalbetsTicketBuilder.cs" />
+    <Compile Include="Utilities\TotalBetsTicketBuilder.cs" />
     <Compile Include="Utilities\ITicketBuilder.cs" />
     <Compile Include="Utilities\TicketBuilder.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListResultViewModel.cs" />
+    <Compile Include="ViewModels\BetListSelectByMemberViewModel.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
     <Compile Include="ViewModels\BetListWinLossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
+    <Compile Include="ViewResults\BetListSelectByMemberViewResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

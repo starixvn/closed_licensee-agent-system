@@ -1,4 +1,6 @@
-﻿@{
+﻿@using LicenseeAgent.BetList.ViewResults
+@model BetListSelectByMemberViewResult
+@{
     ViewBag.Title = Las.PageTitle_BetList;
 }
 @section css
@@ -14,11 +16,6 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/monthpicker")
     @Scripts.Render("~/js/betlist")
-    <script type="text/javascript">
-        var _today = '12/31/';
-        var _minDate = '10/1/2013';
-        var custId = '@ViewBag.CustId';
-    </script>
 }
 <div class="legend">
     @ViewBag.Title
@@ -39,7 +36,7 @@
             </div>
             <div class="newline">
             </div>
-            @RazorHelper.Product(ViewBag.ProductList, "", "w60")
+            @RazorHelper.Product(Model.ProductList, "", "w60")
             <div class="controls-row">
                 <label class="w60">
                 </label>

@@ -1226,11 +1226,11 @@
         /// <returns> Customer List controller.</returns>
         private CustomerListController CreateCustomerListController()
         {
-            var customerService = FakeServices.GetCustomerService();
-            var ipInformationService = FakeServices.GetIpInformationService();
-            var memberService = FakeServices.GetMemberService();
-            var downlineService = FakeServices.GetDownLineService();
-            var coreService = FakeServices.GetCoreService();
+            var customerService = FakeServices.CustomerService;
+            var ipInformationService = FakeServices.IpInformationService;
+            var memberService = FakeServices.MemberService;
+            var downlineService = FakeServices.DownLineService;
+            var coreService = FakeServices.CoreService;
 
             return new CustomerListController(customerService, ipInformationService, memberService, downlineService, coreService);
         }

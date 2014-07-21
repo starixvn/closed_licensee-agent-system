@@ -412,9 +412,9 @@
         /// <returns> Account information controller.</returns>
         private AccountInformationController CreateAccountInformationController()
         {
-            var searchUserService = FakeServices.GetSearchUserService();
-            var memberService = FakeServices.GetMemberService();
-            var coreService = FakeServices.GetCoreService();
+            var searchUserService = FakeServices.SearchUserService;
+            var memberService = FakeServices.MemberService;
+            var coreService = FakeServices.CoreService;
 
             return new AccountInformationController(searchUserService, memberService, coreService);
         }

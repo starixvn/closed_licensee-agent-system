@@ -1,4 +1,4 @@
-﻿/*global refreshCountDownMethods, reportGridOptions, core, language*/
+﻿/*global refreshCountDownMethods, reportGridOptions, core, language, pageContext*/
 
 var gridOptions = {
     columns: [
@@ -15,6 +15,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 60,
     bodyRowHeight: 29,
     autoResizeColumn: true
@@ -28,6 +29,15 @@ var Basketball = (function ($) {
         checkedAllEvent: true,
         init: function () {
             Basketball.initData();
+
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(9);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(10);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
 
             $("#refresh-count-down").refreshCountDown({
                 listTimeInterval: core.TimeInterval,
@@ -293,7 +303,7 @@ var Basketball = (function ($) {
                         return;
                     }
 
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [10]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
                 },
                 complete: function () {
                     core.unblockUI();

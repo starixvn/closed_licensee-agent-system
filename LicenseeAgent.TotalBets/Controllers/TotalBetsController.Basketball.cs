@@ -6,6 +6,7 @@
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
+    using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// Account controllers.
@@ -15,6 +16,7 @@
         [HttpGet]
         public ActionResult Basketball()
         {
+            ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View();
         }
 

@@ -55,7 +55,7 @@
         /// <returns> Notify controller.</returns>
         private NotifyController CreateNotifyController()
         {
-            var underMaintenanceService = FakeServices.GetUnderMaintenanceService();
+            var underMaintenanceService = FakeServices.UnderMaintenanceService;
             var controller = new NotifyController(underMaintenanceService);
 
             return controller;

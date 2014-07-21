@@ -4,8 +4,9 @@
     using Entities;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using Services;
-    using ViewModels;
 
     /// <summary>
     /// ParlayController class.
@@ -28,6 +29,7 @@
         [HttpGet]
         public ActionResult ParlayList()
         {
+            ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View("~/Views/BetList/ParlayList.cshtml");
         }
 
@@ -44,21 +46,16 @@
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResults,
-                IsAdmin = CurrentSession.IsAdmin
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewCommission = CurrentSession.IsViewCommission()
             };
-            var betListTicketBuilder = new TotalbetsTicketBuilder(ticketBuilderParameters);
-
-            var model = new BetListViewModel
-            {
-                TicketTextList = betListTicketBuilder.BuildTickets(),
-                TicketResult = ticketResults
-            };
-
+            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
             return Json(new
             {
-                List = model.TicketTextList,
+                List = ticketTextList,
                 IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = model.TicketTextList.Count
+                TotalItem = ticketTextList.Count
             });
         }
     }

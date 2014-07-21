@@ -10,12 +10,23 @@
     [Serializable]
     public class PageContext
     {
+        public const int ReportMaxMonth = 36;
+
         public PageContext(ICurrentSession currentSession, int agentId, int agentLevel)
             : this(currentSession)
         {
             AgentId = agentId;
             AgentLevel = agentLevel;
-            IsDirectDownline = currentSession.IsDirectDownline(agentLevel);
+            IsDirectDownLine = currentSession.IsDirectDownLine(agentLevel);
+            IsMember = false;
+        }
+
+        public PageContext(ICurrentSession currentSession, int custId)
+            : this(currentSession)
+        {
+            CustId = custId;
+            IsDirectDownLine = currentSession.AgentInfo.IsLastLevel;
+            IsMember = true;
         }
 
         public PageContext(ICurrentSession currentSession)
@@ -25,7 +36,9 @@
             AgentId = currentSession.AgentInfo.AgentId;
             AgentLevel = currentSession.AgentInfo.AgentLevel;
             NumberOfLevel = (int)currentSession.AgentInfo.NumberOfLevel;
-            IsDirectDownline = true;
+            IsDirectDownLine = true;
+            MaxDate = DateTime.Now.Date;
+            MinDate = MaxDate.AddMonths(-ReportMaxMonth);
         }
 
         public bool IsAdmin { get; private set; }
@@ -38,7 +51,9 @@
 
         public int NumberOfLevel { get; private set; }
 
-        public bool IsDirectDownline { get; private set; }
+        public bool IsDirectDownLine { get; private set; }
+
+        public int CustId { get; private set; }
 
         public bool IsLastLevel
         {
@@ -47,6 +62,10 @@
                 return ModelHelper.IsLastAgent(AgentLevel, NumberOfLevel);
             }
         }
+
+        public DateTime MinDate { get; set; }
+
+        public DateTime MaxDate { get; set; }
 
         public bool IsMember { get; set; }
 

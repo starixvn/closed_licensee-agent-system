@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl*/
+﻿/*global core, language, showMixParlayDetailurl, pageContext*/
 
 var gridOptions = {
     columns: [
@@ -14,6 +14,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 100,
     bodyRowHeight: 29
 };
@@ -29,6 +30,15 @@ var betList = (function ($) {
                 var agentName = $(this).text();
                 betList.ViewDownline(agentId, agentLevel, agentName);
             });
+
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(8);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(9);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
 
             // get bet list
             betList.reRenderAfterPaged(0, core.pageSizes[0]);
@@ -51,7 +61,7 @@ var betList = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, [9]);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
                 },
                 complete: function () {
                     core.unblockUI();

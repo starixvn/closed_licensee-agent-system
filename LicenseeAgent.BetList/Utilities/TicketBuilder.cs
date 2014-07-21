@@ -1,7 +1,8 @@
 ﻿namespace LicenseeAgent.BetList.Utilities
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -13,75 +14,51 @@
     public abstract class TicketBuilder : ITicketBuilder
     {
         private const string Feature = "<a class=\"iplink\" href=\"javascript:;\" {0} >{1}</a>";
-        private readonly bool _isAdmin;
-        private readonly Collection<TicketText> _ticketTextList;
+        private readonly IList<TicketText> _ticketTextList = new List<TicketText>();
+        private readonly BetListHTMLBuilder _betListBuilder;
+        private readonly ITicketHelper _ticketHelper;
         private int _startIndex = 1;
-        private bool _showOdds;
-        private bool _isShowMember;
-        private string _formatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
-        private string _clickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}', {2}, {3})\"";
-        private TicketResult _ticketResult;
-        private BetListHTMLBuilder _builder;
-        private TicketHelper _ticketHelper;
 
         protected TicketBuilder(TicketBuilderParameters ticketBuilderParameters)
+            : this(null, null)
         {
-            _ticketResult = ticketBuilderParameters.TicketResult;
-            _isAdmin = ticketBuilderParameters.IsAdmin;
-            _builder = new BetListHTMLBuilder();
-            _ticketTextList = new Collection<TicketText>();
-            _ticketHelper = new TicketHelper();
+            Parameters = ticketBuilderParameters;
         }
 
-        protected bool ShowOdds
+        private TicketBuilder(BetListHTMLBuilder betListBuilder, ITicketHelper ticketHelper)
         {
-            get { return _showOdds; }
-            set { _showOdds = value; }
+            ShowOdds = false;
+            IsShowMember = false;
+            FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
+            ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}', {2}, {3})\"";
+            _betListBuilder = betListBuilder ?? new BetListHTMLBuilder();
+            _ticketHelper = ticketHelper ?? new TicketHelper();
         }
 
-        protected int StartIndex
-        {
-            get { return _startIndex; }
-            set { _startIndex = value; }
-        }
+        protected bool ShowOdds { get; set; }
 
-        protected bool IsShowMember
-        {
-            get { return _isShowMember; }
-            set { _isShowMember = value; }
-        }
+        protected bool IsShowMember { get; set; }
 
-        protected string FormatDetail
-        {
-            get { return _formatDetail; }
-            set { _formatDetail = value; }
-        }
+        protected string FormatDetail { get; set; }
 
-        protected string ClickFunction
-        {
-            get { return _clickFunction; }
-            set { _clickFunction = value; }
-        }
+        protected string ClickFunction { get; set; }
+
+        protected TicketBuilderParameters Parameters { get; private set; }
 
         protected TicketResult TicketResult
         {
-            get { return _ticketResult; }
-            set { _ticketResult = value; }
+            get { return Parameters.TicketResult; }
         }
 
-        protected BetListHTMLBuilder Builder
+        protected BetListHTMLBuilder BetListBuilder
         {
-            get { return _builder; }
-            set { _builder = value; }
+            get { return _betListBuilder; }
         }
 
-        protected TicketHelper TicketHelper
+        protected ITicketHelper TicketHelper
         {
             get { return _ticketHelper; }
-            set { _ticketHelper = value; }
         }
-
-        public abstract void Initialize();
 
         public abstract string BuildStatus(LasTicket ticket);
 
@@ -91,11 +68,9 @@
         /// Generate ticket text.
         /// </summary>
         /// <returns>Result value.</returns>
-        public Collection<TicketText> BuildTickets()
+        public IList<TicketText> BuildTickets()
         {
-            Initialize();
-
-            foreach (var ticket in _ticketResult.MainTicketList)
+            foreach (var ticket in TicketResult.MainTicketList)
             {
                 BuildOneTicket(ticket);
             }
@@ -124,15 +99,15 @@
                 SystemId = ticket.UserName,
                 TransTime = LasBetListHtmlBuilder.BuildTrans(ticket),
                 Status = BuildStatus(ticket),
-                Choice = _builder.BuildChoice(ticket, _ticketHelper, _ticketResult.TicketDataList, false),
-                Odds = _builder.BuildOdds(ticket, _ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
-                Stake = LasBetListHtmlBuilder.BuildLasStake(ticket),
-                AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket, _ticketResult.TicketDataList),
-                AgentComm = LasBetListHtmlBuilder.BuildAgentComm(ticket, _ticketResult.TicketDataList, _isAdmin),
-                WinLoss = LasBetListHtmlBuilder.BuildLasWinloss(ticket)
+                Choice = _betListBuilder.BuildChoice(ticket, _ticketHelper, TicketResult.TicketDataList, false),
+                Odds = _betListBuilder.BuildOdds(ticket, TicketResult.TicketDataList, CacheRef.GetOddsTypeName),
+                Stake = LasBetListHtmlBuilder.BuildStake(ticket),
+                AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket, TicketResult.TicketDataList),
+                AgentComm = LasBetListHtmlBuilder.BuildAgentComm(ticket, TicketResult.TicketDataList, Parameters.IsAdmin),
+                WinLoss = LasBetListHtmlBuilder.BuildWinloss(ticket, Parameters)
             };
 
-            if (_isShowMember)
+            if (IsShowMember)
             {
                 ticketText.Member = ticket.UserName2;
             }
@@ -147,7 +122,7 @@
         private string BuildTheClickFunction(LasTicket ticket)
         {
             var clickFunction = string.Format(
-                _clickFunction,
+                ClickFunction,
                 ticket.TransId,
                 ticket.Status,
                 ticket.SportTypeId,
@@ -165,13 +140,13 @@
             {
                 var betTeam = _ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + _ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
                 _ticketHelper.ClientDetailSystemParlayFunction = string.Format(
-                    _formatDetail,
+                    FormatDetail,
                     ticket.RefNo,
                     BuildCustId(ticket),
                     betTeam);
             }
 
-            _ticketHelper.IsShowOddsWithChoice = _showOdds;
+            _ticketHelper.IsShowOddsWithChoice = ShowOdds;
         }
     }
 }

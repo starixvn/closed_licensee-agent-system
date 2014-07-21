@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Core.Utility
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
@@ -17,7 +18,7 @@
     {
         // Source: http://regexlib.com/REDetails.aspx?regexp_id=887
         // Source: http://regexlib.com/REDetails.aspx?regexp_id=2983
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
                "StyleCop.CSharp.Nexcel.NexcelCustomRules",
                "SP2100:CodeLineMustNotBeLongerThan",
                Justification = "Reviewed. Suppression is OK here.")]

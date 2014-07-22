@@ -42,7 +42,6 @@ if (fanex.customerSetting) {
                     return;
                 }
                 var settings = {
-                    sportsBookSetting: null,
                     numberGameSetting: { PositionTakingSetting: $scope.saveData() }
                 };
 

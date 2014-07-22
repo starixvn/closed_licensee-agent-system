@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl */
+﻿/*global core, language, showMixParlayDetailurl, pageContext */
 
 var outstandingGridOptions = {
     columns: [
@@ -36,6 +36,7 @@ var gridOptions = {
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
             ],
     showPager: true,
+    enableHiddenColumns: false,
     gridExpandHeight: 100,
     bodyRowHeight: 29
 };
@@ -120,7 +121,7 @@ var outstandingReport = (function ($) {
                 }
             });
         },
-        reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId, hidedColumn) {
+        reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId) {
             if (gridOptions && gridOptions.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage
                                                 : gridOptions.pagerOption.currentPage;
@@ -156,7 +157,6 @@ var outstandingReport = (function ($) {
                     $('#BetListGrid').show().fanexGrid(gridOptions);
 
                     if (data.IsLastLevel === true) {
-                        $("#BetListGrid").fanexGrid("hideColumns", gridOptions, hidedColumn);
                         $("#breadcrumb").attr("class", "breadcrumb");
                     }
                     else {
@@ -202,12 +202,18 @@ var outstandingReport = (function ($) {
                 $('#BetListGrid').fanexGrid('resizeGrid');
             }
         },
-        showSystemParlayResult: function (refNo, custId, betTeam) {
-            fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
-        },
         outstandingDrilldown: function (agentName, agentId, isLastLevel) {
+            var hiddenColumns = [];
+            if (pageContext.LegendType === 1) {
+                hiddenColumns.push(8);
+            }
+            if (pageContext.IsLastLevel) {
+                hiddenColumns.push(9);
+            }
+            gridOptions.hiddenColumns = hiddenColumns;
+
             if (isLastLevel) {
-                outstandingReport.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN, [9]);
+                outstandingReport.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN);
             }
             else {
                 agentIdLevelN = agentId;

@@ -14,6 +14,7 @@
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
     using Services;
     using Utilities;
@@ -265,8 +266,7 @@
         /// <returns>Return a JSON object.</returns>
         public ActionResult Outstanding()
         {
-            ViewBag.LoggedInAgentName = CurrentSession.AgentInfo.UserName;
-            ViewBag.LoggedInAgentId = CurrentSession.AgentInfo.AgentId;
+            ViewBag.PageContext = new PageContext(CurrentSession);
             return View();
         }
 
@@ -313,21 +313,25 @@
             }
 
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var betlistTickets = _betlistService.GetBetList(criteria);
+            var ticketResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = betlistTickets,
+                TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewCommission = CurrentSession.IsViewCommission()
             };
 
             var betListTicketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
             var ticketTextList = betListTicketBuilder.BuildTickets();
+            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
+            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
             return Json(new
             {
                 List = ticketTextList,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = ticketTextList.Count(),
+                SubTotalWinLost = subTotalWinLost,
+                SubTotalComm = subTotalComm,
+                TotalWinLost = subTotalWinLost + subTotalComm,
                 ErrCode = Result.SuccessValue
             });
         }

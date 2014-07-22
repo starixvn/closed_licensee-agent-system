@@ -38,7 +38,7 @@
                 "~/scripts/core.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
-                "~/Views/Report/Resources/report-base.js"));
+                "~/scripts/report.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
                 "~/content/core.less"));

@@ -1,5 +1,7 @@
-﻿@{
+﻿@using LicenseeAgent.Web.Entities
+@{
     ViewBag.Title = Las.AgentOutstanding + " - " + Las.Report;
+    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -15,7 +17,10 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<input type="hidden" id="loginAgent" data-id="@ViewBag.LoggedInAgentId" data-name="@ViewBag.LoggedInAgentName"/>
-<div class="clearfix"><ul class="breadcrumb"></ul></div>
+<input type="hidden" id="loginAgent" data-id="@pageContext.AgentId" data-name="@pageContext.AgentName" />
+<div class="clearfix">
+    <ul class="breadcrumb">
+    </ul>
+</div>
 <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>

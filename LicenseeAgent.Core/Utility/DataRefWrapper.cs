@@ -360,5 +360,24 @@
 
             return string.Format("Undefined bet team name ({0}, {1})", betType, betTeam);
         }
+
+        /// <summary>
+        /// Gets the name of the legend type.
+        /// </summary>
+        /// <param name="legendType">Type of the legend.</param>
+        /// <returns>Returns name of legend model.</returns>
+        public static string GetLegendTypeName(int legendType)
+        {
+            switch (legendType)
+            {
+                case (int)LegendType.Credit:
+                    return Las.Credit;
+
+                case (int)LegendType.Deposit:
+                    return Las.Cash;
+            }
+
+            return string.Format("Undefined legend type ({0})", legendType);
+        }
     }
 }

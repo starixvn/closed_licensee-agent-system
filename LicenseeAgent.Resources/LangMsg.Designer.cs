@@ -504,7 +504,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0})..
+        ///   Looks up a localized string similar to Max Per Ball must be less than or equal to Max Per Ball on (@Sporttype) of Parent Agent..
         /// </summary>
         public static string Msg_1102 {
             get {
@@ -540,7 +540,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend Agent does not exist. Please check again..
+        ///   Looks up a localized string similar to Agent does not exist. Please check again..
         /// </summary>
         public static string Msg_2002 {
             get {
@@ -576,7 +576,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend Agent does not exist. Please check again..
+        ///   Looks up a localized string similar to Agent does not exist. Please check again..
         /// </summary>
         public static string Msg_2010 {
             get {
@@ -594,7 +594,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currencies of Member and Legend Agent do not match..
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match..
         /// </summary>
         public static string Msg_2012 {
             get {
@@ -747,7 +747,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend Agent username is empty..
+        ///   Looks up a localized string similar to Agent username is empty..
         /// </summary>
         public static string Msg_2046 {
             get {
@@ -774,7 +774,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currencies of Member and Legend Agent do not match..
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match..
         /// </summary>
         public static string Msg_2049 {
             get {
@@ -900,7 +900,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currencies of Member and Legend Agent do not match..
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match..
         /// </summary>
         public static string Msg_2071 {
             get {
@@ -909,7 +909,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend Agent does not exist. Please check again..
+        ///   Looks up a localized string similar to Agent does not exist. Please check again..
         /// </summary>
         public static string Msg_2072 {
             get {
@@ -932,6 +932,15 @@ namespace LicenseeAgent.Resources {
         public static string Msg_2074 {
             get {
                 return ResourceManager.GetString("Msg_2074", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member already has BA setting. Please check again..
+        /// </summary>
+        public static string Msg_2075 {
+            get {
+                return ResourceManager.GetString("Msg_2075", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.BetList.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Entities;
     using Fanex.Result.Core;
@@ -78,21 +79,25 @@
                 MoveBetsDay = balanceUp.MoveBetsDay,
                 BalanceUpDay = balanceUp.BalanceUpDay
             };
-            var ticketResults = _betlistService.GetBetList(criteria);
+            var ticketResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = ticketResults,
+                TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewCommission = CurrentSession.IsViewCommission()
             };
 
             var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
             var ticketTextList = betListTicketBuilder.BuildTickets();
+            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
+            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
             return Json(new
             {
                 List = ticketTextList,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows
+                TotalItem = criteria.TotalRows,
+                SubTotalWinLost = subTotalWinLost,
+                SubTotalComm = subTotalComm,
+                TotalWinLost = subTotalWinLost + subTotalComm
             });
         }
 

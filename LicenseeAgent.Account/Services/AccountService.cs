@@ -119,8 +119,13 @@
             Execute(criteria);
         }
 
-        public IList<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria)
+        public IList<LicenseeEntity> GetLicenseeList(int userId)
         {
+            var criteria = new GetLicenseeListCriteria
+            {
+                UserId = userId
+            };
+
             return GetEntites<LicenseeEntity>(criteria);
         }
 

@@ -16,7 +16,6 @@
             _criteria = criteria;
             ShowOdds = false;
             IsShowMember = false;
-            FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
             ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0},'{1}',{2},{3})\"";
         }
 

@@ -665,7 +665,7 @@
     <value>Details</value>
   </data>
   <data name="BetListDetails" xml:space="preserve">
-    <value>Details - Refno: </value>
+    <value>Details - Refno:</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>Bet Credit</value>
@@ -1383,9 +1383,6 @@
   <data name="UpdateAll" xml:space="preserve">
     <value>Update All</value>
   </data>
-  <data name="LegendAgent" xml:space="preserve">
-    <value>Legend Agent</value>
-  </data>
   <data name="OldAgent" xml:space="preserve">
     <value>Old Agent</value>
   </data>
@@ -1410,5 +1407,20 @@ Please note that this action cannot be undone.</value>
   </data>
   <data name="NewAgentIsEmpty" xml:space="preserve">
     <value>New Agent username is empty.</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="AssignMember" xml:space="preserve">
+    <value>Assign Member</value>
+  </data>
+  <data name="SwitchFromNormalCash" xml:space="preserve">
+    <value>Switch from Normal Cash</value>
+  </data>
+  <data name="SubTotalComm" xml:space="preserve">
+    <value>Subtotal(com.)</value>
+  </data>
+  <data name="SubTotalWinLost" xml:space="preserve">
+    <value>Subtotal(winlost)</value>
   </data>
 </root>

@@ -300,10 +300,7 @@
             var model = new LicenseeViewModel();
             if (CurrentSession.IsCSDIT)
             {
-                model.Licensees = _accountService.GetLicenseeList(new GetLicenseeListCriteria
-                {
-                    UserId = CurrentSession.LoginUserId
-                });
+                model.Licensees = _accountService.GetLicenseeList(CurrentSession.LoginUserId);
                 if (CurrentSession.AgentInfo != null)
                 {
                     model.LicenseeId = CurrentSession.AgentInfo.LicenseeId;

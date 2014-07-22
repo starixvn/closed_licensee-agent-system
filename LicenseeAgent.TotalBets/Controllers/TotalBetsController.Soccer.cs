@@ -102,10 +102,10 @@
         }
 
         [HttpGet]
-        public ViewResult SoccerBetList(BetListByMatchCriteria criteria)
+        public ViewResult SoccerBetList(SoccerBetListViewModel model)
         {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            return View(criteria);
+            ViewBag.PageContext = new PageContext(CurrentSession);
+            return View(model);
         }
 
         /// <summary>
@@ -229,10 +229,10 @@
         private JsonResult BetList(BetListByMatchCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
+            var ticketResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = tickets,
+                TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewCommission = CurrentSession.IsViewCommission()
             };
@@ -243,7 +243,6 @@
             {
                 ErrCode = Result.SuccessValue,
                 List = ticketTextList,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = criteria.TotalRows
             });
         }

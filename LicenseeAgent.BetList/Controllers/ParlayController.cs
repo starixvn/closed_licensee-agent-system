@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.BetList.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Entities;
     using LicenseeAgent.BetList.Criteria;
@@ -42,10 +43,10 @@
         public JsonResult ParlayList(TotalBetsParlayListCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var ticketResults = _betlistService.GetParlayList(criteria);
+            var ticketResult = _betlistService.GetParlayList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = ticketResults,
+                TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewCommission = CurrentSession.IsViewCommission()
             };
@@ -54,7 +55,6 @@
             return Json(new
             {
                 List = ticketTextList,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = ticketTextList.Count
             });
         }

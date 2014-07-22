@@ -13,7 +13,6 @@
         {
             ShowOdds = false;
             IsShowMember = false;
-            FormatDetail = "outstandingReport.showSystemParlayResult({0},{1},\"{2}\")";
             ClickFunction = "onclick=\"javascript: outstandingReport.showBetListDetails({0},'{1}')\"";
         }
 

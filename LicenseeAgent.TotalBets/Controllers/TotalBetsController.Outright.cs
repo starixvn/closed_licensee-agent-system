@@ -127,10 +127,10 @@
         public JsonResult GetOutrightBetList(BetListOutrightCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var tickets = _betlistService.GetBetList(criteria);
+            var ticketResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = tickets,
+                TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewCommission = CurrentSession.IsViewCommission()
             };
@@ -141,7 +141,6 @@
             {
                 ErrCode = Result.SuccessValue,
                 List = ticketTextList,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
                 TotalItem = criteria.TotalRows
             });
         }

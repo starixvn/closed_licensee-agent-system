@@ -1,5 +1,7 @@
 ﻿namespace LicenseeAgent.Account.Entities
 {
+    using LicenseeAgent.Core.Enumerations;
+
     /// <summary>
     /// LicenseeEntity class.
     /// </summary>
@@ -8,5 +10,7 @@
         public int LicenseeId { get; set; }
 
         public string LicenseeName { get; set; }
+
+        public int LegendType { get; set; }
     }
 }

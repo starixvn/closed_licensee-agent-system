@@ -22,7 +22,7 @@
     <Setting Key="Las_GetAgentinfo_Detail" SpName="Las_GetAgentinfo_Detail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="AfterLogin">
-    <Setting Key="Las_GetLicenseeList" SpName="Las_GetLicenseeList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetLicenseeList" SpName="Las_GetLicenseeList_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetCurrencyOfLicensee" SpName="Las_GetCurrencyOfLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_LicenseeSelAgent" SpName="Las_LicenseeSelAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetAgentL0ByLicensee" SpName="Las_GetAgentL0ByLicensee" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

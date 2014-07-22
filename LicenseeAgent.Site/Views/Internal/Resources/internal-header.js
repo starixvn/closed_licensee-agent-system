@@ -22,14 +22,16 @@ var internalHeader = (function ($) {
                     $(this).find('.drop-box').hide();
                 });
 
-                $('#licensee li').click(function () {
-                    $(this).parent().find('li').removeClass('selected');
+                $('#licensee li:not(.dropdown-submenu)').click(function () {
+                    var subMenu = $(this).parent().parent();
+                    var dropBox = subMenu.parent();
+                    dropBox.find('li').removeClass('selected');
+                    subMenu.addClass('selected');
                     $(this).addClass('selected');
                     newLicenseeId = $(this).children('a').data('id');
                     newCurrencyId = 0;
                     internalHeader.onChange();
                     $('#licensee').find('span:first').html($(this).find('a').html());
-                    $('#licensee').find('ul').hide();
                     $("#currency").find("span:first").html(language.getString('ChooseCurrency'));
                     internalHeader.loadCurrency(newLicenseeId);
                 });
@@ -233,6 +235,7 @@ var internalHeader = (function ($) {
             $('.intro-arrow').remove();
             $('#overlay').removeClass('intro');
             $('#intro').modal('hide');
+            $(window).unbind('resize');
         },
         calculateIntro: function () {
             var x = 0;

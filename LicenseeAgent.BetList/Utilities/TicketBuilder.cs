@@ -29,7 +29,6 @@
         {
             ShowOdds = false;
             IsShowMember = false;
-            FormatDetail = "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")";
             ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}', {2}, {3})\"";
             _betListBuilder = betListBuilder ?? new BetListHTMLBuilder();
             _ticketHelper = ticketHelper ?? new TicketHelper();
@@ -38,8 +37,6 @@
         protected bool ShowOdds { get; set; }
 
         protected bool IsShowMember { get; set; }
-
-        protected string FormatDetail { get; set; }
 
         protected string ClickFunction { get; set; }
 
@@ -140,9 +137,9 @@
             {
                 var betTeam = _ticketHelper.GetBetTypeNameById(ticket.BetTypeId) + " - " + _ticketHelper.GetCombinationMPOfferName(ticket.BetTeam);
                 _ticketHelper.ClientDetailSystemParlayFunction = string.Format(
-                    FormatDetail,
+                    "fanex.betlist.core.showSystemParlayDetails({0},{1},\"{2}\")",
                     ticket.RefNo,
-                    BuildCustId(ticket),
+                    ticket.TransId,
                     betTeam);
             }
 

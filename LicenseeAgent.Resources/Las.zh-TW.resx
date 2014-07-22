@@ -720,7 +720,7 @@
     <value>細節</value>
   </data>
   <data name="BetListDetails" xml:space="preserve">
-    <value>細節- 參照號碼: </value>
+    <value>細節- 參照號碼:</value>
   </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>獲勝球隊</value>
@@ -1372,5 +1372,20 @@
   </data>
   <data name="UpdateAll" xml:space="preserve">
     <value>Update All</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="AssignMember" xml:space="preserve">
+    <value>Assign Member</value>
+  </data>
+  <data name="SwitchFromNormalCash" xml:space="preserve">
+    <value>Switch from Normal Cash</value>
+  </data>
+  <data name="SubTotalComm" xml:space="preserve">
+    <value>Subtotal(com.)</value>
+  </data>
+  <data name="SubTotalWinLost" xml:space="preserve">
+    <value>Subtotal(winlost)</value>
   </data>
 </root>

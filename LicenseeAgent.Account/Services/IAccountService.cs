@@ -30,7 +30,7 @@
 
         void AdminUserLogout(AdminUserLogoutCriteria criteria);
 
-        IList<LicenseeEntity> GetLicenseeList(GetLicenseeListCriteria criteria);
+        IList<LicenseeEntity> GetLicenseeList(int userId);
 
         IList<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria);
 

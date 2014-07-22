@@ -1,4 +1,5 @@
 ﻿/* jshint freeze:false */
+/*global numeral*/
 
 // Overwrite tooltip defaults.
 if ($.fn.tooltip) {
@@ -92,6 +93,26 @@ Number.prototype.countDecimals = function () {
         return 0;
     }
     return this.toString().split(".")[1].length || 0;
+};
+
+Number.prototype.formatNumber = function (formatString) {
+    'use strict';
+    if (typeof numeral === 'undefined') {
+        alert('please include numeral.js');
+        return '';
+    }
+
+    if (typeof formatString === 'undefined') {
+        formatString = "0,0.00";
+    }
+
+    return numeral(this).format(formatString);
+};
+
+Number.prototype.formatNegative = function (formatString) {
+    'use strict';
+    var formattedValue = this.formatNumber(formatString);
+    return this < 0 ? '<div class="red-text">{0}</div>'.format(formattedValue) : formattedValue;
 };
 
 Number.MinInt = -9007199254740992;

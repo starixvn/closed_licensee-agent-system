@@ -332,6 +332,7 @@ body
                     z-index: 1000;
                     margin: 0 -9px;
                     display: none;
+                    width: 130px;
             
                     li {
                         padding: 2px 8px;
@@ -340,21 +341,50 @@ body
                         line-height: 20px;
                         cursor: pointer;
 
-                        &.selected
+                        &.selected > a
                         {
                             font-weight: bold;
                         }
                         
                         a {
                             color: black;
+                            text-decoration: none;
+                            background-color: transparent;
                         }
                 
                         &:hover 
                         {
                             background-color: #ebebeb;
-                            a {
+                            >a {
                                 color: #d93b3c;
                                 text-decoration: none;
+                            }
+                        }
+
+                        &.dropdown-submenu > ul.dropdown-menu
+                        {
+                            top: 5px;
+                            border-left: 1px solid #ebebeb;
+                            border-right: 1px solid #ebebeb;
+                            border-bottom: 1px solid #ebebeb;
+                            list-style: none outside none;
+                            .border-radius(3px);
+                            .box-shadow(0 5px 10px rgba(0,0,0,.2));
+                        }
+
+                        &.dropdown-submenu
+                        {
+                            > a:after
+                            {
+                                margin-right: 0;
+                                margin-top: 7px;
+                                border-width: 3px 0 3px 3px;
+                                border-left-color: black;
+                            }
+
+                            &:hover > a:after
+                            {
+                                border-left-color: #d93b3c;
                             }
                         }
                     }

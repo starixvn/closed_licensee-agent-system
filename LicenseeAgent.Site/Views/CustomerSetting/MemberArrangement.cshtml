@@ -4,14 +4,11 @@
 @{
     ViewBag.Title = Las.MemberReArrangement;
 }
-
 @section scripts{
     @Scripts.Render("~/js/customersetting/MemberArrangement")
 }
-
 @RazorHelper.Legend(ViewBag.Title)
-
-<div class="pull-left" style="width: 500px;">
+<div class="pull-left" style="width: 364px;">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table", role = "form" }))
     {
         @Html.ValidationSummary()
@@ -25,21 +22,23 @@
             @Html.AntiForgeryToken()
             <p>
                 <label class="radio inline">
-                    <input type="radio" name="Mode" value="0" @(Model.Mode == ArrangementMode.SwitchFromNormalCash ? "checked" : string.Empty)> Switch from Normal Cash
+                    <input type="radio" name="Mode" value="0" @(Model.Mode == ArrangementMode.SwitchFromNormalCash ? "checked" : string.Empty) />
+                    @Las.SwitchFromNormalCash
                 </label>
                 <label class="radio inline">
-                    <input type="radio" name="Mode" value="1" @(Model.Mode == ArrangementMode.AssignMember ? "checked" : string.Empty)> Assign Member
-                </label> 
+                    <input type="radio" name="Mode" value="1" @(Model.Mode == ArrangementMode.AssignMember ? "checked" : string.Empty) />
+                    @Las.AssignMember
+                </label>
             </p>
-            <table class="table no-wrap">
+            <table class="no-wrap">
                 <colgroup>
                     <col style="width: 130px;" />
-                    <col />
+                    <col style="width: 320px;"/>
                 </colgroup>
                 <tbody>
                     <tr>
                         <td>
-                            @Las.Username
+                            @Html.LabelFor(m => m.MemberName)
                         </td>
                         <td>
                             @Html.TextBoxFor(m => m.MemberName, new { autocomplete = "off" })
@@ -48,7 +47,7 @@
                     </tr>
                     <tr class="normalCash">
                         <td>
-                            @Las.LegendAgent
+                            @Html.LabelFor(m => m.AgentName)
                         </td>
                         <td>
                             @Html.TextBoxFor(m => m.AgentName, new { autocomplete = "off" })
@@ -56,7 +55,7 @@
                     </tr>
                     <tr class="assignMember">
                         <td>
-                            @Las.OldAgent
+                            @Html.LabelFor(m => m.OldAgentName)
                         </td>
                         <td>
                             @Html.TextBoxFor(m => m.OldAgentName, new { autocomplete = "off" })
@@ -64,7 +63,7 @@
                     </tr>
                     <tr class="assignMember">
                         <td>
-                            @Las.NewAgent
+                            @Html.LabelFor(m => m.NewAgentName)
                         </td>
                         <td>
                             @Html.TextBoxFor(m => m.NewAgentName, new { autocomplete = "off" })

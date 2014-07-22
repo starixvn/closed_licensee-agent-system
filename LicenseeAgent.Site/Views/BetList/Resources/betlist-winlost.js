@@ -15,7 +15,6 @@ var gridOptions = {
             ],
     showPager: true,
     enableHiddenColumns: false,
-    gridExpandHeight: 100,
     bodyRowHeight: 29
 };
 
@@ -61,7 +60,7 @@ var betList = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
+                    fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, true);
                 },
                 complete: function () {
                     core.unblockUI();
@@ -100,9 +99,6 @@ var betList = (function ($) {
             } else {
                 $('#BetListGrid').fanexGrid('resizeGrid');
             }
-        },
-        showSystemParlayResult: function (refNo, custId, betTeam) {
-            fanex.betlist.core.showSystemParlayDetails(refNo, custId, betTeam);
         },
         ViewDownline: function (agentId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);

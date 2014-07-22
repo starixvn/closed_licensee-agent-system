@@ -1,8 +1,9 @@
-﻿@{
+﻿@using LicenseeAgent.TotalBets.ViewModels;
+@using LicenseeAgent.Web.Entities
+@model SoccerBetListViewModel
+@{
     ViewBag.Title = Las.Soccer + " - " + Las.TotalBets;
 }
-@using LicenseeAgent.TotalBets.Criteria;
-@model BetListByMatchCriteria
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
@@ -24,4 +25,4 @@
 </div>
 <div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
 </div>
-<input type="hidden" data-matchid="@Model.MatchId" data-bettype="@Model.Bettype" data-betteam="@Model.Betteam" id="soccer-more-betlist" />
+<input type="hidden" data-matchid="@Model.MatchId" data-bettype="@Model.BetType" data-betteam="@Model.BetTeam" id="soccer-more-betlist" />

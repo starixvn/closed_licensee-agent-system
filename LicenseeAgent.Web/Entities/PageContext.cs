@@ -13,10 +13,16 @@
         public const int ReportMaxMonth = 36;
 
         public PageContext(ICurrentSession currentSession, int agentId, int agentLevel)
+            : this(currentSession, agentId, agentLevel, string.Empty)
+        {
+        }
+
+        public PageContext(ICurrentSession currentSession, int agentId, int agentLevel, string agentName)
             : this(currentSession)
         {
             AgentId = agentId;
             AgentLevel = agentLevel;
+            AgentName = agentName;
             IsDirectDownLine = currentSession.IsDirectDownLine(agentLevel);
             IsMember = false;
         }
@@ -34,6 +40,7 @@
             IsAdmin = currentSession.IsAdmin;
             LegendType = (int)currentSession.AgentInfo.LegendType;
             AgentId = currentSession.AgentInfo.AgentId;
+            AgentName = currentSession.AgentInfo.UserName;
             AgentLevel = currentSession.AgentInfo.AgentLevel;
             NumberOfLevel = (int)currentSession.AgentInfo.NumberOfLevel;
             IsDirectDownLine = true;
@@ -46,6 +53,8 @@
         public int LegendType { get; private set; }
 
         public int AgentId { get; private set; }
+
+        public string AgentName { get; private set; }
 
         public int AgentLevel { get; private set; }
 

@@ -86,6 +86,7 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\ErrorType.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Criteria\VirtualSports\AgentUpdateMemberIndirectCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeUpdateAgentCriteria.cs" />
+    <Compile Include="Entities\CommissionProduct.cs" />
     <Compile Include="Entities\ISettingResult.cs" />
     <Compile Include="Entities\BettingLimitItem.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\EditProductAgentViewModel.cs" />
     <Compile Include="ViewModels\EditProductMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />

@@ -164,6 +164,45 @@
         }
 
         /// <summary>
+        /// Get deposit member information.
+        /// </summary>
+        /// <typeparam name="T">Type object response.</typeparam>
+        /// <param name="memberEntitys">List member entity.</param>
+        /// <param name="action">Service action.</param>
+        /// <returns>List member entity after merging.</returns>
+        public ResponseResult GetDepositMembers<T>(IEnumerable<T> memberEntitys, GetDepositMemberInfoListAction action)
+        {
+            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
+            if (memberListResult.ErrCode == Result.SuccessValue)
+            {
+                ServiceMapper.MapObjects(memberListResult.Members, memberEntitys, new MemberFilter());
+            }
+            else
+            {
+                ServiceExtension.WriteError(action, memberListResult);
+                memberListResult.ErrCode = Result.SuccessValue;
+            }
+
+            return memberListResult;
+        }
+
+        /// <summary>
+        /// Update member information.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
+        /// <returns>Response result.</returns>
+        public ResponseResult UpdateAgentId(UpdateAgentIDAction action, bool isReinvoke = false, int logId = 0)
+        {
+            action.Username = action.Username ?? Constants.EmptyString;
+            action.NewIBCAgentID = action.NewIBCAgentID ?? 0;
+            action.NewLASAgentID = action.NewLASAgentID ?? 0;
+
+            return ExecuteSingleLog(action, isReinvoke, logId);
+        }
+
+        /// <summary>
         /// Update member status.
         /// </summary>
         /// <param name="action">Service action.</param>

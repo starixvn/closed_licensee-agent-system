@@ -30,6 +30,12 @@
         [DataMember(Name = "IsClosed")]
         public bool IsClosed { get; set; }
 
+        [DataMember(Name = "Username")]
+        public bool Username { get; set; }
+
+        [DataMember(Name = "FirstDepositDate")]
+        public bool FirstDepositDate { get; set; }
+
         public int Status
         {
             get

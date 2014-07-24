@@ -740,7 +740,21 @@
             else
             {
                 // Call API to Update AgentId here.
-                errCode = 2070;
+                var serviceResult = _memberService.UpdateAgentId(new UpdateAgentIDAction
+                {
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    NewIBCAgentID = 0,
+                    NewLASAgentID = 0,
+                    UserId = CurrentSession.LoginUserId,
+                    Username = model.MemberName,
+                    SiteName = CurrentSession.AgentInfo.LicenseeName
+                });
+
+                if (serviceResult.ErrCode != Result.SuccessValue)
+                {
+                    ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
+                    return View(model);
+                }
             }
 
             if (errCode == 0)

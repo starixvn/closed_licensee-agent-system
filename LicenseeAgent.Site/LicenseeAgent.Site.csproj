@@ -591,7 +591,9 @@
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\CommissionGroup\Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -612,6 +614,9 @@
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
+    <Content Include="Views\CommissionGroup\Index.cshtml" />
+    <Content Include="Views\CommissionGroup\Add.cshtml" />
+    <Content Include="Views\CommissionGroup\Edit.cshtml" />
     <Content Include="Views\CustomerList\PendingMemberList.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

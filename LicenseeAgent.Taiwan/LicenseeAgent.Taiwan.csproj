@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Actions\BaseAction.cs" />
     <Compile Include="Actions\CheckUserNameAction.cs" />
+    <Compile Include="Actions\UpdateAgentIDAction.cs" />
     <Compile Include="Actions\GetDepositMemberInfoListAction.cs" />
     <Compile Include="Actions\GetMemberInfoAction.cs" />
     <Compile Include="Actions\GetMemberInfoListAction.cs" />

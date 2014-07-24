@@ -72,6 +72,22 @@
         /// <returns>List member entity after merging.</returns>
         ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action);
 
-        GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action);
+        /// <summary>
+        /// Get deposit member information.
+        /// </summary>
+        /// <typeparam name="T">Type object response.</typeparam>
+        /// <param name="memberEntitys">List member entity.</param>
+        /// <param name="action">Service action.</param>
+        /// <returns>List member entity after merging.</returns>
+        ResponseResult GetDepositMembers<T>(IEnumerable<T> memberEntitys, GetDepositMemberInfoListAction action);
+
+        /// <summary>
+        /// Update member information.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <param name="isReinvoke">Is Re-invoke.</param>
+        /// <param name="logId">Input Log ID.</param>
+        /// <returns>Response result.</returns>
+        ResponseResult UpdateAgentId(UpdateAgentIDAction action, bool isReinvoke = false, int logId = 0);
     }
 }

@@ -467,4 +467,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_2110" xml:space="preserve">
     <value>Agent username is empty</value>
   </data>
+  <data name="Msg_2076" xml:space="preserve">
+    <value>Member is invalid. Please check again.</value>
+  </data>
 </root>

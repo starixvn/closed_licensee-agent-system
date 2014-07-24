@@ -25,6 +25,11 @@
         /// <summary>
         /// The change member status log id.
         /// </summary>
-        UpdateMemberStatus = 305
+        UpdateMemberStatus = 305,
+
+        /// <summary>
+        /// The change member status log id.
+        /// </summary>
+        UpdateAgentId = 306
     }
 }

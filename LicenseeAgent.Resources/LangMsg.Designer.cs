@@ -504,7 +504,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Ball must be less than or equal to Max Per Ball on (@Sporttype) of Parent Agent..
+        ///   Looks up a localized string similar to Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0})..
         /// </summary>
         public static string Msg_1102 {
             get {
@@ -941,6 +941,15 @@ namespace LicenseeAgent.Resources {
         public static string Msg_2075 {
             get {
                 return ResourceManager.GetString("Msg_2075", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member is invalid. Please check again..
+        /// </summary>
+        public static string Msg_2076 {
+            get {
+                return ResourceManager.GetString("Msg_2076", resourceCulture);
             }
         }
         

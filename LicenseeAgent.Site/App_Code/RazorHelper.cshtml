@@ -6,6 +6,7 @@
 @using LicenseeAgent.AccountInformation.Entities
 @using LicenseeAgent.Core.Entities
 @using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Report.Enumerations
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -52,19 +53,19 @@
     <a href='@(url.Action(actionName, "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
         }
 }
-@helper DrawFilter(short val)
+@helper GenerateRadios(DrawFilter val)
     {
     <label class="radio inline">@Las.DrawFilter</label>
     <label class="radio inline">
-        <input type="radio" name="DrawFilter" value="0" @(val == 0 ? "checked" : "") />
+        <input type="radio" name="DrawFilter" value="0" @(val == DrawFilter.Normal ? "checked" : "") />
         @Las.Normal
     </label>
     <label class="radio inline">
-        <input type="radio" name="DrawFilter" value="1" @(val == 1 ? "checked" : "") />
+        <input type="radio" name="DrawFilter" value="1" @(val == DrawFilter.NoDraw ? "checked" : "") />
         @Las.NoDraw
     </label>
     <label class="radio inline">
-        <input type="radio" name="DrawFilter" value="2" @(val == 2 ? "checked" : "") />
+        <input type="radio" name="DrawFilter" value="2" @(val == DrawFilter.NoDrawForTurnoverOnly ? "checked" : "") />
         @Las.NoDrawForTurnoverOnly
     </label>
 }
@@ -77,13 +78,13 @@
     <div class="controls-row">
         <label class="checkbox @classNameProduct">@Las.Product</label>
         <label class="checkbox inline">
-            <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty) >
+            <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty)>
             @Las.All
         </label>
         @foreach (var item in productList)
         {
             <label class="checkbox inline">
-                <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty) >
+                <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || productIds.Contains(item.ProductId.ToString()) ? "checked" : string.Empty)>
                 @DataRefWrapper.GetProductName(item.ProductId)
             </label>
         }
@@ -130,9 +131,8 @@
         @title
     </div>
 }
-
 @helper RenderInstruction(string text, string id, bool simpleMode)
-{
+    {
         if (simpleMode)
         {
     <div class="instruction" data-ng-show="settingMode">

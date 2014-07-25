@@ -122,7 +122,7 @@
                 ? string.Format("{0:#,##0.00}", ticket.Winlost) + "<br />"
                 : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
 
-            if (!parameters.IsViewCommission)
+            if (!parameters.IsViewPlayerCommission)
             {
                 return winLostText;
             }

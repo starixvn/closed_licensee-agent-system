@@ -65,9 +65,9 @@
                 || agentLevel == currentSession.AgentInfo.AgentLevel;
         }
 
-        public static bool IsViewCommission(this ICurrentSession currentSession)
+        public static bool IsViewPlayerCommission(this ICurrentSession currentSession)
         {
-            return !(!currentSession.IsAdmin && currentSession.AgentInfo.IsDeposit);
+            return currentSession.AgentInfo != null;
         }
 
         public static bool IsShowMaintenance(this ICurrentSession currentSession)

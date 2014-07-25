@@ -7,7 +7,7 @@
                 Columns: [
                         { HeaderText: "@Las.Member", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Las.Member", Name: "BetCount", MergeColNumber: 5 },
-                        { HeaderText: "@Model.Username", Name: "AWinLost", MergeColNumber: 3, ThClass: 'alter-column' },
+                        { HeaderText: "@Model.UserName", Name: "AWinLost", MergeColNumber: 3, ThClass: 'alter-column' },
                         { HeaderText: "@Las.Upline", Name: "UplineStake", MergeColNumber: 2 }
                     ]
             }
@@ -28,12 +28,27 @@
                     { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
                     { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "UplineStake", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                     { HeaderText: "@Las.Total", Width: 100, Name: "UplineTotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
-
                 ],
         gridExpandHeight: 225,
         showNumberColumn: false,
         showFooter: true,
-        //bodyRowHeight: 26,
+        footerRows: [
+            {
+                Columns: [
+                    { Value: language.getString("Total"), Name: "Username", CellAlign: "center" },
+                    { Value: total.BetCount, Name: "BetCount" },
+                    { Value: total.Turnover, Name: "Turnover" },
+                    { Value: total.Winlost, Name: "Winlost" },
+                    { Value: total.PlayerComm, Name: "PlayerComm" },
+                    { Value: total.MemberTotal, Name: "MemberTotal" },
+                    { Value: total.AWinLost, Name: "AWinLost" },
+                    { Value: total.AComm, Name: "AComm" },
+                    { Value: total.ATotal, Name: "ATotal" },
+                    { Value: total.UplineStake, Name: "UplineStake" },
+                    { Value: total.UplineTotal, Name: "UplineTotal" }
+                ]
+            }
+        ],
         autoResizeColumn: true
     };
 </script>

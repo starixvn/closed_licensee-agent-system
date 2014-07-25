@@ -43,7 +43,7 @@
             var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper()
             {
-                ShowSystemParlayPlayerComm = CurrentSession.IsViewCommission()
+                ShowSystemParlayPlayerComm = CurrentSession.IsViewPlayerCommission()
             };
 
             var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);

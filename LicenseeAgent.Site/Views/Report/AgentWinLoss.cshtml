@@ -19,17 +19,17 @@
     @Scripts.Render("~/js/agentwinlostreport")
     @if (pageContext.IsLastLevel)
     {
-        @Html.Partial("AgentWinLoss.MemberGrid")
+        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.MemberGrid.Cash" : "AgentWinLoss.MemberGrid")
     }
     else
     {
         if (pageContext.AgentLevel == 1)
         {
-        @Html.Partial("AgentWinLoss.LicenseeGrid")
+        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.LicenseeGrid.Cash" : "AgentWinLoss.LicenseeGrid")
         }
         else
         {
-        @Html.Partial("AgentWinLoss.AgentGrid")
+        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.AgentGrid.Cash" : "AgentWinLoss.AgentGrid")
         }
     }
 }
@@ -57,7 +57,7 @@
     </div>
     @RazorHelper.Product(Model.ProductList, Model.Product, "inline w60")
     <div class="controls-row">
-        @RazorHelper.DrawFilter(Model.DrawFilter)
+        @RazorHelper.GenerateRadios(Model.DrawFilter)
     </div>
     <div class="newline">
     </div>

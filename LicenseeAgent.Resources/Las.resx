@@ -1418,9 +1418,9 @@ Please note that this action cannot be undone.</value>
     <value>Switch from Normal Cash</value>
   </data>
   <data name="SubTotalComm" xml:space="preserve">
-    <value>Subtotal(com.)</value>
+    <value>Subtotal (Comm)</value>
   </data>
   <data name="SubTotalWinLost" xml:space="preserve">
-    <value>Subtotal(winlost)</value>
+    <value>Subtotal (Winloss)</value>
   </data>
 </root>

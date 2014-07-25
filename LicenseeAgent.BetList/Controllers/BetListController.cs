@@ -84,7 +84,7 @@
             {
                 TicketResult = ticketResult,
                 IsAdmin = CurrentSession.IsAdmin,
-                IsViewCommission = CurrentSession.IsViewCommission()
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
             };
 
             var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);

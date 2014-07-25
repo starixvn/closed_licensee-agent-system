@@ -3274,7 +3274,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtotal(com.).
+        ///   Looks up a localized string similar to Subtotal (Comm).
         /// </summary>
         public static string SubTotalComm {
             get {
@@ -3283,7 +3283,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtotal(winlost).
+        ///   Looks up a localized string similar to Subtotal (Winloss).
         /// </summary>
         public static string SubTotalWinLost {
             get {

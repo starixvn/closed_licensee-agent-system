@@ -243,7 +243,7 @@ var core = (function ($) {
             if (options.autoResizeColumn) {
                 var columns = options.columns;
                 var calResizeFunction = function (value) {
-                    return value === null ? 0 : value.toString().length * 10;
+                    return value === null || value === undefined ? 0 : value.toString().length * 10;
                 };
                 for (var j = 0; j < columns.length; j++) {
                     var column = columns[j];
@@ -318,6 +318,19 @@ var core = (function ($) {
                 },
                 TdClass: tdCssClass ? tdCssClass(rowIndex, colName, record) : undefined
             };
+        },
+        setGridTotalRows: function (totalData, gridOptions) {
+            if (gridOptions.footerRows) {
+                for (var x = 0; x < totalData.length; x++) {
+                    var data = totalData[x];
+                    var columns = gridOptions.footerRows[x].Columns;
+                    var length = columns.length;
+                    for (var i = 0; i < length; i++) {
+                        var column = columns[i];
+                        column.Value = data[column.Name];
+                    }
+                }
+            }
         },
         genGridTotalRows: function (bodyRows, gridOptions) {
             if (gridOptions.footerRows) {

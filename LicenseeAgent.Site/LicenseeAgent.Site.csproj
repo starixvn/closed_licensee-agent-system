@@ -608,6 +608,9 @@
     <Content Include="Views\CustomerSetting\MemberArrangement.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingAdvNG.cshtml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
+    <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
+    <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
@@ -811,7 +814,6 @@
     <Content Include="Views\Report\Results.cshtml" />
     <Content Include="Views\CustomerList\ResetPassword.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
-    <Content Include="Views\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
     <Content Include="Views\Account\TopWinning.cshtml" />
     <Content Include="Views\Account\TopTurnover.cshtml" />

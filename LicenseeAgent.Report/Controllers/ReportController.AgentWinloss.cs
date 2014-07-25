@@ -1,13 +1,14 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Entities;
     using Criteria;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Entities;
     using ViewModels;
@@ -26,7 +27,6 @@
         [HttpGet]
         public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
         {
-            var isAdmin = CurrentSession.IsAdmin;
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
@@ -34,13 +34,12 @@
             }
 
             model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
-            model.Username = !string.IsNullOrEmpty(model.Username)
-                ? model.Username
-                : (isAdmin ? CurrentSession.AgentInfo.LicenseeName : CurrentSession.AgentInfo.UserName);
+            model.UserName = !string.IsNullOrEmpty(model.UserName) ? model.UserName : CurrentSession.AgentInfo.UserName;
             model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
                                 ? model.BreadCrumb
-                                : model.AgentId + "," + model.AgentLevel + "," + model.Username;
+                                : model.AgentId + "," + model.AgentLevel + "," + model.UserName;
             model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            model.IsDeposit = CurrentSession.AgentInfo.IsDeposit;
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View(model);
         }
@@ -60,30 +59,29 @@
             }
 
             var balUp = _coreService.BalanceUpDay;
-            List<AgentWinLoss> result;
+            CriteriaBase criteria;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
-                var criteria = new WinLossMemberCriteria(
-                                    model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                criteria = new WinLossMemberCriteria(
+                    model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
             else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
             {
-                var criteria = new WinLossSuperViewAgentCriteria(
-                        model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                criteria = new WinLossSuperViewAgentCriteria(
+                    model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
             else
             {
-                var criteria = new WinLossAgentViewAgentCriteria(
-                        model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, model.DrawFilter, model.Product);
-                result = _reportService.AgentWinLossReport(criteria).ToList();
+                criteria = new WinLossAgentViewAgentCriteria(
+                    model.AgentId, model.FromDate, model.ToDate, balUp.MoveBetsDay, balUp.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
 
+            var result = _reportService.AgentWinLossReport(criteria).ToList();
             var totalRow = from x in result
                            group x by 1 into g
-                           select new
+                           select new AgentWinLoss
                            {
+                               Username = Las.Total,
                                BetCount = g.Sum(x => x.BetCount),
                                Turnover = g.Sum(x => x.Turnover),
                                Winlost = g.Sum(x => x.Winlost),

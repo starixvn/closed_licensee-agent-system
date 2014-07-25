@@ -7,7 +7,7 @@ namespace LicenseeAgent.Report.Criteria
     /// </summary>
     public class WinLossMemberCriteria : WinlossBase
     {
-        public WinLossMemberCriteria(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, short drawType, string productIds)
+        public WinLossMemberCriteria(int agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int drawType, string productIds)
             : base(agentId, fromDate, toDate, moveBetsDay, balanceUpDay, drawType, productIds)
         {
         }

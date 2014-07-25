@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Report.Enumerations;
     using LicenseeAgent.Resources;
 
     /// <summary>
@@ -15,14 +16,14 @@
         {
             FromDate = DateTime.Now;
             ToDate = DateTime.Now;
-            DrawFilter = 0;
+            DrawFilter = DrawFilter.Normal;
         }
 
         public int AgentId { get; set; }
 
         public int AgentLevel { get; set; }
 
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         public string BreadCrumb { get; set; }
 
@@ -34,10 +35,13 @@
         [Display(Name = "To", ResourceType = typeof(Las))]
         public DateTime ToDate { get; set; }
 
+        [Required]
         [Display(Name = "DrawFilter", ResourceType = typeof(Las))]
-        public short DrawFilter { get; set; }
+        public DrawFilter DrawFilter { get; set; }
 
         public string Product { get; set; }
+
+        public bool IsDeposit { get; set; }
 
         public IEnumerable<ProductInfo> ProductList { get; set; }
     }

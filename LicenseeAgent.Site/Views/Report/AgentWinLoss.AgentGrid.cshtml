@@ -8,7 +8,7 @@
                         { HeaderText: "@Las.Agent", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Las.Member", Name: "BetCount", MergeColNumber: 3 },
                         { HeaderText: "@Las.Downline", Name: "DownlineStake", MergeColNumber: 2, ThClass: 'alter-column' },
-                        { HeaderText: "@Model.Username", Name: "AWinLost", MergeColNumber: 3 },
+                        { HeaderText: "@Model.UserName", Name: "AWinLost", MergeColNumber: 3 },
                         { HeaderText: "@Las.Upline", Name: "UplineStake", MergeColNumber: 2, ThClass: 'alter-column' }
                     ]
             }
@@ -29,12 +29,27 @@
                     { HeaderText: "@Las.Total", Width: 100, Name: "ATotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
                     { HeaderText: "@Las.EffectiveTurnover", Width: 100, Name: "UplineStake", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", ThClass: 'alter-column' },
                     { HeaderText: "@Las.Total", Width: 100, Name: "UplineTotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", ThClass: 'alter-column' }
-
                 ],
         gridExpandHeight: 225,
         showNumberColumn: false,
         showFooter: true,
-        //bodyRowHeight: 26,
+        footerRows: [
+            {
+                Columns: [
+                    { Name: "Username", CellAlign: "center" },
+                    { Name: "BetCount" },
+                    { Name: "Turnover" },
+                    { Name: "MemberTotal" },
+                    { Name: "DownlineStake" },
+                    { Name: "DownlineTotal" },
+                    { Name: "AWinLost" },
+                    { Name: "AComm" },
+                    { Name: "ATotal" },
+                    { Name: "UplineStake" },
+                    { Name: "UplineTotal" }
+                ]
+            }
+        ],
         autoResizeColumn: true
     };
 </script>

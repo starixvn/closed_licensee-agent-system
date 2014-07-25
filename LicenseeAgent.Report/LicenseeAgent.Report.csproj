@@ -145,6 +145,7 @@
     <Compile Include="Entities\AgentOutstanding.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Sport.cs" />
+    <Compile Include="Enumerations\DrawFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\IReportService.cs" />

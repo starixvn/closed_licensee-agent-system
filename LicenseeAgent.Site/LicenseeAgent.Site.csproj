@@ -211,6 +211,7 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
     <Content Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
@@ -611,6 +612,7 @@
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
+    <Content Include="Views\CustomerList\PendingMemberList.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
@@ -827,7 +829,6 @@
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.Script.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.MemberGrid.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.cshtml" />

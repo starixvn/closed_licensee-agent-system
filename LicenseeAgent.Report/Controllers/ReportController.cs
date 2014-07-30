@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;

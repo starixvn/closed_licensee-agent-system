@@ -81,5 +81,7 @@
         void EditInfoAgent(EditinfoAgentCriteria criteria);
 
         void CheckMemberUplineStatusForUpdate(CheckMemberUpLineStatusForUpdateCriteria criteria);
+
+        int GetAgentIdByUserName(GetAgentIdByUsernameCriteria criteria);
     }
 }

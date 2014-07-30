@@ -161,6 +161,7 @@
     <Compile Include="Validations\AppPasswordRuleAttribute.cs" />
     <Compile Include="Validations\NotEqualAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validations\RequiredIfAttribute.cs" />
     <Compile Include="ViewModels\AgentBreadcrumbViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

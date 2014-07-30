@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.CustomerList.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Common;
@@ -12,17 +13,20 @@
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
+    using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// CustomerListController class.
     /// </summary>
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     public class CustomerListController : BaseController
     {
         private readonly ICustomerService _customerService;
@@ -711,6 +715,59 @@
             }
 
             return View("~/Views/CustomerList/EditInfo.cshtml", model);
+        }
+
+        [HttpGet]
+        [LegendType(LegendType.Deposit)]
+        public ViewResult PendingMemberList()
+        {
+            var model = new PendingMemberListViewModel
+            {
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Get pending member list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns result.</returns>
+        [HttpPost]
+        [LegendType(LegendType.Deposit)]
+        public JsonResult PendingMemberList(PendingMemberListViewModel model)
+        {
+            var agentId = CurrentSession.AgentInfo.AgentId;
+            if (!CurrentSession.AgentInfo.IsLastLevel)
+            {
+                agentId = _customerService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
+                {
+                    UserName = model.DirectAgentUserName,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
+                });
+
+                if (agentId == 0)
+                {
+                    return JsonResult(ErrCode.Msg_2002);
+                }
+            }
+
+            var result = _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
+            {
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                LASAgentId = agentId,
+                DepositOption = (int)DepositOption.DepositNot,
+                UserName = model.MemberUserName
+            });
+
+            return Json(new
+            {
+                ErrCode = result.ErrCode,
+                ErrMsg = result.ErrMsg,
+                Data = result.Data
+            });
         }
     }
 }

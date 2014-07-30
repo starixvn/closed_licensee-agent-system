@@ -272,6 +272,9 @@
 
             bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
                 "~/views/customerlist/resources/reset-password.js"));
+
+            bundles.Add(new ScriptBundle("~/js/pending-member-list").Include(
+                "~/views/customerlist/resources/pending-member-list.js"));
         }
 
         /// <summary>

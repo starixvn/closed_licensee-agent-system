@@ -28,6 +28,7 @@
     /// <summary>
     /// Sport books setting controller.
     /// </summary>
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     public class CustomerSettingController : BaseController
     {
         private static JsonSerializerSettings jsonSerializeSettings = new JsonSerializerSettings

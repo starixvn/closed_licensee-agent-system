@@ -944,6 +944,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Agent.
+        /// </summary>
+        public static string DirectAgent {
+            get {
+                return ResourceManager.GetString("DirectAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this message again..
         /// </summary>
         public static string DontShowMessageAgain {
@@ -2796,6 +2805,15 @@ namespace LicenseeAgent.Resources {
         public static string PasswordWillExpired {
             get {
                 return ResourceManager.GetString("PasswordWillExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending Member List.
+        /// </summary>
+        public static string PendingMemberList {
+            get {
+                return ResourceManager.GetString("PendingMemberList", resourceCulture);
             }
         }
         

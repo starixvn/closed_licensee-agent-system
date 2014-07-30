@@ -114,5 +114,11 @@
         {
             Execute(criteria);
         }
+
+        public int GetAgentIdByUserName(GetAgentIdByUsernameCriteria criteria)
+        {
+            Execute(criteria);
+            return criteria.AgentId;
+        }
     }
 }

@@ -288,4 +288,7 @@
   <data name="Msg_1102" xml:space="preserve">
     <value>Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0}).</value>
   </data>
+  <data name="Msg_2110" xml:space="preserve">
+    <value>Agent username is empty</value>
+  </data>
 </root>

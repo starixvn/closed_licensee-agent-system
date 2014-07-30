@@ -1,0 +1,41 @@
+﻿@using LicenseeAgent.CustomerList.ViewModels
+@model PendingMemberListViewModel
+@{
+    ViewBag.Title = Las.PendingMemberList;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/pending-member-list")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left">
+    @using (Html.BeginForm(null, null, FormMethod.Post,
+    new { @class = "form-inline form-filter", id = "search-form" }))
+    {
+        @Html.ValidationSummary()
+        <div class="controls-row">
+            @Html.LabelFor(x => x.MemberUserName)
+            @Html.TextBoxFor(x => x.MemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        if (!Model.IsLastLevel)
+        {
+        <div class="controls-row">
+            @Html.LabelFor(x => x.DirectAgentUserName)
+            @Html.TextBoxFor(x => x.DirectAgentUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        }
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
+        </div>
+    }
+    <div id="grid" class="freegrid">
+    </div>
+</div>

@@ -13,7 +13,7 @@
             }
         ],
         columns: [
-                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
+                    { HeaderText: "@Las.Member", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
                             return ("<a href='javascript:agentWinLossReport.ViewBetList({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.CustId, rowData.AgentLevel, cell.Value);
                         }
@@ -35,17 +35,17 @@
         footerRows: [
             {
                 Columns: [
-                    { Value: language.getString("Total"), Name: "Username", CellAlign: "center" },
-                    { Value: total.BetCount, Name: "BetCount" },
-                    { Value: total.Turnover, Name: "Turnover" },
-                    { Value: total.Winlost, Name: "Winlost" },
-                    { Value: total.PlayerComm, Name: "PlayerComm" },
-                    { Value: total.MemberTotal, Name: "MemberTotal" },
-                    { Value: total.AWinLost, Name: "AWinLost" },
-                    { Value: total.AComm, Name: "AComm" },
-                    { Value: total.ATotal, Name: "ATotal" },
-                    { Value: total.UplineStake, Name: "UplineStake" },
-                    { Value: total.UplineTotal, Name: "UplineTotal" }
+                    { Name: "Username", Value: '@Las.Total', CellAlign: "center", NonCalculated: true },
+                    { Name: "BetCount" },
+                    { Name: "Turnover" },
+                    { Name: "Winlost" },
+                    { Name: "PlayerComm" },
+                    { Name: "MemberTotal" },
+                    { Name: "AWinLost" },
+                    { Name: "AComm" },
+                    { Name: "ATotal" },
+                    { Name: "UplineStake" },
+                    { Name: "UplineTotal" }
                 ]
             }
         ],

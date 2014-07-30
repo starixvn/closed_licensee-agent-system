@@ -71,5 +71,7 @@
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
         ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action);
+
+        GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action);
     }
 }

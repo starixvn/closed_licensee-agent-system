@@ -338,7 +338,7 @@ var core = (function ($) {
                 var length = columns.length;
                 for (var i = 0; i < length; i++) {
                     var column = columns[i];
-                    if (column.IsCalculated) {
+                    if (column.NonCalculated !== true) {
                         var total = 0;
                         var colName = columns[i].Name;
                         var colId = core.getGridColumnId(gridOptions, colName);

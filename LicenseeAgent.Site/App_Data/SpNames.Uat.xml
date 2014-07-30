@@ -101,6 +101,7 @@
     <Setting Key="Las_AgentGetAutoCompleteUserName" SpName="Las_AgentGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_CheckMemberUplineStatusForUpdate" SpName="Las_CheckMemberUplineStatusForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_GetAgentIdByUsername" SpName="Las_Cash_GetAgentIdByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBTXNIP.IPDB.bodbDownlineNet" Plain="0" TimeOut="600" />

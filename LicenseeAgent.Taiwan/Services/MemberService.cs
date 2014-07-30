@@ -40,6 +40,24 @@
         }
 
         /// <summary>
+        /// Gets the deposit member information list.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns>Returns action result.</returns>
+        public GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action)
+        {
+            var result = ServiceWrapper.GetActionResponse<GetDepositMemberInfoListResult>(action);
+            if (result.ApiErrCode == 1)
+            {
+                result.ErrCode = Result.SuccessValue;
+                result.ErrMsg = string.Empty;
+                result.Data = new List<DepositMemberInfo>();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>

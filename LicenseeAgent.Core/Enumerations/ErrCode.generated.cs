@@ -11,6 +11,11 @@ namespace LicenseeAgent.Core.Enumerations
         None = 0,
 
         /// <summary>
+        /// Agent username does not exist..
+        /// </summary>
+        Msg_1 = 1,
+
+        /// <summary>
         /// This username is not available..
         /// </summary>
         Msg_1000 = 1000,
@@ -251,14 +256,304 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1101 = 1101,
 
         /// <summary>
-        /// Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0})..
+        /// Max Per Ball must be less than or equal to Max Per Ball on (@Sporttype) of Parent Agent..
         /// </summary>
         Msg_1102 = 1102,
+
+        /// <summary>
+        /// Invalid currency..
+        /// </summary>
+        Msg_2 = 2,
 
         /// <summary>
         /// This user is not active..
         /// </summary>
         Msg_200022 = 200022,
+
+        /// <summary>
+        /// Member does not exist. Please check again..
+        /// </summary>
+        Msg_2001 = 2001,
+
+        /// <summary>
+        /// Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2002 = 2002,
+
+        /// <summary>
+        /// Fail to insert member. Please try again..
+        /// </summary>
+        Msg_2003 = 2003,
+
+        /// <summary>
+        /// Fail to insert member. Please try again..
+        /// </summary>
+        Msg_2004 = 2004,
+
+        /// <summary>
+        /// Fail to insert member. Please try again..
+        /// </summary>
+        Msg_2005 = 2005,
+
+        /// <summary>
+        /// Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2010 = 2010,
+
+        /// <summary>
+        /// Cannot assign member to this agent..
+        /// </summary>
+        Msg_2011 = 2011,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2012 = 2012,
+
+        /// <summary>
+        /// Cannot assign member to this agent..
+        /// </summary>
+        Msg_2013 = 2013,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2018 = 2018,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2019 = 2019,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2020 = 2020,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2021 = 2021,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2022 = 2022,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2023 = 2023,
+
+        /// <summary>
+        /// Faild to update Max Per Match of Sportsbook..
+        /// </summary>
+        Msg_2028 = 2028,
+
+        /// <summary>
+        /// Faild to update Bet Setting of Sportsbook..
+        /// </summary>
+        Msg_2029 = 2029,
+
+        /// <summary>
+        /// Faild to update Max Per Match of Number Game..
+        /// </summary>
+        Msg_2030 = 2030,
+
+        /// <summary>
+        /// Faild to update Bet Setting of Number Game..
+        /// </summary>
+        Msg_2031 = 2031,
+
+        /// <summary>
+        /// Faild to update Live Casino..
+        /// </summary>
+        Msg_2032 = 2032,
+
+        /// <summary>
+        /// Faild to update Max Per Match of Virtual Sports..
+        /// </summary>
+        Msg_2033 = 2033,
+
+        /// <summary>
+        /// Faild to update Bet Setting of Virtual Sports..
+        /// </summary>
+        Msg_2034 = 2034,
+
+        /// <summary>
+        /// Faild to update setting of Keno..
+        /// </summary>
+        Msg_2035 = 2035,
+
+        /// <summary>
+        /// Member username is empty..
+        /// </summary>
+        Msg_2045 = 2045,
+
+        /// <summary>
+        /// Agent username is empty..
+        /// </summary>
+        Msg_2046 = 2046,
+
+        /// <summary>
+        /// New Agent username is empty..
+        /// </summary>
+        Msg_2047 = 2047,
+
+        /// <summary>
+        /// Member does not exist. Please check again..
+        /// </summary>
+        Msg_2048 = 2048,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2049 = 2049,
+
+        /// <summary>
+        /// Old Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2050 = 2050,
+
+        /// <summary>
+        /// New Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2051 = 2051,
+
+        /// <summary>
+        /// This member is not a downline of Old Agent..
+        /// </summary>
+        Msg_2052 = 2052,
+
+        /// <summary>
+        /// Member placed bet, cannot be reassigned..
+        /// </summary>
+        Msg_2053 = 2053,
+
+        /// <summary>
+        /// Member has been reassigned. Please check again..
+        /// </summary>
+        Msg_2054 = 2054,
+
+        /// <summary>
+        /// Old Agent and New Agent is the same. Please check again..
+        /// </summary>
+        Msg_2055 = 2055,
+
+        /// <summary>
+        /// New Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2060 = 2060,
+
+        /// <summary>
+        /// Failed to assign member. Please try again..
+        /// </summary>
+        Msg_2061 = 2061,
+
+        /// <summary>
+        /// Failed to assign member. Please try again..
+        /// </summary>
+        Msg_2062 = 2062,
+
+        /// <summary>
+        /// Failed to assign member. Please try again..
+        /// </summary>
+        Msg_2063 = 2063,
+
+        /// <summary>
+        /// Member username is empty..
+        /// </summary>
+        Msg_2068 = 2068,
+
+        /// <summary>
+        /// Agent username is empty..
+        /// </summary>
+        Msg_2069 = 2069,
+
+        /// <summary>
+        /// Member does not exist. Please check again..
+        /// </summary>
+        Msg_2070 = 2070,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2071 = 2071,
+
+        /// <summary>
+        /// Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2072 = 2072,
+
+        /// <summary>
+        /// Member placed bet, cannot be reassigned..
+        /// </summary>
+        Msg_2073 = 2073,
+
+        /// <summary>
+        /// Member has been reassigned. Please check again..
+        /// </summary>
+        Msg_2074 = 2074,
+
+        /// <summary>
+        /// Member already has BA setting. Please check again..
+        /// </summary>
+        Msg_2075 = 2075,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2078 = 2078,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2079 = 2079,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2080 = 2080,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2081 = 2081,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2082 = 2082,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2083 = 2083,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2084 = 2084,
+
+        /// <summary>
+        /// Faild to switch user. Please try again..
+        /// </summary>
+        Msg_2085 = 2085,
+
+        /// <summary>
+        /// Agent username is empty.
+        /// </summary>
+        Msg_2110 = 2110,
+
+        /// <summary>
+        /// Invalid level..
+        /// </summary>
+        Msg_3 = 3,
+
+        /// <summary>
+        /// Invalid sitename..
+        /// </summary>
+        Msg_4 = 4,
 
         /// <summary>
         /// Fail to create customer. Please try again..

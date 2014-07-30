@@ -2,27 +2,27 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "@Las.Total", Name: "AgentId", MergeColNumber: 4 },
-                    { Value: "YB", Name: "YesterdayBalance", MergeColNumber: 2, IsCalculated: true },
-                    { Value: "TB", Name: "TotalBalance", IsCalculated: true },
-                    { Value: "YC", Name: "YesterdayCash", IsCalculated: true },
-                    { Value: "TC", Name: "TotalCash", IsCalculated: true },
-                    { Value: "", Name: "Outstanding", MergeColNumber: 3 }
+                    { Value: "@Las.Total", Name: "AgentId", MergeColNumber: 4, NonCalculated: true },
+                    { Value: "YB", Name: "YesterdayBalance", MergeColNumber: 2 },
+                    { Value: "TB", Name: "TotalBalance" },
+                    { Value: "YC", Name: "YesterdayCash" },
+                    { Value: "TC", Name: "TotalCash" },
+                    { Value: "", Name: "Outstanding", MergeColNumber: 3, NonCalculated: true }
                 ]
               }
         ];
     var gridOptions = {
         columns: [
-                        /*{
-                            HeaderText: '<i class="icon-uncheck-all" onclick="transferList.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
-                            Width: 30, Name: "Select", CellAlign: "center",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return '<span class="cell-select icon icon-uncheck" onclick="transferList.toggleCheck(this);"></span>';
-                            }
-                        },*/
+        /*{
+        HeaderText: '<i class="icon-uncheck-all" onclick="transferList.toggleAll(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+        Width: 30, Name: "Select", CellAlign: "center",
+        Formatter: function (rowIndex, rowData, cell, cellFormated) {
+        return '<span class="cell-select icon icon-uncheck" onclick="transferList.toggleCheck(this);"></span>';
+        }
+        },*/
                         {
-                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
-                        },
+                        HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
+                    },
                         {
                             HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true
                         },

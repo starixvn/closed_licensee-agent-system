@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Actions\BaseAction.cs" />
     <Compile Include="Actions\CheckUserNameAction.cs" />
+    <Compile Include="Actions\GetDepositMemberInfoListAction.cs" />
     <Compile Include="Actions\GetMemberInfoAction.cs" />
     <Compile Include="Actions\GetMemberInfoListAction.cs" />
     <Compile Include="Actions\InsertNewMemberAction.cs" />
@@ -68,15 +69,18 @@
     <Compile Include="Criteria\ResetPasswordMemberCriteria.cs" />
     <Compile Include="Criteria\SingleLogActionCriteria.cs" />
     <Compile Include="Entities\CustomerEntity.cs" />
+    <Compile Include="Entities\DepositMemberInfo.cs" />
     <Compile Include="Entities\UpdateMemberStatusLogEntity.cs" />
     <Compile Include="Entities\MemberStatusEntity.cs" />
     <Compile Include="Entities\ServiceMemberEntity.cs" />
     <Compile Include="Entities\UpdateMemberStatusActionLog.cs" />
+    <Compile Include="Enumerations\DepositOption.cs" />
     <Compile Include="Enumerations\LogId.cs" />
     <Compile Include="Enumerations\LogType.cs" />
     <Compile Include="Filter\IServiceFilter.cs" />
     <Compile Include="Filter\MemberFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\GetDepositMemberInfoListResult.cs" />
     <Compile Include="Results\MemberListResult.cs" />
     <Compile Include="Results\MemberResult.cs" />
     <Compile Include="Results\MemberStatusResult.cs" />

@@ -114,10 +114,8 @@
         /// <param name="dataTable">Data table Parameter value.</param>
         /// <param name="baseCurrency"> Parameter value.</param>
         /// <returns>Result value.</returns>
-        [SuppressMessage(
-            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-            "SP2101:MethodMustNotContainMoreLinesThan",
-            Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Review")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         private static List<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
         {

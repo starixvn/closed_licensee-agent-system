@@ -5,14 +5,14 @@
         groupHeaderRows: [
             {
                 Columns: [
-                        { HeaderText: "@Las.Agent", Name: "Username", MergeRowNumber: 2 },
+                        { HeaderText: "@Las.Member", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Las.Member", Name: "BetCount", MergeColNumber: 5 },
                         { HeaderText: "@Model.UserName", Name: "AWinLost", MergeColNumber: 1 }
                     ]
             }
         ],
         columns: [
-                    { HeaderText: "@Las.Agent", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
+                    { HeaderText: "@Las.Member", Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
                         Formatter: function (rowIndex, rowData, cell, cellFormated) {
                             return ("<a href='javascript:agentWinLossReport.ViewBetList({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.CustId, rowData.AgentLevel, cell.Value);
                         }
@@ -30,7 +30,7 @@
         footerRows: [
             {
                 Columns: [
-                    { Name: "Username", CellAlign: "center" },
+                    { Name: "Username", Value: '@Las.Total', CellAlign: "center", NonCalculated: true },
                     { Name: "BetCount" },
                     { Name: "Turnover" },
                     { Name: "Winlost" },

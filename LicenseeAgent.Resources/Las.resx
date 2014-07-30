@@ -1423,4 +1423,10 @@ Please note that this action cannot be undone.</value>
   <data name="SubTotalWinLost" xml:space="preserve">
     <value>Subtotal (Winloss)</value>
   </data>
+  <data name="PendingMemberList" xml:space="preserve">
+    <value>Pending Member List</value>
+  </data>
+  <data name="DirectAgent" xml:space="preserve">
+    <value>Direct Agent</value>
+  </data>
 </root>

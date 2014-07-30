@@ -30,6 +30,7 @@
     /// <summary>
     /// Account controllers.
     /// </summary>
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     [SessionState(SessionStateBehavior.Default)]
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Fix later.")]
     public class AccountController : BaseController

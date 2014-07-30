@@ -1017,6 +1017,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent username is empty.
+        /// </summary>
+        public static string Msg_2110 {
+            get {
+                return ResourceManager.GetString("Msg_2110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid level..
         /// </summary>
         public static string Msg_3 {

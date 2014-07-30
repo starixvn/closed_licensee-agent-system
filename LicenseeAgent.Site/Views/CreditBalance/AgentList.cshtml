@@ -2,19 +2,19 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "@Las.Total", Name: "RowNo", CellAlign: "center", MergeColNumber: 4 },
-                    { Value: "GC", Name: "GivenCredit", MergeColNumber: 2, IsCalculated: true },
-                    { Value: "UC", Name: "UsedCredit", IsCalculated: true },
-                    { Value: "YB", Name: "YesterdayBalance", IsCalculated: true },
-                    { Value: "TB", Name: "TotalBalance", IsCalculated: true },
-                    { Value: "YC", Name: "YesterdayCash", IsCalculated: true },
-                    { Value: "TC", Name: "TotalCash", IsCalculated: true },
-                    { Value: "O", Name: "Outstanding", IsCalculated: true }
+                    { Value: "@Las.Total", Name: "RowNo", CellAlign: "center", MergeColNumber: 4, NonCalculated: true },
+                    { Value: "GC", Name: "GivenCredit", MergeColNumber: 2 },
+                    { Value: "UC", Name: "UsedCredit" },
+                    { Value: "YB", Name: "YesterdayBalance" },
+                    { Value: "TB", Name: "TotalBalance" },
+                    { Value: "YC", Name: "YesterdayCash" },
+                    { Value: "TC", Name: "TotalCash" },
+                    { Value: "O", Name: "Outstanding" }
                 ]
               }
         ];
-              var gridOptions = {
-                  columns: [
+    var gridOptions = {
+        columns: [
                         {
                             HeaderText: "#", Width: 30, Name: "RowNo", CellAlign: "center", CanResize: false
                         },
@@ -66,11 +66,11 @@
                             HeaderText: "@Las.Outstanding", Width: 80, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$'
                         }
                    ],
-                  showPager: true,
-                  gridExpandHeight: 125,
-                  bodyRowHeight: 29,
-                  showFooter: true,
-                  footerRows: footerRows,
-                  autoResizeColumn: true
-              };
+        showPager: true,
+        gridExpandHeight: 125,
+        bodyRowHeight: 29,
+        showFooter: true,
+        footerRows: footerRows,
+        autoResizeColumn: true
+    };
 </script>

@@ -2,10 +2,10 @@
     var footerRows = [
               {
                   Columns: [
-                    { Value: "Total", Name: "AgentId", MergeColNumber: 4 },
-                    { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2, IsCalculated: true },
-                    { Value: "TotalBalance", Name: "TotalBalance", IsCalculated: true },
-                    { Value: "", Name: "Outstanding", MergeColNumber: 2 }
+                    { Value: "Total", Name: "AgentId", MergeColNumber: 4, NonCalculated: true },
+                    { Value: "YesterdayBalance", Name: "YesterdayBalance", MergeColNumber: 2 },
+                    { Value: "TotalBalance", Name: "TotalBalance" },
+                    { Value: "", Name: "Outstanding", MergeColNumber: 2, NonCalculated: true }
                 ]
               }
         ];
@@ -19,8 +19,8 @@
         }
         },*/
                         {
-                            HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
-                        },
+                        HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false
+                    },
                         {
                             HeaderText: "@Las.Username", Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, CanResize: false
                         },

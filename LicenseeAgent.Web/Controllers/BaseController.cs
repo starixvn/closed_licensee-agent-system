@@ -8,6 +8,7 @@
     using System.Web.SessionState;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Results;
@@ -189,7 +190,7 @@
                 {
                     var actionDescriptor = (ReflectedActionDescriptor)filterContext.ActionDescriptor;
                     var isAjaxRequest = filterContext.IsJsonRequest();
-                    if (isAjaxRequest && actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
+                    if (isAjaxRequest || actionDescriptor.MethodInfo.ReturnType.Equals(typeof(JsonResult)))
                     {
                         filterContext.Result = InvalidModelJsonResult();
                         isHandled = true;
@@ -224,6 +225,11 @@
                 ErrCode = result.ErrCode,
                 ErrMsg = result.ErrMsg
             });
+        }
+
+        protected JsonResult JsonResult(ErrCode errCode)
+        {
+            return JsonResult((int)errCode);
         }
 
         protected JsonResult JsonResult(int errCode)

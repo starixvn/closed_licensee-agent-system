@@ -149,10 +149,8 @@
         /// <param name="betType">Type of the bet.</param>
         /// <param name="betTeam">The bet team.</param>
         /// <returns>Returns bet team title.</returns>
-        [SuppressMessage(
-           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-           "SP2101:MethodMustNotContainMoreLinesThan",
-           Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Review")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         public static string GetBetTeamName(int betType, string betTeam)
         {

@@ -57,6 +57,7 @@
         }
 
         /// <summary>
+        /// <summary>
         /// Insert member.
         /// </summary>
         /// <param name="action">Service action.</param>

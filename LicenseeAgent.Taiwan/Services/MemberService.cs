@@ -47,10 +47,9 @@
         public GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action)
         {
             var result = ServiceWrapper.GetActionResponse<GetDepositMemberInfoListResult>(action);
-            if (result.ApiErrCode == 1)
+            if (result.ApiErrCode == (int)GetDepositMemberInfoListErrCode.MemberNotExist && string.IsNullOrWhiteSpace(action.Username))
             {
                 result.ErrCode = Result.SuccessValue;
-                result.ErrMsg = string.Empty;
                 result.Data = new List<DepositMemberInfo>();
             }
 
@@ -161,6 +160,31 @@
             }
 
             return memberListResult;
+        }
+
+        /// <summary>
+        /// Get member information.
+        /// </summary>
+        /// <typeparam name="T">Type object response.</typeparam>
+        /// <param name="memberEntity">Member entity.</param>
+        /// <param name="action">Service action.</param>
+        /// <returns>
+        /// Member entity after merging.
+        /// </returns>
+        public ResponseResult GetDepositMemberInformation<T>(T memberEntity, GetDepositMemberInfoAction action)
+        {
+            var memberResult = ServiceWrapper.GetActionResponse<DepositMemberResult>(action);
+            if (memberResult.ErrCode == Result.SuccessValue)
+            {
+                ServiceMapper.MapObject(memberResult.Member, memberEntity);
+            }
+            else
+            {
+                ServiceExtension.WriteError(action, memberResult);
+                memberResult.ErrCode = Result.SuccessValue;
+            }
+
+            return memberResult;
         }
 
         /// <summary>

@@ -167,6 +167,7 @@
             RegisterCreditBalancePage(bundles);
             RegisterMessagePage(bundles);
             RegisterToolPage(bundles);
+            RegisterCommissionGroupPage(bundles);
         }
 
         private static void RegisterErrorPage(BundleCollection bundles)
@@ -417,6 +418,12 @@
                 "~/views/tool/resources/password-tool.js"));
             bundles.Add(new ScriptBundle("~/js/tool/sync-monitoring").Include(
                 "~/views/tool/resources/sync-monitoring.js"));
+        }
+
+        private static void RegisterCommissionGroupPage(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/CommissionGroup").Include(
+                "~/views/CommissionGroup/resources/CommissionGroup.js"));
         }
 
         #endregion Pages

@@ -504,11 +504,20 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Ball must be equal to or less than Parent Agent Max Per Ball ({0})..
+        ///   Looks up a localized string similar to Max Per Ball must be less than or equal to Max Per Ball on (@Sporttype) of Parent Agent..
         /// </summary>
         public static string Msg_1102 {
             get {
                 return ResourceManager.GetString("Msg_1102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to rollback data. Please contact administrator imediately!.
+        /// </summary>
+        public static string Msg_113 {
+            get {
+                return ResourceManager.GetString("Msg_113", resourceCulture);
             }
         }
         
@@ -936,7 +945,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member already has BA setting. Please check again..
+        ///   Looks up a localized string similar to Member already has BA. Please check again..
         /// </summary>
         public static string Msg_2075 {
             get {
@@ -1026,11 +1035,47 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent username is empty.
+        ///   Looks up a localized string similar to Agent username is empty..
         /// </summary>
         public static string Msg_2110 {
             get {
                 return ResourceManager.GetString("Msg_2110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent does not exist. Please check again..
+        /// </summary>
+        public static string Msg_2111 {
+            get {
+                return ResourceManager.GetString("Msg_2111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match..
+        /// </summary>
+        public static string Msg_2112 {
+            get {
+                return ResourceManager.GetString("Msg_2112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match..
+        /// </summary>
+        public static string Msg_2113 {
+            get {
+                return ResourceManager.GetString("Msg_2113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot assign member to this agent..
+        /// </summary>
+        public static string Msg_2114 {
+            get {
+                return ResourceManager.GetString("Msg_2114", resourceCulture);
             }
         }
         

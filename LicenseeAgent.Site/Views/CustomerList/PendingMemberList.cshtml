@@ -15,10 +15,10 @@
     @ViewBag.Title
 </div>
 <div class="pull-left">
+    @Html.ValidationSummary()
     @using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "form-inline form-filter", id = "search-form" }))
     {
-        @Html.ValidationSummary()
         <div class="controls-row">
             @Html.LabelFor(x => x.MemberUserName)
             @Html.TextBoxFor(x => x.MemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })

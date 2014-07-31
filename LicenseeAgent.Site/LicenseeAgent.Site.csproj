@@ -211,6 +211,7 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
     <Content Include="Web.AppSettings.Config.txt">
@@ -591,9 +592,7 @@
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\CommissionGroup\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -629,6 +628,7 @@
     <None Include="SiteConfiguration.ttinclude" />
     <Content Include="Web.AppSettings.Local.Admin.config">
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.Local.Agent.config">
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>

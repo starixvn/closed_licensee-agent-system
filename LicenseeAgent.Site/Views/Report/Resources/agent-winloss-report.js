@@ -60,7 +60,7 @@ var agentWinLossReport = (function ($) {
                 success: function (data) {
                     if (data.ErrCode === 0) {
                         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                        var x = core.genGridTotalRows(gridOptions.bodyRows, gridOptions);
+                        core.genGridTotalRows(gridOptions.bodyRows, gridOptions);
                         $('#grid').show().fanexGrid(gridOptions);
                         core.unblockUI();
                     }

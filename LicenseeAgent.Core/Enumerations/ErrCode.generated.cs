@@ -261,6 +261,11 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_1102 = 1102,
 
         /// <summary>
+        /// Failed to rollback data. Please contact administrator imediately!.
+        /// </summary>
+        Msg_113 = 113,
+
+        /// <summary>
         /// Invalid currency..
         /// </summary>
         Msg_2 = 2,
@@ -496,9 +501,14 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_2074 = 2074,
 
         /// <summary>
-        /// Member already has BA setting. Please check again..
+        /// Member already has BA. Please check again..
         /// </summary>
         Msg_2075 = 2075,
+
+        /// <summary>
+        /// Member is invalid. Please check again..
+        /// </summary>
+        Msg_2076 = 2076,
 
         /// <summary>
         /// Faild to switch user. Please try again..
@@ -541,9 +551,29 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_2085 = 2085,
 
         /// <summary>
-        /// Agent username is empty.
+        /// Agent username is empty..
         /// </summary>
         Msg_2110 = 2110,
+
+        /// <summary>
+        /// Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2111 = 2111,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2112 = 2112,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2113 = 2113,
+
+        /// <summary>
+        /// Cannot assign member to this agent..
+        /// </summary>
+        Msg_2114 = 2114,
 
         /// <summary>
         /// Invalid level..

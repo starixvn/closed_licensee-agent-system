@@ -73,6 +73,15 @@
         ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action);
 
         /// <summary>
+        /// Get member information.
+        /// </summary>
+        /// <typeparam name="T">Type object response.</typeparam>
+        /// <param name="memberEntity">Member entity.</param>
+        /// <param name="action">Service action.</param>
+        /// <returns>Member entity after merging.</returns>
+        ResponseResult GetDepositMemberInformation<T>(T memberEntity, GetDepositMemberInfoAction action);
+
+        /// <summary>
         /// Get deposit member information.
         /// </summary>
         /// <typeparam name="T">Type object response.</typeparam>
@@ -89,5 +98,7 @@
         /// <param name="logId">Input Log ID.</param>
         /// <returns>Response result.</returns>
         ResponseResult UpdateAgentId(UpdateAgentIDAction action, bool isReinvoke = false, int logId = 0);
+
+        GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action);
     }
 }

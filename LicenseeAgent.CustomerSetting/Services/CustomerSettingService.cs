@@ -137,10 +137,9 @@
             }
         }
 
-        public bool MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria)
+        public void MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria)
         {
             QueryService.Execute(criteria);
-            return criteria.HasFirstDeposit;
         }
 
         public void MemberReArrangement(ReArrangementMemberCriteria criteria)
@@ -149,6 +148,11 @@
         }
 
         public void SwitchUserFromNormalToLegend(SwitchUserFromNormalToLegendCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+        }
+
+        public void GetLegendAgentId(GetLegendAgentIdCriteria criteria)
         {
             QueryService.Execute(criteria);
         }

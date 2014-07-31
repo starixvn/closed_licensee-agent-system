@@ -82,6 +82,7 @@
     <Setting Key="Las_Cash_SwitchUserFromNormalToLegend" SpName="Las_Cash_SwitchUserFromNormalToLegend" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_Cash_ReArrangementMember" SpName="Las_Cash_ReArrangementMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_Cash_HasFirstDeposit" SpName="Las_Cash_HasFirstDeposit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_GetLegendAgentId" SpName="Las_Cash_GetLegendAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

@@ -470,4 +470,22 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_2076" xml:space="preserve">
     <value>Member is invalid. Please check again.</value>
   </data>
+  <data name="Msg_2110" xml:space="preserve">
+    <value>Agent username is empty.</value>
+  </data>
+  <data name="Msg_2111" xml:space="preserve">
+    <value>Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2112" xml:space="preserve">
+    <value>Currencies of Member and Agent do not match.</value>
+  </data>
+  <data name="Msg_2113" xml:space="preserve">
+    <value>Currencies of Member and Agent do not match.</value>
+  </data>
+  <data name="Msg_2114" xml:space="preserve">
+    <value>Cannot assign member to this agent.</value>
+  </data>
+  <data name="Msg_113" xml:space="preserve">
+    <value>Failed to rollback data. Please contact administrator imediately!</value>
+  </data>
 </root>

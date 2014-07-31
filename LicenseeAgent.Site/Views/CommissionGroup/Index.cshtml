@@ -14,7 +14,7 @@
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/customerlist")
+    @Scripts.Render("~/js/CommissionGroup")
     @if (pageContext.IsLastLevel)
     {
         @Html.Partial("_MemberGrid", pageContext)
@@ -24,25 +24,10 @@
     @ViewBag.Title
 </div>
 
-@using (Html.BeginForm("GetCustomerList", "CustomerList", FormMethod.Post,
+@using (Html.BeginForm("GetCommissionGroup", "CommissionGroup", FormMethod.Post,
     new { @class = "form-inline form-filter ", id = "search-form" }))
-{
-    @Html.HiddenFor(m => m.AgentId)
-    @Html.HiddenFor(m => m.AgentLevel)
-    <div class="controls-row">
-        @Html.Label("Username", Las.Username)
-        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
-    </div>
-    <div class="controls-row">
-        @Html.Label("Status", Las.Status)
-        @Html.DropDownList("Status", ModelSettings.StatusList, new { @class = "selectpicker w100" })
-    </div>
-    <div class="controls-row">
-        <button class="btn btn-primary" type="submit">
-            @Las.Submit
-        </button>
-    </div>
+{    
 }
-@Html.Partial("_Breadcrumb")
+
 <div id="grid" class="freegrid">
 </div>

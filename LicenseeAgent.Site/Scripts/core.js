@@ -239,6 +239,9 @@ var core = (function ($) {
             return -1;
         },
         rebuildGridOptions: function (options) {
+            if (options.pagerOption != null) {
+                options.pagerOption.currentPage = 0;
+            }
             // always auto resize on alls columns that don't define CanResize
             if (options.autoResizeColumn) {
                 var columns = options.columns;
@@ -378,10 +381,6 @@ var core = (function ($) {
             var elemTop = $(elem).offset().top;
             var elemBottom = elemTop + $(elem).height();
             return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-        },
-        parseBoolean: function (value) {
-            var regex = new RegExp(/^true$/i);
-            return regex.test(value);
         },
         showErrorMsg: function (msg) {
             var msgWrp = $('.validation-summary-valid');

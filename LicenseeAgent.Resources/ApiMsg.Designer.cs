@@ -70,6 +70,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member does not exist. Please check again..
+        /// </summary>
+        public static string GetDepositMemberInfoList_1 {
+            get {
+                return ResourceManager.GetString("GetDepositMemberInfoList_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System error.
+        /// </summary>
+        public static string GetDepositMemberInfoList_2 {
+            get {
+                return ResourceManager.GetString("GetDepositMemberInfoList_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information available!.
         /// </summary>
         public static string GetMemberInfo_1 {

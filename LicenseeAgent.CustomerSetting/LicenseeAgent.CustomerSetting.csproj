@@ -145,6 +145,7 @@
     <Compile Include="Entities\SettingContext.cs" />
     <Compile Include="Entities\UpdateResult.cs" />
     <Compile Include="Enumerations\ArrangementMode.cs" />
+    <Compile Include="Criteria\GetLegendAgentIdCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\NumberGame\SettingService.cs" />

@@ -25,7 +25,7 @@
 
         public override LogActionCriteria CreateCriteria()
         {
-            return new EditInfoMemberCriteria(this)
+            return new UpdateAgenIdCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,

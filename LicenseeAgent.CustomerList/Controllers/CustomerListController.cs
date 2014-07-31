@@ -759,7 +759,7 @@
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 LASAgentId = agentId,
                 DepositOption = (int)DepositOption.DepositNot,
-                UserName = model.MemberUserName
+                Username = model.MemberUserName
             });
 
             return Json(new

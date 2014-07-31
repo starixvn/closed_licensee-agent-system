@@ -138,4 +138,10 @@
   <data name="GetMemberInfoList_1" xml:space="preserve">
     <value>No information available!</value>
   </data>
+  <data name="GetDepositMemberInfoList_1" xml:space="preserve">
+    <value>Member does not exist. Please check again.</value>
+  </data>
+  <data name="GetDepositMemberInfoList_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
 </root>

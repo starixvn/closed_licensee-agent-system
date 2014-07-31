@@ -18,18 +18,24 @@ var pendingMemberList = (function ($) {
     };
     return {
         init: function () {
-            $('#grid').hide();
+            pendingMemberList.hideGrid();
 
             $('form').submit(function (e) {
                 if ($(this).valid()) {
-                    $('.validation-summary-errors').hide();
+                    core.hideErrors();
                     pendingMemberList.submit();
                 } else {
-                    $('.validation-summary-errors').show();
-                    $('#grid').hide();
+                    pendingMemberList.hideGrid();
                 }
                 e.preventDefault();
             });
+
+            if ($('#DirectAgentUserName').length === 0) {
+                pendingMemberList.submit();
+            }
+        },
+        hideGrid: function () {
+            $('#grid').hide();
         },
         submit: function () {
             $.ajax({
@@ -41,7 +47,8 @@ var pendingMemberList = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
+                        core.showErrorMsg(data.ErrMsg);
+                        pendingMemberList.hideGrid();
                         return;
                     }
                     gridOptions.bodyRows = core.genGridRows(data.Data, gridOptions);

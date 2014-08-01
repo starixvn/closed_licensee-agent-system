@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.ViewModels;
@@ -25,5 +26,11 @@
         void SwitchUserFromNormalToLegend(SwitchUserFromNormalToLegendCriteria criteria);
 
         void GetLegendAgentId(GetLegendAgentIdCriteria criteria);
+
+        void GetLegendAgentIdHasDeposit(GetLegendAgentIdHasDepositCriteria criteria);
+
+        CustomerInfo GetMemberInfo(GetMemberInfoCriteria criteria);
+
+        AgentInfo GetAgentInfoByMember(GetAgentInfoByMemberCriteria criteria);
     }
 }

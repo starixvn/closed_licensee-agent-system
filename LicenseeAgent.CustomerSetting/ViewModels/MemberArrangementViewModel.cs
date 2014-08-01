@@ -17,7 +17,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
 
         public ArrangementMode Mode { get; set; }
 
-        [Display(Name = "NewAgent", ResourceType = typeof(Las))]
+        [Display(Name = "NewAgent", ResourceType = typeof(Las))]        
         public string NewAgentName { get; set; }
 
         [Display(Name = "OldAgent", ResourceType = typeof(Las))]

@@ -65,7 +65,7 @@
     <Compile Include="Configurations\ServiceSetting.cs" />
     <Compile Include="Criteria\AddNewMemberCriteria.cs" />
     <Compile Include="Criteria\ChangeStatusMemberCriteria.cs" />
-    <Compile Include="Criteria\UpdateAgenIdCriteria.cs" />
+    <Compile Include="Criteria\UpdateAgentIdCriteria.cs" />
     <Compile Include="Criteria\EditInfoMemberCriteria.cs" />
     <Compile Include="Criteria\LogActionCriteria.cs" />
     <Compile Include="Criteria\MultipleLogActionCriteria.cs" />

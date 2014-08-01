@@ -51,5 +51,9 @@
         public decimal? MaxCredit { get; set; }
 
         public int Status { get; set; }
+
+        public string Username2 { get; set; }
+
+        public int Currency { get; set; }
     }
 }

@@ -157,6 +157,21 @@
             QueryService.Execute(criteria);
         }
 
+        public void GetLegendAgentIdHasDeposit(GetLegendAgentIdHasDepositCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+        }
+
+        public CustomerInfo GetMemberInfo(GetMemberInfoCriteria criteria)
+        {
+            return QueryService.GetEntity<CustomerInfo>(criteria);
+        }
+
+        public AgentInfo GetAgentInfoByMember(GetAgentInfoByMemberCriteria criteria)
+        {
+            return QueryService.GetEntity<AgentInfo>(criteria);
+        }
+
         /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>

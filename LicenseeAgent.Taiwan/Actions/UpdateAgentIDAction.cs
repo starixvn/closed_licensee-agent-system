@@ -8,11 +8,33 @@
     /// </summary>
     public class UpdateAgentIDAction : LogAction
     {
+        public UpdateAgentIDAction()
+        {
+        }
+
+        public UpdateAgentIDAction(int custId, int currency, string username, string agentName, int ibcAgentId, int legendAgentId)
+        {
+            IBCCustId = custId;
+            MemberCurrencyId = currency;
+            Username = username;
+            AgentName = agentName;
+            NewIBCAgentId = ibcAgentId;
+            NewLASAgentId = legendAgentId;
+        }
+
+        public int IBCCustId { get; set; }
+
         public string Username { get; set; }
 
-        public int? NewLASAgentID { get; set; }
+        public string AgentName { get; set; }
 
-        public int? NewIBCAgentID { get; set; }
+        public int? NewLASAgentId { get; set; }
+
+        public int? NewIBCAgentId { get; set; }
+
+        public int LicenseeCurrencyId { get; set; }
+
+        public int MemberCurrencyId { get; set; }
 
         [Service]
         public override string ActionName
@@ -23,12 +45,22 @@
             }
         }
 
+        /// <summary>
+        /// Override Log Action Criteria by Update Agent Id Criteria.
+        /// </summary>
+        /// <returns>Log Action Criteria.</returns>
         public override LogActionCriteria CreateCriteria()
         {
-            return new UpdateAgenIdCriteria(this)
+            return new UpdateAgentIdCriteria(this)
             {
                 LicenseeId = LicenseeId,
                 UserId = UserId,
+                CustId = IBCCustId,
+                NewIBCAgentId = NewIBCAgentId,
+                NewLASAgentId = NewLASAgentId,
+                AgentName = AgentName,
+                LicenseeCurrencyId = LicenseeCurrencyId,
+                MemberCurrencyId = MemberCurrencyId,
                 Doing = DoingLogXml
             };
         }

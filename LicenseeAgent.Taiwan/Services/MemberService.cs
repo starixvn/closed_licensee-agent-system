@@ -220,8 +220,8 @@
         public ResponseResult UpdateAgentId(UpdateAgentIDAction action, bool isReinvoke = false, int logId = 0)
         {
             action.Username = action.Username ?? Constants.EmptyString;
-            action.NewIBCAgentID = action.NewIBCAgentID ?? 0;
-            action.NewLASAgentID = action.NewLASAgentID ?? 0;
+            action.NewIBCAgentId = action.NewIBCAgentId ?? 0;
+            action.NewLASAgentId = action.NewLASAgentId ?? 0;
 
             return ExecuteSingleLog(action, isReinvoke, logId);
         }

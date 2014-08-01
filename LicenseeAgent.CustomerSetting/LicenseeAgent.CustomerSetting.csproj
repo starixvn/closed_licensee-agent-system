@@ -89,6 +89,7 @@
     <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Controllers\MemberCommissionController.cs" />
+    <Compile Include="Controllers\MemberReArrangement.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\ErrorType.cs" />
     <Compile Include="Core\PtSettings.designer.cs">
@@ -157,6 +158,9 @@
     <Compile Include="Entities\UpdateResult.cs" />
     <Compile Include="Enumerations\ArrangementMode.cs" />
     <Compile Include="Criteria\GetLegendAgentIdCriteria.cs" />
+    <Compile Include="Criteria\GetLegendAgentIdHasDepositCriteria.cs" />
+    <Compile Include="Criteria\GetMemberInfoCriteria.cs" />
+    <Compile Include="Criteria\GetAgentInfoByMemberCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GroupCommissionService.cs" />
     <Compile Include="Services\IGroupCommissionService.cs" />

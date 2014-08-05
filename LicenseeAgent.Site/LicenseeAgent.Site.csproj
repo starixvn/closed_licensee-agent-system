@@ -621,7 +621,7 @@
     <Content Include="Views\MemberCommission\Index.cshtml" />
     <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
     <Content Include="Views\MemberCommission\RemoveFromGroup.cshtml" />
-    <None Include="Views\MemberCommission\Resources\member-commission.less" />
+    <Content Include="Views\MemberCommission\Resources\member-commission.less" />
     <Content Include="Views\MemberCommission\UpdateMemberCommission.cshtml" />
     <Content Include="Views\MemberCommission\_MemberCommission.cshtml" />
     <None Include="Web.AppSettings.Config.tt">

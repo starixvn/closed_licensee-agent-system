@@ -50,6 +50,7 @@
     <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMemMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirectMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_GetAgentIdByUsername" SpName="Las_Cash_GetAgentIdByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetAgentInfoById" SpName="Las_GetAgentInfoById" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="CustomerSetting - SportsBook">
@@ -86,6 +87,7 @@
     <Setting Key="Las_Cash_GetLegendAgentIdHasDeposit" SpName="Las_Cash_GetLegendAgentIdHasDeposit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Switch_UpdateAgentId_Writelog" SpName="LAS_Switch_UpdateAgentId_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_GetMemberInfo" SpName="LAS_GetMemberInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_GetAgentInfoByMember" SpName="LAS_GetAgentInfoByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -105,7 +107,7 @@
     <Setting Key="Las_AgentGetAutoCompleteUserName" SpName="Las_AgentGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_CheckMemberUplineStatusForUpdate" SpName="Las_CheckMemberUplineStatusForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_Cash_GetAgentIdByUsername" SpName="Las_Cash_GetAgentIdByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_GetLegendAgentId" SpName="Las_Cash_GetLegendAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBTXNIP.IPDB.bodbDownlineNet" Plain="0" TimeOut="600" />

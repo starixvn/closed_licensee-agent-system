@@ -1,0 +1,68 @@
+﻿@using LicenseeAgent.CustomerSetting.Entities;
+@model MemberCommission
+@{
+    ViewBag.Title = Las.RemoveFromGroup;
+}
+@section css
+{
+    @Styles.Render("~/css/membercommission")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/membercommission")
+}
+<div class="legend">
+    @Las.RemoveFromGroup
+</div>
+<div style="width: 400px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", @id = "action-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="messages hide">
+            <p class="success">
+                <i class="icon-message-success"></i>
+                <span></span>
+            </p>
+        </div>
+        <fieldset>
+            <div class="control-group">
+                <div class="controls remove-group header">
+                    @Las.AlertRemoveToGroup
+                </div>
+            </div>
+            <div class="control-group">
+               <div class="controls remove-group header">
+                    <b>@Las.ConfirmMemberCommission</b>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls remove-group">
+                    <label class="radio">
+                        @Html.RadioButton("SelectedConfirm", false, true)
+                        @Las.KeepCurrentCommission
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls remove-group">
+                    <label class="radio">
+                        @Html.RadioButton("SelectedConfirm", true)
+                        @Las.ClearMemberCommission
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls remove-group">
+                    <button type="button" class="btn btn-primary" id="cancel">
+                        @Las.Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        @Las.Submit
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+        @Html.Hidden("MemberIds")
+    }
+</div>

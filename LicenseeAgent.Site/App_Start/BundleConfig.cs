@@ -168,6 +168,7 @@
             RegisterMessagePage(bundles);
             RegisterToolPage(bundles);
             RegisterCommissionGroupPage(bundles);
+            RegisterMemberCommissionPages(bundles);
         }
 
         private static void RegisterErrorPage(BundleCollection bundles)
@@ -424,6 +425,18 @@
         {
             bundles.Add(new ScriptBundle("~/js/CommissionGroup").Include(
                 "~/views/CommissionGroup/resources/CommissionGroup.js"));
+
+            bundles.Add(new LessBundle("~/css/membercommission").Include(
+                "~/views/membercommission/resources/member-commission.less"));
+        }
+        
+        private static void RegisterMemberCommissionPages(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/membercommission").Include(
+                "~/views/membercommission/resources/member-commission.js"));
+
+            bundles.Add(new LessBundle("~/css/membercommission").Include(
+                "~/views/membercommission/resources/member-commission.less"));
         }
 
         #endregion Pages

@@ -1,0 +1,49 @@
+﻿<script type="text/javascript">
+    var gridOptions = {
+        customizeHeader: true,
+        groupHeaderRows: [
+            {
+                Columns: [
+                        { HeaderText: '<i class="icon-uncheck-all" onclick="memberCommission.checkAllItem(this);"></i>', Name: "CustId", MergeRowNumber: 2 },
+                        { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
+                        { HeaderText: "@Las.SystemId", Name: "SystemId", MergeRowNumber: 2 },
+                        { HeaderText: "@Las.Username", Name: "UserName", MergeRowNumber: 2 },
+                        { HeaderText: "@Las.Group", Name: "GroupName", MergeRowNumber: 2 },
+                        { HeaderText: "@Las.CommissionHeader", Name: "SBComm", MergeColNumber: 2 }
+                    ]
+            }
+        ],
+        columns: [
+            {
+                Width: 30, Name: "CustId", CellAlign: "center", MergeColNumber: 2, CanResize: false,
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="cell-select icon icon-uncheck" onclick="memberCommission.selectClick(this);" data-cust-id="' + cell.Value + '"></span>';
+                }
+            },
+            { HeaderText: "#", Name: "No", Width: 60, HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: "@Las.SystemId", Width: 100, Name: "SystemId", HeaderAlign: "center" },
+            { HeaderText: "@Las.Username", Width: 150, Name: "UserName", HeaderAlign: "center" },
+            { HeaderText: "@Las.Group", Width: 100, Name: "GroupName", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="group-comm">' + cell.Value + '</span>';
+                } 
+            },
+            { HeaderText: "@Las.SB", Width: 50, Name: "SBComm", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="sb-comm">' + memberCommission.formatNumber(cell.Value) + '</span>';
+                }
+            },
+            { HeaderText: "@Las.NG", Width: 50, Name: "NGComm", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="ng-comm">' + memberCommission.formatNumber(cell.Value) + '</span>';
+                }
+            }
+        ],
+        showPager: true,
+        customPager: true,
+        gridExpandHeight: 125,
+        indexNumberColumn: 1,
+        bodyRowHeight: 29,
+        autoResizeColumn: true
+    };
+</script>

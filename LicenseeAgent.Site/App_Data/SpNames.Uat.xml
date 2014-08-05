@@ -201,4 +201,18 @@
     <Setting Key="Las_SyncMonitoring_UpdateRunCount" SpName="Las_SyncMonitoring_UpdateRunCount" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_SyncMonitoring_GetLogData" SpName="Las_SyncMonitoring_GetLogData" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
+  <Function name="Commission">
+    <Setting Key="Las_LicenseeGroupCommIns" SpName="Las_LicenseeGroupCommIns" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GroupCommCheckByName" SpName="Las_GroupCommCheckByName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeGroupCommSel" SpName="Las_LicenseeGroupCommSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GroupCommGetById" SpName="Las_GroupCommGetById" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeGroupCommUpd" SpName="Las_LicenseeGroupCommUpd" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeGroupCommDel" SpName="Las_LicenseeGroupCommDel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeUpdMemberComm" SpName="Las_LicenseeUpdMemberComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_MemberMoveGroupComm" SpName="Las_MemberMoveGroupComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_MemberRemoveGroupComm" SpName="Las_MemberRemoveGroupComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_IsAllowedMemberComm" SpName="Las_IsAllowedMemberComm" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeSelMember" SpName="Las_LicenseeSelMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeSelMemberByListId" SpName="Las_LicenseeSelMemberByListId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
 </Functions>

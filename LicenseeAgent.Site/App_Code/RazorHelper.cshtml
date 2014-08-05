@@ -7,6 +7,8 @@
 @using LicenseeAgent.Core.Entities
 @using LicenseeAgent.Core.Utility
 @using LicenseeAgent.Report.Enumerations
+@using LicenseeAgent.CustomerSetting.Entities
+
 @helper LanguageDropDown(string selectedLanguage = null)
     {
         var language = ModelSettings.Languages.Where(x => x.Value == selectedLanguage).FirstOrDefault();
@@ -150,3 +152,28 @@
     </div>
         }
 }
+
+@helper GroupCommision(IEnumerable<GroupCommission> groupCommissions, int selectedGroup = 0, bool haveAll = true, string className = "")
+{
+    <select id="GroupCommId" name="GroupCommId" class="@className">
+        @if(haveAll)
+        {
+            <option value="-1">@Las.All</option>
+        }
+        @foreach(var group in groupCommissions)
+        {
+            <option @(selectedGroup == group.GroupCommId ? "selected=selected" : string.Empty) value="@group.GroupCommId">@group.GroupName</option>
+        }
+    </select>
+}
+
+@helper ProductCommission(IEnumerable<int> range, string id, string className)
+{
+    <select id="@id" name="@id" class="@className">
+        @foreach(var value in range)
+        {
+            <option value="@value">@value</option>
+        }
+    </select>
+}
+

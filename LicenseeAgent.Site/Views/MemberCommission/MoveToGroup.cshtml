@@ -1,0 +1,67 @@
+﻿@using LicenseeAgent.CustomerSetting.Entities
+@using LicenseeAgent.Core.Utility;
+@using LicenseeAgent.CustomerSetting.Core;
+
+@model IEnumerable<GroupCommission>
+@{
+    ViewBag.Title = Las.MoveToGroup;
+}
+@section css
+{
+    @Styles.Render("~/css/membercommission")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/membercommission")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", @id = "action-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <div class="messages hide">
+                <p class="success">
+                    <i class="icon-message-success"></i>
+                    <span></span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label for="group" class="control-label pull-left">@Las.SelectGroup</label>
+                <div class="controls move-group">
+                    @RazorHelper.GroupCommision(Model, 0 , false, "selectpicker")
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="SBComm" class="control-label pull-left">@Las.SBCommission</label>
+                <div class="controls move-group">
+                    @Html.TextBox("SBComm", Formatter.FormatDecimal(Model.FirstOrDefault().SBComm * Constant.StepMulDiv), new { @class = "span4", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="NGComm" class="control-label pull-left">@Las.NGCommission</label>
+                <div class="controls move-group">
+                    @Html.TextBox("NGComm", Formatter.FormatDecimal(Model.FirstOrDefault().NGComm * Constant.StepMulDiv), new { @class = "span4", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls move-group">
+                    <button type="button" class="btn btn-primary" id="cancel">
+                        @Las.Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        @Las.Submit
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+        @Html.Hidden("MemberIds")
+    }
+</div>
+<script type="text/javascript">
+    @Html.Raw(Formatter.FormatJson("groupCommissions", Model))
+</script>

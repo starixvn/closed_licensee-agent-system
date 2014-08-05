@@ -1,0 +1,66 @@
+﻿@using LicenseeAgent.CustomerSetting.Entities;
+@using LicenseeAgent.CustomerSetting.ViewModels;
+
+@model UpdateMemberCommissionViewModel
+@{
+    ViewBag.Title = Las.UpdateMemberCommission;
+}
+@section css
+{
+    @Styles.Render("~/css/membercommission")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/membercommission")
+}
+<div class="legend">
+    @Las.UpdateMemberCommission
+</div>
+<div style="width: 400px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", @id = "action-form" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="messages hide">
+            <p class="success">
+                <i class="icon-message-success"></i>
+                <span></span>
+            </p>
+        </div>
+        <fieldset>
+            <div class="control-group">
+                <label for="SBComm" class="control-label pull-left">@Las.SBCommission</label>
+                <div class="controls update-comm">
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "SBComm1", "selectpicker w60 product-comm")
+                    <div class="dot-comm">•</div>
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "SBComm2", "selectpicker w60 upd-comm")
+                    @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "SBComm3", "selectpicker w60 upd-comm last")
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="NGComm" class="control-label pull-left">@Las.NGCommission</label>
+                <div class="controls update-comm">
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "NGComm1", "selectpicker w60 product-comm")
+                    <div class="dot-comm">•</div>
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "NGComm2", "selectpicker w60 upd-comm")
+                    @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "NGComm3", "selectpicker w60 upd-comm last")
+                </div>
+            </div>
+            <div class="control-group">
+                <span class="note-text">@Las.Note:@Html.Raw(Las.NoteUpdateMemberCommission)</span>
+            </div>
+            <div class="control-group">
+                <div class="controls move-group">
+                    <button type="button" class="btn btn-primary" id="cancel">
+                        @Las.Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        @Las.Submit
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+        @Html.Hidden("MemberIds")
+    }
+</div>

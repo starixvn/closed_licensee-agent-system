@@ -24,6 +24,8 @@
         public const decimal RoundingNumber = 0.0049m;
         public const int NumberDigist = 2;
         public const int PTRate = 10000;
+        public const string FormatCommission = "{0}.{1}{2}";
+        public const int MaxComm = 15;
 
         public static string DefaultLanguage
         {

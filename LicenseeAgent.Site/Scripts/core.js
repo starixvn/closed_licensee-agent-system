@@ -59,7 +59,9 @@ var core = (function ($) {
             // handle click in iframe.
             if ($('#frmMain').length === 0) {
                 $('html').on('click', function () {
-                    parent.$('#frmMain').trigger('click');
+                    if (parent !== null) {
+                        parent.$('#frmMain').trigger('click');
+                    }
                 });
             }
 

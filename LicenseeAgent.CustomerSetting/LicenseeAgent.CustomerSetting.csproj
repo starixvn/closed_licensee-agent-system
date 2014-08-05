@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerSettingController.cs" />
+    <Compile Include="Controllers\MemberCommissionController.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\ErrorType.cs" />
     <Compile Include="Core\PtSettings.designer.cs">
@@ -98,9 +99,17 @@
     <Compile Include="Core\SettingConfigurations.cs" />
     <Compile Include="Criteria\AgentInsertAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInsertMemberCriteria.cs" />
+    <Compile Include="Criteria\AllowedMemberCommissionCriteria.cs" />
     <Compile Include="Criteria\CheckExistUserNameCriteria.cs" />
+    <Compile Include="Criteria\GetLicenseeMembersByIdsCriteria.cs" />
+    <Compile Include="Criteria\GroupCommGetByIdCriteria.cs" />
+    <Compile Include="Criteria\LicenseeGetGroupCommissionCriteria.cs" />
+    <Compile Include="Criteria\LicenseeGetMemberCommissionCriteria.cs" />
     <Compile Include="Criteria\LicenseeInsertAgentCriteria.cs" />
+    <Compile Include="Criteria\LicenseeUpdateMemberCommissionCriteria.cs" />
     <Compile Include="Criteria\MemberIsFirstDepositCriteria.cs" />
+    <Compile Include="Criteria\MemberMoveGroupCommissionCriteria.cs" />
+    <Compile Include="Criteria\MemberRemoveGroupCommissionCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForInsertCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\NumberGame\AgentGetMemberSettingIndirectForUpdateCriteria.cs" />
@@ -130,6 +139,7 @@
     <Compile Include="Criteria\VirtualSports\LicenseeGetAgentSettingForUpdateCriteria.cs" />
     <Compile Include="Criteria\VirtualSports\LicenseeUpdateAgentCriteria.cs" />
     <Compile Include="Entities\CommissionProduct.cs" />
+    <Compile Include="Entities\GroupCommission.cs" />
     <Compile Include="Entities\ISettingResult.cs" />
     <Compile Include="Entities\BettingLimitItem.cs" />
     <Compile Include="Entities\CommissionItem.cs" />
@@ -139,6 +149,7 @@
     <Compile Include="Entities\CustomerSetting2.cs" />
     <Compile Include="Entities\EditProductItem.cs" />
     <Compile Include="Entities\InsertResult.cs" />
+    <Compile Include="Entities\MemberCommission.cs" />
     <Compile Include="Entities\MemberInfo.cs" />
     <Compile Include="Entities\PositionTakingItem.cs" />
     <Compile Include="Entities\PositionTakingGroup.cs" />
@@ -147,7 +158,11 @@
     <Compile Include="Enumerations\ArrangementMode.cs" />
     <Compile Include="Criteria\GetLegendAgentIdCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GroupCommissionService.cs" />
+    <Compile Include="Services\IGroupCommissionService.cs" />
+    <Compile Include="Services\IMemberCommissionService.cs" />
     <Compile Include="Services\ISettingService.cs" />
+    <Compile Include="Services\MemberCommissionService.cs" />
     <Compile Include="Services\NumberGame\SettingService.cs" />
     <Compile Include="Services\SettingServiceBase.cs" />
     <Compile Include="Services\SportsBook\SettingService.cs" />
@@ -166,6 +181,12 @@
     <Compile Include="ViewModels\EditProductMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\MemberArrangementViewModel.cs" />
+    <Compile Include="ViewModels\GetMemberCommissionsViewModel.cs" />
+    <Compile Include="ViewModels\MemberCommissionViewModel.cs" />
+    <Compile Include="ViewModels\MoveGroupViewModel.cs" />
+    <Compile Include="ViewModels\UpdateMoveGroupViewModel.cs" />
+    <Compile Include="ViewModels\RemoveGroupViewModel.cs" />
+    <Compile Include="ViewModels\UpdateMemberCommissionViewModel.cs" />
     <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />

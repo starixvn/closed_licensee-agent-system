@@ -214,6 +214,7 @@
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
+    <Content Include="Views\MemberCommission\Resources\member-commission.js" />
     <Content Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -617,6 +618,12 @@
     <Content Include="Views\CommissionGroup\Add.cshtml" />
     <Content Include="Views\CommissionGroup\Edit.cshtml" />
     <Content Include="Views\CustomerList\PendingMemberList.cshtml" />
+    <Content Include="Views\MemberCommission\Index.cshtml" />
+    <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
+    <Content Include="Views\MemberCommission\RemoveFromGroup.cshtml" />
+    <None Include="Views\MemberCommission\Resources\member-commission.less" />
+    <Content Include="Views\MemberCommission\UpdateMemberCommission.cshtml" />
+    <Content Include="Views\MemberCommission\_MemberCommission.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>

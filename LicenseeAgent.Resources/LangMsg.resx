@@ -465,13 +465,10 @@ If that is not you, please contact your upline!!!</value>
     <value>Member already has BA setting. Please check again.</value>
   </data>
   <data name="Msg_2110" xml:space="preserve">
-    <value>Agent username is empty</value>
+    <value>Agent username is empty.</value>
   </data>
   <data name="Msg_2076" xml:space="preserve">
     <value>Member is invalid. Please check again.</value>
-  </data>
-  <data name="Msg_2110" xml:space="preserve">
-    <value>Agent username is empty.</value>
   </data>
   <data name="Msg_2111" xml:space="preserve">
     <value>Agent does not exist. Please check again.</value>
@@ -495,7 +492,7 @@ If that is not you, please contact your upline!!!</value>
     <value>The Group Commission does not exist, please check again.</value>
   </data>
   <data name="Msg_2092" xml:space="preserve">
-    <value>Member commission should not be greater than {0}.</value>
+    <value>Member commission should not be greater than 15%.</value>
   </data>
   <data name="Msg_2093" xml:space="preserve">
     <value>This group name is not available, please try another one.</value>

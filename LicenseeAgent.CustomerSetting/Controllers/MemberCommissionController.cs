@@ -167,8 +167,7 @@
 
             if (criteria.ErrCode != Result.SuccessValue)
             {
-                var errorMessage = GetErrMsg(criteria.ErrCode);
-                return JsonResult(criteria.ErrCode, string.Format(errorMessage, Constant.MaxComm));
+                return JsonResult(criteria.ErrCode);
             }
 
             return Json(new

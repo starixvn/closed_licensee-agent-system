@@ -17,7 +17,7 @@
                 return false;
             }
 
-            return SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm;
+            return SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm && SessionManager.CurrentSession.IsAdmin;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

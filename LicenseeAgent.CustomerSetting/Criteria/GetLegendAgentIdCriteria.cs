@@ -33,7 +33,7 @@ namespace LicenseeAgent.CustomerSetting.Criteria
 
         public override bool IsValid()
         {
-            return MemberCurrencyId != 0;
+            return true;
         }
     }
 }

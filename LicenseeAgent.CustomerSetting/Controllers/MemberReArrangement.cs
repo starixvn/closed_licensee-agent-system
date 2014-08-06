@@ -86,6 +86,32 @@
         private int UpdateAgentIdDeposited(MemberArrangementViewModel model)
         {
             var errCode = 0;
+            var oldAgentName = string.Empty;
+            var agentInfo = _customerSettingService.GetAgentInfoByMember(new GetAgentInfoByMemberCriteria
+            {
+                MemberName = model.MemberName,
+                LiceneeId = CurrentSession.AgentInfo.LicenseeId
+            });
+
+            if (agentInfo == null)
+            {
+                // Member does not exist. Please check again.
+                if (model.Mode == ArrangementMode.AssignMember)
+                {
+                    return (int)ErrCode.Msg_2048;
+                }
+            }
+            else
+            {
+                // Member has been assigned. Please check again.
+                if (model.Mode == ArrangementMode.SwitchFromNormalCash)
+                {
+                    return (int)ErrCode.Msg_2074;
+                }
+
+                oldAgentName = agentInfo.UserName;
+            }
+
             var agentName = model.Mode == ArrangementMode.AssignMember ? model.NewAgentName : model.AgentName;
 
             // Get Agent Info and Call API update Data.
@@ -99,12 +125,7 @@
             if (errCode != 0)
             {
                 // Restore Data of API.
-                var agentInfo = _customerSettingService.GetAgentInfoByMember(new GetAgentInfoByMemberCriteria
-                {
-                    MemberName = model.MemberName,
-                    LiceneeId = CurrentSession.AgentInfo.LicenseeId
-                });
-                UpdateAgentIDHasDeposit(model, agentInfo.UserName);
+                UpdateAgentIDHasDeposit(model, oldAgentName);
             }
 
             return errCode;
@@ -178,7 +199,7 @@
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     UserName = username
                 });
-            if (serviceResult.ErrCode != 0)
+            if (serviceResult.ErrCode != 0 || customer.Currency == 0 || customer.CustId == 0)
             {
                 // Member does not exists.
                 errCode = (int)ErrCode.Msg_2001;

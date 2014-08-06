@@ -9,6 +9,8 @@
     {
         public int LASAgentId { get; set; }
 
+        public string IBCCustIdList { get; set; }
+
         [Service]
         public override string ActionName
         {

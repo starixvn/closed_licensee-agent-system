@@ -26,7 +26,7 @@
     @Html.Partial("_Script")
     @if (pageContext.IsLastLevel)
     {
-        @Html.Partial("_MemberGrid", pageContext)
+        @Html.Partial(SessionManager.CurrentSession.AgentInfo.IsCredit ? "_MemberGrid" : "_MemberGridDeposit", pageContext)
     }
     else
     {

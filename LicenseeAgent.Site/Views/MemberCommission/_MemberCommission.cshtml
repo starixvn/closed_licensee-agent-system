@@ -21,7 +21,7 @@
                 }
             },
             { HeaderText: "#", Name: "No", Width: 60, HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: "@Las.SystemId", Width: 100, Name: "SystemId", HeaderAlign: "center" },
+            { HeaderText: "@Las.SystemId", Width: 150, Name: "SystemId", HeaderAlign: "center", CanResize: false },
             { HeaderText: "@Las.Username", Width: 150, Name: "UserName", HeaderAlign: "center" },
             { HeaderText: "@Las.Group", Width: 100, Name: "GroupName", HeaderAlign: "center", CellAlign: "center",
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
@@ -30,12 +30,12 @@
             },
             { HeaderText: "@Las.SB", Width: 50, Name: "SBComm", HeaderAlign: "center", CellAlign: "center",
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return '<span class="sb-comm">' + memberCommission.formatNumber(cell.Value) + '</span>';
+                    return '<span class="sb-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
                 }
             },
             { HeaderText: "@Las.NG", Width: 50, Name: "NGComm", HeaderAlign: "center", CellAlign: "center",
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return '<span class="ng-comm">' + memberCommission.formatNumber(cell.Value) + '</span>';
+                    return '<span class="ng-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
                 }
             }
         ],

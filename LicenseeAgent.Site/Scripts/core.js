@@ -1,4 +1,4 @@
-﻿/*global appSettings, language, moment, popup, pageContext */
+﻿/*global appSettings, language, moment, popup, pageContext, numeral */
 
 var core = (function ($) {
     'use strict';
@@ -241,9 +241,6 @@ var core = (function ($) {
             return -1;
         },
         rebuildGridOptions: function (options) {
-            if (options.pagerOption != null) {
-                options.pagerOption.currentPage = 0;
-            }
             // always auto resize on alls columns that don't define CanResize
             if (options.autoResizeColumn) {
                 var columns = options.columns;
@@ -525,6 +522,9 @@ var core = (function ($) {
                 messages.push(message);
             }
             return messages;
+        },
+        formatCommissionPercent: function (value) {
+            return numeral(value * 100).format('0.00');
         }
     };
 } (jQuery));

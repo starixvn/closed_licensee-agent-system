@@ -11,6 +11,12 @@
 
         public int MsgId { get; set; }
 
+        public int PageSize { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int TotalItems { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_MemberGetByAgent";

@@ -159,8 +159,9 @@
         @if(haveAll)
         {
             <option value="-1">@Las.All</option>
+            <option value="0">@Las.None</option>
         }
-        @foreach(var group in groupCommissions)
+        @foreach (var group in groupCommissions)
         {
             <option @(selectedGroup == group.GroupCommId ? "selected=selected" : string.Empty) value="@group.GroupCommId">@group.GroupName</option>
         }
@@ -168,9 +169,9 @@
 }
 
 @helper ProductCommission(IEnumerable<int> range, string id, string className)
-{
+    {
     <select id="@id" name="@id" class="@className">
-        @foreach(var value in range)
+        @foreach (var value in range)
         {
             <option value="@value">@value</option>
         }

@@ -70,7 +70,8 @@
                     IsNickName = criteria.IsNickName,
                     LastLoggedTime = criteria.LastLoggedTime,
                     LicenseeName = criteria.LicenseeName,
-                    LegendType = (LegendType)criteria.LegendType
+                    LegendType = (LegendType)criteria.LegendType,
+                    IsAllowedMemberComm = criteria.IsAllowedMemberComm
                 };
             }
             else

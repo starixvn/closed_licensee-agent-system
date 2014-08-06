@@ -201,7 +201,9 @@
         {
             var criteria = new MemberGetByAgentCriteria
             {
-                AgentId = model.AgentId
+                AgentId = model.AgentId,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
             };
 
             var members = _customerService.GetMemberList(criteria);
@@ -212,7 +214,8 @@
                                     new GetMemberInfoListAction
                                     {
                                         SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        LASAgentId = model.AgentId
+                                        LASAgentId = model.AgentId,
+                                        IBCCustIdList = string.Join(",", members.Select(a => a.CustId.ToString()).ToArray())
                                     });
 
                 if (!CurrentSession.IsAdmin)
@@ -230,7 +233,10 @@
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = members
+                List = members,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
             });
         }
 
@@ -246,6 +252,8 @@
             {
                 AgentId = model.AgentId,
                 UserName = model.UserName,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
             };
 
             var members = _customerService.SearchMember(criteria);
@@ -256,7 +264,8 @@
                     new GetMemberInfoListAction
                     {
                         SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        LASAgentId = model.AgentId
+                        LASAgentId = model.AgentId,
+                        IBCCustIdList = string.Join(",", members.Select(a => a.CustId.ToString()).ToArray())
                     });
 
                 if (!CurrentSession.IsAdmin)
@@ -274,7 +283,10 @@
             {
                 ErrCode = criteria.MsgId,
                 ErrMsg = GetErrMsg(criteria.MsgId),
-                List = model.Status == null ? members : members.Where(m => m.Status == model.Status)
+                List = model.Status == null ? members : members.Where(m => m.Status == model.Status),
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
             });
         }
 

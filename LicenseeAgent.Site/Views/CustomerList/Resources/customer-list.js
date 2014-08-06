@@ -112,7 +112,7 @@ var customerList = (function ($) {
                 $('#menuAddDownline').show();
             }
 
-            if (pageContext.IsAdmin || pageContext.IsDirectDownLine) {
+            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsDeposit && pageContext.IsLastLevel)) {
                 $('#menuEditInfo').show();
             } else {
                 $('#menuEditInfo').hide();
@@ -176,25 +176,13 @@ var customerList = (function ($) {
                     if (data.ErrCode !== 0) {
                         alert(data.ErrMsg);
                     } else {
-                        if (pageContext.IsLastLevel) {
-                            gridOptions.pagerOption = {
-                                itemsPerPage: core.pageSizes[2],
-                                currentPage: 0,
-                                itemsPerPageArray: core.pageSizes,
-                                showDetail: true,
-                                afterPagedFunction: function () {
-                                    customerList.gridAfterBinding();
-                                }
-                            };
-                        } else {
-                            gridOptions.pagerOption = {
-                                itemsPerPage: data.ItemsPerPage,
-                                itemsPerPageArray: core.pageSizes,
-                                currentPage: data.CurrentPage,
-                                totalItem: data.TotalItem,
-                                pagerSelectCallBack: customerList.reRenderAfterPaged
-                            };
-                        }
+                        gridOptions.pagerOption = {
+                            itemsPerPage: data.ItemsPerPage,
+                            itemsPerPageArray: core.pageSizes,
+                            currentPage: data.CurrentPage,
+                            totalItem: data.TotalItem,
+                            pagerSelectCallBack: customerList.reRenderAfterPaged
+                        };
 
                         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                         $('#grid').show().fanexGrid(gridOptions);

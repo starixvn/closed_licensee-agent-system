@@ -61,7 +61,7 @@
             var criteria = new LicenseeGetMemberCommissionCriteria
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
-                AdminId = CurrentSession.AdminInfo.UserId,
+                AdminId = CurrentSession.LoginUserId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
                 UserName = model.UserName,
                 GroupCommId = model.GroupCommId,
@@ -103,12 +103,12 @@
         /// <param name="model">Update Move To Group View Model.</param>
         /// <returns>Member Commission List.</returns>
         [HttpPost]
-        public JsonResult MoveToGroup(UpdateMoveGroupViewModel model)
+        public JsonResult MoveToGroup(MoveGroupViewModel model)
         {
             var criteria = new MemberMoveGroupCommissionCriteria 
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
-                AdminId = CurrentSession.AdminInfo.UserId,
+                AdminId = CurrentSession.LoginUserId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),
@@ -154,7 +154,7 @@
             var criteria = new LicenseeUpdateMemberCommissionCriteria
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
-                AdminId = CurrentSession.AdminInfo.UserId,
+                AdminId = CurrentSession.LoginUserId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),
@@ -200,7 +200,7 @@
             var criteria = new MemberRemoveGroupCommissionCriteria
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
-                AdminId = CurrentSession.AdminInfo.UserId,
+                AdminId = CurrentSession.LoginUserId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),

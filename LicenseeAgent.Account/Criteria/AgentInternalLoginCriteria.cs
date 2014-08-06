@@ -57,6 +57,8 @@ namespace LicenseeAgent.Account.Criteria
 
         public short LegendType { get; set; }
 
+        public bool IsAllowedMemberComm { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_AgentInternalLogin";

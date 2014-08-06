@@ -39,6 +39,10 @@
 
         public int Status { get; set; }
 
+        public decimal AvailableFund { get; set; }
+
+        public decimal PendingFund { get; set; }
+
         public string CustomerName
         {
             get

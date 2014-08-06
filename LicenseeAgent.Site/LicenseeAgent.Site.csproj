@@ -624,6 +624,7 @@
     <Content Include="Views\MemberCommission\Resources\member-commission.less" />
     <Content Include="Views\MemberCommission\UpdateMemberCommission.cshtml" />
     <Content Include="Views\MemberCommission\_MemberCommission.cshtml" />
+    <Content Include="Views\CustomerList\_MemberGridDeposit.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>

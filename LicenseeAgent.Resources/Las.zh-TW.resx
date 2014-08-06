@@ -1448,4 +1448,13 @@
   <data name="CommissionGroupList" xml:space="preserve">
     <value>Commission Group List</value>
   </data>
+  <data name="CommGroup" xml:space="preserve">
+    <value>Comm. Group</value>
+  </data>
+  <data name="AvailableFund" xml:space="preserve">
+    <value>Available Fund</value>
+  </data>
+  <data name="PendingFund" xml:space="preserve">
+    <value>Pending Fund</value>
+  </data>
 </root>

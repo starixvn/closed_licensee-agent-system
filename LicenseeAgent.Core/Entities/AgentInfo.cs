@@ -55,6 +55,8 @@
 
         public LegendType LegendType { get; set; }
 
+        public bool IsAllowedMemberComm { get; set; }
+
         public bool IsLevel0
         {
             get

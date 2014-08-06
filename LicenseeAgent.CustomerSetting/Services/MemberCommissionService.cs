@@ -30,11 +30,6 @@
             Execute(criteria);
         }
 
-        public bool IsAllowMemberCommission(AllowedMemberCommissionCriteria criteria)
-        {
-            return GetEntity<bool>(criteria);
-        }
-
         public IEnumerable<MemberCommission> GetEffectedMemberCommissions(GetLicenseeMembersByIdsCriteria criteria)
         {
             return GetEntites<MemberCommission>(criteria);

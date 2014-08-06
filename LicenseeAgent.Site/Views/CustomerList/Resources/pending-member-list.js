@@ -51,6 +51,7 @@ var pendingMemberList = (function ($) {
                         pendingMemberList.hideGrid();
                         return;
                     }
+                    gridOptions.pagerOption.currentPage = 0;
                     gridOptions.bodyRows = core.genGridRows(data.Data, gridOptions);
                     $('#grid').show().fanexGrid(gridOptions);
                 },

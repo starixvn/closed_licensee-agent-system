@@ -188,7 +188,6 @@
     <Compile Include="ViewModels\GetMemberCommissionsViewModel.cs" />
     <Compile Include="ViewModels\MemberCommissionViewModel.cs" />
     <Compile Include="ViewModels\MoveGroupViewModel.cs" />
-    <Compile Include="ViewModels\UpdateMoveGroupViewModel.cs" />
     <Compile Include="ViewModels\RemoveGroupViewModel.cs" />
     <Compile Include="ViewModels\UpdateMemberCommissionViewModel.cs" />
     <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />

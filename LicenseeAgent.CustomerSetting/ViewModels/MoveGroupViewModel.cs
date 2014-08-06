@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.CustomerSetting.ViewModels
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.CustomerSetting.Entities;
 
     /// <summary>
@@ -8,8 +9,10 @@
     /// </summary>
     public class MoveGroupViewModel
     {
+        [Required]
         public int GroupCommId { get; set; }
 
-        public IEnumerable<GroupCommission> GroupCommission { get; set; }
+        [Required]
+        public string MemberIds { get; set; }
     }
 }

@@ -17,8 +17,6 @@
 
         void MemberRemoveFromGroup(MemberRemoveGroupCommissionCriteria criteria);
 
-        bool IsAllowMemberCommission(AllowedMemberCommissionCriteria criteria);
-
         IEnumerable<MemberCommission> GetEffectedMemberCommissions(GetLicenseeMembersByIdsCriteria criteria);
     }
 }

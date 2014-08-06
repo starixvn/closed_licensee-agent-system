@@ -68,7 +68,7 @@
                     {
                         @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("MemberArrangement", "CustomerSetting"))
                     }
-                    @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit))
+                    @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit) && SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm)
                     {
                         @BootstrapHelper.LeftMenu(Las.CommissionGroupList, Url.Action("Index", "MemberCommission"))
                     }

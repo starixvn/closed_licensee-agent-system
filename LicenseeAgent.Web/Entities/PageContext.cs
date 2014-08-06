@@ -46,6 +46,7 @@
             IsDirectDownLine = true;
             MaxDate = DateTime.Now.Date;
             MinDate = MaxDate.AddMonths(-ReportMaxMonth);
+            IsDeposit = currentSession.AgentInfo.IsDeposit;
         }
 
         public bool IsAdmin { get; private set; }
@@ -79,5 +80,7 @@
         public bool IsMember { get; set; }
 
         public bool IsOfferedVirtualSports { get; set; }
+
+        public bool IsDeposit { get; set; }
     }
 }

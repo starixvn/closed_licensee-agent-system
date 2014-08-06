@@ -1,4 +1,4 @@
-﻿/*global core, popup, gridOptions, groupCommissions, numeral */
+﻿/*global core, popup, gridOptions, groupCommissions */
 var memberCommission = (function ($) {
     'use strict';
     var commMax = 15;
@@ -47,14 +47,14 @@ var memberCommission = (function ($) {
             });
 
             $("#GroupCommId").change(function () {
-                if (groupCommissions === undefined) {
+                if (window['groupCommissions'] === undefined) {
                     return;
                 }
                 var numberGroup = groupCommissions.length;
                 for (var index = 0; index < numberGroup; index++) {
                     if (groupCommissions[index].GroupCommId === parseInt($(this).val())) {
-                        $("#SBComm").val(memberCommission.formatNumber(groupCommissions[index].SBComm));
-                        $("#NGComm").val(memberCommission.formatNumber(groupCommissions[index].NGComm));
+                        $("#SBComm").val(core.formatCommissionPercent(groupCommissions[index].SBComm));
+                        $("#NGComm").val(core.formatCommissionPercent(groupCommissions[index].NGComm));
                     }
                 }
             });
@@ -212,12 +212,9 @@ var memberCommission = (function ($) {
                 });
                 var parent = $(this).parents("tr");
                 parent.find(".group-comm").html(memberComm[0].GroupName);
-                parent.find(".sb-comm").html(memberCommission.formatNumber(memberComm[0].SBComm));
-                parent.find(".ng-comm").html(memberCommission.formatNumber(memberComm[0].NGComm));
+                parent.find(".sb-comm").html(core.formatCommissionPercent(memberComm[0].SBComm));
+                parent.find(".ng-comm").html(core.formatCommissionPercent(memberComm[0].NGComm));
             });
-        },
-        formatNumber: function (value) {
-            return numeral(value * 100).format('0.00');
         }
     };
 } (jQuery));

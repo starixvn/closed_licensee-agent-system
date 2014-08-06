@@ -1,5 +1,7 @@
 ﻿namespace LicenseeAgent.CustomerList.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
@@ -8,13 +10,17 @@
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerList.Criteria;
+    using LicenseeAgent.CustomerList.Entities;
     using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.CustomerList.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
+    using LicenseeAgent.Taiwan.Filter;
+    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Taiwan.Utility;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
@@ -129,7 +135,7 @@
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
             if (isLastLevel)
             {
-                return isGetAll ? GetMembers(model) : SearchMembers(model);
+                return SearchMembers(model);
             }
 
             return isGetAll ? GetAgents(model) : SearchAgents(model);
@@ -248,45 +254,46 @@
         [NonAction]
         public JsonResult SearchMembers(CustomerListViewModel model)
         {
-            var criteria = new SearchMemberCriteria
+            var serviceResult = GetMemberInformations(model);
+            
+            if (serviceResult.ErrCode != Result.SuccessValue)
             {
-                AgentId = model.AgentId,
-                UserName = model.UserName,
-                PageSize = model.PageSize,
-                PageIndex = model.PageIndex
-            };
+                return JsonResult(serviceResult);
+            }
 
-            var members = _customerService.SearchMember(criteria);
-            if (criteria.MsgId == Result.SuccessValue && members.Any())
+            if (serviceResult.Members == null || !serviceResult.Members.Any())
             {
-                var serviceResult = _memberService.GetMemberInformations(
-                    members,
-                    new GetMemberInfoListAction
-                    {
-                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        LASAgentId = model.AgentId,
-                        IBCCustIdList = string.Join(",", members.Select(a => a.CustId.ToString()).ToArray())
-                    });
-
-                if (!CurrentSession.IsAdmin)
+                return Json(new 
                 {
-                    members.ToList().ForEach(r => r.SystemId = string.Empty);
-                }
+                    ErrCode = Result.SuccessValue,
+                    List = new List<MemberEntity>(),
+                    CurrentPage = model.PageIndex,
+                    ItemsPerPage = model.PageSize,
+                    TotalItem = 0
+                });
+            }
 
-                if (serviceResult.ErrCode != Result.SuccessValue)
-                {
-                    return JsonResult(serviceResult);
-                }
+            var plainMembers = SelectMembersBySearchCriteria(model, serviceResult.Members);
+            var members = _customerService.SearchMembersByIds(
+                            new SearchMemberByIdsCriteria
+                            {
+                                AgentId = model.AgentId,
+                                ListCustId = string.Join(",", plainMembers.Select(m => m.IBCCustId.ToString()).ToArray())
+                            });
+            ServiceMapper.MapObjects(plainMembers, members, new MemberFilter());
+
+            if (!CurrentSession.IsAdmin)
+            {
+                members.ToList().ForEach(r => r.SystemId = string.Empty);
             }
 
             return Json(new
             {
-                ErrCode = criteria.MsgId,
-                ErrMsg = GetErrMsg(criteria.MsgId),
-                List = model.Status == null ? members : members.Where(m => m.Status == model.Status),
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.TotalItems
+                ErrCode = Result.SuccessValue,
+                List = members,
+                CurrentPage = model.PageIndex,
+                ItemsPerPage = model.PageSize,
+                TotalItem = members.Count()
             });
         }
 
@@ -782,6 +789,49 @@
                 ErrMsg = result.ErrMsg,
                 Data = result.Data
             });
+        }
+
+        /// <summary>
+        /// Get member information.
+        /// </summary>
+        /// <param name="model">Customer list view model.</param>
+        /// <returns>Member list result.</returns>
+        [NonAction]
+        public MemberListResult GetMemberInformations(CustomerListViewModel model)
+        {
+            var action = CurrentSession.AgentInfo.IsCredit ?
+                    (BaseAction)new GetMemberInfoListAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        LASAgentId = model.AgentId
+                    }
+                    :
+                    new GetDepositMemberInfoListAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        LASAgentId = model.AgentId,
+                        DepositOption = (int)DepositOption.DepositOnly
+                    };
+
+            return _memberService.GetPlainMembers(action);
+        }
+
+        /// <summary>
+        /// Select member by search criteria.
+        /// </summary>
+        /// <param name="model">Customer List view model.</param>
+        /// <param name="members">Member entities.</param>
+        /// <returns>Return member entities.</returns>
+        [NonAction]
+        public IEnumerable<ServiceMemberEntity> SelectMembersBySearchCriteria(CustomerListViewModel model, IEnumerable<ServiceMemberEntity> members)
+        {
+            var plainMembers = members.Where(m => (string.IsNullOrEmpty(model.UserName)
+                                                || string.Equals(m.Username, model.UserName, StringComparison.CurrentCultureIgnoreCase))
+                                                && (model.Status == null
+                                                || m.Status == model.Status));
+            return plainMembers.OrderBy(m => m.Username)
+                                .Skip(model.PageIndex * model.PageSize)
+                                .Take(model.PageSize);
         }
     }
 }

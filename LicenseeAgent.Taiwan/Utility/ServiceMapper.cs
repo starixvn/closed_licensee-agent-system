@@ -10,7 +10,7 @@
     /// <summary>
     /// ServiceMapper class.
     /// </summary>
-    internal class ServiceMapper
+    public class ServiceMapper
     {
         /// <summary>
         /// Map data of source to destination.

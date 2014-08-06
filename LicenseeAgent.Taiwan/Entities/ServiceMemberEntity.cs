@@ -31,7 +31,7 @@
         public bool IsClosed { get; set; }
 
         [DataMember(Name = "Username")]
-        public bool Username { get; set; }
+        public string Username { get; set; }
 
         [DataMember(Name = "FirstDepositDate")]
         public bool FirstDepositDate { get; set; }

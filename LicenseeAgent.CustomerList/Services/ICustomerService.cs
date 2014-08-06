@@ -83,5 +83,7 @@
         void CheckMemberUplineStatusForUpdate(CheckMemberUpLineStatusForUpdateCriteria criteria);
 
         int GetAgentIdByUserName(GetAgentIdByUsernameCriteria criteria);
+
+        IList<MemberEntity> SearchMembersByIds(SearchMemberByIdsCriteria criteria);
     }
 }

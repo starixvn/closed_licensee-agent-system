@@ -312,4 +312,7 @@
   <data name="Msg_2096" xml:space="preserve">
     <value>This is the default group. Are you sure you want to delete this group?</value>
   </data>
+  <data name="Msg_2097" xml:space="preserve">
+    <value>One or more members do not exist. Please check again.</value>
+  </data>
 </root>

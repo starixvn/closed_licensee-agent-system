@@ -211,6 +211,16 @@
         }
 
         /// <summary>
+        /// Get deposit member information.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <returns>List member entity after merging.</returns>
+        public MemberListResult GetPlainMembers(BaseAction action)
+        {
+            return ServiceWrapper.GetActionResponse<MemberListResult>(action);
+        }
+
+        /// <summary>
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>

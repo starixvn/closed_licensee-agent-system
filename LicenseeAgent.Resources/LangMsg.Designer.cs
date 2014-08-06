@@ -1098,6 +1098,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more members do not exist. Please check again..
+        /// </summary>
+        public static string Msg_2097 {
+            get {
+                return ResourceManager.GetString("Msg_2097", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent username is empty..
         /// </summary>
         public static string Msg_2110 {

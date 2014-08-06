@@ -120,5 +120,10 @@
             Execute(criteria);
             return criteria.AgentId;
         }
+
+        public IList<MemberEntity> SearchMembersByIds(SearchMemberByIdsCriteria criteria)
+        {
+            return GetEntites<MemberEntity>(criteria);
+        }
     }
 }

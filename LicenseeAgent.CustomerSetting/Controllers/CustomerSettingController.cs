@@ -345,16 +345,21 @@
                 Ip = Request.GetClientIp()
             };
 
+            var isAgent = agentId != null;
             agentId = agentId ?? CurrentSession.AgentInfo.AgentId;
             var agentInfo = _coreService.GetAgentInfo(agentId.Value);
             settingContext.AgentLevel = agentInfo.AgentLevel;
             settingContext.UserName = agentInfo.UserName ?? CurrentSession.AgentInfo.LicenseeName;
-            settingContext.CustId = agentId.Value;
-            settingContext.RoleId = (int)Role.Agent;
-            settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentInfo.AgentLevel)
-                ? (int)Role.Member
-                : (int)Role.Agent;
-            
+
+            if (isAgent)
+            {
+                settingContext.CustId = agentId.Value;
+                settingContext.RoleId = (int)Role.Agent;
+                settingContext.TargetRoleId = CurrentSession.AgentInfo.IsLastAgent(agentInfo.AgentLevel)
+                    ? (int)Role.Member
+                    : (int)Role.Agent;
+            }
+
             if ((settingContext.TargetRoleId == (int)Role.Member && LegendTypeAttribute.Authorize(LegendType.Deposit))
                 || !CheckForInsertingCustomerSetting(settingContext))
             {

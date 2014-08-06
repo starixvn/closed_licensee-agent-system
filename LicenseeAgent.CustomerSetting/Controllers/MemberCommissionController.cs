@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
@@ -11,11 +12,13 @@
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
 
     /// <summary>
     /// MemberCommissionController class.
     /// </summary>
+    [AllowedCommission]
     public class MemberCommissionController : BaseController
     {
         private readonly IMemberCommissionService _memberCommissionService;

@@ -91,6 +91,13 @@
         ResponseResult GetDepositMembers<T>(IEnumerable<T> memberEntitys, GetDepositMemberInfoListAction action);
 
         /// <summary>
+        /// Get deposit member information.
+        /// </summary>
+        /// <param name="action">Service action.</param>
+        /// <returns>List member entity after merging.</returns>
+        MemberListResult GetPlainMembers(BaseAction action);
+
+        /// <summary>
         /// Update member information.
         /// </summary>
         /// <param name="action">Service action.</param>

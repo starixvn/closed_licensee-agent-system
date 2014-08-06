@@ -88,6 +88,7 @@
     <Compile Include="Criteria\MemberGetByAgentCriteria.cs" />
     <Compile Include="Criteria\ResetPasswordCriteria.cs" />
     <Compile Include="Criteria\SearchAgentCriteria.cs" />
+    <Compile Include="Criteria\SearchMemberByIdsCriteria.cs" />
     <Compile Include="Criteria\SearchMemberCriteria.cs" />
     <Compile Include="Criteria\UpdateAgentStatusCriteria.cs" />
     <Compile Include="Criteria\UpdateMemberStatusCriteria.cs" />

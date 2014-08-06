@@ -501,7 +501,7 @@ var customerList = (function ($) {
         },
         addDownline: function () {
             var url = "CustomerSetting/InsertCustomer?agentId={0}"
-                .format(editAgentId, editAgentLevel);
+                .format(editAgentId);
             popup.openFrame(url, {
                 width: 1008,
                 height: 680

@@ -109,6 +109,7 @@
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
                 AdminId = CurrentSession.LoginUserId,
+                Currency = CurrentSession.AgentInfo.CurrencyId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),
@@ -155,6 +156,7 @@
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
                 AdminId = CurrentSession.LoginUserId,
+                Currency = CurrentSession.AgentInfo.CurrencyId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),
@@ -200,6 +202,7 @@
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
                 AdminId = CurrentSession.LoginUserId,
+                Currency = CurrentSession.AgentInfo.CurrencyId,
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),

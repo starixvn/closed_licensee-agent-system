@@ -579,6 +579,7 @@
         /// <param name="username">Username member.</param>
         /// <returns>Action result.</returns>
         [HttpGet]
+        [LegendType(LegendType.Credit)]
         public ActionResult EditInfoMember(int memberId, string username)
         {
             if (!_downLinePermissionService.IsDirectDownLineMember(memberId))
@@ -616,6 +617,7 @@
         /// <param name="model">Reset Password View Model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [LegendType(LegendType.Credit)]
         public ActionResult EditInfoMember(EditInfoViewModel model)
         {
             if (ModelState.IsValid)

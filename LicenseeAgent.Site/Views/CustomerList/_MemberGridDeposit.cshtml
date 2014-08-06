@@ -41,16 +41,10 @@
                     </text>
                 }
                 {
-                    HeaderText: "@Las.AvailableFund", Width: 80, Name: "AvailableFund", HeaderAlign: "center", CellAlign: "center", AllowTruncate: true, MaxResizeWidth: 160,
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return core.formatCommissionPercent(cell.Value);
-                    }
+                    HeaderText: "@Las.AvailableFund", Width: 80, Name: "AvailableFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00"
                 },
                 {
-                    HeaderText: "@Las.PendingFund", Width: 80, Name: "PendingFund", HeaderAlign: "center", CellAlign: "center", AllowTruncate: true, MaxResizeWidth: 160,
-                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return core.formatCommissionPercent(cell.Value);
-                    }
+                    HeaderText: "@Las.PendingFund", Width: 80, Name: "PendingFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00"
                 },
                 { HeaderText: "@Las.CreatedDate", Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL },
                 { HeaderText: "@Las.LoginIp", Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,

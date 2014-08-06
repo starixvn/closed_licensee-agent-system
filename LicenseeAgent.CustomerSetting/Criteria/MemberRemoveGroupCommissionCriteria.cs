@@ -14,6 +14,8 @@
 
         public int AdminId { get; set; }
 
+        public int Currency { get; set; }
+
         public bool IsRemoveMemberComm { get; set; }
 
         public string Ip { get; set; }

@@ -14,6 +14,8 @@
 
         public int AdminId { get; set; }
 
+        public int Currency { get; set; }
+
         public int GroupCommId { get; set; }
 
         public bool IsUpdateNG { get; set; }

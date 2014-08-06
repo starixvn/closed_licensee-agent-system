@@ -14,6 +14,8 @@
 
         public int AdminId { get; set; }
 
+        public int Currency { get; set; }
+
         [SpParam(SqlParamName = "SBComm")]
         public decimal SBCommission { get; set; }
 

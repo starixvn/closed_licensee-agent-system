@@ -6,31 +6,68 @@
     using System.Web.Mvc;
     using Core.Entities;
     using Criteria;
+    using Fanex.Data.Repository;
+    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Report.Services;
     using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Services;
     using ViewModels;
 
     /// <summary>
     /// Report Controller.
     /// </summary>
-    public partial class ReportController
+    public class StatementController : BaseController
     {
+        private readonly IDownLinePermissionService _downLinePermissionService;
+
+        private readonly IMemberService _memberService;
+
+        private readonly ICoreService _coreService;
+
+        private readonly IReportService _reportService;
+
+        public StatementController()
+            : this(null, null, null, null)
+        {
+        }
+
+        public StatementController(
+            ICoreService coreService,
+            IReportService reportService,
+            IDownLinePermissionService downLinePermissionService,
+            IMemberService memberService)
+        {
+            _coreService = coreService ?? new CoreService();
+            _reportService = reportService ?? new ReportService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _memberService = memberService ?? new MemberService();
+        }
+
+        public string StatementProducts
+        {
+            get
+            {
+                var listProducts = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+                var productIds = listProducts.Where(x => x.ProductId != (int)Product.Product_9).Select(x => x.ProductId).ToList();
+                return string.Join(",", productIds);
+            }
+        }
+
         /// <summary>
         /// Statement Report.
         /// </summary>
         /// <param name="model">Statement Report View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Statement(StatementReportViewModel model)
+        public ActionResult Index(StatementReportViewModel model)
         {
-            if (!_downLinePermissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
             model.AgentId = CurrentSession.AgentInfo.AgentId;
             model.AgentLevel = CurrentSession.AgentInfo.AgentLevel;
             model.FromDate = model.FromDate.GetHashCode() == 0 ? DateTime.Now.AddDays(-1) : model.FromDate;
@@ -45,7 +82,7 @@
         /// <param name="model">Statement Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetStatementData(StatementReportViewModel model)
+        public JsonResult Data(StatementReportViewModel model)
         {
             if (!_downLinePermissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
             {
@@ -53,7 +90,7 @@
             }
 
             var balanceUp = _coreService.BalanceUpDay;
-            List<Statement> result;
+            IList<Statement> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
                 result = _reportService.StatementReport(new StatementMemberCriteria
@@ -62,15 +99,15 @@
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    Username = model.Username
-                }).ToList();
+                    Username = model.UserName
+                });
                 var serviceResult = _memberService.GetMemberInformations(
-                                    result,
-                                    new GetMemberInfoListAction
-                                    {
-                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        LASAgentId = model.AgentId
-                                    });
+                    result,
+                    new GetMemberInfoListAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        LASAgentId = model.AgentId
+                    });
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     return JsonResult(serviceResult);
@@ -84,8 +121,8 @@
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    Username = model.Username
-                }).ToList();
+                    Username = model.UserName
+                });
             }
 
             return Json(new { ErrCode = Result.SuccessValue, List = result });
@@ -97,7 +134,7 @@
         /// <param name="model">Statement Report Detail View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult StatementDetail(StatementDetailReportViewModel model)
+        public ActionResult Detail(StatementDetailReportViewModel model)
         {
             if (model.IsMember)
             {
@@ -119,10 +156,10 @@
             else
             {
                 // From Downline statement page.
-                ViewBag.ShowBackButton = true;
+                model.ShowBackButton = true;
             }
 
-            model.Product = ProductsNoPlaytechCasino();
+            model.Product = StatementProducts;
             model.HideUsername = false;
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
             return View(model);
@@ -133,7 +170,7 @@
         /// </summary>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult StatementDetailCurrentUser()
+        public ActionResult Current()
         {
             var model = new StatementDetailReportViewModel
             {
@@ -141,13 +178,13 @@
                 AgentLevel = CurrentSession.AgentInfo.AgentLevel,
                 FromDate = DateTime.Now.AddDays(-1),
                 ToDate = DateTime.Now,
-                Username = CurrentSession.AgentInfo.UserName
+                Username = CurrentSession.AgentInfo.UserName,
+                Product = StatementProducts,
+                HideUsername = true
             };
 
-            model.Product = ProductsNoPlaytechCasino();
-            model.HideUsername = true;
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
-            return View("StatementDetail", model);
+            return View("Detail", model);
         }
 
         /// <summary>
@@ -156,7 +193,8 @@
         /// <param name="model">Statement Report Detail View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetStatementDetailData(StatementDetailReportViewModel model)
+        [ActionName("Detail")]
+        public JsonResult DetailPost(StatementDetailReportViewModel model)
         {
             var balanceUp = _coreService.BalanceUpDay;
             var criteria = new StatementDetailCriteria
@@ -167,7 +205,12 @@
                 ToDate = model.ToDate,
                 Username = model.Username
             };
-            var result = _reportService.StatementReport(criteria).ToList();
+
+            var result = _reportService.StatementReport(criteria);
+            if (CurrentSession.AgentInfo.LegendType == LegendType.Deposit && criteria.IsAgent)
+            {
+                result = new List<Statement>();
+            }
 
             return Json(new
             {
@@ -187,12 +230,12 @@
         {
             if (model.IsMember)
             {
-                if (!_downLinePermissionService.IsDownLineMember(model.AgentId))
+                if (!_downLinePermissionService.IsDownLineMember(model.CustId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
             }
-            else if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            else if (!_downLinePermissionService.IsDownLineAgent(model.CustId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -206,46 +249,39 @@
         /// <param name="model">Transfer Detail View Model.</param>
         /// <returns>Return JSON.</returns>
         [HttpPost]
-        public JsonResult GetTransferData(TransferDetailViewModel model)
+        [ActionName("TransferDetail")]
+        public JsonResult TransferDetailPost(TransferDetailViewModel model)
         {
             var balanceUp = _coreService.BalanceUpDay;
-            List<Transfer> result;
+            CriteriaBase criteria;
             if (model.IsMember)
             {
-                result = _reportService.TransferDetail(new TransferDetailMemberCriteria
+                criteria = new TransferDetailMemberCriteria
                 {
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    CustId = model.AgentId
-                }).ToList();
+                    CustId = model.CustId
+                };
             }
             else
             {
-                result = _reportService.TransferDetail(new TransferDetailAgentCriteria
+                criteria = new TransferDetailAgentCriteria
                 {
                     BalanceUpDay = balanceUp.BalanceUpDay,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    AgentId = model.AgentId
-                }).ToList();
+                    AgentId = model.CustId
+                };
             }
 
+            var result = _reportService.TransferDetail(criteria);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
                 List = result,
                 Total = result.Sum(m => m.TransferAmt)
             });
-        }
-
-        private string ProductsNoPlaytechCasino()
-        {
-            var listProducts = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId).ToList();
-            var listProductsNoPlaytechCasino = (from s in listProducts
-                                                where s.ProductName != "Playtech Casino"
-                                                select s.ProductId).ToList();
-            return string.Join(",", listProductsNoPlaytechCasino);
         }
     }
 }

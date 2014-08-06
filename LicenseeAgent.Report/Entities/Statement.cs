@@ -28,15 +28,23 @@ namespace LicenseeAgent.Report.Entities
 
         public decimal Turnover { get; set; }
 
-        public decimal Betting { get; set; }
-
-        public decimal Winloss { get; set; }
-
         public decimal Outstanding { get; set; }
+
+        public decimal Betting { get; set; }
 
         public decimal Commission { get; set; }
 
         public decimal TransferAmt { get; set; }
+
+        public decimal Deposit { get; set; }
+
+        public decimal Withdrawal { get; set; }
+
+        public decimal Adjustment { get; set; }
+
+        public decimal Bonus { get; set; }
+
+        public decimal Winloss { get; set; }
 
         public decimal ClosingBalance { get; set; }
     }

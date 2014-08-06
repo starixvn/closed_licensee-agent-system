@@ -87,7 +87,7 @@
     <Setting Key="Las_Cash_GetLegendAgentIdHasDeposit" SpName="Las_Cash_GetLegendAgentIdHasDeposit" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Switch_UpdateAgentId_Writelog" SpName="LAS_Switch_UpdateAgentId_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_GetMemberInfo" SpName="LAS_GetMemberInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_GetAgentInfoByMember" SpName="LAS_GetAgentInfoByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_GetAgentInfoByMember" SpName="LAS_GetAgentInfoByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />    
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -158,7 +158,6 @@
     <Setting Key="LAS_Statement_SelDownlineAgents" SpName="LAS_Statement_SelDownlineAgents" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_SelDownlineMembers" SpName="LAS_Statement_SelDownlineMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_SelAgentStatement" SpName="LAS_Statement_SelAgentStatement" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Statement_SelMemberStatement" SpName="LAS_Statement_SelMemberStatement" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_AgentTransferDetail" SpName="LAS_Statement_AgentTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_MemberTransferDetail" SpName="LAS_Statement_MemberTransferDetail" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <!--Other reports should be appended here-->

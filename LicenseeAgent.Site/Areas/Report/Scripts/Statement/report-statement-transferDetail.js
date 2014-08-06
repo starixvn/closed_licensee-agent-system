@@ -1,8 +1,9 @@
 ﻿/*global core, language*/
 
-var transferDetail = (function ($) {
+var report = report || {};
+report.statement = report.statement || {};
+report.statement.transferDetail = (function ($) {
     'use strict';
-
     var gridOptions = {
         columns: [
                 { HeaderText: language.getString('Date'), Width: 140, Name: "Date", HeaderAlign: "center", CanResize: false,
@@ -23,14 +24,29 @@ var transferDetail = (function ($) {
         autoResizeColumn: true
     };
 
+    var genFooterRow = function (total) {
+        return [
+            {
+                Columns: [
+                    { Value: language.getString("Total"), Name: "Date", CellAlign: "center", MergeColNumber: 2 },
+                    { Value: total, Name: "TransferAmt" }
+                ]
+            }
+        ];
+    };
+
     return {
         init: function () {
-            transferDetail.dataGridBinding();
+            $('form').submit(function (e) {
+                report.statement.transferDetail.submit();
+                e.preventDefault();
+            });
+            $('form').submit();
         },
-        dataGridBinding: function () {
+        submit: function () {
             var submitOptions = $('form').serializeObject();
             $.ajax({
-                url: core.resolveUrl("~/Report/GetTransferData"),
+                url: $('form').attr('action'),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {
@@ -39,7 +55,7 @@ var transferDetail = (function ($) {
                 success: function (data) {
                     if (data.ErrCode === 0) {
                         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                        gridOptions.footerRows = transferDetail.footerRow(data.Total);
+                        gridOptions.footerRows = genFooterRow(data.Total);
                         $('#grid').show().fanexGrid(gridOptions);
                         core.unblockUI();
                     }
@@ -51,22 +67,6 @@ var transferDetail = (function ($) {
                     core.unblockUI();
                 }
             });
-        },
-        footerRow: function (total) {
-            var footerRows = [
-                                {
-                                    Columns: [
-                                        { Value: language.getString("Total"), Name: "Date", CellAlign: "center", MergeColNumber: 2 },
-                                        { Value: total, Name: "TransferAmt" }
-                                    ]
-                                }
-                        ];
-            return footerRows;
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    transferDetail.init();
-});

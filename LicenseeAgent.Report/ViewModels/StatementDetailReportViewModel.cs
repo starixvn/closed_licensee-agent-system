@@ -29,5 +29,7 @@
         public bool HideUsername { get; set; }
 
         public bool IsMember { get; set; }
+
+        public bool ShowBackButton { get; set; }
     }
 }

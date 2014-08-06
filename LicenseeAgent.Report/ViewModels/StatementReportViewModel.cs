@@ -22,6 +22,6 @@
 
         [AllowHtml]
         [Display(Name = "Username", ResourceType = typeof(Las))]
-        public string Username { get; set; }
+        public string UserName { get; set; }
     }
 }

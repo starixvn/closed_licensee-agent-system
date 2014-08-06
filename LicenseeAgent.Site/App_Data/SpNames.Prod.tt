@@ -1,0 +1,12 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#
+    var solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
+    var projectPath = Path.Combine(solutionPath, "LicenseeAgent.Site");
+    var spNamePath = Path.Combine(projectPath, "App_Data", "SpNames.Local.xml");
+    var content = File.ReadAllText(spNamePath);
+    content = content.Replace("_xpre", string.Empty).Replace("_xtest", string.Empty);
+#>
+<#=content#>

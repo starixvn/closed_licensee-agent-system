@@ -1,6 +1,7 @@
 ﻿@using LicenseeAgent.AccountInformation.ViewModels
 @using LicenseeAgent.Web.Entities
-@model LicenseeAgent.Report.ViewModels.StatementReportViewModel
+@using LicenseeAgent.Report.ViewModels
+@model StatementReportViewModel
 @{
     ViewBag.Title = Las.DownlineStatement + " - " + Las.Report;
     var pageContext = (PageContext)ViewBag.PageContext;
@@ -15,15 +16,12 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
-    @Scripts.Render("~/js/statement")
-    @if (pageContext.IsLastLevel)
-    {
-        @Html.Partial("Statement.MemberGrid")
-    }
-    else
-    {
-        @Html.Partial("Statement.AgentGrid")
-    }
+    @Scripts.Render("~/js/report/statement")
+    <script type="text/javascript">
+        $(function () {
+            report.statement.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
@@ -46,9 +44,9 @@
         </div>
     </div>
     <div class="controls-row">
-        @Html.LabelFor(m => m.Username, new { @class = "small-label" })
+        @Html.LabelFor(m => m.UserName, new { @class = "small-label" })
         <div class="input-append">
-            @Html.TextBoxFor(m => m.Username, new { @class = "span2" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "span2" })
         </div>
         <button class="btn btn-primary marginleft" id="search">@Las.Generate</button>
     </div>

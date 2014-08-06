@@ -128,7 +128,7 @@
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
     <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
-    <Compile Include="Controllers\ReportController.Statement.cs" />
+    <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Criteria\OutstandingReportBetListCriteria.cs" />
@@ -153,7 +153,6 @@
     <Compile Include="Entities\Statement.cs" />
     <Compile Include="Criteria\StatementMemberCriteria.cs" />
     <Compile Include="Criteria\StatementAgentDetailCriteria.cs" />
-    <Compile Include="Criteria\StatementMemberDetailCriteria.cs" />
     <Compile Include="Criteria\TransferDetailMemberCriteria.cs" />
     <Compile Include="Criteria\StatementDetailCriteria.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />

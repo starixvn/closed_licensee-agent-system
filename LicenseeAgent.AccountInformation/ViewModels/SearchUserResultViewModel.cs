@@ -22,5 +22,7 @@
         public int PageSize { get; set; }
 
         public int TotalPages { get; set; }
+
+        public bool IsShowStatement { get; set; }
     }
 }

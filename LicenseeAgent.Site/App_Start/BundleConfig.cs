@@ -333,12 +333,6 @@
 
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
                 "~/Views/Report/Resources/agent-winloss-report.js"));
-            bundles.Add(new ScriptBundle("~/js/statement").Include(
-                "~/Views/Report/Resources/statement-report.js"));
-            bundles.Add(new ScriptBundle("~/js/statementdetail").Include(
-                "~/Views/Report/Resources/statement-detail-report.js"));
-            bundles.Add(new ScriptBundle("~/js/transferdetail").Include(
-                "~/Views/Report/Resources/transfer-detail.js"));
         }
 
         /// <summary>

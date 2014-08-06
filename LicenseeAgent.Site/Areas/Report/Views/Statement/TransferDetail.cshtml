@@ -4,7 +4,6 @@
 @model TransferDetailViewModel
 @{
     ViewBag.Title = Las.TransferDetails + " - " + Model.Username;
-    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -15,15 +14,20 @@
 {
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/transferdetail")
+    @Scripts.Render("~/js/report/statement")
+    <script type="text/javascript">
+        $(function () {
+            report.statement.transferDetail.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("GetTransferData", "Report", FormMethod.Post,
+@using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "hide", id = "search-form" }))
 {
-    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.CustId)
     @Html.HiddenFor(m => m.FromDate)
     @Html.HiddenFor(m => m.ToDate)
     @Html.HiddenFor(m => m.IsMember)

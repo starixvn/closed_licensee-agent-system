@@ -206,12 +206,26 @@
     <Compile Include="App_Start\LessTransform.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
+    <Content Include="App_Data\SpNames.Local.xml" />
+    <Content Include="App_Data\SpNames.Prod.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpNames.Prod.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpNames.Uat.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpNames.Uat.tt</DependentUpon>
+    </Content>
+    <Content Include="Areas\Report\Views\_ViewStart.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
     <Content Include="Views\MemberCommission\Resources\member-commission.js" />
@@ -222,18 +236,6 @@
     </Content>
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpNames.Uat.xml">
-      <SubType>Designer</SubType>
-      <DependentUpon>SpNames.xml</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpNames.Prod.xml">
-      <SubType>Designer</SubType>
-      <DependentUpon>SpNames.xml</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpNames.Local.xml">
-      <SubType>Designer</SubType>
-      <DependentUpon>SpNames.xml</DependentUpon>
     </Content>
     <Content Include="App_Data\CustomerSetting\PTGrid.xml">
       <SubType>Designer</SubType>
@@ -373,9 +375,9 @@
     <Content Include="Views\CustomerSetting\Resources\scripts\services\position-taking-service.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\bet-limit-action.js" />
     <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\commission-action.js" />
-    <Content Include="Views\Report\Resources\statement-report.js" />
-    <Content Include="Views\Report\Resources\transfer-detail.js" />
-    <Content Include="Views\Report\Resources\statement-detail-report.js" />
+    <Content Include="Areas\Report\Scripts\Statement\report-statement.js" />
+    <Content Include="Areas\Report\Scripts\Statement\report-statement-transferDetail.js" />
+    <Content Include="Areas\Report\Scripts\Statement\report-statement-detail.js" />
     <Content Include="Views\Error\Resources\under-maintenance-error.js" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
@@ -517,9 +519,6 @@
     <Content Include="Scripts\utility.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpNames.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\internal.less" />
     <Content Include="Content\login.less" />
@@ -610,13 +609,19 @@
     <Content Include="Views\Error\_ViewStart.cshtml" />
     <Content Include="Views\CustomerSetting\MemberArrangement.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingAdvNG.cshtml" />
+    <None Include="App_Data\SpNames.Prod.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SpNames.Prod.xml</LastGenOutput>
+    </None>
+    <None Include="App_Data\SpNames.Uat.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SpNames.Uat.xml</LastGenOutput>
+    </None>
+    <Content Include="Areas\Report\Views\Web.config" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
-    <Content Include="Views\CommissionGroup\Index.cshtml" />
-    <Content Include="Views\CommissionGroup\Add.cshtml" />
-    <Content Include="Views\CommissionGroup\Edit.cshtml" />
     <Content Include="Views\CustomerList\PendingMemberList.cshtml" />
     <Content Include="Views\MemberCommission\Index.cshtml" />
     <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
@@ -850,11 +855,9 @@
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Views\AccountInformation\_BalanceInformation.cshtml" />
-    <Content Include="Views\Report\Statement.cshtml" />
+    <Content Include="Areas\Report\Views\Statement\Index.cshtml" />
     <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />
-    <Content Include="Views\Report\Statement.AgentGrid.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
-    <Content Include="Views\Report\Statement.MemberGrid.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSetting.cshtml">
       <SubType>Code</SubType>
@@ -908,9 +911,8 @@
       <LastGenOutput>Web.Config.txt</LastGenOutput>
     </None>
     <None Include="Views\Message\Resources\Message.less" />
-    <Content Include="Views\Report\StatementDetail.cshtml" />
-    <Content Include="Views\Report\StatementDetail.Grid.cshtml" />
-    <Content Include="Views\Report\TransferDetail.cshtml" />
+    <Content Include="Areas\Report\Views\Statement\Detail.cshtml" />
+    <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
     <Content Include="Views\Tool\SyncMonitoring.cshtml" />

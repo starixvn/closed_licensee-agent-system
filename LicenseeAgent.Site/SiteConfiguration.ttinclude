@@ -98,7 +98,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.Prod:
-                        return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
+                        return @"FormatName:DIRECT=tcp:10.2.180.13\private$\entlib";
 
                     case SiteEnvironment.Uat:
                         return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";

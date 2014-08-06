@@ -4,7 +4,6 @@
 @model StatementDetailReportViewModel
 @{
     ViewBag.Title = Las.StatementDetail + " - " + Las.Report;
-    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -17,13 +16,17 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
-    @Scripts.Render("~/js/statementdetail")
-    @Html.Partial("StatementDetail.Grid")
+    @Scripts.Render("~/js/report/statement")
+    <script type="text/javascript">
+        $(function () {
+            report.statement.detail.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("StatementDetail", "Report", FormMethod.Post,
+@using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "form-filter form-inline", id = "search-form" }))
 {
     <div class="controls-row">
@@ -58,15 +61,14 @@
     @Html.HiddenFor(m => m.IsMember)
     @Html.HiddenFor(m => m.Product)
 }
-@if (ViewBag.ShowBackButton != null)
+@if (Model.ShowBackButton)
 {
     <div class="clearfix">
         <ul class="breadcrumb">
-            <li><a href="@Url.Action("Statement", "Report", new { FromDate = Model.FromDate, ToDate = Model.ToDate })">
-                @Las.Main</a> <span class="divider">>></span></li>
-                <li>
-                    <span id="spanUsername">@Model.Username</span>
-                </li>
+            <li><a href="@Url.Action("Index", new { FromDate = Model.FromDate, ToDate = Model.ToDate })">
+                @Las.Main
+            </a><span class="divider">>></span></li>
+            <li><span id="spanUsername">@Model.Username</span> </li>
         </ul>
     </div>
 }

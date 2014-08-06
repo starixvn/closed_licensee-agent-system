@@ -30,11 +30,14 @@
                     @BootstrapHelper.LeftMenu(Las.AgentWinLoss, Url.Action("AgentWinLoss", "Report"))
                     @BootstrapHelper.LeftMenu(Las.AgentOutstanding, Url.Action("Outstanding", "Report"))
                     @BootstrapHelper.LeftMenu(Las.Results, Url.Action("Results", "Report"))
-                    @if (SessionManager.CurrentSession.AgentInfo != null && !SessionManager.CurrentSession.AgentInfo.IsLevel0)
+                    @if (LegendTypeAttribute.Authorize(LegendType.Credit))
                     {
-                        @BootstrapHelper.LeftMenu(Las.Statement, Url.Action("StatementDetailCurrentUser", "Report"))
+                        if (SessionManager.CurrentSession.AgentInfo != null && !SessionManager.CurrentSession.AgentInfo.IsLevel0)
+                        {
+                        @BootstrapHelper.LeftMenu(Las.Statement, Url.RouteUrl("Report_Statement", new { action = "Current" }))
+                        }
+                        @BootstrapHelper.LeftMenu(Las.DownlineStatement, Url.RouteUrl("Report_Statement", new { action = "Index" }))
                     }
-                    @BootstrapHelper.LeftMenu(Las.DownlineStatement, Url.Action("Statement", "Report"))
                 </ul>
             </li>
             <li class="divider"></li>

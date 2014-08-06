@@ -182,7 +182,9 @@
 
             var searchMemberEntity = _searchUserService.GetMembers(criteria);
             SetAgentView(criteria, searchMemberEntity.Customer);
-
+            var isShowStatement = searchMemberEntity.Customer == null
+                ? false
+                : !(CurrentSession.AgentInfo.LegendType == LegendType.Deposit && searchMemberEntity.Customer.Level != Constants.MemberLevel);
             return View(new SearchUserResultViewModel
             {
                 Customer = GetFullInformation(searchMemberEntity.Customer),
@@ -190,7 +192,8 @@
                 Downlines = searchMemberEntity.DownLines,
                 Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
-                TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
+                TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize),
+                IsShowStatement = isShowStatement
             });
         }
 
@@ -213,7 +216,9 @@
 
             var searchMemberEntity = _searchUserService.GetMembers(criteria);
             SetAdminView(criteria, searchMemberEntity.Customer);
-
+            var isShowStatement = searchMemberEntity.Customer == null
+                ? false
+                : !(CurrentSession.AgentInfo.LegendType == LegendType.Deposit && searchMemberEntity.Customer.Level != Constants.MemberLevel);
             return View(new SearchUserResultViewModel
             {
                 Customer = GetFullInformation(searchMemberEntity.Customer),
@@ -221,7 +226,8 @@
                 Downlines = searchMemberEntity.DownLines,
                 Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
-                TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize)
+                TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize),
+                IsShowStatement = isShowStatement
             });
         }
 

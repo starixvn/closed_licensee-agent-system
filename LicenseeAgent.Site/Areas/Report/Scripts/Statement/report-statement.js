@@ -108,24 +108,24 @@ report.statement = (function ($) {
             });
         },
         viewDetail: function (agentId, userName) {
-            var url = "~/Report/Statement/Detail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}&parentUsername={5}".format(
-                agentId,
-                $('#FromDate').val(),
-                $('#ToDate').val(),
-                userName,
-                pageContext.IsLastLevel,
-                $('#Username').val()
-            );
-            location.href = core.resolveUrl(url);
+            var url = core.resolveUrl('~/Report/Statement/Detail', {
+                agentId: agentId,
+                fromDate: $('#FromDate').val(),
+                toDate: $('#ToDate').val(),
+                userName: userName,
+                isMember: pageContext.IsLastLevel,
+                parentUsername: $('#Username').val()
+            });
+            location.href = url;
         },
         viewTransferDetail: function (custId, userName) {
-            var url = "Report/Statement/TransferDetail?custId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}".format(
-                custId,
-                $('#FromDate').val(),
-                $('#ToDate').val(),
-                userName,
-                pageContext.IsLastLevel
-            );
+            var url = core.resolveUrl('~/Report/Statement/TransferDetail', {
+                custId: custId,
+                fromDate: $('#FromDate').val(),
+                toDate: $('#ToDate').val(),
+                userName: userName,
+                isMember: pageContext.IsLastLevel
+            });
             popup.openFrame(url, {
                 width: 550,
                 height: 400

@@ -35,6 +35,10 @@ fanex.betlist.core = {
         };
         if (hasTotalRow === true) {
             gridOptions.showFooter = true;
+            if (core.getQueryParamValue('hideFooter') === 'true') {
+                gridOptions.showFooter = false;
+            }
+
             var footerTitle = '<div>{0}:</div><div>{1}:</div><div>{2}:</div>'.format(
                 language.getString('SubTotalWinLost'),
                 language.getString('SubTotalComm'),

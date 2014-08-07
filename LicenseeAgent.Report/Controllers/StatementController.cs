@@ -207,9 +207,14 @@
             };
 
             var result = _reportService.StatementReport(criteria);
-            if (CurrentSession.AgentInfo.LegendType == LegendType.Deposit && criteria.IsAgent)
+            if (CurrentSession.AgentInfo.LegendType == LegendType.Deposit)
             {
-                result = new List<Statement>();
+                if (criteria.IsAgent)
+                {
+                    result = new List<Statement>();
+                }
+
+                criteria.IsAgent = false;
             }
 
             return Json(new

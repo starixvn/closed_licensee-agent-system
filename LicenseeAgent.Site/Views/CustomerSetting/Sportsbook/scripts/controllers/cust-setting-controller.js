@@ -20,7 +20,7 @@ if (fanex.customerSetting) {
 
             core.initInstruction();
             // reload setting mode from query string
-            settingContext.IsSimpleMode = core.getParameterByName('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
+            settingContext.IsSimpleMode = core.getQueryParamValue('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
             $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
 
             $scope.settingMode = settingContext.IsSimpleMode;
@@ -315,7 +315,7 @@ if (fanex.customerSetting) {
                 core.scrollTop();
                 $('#userName').focus();
             }, 100);
-            var messagesQueryString = core.getParameterByName('messages');
+            var messagesQueryString = core.getQueryParamValue('messages');
             if (messagesQueryString !== '') {
                 var messages = core.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;

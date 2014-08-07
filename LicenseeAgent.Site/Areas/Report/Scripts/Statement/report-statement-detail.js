@@ -13,7 +13,7 @@ report.statement.detail = (function ($) {
             { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
             { HeaderText: language.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, false, {1});'>" + cellFormated + "</a>").format(rowData.AgentId, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, false, {1});'>{2}</a>".format(rowData.AgentId, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
@@ -31,18 +31,18 @@ report.statement.detail = (function ($) {
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
             { HeaderText: language.getString('Betting'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Betting, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, report.Betting, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Outstanding, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, report.Outstanding, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
             { HeaderText: language.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, true, {1});'>" + cellFormated + "</a>").format(rowData.CustId, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, true, {1});'>{2}</a>".format(rowData.CustId, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
@@ -60,12 +60,12 @@ report.statement.detail = (function ($) {
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
             { HeaderText: language.getString('Betting'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Betting, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, report.Betting, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return ("<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>" + cellFormated + "</a>").format(rowData.CustId, report.Outstanding, rowData.Date);
+                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, report.Outstanding, rowData.Date, cellFormated);
                 }
             },
             { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
@@ -213,17 +213,29 @@ report.statement.detail = (function ($) {
         },
         viewTransferDetail: function (custId, isMember, date) {
             var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = "/Report/Statement/TransferDetail?custId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}"
-                       .format(custId, dateTime, dateTime, $('#Username').val(), isMember);
+            var url = core.resolveUrl('~/Report/Statement/TransferDetail', {
+                custId: custId,
+                fromDate: dateTime,
+                toDate: dateTime,
+                userName: $('#Username').val(),
+                isMember: isMember
+            });
             popup.openFrame(url, {
                 width: 550,
                 height: 400
             });
         },
-        viewBetList: function (custId, statusIDs, date) {
+        viewBetList: function (custId, statusIDs, date, hideFooter) {
             var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = "/BetList/BetListWinlossReport?custId={0}&fromDate={1}&toDate={2}&statusIDs={3}&ProductIds={4}";
-            url = url.format(custId, dateTime, dateTime, statusIDs, $("#Product").val());
+            hideFooter = hideFooter || false;
+            var url = core.resolveUrl('~/BetList/BetListWinlossReport', {
+                custId: custId,
+                fromDate: dateTime,
+                toDate: dateTime,
+                statusIDs: statusIDs,
+                ProductIds: $("#Product").val(),
+                hideFooter: hideFooter
+            });
             popup.openFrame(url, {
                 width: 970,
                 height: 600

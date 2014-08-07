@@ -318,7 +318,10 @@ var popup = (function ($) {
             $currentPopup = new Popup(options).showConfirm();
         },
         openFrame: function (url, options) {
-            $currentPopup = new Popup(options).showFrame(core.resolveUrl(url));
+            if (url.indexOf(core.UrlRoot) !== 0) {
+                url = core.resolveUrl(url);
+            }
+            $currentPopup = new Popup(options).showFrame(url);
         },
         open: function (options) {
             $currentPopup = new Popup(options).showContent();

@@ -158,7 +158,7 @@ var core = (function ($) {
                     }
                 });
         },
-        resolveUrl: function (url) {
+        resolveUrl: function (url, queryParams) {
             var urlRoot = core.UrlRoot;
             if (url.substr(0, 2) === '~/') {
                 url = url.substr(2);
@@ -166,7 +166,12 @@ var core = (function ($) {
                 url = url.substr(1);
             }
 
-            return urlRoot + url;
+            var absoluteUrl = urlRoot + url;
+            if (queryParams !== undefined) {
+                absoluteUrl = absoluteUrl + '?' + $.param(queryParams);
+            }
+
+            return absoluteUrl;
         },
         console: {
             write: function (msg, consoleFunc) {
@@ -410,10 +415,10 @@ var core = (function ($) {
             var container = $('.validation-summary-valid');
             container.hide();
         },
-        getParameterByName: function (name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
+        getQueryParamValue: function (name) {
+            name = name.toLowerCase().replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(location.search.toLowerCase());
             return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         },
         removeURLParameter: function (url, parameter) {

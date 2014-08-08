@@ -3,9 +3,9 @@ namespace LicenseeAgent.Report.Entities
     using System;
 
     /// <summary>
-    /// Transfer Entity.
+    /// TransferDetail Entity.
     /// </summary>
-    public class Transfer
+    public class TransferDetail
     {
         public DateTime Date { get; set; }
 

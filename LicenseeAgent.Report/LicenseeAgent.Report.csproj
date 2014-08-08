@@ -126,7 +126,6 @@
     </Compile>
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
-    <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
@@ -145,8 +144,10 @@
     <Compile Include="Entities\AgentOutstanding.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Sport.cs" />
+    <Compile Include="Entities\TransferDetail.cs" />
     <Compile Include="Enumerations\DrawFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IStatementService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\IReportService.cs" />
     <Compile Include="Criteria\StatementAgentCriteria.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Criteria\StatementAgentDetailCriteria.cs" />
     <Compile Include="Criteria\TransferDetailMemberCriteria.cs" />
     <Compile Include="Criteria\StatementDetailCriteria.cs" />
+    <Compile Include="Services\StatementService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
     <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />

@@ -44,9 +44,5 @@
         IList<AgentOutstanding> GetOutstandings(ICriteria criteria);
 
         IList<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
-
-        IList<Statement> StatementReport(ICriteria criteria);
-
-        IList<Transfer> TransferDetail(ICriteria criteria);
     }
 }

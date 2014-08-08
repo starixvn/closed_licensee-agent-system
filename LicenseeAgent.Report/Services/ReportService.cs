@@ -161,16 +161,6 @@
             return GetEntites<AgentWinLoss>(criteria);
         }
 
-        public IList<Statement> StatementReport(ICriteria criteria)
-        {
-            return GetEntites<Statement>(criteria);
-        }
-
-        public IList<Transfer> TransferDetail(ICriteria criteria)
-        {
-            return GetEntites<Transfer>(criteria);
-        }
-
         #endregion Methods
     }
 }

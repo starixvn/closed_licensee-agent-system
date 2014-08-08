@@ -31,7 +31,7 @@
 
         private readonly ICoreService _coreService;
 
-        private readonly IReportService _reportService;
+        private readonly IStatementService _statementService;
 
         public StatementController()
             : this(null, null, null, null)
@@ -40,12 +40,12 @@
 
         public StatementController(
             ICoreService coreService,
-            IReportService reportService,
+            IStatementService statementService,
             IDownLinePermissionService downLinePermissionService,
             IMemberService memberService)
         {
             _coreService = coreService ?? new CoreService();
-            _reportService = reportService ?? new ReportService();
+            _statementService = statementService ?? new StatementService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
             _memberService = memberService ?? new MemberService();
         }
@@ -93,7 +93,7 @@
             IList<Statement> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
-                result = _reportService.StatementReport(new StatementMemberCriteria
+                result = _statementService.GetStatementList(new StatementMemberCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
@@ -115,7 +115,7 @@
             }
             else
             {
-                result = _reportService.StatementReport(new StatementAgentCriteria
+                result = _statementService.GetStatementList(new StatementAgentCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     BalanceUpDay = balanceUp.BalanceUpDay,
@@ -206,7 +206,7 @@
                 Username = model.Username
             };
 
-            var result = _reportService.StatementReport(criteria);
+            var result = _statementService.GetStatementList(criteria);
             if (CurrentSession.AgentInfo.LegendType == LegendType.Deposit)
             {
                 if (criteria.IsAgent)
@@ -280,7 +280,7 @@
                 };
             }
 
-            var result = _reportService.TransferDetail(criteria);
+            var result = _statementService.GetTransferDetailList(criteria);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

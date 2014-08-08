@@ -26,7 +26,7 @@
 <?xml version="1.0"?>
 <appSettings>
   <add key="IsAdminSite" value="<#=site.IsAdminSite#>" />
-  <add key="SiteEnvironment" value="<#=site.Environment#>" />
+  <add key="SiteEnvironment" value="<#=site.AppSettingEnvironment#>" />
   <add key="RemoteRefURL" value="<#=site.RemotingRefUrl#>" />
   <add key="UnderMaintenanceUrl" value="<#=site.UnderMaintenanceUrl#>" />
   <!--Using format "10:00AM - 13:00PM" to enable UM for example-->

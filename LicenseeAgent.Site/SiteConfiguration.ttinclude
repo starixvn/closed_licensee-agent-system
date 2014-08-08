@@ -14,6 +14,16 @@
         new SiteInfo
         {
             IsAdmin = true,
+            Environment = SiteEnvironment.LocalProd
+        },
+        new SiteInfo
+        {
+            IsAdmin = false,
+            Environment = SiteEnvironment.LocalProd
+        },
+        new SiteInfo
+        {
+            IsAdmin = true,
             Environment = SiteEnvironment.Uat
         },
         new SiteInfo
@@ -39,7 +49,8 @@
     {
         Local,
         Uat,
-        Prod
+        Prod,
+        LocalProd
     }
 
     class SiteInfo
@@ -53,6 +64,13 @@
                 return "Web.AppSettings.config";
             }
         }
+        public string AppSettingEnvironment
+        {
+            get
+            {
+                return Environment == SiteEnvironment.LocalProd ? "Local" : Environment.ToString();
+            }
+        }
         public string ConnectionStringsConfigSource
         { 
             get
@@ -64,7 +82,13 @@
         { 
             get
             {
-                return string.Format("~/App_Data/SpNames.{0}.xml", Environment);
+                var name = Environment.ToString();
+                if(Environment == SiteEnvironment.LocalProd)
+                {
+                    name = "Prod";
+                }
+
+                return string.Format("~/App_Data/SpNames.{0}.xml", name);
             }
         }
         public string LoggingMsmqPath
@@ -80,6 +104,7 @@
                         return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib";
 
                     default:
@@ -100,6 +125,7 @@
                         return "LAS-UAT";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return "Licensee-Agency-Local";
 
                     default:
@@ -120,6 +146,7 @@
                         return "http://10.40.40.109:8089/API";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return "http://lastest.net2cast.com/API";
 
                     default:
@@ -134,6 +161,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.Prod:
+                    case SiteEnvironment.LocalProd:
                         return "pgmPeter,pgmAnn,pgmleo,pgmmuller,pgmlong,pgmAda,pgmHarmony,pgmWilliam,pgmMartin,pgmCasey,pgmJim,pgmDon";
 
                     case SiteEnvironment.Uat:
@@ -160,6 +188,7 @@
                         return "*";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return "*";
 
                     default:
@@ -180,6 +209,7 @@
                         return "tcp://10.40.40.29:8098/CallGetRefFunction";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return "tcp://10.18.200.209:8888/CallGetRefFunction";
 
                     default:
@@ -207,6 +237,7 @@
                         return "tcp://10.40.40.150:8990/UMControllerInterface";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return string.Empty;
 
                     default:

@@ -4,13 +4,11 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.IO;
-    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
     using Fanex.Common;
     using LicenseeAgent.Account.Criteria;
-    using LicenseeAgent.Account.Entities;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Account.ViewResults;
@@ -58,42 +56,6 @@
             _coreService = coreService ?? new CoreService();
             _captchaImage = captchaImage ?? new CaptchaImage();
             _authenticateService = authenticateService ?? new AuthenticateService();
-        }
-
-        /// <summary>
-        /// Home page.
-        /// </summary>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        public ActionResult Index()
-        {
-            var model = new HomePageViewModel
-            {
-                StatisticInfo = new StatisticEntity(),
-                BalanceInfo = new BalanceInfoEntity()
-            };
-
-            if (CurrentSession.AgentInfo != null)
-            {
-                var statisticCriteria = new StatisticCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-                var statisticInfo = _accountService.GetStatisticInfo(statisticCriteria).FirstOrDefault();
-
-                var balanceUp = _coreService.BalanceUpDay;
-                var balanceInfoCriteria = new BalanceInfoCriteria
-                {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
-                    MoveBetDay = balanceUp.MoveBetsDay
-                };
-                var balanceInfo = _accountService.GetBalanceInfo(balanceInfoCriteria).FirstOrDefault();
-
-                model = new HomePageViewModel
-                {
-                    StatisticInfo = statisticInfo,
-                    BalanceInfo = balanceInfo
-                };
-            }
-
-            return View(model);
         }
 
         /// <summary>
@@ -455,58 +417,6 @@
             var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
             return Content(imgSrc);
         }
-
-        #region Statistic Drilldown
-
-        /// <summary>
-        /// Statistics top 10 winning members.
-        /// </summary>
-        /// <returns>View result.</returns>
-        public ViewResult TopWinning()
-        {
-            var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new TopWinningCriteria
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetsDay
-            };
-            var topWinningData = _accountService.GetTopWinning(criteria);
-
-            return View(topWinningData);
-        }
-
-        /// <summary>
-        /// Statistics top 10 turnover members.
-        /// </summary>
-        /// <returns>View result.</returns>
-        public ViewResult TopTurnover()
-        {
-            var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new TopTurnoverCriteria
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                BalanceUpDay = balanceUp.BalanceUpDay,
-                MoveBetsDay = balanceUp.MoveBetsDay
-            };
-            var topTurnoverData = _accountService.GetTopTurnover(criteria);
-
-            return View(topTurnoverData);
-        }
-
-        /// <summary>
-        /// New members of the month.
-        /// </summary>
-        /// <returns>View result.</returns>
-        public ViewResult NewMembers()
-        {
-            var criteria = new NewMemberOfMonthCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            var newMemberData = _accountService.GetNewMemberOfMonth(criteria);
-
-            return View(newMemberData);
-        }
-
-        #endregion Statistic Drilldown
 
         /// <summary>
         /// Validates the Agent user.

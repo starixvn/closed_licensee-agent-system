@@ -14,7 +14,7 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div class="pull-left">
+<div class="pull-left" style="min-width: 420px">
     @Html.ValidationSummary()
     @using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "form-inline form-filter", id = "search-form" }))

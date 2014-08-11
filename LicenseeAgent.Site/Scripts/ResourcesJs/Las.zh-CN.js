@@ -372,7 +372,7 @@ language.Las['zh-CN'] = {
 	Submit : "提交",
 	SubTotalComm : "Subtotal(com.)",
 	SubTotalWinLost : "Subtotal(winlost)",
-	SwitchFromNormalCash : "Switch from Normal Cash",
+	SwitchFromNormal : "Switch from Normal",
 	SystemId : "System ID",
 	SystemParlay : "串关",
 	Team : "队伍",

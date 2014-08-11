@@ -1,9 +1,9 @@
-﻿namespace LicenseeAgent.Account.Entities
+﻿namespace LicenseeAgent.Account.Entities.HomePage
 {
     /// <summary>
     /// StatisticEntity class.
     /// </summary>
-    public class StatisticEntity
+    public class StatisticInfo
     {
         public decimal OutStanding { get; set; }
 

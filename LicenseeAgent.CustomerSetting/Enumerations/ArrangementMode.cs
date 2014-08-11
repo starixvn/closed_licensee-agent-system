@@ -5,7 +5,7 @@
         /// <summary>
         /// Switch From Normal Cash.
         /// </summary>
-        SwitchFromNormalCash = 0,
+        SwitchFromNormal = 0,
 
         /// <summary>
         /// Assign Member.

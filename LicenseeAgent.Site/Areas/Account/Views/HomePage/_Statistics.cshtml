@@ -1,0 +1,51 @@
+﻿@model StatisticInfo
+<div class="legend">
+    @Las.YourStatistics
+</div>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                @Las.AgentOutstanding
+            </td>
+            <td>
+                @Formatter.FormatDecimal(Model.OutStanding)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Las.TotalOutstanding
+            </td>
+            <td>
+                @Formatter.FormatDecimal(Model.TotalOutStanding)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Las.TopWinningMembers
+                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "TopWinning" })">
+                </i>
+                <div class="dropdown-popup">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Las.TopTurnoverMembers
+                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "TopTurnover" })">
+                </i>
+                <div class="dropdown-popup">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Las.NewMemberOfMonth: <span class="text-bold">@Formatter.FormatInt(Model.NumberNewMembers)</span>
+                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "NewMembers" })">
+                </i>
+                <div class="dropdown-popup popup-statistics-newmembers">
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

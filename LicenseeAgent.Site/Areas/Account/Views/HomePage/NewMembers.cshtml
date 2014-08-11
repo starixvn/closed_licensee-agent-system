@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+    var isShowCredit = SessionManager.CurrentSession.AgentInfo.LegendType == LegendType.Credit;
+    var colSpan = isShowCredit ? 3 : 2;
+}
+@model IList<NewMemberOfMonthEntity>
+<table>
+    <colgroup>
+        <col />
+        @if (isShowCredit)
+        {
+            <col />
+        }
+        <col width="130" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                @Las.Username
+            </th>
+            @if (isShowCredit)
+            {
+                <th>
+                    @Las.GivenCredit
+                </th>
+            }
+            <th>
+                @Las.CreatedDate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var member in Model)
+            {
+            <tr>
+                <td>
+                    @member.Username
+                </td>
+                @if (isShowCredit)
+                {
+                    <td class="text-right">
+                        @Formatter.FormatDecimal(member.Credit)
+                    </td>
+                }
+                <td class="text-center">
+                    @Formatter.FormatDateTime(member.CreatedDate)
+                </td>
+            </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="@colSpan" class="text-center">
+                    @Las.NoInfo
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

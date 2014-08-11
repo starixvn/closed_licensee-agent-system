@@ -82,7 +82,8 @@
         /// <param name="model">Statement Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult Data(StatementReportViewModel model)
+        [ActionName("Index")]
+        public JsonResult IndexPost(StatementReportViewModel model)
         {
             if (!_downLinePermissionService.IsDownLineAgent(CurrentSession.AgentInfo.AgentId))
             {

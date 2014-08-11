@@ -1414,8 +1414,8 @@ Please note that this action cannot be undone.</value>
   <data name="AssignMember" xml:space="preserve">
     <value>Assign Member</value>
   </data>
-  <data name="SwitchFromNormalCash" xml:space="preserve">
-    <value>Switch from Normal Cash</value>
+  <data name="SwitchFromNormal" xml:space="preserve">
+    <value>Switch from Normal</value>
   </data>
   <data name="SubTotalComm" xml:space="preserve">
     <value>Subtotal (Comm)</value>
@@ -1506,5 +1506,8 @@ Please note that this action cannot be undone.</value>
   </data>
   <data name="PendingFund" xml:space="preserve">
     <value>Pending Fund</value>
+  </data>
+  <data name="MemberRegistration" xml:space="preserve">
+    <value>Member Registration</value>
   </data>
 </root>

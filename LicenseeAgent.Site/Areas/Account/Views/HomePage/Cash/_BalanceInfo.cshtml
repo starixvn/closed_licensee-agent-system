@@ -1,0 +1,48 @@
+﻿@model BalanceCashInfo
+<div class="legend">
+    @Las.BalanceInfo
+</div>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                @Las.Agent
+            </td>
+            <td>
+                @Model.AgentName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Las.Currency
+            </td>
+            <td>
+                @Model.CurrencyName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @string.Format("{0} - {1}", Las.Balance, Model.Today.ToString("MMMM yyyy"))
+            </td>
+            <td>
+                @RazorHelper.FormatNegative(Model.Balance)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Las.TodayWinLoss (@Model.Today.ToString("MM/dd/yyyy"))
+            </td>
+            <td>
+                @RazorHelper.FormatNegative(Model.TodayWinloss)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Las.YesterdayWinLoss (@Model.Yesterday.ToString("MM/dd/yyyy"))
+            </td>
+            <td>
+                @RazorHelper.FormatNegative(Model.YesterdayWinloss)
+            </td>
+        </tr>
+    </tbody>
+</table>

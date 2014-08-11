@@ -1379,8 +1379,8 @@
   <data name="AssignMember" xml:space="preserve">
     <value>Assign Member</value>
   </data>
-  <data name="SwitchFromNormalCash" xml:space="preserve">
-    <value>Switch from Normal Cash</value>
+  <data name="SwitchFromNormal" xml:space="preserve">
+    <value>Switch from Normal</value>
   </data>
   <data name="SubTotalComm" xml:space="preserve">
     <value>Subtotal(com.)</value>

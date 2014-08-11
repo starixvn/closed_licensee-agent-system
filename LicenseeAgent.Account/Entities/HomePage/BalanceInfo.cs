@@ -1,11 +1,11 @@
-﻿namespace LicenseeAgent.Account.Entities
+﻿namespace LicenseeAgent.Account.Entities.HomePage
 {
     using System;
 
     /// <summary>
     /// BalanceInfoEntity class.
     /// </summary>
-    public class BalanceInfoEntity
+    public class BalanceInfo
     {
         public string AgentName { get; set; }
 

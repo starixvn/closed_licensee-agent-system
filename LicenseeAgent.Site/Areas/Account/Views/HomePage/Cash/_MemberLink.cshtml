@@ -1,0 +1,16 @@
+﻿@model IList<string>
+<div class="legend">
+    @Las.MemberRegistration
+</div>
+<table>
+    <tbody>
+        @foreach (var link in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@link" target=_blank>@link</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

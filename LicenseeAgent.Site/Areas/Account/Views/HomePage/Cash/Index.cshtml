@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model HomePageCashViewModel
+@section css
+{
+    @Styles.Render("~/css/account/homepage")
+}
+@section scripts{
+    @Scripts.Render("~/js/account/homepage")
+    <script type="text/javascript">
+        $(function () {
+            account.homePage.init();
+        });
+    </script>
+}
+<div class="box-row">
+    <div class="box-cell" id="balance-info-container">
+        @Html.Partial("Cash/_BalanceInfo", Model.BalanceInfo)
+    </div>
+    <div class="box-cell" id="your-statistics-container">
+        @Html.Partial("_Statistics", Model.StatisticInfo)
+    </div>
+</div>
+@if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+{
+    <div class="box-row">
+        <div class="box-cell">
+            @Html.Partial("Cash/_MemberLink", Model.MemberSiteLinks)
+        </div>
+    </div>
+}
+<div class="box-row">
+    <div class="box-cell" id="announcement-container">
+        @Html.Partial("_Announcement")
+    </div>
+</div>

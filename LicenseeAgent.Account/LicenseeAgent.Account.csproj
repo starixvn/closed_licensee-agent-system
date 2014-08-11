@@ -81,6 +81,7 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Criteria\AdminCheckInCriteria.cs" />
@@ -88,11 +89,13 @@
     <Compile Include="Criteria\AdminUserLogoutCriteria.cs" />
     <Compile Include="Criteria\AgentReCheckInLicenseeCriteria.cs" />
     <Compile Include="Criteria\AgentUserLogoutCriteria.cs" />
-    <Compile Include="Criteria\BalanceInfoCriteria.cs" />
+    <Compile Include="Criteria\HomePage\GetBalanceCashInfoCriteria.cs" />
+    <Compile Include="Criteria\HomePage\GetBalanceInfoCriteria.cs" />
     <Compile Include="Criteria\AgentInternalLoginCriteria.cs" />
-    <Compile Include="Criteria\StatisticCriteria.cs" />
-    <Compile Include="Criteria\NewMemberOfMonthCriteria.cs" />
-    <Compile Include="Criteria\TopTurnoverCriteria.cs" />
+    <Compile Include="Criteria\HomePage\GetMemberSiteLinkCriteria.cs" />
+    <Compile Include="Criteria\HomePage\GetStatisticCriteria.cs" />
+    <Compile Include="Criteria\HomePage\NewMemberOfMonthCriteria.cs" />
+    <Compile Include="Criteria\HomePage\TopTurnoverCriteria.cs" />
     <Compile Include="Criteria\GetAncestorListCriteria.cs" />
     <Compile Include="Criteria\GetAgentDownlineCriteria.cs" />
     <Compile Include="Criteria\GetAgentL0ByLicenseeCriteria.cs" />
@@ -107,15 +110,18 @@
     <Compile Include="Criteria\AgentReCheckInCriteria.cs" />
     <Compile Include="Criteria\AgentSaltSelCriteria.cs" />
     <Compile Include="Criteria\LicenseeAdminLoginCriteria.cs" />
-    <Compile Include="Criteria\TopWinningCriteria.cs" />
-    <Compile Include="Entities\BalanceInfoEntity.cs" />
-    <Compile Include="Entities\NewMemberOfMonthEntity.cs" />
-    <Compile Include="Entities\StatisticEntity.cs" />
-    <Compile Include="Entities\TopTurnoverEntity.cs" />
+    <Compile Include="Criteria\HomePage\TopWinningCriteria.cs" />
+    <Compile Include="Entities\HomePage\BalanceCashInfo.cs" />
+    <Compile Include="Entities\HomePage\BalanceInfo.cs" />
+    <Compile Include="Entities\HomePage\NewMemberOfMonthEntity.cs" />
+    <Compile Include="Entities\HomePage\StatisticInfo.cs" />
+    <Compile Include="Entities\HomePage\TopTurnoverEntity.cs" />
     <Compile Include="Entities\CurrencyEntity.cs" />
     <Compile Include="Entities\LicenseeEntity.cs" />
-    <Compile Include="Entities\TopWinningEntity.cs" />
+    <Compile Include="Entities\HomePage\TopWinningEntity.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\HomePageService.cs" />
+    <Compile Include="Services\IHomePageService.cs" />
     <Compile Include="Services\InternalService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\IAccountService.cs" />
@@ -124,7 +130,8 @@
     <Compile Include="Services\IInternalService.cs" />
     <Compile Include="ViewModels\AdminSignInViewModel.cs" />
     <Compile Include="ViewModels\AgentChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\HomePage\HomePageCashViewModel.cs" />
+    <Compile Include="ViewModels\HomePage\HomePageViewModel.cs" />
     <Compile Include="ViewModels\AgentViewModel.cs" />
     <Compile Include="ViewModels\AgentSignInViewModel.cs" />
     <Compile Include="ViewModels\CurrencyLicenseeViewModel.cs" />

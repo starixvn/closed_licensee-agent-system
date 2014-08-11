@@ -130,11 +130,6 @@
             return GetEntites<LicenseeEntity>(criteria);
         }
 
-        public IList<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria)
-        {
-            return GetEntites<CurrencyEntity>(criteria);
-        }
-
         public void InternalLoginAsUser(InternalLoginAsUserCriteria criteria)
         {
             Execute(criteria);
@@ -153,31 +148,6 @@
         public void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria)
         {
             Execute(criteria);
-        }
-
-        public IList<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria)
-        {
-            return GetEntites<TopWinningEntity>(criteria);
-        }
-
-        public IList<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria)
-        {
-            return GetEntites<TopTurnoverEntity>(criteria);
-        }
-
-        public IList<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria)
-        {
-            return GetEntites<NewMemberOfMonthEntity>(criteria);
-        }
-
-        public IList<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria)
-        {
-            return GetEntites<StatisticEntity>(criteria);
-        }
-
-        public IList<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria)
-        {
-            return GetEntites<BalanceInfoEntity>(criteria);
         }
     }
 }

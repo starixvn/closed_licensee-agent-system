@@ -2177,6 +2177,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Registration.
+        /// </summary>
+        public static string MemberRegistration {
+            get {
+                return ResourceManager.GetString("MemberRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message / Announcement.
         /// </summary>
         public static string MessageAnnouncement {
@@ -3508,11 +3517,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Switch from Normal Cash.
+        ///   Looks up a localized string similar to Switch from Normal.
         /// </summary>
-        public static string SwitchFromNormalCash {
+        public static string SwitchFromNormal {
             get {
-                return ResourceManager.GetString("SwitchFromNormalCash", resourceCulture);
+                return ResourceManager.GetString("SwitchFromNormal", resourceCulture);
             }
         }
         

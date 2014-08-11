@@ -1,15 +1,15 @@
 ﻿@{
     Layout = null;
 }
-@using LicenseeAgent.Account.Entities
-@using LicenseeAgent.Core.Utility
 @model IEnumerable<TopWinningEntity>
 <table>
     <thead>
         <tr>
-            <th>@Las.Username
+            <th>
+                @Las.Username
             </th>
-            <th>@Las.WinningAmount
+            <th>
+                @Las.WinningAmount
             </th>
         </tr>
     </thead>
@@ -19,9 +19,11 @@
             foreach (var member in Model)
             {
             <tr>
-                <td>@member.Username
+                <td>
+                    @member.Username
                 </td>
-                <td class="text-right">@Formatter.FormatDecimal(member.WinLost)
+                <td class="text-right">
+                    @Formatter.FormatDecimal(member.WinLost)
                 </td>
             </tr>
             }
@@ -29,7 +31,8 @@
         else
         {
             <tr>
-                <td colspan="2" class="text-center">@Las.NoInfo
+                <td colspan="2" class="text-center">
+                    @Las.NoInfo
                 </td>
             </tr>
         }

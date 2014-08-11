@@ -157,7 +157,6 @@
             RegisterErrorPage(bundles);
             RegisterLoginPage(bundles);
             RegisterHomePage(bundles);
-            RegisterAccountPage(bundles);
             RegisterCustomerListPage(bundles);
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
@@ -245,19 +244,6 @@
 
             bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
                 "~/views/customersetting/Resources/MemberArrangement.js"));
-        }
-
-        /// <summary>
-        /// Registers the account page bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterAccountPage(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/css/home-page").Include(
-                "~/views/account/resources/home-page.less"));
-
-            bundles.Add(new ScriptBundle("~/js/home-page").Include(
-                "~/views/account/resources/home-page.js"));
         }
 
         /// <summary>
@@ -423,7 +409,7 @@
             bundles.Add(new LessBundle("~/css/membercommission").Include(
                 "~/views/membercommission/resources/member-commission.less"));
         }
-        
+
         private static void RegisterMemberCommissionPages(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/membercommission").Include(

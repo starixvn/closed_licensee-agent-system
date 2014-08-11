@@ -24,7 +24,7 @@
         {
             return View(new MemberArrangementViewModel()
             {
-                Mode = ArrangementMode.SwitchFromNormalCash
+                Mode = ArrangementMode.SwitchFromNormal
             });
         }
 
@@ -104,7 +104,7 @@
             else
             {
                 // Member has been assigned. Please check again.
-                if (model.Mode == ArrangementMode.SwitchFromNormalCash)
+                if (model.Mode == ArrangementMode.SwitchFromNormal)
                 {
                     return (int)ErrCode.Msg_2074;
                 }

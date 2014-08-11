@@ -32,8 +32,6 @@
 
         IList<LicenseeEntity> GetLicenseeList(int userId);
 
-        IList<CurrencyEntity> GetCurrencyOfLicensee(GetCurrencyOfLicenseeCriteria criteria);
-
         void InternalLoginAsUser(InternalLoginAsUserCriteria criteria);
 
         void AdminCheckInLicensee(AdminCheckInLicenseeCriteria criteria);
@@ -41,15 +39,5 @@
         void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria);
 
         void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria);
-
-        IList<TopWinningEntity> GetTopWinning(TopWinningCriteria criteria);
-
-        IList<TopTurnoverEntity> GetTopTurnover(TopTurnoverCriteria criteria);
-
-        IList<NewMemberOfMonthEntity> GetNewMemberOfMonth(NewMemberOfMonthCriteria criteria);
-
-        IList<StatisticEntity> GetStatisticInfo(StatisticCriteria criteria);
-
-        IList<BalanceInfoEntity> GetBalanceInfo(BalanceInfoCriteria criteria);
     }
 }

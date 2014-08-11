@@ -5,10 +5,20 @@
 @{
     ViewBag.Title = Las.LasTitle;
     Layout = null;
-    var action = "Index";
-    if (Model.TopMenu == TopMenu.Security)
+    var iframeSrc = string.Empty;
+    if (Model.TopMenu == TopMenu.Home)
     {
-        action = "ChangePassword";
+        iframeSrc = Url.RouteUrl("Account_HomePage");
+    }
+    else
+    {
+        var action = "Index";
+        if (Model.TopMenu == TopMenu.Security)
+        {
+            action = "ChangePassword";
+        }
+
+        iframeSrc = Url.Action(action, "Account");
     }
 }
 <!DOCTYPE html>
@@ -51,7 +61,7 @@
             <div class="control-box">
                 <i class="icon-expand-home" title="@Las.Close"></i>
             </div>
-            <iframe id="frmMain" name="frmMain" frameborder=0 src="@Url.Action(@action, "Account")">
+            <iframe id="frmMain" name="frmMain" frameborder=0 src="@iframeSrc">
             </iframe>
         </div>
     </div>

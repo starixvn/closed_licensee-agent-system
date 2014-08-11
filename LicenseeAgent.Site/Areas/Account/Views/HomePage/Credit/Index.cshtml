@@ -4,14 +4,19 @@
 @model HomePageViewModel
 @section css
 {
-    @Styles.Render("~/css/home-page")
+    @Styles.Render("~/css/account/homepage")
 }
 @section scripts{
-    @Scripts.Render("~/js/home-page")
+    @Scripts.Render("~/js/account/homepage")
+    <script type="text/javascript">
+        $(function () {
+            account.homePage.init();
+        });
+    </script>
 }
 <div class="box-row">
     <div class="box-cell" id="balance-info-container">
-        @Html.Partial("_BalanceInfo", Model.BalanceInfo)
+        @Html.Partial("Credit/_BalanceInfo", Model.BalanceInfo)
     </div>
     <div class="box-cell" id="your-statistics-container">
         @Html.Partial("_Statistics", Model.StatisticInfo)

@@ -1,11 +1,11 @@
-﻿namespace LicenseeAgent.Account.Criteria
+﻿namespace LicenseeAgent.Account.Criteria.HomePage
 {
     using Fanex.Data.Repository;
 
     /// <summary>
     /// StatisticCriteria class.
     /// </summary>
-    public class StatisticCriteria : CriteriaBase
+    public class GetStatisticCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

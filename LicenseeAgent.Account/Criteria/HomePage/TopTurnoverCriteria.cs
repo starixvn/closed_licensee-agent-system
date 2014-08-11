@@ -1,12 +1,12 @@
-﻿namespace LicenseeAgent.Account.Criteria
+﻿namespace LicenseeAgent.Account.Criteria.HomePage
 {
     using System;
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// TopWinningCriteria class.
+    /// TopTurnoverCriteria class.
     /// </summary>
-    public class TopWinningCriteria : CriteriaBase
+    public class TopTurnoverCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
@@ -16,7 +16,7 @@
 
         public override string GetSettingKey()
         {
-            return "Las_AgentSelTopWinningMembers";
+            return "Las_AgentSelTopTurnoverMembers";
         }
 
         public override bool IsValid()

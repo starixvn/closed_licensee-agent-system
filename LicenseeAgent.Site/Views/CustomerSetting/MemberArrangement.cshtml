@@ -22,8 +22,8 @@
             @Html.AntiForgeryToken()
             <p>
                 <label class="radio inline">
-                    <input type="radio" name="Mode" value="0" @(Model.Mode == ArrangementMode.SwitchFromNormalCash ? "checked" : string.Empty) />
-                    @Las.SwitchFromNormalCash
+                    <input type="radio" name="Mode" value="0" @(Model.Mode == ArrangementMode.SwitchFromNormal ? "checked" : string.Empty) />
+                    @Las.SwitchFromNormal
                 </label>
                 <label class="radio inline">
                     <input type="radio" name="Mode" value="1" @(Model.Mode == ArrangementMode.AssignMember ? "checked" : string.Empty) />

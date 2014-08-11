@@ -78,7 +78,7 @@ report.statement = (function ($) {
         submit: function () {
             var submitOptions = $('form').serializeObject();
             $.ajax({
-                url: core.resolveUrl("~/Report/Statement/Data"),
+                url: $('form').attr('action'),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {

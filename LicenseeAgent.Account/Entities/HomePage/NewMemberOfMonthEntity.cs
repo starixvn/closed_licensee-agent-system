@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Account.Entities
+﻿namespace LicenseeAgent.Account.Entities.HomePage
 {
     using System;
 

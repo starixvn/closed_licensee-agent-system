@@ -519,10 +519,10 @@ If that is not you, please contact your upline!!!</value>
     <value>Currencies of Member and Agent do not match.</value>
   </data>
   <data name="Msg_2123" xml:space="preserve">
-    <value>Legend Agent does not exist. Please check again.</value>
+    <value>Agent does not exist. Please check again</value>
   </data>
   <data name="Msg_2124" xml:space="preserve">
-    <value>Currencies of Member and Legend Agent do not match.</value>
+    <value>Currencies of Member and Agent do not match</value>
   </data>
   <data name="Msg_2125" xml:space="preserve">
     <value>Cannot assign member to this agent.</value>

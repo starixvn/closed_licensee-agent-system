@@ -28,6 +28,9 @@ account.homePage = (function ($) {
                     success: function (data) {
                         popup.html(data);
                         popup.show();
+                        if (popup.height() < popup.children().height()) {
+                            popup.width(popup.width() + core.getScrollBarWidth());
+                        }
                     },
                     complete: function () {
                         core.unblockUI();

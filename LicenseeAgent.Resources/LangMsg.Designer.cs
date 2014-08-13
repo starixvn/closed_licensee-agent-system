@@ -1098,7 +1098,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to These members do not exist. Please check again..
+        ///   Looks up a localized string similar to One or more members do not exist. Please check again..
         /// </summary>
         public static string Msg_2097 {
             get {
@@ -1179,7 +1179,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend Agent does not exist. Please check again..
+        ///   Looks up a localized string similar to Agent does not exist. Please check again.
         /// </summary>
         public static string Msg_2123 {
             get {
@@ -1188,7 +1188,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currencies of Member and Legend Agent do not match..
+        ///   Looks up a localized string similar to Currencies of Member and Agent do not match.
         /// </summary>
         public static string Msg_2124 {
             get {

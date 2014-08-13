@@ -1238,32 +1238,14 @@
   <data name="Remark" xml:space="preserve">
     <value>備註</value>
   </data>
-  <data name="Maintenance" xml:space="preserve">
-    <value>Maintenance</value>
-  </data>
-  <data name="HrFixedOdds" xml:space="preserve">
-    <value>HR Fixed Odds</value>
-  </data>
-  <data name="MemberAPIMonitoring" xml:space="preserve">
-    <value>Member's API Monitoring</value>
-  </data>
   <data name="MaxPerBall" xml:space="preserve">
     <value>單球上限</value>
   </data>
   <data name="MaxPerBallMoreThanOrEqualMaxBet" xml:space="preserve">
     <value>單球最高投註必須多於或相等於最高投註</value>
   </data>
-  <data name="MaxPerMatchMoreThanOrEqualMaxPerBall" xml:space="preserve">
-    <value>Max Per Match must be greater than or equal to Max Per Ball</value>
-  </data>
   <data name="MaxPerBallLessThanOrEqualTo" xml:space="preserve">
     <value>單粒球最高投注必須少於或相等於 {0}</value>
-  </data>
-  <data name="LastBallOddEven" xml:space="preserve">
-    <value>Last Ball O/E</value>
-  </data>
-  <data name="LastBallOverUnder" xml:space="preserve">
-    <value>Last Ball O/U</value>
   </data>
   <data name="NumberWheel" xml:space="preserve">
     <value>包牌</value>
@@ -1271,41 +1253,14 @@
   <data name="Warrior" xml:space="preserve">
     <value>鬥士</value>
   </data>
-  <data name="NumberGamePositionTakingSimpleModeHeader" xml:space="preserve">
-    <value>Position Taking (NG Dead Ball 1st/Last O/U)</value>
-  </data>
-  <data name="NumberGameSimpleModeNote" xml:space="preserve">
-    <value>Note: In simple mode, your changes of Number Game Dead Ball 1st O/U will be applied to other bet types as well.</value>
-  </data>
   <data name="FirstLastBallOddEven" xml:space="preserve">
     <value>第一球/最後一球 單/雙</value>
   </data>
   <data name="FirstLastBallOverUnder" xml:space="preserve">
     <value>第一球/最後一球 大/小</value>
   </data>
-  <data name="MaxBetLessThanOrEqualMaxPerBall" xml:space="preserve">
-    <value>Max Bet must be less than or equal to Max Per Ball</value>
-  </data>
-  <data name="NumberGameFirstLastOverUnderCopyPtTooltip" xml:space="preserve">
-    <value>Copy from 1st/Last O/U</value>
-  </data>
-  <data name="NumberGameOverUnderCopyPtTooltip" xml:space="preserve">
-    <value>Copy from Over/Under</value>
-  </data>
-  <data name="EditVirtualSportsAgent" xml:space="preserve">
-    <value>Edit Virtual Sports Agent</value>
-  </data>
   <data name="UpdatePositionTakingSuccessfully" xml:space="preserve">
     <value>{0} - Updated position taking successfully.</value>
-  </data>
-  <data name="EditVirtualSportsMember" xml:space="preserve">
-    <value>Edit Virtual Sports Member</value>
-  </data>
-  <data name="ViewVirtualSportsAgent" xml:space="preserve">
-    <value>View Virtual Sports Agent</value>
-  </data>
-  <data name="VirtualSportsSimpleModeNote" xml:space="preserve">
-    <value>Note: In simple mode, your changes of virtual soccer setting will be applied to all sport types as well.</value>
   </data>
   <data name="VirtualSoccer" xml:space="preserve">
     <value>虚拟足球</value>
@@ -1316,32 +1271,11 @@
   <data name="VirtualTennis" xml:space="preserve">
     <value>虛擬網球</value>
   </data>
-  <data name="CopyAllBetSettingVirtualSoccer" xml:space="preserve">
-    <value>Copy all below bet settings from Virtual Soccer</value>
-  </data>
-  <data name="VirtualSoccerCopyPtTooltip" xml:space="preserve">
-    <value>Copy all below position taking settings from Virtual Soccer</value>
-  </data>
-  <data name="VirtualSoccerCopyPt" xml:space="preserve">
-    <value>Virtual Soccer position taking setting is being applied to:</value>
-  </data>
-  <data name="OtherSporttypeOfVirtualSoccer" xml:space="preserve">
-    <value>Other sport types of Virtual Soccer</value>
-  </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>沒有更新!</value>
   </data>
   <data name="SportsBookSimpleModeNote" xml:space="preserve">
     <value>注意: 如果在簡單模式,你的設定將套用到所有運動項目</value>
-  </data>
-  <data name="StatementDetail" xml:space="preserve">
-    <value>Statement Detail</value>
-  </data>
-  <data name="SystemId" xml:space="preserve">
-    <value>System ID</value>
-  </data>
-  <data name="Main" xml:space="preserve">
-    <value>Main</value>
   </data>
   <data name="EditVirtualSports" xml:space="preserve">
     <value>编辑虚拟运动</value>
@@ -1349,112 +1283,7 @@
   <data name="MaxPerBallLessThanOrEqualMaxPerMatch" xml:space="preserve">
     <value>單球最高投註必須少於或相等於單場限額</value>
   </data>
-  <data name="Product" xml:space="preserve">
-    <value>Product</value>
-  </data>
-  <data name="ViewVirtualSports" xml:space="preserve">
-    <value>View Virtual Sports</value>
-  </data>
-  <data name="EditSettingOfOtherProducts" xml:space="preserve">
-    <value>Edit Setting Of Other Products</value>
-  </data>
-  <data name="PlaytechCasino" xml:space="preserve">
-    <value>Playtech Casino</value>
-  </data>
   <data name="LiveCasino" xml:space="preserve">
     <value>娛樂廳</value>
-  </data>
-  <data name="Keno" xml:space="preserve">
-    <value>Keno</value>
-  </data>
-  <data name="Bingo" xml:space="preserve">
-    <value>Bingo</value>
-  </data>
-  <data name="UpdateAll" xml:space="preserve">
-    <value>Update All</value>
-  </data>
-  <data name="Cash" xml:space="preserve">
-    <value>Cash</value>
-  </data>
-  <data name="AssignMember" xml:space="preserve">
-    <value>Assign Member</value>
-  </data>
-  <data name="SwitchFromNormal" xml:space="preserve">
-    <value>Switch from Normal</value>
-  </data>
-  <data name="SubTotalComm" xml:space="preserve">
-    <value>Subtotal(com.)</value>
-  </data>
-  <data name="SubTotalWinLost" xml:space="preserve">
-    <value>Subtotal(winlost)</value>
-  </data>
-  <data name="PendingMemberList" xml:space="preserve">
-    <value>Pending Member List</value>
-  </data>
-  <data name="DirectAgent" xml:space="preserve">
-    <value>Direct Agent</value>
-  </data>
-  <data name="AlertRemoveToGroup" xml:space="preserve">
-    <value>Are you sure you want to remove this member from group?</value>
-  </data>
-  <data name="ClearMemberCommission" xml:space="preserve">
-    <value>Clear member's commission</value>
-  </data>
-  <data name="CommissionMemberList" xml:space="preserve">
-    <value>Commission Member List</value>
-  </data>
-  <data name="ConfirmMemberCommission" xml:space="preserve">
-    <value>Confirm Member's Commission:</value>
-  </data>
-  <data name="KeepCurrentCommission" xml:space="preserve">
-    <value>Keep current commission</value>
-  </data>
-  <data name="MoveToGroup" xml:space="preserve">
-    <value>Move To Group</value>
-  </data>
-  <data name="NGCommission" xml:space="preserve">
-    <value>NG Comm. (%)</value>
-  </data>
-  <data name="NoteUpdateMemberCommission" xml:space="preserve">
-    <value>Members will be removed from current groups due to the difference in commission values.</value>
-  </data>
-  <data name="RemoveFromGroup" xml:space="preserve">
-    <value>Remove From Group</value>
-  </data>
-  <data name="SBCommission" xml:space="preserve">
-    <value>SB Comm. (%)</value>
-  </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Select Group</value>
-  </data>
-  <data name="UpdateCommission" xml:space="preserve">
-    <value>Update Comm</value>
-  </data>
-  <data name="UpdateMemberCommission" xml:space="preserve">
-    <value>Update Member Commission</value>
-  </data>
-  <data name="MovedSuccessfully" xml:space="preserve">
-    <value>Moved Successfully</value>
-  </data>
-  <data name="CommissionHeader" xml:space="preserve">
-    <value>Commission (%)</value>
-  </data>
-  <data name="NG" xml:space="preserve">
-    <value>NG</value>
-  </data>
-  <data name="SB" xml:space="preserve">
-    <value>SB</value>
-  </data>
-  <data name="CommissionGroupList" xml:space="preserve">
-    <value>Commission Group List</value>
-  </data>
-  <data name="CommGroup" xml:space="preserve">
-    <value>Comm. Group</value>
-  </data>
-  <data name="AvailableFund" xml:space="preserve">
-    <value>Available Fund</value>
-  </data>
-  <data name="PendingFund" xml:space="preserve">
-    <value>Pending Fund</value>
   </data>
 </root>

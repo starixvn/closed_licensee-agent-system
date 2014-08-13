@@ -32,11 +32,6 @@ var memberCommission = (function ($) {
                 memberCommission.removeGroup();
             });
 
-            // close popup
-            $("#cancel").click(function () {
-                popup.close();
-            });
-
             // go back history
             $("#membercomm-back").click(function () {
             });

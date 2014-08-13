@@ -406,6 +406,9 @@
             bundles.Add(new ScriptBundle("~/js/CommissionGroup").Include(
                 "~/views/CommissionGroup/resources/CommissionGroup.js"));
 
+            bundles.Add(new ScriptBundle("~/js/CommissionGroupUtility").Include(
+                "~/views/CommissionGroup/resources/CommissionGroupUtility.js"));
+
             bundles.Add(new LessBundle("~/css/membercommission").Include(
                 "~/views/membercommission/resources/member-commission.less"));
         }

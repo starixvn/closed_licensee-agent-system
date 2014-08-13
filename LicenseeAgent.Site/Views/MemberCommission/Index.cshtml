@@ -17,8 +17,8 @@
 }
 <div class="legend">
     @Las.CommissionMemberList
-    <span id="membercomm-back" class="history-back"><i class="icon-history-back"></i>
-        @Las.Back
+    <span id="membercomm-back" class="history-back"><i class="icon-history-back"></i>        
+        <a href="@Url.Action("Index", "CommissionGroup")">@Las.Back</a>
     </span>
 </div>
 @using (Html.BeginForm("GetMemberCommissions", "MemberCommission", FormMethod.Post,

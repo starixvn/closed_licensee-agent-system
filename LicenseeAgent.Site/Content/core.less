@@ -180,6 +180,17 @@ iframe
             }
         }
     }
+    table.noborder
+    {
+        background: #FFF;
+        border: none;
+        td
+        {
+            border: none;
+            text-align: left;
+            vertical-align: top;
+        }
+    }
     .button-group
     {
         margin-bottom: 10px;
@@ -448,4 +459,47 @@ table.no-wrap
 .input-append .input-add-on
 {
     border-right: 0;
+}
+.downline 
+{
+    border: 1px solid #dbdcde;
+    border-radius: 3px;
+    width: 25px;
+    height: 15px;
+    color: #5a9edb;
+    display: inline-table;
+    min-width: 25px;
+    
+    a 
+    {
+        padding: 2px;
+    }
+}
+
+.downline:hover 
+{
+    border: 1px solid #5a9edb;
+    border-radius: 3px;
+    background-color:#5a9edb;
+    color:#fff;
+}
+
+.controls-row 
+{
+	margin-bottom: 10px;
+}
+
+.btn-link
+{
+    background-color: #FFF;
+    color: #4f97c7;
+    border: 1px solid #589cc9;
+    border-radius: 3px;
+    text-decoration: none;
+    &:hover
+    {
+        color: #FFF; 
+        background-color: #589cc9;
+        text-decoration: none;
+    }
 }

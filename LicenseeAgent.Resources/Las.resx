@@ -1465,6 +1465,18 @@ Please note that this action cannot be undone.</value>
   <data name="NGCommission" xml:space="preserve">
     <value>NG Comm. (%)</value>
   </data>
+  <data name="RNGCommission" xml:space="preserve">
+    <value>RNG Comm. (%)</value>
+  </data>
+  <data name="RacingCommission" xml:space="preserve">
+    <value>Racing Comm. (%)</value>
+  </data>
+  <data name="LCCommission" xml:space="preserve">
+    <value>LC Comm. (%)</value>
+  </data>
+  <data name="CSCommission" xml:space="preserve">
+    <value>CS Comm. (%)</value>
+  </data>
   <data name="NoteUpdateMemberCommission" xml:space="preserve">
     <value>Members will be removed from current groups due to the difference in commission values.</value>
   </data>
@@ -1501,13 +1513,70 @@ Please note that this action cannot be undone.</value>
   <data name="CommGroup" xml:space="preserve">
     <value>Comm. Group</value>
   </data>
+  <data name="DefaultGroup" xml:space="preserve">
+    <value>Default Group</value>
+  </data>
   <data name="AvailableFund" xml:space="preserve">
     <value>Available Fund</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Group Name</value>
   </data>
   <data name="PendingFund" xml:space="preserve">
     <value>Pending Fund</value>
   </data>
+  <data name="GroupNameIsEmpty" xml:space="preserve">
+    <value>Group Name is empty.</value>
+  </data>
   <data name="MemberRegistration" xml:space="preserve">
     <value>Member Registration</value>
+  </data>
+  <data name="NoOfMember" xml:space="preserve">
+    <value>No. of Member</value>
+  </data>
+  <data name="EditGroup" xml:space="preserve">
+    <value>Edit Group</value>
+  </data>
+  <data name="NewGroup" xml:space="preserve">
+    <value>New Group</value>
+  </data>
+  <data name="CreateNewGroup" xml:space="preserve">
+    <value>Create New Group</value>
+  </data>
+  <data name="Racing" xml:space="preserve">
+    <value>Racing</value>
+  </data>
+  <data name="RNGCasino" xml:space="preserve">
+    <value>RNG Casino</value>
+  </data>
+  <data name="SetAsDefaultGroup" xml:space="preserve">
+    <value>Set As Default Group</value>
+  </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>Create Group</value>
+  </data>
+  <data name="CheckAvailability" xml:space="preserve">
+    <value>Check Availability</value>
+  </data>
+  <data name="GroupCommissionNote" xml:space="preserve">
+    <value>If default commission group is selected, all new members will be automatically assigned to this group. Existing members stay unchanged.</value>
+  </data>
+  <data name="DeleteCommissionGroup" xml:space="preserve">
+    <value>Delete Commission Group</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ConfirmDeleteDefaultGroup" xml:space="preserve">
+    <value>This is default group. Do you want to delete?</value>
+  </data>
+  <data name="DeleteSuccessfully" xml:space="preserve">
+    <value>Delete Successfully!</value>
+  </data>
+  <data name="ConfirmDefaultGroup" xml:space="preserve">
+    <value>Another group is set as default. Are you sure you want to set this group as default?</value>
   </data>
 </root>

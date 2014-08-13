@@ -5,7 +5,7 @@
     /// <summary>
     /// GetLicenseeGroupCommissionCriteria class.
     /// </summary>
-    public class LicenseeGetGroupCommissionCriteria : CriteriaBase
+    public class GroupCommissionSelCriteria : CriteriaBase
     {
         public int LicenseeId { get; set; }
 

@@ -334,11 +334,12 @@ var popup = (function ($) {
             return false;
         },
         close: function () {
-            if (popup.isIframe()) {
+            if ($currentPopup === null && popup.isIframe()) {
                 window.parent.popup.close();
-            } else if ($currentPopup) {
+            } else {
                 this.onHide();
                 $currentPopup.close();
+                $currentPopup = null;
             }
         },
         block: function () {

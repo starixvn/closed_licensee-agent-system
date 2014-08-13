@@ -673,6 +673,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Availability.
+        /// </summary>
+        public static string CheckAvailability {
+            get {
+                return ResourceManager.GetString("CheckAvailability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choice.
         /// </summary>
         public static string Choice {
@@ -844,6 +853,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Another group is set as default. Are you sure you want to set this group as default?.
+        /// </summary>
+        public static string ConfirmDefaultGroup {
+            get {
+                return ResourceManager.GetString("ConfirmDefaultGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is default group. Do you want to delete?.
+        /// </summary>
+        public static string ConfirmDeleteDefaultGroup {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteDefaultGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Member&apos;s Commission:.
         /// </summary>
         public static string ConfirmMemberCommission {
@@ -935,6 +962,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Group.
+        /// </summary>
+        public static string CreateGroup {
+            get {
+                return ResourceManager.GetString("CreateGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Group.
+        /// </summary>
+        public static string CreateNewGroup {
+            get {
+                return ResourceManager.GetString("CreateNewGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credit.
         /// </summary>
         public static string Credit {
@@ -949,6 +994,15 @@ namespace LicenseeAgent.Resources {
         public static string CreditBalance {
             get {
                 return ResourceManager.GetString("CreditBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CS Comm. (%).
+        /// </summary>
+        public static string CSCommission {
+            get {
+                return ResourceManager.GetString("CSCommission", resourceCulture);
             }
         }
         
@@ -1021,6 +1075,42 @@ namespace LicenseeAgent.Resources {
         public static string DeadBall {
             get {
                 return ResourceManager.GetString("DeadBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default Group.
+        /// </summary>
+        public static string DefaultGroup {
+            get {
+                return ResourceManager.GetString("DefaultGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Commission Group.
+        /// </summary>
+        public static string DeleteCommissionGroup {
+            get {
+                return ResourceManager.GetString("DeleteCommissionGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Successfully!.
+        /// </summary>
+        public static string DeleteSuccessfully {
+            get {
+                return ResourceManager.GetString("DeleteSuccessfully", resourceCulture);
             }
         }
         
@@ -1129,6 +1219,15 @@ namespace LicenseeAgent.Resources {
         public static string EditCreditSuccessfully {
             get {
                 return ResourceManager.GetString("EditCreditSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Group.
+        /// </summary>
+        public static string EditGroup {
+            get {
+                return ResourceManager.GetString("EditGroup", resourceCulture);
             }
         }
         
@@ -1484,11 +1583,38 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If default commission group is selected, all new members will be automatically assigned to this group. Existing members stay unchanged..
+        /// </summary>
+        public static string GroupCommissionNote {
+            get {
+                return ResourceManager.GetString("GroupCommissionNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Group D (%).
         /// </summary>
         public static string GroupD {
             get {
                 return ResourceManager.GetString("GroupD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Name.
+        /// </summary>
+        public static string GroupName {
+            get {
+                return ResourceManager.GetString("GroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Name is empty..
+        /// </summary>
+        public static string GroupNameIsEmpty {
+            get {
+                return ResourceManager.GetString("GroupNameIsEmpty", resourceCulture);
             }
         }
         
@@ -1849,6 +1975,15 @@ namespace LicenseeAgent.Resources {
         public static string LastTransaction {
             get {
                 return ResourceManager.GetString("LastTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LC Comm. (%).
+        /// </summary>
+        public static string LCCommission {
+            get {
+                return ResourceManager.GetString("LCCommission", resourceCulture);
             }
         }
         
@@ -2339,6 +2474,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Group.
+        /// </summary>
+        public static string NewGroup {
+            get {
+                return ResourceManager.GetString("NewGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Member.
         /// </summary>
         public static string NewMember {
@@ -2479,6 +2623,15 @@ namespace LicenseeAgent.Resources {
         public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. of Member.
+        /// </summary>
+        public static string NoOfMember {
+            get {
+                return ResourceManager.GetString("NoOfMember", resourceCulture);
             }
         }
         
@@ -3139,6 +3292,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Racing.
+        /// </summary>
+        public static string Racing {
+            get {
+                return ResourceManager.GetString("Racing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racing Comm. (%).
+        /// </summary>
+        public static string RacingCommission {
+            get {
+                return ResourceManager.GetString("RacingCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refund.
         /// </summary>
         public static string Refund {
@@ -3220,11 +3391,38 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RNG Casino.
+        /// </summary>
+        public static string RNGCasino {
+            get {
+                return ResourceManager.GetString("RNGCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RNG Comm. (%).
+        /// </summary>
+        public static string RNGCommission {
+            get {
+                return ResourceManager.GetString("RNGCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running.
         /// </summary>
         public static string Running {
             get {
                 return ResourceManager.GetString("Running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -3324,6 +3522,15 @@ namespace LicenseeAgent.Resources {
         public static string SessionExpired {
             get {
                 return ResourceManager.GetString("SessionExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set As Default Group.
+        /// </summary>
+        public static string SetAsDefaultGroup {
+            get {
+                return ResourceManager.GetString("SetAsDefaultGroup", resourceCulture);
             }
         }
         

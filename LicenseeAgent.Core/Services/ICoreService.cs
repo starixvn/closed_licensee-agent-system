@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Web;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
 
     public interface ICoreService
     {
@@ -23,5 +24,7 @@
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
 
         AgentInfo GetAgentInfo(int agentId);
+        
+        bool IsSupportProduct(int licenseeId, Product product);
     }
 }

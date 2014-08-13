@@ -168,12 +168,12 @@
     </select>
 }
 
-@helper ProductCommission(IEnumerable<int> range, string id, string className)
+@helper ProductCommission(IEnumerable<int> range, string id, string className, int selectedValue = 0)
     {
     <select id="@id" name="@id" class="@className">
         @foreach (var value in range)
         {
-            <option value="@value">@value</option>
+            <option value="@value" @(value == selectedValue ? "selected" : string.Empty)>@value</option>
         }
     </select>
 }

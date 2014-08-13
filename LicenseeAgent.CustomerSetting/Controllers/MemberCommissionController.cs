@@ -45,7 +45,7 @@
         public ActionResult Index(MemberCommissionViewModel model)
         {
             model.GroupCommissions = _groupCommissionService.GetGroupCommissions(
-                new LicenseeGetGroupCommissionCriteria
+                new GroupCommissionSelCriteria
                 {
                     LicenseeId = CurrentSession.OnLicenseeId
                 });
@@ -92,7 +92,7 @@
         public ActionResult MoveToGroup()
         {
             var groupCommissions = _groupCommissionService.GetGroupCommissions(
-                new LicenseeGetGroupCommissionCriteria
+                new GroupCommissionSelCriteria
                 {
                     LicenseeId = CurrentSession.OnLicenseeId,
                 });
@@ -172,7 +172,7 @@
 
             if (criteria.ErrCode != Result.SuccessValue)
             {
-                return JsonResult(criteria.ErrCode);
+                return JsonResult(criteria.ErrCode, GetErrMsg(criteria.ErrCode));
             }
 
             return Json(new

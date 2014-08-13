@@ -194,6 +194,12 @@
             return GetEntity<AgentInfo>(criteria);
         }
 
+        public bool IsSupportProduct(int licenseeId, Product product)
+        {
+            var productInfos = GetProducts(licenseeId);
+            return productInfos.Any(p => p.ProductId == (int)product);
+        }
+
         /// <summary>
         /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
         /// </summary>

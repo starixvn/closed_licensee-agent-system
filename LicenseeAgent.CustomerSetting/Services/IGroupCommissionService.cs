@@ -15,6 +15,16 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// </summary>
     public interface IGroupCommissionService
     {
-        IEnumerable<GroupCommission> GetGroupCommissions(LicenseeGetGroupCommissionCriteria criteria);
+        IEnumerable<GroupCommission> GetGroupCommissions(GroupCommissionSelCriteria criteria);
+
+        GroupCommission GetGroupCommissionById(GroupCommGetByIdCriteria criteria);
+
+        bool GroupCommCheckByName(GroupCommCheckByNameCriteria criteria);
+
+        void GroupCommDel(GroupCommDelCriteria criteria);
+
+        void GroupCommIns(GroupCommInsCriteria criteria);
+
+        void GroupCommUpd(GroupCommUpdCriteria criteria);
     }
 }

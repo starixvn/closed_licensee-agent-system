@@ -7,5 +7,7 @@
 // LicenseeAgent.Site\Web.AppSettings.Prod.Admin.config
 // LicenseeAgent.Site\Web.AppSettings.Uat.Agent.config
 // LicenseeAgent.Site\Web.AppSettings.Uat.Admin.config
+// LicenseeAgent.Site\Web.AppSettings.LocalProd.Agent.config
+// LicenseeAgent.Site\Web.AppSettings.LocalProd.Admin.config
 // LicenseeAgent.Site\Web.AppSettings.Local.Agent.config
 // LicenseeAgent.Site\Web.AppSettings.Local.Admin.config

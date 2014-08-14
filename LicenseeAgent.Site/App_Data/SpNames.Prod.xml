@@ -39,6 +39,8 @@
     <Setting Key="Las_AgentSelTopWinningMembers" SpName="Las_AgentSelTopWinningMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentSelTopTurnoverMembers" SpName="Las_AgentSelTopTurnoverMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_HomePage_SelBalanceInfo" SpName="LAS_HomePage_SelBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_HomePage_SelBalanceInfo_Cash" SpName="LAS_HomePage_SelBalanceInfo_Cash" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_HomePage_SelMemberSiteLink" SpName="LAS_HomePage_SelMemberSiteLink" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="CustomerSetting">
     <Setting Key="Las_CheckExistUserName" SpName="Las_CheckExistUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -108,6 +110,7 @@
     <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_CheckMemberUplineStatusForUpdate" SpName="Las_CheckMemberUplineStatusForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_Cash_GetLegendAgentId" SpName="Las_Cash_GetLegendAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_SearchMemberByListId" SpName="Las_SearchMemberByListId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="IpInformation">
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBTXNIP.IPDB.bodbDownlineNet" Plain="0" TimeOut="600" />

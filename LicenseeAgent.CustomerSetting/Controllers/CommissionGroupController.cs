@@ -80,7 +80,8 @@
         {
             var result = _groupCommissionService.GetGroupCommissions(new GroupCommissionSelCriteria
             {
-                LicenseeId = CurrentSession.AgentInfo.LicenseeId
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                CurrencyId = CurrentSession.AgentInfo.CurrencyId
             });
 
             var defaultGroup = result.Where(p => p.IsDefault).FirstOrDefault();
@@ -178,7 +179,8 @@
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var result = _groupCommissionService.GetGroupCommissionById(new GroupCommGetByIdCriteria
             {
-                GroupCommId = groupCommId                
+                GroupCommId = groupCommId,
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId
             });
 
             var model = new CommissionGroupViewModel
@@ -264,7 +266,7 @@
         [HttpGet]
         [AccountType(AccountType.Admin)]
         [LegendType(LegendType.Deposit)]
-        public ActionResult Delete(int groupCommId, bool isDefault)
+        public ActionResult Delete(int groupCommId, bool isDefault = false)
         {
             var model = new CommissionGroupDeleteViewModel
             {

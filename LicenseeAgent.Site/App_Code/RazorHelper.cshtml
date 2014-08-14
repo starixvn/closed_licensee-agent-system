@@ -168,9 +168,9 @@
     </select>
 }
 
-@helper ProductCommission(IEnumerable<int> range, string id, string className, int selectedValue = 0)
+@helper ProductCommission(IEnumerable<int> range, string id, string className, int selectedValue = 0, string id2 = "", string id3 = "")
     {
-    <select id="@id" name="@id" class="@className">
+    <select id="@id" name="@id" class="@className" @(string.IsNullOrEmpty(id2) ? string.Empty : "data-comm2=" + id2) @(string.IsNullOrEmpty(id3) ? string.Empty : "data-comm3=" + id3)>
         @foreach (var value in range)
         {
             <option value="@value" @(value == selectedValue ? "selected" : string.Empty)>@value</option>

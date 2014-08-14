@@ -9,6 +9,8 @@
     {
         public int LicenseeId { get; set; }
 
+        public int CurrencyId { get; set; }
+
         public int? GroupCommId { get; set; }
 
         public string GroupName { get; set; }

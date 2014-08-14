@@ -5,7 +5,7 @@
     var gridOptions = {
         columns: [
             { HeaderText: "#", Name: "No", Width: 30, HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: "@Las.GroupName", Width: 120, Name: "GroupName", HeaderAlign: "center" },
+            { HeaderText: "@Las.GroupName", Width: 200, Name: "GroupName", HeaderAlign: "center", AllowTruncate: true, CanResize: false },
             { HeaderText: "@Las.DefaultGroup", Width: 50, Name: "IsDefault", HeaderAlign: "center", CellAlign: "center",
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
                     return (cell.Value ? '<span class="icon-input-valid">&nbsp;</span>' : '');
@@ -68,11 +68,11 @@
             }
             
         ],
-        showPager: true,
-        customPager: true,
         gridExpandHeight: 125,
+        showPager: true,
+        showNumberColumn: true,
         indexNumberColumn: 0,
-        bodyRowHeight: 29,
-        autoResizeColumn: true
+        autoResizeColumn: true,
+        bodyRowHeight: 29
     };
 </script>

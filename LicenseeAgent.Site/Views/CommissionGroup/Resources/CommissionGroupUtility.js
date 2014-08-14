@@ -27,6 +27,24 @@ var CommissionGroupUtility = (function ($) {
                     }
                 }
             });
+
+            $('.product-comm').change(function () {
+                var idComm2 = '#' + $(this).data("comm2");
+                var idComm3 = '#' + $(this).data("comm3");
+
+                if ($(this).val() === "15") {
+                    $(idComm2).val("0");
+                    $(idComm2).prop('disabled', 'disabled');
+                    $(idComm3).val("0");
+                    $(idComm3).prop('disabled', 'disabled');
+                }
+                else {
+                    $(idComm2).prop('disabled', false);
+                    $(idComm3).prop('disabled', false);
+                }
+            });
+
+            $('.product-comm').change();
         },
 
         checkAvailability: function () {

@@ -2285,6 +2285,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Commission List.
+        /// </summary>
+        public static string MemberCommissionList {
+            get {
+                return ResourceManager.GetString("MemberCommissionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member username is empty..
         /// </summary>
         public static string MemberIsEmpty {

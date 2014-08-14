@@ -9,6 +9,8 @@
     {
         public int GroupCommId { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Las_GroupCommGetById";

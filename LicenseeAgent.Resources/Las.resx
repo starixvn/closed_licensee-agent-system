@@ -1579,4 +1579,7 @@ Please note that this action cannot be undone.</value>
   <data name="ConfirmDefaultGroup" xml:space="preserve">
     <value>Another group is set as default. Are you sure you want to set this group as default?</value>
   </data>
+  <data name="MemberCommissionList" xml:space="preserve">
+    <value>Member Commission List</value>
+  </data>
 </root>

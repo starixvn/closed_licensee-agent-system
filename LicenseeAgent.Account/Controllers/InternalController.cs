@@ -248,11 +248,11 @@
             }
 
             var authKey = _internalService.Encode(internalLoginInfo);
-            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsoluteUri, authKey);
+            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
             if (!string.IsNullOrEmpty(internalLoginInfo.AgentName))
             {
                 var licenseDomainUrl = _coreService.GetLicenseeDomain(internalLoginInfo.LicenseeId);
-                directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~/", licenseDomainUrl), authKey);
+                directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~", licenseDomainUrl), authKey);
             }
 
             return Json(new

@@ -115,11 +115,12 @@ var internalHeader = (function ($) {
                         }
 
                         if (data.DirectUrl) {
+                            var url = data.DirectUrl;
                             if (agentName === '') {
-                                location.href = data.DirectUrl;
+                                location.href = url;
                             }
                             else {
-                                core.openWindow(data.DirectUrl);
+                                core.openWindow(url);
                                 core.unblockUI();
                             }
                         }

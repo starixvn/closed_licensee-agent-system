@@ -46,5 +46,9 @@
         public int RNGComm2 { get; set; }
 
         public int RNGComm3 { get; set; }
+
+        public int DefaultGroupId { get; set; }
+
+        public bool IsResetDefault { get; set; }
     }
 }

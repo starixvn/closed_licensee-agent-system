@@ -30,6 +30,7 @@
     /// <summary>
     /// Sport books setting controller.
     /// </summary>
+    [AllowedCommission]
     public class CommissionGroupController : BaseController
     {
         private readonly IGroupCommissionService _groupCommissionService;
@@ -82,9 +83,13 @@
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId
             });
 
+            var defaultGroup = result.Where(p => p.IsDefault).FirstOrDefault();
+            var defaultGroupId = defaultGroup != null ? defaultGroup.GroupCommId : 0;
+
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
+                DefaultGroupId = defaultGroupId,
                 List = result
             });
         }
@@ -92,13 +97,14 @@
 
         #region Add
         /// <summary>
-        /// Adds this instance.
+        /// Adds the specified default group identifier.
         /// </summary>
+        /// <param name="defaultGroupId">The default group identifier.</param>
         /// <returns>Action Result.</returns>
         [HttpGet]
         [AccountType(AccountType.Admin)]
         [LegendType(LegendType.Deposit)]
-        public ActionResult Add()
+        public ActionResult Add(int defaultGroupId)
         {
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var model = new CommissionGroupViewModel
@@ -108,7 +114,8 @@
                 HasNumberGame = _coreService.IsSupportProduct(licenseeId, Product.Product_2),
                 HasRacing = _coreService.IsSupportProduct(licenseeId, Product.Product_1),
                 HasRNGCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_6),
-                ProductCount = CountProductSupportCommission(licenseeId)
+                ProductCount = CountProductSupportCommission(licenseeId),
+                DefaultGroupId = defaultGroupId
             };
             return View(model);
         }
@@ -128,7 +135,7 @@
                 var criteria = new GroupCommInsCriteria
                 {
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    AdminId = CurrentSession.AdminInfo.UserId,
+                    AdminId = CurrentSession.LoginUserId,
                     IP = Request.GetClientIp(),
                     Langkey = CurrentSession.Language,
                     GroupName = model.GroupName,
@@ -138,6 +145,7 @@
                     NGComm = model.HasNumberGame ? CombineComission(model.NGComm1, model.NGComm2, model.NGComm3) : 0,
                     LCComm = model.HasLiveCasino ? CombineComission(model.LCComm1, model.LCComm2, model.LCComm3) : 0,
                     RNGComm = model.HasRNGCasino ? CombineComission(model.RNGComm1, model.RNGComm2, model.RNGComm3) : 0,
+                    IsResetDefault = model.IsResetDefault
                 };
                 _groupCommissionService.GroupCommIns(criteria);
                 if (criteria.ErrCode != 0)
@@ -146,6 +154,7 @@
                 }
                 else
                 {
+                    model.DefaultGroupId = model.IsResetDefault ? model.GroupCommId : model.DefaultGroupId;
                     ViewBag.Result = Las.UpdateSuccessfully;
                 }
             }
@@ -159,11 +168,12 @@
         /// Edits the specified group commission identifier.
         /// </summary>
         /// <param name="groupCommId">The group commission identifier.</param>
+        /// <param name="defaultGroupId">The default group identifier.</param>
         /// <returns>Action Result.</returns>
         [HttpGet]
         [AccountType(AccountType.Admin)]
         [LegendType(LegendType.Deposit)]
-        public ActionResult Edit(int groupCommId)
+        public ActionResult Edit(int groupCommId, int defaultGroupId = 0)
         {
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var result = _groupCommissionService.GetGroupCommissionById(new GroupCommGetByIdCriteria
@@ -196,7 +206,8 @@
                 SBComm1 = GenCommission(result.SBComm, 0),
                 SBComm2 = GenCommission(result.SBComm, 1),
                 SBComm3 = GenCommission(result.SBComm, 2),
-                ProductCount = CountProductSupportCommission(licenseeId)
+                ProductCount = CountProductSupportCommission(licenseeId),
+                DefaultGroupId = defaultGroupId
             };
             return View(model);
         }
@@ -216,7 +227,7 @@
                 var criteria = new GroupCommUpdCriteria
                 {
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    AdminId = CurrentSession.AdminInfo.UserId,
+                    AdminId = CurrentSession.LoginUserId,
                     IP = Request.GetClientIp(),
                     Langkey = CurrentSession.Language,
                     GroupName = model.GroupName,
@@ -230,7 +241,8 @@
                     IsUpdateLC = model.HasLiveCasino,
                     IsUpdateNG = model.HasNumberGame,
                     IsUpdateRacing = model.HasRacing,
-                    IsUpdateRNG = model.HasRNGCasino                    
+                    IsUpdateRNG = model.HasRNGCasino,
+                    IsResetDefault = model.IsResetDefault                
                 };
                 _groupCommissionService.GroupCommUpd(criteria);
                 if (criteria.ErrCode != 0)
@@ -239,6 +251,7 @@
                 }
                 else
                 {
+                    model.DefaultGroupId = model.IsResetDefault ? model.GroupCommId : model.DefaultGroupId;
                     ViewBag.Result = Las.UpdateSuccessfully;
                 }
             }
@@ -276,7 +289,7 @@
             {
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 Currency = CurrentSession.AgentInfo.CurrencyId,
-                AdminId = CurrentSession.AdminInfo.UserId,
+                AdminId = CurrentSession.LoginUserId,
                 IP = Request.GetClientIp(),
                 Langkey = CurrentSession.Language,
                 GroupCommId = model.GroupCommId,

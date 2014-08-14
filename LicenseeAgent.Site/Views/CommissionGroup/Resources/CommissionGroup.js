@@ -3,6 +3,7 @@
 var CommissionGroup = (function ($) {
     'use strict';
     return {
+        defaultGroupId: 0,
         init: function () {
             CommissionGroup.dataGridBinding();
             $('#newGroup').click(function () {
@@ -18,6 +19,7 @@ var CommissionGroup = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
+                        CommissionGroup.defaultGroupId = data.DefaultGroupId;
                         gridOptions.pagerOption = {
                             itemsPerPage: core.pageSizes[2],
                             currentPage: 0,
@@ -39,17 +41,17 @@ var CommissionGroup = (function ($) {
             });
         },
         newGroup: function () {
-            popup.openFrame("CommissionGroup/Add");
+            popup.openFrame("CommissionGroup/Add?DefaultGroupId={0}".format(CommissionGroup.defaultGroupId));
         },
         editGroup: function (groupCommId) {
-            popup.openFrame("CommissionGroup/Edit?groupCommId={0}".format(groupCommId));
+            popup.openFrame("CommissionGroup/Edit?groupCommId={0}&DefaultGroupId={1}".format(groupCommId, CommissionGroup.defaultGroupId));
         },
         deleteGroup: function (groupCommId, isDefault) {
             if (isDefault) {
                 CommissionGroup.confirmDeleteGroup(groupCommId);
             }
             else {
-                popup.openFrame("CommissionGroup/Delete?groupCommId={0}&isDefault=false".format(groupCommId));
+                popup.openFrame("CommissionGroup/Delete?groupCommId={0}".format(groupCommId));
             }
         },
         formatNumber: function (value) {

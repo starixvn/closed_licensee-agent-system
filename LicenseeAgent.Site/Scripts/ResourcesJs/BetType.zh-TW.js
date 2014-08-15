@@ -180,6 +180,8 @@ language.BetType['zh-TW'] = {
 	'22009' : 'DCANH3rd',
 	'22010' : 'DTRAOPus',
 	'22011' : 'DCANOPus',
+	'22014' : 'DTRAAGC',
+	'22015' : 'DCANAGC',
 	'23001' : 'CSTRA',
 	'23002' : 'CSPD',
 	'23101' : 'P2PTRA',

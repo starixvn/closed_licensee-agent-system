@@ -1399,8 +1399,8 @@ Please note that this action cannot be undone.</value>
   <data name="MemberIsEmpty" xml:space="preserve">
     <value>Member username is empty.</value>
   </data>
-  <data name="LegengAgentIsEmpty" xml:space="preserve">
-    <value>Legend Agent username is empty.</value>
+  <data name="AgentUserNameIsEmpty" xml:space="preserve">
+    <value>Agent username is empty.</value>
   </data>
   <data name="OldAgentIsEmpty" xml:space="preserve">
     <value>Old Agent username is empty.</value>

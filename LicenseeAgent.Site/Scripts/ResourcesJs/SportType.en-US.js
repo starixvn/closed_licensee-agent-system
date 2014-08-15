@@ -60,7 +60,9 @@ language.SportType['en-US'] = {
 	'201' : 'Financials',
 	'202' : 'Keno',
 	'203' : 'Cricket',
+	'250' : 'AG Casino',
 	'251' : 'Casino',
 	'252' : 'Bingo',
-	'253' : 'Games'
+	'253' : 'Games',
+	'254' : 'Playtech Casino'
 };

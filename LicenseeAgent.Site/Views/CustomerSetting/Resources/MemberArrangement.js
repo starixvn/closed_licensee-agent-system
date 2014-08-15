@@ -37,7 +37,7 @@ var MemberArrangement = (function ($) {
             }
             if ($('input[name=Mode]:checked', 'form').val() === "0") {
                 if (!$.trim($('#AgentName').val())) {
-                    validator.errorList.push({ message: language.getString('LegengAgentIsEmpty') });
+                    validator.errorList.push({ message: language.getString('AgentUserNameIsEmpty') });
                 }
             }
             else {

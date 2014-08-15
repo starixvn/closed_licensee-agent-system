@@ -232,6 +232,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent username is empty..
+        /// </summary>
+        public static string AgentUserNameIsEmpty {
+            get {
+                return ResourceManager.GetString("AgentUserNameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Win Loss.
         /// </summary>
         public static string AgentWinLoss {
@@ -1993,15 +2002,6 @@ namespace LicenseeAgent.Resources {
         public static string League {
             get {
                 return ResourceManager.GetString("League", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Legend Agent username is empty..
-        /// </summary>
-        public static string LegengAgentIsEmpty {
-            get {
-                return ResourceManager.GetString("LegengAgentIsEmpty", resourceCulture);
             }
         }
         

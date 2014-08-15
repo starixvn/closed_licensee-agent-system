@@ -2,30 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.Enumerations;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
-    using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
-    using LicenseeAgent.Web.Services;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Sport books setting controller.
@@ -48,6 +39,7 @@
         }
 
         #region List Commission Group
+
         /// <summary>
         /// Indexes this instance.
         /// </summary>
@@ -60,11 +52,11 @@
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var model = new CommissionGroupBaseViewModel
             {
-                HasSportbook = _coreService.IsSupportProduct(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.IsSupportProduct(licenseeId, Product.Product_2),
-                HasRacing = _coreService.IsSupportProduct(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_6)
+                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6)
             };
             return View(model);
         }
@@ -94,9 +86,11 @@
                 List = result
             });
         }
-        #endregion
+
+        #endregion List Commission Group
 
         #region Add
+
         /// <summary>
         /// Adds the specified default group identifier.
         /// </summary>
@@ -110,11 +104,11 @@
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var model = new CommissionGroupViewModel
             {
-                HasSportbook = _coreService.IsSupportProduct(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.IsSupportProduct(licenseeId, Product.Product_2),
-                HasRacing = _coreService.IsSupportProduct(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_6),
+                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6),
                 ProductCount = CountProductSupportCommission(licenseeId),
                 DefaultGroupId = defaultGroupId
             };
@@ -162,9 +156,11 @@
 
             return View(model);
         }
-        #endregion
+
+        #endregion Add
 
         #region Edit
+
         /// <summary>
         /// Edits the specified group commission identifier.
         /// </summary>
@@ -180,37 +176,43 @@
             var result = _groupCommissionService.GetGroupCommissionById(new GroupCommGetByIdCriteria
             {
                 GroupCommId = groupCommId,
-                LicenseeId = CurrentSession.AgentInfo.LicenseeId
+                LicenseeId = licenseeId
             });
+
+            if (result == null)
+            {
+                return RedirectToAccessDeniedPage();
+            }
 
             var model = new CommissionGroupViewModel
             {
                 GroupName = result.GroupName,
                 GroupCommId = groupCommId,
                 IsDefault = result.IsDefault,
-                HasSportbook = _coreService.IsSupportProduct(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.IsSupportProduct(licenseeId, Product.Product_2),
-                HasRacing = _coreService.IsSupportProduct(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.IsSupportProduct(licenseeId, Product.Product_6),
+                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6),
                 LCComm1 = GenCommission(result.LCComm, 0),
                 LCComm2 = GenCommission(result.LCComm, 1),
                 LCComm3 = GenCommission(result.LCComm, 2),
                 NGComm1 = GenCommission(result.NGComm, 0),
                 NGComm2 = GenCommission(result.NGComm, 1),
-                NGComm3 = GenCommission(result.NGComm, 2),                
+                NGComm3 = GenCommission(result.NGComm, 2),
                 RCComm1 = GenCommission(result.RacingComm, 0),
                 RCComm2 = GenCommission(result.RacingComm, 1),
                 RCComm3 = GenCommission(result.RacingComm, 2),
                 RNGComm1 = GenCommission(result.RNGComm, 0),
                 RNGComm2 = GenCommission(result.RNGComm, 1),
-                RNGComm3 = GenCommission(result.RNGComm, 2),                
+                RNGComm3 = GenCommission(result.RNGComm, 2),
                 SBComm1 = GenCommission(result.SBComm, 0),
                 SBComm2 = GenCommission(result.SBComm, 1),
                 SBComm3 = GenCommission(result.SBComm, 2),
                 ProductCount = CountProductSupportCommission(licenseeId),
                 DefaultGroupId = defaultGroupId
             };
+
             return View(model);
         }
 
@@ -244,7 +246,7 @@
                     IsUpdateNG = model.HasNumberGame,
                     IsUpdateRacing = model.HasRacing,
                     IsUpdateRNG = model.HasRNGCasino,
-                    IsResetDefault = model.IsResetDefault                
+                    IsResetDefault = model.IsResetDefault
                 };
                 _groupCommissionService.GroupCommUpd(criteria);
                 if (criteria.ErrCode != 0)
@@ -260,9 +262,11 @@
 
             return View(model);
         }
-        #endregion
+
+        #endregion Edit
 
         #region Delete
+
         [HttpGet]
         [AccountType(AccountType.Admin)]
         [LegendType(LegendType.Deposit)]
@@ -311,7 +315,8 @@
 
             return View(model);
         }
-        #endregion
+
+        #endregion Delete
 
         /// <summary>
         /// Checks the availability.

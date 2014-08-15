@@ -17,8 +17,6 @@
     {
         private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";
         private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";
-        private const int LicenseeDomainsCacheTimeout = 30 * 60; // 60 minutes
-
         private readonly ICache _cache;
 
         public CoreService()
@@ -41,16 +39,17 @@
         {
             get
             {
-                if (_cache.Contains(BalanceUpDayCacheKey))
+                var result = _cache.Get<SelBalanceUpDay>(BalanceUpDayCacheKey);
+                if (result == null)
                 {
-                    return _cache.Get<SelBalanceUpDay>(BalanceUpDayCacheKey);
+                    result = GetEntity<SelBalanceUpDay>(new SelBalanceUpDayCriteria());
+                    if (result == null)
+                    {
+                        throw new InvalidOperationException("Can't get balance up day.");
+                    }
                 }
 
-                var criteria = new SelBalanceUpDayCriteria();
-                var balanceUpDay = GetEntity<SelBalanceUpDay>(criteria);
-                _cache.Set(BalanceUpDayCacheKey, balanceUpDay);
-
-                return balanceUpDay;
+                return result;
             }
         }
 
@@ -74,7 +73,7 @@
                         throw new InvalidOperationException("Licensee domains configuration is fail.");
                     }
 
-                    _cache.Set(LicenseDomainsCacheKey, licenseeDomains, LicenseeDomainsCacheTimeout);
+                    _cache.Set(LicenseDomainsCacheKey, licenseeDomains);
                 }
 
                 return licenseeDomains;
@@ -141,16 +140,17 @@
         /// <returns>Returns list of offered products.</returns>
         public IList<ProductInfo> GetProducts(int licenseeId)
         {
-            var criteria = new GetProductCriteria
+            var cacheKey = string.Format("LAS_PRODUCTS_{0}", licenseeId);
+            var products = _cache.Get<IList<ProductInfo>>(cacheKey);
+            if (products == null)
             {
-                LicenseeId = licenseeId
-            };
+                products = InternalGetProducts(licenseeId);
+                if (products == null || !products.Any())
+                {
+                    throw new InvalidOperationException(string.Format("Can't get products for licensee {0}.", licenseeId));
+                }
 
-            var products = GetEntites<ProductInfo>(criteria);
-            if (AppSettings.OfferedProducts != "*")
-            {
-                var offeredProducts = AppSettings.OfferedProducts.Split(',');
-                products = products.Where(x => offeredProducts.Contains(x.ProductId.ToString())).ToList();
+                _cache.Set(cacheKey, products);
             }
 
             return products;
@@ -166,6 +166,11 @@
         {
             var productInfos = GetProducts(licenseeId);
             return HasProductOffered(productInfos, productId);
+        }
+
+        public bool HasProductOffered(int licenseeId, Product product)
+        {
+            return HasProductOffered(licenseeId, (int)product);
         }
 
         /// <summary>
@@ -194,12 +199,6 @@
             return GetEntity<AgentInfo>(criteria);
         }
 
-        public bool IsSupportProduct(int licenseeId, Product product)
-        {
-            var productInfos = GetProducts(licenseeId);
-            return productInfos.Any(p => p.ProductId == (int)product);
-        }
-
         /// <summary>
         /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
         /// </summary>
@@ -213,6 +212,28 @@
             };
 
             return GetEntites<LicenseeDomain>(criteria);
+        }
+
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <returns>Returns list of offered products.</returns>
+        private IList<ProductInfo> InternalGetProducts(int licenseeId)
+        {
+            var criteria = new GetProductCriteria
+            {
+                LicenseeId = licenseeId
+            };
+
+            var products = GetEntites<ProductInfo>(criteria);
+            if (AppSettings.OfferedProducts != "*")
+            {
+                var offeredProducts = AppSettings.OfferedProducts.Split(',');
+                products = products.Where(x => offeredProducts.Contains(x.ProductId.ToString())).ToList();
+            }
+
+            return products;
         }
     }
 }

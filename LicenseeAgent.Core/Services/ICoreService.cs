@@ -21,10 +21,10 @@
 
         bool HasProductOffered(int licenseeId, int productId);
 
+        bool HasProductOffered(int licenseeId, Product product);
+
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
 
         AgentInfo GetAgentInfo(int agentId);
-        
-        bool IsSupportProduct(int licenseeId, Product product);
     }
 }

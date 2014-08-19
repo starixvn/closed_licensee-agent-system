@@ -45,7 +45,7 @@ var internalHeader = (function ($) {
                 });
             }
 
-            $('#agentName').keyup(function () {
+            $('#agentName').bind('input', function () {
                 if ($.trim($('#agentName').val()) !== '') {
                     $('#submit').removeClass('disabled');
                     $('#agentName').prop('disabled', false);

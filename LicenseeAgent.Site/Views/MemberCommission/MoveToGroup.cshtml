@@ -33,19 +33,19 @@
             <div class="control-group">
                 <label for="group" class="control-label pull-left">@Las.SelectGroup</label>
                 <div class="controls move-group">
-                    @RazorHelper.GroupCommision(Model, 0 , false, "selectpicker")
+                    @RazorHelper.GroupCommision(Model, 0, false, "selectpicker")
                 </div>
             </div>
             <div class="control-group">
                 <label for="SBComm" class="control-label pull-left">@Las.SBCommission</label>
                 <div class="controls move-group">
-                    @Html.TextBox("SBComm", Formatter.FormatDecimal(Model.FirstOrDefault().SBComm * Constant.StepMulDiv), new { @class = "span4", @readonly = "readonly" })
+                    @Html.TextBox("SBComm", string.Empty, new { @class = "span4", @readonly = "readonly" })
                 </div>
             </div>
             <div class="control-group">
                 <label for="NGComm" class="control-label pull-left">@Las.NGCommission</label>
                 <div class="controls move-group">
-                    @Html.TextBox("NGComm", Formatter.FormatDecimal(Model.FirstOrDefault().NGComm * Constant.StepMulDiv), new { @class = "span4", @readonly = "readonly" })
+                    @Html.TextBox("NGComm", string.Empty, new { @class = "span4", @readonly = "readonly" })
                 </div>
             </div>
             <div class="control-group">

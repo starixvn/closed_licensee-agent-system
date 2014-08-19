@@ -32,10 +32,6 @@ var memberCommission = (function ($) {
                 memberCommission.removeGroup();
             });
 
-            // go back history
-            $("#membercomm-back").click(function () {
-            });
-
             $('#action-form').submit(function (e) {
                 memberCommission.changeMemberCommission();
                 e.preventDefault();
@@ -43,6 +39,11 @@ var memberCommission = (function ($) {
 
             $("#GroupCommId").change(function () {
                 if (window['groupCommissions'] === undefined) {
+                    return;
+                }
+                if ($(this).val() === '') {
+                    $("#SBComm").val('');
+                    $("#NGComm").val('');
                     return;
                 }
                 var numberGroup = groupCommissions.length;

@@ -1582,4 +1582,10 @@ Please note that this action cannot be undone.</value>
   <data name="MemberCommissionList" xml:space="preserve">
     <value>Member Commission List</value>
   </data>
+  <data name="GroupNameRequired" xml:space="preserve">
+    <value>Please select group!</value>
+  </data>
+  <data name="NoSelectedMember" xml:space="preserve">
+    <value>No member is selected, please check again.</value>
+  </data>
 </root>

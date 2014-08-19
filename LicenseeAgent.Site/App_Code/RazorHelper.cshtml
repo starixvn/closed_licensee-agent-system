@@ -155,11 +155,15 @@
 
 @helper GroupCommision(IEnumerable<GroupCommission> groupCommissions, int selectedGroup = 0, bool haveAll = true, string className = "")
 {
-    <select id="GroupCommId" name="GroupCommId" class="@className">
-        @if(haveAll)
+    <select id="GroupCommId" name="GroupCommId" class="@className">        
+        @if (haveAll)
         {
             <option value="-1">@Las.All</option>
             <option value="0">@Las.None</option>
+        }
+        else
+        {
+            <option value="">@Las.SelectGroup</option>
         }
         @foreach (var group in groupCommissions)
         {

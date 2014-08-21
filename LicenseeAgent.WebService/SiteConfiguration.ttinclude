@@ -7,6 +7,10 @@
         },
         new SiteInfo
         {
+            Environment = SiteEnvironment.LocalProd
+        },
+        new SiteInfo
+        {
             Environment = SiteEnvironment.Uat
         },
         new SiteInfo
@@ -20,6 +24,7 @@
     enum SiteEnvironment
     {
         Local,
+        LocalProd,
         Uat,
         Prod
     }
@@ -61,6 +66,7 @@
                         return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib";
 
                     default:
@@ -81,6 +87,7 @@
                         return "LAS-UAT";
 
                     case SiteEnvironment.Local:
+                    case SiteEnvironment.LocalProd:
                         return "Licensee-Agency-Local";
 
                     default:

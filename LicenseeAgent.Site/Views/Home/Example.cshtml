@@ -4,6 +4,14 @@
 <h2>
     Welcome to Licensee Agency System.</h2>
 <div class="well">
+    @{
+        var integration = new LicenseeAgent.API.LRF.Integration(null, "UAT", "http://localhost:7979/");
+        //var url = integration.GenerateLink(1276, 2185, 27, false, ModelSettings.DefaultLanguage);
+        var url = integration.GenerateLink(214, 2185, 27, true, ModelSettings.DefaultLanguage);
+        <a href="@url">LRF</a>
+    }
+</div>
+<div class="well">
     <p>
         Dropdowns</p>
     <div class="dropdown">

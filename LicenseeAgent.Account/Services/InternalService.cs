@@ -3,9 +3,7 @@
     using System;
     using System.Web;
     using LicenseeAgent.Account.Criteria;
-    using LicenseeAgent.API.LRF.Entities;
     using LicenseeAgent.API.Utility;
-    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
@@ -16,11 +14,6 @@
     /// </summary>
     public class InternalService : QueryService, IInternalService
     {
-        public bool IsExpired(LoginInfo loginInfo)
-        {
-            return DateTime.Now.AddMinutes(Constants.LrfAuthMinuteTimeout).ToUniversalTime() > loginInfo.CreatedTime;
-        }
-
         public string Encode(InternalLoginInfo internalLoginInfo)
         {
             using (var rijndaelHelper = new RijndaelHelper())

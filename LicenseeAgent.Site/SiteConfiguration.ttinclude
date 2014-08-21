@@ -162,10 +162,10 @@
                 {
                     case SiteEnvironment.Prod:
                     case SiteEnvironment.LocalProd:
-                        return "pgmPeter,pgmAnn,pgmleo,pgmmuller,pgmlong,pgmAda,pgmHarmony,pgmWilliam,pgmMartin,pgmCasey,pgmJim,pgmDon";
+                        return "pgmPeter,pgmAnn,pgmLeo,pgmMuller,pgmAda,pgmHarmony,pgmWilliam,pgmJames,pgmMartin,pgmDon";
 
                     case SiteEnvironment.Uat:
-                        return "pgmPeter,pgmAnn,pgmleo,pgmmuller,pgmlong,pgmAda,pgmHarmony,pgmWilliam,pgmMartin,pgmCasey,pgmJim,pgmDon";
+                        return "pgmPeter,pgmAnn,pgmLeo,pgmMuller,pgmAda,pgmHarmony,pgmWilliam,pgmJames,pgmMartin,pgmDon";
 
                     case SiteEnvironment.Local:
                         return "*";

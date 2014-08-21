@@ -222,4 +222,8 @@
     <Setting Key="Las_LicenseeSelMember" SpName="Las_LicenseeSelMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_LicenseeSelMemberByListId" SpName="Las_LicenseeSelMemberByListId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
+  <Function name="LRF">
+    <Setting Key="LAS_InsertInternalAuthority" SpName="LAS_InsertInternalAuthority" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_GetInternalAuthority" SpName="LAS_GetInternalAuthority" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
 </Functions>

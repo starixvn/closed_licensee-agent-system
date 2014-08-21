@@ -63,6 +63,8 @@
         }
 
         [HttpGet]
+        [AdminSite]
+        [LocalRequest]
         public ActionResult Example()
         {
             return this.View();

@@ -18,8 +18,6 @@
 
         AccountType LoginAccountType { get; }
 
-        bool IsInternal { get; }
-
         int OnUserId { get; }
 
         int OnLicenseeId { get; }

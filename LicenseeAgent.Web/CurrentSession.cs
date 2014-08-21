@@ -30,7 +30,6 @@
             }
 
             AdminInfo = adminInfo;
-            IsInternal = false;
         }
 
         /// <summary>
@@ -50,7 +49,6 @@
             }
 
             AdminInfo = adminInfo;
-            IsInternal = true;
             OnLicenseeId = checkinOnLicenseeId;
         }
 
@@ -65,7 +63,6 @@
             : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
         {
             AgentInfo = agentInfo;
-            IsInternal = false;
             OnLicenseeId = agentInfo.LicenseeId;
             OnValidateAgent(agentInfo);
         }
@@ -85,7 +82,6 @@
             internalLoginInfo.Language)
         {
             AgentInfo = agentInfo;
-            IsInternal = true;
             OnLicenseeId = internalLoginInfo.LicenseeId;
             OnValidateAgent(agentInfo);
         }
@@ -138,49 +134,48 @@
         /// </value>
         public AccountType LoginAccountType { get; private set; }
 
-        public bool IsInternal { get; private set; }
-
         public bool IsValid
         {
             get
             {
+                var result = true;
+                var message = string.Empty;
                 if (AppSettings.IsAdminSite)
                 {
                     // Only CSD/IT to login, not accept internal.
                     if (LoginAccountType != AccountType.CSDIT)
                     {
-                        return false;
+                        result = false;
+                        message = "Only CSD/IT are allowed to login on admin site";
                     }
                 }
                 else
                 {
-                    if (AdminInfo != null)
+                    if (LoginAccountType == AccountType.CSDIT)
                     {
-                        return false;
+                        result = false;
+                        message = "CSD/IT are not allowed to login on agent site.";
                     }
 
-                    if (AgentInfo == null)
+                    if (AdminInfo != null && LoginAccountType == AccountType.Agent)
                     {
-                        if (LoginAccountType == AccountType.Agent)
-                        {
-                            return false;
-                        }
+                        result = false;
+                        message = "This case only happens when licensee internal login.";
                     }
-                    else
-                    {
-                        if (AgentInfo.IsLevel0 && (!IsInternal || LoginAccountType != AccountType.Licensee))
-                        {
-                            return false;
-                        }
 
-                        if (!IsInternal && LoginAccountType == AccountType.Licensee)
-                        {
-                            return false;
-                        }
+                    if (AgentInfo != null && AgentInfo.IsLevel0 && LoginAccountType == AccountType.Agent)
+                    {
+                        result = false;
+                        message = "Agent level 0 are not allowed to login on agent site.";
                     }
                 }
 
-                return true;
+                if (!result)
+                {
+                    Logger.Error(string.Format("Invalid session - {0}", message));
+                }
+
+                return result;
             }
         }
 

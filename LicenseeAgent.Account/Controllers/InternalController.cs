@@ -29,9 +29,10 @@
         private readonly ICurrencyService _currencyService;
         private readonly IInternalService _internalService;
         private readonly ICoreService _coreService;
+        private readonly Integration _integration;
 
         public InternalController()
-            : this(null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -39,12 +40,14 @@
             IAccountService accountService,
             ICurrencyService currencyService,
             IInternalService internalService,
-            ICoreService coreService)
+            ICoreService coreService,
+            Integration integration)
         {
             _accountService = accountService ?? new AccountService();
             _currencyService = currencyService ?? new CurrencyService();
             _internalService = internalService ?? new InternalService();
             _coreService = coreService ?? new CoreService();
+            _integration = integration ?? new Integration();
         }
 
         [HttpGet]
@@ -103,17 +106,22 @@
         [HttpGet]
         public ActionResult Lrf(string authKey)
         {
-            var loginInfo = Integration.Decrypt(authKey);
-            if (_internalService.IsExpired(loginInfo))
+            var internalInfo = _integration.GetInternalInfo(authKey);
+            if (internalInfo == null)
             {
                 return Content(Las.SessionExpired);
+            }
+
+            if (internalInfo.IsInternal == AppSettings.IsAdminSite)
+            {
+                return Content("Stop hacking");
             }
 
             var clientInfo = Request.GetClientInfo();
             var criteria = new LicenseeAdminLoginCriteria
             {
-                LicenseeId = loginInfo.LicenseeId,
-                UserId = loginInfo.UserId,
+                LicenseeId = internalInfo.LicenseeId,
+                UserId = internalInfo.UserId,
                 LoginIP = clientInfo.Ip,
                 BrowserName = clientInfo.BrowserName,
                 Platform = clientInfo.Platform,
@@ -128,10 +136,11 @@
             var adminInfo = new AdminInfo
             {
                 UserId = criteria.UserId,
-                UserName = criteria.UserName
+                UserName = criteria.UserName,
+                AccountType = AppSettings.IsAdminSite ? AccountType.CSDIT : AccountType.Licensee
             };
 
-            CheckIn(adminInfo, criteria.LicenseeId, loginInfo.Language);
+            CheckIn(adminInfo, criteria.LicenseeId, internalInfo.Language);
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
@@ -155,12 +164,6 @@
             if (internalLoginInfo == null || internalLoginInfo.IsExpired)
             {
                 return Content(Las.TicketInvalidExpired);
-            }
-
-            if ((string.IsNullOrEmpty(internalLoginInfo.AgentName) && !AppSettings.IsAdminSite)
-                || (!string.IsNullOrEmpty(internalLoginInfo.AgentName) && AppSettings.IsAdminSite))
-            {
-                return Content("Ticket invalid");
             }
 
             return AdminLoginAsAgent(internalLoginInfo);
@@ -190,24 +193,24 @@
             };
 
             _accountService.InternalLoginAsUser(criteria);
-            if (criteria.ErrCode == Result.SuccessValue)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
-                var internalLoginInfo = new InternalLoginInfo
-                {
-                    LoginUserId = CurrentSession.LoginUserId,
-                    LoginAccountType = CurrentSession.LoginAccountType,
-                    LoginUserName = CurrentSession.LoginUserName,
-                    OnLoginUserId = CurrentSession.OnUserId,
-                    Language = CurrentSession.Language,
-                    LicenseeId = criteria.LicenseeId,
-                    CurrencyId = criteria.CurrencyId,
-                    AgentName = model.UserName
-                };
-
-                return InternalLogin(internalLoginInfo);
+                return JsonResult(criteria.ErrCode);
             }
 
-            return JsonResult(criteria.ErrCode);
+            var internalLoginInfo = new InternalLoginInfo
+            {
+                LoginUserId = CurrentSession.LoginUserId,
+                LoginAccountType = CurrentSession.LoginAccountType,
+                LoginUserName = CurrentSession.LoginUserName,
+                OnLoginUserId = CurrentSession.OnUserId,
+                Language = CurrentSession.Language,
+                LicenseeId = criteria.LicenseeId,
+                CurrencyId = criteria.CurrencyId,
+                AgentName = model.UserName
+            };
+
+            return string.IsNullOrEmpty(internalLoginInfo.AgentName) ? LoginAsAgent0(internalLoginInfo) : LoginAsAgentk(internalLoginInfo);
         }
 
         /// <summary>
@@ -218,43 +221,49 @@
         /// Returns JSON result.
         /// </returns>
         [NonAction]
-        public JsonResult InternalLogin(InternalLoginInfo internalLoginInfo)
+        public JsonResult LoginAsAgent0(InternalLoginInfo internalLoginInfo)
         {
-            if (string.IsNullOrEmpty(internalLoginInfo.AgentName))
+            var criteria = new AdminCheckInLicenseeCriteria
             {
-                var criteria = new AdminCheckInLicenseeCriteria
-                {
-                    OnAdminId = internalLoginInfo.OnLoginUserId,
-                    LicenseeId = internalLoginInfo.LicenseeId
-                };
-                _accountService.AdminCheckInLicensee(criteria);
-                if (criteria.MsgId != Result.SuccessValue)
-                {
-                    return JsonResult(criteria.MsgId);
-                }
+                OnAdminId = internalLoginInfo.OnLoginUserId,
+                LicenseeId = internalLoginInfo.LicenseeId
+            };
+            _accountService.AdminCheckInLicensee(criteria);
+            if (criteria.MsgId != Result.SuccessValue)
+            {
+                return JsonResult(criteria.MsgId);
             }
 
             if (CurrentSession.AgentInfo == null)
             {
-                var criteria = new AgentInternalLoginCriteria
+                var agentInternalLoginCriteria = new AgentInternalLoginCriteria
                 {
                     LicenseeId = internalLoginInfo.LicenseeId,
                     CurrencyId = internalLoginInfo.CurrencyId,
                     UserName = internalLoginInfo.AgentName
                 };
-                var agentInfo = _internalService.AgentInternalLogin(criteria);
+                var agentInfo = _internalService.AgentInternalLogin(agentInternalLoginCriteria);
                 CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
-
-            var authKey = _internalService.Encode(internalLoginInfo);
-            var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
-            if (!string.IsNullOrEmpty(internalLoginInfo.AgentName))
+            else
             {
-                var licenseDomainUrl = _coreService.GetLicenseeDomain(internalLoginInfo.LicenseeId);
-                directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~", licenseDomainUrl), authKey);
+                var authKey = _internalService.Encode(internalLoginInfo);
+                var directUrl = string.Format("{0}?authKey={1}", Request.Url.AbsolutePath, authKey);
+                return Json(new
+                {
+                    ErrCode = Result.SuccessValue,
+                    DirectUrl = directUrl
+                });
             }
+        }
 
+        [NonAction]
+        public JsonResult LoginAsAgentk(InternalLoginInfo internalLoginInfo)
+        {
+            var authKey = _internalService.Encode(internalLoginInfo);
+            var licenseDomainUrl = _coreService.GetLicenseeDomain(internalLoginInfo.LicenseeId);
+            var directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~", licenseDomainUrl), authKey);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

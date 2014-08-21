@@ -77,10 +77,21 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Config.txt">
+    <None Include="Web.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.Config.tt</DependentUpon>
+    </None>
+    <None Include="Web.ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Web.ConnectionStrings.Prod.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.ConnectionStrings.Uat.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -115,11 +126,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.ConnectionString.config">
-      <SubType>Designer</SubType>
+    <Content Include="Web.ConnectionStrings.LocalProd.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\PublishProfiles\legend-api.pubxml" />
     <None Include="SiteConfiguration.ttinclude" />
     <None Include="Web.Config.tt">
@@ -133,6 +142,12 @@
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
     <Content Include="Web.Prod.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.Local.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.LocalProd.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
   </ItemGroup>

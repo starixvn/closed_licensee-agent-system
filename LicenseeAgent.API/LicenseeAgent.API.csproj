@@ -34,7 +34,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -42,15 +41,21 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="LRF\Configuration.cs" />
-    <Compile Include="LRF\Entities\LicenseeDomain.cs" />
-    <Compile Include="LRF\Entities\LoginInfo.cs" />
+    <Compile Include="LRF\Criteria\GetInternalAuthorityCriteria.cs" />
+    <Compile Include="LRF\Criteria\InsertInternalAuthorityCriteria.cs" />
+    <Compile Include="LRF\Entities\ClientInfo.cs" />
+    <Compile Include="LRF\Entities\InternalInfo.cs" />
     <Compile Include="LRF\Integration.cs" />
-    <Compile Include="LRF\Services\DomainService.cs" />
-    <Compile Include="LRF\Services\IDomainService.cs" />
+    <Compile Include="LRF\Services\AuthorityService.cs" />
+    <Compile Include="LRF\Services\IAuthorityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\RequestExtensions.cs" />
     <Compile Include="Utility\RijndaelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
     </Reference>

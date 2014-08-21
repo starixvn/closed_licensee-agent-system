@@ -140,6 +140,7 @@
     <Compile Include="Filters\AppAuthorizeAttribute.cs" />
     <Compile Include="Filters\BaseActionFilterAttribute.cs" />
     <Compile Include="Filters\LegendTypeAttribute.cs" />
+    <Compile Include="Filters\LocalRequestAttribute.cs" />
     <Compile Include="Filters\TrustedAdminAttribute.cs" />
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
     <Compile Include="Services\AuthenticateService.cs" />

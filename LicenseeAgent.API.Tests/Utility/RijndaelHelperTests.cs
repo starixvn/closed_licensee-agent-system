@@ -3,7 +3,6 @@
     using System;
     using LicenseeAgent.API.LRF.Entities;
     using LicenseeAgent.API.Utility;
-    using LicenseeAgent.Tests;
     using NUnit.Framework;
 
     /// <summary>
@@ -27,21 +26,19 @@
         public void Encrypt_And_Decrypt_Object()
         {
             // Arrange
-            var loginInfo = new LoginInfo
+            var result = new ClientInfo
             {
-                UserId = 1,
-                LicenseeId = 1,
-                OnUserId = 1,
-                Language = "en"
+                Ip = "192.168.1.1",
+                BrowserName = "Firefox"
             };
 
             // Act
-            var encryptedString = _rijndaelHelper.EncryptObject(loginInfo);
-            var decryptedObject = _rijndaelHelper.DecryptObject<LoginInfo>(encryptedString);
+            var encryptedString = _rijndaelHelper.EncryptObject(result);
+            var decryptedObject = _rijndaelHelper.DecryptObject<ClientInfo>(encryptedString);
 
             // Assert
             Assert.IsNotNull(decryptedObject);
-            Assert.AreEqual(decryptedObject, loginInfo);
+            Assert.AreEqual(decryptedObject, result);
         }
 
         /// <summary>

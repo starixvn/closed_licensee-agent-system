@@ -99,6 +99,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Web.ConnectionStrings.Sandbox.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Sandbox.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
@@ -126,9 +132,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.ConnectionStrings.LocalProd.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\legend-api.pubxml" />
     <None Include="SiteConfiguration.ttinclude" />
     <None Include="Web.Config.tt">
@@ -146,9 +149,6 @@
     </Content>
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.LocalProd.config">
-      <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

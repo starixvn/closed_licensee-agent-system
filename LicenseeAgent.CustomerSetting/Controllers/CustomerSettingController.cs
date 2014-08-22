@@ -12,12 +12,10 @@
     using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.Enumerations;
     using LicenseeAgent.CustomerSetting.Services;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
@@ -638,7 +636,6 @@
         /// <returns>
         /// Returns view.
         /// </returns>
-        [LegendType(LegendType.Credit)]
         public ActionResult EditVirtualSportsMember(EditMemberViewModel model)
         {
             var settingContext = new SettingContext(CurrentSession)

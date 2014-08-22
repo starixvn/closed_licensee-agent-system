@@ -14,12 +14,12 @@
         new SiteInfo
         {
             IsAdmin = true,
-            Environment = SiteEnvironment.LocalProd
+            Environment = SiteEnvironment.Sandbox
         },
         new SiteInfo
         {
             IsAdmin = false,
-            Environment = SiteEnvironment.LocalProd
+            Environment = SiteEnvironment.Sandbox
         },
         new SiteInfo
         {
@@ -50,7 +50,7 @@
         Local,
         Uat,
         Prod,
-        LocalProd
+        Sandbox
     }
 
     class SiteInfo
@@ -68,7 +68,7 @@
         {
             get
             {
-                return Environment == SiteEnvironment.LocalProd ? "Local" : Environment.ToString();
+                return Environment == SiteEnvironment.Sandbox ? "Local" : Environment.ToString();
             }
         }
         public string ConnectionStringsConfigSource
@@ -83,7 +83,7 @@
             get
             {
                 var name = Environment.ToString();
-                if(Environment == SiteEnvironment.LocalProd)
+                if(Environment == SiteEnvironment.Sandbox)
                 {
                     name = "Prod";
                 }
@@ -104,7 +104,7 @@
                         return @"FormatName:DIRECT=tcp:10.40.40.73\private$\entlib";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return @"FormatName:DIRECT=TCP:10.18.200.209\private$\entlib";
 
                     default:
@@ -125,7 +125,7 @@
                         return "LAS-UAT";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return "Licensee-Agency-Local";
 
                     default:
@@ -146,7 +146,7 @@
                         return "http://10.40.40.109:8089/API";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return "http://lastest.net2cast.com/API";
 
                     default:
@@ -161,7 +161,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.Prod:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return "pgmPeter,pgmAnn,pgmLeo,pgmMuller,pgmAda,pgmHarmony,pgmWilliam,pgmJames,pgmMartin,pgmDon";
 
                     case SiteEnvironment.Uat:
@@ -188,7 +188,7 @@
                         return "*";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return "*";
 
                     default:
@@ -209,7 +209,7 @@
                         return "tcp://10.40.40.29:8098/CallGetRefFunction";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return "tcp://10.18.200.209:8888/CallGetRefFunction";
 
                     default:
@@ -237,7 +237,7 @@
                         return "tcp://10.40.40.150:8990/UMControllerInterface";
 
                     case SiteEnvironment.Local:
-                    case SiteEnvironment.LocalProd:
+                    case SiteEnvironment.Sandbox:
                         return string.Empty;
 
                     default:

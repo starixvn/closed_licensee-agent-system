@@ -7,7 +7,7 @@
 // LicenseeAgent.Site\Web.Prod.Admin.config
 // LicenseeAgent.Site\Web.Uat.Agent.config
 // LicenseeAgent.Site\Web.Uat.Admin.config
-// LicenseeAgent.Site\Web.LocalProd.Agent.config
-// LicenseeAgent.Site\Web.LocalProd.Admin.config
+// LicenseeAgent.Site\Web.Sandbox.Agent.config
+// LicenseeAgent.Site\Web.Sandbox.Admin.config
 // LicenseeAgent.Site\Web.Local.Agent.config
 // LicenseeAgent.Site\Web.Local.Admin.config

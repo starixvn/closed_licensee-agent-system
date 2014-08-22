@@ -138,44 +138,36 @@
         {
             get
             {
-                var result = true;
-                var message = string.Empty;
+                if (LoginAccountType != AccountType.CSDIT && LoginAccountType != AccountType.Licensee && LoginAccountType != AccountType.Agent)
+                {
+                    Logger.Error(string.Format("Invalid session - Invalid account type {0}", LoginAccountType));
+                    return false;
+                }
+
                 if (AppSettings.IsAdminSite)
                 {
-                    // Only CSD/IT to login, not accept internal.
                     if (LoginAccountType != AccountType.CSDIT)
                     {
-                        result = false;
-                        message = "Only CSD/IT are allowed to login on admin site";
+                        Logger.Error("Invalid session - Only CSD/IT are allowed to login on admin site");
+                        return false;
                     }
                 }
                 else
                 {
-                    if (LoginAccountType == AccountType.CSDIT)
+                    if (LoginAccountType == AccountType.CSDIT && (AgentInfo == null || AgentInfo.IsLevel0))
                     {
-                        result = false;
-                        message = "CSD/IT are not allowed to login on agent site.";
+                        Logger.Error("Invalid session - CSD/IT internal login");
+                        return false;
                     }
 
-                    if (AdminInfo != null && LoginAccountType == AccountType.Agent)
+                    if (LoginAccountType == AccountType.Agent && (AgentInfo == null || AgentInfo.IsLevel0))
                     {
-                        result = false;
-                        message = "This case only happens when licensee internal login.";
-                    }
-
-                    if (AgentInfo != null && AgentInfo.IsLevel0 && LoginAccountType == AccountType.Agent)
-                    {
-                        result = false;
-                        message = "Agent level 0 are not allowed to login on agent site.";
+                        Logger.Error("Invalid session - Agent level 0 are not allowed to login");
+                        return false;
                     }
                 }
 
-                if (!result)
-                {
-                    Logger.Error(string.Format("Invalid session - {0}", message));
-                }
-
-                return result;
+                return true;
             }
         }
 

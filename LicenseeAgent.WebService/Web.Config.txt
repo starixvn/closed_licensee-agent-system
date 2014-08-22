@@ -5,5 +5,5 @@
 // Generated items
 // D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Prod.config
 // D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Uat.config
-// D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.LocalProd.config
+// D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Sandbox.config
 // D:\Work\Git\licensee-agent-system\LicenseeAgent.WebService\Web.Local.config

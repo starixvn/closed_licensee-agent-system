@@ -523,6 +523,15 @@
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />
     <Content Include="Scripts\Select2\select2.js" />
     <Content Include="Scripts\utility.js" />
+    <Content Include="Web.Sandbox.Admin.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Sandbox.Agent.config">
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.Sandbox.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -553,6 +562,12 @@
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.AppSettings.Sandbox.Admin.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.Sandbox.Agent.config">
+      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
     </Content>
     <None Include="Web.Config.txt">
       <AutoGen>True</AutoGen>
@@ -672,12 +687,6 @@
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.Uat.Agent.config">
-      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.LocalProd.Admin.config">
-      <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.LocalProd.Agent.config">
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
     </Content>
     <None Include="Web.ConnectionStrings.config">
@@ -957,15 +966,6 @@
     </Content>
     <Content Include="Web.Uat.Agent.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.LocalProd.Admin.config">
-      <DependentUpon>Web.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.LocalProd.Agent.config">
-      <DependentUpon>Web.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.LocalProd.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

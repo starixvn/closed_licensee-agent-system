@@ -143,7 +143,7 @@
                     IsResetDefault = model.IsResetDefault
                 };
                 _groupCommissionService.GroupCommIns(criteria);
-                if (criteria.ErrCode != 0)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 }
@@ -249,7 +249,7 @@
                     IsResetDefault = model.IsResetDefault
                 };
                 _groupCommissionService.GroupCommUpd(criteria);
-                if (criteria.ErrCode != 0)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 }
@@ -304,7 +304,7 @@
             };
             _groupCommissionService.GroupCommDel(criteria);
 
-            if (criteria.ErrCode != 0)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
                 ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
             }

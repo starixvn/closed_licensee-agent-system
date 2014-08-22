@@ -379,7 +379,7 @@
             };
 
             var userSalt = _accountService.GetAdminSalt(userSaltCriteria);
-            if (userSaltCriteria.MsgId != 0)
+            if (userSaltCriteria.MsgId != Result.SuccessValue)
             {
                 ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.MsgId));
                 return false;

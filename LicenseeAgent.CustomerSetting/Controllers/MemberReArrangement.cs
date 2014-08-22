@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Controllers
 {
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Enumerations;
@@ -52,7 +53,7 @@
                     ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
                     return View(model);
                 }
-                
+
                 if (model.Mode == ArrangementMode.AssignMember)
                 {
                     errCode = CheckDepositMemberBelongToAgent(model.OldAgentName, customer);
@@ -62,7 +63,7 @@
                         return View(model);
                     }
                 }
-                
+
                 errCode = UpdateAgentID(model, customer);
             }
 
@@ -199,7 +200,7 @@
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
                     UserName = username
                 });
-            if (serviceResult.ErrCode != 0 || customer.Currency == 0 || customer.CustId == 0)
+            if (serviceResult.ErrCode != Result.SuccessValue || customer.Currency == 0)
             {
                 // Member does not exists.
                 errCode = (int)ErrCode.Msg_2001;
@@ -229,7 +230,7 @@
             };
             _customerSettingService.GetLegendAgentId(criteria);
 
-            if (criteria.ErrCode != 0)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
                 // Message: "Agent does not exist" => "New Agent does not exist." if Mode is Assign Member.
                 return criteria.ErrCode == (int)ErrCode.Msg_2111 && model.Mode == ArrangementMode.AssignMember ? (int)ErrCode.Msg_2051 : criteria.ErrCode;
@@ -265,7 +266,7 @@
             };
             _customerSettingService.GetLegendAgentIdHasDeposit(criteria);
 
-            if (criteria.ErrCode != 0)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
                 // Message: "Agent does not exist" => "New Agent does not exist." if Mode is Assign Member.
                 return criteria.ErrCode == (int)ErrCode.Msg_2111 && model.Mode == ArrangementMode.AssignMember ? (int)ErrCode.Msg_2051 : criteria.ErrCode;
@@ -294,14 +295,14 @@
             // Call API to Update AgentId here.
             var serviceResult = _memberService.UpdateAgentId(action);
 
-            if (serviceResult.ErrCode != 0)
+            if (serviceResult.ErrCode != Result.SuccessValue)
             {
                 // If Update Error => "Failed to assign member" or "Faild to switch user".
                 errCode = mode == ArrangementMode.AssignMember ? (int)ErrCode.Msg_2061 : (int)ErrCode.Msg_2078;
             }
 
             return errCode;
-        }        
+        }
 
         /// <summary>
         /// Checks the deposit member belong to agent.
@@ -323,7 +324,7 @@
             };
             _customerSettingService.GetLegendAgentId(criteria);
 
-            if (criteria.ErrCode != 0)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
                 // Message: "Agent does not exist" => "Old Agent does not exist."
                 errCode = criteria.ErrCode == (int)ErrCode.Msg_2111 ? (int)ErrCode.Msg_2050 : criteria.ErrCode;

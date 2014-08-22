@@ -249,7 +249,7 @@
                                         IBCCustId = customer.CustId
                                     });
 
-                if (serviceResult.ErrCode != 0)
+                if (serviceResult.ErrCode != Result.SuccessValue)
                 {
                     ViewBag.Result = new SearchUserViewResult
                     {
@@ -270,7 +270,7 @@
         [NonAction]
         public void SetAdminView(AdminGetMemberListCriteria criteria, CustomerEntity customer)
         {
-            if (criteria.MsgId != 0 || customer == null)
+            if (criteria.MsgId != Result.SuccessValue || customer == null)
             {
                 var result = new SearchUserViewResult
                 {
@@ -302,7 +302,7 @@
         [NonAction]
         public void SetAgentView(AgentGetMemberListCriteria criteria, CustomerEntity customer)
         {
-            if (criteria.MsgId != 0 || customer == null)
+            if (criteria.MsgId != Result.SuccessValue || customer == null)
             {
                 ViewBag.Result = new SearchUserViewResult
                 {

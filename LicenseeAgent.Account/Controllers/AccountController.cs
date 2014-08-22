@@ -214,7 +214,7 @@
                 };
 
                 _accountService.AgentChangePassword(criteria);
-                if (criteria.MsgId != 0)
+                if (criteria.MsgId != Result.SuccessValue)
                 {
                     ModelState.AddModelError(string.Empty, GetErrMsg(criteria.MsgId));
                 }
@@ -435,7 +435,7 @@
             };
 
             var userSalt = _accountService.GetAgentSalt(userSaltCriteria);
-            if (userSaltCriteria.ErrCode != 0)
+            if (userSaltCriteria.ErrCode != Result.SuccessValue)
             {
                 ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.ErrCode));
                 return false;
@@ -455,7 +455,7 @@
             };
 
             var agentInfo = _accountService.AuthenticateAgent(criteria);
-            if (criteria.ErrCode != 0)
+            if (criteria.ErrCode != Result.SuccessValue)
             {
                 var errorMessage = GetErrMsg(criteria.ErrCode);
                 errorMessage = string.Format(errorMessage, criteria.LastChangedPwdDate.ToShortDateString());

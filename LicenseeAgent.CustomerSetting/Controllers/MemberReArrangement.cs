@@ -63,6 +63,15 @@
                         return View(model);
                     }
                 }
+                else
+                {
+                    // Can not switch legend member.
+                    if (customer.LASAgentId != 0)
+                    {
+                        ModelState.AddModelError(string.Empty, GetErrMsg((int)ErrCode.Msg_2076));
+                        return View(model);
+                    }
+                }
 
                 errCode = UpdateAgentID(model, customer);
             }

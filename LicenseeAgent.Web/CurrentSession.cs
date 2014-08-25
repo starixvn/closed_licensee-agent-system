@@ -22,7 +22,7 @@
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, language)
+            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, false, language)
         {
             if (adminInfo.AccountType != AccountType.CSDIT)
             {
@@ -41,7 +41,7 @@
         /// <param name="checkinOnLicenseeId">The check-in on licensee identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AdminInfo adminInfo, int checkinOnUserId, int checkinOnLicenseeId, string language = LanguageManager.UsLanguageCode)
-            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, language)
+            : this(adminInfo.UserId, adminInfo.UserName, adminInfo.AccountType, checkinOnUserId, true, language)
         {
             if (adminInfo.AccountType != AccountType.CSDIT && adminInfo.AccountType != AccountType.Licensee)
             {
@@ -60,7 +60,7 @@
         /// <param name="checkinOnUserId">The check-in on user identifier.</param>
         /// <param name="language">The language.</param>
         public CurrentSession(AgentInfo agentInfo, int checkinOnUserId, string language = LanguageManager.UsLanguageCode)
-            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, language)
+            : this(agentInfo.AgentId, agentInfo.UserName, AccountType.Agent, checkinOnUserId, false, language)
         {
             AgentInfo = agentInfo;
             OnLicenseeId = agentInfo.LicenseeId;
@@ -79,6 +79,7 @@
             internalLoginInfo.LoginUserName,
             internalLoginInfo.LoginAccountType,
             internalLoginInfo.OnLoginUserId,
+            internalLoginInfo.IsInternalLRF,
             internalLoginInfo.Language)
         {
             AgentInfo = agentInfo;
@@ -91,12 +92,14 @@
             string loginUserName,
             AccountType loginAccountType,
             int checkinOnUserId,
+            bool isInternalLRF,
             string language)
         {
             LoginUserId = loginUserId;
             LoginUserName = loginUserName;
             LoginAccountType = loginAccountType;
             OnUserId = checkinOnUserId;
+            IsInternalLRF = isInternalLRF;
             Language = language;
         }
 
@@ -125,6 +128,8 @@
         public int OnUserId { get; private set; }
 
         public int OnLicenseeId { get; private set; }
+
+        public bool IsInternalLRF { get; private set; }
 
         /// <summary>
         /// Gets the type of the account who created session.

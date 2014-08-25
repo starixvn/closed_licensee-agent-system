@@ -18,6 +18,8 @@
 
         public AccountType LoginAccountType { get; set; }
 
+        public bool IsInternalLRF { get; set; }
+
         public int LoginUserId { get; set; }
 
         public string LoginUserName { get; set; }

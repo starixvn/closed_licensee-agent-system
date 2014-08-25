@@ -21,7 +21,7 @@
 
         public static bool IsViewSelectLicensee(this ICurrentSession currentSession)
         {
-            return currentSession.IsCSDIT;
+            return !currentSession.IsInternalLRF;
         }
 
         public static bool IsViewAccountDropDownMenu(this ICurrentSession currentSession)

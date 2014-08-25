@@ -106,7 +106,8 @@
         /// <param name="result">Response Result.</param>
         public static void WriteError(BaseAction action, ResponseResult result)
         {
-            if (result.ErrCode == Result.SuccessValue)
+            // disable API error logging.
+            if (result.ErrCode == Result.SuccessValue || result.ErrCode != Result.SuccessValue)
             {
                 return;
             }

@@ -207,7 +207,8 @@
                 Language = CurrentSession.Language,
                 LicenseeId = criteria.LicenseeId,
                 CurrencyId = criteria.CurrencyId,
-                AgentName = model.UserName
+                AgentName = model.UserName,
+                IsInternalLRF = CurrentSession.IsInternalLRF
             };
 
             return string.IsNullOrEmpty(internalLoginInfo.AgentName) ? LoginAsAgent0(internalLoginInfo) : LoginAsAgentk(internalLoginInfo);
@@ -307,7 +308,7 @@
             }
 
             var model = new LicenseeViewModel();
-            if (CurrentSession.IsCSDIT)
+            if (CurrentSession.IsViewSelectLicensee())
             {
                 model.Licensees = _accountService.GetLicenseeList(CurrentSession.LoginUserId);
                 if (CurrentSession.AgentInfo != null)
@@ -323,7 +324,7 @@
                     model.CurrencyName = model.Currencies.Where(x => x.Currency == model.CurrencyId).Select(x => x.CurrencyName).FirstOrDefault();
                 }
             }
-            else if (CurrentSession.IsLicensee)
+            else
             {
                 model.LicenseeId = CurrentSession.OnLicenseeId;
                 model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria

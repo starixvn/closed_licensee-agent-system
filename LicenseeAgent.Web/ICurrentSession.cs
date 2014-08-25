@@ -30,6 +30,14 @@
 
         bool IsCSDIT { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether internal login from LRF.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is internal; otherwise, <c>false</c>.
+        /// </value>
+        bool IsInternalLRF { get; }
+
         bool IsLicensee { get; }
 
         void UpdateAgent(AgentInfo agentInfo);

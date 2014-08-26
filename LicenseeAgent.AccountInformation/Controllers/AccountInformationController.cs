@@ -286,7 +286,7 @@
             else
             {
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                ViewBag.PageContext = new PageContext(CurrentSession, customer.CustId, customer.Level)
+                ViewBag.PageContext = new PageContext(CurrentSession, customer.Level, customer.UserName)
                 {
                     IsMember = customer.Level == Constants.MemberLevel,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
@@ -314,7 +314,7 @@
             {
                 var isMember = customer.Level == Constants.MemberLevel;
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                ViewBag.PageContext = new PageContext(CurrentSession, customer.CustId, customer.Level)
+                ViewBag.PageContext = new PageContext(CurrentSession, customer.Level, customer.UserName)
                 {
                     IsMember = isMember,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)

@@ -53,7 +53,7 @@ if (fanex.customerSetting) {
                     currentGroup = updatedData[indexData];
                     if (currentGroup) {
                         currentPositionTaking = currentGroup.PositionTakings[0];
-                        currentPositionTaking.ApplyAll = currentGroup.ApplyAll;
+                        currentPositionTaking.ApplyAll = currentGroup.PositionTakings[0].ApplyAll;
                         self.getAdvancedModePositionTaking(settingContext, currentPositionTaking, positionTakingSave);
                     }
                 }

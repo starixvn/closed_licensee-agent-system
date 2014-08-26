@@ -12,6 +12,20 @@
     {
         public const int ReportMaxMonth = 36;
 
+        #region Account Information
+
+        public PageContext(ICurrentSession currentSession, int agentLevel, string agentName)
+            : this(currentSession)
+        {
+            IsDirectDownLine = currentSession.AgentInfo.AgentLevel == agentLevel - 1;
+            AgentName = agentName;
+            AgentLevel = agentLevel;
+        }
+
+        #endregion Account Information
+
+        #region Customer List
+
         public PageContext(ICurrentSession currentSession, int agentId, int agentLevel)
             : this(currentSession, agentId, agentLevel, string.Empty)
         {
@@ -48,6 +62,7 @@
             MinDate = MaxDate.AddMonths(-ReportMaxMonth);
             IsDeposit = currentSession.AgentInfo.IsDeposit;
         }
+        #endregion Customer List
 
         public bool IsAdmin { get; private set; }
 

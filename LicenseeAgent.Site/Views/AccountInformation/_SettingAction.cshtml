@@ -4,7 +4,6 @@
 @model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    var isDirectDonwline = pageContext.IsDirectDownLine;
 }
 <div class="controls-row">
     <div class="row-line">
@@ -23,14 +22,14 @@
                         {
                             <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
-                                @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
+                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                         }
                         else
                         {
                             <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
-                                @(isDirectDonwline || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
+                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                         }
                     </li>
@@ -41,7 +40,7 @@
                             {
                             <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditVirtualSportsMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
-                                @(isDirectDonwline || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
+                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
                             }
                         }
@@ -51,7 +50,7 @@
                             {
                             <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
-                                @(isDirectDonwline || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
+                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
                             }
                         }
@@ -67,7 +66,9 @@
                             @Las.EditInfo
                         </a></li>
                     }
-                    @if (SessionManager.CurrentSession.IsAdmin && !pageContext.IsMember && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
+                    @if (!pageContext.IsMember &&
+                        (SessionManager.CurrentSession.IsAdmin && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
+                        || (!SessionManager.CurrentSession.IsAdmin && pageContext.IsDirectDownLine))
                     {
                         <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>

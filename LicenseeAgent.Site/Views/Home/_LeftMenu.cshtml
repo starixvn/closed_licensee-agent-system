@@ -73,7 +73,7 @@
                     }
                     @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit) && SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm)
                     {
-                        @BootstrapHelper.LeftMenu(Las.CommissionGroupList, Url.Action("Index", "CommissionGroup"))
+                        @BootstrapHelper.LeftMenu(Las.CommissionGroup, Url.Action("Index", "CommissionGroup"))
                     }
                 </ul>
             </li>

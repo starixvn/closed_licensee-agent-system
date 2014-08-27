@@ -1442,7 +1442,7 @@ Please note that this action cannot be undone.</value>
     <value>Withdrawal</value>
   </data>
   <data name="CommissionMemberList" xml:space="preserve">
-    <value>Commission Member List</value>
+    <value>Member Commission List</value>
   </data>
   <data name="Adjustment" xml:space="preserve">
     <value>Adjustment</value>
@@ -1506,9 +1506,6 @@ Please note that this action cannot be undone.</value>
   </data>
   <data name="SB" xml:space="preserve">
     <value>SB</value>
-  </data>
-  <data name="CommissionGroupList" xml:space="preserve">
-    <value>Commission Group List</value>
   </data>
   <data name="CommGroup" xml:space="preserve">
     <value>Comm. Group</value>

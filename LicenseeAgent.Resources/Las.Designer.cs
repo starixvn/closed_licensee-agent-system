@@ -808,15 +808,6 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission Group List.
-        /// </summary>
-        public static string CommissionGroupList {
-            get {
-                return ResourceManager.GetString("CommissionGroupList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Commission (%).
         /// </summary>
         public static string CommissionHeader {
@@ -826,7 +817,7 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission Member List.
+        ///   Looks up a localized string similar to Member Commission List.
         /// </summary>
         public static string CommissionMemberList {
             get {

@@ -1,10 +1,14 @@
 ﻿namespace LicenseeAgent.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Reflection;
     using System.Web.Mvc;
     using Fanex.Common;
     using Filters;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Utility;
@@ -13,6 +17,7 @@
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Criteria;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.ViewModels;
     using Services;
 
@@ -22,20 +27,36 @@
     [AdminSite]
     [TrustedAdmin]
     [AccountType(AccountType.CSDIT)]
-    public class ToolController : BaseController
+    public class MaintenanceController : BaseController
     {
+        private static readonly Dictionary<string, Type> ActionDictionary = InternalActionDictionary;
         private readonly IMonitoringService _monitoringService;
         private readonly IMemberService _memberService;
 
-        public ToolController()
+        public MaintenanceController()
             : this(null, null)
         {
         }
 
-        public ToolController(IMonitoringService monitoringService, IMemberService memberService)
+        public MaintenanceController(IMonitoringService monitoringService, IMemberService memberService)
         {
             _monitoringService = monitoringService ?? new MonitoringService();
             _memberService = memberService ?? new MemberService();
+        }
+
+        private static Dictionary<string, Type> InternalActionDictionary
+        {
+            get
+            {
+                var actionDictionary = new Dictionary<string, Type>();
+                foreach (var type in Assembly.GetAssembly(typeof(LogAction)).GetTypes().Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(LogAction))))
+                {
+                    var logAction = (LogAction)Activator.CreateInstance(type);
+                    actionDictionary.Add(logAction.ActionName, type);
+                }
+
+                return actionDictionary;
+            }
         }
 
         [HttpGet]
@@ -51,7 +72,7 @@
         /// </summary>
         /// <returns>View result.</returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Password()
         {
             return View();
         }
@@ -101,71 +122,73 @@
         [HttpGet]
         public ActionResult SyncMonitoring()
         {
-            var viewModel = new SyncMonitoringViewModel();
-            var apiUrls = _monitoringService.GetAPIUrls(new SyncMonitoringGetAPIUrlCriteria { });
-            foreach (var apiUrl in apiUrls)
+            var actions = new List<SyncMonitoringAction>();
+            var values = Enum.GetValues(typeof(LogActionId));
+            foreach (var value in values)
             {
-                viewModel.APIUrls.Add(new SelectListItem
+                actions.Add(new SyncMonitoringAction
                 {
-                    Text = apiUrl,
-                    Value = apiUrl
+                    ActionId = (int)value,
+                    ApiMethod = Enum.GetName(typeof(LogActionId), value)
                 });
             }
 
+            var viewModel = new SyncMonitoringViewModel
+            {
+                Actions = actions,
+                Urls = new List<string> { AppSettings.TaiwanAPIUrl.ToString() }
+            };
             return View(viewModel);
         }
 
         /// <summary>
         /// Monitoring Data's synchronization.
         /// </summary>
-        /// <param name="actionId">Action Identification.</param>
-        /// <param name="taiwanAPIUrl">Taiwan API's URL.</param>
-        /// <returns>Action Result.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Action Result.
+        /// </returns>
         [HttpPost]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Justification = "Verified")]
-        public JsonResult SyncMonitoring(int actionId, string taiwanAPIUrl)
+        public JsonResult SyncMonitoring(SyncMonitoringPostViewModel model)
         {
             var criteria = new SyncMonitoringCriteria
             {
-                ActionId = actionId,
-                TaiwanAPIUrl = taiwanAPIUrl
+                ActionId = model.Action ?? 0,
+                TaiwanAPIUrl = model.Url,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
             };
-
-            var failedAPICalls = _monitoringService.GetFailedAPICalls(criteria).ToList();
-            foreach (var item in failedAPICalls)
+            var list = _monitoringService.GetFailedAPICalls(criteria);
+            if (list.Count > 0)
             {
-                LogAction logAction = null;
-                switch (item.ActionId)
+                foreach (var item in list)
                 {
-                    case (int)LogId.ResetPassword:
-                        logAction = ObjectSerializer.Deserialize<ResetPasswordAction>(item.Command);
-                        break;
+                    var types = ActionDictionary.Where(x => string.Compare(x.Key, item.ActionName, StringComparison.OrdinalIgnoreCase) == 0).Select(x => x.Value);
+                    if (types.Any())
+                    {
+                        var type = types.First();
+                        var logAction = (LogAction)ObjectSerializer.Deserialize(item.Command, type);
+                        if (logAction != null)
+                        {
+                            switch (item.ActionId)
+                            {
+                                case (int)LogActionId.UpdateMemberStatus:
+                                    var updateMemberAction = (UpdateMemberStatusAction)logAction;
+                                    updateMemberAction.IBCCustId = item.CustId.ToString();
+                                    break;
+                            }
 
-                    case (int)LogId.UpdateMemberInfo:
-                        logAction = ObjectSerializer.Deserialize<UpdateMemberInfoAction>(item.Command);
-                        break;
-
-                    case (int)LogId.InsertNewMember:
-                        logAction = ObjectSerializer.Deserialize<InsertNewMemberAction>(item.Command);
-                        break;
-
-                    case (int)LogId.UpdateMemberStatus:
-                        var updateMemberAction = ObjectSerializer.Deserialize<UpdateMemberStatusAction>(item.Command);
-                        updateMemberAction.IBCCustId = item.CustId.ToString();
-                        logAction = updateMemberAction;
-                        break;
-                }
-
-                if (logAction != null)
-                {
-                    item.InputParams = logAction.GenerateInputs();
+                            item.InputParams = logAction.GenerateInputs();
+                        }
+                    }
                 }
             }
 
             return Json(new
             {
-                List = failedAPICalls,
-                TotalItems = failedAPICalls.Count
+                List = list,
+                TotalRows = criteria.TotalRows
             });
         }
 
@@ -181,39 +204,38 @@
         {
             ResponseResult responseResult = null;
             var logData = _monitoringService.GetLogData(keyId);
-            switch (logData.ActionId)
+            var types = ActionDictionary.Where(x => string.Compare(x.Key, logData.ActionName, StringComparison.OrdinalIgnoreCase) == 0).Select(x => x.Value);
+            if (types.Any())
             {
-                case (int)LogId.ResetPassword:
-                    var resetPasswordAction = ObjectSerializer.Deserialize<ResetPasswordAction>(logData.Command);
-                    resetPasswordAction.LicenseeId = CurrentSession.OnLicenseeId;
-                    resetPasswordAction.UserId = CurrentSession.LoginUserId;
-                    responseResult = _memberService.ResetPassword(resetPasswordAction, true, logData.KeyId);
-                    break;
+                var type = types.First();
+                var logAction = (LogAction)ObjectSerializer.Deserialize(logData.Command, type);
+                logAction.LicenseeId = CurrentSession.OnLicenseeId;
+                logAction.UserId = CurrentSession.LoginUserId;
+                switch (logData.ActionId)
+                {
+                    case (int)LogActionId.ReSetPassword:
+                        responseResult = _memberService.ResetPassword((ResetPasswordAction)logAction, true, logData.KeyId);
+                        break;
 
-                case (int)LogId.UpdateMemberInfo:
-                    var updateMemberInfoAction = ObjectSerializer.Deserialize<UpdateMemberInfoAction>(logData.Command);
-                    updateMemberInfoAction.LicenseeId = CurrentSession.OnLicenseeId;
-                    updateMemberInfoAction.UserId = CurrentSession.LoginUserId;
-                    responseResult = _memberService.UpdateMemberInfo(updateMemberInfoAction, true, logData.KeyId);
-                    break;
+                    case (int)LogActionId.UpdateMemberInfo:
+                        responseResult = _memberService.UpdateMemberInfo((UpdateMemberInfoAction)logAction, true, logData.KeyId);
+                        break;
 
-                case (int)LogId.InsertNewMember:
-                    var insertNewMemberAction = ObjectSerializer.Deserialize<InsertNewMemberAction>(logData.Command);
-                    insertNewMemberAction.LicenseeId = CurrentSession.OnLicenseeId;
-                    insertNewMemberAction.UserId = CurrentSession.LoginUserId;
-                    responseResult = _memberService.InsertNewMember(insertNewMemberAction, true, logData.KeyId);
-                    break;
+                    case (int)LogActionId.InsertNewMember:
+                        responseResult = _memberService.InsertNewMember((InsertNewMemberAction)logAction, true, logData.KeyId);
+                        break;
 
-                case (int)LogId.UpdateMemberStatus:
-                    var updateMemberStatusAction = ObjectSerializer.Deserialize<UpdateMemberStatusAction>(logData.Command);
-                    updateMemberStatusAction.LicenseeId = CurrentSession.OnLicenseeId;
-                    updateMemberStatusAction.UserId = CurrentSession.LoginUserId;
-                    responseResult = _memberService.SyncMonitoringUpdateMemberStatus(updateMemberStatusAction);
-                    break;
+                    case (int)LogActionId.UpdateMemberStatus:
+                        responseResult = _memberService.SyncMonitoringUpdateMemberStatus((UpdateMemberStatusAction)logAction);
+                        break;
+
+                    case (int)LogActionId.UpdateAgentID:
+                        responseResult = _memberService.UpdateAgentId((UpdateAgentIDAction)logAction, true, logData.KeyId);
+                        break;
+                }
             }
 
             UpdateLogAfterReInvoke(responseResult, logData.KeyId);
-
             return Json(new
             {
                 ErrMsg = responseResult.ApiErrMsg,

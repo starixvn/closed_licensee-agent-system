@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Web.Mvc
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Web;
     using LicenseeAgent.Web.Entities;
@@ -48,6 +49,12 @@
         /// <returns>Returns client IP.</returns>
         public static string GetClientIp(this HttpRequestBase httpRequest)
         {
+            var forwardHeader = httpRequest.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (forwardHeader != null)
+            {
+                return forwardHeader.Split(',').First().Trim();
+            }
+
             string userHostAddress = httpRequest.UserHostAddress;
             var internalAddress = GetInternalAddress(userHostAddress);
             if (internalAddress == null)

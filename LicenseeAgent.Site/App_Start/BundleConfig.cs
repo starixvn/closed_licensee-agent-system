@@ -165,7 +165,6 @@
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
             RegisterMessagePage(bundles);
-            RegisterToolPage(bundles);
             RegisterCommissionGroupPage(bundles);
             RegisterMemberCommissionPages(bundles);
         }
@@ -391,14 +390,6 @@
 
             bundles.Add(new ScriptBundle("~/js/message").Include(
                 "~/views/message/resources/message.js"));
-        }
-
-        private static void RegisterToolPage(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/tool/password").Include(
-                "~/views/tool/resources/password-tool.js"));
-            bundles.Add(new ScriptBundle("~/js/tool/sync-monitoring").Include(
-                "~/views/tool/resources/sync-monitoring.js"));
         }
 
         private static void RegisterCommissionGroupPage(BundleCollection bundles)

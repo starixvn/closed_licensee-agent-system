@@ -82,8 +82,8 @@
                 <li class="divider"></li>
                 <li><a class="tree-toggler nav-header">@Las.Maintenance</a>
                     <ul class="nav nav-list tree" style="display: none">
-                        @BootstrapHelper.LeftMenu(Las.Password, Url.Action("Index", "Tool"))
-                        @BootstrapHelper.LeftMenu(Las.MemberAPIMonitoring, Url.Action("SyncMonitoring", "Tool"))
+                        @BootstrapHelper.LeftMenu(Las.Password, Url.RouteUrl("Admin_Maintenance", new { action = "Password" }))
+                        @BootstrapHelper.LeftMenu(Las.MemberAPIMonitoring, Url.RouteUrl("Admin_Maintenance", new { action = "SyncMonitoring" }))
                     </ul>
                 </li>
             }

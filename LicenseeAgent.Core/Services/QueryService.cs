@@ -287,5 +287,29 @@
                 throw new CriteriaException(criteria, exception.Message, exception.InnerException);
             }
         }
+
+        /// <summary>
+        /// Executes the reader.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return data reader.</returns>
+        public static IDataReader ExecuteReader(ICriteria criteria)
+        {
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid Criteria");
+                }
+
+                var objectDb = new ObjectDb(criteria.GetSettingKey());
+                var param = criteria.GetSpParams();
+                return objectDb.ExecuteReader(param);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
+            }
+        }
     }
 }

@@ -210,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +237,8 @@
     <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
     <Content Include="Views\MemberCommission\Resources\member-commission.js" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -544,8 +547,8 @@
     <Content Include="Views\Report\Resources\agent-winloss-report.js" />
     <Content Include="Views\Report\Resources\outstanding-report.js" />
     <Content Include="Views\Report\Resources\result-report.js" />
-    <Content Include="Views\Tool\Resources\password-tool.js" />
-    <Content Include="Views\Tool\Resources\sync-monitoring.js" />
+    <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
+    <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
     <Content Include="Views\TotalBets\Resources\basketball.js" />
     <Content Include="Views\TotalBets\Resources\soccer.betlist.js" />
     <Content Include="Views\TotalBets\Resources\OtherSports.js" />
@@ -692,7 +695,7 @@
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Tool\WhoAmI.cshtml" />
+    <Content Include="Areas\Admin\Views\Maintenance\WhoAmI.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />
@@ -869,7 +872,7 @@
     <Content Include="Views\CustomerList\EditInfo.cshtml" />
     <Content Include="Views\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\CreditBalance\AgentEditMemberCredit.cshtml" />
-    <Content Include="Views\Tool\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Maintenance\Password.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.cshtml" />
@@ -940,7 +943,7 @@
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
-    <Content Include="Views\Tool\SyncMonitoring.cshtml" />
+    <Content Include="Areas\Admin\Views\Maintenance\SyncMonitoring.cshtml" />
     <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
     <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />
     <Content Include="Web.ConnectionStrings.Prod.config">

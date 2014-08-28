@@ -53,45 +53,16 @@
             }
         }
 
-        public static IList<SelectListItem> TaiwanActions
+        public static IList<SelectListItem> StatusList
         {
             get
             {
                 return new List<SelectListItem>
                 {
-                    new SelectListItem { Text = Las.All, Value = "0" },
-                    new SelectListItem { Text = "ResetPassword", Value = "301" },
-                    new SelectListItem { Text = "UpdateMemberInfo", Value = "303" },
-                    new SelectListItem { Text = "InsertNewMember", Value = "304" },
-                    new SelectListItem { Text = "UpdateMemberStatus", Value = "305" },
+                    new SelectListItem { Text = Las.All, Value = string.Empty },
+                    new SelectListItem { Text = Las.Closed, Value = ((int)AccountStatus.Closed).ToString() },
+                    new SelectListItem { Text = Las.Open, Value = ((int)AccountStatus.Open).ToString() }
                 };
-            }
-        }
-
-        public static IList<SelectListItem> StatusList
-        {
-            get
-            {
-                var selectItemList = new List<SelectListItem>
-                {
-                    new SelectListItem
-                    {
-                        Text = Las.All,
-                        Value = string.Empty
-                    },
-                    new SelectListItem
-                    {
-                        Text = Las.Closed,
-                        Value = ((int)AccountStatus.Closed).ToString()
-                    },
-                    new SelectListItem
-                    {
-                        Text = Las.Open,
-                        Value = ((int)AccountStatus.Open).ToString()
-                    }
-                };
-
-                return selectItemList;
             }
         }
     }

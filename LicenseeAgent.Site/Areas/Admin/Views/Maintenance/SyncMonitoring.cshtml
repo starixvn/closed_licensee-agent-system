@@ -1,0 +1,46 @@
+﻿@model SyncMonitoringViewModel
+@{
+    ViewBag.Title = "Monitoring Data Synchronization between Main DB and Deposit DB";
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/admin/maintenance")
+    <script type="text/javascript">
+        $(function () {
+            admin.maintenance.syncmonitoring.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post,
+    new { @class = "form-filter form-inline", id = "search-form" }))
+{
+    <div class="controls-row">
+        <label for="action">
+            Actions
+        </label>
+        @Html.DropDownList("action", new SelectList(Model.Actions, "ActionId", "ApiMethod"), Las.All, new { @class = "selectpicker w160" })
+    </div>
+    <div class="controls-row">
+        <label for="url">
+            Taiwan API's URL
+        </label>
+        @Html.DropDownList("url", new SelectList(Model.Urls), Las.All, new { @class = "selectpicker w320" })
+    </div>
+    <div class="controls-row">
+        <button type="submit" class="btn btn-primary">
+            @Las.Submit
+        </button>
+    </div>
+}
+<div id="monitoringGrid" class="freegrid content-grid">
+</div>

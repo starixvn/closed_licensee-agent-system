@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.Core.Utility
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
@@ -107,6 +108,26 @@
             {
                 var serializer = new XmlSerializer(typeof(T));
                 return (T)serializer.Deserialize(stringReader);
+            }
+        }
+
+        /// <summary>
+        /// Deserializes the specified XML.
+        /// </summary>
+        /// <param name="xml">The XML string.</param>
+        /// <param name="type">The object type.</param>
+        /// <returns>Returns XML object.</returns>
+        public static object Deserialize(string xml, Type type)
+        {
+            if (string.IsNullOrEmpty(xml))
+            {
+                return null;
+            }
+
+            using (var stringReader = new StringReader(xml))
+            {
+                var serializer = new XmlSerializer(type);
+                return serializer.Deserialize(stringReader);
             }
         }
 

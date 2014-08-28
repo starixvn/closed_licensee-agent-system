@@ -81,7 +81,11 @@
     <Compile Include="Entities\UpdateMemberStatusActionLog.cs" />
     <Compile Include="Enumerations\DepositOption.cs" />
     <Compile Include="Enumerations\ErrCode.cs" />
-    <Compile Include="Enumerations\LogId.cs" />
+    <Compile Include="Enumerations\LogActionId.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogActionId.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\LogType.cs" />
     <Compile Include="Filter\IServiceFilter.cs" />
     <Compile Include="Filter\MemberFilter.cs" />
@@ -111,9 +115,15 @@
       <Name>LicenseeAgent.Resources</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Enumerations\LogActionId.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogActionId.generated.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

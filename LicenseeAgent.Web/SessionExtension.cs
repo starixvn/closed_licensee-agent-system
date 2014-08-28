@@ -26,7 +26,7 @@
 
         public static bool IsViewAccountDropDownMenu(this ICurrentSession currentSession)
         {
-            return !currentSession.IsLicensee;
+            return !currentSession.IsInternalLRF;
         }
 
         public static bool IsViewChangePassword(this ICurrentSession currentSession)

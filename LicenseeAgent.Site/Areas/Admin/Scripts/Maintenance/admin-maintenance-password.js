@@ -1,4 +1,6 @@
-﻿var passwordTool = (function ($) {
+﻿var admin = admin || {};
+admin.maintenance = admin.maintenance || {};
+admin.maintenance.password = (function ($) {
     'use strict';
 
     return {
@@ -34,8 +36,3 @@
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    passwordTool.init();
-});

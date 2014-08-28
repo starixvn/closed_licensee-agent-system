@@ -42,5 +42,15 @@
             logData.KeyId = keyId;
             return logData;
         }
+
+        /// <summary>
+        /// Gets the drop down.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns list of drop down.</returns>
+        public IList<SyncMonitoringAction> GetActions(ICriteria criteria)
+        {
+            return GetEntites<SyncMonitoringAction>(criteria);
+        }
     }
 }

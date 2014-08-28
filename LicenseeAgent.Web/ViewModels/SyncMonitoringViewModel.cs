@@ -1,18 +1,15 @@
 ﻿namespace LicenseeAgent.Web.ViewModels
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// Data's Synchronization Monitoring View Model.
     /// </summary>
     public class SyncMonitoringViewModel
     {
-        public SyncMonitoringViewModel()
-        {
-            APIUrls = new List<SelectListItem>();
-        }
+        public IList<SyncMonitoringAction> Actions { get; set; }
 
-        public IList<SelectListItem> APIUrls { get; set; }
+        public IList<string> Urls { get; set; }
     }
 }

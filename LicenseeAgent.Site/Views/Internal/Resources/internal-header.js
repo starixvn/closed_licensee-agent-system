@@ -45,16 +45,18 @@ var internalHeader = (function ($) {
                 });
             }
 
-            $('#agentName').bind('input', function () {
-                if ($.trim($('#agentName').val()) !== '') {
-                    $('#submit').removeClass('disabled');
-                    $('#agentName').prop('disabled', false);
-                }
-                else {
-                    if (!$('#submit').hasClass('disabled')) {
-                        $('#submit').addClass('disabled');
+            $('#agentName').bind('keypress keyup change paste', function () {
+                setTimeout(function () {
+                    if ($.trim($('#agentName').val()) !== '') {
+                        $('#submit').removeClass('disabled');
+                        $('#agentName').prop('disabled', false);
                     }
-                }
+                    else {
+                        if (!$('#submit').hasClass('disabled')) {
+                            $('#submit').addClass('disabled');
+                        }
+                    }
+                }, 1);
             });
 
             $('#submit').click(function () {

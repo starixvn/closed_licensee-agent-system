@@ -74,6 +74,10 @@ var betList = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
+                    if (data.ErrCode !== undefined && data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
+                        return;
+                    }
                     fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data, true);
                 },
                 complete: function () {

@@ -15,5 +15,7 @@
         void UpdateLogStatus(ICriteria criteria);
 
         void UpdateRunCount(ICriteria criteria);
+
+        IList<SyncMonitoringAction> GetActions(ICriteria criteria);
     }
 }

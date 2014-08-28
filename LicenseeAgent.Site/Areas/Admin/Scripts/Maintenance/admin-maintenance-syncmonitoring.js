@@ -1,76 +1,71 @@
 ﻿/* global core, popup */
 
-var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" {5} onchange="syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
-checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';
-var buttonHtml = '<button id="btn_{0}" class="btn btn-primary" onclick="syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button>';
-buttonHtml += '<br /><br /><button id="btnIgnore_{0}" class="btn btn-danger" onclick="syncmonitoring.singleIgnore({0})">Ignore</button>';
-buttonHtml += '<label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>';
-var globalCheckAll = false;
+var admin = admin || {};
+admin.maintenance = admin.maintenance || {};
+admin.maintenance.syncmonitoring = (function ($) {
+    'use strict';
 
-var gridOptions = {
-    columns: [
-                { HeaderText: '<input type="checkbox" id="chkbox_all" class="" onchange="syncmonitoring.checkboxAllOnChange()""></input>'
-                    + '<button id="btn_multreinvoke" class="btn btn-primary hide" onclick="syncmonitoring.multipleReInvoke()">Re-Invoke</button>',
-                    Width: 100, Name: "", HeaderAlign: "center", CellAlign: "center",
-                    Formatter: function (rowIndex, rowData) {
-                        'use strict';
-                        if (globalCheckAll === true) {
-                            return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "checked");
-                        }
-                        else {
-                            return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "");
-                        }
+    /* jshint -W101 */
+    var checkboxHtml = '<input type="checkbox" id="chkbox_{0}" class="" {5} onchange="admin.maintenance.syncmonitoring.checkboxOnChange()" style="margin-left:20px;"';
+    checkboxHtml += ' data-keyid="{0}" data-actionid="{1}" data-custid="{2}" data-userid="{3}" data-command="{4}"></input>';
+    var buttonHtml = '<button id="btn_{0}" class="btn btn-primary" onclick="admin.maintenance.syncmonitoring.singleReInvoke({0}, {1}, {2}, {3}, \'{4}\')">Re-Invoke</button>';
+    buttonHtml += '<br /><br /><button id="btnIgnore_{0}" class="btn btn-danger" onclick="admin.maintenance.syncmonitoring.singleIgnore({0})">Ignore</button>';
+    buttonHtml += '<label id="lbl_{0}" class="hide" style="color: #FF0000;">Success</label>';
+    var globalCheckAll = false;
+
+    var gridOptions = {
+        columns: [
+            { HeaderText: '<input type="checkbox" id="chkbox_all" class="" onchange="admin.maintenance.syncmonitoring.checkboxAllOnChange()""></input>'
+                + '<button id="btn_multreinvoke" class="btn btn-primary hide" onclick="admin.maintenance.syncmonitoring.multipleReInvoke()">Re-Invoke</button>',
+                Width: 100, Name: "", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData) {
+                    if (globalCheckAll === true) {
+                        return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "checked");
                     }
-                },
-                { HeaderText: "Log ID", Width: 36, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Log Date", Width: 72, Name: "LogDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },
-                { HeaderText: "Action Name", Width: 120, Name: "ActionName", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "Input Params", Width: 280, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Remarks", Width: 198, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "Run Count", Width: 60, Name: "RunCount", HeaderAlign: "center", CellAlign: "center",
-                    Formatter: function (rowIndex, rowData) {
-                        'use strict';
-                        return '<label id="lblruncount_{0}">{1}</label>'.format(rowData.KeyId, rowData.RunCount);
-                    }
-                },
-                { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
-                    Formatter: function (rowIndex, rowData) {
-                        'use strict';
-                        return buttonHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                    else {
+                        return checkboxHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command, "");
                     }
                 }
-            ],
-    showPager: true,
-    gridExpandHeight: 125,
-    bodyRowHeight: 29
-};
-
-var syncmonitoring = (function ($) {
-    'use strict';
+            },
+            { HeaderText: "Log ID", Width: 36, Name: "KeyId", HeaderAlign: "center", CellAlign: "center" },
+            { HeaderText: "Log Date", Width: 72, Name: "LogDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: core.DATE_FORMAT_FULL },
+            { HeaderText: "Action Name", Width: 120, Name: "ActionName", HeaderAlign: "center", CellAlign: "center" },
+            { HeaderText: "Input Params", Width: 280, Name: "InputParams", HeaderAlign: "center", CellAlign: "left" },
+            { HeaderText: "Remarks", Width: 198, Name: "Remark", HeaderAlign: "center", CellAlign: "left" },
+            { HeaderText: "Run Count", Width: 60, Name: "RunCount", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData) {
+                    return '<label id="lblruncount_{0}">{1}</label>'.format(rowData.KeyId, rowData.RunCount);
+                }
+            },
+            { HeaderText: "Action", Width: 80, Name: "", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData) {
+                    return buttonHtml.format(rowData.KeyId, rowData.ActionId, rowData.CustId, rowData.UserId, rowData.Command);
+                }
+            }
+        ],
+        showPager: true,
+        customPager: true,
+        gridExpandHeight: 125,
+        bodyRowHeight: 29
+    };
+    /* jshint +W101 */
 
     return {
         init: function () {
-            $("#actionmonitoring").click(function () {
+            $('form').submit(function (e) {
                 globalCheckAll = false;
-                syncmonitoring.reRenderAfterPaged(0, core.pageSizes[0]);
+                admin.maintenance.syncmonitoring.reRenderAfterPaged(0, core.pageSizes[0]);
+                e.preventDefault();
             });
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
-            if (gridOptions && gridOptions.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage
-                                                : gridOptions.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
-            }
-
-            var params = {
-                actionID: $("#action").val(),
-                taiwanAPIUrl: $("#taiwanapiurl").val()
-            };
-
+            var submitOptions = $('form').serializeObject();
+            submitOptions.pageIndex = currentPage;
+            submitOptions.pageSize = itemsPerPage;
             $.ajax({
-                url: "SyncMonitoring",
+                url: $('form').attr('action'),
                 type: 'post',
-                data: params,
+                data: jQuery.param(submitOptions),
                 beforeSend: function () {
                     core.blockUI();
                 },
@@ -79,6 +74,8 @@ var syncmonitoring = (function ($) {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: core.pageSizes,
                         currentPage: currentPage,
+                        totalItem: data.TotalRows,
+                        pagerSelectCallBack: admin.maintenance.syncmonitoring.reRenderAfterPaged,
                         showDetail: true,
                         afterPagedFunction: function () {
                             $('#btn_multreinvoke').addClass('hide');
@@ -91,7 +88,7 @@ var syncmonitoring = (function ($) {
                     gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                     $('#monitoringGrid').show().fanexGrid(gridOptions);
 
-                    if (data.TotalItems < 1) {
+                    if (data.TotalRows === 0) {
                         $('#chkbox_all').addClass('hide');
                         $('.no-data-not-frozen').width(1020);
                     }
@@ -136,7 +133,7 @@ var syncmonitoring = (function ($) {
         refreshGrid: function () {
             var currentPage = gridOptions.pagerOption.currentPage;
             var currentPageSize = gridOptions.pagerOption.itemsPerPage;
-            syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
+            admin.maintenance.syncmonitoring.reRenderAfterPaged(currentPage, currentPageSize);
         },
         singleReInvoke: function (keyid) {
             var params = {
@@ -208,7 +205,7 @@ var syncmonitoring = (function ($) {
         multipleReInvoke: function () {
             $('#tblContent_monitoringGrid tbody input').each(function () {
                 if ($(this).prop('checked') === true) {
-                    syncmonitoring.singleReInvoke(
+                    admin.maintenance.syncmonitoring.singleReInvoke(
                         $(this).attr('data-keyid')
                     );
                 }
@@ -216,8 +213,3 @@ var syncmonitoring = (function ($) {
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    syncmonitoring.init();
-});

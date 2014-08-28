@@ -10,6 +10,12 @@
     {
         public int ActionId { get; set; }
 
+        public int PageSize { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int TotalRows { get; set; }
+
         [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Verified")]
         public string TaiwanAPIUrl { get; set; }
 
@@ -20,7 +26,7 @@
 
         public override bool IsValid()
         {
-            return ActionId >= 0 && !string.IsNullOrEmpty(TaiwanAPIUrl);
+            return ActionId >= 0;
         }
     }
 }

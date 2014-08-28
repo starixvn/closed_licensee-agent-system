@@ -72,6 +72,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -112,7 +113,7 @@
     <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
-    <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criteria\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criteria\CheckDownLineBelongCriteria.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Entities\PageContext.cs" />
     <Compile Include="Entities\SyncMonitoring.cs" />
     <Compile Include="Entities\CustomerSettingBelonging.cs" />
+    <Compile Include="Entities\SyncMonitoringAction.cs" />
     <Compile Include="Enumerations\DownLineRole.cs" />
     <Compile Include="Filters\AccountTypeAttribute.cs" />
     <Compile Include="Filters\AdminSiteAttribute.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="ViewModels\AgentBreadcrumbViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\SyncMonitoringPostViewModel.cs" />
     <Compile Include="ViewModels\SyncMonitoringViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

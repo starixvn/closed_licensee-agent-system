@@ -95,8 +95,8 @@ var betList = (function ($) {
                 showDateRange: true,
                 fromDayId: 'spFrom',
                 toDayId: 'spTo',
-                fromDayLabel: 'From',
-                toDayLabel: 'To',
+                fromDayLabel: language.getString('From'),
+                toDayLabel: language.getString('To'),
                 log: function (msg) {
                     console.warn(msg);
                 }

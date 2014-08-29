@@ -3,6 +3,8 @@
     using System;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     /// <summary>
     /// PageContext class.
@@ -62,6 +64,7 @@
             MinDate = MaxDate.AddMonths(-ReportMaxMonth);
             IsDeposit = currentSession.AgentInfo.IsDeposit;
         }
+
         #endregion Customer List
 
         public bool IsAdmin { get; private set; }
@@ -88,8 +91,10 @@
             }
         }
 
+        [JsonConverter(typeof(JavaScriptDateTimeConverter))]
         public DateTime MinDate { get; set; }
 
+        [JsonConverter(typeof(JavaScriptDateTimeConverter))]
         public DateTime MaxDate { get; set; }
 
         public bool IsMember { get; set; }

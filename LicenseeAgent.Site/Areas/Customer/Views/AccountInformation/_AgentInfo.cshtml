@@ -1,8 +1,4 @@
-﻿@using LicenseeAgent.AccountInformation.ViewModels
-@using LicenseeAgent.Core.Enumerations;
-@using LicenseeAgent.Core.Utility;
-
-@model SearchUserResultViewModel
+﻿@model SearchUserResultViewModel
 <div class="container-fluid left">
     @Html.HiddenFor(m => m.Customer.CustId, new { @id = "AgentId" })
     @if (Model.Uplines.Any())
@@ -52,8 +48,10 @@
                         <i class="icon-customer-status"></i>
                     </td>
                     <td>
-                        <div class="@(Model.Customer.Status == (int)AccountStatus.Open ? "icon-status-open" : "icon-status-closed")" id="customer-status">
-                            <span>@(Model.Customer.Status == (int)AccountStatus.Open ? "Open" : "Closed")</span>
+                        <div class="wrapper-status">
+                            <div class="@(Model.Customer.Status == (int)AccountStatus.Open ? "icon-status-open" : "icon-status-closed")" id="customer-status">
+                                <span>@(Model.Customer.Status == (int)AccountStatus.Open ? "Open" : "Closed")</span>
+                            </div>
                         </div>
                     </td>
                 </tr>

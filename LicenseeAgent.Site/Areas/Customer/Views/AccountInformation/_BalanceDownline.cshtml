@@ -1,6 +1,4 @@
-﻿@using LicenseeAgent.AccountInformation.ViewModels
-@using LicenseeAgent.Web.Entities
-@model SearchUserResultViewModel
+﻿@model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
 }
@@ -13,7 +11,7 @@
         </ul>
         <div class="tab-content tab-small">
             <div class="tab-pane active in" id="balance">
-                @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("_BalanceInformation") : Html.Partial("_CashBalanceInformation"))
+                @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("Credit/_BalanceInformation") : Html.Partial("Cash/_BalanceInformation"))
             </div>
         </div>
     }
@@ -26,7 +24,7 @@
         </ul>
         <div class="tab-content tab-small">
             <div class="tab-pane active in" id="balance">
-                @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("_BalanceInformation") : Html.Partial("_CashBalanceInformation"))
+                @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("Credit/_BalanceInformation") : Html.Partial("Cash/_BalanceInformation"))
             </div>
             <div class="tab-pane fade" id="downlineList">
                 @if (Model.Downlines.Any())

@@ -133,7 +133,6 @@
             else
             {
                 ServiceExtension.WriteError(action, memberResult);
-                memberResult.ErrCode = Result.SuccessValue;
             }
 
             return memberResult;
@@ -155,8 +154,12 @@
             }
             else
             {
+                if (memberListResult.ErrCode == Result.ApiError)
+                {
+                    memberListResult.ErrCode = Result.SuccessValue;
+                }
+
                 ServiceExtension.WriteError(action, memberListResult);
-                memberListResult.ErrCode = Result.SuccessValue;
             }
 
             return memberListResult;
@@ -181,7 +184,6 @@
             else
             {
                 ServiceExtension.WriteError(action, memberResult);
-                memberResult.ErrCode = Result.SuccessValue;
             }
 
             return memberResult;
@@ -204,7 +206,6 @@
             else
             {
                 ServiceExtension.WriteError(action, memberListResult);
-                memberListResult.ErrCode = Result.SuccessValue;
             }
 
             return memberListResult;
@@ -217,7 +218,14 @@
         /// <returns>List member entity after merging.</returns>
         public MemberListResult GetPlainMembers(BaseAction action)
         {
-            return ServiceWrapper.GetActionResponse<MemberListResult>(action);
+            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
+
+            if (memberListResult.ErrCode == Result.ApiError)
+            {
+                memberListResult.ErrCode = Result.SuccessValue;
+            }
+
+            return memberListResult;
         }
 
         /// <summary>

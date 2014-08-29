@@ -1,15 +1,14 @@
-﻿@using LicenseeAgent.AccountInformation.ViewModels
-@using LicenseeAgent.Core.Utility
-@using LicenseeAgent.Core.Enumerations
-@model SearchUserViewModel
+﻿@model SearchUserViewModel
 @{
     Layout = null;
 }
+
 <script type="text/javascript">
     $(function () {
         customer.accountInformation.init();
     });
 </script>
+
 @using (Html.BeginForm("Search", "AccountInformation", FormMethod.Post, new { @id = "formSearch", @class = "form-search form-inline" }))
 {
     <div class="input-append">

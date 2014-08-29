@@ -155,6 +155,10 @@ customer.accountInformation = (function ($) {
 
             customer.accountInformation.showScrollSearch();
             customer.accountInformation.pagingBinding();
+
+            $("#searchResult").mouseover(function () {
+                $("#searchResult").getNiceScroll().resize();
+            });
         },
         showScrollSearch: function () {
             //scroll search menu

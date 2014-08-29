@@ -29,7 +29,7 @@ report.statement.detail = (function ($) {
             { HeaderText: language.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
             { HeaderText: language.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('Betting'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
+            { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
                     return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, report.Betting, rowData.Date, cellFormated);
                 }

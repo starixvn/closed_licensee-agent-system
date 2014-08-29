@@ -188,6 +188,12 @@
             return View("Detail", model);
         }
 
+        [HttpPost]
+        public JsonResult Current(StatementDetailReportViewModel model)
+        {
+            return DetailPost(model);
+        }
+
         /// <summary>
         /// Statement Report Data.
         /// </summary>

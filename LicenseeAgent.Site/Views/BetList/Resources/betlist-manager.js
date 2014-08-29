@@ -57,7 +57,6 @@ var betList = (function ($) {
             var urlGetBetList = $('#search-form').attr('action');
             var fromDate = $('#month-picker-control').monPickr("getFromDate", "MM/dd/yyyy");
             var toDate = $('#month-picker-control').monPickr("getToDate", "MM/dd/yyyy");
-
             var params = {
                 CustId: pageContext.CustId,
                 FromDate: fromDate,

@@ -305,7 +305,8 @@
         [HttpPost]
         public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
         {
-            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId)
+                || model.AgentId == CurrentSession.AgentInfo.AgentId)
             {
                 return RedirectToAccessDeniedJson();
             }

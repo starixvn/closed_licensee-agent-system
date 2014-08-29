@@ -46,14 +46,27 @@
         var className = value < 0 ? "number-negative" : string.Empty;
     <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatInt(value)</span>
 }
-@helper RenderPopover(int memberId, IList<UpLineEntity> uplines, int numberOfLevel, string actionName)
+@helper RenderPopoverCustomerSetting(int memberId, IList<UpLineEntity> uplines, int numberOfLevel, string actionName)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
         var numberUpline = uplines.Count;
-        for (int index = numberUpline - 1; index >= 0; index--)
+        
+        <ul>
+            <li class='popover-header'>
+                <div>@Las.Level</div>
+                <div>@Las.Username</div>
+            </li>
+       @for (int index = 0; index < numberUpline; index++)
         {
-    <a href='@(url.Action(actionName, "CustomerSetting", new { memberId = memberId, agentId = uplines[index].UplineCustId, agentLevel = uplines[index].Level, numberOfLevel = numberOfLevel }))' target='frmMain' class='popover-item' onclick='accountInformation.hidePopover();'>@(uplines[index].UserName)</a>
+            var upline = uplines.ElementAt(index);
+            <li class='popover-item'>
+                <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
+                <div>
+                    <a class='agent-inline' href='@(url.Action(actionName, "CustomerSetting", new { area = "", memberId = memberId, agentId = upline.UplineCustId, agentLevel = upline.Level, numberOfLevel = numberOfLevel }))'  target='frmMain' onclick='accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
+                </div>
+            </li>
         }
+        </ul>
 }
 @helper GenerateRadios(DrawFilter val)
     {
@@ -154,7 +167,7 @@
 }
 
 @helper GroupCommision(IEnumerable<GroupCommission> groupCommissions, int selectedGroup = 0, bool haveAll = true, string className = "")
-{
+    {
     <select id="GroupCommId" name="GroupCommId" class="@className">        
         @if (haveAll)
         {
@@ -180,5 +193,28 @@
             <option value="@value" @(value == selectedValue ? "selected" : string.Empty)>@value</option>
         }
     </select>
+}
+
+@helper RenderPopoverAccountInformation(IList<UpLineEntity> uplines)
+    {
+        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+        var numberUpline = uplines.Count;
+        
+        <ul>
+            <li class='popover-header'>
+                <div>@Las.Level</div>
+                <div>@Las.Username</div>
+            </li>
+       @for (int index = 0; index < numberUpline; index++)
+        {
+            var upline = uplines.ElementAt(index);
+            <li class='popover-item'>
+                <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
+                <div>
+                    <a class='agent-inline' href='@(url.Action("Search", "AccountInformation", new { area = "", username = upline.UserName }))'  target='frmMain' onclick='accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
+                </div>
+            </li>
+        }
+        </ul>
 }
 

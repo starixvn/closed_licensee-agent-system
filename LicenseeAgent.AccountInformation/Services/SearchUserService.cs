@@ -105,5 +105,39 @@
                 YesterdayBalance = criteria.YesterdayBalance
             };
         }
+
+        /// <summary>
+        /// Get agent balance.
+        /// </summary>
+        /// <param name="criteria">Agent balance criteria.</param>
+        /// <returns>Agent balance entity.</returns>
+        public BalanceEntity GetCashAgentBalance(CashAgentBalanceCriteria criteria)
+        {
+            Execute(criteria);
+
+            return new BalanceEntity
+            {
+                CashBalance = criteria.Balance,
+                Outstanding = criteria.Outstanding,
+                TotalOutstanding = criteria.TotalOutstanding,
+                Today = criteria.Today
+            };
+        }
+
+        /// <summary>
+        /// Get member balance.
+        /// </summary>
+        /// <param name="criteria">Member balance criteria.</param>
+        /// <returns>Member balance entity.</returns>
+        public BalanceEntity GetCashMemberBalance(CashMemberBalanceCriteria criteria)
+        {
+            Execute(criteria);
+
+            return new BalanceEntity
+            {
+                PendingFund = criteria.PendingFund,
+                AvailableFund = criteria.AvailableFund
+            };
+        }
     }
 }

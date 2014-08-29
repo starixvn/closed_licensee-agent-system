@@ -9,7 +9,7 @@
                         { HeaderText: "@Las.SystemId", Name: "SystemId", MergeRowNumber: 2 },
                         { HeaderText: "@Las.Username", Name: "UserName", MergeRowNumber: 2 },
                         { HeaderText: "@Las.Group", Name: "GroupName", MergeRowNumber: 2 },
-                        { HeaderText: "@Las.CommissionHeader", Name: "SBComm", MergeColNumber: 2 }
+                        { HeaderText: "@Las.CommissionHeader", Name: "SBComm", MergeColNumber: @(Model.ProductCount) }
                     ]
             }
         ],
@@ -32,11 +32,46 @@
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
                     return '<span class="sb-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
                 }
-            },
-            { HeaderText: "@Las.NG", Width: 50, Name: "NGComm", HeaderAlign: "center", CellAlign: "center",
-                Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return '<span class="ng-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
+            }
+            @if (Model.HasRacing)
+            {
+                <text>
+                ,{ HeaderText: "@Las.Racing", Width: 50, Name: "RacingComm", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="racing-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
+                    }
                 }
+                </text>
+            }
+            @if (Model.HasNumberGame)
+            {
+                <text>
+                ,{ HeaderText: "@Las.NG", Width: 50, Name: "NGComm", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="ng-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
+                    }
+                }
+                </text>
+            }
+            @if (Model.HasLiveCasino)
+            {
+                <text>
+                ,{ HeaderText: "@Las.LC", Width: 50, Name: "LCComm", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="lc-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
+                    }
+                }
+                </text>
+            }
+            @if (Model.HasRNGCasino)
+            {
+                <text>
+                ,{ HeaderText: "@Las.CS", Width: 50, Name: "RNGComm", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="rng-comm">' + core.formatCommissionPercent(cell.Value) + '</span>';
+                    }
+                }
+                </text>
             }
         ],
         showPager: true,

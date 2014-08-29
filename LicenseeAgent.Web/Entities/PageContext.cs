@@ -64,6 +64,7 @@
             MinDate = MaxDate.AddMonths(-ReportMaxMonth);
             IsDeposit = currentSession.AgentInfo.IsDeposit;
         }
+        #endregion Customer List
 
         #endregion Customer List
 

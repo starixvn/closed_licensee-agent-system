@@ -1,25 +1,21 @@
-﻿/*global core, language, popup, internalHeader */
+﻿/*global core, language, popup, internalHeader, pageContext */
 
-var accountInformation = (function ($) {
+var customer = customer || {};
+
+customer.accountInformation = (function ($) {
     'use strict';
+    var statusObj = { Close: 0, Open: 1 };
     var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function () {
             urlSuggestion = $("#searchUrl").data("suggest");
             urlDownline = $("#searchUrl").data("downline");
             urlCurrency = $("#searchUrl").data("currency");
-
             var userName;
-
-            //scroll left menu
-            $(".leftmenu-box").niceScroll({
-                cursorcolor: "#8a8a8a",
-                autohidemode: "leave"
-            });
 
             // username suggestion
             $("#UserName").typeahead({
-                source: accountInformation.getSuggestion,
+                source: customer.accountInformation.getSuggestion,
                 minLength: 2
             });
 
@@ -28,11 +24,7 @@ var accountInformation = (function ($) {
                 userName = $.trim($("#UserName").val());
                 if (userName !== '') {
                     $("#UserName").val(userName);
-                    $(this).ajaxSubmit({
-                        target: '#searchResult',
-                        beforeSubmit: accountInformation.beforeSearchUser,
-                        success: accountInformation.searchResultBinding
-                    });
+                    customer.accountInformation.search($(this).attr('action'), userName);
                 }
                 event.preventDefault();
             });
@@ -50,18 +42,36 @@ var accountInformation = (function ($) {
 
                 $.removeCookie('username', { path: '/' });
 
-                accountInformation.changeAccountInfoActive();
+                customer.accountInformation.changeAccountInfoActive();
             }
         },
-        beforeSearchUser: function () {
-            core.blockUI();
-            $("#searchAlert").hide();
+        search: function (url, userName) {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: { username: userName },
+                beforeSend: function () {
+                    $("#searchAlert").hide();
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (typeof data === 'object' && data.ErrCode !== 0) {
+                        customer.accountInformation.showNoUserAlert(data.ErrMsg);
+                        return;
+                    }
+                    $('#searchResult').html(data);
+                    customer.accountInformation.searchResultBinding();
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
         },
         searchResultBinding: function () {
             core.unblockUI();
-
             $('#tabDownline').on('shown', function () {
-                accountInformation.showScroll();
+                customer.accountInformation.showScrollDownline();
+                customer.accountInformation.showScrollSearch();
             });
 
             var pageIndex = $('#paging').data('page-index') + 1,
@@ -76,7 +86,7 @@ var accountInformation = (function ($) {
                     pageUrl: function () { return '#'; },
                     onPageChanged: function (e, oldPage, newPage) {
                         if (oldPage !== newPage && e) {
-                            accountInformation.getDownline(newPage);
+                            customer.accountInformation.getDownline(newPage);
                         }
                     }
                 });
@@ -106,13 +116,59 @@ var accountInformation = (function ($) {
                 });
             }
 
-            accountInformation.pagingBinding();
+            //add popover for more upline
+            if ($('.popover-more').length > 0) {
+                $('.popover-more').popover({
+                    container: '.parent-popover', //'body',
+                    html: true,
+                    placement: 'bottom'
+                });
+
+                $(document).click(function (e) {
+                    $('.popover-more').each(function () {
+                        if (!$(this).is(e.target) &&
+                            $(this).has(e.target).length === 0 &&
+                            $('.popover').has(e.target).length === 0) {
+                            $(this).popover('hide');
+                            return;
+                        }
+                    });
+                });
+            }
+
+            $("#customer-status").click(function () {
+                customer.accountInformation.changeStatus(this);
+            });
+
+            $("#show-hide").click(function () {
+                if ($(this).hasClass("icon-collapse")) {
+                    $(this).parents(".cust-info").find("table").hide();
+                    $(this).removeClass("icon-collapse")
+                            .addClass("icon-expand");
+                }
+                else {
+                    $(this).parents(".cust-info").find("table").show();
+                    $(this).removeClass("icon-expand")
+                            .addClass("icon-collapse");
+                }
+            });
+
+            customer.accountInformation.showScrollSearch();
+            customer.accountInformation.pagingBinding();
+        },
+        showScrollSearch: function () {
+            //scroll search menu
+            $("#searchResult").niceScroll({
+                cursorcolor: "#8a8a8a",
+                autohidemode: "leave",
+                horizrailenabled: false
+            });
+            $("#searchResult").getNiceScroll().resize();
         },
         pagingBinding: function () {
             $(".agent-inline").click(function (event) {
                 $("#UserName").val($(this).attr('title'));
                 $("#formSearch").submit();
-
                 event.preventDefault();
             });
         },
@@ -147,7 +203,7 @@ var accountInformation = (function ($) {
                 },
                 success: function (data) {
                     if (data.ErrCode === 0) {
-                        accountInformation.bindDownline(data.List);
+                        customer.accountInformation.bindDownline(data.List);
                     }
                 },
                 complete: function () {
@@ -167,8 +223,8 @@ var accountInformation = (function ($) {
                     downlines[index].UserName + '</a></li>';
             }
             $("#downlineContent ul").html(downlineHtml);
-            accountInformation.pagingBinding();
-            accountInformation.showScroll();
+            customer.accountInformation.pagingBinding();
+            customer.accountInformation.showScrollDownline();
         },
         //show alert when search username not exist
         showNoUserAlert: function (message) {
@@ -183,13 +239,13 @@ var accountInformation = (function ($) {
                 label: language.getString('Yes'),
                 action: function () {
                     popup.close();
-                    accountInformation.changeCurrencyPage(currencyId, currencyName);
+                    customer.accountInformation.changeCurrencyPage(currencyId, currencyName);
                 }
             }, {
                 label: language.getString('No'),
                 action: function () {
                     popup.close();
-                    accountInformation.showNoUserAlert(msgAlert);
+                    customer.accountInformation.showNoUserAlert(msgAlert);
                 }
             }];
 
@@ -240,7 +296,7 @@ var accountInformation = (function ($) {
             $(accountInfoId).removeClass('fade');
             $(accountInfoId).addClass('active in');
         },
-        showScroll: function () {
+        showScrollDownline: function () {
             var niceScroll = $("#downlineContent").getNiceScroll();
             if (niceScroll.length === 0) {
                 $("#downlineContent").niceScroll({
@@ -270,11 +326,107 @@ var accountInformation = (function ($) {
                 $('#formSearch').submit();
                 popup.unblock();
             }, timeout);
+        },
+        changeStatus: function (target) {
+            if (!(pageContext.IsDirectDownLine || pageContext.IsAdmin)) {
+                return;
+            }
+
+            var currentStatus, newStatus;
+            var agentId = parseInt($("#AgentId").val());
+            if (!pageContext.IsAdmin && pageContext.AgentId === agentId) {
+                return;
+            }
+
+            currentStatus = $(target).hasClass('icon-status-open') ? 1 : 0;
+            newStatus = currentStatus === 0 ? 1 : 0;
+            customer.accountInformation.showAlert(target, agentId, newStatus);
+        },
+        showAlert: function (target, custId, statusId) {
+            var message = '';
+            if (statusId === statusObj.Close) {
+                if (pageContext.IsMember) {
+                    message = language.getString('ChangeStatusMember');
+                } else {
+                    message = language.getString('ChangeStatusAgent');
+                }
+            } else {
+                if (pageContext.IsMember) {
+                    message = language.getString('ChangeCloseToOpenMember');
+                } else {
+                    message = language.getString('ChangeCloseToOpenAgent');
+                }
+            }
+            var title = language.getString('ChangeStatus');
+            var buttons = [{
+                label: language.getString('Yes'),
+                action: function () {
+                    popup.close();
+                    customer.accountInformation.updateStatus(target, custId, statusId);
+                }
+            }, {
+                label: language.getString('No'),
+                action: function () {
+                    popup.close();
+                }
+            }];
+
+            popup.confirm({
+                title: title,
+                message: message,
+                buttons: buttons
+            });
+        },
+        updateStatus: function (target, custId, statusId) {
+            var params, url;
+            if (pageContext.IsMember) {
+                params = {
+                    memberid: custId,
+                    status: statusId
+                };
+            } else {
+                params = {
+                    agentid: custId,
+                    status: statusId
+                };
+            }
+
+            url = pageContext.IsMember ? "~/CustomerList/ChangeMemberStatus"
+                : "~/CustomerList/ChangeAgentStatus";
+            $.ajax({
+                url: core.resolveUrl(url),
+                type: 'post',
+                data: params,
+                beforeSend: function () {
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (data.ErrCode !== 0) {
+                        alert(data.ErrMsg);
+                        return;
+                    }
+                    if (statusId === 0) {
+                        $(target).addClass('icon-status-closed')
+                            .removeClass('icon-status-open')
+                            .find('span')
+                            .text('Closed');
+                        $("#show-hide").parents(2)
+                            .addClass('closed')
+                            .removeClass('open');
+                    } else {
+                        $(target).addClass('icon-status-open')
+                            .removeClass('icon-status-closed')
+                            .find('span')
+                            .text('Open');
+                        $("#show-hide").parents(2)
+                            .addClass('open')
+                            .removeClass('closed');
+                    }
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    accountInformation.init();
-});

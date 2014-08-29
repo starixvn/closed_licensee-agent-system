@@ -126,7 +126,8 @@
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 UserId = CurrentSession.AgentInfo.AgentId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                UserName = model.UserName
+                UserName = model.UserName,
+                LegendType = CurrentSession.AgentInfo.IsCredit ? (short)LegendType.Credit : (short)LegendType.Deposit
             };
 
             var users = _searchUserService.SuggestAgent(criteria);
@@ -151,7 +152,8 @@
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 UserId = CurrentSession.LoginUserId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
-                UserName = model.UserName
+                UserName = model.UserName,
+                LegendType = CurrentSession.AgentInfo.IsCredit ? (short)LegendType.Credit : (short)LegendType.Deposit
             };
 
             var users = _searchUserService.SuggestAdmin(criteria);
@@ -177,7 +179,8 @@
                 UserId = CurrentSession.AgentInfo.AgentId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
                 UserName = model.UserName,
-                PageSize = Constants.PageSize
+                PageSize = Constants.PageSize,
+                LegendType = CurrentSession.AgentInfo.IsCredit ? (short)LegendType.Credit : (short)LegendType.Deposit
             };
 
             var searchMemberEntity = _searchUserService.GetMembers(criteria);
@@ -211,6 +214,7 @@
                 UserId = CurrentSession.LoginUserId,
                 CurrencyId = CurrentSession.AgentInfo.CurrencyId,
                 UserName = model.UserName,
+                LegendType = CurrentSession.AgentInfo.IsCredit ? (short)LegendType.Credit : (short)LegendType.Deposit,
                 PageSize = Constants.PageSize
             };
 
@@ -330,6 +334,22 @@
         [NonAction]
         public BalanceEntity GetBalance(CustomerEntity customer)
         {
+            if (CurrentSession.AgentInfo.IsDeposit)
+            {
+                var balanceUp = _coreService.BalanceUpDay;
+
+                return customer.Level == Constants.MemberLevel
+                    ? _searchUserService.GetCashMemberBalance(new CashMemberBalanceCriteria { CustId = customer.CustId })
+                    : _searchUserService.GetCashAgentBalance(
+                        new CashAgentBalanceCriteria
+                        {
+                            AgentId = customer.CustId,
+                            MoveBetDay = balanceUp.MoveBetsDay,
+                            BalanceUpDay = balanceUp.BalanceUpDay,
+                            Today = DateTime.Now
+                        });
+            }
+
             return customer.Level == Constants.MemberLevel
                 ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId })
                 : _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });

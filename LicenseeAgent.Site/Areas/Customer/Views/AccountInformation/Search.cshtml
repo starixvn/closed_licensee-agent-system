@@ -1,0 +1,59 @@
+﻿@using LicenseeAgent.AccountInformation.ViewModels
+@using LicenseeAgent.AccountInformation.ViewResults
+@using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Web.Entities
+@model SearchUserResultViewModel
+@{
+    Layout = null;
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+
+@if (ViewBag.Result != null)
+{
+    var result = (SearchUserViewResult)ViewBag.Result;
+    if (result.IsChangeCurrency)
+    {
+    <script type="text/javascript">
+        var alertMessage = '@string.Format(result.ErrMsg, result.CurrencyName)';
+        customer.accountInformation.showCurrencyAlert('@result.CurrencyId', '@result.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
+    </script>
+    }
+    else if (!string.IsNullOrEmpty(result.ErrMsg))
+    {
+    <script type="text/javascript">
+        customer.accountInformation.showNoUserAlert('@result.ErrMsg');
+    </script>
+    }
+}
+@if (ViewBag.PageContext != null)
+{
+    <script type="text/javascript">
+        @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
+    </script>
+}
+
+@if (pageContext != null)
+{
+    @Html.Partial("_AgentInfo", Model)
+
+    <div class="controls-row left">
+        @if (pageContext.IsMember)
+        {
+            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">@Las.BetList</button>
+        }
+        else
+        {
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">@(pageContext.IsLastLevel ? @Las.MemberList : @Las.AgentList)</button>
+        }
+        @if (Model.IsShowStatement)
+        {
+            <button class="btn btn-inverse" data-url="@Url.RouteUrl("Report_Statement", new { area = "", action = "Detail", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">@Las.Statement</button>
+        }
+    </div>
+        if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
+        {
+    @Html.Partial("_BalanceDownline", Model)
+    @Html.Partial("_SettingAction", Model)
+        }
+        }
+}

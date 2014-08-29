@@ -30,6 +30,8 @@
         [SpParam(SqlParamName = "returnCurrencyName")]
         public string AgentCurrencyName { get; set; }
 
+        public short LegendType { get; set; }
+
         public int MsgId { get; set; }
 
         public override string GetSettingKey()

@@ -50,5 +50,19 @@
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
         BalanceEntity GetMemberBalance(MemberBalanceCriteria criteria);
+
+        /// <summary>
+        /// Get agent balance.
+        /// </summary>
+        /// <param name="criteria">Agent balance criteria.</param>
+        /// <returns>Agent balance entity.</returns>
+        BalanceEntity GetCashAgentBalance(CashAgentBalanceCriteria criteria);
+
+        /// <summary>
+        /// Get member balance.
+        /// </summary>
+        /// <param name="criteria">Member balance criteria.</param>
+        /// <returns>Member balance entity.</returns>
+        BalanceEntity GetCashMemberBalance(CashMemberBalanceCriteria criteria);
     }
 }

@@ -1,14 +1,14 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Controllers
 {
-    using System;
-    using System.Globalization;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.CustomerSetting.Core;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Services;
+    using LicenseeAgent.CustomerSetting.Utils;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Controllers;
@@ -21,19 +21,25 @@
     [AllowedCommission]
     public class MemberCommissionController : BaseController
     {
+        private readonly ICoreService _coreService;
+
         private readonly IMemberCommissionService _memberCommissionService;
 
         private readonly IGroupCommissionService _groupCommissionService;
 
         public MemberCommissionController()
-            : this(null, null)
+            : this(null, null, null)
         {
         }
 
-        public MemberCommissionController(IMemberCommissionService memberCommissionService, IGroupCommissionService groupCommissionService)
+        public MemberCommissionController(
+                IMemberCommissionService memberCommissionService, 
+                IGroupCommissionService groupCommissionService,
+                ICoreService coreService)
         {
             _memberCommissionService = memberCommissionService ?? new MemberCommissionService();
             _groupCommissionService = groupCommissionService ?? new GroupCommissionService();
+            _coreService = coreService ?? new CoreService();
         }
 
         /// <summary>
@@ -47,8 +53,9 @@
             model.GroupCommissions = _groupCommissionService.GetGroupCommissions(
                 new GroupCommissionSelCriteria
                 {
-                    LicenseeId = CurrentSession.OnLicenseeId
+                    LicenseeId = CurrentSession.OnLicenseeId,
                 });
+            UpdateOfferProduct(model);
 
             return View(model);
         }
@@ -91,13 +98,18 @@
         [HttpGet]
         public ActionResult MoveToGroup()
         {
-            var groupCommissions = _groupCommissionService.GetGroupCommissions(
+            var model = new MemberCommissionViewModel
+            {
+                GroupCommissions = _groupCommissionService.GetGroupCommissions(
                 new GroupCommissionSelCriteria
                 {
                     LicenseeId = CurrentSession.OnLicenseeId,
-                });
+                })
+            };
 
-            return View(groupCommissions);
+            UpdateOfferProduct(model);
+
+            return View(model);
         }
 
         /// <summary>
@@ -138,11 +150,14 @@
         /// <summary>
         /// Update Member Commission.
         /// </summary>
+        /// <param name="model">Member commission view model.</param>
         /// <returns>View Result.</returns>
         [HttpGet]
-        public ActionResult UpdateMemberCommission()
+        public ActionResult UpdateMemberCommission(MemberCommissionViewModel model)
         {
-            return View();
+            UpdateOfferProduct(model);
+
+            return View(model);
         }
 
         /// <summary>
@@ -153,8 +168,6 @@
         [HttpPost]
         public ActionResult UpdateMemberCommission(UpdateMemberCommissionViewModel model)
         {
-            var cultureInfo = CultureInfo.GetCultureInfo("en-US");
-
             var criteria = new LicenseeUpdateMemberCommissionCriteria
             {
                 LicenseeId = CurrentSession.OnLicenseeId,
@@ -163,9 +176,15 @@
                 LanguageKey = CurrentSession.Language,
                 OrginalCustomer = model.MemberIds,
                 Ip = Request.GetClientIp(),
-                IsUpdateNG = true,
-                SBCommission = Convert.ToDecimal(string.Format(cultureInfo, Constant.FormatCommission, model.SBComm1, model.SBComm2, model.SBComm3)) / Constant.StepMulDiv,
-                NGCommission = Convert.ToDecimal(string.Format(cultureInfo, Constant.FormatCommission, model.NGComm1, model.NGComm2, model.NGComm3)) / Constant.StepMulDiv
+                IsUpdateRacing = model.HasRacing,
+                IsUpdateNG = model.HasNumberGame,
+                IsUpdateLC = model.HasLiveCasino,
+                IsUpdateRNG = model.HasRNGCasino,
+                SBCommission = Commission.Combine(model.SBComm1, model.SBComm2, model.SBComm3),
+                RacingCommission = Commission.Combine(model.RacingComm1, model.RacingComm2, model.RacingComm3),
+                NGCommission = Commission.Combine(model.NGComm1, model.NGComm2, model.NGComm3),
+                LCCommission = Commission.Combine(model.LCComm1, model.LCComm2, model.LCComm3),
+                RNGCommission = Commission.Combine(model.RNGComm1, model.RNGComm2, model.RNGComm3)
             };
 
             _memberCommissionService.UpdateMember(criteria);
@@ -225,6 +244,32 @@
                 ErrMsg = Las.UpdateSuccessfully,
                 Members = _memberCommissionService.GetEffectedMemberCommissions(new GetLicenseeMembersByIdsCriteria { ListCustId = model.MemberIds })
             });
+        }
+
+        /// <summary>
+        /// Update offer product.
+        /// </summary>
+        /// <param name="model">Member commission view model.</param>
+        [NonAction]
+        public void UpdateOfferProduct(MemberCommissionViewModel model)
+        {
+            model.HasSportbook = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_0);
+            model.HasLiveCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_4);
+            model.HasNumberGame = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_2);
+            model.HasRacing = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_1);
+            model.HasRNGCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_6);
+
+            var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
+            var supportedProducts = new List<int>
+            {
+                (int)Product.Product_0,
+                (int)Product.Product_1,
+                (int)Product.Product_2,
+                (int)Product.Product_4,
+                (int)Product.Product_6
+            };
+
+            model.ProductCount = products.Where(p => supportedProducts.Contains(p.ProductId)).Count();
         }
     }
 }

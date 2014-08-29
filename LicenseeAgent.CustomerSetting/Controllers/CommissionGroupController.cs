@@ -2,16 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerSetting.Core;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Enumerations;
     using LicenseeAgent.CustomerSetting.Services;
+    using LicenseeAgent.CustomerSetting.Utils;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web.Controllers;
@@ -135,11 +134,11 @@
                     Langkey = CurrentSession.Language,
                     GroupName = model.GroupName,
                     IsDefault = model.IsDefault,
-                    SBComm = model.HasSportbook ? CombineComission(model.SBComm1, model.SBComm2, model.SBComm3) : 0,
-                    RacingComm = model.HasRacing ? CombineComission(model.RCComm1, model.RCComm2, model.RCComm3) : 0,
-                    NGComm = model.HasNumberGame ? CombineComission(model.NGComm1, model.NGComm2, model.NGComm3) : 0,
-                    LCComm = model.HasLiveCasino ? CombineComission(model.LCComm1, model.LCComm2, model.LCComm3) : 0,
-                    RNGComm = model.HasRNGCasino ? CombineComission(model.RNGComm1, model.RNGComm2, model.RNGComm3) : 0,
+                    SBComm = model.HasSportbook ? Commission.Combine(model.SBComm1, model.SBComm2, model.SBComm3) : 0,
+                    RacingComm = model.HasRacing ? Commission.Combine(model.RCComm1, model.RCComm2, model.RCComm3) : 0,
+                    NGComm = model.HasNumberGame ? Commission.Combine(model.NGComm1, model.NGComm2, model.NGComm3) : 0,
+                    LCComm = model.HasLiveCasino ? Commission.Combine(model.LCComm1, model.LCComm2, model.LCComm3) : 0,
+                    RNGComm = model.HasRNGCasino ? Commission.Combine(model.RNGComm1, model.RNGComm2, model.RNGComm3) : 0,
                     IsResetDefault = model.IsResetDefault
                 };
                 _groupCommissionService.GroupCommIns(criteria);
@@ -237,11 +236,11 @@
                     GroupName = model.GroupName,
                     GroupCommId = model.GroupCommId,
                     IsDefault = model.IsDefault,
-                    SBComm = model.HasSportbook ? CombineComission(model.SBComm1, model.SBComm2, model.SBComm3) : 0,
-                    RacingComm = model.HasRacing ? CombineComission(model.RCComm1, model.RCComm2, model.RCComm3) : 0,
-                    NGComm = model.HasNumberGame ? CombineComission(model.NGComm1, model.NGComm2, model.NGComm3) : 0,
-                    LCComm = model.HasLiveCasino ? CombineComission(model.LCComm1, model.LCComm2, model.LCComm3) : 0,
-                    RNGComm = model.HasRNGCasino ? CombineComission(model.RNGComm1, model.RNGComm2, model.RNGComm3) : 0,
+                    SBComm = model.HasSportbook ? Commission.Combine(model.SBComm1, model.SBComm2, model.SBComm3) : 0,
+                    RacingComm = model.HasRacing ? Commission.Combine(model.RCComm1, model.RCComm2, model.RCComm3) : 0,
+                    NGComm = model.HasNumberGame ? Commission.Combine(model.NGComm1, model.NGComm2, model.NGComm3) : 0,
+                    LCComm = model.HasLiveCasino ? Commission.Combine(model.LCComm1, model.LCComm2, model.LCComm3) : 0,
+                    RNGComm = model.HasRNGCasino ? Commission.Combine(model.RNGComm1, model.RNGComm2, model.RNGComm3) : 0,
                     IsUpdateLC = model.HasLiveCasino,
                     IsUpdateNG = model.HasNumberGame,
                     IsUpdateRacing = model.HasRacing,
@@ -358,12 +357,6 @@
             }
 
             return 0;
-        }
-
-        private decimal CombineComission(int commission1, int commission2, int commission3)
-        {
-            var cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            return Convert.ToDecimal(string.Format(cultureInfo, Constant.FormatCommission, commission1, commission2, commission3)) / Constant.StepMulDiv;
         }
 
         /// <summary>

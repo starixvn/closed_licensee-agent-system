@@ -1,5 +1,7 @@
 ﻿namespace LicenseeAgent.AccountInformation.Entities
 {
+    using System;
+
     /// <summary>
     /// BalanceEntity class.
     /// </summary>
@@ -22,5 +24,13 @@
         public decimal UsedCredit { get; set; }
 
         public decimal BetCredit { get; set; }
+
+        public decimal CashBalance { get; set; }
+
+        public decimal AvailableFund { get; set; }
+
+        public decimal PendingFund { get; set; }
+
+        public DateTime Today { get; set; }
     }
 }

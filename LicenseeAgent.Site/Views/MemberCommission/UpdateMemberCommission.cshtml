@@ -1,7 +1,7 @@
 ﻿@using LicenseeAgent.CustomerSetting.Entities;
 @using LicenseeAgent.CustomerSetting.ViewModels;
 
-@model UpdateMemberCommissionViewModel
+@model MemberCommissionViewModel
 @{
     ViewBag.Title = Las.UpdateMemberCommission;
 }
@@ -38,6 +38,20 @@
                     @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "SBComm3", "selectpicker w60 upd-comm last")
                 </div>
             </div>
+            @if (Model.HasRacing)
+            {
+            <div class="control-group">
+                <label for="RacingComm" class="control-label pull-left">@Las.RacingCommission</label>
+                <div class="controls update-comm">
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "RacingComm1", "selectpicker w60 product-comm")
+                    <div class="dot-comm">•</div>
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "RacingComm2", "selectpicker w60 upd-comm")
+                    @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "RacingComm3", "selectpicker w60 upd-comm last")
+                </div>
+            </div>   
+            }
+            @if (Model.HasNumberGame)
+            {
             <div class="control-group">
                 <label for="NGComm" class="control-label pull-left">@Las.NGCommission</label>
                 <div class="controls update-comm">
@@ -47,6 +61,31 @@
                     @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "NGComm3", "selectpicker w60 upd-comm last")
                 </div>
             </div>
+            }
+            @if (Model.HasLiveCasino)
+            {
+            <div class="control-group">
+                <label for="LCComm" class="control-label pull-left">@Las.LCCommission</label>
+                <div class="controls update-comm">
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "LCComm1", "selectpicker w60 product-comm")
+                    <div class="dot-comm">•</div>
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "LCComm2", "selectpicker w60 upd-comm")
+                    @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "LCComm3", "selectpicker w60 upd-comm last")
+                </div>
+            </div>
+            }
+            @if (Model.HasRNGCasino)
+            {
+            <div class="control-group">
+                <label for="RNGComm" class="control-label pull-left">@Las.RNGCommission</label>
+                <div class="controls update-comm">
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "RNGComm1", "selectpicker w60 product-comm")
+                    <div class="dot-comm">•</div>
+                    @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "RNGComm2", "selectpicker w60 upd-comm")
+                    @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "RNGComm3", "selectpicker w60 upd-comm last")
+                </div>
+            </div>
+            }
             <div class="control-group">
                 <span class="note-text">@Las.Note:@Html.Raw(Las.NoteUpdateMemberCommission)</span>
             </div>
@@ -62,5 +101,10 @@
             </div>
         </fieldset>
         @Html.Hidden("MemberIds")
+        @Html.HiddenFor(m => m.HasLiveCasino)
+        @Html.HiddenFor(m => m.HasNumberGame)
+        @Html.HiddenFor(m => m.HasRacing)
+        @Html.HiddenFor(m => m.HasRNGCasino)
+        @Html.HiddenFor(m => m.HasSportbook)
     }
 </div>

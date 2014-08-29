@@ -1,8 +1,8 @@
-﻿@using LicenseeAgent.CustomerSetting.Entities
+﻿@using LicenseeAgent.CustomerSetting.ViewModels;
 @using LicenseeAgent.Core.Utility;
 @using LicenseeAgent.CustomerSetting.Core;
 
-@model IEnumerable<GroupCommission>
+@model MemberCommissionViewModel
 @{
     ViewBag.Title = Las.MoveToGroup;
 }
@@ -33,21 +33,51 @@
             <div class="control-group">
                 <label for="group" class="control-label pull-left">@Las.SelectGroup</label>
                 <div class="controls move-group">
-                    @RazorHelper.GroupCommision(Model, 0, false, "selectpicker")
+                    @RazorHelper.GroupCommision(Model.GroupCommissions, 0, false, "selectpicker")
                 </div>
             </div>
             <div class="control-group">
                 <label for="SBComm" class="control-label pull-left">@Las.SBCommission</label>
                 <div class="controls move-group">
-                    @Html.TextBox("SBComm", string.Empty, new { @class = "span4", @readonly = "readonly" })
+                    @Html.TextBox("SBComm", string.Empty, new { @class = "span4 comm-val", @readonly = "readonly" })
                 </div>
             </div>
+            @if (Model.HasRacing)
+            {
+            <div class="control-group">
+                <label for="RacingComm" class="control-label pull-left">@Las.RacingCommission</label>
+                <div class="controls move-group">
+                    @Html.TextBox("RacingComm", string.Empty, new { @class = "span4 comm-val", @readonly = "readonly" })
+                </div>
+            </div>  
+            }
+            @if (Model.HasNumberGame)
+            {
             <div class="control-group">
                 <label for="NGComm" class="control-label pull-left">@Las.NGCommission</label>
                 <div class="controls move-group">
-                    @Html.TextBox("NGComm", string.Empty, new { @class = "span4", @readonly = "readonly" })
+                    @Html.TextBox("NGComm", string.Empty, new { @class = "span4 comm-val", @readonly = "readonly" })
                 </div>
             </div>
+            }
+            @if (Model.HasLiveCasino)
+            {
+            <div class="control-group">
+                <label for="LCComm" class="control-label pull-left">@Las.LCCommission</label>
+                <div class="controls move-group">
+                    @Html.TextBox("LCComm", string.Empty, new { @class = "span4 comm-val", @readonly = "readonly" })
+                </div>
+            </div>  
+            }
+            @if (Model.HasRNGCasino)
+            {
+            <div class="control-group">
+                <label for="RNGComm" class="control-label pull-left">@Las.RNGCommission</label>
+                <div class="controls move-group">
+                    @Html.TextBox("RNGComm", string.Empty, new { @class = "span4 comm-val", @readonly = "readonly" })
+                </div>
+            </div>  
+            }
             <div class="control-group">
                 <div class="controls move-group">
                     <button type="button" class="btn btn-primary" onclick="popup.close();">
@@ -63,5 +93,5 @@
     }
 </div>
 <script type="text/javascript">
-    @Html.Raw(Formatter.FormatJson("groupCommissions", Model))
+    @Html.Raw(Formatter.FormatJson("groupCommissions", Model.GroupCommissions))
 </script>

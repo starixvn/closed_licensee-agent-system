@@ -42,15 +42,15 @@ var memberCommission = (function ($) {
                     return;
                 }
                 if ($(this).val() === '') {
-                    $("#SBComm").val('');
-                    $("#NGComm").val('');
+                    $(".comm-val").each(function () {
+                        $(this).val('');
+                    });
                     return;
                 }
                 var numberGroup = groupCommissions.length;
                 for (var index = 0; index < numberGroup; index++) {
                     if (groupCommissions[index].GroupCommId === parseInt($(this).val())) {
-                        $("#SBComm").val(core.formatCommissionPercent(groupCommissions[index].SBComm));
-                        $("#NGComm").val(core.formatCommissionPercent(groupCommissions[index].NGComm));
+                        memberCommission.showProductCommission(index);
                     }
                 }
             });
@@ -70,6 +70,11 @@ var memberCommission = (function ($) {
                         $(this).selectpicker('refresh');
                     });
                 }
+            });
+        },
+        showProductCommission: function (index) {
+            $(".comm-val").each(function () {
+                $(this).val(core.formatCommissionPercent(groupCommissions[index][$(this).attr("name")]));
             });
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -210,6 +215,9 @@ var memberCommission = (function ($) {
                 parent.find(".group-comm").html(memberComm[0].GroupName);
                 parent.find(".sb-comm").html(core.formatCommissionPercent(memberComm[0].SBComm));
                 parent.find(".ng-comm").html(core.formatCommissionPercent(memberComm[0].NGComm));
+                parent.find(".racing-comm").html(core.formatCommissionPercent(memberComm[0].RacingComm));
+                parent.find(".lc-comm").html(core.formatCommissionPercent(memberComm[0].LCComm));
+                parent.find(".rng-comm").html(core.formatCommissionPercent(memberComm[0].RNGComm));
             });
         }
     };

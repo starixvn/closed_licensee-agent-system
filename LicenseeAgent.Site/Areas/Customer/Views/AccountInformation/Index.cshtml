@@ -5,6 +5,11 @@
 @{
     Layout = null;
 }
+<script type="text/javascript">
+    $(function () {
+        customer.accountInformation.init();
+    });
+</script>
 @using (Html.BeginForm("Search", "AccountInformation", FormMethod.Post, new { @id = "formSearch", @class = "form-search form-inline" }))
 {
     <div class="input-append">
@@ -19,5 +24,5 @@
                     data-downline="@Url.Action("GetDownlines", "AccountInformation")"
                     data-currency="@Url.Action("LoginAsUser", "Internal")">
 </div>
-<div id="searchResult">
-</div>
+<div id="searchResult"></div>
+<div class="parent-popover"></div>

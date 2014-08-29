@@ -1,0 +1,49 @@
+﻿@using LicenseeAgent.AccountInformation.Entities
+@using LicenseeAgent.AccountInformation.ViewModels
+@using LicenseeAgent.Web.Entities
+@model SearchUserResultViewModel
+@{
+    var balance = Model.Balance;
+    var customer = Model.Customer;
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+<table class="table table-condensed">
+    <tbody>
+        @if (pageContext.IsMember)
+        {
+            <tr>
+                <td>@Las.AvailableFund
+                </td>
+                <td>@RazorHelper.FormatNegative(balance.AvailableFund)
+                </td>
+            </tr>
+            <tr>
+                <td>@Las.PendingFund
+                </td>
+                <td>@RazorHelper.FormatNegative(balance.PendingFund)
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@string.Format("{0} - {1}", Las.Balance, Model.Balance.Today.ToString("MMMM yyyy"))
+                </td>
+                <td>@RazorHelper.FormatNegative(Model.Balance.CashBalance)
+                </td>
+            </tr>
+            <tr>
+                <td>@Las.AgentOutstanding
+                </td>
+                <td>@RazorHelper.FormatNegative(balance.Outstanding)
+                </td>
+            </tr>
+            <tr>
+                <td>@Las.TotalOutstanding
+                </td>
+                <td>@RazorHelper.FormatNegative(balance.TotalOutstanding)
+                </td>
+            </tr>   
+        }
+    </tbody>
+</table>

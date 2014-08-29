@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Core.Utility
 {
     using System.Globalization;
+    using LicenseeAgent.Core.Configurations;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -49,6 +50,16 @@
         public static string FormatJson(object value)
         {
             return JsonConvert.SerializeObject(value);
+        }
+
+        public static string FormatMediumUserName(string userName)
+        {
+            if (userName.Length > Constants.MediumStringLength)
+            {
+                return string.Format("{0}...", userName.Substring(0, Constants.MediumStringLength));
+            }
+
+            return userName;
         }
     }
 }

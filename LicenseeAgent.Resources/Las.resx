@@ -1585,4 +1585,22 @@ Please note that this action cannot be undone.</value>
   <data name="NoSelectedMember" xml:space="preserve">
     <value>No member is selected, please check again.</value>
   </data>
+  <data name="AgentLevelFormat" xml:space="preserve">
+    <value>Agent Level {0}</value>
+  </data>
+  <data name="CS" xml:space="preserve">
+    <value>CS</value>
+  </data>
+  <data name="LC" xml:space="preserve">
+    <value>LC</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="MoreUplines" xml:space="preserve">
+    <value>More Uplines</value>
+  </data>
+  <data name="SearchUsernameMinLength" xml:space="preserve">
+    <value>Please input at least 6 characters to search.</value>
+  </data>
 </root>

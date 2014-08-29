@@ -211,15 +211,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\Customer\Scripts\AccountInformation\account-information.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
-    <Content Include="App_Data\SpNames.Local.xml" />
+    <Content Include="App_Data\SpNames.Local.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SpNames.Prod.xml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +243,16 @@
     <Content Include="Views\MemberCommission\Resources\member-commission.js" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Customer\Content\AccountInformation\account-information.less" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_AgentInfo.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_BalanceDownline.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_BalanceInformation.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_CashBalanceInformation.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_SettingAction.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\Search.cshtml" />
+    <Content Include="Areas\Customer\Views\Web.config" />
+    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -559,8 +573,6 @@
     <Content Include="Views\TotalBets\Resources\outright.js" />
     <Content Include="Views\TotalBets\Resources\total-bets.less" />
     <Content Include="Views\TotalBets\Resources\soccer.js" />
-    <Content Include="Views\AccountInformation\Resources\account-information.less" />
-    <Content Include="Views\AccountInformation\Resources\account-information.js" />
     <Content Include="Views\Transfer\Resources\transfer-list.js" />
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">
@@ -817,7 +829,6 @@
     <Content Include="Content\bootstrap\wells.less" />
     <Content Include="Views\CustomerList\_Script.cshtml" />
     <Content Include="Views\CustomerList\Index.cshtml" />
-    <Content Include="Views\AccountInformation\Index.cshtml" />
     <Content Include="Views\CustomerList\_MemberGrid.cshtml" />
     <Content Include="Views\CustomerList\GetIpInformation.cshtml" />
     <Content Include="Views\CustomerList\_AgentGrid.cshtml" />
@@ -825,10 +836,6 @@
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\BetList\BetListSelByMember.cshtml" />
-    <Content Include="Views\AccountInformation\Search.cshtml" />
-    <Content Include="Views\AccountInformation\_SettingAction.cshtml" />
-    <Content Include="Views\AccountInformation\_BalanceDownline.cshtml" />
-    <Content Include="Views\AccountInformation\_AgentInfo.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
     <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
     <Content Include="Views\TotalBets\Basketball.cshtml" />
@@ -882,7 +889,6 @@
     <Content Include="Views\Report\Resources\Outstanding.less" />
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
-    <Content Include="Views\AccountInformation\_BalanceInformation.cshtml" />
     <Content Include="Areas\Report\Views\Statement\Index.cshtml" />
     <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />

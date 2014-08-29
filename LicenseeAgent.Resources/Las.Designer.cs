@@ -196,6 +196,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Level {0}.
+        /// </summary>
+        public static string AgentLevelFormat {
+            get {
+                return ResourceManager.GetString("AgentLevelFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent List.
         /// </summary>
         public static string AgentList {
@@ -994,6 +1003,15 @@ namespace LicenseeAgent.Resources {
         public static string CreditBalance {
             get {
                 return ResourceManager.GetString("CreditBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CS.
+        /// </summary>
+        public static string CS {
+            get {
+                return ResourceManager.GetString("CS", resourceCulture);
             }
         }
         
@@ -1988,6 +2006,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LC.
+        /// </summary>
+        public static string LC {
+            get {
+                return ResourceManager.GetString("LC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LC Comm. (%).
         /// </summary>
         public static string LCCommission {
@@ -2002,6 +2029,15 @@ namespace LicenseeAgent.Resources {
         public static string League {
             get {
                 return ResourceManager.GetString("League", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
             }
         }
         
@@ -2434,6 +2470,15 @@ namespace LicenseeAgent.Resources {
         public static string More {
             get {
                 return ResourceManager.GetString("More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More Uplines.
+        /// </summary>
+        public static string MoreUplines {
+            get {
+                return ResourceManager.GetString("MoreUplines", resourceCulture);
             }
         }
         
@@ -3495,6 +3540,15 @@ namespace LicenseeAgent.Resources {
         public static string ScoreMap {
             get {
                 return ResourceManager.GetString("ScoreMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please input at least 6 characters to search..
+        /// </summary>
+        public static string SearchUsernameMinLength {
+            get {
+                return ResourceManager.GetString("SearchUsernameMinLength", resourceCulture);
             }
         }
         

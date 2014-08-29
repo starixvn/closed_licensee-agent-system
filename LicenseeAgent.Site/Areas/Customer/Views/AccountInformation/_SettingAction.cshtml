@@ -5,7 +5,7 @@
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
 }
-<div class="controls-row">
+<div class="controls-row last">
     <div class="row-line">
     </div>
     <ul class="nav nav-tabs">
@@ -20,14 +20,14 @@
                     <li>
                         @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
                         {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditMember"))" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopoverCustomerSetting(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                         }
                         else
                         {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
@@ -38,7 +38,7 @@
                         {
                             if (pageContext.IsOfferedVirtualSports)
                             {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopover(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditVirtualSportsMember"))" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-content="@(RazorHelper.RenderPopoverCustomerSetting(Model.Customer.CustId, Model.Uplines.ToList(), Model.Customer.NumberOfLevel, "EditVirtualSportsMember"))" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
@@ -48,20 +48,20 @@
                         {
                             if (pageContext.IsOfferedVirtualSports)
                             {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
                             }
                         }
                     </li>
-                    <li><a href="@(pageContext.IsMember ? Url.Action("ResetPasswordMember", "CustomerList", new { memberId = Model.Customer.CustId }) : Url.Action("ResetPasswordAgent", "CustomerList", new { agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                    <li><a href="@(pageContext.IsMember ? Url.Action("ResetPasswordMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("ResetPasswordAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                         <i class="icon-downline-arrow"></i>
                         @Las.ResetPassword
                     </a></li>
-                    @if (SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine)
+                    @if ((SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine)  && !(pageContext.IsMember && pageContext.IsDeposit) )
                     {
-                        <li><a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                        <li><a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.EditInfo
                         </a></li>
@@ -70,7 +70,7 @@
                         (SessionManager.CurrentSession.IsAdmin && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
                         || (!SessionManager.CurrentSession.IsAdmin && pageContext.IsDirectDownLine))
                     {
-                        <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { agentId = Model.Customer.CustId }))" target="frmMain">
+                        <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.AddDownline
                         </a>

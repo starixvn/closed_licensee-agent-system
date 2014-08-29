@@ -24,6 +24,8 @@
 
         public int TotalRows { get; set; }
 
+        public short LegendType { get; set; }
+
         public int MsgId { get; set; }
 
         public override string GetSettingKey()

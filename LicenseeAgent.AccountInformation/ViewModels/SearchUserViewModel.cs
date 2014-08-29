@@ -13,7 +13,7 @@
         [Required]
         [AllowHtml]
         [StringLength(Constants.MaximumUsernameLength, MinimumLength = Constants.MinimumUsernameLength,
-            ErrorMessageResourceName = "NoInfo", ErrorMessageResourceType = typeof(Las))]
+            ErrorMessageResourceName = "SearchUsernameMinLength", ErrorMessageResourceType = typeof(Las))]
         public string UserName { get; set; }
     }
 }

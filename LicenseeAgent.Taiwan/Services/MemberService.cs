@@ -13,6 +13,7 @@
     using LicenseeAgent.Taiwan.Criteria;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
+    using LicenseeAgent.Taiwan.Errors;
     using LicenseeAgent.Taiwan.Filter;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Utility;
@@ -220,7 +221,8 @@
         {
             var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
 
-            if (memberListResult.ErrCode == Result.ApiError)
+            // Data not found
+            if (memberListResult.ApiErrCode == (int)GetDepositMemberInfoListError.DataNotFound)
             {
                 memberListResult.ErrCode = Result.SuccessValue;
             }

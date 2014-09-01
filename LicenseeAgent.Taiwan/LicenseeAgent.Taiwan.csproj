@@ -87,6 +87,9 @@
       <DependentUpon>LogActionId.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\LogType.cs" />
+    <Compile Include="Errors\GetDepositMemberInfoError.cs" />
+    <Compile Include="Errors\GetMemberInfoListError.cs" />
+    <Compile Include="Errors\GetDepositMemberInfoListError.cs" />
     <Compile Include="Filter\IServiceFilter.cs" />
     <Compile Include="Filter\MemberFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

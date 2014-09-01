@@ -1,6 +1,5 @@
 ﻿namespace LicenseeAgent.CustomerList.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -255,7 +254,6 @@
         public JsonResult SearchMembers(CustomerListViewModel model)
         {
             var serviceResult = GetMemberInformations(model);
-            
             if (serviceResult.ErrCode != Result.SuccessValue)
             {
                 return JsonResult(serviceResult);
@@ -263,7 +261,7 @@
 
             if (serviceResult.Members == null || !serviceResult.Members.Any())
             {
-                return Json(new 
+                return Json(new
                 {
                     ErrCode = Result.SuccessValue,
                     List = new List<MemberEntity>(),
@@ -273,13 +271,14 @@
                 });
             }
 
-            var plainMembers = SelectMembersBySearchCriteria(model, serviceResult.Members);
-            var members = _customerService.SearchMembersByIds(
-                            new SearchMemberByIdsCriteria
-                            {
-                                AgentId = model.AgentId,
-                                ListCustId = string.Join(",", plainMembers.Select(m => m.IBCCustId.ToString()).ToArray())
-                            });
+            var plainMembers = serviceResult.Members.OrderBy(m => m.Username)
+                                 .Skip(model.PageIndex * model.PageSize)
+                                 .Take(model.PageSize);
+            var members = _customerService.SearchMembersByIds(new SearchMemberByIdsCriteria
+            {
+                AgentId = model.AgentId,
+                ListCustId = string.Join(",", plainMembers.Select(m => m.IBCCustId.ToString()).ToArray())
+            });
             ServiceMapper.MapObjects(plainMembers, members, new MemberFilter());
 
             if (!CurrentSession.IsAdmin)
@@ -800,39 +799,21 @@
         [NonAction]
         public MemberListResult GetMemberInformations(CustomerListViewModel model)
         {
-            var action = CurrentSession.AgentInfo.IsCredit ?
-                    (BaseAction)new GetMemberInfoListAction
-                    {
-                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        LASAgentId = model.AgentId
-                    }
-                    :
-                    new GetDepositMemberInfoListAction
-                    {
-                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        LASAgentId = model.AgentId,
-                        DepositOption = (int)DepositOption.DepositOnly
-                    };
+            var action = CurrentSession.AgentInfo.IsCredit
+                ? (BaseAction)new GetMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId
+                }
+                : (BaseAction)new GetDepositMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId,
+                    DepositOption = (int)DepositOption.DepositOnly,
+                    Username = model.UserName
+                };
 
             return _memberService.GetPlainMembers(action);
-        }
-
-        /// <summary>
-        /// Select member by search criteria.
-        /// </summary>
-        /// <param name="model">Customer List view model.</param>
-        /// <param name="members">Member entities.</param>
-        /// <returns>Return member entities.</returns>
-        [NonAction]
-        public IEnumerable<ServiceMemberEntity> SelectMembersBySearchCriteria(CustomerListViewModel model, IEnumerable<ServiceMemberEntity> members)
-        {
-            var plainMembers = members.Where(m => (string.IsNullOrEmpty(model.UserName)
-                                                || string.Equals(m.Username, model.UserName, StringComparison.CurrentCultureIgnoreCase))
-                                                && (model.Status == null
-                                                || m.Status == model.Status));
-            return plainMembers.OrderBy(m => m.Username)
-                                .Skip(model.PageIndex * model.PageSize)
-                                .Take(model.PageSize);
         }
     }
 }

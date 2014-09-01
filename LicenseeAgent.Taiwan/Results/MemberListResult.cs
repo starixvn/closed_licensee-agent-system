@@ -1,6 +1,6 @@
 ﻿namespace LicenseeAgent.Taiwan.Results
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Entities;
 
@@ -13,9 +13,10 @@
         public MemberListResult(int errorCode, string errorMessage)
             : base(errorCode, errorMessage)
         {
+            Members = new List<ServiceMemberEntity>();
         }
 
         [DataMember(Name = "Data")]
-        public Collection<ServiceMemberEntity> Members { get; set; }
+        public List<ServiceMemberEntity> Members { get; set; }
     }
 }

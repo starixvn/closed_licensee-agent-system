@@ -206,7 +206,7 @@
             FakeSession.SetAgentLevel();
 
             // Act
-            var result = _controller.SuggestAgent(viewModel);
+            var result = _controller.SuggestByAgent(viewModel);
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);
@@ -223,7 +223,7 @@
             FakeSession.SetAdminLevel();
 
             // Act
-            var result = _controller.SuggestAdmin(viewModel);
+            var result = _controller.SuggestByAdmin(viewModel);
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);

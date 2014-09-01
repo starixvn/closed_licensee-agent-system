@@ -259,7 +259,16 @@
                 return JsonResult(serviceResult);
             }
 
-            if (serviceResult.Members == null || !serviceResult.Members.Any())
+            var serviceMembers = new List<ServiceMemberEntity>();
+            if (serviceResult.Members != null && serviceResult.Members.Any())
+            {
+                serviceMembers = serviceResult.Members.Where(m => model.Status == null || m.Status == model.Status)
+                    .OrderBy(m => m.Username)
+                    .Skip(model.PageIndex * model.PageSize)
+                    .Take(model.PageSize).ToList();
+            }
+
+            if (!serviceMembers.Any())
             {
                 return Json(new
                 {
@@ -271,15 +280,12 @@
                 });
             }
 
-            var plainMembers = serviceResult.Members.OrderBy(m => m.Username)
-                                 .Skip(model.PageIndex * model.PageSize)
-                                 .Take(model.PageSize);
             var members = _customerService.SearchMembersByIds(new SearchMemberByIdsCriteria
             {
                 AgentId = model.AgentId,
-                ListCustId = string.Join(",", plainMembers.Select(m => m.IBCCustId.ToString()).ToArray())
+                ListCustId = string.Join(",", serviceMembers.Select(m => m.IBCCustId.ToString()).ToArray())
             });
-            ServiceMapper.MapObjects(plainMembers, members, new MemberFilter());
+            ServiceMapper.MapObjects(serviceMembers, members, new MemberFilter());
 
             if (!CurrentSession.IsAdmin)
             {

@@ -15,7 +15,7 @@
 
         public override string GetSettingKey()
         {
-            return "LAS_Balance_SelMemberBalance";
+            return "LAS_Cash_Balance_SelMemberBalance";
         }
 
         public override bool IsValid()

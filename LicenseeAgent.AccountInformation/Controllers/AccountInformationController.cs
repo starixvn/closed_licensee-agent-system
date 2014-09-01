@@ -68,12 +68,9 @@
                 return InvalidModelViewResult();
             }
 
-            if (CurrentSession.AgentInfo.IsLevel0)
-            {
-                return SearchAdmin(model);
-            }
-
-            return SearchAgent(model);
+            return CurrentSession.AgentInfo.IsLevel0
+                ? SearchByAdmin(model)
+                : SearchByAgent(model);
         }
 
         /// <summary>
@@ -85,8 +82,8 @@
         public JsonResult Suggest(SuggestionViewModel model)
         {
             return CurrentSession.AgentInfo.IsLevel0
-                ? SuggestAdmin(model)
-                : SuggestAgent(model);
+                ? SuggestByAdmin(model)
+                : SuggestByAgent(model);
         }
 
         /// <summary>
@@ -119,7 +116,7 @@
         /// <param name="model">Suggestion view model.</param>
         /// <returns>JSON result.</returns>
         [NonAction]
-        public JsonResult SuggestAgent(SuggestionViewModel model)
+        public JsonResult SuggestByAgent(SuggestionViewModel model)
         {
             var criteria = new AgentSuggestSearchMemberCriteria
             {
@@ -131,7 +128,6 @@
             };
 
             var users = _searchUserService.SuggestAgent(criteria);
-
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -145,7 +141,7 @@
         /// <param name="model">Suggestion view model.</param>
         /// <returns>JSON result.</returns>
         [NonAction]
-        public JsonResult SuggestAdmin(SuggestionViewModel model)
+        public JsonResult SuggestByAdmin(SuggestionViewModel model)
         {
             var criteria = new AdminSuggestSearchMemberCriteria
             {
@@ -157,7 +153,6 @@
             };
 
             var users = _searchUserService.SuggestAdmin(criteria);
-
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -171,7 +166,7 @@
         /// <param name="model">Search user view model.</param>
         /// <returns>Action result.</returns>
         [NonAction]
-        public ActionResult SearchAgent(SearchUserViewModel model)
+        public ActionResult SearchByAgent(SearchUserViewModel model)
         {
             var criteria = new AgentGetMemberListCriteria
             {
@@ -206,7 +201,7 @@
         /// <param name="model">Search user view model.</param>
         /// <returns>Action result.</returns>
         [NonAction]
-        public ActionResult SearchAdmin(SearchUserViewModel model)
+        public ActionResult SearchByAdmin(SearchUserViewModel model)
         {
             var criteria = new AdminGetMemberListCriteria
             {
@@ -246,12 +241,12 @@
             if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
             {
                 var serviceResult = _memberService.GetMemberInformation(
-                                    customer,
-                                    new GetMemberInfoAction
-                                    {
-                                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                                        IBCCustId = customer.CustId
-                                    });
+                    customer,
+                    new GetMemberInfoAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        IBCCustId = customer.CustId
+                    });
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {
@@ -334,25 +329,51 @@
         [NonAction]
         public BalanceEntity GetBalance(CustomerEntity customer)
         {
-            if (CurrentSession.AgentInfo.IsDeposit)
-            {
-                var balanceUp = _coreService.BalanceUpDay;
+            return CurrentSession.AgentInfo.IsDeposit
+                ? GetCashBalance(customer)
+                : GetCreditBalance(customer);
+        }
 
-                return customer.Level == Constants.MemberLevel
-                    ? _searchUserService.GetCashMemberBalance(new CashMemberBalanceCriteria { CustId = customer.CustId })
-                    : _searchUserService.GetCashAgentBalance(
-                        new CashAgentBalanceCriteria
-                        {
-                            AgentId = customer.CustId,
-                            MoveBetDay = balanceUp.MoveBetsDay,
-                            BalanceUpDay = balanceUp.BalanceUpDay,
-                            Today = DateTime.Now
-                        });
-            }
-
+        /// <summary>
+        /// Gets the cash balance.
+        /// </summary>
+        /// <param name="customer">The customer.</param>
+        /// <returns>Returns balance information.</returns>
+        [NonAction]
+        public BalanceEntity GetCashBalance(CustomerEntity customer)
+        {
+            var balanceUp = _coreService.BalanceUpDay;
             return customer.Level == Constants.MemberLevel
-                ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria { CustId = customer.CustId })
-                : _searchUserService.GetAgentBalance(new AgentBalanceCriteria { AgentId = customer.CustId });
+                ? _searchUserService.GetCashMemberBalance(new CashMemberBalanceCriteria
+                {
+                    CustId = customer.CustId
+                })
+                : _searchUserService.GetCashAgentBalance(new CashAgentBalanceCriteria
+                {
+                    AgentId = customer.CustId,
+                    MoveBetDay = balanceUp.MoveBetsDay,
+                    BalanceUpDay = balanceUp.BalanceUpDay,
+                    Today = DateTime.Now
+                });
+        }
+
+        /// <summary>
+        /// Gets the credit balance.
+        /// </summary>
+        /// <param name="customer">The customer.</param>
+        /// <returns>Returns balance information.</returns>
+        [NonAction]
+        public BalanceEntity GetCreditBalance(CustomerEntity customer)
+        {
+            return customer.Level == Constants.MemberLevel
+                ? _searchUserService.GetMemberBalance(new MemberBalanceCriteria
+                {
+                    CustId = customer.CustId
+                })
+                : _searchUserService.GetAgentBalance(new AgentBalanceCriteria
+                {
+                    AgentId = customer.CustId
+                });
         }
     }
 }

@@ -7,7 +7,6 @@
     Layout = null;
     var pageContext = (PageContext)ViewBag.PageContext;
 }
-
 @if (ViewBag.Result != null)
 {
     var result = (SearchUserViewResult)ViewBag.Result;
@@ -31,7 +30,6 @@
         @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
     </script>
 }
-
 @if (pageContext != null)
 {
     @Html.Partial("_AgentInfo", Model)

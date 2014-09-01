@@ -290,14 +290,6 @@ customer.accountInformation = (function ($) {
             $(accountInfoId).addClass('active in');
         },
         showScrollDownline: function () {
-            var niceScroll = $("#downlineContent").getNiceScroll();
-            if (niceScroll.length === 0) {
-                $("#downlineContent").niceScroll({
-                    cursorcolor: "#8a8a8a",
-                    autohidemode: "leave"
-                });
-            }
-            $("#downlineContent").getNiceScroll().resize();
         },
         editAgentCredit: function (agentId, agentName, agentLevel, givenCredit) {
             var url = core.resolveUrl('~/CreditBalance/EditAgentCredit', {

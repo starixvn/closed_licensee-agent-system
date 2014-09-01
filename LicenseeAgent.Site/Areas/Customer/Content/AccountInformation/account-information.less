@@ -1,3 +1,4 @@
+
 #accountInfo 
 {
     margin-top: 10px;
@@ -5,6 +6,18 @@
     form 
     { 
         margin:0 3px 5px;
+        overflow-y: auto;
+        position: absolute;
+        top: 70px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    form 
+    { 
+        margin:0 2px 5px;
+    }  
 
         input
         {
@@ -241,12 +254,9 @@
                 }
             }
         }
-
         #downlineList
-        {
             width: 245px;
             .pagination
-            {
                 margin: 5px 0 0 15px;
             }
         }
@@ -347,6 +357,8 @@
             }	
         }
     }
+            margin-left: 2px;
+            margin-right: 5px;
 }
 
 .popover 
@@ -354,6 +366,20 @@
     border-radius: 0;
     box-shadow: 0;
     padding: 2px 1px;
+        table
+        {
+            margin-bottom: 0;
+            td
+            {
+                padding: 2px;
+                vertical-align: middle;
+                &:first-child
+                {
+                    padding-left: 8px;
+                    width: 30px;
+                }
+            }
+        }
 
     .arrow 
     { 

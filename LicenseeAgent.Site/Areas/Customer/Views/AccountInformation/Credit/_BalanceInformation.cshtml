@@ -9,21 +9,27 @@
         @if (pageContext.IsMember)
         {
             <tr>
-                <td>@Las.TotalBalance
+                <td>
+                    @Las.TotalBalance
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.TotalBalance)
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.YesterdayBalance
-                </td>
-                <td>@RazorHelper.FormatNegative(balance.YesterdayBalance)
+                <td>
+                    @RazorHelper.FormatNegative(balance.TotalBalance)
                 </td>
             </tr>
             <tr>
-                <td>@Las.Outstanding
+                <td>
+                    @Las.YesterdayBalance
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.Outstanding)
+                <td>
+                    @RazorHelper.FormatNegative(balance.YesterdayBalance)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Las.Outstanding
+                </td>
+                <td>
+                    @RazorHelper.FormatNegative(balance.Outstanding)
                 </td>
             </tr>
             <tr>
@@ -37,57 +43,73 @@
                 }
                 else
                 {
-                    <td>@RazorHelper.FormatNegative(balance.GivenCredit)
+                    <td>
+                        @RazorHelper.FormatNegative(balance.GivenCredit)
                     </td>
                 }
             </tr>
             <tr>
-                <td>@Las.BetCredit
+                <td>
+                    @Las.BetCredit
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.BetCredit)
+                <td>
+                    @RazorHelper.FormatNegative(balance.BetCredit)
                 </td>
             </tr>
         }
         else
         {
             <tr>
-                <td>@Las.TotalCash
+                <td>
+                    @Las.TotalCash
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.TotalCash)
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.YesterdayCash
-                </td>
-                <td>@RazorHelper.FormatNegative(balance.YesterdayCash)
+                <td>
+                    @RazorHelper.FormatNegative(balance.TotalCash)
                 </td>
             </tr>
             <tr>
-                <td>@Las.TotalBalance
+                <td>
+                    @Las.YesterdayCash
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.TotalBalance)
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.YesterdayBalance
-                </td>
-                <td>@RazorHelper.FormatNegative(balance.YesterdayBalance)
+                <td>
+                    @RazorHelper.FormatNegative(balance.YesterdayCash)
                 </td>
             </tr>
             <tr>
-                <td>@Las.AgentOutstanding
+                <td>
+                    @Las.TotalBalance
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.Outstanding)
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.TotalOutstanding
-                </td>
-                <td>@RazorHelper.FormatNegative(balance.TotalOutstanding)
+                <td>
+                    @RazorHelper.FormatNegative(balance.TotalBalance)
                 </td>
             </tr>
             <tr>
-                <td>@Las.GivenCredit
+                <td>
+                    @Las.YesterdayBalance
+                </td>
+                <td>
+                    @RazorHelper.FormatNegative(balance.YesterdayBalance)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Las.AgentOutstanding
+                </td>
+                <td>
+                    @RazorHelper.FormatNegative(balance.Outstanding)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Las.TotalOutstanding
+                </td>
+                <td>
+                    @RazorHelper.FormatNegative(balance.TotalOutstanding)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Las.GivenCredit
                 </td>
                 @if (pageContext.IsDirectDownLine)
                 {
@@ -97,14 +119,17 @@
                 }
                 else
                 {
-                    <td>@RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))
+                    <td>
+                        @RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))
                     </td>
                 }
             </tr>
             <tr>
-                <td>@Las.UsedCredit
+                <td>
+                    @Las.UsedCredit
                 </td>
-                <td>@RazorHelper.FormatNegative(Convert.ToInt64(balance.UsedCredit))
+                <td>
+                    @RazorHelper.FormatNegative(Convert.ToInt64(balance.UsedCredit))
                 </td>
             </tr>
 

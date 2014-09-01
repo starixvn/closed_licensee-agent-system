@@ -1,8 +1,4 @@
-﻿@using LicenseeAgent.AccountInformation.ViewModels
-@using LicenseeAgent.AccountInformation.ViewResults
-@using LicenseeAgent.Core.Utility
-@using LicenseeAgent.Web.Entities
-@model SearchUserResultViewModel
+﻿@model SearchUserResultViewModel
 @{
     Layout = null;
     var pageContext = (PageContext)ViewBag.PageContext;
@@ -51,6 +47,6 @@
         if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
         {
     @Html.Partial("_BalanceDownline", Model)
-    @Html.Partial("_SettingAction", Model)
+    @Html.Partial("_Action", Model)
         }
 }

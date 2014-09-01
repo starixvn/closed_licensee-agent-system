@@ -248,7 +248,7 @@
     <Content Include="Areas\Customer\Views\AccountInformation\_BalanceDownline.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_SettingAction.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_Action.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\Index.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\Search.cshtml" />
     <Content Include="Areas\Customer\Views\Web.config" />

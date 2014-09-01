@@ -9,7 +9,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#balance" id="tabBalance" data-toggle="tab">@Las.BalanceInfo</a></li>
         </ul>
-        <div class="tab-content tab-small">
+        <div class="tab-content">
             <div class="tab-pane active in" id="balance">
                 @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("Credit/_BalanceInformation") : Html.Partial("Cash/_BalanceInformation"))
             </div>
@@ -22,7 +22,7 @@
             <li><a href="#downlineList" id="tabDownline" data-toggle="tab">@Las.DownlineList</a>
             </li>
         </ul>
-        <div class="tab-content tab-small">
+        <div class="tab-content">
             <div class="tab-pane active in" id="balance">
                 @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("Credit/_BalanceInformation") : Html.Partial("Cash/_BalanceInformation"))
             </div>
@@ -43,7 +43,7 @@
                 }
                 else
                 {
-                    <div class="no-info">@LangMsg.Msg_1034</div>
+                    <div class="no-info">@Las.NoDownline</div>
                 }
             </div>
         </div>

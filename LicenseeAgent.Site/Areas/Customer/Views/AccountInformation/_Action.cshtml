@@ -56,7 +56,7 @@
                         <i class="icon-downline-arrow"></i>
                         @Las.ResetPassword
                     </a></li>
-                    @if ((SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine)  && !(pageContext.IsMember && pageContext.IsDeposit) )
+                    @if ((SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine) && !(pageContext.IsMember && pageContext.IsDeposit))
                     {
                         <li><a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
@@ -67,10 +67,10 @@
                         (SessionManager.CurrentSession.IsAdmin && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
                         || (!SessionManager.CurrentSession.IsAdmin && pageContext.IsDirectDownLine))
                     {
-                        <a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
+                        <li><a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.AddDownline
-                        </a>
+                        </a></li>
                     }
                 </ul>
             </div>

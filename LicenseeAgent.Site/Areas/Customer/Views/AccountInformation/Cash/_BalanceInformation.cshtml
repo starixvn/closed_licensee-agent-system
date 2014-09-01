@@ -9,38 +9,48 @@
         @if (pageContext.IsMember)
         {
             <tr>
-                <td>@Las.AvailableFund
+                <td>
+                    @Las.AvailableFund
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.AvailableFund)
+                <td>
+                    @RazorHelper.FormatNegative(balance.AvailableFund)
                 </td>
             </tr>
             <tr>
-                <td>@Las.PendingFund
+                <td>
+                    @Las.PendingFund
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.PendingFund)
+                <td>
+                    @RazorHelper.FormatNegative(balance.PendingFund)
                 </td>
             </tr>
         }
         else
         {
             <tr>
-                <td>@string.Format("{0} - {1}", Las.Balance, Model.Balance.Today.ToString("MMMM yyyy"))
+                <td>
+                    @string.Format("{0} - {1}", Las.Balance, Model.Balance.Today.ToString("MMMM yyyy"))
                 </td>
-                <td>@RazorHelper.FormatNegative(Model.Balance.CashBalance)
-                </td>
-            </tr>
-            <tr>
-                <td>@Las.AgentOutstanding
-                </td>
-                <td>@RazorHelper.FormatNegative(balance.Outstanding)
+                <td>
+                    @RazorHelper.FormatNegative(Model.Balance.CashBalance)
                 </td>
             </tr>
             <tr>
-                <td>@Las.TotalOutstanding
+                <td>
+                    @Las.AgentOutstanding
                 </td>
-                <td>@RazorHelper.FormatNegative(balance.TotalOutstanding)
+                <td>
+                    @RazorHelper.FormatNegative(balance.Outstanding)
                 </td>
-            </tr>   
+            </tr>
+            <tr>
+                <td>
+                    @Las.TotalOutstanding
+                </td>
+                <td>
+                    @RazorHelper.FormatNegative(balance.TotalOutstanding)
+                </td>
+            </tr>
         }
     </tbody>
 </table>

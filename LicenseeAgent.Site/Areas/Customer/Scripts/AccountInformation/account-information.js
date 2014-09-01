@@ -5,51 +5,48 @@ var customer = customer || {};
 customer.accountInformation = (function ($) {
     'use strict';
     var statusObj = { Close: 0, Open: 1 };
-    var urlSuggestion, urlDownline, urlCurrency;
     return {
         init: function () {
-            urlSuggestion = $("#searchUrl").data("suggest");
-            urlDownline = $("#searchUrl").data("downline");
-            urlCurrency = $("#searchUrl").data("currency");
             var userName;
 
             // username suggestion
-            $("#UserName").typeahead({
+            $("#accountInfo #UserName").typeahead({
                 source: customer.accountInformation.getSuggestion,
                 minLength: 2
             });
 
             //form submit
-            $('#formSearch').submit(function (event) {
+            $('#accountInfo form').submit(function (event) {
                 userName = $.trim($("#UserName").val());
                 if (userName !== '') {
-                    $("#UserName").val(userName);
-                    customer.accountInformation.search($(this).attr('action'), userName);
+                    $("#accountInfo #UserName").val(userName);
+                    customer.accountInformation.search(userName);
                 }
                 event.preventDefault();
             });
 
             //search click
-            $('#search').click(function () {
-                $("#formSearch").submit();
+            $('#accountInfo #search').click(function () {
+                $("#accountInfo form").submit();
             });
 
             //check exist cookie username. If exist, call search username
             userName = $.cookie('username');
             if (userName !== undefined) {
-                $("#UserName").val(userName);
-                $("#formSearch").submit();
+                $("#accountInfo #UserName").val(userName);
+                $("#accountInfo form").submit();
 
                 $.removeCookie('username', { path: '/' });
-
                 customer.accountInformation.changeAccountInfoActive();
             }
         },
-        search: function (url, userName) {
+        search: function (userName) {
             $.ajax({
-                url: url,
+                url: $('#accountInfo form').attr('action'),
                 type: 'post',
-                data: { username: userName },
+                data: {
+                    username: userName
+                },
                 beforeSend: function () {
                     $("#searchAlert").hide();
                     core.blockUI();
@@ -117,15 +114,15 @@ customer.accountInformation = (function ($) {
             }
 
             //add popover for more upline
-            if ($('.popover-more').length > 0) {
-                $('.popover-more').popover({
-                    container: '.parent-popover', //'body',
+            if ($('.icon-more-arrow').length > 0) {
+                $('.icon-more-arrow').popover({
+                    container: 'body',
                     html: true,
                     placement: 'bottom'
                 });
 
                 $(document).click(function (e) {
-                    $('.popover-more').each(function () {
+                    $('.icon-more-arrow').each(function () {
                         if (!$(this).is(e.target) &&
                             $(this).has(e.target).length === 0 &&
                             $('.popover').has(e.target).length === 0) {
@@ -140,39 +137,31 @@ customer.accountInformation = (function ($) {
                 customer.accountInformation.changeStatus(this);
             });
 
-            $("#show-hide").click(function () {
+            $(".cust-info .icon-collapse").click(function () {
                 if ($(this).hasClass("icon-collapse")) {
                     $(this).parents(".cust-info").find("table").hide();
-                    $(this).removeClass("icon-collapse")
-                            .addClass("icon-expand");
+                    $(this).removeClass("icon-collapse").addClass("icon-expand");
                 }
                 else {
                     $(this).parents(".cust-info").find("table").show();
-                    $(this).removeClass("icon-expand")
-                            .addClass("icon-collapse");
+                    $(this).removeClass("icon-expand").addClass("icon-collapse");
                 }
             });
 
             customer.accountInformation.showScrollSearch();
             customer.accountInformation.pagingBinding();
-
-            $("#searchResult").mouseover(function () {
-                $("#searchResult").getNiceScroll().resize();
-            });
         },
         showScrollSearch: function () {
-            //scroll search menu
             $("#searchResult").niceScroll({
                 cursorcolor: "#8a8a8a",
                 autohidemode: "leave",
                 horizrailenabled: false
             });
-            $("#searchResult").getNiceScroll().resize();
         },
         pagingBinding: function () {
-            $(".agent-inline").click(function (event) {
-                $("#UserName").val($(this).attr('title'));
-                $("#formSearch").submit();
+            $("#accountInfo .agent-inline").click(function (event) {
+                $("#accountInfo #UserName").val($(this).attr('title'));
+                $("#accountInfo form").submit();
                 event.preventDefault();
             });
         },
@@ -181,7 +170,7 @@ customer.accountInformation = (function ($) {
         },
         getSuggestion: function (query, process) {
             return $.ajax({
-                url: urlSuggestion,
+                url: core.resolveUrl('~/Customer/AccountInformation/Suggest'),
                 type: 'post',
                 data: {
                     username: query
@@ -196,7 +185,7 @@ customer.accountInformation = (function ($) {
         //get downline when click paging
         getDownline: function (pageIndex) {
             $.ajax({
-                url: urlDownline,
+                url: core.resolveUrl('~/Customer/AccountInformation/GetDownlines'),
                 type: 'post',
                 data: {
                     agentid: $("#AgentId").val(),
@@ -266,7 +255,7 @@ customer.accountInformation = (function ($) {
                 currencyid: currencyId
             };
             $.ajax({
-                url: urlCurrency,
+                url: core.resolveUrl('~/Internal/LoginAsUser'),
                 type: 'post',
                 data: data,
                 beforeSend: function () {
@@ -311,13 +300,22 @@ customer.accountInformation = (function ($) {
             $("#downlineContent").getNiceScroll().resize();
         },
         editAgentCredit: function (agentId, agentName, agentLevel, givenCredit) {
-            var url = '~/CreditBalance/EditAgentCredit?agentId={0}&agentName={1}&givenCredit={2}&agentLevel={3}&isAccountInfo=true';
-            var urlFormat = url.format(agentId, agentName, givenCredit, agentLevel);
-            popup.openFrame(urlFormat);
+            var url = core.resolveUrl('~/CreditBalance/EditAgentCredit', {
+                agentId: agentId,
+                agentName: agentName,
+                givenCredit: givenCredit,
+                agentLevel: agentLevel,
+                isAccountInfo: true
+            });
+            popup.openFrame(url);
         },
         agentEditMemberCredit: function (custId, custName, givenCredit) {
-            var url = '~/CreditBalance/AgentEditMemberCredit?custId={0}&memberName={1}&givenCredit={2}&isAccountInfo=true'.format(
-                custId, custName, givenCredit);
+            var url = core.resolveUrl('~/CreditBalance/AgentEditMemberCredit', {
+                custId: custId,
+                memberName: custName,
+                givenCredit: givenCredit,
+                isAccountInfo: true
+            });
             popup.openFrame(url);
         },
         refreshGivenCredit: function (hasReplication) {
@@ -327,7 +325,7 @@ customer.accountInformation = (function ($) {
             }
             popup.block();
             setTimeout(function () {
-                $('#formSearch').submit();
+                $('#accountInfo form').submit();
                 popup.unblock();
             }, timeout);
         },
@@ -384,19 +382,19 @@ customer.accountInformation = (function ($) {
         updateStatus: function (target, custId, statusId) {
             var params, url;
             if (pageContext.IsMember) {
+                url = "~/CustomerList/ChangeMemberStatus";
                 params = {
                     memberid: custId,
                     status: statusId
                 };
-            } else {
+            }
+            else {
+                url = "~/CustomerList/ChangeAgentStatus";
                 params = {
                     agentid: custId,
                     status: statusId
                 };
             }
-
-            url = pageContext.IsMember ? "~/CustomerList/ChangeMemberStatus"
-                : "~/CustomerList/ChangeAgentStatus";
             $.ajax({
                 url: core.resolveUrl(url),
                 type: 'post',
@@ -411,18 +409,18 @@ customer.accountInformation = (function ($) {
                     }
                     if (statusId === 0) {
                         $(target).addClass('icon-status-closed')
-                            .removeClass('icon-status-open')
-                            .find('span')
-                            .text('Closed');
-                        $("#show-hide").parents(2)
-                            .addClass('closed')
-                            .removeClass('open');
+                        .removeClass('icon-status-open')
+                        .find('span')
+                        .text(language.getString('Closed'));
+                        $(".cust-info .icon-collapse").parents(2)
+                        .addClass('closed')
+                        .removeClass('open');
                     } else {
                         $(target).addClass('icon-status-open')
                             .removeClass('icon-status-closed')
                             .find('span')
-                            .text('Open');
-                        $("#show-hide").parents(2)
+                            .text(language.getString('Open'));
+                        $(".cust-info .icon-collapse").parents(2)
                             .addClass('open')
                             .removeClass('closed');
                     }

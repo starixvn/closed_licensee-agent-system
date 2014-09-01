@@ -62,7 +62,7 @@
             <li class='popover-item'>
                 <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
                 <div>
-                    <a class='agent-inline' href='@(url.Action(actionName, "CustomerSetting", new { area = "", memberId = memberId, agentId = upline.UplineCustId, agentLevel = upline.Level, numberOfLevel = numberOfLevel }))'  target='frmMain' onclick='accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
+                    <a class='agent-inline' href='@(url.Action(actionName, "CustomerSetting", new { area = "", memberId = memberId, agentId = upline.UplineCustId, agentLevel = upline.Level, numberOfLevel = numberOfLevel }))'  target='frmMain' onclick='customer.accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
                 </div>
             </li>
         }
@@ -211,7 +211,7 @@
             <li class='popover-item'>
                 <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
                 <div>
-                    <a class='agent-inline' href='@(url.Action("Search", "AccountInformation", new { area = "", username = upline.UserName }))'  target='frmMain' onclick='accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
+                    <a class='agent-inline' href='@(url.Action("Search", "AccountInformation", new { area = "", username = upline.UserName }))'  target='frmMain' onclick='customer.accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
                 </div>
             </li>
         }

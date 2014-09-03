@@ -63,7 +63,6 @@ customer.accountInformation = (function ($) {
                         }
                     }
                     else {
-
                         $('#searchResult').html(data);
                         customer.accountInformation.searchResultBinding();
                     }
@@ -104,10 +103,13 @@ customer.accountInformation = (function ($) {
 
             //add popover for edit indirect member
             if ($('.popover-link').length > 0) {
-                $('.popover-link').popover({
-                    container: 'body',
-                    html: true,
-                    placement: 'right'
+                $('.popover-link').each(function () {
+                    $(this).popover({
+                        container: 'body',
+                        html: true,
+                        content: $(this).next().html(),
+                        placement: 'right'
+                    });
                 });
 
                 $(document).click(function (e) {
@@ -427,7 +429,7 @@ customer.accountInformation = (function ($) {
                         .removeClass('icon-status-open')
                         .find('span')
                         .text(language.getString('Closed'));
-                        $(".cust-info .icon-collapse").parents(2)
+                        $('.cust-info').children(':first')
                         .addClass('closed')
                         .removeClass('open');
                     } else {
@@ -435,7 +437,7 @@ customer.accountInformation = (function ($) {
                             .removeClass('icon-status-closed')
                             .find('span')
                             .text(language.getString('Open'));
-                        $(".cust-info .icon-collapse").parents(2)
+                        $('.cust-info').children(':first')
                             .addClass('open')
                             .removeClass('closed');
                     }

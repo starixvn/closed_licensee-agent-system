@@ -1,22 +1,36 @@
 ﻿@model SearchUserResultViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    var actionName = pageContext.IsOfferedVirtualSports ? "EditVirtualSportsMember" : "EditMember";
+    var actionName = (string)ViewData["actionName"];
 }
-<ul>
-    <li class='popover-header'>
-        <div>@Las.Level</div>
-        <div>@Las.Username</div>
-    </li>
-    @foreach (var entity in Model.Uplines)
-    {
-        <li class='popover-item'>
-            <div>@string.Format(Las.AgentLevelFormat, entity.Level - 1)</div>
-            <div>
-                <a class='agent-inline' href='@Url.Action(actionName, "CustomerSetting", new { area = "", memberId = Model.Customer.CustId, agentId = entity.UplineCustId, agentLevel = entity.Level, numberOfLevel = Model.Customer.NumberOfLevel }))'  target='frmMain' onclick='customer.accountInformation.hidePopover();' title='@entity.UserName'>
-                    @entity.MediumUserName
-                </a>
-            </div>
-        </li>
-    }
-</ul>
+<table class="dropdown">
+    <colgroup>
+        <col width="125" />
+        <col width="125" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                @Las.Level
+            </th>
+            <th>
+                @Las.Username
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model.Uplines)
+        {
+            <tr>
+                <td>
+                    @string.Format(Las.AgentLevelFormat, entity.Level - 1)
+                </td>
+                <td>
+                    <a class="agent-inline" href="@Url.Action(actionName, "CustomerSetting", new { area = "", memberId = Model.Customer.CustId, agentId = entity.UplineCustId, agentLevel = entity.Level, numberOfLevel = Model.Customer.NumberOfLevel }))"  target="frmMain" onclick='customer.accountInformation.hidePopover();' title="@entity.UserName">
+                        @entity.MediumUserName
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -523,7 +523,6 @@ var core = (function ($) {
                 alert(data.ErrMsg);
                 if (data.ErrCode === -2) {
                     // Currency Permission
-
                     window.parent.location.href = core.UrlSignOut;
                 }
                 return;

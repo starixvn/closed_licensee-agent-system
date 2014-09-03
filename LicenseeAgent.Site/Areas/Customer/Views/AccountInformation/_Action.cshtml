@@ -15,10 +15,13 @@
                     <li>
                         @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
                         {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@Html.Partial("_SettingPopover")" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
+                            <div class="hide">
+                                @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" } })
+                            </div>
                         }
                         else
                         {
@@ -33,10 +36,13 @@
                         {
                             if (pageContext.IsOfferedVirtualSports)
                             {
-                            <a href="#" rel="popover" data-toggle="popover" data-content="@Html.Partial("_SettingPopover")" data-original-title="" class="popover-link">
+                            <a href="#" rel="popover" data-toggle="popover" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
                                 @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
                             </a>
+                            <div class="hide">
+                                @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditVirtualSportsMember" } })
+                            </div>
                             }
                         }
                         else

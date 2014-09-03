@@ -49,6 +49,7 @@ customer.accountInformation = (function ($) {
                 },
                 beforeSend: function () {
                     $("#searchAlert").hide();
+                    $("#searchResult").html('');
                     core.blockUI();
                 },
                 success: function (data) {

@@ -514,7 +514,7 @@ var core = (function ($) {
         },
         handleError: function (data) {
             if (data && data.ErrCode) {
-                if (data.ErrCode === -3) {
+                if (data.ErrCode === -3 || data.ErrCode=== -5) {
                     // UM
                     location.href = core.UrlRoot;
                     return;

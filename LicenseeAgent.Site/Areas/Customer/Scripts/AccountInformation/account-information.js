@@ -54,12 +54,19 @@ customer.accountInformation = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (typeof data === 'object' && data.ErrCode !== 0) {
-                        customer.accountInformation.showNoUserAlert(data.ErrMsg);
-                        return;
+                    if (typeof data === 'object') {
+                        if (data.ErrCode === -4) {
+                            customer.accountInformation.showNoUserAlert(data.ErrMsg);
+                        }
+                        else {
+                            core.handleError(data);
+                        }
                     }
-                    $('#searchResult').html(data);
-                    customer.accountInformation.searchResultBinding();
+                    else {
+
+                        $('#searchResult').html(data);
+                        customer.accountInformation.searchResultBinding();
+                    }
                 },
                 complete: function () {
                     core.unblockUI();

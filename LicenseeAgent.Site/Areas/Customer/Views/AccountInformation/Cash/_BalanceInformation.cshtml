@@ -29,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @string.Format("{0} - {1}", Las.Balance, Model.Balance.Today.ToString("MMMM yyyy"))
+                    @string.Format("{0} - {1}", Las.Balance, Model.Balance.Today.ToString("MMM yyyy"))
                 </td>
                 <td>
                     @RazorHelper.FormatNegative(Model.Balance.CashBalance)

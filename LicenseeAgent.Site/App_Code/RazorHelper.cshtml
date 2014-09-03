@@ -46,28 +46,6 @@
         var className = value < 0 ? "number-negative" : string.Empty;
     <span class="@className">@LicenseeAgent.Core.Utility.Formatter.FormatInt(value)</span>
 }
-@helper RenderPopoverCustomerSetting(int memberId, IList<UpLineEntity> uplines, int numberOfLevel, string actionName)
-    {
-        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-        var numberUpline = uplines.Count;
-        
-        <ul>
-            <li class='popover-header'>
-                <div>@Las.Level</div>
-                <div>@Las.Username</div>
-            </li>
-       @for (int index = 0; index < numberUpline; index++)
-        {
-            var upline = uplines.ElementAt(index);
-            <li class='popover-item'>
-                <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
-                <div>
-                    <a class='agent-inline' href='@(url.Action(actionName, "CustomerSetting", new { area = "", memberId = memberId, agentId = upline.UplineCustId, agentLevel = upline.Level, numberOfLevel = numberOfLevel }))'  target='frmMain' onclick='customer.accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
-                </div>
-            </li>
-        }
-        </ul>
-}
 @helper GenerateRadios(DrawFilter val)
     {
     <label class="radio inline">@Las.DrawFilter</label>
@@ -194,27 +172,3 @@
         }
     </select>
 }
-
-@helper RenderPopoverAccountInformation(IList<UpLineEntity> uplines)
-    {
-        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-        var numberUpline = uplines.Count;
-        
-        <ul>
-            <li class='popover-header'>
-                <div>@Las.Level</div>
-                <div>@Las.Username</div>
-            </li>
-       @for (int index = 0; index < numberUpline; index++)
-        {
-            var upline = uplines.ElementAt(index);
-            <li class='popover-item'>
-                <div>@string.Format(Las.AgentLevelFormat, upline.Level - 1)</div>
-                <div>
-                    <a class='agent-inline' href='@(url.Action("Search", "AccountInformation", new { area = "", username = upline.UserName }))'  target='frmMain' onclick='customer.accountInformation.hidePopover();' title='@upline.UserName'>@(upline.MediumUserName)</a>
-                </div>
-            </li>
-        }
-        </ul>
-}
-

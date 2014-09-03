@@ -130,6 +130,9 @@
                 case (int)Product.Product_5:
                     return Las.VirtualSports;
 
+                case (int)Product.Product_6:
+                    return Las.RNGCasino;
+
                 case (int)Product.Product_7:
                     return Las.Bingo;
 

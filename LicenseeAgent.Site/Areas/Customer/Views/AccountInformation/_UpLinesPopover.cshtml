@@ -1,0 +1,18 @@
+﻿@model IList<UpLineEntity>
+<ul>
+    <li class="popover-header">
+        <div>@Las.Level</div>
+        <div>@Las.Username</div>
+    </li>
+    @foreach (var entity in Model)
+    {
+        <li class="popover-item">
+            <div>@string.Format(Las.AgentLevelFormat, entity.Level - 1)</div>
+            <div>
+                <a class="agent-inline" href="#" title="@entity.UserName" onclick="customer.accountInformation.search('@entity.UserName')">
+                    @entity.MediumUserName
+                </a>
+            </div>
+        </li>
+    }
+</ul>

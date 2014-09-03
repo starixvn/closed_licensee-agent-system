@@ -253,6 +253,8 @@
     <Content Include="Areas\Customer\Views\AccountInformation\Search.cshtml" />
     <Content Include="Areas\Customer\Views\Web.config" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_UpLinesPopover.cshtml" />
+    <Content Include="Areas\Customer\Views\AccountInformation\_SettingPopover.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

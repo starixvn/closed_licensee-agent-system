@@ -1,37 +1,40 @@
 ﻿@model SearchUserResultViewModel
-<div class="container-fluid left">
-    @Html.HiddenFor(m => m.Customer.CustId, new { @id = "AgentId" })
+@Html.HiddenFor(m => m.Customer.CustId, new { @id = "AgentId" })
+<div class="container-fluid">
     @if (Model.Uplines.Any())
     {
-        var maxShow = 3;
-        var numberUpline = Model.Uplines.Count();
-        var moreLength = numberUpline - maxShow;
-        var showStart = numberUpline > maxShow ? moreLength : 0;
-
-        if (numberUpline > maxShow)
+        var totalMoreUpLines = Math.Max(Model.Uplines.Count() - 3, 0);
+        var moreUpLines = Model.Uplines.Take(totalMoreUpLines).ToList();
+        var showUpLines = Model.Uplines.Skip(totalMoreUpLines).ToList();
+        if (moreUpLines.Any())
         {
         <div class="row">
             <div class="cell-left">@Las.MoreUplines</div>
             <div class="cell-right btn-group pull-right">
                 <button id="more-upline" class="btn btn-mini btn-primary">
                     @Las.More
-                    <i class="icon-more-arrow" data-content="@(RazorHelper.RenderPopoverAccountInformation(Model.Uplines.Take(moreLength).ToList()))">
-                    </i>
+                    <i class="icon-more-arrow" rel="popover"></i>
+                    <div class="hide">
+                        @Html.Partial("_UpLinesPopover", moreUpLines)
+                    </div>
                 </button>
             </div>
         </div>
         }
-        for (var index = showStart; index < numberUpline; index++)
+
+        if (showUpLines.Any())
         {
-            var directUpline = Model.Uplines.ElementAt(index);
-        <div class="row @(index == numberUpline - 1 ? "row-bottom" : "")">
-            <div class="cell-left">@string.Format(Las.AgentLevelFormat, directUpline.Level - 1)</div>
+            foreach (var entity in showUpLines)
+            {
+        <div class="row">
+            <div class="cell-left">@string.Format(Las.AgentLevelFormat, entity.Level - 1)</div>
             <div class="cell-right">
-                <a class="agent-inline" href="#" data-id="@(directUpline.UplineCustId)" title="@directUpline.UserName">
-                    @directUpline.MediumUserName
+                <a class="agent-inline" href="#" data-id="@entity.UplineCustId" title="@entity.UserName">
+                    @entity.MediumUserName
                 </a>
             </div>
         </div>
+            }
         }
     }
     @if (Model.Customer != null)
@@ -39,8 +42,9 @@
         <div class="row cust-info">
             <div class="@(Model.Customer.Status == (int)AccountStatus.Open ? "open" : "closed")">
                 <div class="cust-info-username">
-                    <span title="@Model.Customer.UserName">@Formatter.FormatMediumUserName(Model.Customer.UserName)</span><i
-                        class="icon-collapse"></i></div>
+                    <span title="@Model.Customer.UserName">@Formatter.FormatMediumUserName(Model.Customer.UserName)</span>
+                    <i class="icon-collapse"></i>
+                </div>
                 <div class="cust-info-pt">
                     PT</div>
             </div>
@@ -52,7 +56,7 @@
                         </td>
                         <td>
                             <div class="@(Model.Customer.Status == (int)AccountStatus.Open ? "icon-status-open" : "icon-status-closed")" id="customer-status">
-                                <span>@(Model.Customer.Status == (int)AccountStatus.Open ? "Open" : "Closed")</span>
+                                <span>@(Model.Customer.Status == (int)AccountStatus.Open ? Las.Open : Las.Closed)</span>
                             </div>
                         </td>
                     </tr>

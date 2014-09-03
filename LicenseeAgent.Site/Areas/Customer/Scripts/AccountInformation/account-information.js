@@ -19,7 +19,6 @@ customer.accountInformation = (function ($) {
             $('#accountInfo form').submit(function (event) {
                 userName = $.trim($("#UserName").val());
                 if (userName !== '') {
-                    $("#accountInfo #UserName").val(userName);
                     customer.accountInformation.search(userName);
                 }
                 event.preventDefault();
@@ -41,6 +40,8 @@ customer.accountInformation = (function ($) {
             }
         },
         search: function (userName) {
+            customer.accountInformation.hidePopover();
+            $("#accountInfo #UserName").val(userName);
             $.ajax({
                 url: $('#accountInfo form').attr('action'),
                 type: 'post',
@@ -118,16 +119,20 @@ customer.accountInformation = (function ($) {
             if ($('.icon-more-arrow').length > 0) {
                 $('.icon-more-arrow').popover({
                     container: 'body',
+                    trigger: 'manual',
                     html: true,
+                    content: $('.icon-more-arrow').next().html(),
                     placement: 'bottom'
+                }).parent().click(function () {
+                    $('.icon-more-arrow').popover('toggle');
                 });
 
                 $(document).click(function (e) {
-                    $('.icon-more-arrow').each(function () {
+                    $('.icon-more-arrow').parent().each(function () {
                         if (!$(this).is(e.target) &&
                             $(this).has(e.target).length === 0 &&
                             $('.popover').has(e.target).length === 0) {
-                            $(this).popover('hide');
+                            $('.icon-more-arrow').popover('hide');
                             return;
                         }
                     });
@@ -160,14 +165,16 @@ customer.accountInformation = (function ($) {
             });
         },
         pagingBinding: function () {
-            $("#accountInfo .agent-inline").click(function (event) {
-                $("#accountInfo #UserName").val($(this).attr('title'));
+            $(".agent-inline").click(function (event) {
+                var userName = $(this).attr('title');
+                $("#accountInfo #UserName").val(userName);
                 $("#accountInfo form").submit();
                 event.preventDefault();
             });
         },
         hidePopover: function () {
             $('.popover-link').popover('hide');
+            $('.icon-more-arrow').popover('hide');
         },
         getSuggestion: function (query, process) {
             return $.ajax({
@@ -291,6 +298,14 @@ customer.accountInformation = (function ($) {
             $(accountInfoId).addClass('active in');
         },
         showScrollDownline: function () {
+            var niceScroll = $("#downlineContent").getNiceScroll();
+            if (niceScroll.length === 0) {
+                $("#downlineContent").niceScroll({
+                    cursorcolor: "#8a8a8a",
+                    autohidemode: "leave"
+                });
+            }
+            $("#downlineContent").getNiceScroll().resize();
         },
         editAgentCredit: function (agentId, agentName, agentLevel, givenCredit) {
             var url = core.resolveUrl('~/CreditBalance/EditAgentCredit', {

@@ -219,6 +219,12 @@
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Areas\Customer\Scripts\AccountInformation\account-information.js" />
+    <Content Include="Content\Fanex.Result\images\1F.gif" />
+    <Content Include="Content\Fanex.Result\images\1L.gif" />
+    <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
+    <Content Include="Content\Fanex.Result\images\first-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\last-goal.gif" />
+    <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">

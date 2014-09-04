@@ -295,7 +295,7 @@ var core = (function ($) {
             }
 
             if (options.gridExpandHeight === undefined) {
-                options.gridExpandHeight = Math.max($('.freegrid').offset().top, 2);
+                options.gridExpandHeight = $('.freegrid').offset().top + 12;
             }
         },
         genGridRows: function (list, options) {

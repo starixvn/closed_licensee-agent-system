@@ -3,6 +3,7 @@
     Layout = null;
     var pageContext = (PageContext)ViewBag.PageContext;
 }
+
 @if (ViewBag.Result != null)
 {
     var result = (SearchUserViewResult)ViewBag.Result;
@@ -13,20 +14,22 @@
         customer.accountInformation.showCurrencyAlert('@result.CurrencyId', '@result.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
     </script>
     }
-    else if (!string.IsNullOrEmpty(result.ErrMsg))
+    else if (result.ErrCode != Result.SuccessValue)
     {
     <script type="text/javascript">
         customer.accountInformation.showNoUserAlert('@result.ErrMsg');
     </script>
     }
 }
+
 @if (ViewBag.PageContext != null)
 {
     <script type="text/javascript">
         @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
     </script>
 }
-@if (pageContext != null)
+
+@if (pageContext != null && ViewBag.Result == null)
 {
     @Html.Partial("_AgentInfo", Model)
 

@@ -19,7 +19,7 @@
     </div>
     <div class="betting-limit-item-col4 advanced-mode">
         <input type="text" class="input" data-ng-model="modelData.MaxPerBall" maxlength="{{config.maxInput}}"
-            auto-numeric-format='{"command":"modelData.actions.onChangeMaxPerBall()"}' />
+            auto-numeric-format='{"command":"modelData.actions.onChangeMaxPerBall()"}' readonly="readonly" />
         <span data-ng-show="modelData.MinMaxPerBall > 0">&lt;= {{modelData.MinMaxPerBall | number
             : 0}}</span>
     </div>

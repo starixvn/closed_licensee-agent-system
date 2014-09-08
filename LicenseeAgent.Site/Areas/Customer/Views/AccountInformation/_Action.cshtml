@@ -1,6 +1,13 @@
 ﻿@model SearchUserResultViewModel
 @{
+    var currentSession = SessionManager.CurrentSession;
     var pageContext = (PageContext)ViewBag.PageContext;
+    var isAllowEditSetting = pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember;
+    var hasResetPassword = true;
+    var hasEditInfo = (SessionManager.CurrentSession.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsMember && pageContext.IsDeposit);
+    var hasAddDownLine = !pageContext.IsMember
+        && (currentSession.IsAdmin || pageContext.IsDirectDownLine)
+        && (currentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && currentSession.AgentInfo.IsDeposit));
 }
 <div class="controls-row last">
     <div class="row-line">
@@ -17,7 +24,7 @@
                         {
                             <a href="#" rel="popover" data-toggle="popover" data-original-title="" class="popover-link">
                                 <i class="icon-downline-arrow"></i>
-                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
+                                @(isAllowEditSetting ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                             <div class="hide">
                                 @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" } })
@@ -27,49 +34,47 @@
                         {
                             <a href="@(pageContext.IsMember ? Url.Action("EditMember", "CustomerSetting", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
-                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditSportsbook : Las.ViewSportsbook)
+                                @(isAllowEditSetting ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                         }
                     </li>
-                    <li>
-                        @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
-                        {
-                            if (pageContext.IsOfferedVirtualSports)
+                    @if (pageContext.IsOfferedVirtualSports)
+                    {
+                        <li>
+                            @if (SessionManager.CurrentSession.IsAdmin && pageContext.IsMember)
                             {
-                            <a href="#" rel="popover" data-toggle="popover" data-original-title="" class="popover-link">
-                                <i class="icon-downline-arrow"></i>
-                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
-                            </a>
-                            <div class="hide">
-                                @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditVirtualSportsMember" } })
-                            </div>
+                                <a href="#" rel="popover" data-toggle="popover" data-original-title="" class="popover-link">
+                                    <i class="icon-downline-arrow"></i>
+                                    @(isAllowEditSetting ? Las.EditVirtualSports : Las.ViewVirtualSports)
+                                </a>
+                                <div class="hide">
+                                    @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditVirtualSportsMember" } })
+                                </div>
                             }
-                        }
-                        else
-                        {
-                            if (pageContext.IsOfferedVirtualSports)
+                            else
                             {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
-                                <i class="icon-downline-arrow"></i>
-                                @(pageContext.IsAdmin || pageContext.IsDirectDownLine || pageContext.IsMember ? Las.EditVirtualSports : Las.ViewVirtualSports)
-                            </a>
+                                <a href="@(pageContext.IsMember ? Url.Action("EditVirtualSportsMember", "CustomerSetting", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("EditVirtualSportsAgent", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
+                                    <i class="icon-downline-arrow"></i>
+                                    @(isAllowEditSetting ? Las.EditVirtualSports : Las.ViewVirtualSports)
+                                </a>
                             }
-                        }
-                    </li>
-                    <li><a href="@(pageContext.IsMember ? Url.Action("ResetPasswordMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("ResetPasswordAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
-                        <i class="icon-downline-arrow"></i>
-                        @Las.ResetPassword
-                    </a></li>
-                    @if ((SessionManager.CurrentSession.IsAdmin || (bool)pageContext.IsDirectDownLine) && !(pageContext.IsMember && pageContext.IsDeposit))
+                        </li>
+                    }
+                    @if (hasResetPassword)
+                    {
+                        <li><a href="@(pageContext.IsMember ? Url.Action("ResetPasswordMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId }) : Url.Action("ResetPasswordAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                            <i class="icon-downline-arrow"></i>
+                            @Las.ResetPassword
+                        </a></li>
+                    }
+                    @if (hasEditInfo)
                     {
                         <li><a href="@(pageContext.IsMember ? Url.Action("EditInfoMember", "CustomerList", new { area = "", memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfoAgent", "CustomerList", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.EditInfo
                         </a></li>
                     }
-                    @if (!pageContext.IsMember &&
-                        (SessionManager.CurrentSession.IsAdmin && (SessionManager.CurrentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && SessionManager.CurrentSession.AgentInfo.IsDeposit)))
-                        || (!SessionManager.CurrentSession.IsAdmin && pageContext.IsDirectDownLine))
+                    @if (hasAddDownLine)
                     {
                         <li><a href="@(Url.Action("InsertCustomer", "CustomerSetting", new { area = "", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>

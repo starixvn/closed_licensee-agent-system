@@ -1,0 +1,82 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@{
+    Layout = null;
+}
+<div id="positionTakingContainer" data-ng-controller="PositionTakingController" class="pt-setting">
+    <div class="pt-container-box" data-ng-show="!settingContext.IsSimpleMode">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "licensee-position-taking-info-button-adv")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "agent-position-taking-info-button-adv")
+        }
+        else
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "member-position-taking-info-button-adv")
+        }
+        <div data-ng-show="!settingContext.IsSimpleMode" class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
+            <div data-ng-class="{'pt-group-header expand': true, 'pt-group-header': true}">
+                <span class="collapse-expand-button ">@Las.VirtualSports</span> <span class="icon-setting-copy"
+                    data-ng-click="positionTakingService.copyVirtualSoccer(0, ptModel.ptGroups[0], ptModel.ptGroups, languageService, this);"
+                    title="{{languageService.getString('VirtualSoccerCopyPtTooltip')}}" data-ng-show="settingContext.FormId != 2">
+                </span>
+            </div>
+            <div class="pt-group-box">
+                <div data-ng-repeat="pt in ptModel.ptGroups" class="pt-group" data-ng-show="!settingContext.IsSimpleMode"
+                    data-ng-switch="settingContext.TargetRoleId">
+                    <licensee-edit-agent-one-pt-advanced-mode data-ng-switch-when="3"></licensee-edit-agent-one-pt-advanced-mode>
+                    @if (Model.FormId != FormType.ViewIndirectAgent)
+                    {
+                        <agent-edit-agent-pt-advanced-mode data-ng-switch-when="2"></agent-edit-agent-pt-advanced-mode>
+                    }
+                    else
+                    {
+                        <agent-edit-agent-pt-advanced-mode-read-only data-ng-switch-when="2" data-ng-show="settingContext.FormId == 2"></agent-edit-agent-pt-advanced-mode-read-only>
+                    }
+                    <agent-edit-member-pt-advanced-mode data-ng-switch-when="1"></agent-edit-member-pt-advanced-mode>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-container-box simple-mode" data-ng-switch="settingContext.TargetRoleId"
+        data-ng-show="settingContext.IsSimpleMode">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @InstructionHelper.Render(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSoccer), "licensee-position-taking-info-button")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @InstructionHelper.Render(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSoccer), "agent-position-taking-info-button")
+        }
+        else
+        {
+            @InstructionHelper.Render(string.Format("{0} - {1}", Las.PositionTaking, Las.VirtualSoccer), "member-position-taking-info-button")
+        }
+        <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
+            <div class="pt-group-box">
+                <licensee-edit-agent-one-pt-simple-mode data-ng-switch-when="3" pt-simple="ptModel.ptFirstData"></licensee-edit-agent-one-pt-simple-mode>
+                @if (Model.FormId != FormType.ViewIndirectAgent)
+                {
+                    <agent-edit-agent-pt-simple-mode data-ng-switch-when="2" pt-simple="ptModel.ptFirstData"></agent-edit-agent-pt-simple-mode>
+                }
+                else
+                {
+                    <agent-edit-agent-pt-simple-mode-read-only data-ng-switch-when="2" pt-simple="ptModel.ptFirstData"></agent-edit-agent-pt-simple-mode-read-only>
+                }
+                <agent-edit-member-pt-simple-mode data-ng-switch-when="1" pt-simple="ptModel.ptFirstData"></agent-edit-member-pt-simple-mode>
+            </div>
+        </div>
+    </div>
+    @if (Model.IsDeposit && Model.FormId != FormType.ViewIndirectAgent && Model.FormId != FormType.Add)
+    {
+        <div class="box-update clearfix">
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updatePartial($event)">
+                    @Las.Update
+                </button>
+            </div>
+        </div>
+    }
+</div>

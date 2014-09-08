@@ -1,0 +1,95 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.CustomerSetting.Entities;
+@model SettingContext
+@{
+    Layout = null;
+}
+<div class="box-bottom" data-ng-controller="BetLimitController">
+    <div data-ng-class="{'container-box': true, 'simple-mode': settingMode}">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @InstructionHelper.Render(Las.BetSetting, "licensee-bet-limit-info-button", true)
+            @InstructionHelper.Render(Las.BetSetting, "licensee-bet-limit-info-button-adv", false)
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @InstructionHelper.Render(Las.BetSetting, "agent-bet-limit-info-button", true)
+            @InstructionHelper.Render(Las.BetSetting, "agent-bet-limit-info-button-adv", false)
+        }
+        else
+        {
+            @InstructionHelper.Render(Las.BetSetting, "member-bet-limit-info-button", true)
+            @InstructionHelper.Render(Las.BetSetting, "member-bet-limit-info-button-adv", false)
+        }
+        <div id="betting-limit-current-scope" class="betting-limit">
+            <div data-ng-show="settingContext.IsSimpleMode" class="simple-mode">
+                <div>
+                    <div class="betting-limit-header min-bet">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MinBet</span></div>
+                    </div>
+                    <div class="betting-limit-header">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MaxBet</span></div>
+                    </div>
+                    <div class="betting-limit-header">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MaxPerMatch</span></div>
+                    </div>
+                </div>
+                @if (Model.FormId != FormType.ViewIndirectAgent)
+                {
+                    <betting-limit-simple-mode model-data="model.firstRecord"></betting-limit-simple-mode>
+                }
+                else
+                {
+                    <betting-limit-simple-mode-read-only model-data="model.firstRecord"></betting-limit-simple-mode-read-only>
+                }
+            </div>
+            <div data-ng-show="!settingContext.IsSimpleMode">
+                <div>
+                    <div class="betting-limit-sport-header">
+                        <div class="betting-limit-header-text">
+                        </div>
+                    </div>
+                    <div class="betting-limit-header">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MinBet</span></div>
+                    </div>
+                    <div class="betting-limit-header">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MaxBet</span></div>
+                    </div>
+                    <div class="betting-limit-header">
+                        <div class="betting-limit-header-text">
+                            <span>@Las.MaxPerMatch</span></div>
+                    </div>
+                </div>
+                <div data-ng-repeat="betSetting in model.bettingLimitsModel">
+                    @if (Model.FormId != FormType.ViewIndirectAgent)
+                    {
+                        <betting-limit-advanced-mode betting-limits-model="model.bettingLimitsModel" bet-setting="betSetting"
+                            current-index="$index"></betting-limit-advanced-mode>
+                    }
+                    else
+                    {
+                        <betting-limit-advanced-mode-read-only betting-limits-model="model.bettingLimitsModel"
+                            bet-setting="betSetting" current-index="$index"></betting-limit-advanced-mode-read-only>
+                    }
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.IsDeposit && Model.FormId != FormType.ViewIndirectAgent && Model.FormId != FormType.Add)
+    {
+        <div class="box-update clearfix">
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updatePartial($event)">
+                    @Las.Update
+                </button>
+            </div>
+        </div>
+    }
+</div>

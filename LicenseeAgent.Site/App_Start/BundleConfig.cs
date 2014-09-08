@@ -225,21 +225,6 @@
         /// <param name="bundles">Bundle collection.</param>
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
-                "~/views/customersetting/resources/scripts", "*.js", true));
-            bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
-                "~/views/customersetting/sportsbook/scripts", "*.js", true).IncludeDirectory(
-                "~/views/customersetting/numbergame/scripts", "*.js", true));
-            bundles.Add(new ScriptBundle("~/js/customersetting/virtualsports").IncludeDirectory(
-               "~/views/customersetting/virtualsports/scripts", "*.js", true));
-            bundles.Add(new LessBundle("~/css/customersetting").Include(
-                "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
-
-            bundles.Add(new ScriptBundle("~/js/customersetting/editproduct").Include(
-                "~/views/customersetting/resources/edit-product.js"));
-            bundles.Add(new LessBundle("~/css/customersetting/editproduct").Include(
-                "~/views/customersetting/resources/edit-product.less"));
-
             bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
                 "~/views/customersetting/Resources/MemberArrangement.js"));
         }

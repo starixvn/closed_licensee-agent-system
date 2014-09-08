@@ -38,6 +38,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
@@ -87,12 +89,17 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\CommissionGroupController.cs" />
-    <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Controllers\MemberCommissionController.cs" />
-    <Compile Include="Controllers\MemberReArrangement.cs" />
+    <Compile Include="Controllers\MemberReArrangementController.cs" />
     <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
     <Compile Include="Criteria\SwitchUserValidateCriteria.cs" />
     <Compile Include="Entities\AgentInformation.cs" />
+    <Compile Include="Controllers\ProductSetting\NumberGameController.cs" />
+    <Compile Include="Controllers\ProductSetting\ProductSettingController.cs" />
+    <Compile Include="Controllers\ProductSetting\SportsBookController.cs" />
+    <Compile Include="Controllers\ProductSetting\VirtualSportsController.cs" />
+    <Compile Include="Services\ProductSetting\ISportsBookSettingService.cs" />
+    <Compile Include="Services\ProductSetting\IVirtualSportsSettingService.cs" />
     <Compile Include="Utils\Commission.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\ErrorType.cs" />
@@ -174,14 +181,14 @@
     <Compile Include="Services\GroupCommissionService.cs" />
     <Compile Include="Services\IGroupCommissionService.cs" />
     <Compile Include="Services\IMemberCommissionService.cs" />
-    <Compile Include="Services\ISettingService.cs" />
+    <Compile Include="Services\ProductSetting\ISettingService.cs" />
     <Compile Include="Services\MemberCommissionService.cs" />
-    <Compile Include="Services\NumberGame\SettingService.cs" />
-    <Compile Include="Services\SettingServiceBase.cs" />
-    <Compile Include="Services\SportsBook\SettingService.cs" />
+    <Compile Include="Services\ProductSetting\NumberGameSettingService.cs" />
+    <Compile Include="Services\ProductSetting\SettingServiceBase.cs" />
+    <Compile Include="Services\ProductSetting\SportsBookSettingService.cs" />
     <Compile Include="Services\CustomerSettingService.cs" />
     <Compile Include="Services\ICustomerSettingService.cs" />
-    <Compile Include="Services\VirtualSports\SettingService.cs" />
+    <Compile Include="Services\ProductSetting\VirtualSportsSettingService.cs" />
     <Compile Include="Utils\PositionTakingBuilder.cs" />
     <Compile Include="Utils\XmlBuilder.cs" />
     <Compile Include="Utils\BettingLimitDataReader.cs" />
@@ -203,7 +210,7 @@
     <Compile Include="ViewModels\UpdateMemberCommissionViewModel.cs" />
     <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
-    <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\UpdateSportsBookCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditMemberViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForUpdateViewModel.cs" />
     <Compile Include="ViewModels\InsertCustomerViewModel.cs" />
@@ -227,7 +234,9 @@
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\CommissionSetting\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Core\PtSettings.xsd">

@@ -1,0 +1,38 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@{
+    Layout = null;
+}
+<div class="container-box customerinfo-box" data-ng-controller="CustomerInfoController"
+    data-ng-form name="formCustInfo">
+    <div class="instruction">
+        @Las.GeneralInformation
+    </div>
+    <div class="row-block">
+        <div class="block1">
+            <span>@Las.Username</span>
+        </div>
+        <div class="block2 border text-ellipsis">
+            <span>{{custInfo.UserName}}</span>
+        </div>
+        <div class="block3">
+            <span>@Las.FirstName</span>
+        </div>
+        <div class="block4 border text-ellipsis">
+            <span>{{custInfo.FirstName}}</span>
+        </div>
+    </div>
+    <div class="row-block">
+        <div class="block1">
+            <span>@Las.Status</span>
+        </div>
+        <div class="block2 border">
+            <span>{{custInfo.Status==@((int)AccountStatus.Open)?'@Las.Open':'@Las.Closed'}}</span>
+        </div>
+        <div class="block3">
+            <span>@Las.LastName</span>
+        </div>
+        <div class="block4 border text-ellipsis">
+            <span>{{custInfo.LastName}}</span>
+        </div>
+    </div>
+</div>

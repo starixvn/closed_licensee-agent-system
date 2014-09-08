@@ -1,0 +1,722 @@
+@border: 1px solid #dedede;
+@header-border: 1px solid #fff;
+@header-background-color: #F7F0E4;
+@title-background-color: #908f8f;
+@cell-height: 31px;
+@header-height: 28px;
+@box-width: 991px;
+@pt-box-width: 975px;
+
+.messages
+{
+    margin-bottom: 10px;
+    .success
+    {
+        color: #50C15C;
+    }
+    .error
+    {
+        color: #d62d2e;
+    }
+    .warning
+    {
+        color: #fe8f00;
+    }
+}
+
+.cell-block()
+{
+    float: left;
+    height: @cell-height;
+    padding: 3px 5px;
+    border-left: @border;
+    border-top: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.pt-block()
+{
+    height: @cell-height;
+    padding: 3px 5px;
+    border-left: @border;
+    border-top: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.cell-header()
+{
+    float: left;
+    height: @header-height;
+    padding: 3px 5px;
+    text-align: center;
+    font-weight: bold;
+    background: #DEDEDE;
+    border-left: @header-border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.pt-header()
+{
+    height: @header-height;
+    padding: 3px 5px;
+    text-align: center;
+    font-weight: bold;
+    background: #DEDEDE;
+    border-left: @header-border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.pt-group()
+{
+    float: left;
+    background: #f2f2f2;
+    border-bottom: @border;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+span
+{
+    height: @cell-height;
+    line-height: 23px;
+}
+
+input.ng-invalid:focus
+{
+    border-color: #e9322d;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7;
+}
+
+input[type="text"], input[type="password"]
+{
+    float: left;
+    margin-bottom: 2px;
+    margin-right: 5px;
+}
+
+.container-box
+{
+    float: left;
+    width: @box-width;
+    min-width: @box-width;
+    border-bottom: @border;
+    border-right: @border;
+    background: #eeeff1;
+    /*margin-bottom: 10px;*/
+}
+
+.container-mode
+{
+    margin-bottom: 10px;
+    span.mode-text
+    {
+        color: #329bde;
+        padding-right: 5px;
+    }
+}
+
+.customerinfo-box
+{
+    .row-block
+    {
+        width: 100%;
+        .block1,.block2,.block3,.block4
+        {
+            .cell-block();
+        }
+        .block1
+        {
+            width: 20%;
+            text-align: right;
+        }
+        .block2
+        {
+            width: 30%;
+        }
+        .block3
+        {
+            width: 20%;
+            text-align: right;
+        }
+        .block4
+        {
+            width: 30%;
+        }
+        .no-border
+        {
+            border-left: 0;
+        }
+        input[type="text"], input[type="password"], select
+        {
+            width: 120px;
+            &.username-index
+            {
+                width: 50px;
+            }
+        }
+    }
+}
+
+.fanex-sportbook-setting
+{
+    .product-group
+    {
+        border: @border;
+        width: @box-width;
+        min-width: @box-width;
+        margin-bottom: 10px;
+        .product-name
+        {
+            padding: 5px 8px;
+            border-bottom: @border;
+            background: #EDEDED;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .product-container
+        {
+            padding: 8px;
+            .container-box
+            {
+                width: auto;
+                min-width: 0;
+            }
+            .betting-limit 
+            {
+				.simple-mode
+				{
+					.betting-limit-header, .betting-limit-item 
+					{
+						width: 324px;
+					}
+					.betting-limit-header-col4, .betting-limit-item-col4
+					{
+						&.min-bet
+						{
+							width: 244px;
+						}
+						width: 242px;
+						input[type=text], input[type=number] 
+						{
+							width: 100px;
+							text-align: right;
+						}
+					}
+				}
+
+				.advance-mode 
+				{
+					.betting-limit-header, .betting-limit-item 
+					{
+						width: 272px;
+					}
+				}
+            }
+            .pt-container-box
+            {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .comm-setting 
+    {
+        overflow: hidden;
+        
+        .comm-group
+        {
+            .comm-header 
+            {
+                .cell-block();
+                width: 167px;
+                text-align: right;
+
+                &.first
+                {
+                    width: 168px;
+                }
+            }
+
+            .comm-content 
+            {
+                .cell-block();
+                width: 163px;
+
+                input[type=text], input[type=number] 
+                {
+                    width: 38px;
+                    text-align: right;
+                }
+            }
+        }
+
+        .member-com-group
+        {
+            .comm-container
+            {
+                float: left;
+                width: 330px;
+                &.comm-group-name
+                {
+                    width: 331px;
+                }
+                .comm-header-title
+                {
+                    .cell-header();
+                    float: none;
+                    &.commission-group
+                    {
+                        border-left-width: 0;
+                    }
+                }
+
+                .comm-group
+                {
+                    .cell-block();
+                    float: none;
+
+                    .comm-block
+                    {
+                        float: left;
+                        width: 50%;
+
+                        input[type=text], input[type=number] 
+                        {
+                            width: 120px;
+                            text-align: right;
+                        }
+
+                        &:first-child
+                        {
+                            text-align: right;
+                            input[type=text], input[type=number]
+                            {
+                                float: right;
+                            }
+                            span
+                            {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+
+                    .comm-full-block
+                    {
+                        width: 100%;
+                        text-align: center;
+                        padding-top: @cell-height;
+
+                        select
+                        {
+                            width: 50px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .comm-block-x1 {
+            .cell-block();
+            width: 330px;
+        }
+
+        .comm-block-x2 {
+            .cell-block();
+            width: 660px;
+        }
+    }
+
+    .betting-limit 
+    {
+        overflow: hidden;
+
+        .betting-limit-header
+        {
+            .cell-header();
+            &.min-bet
+            {
+                border-left-width: 0;
+            }
+        }
+
+        .betting-limit-item 
+        {
+            .cell-block();
+            input[type=text], input[type=number] 
+            {
+                width: 125px;
+                text-align: right;
+            }
+        }
+
+        .betting-limit-header-col4
+        {
+            .cell-header();
+            width: 244px;
+            &.min-bet
+            {
+                border-left-width: 0;
+                width: 242px;
+            }
+        }
+
+        .betting-limit-item-col4
+        {
+            .cell-block();
+            width: 244px;
+            &.min-bet
+            {
+                width: 242px;
+            }
+            input[type=text], input[type=number] 
+            {
+                width: 92px;
+                text-align: right;
+            }
+        }
+
+        .betting-limit-sport
+        {
+            .cell-block();
+            width: 157px;
+        }
+
+        .betting-limit-sport-header
+        {
+            .cell-header();
+            width: 157px;
+            border-left-width: 0;
+        }
+
+        .betting-limit-sport-col4
+        {
+            .cell-block();
+            width: 79px;
+            height:50px;
+            &.advanced-mode span
+            {
+                line-height:18px;	
+            }
+        }
+
+        .betting-limit-sport-header-col4
+        {
+            .cell-header();
+            width: 79px;
+            border-left-width: 0;
+        }
+    }
+
+    .pt-setting {
+        .pt-container-box
+        {
+            float: left;
+            width: @pt-box-width;
+            margin-bottom: 10px;
+
+            &.simple-mode
+            {
+                width: 323px;
+            }
+
+            .pt-group-container
+            {
+                overflow: hidden;
+                border-bottom: 1px solid #fff;
+
+                .pt-group-box
+                {
+                    float: left;
+                    border-right: @border;
+
+                    .pt-group 
+                    {
+                        .pt-group();
+
+                        .pt-header-box
+                        {
+                            float: left;
+                            width: 159px;
+                            &.simple-mode
+                            {
+                                width: 160px;
+                            }
+
+                            .pt-header
+                            {
+                                .pt-block();
+                                text-align: right;
+                            }
+                        }
+
+                        .pt-content-box
+                        {
+                            float: left;
+                            width: 163px;
+                            &.simple-mode
+                            {
+                                width: 199px;
+                            }
+
+                            .pt-content 
+                            {
+                                .pt-block();
+                                input[type=text], input[type=number] 
+                                {
+                                    width: 38px;
+                                    text-align: right;
+                                }
+                            }
+                        }
+
+                        .pt-content-bettype, .pt-header-bettype
+                        {
+                            .pt-header();
+                        }
+
+                        .pt-header-bettype
+                        {
+                            border-left-width: 0;
+                        }
+                    }
+                }
+
+                .pt-group-header 
+                {
+                    background: #DBDBDB;
+                    color: black;
+                    height: 22px;
+                    padding: 3px 5px;
+
+                    &.expand
+                    {
+                        background: #EECACA;
+                    }
+
+                    .collapse-expand-button 
+                    {
+                        width: 90%;
+                        display: inline-block;
+
+                        &:hover 
+                        {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fanex-virtual-sports-setting
+{
+    .product-group
+    {
+        .product-container
+        {
+            .container-box
+            {
+                min-width: 0;
+            }
+            .betting-limit 
+            {
+                .betting-limit-header, .betting-limit-item 
+                {
+                    width: 330px;
+                }
+            }
+            .pt-container-box
+            {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .betting-limit 
+    {
+        overflow: hidden;
+
+        .betting-limit-header
+        {
+            .cell-header();
+            width: 278px;
+            &.min-bet
+            {
+                border-left-width: 0;
+            }
+        }
+
+        .betting-limit-item 
+        {
+            .cell-block();
+            width: 278px;
+            input[type=text], input[type=number] 
+            {
+                width: 125px;
+                text-align: right;
+            }
+        }
+
+        .betting-limit-sport
+        {
+            .cell-block();
+            width: 157px;
+        }
+
+        .betting-limit-sport-header
+        {
+            .cell-header();
+            width: 157px;
+            border-left-width: 0;
+        }
+    }
+
+    .pt-setting {
+        .pt-container-box
+        {
+            float: left;
+            width: @box-width;
+
+            &.simple-mode
+            {
+                width: 327px;
+            }
+
+            .pt-group-container
+            {
+                overflow: hidden;
+                border-bottom: 1px solid #fff;
+
+                .pt-group-box
+                {
+                    float: left;
+
+                    .pt-group 
+                    {
+                        .pt-group();
+
+                        .pt-header-box
+                        {
+                            float: left;
+                            width: 160px;
+                            &.simple-mode
+                            {
+                                width: 160px;
+                            }
+
+                            .pt-header
+                            {
+                                .pt-block();
+                                text-align: right;
+                            }
+                        }
+
+                        .pt-content-box
+                        {
+                            float: left;
+                            width: 166px;
+                            &.simple-mode
+                            {
+                                width: 199px;
+                            }
+
+                            .pt-content 
+                            {
+                                .pt-block();
+                                input[type=text], input[type=number] 
+                                {
+                                    width: 38px;
+                                    text-align: right;
+                                }
+                            }
+                        }
+
+                        .pt-content-bettype, .pt-header-bettype
+                        {
+                            .pt-header();
+                        }
+
+                        .pt-header-bettype
+                        {
+                            border-left-width: 0;
+                        }
+                    }
+                }
+
+                .pt-group-header 
+                {
+                    background: #DBDBDB;
+                    color: black;
+                    height: 22px;
+                    padding: 3px 5px;
+
+                    &.expand
+                    {
+                        background: #EECACA;
+                    }
+
+                    .collapse-expand-button 
+                    {
+                        width: 90%;
+                        display: inline-block;
+
+                        &:hover 
+                        {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fanex-customer-setting
+{
+	.edit-setting-warning
+    {
+        font-style: italic;
+        color: #f60;
+        margin-bottom: 5px;
+    }
+
+	.btn-group
+    {
+        margin-bottom: 10px;
+    }
+}
+
+.customerinfo-box {
+	margin-bottom: 10px;
+}
+
+.box-update {
+	float: left;
+	width: 100%;
+
+	.control-group {
+		border-bottom: 1px solid #dedede;
+		border-left: 1px solid #dedede;
+		border-right: 1px solid #dedede;
+		min-width: 70px;
+		padding: 5px;
+		display: table;
+	}
+}
+
+.box-bottom {
+	margin-bottom: 10px;
+	display: table;
+}

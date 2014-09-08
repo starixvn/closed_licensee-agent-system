@@ -1,0 +1,82 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@{
+    Layout = null;
+}
+<div id="positionTakingContainerNG" data-ng-controller="NumberGamePositionTakingController"
+    class="pt-setting">
+    <div class="pt-container-box simple-mode" data-ng-switch="settingContext.TargetRoleId"
+        data-ng-show="settingContext.IsSimpleMode">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @InstructionHelper.Render(Las.NumberGamePositionTakingSimpleModeHeader, "licensee-position-taking-info-button-ng")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @InstructionHelper.Render(Las.NumberGamePositionTakingSimpleModeHeader, "agent-position-taking-info-button-ng")
+        }
+        else
+        {
+            @InstructionHelper.Render(Las.NumberGamePositionTakingSimpleModeHeader, "member-position-taking-info-button-ng")
+        }
+        <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
+            <div class="pt-group-box">
+                <number-game-licensee-edit-agent-one-pt-simple-mode data-ng-switch-when="3" pt-simple="ptModel.ptFirstData"></number-game-licensee-edit-agent-one-pt-simple-mode>
+                @if (Model.FormId != FormType.ViewIndirectAgent)
+                {
+                    <number-game-agent-edit-agent-pt-simple-mode data-ng-switch-when="2" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-agent-pt-simple-mode>
+                }
+                else
+                {
+                    <number-game-agent-edit-agent-pt-simple-mode-read-only data-ng-switch-when="2" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-agent-pt-simple-mode-read-only>
+                }
+                <number-game-agent-edit-member-pt-simple-mode data-ng-switch-when="1" pt-simple="ptModel.ptFirstData"></number-game-agent-edit-member-pt-simple-mode>
+            </div>
+        </div>
+    </div>
+    <div class="pt-container-box" data-ng-show="!settingContext.IsSimpleMode">
+        @if (Model.TargetRoleId == (int)Role.AgentLevel1)
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "licensee-position-taking-info-button-adv-ng")
+        }
+        else if (Model.TargetRoleId == (int)Role.Agent)
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "agent-position-taking-info-button-adv-ng")
+        }
+        else
+        {
+            @InstructionHelper.Render(Las.PositionTaking, "member-position-taking-info-button-adv-ng")
+        }
+        <div data-ng-repeat="ptGroup in ptModel.ptGroups" class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
+            <div data-ng-class="{'pt-group-header expand': ptGroup.Expand, 'pt-group-header': true}">
+                <span data-ng-click="positionTakingService.onCollapseExpand(ptGroup)" class="collapse-expand-button">
+                    {{ptGroup.Name}}</span>
+            </div>
+            <div class="pt-group-box">
+                <div data-ng-repeat="pt in ptGroup.PositionTakings" class="pt-group" data-ng-show="ptGroup.Expand"
+                    data-ng-switch="settingContext.TargetRoleId">
+                    <number-game-licensee-edit-agent-one-pt-advanced-mode data-ng-switch-when="3"></number-game-licensee-edit-agent-one-pt-advanced-mode>
+                    @if (Model.FormId != FormType.ViewIndirectAgent)
+                    {
+                        <number-game-agent-edit-agent-pt-advanced-mode data-ng-switch-when="2"></number-game-agent-edit-agent-pt-advanced-mode>
+                    }
+                    else
+                    {
+                        <number-game-agent-edit-agent-pt-advanced-mode-read-only data-ng-switch-when="2"
+                            data-ng-show="settingContext.FormId == 2"></number-game-agent-edit-agent-pt-advanced-mode-read-only>
+                    }
+                    <number-game-agent-edit-member-pt-advanced-mode data-ng-switch-when="1"></number-game-agent-edit-member-pt-advanced-mode>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.IsDeposit && Model.FormId != FormType.ViewIndirectAgent && Model.FormId != FormType.Add)
+    {
+        <div class="box-update clearfix">
+            <div class="control-group">
+                <button class="btn btn-primary" data-ng-click="updatePartial($event)">
+                    @Las.Update
+                </button>
+            </div>
+        </div>
+    }
+</div>

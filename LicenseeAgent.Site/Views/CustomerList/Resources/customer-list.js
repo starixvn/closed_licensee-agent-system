@@ -460,10 +460,10 @@ var customerList = (function ($) {
         editSportsbook: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerSetting/EditMember?memberId={0}"
+                url = "CustomerSetting/SportsBook/EditMember?memberId={0}"
                     .format(editMemberId);
             } else {
-                url = "CustomerSetting/EditAgent?agentId={0}"
+                url = "CustomerSetting/SportsBook/EditAgent?agentId={0}"
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
@@ -474,10 +474,10 @@ var customerList = (function ($) {
         editVirttualSports: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerSetting/EditVirtualSportsMember?memberId={0}"
+                url = "CustomerSetting/VirtualSports/EditMember?memberId={0}"
                     .format(editMemberId);
             } else {
-                url = "CustomerSetting/EditVirtualSportsAgent?agentId={0}"
+                url = "CustomerSetting/VirtualSports/EditAgent?agentId={0}"
                     .format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
@@ -500,7 +500,7 @@ var customerList = (function ($) {
             popup.openFrame(url);
         },
         addDownline: function () {
-            var url = "CustomerSetting/InsertCustomer?agentId={0}"
+            var url = "CustomerSetting/SportsBook/InsertCustomer?agentId={0}"
                 .format(editAgentId);
             popup.openFrame(url, {
                 width: 1008,

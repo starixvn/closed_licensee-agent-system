@@ -105,7 +105,6 @@
     <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
     <Compile Include="Criteria\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criteria\GetProductCriteria.cs" />
-    <Compile Include="Criteria\InternalLoginAsUserCriteria.cs" />
     <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
@@ -156,7 +155,6 @@
     <Compile Include="Utility\AppHandler.cs" />
     <Compile Include="Enumerations\AccountStatus.cs" />
     <Compile Include="Utility\DataRefWrapper.cs" />
-    <Compile Include="Services\CaptchaImage.cs" />
     <Compile Include="Configurations\Constants.cs" />
     <Compile Include="Configurations\ModelSettings.cs" />
     <Compile Include="Entities\AdminInfo.cs" />

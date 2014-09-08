@@ -271,6 +271,9 @@
     <Content Include="Areas\TotalBets\Views\Web.config" />
     <Content Include="Areas\TotalBets\Views\Basketball\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\OtherSports\Index.cshtml" />
+    <Content Include="App_Code\ReportHelper.cshtml" />
+    <Content Include="App_Code\LanguageHelper.cshtml" />
+    <Content Include="App_Code\InstructionHelper.cshtml" />
     <Content Include="Areas\TotalBets\Views\Outright\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\Soccer\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\Soccer\SoccerBetList.cshtml" />

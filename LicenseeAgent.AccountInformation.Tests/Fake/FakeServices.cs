@@ -34,7 +34,7 @@
             {
                 var searchUserService = Substitute.For<ISearchUserService>();
 
-                searchUserService.SuggestAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
+                searchUserService.SuggestByAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
                     new List<SuggestionEntity>
                 {
                     new SuggestionEntity
@@ -44,7 +44,7 @@
                     }
                 });
 
-                searchUserService.SuggestAgent(Arg.Any<AgentSuggestSearchMemberCriteria>()).Returns(
+                searchUserService.SuggestByAgent(Arg.Any<AgentSuggestSearchMemberCriteria>()).Returns(
                     new List<SuggestionEntity>
                 {
                     new SuggestionEntity
@@ -96,12 +96,12 @@
                     }
                 });
 
-                searchUserService.GetAgentBalance(Arg.Any<AgentBalanceCriteria>()).Returns(
+                searchUserService.GetAgentCreditBalance(Arg.Any<AgentCreditBalanceCriteria>()).Returns(
                     new BalanceEntity
                     {
                     });
 
-                searchUserService.GetMemberBalance(Arg.Any<MemberBalanceCriteria>()).Returns(
+                searchUserService.GetMemberCreditBalance(Arg.Any<MemberCreditBalanceCriteria>()).Returns(
                     new BalanceEntity
                     {
                     });

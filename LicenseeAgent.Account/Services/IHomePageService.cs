@@ -17,9 +17,9 @@
 
         StatisticInfo GetStatisticInfo(GetStatisticCriteria criteria);
 
-        BalanceInfo GetBalanceInfo(GetBalanceInfoCriteria criteria);
+        CreditBalanceInfo GetCreditBalanceInfo(GetCreditBalanceInfoCriteria criteria);
 
-        BalanceCashInfo GetBalanceCashInfo(GetBalanceCashInfoCriteria criteria);
+        CashBalanceInfo GetCashBalanceInfo(GetCashBalanceInfoCriteria criteria);
 
         IList<string> GetMemberSiteLinks(GetMemberSiteLinkCriteria criteria);
     }

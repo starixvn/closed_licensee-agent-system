@@ -1,7 +1,7 @@
 ﻿namespace LicenseeAgent.Account.ViewModels
 {
     using System.Collections.Generic;
-    using LicenseeAgent.Account.Entities;
+    using LicenseeAgent.Account.Entities.Internal;
 
     /// <summary>
     /// LicenseeViewModel class.

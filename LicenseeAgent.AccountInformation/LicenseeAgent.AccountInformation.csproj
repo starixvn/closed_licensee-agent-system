@@ -76,11 +76,11 @@
     <Compile Include="Controllers\AccountInformationController.cs" />
     <Compile Include="Criteria\AdminGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AdminSuggestSearchMemberCriteria.cs" />
-    <Compile Include="Criteria\AgentBalanceCriteria.cs" />
+    <Compile Include="Criteria\AgentCreditBalanceCriteria.cs" />
     <Compile Include="Criteria\AgentGetMemberListCriteria.cs" />
     <Compile Include="Criteria\AgentSuggestSearchMemberCriteria.cs" />
-    <Compile Include="Criteria\CashAgentBalanceCriteria.cs" />
-    <Compile Include="Criteria\CashMemberBalanceCriteria.cs" />
+    <Compile Include="Criteria\AgentCashBalanceCriteria.cs" />
+    <Compile Include="Criteria\MemberCashBalanceCriteria.cs" />
     <Compile Include="Criteria\GetDirectDownLineCriteria.cs" />
     <Compile Include="Criteria\GetDownLineListCriteria.cs" />
     <Compile Include="Entities\BalanceEntity.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="ViewResults\SearchUserViewResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Criteria\MemberBalanceCriteria.cs" />
+    <Compile Include="Criteria\MemberCreditBalanceCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

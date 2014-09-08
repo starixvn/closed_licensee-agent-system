@@ -239,7 +239,7 @@
             var downlineViewMode = new DownLineViewModel();
 
             // Act
-            var result = _controller.GetDownlines(downlineViewMode);
+            var result = _controller.GetDownLines(downlineViewMode);
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);
@@ -255,7 +255,7 @@
             var downLineViewMode = new DownLineViewModel();
 
             // Act
-            var result = _controller.GetDownlines(downLineViewMode);
+            var result = _controller.GetDownLines(downLineViewMode);
 
             // Assert
             var downLines = (List<DownLineEntity>)((dynamic)result.Data).List;
@@ -327,7 +327,7 @@
             // Arrange
             var criteria = new AdminGetMemberListCriteria
             {
-                MsgId = 1,
+                ErrCode = 1,
                 AgentId = 10,
                 CurrencyId = 22,
                 LicenseeId = 27,
@@ -352,7 +352,7 @@
             // Arrange
             var criteria = new AdminGetMemberListCriteria
             {
-                MsgId = 0,
+                ErrCode = 0,
                 AgentId = 10,
                 CurrencyId = 22,
                 LicenseeId = 27,
@@ -376,7 +376,7 @@
             // Arrange
             var criteria = new AgentGetMemberListCriteria
             {
-                MsgId = 1
+                ErrCode = 1
             };
             var customer = new CustomerEntity { CustId = 100 };
 
@@ -396,7 +396,7 @@
             // Arrange
             var criteria = new AgentGetMemberListCriteria
             {
-                MsgId = 0
+                ErrCode = 0
             };
 
             // Act

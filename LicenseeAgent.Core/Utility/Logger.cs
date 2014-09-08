@@ -9,11 +9,24 @@
     /// </summary>
     public static class Logger
     {
+        private static bool IsAllowLogging
+        {
+            get
+            {
+                return !AppSettings.IsLocalRequest;
+            }
+        }
+
         public static void HandleException(Exception exception)
         {
             HandleException("Exception Log", exception);
         }
 
+        /// <summary>
+        /// Handles the exception.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
         public static void HandleException(string message, Exception exception)
         {
             if (AppSettings.IsLocalRequest)
@@ -21,17 +34,26 @@
                 throw exception;
             }
 
-            LogService.Error(message, exception);
+            if (IsAllowLogging)
+            {
+                LogService.Error(message, exception);
+            }
         }
 
         public static void Error(string message)
         {
-            if (AppSettings.IsLocalRequest)
+            if (IsAllowLogging)
             {
-                return;
+                LogService.Error(message);
             }
+        }
 
-            LogService.Error(message);
+        public static void Debug(string message)
+        {
+            if (IsAllowLogging)
+            {
+                LogService.Debug(message);
+            }
         }
     }
 }

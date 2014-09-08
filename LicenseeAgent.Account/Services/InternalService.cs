@@ -1,8 +1,10 @@
 ﻿namespace LicenseeAgent.Account.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Web;
-    using LicenseeAgent.Account.Criteria;
+    using LicenseeAgent.Account.Criteria.Internal;
+    using LicenseeAgent.Account.Entities.Internal;
     using LicenseeAgent.API.Utility;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -14,6 +16,63 @@
     /// </summary>
     public class InternalService : QueryService, IInternalService
     {
+        public IList<LicenseeEntity> GetLicensees(int userId)
+        {
+            var criteria = new GetLicenseeListCriteria
+            {
+                UserId = userId
+            };
+
+            return GetEntites<LicenseeEntity>(criteria);
+        }
+
+        public IList<CurrencyEntity> GetLicenseeCurrencies(GetCurrencyOfLicenseeCriteria criteria)
+        {
+            return GetEntites<CurrencyEntity>(criteria);
+        }
+
+        public string GetAdminSalt(AdminSaltSelectCriteria criteria)
+        {
+            Execute(criteria);
+            return criteria.UserSalt;
+        }
+
+        /// <summary>
+        /// Authenticates the admin.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return admin information.</returns>
+        public AdminInfo AuthenticateAdmin(AdminLoginCriteria criteria)
+        {
+            Execute(criteria);
+            if (criteria.ErrCode == Result.SuccessValue)
+            {
+                return new AdminInfo
+                {
+                    UserId = criteria.UserId,
+                    UserName = criteria.UserName,
+                    AccountType = AccountType.CSDIT
+                };
+            }
+
+            return null;
+        }
+
+        public void LicenseeLogin(LicenseeAdminLoginCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void AdminCheckIn(AdminCheckInCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void AdminCheckInLicensee(AdminCheckInLicenseeCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
         public string Encode(InternalLoginInfo internalLoginInfo)
         {
             using (var rijndaelHelper = new RijndaelHelper())
@@ -41,7 +100,7 @@
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>Returns agent information.</returns>
-        public AgentInfo AgentInternalLogin(AgentInternalLoginCriteria criteria)
+        public AgentInfo InternalGetAgentInfo(InternalGetAgentInfoCriteria criteria)
         {
             Execute(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
@@ -71,6 +130,21 @@
             {
                 throw new InvalidOperationException(ResourceManager.GetErrMsg(criteria.ErrCode));
             }
+        }
+
+        public void InternalLoginAsAgent(InternalLoginAsUserCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void AdminReCheckIn(AdminReCheckInCriteria criteria)
+        {
+            Execute(criteria);
+        }
+
+        public void AdminUserLogout(AdminUserLogoutCriteria criteria)
+        {
+            Execute(criteria);
         }
     }
 }

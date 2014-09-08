@@ -7,7 +7,7 @@
     using LicenseeAgent.CustomerSetting.ViewModels;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// ICustomerSettingService interface.
     /// </summary>
     public interface ICustomerSettingService
     {

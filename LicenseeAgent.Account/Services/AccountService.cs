@@ -1,10 +1,7 @@
 ﻿namespace LicenseeAgent.Account.Services
 {
-    using System.Collections.Generic;
-    using Fanex.Common;
     using LicenseeAgent.Account.Criteria;
-    using LicenseeAgent.Account.Entities;
-    using LicenseeAgent.Core.Criteria;
+    using LicenseeAgent.Account.Criteria.Account;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
@@ -21,12 +18,10 @@
         /// <returns>Returns agent information.</returns>
         public AgentInfo AuthenticateAgent(AgentLoginCriteria criteria)
         {
-            var result = new AgentInfo();
-            criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
             Execute(criteria);
             if (criteria.ErrCode == Result.SuccessValue)
             {
-                result = new AgentInfo
+                return new AgentInfo
                 {
                     UserName = criteria.UserName,
                     UserSalt = criteria.UserSalt,
@@ -48,46 +43,13 @@
                 };
             }
 
-            return result;
-        }
-
-        /// <summary>
-        /// Authenticates the admin.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Return admin information.</returns>
-        public AdminInfo AuthenticateAdmin(AdminLoginCriteria criteria)
-        {
-            criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
-            Execute(criteria);
-            if (criteria.ErrCode == Result.SuccessValue)
-            {
-                return new AdminInfo
-                {
-                    UserId = criteria.UserId,
-                    UserName = criteria.UserName,
-                    AccountType = AccountType.CSDIT
-                };
-            }
-
             return null;
         }
 
-        public string GetAgentSalt(AgentSaltSelCriteria criteria)
+        public string GetAgentSalt(AgentSaltSelectCriteria criteria)
         {
             Execute(criteria);
             return criteria.UserSalt;
-        }
-
-        public string GetAdminSalt(AdminSaltSelCriteria criteria)
-        {
-            Execute(criteria);
-            return criteria.UserSalt;
-        }
-
-        public void AdminCheckIn(AdminCheckInCriteria criteria)
-        {
-            Execute(criteria);
         }
 
         public void AgentCheckIn(AgentCheckInCriteria criteria)
@@ -95,7 +57,7 @@
             Execute(criteria);
         }
 
-        public void AgentChangePassword(AgentChangePwdCriteria criteria)
+        public void AgentChangePassword(AgentChangePasswordCriteria criteria)
         {
             Execute(criteria);
         }
@@ -105,47 +67,7 @@
             Execute(criteria);
         }
 
-        public void AdminReCheckIn(AdminReCheckInCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         public void AgentUserLogout(AgentUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminUserLogout(AdminUserLogoutCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public IList<LicenseeEntity> GetLicenseeList(int userId)
-        {
-            var criteria = new GetLicenseeListCriteria
-            {
-                UserId = userId
-            };
-
-            return GetEntites<LicenseeEntity>(criteria);
-        }
-
-        public void InternalLoginAsUser(InternalLoginAsUserCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminCheckInLicensee(AdminCheckInLicenseeCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria)
         {
             Execute(criteria);
         }

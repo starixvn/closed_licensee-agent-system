@@ -32,15 +32,15 @@
             return list.FirstOrDefault();
         }
 
-        public BalanceInfo GetBalanceInfo(GetBalanceInfoCriteria criteria)
+        public CreditBalanceInfo GetCreditBalanceInfo(GetCreditBalanceInfoCriteria criteria)
         {
-            var list = GetEntites<BalanceInfo>(criteria);
+            var list = GetEntites<CreditBalanceInfo>(criteria);
             return list.FirstOrDefault();
         }
 
-        public BalanceCashInfo GetBalanceCashInfo(GetBalanceCashInfoCriteria criteria)
+        public CashBalanceInfo GetCashBalanceInfo(GetCashBalanceInfoCriteria criteria)
         {
-            var list = GetEntites<BalanceCashInfo>(criteria);
+            var list = GetEntites<CashBalanceInfo>(criteria);
             return list.FirstOrDefault();
         }
 

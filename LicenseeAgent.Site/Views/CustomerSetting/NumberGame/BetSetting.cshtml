@@ -8,18 +8,18 @@
     <div data-ng-class="{'container-box': true, 'simple-mode': settingMode}">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button-ng", true)
-            @RazorHelper.RenderInstruction(Las.BetSetting, "licensee-bet-limit-info-button-adv-ng", false)
+            @InstructionHelper.Render(Las.BetSetting, "licensee-bet-limit-info-button-ng", true)
+            @InstructionHelper.Render(Las.BetSetting, "licensee-bet-limit-info-button-adv-ng", false)
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button-ng", true)
-            @RazorHelper.RenderInstruction(Las.BetSetting, "agent-bet-limit-info-button-adv-ng", false)
+            @InstructionHelper.Render(Las.BetSetting, "agent-bet-limit-info-button-ng", true)
+            @InstructionHelper.Render(Las.BetSetting, "agent-bet-limit-info-button-adv-ng", false)
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-ng", true)
-            @RazorHelper.RenderInstruction(Las.BetSetting, "member-bet-limit-info-button-adv-ng", false)
+            @InstructionHelper.Render(Las.BetSetting, "member-bet-limit-info-button-ng", true)
+            @InstructionHelper.Render(Las.BetSetting, "member-bet-limit-info-button-adv-ng", false)
         }
         <div id="betting-limit-current-scope-ng" class="betting-limit">
             <div data-ng-show="settingContext.IsSimpleMode" class="simple-mode">

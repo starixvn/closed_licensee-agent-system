@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        public IList<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria)
+        public IList<SuggestionEntity> SuggestByAdmin(AdminSuggestSearchMemberCriteria criteria)
         {
             return GetEntites<SuggestionEntity>(criteria);
         }
@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        public IList<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria)
+        public IList<SuggestionEntity> SuggestByAgent(AgentSuggestSearchMemberCriteria criteria)
         {
             return GetEntites<SuggestionEntity>(criteria);
         }
@@ -70,7 +70,7 @@
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        public BalanceEntity GetAgentBalance(AgentBalanceCriteria criteria)
+        public BalanceEntity GetAgentCreditBalance(AgentCreditBalanceCriteria criteria)
         {
             Execute(criteria);
 
@@ -92,7 +92,7 @@
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        public BalanceEntity GetMemberBalance(MemberBalanceCriteria criteria)
+        public BalanceEntity GetMemberCreditBalance(MemberCreditBalanceCriteria criteria)
         {
             Execute(criteria);
 
@@ -111,7 +111,7 @@
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        public BalanceEntity GetCashAgentBalance(CashAgentBalanceCriteria criteria)
+        public BalanceEntity GetAgentCashBalance(AgentCashBalanceCriteria criteria)
         {
             Execute(criteria);
 
@@ -129,7 +129,7 @@
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        public BalanceEntity GetCashMemberBalance(CashMemberBalanceCriteria criteria)
+        public BalanceEntity GetMemberCashBalance(MemberCashBalanceCriteria criteria)
         {
             Execute(criteria);
 

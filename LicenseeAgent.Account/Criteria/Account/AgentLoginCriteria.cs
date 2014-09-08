@@ -1,0 +1,79 @@
+﻿namespace LicenseeAgent.Account.Criteria.Account
+{
+    using System;
+    using Fanex.Data.Repository;
+
+    /// <summary>
+    /// AgentLoginCriteria class.
+    /// </summary>
+    public class AgentLoginCriteria : CriteriaBase
+    {
+        public AgentLoginCriteria()
+        {
+            var today = DateTime.Today;
+            PwdExpiry = today;
+            LastChangedPwdDate = today;
+            LastLoggedTime = today;
+        }
+
+        [SpParam(Ignored = true)]
+        public string UserSalt { get; set; }
+
+        public string UserName { get; set; }
+
+        public string UserPwd { get; set; }
+
+        public string LoginIp { get; set; }
+
+        public string BrowserName { get; set; }
+
+        public string Platform { get; set; }
+
+        public string CountryCode { get; set; }
+
+        public byte AgentLevel { get; set; }
+
+        public int AgentId { get; set; }
+
+        public string Currency { get; set; }
+
+        public int CurrencyId { get; set; }
+
+        public int SubAccId { get; set; }
+
+        public bool IsFirstLogin { get; set; }
+
+        public DateTime PwdExpiry { get; set; }
+
+        public DateTime LastChangedPwdDate { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public bool IsNickName { get; set; }
+
+        public int LicenseeId { get; set; }
+
+        public string LicenseeName { get; set; }
+
+        public byte NumberOfLevel { get; set; }
+
+        public DateTime LastLoggedTime { get; set; }
+
+        public short LegendType { get; set; }
+
+        public bool IsAllowedMemberComm { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Las_AgentLogin";
+        }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrEmpty(UserName)
+                && !string.IsNullOrEmpty(UserPwd)
+                && !string.IsNullOrEmpty(UserSalt)
+                && !string.IsNullOrEmpty(LoginIp);
+        }
+    }
+}

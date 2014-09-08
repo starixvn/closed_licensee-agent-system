@@ -6,8 +6,9 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using LicenseeAgent.Account.Controllers;
-    using LicenseeAgent.Account.Criteria;
+    using LicenseeAgent.Account.Criteria.Account;
     using LicenseeAgent.Account.Services;
+    using LicenseeAgent.Account.Utility;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
@@ -28,8 +29,10 @@
     public class AccountControllerTests : IDisposable
     {
         private IAccountService _accountService;
+        private IInternalService _internalService;
         private ICoreService _coreService;
         private CaptchaImage _captchaImage;
+        private ICaptchaService _captchaService;
         private IAuthenticateService _authenticateService;
         private AccountController _accountController;
 
@@ -40,10 +43,12 @@
         public void Setup()
         {
             _accountService = Substitute.For<IAccountService>();
+            _internalService = Substitute.For<IInternalService>();
             _coreService = Substitute.For<ICoreService>();
             _captchaImage = new CaptchaImage();
+            _captchaService = new CaptchaService(_captchaImage);
             _authenticateService = new AuthenticateService();
-            _accountController = new AccountController(_accountService, _coreService, _captchaImage, _authenticateService);
+            _accountController = new AccountController(_accountService, _internalService, _coreService, _captchaService, _authenticateService);
         }
 
         /// <summary>
@@ -173,7 +178,7 @@
             _accountController.ControllerContext = new FakeControllerContext(_accountController, sessionItems);
 
             _coreService.GetLicenseeId(Arg.Any<HttpRequestBase>()).Returns((int?)Licensee.Licensee_27);
-            _accountService.GetAgentSalt(Arg.Do<AgentSaltSelCriteria>(x => x.ErrCode = Result.SuccessValue)).Returns("leosalt");
+            _accountService.GetAgentSalt(Arg.Do<AgentSaltSelectCriteria>(x => x.ErrCode = Result.SuccessValue)).Returns("leosalt");
             var agentInfo = new AgentInfo
             {
                 AgentId = 1,

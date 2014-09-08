@@ -12,14 +12,14 @@
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        IList<SuggestionEntity> SuggestAdmin(AdminSuggestSearchMemberCriteria criteria);
+        IList<SuggestionEntity> SuggestByAdmin(AdminSuggestSearchMemberCriteria criteria);
 
         /// <summary>
         /// Suggest member by Agent.
         /// </summary>
         /// <param name="criteria">Suggest Search member criteria.</param>
         /// <returns>List Suggestion.</returns>
-        IList<SuggestionEntity> SuggestAgent(AgentSuggestSearchMemberCriteria criteria);
+        IList<SuggestionEntity> SuggestByAgent(AgentSuggestSearchMemberCriteria criteria);
 
         /// <summary>
         /// Get members.
@@ -42,27 +42,27 @@
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        BalanceEntity GetAgentBalance(AgentBalanceCriteria criteria);
+        BalanceEntity GetAgentCreditBalance(AgentCreditBalanceCriteria criteria);
 
         /// <summary>
         /// Get member balance.
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        BalanceEntity GetMemberBalance(MemberBalanceCriteria criteria);
+        BalanceEntity GetMemberCreditBalance(MemberCreditBalanceCriteria criteria);
 
         /// <summary>
         /// Get agent balance.
         /// </summary>
         /// <param name="criteria">Agent balance criteria.</param>
         /// <returns>Agent balance entity.</returns>
-        BalanceEntity GetCashAgentBalance(CashAgentBalanceCriteria criteria);
+        BalanceEntity GetAgentCashBalance(AgentCashBalanceCriteria criteria);
 
         /// <summary>
         /// Get member balance.
         /// </summary>
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
-        BalanceEntity GetCashMemberBalance(CashMemberBalanceCriteria criteria);
+        BalanceEntity GetMemberCashBalance(MemberCashBalanceCriteria criteria);
     }
 }

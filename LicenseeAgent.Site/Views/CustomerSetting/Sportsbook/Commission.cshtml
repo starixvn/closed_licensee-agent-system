@@ -7,15 +7,15 @@
 <div class="container-box box-bottom">
     @if (Model.TargetRoleId == (int)Role.AgentLevel1)
     {
-        @RazorHelper.RenderInstruction(Las.Commission, "licensee-commission-info-button")
+        @InstructionHelper.Render(Las.Commission, "licensee-commission-info-button")
     }
     else if (Model.TargetRoleId == (int)Role.Agent)
     {
-        @RazorHelper.RenderInstruction(Las.Commission, "agent-commission-info-button")
+        @InstructionHelper.Render(Las.Commission, "agent-commission-info-button")
     }
     else
     {
-        @RazorHelper.RenderInstruction(Las.Commission, "member-commission-info-button")
+        @InstructionHelper.Render(Las.Commission, "member-commission-info-button")
     }
     <div id="commission-current-scope" class="comm-setting" data-ng-controller="CommissionController">
         <div data-ng-show="settingContext.TargetRoleId ==1 ? true: false;">

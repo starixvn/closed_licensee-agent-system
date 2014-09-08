@@ -7,15 +7,15 @@
     <div class="pt-container-box" data-ng-show="!settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTaking, "licensee-position-taking-info-button-adv")
+            @InstructionHelper.Render(Las.PositionTaking, "licensee-position-taking-info-button-adv")
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTaking, "agent-position-taking-info-button-adv")
+            @InstructionHelper.Render(Las.PositionTaking, "agent-position-taking-info-button-adv")
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.PositionTaking, "member-position-taking-info-button-adv")
+            @InstructionHelper.Render(Las.PositionTaking, "member-position-taking-info-button-adv")
         }
         <div data-ng-repeat="ptGroup in ptModel.ptGroups" data-ng-show="!settingContext.IsSimpleMode"
                 class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
@@ -46,15 +46,15 @@
     <div class="pt-container-box simple-mode" data-ng-switch="settingContext.TargetRoleId" data-ng-show="settingContext.IsSimpleMode">
         @if (Model.TargetRoleId == (int)Role.AgentLevel1)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
+            @InstructionHelper.Render(Las.PositionTakingSimpleModeHeader, "licensee-position-taking-info-button")
         }
         else if (Model.TargetRoleId == (int)Role.Agent)
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "agent-position-taking-info-button")
+            @InstructionHelper.Render(Las.PositionTakingSimpleModeHeader, "agent-position-taking-info-button")
         }
         else
         {
-            @RazorHelper.RenderInstruction(Las.PositionTakingSimpleModeHeader, "member-position-taking-info-button")
+            @InstructionHelper.Render(Las.PositionTakingSimpleModeHeader, "member-position-taking-info-button")
         }
         <div class="pt-group-container" data-ng-style="ptGroup.WidthStyle">
             <div class="pt-group-box">

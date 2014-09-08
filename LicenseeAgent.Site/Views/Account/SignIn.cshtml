@@ -1,4 +1,5 @@
-﻿@model AgentSignInViewModel
+﻿@using LicenseeAgent.Account.ViewResults
+@model AgentSignInViewModel
 @{
     ViewBag.Title = Las.SignIn;
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
@@ -9,22 +10,7 @@
         <div class="login-box">
             <div class="header-box">
                 <div class="title">@Las.SignIn</div>
-                <div class="language">
-                    <ul id="nav">
-                        <li><a href="#" class="@string.Format("flag-{0}", Model.Language)"><i class="icon-language-arrow">
-                        </i></a>
-                            <ul id="languages">
-                                @foreach (var language in ModelSettings.Languages)
-                                {
-                                    <li data-language="@language.Value"><a href="#"><i class="@string.Format("flag-{0}", language.Value)">
-                                    </i>
-                                        @language.Text
-                                    </a></li>
-                                }
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                @LanguageHelper.DropDown(Model.Language)
             </div>
             <div class="content-box">
                 @Html.AntiForgeryToken()
@@ -50,7 +36,7 @@
 @section scripts{
     @if (ViewBag.Result != null)
     {
-        var result = (LicenseeAgent.Account.ViewResults.SignInViewResult)ViewBag.Result;
+        var result = (SignInViewResult)ViewBag.Result;
         <script type="text/javascript">
             logIn.showPasswordAlert('@result.Message');
         </script>

@@ -55,9 +55,9 @@
     </div>
     <div class="newline">
     </div>
-    @RazorHelper.Product(Model.ProductList, Model.Product, "inline w60")
+    @ReportHelper.CheckBoxes(Model.ProductList, Model.Product, "inline w60")
     <div class="controls-row">
-        @RazorHelper.GenerateRadios(Model.DrawFilter)
+        @ReportHelper.Radios(Model.DrawFilter)
     </div>
     <div class="newline">
     </div>

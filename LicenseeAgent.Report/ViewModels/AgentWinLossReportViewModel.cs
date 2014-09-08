@@ -43,6 +43,6 @@
 
         public bool IsDeposit { get; set; }
 
-        public IEnumerable<ProductInfo> ProductList { get; set; }
+        public IList<ProductInfo> ProductList { get; set; }
     }
 }

@@ -4,12 +4,12 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
-    using LicenseeAgent.Account.Criteria;
+    using Fanex.Security;
+    using LicenseeAgent.Account.Criteria.Internal;
     using LicenseeAgent.Account.Services;
     using LicenseeAgent.Account.ViewModels;
     using LicenseeAgent.API.LRF;
     using LicenseeAgent.Core.Configurations;
-    using LicenseeAgent.Core.Criteria;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
@@ -25,36 +25,41 @@
     [SessionState(SessionStateBehavior.Default)]
     public class InternalController : BaseController
     {
-        private readonly IAccountService _accountService;
-        private readonly ICurrencyService _currencyService;
+        #region Variables
+
         private readonly IInternalService _internalService;
         private readonly ICoreService _coreService;
         private readonly Integration _integration;
 
+        #endregion Variables
+
+        #region Constructors
+
         public InternalController()
-            : this(null, null, null, null, null)
+            : this(null, null, null)
         {
         }
 
         public InternalController(
-            IAccountService accountService,
-            ICurrencyService currencyService,
             IInternalService internalService,
             ICoreService coreService,
             Integration integration)
         {
-            _accountService = accountService ?? new AccountService();
-            _currencyService = currencyService ?? new CurrencyService();
             _internalService = internalService ?? new InternalService();
             _coreService = coreService ?? new CoreService();
             _integration = integration ?? new Integration();
         }
 
+        #endregion Constructors
+
+        #region Authentication
+
+        [AdminSite]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return this.RedirectToAction("SignIn");
+            return RedirectToAction("SignIn");
         }
 
         /// <summary>
@@ -98,6 +103,76 @@
         }
 
         /// <summary>
+        /// Validates the Admin user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns true whether username/password is valid.
+        /// </returns>
+        [NonAction]
+        public bool AuthenticateUser(AdminSignInViewModel model)
+        {
+            var userSaltCriteria = new AdminSaltSelectCriteria
+            {
+                UserName = model.Username
+            };
+
+            var userSalt = _internalService.GetAdminSalt(userSaltCriteria);
+            if (userSaltCriteria.ErrCode != Result.SuccessValue)
+            {
+                ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.ErrCode));
+                return false;
+            }
+
+            var clientInfo = Request.GetClientInfo();
+            var criteria = new AdminLoginCriteria
+            {
+                UserName = model.Username,
+                UserPwd = Cryptography.CreateHash(model.Password, userSalt),
+                UserSalt = userSalt,
+                LoginIp = clientInfo.Ip,
+                BrowserName = clientInfo.BrowserName,
+                Platform = clientInfo.Platform,
+                CountryCode = clientInfo.CountryCode
+            };
+
+            var adminInfo = _internalService.AuthenticateAdmin(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
+            {
+                ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                return false;
+            }
+
+            AdminCheckIn(adminInfo, model.Language);
+            return true;
+        }
+
+        /// <summary>
+        /// CSD/IT check-in when direct sign-in.
+        /// </summary>
+        /// <param name="adminInfo">The admin information.</param>
+        /// <param name="language">The language.</param>
+        [NonAction]
+        public void AdminCheckIn(AdminInfo adminInfo, string language)
+        {
+            var criteria = new AdminCheckInCriteria
+            {
+                AdminId = adminInfo.UserId,
+                IP = Request.GetClientIp(),
+                NetSessionId = Session.SessionID
+            };
+
+            _internalService.AdminCheckIn(criteria);
+            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, language);
+            SessionManager.CurrentSession = currentSession;
+            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
+        }
+
+        #endregion Authentication
+
+        #region Internal login from LRF
+
+        /// <summary>
         /// Internal login from LRF.
         /// </summary>
         /// <param name="authKey">The authentication key.</param>
@@ -127,7 +202,7 @@
                 Platform = clientInfo.Platform,
                 CountryCode = clientInfo.CountryCode
             };
-            _accountService.LicenseeAdminLogin(criteria);
+            _internalService.LicenseeLogin(criteria);
             if (criteria.ErrCode != Result.SuccessValue)
             {
                 return Content(GetErrMsg(criteria.ErrCode));
@@ -140,12 +215,39 @@
                 AccountType = AppSettings.IsAdminSite ? AccountType.CSDIT : AccountType.Licensee
             };
 
-            CheckIn(adminInfo, criteria.LicenseeId, internalInfo.Language);
+            LicenseeCheckIn(adminInfo, criteria.LicenseeId, internalInfo.Language);
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
         /// <summary>
-        /// Update user role.
+        /// CSD/IT or Licensee Admin check-in when internal log-in from LRF.
+        /// </summary>
+        /// <param name="adminInfo">The admin information.</param>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <param name="language">The language.</param>
+        [NonAction]
+        public void LicenseeCheckIn(AdminInfo adminInfo, int licenseeId, string language)
+        {
+            var criteria = new AdminCheckInCriteria
+            {
+                AdminId = adminInfo.UserId,
+                IP = Request.GetClientIp(),
+                NetSessionId = Session.SessionID,
+                LicenseeId = licenseeId
+            };
+
+            _internalService.AdminCheckIn(criteria);
+            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, licenseeId, language);
+            SessionManager.CurrentSession = currentSession;
+            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
+        }
+
+        #endregion Internal login from LRF
+
+        #region Internal login as agent
+
+        /// <summary>
+        /// Internal login as agent.
         /// </summary>
         /// <param name="authKey">The authentication key.</param>
         /// <returns>
@@ -166,7 +268,15 @@
                 return Content(Las.TicketInvalidExpired);
             }
 
-            return AdminLoginAsAgent(internalLoginInfo);
+            var agentInfo = _internalService.InternalGetAgentInfo(new InternalGetAgentInfoCriteria
+            {
+                LicenseeId = internalLoginInfo.LicenseeId,
+                CurrencyId = internalLoginInfo.CurrencyId,
+                UserName = internalLoginInfo.AgentName
+            });
+            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo);
+            FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
+            return Redirect(FormsAuthentication.DefaultUrl);
         }
 
         /// <summary>
@@ -192,7 +302,7 @@
                 CountryCode = clientInfo.CountryCode
             };
 
-            _accountService.InternalLoginAsUser(criteria);
+            _internalService.InternalLoginAsAgent(criteria);
             if (criteria.ErrCode != Result.SuccessValue)
             {
                 return JsonResult(criteria.ErrCode);
@@ -211,11 +321,13 @@
                 IsInternalLRF = CurrentSession.IsInternalLRF
             };
 
-            return string.IsNullOrEmpty(internalLoginInfo.AgentName) ? LoginAsAgent0(internalLoginInfo) : LoginAsAgentk(internalLoginInfo);
+            return string.IsNullOrEmpty(internalLoginInfo.AgentName)
+                ? LoginAsAgent0(internalLoginInfo)
+                : LoginAsAgentk(internalLoginInfo);
         }
 
         /// <summary>
-        /// Admins direct login as agent.
+        /// Admins internal login as agent.
         /// </summary>
         /// <param name="internalLoginInfo">The admin internal login information.</param>
         /// <returns>
@@ -229,21 +341,21 @@
                 OnAdminId = internalLoginInfo.OnLoginUserId,
                 LicenseeId = internalLoginInfo.LicenseeId
             };
-            _accountService.AdminCheckInLicensee(criteria);
-            if (criteria.MsgId != Result.SuccessValue)
+            _internalService.AdminCheckInLicensee(criteria);
+            if (criteria.ErrCode != Result.SuccessValue)
             {
-                return JsonResult(criteria.MsgId);
+                return JsonResult(criteria.ErrCode);
             }
 
             if (CurrentSession.AgentInfo == null)
             {
-                var agentInternalLoginCriteria = new AgentInternalLoginCriteria
+                var agentInternalLoginCriteria = new InternalGetAgentInfoCriteria
                 {
                     LicenseeId = internalLoginInfo.LicenseeId,
                     CurrencyId = internalLoginInfo.CurrencyId,
                     UserName = internalLoginInfo.AgentName
                 };
-                var agentInfo = _internalService.AgentInternalLogin(agentInternalLoginCriteria);
+                var agentInfo = _internalService.InternalGetAgentInfo(agentInternalLoginCriteria);
                 CurrentSession.UpdateAgent(agentInfo);
                 return JsonResult(Result.SuccessValue);
             }
@@ -272,25 +384,9 @@
             });
         }
 
-        /// <summary>
-        /// Admins the login as agent.
-        /// </summary>
-        /// <param name="internalLoginInfo">The internal login information.</param>
-        /// <returns>Returns page after internal login.</returns>
-        [NonAction]
-        public ActionResult AdminLoginAsAgent(InternalLoginInfo internalLoginInfo)
-        {
-            var criteria = new AgentInternalLoginCriteria
-            {
-                LicenseeId = internalLoginInfo.LicenseeId,
-                CurrencyId = internalLoginInfo.CurrencyId,
-                UserName = internalLoginInfo.AgentName
-            };
-            var agentInfo = _internalService.AgentInternalLogin(criteria);
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, internalLoginInfo);
-            FormsAuthentication.SetAuthCookie(agentInfo.UserName, true);
-            return Redirect(FormsAuthentication.DefaultUrl);
-        }
+        #endregion Internal login as agent
+
+        #region Menu to select licensee & currency
 
         /// <summary>
         /// Show menu to select licensee and currency and agent name.
@@ -310,13 +406,13 @@
             var model = new LicenseeViewModel();
             if (CurrentSession.IsViewSelectLicensee())
             {
-                model.Licensees = _accountService.GetLicenseeList(CurrentSession.LoginUserId);
+                model.Licensees = _internalService.GetLicensees(CurrentSession.LoginUserId);
                 if (CurrentSession.AgentInfo != null)
                 {
                     model.LicenseeId = CurrentSession.AgentInfo.LicenseeId;
                     model.LicenseeName = model.Licensees.Where(x => x.LicenseeId == model.LicenseeId).Select(x => x.LicenseeName).FirstOrDefault();
                     model.CurrencyId = CurrentSession.AgentInfo.CurrencyId;
-                    model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
+                    model.Currencies = _internalService.GetLicenseeCurrencies(new GetCurrencyOfLicenseeCriteria
                     {
                         UserId = CurrentSession.LoginUserId,
                         LicenseeId = model.LicenseeId
@@ -327,7 +423,7 @@
             else
             {
                 model.LicenseeId = CurrentSession.OnLicenseeId;
-                model.Currencies = _currencyService.GetCurrencyList(new GetCurrencyOfLicenseeCriteria
+                model.Currencies = _internalService.GetLicenseeCurrencies(new GetCurrencyOfLicenseeCriteria
                 {
                     UserId = CurrentSession.LoginUserId,
                     LicenseeId = model.LicenseeId
@@ -361,94 +457,10 @@
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
-                List = _currencyService.GetCurrencyList(criteria)
+                List = _internalService.GetLicenseeCurrencies(criteria)
             });
         }
 
-        /// <summary>
-        /// Validates the Admin user.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// Returns true whether username/password is valid.
-        /// </returns>
-        private bool AuthenticateUser(AdminSignInViewModel model)
-        {
-            var userSaltCriteria = new AdminSaltSelCriteria
-            {
-                UserName = model.Username
-            };
-
-            var userSalt = _accountService.GetAdminSalt(userSaltCriteria);
-            if (userSaltCriteria.MsgId != Result.SuccessValue)
-            {
-                ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.MsgId));
-                return false;
-            }
-
-            var clientInfo = Request.GetClientInfo();
-            var criteria = new AdminLoginCriteria
-            {
-                UserName = model.Username,
-                UserPwd = model.Password,
-                UserSalt = userSalt,
-                LoginIp = clientInfo.Ip,
-                BrowserName = clientInfo.BrowserName,
-                Platform = clientInfo.Platform,
-                CountryCode = clientInfo.CountryCode
-            };
-
-            var adminInfo = _accountService.AuthenticateAdmin(criteria);
-            if (criteria.ErrCode != Result.SuccessValue)
-            {
-                ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
-                return false;
-            }
-
-            CheckIn(adminInfo, model.Language);
-            return true;
-        }
-
-        /// <summary>
-        /// CSD/IT check-in when direct sign-in.
-        /// </summary>
-        /// <param name="adminInfo">The admin information.</param>
-        /// <param name="language">The language.</param>
-        private void CheckIn(AdminInfo adminInfo, string language)
-        {
-            var criteria = new AdminCheckInCriteria
-            {
-                AdminId = adminInfo.UserId,
-                IP = Request.GetClientIp(),
-                NetSessionId = Session.SessionID
-            };
-
-            _accountService.AdminCheckIn(criteria);
-            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, language);
-            SessionManager.CurrentSession = currentSession;
-            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
-        }
-
-        /// <summary>
-        /// CSD/IT or Licensee Admin check-in when internal log-in from LRF.
-        /// </summary>
-        /// <param name="adminInfo">The admin information.</param>
-        /// <param name="licenseeId">The licensee identifier.</param>
-        /// <param name="language">The language.</param>
-        private void CheckIn(AdminInfo adminInfo, int licenseeId, string language)
-        {
-            var criteria = new AdminCheckInCriteria
-            {
-                AdminId = adminInfo.UserId,
-                IP = Request.GetClientIp(),
-                NetSessionId = Session.SessionID,
-                LicenseeId = licenseeId
-            };
-
-            _accountService.AdminCheckIn(criteria);
-            var currentSession = new CurrentSession(adminInfo, criteria.OnAdminId, licenseeId, language);
-            SessionManager.CurrentSession = currentSession;
-            FormsAuthentication.SetAuthCookie(adminInfo.UserName, true);
-        }
+        #endregion Menu to select licensee & currency
     }
 }

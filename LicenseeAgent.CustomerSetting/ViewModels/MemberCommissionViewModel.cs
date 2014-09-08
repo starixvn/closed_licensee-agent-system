@@ -22,6 +22,6 @@
 
         public int ProductCount { get; set; }
 
-        public IEnumerable<GroupCommission> GroupCommissions { get; set; }
+        public IList<GroupCommission> GroupCommissions { get; set; }
     }
 }

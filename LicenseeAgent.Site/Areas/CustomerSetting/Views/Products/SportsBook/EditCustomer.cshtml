@@ -10,6 +10,18 @@
     {
         ViewBag.Title = Model.FormId == FormType.ViewIndirectAgent ? Las.ViewSportsbookAgent : Las.EditSportsbookAgent;
     }
+
+    var scriptUrl = Url.RouteUrl("CustomerSetting_Product", new
+    {
+        controller = "Product",
+        action = "GetSetting",
+        productId = (int)Product.Product_0,
+        custId = Model.CustId,
+        roleId = Model.RoleId,
+        targetCustId = Model.TargetCustId,
+        targetRoleId = Model.TargetRoleId,
+        formId = (int)Model.FormId
+    });
 }
 @section css
 {
@@ -17,7 +29,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content(string.Format("~/CustomerSetting/SportsBook/GetSettingForUpdate?custId={0}&roleId={1}&targetCustId={2}&targetRoleId={3}&formId={4}&productId={5}", Model.CustId, Model.RoleId, Model.TargetCustId, Model.TargetRoleId, (int)Model.FormId, (int)Product.Product_0))></script>
+    <script type="text/javascript" src="@scriptUrl"></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/customersetting")
@@ -46,12 +58,12 @@
         }
     </div>
     <div class="clearfix">
-        @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/ViewCustomerInfo.cshtml")
+        @Html.Partial("~/Areas/CustomerSetting/Views/Products/ViewCustomerInfo.cshtml")
     </div>
     @if (!Model.IsDeposit && Model.FormId != FormType.EditIndirectMember)
     {
         <div class="clearfix">
-            @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/Sportsbook/Commission.cshtml", Model)
+            @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/Commission.cshtml", Model)
         </div>
     }
     <div class="clearfix" data-ng-if="false">
@@ -75,11 +87,11 @@
             @if (Model.FormId != FormType.EditIndirectMember)
             {
                 <div class="clearfix">
-                    @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/Sportsbook/BetSetting.cshtml", Model)
+                    @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/BetSetting.cshtml", Model)
                 </div>
             }
             <div class="clearfix">
-                @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/Sportsbook/PositionTaking.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>
@@ -96,11 +108,11 @@
             @if (Model.FormId != FormType.EditIndirectMember)
             {
                 <div class="clearfix">
-                    @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/NumberGame/BetSetting.cshtml", Model)
+                    @Html.Partial("~/Areas/CustomerSetting/Views/Products/NumberGame/BetSetting.cshtml", Model)
                 </div>
             }
             <div class="clearfix">
-                @Html.Partial("~/Areas/CustomerSetting/Views/ProductSetting/NumberGame/PositionTaking.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/NumberGame/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>

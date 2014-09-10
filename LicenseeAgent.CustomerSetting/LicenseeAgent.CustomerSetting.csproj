@@ -38,8 +38,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
@@ -94,10 +92,10 @@
     <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
     <Compile Include="Criteria\SwitchUserValidateCriteria.cs" />
     <Compile Include="Entities\AgentInformation.cs" />
-    <Compile Include="Controllers\ProductSetting\NumberGameController.cs" />
-    <Compile Include="Controllers\ProductSetting\ProductSettingController.cs" />
-    <Compile Include="Controllers\ProductSetting\SportsBookController.cs" />
-    <Compile Include="Controllers\ProductSetting\VirtualSportsController.cs" />
+    <Compile Include="Controllers\Products\ProductBaseController.cs" />
+    <Compile Include="Controllers\Products\ProductController.cs" />
+    <Compile Include="Controllers\Products\SportsBookController.cs" />
+    <Compile Include="Controllers\Products\VirtualSportsController.cs" />
     <Compile Include="Services\ProductSetting\ISportsBookSettingService.cs" />
     <Compile Include="Services\ProductSetting\IVirtualSportsSettingService.cs" />
     <Compile Include="Utils\Commission.cs" />
@@ -108,7 +106,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Core\SettingConfigurations.cs" />
+    <Compile Include="Core\SettingConfiguration.cs" />
     <Compile Include="Criteria\AgentInsertAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInsertMemberCriteria.cs" />
     <Compile Include="Criteria\AllowedMemberCommissionCriteria.cs" />
@@ -234,9 +232,7 @@
       <Name>LicenseeAgent.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\CommissionSetting\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Core\PtSettings.xsd">

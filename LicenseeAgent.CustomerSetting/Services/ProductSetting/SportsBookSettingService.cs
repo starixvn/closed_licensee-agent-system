@@ -110,11 +110,11 @@
                         MaxCredit = Converter.ToDecimal(parameters["maxcreditoutput"]),
                         BetLimit = Converter.ToDecimal(parameters["betlimitoutput"]),
                         SportType = Converter.ToInt(parameters["betlimitsporttype"]) == 0
-                                    ? Converter.ToInt(parameters["ptsporttype"])
-                                    : Converter.ToInt(parameters["betlimitsporttype"]),
+                            ? Converter.ToInt(parameters["ptsporttype"])
+                            : Converter.ToInt(parameters["betlimitsporttype"]),
                         BetType = Converter.ToInt(parameters["betlimitbettype"]) == 0
-                                    ? Converter.ToInt(parameters["ptbettype"])
-                                    : Converter.ToInt(parameters["betlimitbettype"]),
+                            ? Converter.ToInt(parameters["ptbettype"])
+                            : Converter.ToInt(parameters["betlimitbettype"]),
                         IsLive = Converter.ToBool(parameters["isliveoutput"]),
                         CustIdReturn = parameters.ContainsKey("agentid") ? Converter.ToInt(parameters["agentid"]) : Converter.ToInt(parameters["custid"]),
                         IBCUserName = parameters.ContainsKey("agentid") ? string.Empty : Converter.ToString2(parameters["ibcusername"])
@@ -558,7 +558,6 @@
         private ICriteria GetCriteriaForUpdate(SettingContext settingContext)
         {
             ICriteria criteria = null;
-
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
                 if (settingContext.FormId == FormType.EditIndirectMember)

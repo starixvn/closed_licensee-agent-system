@@ -365,19 +365,19 @@
     <Content Include="Areas\CustomerSetting\Views\_ViewStart.cshtml" />
     <Content Include="Areas\CustomerSetting\Content\ProductSetting\fanex.customerSetting.less" />
     <Content Include="Areas\CustomerSetting\Content\ProductSetting\edit-product.less" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\CustomerInfo.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\ViewCustomerInfo.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\EditProduct.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\InsertCustomer.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\SportsBook\BetSetting.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\SportsBook\PositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\SportsBook\Commission.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\VirtualSports\BetSetting.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\VirtualSports\PositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\VirtualSports\EditCustomer.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\NumberGame\BetSetting.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\NumberGame\PositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ProductSetting\SportsBook\EditCustomer.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\ViewCustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\EditProduct.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\InsertCustomer.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\BetSetting.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\PositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\Commission.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\VirtualSports\BetSetting.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\VirtualSports\PositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\VirtualSports\EditCustomer.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\NumberGame\BetSetting.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\NumberGame\PositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\EditCustomer.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

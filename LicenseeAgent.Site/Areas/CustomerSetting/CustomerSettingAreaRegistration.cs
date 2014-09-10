@@ -23,14 +23,24 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "CustomerSetting",
+                "CustomerSetting_NewAgent",
+                "CustomerSetting/NewAgent",
+                new
+                {
+                    controller = "SportsBook",
+                    action = "InsertCustomer"
+                },
+                new[] { "LicenseeAgent.CustomerSetting.Controllers.Products" });
+
+            context.MapRoute(
+                "CustomerSetting_Product",
                 "CustomerSetting/{controller}/{action}/{id}",
                 new
                 {
                     action = "InsertCustomer",
                     id = UrlParameter.Optional
                 },
-                new[] { "LicenseeAgent.CustomerSetting.Controllers.ProductSetting" });
+                new[] { "LicenseeAgent.CustomerSetting.Controllers.Products" });
 
             RegisterBundles(BundleTable.Bundles);
         }

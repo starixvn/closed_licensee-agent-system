@@ -47,7 +47,7 @@
                     {
                         if (!SessionManager.CurrentSession.AgentInfo.IsLastLevel)
                         {
-                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.Action("InsertCustomer", "SportsBook", new { area = "CustomerSetting" }))
+                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.RouteUrl("CustomerSetting_NewAgent"))
                         }
                         else if (LegendTypeAttribute.Authorize(LegendType.Credit))
                         {
@@ -90,6 +90,6 @@
         </ul>
     </div>
     <div class="tab-pane fade" id="accountInfo">
-        @Html.Action("Index", "AccountInformation", new {area = "Customer"} )
+        @Html.Action("Index", "AccountInformation", new { area = "Customer" })
     </div>
 </div>

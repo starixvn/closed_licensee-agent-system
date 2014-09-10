@@ -69,7 +69,7 @@
 
             if (BettingLimitSetting != null)
             {
-                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
                 foreach (var item in BettingLimitSetting)
                 {
                     if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
@@ -107,7 +107,7 @@
 
             if (CommissionSetting != null && CommissionSetting.CommissionItems != null)
             {
-                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
                 foreach (var item in CommissionSetting.CommissionItems)
                 {
                     if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
@@ -146,7 +146,7 @@
             if (PositionTakingSetting != null)
             {
                 var configKeys = new List<string>();
-                var productSettings = SettingConfigurations.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
                 foreach (var sportType in productSettings.SportType)
                 {
                     var betTypeIds = sportType.BetTypeIds.Split(',');

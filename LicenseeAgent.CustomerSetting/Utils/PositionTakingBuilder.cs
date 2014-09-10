@@ -35,7 +35,7 @@
             int maxLicenseePT = 0)
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
-            var productSettings = SettingConfigurations.GetProductPtSettings(productId);
+            var productSettings = SettingConfiguration.GetProductPtSettings(productId);
             productSettings.SportType.ForEach(sportType =>
             {
                 if (!string.IsNullOrEmpty(sportType.BetTypeIds))
@@ -73,7 +73,7 @@
             IList<PositionTakingItem> positionTakingList)
         {
             var positionTakingSetting = new List<PositionTakingGroup>();
-            var productSettings = SettingConfigurations.GetProductPtSettings(productId);
+            var productSettings = SettingConfiguration.GetProductPtSettings(productId);
             productSettings.SportType.ForEach(sportType =>
             {
                 if (!string.IsNullOrEmpty(sportType.BetTypeIds))

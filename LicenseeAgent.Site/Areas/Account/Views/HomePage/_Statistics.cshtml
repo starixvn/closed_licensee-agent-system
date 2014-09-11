@@ -23,7 +23,7 @@
         <tr>
             <td colspan="2">
                 @Las.TopWinningMembers
-                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "TopWinning" })">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("TopWinning", "HomePage", new { area = "Account" })">
                 </i>
                 <div class="dropdown-popup">
                 </div>
@@ -32,7 +32,7 @@
         <tr>
             <td colspan="2">
                 @Las.TopTurnoverMembers
-                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "TopTurnover" })">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("TopTurnover", "HomePage", new { area = "Account" })">
                 </i>
                 <div class="dropdown-popup">
                 </div>
@@ -41,7 +41,7 @@
         <tr>
             <td colspan="2">
                 @Las.NewMemberOfMonth: <span class="text-bold">@Formatter.FormatInt(Model.NumberNewMembers)</span>
-                <i class="dropdown-button icon-account-expand" data-href="@Url.RouteUrl("Account_HomePage", new { action = "NewMembers" })">
+                <i class="dropdown-button icon-account-expand" data-href="@Url.Action("NewMembers", "HomePage", new { area = "Account" })">
                 </i>
                 <div class="dropdown-popup popup-statistics-newmembers">
                 </div>

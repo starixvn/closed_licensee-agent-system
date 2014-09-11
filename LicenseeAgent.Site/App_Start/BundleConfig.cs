@@ -209,9 +209,6 @@
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/views/accountinformation/resources/account-information.js"));
 
-            bundles.Add(new ScriptBundle("~/js/home/internal").Include(
-                "~/views/internal/resources/internal-header.js"));
-
             bundles.Add(new LessBundle("~/css/home").Include(
                 "~/views/home/resources/home.less"));
 

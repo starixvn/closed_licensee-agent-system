@@ -36,11 +36,13 @@ var language = (function ($) {
                 async: false,
                 timeout: 20000
             })
-                .done(function (result) {
-                    if (result.isChanged) {
-                        location.reload();
-                    }
-                });
+            .done(function (result) {
+                if (result.ErrCode !== 0) {
+                    alert(result.ErrMsg);
+                    return;
+                }
+                location.reload();
+            });
         },
         getSelectedLanguage: function () {
             return appSettings.SelectedLanguage;

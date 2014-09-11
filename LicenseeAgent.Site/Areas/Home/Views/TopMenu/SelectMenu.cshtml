@@ -1,0 +1,57 @@
+﻿@model SelectMenuViewModel
+@{
+    var getCurrenciesUrl = Url.Action("GetCurrencies", "TopMenu", new { area = "Home" });
+}
+@using (Html.BeginForm("LoginAsUser", "Internal", new { area = "Authentication" }, FormMethod.Post, new { id = "internal-form", name = "internal-form" }))
+{
+    <div class="select-box">
+        @if (SessionManager.CurrentSession.IsViewSelectLicensee())
+        {
+            var dictionary = @Model.Licensees.GroupBy(r => r.LegendType).ToDictionary(t => t.Key, t => t.ToList());
+            <div class="pull-left item" id="licensee" data-licensee-id="@Model.LicenseeId" data-href="@getCurrenciesUrl">
+                <span>@(string.IsNullOrEmpty(Model.LicenseeName) ? Las.ChooseLicensee : Model.LicenseeName)</span>
+                <i class="icon-licensee-arrow"></i>
+                <ul class="drop-box">
+                    @foreach (var legendType in dictionary.Keys)
+                    {
+                        <li class="dropdown-submenu @(dictionary[legendType].Any(x => x.LicenseeId == Model.LicenseeId) ? "selected" : string.Empty)">
+                            <a href="javascript:void(0);" class="dropdown-toggle">@DataRefWrapper.GetLegendTypeName(legendType)</a>
+                            <ul class="dropdown-menu">
+                                @foreach (var licensee in dictionary[legendType])
+                                {
+                                    <li class="@(licensee.LicenseeId == Model.LicenseeId ? "selected" : string.Empty)"><a href="javascript:void(0);" data-id="@licensee.LicenseeId">@licensee.LicenseeName</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="hide" id="licensee" data-licensee-id="@Model.LicenseeId">
+            </div>
+        }
+        <div class="pull-left item" id="currency" data-currency-id="@Model.CurrencyId">
+            <span>@(Model.CurrencyId != 0 ? Model.CurrencyName : Las.ChooseCurrency)</span>
+            <i class="icon-licensee-arrow"></i>
+            @if (Model.Currencies != null)
+            {
+                <ul class="drop-box">
+                    @foreach (var currency in Model.Currencies)
+                    {
+                        <li class="@(currency.Currency == Model.CurrencyId ? "selected" : "")"><a href="#" data-id="@currency.Currency">@currency.CurrencyName</a></li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="pull-left item">
+            @Html.TextBox("agentName", string.Empty, new { @placeholder = Las.Username })
+        </div>
+        <div class="pull-left item">
+            <a id="submit" class="icon-licensee-searchagent disabled"></a>
+        </div>
+    </div>
+}
+@Html.Hidden("is-selected", SessionManager.CurrentSession.AgentInfo != null ? true : false)

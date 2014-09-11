@@ -205,7 +205,8 @@
             }
 
             var errCode = Result.FailureValue;
-            var productSetting = GetProductSetting(model.ProductId, settingContext, out errCode);
+            var productService = GetProductService(model.ProductId);
+            var productSetting = productService.GetSettingForUpdate(settingContext, out errCode);
             CustomerSetting2 numberGameSetting = null;
             if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
             {
@@ -236,29 +237,6 @@
         }
 
         /// <summary>
-        /// Gets the product setting.
-        /// </summary>
-        /// <param name="productId">The product identifier.</param>
-        /// <param name="settingContext">The setting context.</param>
-        /// <param name="errCode">The error code.</param>
-        /// <returns>Returns product setting.</returns>
-        [NonAction]
-        public CustomerSetting2 GetProductSetting(Product productId, SettingContext settingContext, out int errCode)
-        {
-            switch (productId)
-            {
-                case Product.Product_0:
-                    return SportsBookService.GetSettingForUpdate(settingContext, out errCode);
-
-                case Product.Product_5:
-                    return VirtualSportsService.GetSettingForUpdate(settingContext, out errCode);
-            }
-
-            errCode = Result.FailureValue;
-            return null;
-        }
-
-        /// <summary>
         /// Get Product Service.
         /// </summary>
         /// <param name="productId">ID of product.</param>
@@ -277,6 +255,7 @@
 
             return null;
         }
+
         #endregion Get product setting
     }
 }

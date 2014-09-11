@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Account.ViewModels;
+    using LicenseeAgent.Account.ViewModels.Account;
     using LicenseeAgent.Web.Validations;
     using NSubstitute;
     using NUnit.Framework;

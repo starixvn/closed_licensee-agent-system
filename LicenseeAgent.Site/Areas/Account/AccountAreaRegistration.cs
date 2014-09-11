@@ -23,13 +23,32 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Account_HomePage",
-                "Account/HomePage/{action}/{id}",
+                "Account_Index",
+                "Account",
                 new
                 {
                     controller = "HomePage",
-                    action = "Index",
-                    id = UrlParameter.Optional
+                    action = "Index"
+                },
+                new[] { "LicenseeAgent.Account.Controllers" });
+
+            context.MapRoute(
+                "Account_HomePage",
+                "Account/HomePage/{action}",
+                new
+                {
+                    controller = "HomePage",
+                    action = "Index"
+                },
+                new[] { "LicenseeAgent.Account.Controllers" });
+
+            context.MapRoute(
+                "Account_Default",
+                "Account/{action}",
+                new
+                {
+                    controller = "Account",
+                    action = "Index"
                 },
                 new[] { "LicenseeAgent.Account.Controllers" });
 
@@ -38,10 +57,10 @@
 
         private static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/account/homepage").Include(
-                "~/Areas/Account/Scripts/HomePage/account-homepage.js"));
-            bundles.Add(new LessBundle("~/css/account/homepage").Include(
-                "~/Areas/Account/Content/HomePage/account-homepage.less"));
+            bundles.Add(new ScriptBundle("~/js/account/home-page").Include(
+                "~/Areas/Account/Scripts/HomePage/home-page.js"));
+            bundles.Add(new LessBundle("~/css/account/home-page").Include(
+                "~/Areas/Account/Content/HomePage/home-page.less"));
         }
     }
 }

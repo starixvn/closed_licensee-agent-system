@@ -7,7 +7,7 @@
     <ul class="nav nav-pills">
         @if (!Model.IsAgentChangePassword)
         {
-            @BootstrapHelper.TopMenu(Las.Home, Url.RouteUrl("Account_HomePage"), "menuHome", Model.TopMenu == TopMenu.Home)
+            @BootstrapHelper.TopMenu(Las.Home, Url.Action("Index", "HomePage", new { area = "Account" }), "menuHome", Model.TopMenu == TopMenu.Home)
             if (LegendTypeAttribute.Authorize(LegendType.Credit))
             {
             @BootstrapHelper.TopMenu(Las.Transfer, Url.Action("Index", "Transfer"), "menuTransfer", Model.TopMenu == TopMenu.Transfer)
@@ -21,5 +21,5 @@
 }
 @if (SessionManager.CurrentSession.IsViewSelectMenu())
 {
-    @Html.Action("SelectMenu", "Internal")
+    @Html.Action("SelectMenu", "TopMenu", new { area = "Home" })
 }

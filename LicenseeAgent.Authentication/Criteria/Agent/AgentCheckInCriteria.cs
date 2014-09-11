@@ -1,0 +1,31 @@
+﻿namespace LicenseeAgent.Authentication.Criteria.Agent
+{
+    using Fanex.Data.Repository;
+
+    /// <summary>
+    /// AgentCheckInCriteria class.
+    /// </summary>
+    public class AgentCheckInCriteria : CriteriaBase
+    {
+        public int AgentId { get; set; }
+
+        public string NetSessionId { get; set; }
+
+        [SpParam(SqlParamName = "On_UserId")]
+        public int OnUserId { get; set; }
+
+        public string Ip { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Las_AgentCheckIn";
+        }
+
+        public override bool IsValid()
+        {
+            return AgentId > 0
+                && !string.IsNullOrEmpty(Ip)
+                && !string.IsNullOrEmpty(NetSessionId);
+        }
+    }
+}

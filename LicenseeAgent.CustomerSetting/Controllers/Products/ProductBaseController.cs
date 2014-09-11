@@ -25,13 +25,13 @@
     {
         #region Variables
 
-        protected readonly IMemberService MemberService;
-        protected readonly ICoreService CoreService;
-        protected readonly IDownLinePermissionService DownLinePermissionService;
-        protected readonly ICustomerSettingService CustomerSettingService;
-        protected readonly ISportsBookSettingService SportsBookService;
-        protected readonly ISettingService NumberGameService;
-        protected readonly IVirtualSportsSettingService VirtualSportsService;
+        private readonly IMemberService _memberService;
+        private readonly ICoreService _coreService;
+        private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICustomerSettingService _customerSettingService;
+        private readonly ISportsBookSettingService _sportsBookService;
+        private readonly ISettingService _numberGameService;
+        private readonly IVirtualSportsSettingService _virtualSportsService;
 
         #endregion Variables
 
@@ -51,16 +51,55 @@
             ISettingService numberGameService,
             IVirtualSportsSettingService virtualSportsService)
         {
-            MemberService = memberService ?? new MemberService();
-            CoreService = coreService ?? new CoreService();
-            CustomerSettingService = customerSettingService ?? new CustomerSettingService();
-            DownLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
-            SportsBookService = sportsBookService ?? new SportsBookSettingService();
-            NumberGameService = numberGameService ?? new NumberGameSettingService();
-            VirtualSportsService = virtualSportsService ?? new VirtualSportsSettingService();
+            _memberService = memberService ?? new MemberService();
+            _coreService = coreService ?? new CoreService();
+            _customerSettingService = customerSettingService ?? new CustomerSettingService();
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _sportsBookService = sportsBookService ?? new SportsBookSettingService();
+            _numberGameService = numberGameService ?? new NumberGameSettingService();
+            _virtualSportsService = virtualSportsService ?? new VirtualSportsSettingService();
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        protected IMemberService MemberService
+        {
+            get { return _memberService; }
+        }
+
+        protected ICoreService CoreService
+        {
+            get { return _coreService; }
+        }
+
+        protected IDownLinePermissionService DownLinePermissionService
+        {
+            get { return _downLinePermissionService; }
+        }
+
+        protected ICustomerSettingService CustomerSettingService
+        {
+            get { return _customerSettingService; }
+        }
+
+        protected ISportsBookSettingService SportsBookService
+        {
+            get { return _sportsBookService; }
+        }
+
+        protected ISettingService NumberGameService
+        {
+            get { return _numberGameService; }
+        }
+
+        protected IVirtualSportsSettingService VirtualSportsService
+        {
+            get { return _virtualSportsService; }
+        }
+
+        #endregion Properties
 
         #region Common
 
@@ -108,7 +147,7 @@
                 TargetRoleId = settingContext.TargetRoleId
             };
 
-            return DownLinePermissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
+            return _downLinePermissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
         }
 
         /// <summary>
@@ -127,7 +166,7 @@
                 TargetRoleId = settingContext.TargetRoleId
             };
 
-            return DownLinePermissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
+            return _downLinePermissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
         }
 
         #endregion Check permission

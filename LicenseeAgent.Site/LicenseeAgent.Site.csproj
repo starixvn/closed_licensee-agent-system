@@ -108,7 +108,7 @@
       <HintPath>..\packages\MiniProfiler.3.1.1.140\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -210,9 +210,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\CustomerSetting\CustomerSettingAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
     <Compile Include="Areas\TotalBets\TotalBetsAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,6 +223,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\NumberGame\actions\bet-limit-action.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\NumberGame\controllers\bet-limit-controller.js" />
+    <Content Include="Areas\Account\Content\HomePage\home-page.less" />
+    <Content Include="Areas\Account\Scripts\HomePage\home-page.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\NumberGame\controllers\position-taking-controller.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\NumberGame\directives\bet-limit-directive.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\NumberGame\directives\position-taking-directive.js" />
@@ -301,7 +304,7 @@
     <Content Include="Areas\CustomerSetting\Scripts\Products\VirtualSports\templates\positiontaking\agent-edit-member-simple-mode.html" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Areas\CustomerSetting\Scripts\Products\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
-    <Content Include="Areas\Customer\Scripts\AccountInformation\account-information.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
     <Content Include="Content\Fanex.Result\images\1F.gif" />
     <Content Include="Content\Fanex.Result\images\1L.gif" />
     <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
@@ -329,27 +332,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SpNames.Uat.tt</DependentUpon>
     </Content>
-    <Content Include="Areas\Account\Scripts\HomePage\account-homepage.js" />
     <Content Include="Areas\Report\Views\_ViewStart.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
     <Content Include="Views\MemberRearrangement\Resources\MemberArrangement.js" />
+    <Content Include="Areas\Home\Scripts\TopMenu\top-menu.js" />
     <Content Include="Views\MemberCommission\Resources\member-commission.js" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Content\AccountInformation\account-information.less" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_AgentInfo.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_BalanceDownline.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_Action.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Search.cshtml" />
-    <Content Include="Areas\Customer\Views\Web.config" />
-    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_UpLinesPopover.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_SettingPopover.cshtml" />
+    <Content Include="Areas\Home\Content\AccountInformation\account-information.less" />
+    <Content Include="Areas\Home\Views\AccountInformation\_AgentInfo.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_BalanceDownline.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_Action.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Index.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Search.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_UpLinesPopover.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_SettingPopover.cshtml" />
     <Content Include="Areas\TotalBets\Views\Web.config" />
     <Content Include="Areas\TotalBets\Views\Basketball\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\OtherSports\Index.cshtml" />
@@ -378,6 +379,23 @@
     <Content Include="Areas\CustomerSetting\Views\Products\NumberGame\BetSetting.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Products\NumberGame\PositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Products\SportsBook\EditCustomer.cshtml" />
+    <Content Include="Areas\Home\Views\TopMenu\SelectMenu.cshtml" />
+    <Content Include="Areas\Authentication\Views\Admin\SignIn.cshtml" />
+    <Content Include="Areas\Authentication\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Authentication\Views\Web.config" />
+    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Account\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Account\Views\Web.config" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\Index.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\_BalanceInfo.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\_MemberLink.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Credit\Index.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Credit\_BalanceInfo.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\NewMembers.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\TopTurnover.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\TopWinning.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\_Announcement.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -496,7 +514,6 @@
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
     <Content Include="Views\Error\Resources\images\unauthorized-access.png" />
     <Content Include="Views\Error\Resources\images\Under-Maintenace.png" />
-    <Content Include="Views\Internal\Resources\internal-header.js" />
     <Content Include="Content\sprite.less" />
     <Content Include="Content\fanexgrid\Fanex.Grid.css" />
     <Content Include="Content\fanexgrid\Fanex.Pagination.css" />
@@ -677,7 +694,7 @@
     <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Home\Resources\home.less" />
-    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Areas\Authentication\Views\Agent\SignIn.cshtml" />
     <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\_ViewStart.cshtml" />
     <Content Include="Views\MemberRearrangement\Index.cshtml" />
@@ -691,11 +708,8 @@
       <LastGenOutput>SpNames.Uat.xml</LastGenOutput>
     </None>
     <Content Include="Areas\Report\Views\Web.config" />
-    <Content Include="Areas\Account\Views\Web.config" />
-    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\_BalanceInfo.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\Index.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\_MemberLink.cshtml" />
+    <Content Include="Areas\Home\Views\Web.config" />
+    <Content Include="Areas\Home\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
     <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
@@ -743,20 +757,16 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Areas\Admin\Views\Maintenance\WhoAmI.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Internal\SignIn.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_LeftMenu.cshtml" />
-    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Areas\Authentication\Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\_AccountBox.cshtml" />
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Home\_TopMenu.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Credit\Index.cshtml" />
     <Content Include="App_Code\BootstrapHelper.cshtml" />
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Content\core.less" />
-    <Content Include="Areas\Account\Content\HomePage\account-homepage.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentCommissionSetting.cshtml" />
@@ -771,10 +781,6 @@
     <Content Include="Views\Instruction\en-US\LicenseeCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\Shared\_Layout.cshtml" />
-    <Content Include="Views\Internal\SelectMenu.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Credit\_BalanceInfo.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\_Announcement.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
@@ -889,9 +895,6 @@
     <Content Include="Views\CustomerList\ResetPassword.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
-    <Content Include="Areas\Account\Views\HomePage\TopWinning.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\TopTurnover.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\NewMembers.cshtml" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />
     <Content Include="Views\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\CreditBalance\Index.cshtml" />
@@ -991,13 +994,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">
-      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
-      <Name>LicenseeAgent.AccountInformation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
-      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Project>{2FCA7520-4C21-487A-B5EF-4104A9DA0E48}</Project>
       <Name>LicenseeAgent.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Authentication\LicenseeAgent.Authentication.csproj">
+      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Name>LicenseeAgent.Authentication</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">
       <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
@@ -1022,6 +1025,10 @@
     <ProjectReference Include="..\LicenseeAgent.Forecast\LicenseeAgent.Forecast.csproj">
       <Project>{90224F27-06A4-4BEE-979D-4F085F6851C7}</Project>
       <Name>LicenseeAgent.Forecast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Home\LicenseeAgent.Home.csproj">
+      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
+      <Name>LicenseeAgent.Home</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Message\LicenseeAgent.Message.csproj">
       <Project>{EA04AEE5-B144-43EE-8449-563F2C6847AF}</Project>

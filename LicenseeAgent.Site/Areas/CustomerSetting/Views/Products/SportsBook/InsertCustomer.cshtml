@@ -11,6 +11,16 @@
     {
         ViewBag.Title = string.Format(Las.AddNewAgent, Model.UserName);
     }
+
+    var scriptUrl = Url.RouteUrl("CustomerSetting_Product", new
+    {
+        controller = "SportsBook",
+        action = "GetSetting",
+        custId = Model.CustId,
+        roleId = Model.RoleId,
+        targetCustId = Model.TargetCustId,
+        targetRoleId = Model.TargetRoleId
+    });
 }
 @section css
 {
@@ -18,7 +28,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src=@Url.Content("~/CustomerSetting/SportsBook/GetSettingForInsert?custId=" + Model.CustId + "&roleId=" + Model.RoleId + "&targetCustId=" + Model.TargetCustId + "&targetRoleId=" + Model.TargetRoleId)></script>
+    <script type="text/javascript" src="@scriptUrl"></script>
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/customersetting")
@@ -28,7 +38,7 @@
     @ViewBag.Title
 </div>
 <div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting" class="fanex-customer-setting fanex-sportbook-setting"
-    data-ng-controller="CustomerSettingController" data-href="~/CustomerSetting/InsertCustomer">
+    data-ng-controller="CustomerSettingController" data-href="~/CustomerSetting/SportsBook/InsertCustomer">
     <div class="clearfix">
         <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
             <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == result.Success, 'error' : message.ErrCode != result.Success}">

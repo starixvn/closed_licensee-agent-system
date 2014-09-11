@@ -52,20 +52,20 @@
         private static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
-                "~/Areas/CustomerSetting/Scripts/ProductSetting/Shared", "*.js", true));
+                "~/Areas/CustomerSetting/Scripts/Products/Shared", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
-                "~/Areas/CustomerSetting/Scripts/ProductSetting/SportsBook", "*.js", true).IncludeDirectory(
-                "~/Areas/CustomerSetting/Scripts/ProductSetting/NumberGame", "*.js", true));
+                "~/Areas/CustomerSetting/Scripts/Products/SportsBook", "*.js", true).IncludeDirectory(
+                "~/Areas/CustomerSetting/Scripts/Products/NumberGame", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/js/customersetting/virtualsports").IncludeDirectory(
-               "~/Areas/CustomerSetting/Scripts/ProductSetting/VirtualSports", "*.js", true));
+               "~/Areas/CustomerSetting/Scripts/Products/VirtualSports", "*.js", true));
 
             bundles.Add(new LessBundle("~/css/customersetting").Include(
-                "~/Areas/CustomerSetting/Content/ProductSetting/fanex.customerSetting.less"));
+                "~/Areas/CustomerSetting/Content/Products/fanex.customerSetting.less"));
 
             bundles.Add(new LessBundle("~/css/customersetting/editproduct").Include(
-                "~/Areas/CustomerSetting/Content/ProductSetting/edit-product.less"));
+                "~/Areas/CustomerSetting/Content/Products/edit-product.less"));
         }
     }
 }

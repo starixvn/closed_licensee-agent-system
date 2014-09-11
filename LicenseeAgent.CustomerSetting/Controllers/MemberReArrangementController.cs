@@ -39,7 +39,7 @@
         [AccountType(AccountType.Admin)]
         [HttpGet]
         [LegendType(LegendType.Deposit)]
-        public ViewResult MemberArrangement()
+        public ViewResult Index()
         {
             return View(new MemberArrangementViewModel()
             {
@@ -59,7 +59,6 @@
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",
            Justification = "Because urgent matter. Will Fix later.")]
-        public ViewResult MemberArrangement(MemberArrangementViewModel model)
         {
             var errCode = 0;
             var customer = GetDepositMemberInformation(model.MemberName, ref errCode);

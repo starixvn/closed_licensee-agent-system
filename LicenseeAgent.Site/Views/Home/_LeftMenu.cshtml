@@ -69,7 +69,7 @@
                     }
                     @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
-                        @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("MemberArrangement", "CustomerSetting"))
+                        @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("Index", "MemberReArrangement"))
                     }
                     @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit) && SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm)
                     {

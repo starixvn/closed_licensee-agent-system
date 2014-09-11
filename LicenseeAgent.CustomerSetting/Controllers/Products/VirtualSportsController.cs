@@ -96,7 +96,7 @@
             {
                 return RedirectToAccessDeniedPage();
             }
-
+            
             return View("~/Areas/CustomerSetting/Views/Products/VirtualSports/EditCustomer.cshtml", settingContext);
         }
 

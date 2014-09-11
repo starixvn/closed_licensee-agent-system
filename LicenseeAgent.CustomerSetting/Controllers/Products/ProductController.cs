@@ -10,6 +10,7 @@
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Entities;
+    using LicenseeAgent.CustomerSetting.Services.ProductSetting;
     using LicenseeAgent.CustomerSetting.ViewModels;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
@@ -40,7 +41,7 @@
                 switch (product.ProductId)
                 {
                     case (int)Product.Product_5:
-                        url = Url.Content(string.Format("~/Areas/CustomerSetting/Views/Products/VirtualSports/EditAgent?agentId={0}", model.AgentId, model.AgentLevel));
+                        url = Url.Action("EditAgent", "VirtualSports", new { area = "CustomerSetting", agentId = model.AgentId });
                         break;
                 }
 
@@ -60,7 +61,7 @@
                 ProductId = editProductItems.FirstOrDefault().ProductId,
                 Products = editProductItems
             };
-            return View("EditProduct.cshtml", viewModel);
+            return View("~/Areas/CustomerSetting/Views/Products/EditProduct.cshtml", viewModel);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@
                 switch (product.ProductId)
                 {
                     case (int)Product.Product_5:
-                        url = Url.Content(string.Format("~/Areas/CustomerSetting/Views/Products/VirtualSports/EditMember?memberId={0}", model.CustId));
+                        url = Url.Action("EditMember", "VirtualSports", new { area = "CustomerSetting", memberId = model.CustId });
                         break;
                 }
 
@@ -101,7 +102,7 @@
                 ProductId = editProductItems.FirstOrDefault().ProductId,
                 Products = editProductItems
             };
-            return View("EditProduct.cshtml", viewModel);
+            return View("~/Areas/CustomerSetting/Views/Products/EditProduct.cshtml", viewModel);
         }
 
         #endregion Page to display all of 3rd supported products to edit setting.
@@ -140,7 +141,8 @@
             var errCode = Result.FailureValue;
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(Formatter.FormatJson("settingContext", settingContext));
-            var productSetting = GetProductSetting(model.ProductId, settingContext, out errCode);
+            var productService = GetProductService(model.ProductId);
+            var productSetting = productService.GetSettingForUpdate(settingContext, out errCode);
             if (errCode == Result.SuccessValue)
             {
                 if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
@@ -155,7 +157,7 @@
                         });
                 }
 
-                stringBuilder.AppendLine(Formatter.FormatJson(SportsBookService.Name, productSetting));
+                stringBuilder.AppendLine(Formatter.FormatJson(productService.Name, productSetting));
                 if (model.ProductId == Product.Product_0)
                 {
                     if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
@@ -256,6 +258,25 @@
             return null;
         }
 
+        /// <summary>
+        /// Get Product Service.
+        /// </summary>
+        /// <param name="productId">ID of product.</param>
+        /// <returns>Setting Service.</returns>
+        [NonAction]
+        public ISettingService GetProductService(Product productId)
+        {
+            switch (productId)
+            {
+                case Product.Product_0:
+                    return SportsBookService;
+
+                case Product.Product_5:
+                    return VirtualSportsService;
+            }
+
+            return null;
+        }
         #endregion Get product setting
     }
 }

@@ -160,7 +160,6 @@
             RegisterCustomerListPage(bundles);
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
-            RegisterTotalBetsPages(bundles);
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
@@ -318,36 +317,6 @@
 
             bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
                 "~/Views/Report/Resources/agent-winloss-report.js"));
-        }
-
-        /// <summary>
-        /// Registers the total bets pages bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterTotalBetsPages(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/css/totalbets").Include(
-                "~/Views/TotalBets/Resources/total-bets.less"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
-                "~/Views/TotalBets/Resources/soccer.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-soccer-betlist").Include(
-                "~/Views/TotalBets/Resources/soccer.betlist.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-basketball").Include(
-                "~/Views/TotalBets/Resources/basketball.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-OtherSports").Include(
-                "~/Views/TotalBets/Resources/OtherSports.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-outright").Include(
-                "~/Views/TotalBets/Resources/outright.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
         }
 
         /// <summary>

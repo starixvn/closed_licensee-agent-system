@@ -4,7 +4,7 @@
 @model SoccerDetailViewModel
 @{
     ViewBag.Title = Model.MatchName;
-    var backLink = Url.Action("Soccer", "TotalBets", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval, checkAllLeague = Model.CheckAllLeague, checkAllEvent = Model.CheckAllEvent });
+    var backLink = Url.Action("Index", "Soccer", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval, checkAllLeague = Model.CheckAllLeague, checkAllEvent = Model.CheckAllEvent });
     var soccerDetailConfiguration = SettingConfigurations.SoccerDetailConfiguration;
 }
 @section css{
@@ -13,7 +13,7 @@
 @section scripts{
     <script language="javascript">
     function showSoccerMoreBetList(matchid, bettype, betteam) {
-        var url = core.resolveUrl("~/Totalbets/SoccerBetList") + "?MatchId=" + matchid + "&Bettype=" + bettype + "&Betteam=" + betteam;
+        var url = core.resolveUrl("~/Totalbets/Soccer/SoccerBetList") + "?MatchId=" + matchid + "&Bettype=" + bettype + "&Betteam=" + betteam;
         window.location.href = url;
     }
     </script>

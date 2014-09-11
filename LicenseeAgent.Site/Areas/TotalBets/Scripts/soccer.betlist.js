@@ -1,7 +1,10 @@
 ﻿/*global core, language, pageContext*/
 
-var gridOptions = {
-    columns: [
+var totalBets = totalBets || {};
+totalBets.soccerBetList = (function ($) {
+    'use strict';
+    var gridOptions = {
+        columns: [
                 { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
                 { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: language.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
@@ -14,15 +17,13 @@ var gridOptions = {
                 { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
                 { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
             ],
-    showPager: true,
-    enableHiddenColumns: false,
-    gridExpandHeight: 60,
-    bodyRowHeight: 29,
-    autoResizeColumn: true
-};
+        showPager: true,
+        enableHiddenColumns: false,
+        gridExpandHeight: 60,
+        bodyRowHeight: 29,
+        autoResizeColumn: true
+    };
 
-var SoccerBetList = (function ($) {
-    'use strict';
     return {
         sportType: 1, //Soccer sporttype
         init: function () {
@@ -37,7 +38,7 @@ var SoccerBetList = (function ($) {
             }
             gridOptions.hiddenColumns = hiddenColumns;
 
-            SoccerBetList.showBetList();
+            totalBets.soccerBetList.showBetList();
         },
 
         showBetList: function () {
@@ -51,7 +52,7 @@ var SoccerBetList = (function ($) {
             };
 
             $.ajax({
-                url: core.resolveUrl("~/Totalbets/GetSoccerMoreBetList"),
+                url: core.resolveUrl("~/Totalbets/Soccer/GetSoccerMoreBetList"),
                 type: 'post',
                 data: params,
                 beforeSend: function () {
@@ -72,8 +73,3 @@ var SoccerBetList = (function ($) {
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    SoccerBetList.init();
-});

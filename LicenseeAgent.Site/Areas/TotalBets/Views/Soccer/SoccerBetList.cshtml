@@ -14,7 +14,12 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-soccer-betlist")
+    @Scripts.Render("~/js/totalbets")    
+    <script type="text/javascript">
+        $(function () {
+            totalBets.soccerBetList.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title

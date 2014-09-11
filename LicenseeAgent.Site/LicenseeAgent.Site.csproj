@@ -213,6 +213,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
+    <Compile Include="Areas\TotalBets\TotalBetsAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,6 +226,12 @@
     <Content Include="Content\Fanex.Result\images\first-goal.gif" />
     <Content Include="Content\Fanex.Result\images\last-goal.gif" />
     <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
+    <Content Include="Areas\TotalBets\Content\total-bets.less" />
+    <Content Include="Areas\TotalBets\Scripts\basketball.js" />
+    <Content Include="Areas\TotalBets\Scripts\OtherSports.js" />
+    <Content Include="Areas\TotalBets\Scripts\outright.js" />
+    <Content Include="Areas\TotalBets\Scripts\soccer.betlist.js" />
+    <Content Include="Areas\TotalBets\Scripts\soccer.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">
@@ -261,6 +268,14 @@
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\_UpLinesPopover.cshtml" />
     <Content Include="Areas\Customer\Views\AccountInformation\_SettingPopover.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Web.config" />
+    <Content Include="Areas\TotalBets\Views\Basketball\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\OtherSports\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Outright\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\SoccerBetList.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\SoccerDetail.cshtml" />
+    <Content Include="Areas\TotalBets\Views\_ViewStart.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -571,16 +586,10 @@
     <Content Include="Views\Report\Resources\result-report.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
-    <Content Include="Views\TotalBets\Resources\basketball.js" />
-    <Content Include="Views\TotalBets\Resources\soccer.betlist.js" />
-    <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
     <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
-    <Content Include="Views\TotalBets\Resources\outright.js" />
-    <Content Include="Views\TotalBets\Resources\total-bets.less" />
-    <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\Transfer\Resources\transfer-list.js" />
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">
@@ -840,19 +849,10 @@
     <Content Include="Views\CustomerList\_MemberGrid.cshtml" />
     <Content Include="Views\CustomerList\GetIpInformation.cshtml" />
     <Content Include="Views\CustomerList\_AgentGrid.cshtml" />
-    <Content Include="Views\TotalBets\Soccer.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\BetList\BetListSelByMember.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
-    <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
-    <Content Include="Views\TotalBets\Basketball.cshtml" />
-    <Content Include="Views\TotalBets\Basketball.Script.cshtml" />
-    <Content Include="Views\TotalBets\Soccer.Script.cshtml" />
-    <Content Include="Views\TotalBets\OtherSports.cshtml" />
-    <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
-    <Content Include="Views\TotalBets\Outright.cshtml" />
-    <Content Include="Views\TotalBets\Outright.Script.cshtml" />
     <None Include="Scripts\ResourcesJs\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.js</LastGenOutput>
@@ -956,7 +956,6 @@
     <Content Include="Areas\Report\Views\Statement\Detail.cshtml" />
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
-    <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\SyncMonitoring.cshtml" />
     <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
     <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />

@@ -4,21 +4,38 @@
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
+    using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Entities;
 
     /// <summary>
-    /// Account controllers.
+    /// Outright controllers.
     /// </summary>
-    public partial class TotalBetsController
+    public class OutrightController : CommonController
     {
+        private readonly IOutrightService _outrightService;
+
+        private readonly IBetListService _betlistService;
+
+        public OutrightController()
+            : this(null, null)
+        {
+        }
+
+        public OutrightController(OutrightService outrightService, BetListService betlistService)
+        {
+            _outrightService = outrightService ?? new OutrightService();
+            _betlistService = betlistService ?? new BetListService();
+        }
+
         [HttpGet]
-        public ViewResult Outright()
+        public ViewResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
             var model = new OutrightViewModel { TimeInterval = 15 };
@@ -29,7 +46,7 @@
         public JsonResult GetOutrightData(OutrightCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var dataList = _totalBetsService.GetOutrightData(criteria);
+            var dataList = _outrightService.GetOutrightData(criteria);
             return Json(new
             {
                 Result.SuccessValue,
@@ -47,7 +64,7 @@
         public JsonResult GetSportList(string sport, bool checkedAll)
         {
             var criteria = new OutrightSportCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            var sports = _totalBetsService.GetOutrightSports(criteria).OrderBy(x => x.SportName);
+            var sports = _outrightService.GetOutrightSports(criteria).OrderBy(x => x.SportName);
             var sportIds = string.IsNullOrEmpty(sport) ? new List<string>() : sport.Split(',').ToList();
             var sportMultiItems = new List<dynamic>();
             foreach (var item in sports)
@@ -80,7 +97,7 @@
         public JsonResult GetLeaguesBySports(string sport, string league, bool checkedAll)
         {
             var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport };
-            var leagues = _totalBetsService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
+            var leagues = _outrightService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
             return LeagueListToJson(league, checkedAll, leagues);
         }
 
@@ -96,7 +113,7 @@
         public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool checkedAll)
         {
             var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport, LeagueList = league };
-            var teams = _totalBetsService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
+            var teams = _outrightService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
             var teamIds = string.IsNullOrEmpty(team) ? new List<string>() : team.Split(',').ToList();
             var teamMultiItems = new List<dynamic>();
             foreach (var item in teams)

@@ -1,7 +1,9 @@
 ﻿@{
-    ViewBag.Title = Las.OtherSports + " - " + Las.TotalBets;
+    ViewBag.Title = Las.Outright + " - " + Las.TotalBets;
 }
 @using LicenseeAgent.TotalBets.Entities;
+@using LicenseeAgent.TotalBets.ViewModels;
+@model OutrightViewModel
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
@@ -12,18 +14,22 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets-OtherSports")
-    @Html.Partial("OtherSports.Script")
+    @Scripts.Render("~/js/totalbets")
+    <script type="text/javascript">
+        $(function () {
+            totalBets.outright.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
-    <span id="totalbets-back" onclick="OtherSports.submitForm();" class="history-back hide">
+    <span id="totalbets-back" onclick="totalBets.outright.submitForm();" class="history-back hide">
         <i class="icon-history-back"></i>
         @Las.Back
     </span>
 </div>
 <div id="totalbets-filter" class="">
-    @using (Html.BeginForm("OtherSports", "TotalBets", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+    @using (Html.BeginForm("Index", "Outright", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
     {
         <div class="controls-row">
             <div id="sport-multi-select">
@@ -34,18 +40,18 @@
             </div>
         </div>
         <div class="controls-row">
-            <div id="event-multi-select">
+            <div id="team-multi-select">
             </div>
         </div>
         <div class="controls-row">
-            <button class="btn btn-primary" type="submit" id="btnSubmit">
+            <button class="btn btn-primary" type="submit">
                 @Las.Submit
             </button>
         </div>
         <div class="controls-row refresh-count-down-area">
             <div class="refresh-count-down" id="refresh-count-down">
             </div>
-            <input type="hidden" value="15" id="server-time-interval" />
+            <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
         </div>
     }
 </div>

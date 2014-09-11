@@ -4,17 +4,31 @@
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
+    using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
+    using LicenseeAgent.Web;
     using LicenseeAgent.Web.Entities;
 
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public partial class TotalBetsController
+    public class BasketballController : CommonController
     {
+        private readonly IBasketballService _basketballService;
+
+        public BasketballController()
+            : this(null)
+        {
+        }
+
+        public BasketballController(BasketballService basketballService)
+        {
+            _basketballService = basketballService ?? new BasketballService();
+        }
+
         [HttpGet]
-        public ActionResult Basketball()
+        public ActionResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View();
@@ -43,7 +57,7 @@
                     LeagueList = model.LeagueList,
                     MatchList = model.MatchList
                 };
-                var dataList = _totalBetsService.GetBasketballData(criteria);
+                var dataList = _basketballService.GetBasketballData(criteria);
                 var orderedDataList = TotalBetsUtility.MapTotalBetsMainData(dataList)
                     .OrderByDescending(x => x.LiveIndicator)
                     .ThenBy(x => x.LeagueName)

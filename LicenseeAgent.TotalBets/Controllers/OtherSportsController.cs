@@ -6,6 +6,7 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
+    using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
     using LicenseeAgent.TotalBets.ViewModels;
     using LicenseeAgent.Web.Entities;
@@ -13,10 +14,22 @@
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public partial class TotalBetsController
+    public class OtherSportsController : CommonController
     {
+        private readonly IOtherSportsService _otherSportsService;
+
+        public OtherSportsController()
+            : this(null)
+        {
+        }
+
+        public OtherSportsController(OtherSportsService otherSportsService)
+        {
+            _otherSportsService = otherSportsService ?? new OtherSportsService();
+        }
+
         [HttpGet]
-        public ActionResult OtherSports()
+        public ActionResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View();
@@ -40,7 +53,7 @@
         {
             var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
 
-            var sports = _totalBetsService.GetOtherSportsList(criteria).OrderBy(x => x.SportName);
+            var sports = _otherSportsService.GetOtherSportsList(criteria).OrderBy(x => x.SportName);
             var sportMultiItems = new List<dynamic>();
             var sportIds = string.IsNullOrEmpty(sportList) ? new List<string>() : sportList.Split(',').ToList();
 
@@ -74,7 +87,7 @@
         public JsonResult GetLeagueListOtherSports(string sportList, string leagueList, bool checkedAll)
         {
             var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
-            var leagues = _totalBetsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
+            var leagues = _otherSportsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
             return LeagueListToJson(leagueList, checkedAll, leagues);
         }
 
@@ -96,7 +109,7 @@
                 LeagueList = leagueList
             };
 
-            var events = _totalBetsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName);
+            var events = _otherSportsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName);
             return EventListToJson(eventList, checkedAll, events);
         }
 
@@ -117,7 +130,7 @@
                     LeagueList = model.LeagueList,
                     MatchList = model.MatchList
                 };
-                var dataList = _totalBetsService.GetOtherSportsData(criteria);
+                var dataList = _otherSportsService.GetOtherSportsData(criteria);
                 return Json(new
                 {
                     ErrCode = Result.SuccessValue,

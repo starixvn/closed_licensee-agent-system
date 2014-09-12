@@ -2,6 +2,8 @@
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
     var actionName = (string)ViewData["actionName"];
+    var controller = (string)ViewData["controller"];
+    var area = (string)ViewData["area"];
 }
 <table class="dropdown">
     <colgroup>
@@ -26,7 +28,7 @@
                     @string.Format(Las.AgentLevelFormat, entity.Level - 1)
                 </td>
                 <td>
-                    <a class="agent-inline" href="@Url.Action(actionName, "CustomerSetting", new { area = "", memberId = Model.Customer.CustId, agentId = entity.UplineCustId, agentLevel = entity.Level, numberOfLevel = Model.Customer.NumberOfLevel }))"  target="frmMain" onclick='home.accountInformation.hidePopover();' title="@entity.UserName">
+                    <a class="agent-inline" href="@Url.Action(actionName, controller, new { area = area, memberId = Model.Customer.CustId, agentId = entity.UplineCustId, agentLevel = entity.Level, numberOfLevel = Model.Customer.NumberOfLevel }))"  target="frmMain" onclick='home.accountInformation.hidePopover();' title="@entity.UserName">
                         @entity.MediumUserName
                     </a>
                 </td>

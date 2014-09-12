@@ -55,12 +55,12 @@
         </div>
     </div>
     <div class="clearfix">
-        @Html.Partial("~/Views/CustomerSetting/CustomerInfo.cshtml")
+        @Html.Partial("~/Areas/CustomerSetting/Views/Products/CustomerInfo.cshtml")
     </div>
     @if (!Model.IsDeposit)
     {
     <div class="clearfix">
-        @Html.Partial("~/Views/CustomerSetting/Sportsbook/Commission.cshtml", Model)
+        @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/Commission.cshtml", Model)
     </div>
     }
     <div class="clearfix" data-ng-if="false">
@@ -82,10 +82,10 @@
                 </div>
             </div>
             <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/Sportsbook/BetSetting.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/BetSetting.cshtml", Model)
             </div>
             <div class="clearfix">
-                @Html.Partial("~/Views/CustomerSetting/Sportsbook/PositionTaking.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/Sportsbook/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>
@@ -100,10 +100,10 @@
                 </div>
             </div>
             <div class="clearfix box-bottom">
-                @Html.Partial("~/Views/CustomerSetting/NumberGame/BetSetting.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/NumberGame/BetSetting.cshtml", Model)
             </div>
             <div class="clearfix box-bottom">
-                @Html.Partial("~/Views/CustomerSetting/NumberGame/PositionTaking.cshtml", Model)
+                @Html.Partial("~/Areas/CustomerSetting/Views/Products/NumberGame/PositionTaking.cshtml", Model)
             </div>
         </div>
     </div>

@@ -47,11 +47,11 @@
                     {
                         if (!SessionManager.CurrentSession.AgentInfo.IsLastLevel)
                         {
-                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.RouteUrl("CustomerSetting_NewAgent"))
+                        @BootstrapHelper.LeftMenu(Las.NewAgent, Url.RouteUrl("ProductSetting_NewAgent"))
                         }
                         else if (LegendTypeAttribute.Authorize(LegendType.Credit))
                         {
-                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "SportsBook", new { area = "CustomerSetting" }))
+                        @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "SportsBook", new { area = "ProductSetting" }))
                         }
                     }
                     @BootstrapHelper.LeftMenu(

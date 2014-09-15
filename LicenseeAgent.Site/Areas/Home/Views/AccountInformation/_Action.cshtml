@@ -27,12 +27,12 @@
                                 @(isAllowEditSetting ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
                             <div class="hide">
-                                @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" }, { "controller", "SportsBook" }, { "area", "CustomerSetting" } })
+                                @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" }, { "controller", "SportsBook" }, { "area", "ProductSetting" } })
                             </div>
                         }
                         else
                         {
-                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsBook", new { area = "CustomerSetting", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsBook", new { area = "CustomerSetting", agentId = Model.Customer.CustId }))" target="frmMain">
+                            <a href="@(pageContext.IsMember ? Url.Action("EditMember", "SportsBook", new { area = "ProductSetting", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "SportsBook", new { area = "ProductSetting", agentId = Model.Customer.CustId }))" target="frmMain">
                                 <i class="icon-downline-arrow"></i>
                                 @(isAllowEditSetting ? Las.EditSportsbook : Las.ViewSportsbook)
                             </a>
@@ -48,12 +48,12 @@
                                     @(isAllowEditSetting ? Las.EditVirtualSports : Las.ViewVirtualSports)
                                 </a>
                                 <div class="hide">
-                                    @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" }, { "controller", "VirtualSports" }, { "area", "CustomerSetting" } })
+                                    @Html.Partial("_SettingPopover", Model, new ViewDataDictionary { { "actionName", "EditMember" }, { "controller", "VirtualSports" }, { "area", "ProductSetting" } })
                                 </div>
                             }
                             else
                             {
-                                <a href="@(pageContext.IsMember ? Url.Action("EditMember", "VirtualSports", new { area = "CustomerSetting", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "VirtualSports", new { area = "CustomerSetting", agentId = Model.Customer.CustId }))" target="frmMain">
+                                <a href="@(pageContext.IsMember ? Url.Action("EditMember", "VirtualSports", new { area = "ProductSetting", memberId = Model.Customer.CustId }) : Url.Action("EditAgent", "VirtualSports", new { area = "ProductSetting", agentId = Model.Customer.CustId }))" target="frmMain">
                                     <i class="icon-downline-arrow"></i>
                                     @(isAllowEditSetting ? Las.EditVirtualSports : Las.ViewVirtualSports)
                                 </a>
@@ -76,7 +76,7 @@
                     }
                     @if (hasAddDownLine)
                     {
-                        <li><a href="@(Url.Action("InsertCustomer", "SportsBook", new { area = "CustomerSetting", agentId = Model.Customer.CustId }))" target="frmMain">
+                        <li><a href="@(Url.Action("InsertCustomer", "SportsBook", new { area = "ProductSetting", agentId = Model.Customer.CustId }))" target="frmMain">
                             <i class="icon-downline-arrow"></i>
                             @Las.AddDownline
                         </a></li>

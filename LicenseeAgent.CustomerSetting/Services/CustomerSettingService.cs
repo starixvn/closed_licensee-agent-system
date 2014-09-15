@@ -20,15 +20,6 @@
     /// </summary>
     public class CustomerSettingService : QueryService, ICustomerSettingService
     {
-        /// <summary>
-        /// Check user name.
-        /// </summary>
-        /// <param name="criteria">Check exist username criteria.</param>
-        public void CheckExistUserName(CheckExistUserNameCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
         public void MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria)
         {
             QueryService.Execute(criteria);

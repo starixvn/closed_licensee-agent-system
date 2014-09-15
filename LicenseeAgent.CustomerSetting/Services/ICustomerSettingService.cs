@@ -12,8 +12,6 @@
     /// </summary>
     public interface ICustomerSettingService
     {
-        void CheckExistUserName(CheckExistUserNameCriteria criteria);
-
         void MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria);
 
         void MemberReArrangement(ReArrangementMemberCriteria criteria);

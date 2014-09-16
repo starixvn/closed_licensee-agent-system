@@ -2,54 +2,93 @@
 @{
     Layout = null;
     var pageContext = (PageContext)ViewBag.PageContext;
+    var viewResult = (SearchUserViewResult)ViewBag.Result;
 }
-
-@if (ViewBag.Result != null)
+@if (viewResult != null)
 {
-    var result = (SearchUserViewResult)ViewBag.Result;
-    if (result.IsChangeCurrency)
+    if (viewResult.IsChangeCurrency)
     {
     <script type="text/javascript">
-        var alertMessage = '@string.Format(result.ErrMsg, result.CurrencyName)';
-        home.accountInformation.showCurrencyAlert('@result.CurrencyId', '@result.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
+        var alertMessage = '@string.Format(viewResult.ErrMsg, viewResult.CurrencyName)';
+        home.accountInformation.showCurrencyAlert('@viewResult.CurrencyId', '@viewResult.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
     </script>
     }
-    else if (result.ErrCode != Result.SuccessValue)
+    else if (viewResult.ErrCode != Result.SuccessValue)
     {
     <script type="text/javascript">
-        home.accountInformation.showNoUserAlert('@result.ErrMsg');
+        home.accountInformation.showNoUserAlert('@viewResult.ErrMsg');
     </script>
     }
 }
-
-@if (ViewBag.PageContext != null)
+@if (pageContext != null)
 {
     <script type="text/javascript">
-        @Html.Raw(Formatter.FormatJson("pageContext", ViewBag.PageContext))
+        @Html.Raw(Formatter.FormatJson("pageContext", pageContext))
     </script>
 }
-
-@if (pageContext != null && ViewBag.Result == null)
+@if (pageContext != null && viewResult == null)
 {
     @Html.Partial("_AgentInfo", Model)
 
     <div class="controls-row left">
         @if (pageContext.IsMember)
         {
-            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">@Las.BetList</button>
+            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">
+                @Las.BetList
+            </button>
         }
         else
         {
-            <button class="btn btn-inverse" data-url="@Url.Action("Index", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">@(pageContext.IsLastLevel ? @Las.MemberList : @Las.AgentList)</button>
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+                @(pageContext.IsLastLevel ? @Las.MemberList : @Las.AgentList)
+            </button>
         }
         @if (Model.IsShowStatement)
         {
-            <button class="btn btn-inverse" data-url="@Url.RouteUrl("Report_Statement", new { area = "", action = "Detail", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">@Las.Statement</button>
+            <button class="btn btn-inverse" data-url="@Url.RouteUrl("Report_Statement", new { area = "", action = "Detail", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">
+                @Las.Statement
+            </button>
         }
     </div>
         if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
         {
-    @Html.Partial("_BalanceDownline", Model)
-    @Html.Partial("_Action", Model)
+    <div class="controls-row">
+        <div class="row-line">
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#balanceInfo" id="tabBalance" data-toggle="tab">
+                @Las.BalanceInfo
+            </a></li>
+            @if (!pageContext.IsMember)
+            {
+                <li><a href="#downlineList" id="tabDownline" data-toggle="tab">
+                    @Las.DownlineList
+                </a></li>
+            }
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_BalanceInfoTab", Model)
+            @if (!pageContext.IsMember)
+            {
+                @Html.Partial("_DownLineListTab", Model)
+            }
+        </div>
+    </div>
+    <div class="controls-row last">
+        <div class="row-line">
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#action" id="tabAction" data-toggle="tab">
+                @Las.Action
+            </a></li>
+            <li><a href="#setting" id="tabAction" data-toggle="tab">
+                @Las.Setting
+            </a></li>
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_ActionTab", Model)
+            @Html.Partial("_SettingTab", Model)
+        </div>
+    </div>
         }
 }

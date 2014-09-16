@@ -23,7 +23,7 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "TotalBets_Report",
+                "TotalBets_Default",
                 "TotalBets/{controller}/{action}/{id}",
                 new
                 {
@@ -43,14 +43,15 @@
         private static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/totalbets").Include(
-                "~/Areas/TotalBets/Content/total-bets.less"));
+                "~/Areas/TotalBets/Content/totalbets.less"));
 
             bundles.Add(new ScriptBundle("~/js/totalbets").Include(
-                "~/Areas/TotalBets/Scripts/soccer.js",
-                "~/Areas/TotalBets/Scripts/soccer.betlist.js",
-                "~/Areas/TotalBets/Scripts/basketball.js",
-                "~/Areas/TotalBets/Scripts/OtherSports.js",
-                "~/Areas/TotalBets/Scripts/outright.js",
+                "~/Areas/TotalBets/Scripts/totalBets.js",
+                "~/Areas/TotalBets/Scripts/Soccer/soccer.js",
+                "~/Areas/TotalBets/Scripts/Soccer/soccer-detail.js",
+                "~/Areas/TotalBets/Scripts/Basketball/basketball.js",
+                "~/Areas/TotalBets/Scripts/OtherSports/othersports.js",
+                "~/Areas/TotalBets/Scripts/Outright/outright.js",
                 "~/Views/BetList/Resources/betlist-core.js"));
         }
     }

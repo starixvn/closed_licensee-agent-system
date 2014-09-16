@@ -6,7 +6,7 @@
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
-    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.TotalBets.Core;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
@@ -19,9 +19,14 @@
     /// </summary>
     public class OutrightController : CommonController
     {
-        private readonly IOutrightService _outrightService;
+        #region Variables
 
+        private readonly IOutrightService _outrightService;
         private readonly IBetListService _betlistService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public OutrightController()
             : this(null, null)
@@ -34,144 +39,38 @@
             _betlistService = betlistService ?? new BetListService();
         }
 
+        #endregion Constructors
+
+        #region Index
+
         [HttpGet]
         public ViewResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
-            var model = new OutrightViewModel { TimeInterval = 15 };
+            var model = new OutrightViewModel
+            {
+                TimeInterval = Constant.RefreshCountDownInterval
+            };
             return View(model);
         }
 
         [HttpPost]
-        public JsonResult GetOutrightData(OutrightCriteria criteria)
+        public JsonResult Index(OutrightCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var dataList = _outrightService.GetOutrightData(criteria);
-            return Json(new
-            {
-                Result.SuccessValue,
-                List = MapOutrightMainData(dataList)
-            });
+            return Json(Map(dataList));
         }
-
-        /// <summary>
-        /// Get sport list.
-        /// </summary>
-        /// <param name="sport">Sport value.</param>
-        /// <param name="checkedAll">Checked All.</param>
-        /// <returns>Sport list.</returns>
-        [HttpPost]
-        public JsonResult GetSportList(string sport, bool checkedAll)
-        {
-            var criteria = new OutrightSportCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-            var sports = _outrightService.GetOutrightSports(criteria).OrderBy(x => x.SportName);
-            var sportIds = string.IsNullOrEmpty(sport) ? new List<string>() : sport.Split(',').ToList();
-            var sportMultiItems = new List<dynamic>();
-            foreach (var item in sports)
-            {
-                sportMultiItems.Add(new
-                {
-                    id = item.SportType,
-                    value = item.SportType,
-                    text = item.SportName,
-                    @checked = checkedAll || sportIds.Contains(item.SportType.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = sportMultiItems,
-            });
-        }
-
-        /// <summary>
-        /// Get Leagues by sports.
-        /// </summary>
-        /// <param name="sport">Sport value.</param>
-        /// <param name="league">League Type.</param>
-        /// <param name="checkedAll">Checked All.</param>
-        /// <returns>League list.</returns>
-        [HttpPost]
-        public JsonResult GetLeaguesBySports(string sport, string league, bool checkedAll)
-        {
-            var criteria = new OutrightLeagueCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport };
-            var leagues = _outrightService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
-            return LeagueListToJson(league, checkedAll, leagues);
-        }
-
-        /// <summary>
-        /// Get teams by leagues.
-        /// </summary>
-        /// <param name="sport">Sport value.</param>
-        /// <param name="league">League value.</param>
-        /// <param name="team">Team Type.</param>
-        /// <param name="checkedAll">Checked All.</param>
-        /// <returns>Team list.</returns>
-        [HttpPost]
-        public JsonResult GetTeamsByLeagues(string sport, string league, string team, bool checkedAll)
-        {
-            var criteria = new OutrightTeamCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sport, LeagueList = league };
-            var teams = _outrightService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
-            var teamIds = string.IsNullOrEmpty(team) ? new List<string>() : team.Split(',').ToList();
-            var teamMultiItems = new List<dynamic>();
-            foreach (var item in teams)
-            {
-                teamMultiItems.Add(new
-                {
-                    id = item.TeamId,
-                    value = item.TeamId,
-                    text = item.TeamName,
-                    @checked = checkedAll || teamIds.Contains(item.TeamId.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = teamMultiItems,
-            });
-        }
-
-        /// <summary>
-        /// Gets the basketball bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetOutrightBetList(BetListOutrightCriteria criteria)
-        {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var ticketResult = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = ticketResult,
-                IsAdmin = CurrentSession.IsAdmin,
-                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
-            };
-
-            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
-            var ticketTextList = betListTicketBuilder.BuildTickets();
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = ticketTextList,
-                TotalItem = criteria.TotalRows
-            });
-        }
-
-        #region Utilities
 
         /// <summary>
         /// Map outright main data.
         /// </summary>
         /// <param name="dataList">Data list value.</param>
         /// <returns>Outright data result.</returns>
-        private static IList<dynamic> MapOutrightMainData(IEnumerable<OutrightEntity> dataList)
+        [NonAction]
+        public IList<dynamic> Map(IList<OutrightEntity> dataList)
         {
-            IList<dynamic> sportItems = new List<dynamic>();
+            var sportItems = new List<dynamic>();
             var sports = dataList.Select(s => new { s.SportType, s.SportName }).Distinct().OrderBy(s => s.SportName).ToList();
             foreach (var sport in sports)
             {
@@ -192,6 +91,125 @@
             return sportItems;
         }
 
-        #endregion Utilities
+        #endregion Index
+
+        #region Get sports
+
+        /// <summary>
+        /// Get sport list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Sport list.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetSports(GetSportsViewModel model)
+        {
+            var criteria = new OutrightSportCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId
+            };
+            var sports = _outrightService.GetOutrightSports(criteria).OrderBy(x => x.SportName);
+            var sportIds = string.IsNullOrEmpty(model.SelectedSports) ? new List<string>() : model.SelectedSports.Split(',').ToList();
+            var sportMultiItems = sports.Select(x => new
+            {
+                id = x.SportType,
+                value = x.SportType,
+                text = x.SportName,
+                @checked = model.CheckedAll || sportIds.Contains(x.SportType.ToString()),
+                enable = true
+            });
+
+            return Json(sportMultiItems);
+        }
+
+        #endregion Get sports
+
+        #region Get leagues
+
+        /// <summary>
+        /// Get Leagues by sports.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// League list.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetLeagues(GetOtherSportsLeaguesViewModel model)
+        {
+            var criteria = new OutrightLeagueCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = model.SelectedSports
+            };
+            var leagues = _outrightService.GetOutrightLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
+            return GetLeagues(leagues, model.SelectedLeagues, model.CheckedAll);
+        }
+
+        #endregion Get leagues
+
+        #region Get teams
+
+        /// <summary>
+        /// Get teams by leagues.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Team list.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetTeams(GetTeamViewModel model)
+        {
+            var criteria = new OutrightTeamCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = model.SelectedSports,
+                LeagueList = model.SelectedLeagues
+            };
+            var teams = _outrightService.GetOutrightTeam(criteria).OrderBy(x => x.TeamName).ToList();
+            var teamIds = string.IsNullOrEmpty(model.SelectedTeams) ? new List<string>() : model.SelectedTeams.Split(',').ToList();
+            var teamMultiItems = teams.Select(x => new
+            {
+                id = x.TeamId,
+                value = x.TeamId,
+                text = x.TeamName,
+                @checked = model.CheckedAll || teamIds.Contains(x.TeamId.ToString()),
+                enable = true
+            });
+
+            return Json(teamMultiItems);
+        }
+
+        #endregion Get teams
+
+        #region BetList
+
+        /// <summary>
+        /// Gets the basketball bet list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
+        [HttpPost]
+        public JsonResult OutrightBetList(BetListOutrightCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var ticketResult = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = ticketResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
+            return Json(new
+            {
+                List = ticketTextList,
+                TotalItem = criteria.TotalRows
+            });
+        }
+
+        #endregion BetList
     }
 }

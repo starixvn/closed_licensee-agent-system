@@ -161,6 +161,12 @@
     <Compile Include="Services\ICommonService.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Utility\TotalBetsUtility.cs" />
+    <Compile Include="ViewModels\GetOtherSportsEventsViewModel.cs" />
+    <Compile Include="ViewModels\GetOtherSportsLeaguesViewModel.cs" />
+    <Compile Include="ViewModels\GetSportEventsViewModel.cs" />
+    <Compile Include="ViewModels\GetSportLeaguesViewModel.cs" />
+    <Compile Include="ViewModels\GetSportsViewModel.cs" />
+    <Compile Include="ViewModels\GetTeamViewModel.cs" />
     <Compile Include="ViewModels\OtherSportsViewModel.cs" />
     <Compile Include="ViewModels\OutrightViewModel.cs" />
     <Compile Include="ViewModels\SoccerDetailViewModel.cs" />

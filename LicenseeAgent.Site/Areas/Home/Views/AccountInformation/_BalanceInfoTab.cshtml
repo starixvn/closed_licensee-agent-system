@@ -1,0 +1,6 @@
+﻿@model SearchUserResultViewModel
+<div class="tab-pane active in" id="balanceInfo">
+    <div class="content">
+        @(SessionManager.CurrentSession.AgentInfo.IsCredit ? Html.Partial("Credit/_BalanceInformation") : Html.Partial("Cash/_BalanceInformation"))
+    </div>
+</div>

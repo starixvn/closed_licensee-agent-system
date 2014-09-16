@@ -9,9 +9,9 @@
     /// </summary>
     public interface IOtherSportsService
     {
-        IList<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria);
+        IList<SportEntity> GetOtherSports(OtherSportsSportListCriteria criteria);
 
-        IList<SportEntity> GetOtherSportsList(OtherSportsSportListCriteria criteria);
+        IList<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria);
 
         IList<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria);
 

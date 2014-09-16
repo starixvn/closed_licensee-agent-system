@@ -12,9 +12,15 @@
     /// <summary>
     /// Soccer controllers.
     /// </summary>
-    public partial class SoccerController : CommonController
+    public class SoccerController : CommonController
     {
+        #region Variables
+
         private readonly ISoccerService _soccerService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public SoccerController()
             : this(null)
@@ -26,25 +32,14 @@
             _soccerService = soccerService ?? new SoccerService();
         }
 
+        #endregion Constructors
+
+        #region Index page
+
         [HttpGet]
         public ViewResult Index(SoccerViewModel model)
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
-            model.TimeInterval = model.TimeInterval > 0 ? model.TimeInterval : 15;
-            return View(model);
-        }
-
-        /// <summary>
-        /// Soccer the detail.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Detail of soccer page.</returns>
-        [HttpGet]
-        public ViewResult SoccerDetail(SoccerDetailViewModel model)
-        {
-            var criteria = new SoccerDetailCriteria { AgentId = CurrentSession.AgentInfo.AgentId, MatchId = model.MatchId };
-            var dataList = _soccerService.GetSoccerDetailData(criteria);
-            model.MainData = dataList.ToList();
             return View(model);
         }
 
@@ -54,7 +49,7 @@
         /// <param name="criteria">Criteria value.</param>
         /// <returns>Soccer data.</returns>
         [HttpPost]
-        public JsonResult GetSoccerData(SoccerCriteria criteria)
+        public JsonResult Index(SoccerCriteria criteria)
         {
             criteria.AgentId = CurrentSession.AgentInfo.AgentId;
             var dataList = _soccerService.GetSoccerData(criteria);
@@ -72,40 +67,58 @@
                 mapData.RemoveAt(1);
             }
 
-            return Json(new
-            {
-                List = mapData
-            });
+            return Json(mapData);
         }
 
-        /// <summary>
-        /// Gets the soccer bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
+        #endregion Index page
+
+        #region Get sports
+
         [HttpPost]
-        public JsonResult GetSoccerBetList(BetListByMatchCriteria criteria)
+        public new JsonResult GetLeagues(GetSportLeaguesViewModel model)
         {
-            return BetList(criteria);
+            return base.GetLeagues(model);
+        }
+
+        #endregion Get sports
+
+        #region Get events
+
+        [HttpPost]
+        public new JsonResult GetEvents(GetSportEventsViewModel model)
+        {
+            return base.GetEvents(model);
+        }
+
+        #endregion Get events
+
+        #region Detail
+
+        /// <summary>
+        /// Soccer the detail.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Detail of soccer page.</returns>
+        [HttpGet]
+        public ViewResult Detail(SoccerDetailViewModel model)
+        {
+            var criteria = new SoccerDetailCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                MatchId = model.MatchId
+            };
+            var dataList = _soccerService.GetSoccerDetailData(criteria);
+            model.MainData = dataList.ToList();
+            return View(model);
         }
 
         [HttpGet]
-        public ViewResult SoccerBetList(SoccerBetListViewModel model)
+        public ViewResult DetailBetList(SoccerBetListViewModel model)
         {
             ViewBag.PageContext = new PageContext(CurrentSession);
             return View(model);
         }
 
-        /// <summary>
-        /// Gets the soccer more bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetSoccerMoreBetList(BetListByMatchCriteria criteria)
-        {
-            criteria.ShowLiveTicket = null;
-            return BetList(criteria);
-        }
+        #endregion Detail
     }
 }

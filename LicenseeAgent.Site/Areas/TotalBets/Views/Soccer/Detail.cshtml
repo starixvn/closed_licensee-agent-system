@@ -1,22 +1,21 @@
-﻿@using LicenseeAgent.Core.Utility
-@using LicenseeAgent.TotalBets.ViewModels;
-@using LicenseeAgent.TotalBets.Core;
-@model SoccerDetailViewModel
+﻿@model SoccerDetailViewModel
 @{
     ViewBag.Title = Model.MatchName;
-    var backLink = Url.Action("Index", "Soccer", new { SelectedLeague = Model.SelectedLeague, SelectedEvent = Model.SelectedEvent, TimeInterval = Model.TimeInterval, checkAllLeague = Model.CheckAllLeague, checkAllEvent = Model.CheckAllEvent });
+    var backLink = Url.Action("Index", "Soccer", new SoccerViewModel
+    { 
+        SelectedLeagues = Model.SelectedLeagues, 
+        SelectedEvents = Model.SelectedEvents, 
+        TimeInterval = Model.TimeInterval, 
+        CheckAllLeague = Model.CheckAllLeague, 
+        CheckAllEvent = Model.CheckAllEvent 
+    });
     var soccerDetailConfiguration = SettingConfigurations.SoccerDetailConfiguration;
 }
 @section css{
     @Styles.Render("~/css/totalbets")
 }
 @section scripts{
-    <script language="javascript">
-    function showSoccerMoreBetList(matchid, bettype, betteam) {
-        var url = core.resolveUrl("~/Totalbets/Soccer/SoccerBetList") + "?MatchId=" + matchid + "&Bettype=" + bettype + "&Betteam=" + betteam;
-        window.location.href = url;
-    }
-    </script>
+    @Scripts.Render("~/js/totalbets")
 }
 @functions{
     string GetDetailValue(int betType, string betTeam)
@@ -63,7 +62,7 @@
                                 @DataRefWrapper.GetBetTeamName(table.BetType, row.BetTeam)
                             </td>
                             <td class="text-right">
-                                <span class="data-link" onclick="showSoccerMoreBetList(@Model.MatchId, @table.BetType, '@row.BetTeam')">
+                                <span class="data-link" onclick="totalBets.soccer.detail.showBetList(@Model.MatchId, @table.BetType, '@row.BetTeam')">
                                     @GetDetailValue(table.BetType, row.BetTeam)
                                 </span>
                             </td>

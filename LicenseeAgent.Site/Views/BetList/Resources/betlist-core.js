@@ -63,7 +63,7 @@ fanex.betlist.core = {
     },
     getIpInformation: function (ipAddress) {
         'use strict';
-        var urlIpInformation = $("#BetListGrid").data('url-ip');
+        var urlIpInformation = core.resolveUrl('~/CustomerList/GetIpInformation');
         $.ajax({
             url: urlIpInformation,
             type: 'post',

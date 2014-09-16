@@ -305,18 +305,19 @@
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
+    <Content Include="Areas\TotalBets\Scripts\Soccer\soccer-detail.js" />
+    <Content Include="Areas\TotalBets\Scripts\totalBets.js" />
     <Content Include="Content\Fanex.Result\images\1F.gif" />
     <Content Include="Content\Fanex.Result\images\1L.gif" />
     <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
     <Content Include="Content\Fanex.Result\images\first-goal.gif" />
     <Content Include="Content\Fanex.Result\images\last-goal.gif" />
     <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
-    <Content Include="Areas\TotalBets\Content\total-bets.less" />
-    <Content Include="Areas\TotalBets\Scripts\basketball.js" />
-    <Content Include="Areas\TotalBets\Scripts\OtherSports.js" />
-    <Content Include="Areas\TotalBets\Scripts\outright.js" />
-    <Content Include="Areas\TotalBets\Scripts\soccer.betlist.js" />
-    <Content Include="Areas\TotalBets\Scripts\soccer.js" />
+    <Content Include="Areas\TotalBets\Content\totalbets.less" />
+    <Content Include="Areas\TotalBets\Scripts\Basketball\basketball.js" />
+    <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
+    <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
+    <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">
@@ -343,10 +344,10 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Home\Content\AccountInformation\account-information.less" />
     <Content Include="Areas\Home\Views\AccountInformation\_AgentInfo.cshtml" />
-    <Content Include="Areas\Home\Views\AccountInformation\_BalanceDownline.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_BalanceInfoTab.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Home\Views\AccountInformation\_Action.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_ActionTab.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Index.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Search.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_UpLinesPopover.cshtml" />
@@ -359,8 +360,7 @@
     <Content Include="App_Code\InstructionHelper.cshtml" />
     <Content Include="Areas\TotalBets\Views\Outright\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\Soccer\Index.cshtml" />
-    <Content Include="Areas\TotalBets\Views\Soccer\SoccerBetList.cshtml" />
-    <Content Include="Areas\TotalBets\Views\Soccer\SoccerDetail.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\Detail.cshtml" />
     <Content Include="Areas\TotalBets\Views\_ViewStart.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Web.config" />
     <Content Include="Areas\ProductSetting\Views\_ViewStart.cshtml" />
@@ -396,6 +396,9 @@
     <Content Include="Areas\Account\Views\HomePage\TopWinning.cshtml" />
     <Content Include="Areas\Account\Views\HomePage\_Announcement.cshtml" />
     <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\DetailBetList.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_DownLineListTab.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_SettingTab.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

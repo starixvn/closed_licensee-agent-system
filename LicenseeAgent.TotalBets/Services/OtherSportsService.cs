@@ -10,14 +10,14 @@
     /// </summary>
     public class OtherSportsService : QueryService, IOtherSportsService
     {
+        public IList<SportEntity> GetOtherSports(OtherSportsSportListCriteria criteria)
+        {
+            return GetEntites<SportEntity>(criteria);
+        }
+
         public IList<TotalBetsEntity> GetOtherSportsData(OtherSportsCriteria criteria)
         {
             return GetEntites<TotalBetsEntity>(criteria);
-        }
-
-        public IList<SportEntity> GetOtherSportsList(OtherSportsSportListCriteria criteria)
-        {
-            return GetEntites<SportEntity>(criteria);
         }
 
         public IList<LeagueEntity> GetOtherSportsLeagues(OtherSportsLeagueListCriteria criteria)

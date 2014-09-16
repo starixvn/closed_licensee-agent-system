@@ -6,5 +6,6 @@
     public static class Constant
     {
         public const string SoccerDetailConfigFile = "~/App_Data/TotalBets/SoccerDetail.xml";
+        public const int RefreshCountDownInterval = 15;
     }
 }

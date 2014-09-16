@@ -204,6 +204,34 @@ var core = (function ($) {
 
             return absoluteUrl;
         },
+        ajaxJSON: function (settings, onSuccess) {
+            settings = $.extend(settings, {
+                type: 'POST',
+                dataType: 'json',
+                beforeSend: function () {
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (!core.isSuccessAjax(data)) {
+                        alert(data.ErrMsg);
+                        return;
+                    }
+
+                    onSuccess(data);
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
+            return $.ajax(settings);
+        },
+        isSuccessAjax: function (data) {
+            return typeof (data) !== 'undefined'
+                && typeof (data.ErrCode) !== 'undefined'
+                && data.ErrCode !== 0
+            ? false
+            : true;
+        },
         console: {
             write: function (msg, consoleFunc) {
                 if (typeof console !== 'undefined' && !core.detectBrowser().msie) {
@@ -514,7 +542,7 @@ var core = (function ($) {
         },
         handleError: function (data) {
             if (data && data.ErrCode) {
-                if (data.ErrCode === -3 || data.ErrCode=== -5) {
+                if (data.ErrCode === -3 || data.ErrCode === -5) {
                     // UM
                     location.href = core.UrlRoot;
                     return;

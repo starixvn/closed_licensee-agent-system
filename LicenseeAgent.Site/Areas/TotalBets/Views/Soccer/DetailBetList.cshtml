@@ -1,6 +1,4 @@
-﻿@using LicenseeAgent.TotalBets.ViewModels;
-@using LicenseeAgent.Web.Entities
-@model SoccerBetListViewModel
+﻿@model SoccerBetListViewModel
 @{
     ViewBag.Title = Las.Soccer + " - " + Las.TotalBets;
 }
@@ -14,10 +12,10 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/plugin")
     @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/totalbets")    
+    @Scripts.Render("~/js/totalbets")
     <script type="text/javascript">
         $(function () {
-            totalBets.soccerBetList.init();
+            totalBets.soccer.detail.init();
         });
     </script>
 }
@@ -28,6 +26,6 @@
         @Las.Back
     </span>
 </div>
-<div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
+<div id="BetListGrid" class="freegrid content-grid">
 </div>
 <input type="hidden" data-matchid="@Model.MatchId" data-bettype="@Model.BetType" data-betteam="@Model.BetTeam" id="soccer-more-betlist" />

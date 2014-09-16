@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
@@ -16,7 +15,13 @@
     /// </summary>
     public class OtherSportsController : CommonController
     {
+        #region Variables
+
         private readonly IOtherSportsService _otherSportsService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public OtherSportsController()
             : this(null)
@@ -28,89 +33,15 @@
             _otherSportsService = otherSportsService ?? new OtherSportsService();
         }
 
+        #endregion Constructors
+
+        #region Index
+
         [HttpGet]
         public ActionResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
             return View();
-        }
-
-        [HttpGet]
-        public ActionResult OtherSportsAllBetType(string matchName)
-        {
-            ViewBag.Match = matchName;
-            return View();
-        }
-
-        /// <summary>
-        /// Get All League.
-        /// </summary>
-        /// <param name="sportList">Sport List.</param>
-        /// <param name="checkedAll">Sports are checked All.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult GetSportListOtherSports(string sportList, bool checkedAll)
-        {
-            var criteria = new OtherSportsSportListCriteria { AgentId = CurrentSession.AgentInfo.AgentId };
-
-            var sports = _otherSportsService.GetOtherSportsList(criteria).OrderBy(x => x.SportName);
-            var sportMultiItems = new List<dynamic>();
-            var sportIds = string.IsNullOrEmpty(sportList) ? new List<string>() : sportList.Split(',').ToList();
-
-            foreach (var item in sports)
-            {
-                sportMultiItems.Add(new
-                {
-                    id = item.SportType,
-                    value = item.SportType,
-                    text = item.SportName,
-                    @checked = checkedAll || sportIds.Contains(item.SportType.ToString()),
-                    enable = true
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = sportMultiItems
-            });
-        }
-
-        /// <summary>
-        /// Get All League.
-        /// </summary>
-        /// <param name="sportList">Sport List.</param>
-        /// <param name="leagueList">League list.</param>
-        /// <param name="checkedAll">Checked All.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult GetLeagueListOtherSports(string sportList, string leagueList, bool checkedAll)
-        {
-            var criteria = new OtherSportsLeagueListCriteria { AgentId = CurrentSession.AgentInfo.AgentId, SportList = sportList };
-            var leagues = _otherSportsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName);
-            return LeagueListToJson(leagueList, checkedAll, leagues);
-        }
-
-        /// <summary>
-        /// Get events by leagues.
-        /// </summary>
-        /// <param name="sportList">Sport Type List.</param>
-        /// <param name="leagueList">League value.</param>
-        /// <param name="eventList">Event List value.</param>
-        /// <param name="checkedAll">Checked All.</param>
-        /// <returns>Events result.</returns>
-        [HttpPost]
-        public JsonResult GetEventsByLeaguesOtherSports(string sportList, string leagueList, string eventList, bool checkedAll)
-        {
-            var criteria = new OtherSportsEventListCriteria
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                SportList = sportList,
-                LeagueList = leagueList
-            };
-
-            var events = _otherSportsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName);
-            return EventListToJson(eventList, checkedAll, events);
         }
 
         /// <summary>
@@ -119,37 +50,17 @@
         /// <param name="model">Other Sports View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetOtherSportsData(OtherSportsViewModel model)
+        public JsonResult Index(OtherSportsViewModel model)
         {
-            if (ModelState.IsValid)
+            var criteria = new OtherSportsCriteria
             {
-                var criteria = new OtherSportsCriteria
-                {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
-                    SportList = model.SportList,
-                    LeagueList = model.LeagueList,
-                    MatchList = model.MatchList
-                };
-                var dataList = _otherSportsService.GetOtherSportsData(criteria);
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = MapTotalBetsOtherSportsData(dataList).ToList()
-                });
-            }
-
-            return Json(new Result(Result.FailureValue));
-        }
-
-        /// <summary>
-        /// Gets the Other sports bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetOtherSportsBetList(BetListByMatchCriteria criteria)
-        {
-            return BetList(criteria);
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = model.SportList,
+                LeagueList = model.LeagueList,
+                MatchList = model.MatchList
+            };
+            var dataList = _otherSportsService.GetOtherSportsData(criteria);
+            return Json(Map(dataList));
         }
 
         /// <summary>
@@ -157,7 +68,8 @@
         /// </summary>
         /// <param name="dataList">Data List from database.</param>
         /// <returns>List Sport Group Entity.</returns>
-        private static IList<SportGroupEntity> MapTotalBetsOtherSportsData(IEnumerable<TotalBetsEntity> dataList)
+        [NonAction]
+        public IList<SportGroupEntity> Map(IList<TotalBetsEntity> dataList)
         {
             var liveEventsResult = new List<SportGroupEntity>();
             var deadEventsResult = new List<SportGroupEntity>();
@@ -191,5 +103,87 @@
             liveEventsResult.AddRange(deadEventsResult);
             return liveEventsResult;
         }
+
+        #endregion Index
+
+        #region Get sports
+
+        /// <summary>
+        /// Get All League.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JSON Result.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetSports(GetSportsViewModel model)
+        {
+            var criteria = new OtherSportsSportListCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId
+            };
+            var sports = _otherSportsService.GetOtherSports(criteria).OrderBy(x => x.SportName);
+            var sportIds = string.IsNullOrEmpty(model.SelectedSports) ? new List<string>() : model.SelectedSports.Split(',').ToList();
+            var sportMultiItems = sports.Select(x => new
+            {
+                id = x.SportType,
+                value = x.SportType,
+                text = x.SportName,
+                @checked = model.CheckedAll || sportIds.Contains(x.SportType.ToString()),
+                enable = true
+            });
+
+            return Json(sportMultiItems);
+        }
+
+        #endregion Get sports
+
+        #region Get leagues
+
+        /// <summary>
+        /// Get All League.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JSON Result.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetLeagues(GetOtherSportsLeaguesViewModel model)
+        {
+            var criteria = new OtherSportsLeagueListCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = model.SelectedSports
+            };
+            var leagues = _otherSportsService.GetOtherSportsLeagues(criteria).OrderBy(x => x.LeagueName).ToList();
+            return GetLeagues(leagues, model.SelectedLeagues, model.CheckedAll);
+        }
+
+        #endregion Get leagues
+
+        #region Get events
+
+        /// <summary>
+        /// Get events by leagues.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Events result.
+        /// </returns>
+        [HttpPost]
+        public JsonResult GetEvents(GetOtherSportsEventsViewModel model)
+        {
+            var criteria = new OtherSportsEventListCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                SportList = model.SelectedSports,
+                LeagueList = model.SelectedLeagues
+            };
+
+            var events = _otherSportsService.GetOtherSportsEventsByLeague(criteria).OrderBy(x => x.MatchName).ToList();
+            return GetEvents(events, model.SelectedEvents, model.CheckedAll);
+        }
+
+        #endregion Get events
     }
 }

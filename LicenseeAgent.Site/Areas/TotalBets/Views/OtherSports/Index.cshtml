@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = Las.OtherSports + " - " + Las.TotalBets;
 }
-@using LicenseeAgent.TotalBets.Entities;
 @section css{
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/plugin")
@@ -21,37 +20,35 @@
 }
 <div class="legend">
     @ViewBag.Title
-    <span id="totalbets-back" onclick="totalBets.otherSports.submitForm();" class="history-back hide">
+    <span id="totalbets-back" onclick="totalBets.submitForm();" class="history-back hide">
         <i class="icon-history-back"></i>
         @Las.Back
     </span>
 </div>
-<div id="totalbets-filter" class="">
-    @using (Html.BeginForm("Index", "OtherSports", FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
-    {
-        <div class="controls-row">
-            <div id="sport-multi-select">
-            </div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+{
+    <div class="controls-row">
+        <div id="sport-multi-select">
         </div>
-        <div class="controls-row">
-            <div id="league-multi-select">
-            </div>
+    </div>
+    <div class="controls-row">
+        <div id="league-multi-select">
         </div>
-        <div class="controls-row">
-            <div id="event-multi-select">
-            </div>
+    </div>
+    <div class="controls-row">
+        <div id="event-multi-select">
         </div>
-        <div class="controls-row">
-            <button class="btn btn-primary" type="submit" id="btnSubmit">
-                @Las.Submit
-            </button>
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit" id="btnSubmit">
+            @Las.Submit
+        </button>
+    </div>
+    <div class="controls-row refresh-count-down-area">
+        <div class="refresh-count-down" id="refresh-count-down">
         </div>
-        <div class="controls-row refresh-count-down-area">
-            <div class="refresh-count-down" id="refresh-count-down">
-            </div>
-            <input type="hidden" value="15" id="server-time-interval" />
-        </div>
-    }
-</div>
-<div id="BetListGrid" class="freegrid content-grid" data-url-ip="@Url.Action("GetIpInformation", "CustomerList")">
+        <input type="hidden" value="@Constant.RefreshCountDownInterval" id="server-time-interval" />
+    </div>
+}
+<div id="BetListGrid" class="freegrid content-grid">
 </div>

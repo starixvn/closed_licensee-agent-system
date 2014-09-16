@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Services;
     using LicenseeAgent.TotalBets.Utility;
@@ -15,7 +14,13 @@
     /// </summary>
     public class BasketballController : CommonController
     {
+        #region Variables
+
         private readonly IBasketballService _basketballService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public BasketballController()
             : this(null)
@@ -27,17 +32,14 @@
             _basketballService = basketballService ?? new BasketballService();
         }
 
+        #endregion Constructors
+
+        #region Index
+
         [HttpGet]
         public ActionResult Index()
         {
             ViewBag.PageContext = new PageContext(CurrentSession, 0);
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult BasketballAllBetType(string matchName)
-        {
-            ViewBag.Match = matchName;
             return View();
         }
 
@@ -47,41 +49,43 @@
         /// <param name="model">Total Bets View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
-        public JsonResult GetBasketballData(TotalBetsViewModel model)
+        public JsonResult Index(TotalBetsViewModel model)
         {
-            if (ModelState.IsValid)
+            var criteria = new BasketballCriteria
             {
-                var criteria = new BasketballCriteria
-                {
-                    AgentId = CurrentSession.AgentInfo.AgentId,
-                    LeagueList = model.LeagueList,
-                    MatchList = model.MatchList
-                };
-                var dataList = _basketballService.GetBasketballData(criteria);
-                var orderedDataList = TotalBetsUtility.MapTotalBetsMainData(dataList)
-                    .OrderByDescending(x => x.LiveIndicator)
-                    .ThenBy(x => x.LeagueName)
-                    .ToList();
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                LeagueList = model.LeagueList,
+                MatchList = model.MatchList
+            };
+            var dataList = _basketballService.GetBasketballData(criteria);
+            var orderedDataList = TotalBetsUtility.MapTotalBetsMainData(dataList)
+                .OrderByDescending(x => x.LiveIndicator)
+                .ThenBy(x => x.LeagueName)
+                .ToList();
 
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = orderedDataList
-                });
-            }
-
-            return Json(new Result(Result.FailureValue));
+            return Json(orderedDataList);
         }
 
-        /// <summary>
-        /// Gets the basketball bet list.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns JSON object.</returns>
+        #endregion Index
+
+        #region Get sports
+
         [HttpPost]
-        public JsonResult GetBasketballBetList(BetListByMatchCriteria criteria)
+        public new JsonResult GetLeagues(GetSportLeaguesViewModel model)
         {
-            return BetList(criteria);
+            return base.GetLeagues(model);
         }
+
+        #endregion Get sports
+
+        #region Get events
+
+        [HttpPost]
+        public new JsonResult GetEvents(GetSportEventsViewModel model)
+        {
+            return base.GetEvents(model);
+        }
+
+        #endregion Get events
     }
 }

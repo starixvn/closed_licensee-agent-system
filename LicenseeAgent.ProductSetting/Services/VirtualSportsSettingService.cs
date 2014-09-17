@@ -19,11 +19,11 @@
     /// </summary>
     public class VirtualSportsSettingService : SettingServiceBase, IVirtualSportsSettingService
     {
-        public Product ProductId
+        public ProductCode ProductId
         {
             get
             {
-                return Product.Product_5;
+                return ProductCode.Product_5;
             }
         }
 

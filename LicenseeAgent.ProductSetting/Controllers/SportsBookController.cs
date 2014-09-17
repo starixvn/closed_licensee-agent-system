@@ -102,7 +102,7 @@
             if (errCode == Result.SuccessValue)
             {
                 stringBuilder.AppendLine(Formatter.FormatJson("sportsBookSetting", sportsBookSetting));
-                if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                 {
                     var numberGameCustomer = NumberGameService.GetSettingForInsert(settingContext, out errCode);
                     if (errCode == Result.SuccessValue)
@@ -197,7 +197,7 @@
             }
 
             var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            if (productInfos.Where(x => x.ProductId == (int)Product.Product_2).Count() != 1)
+            if (productInfos.Where(x => x.ProductId == (int)ProductCode.Product_2).Count() != 1)
             {
                 model.NumberGameSetting = null;
             }

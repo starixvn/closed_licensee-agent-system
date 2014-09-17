@@ -253,20 +253,20 @@
         [NonAction]
         public void UpdateOfferProduct(MemberCommissionViewModel model)
         {
-            model.HasSportbook = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_0);
-            model.HasLiveCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_4);
-            model.HasNumberGame = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_2);
-            model.HasRacing = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_1);
-            model.HasRNGCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, Product.Product_6);
+            model.HasSportbook = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, ProductCode.Product_0);
+            model.HasLiveCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, ProductCode.Product_4);
+            model.HasNumberGame = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, ProductCode.Product_2);
+            model.HasRacing = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, ProductCode.Product_1);
+            model.HasRNGCasino = _coreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, ProductCode.Product_6);
 
             var products = _coreService.GetProducts(CurrentSession.OnLicenseeId);
             var supportedProducts = new List<int>
             {
-                (int)Product.Product_0,
-                (int)Product.Product_1,
-                (int)Product.Product_2,
-                (int)Product.Product_4,
-                (int)Product.Product_6
+                (int)ProductCode.Product_0,
+                (int)ProductCode.Product_1,
+                (int)ProductCode.Product_2,
+                (int)ProductCode.Product_4,
+                (int)ProductCode.Product_6
             };
 
             model.ProductCount = products.Where(p => supportedProducts.Contains(p.ProductId)).Count();

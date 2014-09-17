@@ -79,6 +79,8 @@
     </Compile>
     <Compile Include="Controllers\AccountInformationController.cs" />
     <Compile Include="Controllers\TopMenuController.cs" />
+    <Compile Include="Criteria\AccountInformation\GetMemberProductSettingCriteria.cs" />
+    <Compile Include="Criteria\AccountInformation\GetAgentProductSettingCriteria.cs" />
     <Compile Include="Criteria\Account\AdminReCheckInCriteria.cs" />
     <Compile Include="Criteria\Account\AdminUserLogoutCriteria.cs" />
     <Compile Include="Criteria\Account\AgentChangePasswordCriteria.cs" />
@@ -97,15 +99,16 @@
     <Compile Include="Criteria\TopMenu\GetLicenseeListCriteria.cs" />
     <Compile Include="Entities\AccountInformation\BalanceEntity.cs" />
     <Compile Include="Entities\AccountInformation\DownLineEntity.cs" />
+    <Compile Include="Entities\AccountInformation\ProductSettingEntity.cs" />
     <Compile Include="Entities\AccountInformation\SearchMemberEntity.cs" />
     <Compile Include="Entities\AccountInformation\SuggestionEntity.cs" />
     <Compile Include="Entities\AccountInformation\UpLineEntity.cs" />
     <Compile Include="Entities\TopMenu\CurrencyEntity.cs" />
     <Compile Include="Entities\TopMenu\LicenseeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ISearchUserService.cs" />
+    <Compile Include="Services\IAccountInformationService.cs" />
     <Compile Include="Services\ITopMenuService.cs" />
-    <Compile Include="Services\SearchUserService.cs" />
+    <Compile Include="Services\AccountInformationService.cs" />
     <Compile Include="Services\TopMenuService.cs" />
     <Compile Include="ViewModels\AccountInformation\DownLineViewModel.cs" />
     <Compile Include="ViewModels\AccountInformation\SearchUserResultViewModel.cs" />

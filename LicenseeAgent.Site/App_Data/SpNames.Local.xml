@@ -179,6 +179,10 @@
     <Setting Key="LAS_Cash_Balance_SelAgentBalance" SpName="LAS_Cash_Balance_SelAgentBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Cash_Balance_SelMemberBalance" SpName="LAS_Cash_Balance_SelMemberBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetDirectDownline" SpName="Las_GetDirectDownline" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetProductSettingByAgentId" SpName="Las_GetProductSettingByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetProductSettingByCustId" SpName="Las_GetProductSettingByCustId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_UpdateProductSettingByAgentId" SpName="Las_UpdateProductSettingByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_UpdateProductSettingByCustId" SpName="Las_UpdateProductSettingByCustId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="Transfer">
     <Setting Key="LAS_Transfer_AgentBalanceInfo" SpName="LAS_Balance_AgentBalanceInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

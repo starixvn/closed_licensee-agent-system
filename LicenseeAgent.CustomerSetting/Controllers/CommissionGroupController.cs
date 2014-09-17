@@ -51,11 +51,11 @@
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var model = new CommissionGroupBaseViewModel
             {
-                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
-                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6)
+                HasSportbook = _coreService.HasProductOffered(licenseeId, ProductCode.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, ProductCode.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, ProductCode.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_6)
             };
             return View(model);
         }
@@ -103,11 +103,11 @@
             var licenseeId = CurrentSession.AgentInfo.LicenseeId;
             var model = new CommissionGroupViewModel
             {
-                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
-                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6),
+                HasSportbook = _coreService.HasProductOffered(licenseeId, ProductCode.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, ProductCode.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, ProductCode.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_6),
                 ProductCount = CountProductSupportCommission(licenseeId),
                 DefaultGroupId = defaultGroupId
             };
@@ -188,11 +188,11 @@
                 GroupName = result.GroupName,
                 GroupCommId = groupCommId,
                 IsDefault = result.IsDefault,
-                HasSportbook = _coreService.HasProductOffered(licenseeId, Product.Product_0),
-                HasLiveCasino = _coreService.HasProductOffered(licenseeId, Product.Product_4),
-                HasNumberGame = _coreService.HasProductOffered(licenseeId, Product.Product_2),
-                HasRacing = _coreService.HasProductOffered(licenseeId, Product.Product_1),
-                HasRNGCasino = _coreService.HasProductOffered(licenseeId, Product.Product_6),
+                HasSportbook = _coreService.HasProductOffered(licenseeId, ProductCode.Product_0),
+                HasLiveCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_4),
+                HasNumberGame = _coreService.HasProductOffered(licenseeId, ProductCode.Product_2),
+                HasRacing = _coreService.HasProductOffered(licenseeId, ProductCode.Product_1),
+                HasRNGCasino = _coreService.HasProductOffered(licenseeId, ProductCode.Product_6),
                 LCComm1 = GenCommission(result.LCComm, 0),
                 LCComm2 = GenCommission(result.LCComm, 1),
                 LCComm3 = GenCommission(result.LCComm, 2),
@@ -369,11 +369,11 @@
             var listProducts = _coreService.GetProducts(licenseeId);
             var listSupportedProducts = new List<int>
             {
-                (int)Product.Product_0,
-                (int)Product.Product_1,
-                (int)Product.Product_2,
-                (int)Product.Product_4,
-                (int)Product.Product_6
+                (int)ProductCode.Product_0,
+                (int)ProductCode.Product_1,
+                (int)ProductCode.Product_2,
+                (int)ProductCode.Product_4,
+                (int)ProductCode.Product_6
             };
             return listProducts.Where(p => listSupportedProducts.Contains(p.ProductId)).Count();
         }

@@ -119,5 +119,10 @@
         {
             return ModelHelper.IsLastAgent(agentLevel, NumberOfLevel);
         }
+
+        public bool IsDirectDownLine(int agentLevel)
+        {
+            return AgentLevel - agentLevel == 1;
+        }
     }
 }

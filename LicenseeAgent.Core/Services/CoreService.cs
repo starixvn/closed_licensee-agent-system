@@ -104,7 +104,7 @@
 
             if (AppSettings.IsLocalRequest)
             {
-                return (int)Licensee.Licensee_27;
+                return (int)LicenseeCode.Licensee_27;
             }
 
             return null;
@@ -127,7 +127,7 @@
 
             if (AppSettings.IsLocalRequest)
             {
-                return (int)Licensee.Licensee_27;
+                return (int)LicenseeCode.Licensee_27;
             }
 
             return null;
@@ -168,7 +168,7 @@
             return HasProductOffered(productInfos, productId);
         }
 
-        public bool HasProductOffered(int licenseeId, Product product)
+        public bool HasProductOffered(int licenseeId, ProductCode product)
         {
             return HasProductOffered(licenseeId, (int)product);
         }

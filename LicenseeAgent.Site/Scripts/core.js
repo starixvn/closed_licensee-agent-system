@@ -204,7 +204,7 @@ var core = (function ($) {
 
             return absoluteUrl;
         },
-        ajaxJSON: function (settings, onSuccess) {
+        ajaxJSON: function (settings, onSuccess, onFailure) {
             settings = $.extend(settings, {
                 type: 'POST',
                 dataType: 'json',
@@ -213,11 +213,18 @@ var core = (function ($) {
                 },
                 success: function (data) {
                     if (!core.isSuccessAjax(data)) {
-                        alert(data.ErrMsg);
+                        if (typeof (onFailure) === 'function') {
+                            onFailure(data);
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+
                         return;
                     }
 
-                    onSuccess(data);
+                    if (typeof (onSuccess) === 'function') {
+                        onSuccess(data);
+                    }
                 },
                 complete: function () {
                     core.unblockUI();

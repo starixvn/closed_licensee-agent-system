@@ -30,13 +30,20 @@
             RegisterBundles(BundleTable.Bundles);
         }
 
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/home/top-menu").Include(
                 "~/Areas/Home/Scripts/TopMenu/top-menu.js"));
 
             bundles.Add(new ScriptBundle("~/js/home/account-information").Include(
-                "~/Areas/Home/Scripts/AccountInformation/account-information.js"));
+                "~/Areas/Home/Scripts/AccountInformation/account-information.js",
+                "~/Areas/Home/Scripts/AccountInformation/account-information-result.js",
+                "~/Areas/Home/Scripts/AccountInformation/account-information-info.js",
+                "~/Areas/Home/Scripts/AccountInformation/account-information-product.js"));
             bundles.Add(new LessBundle("~/css/home/account-information").Include(
                 "~/Areas/Home/Content/AccountInformation/account-information.less"));
         }

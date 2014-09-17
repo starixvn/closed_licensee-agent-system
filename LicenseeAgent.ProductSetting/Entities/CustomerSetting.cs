@@ -30,7 +30,7 @@
         /// <returns>
         /// Returns true if entity is valid.
         /// </returns>
-        public bool IsValid(Product product, SettingContext settingContext, bool isGet = false)
+        public bool IsValid(ProductCode product, SettingContext settingContext, bool isGet = false)
         {
             if (!ValidateBetSetting(product, settingContext))
             {
@@ -56,7 +56,7 @@
         /// <param name="product">The product.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidateBetSetting(Product product, SettingContext settingContext)
+        private bool ValidateBetSetting(ProductCode product, SettingContext settingContext)
         {
             if (settingContext.FormId == FormType.Add)
             {
@@ -88,9 +88,9 @@
         /// <param name="product">The product.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidateCommissionSetting(Product product, SettingContext settingContext)
+        private bool ValidateCommissionSetting(ProductCode product, SettingContext settingContext)
         {
-            if (product == Product.Product_5)
+            if (product == ProductCode.Product_5)
             {
                 return true;
             }
@@ -127,7 +127,7 @@
         /// <param name="settingContext">The setting context.</param>
         /// <param name="isGet">If set to <c>true</c> [is strict].</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidatePositionTakingSetting(Product product, SettingContext settingContext, bool isGet)
+        private bool ValidatePositionTakingSetting(ProductCode product, SettingContext settingContext, bool isGet)
         {
             if (settingContext.FormId == FormType.Add)
             {

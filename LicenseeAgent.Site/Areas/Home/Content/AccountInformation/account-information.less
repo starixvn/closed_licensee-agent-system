@@ -1,14 +1,14 @@
-#accountInfo 
+@width  : 250px;
+@margin : 5px;
+
+#accountInfo
 {
-    margin-top: 10px;
-
     form 
-    { 
-        margin:0 3px 5px;
-
+    {
+        margin: 10px @margin;
         input
         {
-            width: 206px;
+            width: @width - 46;
             border-radius: 0;
         }
     }
@@ -25,8 +25,7 @@
 
         .container-fluid
         {
-            margin-left: 3px;
-
+            margin-left: @margin;
             #more-upline
             {
                 min-width: 40px;
@@ -61,38 +60,33 @@
         }
 
         .row 
+        {
+            margin: 0;
+            border-top: 1px dotted #e5e5e5;
+            line-height: 22px;
+
+            .cell-left
             {
-                margin: 0;
-                border-top: 1px dotted #e5e5e5;
-                line-height: 22px;
-
-                .cell-left
-                {
-                    float: left;
-                    width: 100px;
-                    margin-left: 2px;
-                }
-                .cell-right
-                {
-                    float: left;
-                    width: 135px;
-                    text-align: right;
-                    margin-right: 5px;
-                }
-
-                &:first-child
-                {
-                    border-top: 0;
-                }
+                float: left;
+                width: 100px;
+                margin-left: 2px;
             }
+            .cell-right
+            {
+                float: left;
+                width: 135px;
+                text-align: right;
+                margin-right: 5px;
+            }
+
+            &:first-child
+            {
+                border-top: 0;
+            }
+        }
 
         .controls-row
         {
-            &.left 
-            {
-                margin-left: 3px;	
-            }
-
             &.last
             {
                 margin-bottom: 0;	
@@ -147,7 +141,7 @@
 
             .cust-info-username
             {
-                width: 212px;
+                width: @width - @margin*2 - 30px;
                 float: left;
                 display: table-cell;
                 padding-left: 5px;
@@ -260,11 +254,28 @@
             }
         }
 
-        #action
+        #panel-action
         {
             .nav-list > li > a
             {
                 display: inline-block;
+            }
+        }
+
+        #panel-products
+        {
+            .content
+            {
+                .product
+                {
+                    width: (@width - @margin*4)/2;
+                    margin: @margin 0 0 @margin;
+                    float: left;
+                    .checkbox
+                    {
+                        margin-bottom: 0;
+                    }
+                }
             }
         }
     }
@@ -280,17 +291,17 @@
         background-color: #f4f8fb;
         border: 1px solid #d84647;
         color: #d84647;
-        margin-right: 10px;   
+        margin-left: @margin;
+        margin-right: @margin;
         text-align: center;
         border-radius: 3px;
-        margin-left: 3px;
-        width: 224px;
         display:none;
     }
     
     .controls-row > .btn-inverse
     {
-        width: 118px;
+        width: (@width - @margin*4)/2;
+        margin: 0 0 0 @margin;
         height: 26px;
     }
     
@@ -344,7 +355,7 @@
             div
             {
                 text-align: left;
-                padding-left: 5px;
+                padding-left: @margin;
                 background-color: #eeeff1;
                 border-bottom: 1px solid #fff;
             }

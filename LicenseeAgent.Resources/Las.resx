@@ -1607,4 +1607,16 @@ Please note that this action cannot be undone.</value>
     <value>Are you sure you want to save the change? 
 Please note that this action cannot be undone and this account will be temporarily closed to process the change and back to normal shortly.</value>
   </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="AlertDisableAgentProduct" xml:space="preserve">
+    <value>Are you sure you want to disable {0} for this agent and his downlines?</value>
+  </data>
+  <data name="AlertDisableMemberProduct" xml:space="preserve">
+    <value>Are you sure you want to disable {0} for this member?</value>
+  </data>
+  <data name="AlertEnableAgentProduct" xml:space="preserve">
+    <value>{0} is enabled for this agent. Do you want to enable for his downlines too?</value>
+  </data>
 </root>

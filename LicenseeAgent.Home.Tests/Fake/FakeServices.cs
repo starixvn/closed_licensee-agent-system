@@ -28,11 +28,11 @@
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        public static ISearchUserService SearchUserService
+        public static IAccountInformationService SearchUserService
         {
             get
             {
-                var searchUserService = Substitute.For<ISearchUserService>();
+                var searchUserService = Substitute.For<IAccountInformationService>();
 
                 searchUserService.SuggestByAdmin(Arg.Any<AdminSuggestSearchMemberCriteria>()).Returns(
                     new List<SuggestionEntity>

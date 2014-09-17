@@ -177,7 +177,7 @@
             sessionItems[Constants.AppSessionCaptcha] = captchaText;
             _agentController.ControllerContext = new FakeControllerContext(_agentController, sessionItems);
 
-            _coreService.GetLicenseeId(Arg.Any<HttpRequestBase>()).Returns((int?)Licensee.Licensee_27);
+            _coreService.GetLicenseeId(Arg.Any<HttpRequestBase>()).Returns((int?)LicenseeCode.Licensee_27);
             _accountService.GetAgentSalt(Arg.Do<AgentSaltSelectCriteria>(x => x.ErrCode = Result.SuccessValue)).Returns("leosalt");
             var agentInfo = new AgentInfo
             {
@@ -187,7 +187,7 @@
                 NumberOfLevel = 3,
                 CurrencyId = 1,
                 CurrencyName = "UUS",
-                LicenseeId = (int)Licensee.Licensee_27,
+                LicenseeId = (int)LicenseeCode.Licensee_27,
                 LicenseeName = "yq355"
             };
             _accountService.AuthenticateAgent(Arg.Do<AgentLoginCriteria>(x => x.ErrCode = Result.SuccessValue)).Returns(agentInfo);

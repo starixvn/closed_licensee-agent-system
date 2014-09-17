@@ -23,11 +23,11 @@
     /// </summary>
     public class SportsBookSettingService : SettingServiceBase, ISportsBookSettingService
     {
-        public Product ProductId
+        public ProductCode ProductId
         {
             get
             {
-                return Product.Product_0;
+                return ProductCode.Product_0;
             }
         }
 

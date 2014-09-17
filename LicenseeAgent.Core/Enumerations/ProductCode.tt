@@ -8,7 +8,7 @@
 namespace LicenseeAgent.Core.Enumerations
 {    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public enum Product : int
+    public enum ProductCode : int
     {
 <#
     var connectionString = "Persist Security Info=False;User ID=affteam;Password=@warrior#;Initial Catalog=LASDB;Data Source=10.18.200.231";

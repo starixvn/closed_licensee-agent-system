@@ -49,7 +49,7 @@
 
             var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
 
-            if (!productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any() || !CheckPermissionForEditing(settingContext))
+            if (!productInfos.Where(x => x.ProductId == (int)ProductCode.Product_5).Any() || !CheckPermissionForEditing(settingContext))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -92,7 +92,7 @@
 
             var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
 
-            if (!productInfos.Where(x => x.ProductId == (int)Product.Product_5).Any() || !CheckPermissionForEditing(settingContext))
+            if (!productInfos.Where(x => x.ProductId == (int)ProductCode.Product_5).Any() || !CheckPermissionForEditing(settingContext))
             {
                 return RedirectToAccessDeniedPage();
             }

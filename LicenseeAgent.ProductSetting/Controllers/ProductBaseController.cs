@@ -342,7 +342,7 @@
         protected string GetSuccessMsg(int productId, string message)
         {
             var msgSuccess = message;
-            if (productId == (int)Product.Product_5)
+            if (productId == (int)ProductCode.Product_5)
             {
                 msgSuccess = msgSuccess.Replace("{0} - ", string.Empty);
             }

@@ -3,7 +3,7 @@
 namespace LicenseeAgent.Core.Enumerations
 {    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public enum Product : int
+    public enum ProductCode : int
     {
         
         /// <summary>
@@ -54,6 +54,11 @@ namespace LicenseeAgent.Core.Enumerations
         /// <summary>
         /// Playtech Casino.
         /// </summary>
-        Product_9 = 9
+        Product_9 = 9,
+        
+        /// <summary>
+        /// Horse Racing Fixed Odds.
+        /// </summary>
+        Product_1000 = 1000
     }
 }

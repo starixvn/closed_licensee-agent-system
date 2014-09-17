@@ -89,13 +89,17 @@
     <Compile Include="Controllers\ProductBaseController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SportsBookController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\VirtualSportsController.cs" />
+    <Compile Include="Criteria\Status\UpdateAgentCriteria.cs" />
+    <Compile Include="Criteria\Status\UpdateMemberCriteria.cs" />
     <Compile Include="Services\CustomerSettingService.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\ICustomerSettingService.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Services\ISportsBookSettingService.cs" />
     <Compile Include="Services\IVirtualSportsSettingService.cs" />
     <Compile Include="Core\Constant.cs" />
@@ -152,6 +156,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\NumberGameSettingService.cs" />
+    <Compile Include="Services\StatusService.cs" />
     <Compile Include="Services\SettingServiceBase.cs" />
     <Compile Include="Services\SportsBookSettingService.cs" />
     <Compile Include="Services\VirtualSportsSettingService.cs" />
@@ -162,9 +167,11 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\Status\UpdateMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductAgentViewModel.cs" />
     <Compile Include="ViewModels\EditProductMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
+    <Compile Include="ViewModels\Status\UpdateAgentViewModel.cs" />
     <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateSportsBookCustomerViewModel.cs" />
@@ -199,6 +206,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,7 +10,7 @@
     /// </summary>
     public interface ISettingService
     {
-        Product ProductId { get; }
+        ProductCode ProductId { get; }
 
         string Name { get; }
 

@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Home.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Configurations;
@@ -27,7 +28,7 @@
     {
         #region Variables
 
-        private readonly ISearchUserService _searchUserService;
+        private readonly IAccountInformationService _accountInformationService;
         private readonly IMemberService _memberService;
         private readonly ICoreService _coreService;
 
@@ -41,11 +42,11 @@
         }
 
         public AccountInformationController(
-            ISearchUserService searchUserService,
+            IAccountInformationService accountInformationService,
             IMemberService memberService,
             ICoreService coreService)
         {
-            _searchUserService = searchUserService ?? new SearchUserService();
+            _accountInformationService = accountInformationService ?? new AccountInformationService();
             _memberService = memberService ?? new MemberService();
             _coreService = coreService ?? new CoreService();
         }
@@ -99,7 +100,7 @@
                 LegendType = (short)CurrentSession.AgentInfo.LegendType
             };
 
-            var users = _searchUserService.SuggestByAgent(criteria);
+            var users = _accountInformationService.SuggestByAgent(criteria);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -124,7 +125,7 @@
                 LegendType = (short)CurrentSession.AgentInfo.LegendType
             };
 
-            var users = _searchUserService.SuggestByAdmin(criteria);
+            var users = _accountInformationService.SuggestByAdmin(criteria);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,
@@ -172,7 +173,7 @@
                 LegendType = (short)CurrentSession.AgentInfo.LegendType
             };
 
-            var searchMemberEntity = _searchUserService.GetMembers(criteria);
+            var searchMemberEntity = _accountInformationService.GetMembers(criteria);
             SetAgentView(criteria, searchMemberEntity.Customer);
             var isShowStatement = searchMemberEntity.Customer == null
                 ? false
@@ -182,7 +183,8 @@
                 Customer = GetFullInformation(searchMemberEntity.Customer),
                 Uplines = searchMemberEntity.UpLines,
                 Downlines = searchMemberEntity.DownLines,
-                Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
+                Balance = GetBalance(searchMemberEntity.Customer),
+                ProductSettings = GetProductSettings(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize),
                 IsShowStatement = isShowStatement
@@ -209,10 +211,9 @@
             {
                 var isMember = customer.Level == Constants.MemberLevel;
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                ViewBag.PageContext = new PageContext(CurrentSession, customer.Level, customer.UserName)
+                ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
-                    IsMember = isMember,
-                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
                 };
             }
         }
@@ -235,7 +236,7 @@
                 PageSize = Constants.PageSize
             };
 
-            var searchMemberEntity = _searchUserService.GetMembers(criteria);
+            var searchMemberEntity = _accountInformationService.GetMembers(criteria);
             SetAdminView(criteria, searchMemberEntity.Customer);
             var isShowStatement = searchMemberEntity.Customer == null
                 ? false
@@ -245,7 +246,8 @@
                 Customer = GetFullInformation(searchMemberEntity.Customer),
                 Uplines = searchMemberEntity.UpLines,
                 Downlines = searchMemberEntity.DownLines,
-                Balance = searchMemberEntity.Customer == null ? null : GetBalance(searchMemberEntity.Customer),
+                Balance = GetBalance(searchMemberEntity.Customer),
+                ProductSettings = GetProductSettings(searchMemberEntity.Customer),
                 PageIndex = criteria.PageIndex,
                 TotalPages = (int)Math.Ceiling((double)criteria.TotalRows / criteria.PageSize),
                 IsShowStatement = isShowStatement
@@ -285,10 +287,10 @@
             else
             {
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                ViewBag.PageContext = new PageContext(CurrentSession, customer.Level, customer.UserName)
+                var isMember = customer.Level == Constants.MemberLevel;
+                ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
-                    IsMember = customer.Level == Constants.MemberLevel,
-                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
                 };
             }
         }
@@ -325,6 +327,39 @@
         }
 
         /// <summary>
+        /// Gets the product settings.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>Returns list of product setting.</returns>
+        [NonAction]
+        public IList<ProductSettingEntity> GetProductSettings(CustomerEntity entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            if (entity.Level != Constants.MemberLevel)
+            {
+                return _accountInformationService.GetAgentProductSetting(new GetAgentProductSettingCriteria
+                {
+                    AgentId = entity.CustId,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                });
+            }
+            else
+            {
+                return _accountInformationService.GetMemberProductSetting(new GetMemberProductSettingCriteria
+                {
+                    CustId = entity.CustId,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    CurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                });
+            }
+        }
+
+        /// <summary>
         /// Get balance of customer.
         /// </summary>
         /// <param name="customer">Customer information.</param>
@@ -332,9 +367,11 @@
         [NonAction]
         public BalanceEntity GetBalance(CustomerEntity customer)
         {
-            return CurrentSession.AgentInfo.IsDeposit
-                ? GetCashBalance(customer)
-                : GetCreditBalance(customer);
+            return customer == null
+                ? null
+                : CurrentSession.AgentInfo.IsDeposit
+                    ? GetCashBalance(customer)
+                    : GetCreditBalance(customer);
         }
 
         /// <summary>
@@ -347,11 +384,11 @@
         {
             var balanceUp = _coreService.BalanceUpDay;
             return customer.Level == Constants.MemberLevel
-                ? _searchUserService.GetMemberCashBalance(new MemberCashBalanceCriteria
+                ? _accountInformationService.GetMemberCashBalance(new MemberCashBalanceCriteria
                 {
                     CustId = customer.CustId
                 })
-                : _searchUserService.GetAgentCashBalance(new AgentCashBalanceCriteria
+                : _accountInformationService.GetAgentCashBalance(new AgentCashBalanceCriteria
                 {
                     AgentId = customer.CustId,
                     MoveBetDay = balanceUp.MoveBetsDay,
@@ -369,11 +406,11 @@
         public BalanceEntity GetCreditBalance(CustomerEntity customer)
         {
             return customer.Level == Constants.MemberLevel
-                ? _searchUserService.GetMemberCreditBalance(new MemberCreditBalanceCriteria
+                ? _accountInformationService.GetMemberCreditBalance(new MemberCreditBalanceCriteria
                 {
                     CustId = customer.CustId
                 })
-                : _searchUserService.GetAgentCreditBalance(new AgentCreditBalanceCriteria
+                : _accountInformationService.GetAgentCreditBalance(new AgentCreditBalanceCriteria
                 {
                     AgentId = customer.CustId
                 });
@@ -398,7 +435,7 @@
                 PageSize = model.PageSize ?? Constants.PageSize
             };
 
-            var downlines = _searchUserService.GetDirectDownlines(criteria);
+            var downlines = _accountInformationService.GetDirectDownlines(criteria);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

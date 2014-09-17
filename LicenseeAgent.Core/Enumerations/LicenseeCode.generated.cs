@@ -3,7 +3,7 @@
 namespace LicenseeAgent.Core.Enumerations
 {    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public enum Licensee : int
+    public enum LicenseeCode : int
     {
         /// <summary>
         /// Nothing.
@@ -583,6 +583,56 @@ namespace LicenseeAgent.Core.Enumerations
         /// <summary>
         /// DAYWIN.
         /// </summary>
-        Licensee_118 = 118
+        Licensee_118 = 118,
+        
+        /// <summary>
+        /// GooBet.
+        /// </summary>
+        Licensee_119 = 119,
+        
+        /// <summary>
+        /// SHABAING.
+        /// </summary>
+        Licensee_120 = 120,
+        
+        /// <summary>
+        /// Liga.
+        /// </summary>
+        Licensee_121 = 121,
+        
+        /// <summary>
+        /// RYB95.
+        /// </summary>
+        Licensee_122 = 122,
+        
+        /// <summary>
+        /// KaiHao.
+        /// </summary>
+        Licensee_123 = 123,
+        
+        /// <summary>
+        /// ISC888.
+        /// </summary>
+        Licensee_124 = 124,
+        
+        /// <summary>
+        /// Greenplay.
+        /// </summary>
+        Licensee_125 = 125,
+        
+        /// <summary>
+        /// Deebet.
+        /// </summary>
+        Licensee_126 = 126,
+        
+        /// <summary>
+        /// NBCbet.
+        /// </summary>
+        Licensee_127 = 127,
+        
+        /// <summary>
+        /// 666VIP.
+        /// </summary>
+        Licensee_128 = 128
     }
 }

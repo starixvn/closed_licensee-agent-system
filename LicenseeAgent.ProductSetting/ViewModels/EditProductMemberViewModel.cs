@@ -12,6 +12,6 @@
         public int CustId { get; set; }
 
         [Required]
-        public Product ProductId { get; set; }
+        public ProductCode ProductId { get; set; }
     }
 }

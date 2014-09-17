@@ -11,7 +11,7 @@
     /// <summary>
     /// SearchUserService class.
     /// </summary>
-    public class SearchUserService : QueryService, ISearchUserService
+    public class AccountInformationService : QueryService, IAccountInformationService
     {
         /// <summary>
         /// Suggest member by Admin.
@@ -133,6 +133,16 @@
                 PendingFund = criteria.PendingFund,
                 AvailableFund = criteria.AvailableFund
             };
+        }
+
+        public IList<ProductSettingEntity> GetAgentProductSetting(GetAgentProductSettingCriteria criteria)
+        {
+            return GetEntites<ProductSettingEntity>(criteria);
+        }
+
+        public IList<ProductSettingEntity> GetMemberProductSetting(GetMemberProductSettingCriteria criteria)
+        {
+            return GetEntites<ProductSettingEntity>(criteria);
         }
     }
 }

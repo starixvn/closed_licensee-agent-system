@@ -9,7 +9,7 @@
     public class GetSettingForUpdateViewModel
     {
         [Required]
-        public Product ProductId { get; set; }
+        public ProductCode ProductId { get; set; }
 
         [Required]
         public int CustId { get; set; }

@@ -30,7 +30,7 @@
 {
     @Html.Partial("_AgentInfo", Model)
 
-    <div class="controls-row left">
+    <div class="controls-row">
         @if (pageContext.IsMember)
         {
             <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">
@@ -78,16 +78,16 @@
         <div class="row-line">
         </div>
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#action" id="tabAction" data-toggle="tab">
+            <li class="active"><a href="#panel-action" id="tabAction" data-toggle="tab">
                 @Las.Action
             </a></li>
-            <li><a href="#setting" id="tabAction" data-toggle="tab">
-                @Las.Setting
+            <li><a href="#panel-products" id="tabProducts" data-toggle="tab">
+                @Las.Products
             </a></li>
         </ul>
         <div class="tab-content">
             @Html.Partial("_ActionTab", Model)
-            @Html.Partial("_SettingTab", Model)
+            @Html.Partial("_ProductsTab", Model)
         </div>
     </div>
         }

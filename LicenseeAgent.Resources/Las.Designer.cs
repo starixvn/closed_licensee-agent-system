@@ -259,6 +259,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable {0} for this agent and his downlines?.
+        /// </summary>
+        public static string AlertDisableAgentProduct {
+            get {
+                return ResourceManager.GetString("AlertDisableAgentProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable {0} for this member?.
+        /// </summary>
+        public static string AlertDisableMemberProduct {
+            get {
+                return ResourceManager.GetString("AlertDisableMemberProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is enabled for this agent. Do you want to enable for his downlines too?.
+        /// </summary>
+        public static string AlertEnableAgentProduct {
+            get {
+                return ResourceManager.GetString("AlertEnableAgentProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry! Your permission has just been updated by admin, thus you&apos;re forced to relogin. Thank you..
         /// </summary>
         public static string AlertNoCurrencyPermission {
@@ -3352,6 +3379,15 @@ namespace LicenseeAgent.Resources {
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
             }
         }
         

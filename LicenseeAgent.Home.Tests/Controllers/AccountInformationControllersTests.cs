@@ -270,14 +270,10 @@
         {
             // Arrange
             var customer = new CustomerEntity { CustId = 1, UserName = "Member" };
-            var agentId = 1;
             var agentLevel = 3;
 
             FakeSession.SetAdminLevel();
-            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, agentId, agentLevel)
-            {
-                IsMember = true
-            };
+            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, true, customer.CustId, agentLevel, customer.UserName);
 
             // Act
             var result = _controller.GetFullInformation(customer);
@@ -298,14 +294,10 @@
         {
             // Arrange
             var customer = new CustomerEntity { CustId = 1, UserName = "Agent" };
-            var agentId = 1;
             var agentLevel = 3;
 
             FakeSession.SetAdminLevel();
-            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, agentId, agentLevel)
-            {
-                IsMember = false
-            };
+            _controller.ViewBag.PageContext = new PageContext(SessionManager.CurrentSession, false, customer.CustId, agentLevel, customer.UserName);
 
             // Act
             var result = _controller.GetFullInformation(customer);

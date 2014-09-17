@@ -15,18 +15,18 @@
         private static PtSettings _positionTakingSettings = InitializePtSettings();
         private static IList<int> _virtualSportsTypeIds = InitializeVirtualSportsTypeIds();
 
-        public static IList<Product> Products3RD
+        public static IList<ProductCode> Products3RD
         {
             get
             {
-                return new List<Product>
+                return new List<ProductCode>
                 {
-                    Product.Product_1,
-                    Product.Product_6,
-                    Product.Product_7,
-                    Product.Product_4,
-                    Product.Product_5,
-                    Product.Product_8,
+                    ProductCode.Product_1,
+                    ProductCode.Product_6,
+                    ProductCode.Product_7,
+                    ProductCode.Product_4,
+                    ProductCode.Product_5,
+                    ProductCode.Product_8,
                 };
             }
         }
@@ -71,7 +71,7 @@
 
         private static IList<int> InitializeVirtualSportsTypeIds()
         {
-            return GetProductPtSettings((int)Product.Product_5).SportType.Select(x => x.Id).ToList();
+            return GetProductPtSettings((int)ProductCode.Product_5).SportType.Select(x => x.Id).ToList();
         }
     }
 }

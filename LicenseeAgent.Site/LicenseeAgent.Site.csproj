@@ -221,6 +221,9 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-result.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-product.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-info.js" />
     <Content Include="Areas\ProductSetting\Scripts\NumberGame\actions\bet-limit-action.js" />
     <Content Include="Areas\ProductSetting\Scripts\NumberGame\controllers\bet-limit-controller.js" />
     <Content Include="Areas\Account\Content\HomePage\home-page.less" />
@@ -398,7 +401,7 @@
     <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
     <Content Include="Areas\TotalBets\Views\Soccer\DetailBetList.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_DownLineListTab.cshtml" />
-    <Content Include="Areas\Home\Views\AccountInformation\_SettingTab.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_ProductsTab.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

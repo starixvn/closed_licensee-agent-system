@@ -77,7 +77,7 @@
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, breadModel.AgentId, breadModel.AgentLevel)
             {
-                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
             };
 
             return View(breadModel);
@@ -111,7 +111,7 @@
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
             {
-                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)Product.Product_5)
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
             };
 
             return View(model);

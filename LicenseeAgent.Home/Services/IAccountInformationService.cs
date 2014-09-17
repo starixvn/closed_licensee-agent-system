@@ -5,7 +5,7 @@
     using LicenseeAgent.Home.Criteria.AccountInformation;
     using LicenseeAgent.Home.Entities.AccountInformation;
 
-    public interface ISearchUserService
+    public interface IAccountInformationService
     {
         /// <summary>
         /// Suggest member by Admin.
@@ -64,5 +64,9 @@
         /// <param name="criteria">Member balance criteria.</param>
         /// <returns>Member balance entity.</returns>
         BalanceEntity GetMemberCashBalance(MemberCashBalanceCriteria criteria);
+
+        IList<ProductSettingEntity> GetAgentProductSetting(GetAgentProductSettingCriteria criteria);
+
+        IList<ProductSettingEntity> GetMemberProductSetting(GetMemberProductSettingCriteria criteria);
     }
 }

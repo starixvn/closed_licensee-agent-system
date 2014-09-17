@@ -16,13 +16,14 @@
 
         #region Account Information
 
-        public PageContext(ICurrentSession currentSession, int agentLevel, string agentName)
+        public PageContext(ICurrentSession currentSession, bool isMember, int custId, int custLevel, string userName)
             : this(currentSession)
         {
             IsDirectDownLine = currentSession.AgentInfo.IsLastLevel
                 || currentSession.AgentInfo.AgentLevel == agentLevel - 1;
-            AgentName = agentName;
-            AgentLevel = agentLevel;
+            CustId = custId;
+            AgentName = userName;
+            AgentLevel = custLevel;
         }
 
         #endregion Account Information
@@ -98,7 +99,7 @@
         [JsonConverter(typeof(JavaScriptDateTimeConverter))]
         public DateTime MaxDate { get; set; }
 
-        public bool IsMember { get; set; }
+        public bool IsMember { get; private set; }
 
         public bool IsOfferedVirtualSports { get; set; }
 

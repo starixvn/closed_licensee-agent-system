@@ -40,7 +40,7 @@
                 var url = string.Empty;
                 switch (product.ProductId)
                 {
-                    case (int)Product.Product_5:
+                    case (int)ProductCode.Product_5:
                         url = Url.Action("EditAgent", "VirtualSports", new { agentId = model.AgentId });
                         break;
                 }
@@ -81,7 +81,7 @@
                 var url = string.Empty;
                 switch (product.ProductId)
                 {
-                    case (int)Product.Product_5:
+                    case (int)ProductCode.Product_5:
                         url = Url.Action("EditMember", "VirtualSports", new { memberId = model.CustId });
                         break;
                 }
@@ -158,9 +158,9 @@
                 }
 
                 stringBuilder.AppendLine(Formatter.FormatJson(productService.Name, productSetting));
-                if (model.ProductId == Product.Product_0)
+                if (model.ProductId == ProductCode.Product_0)
                 {
-                    if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                    if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                     {
                         var numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, out errCode);
                         if (errCode == Result.SuccessValue)
@@ -220,9 +220,9 @@
                     });
             }
 
-            if (model.ProductId == Product.Product_0)
+            if (model.ProductId == ProductCode.Product_0)
             {
-                if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)Product.Product_2))
+                if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                 {
                     numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, out errCode);
                 }
@@ -242,14 +242,14 @@
         /// <param name="productId">ID of product.</param>
         /// <returns>Setting Service.</returns>
         [NonAction]
-        public ISettingService GetProductService(Product productId)
+        public ISettingService GetProductService(ProductCode productId)
         {
             switch (productId)
             {
-                case Product.Product_0:
+                case ProductCode.Product_0:
                     return SportsBookService;
 
-                case Product.Product_5:
+                case ProductCode.Product_5:
                     return VirtualSportsService;
             }
 

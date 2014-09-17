@@ -109,11 +109,6 @@
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Enumerations\LegendType.cs" />
-    <Compile Include="Enumerations\Licensee.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Licensee.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\SelBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />
@@ -131,10 +126,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrCode.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enumerations\Product.generated.cs">
+    <Compile Include="Enumerations\LicenseeCode.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Product.tt</DependentUpon>
+      <DependentUpon>LicenseeCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations\ProductCode.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductCode.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\SiteEnvironment.cs" />
     <Compile Include="Enumerations\SportType.generated.cs">
@@ -185,13 +185,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.generated.cs</LastGenOutput>
     </None>
-    <None Include="Enumerations\Licensee.tt">
+    <None Include="Enumerations\LicenseeCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Licensee.generated.cs</LastGenOutput>
+      <LastGenOutput>LicenseeCode.generated.cs</LastGenOutput>
     </None>
-    <None Include="Enumerations\Product.tt">
+    <None Include="Enumerations\ProductCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Product.generated.cs</LastGenOutput>
+      <LastGenOutput>ProductCode.generated.cs</LastGenOutput>
     </None>
     <None Include="Enumerations\ErrCode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

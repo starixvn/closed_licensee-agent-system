@@ -21,7 +21,7 @@
 
         bool HasProductOffered(int licenseeId, int productId);
 
-        bool HasProductOffered(int licenseeId, Product product);
+        bool HasProductOffered(int licenseeId, ProductCode product);
 
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
 

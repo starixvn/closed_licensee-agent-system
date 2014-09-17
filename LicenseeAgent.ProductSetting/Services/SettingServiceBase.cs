@@ -22,7 +22,7 @@
         /// <returns>Returns customer setting 2.</returns>
         [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Verified.")]
         public CustomerSetting2 BuildCustomerSetting2(
-            Product product,
+            ProductCode product,
             CustomerSetting customerSetting,
             SettingContext settingContext,
             ref int errCode,

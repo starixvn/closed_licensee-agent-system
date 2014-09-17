@@ -55,7 +55,7 @@
             get
             {
                 var listProducts = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-                var productIds = listProducts.Where(x => x.ProductId != (int)Product.Product_9).Select(x => x.ProductId).ToList();
+                var productIds = listProducts.Where(x => x.ProductId != (int)ProductCode.Product_9).Select(x => x.ProductId).ToList();
                 return string.Join(",", productIds);
             }
         }

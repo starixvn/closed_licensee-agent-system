@@ -20,11 +20,11 @@
     /// </summary>
     public class NumberGameSettingService : SettingServiceBase, ISettingService
     {
-        public Product ProductId
+        public ProductCode ProductId
         {
             get
             {
-                return Product.Product_2;
+                return ProductCode.Product_2;
             }
         }
 

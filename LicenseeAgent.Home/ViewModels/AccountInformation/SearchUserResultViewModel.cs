@@ -11,9 +11,11 @@
     {
         public CustomerEntity Customer { get; set; }
 
-        public IEnumerable<UpLineEntity> Uplines { get; set; }
+        public IList<UpLineEntity> Uplines { get; set; }
 
-        public IEnumerable<DownLineEntity> Downlines { get; set; }
+        public IList<DownLineEntity> Downlines { get; set; }
+
+        public IList<ProductSettingEntity> ProductSettings { get; set; }
 
         public BalanceEntity Balance { get; set; }
 

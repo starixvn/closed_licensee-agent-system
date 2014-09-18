@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.Entities
+﻿namespace LicenseeAgent.Customer.Entities
 {
     using System;
     using LicenseeAgent.Core.Utility;

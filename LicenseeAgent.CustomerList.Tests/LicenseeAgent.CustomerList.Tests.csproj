@@ -83,9 +83,9 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj">
+    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.Customer.csproj">
       <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
-      <Name>LicenseeAgent.CustomerList</Name>
+      <Name>LicenseeAgent.Customer</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>

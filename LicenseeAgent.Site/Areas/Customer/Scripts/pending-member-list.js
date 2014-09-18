@@ -1,5 +1,6 @@
 ﻿/*global core, language*/
-var pendingMemberList = (function ($) {
+var customer = customer || {};
+customer.pendingMemberList = (function ($) {
     'use strict';
     var gridOptions = {
         columns: [
@@ -18,20 +19,20 @@ var pendingMemberList = (function ($) {
     };
     return {
         init: function () {
-            pendingMemberList.hideGrid();
+            customer.pendingMemberListhideGrid();
 
             $('form').submit(function (e) {
                 if ($(this).valid()) {
                     core.hideErrors();
-                    pendingMemberList.submit();
+                    customer.pendingMemberListsubmit();
                 } else {
-                    pendingMemberList.hideGrid();
+                    customer.pendingMemberListhideGrid();
                 }
                 e.preventDefault();
             });
 
             if ($('#DirectAgentUserName').length === 0) {
-                pendingMemberList.submit();
+                customer.pendingMemberListsubmit();
             }
         },
         hideGrid: function () {
@@ -48,7 +49,7 @@ var pendingMemberList = (function ($) {
                 success: function (data) {
                     if (data.ErrCode !== 0) {
                         core.showErrorMsg(data.ErrMsg);
-                        pendingMemberList.hideGrid();
+                        customer.pendingMemberListhideGrid();
                         return;
                     }
                     gridOptions.pagerOption.currentPage = 0;
@@ -62,8 +63,3 @@ var pendingMemberList = (function ($) {
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    pendingMemberList.init();
-});

@@ -1,4 +1,6 @@
-﻿var resetPassword = (function ($) {
+﻿
+var customer = customer || {};
+customer.resetPassword = (function ($) {
     'use strict';
     return {
         init: function () {
@@ -17,8 +19,3 @@
         }
     };
 } (jQuery));
-
-$(function() {
-    'use strict';
-    resetPassword.init();
-});

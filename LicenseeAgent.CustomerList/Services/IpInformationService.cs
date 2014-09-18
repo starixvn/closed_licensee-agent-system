@@ -1,9 +1,9 @@
-﻿namespace LicenseeAgent.CustomerList.Services
+﻿namespace LicenseeAgent.Customer.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerList.Criteria;
-    using LicenseeAgent.CustomerList.Entities;
+    using LicenseeAgent.Customer.Criteria;
+    using LicenseeAgent.Customer.Entities;
 
     /// <summary>
     /// IP InformationService class.

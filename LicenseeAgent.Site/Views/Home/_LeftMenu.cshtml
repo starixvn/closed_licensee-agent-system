@@ -54,11 +54,12 @@
                         @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "SportsBook", new { area = "ProductSetting" }))
                         }
                     }
+                    @BootstrapHelper.LeftMenu(Las.Soccer, Url.Action("Soccer", "TotalBets"))
                     @BootstrapHelper.LeftMenu(
                         SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel
                         ? Las.MemberList
                         : Las.AgentList,
-                        Url.Action("Index", "CustomerList"))
+                        Url.Action("CustomerList", "Customer"))
                     @if (LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
                         @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("PendingMemberList", "CustomerList"))

@@ -6,10 +6,10 @@
         columns:
             [
         /*{
-        HeaderText: '<i class="icon-uncheck-all" onclick="customerList.checkAllItem(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
+        HeaderText: '<i class="icon-uncheck-all" onclick="customer.customerList.checkAllItem(this);"></i><i id="select-dropdown" class="icon-arrow"></i>',
         Width: 30, Name: "Select", CellAlign: "center",
         Formatter: function (rowIndex, rowData, cell, cellFormated) {
-        return '<span class="cell-select icon icon-uncheck" onclick="customerList.selectClick(this);"></span>';
+        return '<span class="cell-select icon icon-uncheck" onclick="customer.customerList.selectClick(this);"></span>';
         }
         },*/
                 {
@@ -36,7 +36,7 @@
                 },
                 { HeaderText: "@Las.Status", Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return '<div class="cust-status" onclick="customerList.changeStatus(this, ' + rowData.CustId + ')">'
+                        return '<div class="cust-status" onclick="customer.customerList.changeStatus(this, ' + rowData.CustId + ')">'
                             + (cell.Value == 1 ? '<div class="icon-status-open"><span>Open</span></div>' : '<div class="icon-status-closed"><span>Closed</span></div>')
                             + '</div>';
                     }
@@ -50,7 +50,7 @@
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         if (cell.Value == null)
                             return '';
-                        return '<a onclick=customerList.getIpInformation("{0}")>{1}</a>'.format(cell.Value, cell.Value);
+                        return '<a onclick=customer.customerList.getIpInformation("{0}")>{1}</a>'.format(cell.Value, cell.Value);
                     }
                 }
             ],

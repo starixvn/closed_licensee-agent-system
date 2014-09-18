@@ -414,6 +414,12 @@
   <data name="AddDownline" xml:space="preserve">
     <value>Add Downline</value>
   </data>
+  <data name="AddAgent" xml:space="preserve">
+    <value>Add Agent</value>
+  </data>
+  <data name="DirectMember" xml:space="preserve">
+    <value>Direct Member</value>
+  </data>
   <data name="Casino" xml:space="preserve">
     <value>Casino</value>
   </data>

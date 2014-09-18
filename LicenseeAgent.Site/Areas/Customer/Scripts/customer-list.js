@@ -1,5 +1,6 @@
-﻿/*global core, language, popup, pageContext, msg, gridOptions, context */
-var customerList = (function ($) {
+﻿/*global core, language, popup, pageContext, gridOptions, context */
+var customer = customer || {};
+customer.customerList = (function ($) {
     'use strict';
     var statusObj = { All: -1, Close: 0, Open: 1 },
         editAgentId = 0,
@@ -14,7 +15,7 @@ var customerList = (function ($) {
             // create action context menu
             context.init({
                 preventDoubleContext: false,
-                beforeShow: customerList.updateActionMenus
+                beforeShow: customer.customerList.updateActionMenus
             });
 
             context.attach('.icon-customer-edit', [
@@ -27,7 +28,7 @@ var customerList = (function ($) {
                         : 'icon-customer-canview'),
                     text: language.getString('Sportsbook'),
                     href: '#',
-                    action: customerList.editSportsbook
+                    action: customer.customerList.editSportsbook
                 },
                 {
                     id: 'menuVirtualSports',
@@ -38,28 +39,30 @@ var customerList = (function ($) {
                         : 'icon-customer-canview'),
                     text: language.getString('VirtualSports'),
                     href: '#',
-                    action: customerList.editVirttualSports
+                    action: function (e) {
+                        customer.customerList.editVirttualSports(e);
+                    }
                 },
                 {
                     id: 'menuEditInfo',
                     icon: 'icon-customer-canedit',
                     text: language.getString('EditInfo'),
                     href: '#',
-                    action: customerList.editInfo
+                    action: customer.customerList.editInfo
                 },
                 {
                     id: 'menuResetPassword',
                     icon: 'icon-customer-canedit',
                     text: language.getString('ResetPassword'),
                     href: '#',
-                    action: customerList.resetPassword
+                    action: customer.customerList.resetPassword
                 },
                 {
                     id: 'menuAddDownline',
                     icon: 'icon-customer-canedit',
-                    text: language.getString('AddDownline'),
+                    text: language.getString('AddAgent'),
                     href: '#',
-                    action: customerList.addDownline
+                    action: customer.customerList.addDownline
                 }
             ]);
 
@@ -71,12 +74,12 @@ var customerList = (function ($) {
                 {
                     text: language.getString('All'),
                     href: '#',
-                    action: customerList.checkAll
+                    action: customer.customerList.checkAll
                 },
                 {
                     text: language.getString('None'),
                     href: '#',
-                    action: customerList.uncheckAll
+                    action: customer.customerList.uncheckAll
                 }
             ]);
 
@@ -85,23 +88,30 @@ var customerList = (function ($) {
                 var agentId = $(this).data('agent-id'),
                     agentLevel = $(this).data('agent-level'),
                     agentName = $(this).text();
-                customerList.showAgent(agentId, agentName, agentLevel);
+                customer.customerList.showAgent(agentId, agentName, agentLevel);
             });
 
             // search
             $('#search-form').submit(function (e) {
-                customerList.reRenderAfterPaged(0, core.pageSizes[2]);
+                customer.customerList.reRenderAfterPaged(0, core.pageSizes[2]);
                 e.preventDefault();
             });
 
             // username suggestion
             $('#Username').typeahead({
-                source: customerList.getSuggestion,
+                source: customer.customerList.getSuggestion,
                 minLength: 2
             });
 
+            $('#menuVirtualSports').popover({
+                container: 'body',
+                html: true,
+                content: customer.customerList.getUplines,
+                placement: 'right'
+            });
+
             // get customer list
-            customerList.reRenderAfterPaged(0, core.pageSizes[2]);
+            customer.customerList.reRenderAfterPaged(0, core.pageSizes[2]);
         },
         updateActionMenus: function (target) {
             if (!pageContext.IsAdmin
@@ -127,7 +137,7 @@ var customerList = (function ($) {
                 $('#menuAddDownline').hide();
             }
 
-            if (pageContext.IsLastLevel) {
+            if (pageContext.IsMember) {
                 editMemberId = parseInt($(target).data('memberid'), null);
                 editUsername = $(target).data('username');
             } else {
@@ -144,10 +154,11 @@ var customerList = (function ($) {
             $("#boxsearch").width($("#grid").width());
             $("#breadcrumb").width($("#grid").width());
         },
-        showAgent: function (agentId, agentName, agentLevel) {
+        showAgent: function (agentId, agentName, agentLevel, isMember) {
             $('#newAgentId').val(agentId);
             $('#AgentLevel').val(agentLevel);
             $('#AgentName').val(agentName);
+            $('#IsMember').val(isMember);
             $("#ajax-form").submit();
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -182,14 +193,14 @@ var customerList = (function ($) {
                             itemsPerPageArray: core.pageSizes,
                             currentPage: data.CurrentPage,
                             totalItem: data.TotalItem,
-                            pagerSelectCallBack: customerList.reRenderAfterPaged
+                            pagerSelectCallBack: customer.customerList.reRenderAfterPaged
                         };
 
                         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                         $('#grid').show().fanexGrid(gridOptions);
 
-                        customerList.gridAfterBinding();
-                        customerList.resizeBox();
+                        customer.customerList.gridAfterBinding();
+                        customer.customerList.resizeBox();
                     }
                 },
                 complete: function () {
@@ -204,7 +215,7 @@ var customerList = (function ($) {
             var currentStatus, newStatus;
             currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             newStatus = currentStatus === 0 ? 1 : 0;
-            customerList.showAlert(target, custId, newStatus);
+            customer.customerList.showAlert(target, custId, newStatus);
         },
         updateStatus: function (target, custId, statusId) {
             var params, url;
@@ -221,8 +232,8 @@ var customerList = (function ($) {
                 };
             }
 
-            url = pageContext.IsLastLevel ? "~/CustomerList/ChangeMemberStatus"
-                : "~/CustomerList/ChangeAgentStatus";
+            url = pageContext.IsLastLevel ? "~/Customer/Member/ChangeStatus"
+                : "~/Customer/Agent/ChangeStatus";
             $.ajax({
                 url: core.resolveUrl(url),
                 type: 'post',
@@ -257,9 +268,9 @@ var customerList = (function ($) {
         },
         checkAllItem: function (itemAll) {
             if ($(itemAll).hasClass("icon-uncheck-all")) {
-                customerList.checkAll();
+                customer.customerList.checkAll();
             } else {
-                customerList.uncheckAll();
+                customer.customerList.uncheckAll();
             }
         },
         checkAll: function () {
@@ -322,7 +333,7 @@ var customerList = (function ($) {
                 label: language.getString('Yes'),
                 action: function () {
                     popup.close();
-                    customerList.updateStatus(target, custId, statusId);
+                    customer.customerList.updateStatus(target, custId, statusId);
                 }
             }, {
                 label: language.getString('No'),
@@ -339,7 +350,7 @@ var customerList = (function ($) {
         },
         getIpInformation: function (ipAddress) {
             $.ajax({
-                url: core.resolveUrl('~/CustomerList/GetIpInformation'),
+                url: core.resolveUrl('~/Customer/CustomerList/GetIpInformation'),
                 type: 'post',
                 data: { IpAddress: ipAddress },
                 beforeSend: function () {
@@ -348,7 +359,7 @@ var customerList = (function ($) {
                 success: function (data) {
                     if (data !== null) {
                         popup.open({
-                            title: msg.IpInformation,
+                            title: language.getString("IpInformation"),
                             message: data
                         });
                     }
@@ -362,7 +373,7 @@ var customerList = (function ($) {
             editMemberId = memberId;
             $.contextMenu({
                 selector: '.cell-' + memberId,
-                items: customerList.getEditItems(status),
+                items: customer.customerList.getEditItems(status),
                 trigger: "left",
                 ignoreRightClick: true,
                 autoHide: true
@@ -374,66 +385,66 @@ var customerList = (function ($) {
                 items = [
                     {
                         name: language.getString("Sportsbook"),
-                        callback: customerList.editSportsbook
+                        callback: customer.customerList.editSportsbook
                     },
                     {
                         name: language.getString("EditInfo"),
-                        callback: customerList.editInfo
+                        callback: customer.customerList.editInfo
                     },
                     {
                         name: language.getString("ResetPassword"),
-                        callback: customerList.resetPassword
+                        callback: customer.customerList.resetPassword
                     },
                 /*{ name: actions.NumberGame,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.Casino,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.VirtualSports,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.SBBetSetting,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.Commission,
-                callback: customerList.editSetting },*/
+                callback: customer.customerList.editSetting },*/
                     {
                     name: language.getString("Password"),
-                    callback: customerList.editSetting
+                    callback: customer.customerList.editSetting
                 }
                 ];
             } else {
                 items = [
                     {
                         name: language.getString("Sportsbook"),
-                        callback: customerList.editSportsbook
+                        callback: customer.customerList.editSportsbook
                     },
                     {
                         name: language.getString("EditInfo"),
-                        callback: customerList.editInfo
+                        callback: customer.customerList.editInfo
                     },
                     {
                         name: language.getString("ResetPassword"),
-                        callback: customerList.resetPassword
+                        callback: customer.customerList.resetPassword
                     },
                 /*{ name: actions.NumberGame,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.Casino,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.VirtualSports,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.AddDownline,
-                callback: customerList.editSetting },
+                callback: customer.customerList.editSetting },
                 { name: actions.Commission,
-                callback: customerList.editSetting },*/
+                callback: customer.customerList.editSetting },*/
                     {
                     name: language.getString("Password"),
-                    callback: customerList.editSetting
+                    callback: customer.customerList.editSetting
                 }
                 ];
             }
 
             if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
                 items.push({
-                    name: language.getString("AddDownline"),
-                    callback: customerList.addDownline
+                    name: language.getString("AddAgent"),
+                    callback: customer.customerList.addDownline
                 });
             }
             if (pageContext.IsDirectDownLine) {
@@ -460,43 +471,38 @@ var customerList = (function ($) {
         },
         editSportsbook: function () {
             var url;
-            if (pageContext.IsLastLevel) {
-                url = "ProductSetting/SportsBook/EditMember?memberId={0}"
-                    .format(editMemberId);
+            if (pageContext.IsMember) {
+                url = "ProductSetting/SportsBook/EditMember?memberId={0}".format(editMemberId);
             } else {
-                url = "ProductSetting/SportsBook/EditAgent?agentId={0}"
-                    .format(editAgentId, editAgentLevel);
+                url = "ProductSetting/SportsBook/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
             }
             popup.openFrame(url, {
                 width: 1008,
                 height: 680
             });
         },
-        editVirttualSports: function () {
-            var url;
-            if (pageContext.IsLastLevel) {
-                url = "ProductSetting/VirtualSports/EditMember?memberId={0}"
-                    .format(editMemberId);
+        editVirttualSports: function (e) {
+            if (pageContext.IsMember) {
+                e.stopPropagation();
+                //url = "ProductSetting/VirtualSports/EditMember?memberId={0}".format(editMemberId);
+                // Show Popover
             } else {
-                url = "ProductSetting/VirtualSports/EditAgent?agentId={0}"
-                    .format(editAgentId, editAgentLevel);
+                var url = "ProductSetting/VirtualSports/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
+                popup.openFrame(url, {
+                    width: 1008,
+                    height: 680
+                });
             }
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
         },
         editSetting: function () {
             alert('test');
         },
         editInfo: function () {
             var url;
-            if (pageContext.IsLastLevel) {
-                url = "CustomerList/EditInfoMember?memberId={0}&username={1}"
-                    .format(editMemberId, editUsername);
+            if (pageContext.IsMember) {
+                url = "Customer/Member/EditInfo?memberId={0}&username={1}".format(editMemberId, editUsername);
             } else {
-                url = "CustomerList/EditInfoAgent?agentId={0}"
-                    .format(editAgentId);
+                url = "Customer/Agent/EditInfo?agentId={0}".format(editAgentId);
             }
             popup.openFrame(url);
         },
@@ -508,21 +514,17 @@ var customerList = (function ($) {
                 height: 680
             });
         },
+        getUplines: function () {
+            return '<table><tr><td>test a</td><td>test b</td></tr></table>';
+        },
         resetPassword: function () {
             var url;
             if (pageContext.IsLastLevel) {
-                url = "CustomerList/ResetPasswordMember?memberId={0}"
-                    .format(editMemberId);
+                url = "Customer/Member/ResetPassword?memberId={0}".format(editMemberId);
             } else {
-                url = "CustomerList/ResetPasswordAgent?agentId={0}&agentLevel={1}"
-                    .format(editAgentId, editAgentLevel);
+                url = "Customer/Agent/ResetPassword?agentId={0}".format(editAgentId);
             }
             popup.openFrame(url);
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    customerList.init();
-});

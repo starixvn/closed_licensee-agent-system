@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.ViewModels
+﻿namespace LicenseeAgent.Customer.ViewModels
 {
     /// <summary>
     /// AgentInfoViewModel class.
@@ -10,6 +10,8 @@
         public string AgentName { get; set; }
 
         public short AgentLevel { get; set; }
+
+        public bool IsMember { get; set; }
 
         public short NumberOfLevel { get; set; }
     }

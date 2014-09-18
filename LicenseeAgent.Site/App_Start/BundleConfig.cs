@@ -156,8 +156,7 @@
         {
             RegisterErrorPage(bundles);
             RegisterLoginPage(bundles);
-            RegisterHomePage(bundles);
-            RegisterCustomerListPage(bundles);
+            RegisterHomePage(bundles);            
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
             RegisterTransferPage(bundles);
@@ -224,25 +223,6 @@
         {
             bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
                 "~/views/customersetting/Resources/MemberArrangement.js"));
-        }
-
-        /// <summary>
-        /// Registers the agent list page bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterCustomerListPage(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/css/customerlist").Include(
-                "~/views/customerlist/resources/customer-list.less"));
-
-            bundles.Add(new ScriptBundle("~/js/customerlist").Include(
-                "~/views/customerList/resources/customer-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
-                "~/views/customerlist/resources/reset-password.js"));
-
-            bundles.Add(new ScriptBundle("~/js/pending-member-list").Include(
-                "~/views/customerlist/resources/pending-member-list.js"));
         }
 
         /// <summary>

@@ -5,10 +5,10 @@
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.CustomerList.Controllers;
-    using LicenseeAgent.CustomerList.Entities;
+    using LicenseeAgent.Customer.Controllers;
+    using LicenseeAgent.Customer.Entities;
     using LicenseeAgent.CustomerList.Tests.Fakes;
-    using LicenseeAgent.CustomerList.ViewModels;
+    using LicenseeAgent.Customer.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Tests.Fakes;
     using LicenseeAgent.Tests.Helpers;

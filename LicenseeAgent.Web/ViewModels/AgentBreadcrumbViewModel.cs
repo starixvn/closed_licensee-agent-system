@@ -12,11 +12,12 @@
         {
         }
 
-        public AgentBreadcrumbViewModel(int agentId, string agentName, short agentLevel)
+        public AgentBreadcrumbViewModel(int agentId, string agentName, short agentLevel, bool isMember = false)
         {
             AgentId = agentId;
             AgentName = agentName;
             AgentLevel = agentLevel;
+            IsMember = isMember;
 
             var list = new List<BreadcrumbItem>();
             list.Add(new BreadcrumbItem
@@ -34,6 +35,8 @@
         public short AgentLevel { get; set; }
 
         public string AgentName { get; set; }
+
+        public bool IsMember { get; set; }
 
         public Breadcrumb Breadcrumb { get; set; }
     }

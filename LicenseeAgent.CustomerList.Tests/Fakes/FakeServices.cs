@@ -4,9 +4,9 @@
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerList.Criteria;
-    using LicenseeAgent.CustomerList.Entities;
-    using LicenseeAgent.CustomerList.Services;
+    using LicenseeAgent.Customer.Criteria;
+    using LicenseeAgent.Customer.Entities;
+    using LicenseeAgent.Customer.Services;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;

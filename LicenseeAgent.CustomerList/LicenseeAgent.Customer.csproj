@@ -76,6 +76,8 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
     <Compile Include="Criteria\AgentAutoCompleteCriteria.cs" />
     <Compile Include="Criteria\AgentGetByAgentCriteria.cs" />
@@ -95,6 +97,8 @@
     <Compile Include="Entities\AgentEntity.cs" />
     <Compile Include="Entities\IpEntity.cs" />
     <Compile Include="Entities\MemberEntity.cs" />
+    <Compile Include="Criteria\GetUplineByAgentIdCriteria.cs" />
+    <Compile Include="Criteria\GetUplineByCustIdCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\ICustomerService.cs" />

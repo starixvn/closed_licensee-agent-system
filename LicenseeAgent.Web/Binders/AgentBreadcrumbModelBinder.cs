@@ -42,6 +42,7 @@
                 return null;
             }
 
+            var isMember = string.IsNullOrEmpty(request.Form.Get("IsMember")) ? false : Convert.ToBoolean(request.Form.Get("IsMember"));
             var breadcrumb = request.Form.Get("Breadcrumb");
             if (breadcrumb == null)
             {
@@ -54,6 +55,7 @@
                 AgentId = Convert.ToInt32(agentId),
                 AgentName = agentName,
                 AgentLevel = Convert.ToInt16(agentLevel),
+                IsMember = isMember,
                 Breadcrumb = Breadcrumb.FromString(breadcrumb)
             };
         }

@@ -1,5 +1,6 @@
-﻿namespace LicenseeAgent.CustomerList.Controllers
+﻿namespace LicenseeAgent.Customer.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -8,10 +9,10 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerList.Criteria;
-    using LicenseeAgent.CustomerList.Entities;
-    using LicenseeAgent.CustomerList.Services;
-    using LicenseeAgent.CustomerList.ViewModels;
+    using LicenseeAgent.Customer.Criteria;
+    using LicenseeAgent.Customer.Entities;
+    using LicenseeAgent.Customer.Services;
+    using LicenseeAgent.Customer.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
@@ -96,16 +97,18 @@
         public ActionResult Index(AgentInfoViewModel model)
         {
             var hasAgentModel = model.AgentId != 0;
-
+            
             var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
                 hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.UserName,
-                hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
+                hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel,
+                hasAgentModel ? model.IsMember : false);
 
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, breadModel.AgentId, breadModel.AgentLevel)
             {
-                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                IsMember = model.IsMember
             };
 
             return View(breadModel);
@@ -139,7 +142,8 @@
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
             {
-                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                IsMember = model.IsMember
             };
 
             return View(model);
@@ -158,10 +162,30 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
-            if (isLastLevel || model.IsMember)
+            if (model.IsMember)
             {
+                /*var list = new List<MemberEntity>{
+                    new MemberEntity{
+                        AgentId = 20,
+                        AvailableFund = 10,
+                        CreatedDate = DateTime.Now,
+                        CustId = 123,
+                        FirstName = "x",
+                        IpLogin = "aa",
+                        Status = 0,
+                        SystemId = "aaa",
+                        UserName = "Test Data"
+                    }
+                };
+                return Json(new
+                {
+                    ErrCode = Result.SuccessValue,
+                    List = list,
+                    CurrentPage = model.PageIndex,
+                    ItemsPerPage = model.PageSize,
+                    TotalItem = 0
+                });*/
                 return SearchMembers(model);
             }
 
@@ -331,149 +355,6 @@
         }
 
         /// <summary>
-        /// Change agent account status.
-        /// </summary>
-        /// <param name="model">Agent status view model.</param>
-        /// <returns>Action result.</returns>
-        [HttpPost]
-        public JsonResult ChangeAgentStatus(AgentStatusViewModel model)
-        {
-            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId)
-                || model.AgentId == CurrentSession.AgentInfo.AgentId)
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
-            var criteria = new UpdateAgentStatusCriteria
-            {
-                Updater = CurrentSession.LoginUserId,
-                AgentId = model.AgentId,
-                AccStatus = model.Status
-            };
-
-            var agents = _customerService.UpdateAgentAccStatus(criteria);
-
-            if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
-            {
-                var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
-                {
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserId = CurrentSession.LoginUserId,
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = string.Join(",", agents.Select(a => a.AgentId.ToString()).ToArray()),
-                    IsClosed = true
-                });
-
-                if (serviceResult.ErrCode != Result.SuccessValue)
-                {
-                    return JsonResult(serviceResult);
-                }
-            }
-
-            return JsonResult(criteria.MsgId);
-        }
-
-        /// <summary>
-        /// Change member account status.
-        /// </summary>
-        /// <param name="model">Member status view model.</param>
-        /// <returns>Action result.</returns>
-        [HttpPost]
-        public JsonResult ChangeMemberStatus(MemberStatusViewModel model)
-        {
-            if (!_downLinePermissionService.IsDirectDownLineMember(model.MemberId))
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
-            if (model.Status == (int)AccountStatus.Open)
-            {
-                var criteria = new CheckMemberUpLineStatusForUpdateCriteria
-                {
-                    CustId = model.MemberId
-                };
-                _customerService.CheckMemberUplineStatusForUpdate(criteria);
-                if (criteria.ErrCode != Result.SuccessValue)
-                {
-                    return JsonResult(criteria.ErrCode);
-                }
-            }
-
-            var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
-            {
-                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                UserId = CurrentSession.LoginUserId,
-                SiteName = CurrentSession.AgentInfo.LicenseeName,
-                IBCCustId = model.MemberId.ToString(),
-                IsClosed = model.Status == (int)AccountStatus.Closed,
-                LASAgentId = model.AgentId.ToString()
-            });
-
-            return JsonResult(serviceResult);
-        }
-
-        /// <summary>
-        /// Get agent auto complete.
-        /// </summary>
-        /// <param name="model">Customer auto complete view model.</param>
-        /// <returns>Action result.</returns>
-        [HttpPost]
-        public JsonResult CustomerSearchAutoComplete(CustomerSearchAutoCompleteViewModel model)
-        {
-            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
-            var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
-            return isLastLevel ? SearchMemberAutoComplete(model) : SearchAgentAutoComplete(model);
-        }
-
-        /// <summary>
-        /// Searches the agent automatic complete.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>JSON result.</returns>
-        [NonAction]
-        public JsonResult SearchAgentAutoComplete(CustomerSearchAutoCompleteViewModel model)
-        {
-            var criteria = new AgentAutoCompleteCriteria
-            {
-                AgentId = model.AgentId,
-                Text = model.UserName
-            };
-
-            var agents = _customerService.GetAgentAutoComplete(criteria);
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = agents.Select(m => m.UserName).ToArray()
-            });
-        }
-
-        /// <summary>
-        /// Get member auto complete.
-        /// </summary>
-        /// <param name="model">Customer Auto complete view model.</param>
-        /// <returns>Action result.</returns>
-        [NonAction]
-        public JsonResult SearchMemberAutoComplete(CustomerSearchAutoCompleteViewModel model)
-        {
-            var criteria = new MemberAutoCompleteCriteria
-            {
-                AgentId = model.AgentId,
-                Text = model.UserName
-            };
-
-            var members = _customerService.GetMemberAutoComplete(criteria);
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = members.Select(m => m.UserName).ToArray()
-            });
-        }
-
-        /// <summary>
         /// Get IP Information.
         /// </summary>
         /// <param name="model">IP view model.</param>
@@ -490,286 +371,6 @@
                 City = ipInformation.IpCity,
                 Country = ipInformation.CountryLong
             });
-        }
-
-        /// <summary>
-        /// Reset Password.
-        /// </summary>
-        /// <param name="memberId">Member Id.</param>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        public ActionResult ResetPasswordMember(int memberId)
-        {
-            if (!_downLinePermissionService.IsDownLineMember(memberId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            return View(
-                "~/Views/CustomerList/ResetPassword.cshtml",
-                new ResetPasswordViewModel
-                {
-                    CustId = memberId
-                });
-        }
-
-        /// <summary>
-        /// Reset Password Member.
-        /// </summary>
-        /// <param name="model">Reset Password View Model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult ResetPasswordMember(ResetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!_downLinePermissionService.IsDownLineMember(model.CustId))
-                {
-                    return RedirectToAccessDeniedPage();
-                }
-
-                // Call API to update member password
-                var serviceResult = _memberService.ResetPassword(new ResetPasswordAction
-                {
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserId = CurrentSession.LoginUserId,
-                    IBCCustId = model.CustId,
-                    Password = model.Password,
-                    SiteName = CurrentSession.AgentInfo.LicenseeName
-                });
-
-                if (serviceResult.ErrCode != Result.SuccessValue)
-                {
-                    ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
-                }
-                else
-                {
-                    ViewBag.Result = Las.UpdateSuccessfully;
-                }
-            }
-
-            return View("~/Views/CustomerList/ResetPassword.cshtml");
-        }
-
-        /// <summary>
-        /// Reset Password.
-        /// </summary>
-        /// <param name="agentId">Agent Id information.</param>
-        /// <param name="agentLevel">Agent Level.</param>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        public ActionResult ResetPasswordAgent(int agentId, int agentLevel)
-        {
-            if (!_downLinePermissionService.IsDownLineAgent(agentId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            return View(
-                "~/Views/CustomerList/ResetPassword.cshtml",
-                new ResetPasswordViewModel
-                {
-                    CustId = agentId,
-                    IsLastLevel = CurrentSession.AgentInfo.IsLastAgent(agentLevel)
-                });
-        }
-
-        /// <summary>
-        /// Reset Password Agent.
-        /// </summary>
-        /// <param name="model">Reset Password View Model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult ResetPasswordAgent(ResetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!_downLinePermissionService.IsDownLineAgent(model.CustId))
-                {
-                    return RedirectToAccessDeniedPage();
-                }
-
-                var criteria = new ResetPasswordCriteria
-                {
-                    AgentId = model.CustId,
-                    Password = model.Password,
-                    UserId = CurrentSession.LoginUserId,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserSalt = Cryptography.CreateSalt()
-                };
-
-                _customerService.ResetPassword(criteria);
-
-                if (criteria.ErrCode != Result.SuccessValue)
-                {
-                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
-                }
-                else
-                {
-                    ViewBag.Result = Las.UpdateSuccessfully;
-                }
-            }
-
-            return View("~/Views/CustomerList/ResetPassword.cshtml");
-        }
-
-        /// <summary>
-        /// Edit Info Member.
-        /// </summary>
-        /// <param name="memberId">Member Id.</param>
-        /// <param name="username">Username member.</param>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        [LegendType(LegendType.Credit)]
-        public ActionResult EditInfoMember(int memberId, string username)
-        {
-            if (!_downLinePermissionService.IsDirectDownLineMember(memberId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            var memberInfo = new CustomerEntity { CustId = memberId };
-
-            _memberService.GetMemberInformation(
-                memberInfo,
-                new GetMemberInfoAction
-                {
-                    IBCCustId = memberId,
-                    SiteName = CurrentSession.AgentInfo.LicenseeName
-                });
-
-            return View(
-                "~/Views/CustomerList/EditInfo.cshtml",
-                new EditInfoViewModel
-                {
-                    CustId = memberId,
-                    FirstName = memberInfo.FirstName,
-                    LastName = memberInfo.LastName,
-                    Mobile = memberInfo.Mobile,
-                    Phone = memberInfo.Phone,
-                    Fax = memberInfo.Fax,
-                    UserName = username
-                });
-        }
-
-        /// <summary>
-        /// Reset Password Member.
-        /// </summary>
-        /// <param name="model">Reset Password View Model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        [LegendType(LegendType.Credit)]
-        public ActionResult EditInfoMember(EditInfoViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!_downLinePermissionService.IsDirectDownLineMember(model.CustId))
-                {
-                    return RedirectToAccessDeniedPage();
-                }
-
-                // Call API to update member password
-                var serviceResult = _memberService.UpdateMemberInfo(new UpdateMemberInfoAction
-                {
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    UserId = CurrentSession.LoginUserId,
-                    IBCCustId = model.CustId,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Phone = model.Phone,
-                    OtherPhone = model.Mobile,
-                    Fax = model.Fax,
-                    SiteName = CurrentSession.AgentInfo.LicenseeName
-                });
-
-                if (serviceResult.ErrCode != Result.SuccessValue)
-                {
-                    ModelState.AddModelError(string.Empty, serviceResult.ErrMsg);
-                }
-                else
-                {
-                    ViewBag.Result = Las.UpdateSuccessfully;
-                }
-            }
-
-            return View("~/Views/CustomerList/EditInfo.cshtml", model);
-        }
-
-        /// <summary>
-        /// Reset Password.
-        /// </summary>
-        /// <param name="agentId">Agent Id information.</param>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        public ActionResult EditInfoAgent(int agentId)
-        {
-            if (!_downLinePermissionService.IsDirectDownLineAgent(agentId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            var agentInfo = _customerService.GetAgentInfo(new AgentInfoCriteria
-            {
-                AgentId = agentId,
-                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                UserId = CurrentSession.LoginUserId,
-                CurrencyId = CurrentSession.AgentInfo.CurrencyId
-            });
-
-            return View(
-                "~/Views/CustomerList/EditInfo.cshtml",
-                new EditInfoViewModel
-                {
-                    CustId = agentInfo.AgentId,
-                    FirstName = agentInfo.FirstName,
-                    LastName = agentInfo.LastName,
-                    Mobile = agentInfo.Mobile,
-                    Phone = agentInfo.Phone,
-                    Fax = agentInfo.Fax,
-                    UserName = agentInfo.UserName
-                });
-        }
-
-        /// <summary>
-        /// Reset Password Agent.
-        /// </summary>
-        /// <param name="model">Reset Password View Model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult EditInfoAgent(EditInfoViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!_downLinePermissionService.IsDirectDownLineAgent(model.CustId))
-                {
-                    return RedirectToAccessDeniedPage();
-                }
-
-                var criteria = new EditinfoAgentCriteria
-                {
-                    AgentId = model.CustId,
-                    UserId = CurrentSession.LoginUserId,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Phone = model.Phone,
-                    Mobile = model.Mobile,
-                    Fax = model.Fax
-                };
-
-                _customerService.EditInfoAgent(criteria);
-
-                if (criteria.ErrCode != Result.SuccessValue)
-                {
-                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
-                }
-                else
-                {
-                    ViewBag.Result = Las.UpdateSuccessfully;
-                }
-            }
-
-            return View("~/Views/CustomerList/EditInfo.cshtml", model);
         }
 
         [HttpGet]
@@ -848,6 +449,67 @@
                 };
 
             return _memberService.GetPlainMembers(action);
+        }
+
+        /// <summary>
+        /// Get agent auto complete.
+        /// </summary>
+        /// <param name="model">Customer auto complete view model.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost]
+        public JsonResult CustomerSearchAutoComplete(CustomerSearchAutoCompleteViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
+            return isLastLevel ? SearchMemberAutoComplete(model) : SearchAgentAutoComplete(model);
+        }
+
+        /// <summary>
+        /// Searches the agent automatic complete.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>JSON result.</returns>
+        [NonAction]
+        public JsonResult SearchAgentAutoComplete(CustomerSearchAutoCompleteViewModel model)
+        {
+            var criteria = new AgentAutoCompleteCriteria
+            {
+                AgentId = model.AgentId,
+                Text = model.UserName
+            };
+
+            var agents = _customerService.GetAgentAutoComplete(criteria);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = agents.Select(m => m.UserName).ToArray()
+            });
+        }
+
+        /// <summary>
+        /// Get member auto complete.
+        /// </summary>
+        /// <param name="model">Customer Auto complete view model.</param>
+        /// <returns>Action result.</returns>
+        [NonAction]
+        public JsonResult SearchMemberAutoComplete(CustomerSearchAutoCompleteViewModel model)
+        {
+            var criteria = new MemberAutoCompleteCriteria
+            {
+                AgentId = model.AgentId,
+                Text = model.UserName
+            };
+
+            var members = _customerService.GetMemberAutoComplete(criteria);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = members.Select(m => m.UserName).ToArray()
+            });
         }
     }
 }

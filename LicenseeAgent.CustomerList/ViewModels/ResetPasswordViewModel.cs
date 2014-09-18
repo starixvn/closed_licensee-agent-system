@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.ViewModels
+﻿namespace LicenseeAgent.Customer.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
@@ -26,7 +26,5 @@
         [Compare("Password", ErrorMessageResourceName = "PasswordNotMatch", ErrorMessageResourceType = typeof(Las))]
         [Display(Name = "ConfirmPassword", ResourceType = typeof(Las))]
         public string ConfirmPassword { get; set; }
-
-        public bool IsLastLevel { get; set; }
     }
 }

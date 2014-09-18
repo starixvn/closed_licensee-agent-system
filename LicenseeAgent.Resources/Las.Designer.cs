@@ -124,6 +124,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Agent.
+        /// </summary>
+        public static string AddAgent {
+            get {
+                return ResourceManager.GetString("AddAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Downline.
         /// </summary>
         public static string AddDownline {
@@ -1193,6 +1202,15 @@ namespace LicenseeAgent.Resources {
         public static string DirectAgent {
             get {
                 return ResourceManager.GetString("DirectAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Member.
+        /// </summary>
+        public static string DirectMember {
+            get {
+                return ResourceManager.GetString("DirectMember", resourceCulture);
             }
         }
         

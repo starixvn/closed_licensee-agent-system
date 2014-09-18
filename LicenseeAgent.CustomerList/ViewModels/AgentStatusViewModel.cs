@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.ViewModels
+﻿namespace LicenseeAgent.Customer.ViewModels
 {
     /// <summary>
     /// AgentStatusViewModel class.

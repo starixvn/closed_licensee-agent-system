@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.Criteria
+﻿namespace LicenseeAgent.Customer.Criteria
 {
     using Fanex.Data.Repository;
 

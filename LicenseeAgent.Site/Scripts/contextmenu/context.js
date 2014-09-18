@@ -29,6 +29,7 @@ var context = context || (function () {
                 $('.dropdown-context').css({ display: '' }).find('.drop-left').removeClass('drop-left');
             });
         });
+
         if (options.preventDoubleContext) {
             $(document).on('contextmenu', '.dropdown-context', function (e) {
                 e.preventDefault();

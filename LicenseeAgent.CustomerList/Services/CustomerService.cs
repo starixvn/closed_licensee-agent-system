@@ -1,10 +1,10 @@
-﻿namespace LicenseeAgent.CustomerList.Services
+﻿namespace LicenseeAgent.Customer.Services
 {
     using System.Collections.Generic;
     using Fanex.Common;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerList.Criteria;
-    using LicenseeAgent.CustomerList.Entities;
+    using LicenseeAgent.Customer.Criteria;
+    using LicenseeAgent.Customer.Entities;
 
     /// <summary>
     /// CustomerService class.
@@ -124,6 +124,11 @@
         public IList<MemberEntity> SearchMembersByIds(SearchMemberByIdsCriteria criteria)
         {
             return GetEntites<MemberEntity>(criteria);
+        }
+
+        public IList<AgentEntity> UplineAgentsByCustId(GetUplineByCustIdCriteria criteria)
+        {
+            return GetEntites<AgentEntity>(criteria);
         }
     }
 }

@@ -2,6 +2,7 @@
 @using LicenseeAgent.Core.Utility
 @using LicenseeAgent.Web.ViewModels
 @using LicenseeAgent.Web.Entities
+
 @model AgentBreadcrumbViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
@@ -16,15 +17,18 @@
 }
 @section css{
     @Styles.Render("~/css/fanexgrid")
-    @Styles.Render("~/css/customerlist")
+    @Styles.Render("~/css/customer")
 }
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/contextmenu")
-    @Scripts.Render("~/js/customerlist")
-    @Html.Partial("_Script")
+    @Scripts.Render("~/js/customer")
+    <script type="text/javascript">
     @if (pageContext.IsLastLevel || pageContext.IsMember)
+            customer.customerList.init();
+        });
+    </script>
     {
         @Html.Partial(SessionManager.CurrentSession.AgentInfo.IsCredit ? "_MemberGrid" : "_MemberGridDeposit", pageContext)
     }
@@ -42,6 +46,7 @@
     @Html.HiddenFor(m => m.AgentName)
     @Html.HiddenFor(m => m.AgentLevel)
     @Html.HiddenFor(m => m.Breadcrumb)
+    @Html.HiddenFor(m => m.IsMember)
 }
 @using (Html.BeginForm("GetCustomerList", "CustomerList", FormMethod.Post,
     new { @class = "form-inline form-filter ", id = "search-form" }))

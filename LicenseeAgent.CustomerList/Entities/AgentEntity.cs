@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerList.Entities
+﻿namespace LicenseeAgent.Customer.Entities
 {
     using System;
     using LicenseeAgent.Core.Utility;
@@ -42,6 +42,8 @@
         public string IpLogin { get; set; }
 
         public int NumberOfAgent { get; set; }
+
+        public int NumberOfMember { get; set; }
 
         public int RowNumber { get; set; }
 

@@ -9,6 +9,7 @@ language.Las['en-US'] = {
 	Action : "Action",
 	Active : "Active",
 	Add : "Add",
+	AddAgent : "Add Agent",
 	AddDownline : "Add Downline",
 	AddNewAgent : "Add new agent to {0}",
 	AddNewMember : "Add new member {0}",

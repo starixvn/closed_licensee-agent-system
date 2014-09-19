@@ -141,14 +141,14 @@ home.accountInformation.result = (function ($) {
             home.accountInformation.result.showScrollDownLine();
         },
         showScrollDownLine: function () {
-            var niceScroll = $("#downlineContent").getNiceScroll();
+            var niceScroll = $("#downlineList").getNiceScroll();
             if (niceScroll.length === 0) {
-                $("#downlineContent").niceScroll({
+                niceScroll = $("#downlineList").niceScroll({
                     cursorcolor: "#8a8a8a",
                     autohidemode: "leave"
                 });
             }
-            $("#downlineContent").getNiceScroll().resize();
+            niceScroll.resize();
         },
         editAgentCredit: function (agentId, agentName, agentLevel, givenCredit) {
             var url = core.resolveUrl(editAgentCreditUrl, {

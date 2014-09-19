@@ -19,6 +19,8 @@
         [AllowHtml]
         public string UserName { get; set; }
 
+        public bool IsMember { get; set; }
+
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }

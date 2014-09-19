@@ -1619,4 +1619,10 @@ Please note that this action cannot be undone and this account will be temporari
   <data name="AlertEnableAgentProduct" xml:space="preserve">
     <value>{0} is enabled for this agent. Do you want to enable for his downlines too?</value>
   </data>
+  <data name="DownlineAgent" xml:space="preserve">
+    <value>Downline Agent</value>
+  </data>
+  <data name="DirectMemberList" xml:space="preserve">
+    <value>Direct Member List</value>
+  </data>
 </root>

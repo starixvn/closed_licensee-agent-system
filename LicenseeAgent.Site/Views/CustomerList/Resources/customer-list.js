@@ -161,6 +161,7 @@ var customerList = (function ($) {
                 status: $("#Status").val() !== -1 ? $.trim($("#Status").val()) : '',
                 agentId: $("#AgentId").val(),
                 agentLevel: $("#AgentLevel").val(),
+                isMember: pageContext.IsMember,
                 pageIndex: currentPage,
                 pageSize: itemsPerPage
             };

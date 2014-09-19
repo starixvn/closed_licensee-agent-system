@@ -1296,6 +1296,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mandatory product could not be disabled..
+        /// </summary>
+        public static string Msg_2142 {
+            get {
+                return ResourceManager.GetString("Msg_2142", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This username is invalid. Please check again..
         /// </summary>
         public static string Msg_2148 {

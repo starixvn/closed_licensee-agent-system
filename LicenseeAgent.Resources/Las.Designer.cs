@@ -1197,6 +1197,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Member List.
+        /// </summary>
+        public static string DirectMemberList {
+            get {
+                return ResourceManager.GetString("DirectMemberList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this message again..
         /// </summary>
         public static string DontShowMessageAgain {
@@ -1211,6 +1220,15 @@ namespace LicenseeAgent.Resources {
         public static string Downline {
             get {
                 return ResourceManager.GetString("Downline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downline Agent.
+        /// </summary>
+        public static string DownlineAgent {
+            get {
+                return ResourceManager.GetString("DownlineAgent", resourceCulture);
             }
         }
         

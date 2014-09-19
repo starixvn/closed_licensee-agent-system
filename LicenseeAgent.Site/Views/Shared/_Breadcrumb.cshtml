@@ -1,9 +1,15 @@
 ﻿@using LicenseeAgent.Web.ViewModels
+@using LicenseeAgent.Web.Entities
 @model AgentBreadcrumbViewModel
 @{
-    var isShowBreadcrumb = !SessionManager.CurrentSession.AgentInfo.IsLastLevel &&
-        Model.Breadcrumb != null
-        && Model.Breadcrumb.Count > 1;
+    var isShowBreadcrumb = !SessionManager.CurrentSession.AgentInfo.IsLastLevel
+            && Model.Breadcrumb != null 
+            && Model.Breadcrumb.Count > 1;
+    var pageContext = (PageContext)ViewBag.PageContext;
+    if (pageContext != null && pageContext.IsMember)
+    {
+        isShowBreadcrumb = false; 
+    }
 }
 @if (isShowBreadcrumb)
 {

@@ -39,8 +39,14 @@
         }
         else
         {
+            if (!pageContext.IsLastLevel)
+            {
             <button class="btn btn-inverse" data-url="@Url.Action("Index", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
-                @(pageContext.IsLastLevel ? @Las.MemberList : @Las.AgentList)
+                @Las.AgentList
+            </button>
+            }
+            <button class="btn btn-inverse" data-url="@Url.Action("MemberList", "CustomerList", new { area = "", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+                @Las.DirectMemberList
             </button>
         }
         @if (Model.IsShowStatement)
@@ -62,7 +68,7 @@
             @if (!pageContext.IsMember)
             {
                 <li><a href="#downlineList" id="tabDownline" data-toggle="tab">
-                    @Las.DownlineList
+                    @Las.DownlineAgent
                 </a></li>
             }
         </ul>

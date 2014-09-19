@@ -99,7 +99,7 @@
         [JsonConverter(typeof(JavaScriptDateTimeConverter))]
         public DateTime MaxDate { get; set; }
 
-        public bool IsMember { get; private set; }
+        public bool IsMember { get; set; }
 
         public bool IsOfferedVirtualSports { get; set; }
 

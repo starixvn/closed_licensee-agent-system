@@ -59,6 +59,34 @@
             _coreService = coreService ?? new CoreService();
         }
 
+        #region Member List
+
+        /// <summary>
+        /// Members the list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Page member list.</returns>
+        [HttpGet]
+        public ActionResult MemberList(AgentInfoViewModel model)
+        {
+            var hasAgentModel = model.AgentId != 0;
+            var breadModel = new AgentBreadcrumbViewModel(
+                hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
+                hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.UserName,
+                hasAgentModel ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel);
+
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            ViewBag.PageContext = new PageContext(CurrentSession, breadModel.AgentId, breadModel.AgentLevel)
+            {
+                IsMember = true,
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
+            };
+
+            return View("~/Views/CustomerList/Index.cshtml", breadModel);
+        }
+
+        #endregion Member List
+
         /// <summary>
         /// Agent List.
         /// </summary>
@@ -132,7 +160,7 @@
 
             var isLastLevel = CurrentSession.AgentInfo.IsLastAgent(model.AgentLevel);
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
-            if (isLastLevel)
+            if (isLastLevel || model.IsMember)
             {
                 return SearchMembers(model);
             }

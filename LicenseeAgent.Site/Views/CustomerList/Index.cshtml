@@ -5,7 +5,7 @@
 @model AgentBreadcrumbViewModel
 @{
     var pageContext = (PageContext)ViewBag.PageContext;
-    if (pageContext.IsLastLevel)
+    if (pageContext.IsLastLevel || pageContext.IsMember)
     {
         ViewBag.Title = Las.MemberList;
     }
@@ -24,7 +24,7 @@
     @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/customerlist")
     @Html.Partial("_Script")
-    @if (pageContext.IsLastLevel)
+    @if (pageContext.IsLastLevel || pageContext.IsMember)
     {
         @Html.Partial(SessionManager.CurrentSession.AgentInfo.IsCredit ? "_MemberGrid" : "_MemberGridDeposit", pageContext)
     }

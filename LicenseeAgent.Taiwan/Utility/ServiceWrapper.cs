@@ -30,7 +30,7 @@
         public static T GetActionResponse<T>(BaseAction action) where T : ResponseResult
         {
             // Simulate member site API to support for local environment
-            if (AppSettings.SiteEnvironment == SiteEnvironment.Local && string.Compare(action.SiteName, "yq355", StringComparison.OrdinalIgnoreCase) < 0)
+            if (AppSettings.SiteEnvironment == SiteEnvironment.Local || string.Compare(action.SiteName, "yq355", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 return (T)Activator.CreateInstance(typeof(T), Result.SuccessValue, string.Empty);
             }

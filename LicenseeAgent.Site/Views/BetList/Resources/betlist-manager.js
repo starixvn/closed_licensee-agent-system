@@ -86,11 +86,14 @@ var betList = (function ($) {
         },
         renderDatePicker: function () {
             var lastdate = new Date(core.ServerDate);
+            var minDate = new Date(pageContext.MinDate);
+            var maxDate = new Date(pageContext.MaxDate);
+            maxDate.setFullYear(maxDate.getFullYear() + 3);
             $('#month-picker-control').monPickr({
                 plugInId: '#month-picker-control',
                 today: core.ServerDate,
-                maxDate: new Date(pageContext.MaxDate),
-                minDate: new Date(pageContext.MinDate),
+                maxDate: maxDate,
+                minDate: minDate,
                 showDateRange: true,
                 fromDayId: 'spFrom',
                 toDayId: 'spTo',

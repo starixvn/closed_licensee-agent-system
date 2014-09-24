@@ -1,4 +1,13 @@
 ﻿@model SearchUserResultViewModel
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+    var accountStatusClassName = Model.Customer.Status == (int)AccountStatus.Open ? "icon-status-open" : "icon-status-closed";
+    if (!pageContext.IsAdmin && !pageContext.IsDirectDownLine)
+    {
+        accountStatusClassName += " readonly";
+    }
+    var accountStatusText = Model.Customer.Status == (int)AccountStatus.Open ? Las.Open : Las.Closed;
+}
 @Html.HiddenFor(m => m.Customer.CustId, new { @id = "AgentId" })
 <div class="container-fluid">
     @if (Model.Uplines.Any())
@@ -55,8 +64,8 @@
                             <i class="icon-customer-status"></i>
                         </td>
                         <td>
-                            <div class="@(Model.Customer.Status == (int)AccountStatus.Open ? "icon-status-open" : "icon-status-closed")" id="customer-status">
-                                <span>@(Model.Customer.Status == (int)AccountStatus.Open ? Las.Open : Las.Closed)</span>
+                            <div class="@accountStatusClassName" id="customer-status">
+                                <span>@accountStatusText</span>
                             </div>
                         </td>
                     </tr>

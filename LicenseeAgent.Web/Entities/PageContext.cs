@@ -19,7 +19,8 @@
         public PageContext(ICurrentSession currentSession, int agentLevel, string agentName)
             : this(currentSession)
         {
-            IsDirectDownLine = currentSession.AgentInfo.AgentLevel == agentLevel - 1;
+            IsDirectDownLine = currentSession.AgentInfo.IsLastLevel
+                || currentSession.AgentInfo.AgentLevel == agentLevel - 1;
             AgentName = agentName;
             AgentLevel = agentLevel;
         }

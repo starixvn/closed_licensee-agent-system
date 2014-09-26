@@ -54,6 +54,7 @@
     <Setting Key="Las_AgentEditMemIndirect" SpName="Las_AgentEditMemIndirectMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_Cash_GetAgentIdByUsername" SpName="Las_Cash_GetAgentIdByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetAgentInfoById" SpName="Las_GetAgentInfoById" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetAgentInfoByAgentId" SpName="Las_GetAgentInfoByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />    
   </Function>
   <Function Name="CustomerSetting - SportsBook">
     <Setting Key="Las_LicenseeGetAgentSportsBookSettingForInsert" SpName="Las_LicenseeSportsbookSettingSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

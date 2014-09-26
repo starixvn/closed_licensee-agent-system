@@ -57,6 +57,16 @@
 
         public bool IsAllowedMemberComm { get; set; }
 
+        public short Status { get; set; }
+
+        public bool IsClosed
+        {
+            get
+            {
+                return Status == 0;
+            }
+        }
+
         public bool IsLevel0
         {
             get

@@ -4,6 +4,7 @@ var MemberArrangement = (function ($) {
     'use strict';
     return {
         isConfirm: false,
+        confirmMessage: "",
         init: function () {
             MemberArrangement.switchMode();
             $("form input:radio").click(function () {
@@ -23,10 +24,12 @@ var MemberArrangement = (function ($) {
             if ($('input[name=Mode]:checked', 'form').val() === "0") {
                 $('.normalCash').show();
                 $('.assignMember').hide();
+                MemberArrangement.confirmMessage = language.getString('ConfirmSwitchMember');
             }
             else {
                 $('.normalCash').hide();
                 $('.assignMember').show();
+                MemberArrangement.confirmMessage = language.getString('ConfirmMemberReArangement');
             }
         },
 
@@ -71,7 +74,7 @@ var MemberArrangement = (function ($) {
 
             popup.confirm({
                 title: language.getString('Confirmation'),
-                message: language.getString('ConfirmMemberReArangement'),
+                message: MemberArrangement.confirmMessage,
                 buttons: buttons,
                 top: 120,
                 width: 420

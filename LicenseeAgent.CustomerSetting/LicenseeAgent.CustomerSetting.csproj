@@ -90,6 +90,8 @@
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Controllers\MemberCommissionController.cs" />
     <Compile Include="Controllers\MemberReArrangement.cs" />
+    <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
+    <Compile Include="Entities\AgentInformation.cs" />
     <Compile Include="Utils\Commission.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\ErrorType.cs" />

@@ -32,5 +32,7 @@
         CustomerInfo GetMemberInfo(GetMemberInfoCriteria criteria);
 
         AgentInfo GetAgentInfoByMember(GetAgentInfoByMemberCriteria criteria);
+
+        AgentInformation GetAgentInfo(GetAgentInfoCriteria criteria);        
     }
 }

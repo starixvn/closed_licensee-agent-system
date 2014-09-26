@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -37,48 +38,61 @@
         [AccountType(AccountType.Admin)]
         [HttpPost]
         [LegendType(LegendType.Deposit)]
+        [SuppressMessage(
+           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
+           "SP2101:MethodMustNotContainMoreLinesThan",
+           Justification = "Because urgent matter. Will Fix later.")]
         public ViewResult MemberArrangement(MemberArrangementViewModel model)
         {
             var errCode = 0;
+            
+            var customer = GetDepositMemberInformation(model.MemberName, ref errCode);
+            if (errCode != 0)
+            {
+                ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
+                return View(model);
+            }
+
+            // Close deposit member before Update (Pending member: CustId = 0).
+            if (!customer.IsClosed && customer.CustId > 0 && model.Mode == ArrangementMode.SwitchFromNormal)
+            {
+                var errMsg = UpdateCustomerStatus(customer, true);
+                if (!string.IsNullOrEmpty(errMsg))
+                {
+                    ModelState.AddModelError(string.Empty, errMsg);
+                    return View(model);
+                }
+            }
+
             if (IsFirstDepositMember(model.MemberName))
             {
                 errCode = UpdateAgentIdDeposited(model);
             }
             else
             {
-                // Call API to get member currency.
-                var customer = GetDepositMemberInformation(model.MemberName, ref errCode);
-                if (errCode != 0)
-                {
-                    ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
-                    return View(model);
-                }
-
                 if (model.Mode == ArrangementMode.AssignMember)
                 {
                     errCode = CheckDepositMemberBelongToAgent(model.OldAgentName, customer);
-                    if (errCode != 0)
-                    {
-                        ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
-                        return View(model);
-                    }
                 }
                 else
                 {
-                    // Can not switch legend member.
-                    if (customer.LASAgentId != 0)
-                    {
-                        ModelState.AddModelError(string.Empty, GetErrMsg((int)ErrCode.Msg_2076));
-                        return View(model);
-                    }
+                    // Can not switch legend member(has Legend Id).
+                    errCode = customer.LASAgentId != 0 ? (int)ErrCode.Msg_2076 : 0;
                 }
 
-                errCode = UpdateAgentID(model, customer);
+                if (errCode == 0)
+                {
+                    errCode = UpdateAgentID(model, customer);
+                }                
             }
 
             if (errCode == 0)
             {
                 ViewBag.Result = Las.UpdateSuccessfully;
+                if (model.Mode == ArrangementMode.SwitchFromNormal && customer.CustId > 0)
+                {
+                    OpenMember(model, customer);
+                }
             }
             else
             {
@@ -132,9 +146,10 @@
             }
 
             errCode = model.Mode != ArrangementMode.AssignMember ? SwitchUserFromNormalToLegend(model) : MemberReArrange(model);
-            if (errCode != 0)
+            
+            if (errCode != 0 && model.Mode == ArrangementMode.AssignMember)
             {
-                // Restore Data of API.
+                // Restore Data of API for case "Assign member".
                 UpdateAgentIDHasDeposit(model, oldAgentName);
             }
 
@@ -345,6 +360,54 @@
             }
 
             return errCode;
+        }
+
+        /// <summary>
+        /// Updates the customer status.
+        /// </summary>
+        /// <param name="customer">The customer.</param>
+        /// <param name="isClosed">Member Status.</param>
+        /// <returns>Error Code.</returns>
+        private string UpdateCustomerStatus(DepositCustomerEntity customer, bool isClosed)
+        {
+            var action = new UpdateMemberStatusAction
+            {
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                UserId = CurrentSession.LoginUserId,
+                IBCCustId = customer.CustId.ToString(),
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                IsClosed = isClosed
+            };
+
+            // Call API to Update Member Status here.
+            var serviceResult = _memberService.UpdateMemberStatus(action);
+
+            if (serviceResult.ErrCode != Result.SuccessValue)
+            {
+                return serviceResult.ErrMsg;
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Call API to Open the member.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="customer">The customer.</param>
+        private void OpenMember(MemberArrangementViewModel model, DepositCustomerEntity customer)
+        {
+            var criteria = new GetAgentInfoCriteria
+            {
+                Username = model.Mode == ArrangementMode.AssignMember ? model.NewAgentName : model.AgentName
+            };
+            var agent = _customerSettingService.GetAgentInfo(criteria);
+            
+            if (!customer.IsClosed && !agent.IsClosed)
+            {
+                // Open member.
+                UpdateCustomerStatus(customer, false);
+            }
         }
     }
 }

@@ -254,16 +254,6 @@
             });
         }
 
-        /// <summary>
-
-                if (customer != null && CurrentSession.AgentInfo.IsDeposit)
-                {
-                    customer.FirstName = string.Empty;
-                    customer.LastName = string.Empty;
-                    customer.Phone = string.Empty;
-                    customer.Mobile = string.Empty;
-                    customer.Fax = string.Empty;
-                }
         /// Set Admin view.
         /// </summary>
         /// <param name="criteria">Admin member list criteria.</param>
@@ -320,6 +310,15 @@
                         ErrCode = serviceResult.ErrCode,
                         ErrMsg = serviceResult.ErrMsg
                     };
+                }
+
+                if (customer != null && CurrentSession.AgentInfo.IsDeposit)
+                {
+                    customer.FirstName = string.Empty;
+                    customer.LastName = string.Empty;
+                    customer.Phone = string.Empty;
+                    customer.Mobile = string.Empty;
+                    customer.Fax = string.Empty;
                 }
             }
 

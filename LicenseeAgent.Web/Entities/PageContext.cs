@@ -20,7 +20,7 @@
             : this(currentSession)
         {
             IsDirectDownLine = currentSession.AgentInfo.IsLastLevel
-                || currentSession.AgentInfo.AgentLevel == agentLevel - 1;
+                || currentSession.AgentInfo.AgentLevel == custLevel - 1;
             CustId = custId;
             AgentName = userName;
             AgentLevel = custLevel;

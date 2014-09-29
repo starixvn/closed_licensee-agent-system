@@ -59,8 +59,10 @@
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",
            Justification = "Because urgent matter. Will Fix later.")]
+        public ViewResult Index(MemberArrangementViewModel model)
         {
             var errCode = 0;
+            
             var customer = GetDepositMemberInformation(model.MemberName, ref errCode);
             if (errCode != 0)
             {
@@ -116,7 +118,7 @@
                 if (errCode == 0)
                 {
                     errCode = UpdateAgentID(model, customer);
-                }                
+                }
             }
 
             if (errCode == 0)
@@ -179,7 +181,7 @@
             }
 
             errCode = model.Mode != ArrangementMode.AssignMember ? SwitchUserFromNormalToLegend(model) : MemberReArrange(model);
-            
+
             if (errCode != 0 && model.Mode == ArrangementMode.AssignMember)
             {
                 // Restore Data of API for case "Assign member".
@@ -435,7 +437,7 @@
                 Username = model.Mode == ArrangementMode.AssignMember ? model.NewAgentName : model.AgentName
             };
             var agent = _customerSettingService.GetAgentInfo(criteria);
-            
+
             if (!customer.IsClosed && !agent.IsClosed)
             {
                 // Open member.

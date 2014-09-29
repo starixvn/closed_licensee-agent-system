@@ -417,7 +417,6 @@
     <Content Include="Areas\Customer\Views\Shared\ResetPassword.cshtml" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\EditInfo.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\_SettingPopover.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

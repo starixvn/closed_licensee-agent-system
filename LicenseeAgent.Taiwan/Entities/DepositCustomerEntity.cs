@@ -15,6 +15,8 @@
 
         public string UserName { get; set; }
 
+        public bool IsClosed { get; set; }
+
         [Service(Name = "LASAgentID")]
         public int LASAgentId { get; set; }
     }

@@ -963,6 +963,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to move member. Please contact administrator immediately!.
+        /// </summary>
+        public static string Msg_2077 {
+            get {
+                return ResourceManager.GetString("Msg_2077", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Faild to switch user. Please try again..
         /// </summary>
         public static string Msg_2078 {
@@ -1031,6 +1040,15 @@ namespace LicenseeAgent.Resources {
         public static string Msg_2085 {
             get {
                 return ResourceManager.GetString("Msg_2085", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot switch this member to Agency member since his first deposit had been made for more than 7 days. Please contact Administrator..
+        /// </summary>
+        public static string Msg_2086 {
+            get {
+                return ResourceManager.GetString("Msg_2086", resourceCulture);
             }
         }
         

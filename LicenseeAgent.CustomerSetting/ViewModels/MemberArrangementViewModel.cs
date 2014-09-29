@@ -12,7 +12,7 @@ namespace LicenseeAgent.CustomerSetting.ViewModels
         [Display(Name = "Agent", ResourceType = typeof(Las))]
         public string AgentName { get; set; }
 
-        [Display(Name = "Username", ResourceType = typeof(Las))]
+        [Display(Name = "Member", ResourceType = typeof(Las))]
         public string MemberName { get; set; }
 
         public ArrangementMode Mode { get; set; }

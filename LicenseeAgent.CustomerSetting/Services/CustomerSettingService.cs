@@ -172,6 +172,11 @@
             return QueryService.GetEntity<AgentInfo>(criteria);
         }
 
+        public AgentInformation GetAgentInfo(GetAgentInfoCriteria criteria)
+        {
+            return QueryService.GetEntity<AgentInformation>(criteria);
+        }
+
         /// <summary>
         /// Creates the insert customer criteria.
         /// </summary>

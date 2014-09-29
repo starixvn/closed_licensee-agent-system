@@ -257,7 +257,7 @@
         {
             var authKey = _internalService.Encode(internalLoginInfo);
             var licenseDomainUrl = _coreService.GetLicenseeDomain(internalLoginInfo.LicenseeId);
-            var directUrl = string.Format("{0}://{1}?authKey={2}", Request.Url.Scheme, Request.AppRelativeCurrentExecutionFilePath.Replace("~", licenseDomainUrl), authKey);
+            var directUrl = string.Format("{0}?authKey={1}", Request.AppRelativeCurrentExecutionFilePath.Replace("~", licenseDomainUrl.ToString()), authKey);
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

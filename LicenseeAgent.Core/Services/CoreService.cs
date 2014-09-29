@@ -80,10 +80,28 @@
             }
         }
 
-        public string GetLicenseeDomain(int licenseeId)
+        /// <summary>
+        /// Gets the licensee domain.
+        /// </summary>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <returns>Returns URL.</returns>
+        public Uri GetLicenseeDomain(int licenseeId)
         {
             var licenseeDomains = LicenseeDomains;
-            return licenseeDomains.Where(x => x.LicenseeId == licenseeId).Select(x => x.DomainName).FirstOrDefault();
+            var domain = licenseeDomains.Where(x => x.LicenseeId == licenseeId).Select(x => x.DomainName).FirstOrDefault();
+            if (!domain.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            {
+                domain = string.Format("http://{0}", domain);
+            }
+
+            if (AppSettings.SiteEnvironment == SiteEnvironment.Local)
+            {
+                var request = HttpContext.Current.Request;
+                var applicationPath = request.ApplicationPath;
+                return new Uri(new Uri(domain), applicationPath);
+            }
+
+            return new Uri(domain);
         }
 
         /// <summary>

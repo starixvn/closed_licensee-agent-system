@@ -8,6 +8,7 @@
     using System.Web;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Attributes;

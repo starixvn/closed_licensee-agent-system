@@ -1,18 +1,11 @@
 ﻿@model SearchUserResultViewModel
-@{
-    var pageContext = (PageContext)ViewBag.PageContext;
-}
 <div class="tab-pane in" id="panel-products">
     <div class="content">
         @foreach (var item in Model.ProductSettings)
         {
             var productName = DataRefWrapper.GetProductName(item.ProductId);
-            var tooltip = Model.Customer.IsDirect && item.UplineDisable && item.Disable
-                ? string.Format(LangMsg.Msg_2139, productName)
-                : string.Empty;
-            var uplineDisable = (!pageContext.IsAdmin && item.ProductId == (int)ProductCode.Product_2)
-                || item.UplineDisable
-                || !Model.Customer.IsDirect;
+            var tooltip = Model.Customer.IsDirect && item.UplineDisable && item.Disable ? string.Format(LangMsg.Msg_2139, productName) : string.Empty;
+            var uplineDisable = item.ProductId == (int)ProductCode.Product_2 || item.UplineDisable || !Model.Customer.IsDirect;
             <div class="product" title="@tooltip">
                 <label class="checkbox">
                     <input type="checkbox" name="@item.ProductName" data-product-id="@item.ProductId" checked="@(!item.Disable)" disabled="@uplineDisable" />

@@ -24,13 +24,9 @@
     {
         #region Services
 
-        private readonly IDownLinePermissionService _downLinePermissionService;
-
         private readonly ICoreService _coreService;
 
         private readonly IReportService _reportService;
-
-        private readonly IBetListService _betlistService;
 
         #endregion Services
 
@@ -43,20 +39,16 @@
         #region Constructor
 
         public ReportController()
-            : this(null, null, null, null)
+            : this(null, null)
         {
         }
 
         public ReportController(
             ICoreService coreService,
-            IReportService reportService,
-            IBetListService betlistService,
-            IDownLinePermissionService downLinePermissionService)
+            IReportService reportService)
         {
             _coreService = coreService ?? new CoreService();
             _reportService = reportService ?? new ReportService();
-            _betlistService = betlistService ?? new BetListService();
-            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
         #endregion Constructor

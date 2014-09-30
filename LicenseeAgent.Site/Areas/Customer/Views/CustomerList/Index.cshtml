@@ -23,17 +23,20 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/customer")
+    
+    <script type="text/javascript">
+        $(function () {
+            customer.customerList.init();
+        });
+    </script>
     @if (pageContext.IsLastLevel || pageContext.IsMember)
     {
-        <script type="text/javascript">
-            customer.customerList.init();
-        </script>
+        @Html.Partial(SessionManager.CurrentSession.AgentInfo.IsCredit ? "_MemberGrid" : "_MemberGridDeposit", pageContext)
     }
+    else
     {
-    @Html.Partial(SessionManager.CurrentSession.AgentInfo.IsCredit ? "_MemberGrid" : "_MemberGridDeposit", pageContext)
-    } else {
-    @Html.Partial("_AgentGrid")
-}
+        @Html.Partial("_AgentGrid")
+    }
 }
 <div class="legend">
     @ViewBag.Title

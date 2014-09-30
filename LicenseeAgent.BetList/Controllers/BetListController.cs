@@ -270,7 +270,7 @@
             return formattedData;
         }
 
-        public string BuildSystemParlayDetail(SystemParlayData systemParlayData)
+        public string BuildSystemParlayDetail(ISystemParlayData systemParlayData)
         {
             var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper()

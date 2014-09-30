@@ -54,7 +54,7 @@ var context = context || (function () {
         var subClass = (subMenu) ? ' dropdown-context-sub' : '',
             compressed = options.compress ? ' compressed-context' : '',
             $menu = $('<ul class="dropdown-menu dropdown-context' + subClass + compressed + '" id="dropdown-' + id + '"></ul>');
-        var i = 0, linkTarget = '', icon = '';
+        var i = 0, linkTarget = '', icon = '', css = '';
         for (i; i < data.length; i++) {
             if (typeof data[i].divider !== 'undefined') {
                 $menu.append('<li class="divider"></li>');
@@ -64,6 +64,9 @@ var context = context || (function () {
                 if (typeof data[i].href == 'undefined') {
                     data[i].href = '#';
                 }
+                if (typeof data[i].css != 'undefined') {
+                    css = 'class="' + data[i].css + '"';
+                }
                 if (typeof data[i].target !== 'undefined') {
                     linkTarget = ' target="' + data[i].target + '"';
                 }
@@ -71,9 +74,9 @@ var context = context || (function () {
                     icon = '<i class="' + data[i].icon + '"></i>';
                 }
                 if (typeof data[i].subMenu !== 'undefined') {
-                    $sub = ('<li class="dropdown-submenu"><a tabindex="-1" href="' + data[i].href + '">' + data[i].text + '</a></li>');
+                    $sub = ('<li class="dropdown-submenu"><a tabindex="-1" ' + css + ' href="' + data[i].href + '">' + data[i].text + '</a></li>');
                 } else {
-                    $sub = $('<li>' + '<a tabindex="-1" href="' + data[i].href + '"' + linkTarget + '>' + icon + data[i].text + '</a></li>');
+                    $sub = $('<li>' + '<a tabindex="-1" ' + css + ' href="' + data[i].href + '"' + linkTarget + '>' + icon + data[i].text + '</a></li>');
                 }
                 if (typeof data[i].action !== 'undefined') {
                     var actionID = data[i].id;

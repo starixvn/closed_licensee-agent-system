@@ -6,7 +6,9 @@ customer.customerList = (function ($) {
         editAgentId = 0,
         editAgentLevel = 0,
         editMemberId = 0,
-        editUsername = "";
+        editUsername = "",
+        sportsbook = "SportsBook",
+        virtualSport = "VirtualSports";
 
     return {
         init: function () {
@@ -28,7 +30,17 @@ customer.customerList = (function ($) {
                         : 'icon-customer-canview'),
                     text: language.getString('Sportsbook'),
                     href: '#',
-                    action: customer.customerList.editSportsbook
+                    css: 'popover-link',
+                    action: function (e) {
+                        if (pageContext.IsMember) {
+                            e.stopPropagation();
+                            customer.customerList.hidePopover();
+                            $('#menuSportsbook').popover("show");
+                        }
+                        else {
+                            customer.customerList.editSportsbook;
+                        }
+                    }
                 },
                 {
                     id: 'menuVirtualSports',
@@ -39,8 +51,16 @@ customer.customerList = (function ($) {
                         : 'icon-customer-canview'),
                     text: language.getString('VirtualSports'),
                     href: '#',
+                    css: 'popover-link',
                     action: function (e) {
-                        customer.customerList.editVirttualSports(e);
+                        if (pageContext.IsMember) {
+                            e.stopPropagation();
+                            customer.customerList.hidePopover();
+                            $('#menuVirtualSports').popover("show");
+                        }
+                        else {
+                            customer.customerList.editVirttualSports;
+                        }
                     }
                 },
                 {
@@ -66,6 +86,31 @@ customer.customerList = (function ($) {
                 }
             ]);
 
+            if (pageContext.IsMember) {
+                $('#menuVirtualSports').popover({
+                    html: true,
+                    placement: 'right',
+                    trigger: 'manual',
+                    content: function () {
+                        var divId = "tmp-id-" + $.now();
+                        return customer.customerList.uplineAgents($(this).attr('href'), divId, virtualSport);
+                    }
+                });
+
+                $('#menuSportsbook').popover({
+                    html: true,
+                    placement: 'right',
+                    trigger: 'manual',
+                    content: function () {
+                        var divId = "tmp-id-" + $.now();
+                        return customer.customerList.uplineAgents($(this).attr('href'), divId, sportsbook);
+                    }
+                });
+
+                $(document).on('click', 'html', function () {
+                    customer.customerList.hidePopover();
+                });
+            }
             // create select context menu
             context.init({
                 preventDoubleContext: false
@@ -101,13 +146,6 @@ customer.customerList = (function ($) {
             $('#Username').typeahead({
                 source: customer.customerList.getSuggestion,
                 minLength: 2
-            });
-
-            $('#menuVirtualSports').popover({
-                container: 'body',
-                html: true,
-                content: customer.customerList.getUplines,
-                placement: 'right'
             });
 
             // get customer list
@@ -163,8 +201,7 @@ customer.customerList = (function ($) {
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (gridOptions && gridOptions.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage
-                    : gridOptions.pagerOption.currentPage;
+                currentPage = currentPage >= 0 ? currentPage : gridOptions.pagerOption.currentPage;
                 itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
             }
             var params = {
@@ -177,34 +214,26 @@ customer.customerList = (function ($) {
                 pageSize: itemsPerPage
             };
 
-            $.ajax({
+            core.ajaxJSON({
                 url: $('#search-form').attr('action'),
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                    } else {
-                        gridOptions.pagerOption = {
-                            itemsPerPage: data.ItemsPerPage,
-                            itemsPerPageArray: core.pageSizes,
-                            currentPage: data.CurrentPage,
-                            totalItem: data.TotalItem,
-                            pagerSelectCallBack: customer.customerList.reRenderAfterPaged
-                        };
+                data: params
+            }, function (data) {
+                if (data.ErrCode !== 0) {
+                    alert(data.ErrMsg);
+                } else {
+                    gridOptions.pagerOption = {
+                        itemsPerPage: data.ItemsPerPage,
+                        itemsPerPageArray: core.pageSizes,
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
+                        pagerSelectCallBack: customer.customerList.reRenderAfterPaged
+                    };
 
-                        gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                        $('#grid').show().fanexGrid(gridOptions);
+                    gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
+                    $('#grid').show().fanexGrid(gridOptions);
 
-                        customer.customerList.gridAfterBinding();
-                        customer.customerList.resizeBox();
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+                    customer.customerList.gridAfterBinding();
+                    customer.customerList.resizeBox();
                 }
             });
         },
@@ -395,16 +424,6 @@ customer.customerList = (function ($) {
                         name: language.getString("ResetPassword"),
                         callback: customer.customerList.resetPassword
                     },
-                /*{ name: actions.NumberGame,
-                callback: customer.customerList.editSetting },
-                { name: actions.Casino,
-                callback: customer.customerList.editSetting },
-                { name: actions.VirtualSports,
-                callback: customer.customerList.editSetting },
-                { name: actions.SBBetSetting,
-                callback: customer.customerList.editSetting },
-                { name: actions.Commission,
-                callback: customer.customerList.editSetting },*/
                     {
                     name: language.getString("Password"),
                     callback: customer.customerList.editSetting
@@ -424,16 +443,6 @@ customer.customerList = (function ($) {
                         name: language.getString("ResetPassword"),
                         callback: customer.customerList.resetPassword
                     },
-                /*{ name: actions.NumberGame,
-                callback: customer.customerList.editSetting },
-                { name: actions.Casino,
-                callback: customer.customerList.editSetting },
-                { name: actions.VirtualSports,
-                callback: customer.customerList.editSetting },
-                { name: actions.AddDownline,
-                callback: customer.customerList.editSetting },
-                { name: actions.Commission,
-                callback: customer.customerList.editSetting },*/
                     {
                     name: language.getString("Password"),
                     callback: customer.customerList.editSetting
@@ -470,29 +479,18 @@ customer.customerList = (function ($) {
             return editItems;
         },
         editSportsbook: function () {
-            var url;
-            if (pageContext.IsMember) {
-                url = "ProductSetting/SportsBook/EditMember?memberId={0}".format(editMemberId);
-            } else {
-                url = "ProductSetting/SportsBook/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
-            }
+            var url = "ProductSetting/SportsBook/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
             popup.openFrame(url, {
                 width: 1008,
                 height: 680
             });
         },
-        editVirttualSports: function (e) {
-            if (pageContext.IsMember) {
-                e.stopPropagation();
-                //url = "ProductSetting/VirtualSports/EditMember?memberId={0}".format(editMemberId);
-                // Show Popover
-            } else {
-                var url = "ProductSetting/VirtualSports/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
-                popup.openFrame(url, {
-                    width: 1008,
-                    height: 680
-                });
-            }
+        editVirttualSports: function () {
+            var url = "ProductSetting/VirtualSports/EditAgent?agentId={0}".format(editAgentId, editAgentLevel);
+            popup.openFrame(url, {
+                width: 1008,
+                height: 680
+            });
         },
         editSetting: function () {
             alert('test');
@@ -514,9 +512,6 @@ customer.customerList = (function ($) {
                 height: 680
             });
         },
-        getUplines: function () {
-            return '<table><tr><td>test a</td><td>test b</td></tr></table>';
-        },
         resetPassword: function () {
             var url;
             if (pageContext.IsLastLevel) {
@@ -525,6 +520,27 @@ customer.customerList = (function ($) {
                 url = "Customer/Agent/ResetPassword?agentId={0}".format(editAgentId);
             }
             popup.openFrame(url);
+        },
+        hidePopover: function () {
+            $('.popover-link').each(function () {
+                $(this).popover('hide');
+            });
+        },
+        uplineAgents: function (link, divId, product) {
+            $.ajax({
+                url: core.resolveUrl('~/Customer/Agent/UplineAgents'),
+                data: 'custId=' + editMemberId + '&product=' + product,
+                success: function (response) {
+                    $('#' + divId).html(response);
+                }
+            });
+            return '<div id="' + divId + '">Loading...</div>';
+        },
+        productSetting: function (productLink) {
+            popup.openFrame($(productLink).data('url'), {
+                width: 1008,
+                height: 680
+            });
         }
     };
 } (jQuery));

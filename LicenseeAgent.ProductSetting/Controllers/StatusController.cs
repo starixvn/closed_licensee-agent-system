@@ -53,9 +53,9 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            if (!CurrentSession.IsAdmin && model.ProductId == (int)ProductCode.Product_2)
+            if (model.ProductId == (int)ProductCode.Product_2)
             {
-                return JsonResult(ErrCode.Msg_2142);
+                return RedirectToAccessDeniedJson();
             }
 
             var criteria = new UpdateAgentCriteria
@@ -87,9 +87,9 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            if (!CurrentSession.IsAdmin && model.ProductId == (int)ProductCode.Product_2)
+            if (model.ProductId == (int)ProductCode.Product_2)
             {
-                return JsonResult(ErrCode.Msg_2142);
+                return RedirectToAccessDeniedJson();
             }
 
             var criteria = new UpdateMemberCriteria

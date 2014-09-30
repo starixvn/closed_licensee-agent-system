@@ -217,5 +217,27 @@
 
             return View(model);
         }
+
+        /// <summary>
+        /// Up line of the agents.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="product">The product.</param>
+        /// <returns>List Up line of agents.</returns>
+        public ActionResult UplineAgents(int custId, string product)
+        {
+            var listUplines = _customerService.UplineAgentsByCustId(new GetUplineByCustIdCriteria
+            {
+                CustId = custId
+            });
+
+            var model = new UplineViewModel
+            {
+                AgentList = listUplines,
+                Product = product,
+                CustId = custId
+            };
+            return View(model);
+        }
     }
 }

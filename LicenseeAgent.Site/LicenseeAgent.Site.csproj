@@ -432,6 +432,7 @@
     <None Include="App_Data\Fanex.Result\Tennis.xls" />
     <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
+    <Content Include="Areas\Customer\Views\Agent\UplineAgents.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -716,7 +717,6 @@
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Customer\Views\Agent\" />
     <Folder Include="Areas\Customer\Views\Member\" />
   </ItemGroup>
   <ItemGroup>

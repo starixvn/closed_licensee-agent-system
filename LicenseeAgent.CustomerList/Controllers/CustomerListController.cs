@@ -165,27 +165,6 @@
             var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
             if (model.IsMember)
             {
-                /*var list = new List<MemberEntity>{
-                    new MemberEntity{
-                        AgentId = 20,
-                        AvailableFund = 10,
-                        CreatedDate = DateTime.Now,
-                        CustId = 123,
-                        FirstName = "x",
-                        IpLogin = "aa",
-                        Status = 0,
-                        SystemId = "aaa",
-                        UserName = "Test Data"
-                    }
-                };
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    List = list,
-                    CurrentPage = model.PageIndex,
-                    ItemsPerPage = model.PageSize,
-                    TotalItem = 0
-                });*/
                 return SearchMembers(model);
             }
 

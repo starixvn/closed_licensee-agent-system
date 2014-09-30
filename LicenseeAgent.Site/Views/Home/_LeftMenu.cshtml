@@ -54,7 +54,6 @@
                         @BootstrapHelper.LeftMenu(Las.NewMember, Url.Action("InsertCustomer", "SportsBook", new { area = "ProductSetting" }))
                         }
                     }
-                    @BootstrapHelper.LeftMenu(Las.Soccer, Url.Action("Soccer", "TotalBets"))
                     @BootstrapHelper.LeftMenu(
                         SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel
                         ? Las.MemberList

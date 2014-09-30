@@ -97,7 +97,7 @@
             if (AppSettings.SiteEnvironment == SiteEnvironment.Local)
             {
                 var request = HttpContext.Current.Request;
-                var applicationPath = request.ApplicationPath;
+                var applicationPath = new Uri(request.ApplicationPath);
                 return new Uri(new Uri(domain), applicationPath);
             }
 

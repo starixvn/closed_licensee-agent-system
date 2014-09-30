@@ -89,10 +89,10 @@
     <Compile Include="Controllers\ProductBaseController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SportsBookController.cs" />
-    <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="Controllers\VirtualSportsController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />    
     <Compile Include="Criteria\Status\UpdateAgentCriteria.cs" />
-    <Compile Include="Criteria\Status\UpdateMemberCriteria.cs" />
+    <Compile Include="Criteria\Status\UpdateMemberCriteria.cs" />    
+    <Compile Include="Controllers\VirtualSportsController.cs" />
     <Compile Include="Services\CustomerSettingService.cs">
       <SubType>Code</SubType>
     </Compile>

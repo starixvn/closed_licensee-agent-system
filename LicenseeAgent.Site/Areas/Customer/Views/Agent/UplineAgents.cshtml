@@ -1,0 +1,41 @@
+﻿@using LicenseeAgent.Customer.ViewModels
+
+@model UplineViewModel
+@{
+    Layout = null;
+    var actionName = "EditMember";
+    var controller = Model.Product;
+    var area = "ProductSetting";
+}
+<table class="dropdown">
+    <colgroup>
+        <col width="80" />
+        <col width="80" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                @Las.Level
+            </th>
+            <th>
+                @Las.Username
+            </th>
+        </tr>
+    </thead>
+    <tbody>    
+        @foreach (var entity in Model.AgentList)
+        {
+            <tr>
+                <td>
+                    @string.Format(Las.AgentLevelFormat, entity.AgentLevel - 1)
+                </td>
+                <td>
+                    @*<a class="agent-inline" href="@Url.Action(actionName, controller, new { area = area, memberId = Model.Customer.CustId, agentId = entity.UplineCustId, agentLevel = entity.AgentLevel, numberOfLevel = Model.Customer.NumberOfLevel }))"  target="frmMain" onclick='home.accountInformation.hidePopover();' title="@entity.UserName">*@
+                    <a class="agent-inline" href="#" data-url="@Url.Action(actionName, controller, new { area = area, memberId = Model.CustId, agentId = entity.AgentId, agentLevel = entity.AgentLevel })" onclick='customer.customerList.productSetting(this);' title="@entity.UserName">
+                        @entity.MediumUserName
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

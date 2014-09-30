@@ -8,9 +8,7 @@ home.accountInformation.product = (function ($) {
     var updateMemberProductStatusUrl = '~/ProductSetting/Status/UpdateMember';
     return {
         init: function () {
-            $('#panel-products .product[title]').tooltip({
-                'container': 'body'
-            });
+            $('#panel-products .product[title]').tooltip();
             $('#panel-products input:enabled').click(function (e) {
                 home.accountInformation.product.updateStatus(this);
                 e.preventDefault();

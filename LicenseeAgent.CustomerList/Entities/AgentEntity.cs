@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Customer.Entities
 {
     using System;
+    using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -54,6 +55,19 @@
             get
             {
                 return Extensions.FormatCustomerName(FirstName, LastName);
+            }
+        }
+
+        public string MediumUserName
+        {
+            get
+            {
+                if (UserName.Length > Constants.MediumStringLength)
+                {
+                    return string.Format("{0}...", UserName.Substring(0, Constants.MediumStringLength));
+                }
+
+                return UserName;
             }
         }
     }

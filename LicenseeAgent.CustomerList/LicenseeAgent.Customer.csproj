@@ -106,6 +106,7 @@
     <Compile Include="Services\IpInformationService.cs" />
     <Compile Include="ViewModels\AgentInfoViewModel.cs" />
     <Compile Include="ViewModels\AgentStatusViewModel.cs" />
+    <Compile Include="ViewModels\UplineViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
     <Compile Include="ViewModels\CustomerSearchAutoCompleteViewModel.cs" />
     <Compile Include="ViewModels\EditInfoViewModel.cs" />

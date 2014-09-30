@@ -22,7 +22,6 @@
         #region Variables
 
         private readonly IDownLinePermissionService _downLinePermissionService;
-        private readonly ICoreService _coreService;
         private readonly IAgentOutstandingService _agentOutstandingService;
         private readonly IBetListService _betlistService;
 
@@ -31,18 +30,16 @@
         #region Constructors
 
         public AgentOutstandingController()
-            : this(null, null, null, null)
+            : this(null, null, null)
         {
         }
 
         public AgentOutstandingController(
             IDownLinePermissionService downLinePermissionService,
-            ICoreService coreService,
             IAgentOutstandingService agentOutstandingService,
             IBetListService betlistService)
         {
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
-            _coreService = coreService ?? new CoreService();
             _agentOutstandingService = agentOutstandingService ?? new AgentOutstandingService();
             _betlistService = betlistService ?? new BetListService();
         }

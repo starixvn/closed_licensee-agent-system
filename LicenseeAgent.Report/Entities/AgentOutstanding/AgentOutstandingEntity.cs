@@ -1,9 +1,9 @@
-namespace LicenseeAgent.Report.Entities
+namespace LicenseeAgent.Report.Entities.AgentOutstanding
 {
     /// <summary>
     /// Agent Outstanding.
     /// </summary>
-    public class AgentOutstanding
+    public class AgentOutstandingEntity
     {
         public string Username { get; set; }
 

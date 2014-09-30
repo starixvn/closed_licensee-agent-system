@@ -1,20 +1,26 @@
 ﻿namespace LicenseeAgent.BetList.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
     using Entities;
     using LicenseeAgent.BetList.Criteria;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using Services;
 
     /// <summary>
     /// ParlayController class.
     /// </summary>
-    public class ParlayController : BetListBase
+    public class ParlayController : BaseController
     {
+        #region Variables
+
         private readonly IBetListService _betlistService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public ParlayController()
             : this(null)
@@ -26,6 +32,8 @@
         {
             _betlistService = betlistService ?? new BetListService();
         }
+
+        #endregion Constructors
 
         [HttpGet]
         public ActionResult ParlayList()

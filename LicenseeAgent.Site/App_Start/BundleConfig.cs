@@ -156,7 +156,7 @@
         {
             RegisterErrorPage(bundles);
             RegisterLoginPage(bundles);
-            RegisterHomePage(bundles);            
+            RegisterHomePage(bundles);
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
             RegisterTransferPage(bundles);
@@ -270,15 +270,6 @@
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Fanex.Result/fanex.result.css",
                 "~/Content/Fanex.Result/fanex.result.override.less"));
-
-            bundles.Add(new LessBundle("~/css/outstandingreport").Include(
-                 "~/Views/Report/Resources/Outstanding.less"));
-            bundles.Add(new ScriptBundle("~/js/outstandingreport").Include(
-                "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/Report/Resources/outstanding-report.js"));
-
-            bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
-                "~/Views/Report/Resources/agent-winloss-report.js"));
         }
 
         /// <summary>

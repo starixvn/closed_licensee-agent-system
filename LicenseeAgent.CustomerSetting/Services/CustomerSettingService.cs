@@ -1,19 +1,9 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using Fanex.Common;
-    using Fanex.Data;
-    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Exceptions;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Core.Utility;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -59,10 +49,10 @@
         {
             return QueryService.GetEntity<AgentInfo>(criteria);
         }
+
         public AgentInformation GetAgentInfo(GetAgentInfoCriteria criteria)
         {
             return QueryService.GetEntity<AgentInformation>(criteria);
         }
-
     }
 }

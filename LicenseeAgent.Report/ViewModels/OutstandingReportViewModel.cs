@@ -1,7 +1,7 @@
 ﻿namespace LicenseeAgent.Report.ViewModels
 {
     using System.Collections.Generic;
-    using Entities;
+    using LicenseeAgent.Report.Entities.AgentOutstanding;
 
     /// <summary>
     /// Bet List View Model.
@@ -16,6 +16,6 @@
 
         public string BreadCrumb { get; set; }
 
-        public IEnumerable<AgentOutstanding> AgentOutstandings { get; set; }
+        public IList<AgentOutstandingEntity> AgentOutstandings { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@using LicenseeAgent.Web.Entities
 @using LicenseeAgent.Report.ViewModels
-@model AgentWinLossReportViewModel
+@model IndexViewModel
 @{
     ViewBag.Title = Las.AgentWinLoss + " - " + Las.Report;
     var pageContext = (PageContext)ViewBag.PageContext;
@@ -15,27 +15,17 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
-    @Scripts.Render("~/js/agentwinlostreport")
-    @if (pageContext.IsLastLevel)
-    {
-        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.MemberGrid.Cash" : "AgentWinLoss.MemberGrid")
-    }
-    else
-    {
-        if (pageContext.AgentLevel == 1)
-        {
-        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.LicenseeGrid.Cash" : "AgentWinLoss.LicenseeGrid")
-        }
-        else
-        {
-        @Html.Partial(Model.IsDeposit ? "AgentWinLoss.AgentGrid.Cash" : "AgentWinLoss.AgentGrid")
-        }
-    }
+    @Scripts.Render("~/js/report/agent-win-loss")
+    <script type="text/javascript">
+        $(function () {
+            report.agentWinLoss.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("AgentWinLoss", "Report", FormMethod.Post,
+@using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "form-filter form-inline", id = "search-form" }))
 {
     <div class="controls-row">

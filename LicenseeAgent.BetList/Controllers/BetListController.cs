@@ -1,27 +1,40 @@
 ﻿namespace LicenseeAgent.BetList.Controllers
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
-    using Entities;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
     using Fanex.Result.Core;
     using LicenseeAgent.BetList.Criteria;
+    using LicenseeAgent.BetList.Entities;
+    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
+    using LicenseeAgent.BetList.ViewModels;
     using LicenseeAgent.BetList.ViewResults;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
-    using Services;
-    using ViewModels;
 
     /// <summary>
     /// BetListController class.
     /// </summary>
-    public class BetListController : BetListBase
+    public class BetListController : BaseController
     {
+        #region Variables
+
         private readonly IBetListService _betlistService;
         private readonly ICoreService _coreService;
         private readonly IDownLinePermissionService _downLinePermissionService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public BetListController()
             : this(null, null, null)
@@ -37,6 +50,8 @@
             _coreService = coreService ?? new CoreService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
+
+        #endregion Constructors
 
         /// <summary>
         /// Index page of Bet List.
@@ -132,7 +147,17 @@
             var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
             var ticketResult = _betlistService.GetMixParlayDetails(criteria);
 
-            return BuildMixParlayDetails(ticketResult);
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
+
+            var stringBuilder = new StringBuilder();
+            foreach (var ticket in ticketResult.MainTicketList)
+            {
+                var choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false);
+                stringBuilder.AppendFormat("<div class='ticketList'>{0}</div><div class='line'></div>", choice);
+            }
+
+            return Content(stringBuilder.ToString());
         }
 
         /// <summary>
@@ -224,6 +249,40 @@
         }
 
         /// <summary>
+        /// Format raw bet list details.
+        /// </summary>
+        /// <param name="originalData">List of raw bet list details.</param>
+        /// <param name="status">Ticket status ID.</param>
+        /// <returns>List of formatted bet list details.</returns>
+        public Collection<BetListDetails> FormatRawBetListDetails(IList<RawBetListDetails> originalData, string status)
+        {
+            var formattedData = new Collection<BetListDetails>();
+            foreach (var item in originalData)
+            {
+                formattedData.Add(new BetListDetails
+                {
+                    Agent = item.AgentName,
+                    PositionTaking = GenerateHtmlStringForAgentPT(item, status),
+                    Commission = GenerateHtmlStringForAgentComm(item, status)
+                });
+            }
+
+            return formattedData;
+        }
+
+        public string BuildSystemParlayDetail(SystemParlayData systemParlayData)
+        {
+            var builder = new BetListHTMLBuilder();
+            var ticketHelper = new TicketHelper()
+            {
+                ShowSystemParlayPlayerComm = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
+            return systemParlayText;
+        }
+
+        /// <summary>
         /// Gets the result normal data.
         /// </summary>
         /// <param name="model">The model.</param>
@@ -266,6 +325,29 @@
             return data != null
                 ? ResultEngine.HtmlParser(data, setting)
                 : string.Empty;
+        }
+
+        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
+        {
+            var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
+            var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
+            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
+                ? string.Empty
+                : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
+
+            return htmlString;
+        }
+
+        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
+        {
+            var htmlString = data.AgentLevel == 1
+                ? string.Empty
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
+            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
+                ? (data.AgentLevel == 1 ? "-" : string.Empty)
+                : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
+
+            return htmlString;
         }
     }
 }

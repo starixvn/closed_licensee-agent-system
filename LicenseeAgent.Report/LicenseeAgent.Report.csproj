@@ -123,29 +123,34 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\AgentOutstandingController.cs" />
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\StatementController.cs" />
-    <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
+    <Compile Include="Controllers\AgentWinLossController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Criteria\OutstandingReportBetListCriteria.cs" />
-    <Compile Include="Criteria\OutstandingReportCriteria.cs" />
+    <Compile Include="Criteria\AgentOutstanding\OutstandingReportBetListCriteria.cs" />
+    <Compile Include="Criteria\AgentOutstanding\OutstandingReportCriteria.cs" />
     <Compile Include="Criteria\OutrightResultsReportCriteria.cs" />
     <Compile Include="Criteria\LeagueCriteria.cs" />
     <Compile Include="Criteria\SportCriteria.cs" />
     <Compile Include="Criteria\ReportCriteriaBase.cs" />
     <Compile Include="Criteria\MatchResultsReportCriteria.cs" />
-    <Compile Include="Criteria\WinlossBase.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinlossBase.cs" />
     <Compile Include="DataAccess\ResultsReportDataAccess.cs" />
     <Compile Include="DataAccess\IResultsReportDataAccess.cs" />
-    <Compile Include="Entities\AgentWinLoss.cs" />
-    <Compile Include="Entities\AgentOutstanding.cs" />
+    <Compile Include="Entities\AgentWinLoss\AgentWinLossEntity.cs" />
+    <Compile Include="Entities\AgentOutstanding\AgentOutstandingEntity.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\TransferDetail.cs" />
     <Compile Include="Enumerations\DrawFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AgentOutstandingService.cs" />
+    <Compile Include="Services\AgentWinLossService.cs" />
+    <Compile Include="Services\IAgentOutstandingService.cs" />
+    <Compile Include="Services\IAgentWinLossService.cs" />
     <Compile Include="Services\IStatementService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\IReportService.cs" />
@@ -157,15 +162,15 @@
     <Compile Include="Criteria\StatementDetailCriteria.cs" />
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
-    <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
+    <Compile Include="ViewModels\AgentWinLossReport\IndexViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />
     <Compile Include="ViewModels\StatementDetailReportViewModel.cs" />
     <Compile Include="ViewModels\StatementReportViewModel.cs" />
     <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />
-    <Compile Include="Criteria\WinLossAgentViewAgentCriteria.cs" />
-    <Compile Include="Criteria\WinLossMemberCriteria.cs" />
-    <Compile Include="Criteria\WinLossSuperViewAgentCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewAgentCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewMemberCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossLicenseeViewAgentCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">

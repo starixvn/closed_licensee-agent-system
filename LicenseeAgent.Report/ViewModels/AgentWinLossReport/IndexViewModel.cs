@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Report.ViewModels
+﻿namespace LicenseeAgent.Report.ViewModels.AgentWinLossReport
 {
     using System;
     using System.Collections.Generic;
@@ -10,9 +10,9 @@
     /// <summary>
     /// Agent WinLoss Report View Model.
     /// </summary>
-    public class AgentWinLossReportViewModel
+    public class IndexViewModel
     {
-        public AgentWinLossReportViewModel()
+        public IndexViewModel()
         {
             FromDate = DateTime.Now;
             ToDate = DateTime.Now;

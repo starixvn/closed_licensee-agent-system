@@ -2,27 +2,59 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
-    using Core.Entities;
-    using Criteria;
     using Fanex.Data.Repository;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Report.Criteria.AgentWinLoss;
+    using LicenseeAgent.Report.Services;
+    using LicenseeAgent.Report.ViewModels.AgentWinLossReport;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
-    using ViewModels;
+    using LicenseeAgent.Web.Services;
 
     /// <summary>
     /// Report Controller.
     /// </summary>
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
-    public partial class ReportController
+    public class AgentWinLossController : BaseController
     {
+        #region Variables
+
+        private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICoreService _coreService;
+        private readonly IAgentWinLossService _agentWinLossService;
+
+        #endregion Variables
+
+        #region Constructors
+
+        public AgentWinLossController()
+            : this(null, null, null)
+        {
+        }
+
+        public AgentWinLossController(
+            IDownLinePermissionService downLinePermissionService,
+            ICoreService coreService,
+            IAgentWinLossService agentWinLossService)
+        {
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _coreService = coreService ?? new CoreService();
+            _agentWinLossService = agentWinLossService ?? new AgentWinLossService();
+        }
+
+        #endregion Constructors
+
+        #region Actions
+
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
         /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult AgentWinLoss(AgentWinLossReportViewModel model)
+        public ActionResult Index(IndexViewModel model)
         {
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
@@ -37,7 +69,7 @@
                                 : model.AgentId + "," + model.AgentLevel + "," + model.UserName;
             model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             model.IsDeposit = CurrentSession.AgentInfo.IsDeposit;
-            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel);
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel, model.UserName);
             return View(model);
         }
 
@@ -47,8 +79,9 @@
         /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>JSON Result.</returns>
         [HttpPost]
+        [ActionName("Index")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
-        public JsonResult GetAgentWinLossData(AgentWinLossReportViewModel model)
+        public JsonResult IndexPost(IndexViewModel model)
         {
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
@@ -59,12 +92,12 @@
             var balanceUpDay = _coreService.BalanceUpDay;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
-                criteria = new WinLossMemberCriteria(
+                criteria = new WinLossAgentViewMemberCriteria(
                     model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
             else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
             {
-                criteria = new WinLossSuperViewAgentCriteria(
+                criteria = new WinLossLicenseeViewAgentCriteria(
                     model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
             else
@@ -73,12 +106,10 @@
                     model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
 
-            var result = _reportService.AgentWinLossReport(criteria);
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = result
-            });
+            var result = _agentWinLossService.GetData(criteria);
+            return Json(result);
         }
+
+        #endregion Actions
     }
 }

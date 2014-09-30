@@ -1,9 +1,9 @@
-namespace LicenseeAgent.Report.Entities
+namespace LicenseeAgent.Report.Entities.AgentWinLoss
 {
     /// <summary>
     /// Agent WinLoss.
     /// </summary>
-    public class AgentWinLoss
+    public class AgentWinLossEntity
     {
         public string Username { get; set; }
 

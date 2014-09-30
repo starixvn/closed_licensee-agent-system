@@ -636,8 +636,8 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Views\Home\Resources\home-menu.js" />
     <Content Include="Scripts\Results\Result.js" />
-    <Content Include="Views\Report\Resources\agent-winloss-report.js" />
-    <Content Include="Views\Report\Resources\outstanding-report.js" />
+    <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
+    <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
     <Content Include="Views\Report\Resources\result-report.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
@@ -732,9 +732,6 @@
     <Content Include="Areas\Home\Views\Web.config" />
     <Content Include="Areas\Home\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
     <Content Include="Views\MemberCommission\Index.cshtml" />
     <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
     <Content Include="Views\MemberCommission\RemoveFromGroup.cshtml" />
@@ -913,13 +910,10 @@
     <Content Include="Views\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\CreditBalance\AgentEditMemberCredit.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\Password.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.cshtml" />
+    <Content Include="Areas\Report\Views\AgentWinLoss\Index.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.MemberGrid.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.AgentGrid.cshtml" />
-    <Content Include="Views\Report\Outstanding.cshtml" />
-    <Content Include="Views\Report\Resources\Outstanding.less" />
+    <Content Include="Areas\Report\Views\AgentOutstanding\Index.cshtml" />
+    <Content Include="Areas\Report\Content\AgentOutstanding\report-agent-outstanding.less" />
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Areas\Report\Views\Statement\Index.cshtml" />

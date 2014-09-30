@@ -78,13 +78,13 @@ var betList = (function ($) {
                     contentType: "text/html",
                     cache: false,
                     url: core.resolveUrl(url),
+                    beforeSend: function () {
+                        core.blockUI();
+                    },
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();
                         $('#BetListGrid').fanexGrid('resizeGrid');
-                    },
-                    beforeSend: function () {
-                        core.blockUI();
                     },
                     complete: function () {
                         core.unblockUI();

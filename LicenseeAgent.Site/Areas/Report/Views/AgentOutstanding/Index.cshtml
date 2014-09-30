@@ -1,5 +1,4 @@
-﻿@using LicenseeAgent.Web.Entities
-@{
+﻿@{
     ViewBag.Title = Las.AgentOutstanding + " - " + Las.Report;
     var pageContext = (PageContext)ViewBag.PageContext;
 }
@@ -7,12 +6,17 @@
 {
     @Styles.Render("~/css/fanexgrid")
     @Styles.Render("~/css/betlist")
-    @Styles.Render("~/css/outstandingreport")
+    @Styles.Render("~/css/report/agent-outstanding")
 }
 @section scripts
 {
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/outstandingreport")
+    @Scripts.Render("~/js/report/agent-outstanding")
+    <script type="text/javascript">
+        $(function () {
+            report.agentOutstanding.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title

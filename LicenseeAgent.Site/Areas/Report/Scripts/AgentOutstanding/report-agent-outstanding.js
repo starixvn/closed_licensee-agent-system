@@ -1,50 +1,51 @@
 ﻿/*global core, language, showMixParlayDetailurl, pageContext */
 
-var outstandingGridOptions = {
-    columns: [
-                { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
-                    function (rowIndex, rowData, cell) {
-                        'use strict';
-                        return '<a href="#" onclick="outstandingReport.outstandingDrilldown(\'' + rowData.Username
-                                + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
-                    }
-                },
-                { HeaderText: language.getString("Outstanding"), Width: 200, Name: "Outstanding",
-                    HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
-                },
-                { HeaderText: language.getString("AgentShare"), Width: 200, Name: "Positiontaking",
-                    HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
-                }
-            ],
-    showPager: false,
-    showFooter: true,
-    gridExpandHeight: 60,
-    bodyRowHeight: 29
-};
-
-var gridOptions = {
-    columns: [
-                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
-            ],
-    showPager: true,
-    enableHiddenColumns: false,
-    gridExpandHeight: 100,
-    bodyRowHeight: 29
-};
-
-var originalBreadcrumb = '';
-var agentIdLevelN = 0;
-var outstandingReport = (function ($) {
+var report = report || {};
+report.agentOutstanding = (function ($) {
     'use strict';
+
+    var outstandingGridOptions = {
+        columns: [
+            { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
+                function (rowIndex, rowData, cell) {
+                    return '<a href="#" onclick="report.agentOutstanding.outstandingDrilldown(\'' + rowData.Username
+                        + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
+                }
+            },
+            { HeaderText: language.getString("Outstanding"), Width: 200, Name: "Outstanding",
+                HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
+            },
+            { HeaderText: language.getString("AgentShare"), Width: 200, Name: "Positiontaking",
+                HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
+            }
+        ],
+        showPager: false,
+        showFooter: true,
+        gridExpandHeight: 60,
+        bodyRowHeight: 29
+    };
+
+    var gridOptions = {
+        columns: [
+            { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
+            { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+            { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+            { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+            { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+        ],
+        showPager: true,
+        enableHiddenColumns: false,
+        gridExpandHeight: 100,
+        bodyRowHeight: 29
+    };
+
+    var originalBreadcrumb = '';
+    var agentIdLevelN = 0;
     var breadCrumbItems = [
     {
         agentId: $('#loginAgent').data('id'),
@@ -54,71 +55,55 @@ var outstandingReport = (function ($) {
     return {
         init: function () {
             $(".breadcrumb").hide();
-            outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], -1);
+            report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0], -1);
         },
         reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
             if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage
-                                                : outstandingGridOptions.pagerOption.currentPage;
+                currentPage = currentPage >= 0
+                    ? currentPage
+                    : outstandingGridOptions.pagerOption.currentPage;
                 itemsPerPage = itemsPerPage || outstandingGridOptions.pagerOption.itemsPerPage;
             }
 
-            var params = {
-                AgentId: agentId
-            };
-
-            $.ajax({
-                url: "Outstanding",
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        $("#breadcrumb > span").html(originalBreadcrumb);
-                        alert(data.ErrMsg);
-                        return;
-                    }
-
-                    var footerRows = [
-                            {
-                                Columns: [
-                                    { Value: language.getString("Total"), Name: "Username", CellAlign: "left" },
-                                    { Value: data.SumOutstanding, Name: "Outstanding" },
-                                    { Value: data.SumPositiontaking, Name: "Positiontaking" }
-                                ]
-                            }
-                    ];
-
-                    outstandingGridOptions.pagerOption = {
-                        itemsPerPage: core.pageSizes[0],
-                        itemsPerPageArray: core.pageSizes,
-                        currentPage: 0,
-                        showDetail: true
-                    };
-                    outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
-
-                    outstandingGridOptions.footerRows = footerRows;
-                    if (data.IsLastLevel === true) {
-                        outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
-                    }
-                    else {
-                        outstandingGridOptions.columns[0].HeaderText = language.getString("Agent");
-                    }
-
-                    for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
-                        var currentRow = outstandingGridOptions.bodyRows[i];
-                        currentRow.Columns[0].IsLastLevel = data.IsLastLevel;
-                    }
-
-                    $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
-                    $("#breadcrumb").attr("class", "breadcrumb");
-                    originalBreadcrumb = $("#breadcrumb > span").html();
-                },
-                complete: function () {
-                    core.unblockUI();
+            core.ajaxJSON({
+                url: document.URL,
+                data: {
+                    AgentId: agentId
                 }
+            }, function (data) {
+                var footerRows = [
+                    {
+                        Columns: [
+                            { Value: language.getString("Total"), Name: "Username", CellAlign: "left" },
+                            { Value: data.SumOutstanding, Name: "Outstanding" },
+                            { Value: data.SumPositiontaking, Name: "Positiontaking" }
+                        ]
+                    }
+                ];
+
+                outstandingGridOptions.pagerOption = {
+                    itemsPerPage: core.pageSizes[0],
+                    itemsPerPageArray: core.pageSizes,
+                    currentPage: 0,
+                    showDetail: true
+                };
+                outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
+                outstandingGridOptions.footerRows = footerRows;
+                if (data.IsLastLevel === true) {
+                    outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
+                }
+                else {
+                    outstandingGridOptions.columns[0].HeaderText = language.getString("Agent");
+                }
+
+                for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
+                    var currentRow = outstandingGridOptions.bodyRows[i];
+                    currentRow.Columns[0].IsLastLevel = data.IsLastLevel;
+                }
+
+                $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
+                $("#breadcrumb").attr("class", "breadcrumb");
+                originalBreadcrumb = $("#breadcrumb > span").html();
             });
         },
         reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId) {
@@ -213,20 +198,20 @@ var outstandingReport = (function ($) {
             gridOptions.hiddenColumns = hiddenColumns;
 
             if (isLastLevel) {
-                outstandingReport.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN);
+                report.agentOutstanding.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN);
             }
             else {
                 agentIdLevelN = agentId;
-                outstandingReport.reRenderAfterPaged(0, core.pageSizes[0], agentId);
+                report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0], agentId);
             }
             if (typeof isLastLevel === 'undefined') {
-                outstandingReport.createBreadcrumb(agentId, agentName, false);
+                report.agentOutstanding.createBreadcrumb(agentId, agentName, false);
             } else {
-                outstandingReport.createBreadcrumb(agentId, agentName, true);
+                report.agentOutstanding.createBreadcrumb(agentId, agentName, true);
             }
         },
         breadcrumbDrilldown: function (agentName, agentId) {
-            outstandingReport.outstandingDrilldown(agentName, agentId);
+            report.agentOutstanding.outstandingDrilldown(agentName, agentId);
         },
         createBreadcrumb: function (agentId, agentName, isDownline) {
             var index,
@@ -252,7 +237,7 @@ var outstandingReport = (function ($) {
             if (numberAgent > 0) {
                 $(".breadcrumb").show();
                 for (index = 0; index < numberAgent; index++) {
-                    breadCrumbHtml += '<li><a onclick="javascript:outstandingReport.breadcrumbDrilldown(\''
+                    breadCrumbHtml += '<li><a onclick="javascript:report.agentOutstanding.breadcrumbDrilldown(\''
                         + breadCrumbItems[index].agentName + '\','
                         + breadCrumbItems[index].agentId + ');" href="#">'
                         + breadCrumbItems[index].agentName
@@ -267,8 +252,3 @@ var outstandingReport = (function ($) {
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    outstandingReport.init();
-});

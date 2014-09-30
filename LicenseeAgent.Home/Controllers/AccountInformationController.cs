@@ -254,10 +254,11 @@
             });
         }
 
-        /// Set Admin view.
+        /// <summary>
+        /// Sets the admin view.
         /// </summary>
-        /// <param name="criteria">Admin member list criteria.</param>
-        /// <param name="customer">Customer entity.</param>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="customer">The customer.</param>
         [NonAction]
         public void SetAdminView(AdminGetMemberListCriteria criteria, CustomerEntity customer)
         {

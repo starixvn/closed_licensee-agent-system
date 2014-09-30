@@ -231,7 +231,7 @@
                 IsOutRight = model.IsOutright,
                 IsParlayPopUp = isParlayPopup,
                 IsPopUp = true,
-                IsShowTitle = true,
+                IsShowPopUpTitle = true,
                 LanguageCode = CurrentSession.Language
             };
 

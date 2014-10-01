@@ -1,11 +1,9 @@
 ﻿namespace LicenseeAgent.Customer.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.Common;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
@@ -13,7 +11,6 @@
     using LicenseeAgent.Customer.Entities;
     using LicenseeAgent.Customer.Services;
     using LicenseeAgent.Customer.ViewModels;
-    using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
     using LicenseeAgent.Taiwan.Enumerations;
@@ -25,7 +22,6 @@
     using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
-    using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
@@ -97,7 +93,7 @@
         public ActionResult Index(AgentInfoViewModel model)
         {
             var hasAgentModel = model.AgentId != 0;
-            
+
             var breadModel = new AgentBreadcrumbViewModel(
                 hasAgentModel ? model.AgentId : CurrentSession.AgentInfo.AgentId,
                 hasAgentModel ? model.AgentName : CurrentSession.AgentInfo.UserName,
@@ -349,59 +345,6 @@
                 IpAddress = model.IpAddress,
                 City = ipInformation.IpCity,
                 Country = ipInformation.CountryLong
-            });
-        }
-
-        [HttpGet]
-        [LegendType(LegendType.Deposit)]
-        public ViewResult PendingMemberList()
-        {
-            var model = new PendingMemberListViewModel
-            {
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel
-            };
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Get pending member list.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Returns result.</returns>
-        [HttpPost]
-        [LegendType(LegendType.Deposit)]
-        public JsonResult PendingMemberList(PendingMemberListViewModel model)
-        {
-            var agentId = CurrentSession.AgentInfo.AgentId;
-            if (!CurrentSession.AgentInfo.IsLastLevel)
-            {
-                agentId = _customerService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
-                {
-                    UserName = model.DirectAgentUserName,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
-                });
-
-                if (agentId == 0)
-                {
-                    return JsonResult(ErrCode.Msg_2002);
-                }
-            }
-
-            var result = _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
-            {
-                SiteName = CurrentSession.AgentInfo.LicenseeName,
-                LASAgentId = agentId,
-                DepositOption = (int)DepositOption.DepositNot,
-                Username = model.MemberUserName
-            });
-
-            return Json(new
-            {
-                ErrCode = result.ErrCode,
-                ErrMsg = result.ErrMsg,
-                Data = result.Data
             });
         }
 

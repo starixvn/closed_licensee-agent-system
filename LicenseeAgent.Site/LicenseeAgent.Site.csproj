@@ -311,7 +311,7 @@
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Areas\Customer\Content\customer-list.less" />
     <Content Include="Areas\Customer\Scripts\customer-list.js" />
-    <Content Include="Areas\Customer\Scripts\pending-member-list.js" />
+    <Content Include="Areas\Customer\Scripts\PendingMember\pending-member.js" />
     <Content Include="Areas\Customer\Scripts\reset-password.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer-detail.js" />
@@ -414,7 +414,7 @@
     <Content Include="Areas\Customer\Views\CustomerList\_MemberGridDeposit.cshtml" />
     <Content Include="Areas\Customer\Views\CustomerList\GetIpInformation.cshtml" />
     <Content Include="Areas\Customer\Views\CustomerList\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\PendingMemberList.cshtml" />
+    <Content Include="Areas\Customer\Views\PendingMember\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\ResetPassword.cshtml" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\EditInfo.cshtml" />

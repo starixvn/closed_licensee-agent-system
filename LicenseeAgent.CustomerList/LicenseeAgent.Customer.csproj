@@ -79,6 +79,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
+    <Compile Include="Controllers\PendingMemberController.cs" />
     <Compile Include="Criteria\AgentAutoCompleteCriteria.cs" />
     <Compile Include="Criteria\AgentGetByAgentCriteria.cs" />
     <Compile Include="Criteria\AgentInfoCriteria.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="ViewModels\IpInformationViewModel.cs" />
     <Compile Include="ViewModels\IpSearchViewModel.cs" />
     <Compile Include="ViewModels\MemberStatusViewModel.cs" />
-    <Compile Include="ViewModels\PendingMemberListViewModel.cs" />
+    <Compile Include="ViewModels\PendingMember\PendingMemberViewModel.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

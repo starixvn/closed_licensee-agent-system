@@ -61,7 +61,7 @@
                         Url.Action("CustomerList", "Customer"))
                     @if (LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
-                        @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("PendingMemberList", "CustomerList"))
+                        @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("Index", "PendingMember", new { area = "Customer" }))
                     }
                     @if (LegendTypeAttribute.Authorize(LegendType.Credit))
                     {

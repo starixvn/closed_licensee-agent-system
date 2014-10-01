@@ -1,5 +1,4 @@
-﻿@using LicenseeAgent.Customer.ViewModels
-@model PendingMemberListViewModel
+﻿@model PendingMemberViewModel
 @{
     ViewBag.Title = Las.PendingMemberList;
 }
@@ -9,7 +8,12 @@
 }
 @section scripts{
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/pending-member-list")
+    @Scripts.Render("~/js/customer-list/pending-member")
+    <script type="text/javascript">
+        $(function () {
+            customerList.pendingMember.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title

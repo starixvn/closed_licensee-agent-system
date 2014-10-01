@@ -49,6 +49,9 @@
                 "~/Areas/Customer/Scripts/customer-list.js",
                 "~/Areas/Customer/Scripts/pending-member-list.js",
                 "~/Areas/Customer/Scripts/reset-password.js"));
+
+            bundles.Add(new ScriptBundle("~/js/customer-list/pending-member").Include(
+                "~/Areas/Customer/Scripts/PendingMember/pending-member.js"));
         }
     }
 }

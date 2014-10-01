@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Customer.ViewModels
+﻿namespace LicenseeAgent.Customer.ViewModels.PendingMember
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@
     /// <summary>
     /// PendingMemberListViewModel class.
     /// </summary>
-    public class PendingMemberListViewModel : IValidatableObject
+    public class PendingMemberViewModel : IValidatableObject
     {
         [Display(Name = "Member", ResourceType = typeof(Las))]
         public string MemberUserName { get; set; }

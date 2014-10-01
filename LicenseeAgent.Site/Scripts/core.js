@@ -209,14 +209,24 @@ var core = (function ($) {
                 type: 'POST',
                 dataType: 'json',
                 beforeSend: function () {
+                    if ($('.validation-summary-valid').length > 0) {
+                        core.hideErrors();
+                    }
                     core.blockUI();
                 },
                 success: function (data) {
                     if (!core.isSuccessAjax(data)) {
+                        var errorHandler = function (data) {
+                            if ($('.validation-summary-valid').length > 0) {
+                                core.showErrorMsg(data.ErrMsg);
+                            } else {
+                                alert(data.ErrMsg);
+                            };
+                        }
                         if (typeof (onFailure) === 'function') {
-                            onFailure(data);
+                            onFailure(data, errorHandler);
                         } else {
-                            alert(data.ErrMsg);
+                            errorHandler(data);
                         }
 
                         return;

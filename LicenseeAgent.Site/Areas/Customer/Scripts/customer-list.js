@@ -14,119 +14,7 @@ customer.customerList = (function ($) {
         init: function () {
             $('.selectpicker').selectpicker();
 
-            // create action context menu
-            context.init({
-                preventDoubleContext: false,
-                beforeShow: customer.customerList.updateActionMenus
-            });
-
-            context.attach('.icon-customer-edit', [
-                {
-                    id: 'menuSportsbook',
-                    icon: (pageContext.IsAdmin ||
-                        pageContext.IsLastLevel ||
-                        pageContext.IsDirectDownLine ?
-                        'icon-customer-canedit'
-                        : 'icon-customer-canview'),
-                    text: language.getString('Sportsbook'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: function (e) {
-                        if (pageContext.IsMember) {
-                            e.stopPropagation();
-                            customer.customerList.hidePopover();
-                            $('#menuSportsbook').popover("show");
-                        }
-                        else {
-                            customer.customerList.editSportsbook;
-                        }
-                    }
-                },
-                {
-                    id: 'menuVirtualSports',
-                    icon: (pageContext.IsAdmin ||
-                        pageContext.IsLastLevel ||
-                        pageContext.IsDirectDownLine ?
-                        'icon-customer-canedit'
-                        : 'icon-customer-canview'),
-                    text: language.getString('VirtualSports'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: function (e) {
-                        if (pageContext.IsMember) {
-                            e.stopPropagation();
-                            customer.customerList.hidePopover();
-                            $('#menuVirtualSports').popover("show");
-                        }
-                        else {
-                            customer.customerList.editVirttualSports;
-                        }
-                    }
-                },
-                {
-                    id: 'menuEditInfo',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('EditInfo'),
-                    href: '#',
-                    action: customer.customerList.editInfo
-                },
-                {
-                    id: 'menuResetPassword',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('ResetPassword'),
-                    href: '#',
-                    action: customer.customerList.resetPassword
-                },
-                {
-                    id: 'menuAddDownline',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('AddAgent'),
-                    href: '#',
-                    action: customer.customerList.addDownline
-                }
-            ]);
-
-            if (pageContext.IsMember) {
-                $('#menuVirtualSports').popover({
-                    html: true,
-                    placement: 'right',
-                    trigger: 'manual',
-                    content: function () {
-                        var divId = "tmp-id-" + $.now();
-                        return customer.customerList.uplineAgents($(this).attr('href'), divId, virtualSport);
-                    }
-                });
-
-                $('#menuSportsbook').popover({
-                    html: true,
-                    placement: 'right',
-                    trigger: 'manual',
-                    content: function () {
-                        var divId = "tmp-id-" + $.now();
-                        return customer.customerList.uplineAgents($(this).attr('href'), divId, sportsbook);
-                    }
-                });
-
-                $(document).on('click', 'html', function () {
-                    customer.customerList.hidePopover();
-                });
-            }
-            // create select context menu
-            context.init({
-                preventDoubleContext: false
-            });
-            context.attach('#select-dropdown', [
-                {
-                    text: language.getString('All'),
-                    href: '#',
-                    action: customer.customerList.checkAll
-                },
-                {
-                    text: language.getString('None'),
-                    href: '#',
-                    action: customer.customerList.uncheckAll
-                }
-            ]);
+            customer.customerList.createContextMenu();
 
             // breadcrum
             $('.breadcrumb a').click(function () {
@@ -154,13 +42,13 @@ customer.customerList = (function ($) {
         updateActionMenus: function (target) {
             if (!pageContext.IsAdmin
                 || $(target).attr('data-status') === 0
-                || pageContext.IsLastLevel) {
+                || pageContext.IsMember) {
                 $('#menuAddDownline').hide();
             } else {
                 $('#menuAddDownline').show();
             }
 
-            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsDeposit && pageContext.IsLastLevel)) {
+            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsDeposit && pageContext.IsMember)) {
                 $('#menuEditInfo').show();
             } else {
                 $('#menuEditInfo').hide();
@@ -248,7 +136,7 @@ customer.customerList = (function ($) {
         },
         updateStatus: function (target, custId, statusId) {
             var params, url;
-            if (pageContext.IsLastLevel) {
+            if (pageContext.IsMember) {
                 params = {
                     memberid: custId,
                     status: statusId,
@@ -261,7 +149,7 @@ customer.customerList = (function ($) {
                 };
             }
 
-            url = pageContext.IsLastLevel ? "~/Customer/Member/ChangeStatus"
+            url = pageContext.IsMember ? "~/Customer/Member/ChangeStatus"
                 : "~/Customer/Agent/ChangeStatus";
             $.ajax({
                 url: core.resolveUrl(url),
@@ -345,13 +233,13 @@ customer.customerList = (function ($) {
         showAlert: function (target, custId, statusId) {
             var message = '';
             if (statusId === statusObj.Close) {
-                if (pageContext.IsLastLevel) {
+                if (pageContext.IsMember) {
                     message = language.getString('ChangeStatusMember');
                 } else {
                     message = language.getString('ChangeStatusAgent');
                 }
             } else {
-                if (pageContext.IsLastLevel) {
+                if (pageContext.IsMember) {
                     message = language.getString('ChangeCloseToOpenMember');
                 } else {
                     message = language.getString('ChangeCloseToOpenAgent');
@@ -410,7 +298,7 @@ customer.customerList = (function ($) {
         },
         getEditItems: function (status) {
             var editItems = {}, items = [], index;
-            if (pageContext.IsLastLevel) {
+            if (pageContext.IsMember) {
                 items = [
                     {
                         name: language.getString("Sportsbook"),
@@ -425,9 +313,9 @@ customer.customerList = (function ($) {
                         callback: customer.customerList.resetPassword
                     },
                     {
-                    name: language.getString("Password"),
-                    callback: customer.customerList.editSetting
-                }
+                        name: language.getString("Password"),
+                        callback: customer.customerList.editSetting
+                    }
                 ];
             } else {
                 items = [
@@ -444,13 +332,13 @@ customer.customerList = (function ($) {
                         callback: customer.customerList.resetPassword
                     },
                     {
-                    name: language.getString("Password"),
-                    callback: customer.customerList.editSetting
-                }
+                        name: language.getString("Password"),
+                        callback: customer.customerList.editSetting
+                    }
                 ];
             }
 
-            if (pageContext.IsAdmin && !pageContext.IsLastLevel && status) {
+            if (pageContext.IsAdmin && !pageContext.IsMember && status) {
                 items.push({
                     name: language.getString("AddAgent"),
                     callback: customer.customerList.addDownline
@@ -514,7 +402,7 @@ customer.customerList = (function ($) {
         },
         resetPassword: function () {
             var url;
-            if (pageContext.IsLastLevel) {
+            if (pageContext.IsMember) {
                 url = "Customer/Member/ResetPassword?memberId={0}".format(editMemberId);
             } else {
                 url = "Customer/Agent/ResetPassword?agentId={0}".format(editAgentId);
@@ -541,6 +429,119 @@ customer.customerList = (function ($) {
                 width: 1008,
                 height: 680
             });
+        },
+        createContextMenu: function () {
+            var listAction = [
+                {
+                    id: 'menuSportsbook',
+                    icon: (pageContext.IsAdmin ||
+                        pageContext.IsMember ||
+                        pageContext.IsDirectDownLine ?
+                        'icon-customer-canedit'
+                        : 'icon-customer-canview'),
+                    text: language.getString('Sportsbook'),
+                    href: '#',
+                    css: 'popover-link',
+                    action: function (e) {
+                        if (pageContext.IsMember) {
+                            e.stopPropagation();
+                            customer.customerList.hidePopover();
+                            $('#menuSportsbook').popover("show");
+                        }
+                        else {
+                            customer.customerList.editSportsbook;
+                        }
+                    }
+                },
+                {
+                    id: 'menuVirtualSports',
+                    icon: (pageContext.IsAdmin ||
+                        pageContext.IsMember ||
+                        pageContext.IsDirectDownLine ?
+                        'icon-customer-canedit'
+                        : 'icon-customer-canview'),
+                    text: language.getString('VirtualSports'),
+                    href: '#',
+                    css: 'popover-link',
+                    action: function (e) {
+                        if (pageContext.IsMember) {
+                            e.stopPropagation();
+                            customer.customerList.hidePopover();
+                            $('#menuVirtualSports').popover("show");
+                        }
+                        else {
+                            customer.customerList.editVirttualSports;
+                        }
+                    }
+                },
+                {
+                    id: 'menuEditInfo',
+                    icon: 'icon-customer-canedit',
+                    text: language.getString('EditInfo'),
+                    href: '#',
+                    action: customer.customerList.editInfo
+                },
+                {
+                    id: 'menuResetPassword',
+                    icon: 'icon-customer-canedit',
+                    text: language.getString('ResetPassword'),
+                    href: '#',
+                    action: customer.customerList.resetPassword
+                },
+                {
+                    id: 'menuAddDownline',
+                    icon: 'icon-customer-canedit',
+                    text: language.getString('AddAgent'),
+                    href: '#',
+                    action: customer.customerList.addDownline
+                }
+            ];
+
+            context.attach('.icon-customer-edit', listAction);
+
+            if (pageContext.IsMember) {
+                $('#menuVirtualSports').popover({
+                    html: true,
+                    placement: 'right',
+                    trigger: 'manual',
+                    content: function () {
+                        var divId = "tmp-id-" + $.now();
+                        return customer.customerList.uplineAgents($(this).attr('href'), divId, virtualSport);
+                    }
+                });
+
+                $('#menuSportsbook').popover({
+                    html: true,
+                    placement: 'right',
+                    trigger: 'manual',
+                    content: function () {
+                        var divId = "tmp-id-" + $.now();
+                        return customer.customerList.uplineAgents($(this).attr('href'), divId, sportsbook);
+                    }
+                });
+
+                $(document).on('click', 'html', function () {
+                    customer.customerList.hidePopover();
+                });
+            }
+
+            context.attach('#select-dropdown', [
+                {
+                    text: language.getString('All'),
+                    href: '#',
+                    action: customer.customerList.checkAll
+                },
+                {
+                    text: language.getString('None'),
+                    href: '#',
+                    action: customer.customerList.uncheckAll
+                }
+            ]);
+            // create action context menu
+            context.init({
+                preventDoubleContext: false,
+                beforeShow: customer.customerList.updateActionMenus
+            });           
         }
     };
 } (jQuery));

@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Customer.ViewModels
+﻿namespace LicenseeAgent.CustomerList.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
@@ -10,9 +10,6 @@
     {
         [Required]
         public int AgentId { get; set; }
-
-        [Required]
-        public int AgentLevel { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 2)]

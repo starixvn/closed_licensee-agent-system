@@ -221,8 +221,9 @@ var core = (function ($) {
                                 core.showErrorMsg(data.ErrMsg);
                             } else {
                                 alert(data.ErrMsg);
-                            };
-                        }
+                            }
+                        };
+
                         if (typeof (onFailure) === 'function') {
                             onFailure(data, errorHandler);
                         } else {

@@ -17,7 +17,12 @@
 
         public static Breadcrumb FromString(string xml)
         {
-            var list = ObjectSerializer.DeserializeList<BreadcrumbItem>(HttpUtility.HtmlDecode(xml));
+            IList<BreadcrumbItem> list = new List<BreadcrumbItem>();
+            if (!string.IsNullOrEmpty(xml))
+            {
+                list = ObjectSerializer.DeserializeList<BreadcrumbItem>(HttpUtility.HtmlDecode(xml));
+            }
+
             return new Breadcrumb(list);
         }
 

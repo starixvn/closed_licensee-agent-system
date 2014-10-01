@@ -36,6 +36,8 @@
                 "~/scripts/mutate/mutate.js",
                 "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
+                "~/scripts/core-enums.js",
+                "~/scripts/core-common.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
                 "~/scripts/report.js"));

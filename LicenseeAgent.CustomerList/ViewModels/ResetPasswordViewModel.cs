@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Customer.ViewModels
+﻿namespace LicenseeAgent.CustomerList.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;

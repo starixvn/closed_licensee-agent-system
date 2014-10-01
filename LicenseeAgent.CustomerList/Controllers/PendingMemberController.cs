@@ -1,10 +1,10 @@
-﻿namespace LicenseeAgent.Customer.Controllers
+﻿namespace LicenseeAgent.CustomerList.Controllers
 {
     using System.Web.Mvc;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Customer.Criteria;
-    using LicenseeAgent.Customer.Services;
-    using LicenseeAgent.Customer.ViewModels.PendingMember;
+    using LicenseeAgent.CustomerList.Criteria.PendingMember;
+    using LicenseeAgent.CustomerList.Services;
+    using LicenseeAgent.CustomerList.ViewModels.PendingMember;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Enumerations;
     using LicenseeAgent.Taiwan.Services;
@@ -19,7 +19,7 @@
     {
         #region Variables
 
-        private readonly ICustomerService _customerService;
+        private readonly IPendingMemberListService _pendingMemberService;
         private readonly IMemberService _memberService;
 
         #endregion Variables
@@ -32,10 +32,10 @@
         }
 
         public PendingMemberController(
-            ICustomerService customerService,
+            IPendingMemberListService pendingMemberService,
             IMemberService memberService)
         {
-            _customerService = customerService ?? new CustomerService();
+            _pendingMemberService = pendingMemberService ?? new PendingMemberListService();
             _memberService = memberService ?? new MemberService();
         }
 
@@ -67,7 +67,7 @@
             var agentId = CurrentSession.AgentInfo.AgentId;
             if (!CurrentSession.AgentInfo.IsLastLevel)
             {
-                agentId = _customerService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
+                agentId = _pendingMemberService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
                 {
                     UserName = model.DirectAgentUserName,
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,

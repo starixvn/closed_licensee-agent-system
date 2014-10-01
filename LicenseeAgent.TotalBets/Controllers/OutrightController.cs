@@ -17,7 +17,7 @@
     /// <summary>
     /// Outright controllers.
     /// </summary>
-    public class OutrightController : CommonController
+    public class OutrightController : TotalBetsController
     {
         #region Variables
 

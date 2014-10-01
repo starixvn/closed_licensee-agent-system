@@ -214,7 +214,9 @@
                 AgentId = agentId
             };
 
-            return GetEntity<AgentInfo>(criteria);
+            var result = GetEntity<AgentInfo>(criteria);
+            result.AgentId = agentId;
+            return result;
         }
 
         /// <summary>

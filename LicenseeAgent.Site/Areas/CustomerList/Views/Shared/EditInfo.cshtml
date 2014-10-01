@@ -1,0 +1,100 @@
+﻿@model EditInfoViewModel
+@{
+    ViewBag.Title = Las.EditInfo;
+}
+@section scripts{
+    @if (ViewBag.Result != null)
+    {
+        <script type="text/javascript">
+            core.submitPage();
+        </script>
+    }
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div style="width: 438px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+            }
+            @Html.AntiForgeryToken()
+            <table class="no-wrap">
+                <colgroup>
+                    <col width="130" />
+                    <col width="308" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.UserName)
+                        </td>
+                        <td>
+                            <strong>@Model.UserName</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.FirstName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.FirstName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.LastName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.LastName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Phone)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Phone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Mobile)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Mobile)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Fax)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Fax)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="reset" class="btn btn-primary pull-right">
+                    @Las.Reset
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Update
+                </button>
+            </div>
+            <div class="form-note">
+                <span class="note-text">@Las.Note:</span>
+                @Html.Raw(Las.PhoneNote)
+            </div>
+        </fieldset>
+        @Html.HiddenFor(m => m.CustId)
+        @Html.HiddenFor(m => m.UserName)
+    }
+</div>

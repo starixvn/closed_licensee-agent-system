@@ -70,7 +70,8 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Controllers\CustomerListControllerTests.cs" />
+    <Compile Include="Controllers\AgentControllerTests.cs" />
+    <Compile Include="Controllers\MemberControllerTests.cs" />
     <Compile Include="Fakes\FakeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,7 +84,7 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.Customer.csproj">
+    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj">
       <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
       <Name>LicenseeAgent.Customer</Name>
     </ProjectReference>

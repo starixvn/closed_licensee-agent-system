@@ -1,20 +1,32 @@
-﻿namespace LicenseeAgent.Customer.Controllers
+﻿namespace LicenseeAgent.CustomerList.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Customer.Criteria;
-    using LicenseeAgent.Customer.Services;
-    using LicenseeAgent.Customer.ViewModels;
+    using LicenseeAgent.Core.Services;
+    using LicenseeAgent.CustomerList.Criteria.Member;
+    using LicenseeAgent.CustomerList.Entities.Member;
+    using LicenseeAgent.CustomerList.Services;
+    using LicenseeAgent.CustomerList.ViewModels;
+    using LicenseeAgent.CustomerList.ViewModels.Member;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
+    using LicenseeAgent.Taiwan.Enumerations;
+    using LicenseeAgent.Taiwan.Filter;
+    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Taiwan.Utility;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Services;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// MemberController class.
@@ -22,24 +34,171 @@
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     public class MemberController : BaseController
     {
-        private readonly ICustomerService _customerService;
+        #region Variables
+
+        private readonly IMemberListService _memberListService;
         private readonly IMemberService _memberService;
         private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICoreService _coreService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public MemberController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         public MemberController(
-            ICustomerService customerService,
+            IMemberListService memberListService,
             IMemberService memberService,
-            IDownLinePermissionService downLinePermissionService)
+            IDownLinePermissionService downLinePermissionService,
+            ICoreService coreService)
         {
-            _customerService = customerService ?? new CustomerService();
+            _memberListService = memberListService ?? new MemberListService();
             _memberService = memberService ?? new MemberService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _coreService = coreService ?? new CoreService();
         }
+
+        #endregion Constructors
+
+        #region Index
+
+        /// <summary>
+        /// Members the list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Page member list.</returns>
+        [HttpGet]
+        public ActionResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
+        {
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
+            {
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                IsMember = true
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Indexes the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Index page.</returns>
+        [HttpPost]
+        public JsonResult Index(CustomerListViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var serviceResult = GetMemberInformations(model);
+            if (serviceResult.ErrCode != Result.SuccessValue)
+            {
+                return JsonResult(serviceResult);
+            }
+
+            var serviceMembers = new List<ServiceMemberEntity>();
+            if (serviceResult.Members != null && serviceResult.Members.Any())
+            {
+                serviceMembers = serviceResult.Members.Where(m => model.Status == null || m.Status == model.Status)
+                    .OrderBy(m => m.Username).Skip(model.PageIndex * model.PageSize).Take(model.PageSize).ToList();
+            }
+
+            if (!serviceMembers.Any())
+            {
+                return Json(new
+                {
+                    List = new List<MemberEntity>(),
+                    CurrentPage = model.PageIndex,
+                    ItemsPerPage = model.PageSize,
+                    TotalItem = 0
+                });
+            }
+
+            var members = _memberListService.SearchMembersByIds(new SearchMemberByIdsCriteria
+            {
+                AgentId = model.AgentId,
+                ListCustId = string.Join(",", serviceMembers.Select(m => m.IBCCustId.ToString()).ToArray())
+            });
+            ServiceMapper.MapObjects(serviceMembers, members, new MemberFilter());
+            if (!CurrentSession.IsAdmin)
+            {
+                members.ToList().ForEach(r => r.SystemId = string.Empty);
+            }
+
+            return Json(new
+            {
+                List = members,
+                CurrentPage = model.PageIndex,
+                ItemsPerPage = model.PageSize,
+                TotalItem = members.Count()
+            });
+        }
+
+        /// <summary>
+        /// Get member information.
+        /// </summary>
+        /// <param name="model">Customer list view model.</param>
+        /// <returns>Member list result.</returns>
+        [NonAction]
+        public MemberListResult GetMemberInformations(CustomerListViewModel model)
+        {
+            var action = CurrentSession.AgentInfo.IsCredit
+                ? (BaseAction)new GetMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId
+                }
+                : (BaseAction)new GetDepositMemberInfoListAction
+                {
+                    SiteName = CurrentSession.AgentInfo.LicenseeName,
+                    LASAgentId = model.AgentId,
+                    DepositOption = (int)DepositOption.DepositOnly,
+                    Username = model.UserName
+                };
+
+            return _memberService.GetPlainMembers(action);
+        }
+
+        #endregion Index
+
+        #region Auto complete
+
+        /// <summary>
+        /// Get agent auto complete.
+        /// </summary>
+        /// <param name="model">Customer auto complete view model.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost]
+        public JsonResult AutoComplete(CustomerSearchAutoCompleteViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var members = _memberListService.GetMemberAutoComplete(new MemberAutoCompleteCriteria
+            {
+                AgentId = model.AgentId,
+                Text = model.UserName
+            });
+            var userNames = members.Select(m => m.UserName);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = userNames
+            });
+        }
+
+        #endregion Auto complete
+
+        #region Change status
 
         /// <summary>
         /// Change member account status.
@@ -60,7 +219,7 @@
                 {
                     CustId = model.MemberId
                 };
-                _customerService.CheckMemberUplineStatusForUpdate(criteria);
+                _memberListService.CheckMemberUplineStatusForUpdate(criteria);
                 if (criteria.ErrCode != Result.SuccessValue)
                 {
                     return JsonResult(criteria.ErrCode);
@@ -80,6 +239,10 @@
             return JsonResult(serviceResult);
         }
 
+        #endregion Change status
+
+        #region Reset password
+
         /// <summary>
         /// Reset Password.
         /// </summary>
@@ -94,9 +257,9 @@
             }
 
             return View(new ResetPasswordViewModel
-                {
-                    CustId = memberId
-                });
+            {
+                CustId = memberId
+            });
         }
 
         /// <summary>
@@ -136,6 +299,10 @@
 
             return View();
         }
+
+        #endregion Reset password
+
+        #region Edit information
 
         /// <summary>
         /// Edit Info Member.
@@ -219,25 +386,29 @@
             return View("~/Views/CustomerList/EditInfo.cshtml", model);
         }
 
-        /// <summary>
-        /// Up lines the agents by customer identifier.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>JSON Result.</returns>
-        [HttpPost]
-        public JsonResult UplineAgentsByCustId(int custId)
-        {
-            var criteria = new GetUplineByCustIdCriteria
-            {
-                CustId = custId
-            };
-            var listAgent = _customerService.UplineAgentsByCustId(criteria);
+        #endregion Edit information
 
-            return Json(new
+        #region Get Upline agents
+
+        /// <summary>
+        /// Up line of the agents.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// List Up line of agents.
+        /// </returns>
+        [HttpPost]
+        public ViewResult DirectUpLines(DirectUpLinesViewModel model)
+        {
+            var listUplines = _memberListService.UplineAgentsByCustId(new GetUplineByCustIdCriteria
             {
-                ErrCode = Result.SuccessValue,
-                List = listAgent
+                CustId = model.CustId
             });
+
+            model.AgentList = listUplines;
+            return View(model);
         }
+
+        #endregion Get Upline agents
     }
 }

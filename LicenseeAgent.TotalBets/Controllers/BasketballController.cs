@@ -12,7 +12,7 @@
     /// <summary>
     /// Account controllers.
     /// </summary>
-    public class BasketballController : CommonController
+    public class BasketballController : TotalBetsController
     {
         #region Variables
 

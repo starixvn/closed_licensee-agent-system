@@ -56,12 +56,12 @@
                     }
                     @BootstrapHelper.LeftMenu(
                         SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel
-                        ? Las.MemberList
-                        : Las.AgentList,
-                        Url.Action("CustomerList", "Customer"))
+                            ? Las.MemberList
+                            : Las.AgentList,
+                            Url.Action("Index", "Agent", new { area = "CustomerList" }))
                     @if (LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
-                        @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("Index", "PendingMember", new { area = "Customer" }))
+                        @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("Index", "PendingMember", new { area = "CustomerList" }))
                     }
                     @if (LegendTypeAttribute.Authorize(LegendType.Credit))
                     {

@@ -211,7 +211,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\CustomerList\CustomerListAreaRegistration.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
@@ -223,6 +223,8 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\CustomerList\Scripts\Member\member.js" />
+    <Content Include="Areas\CustomerList\Scripts\ResetPassword\reset-password.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information-result.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information-product.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information-info.js" />
@@ -309,10 +311,10 @@
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-member-simple-mode.html" />
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
-    <Content Include="Areas\Customer\Content\customer-list.less" />
-    <Content Include="Areas\Customer\Scripts\customer-list.js" />
-    <Content Include="Areas\Customer\Scripts\PendingMember\pending-member.js" />
-    <Content Include="Areas\Customer\Scripts\reset-password.js" />
+    <Content Include="Areas\CustomerList\Content\customer-list.less" />
+    <Content Include="Areas\CustomerList\Scripts\Agent\agent.js" />
+    <Content Include="Areas\CustomerList\Scripts\PendingMember\pending-member.js" />
+    <Content Include="Areas\CustomerList\Scripts\customer-list.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer-detail.js" />
     <Content Include="Areas\TotalBets\Scripts\totalBets.js" />
@@ -327,6 +329,8 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\core-common.js" />
+    <Content Include="Scripts\core-enums.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">
@@ -407,17 +411,13 @@
     <Content Include="Areas\TotalBets\Views\Soccer\DetailBetList.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_DownLineListTab.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_ProductsTab.cshtml" />
-    <Content Include="Areas\Customer\Views\Web.config" />
-    <Content Include="Areas\Customer\Views\CustomerList\_AgentGrid.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\_Link.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\_MemberGrid.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\_MemberGridDeposit.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\GetIpInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\CustomerList\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\PendingMember\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\ResetPassword.cshtml" />
-    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\EditInfo.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Web.config" />
+    <Content Include="Views\Common\IP.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Agent\Index.cshtml" />
+    <Content Include="Areas\CustomerList\Views\PendingMember\Index.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Shared\ResetPassword.cshtml" />
+    <Content Include="Areas\CustomerList\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Shared\EditInfo.cshtml" />
     <None Include="App_Data\Fanex.Result\Badminton.xls" />
     <None Include="App_Data\Fanex.Result\BaseBall.xls" />
     <None Include="App_Data\Fanex.Result\Basketball.xls" />
@@ -432,7 +432,8 @@
     <None Include="App_Data\Fanex.Result\Tennis.xls" />
     <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
-    <Content Include="Areas\Customer\Views\Agent\UplineAgents.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Member\DirectUplines.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Member\Index.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -716,9 +717,7 @@
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\popup.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Customer\Views\Member\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -1034,9 +1033,9 @@
       <Project>{970DC933-9E7D-4BCE-86DB-4B5C6A424BEA}</Project>
       <Name>LicenseeAgent.CreditBalance</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.Customer.csproj">
+    <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj">
       <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
-      <Name>LicenseeAgent.Customer</Name>
+      <Name>LicenseeAgent.CustomerList</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj">
       <Project>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</Project>

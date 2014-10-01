@@ -1,8 +1,10 @@
 ﻿namespace LicenseeAgent.Web.Binders
 {
-    using System;
     using System.Web.Mvc;
+    using LicenseeAgent.Core.Entities;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
@@ -10,6 +12,22 @@
     /// </summary>
     public class AgentBreadcrumbModelBinder : IModelBinder
     {
+        private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICoreService _coreService;
+
+        public AgentBreadcrumbModelBinder()
+            : this(null, null)
+        {
+        }
+
+        public AgentBreadcrumbModelBinder(
+            IDownLinePermissionService downLinePermissionService,
+            ICoreService coreService)
+        {
+            _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _coreService = coreService ?? new CoreService();
+        }
+
         /// <summary>
         /// Binds the model to a value by using the specified controller context and binding context.
         /// </summary>
@@ -20,43 +38,39 @@
         /// </returns>
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
+            var currentSession = SessionManager.CurrentSession;
             var request = controllerContext.HttpContext.Request;
-            var agentId = request.Form.Get("AgentId");
-            if (string.IsNullOrEmpty(agentId))
+            var agentId = 0;
+            AgentInfo agentInfo = null;
+            if (int.TryParse(request.QueryString.Get("AgentId"), out agentId))
             {
-                bindingContext.ModelState.AddModelError("AgentId", "Required.");
+                agentInfo = currentSession.AgentInfo;
+            }
+            else if (_downLinePermissionService.IsDirectDownLineAgent(agentId))
+            {
+                agentInfo = _coreService.GetAgentInfo(agentId);
+            }
+
+            if (agentInfo == null)
+            {
+                bindingContext.ModelState.AddModelError(string.Empty, "Data not found");
                 return null;
             }
 
-            var agentLevel = request.Form.Get("AgentLevel");
-            if (string.IsNullOrEmpty(agentLevel))
+            var breadcrumb = Breadcrumb.FromString(request.QueryString.Get("Breadcrumb"));
+            breadcrumb.Join(new BreadcrumbItem
             {
-                bindingContext.ModelState.AddModelError("AgentLevel", "Required.");
-                return null;
-            }
-
-            var agentName = request.Form.Get("AgentName");
-            if (string.IsNullOrEmpty(agentName))
-            {
-                bindingContext.ModelState.AddModelError("AgentName", "Required.");
-                return null;
-            }
-
-            var isMember = string.IsNullOrEmpty(request.Form.Get("IsMember")) ? false : Convert.ToBoolean(request.Form.Get("IsMember"));
-            var breadcrumb = request.Form.Get("Breadcrumb");
-            if (breadcrumb == null)
-            {
-                bindingContext.ModelState.AddModelError("Breadcrumb", "Required.");
-                return null;
-            }
+                AgentId = agentInfo.AgentId,
+                AgentName = agentInfo.UserName,
+                AgentLevel = agentInfo.AgentLevel,
+            });
 
             return new AgentBreadcrumbViewModel
             {
-                AgentId = Convert.ToInt32(agentId),
-                AgentName = agentName,
-                AgentLevel = Convert.ToInt16(agentLevel),
-                IsMember = isMember,
-                Breadcrumb = Breadcrumb.FromString(breadcrumb)
+                AgentId = agentInfo.AgentId,
+                AgentName = agentInfo.UserName,
+                AgentLevel = agentInfo.AgentLevel,
+                Breadcrumb = breadcrumb
             };
         }
     }

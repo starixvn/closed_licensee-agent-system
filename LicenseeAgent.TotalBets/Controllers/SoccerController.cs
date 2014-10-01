@@ -12,7 +12,7 @@
     /// <summary>
     /// Soccer controllers.
     /// </summary>
-    public class SoccerController : CommonController
+    public class SoccerController : TotalBetsController
     {
         #region Variables
 

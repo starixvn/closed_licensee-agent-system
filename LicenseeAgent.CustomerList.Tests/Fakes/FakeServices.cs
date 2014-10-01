@@ -4,12 +4,16 @@
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Customer.Criteria;
-    using LicenseeAgent.Customer.Entities;
-    using LicenseeAgent.Customer.Services;
+    using LicenseeAgent.CustomerList.Criteria.Agent;
+    using LicenseeAgent.CustomerList.Criteria.Member;
+    using LicenseeAgent.CustomerList.Entities.Agent;
+    using LicenseeAgent.CustomerList.Entities.Member;
+    using LicenseeAgent.CustomerList.Services;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
+    using LicenseeAgent.Web.Criteria.Common;
+    using LicenseeAgent.Web.Entities.Common;
     using LicenseeAgent.Web.Services;
     using NSubstitute;
 
@@ -28,102 +32,88 @@
             "StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
-        public static ICustomerService CustomerService
+        public static IAgentListService AgentListService
         {
             get
             {
-                var customerService = Substitute.For<ICustomerService>();
+                var agentService = Substitute.For<IAgentListService>();
 
                 var agents = new List<AgentEntity>
-            {
-                new AgentEntity { AgentId = 101, AgentLevel = 2, UserName = "AgentAAA1" },
-                new AgentEntity { AgentId = 102, AgentLevel = 2, UserName = "AgentAAA2" },
-                new AgentEntity { AgentId = 103, AgentLevel = 2, UserName = "AgentBBB1" },
-                new AgentEntity { AgentId = 104, AgentLevel = 2, UserName = "AgentBBB2" },
-                new AgentEntity { AgentId = 105, AgentLevel = 2, UserName = "AgentCCC" }
-            };
-                var members = new List<MemberEntity>
-            {
-                new MemberEntity { AgentId = 101, CustId = 100, Status = 1 },
-                new MemberEntity { AgentId = 101, CustId = 101, Status = 1 }
-            };
+                {
+                    new AgentEntity { AgentId = 101, AgentLevel = 2, UserName = "AgentAAA1" },
+                    new AgentEntity { AgentId = 102, AgentLevel = 2, UserName = "AgentAAA2" },
+                    new AgentEntity { AgentId = 103, AgentLevel = 2, UserName = "AgentBBB1" },
+                    new AgentEntity { AgentId = 104, AgentLevel = 2, UserName = "AgentBBB2" },
+                    new AgentEntity { AgentId = 105, AgentLevel = 2, UserName = "AgentCCC" }
+                };
 
                 var failureAgents = new List<AgentEntity>
-            {
-                new AgentEntity { AgentId = 201, AgentLevel = 2, UserName = "AgentAAA1" },
-                new AgentEntity { AgentId = 202, AgentLevel = 2, UserName = "AgentAAA2" }
-            };
+                {
+                    new AgentEntity { AgentId = 201, AgentLevel = 2, UserName = "AgentAAA1" },
+                    new AgentEntity { AgentId = 202, AgentLevel = 2, UserName = "AgentAAA2" }
+                };
 
-                customerService.GetAgentList(Arg.Any<AgentGetByAgentCriteria>()).Returns(agents);
-                customerService.SearchAgent(Arg.Any<SearchAgentCriteria>()).Returns(agents);
-                customerService.GetMemberList(Arg.Any<MemberGetByAgentCriteria>())
-                            .Returns(args =>
-                            {
-                                var criteria = (MemberGetByAgentCriteria)args[0];
-                                criteria.MsgId = Result.SuccessValue;
-
-                                return members;
-                            });
-                customerService.SearchMember(Arg.Any<SearchMemberCriteria>())
-                            .Returns(args =>
-                            {
-                                var criteria = (SearchMemberCriteria)args[0];
-                                criteria.MsgId = Result.SuccessValue;
-
-                                return members;
-                            });
-
-                customerService.UpdateAgentAccStatus(Arg.Is<UpdateAgentStatusCriteria>(x => x.AgentId == 100)).Returns(agents);
-                customerService.UpdateAgentAccStatus(Arg.Is<UpdateAgentStatusCriteria>(x => x.AgentId != 100)).Returns(failureAgents);
-                customerService.When(x => x.CheckMemberUplineStatusForUpdate(Arg.Is<CheckMemberUpLineStatusForUpdateCriteria>(c => c.CustId != 1000)))
+                agentService.GetAgentList(Arg.Any<AgentGetByAgentCriteria>()).Returns(agents);
+                agentService.SearchAgent(Arg.Any<SearchAgentCriteria>()).Returns(agents);
+                agentService.UpdateAgentAccStatus(Arg.Is<UpdateAgentStatusCriteria>(x => x.AgentId == 100)).Returns(agents);
+                agentService.UpdateAgentAccStatus(Arg.Is<UpdateAgentStatusCriteria>(x => x.AgentId != 100)).Returns(failureAgents);
+                agentService.GetAgentAutoComplete(Arg.Any<AgentAutoCompleteCriteria>()).Returns(agents);
+                agentService.When(x => x.ResetPassword(Arg.Is<ResetPasswordAgentCriteria>(c => c.AgentId != 100)))
                                 .Do(args =>
                                 {
-                                    var criteria = (CheckMemberUpLineStatusForUpdateCriteria)args[0];
+                                    var criteria = (ResetPasswordAgentCriteria)args[0];
                                     criteria.ErrCode = Result.FailureValue;
                                 });
-                customerService.GetAgentAutoComplete(Arg.Any<AgentAutoCompleteCriteria>()).Returns(agents);
-                customerService.GetMemberAutoComplete(Arg.Any<MemberAutoCompleteCriteria>()).Returns(members);
-
-                customerService.When(x => x.ResetPassword(Arg.Is<ResetPasswordCriteria>(c => c.AgentId != 100)))
-                                .Do(args =>
-                                {
-                                    var criteria = (ResetPasswordCriteria)args[0];
-                                    criteria.ErrCode = Result.FailureValue;
-                                });
-                customerService.GetAgentInfo(Arg.Any<AgentInfoCriteria>()).Returns(new AgentEntity { AgentId = 101, AgentLevel = 2, UserName = "AgentAAA1" });
-                customerService.When(x => x.EditInfoAgent(Arg.Is<EditinfoAgentCriteria>(c => c.AgentId != 100)))
+                agentService.GetAgentInfo(Arg.Any<AgentInfoCriteria>()).Returns(new AgentEntity { AgentId = 101, AgentLevel = 2, UserName = "AgentAAA1" });
+                agentService.When(x => x.EditInfo(Arg.Is<EditinfoAgentCriteria>(c => c.AgentId != 100)))
                                 .Do(args =>
                                 {
                                     var criteria = (EditinfoAgentCriteria)args[0];
                                     criteria.ErrCode = Result.FailureValue;
                                 });
 
-                return customerService;
+                return agentService;
             }
         }
 
-        /// <summary>
-        /// Gets IP information service.
-        /// </summary>
-        /// <value>
-        /// Returns IP information service.
-        /// </value>
-        public static IIpInformationService IpInformationService
+        public static IMemberListService MemberListService
         {
             get
             {
-                var ipInformationService = Substitute.For<IIpInformationService>();
+                var memberListService = Substitute.For<IMemberListService>();
 
-                ipInformationService.GetIpInformation(Arg.Any<GetIpInformationCriteria>())
-                                .Returns(args =>
-                                {
-                                    return new List<IpEntity>
-                                {
-                                    new IpEntity { IpCity = "Ho Chi Minh City", CountryLong = "VietNam" }
-                                };
-                                });
+                var members = new List<MemberEntity>
+                {
+                    new MemberEntity { AgentId = 101, CustId = 100, Status = 1 },
+                    new MemberEntity { AgentId = 101, CustId = 101, Status = 1 }
+                };
 
-                return ipInformationService;
+                memberListService.GetMemberList(Arg.Any<MemberGetByAgentCriteria>())
+                    .Returns(args =>
+                    {
+                        var criteria = (MemberGetByAgentCriteria)args[0];
+                        criteria.MsgId = Result.SuccessValue;
+
+                        return members;
+                    });
+                memberListService.SearchMember(Arg.Any<SearchMemberCriteria>())
+                    .Returns(args =>
+                    {
+                        var criteria = (SearchMemberCriteria)args[0];
+                        criteria.MsgId = Result.SuccessValue;
+
+                        return members;
+                    });
+
+                memberListService.When(x => x.CheckMemberUplineStatusForUpdate(Arg.Is<CheckMemberUpLineStatusForUpdateCriteria>(c => c.CustId != 1000)))
+                    .Do(args =>
+                    {
+                        var criteria = (CheckMemberUpLineStatusForUpdateCriteria)args[0];
+                        criteria.ErrCode = Result.FailureValue;
+                    });
+                memberListService.GetMemberAutoComplete(Arg.Any<MemberAutoCompleteCriteria>()).Returns(members);
+
+                return memberListService;
             }
         }
 

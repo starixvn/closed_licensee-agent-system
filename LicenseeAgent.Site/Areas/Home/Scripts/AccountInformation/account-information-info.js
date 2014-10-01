@@ -5,8 +5,8 @@ home.accountInformation = home.accountInformation || {};
 home.accountInformation.info = (function ($) {
     'use strict';
     var statusObj = { Close: 0, Open: 1 };
-    var updateAgentStatusUrl = '~/CustomerList/ChangeAgentStatus';
-    var updateMemberStatusUrl = '~/CustomerList/ChangeMemberStatus';
+    var updateAgentStatusUrl = '~/CustomerList/Agent/ChangeStatus';
+    var updateMemberStatusUrl = '~/CustomerList/Member/ChangeStatus';
     return {
         init: function () {
             $("#customer-status").click(function () {
@@ -90,38 +90,27 @@ home.accountInformation.info = (function ($) {
                     status: statusId
                 };
             }
-            $.ajax({
+            core.ajaxJSON({
                 url: core.resolveUrl(url),
                 type: 'post',
-                data: params,
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                        return;
-                    }
-                    if (statusId === 0) {
-                        $(target).addClass('icon-status-closed')
+                data: params
+            }, function () {
+                if (statusId === core.enums.Status.Close) {
+                    $(target).addClass('icon-status-closed')
                         .removeClass('icon-status-open')
                         .find('span')
                         .text(language.getString('Closed'));
-                        $('.cust-info').children(':first')
+                    $('.cust-info').children(':first')
                         .addClass('closed')
                         .removeClass('open');
-                    } else {
-                        $(target).addClass('icon-status-open')
-                            .removeClass('icon-status-closed')
-                            .find('span')
-                            .text(language.getString('Open'));
-                        $('.cust-info').children(':first')
-                            .addClass('open')
-                            .removeClass('closed');
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+                } else {
+                    $(target).addClass('icon-status-open')
+                        .removeClass('icon-status-closed')
+                        .find('span')
+                        .text(language.getString('Open'));
+                    $('.cust-info').children(':first')
+                        .addClass('open')
+                        .removeClass('closed');
                 }
             });
         }

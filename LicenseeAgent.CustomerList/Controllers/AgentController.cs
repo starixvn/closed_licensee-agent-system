@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Customer.Controllers
+﻿namespace LicenseeAgent.CustomerList.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -7,40 +7,181 @@
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Customer.Criteria;
-    using LicenseeAgent.Customer.Services;
-    using LicenseeAgent.Customer.ViewModels;
+    using LicenseeAgent.CustomerList.Criteria.Agent;
+    using LicenseeAgent.CustomerList.Services;
+    using LicenseeAgent.CustomerList.ViewModels;
+    using LicenseeAgent.CustomerList.ViewModels.Agent;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
+    using LicenseeAgent.Web.Binders;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
+    using LicenseeAgent.Web.ViewModels;
 
     /// <summary>
     /// AgentController class.
     /// </summary>
-    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     public class AgentController : BaseController
     {
-        private readonly ICustomerService _customerService;
+        #region Variables
+
+        private readonly IAgentListService _agentListService;
         private readonly IMemberService _memberService;
         private readonly IDownLinePermissionService _downLinePermissionService;
+        private readonly ICoreService _coreService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public AgentController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         public AgentController(
-            ICustomerService customerService,
+            IAgentListService agentListService,
             IMemberService memberService,
-            IDownLinePermissionService downLinePermissionService)
+            IDownLinePermissionService downLinePermissionService,
+            ICoreService coreService)
         {
-            _customerService = customerService ?? new CustomerService();
+            _agentListService = agentListService ?? new AgentListService();
             _memberService = memberService ?? new MemberService();
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
+            _coreService = coreService ?? new CoreService();
         }
+
+        #endregion Constructors
+
+        #region Index
+
+        /// <summary>
+        /// Agents the list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Action result.</returns>
+        [HttpGet]
+        public ViewResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
+        {
+            var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
+            {
+                IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                IsMember = false
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Get agent list.
+        /// </summary>
+        /// <param name="model">Agent search view model.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost]
+        public JsonResult Index(CustomerListViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var isGetAll = string.IsNullOrEmpty(model.UserName) && model.Status == null;
+            return isGetAll ? GetAgents(model) : SearchAgents(model);
+        }
+
+        /// <summary>
+        /// Get agent by search.
+        /// </summary>
+        /// <param name="model">Agent search view model.</param>
+        /// <returns>Action result.</returns>
+        [NonAction]
+        public JsonResult GetAgents(CustomerListViewModel model)
+        {
+            var criteria = new AgentGetByAgentCriteria
+            {
+                AgentId = model.AgentId,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
+            };
+
+            var agents = _agentListService.GetAgentList(criteria);
+            return Json(new
+            {
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
+                List = agents,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
+            });
+        }
+
+        /// <summary>
+        /// Get agent by search.
+        /// </summary>
+        /// <param name="model">Agent search view model.</param>
+        /// <returns>Action result.</returns>
+        [NonAction]
+        public JsonResult SearchAgents(CustomerListViewModel model)
+        {
+            var criteria = new SearchAgentCriteria
+            {
+                AgentId = model.AgentId,
+                UserName = model.UserName,
+                AccStatus = model.Status,
+                PageSize = model.PageSize,
+                PageIndex = model.PageIndex
+            };
+
+            var agents = _agentListService.SearchAgent(criteria);
+            return Json(new
+            {
+                ErrCode = criteria.MsgId,
+                ErrMsg = GetErrMsg(criteria.MsgId),
+                List = agents,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.TotalItems
+            });
+        }
+
+        #endregion Index
+
+        #region Auto-complete
+
+        /// <summary>
+        /// Get agent auto complete.
+        /// </summary>
+        /// <param name="model">Customer auto complete view model.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost]
+        public JsonResult AutoComplete(CustomerSearchAutoCompleteViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var agents = _agentListService.GetAgentAutoComplete(new AgentAutoCompleteCriteria
+            {
+                AgentId = model.AgentId,
+                Text = model.UserName
+            });
+            var userNames = agents.Select(m => m.UserName);
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = userNames
+            });
+        }
+
+        #endregion Auto-complete
+
+        #region Change status
 
         /// <summary>
         /// Change agent account status.
@@ -63,8 +204,7 @@
                 AccStatus = model.Status
             };
 
-            var agents = _customerService.UpdateAgentAccStatus(criteria);
-
+            var agents = _agentListService.UpdateAgentAccStatus(criteria);
             if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
@@ -84,6 +224,10 @@
 
             return JsonResult(criteria.MsgId);
         }
+
+        #endregion Change status
+
+        #region Reset password
 
         /// <summary>
         /// Reset Password.
@@ -119,7 +263,7 @@
                     return RedirectToAccessDeniedPage();
                 }
 
-                var criteria = new ResetPasswordCriteria
+                var criteria = new ResetPasswordAgentCriteria
                 {
                     AgentId = model.CustId,
                     Password = model.Password,
@@ -128,7 +272,7 @@
                     UserSalt = Cryptography.CreateSalt()
                 };
 
-                _customerService.ResetPassword(criteria);
+                _agentListService.ResetPassword(criteria);
 
                 if (criteria.ErrCode != Result.SuccessValue)
                 {
@@ -143,8 +287,12 @@
             return View();
         }
 
+        #endregion Reset password
+
+        #region Edit information
+
         /// <summary>
-        /// Reset Password.
+        /// Edit information.
         /// </summary>
         /// <param name="agentId">Agent Id information.</param>
         /// <returns>Action result.</returns>
@@ -156,7 +304,7 @@
                 return RedirectToAccessDeniedPage();
             }
 
-            var agentInfo = _customerService.GetAgentInfo(new AgentInfoCriteria
+            var agentInfo = _agentListService.GetAgentInfo(new AgentInfoCriteria
             {
                 AgentId = agentId,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
@@ -165,15 +313,15 @@
             });
 
             return View(new EditInfoViewModel
-                {
-                    CustId = agentInfo.AgentId,
-                    FirstName = agentInfo.FirstName,
-                    LastName = agentInfo.LastName,
-                    Mobile = agentInfo.Mobile,
-                    Phone = agentInfo.Phone,
-                    Fax = agentInfo.Fax,
-                    UserName = agentInfo.UserName
-                });
+            {
+                CustId = agentInfo.AgentId,
+                FirstName = agentInfo.FirstName,
+                LastName = agentInfo.LastName,
+                Mobile = agentInfo.Mobile,
+                Phone = agentInfo.Phone,
+                Fax = agentInfo.Fax,
+                UserName = agentInfo.UserName
+            });
         }
 
         /// <summary>
@@ -203,7 +351,7 @@
                     Fax = model.Fax
                 };
 
-                _customerService.EditInfoAgent(criteria);
+                _agentListService.EditInfo(criteria);
 
                 if (criteria.ErrCode != Result.SuccessValue)
                 {
@@ -218,26 +366,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Up line of the agents.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <param name="product">The product.</param>
-        /// <returns>List Up line of agents.</returns>
-        public ActionResult UplineAgents(int custId, string product)
-        {
-            var listUplines = _customerService.UplineAgentsByCustId(new GetUplineByCustIdCriteria
-            {
-                CustId = custId
-            });
-
-            var model = new UplineViewModel
-            {
-                AgentList = listUplines,
-                Product = product,
-                CustId = custId
-            };
-            return View(model);
-        }
+        #endregion Edit information
     }
 }

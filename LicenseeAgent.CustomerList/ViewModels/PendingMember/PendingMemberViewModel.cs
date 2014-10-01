@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Customer.ViewModels.PendingMember
+﻿namespace LicenseeAgent.CustomerList.ViewModels.PendingMember
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

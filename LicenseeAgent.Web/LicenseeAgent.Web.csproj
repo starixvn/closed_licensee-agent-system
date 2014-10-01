@@ -113,6 +113,7 @@
     <Compile Include="Binders\AgentBreadcrumbModelBinder.cs" />
     <Compile Include="Binders\AppModelBinder.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criteria\CheckCurrencyPermissionCriteria.cs" />
     <Compile Include="Criteria\CheckDownLineBelongCriteria.cs" />
+    <Compile Include="Criteria\Common\GetIpInformationCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringGetAPIUrlCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringGetLogDataCriteria.cs" />
     <Compile Include="Criteria\SyncMonitoringUpdateRunCountCriteria.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Entities\Breadcrumb.cs" />
     <Compile Include="Entities\BreadcrumbItem.cs" />
     <Compile Include="Entities\ClientInfo.cs" />
+    <Compile Include="Entities\Common\IpEntity.cs" />
     <Compile Include="Entities\ErrorPageInfo.cs" />
     <Compile Include="Entities\PageContext.cs" />
     <Compile Include="Entities\SyncMonitoring.cs" />
@@ -150,6 +153,8 @@
     <Compile Include="Filters\UnderMaintenanceAttribute.cs" />
     <Compile Include="Services\AuthenticateService.cs" />
     <Compile Include="Services\IAuthenticateService.cs" />
+    <Compile Include="Services\ICommonService.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\MonitoringService.cs" />
     <Compile Include="Services\IMonitoringService.cs" />
     <Compile Include="Services\DownLineService.cs" />
@@ -170,6 +175,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\RequiredIfAttribute.cs" />
     <Compile Include="ViewModels\AgentBreadcrumbViewModel.cs" />
+    <Compile Include="ViewModels\Common\IpInformationViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\SyncMonitoringPostViewModel.cs" />

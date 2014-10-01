@@ -55,14 +55,14 @@
             }
             @if (hasResetPassword)
             {
-                <li><a href="@(pageContext.IsMember ? Url.Action("ResetPassword", "Member", new { area = "Customer", memberId = Model.Customer.CustId }) : Url.Action("ResetPassword", "Agent", new { area = "Customer", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
+                <li><a href="@(pageContext.IsMember ? Url.Action("ResetPassword", "Member", new { area = "CustomerList", memberId = Model.Customer.CustId }) : Url.Action("ResetPassword", "Agent", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level }))" target="frmMain">
                     <i class="icon-downline-arrow"></i>
                     @Las.ResetPassword
                 </a></li>
             }
             @if (hasEditInfo)
             {
-                <li><a href="@(pageContext.IsMember ? Url.Action("EditInfo", "Member", new { area = "Customer", memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfo", "Agent", new { area = "Customer", agentId = Model.Customer.CustId }))" target="frmMain">
+                <li><a href="@(pageContext.IsMember ? Url.Action("EditInfo", "Member", new { area = "CustomerList", memberId = Model.Customer.CustId, username = Model.Customer.UserName }) : Url.Action("EditInfo", "Agent", new { area = "CustomerList", agentId = Model.Customer.CustId }))" target="frmMain">
                     <i class="icon-downline-arrow"></i>
                     @Las.EditInfo
                 </a></li>

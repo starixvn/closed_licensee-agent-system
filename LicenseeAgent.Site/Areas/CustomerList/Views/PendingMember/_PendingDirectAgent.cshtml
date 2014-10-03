@@ -1,0 +1,18 @@
+﻿@using LicenseeAgent.Web.Entities
+@model DirectMemberViewModel
+<div class="tab-pane active pull-left" id="direct-agent">
+    @using (Html.BeginForm("DirectMember", null, FormMethod.Post,
+    new { @class = "form-inline form-filter", id = "directMember" }))
+    {
+        @Html.ValidationSummary()
+        <div class="controls-row">
+            @Html.LabelFor(x => x.MemberUserName)
+            @Html.TextBoxFor(x => x.MemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
+        </div>
+    }
+</div>

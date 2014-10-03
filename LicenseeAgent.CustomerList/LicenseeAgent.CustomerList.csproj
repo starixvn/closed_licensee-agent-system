@@ -109,6 +109,8 @@
     <Compile Include="ViewModels\CustomerSearchAutoCompleteViewModel.cs" />
     <Compile Include="ViewModels\EditInfoViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberStatusViewModel.cs" />
+    <Compile Include="ViewModels\PendingMember\IndirectMemberViewModel.cs" />
+    <Compile Include="ViewModels\PendingMember\DirectMemberViewModel.cs" />
     <Compile Include="ViewModels\PendingMember\PendingMemberViewModel.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
   </ItemGroup>

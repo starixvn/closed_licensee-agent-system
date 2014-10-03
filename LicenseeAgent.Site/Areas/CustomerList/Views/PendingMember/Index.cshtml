@@ -21,43 +21,27 @@
     @ViewBag.Title
 </div>
 
-<div id="filter-tabs" class="filter-tabs">
-    <ul id="tabs-area" class="nav nav-tabs">
-        <li class="active"><a href="#direct-agent" data-toggle="tab">@Las.DirectAgent</a>
-        </li>
-        <li><a href="#indirect-agent" data-toggle="tab">@Las.IndirectAgent</a> </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active" id="direct-agent">aa
-        </div>
-        <div class="tab-pane" id="indirect-agent">bb
+@if (pageContext.IsAdmin)
+{
+    @Html.Partial("_PendingIndirectAgent", Model.IndirectMember)
+}
+else
+{
+    <div id="filter-tabs" class="filter-tabs">
+        <ul id="tabs-area" class="nav nav-tabs">
+            <li class="active">
+                <a id="directAgent" href="#direct-agent" data-toggle="tab">@Las.DirectAgent</a>
+            </li>
+            <li>
+                <a id="indirectAgent" href="#indirect-agent" data-toggle="tab">@Las.IndirectAgent</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_PendingIndirectAgent", Model.IndirectMember)
+            @Html.Partial("_PendingDirectAgent", Model.DirectMember)
         </div>
     </div>
-</div>
-
-<div class="pull-left" style="min-width: 420px">
-    @Html.ValidationSummary()
-    @using (Html.BeginForm(null, null, FormMethod.Post,
-    new { @class = "form-inline form-filter", id = "search-form" }))
-    {
-        <div class="controls-row">
-            @Html.LabelFor(x => x.MemberUserName)
-            @Html.TextBoxFor(x => x.MemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
-        </div>
-        if (!Model.IsDirectAgent)
-        {
-        <div class="controls-row">
-            @Html.LabelFor(x => x.DirectAgentUserName)
-            @Html.TextBoxFor(x => x.DirectAgentUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
-        </div>
-        }
-        <div class="controls-row">
-            <button class="btn btn-primary" type="submit">
-                @Las.Submit
-            </button>
-        </div>
-    }
-</div>
+}
 
 <div id="grid" class="freegrid">
 </div>

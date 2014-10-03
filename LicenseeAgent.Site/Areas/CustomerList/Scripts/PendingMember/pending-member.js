@@ -1,4 +1,4 @@
-﻿/*global core, language*/
+﻿/*global core, language, pageContext*/
 var customerList = customerList || {};
 customerList.pendingMember = (function ($) {
     'use strict';
@@ -22,24 +22,35 @@ customerList.pendingMember = (function ($) {
             customerList.pendingMember.hideGrid();
 
             $('form').submit(function (e) {
+                var url = $(this).attr('action');
                 if ($(this).valid()) {
-                    customerList.pendingMember.submit();
+                    customerList.pendingMember.submit(url);
                 } else {
                     customerList.pendingMember.hideGrid();
                 }
                 e.preventDefault();
             });
 
-            if ($('#DirectAgentUserName').length === 0) {
-                customerList.pendingMember.submit();
+            $('a[data-toggle="tab"]').on('shown', function (e) {
+                if ($(e.target).attr('href') === "#direct-agent") {
+                    customerList.pendingMember.hideGrid();
+                    $('#directMember').submit();
+                }
+                else {
+                    customerList.pendingMember.hideGrid();
+                }
+            });
+
+            if (!pageContext.IsAdmin) {
+                $('#directMember').submit();
             }
         },
         hideGrid: function () {
             $('#grid').hide();
         },
-        submit: function () {
+        submit: function (url) {
             core.ajaxJSON({
-                url: $('form').attr('action'),
+                url: url,
                 data: $('form').serializeObject()
             }, function (data) {
                 gridOptions.pagerOption.currentPage = 0;

@@ -50,24 +50,26 @@
         {
             var model = new PendingMemberViewModel
             {
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel
+                DirectMember = new DirectMemberViewModel(),
+                IndirectMember = new IndirectMemberViewModel()
             };
+            ViewBag.PageContext = new PageContext(CurrentSession);
 
             return View(model);
         }
 
         /// <summary>
-        /// Get pending member list.
+        /// Get pending member list from Indirect agent.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Returns result.</returns>
         [HttpPost]
         [LegendType(LegendType.Deposit)]
-        public JsonResult Index(PendingMemberViewModel model)
+        public JsonResult Index(IndirectMemberViewModel model)
         {
             var agentId = _pendingMemberService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
             {
-                UserName = model.DirectAgentUserName,
+                UserName = model.AgentUserName,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
             });
@@ -98,7 +100,7 @@
         /// <returns>Returns result.</returns>
         [HttpPost]
         [LegendType(LegendType.Deposit)]
-        public JsonResult DirectAgent(PendingMemberViewModel model)
+        public JsonResult DirectMember(DirectMemberViewModel model)
         {
             var result = _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
             {

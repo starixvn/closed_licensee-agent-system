@@ -103,10 +103,10 @@
                 return JsonResult(serviceResult);
             }
 
-            var serviceMembers = new List<ServiceMemberEntity>();
-            if (serviceResult.Members != null && serviceResult.Members.Any())
+            var serviceMembers = new List<DepositMemberInfo>();
+            if (serviceResult.Data != null && serviceResult.Data.Any())
             {
-                serviceMembers = serviceResult.Members.Where(m => model.Status == null || m.Status == model.Status)
+                serviceMembers = serviceResult.Data.Where(m => model.Status == null || m.Status == model.Status)
                     .OrderBy(m => m.Username).Skip(model.PageIndex * model.PageSize).Take(model.PageSize).ToList();
             }
 
@@ -126,7 +126,7 @@
                 AgentId = model.AgentId,
                 ListCustId = string.Join(",", serviceMembers.Select(m => m.IBCCustId.ToString()).ToArray())
             });
-            ServiceMapper.MapObjects(serviceMembers, members, new MemberFilter());
+            ServiceMapper.Map(serviceMembers, members, new MemberFilter());
             if (!CurrentSession.IsAdmin)
             {
                 members.ToList().ForEach(r => r.SystemId = string.Empty);
@@ -147,23 +147,15 @@
         /// <param name="model">Customer list view model.</param>
         /// <returns>Member list result.</returns>
         [NonAction]
-        public MemberListResult GetMemberInformations(CustomerListViewModel model)
+        public GetDepositMemberInfoListResult GetMemberInformations(CustomerListViewModel model)
         {
-            var action = CurrentSession.AgentInfo.IsCredit
-                ? (BaseAction)new GetMemberInfoListAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = model.AgentId
-                }
-                : (BaseAction)new GetDepositMemberInfoListAction
-                {
-                    SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = model.AgentId,
-                    DepositOption = (int)DepositOption.DepositOnly,
-                    Username = model.UserName
-                };
-
-            return _memberService.GetPlainMembers(action);
+            return _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
+            {
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                LASAgentId = model.AgentId,
+                DepositOption = (int)DepositOption.DepositOnly,
+                Username = model.UserName
+            });
         }
 
         #endregion Index

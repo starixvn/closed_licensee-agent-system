@@ -80,7 +80,6 @@
     <Compile Include="Entities\ServiceMemberEntity.cs" />
     <Compile Include="Entities\UpdateMemberStatusActionLog.cs" />
     <Compile Include="Enumerations\DepositOption.cs" />
-    <Compile Include="Enumerations\ErrCode.cs" />
     <Compile Include="Enumerations\LogActionId.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

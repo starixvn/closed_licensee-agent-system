@@ -40,11 +40,11 @@
         /// </summary>
         /// <param name="logInformations">List log information.</param>
         /// <param name="memberStatusResult">Member status result.</param>
-        public static void UpdateLogInformations(IEnumerable<UpdateMemberStatusLogEntity> logInformations, MemberStatusResult memberStatusResult)
+        public static void UpdateLogInformations(IList<UpdateMemberStatusLogEntity> logInformations, MemberStatusResult memberStatusResult)
         {
             if (memberStatusResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObjects(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
+                ServiceMapper.Map(memberStatusResult.MemberStatuses, logInformations, new MemberFilter());
             }
             else
             {

@@ -87,12 +87,12 @@ customerList.member = (function ($) {
     if (pageContext.IsDeposit) {
         if (pageContext.IsAllowedMemberComm) {
             gridOptionsForCash.columns.splice(4, 0,
-            { HeaderText: "@Las.CommGroup", Width: 80, Name: "GroupName", HeaderAlign: "center", MaxResizeWidth: 160
-            });
-            gridOptions = gridOptionsForCash;
-        } else {
-            gridOptions = gridOptionsForCredit;
+            { HeaderText: "@Las.CommGroup", Width: 80, Name: "GroupName", HeaderAlign: "center", MaxResizeWidth: 160 });
         }
+        gridOptions = gridOptionsForCash;
+    }
+    else {
+        gridOptions = gridOptionsForCredit;
     }
 
     if (pageContext.IsAdmin) {

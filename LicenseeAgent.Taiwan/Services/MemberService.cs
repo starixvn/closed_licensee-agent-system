@@ -48,7 +48,7 @@
         public GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action)
         {
             var result = ServiceWrapper.GetActionResponse<GetDepositMemberInfoListResult>(action);
-            if (result.ApiErrCode == (int)GetDepositMemberInfoListErrCode.MemberNotExist && string.IsNullOrWhiteSpace(action.Username))
+            if (result.ApiErrCode == (int)GetDepositMemberInfoListError.DataNotFound && string.IsNullOrWhiteSpace(action.Username))
             {
                 result.ErrCode = Result.SuccessValue;
                 result.Data = new List<DepositMemberInfo>();
@@ -126,10 +126,9 @@
         public ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action)
         {
             var memberResult = ServiceWrapper.GetActionResponse<MemberResult>(action);
-
             if (memberResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObject(memberResult.Member, memberEntity);
+                ServiceMapper.Map(memberResult.Member, memberEntity);
             }
             else
             {
@@ -146,12 +145,12 @@
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        public ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action)
+        public ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, GetMemberInfoListAction action)
         {
             var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
             if (memberListResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObjects(memberListResult.Members, memberEntitys, new MemberFilter());
+                ServiceMapper.Map(memberListResult.Members, memberEntitys, new MemberFilter());
             }
             else
             {
@@ -180,7 +179,7 @@
             var memberResult = ServiceWrapper.GetActionResponse<DepositMemberResult>(action);
             if (memberResult.ErrCode == Result.SuccessValue)
             {
-                ServiceMapper.MapObject(memberResult.Member, memberEntity);
+                ServiceMapper.Map(memberResult.Member, memberEntity);
             }
             else
             {
@@ -188,46 +187,6 @@
             }
 
             return memberResult;
-        }
-
-        /// <summary>
-        /// Get deposit member information.
-        /// </summary>
-        /// <typeparam name="T">Type object response.</typeparam>
-        /// <param name="memberEntitys">List member entity.</param>
-        /// <param name="action">Service action.</param>
-        /// <returns>List member entity after merging.</returns>
-        public ResponseResult GetDepositMembers<T>(IEnumerable<T> memberEntitys, GetDepositMemberInfoListAction action)
-        {
-            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
-            if (memberListResult.ErrCode == Result.SuccessValue)
-            {
-                ServiceMapper.MapObjects(memberListResult.Members, memberEntitys, new MemberFilter());
-            }
-            else
-            {
-                ServiceExtension.WriteError(action, memberListResult);
-            }
-
-            return memberListResult;
-        }
-
-        /// <summary>
-        /// Get deposit member information.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>List member entity after merging.</returns>
-        public MemberListResult GetPlainMembers(BaseAction action)
-        {
-            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
-
-            // Data not found
-            if (memberListResult.ApiErrCode == (int)GetDepositMemberInfoListError.DataNotFound)
-            {
-                memberListResult.ErrCode = Result.SuccessValue;
-            }
-
-            return memberListResult;
         }
 
         /// <summary>

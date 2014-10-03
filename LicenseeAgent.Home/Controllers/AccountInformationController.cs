@@ -312,15 +312,6 @@
                         ErrMsg = serviceResult.ErrMsg
                     };
                 }
-
-                if (customer != null && CurrentSession.AgentInfo.IsDeposit)
-                {
-                    customer.FirstName = string.Empty;
-                    customer.LastName = string.Empty;
-                    customer.Phone = string.Empty;
-                    customer.Mobile = string.Empty;
-                    customer.Fax = string.Empty;
-                }
             }
 
             return customer;

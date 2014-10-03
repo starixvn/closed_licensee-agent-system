@@ -70,7 +70,7 @@
         /// <param name="memberEntitys">List member entity.</param>
         /// <param name="action">Service action.</param>
         /// <returns>List member entity after merging.</returns>
-        ResponseResult GetMemberInformations<T>(IEnumerable<T> memberEntitys, GetMemberInfoListAction action);
+        ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, GetMemberInfoListAction action);
 
         /// <summary>
         /// Get member information.
@@ -80,22 +80,6 @@
         /// <param name="action">Service action.</param>
         /// <returns>Member entity after merging.</returns>
         ResponseResult GetDepositMemberInformation<T>(T memberEntity, GetDepositMemberInfoAction action);
-
-        /// <summary>
-        /// Get deposit member information.
-        /// </summary>
-        /// <typeparam name="T">Type object response.</typeparam>
-        /// <param name="memberEntitys">List member entity.</param>
-        /// <param name="action">Service action.</param>
-        /// <returns>List member entity after merging.</returns>
-        ResponseResult GetDepositMembers<T>(IEnumerable<T> memberEntitys, GetDepositMemberInfoListAction action);
-
-        /// <summary>
-        /// Get deposit member information.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>List member entity after merging.</returns>
-        MemberListResult GetPlainMembers(BaseAction action);
 
         /// <summary>
         /// Update member information.

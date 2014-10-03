@@ -10,7 +10,7 @@
 
         void TransferToAgent(TransferToAgentCriteria criteria);
 
-        IEnumerable<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
+        IList<MemberBalanceInfo> GetMemberBalanceInfo(GetMemberBalanceInfoCriteria criteria);
 
         MemberDetail GetMemberDetail(GetMemberDetailCriteria criteria);
 

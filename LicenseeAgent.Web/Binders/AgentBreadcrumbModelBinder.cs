@@ -42,7 +42,7 @@
             var request = controllerContext.HttpContext.Request;
             var agentId = 0;
             AgentInfo agentInfo = null;
-            if (int.TryParse(request.QueryString.Get("AgentId"), out agentId) || agentId == 0)
+            if (!int.TryParse(request.QueryString.Get("AgentId"), out agentId) || agentId == 0)
             {
                 agentInfo = currentSession.AgentInfo;
             }

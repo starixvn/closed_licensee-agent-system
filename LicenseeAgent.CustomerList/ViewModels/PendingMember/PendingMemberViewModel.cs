@@ -18,6 +18,8 @@
 
         public bool IsLastLevel { get; set; }
 
+        public bool IsDirectAgent { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var currentSession = SessionManager.CurrentSession;

@@ -224,7 +224,7 @@
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
-                "~/views/customersetting/Resources/MemberArrangement.js"));
+                "~/views/MemberRearrangement/Resources/MemberArrangement.js"));
         }
 
         /// <summary>

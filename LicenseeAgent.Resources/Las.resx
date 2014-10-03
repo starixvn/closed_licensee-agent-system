@@ -1435,6 +1435,9 @@ Please note that this action cannot be undone.</value>
   <data name="DirectAgent" xml:space="preserve">
     <value>Direct Agent</value>
   </data>
+  <data name="IndirectAgent" xml:space="preserve">
+    <value>Indirect Agent</value>
+  </data>
   <data name="AlertRemoveToGroup" xml:space="preserve">
     <value>Are you sure you want to remove this member from group?</value>
   </data>

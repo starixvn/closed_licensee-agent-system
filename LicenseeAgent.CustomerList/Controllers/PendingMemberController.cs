@@ -10,6 +10,7 @@
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
+    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
 
     /// <summary>
@@ -32,10 +33,10 @@
         }
 
         public PendingMemberController(
-            IPendingMemberListService pendingMemberService,
+            IPendingMemberListService customerService,
             IMemberService memberService)
         {
-            _pendingMemberService = pendingMemberService ?? new PendingMemberListService();
+            _pendingMemberService = customerService ?? new PendingMemberListService();
             _memberService = memberService ?? new MemberService();
         }
 
@@ -64,20 +65,16 @@
         [LegendType(LegendType.Deposit)]
         public JsonResult Index(PendingMemberViewModel model)
         {
-            var agentId = CurrentSession.AgentInfo.AgentId;
-            if (!CurrentSession.AgentInfo.IsLastLevel)
+            var agentId = _pendingMemberService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
             {
-                agentId = _pendingMemberService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
-                {
-                    UserName = model.DirectAgentUserName,
-                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                    LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
-                });
+                UserName = model.DirectAgentUserName,
+                LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
+            });
 
-                if (agentId == 0)
-                {
-                    return JsonResult(ErrCode.Msg_2002);
-                }
+            if (agentId == 0)
+            {
+                return JsonResult(ErrCode.Msg_2002);
             }
 
             var result = _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
@@ -87,10 +84,32 @@
                 DepositOption = (int)DepositOption.DepositNot,
                 Username = model.MemberUserName
             });
+            ViewBag.PageContext = new PageContext(CurrentSession);
 
             return Json(result);
         }
 
         #endregion Index
+
+        /// <summary>
+        /// Get pending member list.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns result.</returns>
+        [HttpPost]
+        [LegendType(LegendType.Deposit)]
+        public JsonResult DirectAgent(PendingMemberViewModel model)
+        {
+            var result = _memberService.GetDepositMemberInfoList(new GetDepositMemberInfoListAction
+            {
+                SiteName = CurrentSession.AgentInfo.LicenseeName,
+                LASAgentId = CurrentSession.AgentInfo.AgentId,
+                DepositOption = (int)DepositOption.DepositNot,
+                Username = model.MemberUserName
+            });
+            ViewBag.PageContext = new PageContext(CurrentSession);
+
+            return Json(result);
+        }
     }
 }

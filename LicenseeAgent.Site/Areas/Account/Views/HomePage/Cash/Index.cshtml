@@ -22,7 +22,7 @@
         @Html.Partial("_Statistics", Model.StatisticInfo)
     </div>
 </div>
-@if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
+@if (!SessionManager.CurrentSession.AgentInfo.IsLevel0)
 {
     <div class="box-row">
         <div class="box-cell">

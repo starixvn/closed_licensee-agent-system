@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using Fanex.Caching;
@@ -85,6 +86,8 @@
         /// </summary>
         /// <param name="licenseeId">The licensee identifier.</param>
         /// <returns>Returns URL.</returns>
+        [SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings",
+            Justification = "https://connect.microsoft.com/VisualStudio/feedback/details/382585/ca2234-asking-me-to-self-reference-a-method")]
         public Uri GetLicenseeDomain(int licenseeId)
         {
             var licenseeDomains = LicenseeDomains;
@@ -97,8 +100,7 @@
             if (AppSettings.SiteEnvironment == SiteEnvironment.Local)
             {
                 var request = HttpContext.Current.Request;
-                var applicationPath = new Uri(request.ApplicationPath);
-                return new Uri(new Uri(domain), applicationPath);
+                return new Uri(new Uri(domain), request.ApplicationPath);
             }
 
             return new Uri(domain);

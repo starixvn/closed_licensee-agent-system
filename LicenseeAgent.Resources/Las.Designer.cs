@@ -142,6 +142,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Downline Agent.
+        /// </summary>
+        public static string AddDownlineAgent {
+            get {
+                return ResourceManager.GetString("AddDownlineAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new agent to {0}.
         /// </summary>
         public static string AddNewAgent {

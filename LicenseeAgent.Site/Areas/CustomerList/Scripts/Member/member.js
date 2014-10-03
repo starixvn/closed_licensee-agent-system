@@ -174,15 +174,7 @@ customerList.member = (function ($) {
             editMemberId = parseInt($(target).data('memberid'), null);
             editUsername = $(target).data('username');
 
-            if (!pageContext.IsAdmin
-                || $(target).attr('data-status') === 0
-                || pageContext.IsMember) {
-                $('#menuAddDownline').hide();
-            } else {
-                $('#menuAddDownline').show();
-            }
-
-            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsDeposit && pageContext.IsMember)) {
+            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !pageContext.IsDeposit) {
                 $('#menuEditInfo').show();
             } else {
                 $('#menuEditInfo').hide();
@@ -190,10 +182,6 @@ customerList.member = (function ($) {
 
             if (!pageContext.IsOfferedVirtualSports) {
                 $('#menuVirtualSports').hide();
-            }
-
-            if (pageContext.LegendType === 1 && pageContext.AgentLevel === pageContext.NumberOfLevel) {
-                $('#menuAddDownline').hide();
             }
         },
         createPopover: function () {
@@ -272,7 +260,7 @@ customerList.member = (function ($) {
             }
             var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             var newStatus = currentStatus === 0 ? 1 : 0;
-            var message = newStatus === core.enums.Status.Close
+            var message = newStatus === core.enums.Status.Closed
                 ? language.getString('ChangeStatusMember')
                 : language.getString('ChangeStatusAgent');
             var title = language.getString('ChangeStatus');

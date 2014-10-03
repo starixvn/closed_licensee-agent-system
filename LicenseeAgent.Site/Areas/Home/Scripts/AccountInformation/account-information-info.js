@@ -95,7 +95,7 @@ home.accountInformation.info = (function ($) {
                 type: 'post',
                 data: params
             }, function () {
-                if (statusId === core.enums.Status.Close) {
+                if (statusId === core.enums.Status.Closed) {
                     $(target).addClass('icon-status-closed')
                         .removeClass('icon-status-open')
                         .find('span')

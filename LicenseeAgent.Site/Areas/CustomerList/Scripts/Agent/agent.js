@@ -105,7 +105,7 @@ customerList.agent = (function ($) {
                 {
                     id: 'menuAddDownline',
                     icon: 'icon-customer-canedit',
-                    text: language.getString('AddAgent'),
+                    text: language.getString('AddDownlineAgent'),
                     href: '#',
                     action: customerList.agent.addAgent
                 }
@@ -121,15 +121,13 @@ customerList.agent = (function ($) {
             editAgentId = parseInt($(target).data('agentid'), null);
             editAgentLevel = parseInt($(target).data('agentlevel'), null);
 
-            if (!pageContext.IsAdmin
-                || $(target).attr('data-status') === 0
-                || pageContext.IsMember) {
-                $('#menuAddDownline').hide();
-            } else {
+            if (pageContext.IsAdmin && parseInt($(target).data('status')) === core.enums.Status.Open) {
                 $('#menuAddDownline').show();
+            } else {
+                $('#menuAddDownline').hide();
             }
 
-            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsDeposit && pageContext.IsMember)) {
+            if (pageContext.IsAdmin || pageContext.IsDirectDownLine) {
                 $('#menuEditInfo').show();
             } else {
                 $('#menuEditInfo').hide();
@@ -138,10 +136,6 @@ customerList.agent = (function ($) {
             if (!pageContext.IsOfferedVirtualSports) {
                 $('#menuVirtualSports').hide();
             }
-
-            if (pageContext.LegendType === 1 && pageContext.AgentLevel === pageContext.NumberOfLevel) {
-                $('#menuAddDownline').hide();
-            }
         },
         changeStatus: function (target, custId) {
             if (!pageContext.IsDirectDownLine) {
@@ -149,7 +143,7 @@ customerList.agent = (function ($) {
             }
             var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             var newStatus = currentStatus === 0 ? 1 : 0;
-            var message = newStatus === core.enums.Status.Close
+            var message = newStatus === core.enums.Status.Closed
                 ? language.getString('ChangeStatusAgent')
                 : language.getString('ChangeCloseToOpenAgent');
             var title = language.getString('ChangeStatus');

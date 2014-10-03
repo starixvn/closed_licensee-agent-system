@@ -3,8 +3,9 @@ core.enums = (function () {
     'use strict';
     return {
         Status: {
-            Close: 0,
-            Open: -1
+            Closed: 0,
+            Open: 1,
+            Locked: 2
         },
         Product: {
             SportsBook: 0,

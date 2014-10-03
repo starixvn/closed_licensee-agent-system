@@ -113,7 +113,7 @@
             });
 
             IList<string> memberSiteLinks = new List<string>();
-            if (CurrentSession.AgentInfo.IsLastLevel)
+            if (!CurrentSession.AgentInfo.IsLevel0)
             {
                 memberSiteLinks = _homePageService.GetMemberSiteLinks(new GetMemberSiteLinkCriteria
                 {

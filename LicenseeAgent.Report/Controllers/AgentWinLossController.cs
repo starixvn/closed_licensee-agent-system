@@ -7,7 +7,7 @@
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Criteria.AgentWinLoss;
     using LicenseeAgent.Report.Services;
-    using LicenseeAgent.Report.ViewModels.AgentWinLossReport;
+    using LicenseeAgent.Report.ViewModels.AgentWinLoss;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
@@ -46,7 +46,7 @@
 
         #endregion Constructors
 
-        #region Actions
+        #region Index
 
         /// <summary>
         /// Agent Win Loss.
@@ -54,7 +54,7 @@
         /// <param name="model">Agent Win Loss Report View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Index(IndexViewModel model)
+        public ActionResult Index(AgentWinLossViewModel model)
         {
             model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
@@ -81,7 +81,7 @@
         [HttpPost]
         [ActionName("Index")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
-        public JsonResult IndexPost(IndexViewModel model)
+        public JsonResult IndexPost(AgentWinLossViewModel model)
         {
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
@@ -110,6 +110,6 @@
             return Json(result);
         }
 
-        #endregion Actions
+        #endregion Index
     }
 }

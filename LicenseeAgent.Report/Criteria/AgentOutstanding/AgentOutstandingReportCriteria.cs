@@ -5,11 +5,9 @@
     /// <summary>
     /// Outstanding Report Criteria.
     /// </summary>
-    public class OutstandingReportCriteria : CriteriaBase
+    public class AgentOutstandingReportCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
-
-        public bool IsLastLevel { get; set; }
 
         public override string GetSettingKey()
         {

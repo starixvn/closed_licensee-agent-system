@@ -329,6 +329,7 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\core-grid.js" />
     <Content Include="Scripts\core-common.js" />
     <Content Include="Scripts\core-enums.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />

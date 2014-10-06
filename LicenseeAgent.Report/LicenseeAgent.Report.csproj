@@ -125,6 +125,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\AgentOutstandingController.cs" />
+    <Compile Include="Criteria\AgentOutstanding\MemberOutstandingReportCriteria.cs" />
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
@@ -132,7 +133,7 @@
     <Compile Include="Controllers\AgentWinLossController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Criteria\AgentOutstanding\OutstandingReportBetListCriteria.cs" />
-    <Compile Include="Criteria\AgentOutstanding\OutstandingReportCriteria.cs" />
+    <Compile Include="Criteria\AgentOutstanding\AgentOutstandingReportCriteria.cs" />
     <Compile Include="Criteria\OutrightResultsReportCriteria.cs" />
     <Compile Include="Criteria\LeagueCriteria.cs" />
     <Compile Include="Criteria\SportCriteria.cs" />
@@ -163,7 +164,8 @@
     <Compile Include="Criteria\StatementDetailCriteria.cs" />
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
-    <Compile Include="ViewModels\AgentWinLossReport\IndexViewModel.cs" />
+    <Compile Include="ViewModels\AgentOutstanding\AgentOutstandingViewModel.cs" />
+    <Compile Include="ViewModels\AgentWinLoss\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />
     <Compile Include="ViewModels\StatementDetailReportViewModel.cs" />
     <Compile Include="ViewModels\StatementReportViewModel.cs" />

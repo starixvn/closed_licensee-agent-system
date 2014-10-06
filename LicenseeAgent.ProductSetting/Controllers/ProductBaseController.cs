@@ -12,6 +12,8 @@
     using LicenseeAgent.ProductSetting.Services;
     using LicenseeAgent.ProductSetting.Services.ProductSetting;
     using LicenseeAgent.Resources;
+    using LicenseeAgent.Taiwan.Actions;
+    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
@@ -121,6 +123,39 @@
             }
 
             return listProducts3RD;
+        }
+
+        /// <summary>
+        /// Gets the member information.
+        /// </summary>
+        /// <param name="custInfo">The customer information.</param>
+        /// <returns>
+        /// Returns response result.
+        /// </returns>
+        protected ResponseResult GetMemberInfo(CustomerInfo custInfo)
+        {
+            if (CurrentSession.AgentInfo.IsDeposit)
+            {
+                return MemberService.GetDepositMemberInformation(
+                    custInfo,
+                    new GetDepositMemberInfoAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        UserName = custInfo.UserName
+                    });
+            }
+            else if (CurrentSession.AgentInfo.IsCredit)
+            {
+                return MemberService.GetMemberInformation(
+                    custInfo,
+                    new GetMemberInfoAction
+                    {
+                        SiteName = CurrentSession.AgentInfo.LicenseeName,
+                        IBCCustId = custInfo.CustId
+                    });
+            }
+
+            return null;
         }
 
         #endregion Common

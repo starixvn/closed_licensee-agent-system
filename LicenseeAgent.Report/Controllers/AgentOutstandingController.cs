@@ -5,10 +5,10 @@
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Report.Criteria.AgentOutstanding;
     using LicenseeAgent.Report.Services;
     using LicenseeAgent.Report.Utilities;
+    using LicenseeAgent.Report.ViewModels.AgentOutstanding;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
@@ -46,48 +46,67 @@
 
         #endregion Constructors
 
-        #region Actions
+        #region Index
 
         /// <summary>
         /// Outstanding Report.
         /// </summary>
         /// <returns>Return a JSON object.</returns>
+        [HttpGet]
         public ActionResult Index()
         {
+            var model = new AgentOutstandingViewModel
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId
+            };
+
             ViewBag.PageContext = new PageContext(CurrentSession);
-            return View();
+            return View(model);
         }
 
         /// <summary>
         /// Outstanding Report.
         /// </summary>
-        /// <param name="criteria">Outstanding Report Criteria.</param>
-        /// <returns>Return a JSON object.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a JSON object.
+        /// </returns>
         [HttpPost]
-        public JsonResult Index(OutstandingReportCriteria criteria)
+        [ActionName("Index")]
+        public JsonResult IndexPost(AgentOutstandingViewModel model)
         {
-            if (criteria.AgentId != -1 && !_downLinePermissionService.IsDownLineAgent(criteria.AgentId))
+            model.AgentId = model.AgentId == 0 ? CurrentSession.AgentInfo.AgentId : model.AgentId;
+            if (model.AgentId != CurrentSession.AgentInfo.AgentId && !_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
 
-            criteria.AgentId = criteria.AgentId <= 0 ? CurrentSession.AgentInfo.AgentId : criteria.AgentId;
-            var agentOutstandings = _agentOutstandingService.GetData(criteria);
+            var agentOutstandings = _agentOutstandingService.GetAgentList(new AgentOutstandingReportCriteria
+            {
+                AgentId = model.AgentId
+            });
+
+            var memberOutstanding = _agentOutstandingService.GetMemberSum(new MemberOutstandingReportCriteria
+            {
+                AgentId = model.AgentId
+            });
+
+            if (memberOutstanding != null)
+            {
+                agentOutstandings.Add(memberOutstanding);
+            }
 
             decimal sumOutstanding = agentOutstandings.Sum(i => i.Outstanding);
             decimal sumPositiontaking = agentOutstandings.Sum(i => i.Positiontaking);
-
             return Json(new
             {
-                List = agentOutstandings.ToList(),
+                List = agentOutstandings,
                 SumOutstanding = sumOutstanding,
-                SumPositiontaking = sumPositiontaking,
-                IsLastLevel = criteria.IsLastLevel,
-                ErrCode = Result.SuccessValue
+                SumPositiontaking = sumPositiontaking
             });
         }
 
-        #endregion Actions
+        #endregion Index
 
         #region BetList
 

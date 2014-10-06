@@ -1,6 +1,6 @@
-﻿@{
+﻿@model AgentOutstandingViewModel
+@{
     ViewBag.Title = Las.AgentOutstanding + " - " + Las.Report;
-    var pageContext = (PageContext)ViewBag.PageContext;
 }
 @section css
 {
@@ -21,7 +21,11 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<input type="hidden" id="loginAgent" data-id="@pageContext.AgentId" data-name="@pageContext.AgentName" />
+@using (Html.BeginForm(null, null, FormMethod.Post,
+    new { @class = "form-filter form-inline hide", id = "search-form" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+}
 <div class="clearfix">
     <ul class="breadcrumb">
     </ul>

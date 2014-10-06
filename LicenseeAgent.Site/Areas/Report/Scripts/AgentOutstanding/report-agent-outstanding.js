@@ -55,9 +55,9 @@ report.agentOutstanding = (function ($) {
     return {
         init: function () {
             $(".breadcrumb").hide();
-            report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0], -1);
+            report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0]);
         },
-        reRenderAfterPaged: function (currentPage, itemsPerPage, agentId) {
+        reRenderAfterPaged: function (currentPage, itemsPerPage) {
             if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
                 currentPage = currentPage >= 0
                     ? currentPage
@@ -66,10 +66,8 @@ report.agentOutstanding = (function ($) {
             }
 
             core.ajaxJSON({
-                url: document.URL,
-                data: {
-                    AgentId: agentId
-                }
+                url: $('form').attr('action'),
+                data: $('form').serializeObject()
             }, function (data) {
                 var footerRows = [
                     {
@@ -89,7 +87,7 @@ report.agentOutstanding = (function ($) {
                 };
                 outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
                 outstandingGridOptions.footerRows = footerRows;
-                if (data.IsLastLevel === true) {
+                if (pageContext.IsLastLevel === true) {
                     outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
                 }
                 else {
@@ -98,7 +96,7 @@ report.agentOutstanding = (function ($) {
 
                 for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
                     var currentRow = outstandingGridOptions.bodyRows[i];
-                    currentRow.Columns[0].IsLastLevel = data.IsLastLevel;
+                    currentRow.Columns[0].IsLastLevel = pageContext.IsLastLevel;
                 }
 
                 $('#BetListGrid').show().fanexGrid(outstandingGridOptions);

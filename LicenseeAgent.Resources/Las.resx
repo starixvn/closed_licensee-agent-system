@@ -1637,4 +1637,7 @@ Please note that this action cannot be undone and this account will be temporari
   <data name="AddDownlineAgent" xml:space="preserve">
     <value>Add Downline Agent</value>
   </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct Members</value>
+  </data>
 </root>

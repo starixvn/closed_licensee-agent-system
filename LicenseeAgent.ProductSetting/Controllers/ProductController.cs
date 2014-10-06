@@ -12,8 +12,6 @@
     using LicenseeAgent.ProductSetting.Entities;
     using LicenseeAgent.ProductSetting.Services.ProductSetting;
     using LicenseeAgent.ProductSetting.ViewModels;
-    using LicenseeAgent.Taiwan.Actions;
-    using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Filters;
     using LicenseeAgent.Web.Mvc;
 
@@ -148,13 +146,7 @@
                 if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
                 {
                     productSetting.CustInfo.CustId = model.TargetCustId;
-                    MemberService.GetMemberInformation(
-                        productSetting.CustInfo,
-                        new GetMemberInfoAction
-                        {
-                            SiteName = CurrentSession.AgentInfo.LicenseeName,
-                            IBCCustId = model.TargetCustId
-                        });
+                    GetMemberInfo(productSetting.CustInfo);
                 }
 
                 stringBuilder.AppendLine(Formatter.FormatJson(productService.Name, productSetting));
@@ -211,13 +203,7 @@
             if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
             {
                 productSetting.CustInfo.CustId = model.TargetCustId;
-                MemberService.GetMemberInformation(
-                    productSetting.CustInfo,
-                    new GetMemberInfoAction
-                    {
-                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        IBCCustId = model.TargetCustId
-                    });
+                GetMemberInfo(productSetting.CustInfo);
             }
 
             if (model.ProductId == ProductCode.Product_0)

@@ -14,6 +14,10 @@
         /// </summary>
         /// <param name="criteria">Outstanding Criteria.</param>
         /// <returns>List of agent outstanding results.</returns>
-        IList<AgentOutstandingEntity> GetData(OutstandingReportCriteria criteria);
+        IList<AgentOutstandingEntity> GetAgentList(AgentOutstandingReportCriteria criteria);
+
+        IList<AgentOutstandingEntity> GetMemberList(MemberOutstandingReportCriteria criteria);
+
+        AgentOutstandingEntity GetMemberSum(MemberOutstandingReportCriteria criteria);
     }
 }

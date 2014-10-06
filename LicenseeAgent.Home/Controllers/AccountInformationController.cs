@@ -15,6 +15,7 @@
     using LicenseeAgent.Home.ViewResults.AccountInformation;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;
+    using LicenseeAgent.Taiwan.Results;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -296,13 +297,27 @@
         {
             if (ViewBag.PageContext != null && (bool)ViewBag.PageContext.IsMember)
             {
-                var serviceResult = _memberService.GetMemberInformation(
-                    customer,
-                    new GetMemberInfoAction
-                    {
-                        SiteName = CurrentSession.AgentInfo.LicenseeName,
-                        IBCCustId = customer.CustId
-                    });
+                ResponseResult serviceResult = null;
+                if (CurrentSession.AgentInfo.IsDeposit)
+                {
+                    serviceResult = _memberService.GetDepositMemberInformation(
+                        customer,
+                        new GetDepositMemberInfoAction
+                        {
+                            SiteName = CurrentSession.AgentInfo.LicenseeName,
+                            UserName = customer.UserName
+                        });
+                }
+                else if (CurrentSession.AgentInfo.IsCredit)
+                {
+                    serviceResult = _memberService.GetMemberInformation(
+                        customer,
+                        new GetMemberInfoAction
+                        {
+                            SiteName = CurrentSession.AgentInfo.LicenseeName,
+                            IBCCustId = customer.CustId
+                        });
+                }
 
                 if (serviceResult.ErrCode != Result.SuccessValue)
                 {

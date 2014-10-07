@@ -51,7 +51,7 @@ core.breadcrumb = (function ($) {
         render: function () {
             container.empty();
 
-            if (items.length <= 1) {
+            if (items.length === 0 || (items.length === 1 && items[0].IsLink !== true)) {
                 core.breadcrumb.hide();
                 return;
             } else {

@@ -121,7 +121,9 @@ customerList.agent = (function ($) {
             editAgentId = parseInt($(target).data('agentid'), null);
             editAgentLevel = parseInt($(target).data('agentlevel'), null);
 
-            if (pageContext.IsAdmin && parseInt($(target).data('status')) === core.enums.Status.Open) {
+            if (pageContext.IsAdmin
+                && parseInt($(target).data('status')) === core.enums.Status.Open
+                && pageContext.AgentLevel < pageContext.NumberOfLevel) {
                 $('#menuAddDownline').show();
             } else {
                 $('#menuAddDownline').hide();

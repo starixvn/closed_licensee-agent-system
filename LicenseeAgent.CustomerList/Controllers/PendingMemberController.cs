@@ -53,8 +53,8 @@
                 DirectMember = new DirectMemberViewModel(),
                 IndirectMember = new IndirectMemberViewModel()
             };
-            ViewBag.PageContext = new PageContext(CurrentSession);
 
+            ViewBag.PageContext = new PageContext(CurrentSession);
             return View(model);
         }
 
@@ -86,12 +86,13 @@
                 DepositOption = (int)DepositOption.DepositNot,
                 Username = model.MemberUserName
             });
-            ViewBag.PageContext = new PageContext(CurrentSession);
 
             return Json(result);
         }
 
         #endregion Index
+
+        #region Direct member
 
         /// <summary>
         /// Get pending member list.
@@ -109,9 +110,10 @@
                 DepositOption = (int)DepositOption.DepositNot,
                 Username = model.MemberUserName
             });
-            ViewBag.PageContext = new PageContext(CurrentSession);
 
             return Json(result);
         }
+
+        #endregion Direct member
     }
 }

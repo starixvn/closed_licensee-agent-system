@@ -102,7 +102,7 @@
                         IsReload = CurrentSession.IsAgentChangePassword()
                     };
 
-                    // after changing password successfully, re-update some status to not validate user password again.
+                    // after changing password successfully, re-update status to not validate user password again.
                     CurrentSession.AgentInfo.IsFirstLogin = false;
                     CurrentSession.AgentInfo.PwdExpiry = DateTime.Today.AddDays(PasswordRule.PasswordExpiredTotalDays);
                 }

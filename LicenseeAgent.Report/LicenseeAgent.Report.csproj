@@ -165,6 +165,7 @@
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
     <Compile Include="ViewModels\AgentOutstanding\AgentOutstandingViewModel.cs" />
+    <Compile Include="ViewModels\AgentOutstanding\OutstandingReportBetListViewModel.cs" />
     <Compile Include="ViewModels\AgentWinLoss\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />
     <Compile Include="ViewModels\StatementDetailReportViewModel.cs" />

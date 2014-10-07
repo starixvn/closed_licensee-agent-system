@@ -329,6 +329,7 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\core-breadcrumb.js" />
     <Content Include="Scripts\core-grid.js" />
     <Content Include="Scripts\core-common.js" />
     <Content Include="Scripts\core-enums.js" />
@@ -437,11 +438,16 @@
     <Content Include="Areas\CustomerList\Views\Member\Index.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingDirectAgent.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingIndirectAgent.cshtml" />
+    <Content Include="Areas\Report\Views\AgentOutstanding\BetList.cshtml" />
+    <Content Include="Areas\Report\Views\Shared\_Breadcrumb.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
     </None>
+    <Content Include="Views\Shared\_Breadcrumb.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -817,7 +823,6 @@
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
-    <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSettingAdv.cshtml" />

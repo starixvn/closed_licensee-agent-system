@@ -21,14 +21,12 @@
 <div class="legend">
     @ViewBag.Title
 </div>
+@Html.Partial("_Breadcrumb")
 @using (Html.BeginForm(null, null, FormMethod.Post,
     new { @class = "form-filter form-inline hide", id = "search-form" }))
 {
     @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.ShowMembers)
 }
-<div class="clearfix">
-    <ul class="breadcrumb">
-    </ul>
-</div>
 <div id="BetListGrid" class="freegrid content-grid">
 </div>

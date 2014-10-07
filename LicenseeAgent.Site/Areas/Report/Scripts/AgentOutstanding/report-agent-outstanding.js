@@ -1,15 +1,25 @@
-﻿/*global core, language, showMixParlayDetailurl, pageContext */
+﻿/*global core, language */
 
 var report = report || {};
 report.agentOutstanding = (function ($) {
     'use strict';
 
+    var isShowBetList = false;
+
+    /* jshint -W101 */
     var outstandingGridOptions = {
         columns: [
             { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
-                function (rowIndex, rowData, cell) {
-                    return '<a href="#" onclick="report.agentOutstanding.outstandingDrilldown(\'' + rowData.Username
-                        + '\',' + rowData.Id + ',' + cell.IsLastLevel + ')">' + rowData.Username + '</a>';
+                function (rowIndex, rowData) {
+                    if (rowData.Id === 0) {
+                        return '<a href="#" class="member" onclick="report.agentOutstanding.showMember()">{0}</a>'.format(language.getString('DirectMembers'));
+                    } else {
+                        if (isShowBetList) {
+                            return '<a href="#" onclick="report.agentOutstanding.showBetList({0})">{1}</a>'.format(rowData.Id, rowData.Username);
+                        } else {
+                            return '<a href="#" onclick="report.agentOutstanding.showAgent({0})">{1}</a>'.format(rowData.Id, rowData.Username);
+                        }
+                    }
                 }
             },
             { HeaderText: language.getString("Outstanding"), Width: 200, Name: "Outstanding",
@@ -19,6 +29,12 @@ report.agentOutstanding = (function ($) {
                 HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)'
             }
         ],
+        pagerOption: {
+            currentPage: 0,
+            itemsPerPage: core.pageSizes[0],
+            itemsPerPageArray: core.pageSizes,
+            showDetail: true
+        },
         showPager: false,
         showFooter: true,
         gridExpandHeight: 60,
@@ -38,33 +54,64 @@ report.agentOutstanding = (function ($) {
             { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
             { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
         ],
+        pagerOption: {
+            itemsPerPage: core.pageSizes[0],
+            itemsPerPageArray: core.pageSizes,
+            currentPage: 0,
+            showDetail: true
+        },
         showPager: true,
         enableHiddenColumns: false,
         gridExpandHeight: 100,
         bodyRowHeight: 29
     };
-
-    var originalBreadcrumb = '';
-    var agentIdLevelN = 0;
-    var breadCrumbItems = [
-    {
-        agentId: $('#loginAgent').data('id'),
-        agentName: $('#loginAgent').data('name')
-    }];
+    /* jshint +W101 */
 
     return {
         init: function () {
-            $(".breadcrumb").hide();
-            report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0]);
+            var breadcrumb = core.breadcrumb.init();
+            breadcrumb.on('itemClicked', function (item, data) {
+                if (data.AgentId > 0) {
+                    report.agentOutstanding.showData(data.AgentId, false);
+                    var lastItem = core.breadcrumb.getLastItem();
+                    lastItem.IsLink = false;
+                    core.breadcrumb.render();
+                }
+            });
+            var agentId = $('#AgentId').val();
+            report.agentOutstanding.showData(agentId, false);
         },
-        reRenderAfterPaged: function (currentPage, itemsPerPage) {
-            if (outstandingGridOptions && outstandingGridOptions.pagerOption) {
-                currentPage = currentPage >= 0
-                    ? currentPage
-                    : outstandingGridOptions.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || outstandingGridOptions.pagerOption.itemsPerPage;
+        showMember: function () {
+            var agentId = $('#AgentId').val();
+            var item = core.breadcrumb.getLastItem();
+            item.IsLink = true;
+            core.breadcrumb.render();
+            report.agentOutstanding.showData(agentId, true);
+        },
+        showAgent: function (agentId) {
+            var agentName = $(event.target).text();
+            core.breadcrumb.addItem({
+                Text: agentName,
+                Data: {
+                    AgentId: agentId
+                }
+            });
+
+            report.agentOutstanding.showData(agentId, false);
+        },
+        showData: function (agentId, showMembers) {
+            if (showMembers) {
+                isShowBetList = true;
+                outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
+            }
+            else {
+                isShowBetList = false;
+                outstandingGridOptions.columns[0].HeaderText = language.getString("Agent");
             }
 
+            // update form input
+            $('#AgentId').val(agentId);
+            $('#ShowMembers').val(showMembers);
             core.ajaxJSON({
                 url: $('form').attr('action'),
                 data: $('form').serializeObject()
@@ -79,174 +126,40 @@ report.agentOutstanding = (function ($) {
                     }
                 ];
 
-                outstandingGridOptions.pagerOption = {
-                    itemsPerPage: core.pageSizes[0],
-                    itemsPerPageArray: core.pageSizes,
-                    currentPage: 0,
-                    showDetail: true
-                };
                 outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
                 outstandingGridOptions.footerRows = footerRows;
-                if (pageContext.IsLastLevel === true) {
-                    outstandingGridOptions.columns[0].HeaderText = language.getString("Member");
-                }
-                else {
-                    outstandingGridOptions.columns[0].HeaderText = language.getString("Agent");
-                }
-
-                for (var i = 0; i < outstandingGridOptions.bodyRows.length; i++) {
-                    var currentRow = outstandingGridOptions.bodyRows[i];
-                    currentRow.Columns[0].IsLastLevel = pageContext.IsLastLevel;
-                }
-
                 $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
-                $("#breadcrumb").attr("class", "breadcrumb");
-                originalBreadcrumb = $("#breadcrumb > span").html();
             });
         },
-        reRenderBetListAfterPaged: function (currentPage, itemsPerPage, custId, agentId) {
-            if (gridOptions && gridOptions.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage
-                                                : gridOptions.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOptions.pagerOption.itemsPerPage;
-            }
-
-            var params = {
-                AgentId: agentId,
-                CustId: custId
-            };
-
-            $.ajax({
-                url: "OutstandingBetList",
-                type: 'post',
-                data: params,
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        $("#breadcrumb > span").html(originalBreadcrumb);
-                        alert(data.ErrMsg);
-                        return;
-                    }
-
-                    gridOptions.pagerOption = {
-                        itemsPerPage: core.pageSizes[0],
-                        itemsPerPageArray: core.pageSizes,
-                        currentPage: 0,
-                        showDetail: true
-                    };
-                    gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                    $('#BetListGrid').show().fanexGrid(gridOptions);
-
-                    if (data.IsLastLevel === true) {
-                        $("#breadcrumb").attr("class", "breadcrumb");
-                    }
-                    else {
-                        $("#breadcrumb").attr("class", "breadcrumb");
-                    }
-                    originalBreadcrumb = $("#breadcrumb > span").html();
-                },
-                complete: function () {
-                    core.unblockUI();
+        showBetList: function (custId) {
+            var userName = $(event.target).text();
+            core.breadcrumb.addItem({
+                Text: userName,
+                Data: {
+                    CustId: custId
                 }
+            });
+
+            core.ajaxJSON({
+                url: core.resolveUrl('~/Report/AgentOutstanding/BetList'),
+                data: {
+                    CustId: custId
+                }
+            }, function (data) {
+                var hiddenColumns = [];
+                if (data.LegendType === 1) {
+                    hiddenColumns.push(8);
+                }
+                if (data.IsLastLevel) {
+                    hiddenColumns.push(9);
+                }
+                gridOptions.hiddenColumns = hiddenColumns;
+                gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
+                $('#BetListGrid').show().fanexGrid(gridOptions);
             });
         },
         showBetListDetails: function (transId, status) {
             fanex.betlist.core.showDetails(transId, status);
-        },
-        showMixParlayDetail: function (transId, divEvent) {
-            var loadMixParlayDetail = function (transId) {
-                var url = showMixParlayDetailurl + transId;
-                $.ajax({
-                    type: "GET",
-                    contentType: "text/html",
-                    cache: false,
-                    url: core.resolveUrl(url),
-                    success: function (response) {
-                        divEvent.html(response);
-                        $(".line:last", divEvent).remove();
-                        $('#BetListGrid').fanexGrid('resizeGrid');
-                    },
-                    beforeSend: function () {
-                        core.blockUI();
-                    },
-                    complete: function () {
-                        core.unblockUI();
-                    }
-                });
-            };
-
-            divEvent.toggle();
-            var dataExisted = $("#divEvent_" + transId).text().length > 0;
-            if (!dataExisted) {
-                loadMixParlayDetail(transId);
-            } else {
-                $('#BetListGrid').fanexGrid('resizeGrid');
-            }
-        },
-        outstandingDrilldown: function (agentName, agentId, isLastLevel) {
-            var hiddenColumns = [];
-            if (pageContext.LegendType === 1) {
-                hiddenColumns.push(8);
-            }
-            if (pageContext.IsLastLevel) {
-                hiddenColumns.push(9);
-            }
-            gridOptions.hiddenColumns = hiddenColumns;
-
-            if (isLastLevel) {
-                report.agentOutstanding.reRenderBetListAfterPaged(0, core.pageSizes[0], agentId, agentIdLevelN);
-            }
-            else {
-                agentIdLevelN = agentId;
-                report.agentOutstanding.reRenderAfterPaged(0, core.pageSizes[0], agentId);
-            }
-            if (typeof isLastLevel === 'undefined') {
-                report.agentOutstanding.createBreadcrumb(agentId, agentName, false);
-            } else {
-                report.agentOutstanding.createBreadcrumb(agentId, agentName, true);
-            }
-        },
-        breadcrumbDrilldown: function (agentName, agentId) {
-            report.agentOutstanding.outstandingDrilldown(agentName, agentId);
-        },
-        createBreadcrumb: function (agentId, agentName, isDownline) {
-            var index,
-                numberAgent = breadCrumbItems.length - 1,
-                breadCrumbHtml = '',
-                matchIndex = numberAgent;
-            if (isDownline) {
-                breadCrumbItems.push({
-                    agentId: agentId,
-                    agentName: agentName
-                });
-            } else {
-                for (index = numberAgent; index >= 0; index--) {
-                    if (breadCrumbItems[index].agentId === agentId) {
-                        matchIndex = index;
-                        break;
-                    }
-                }
-                breadCrumbItems.splice(matchIndex + 1);
-            }
-
-            numberAgent = breadCrumbItems.length - 1;
-            if (numberAgent > 0) {
-                $(".breadcrumb").show();
-                for (index = 0; index < numberAgent; index++) {
-                    breadCrumbHtml += '<li><a onclick="javascript:report.agentOutstanding.breadcrumbDrilldown(\''
-                        + breadCrumbItems[index].agentName + '\','
-                        + breadCrumbItems[index].agentId + ');" href="#">'
-                        + breadCrumbItems[index].agentName
-                        + '</a><span class="divider">&gt;&gt;</span></li>';
-                }
-                breadCrumbHtml += '<li><span>' + breadCrumbItems[index].agentName + '</span></li>';
-                $(".breadcrumb").html(breadCrumbHtml);
-            }
-            else {
-                $(".breadcrumb").hide();
-            }
         }
     };
 } (jQuery));

@@ -38,6 +38,7 @@
                 "~/scripts/core.js",
                 "~/scripts/core-enums.js",
                 "~/scripts/core-common.js",
+                "~/scripts/core-breadcrumb.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
                 "~/scripts/report.js"));

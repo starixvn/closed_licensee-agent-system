@@ -164,7 +164,7 @@ language.BetType['zh-TW'] = {
 	'1509' : 'Malta',
 	'1511' : 'Kentucky',
 	'1513' : 'Michigan',
-	'9999' : '',
+	'9999' : '其他',
 	'19999' : 'SUM',
 	'20000' : 'Bal',
 	'21001' : 'Dep',

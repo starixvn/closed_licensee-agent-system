@@ -13,7 +13,7 @@
         {
             ShowOdds = false;
             IsShowMember = false;
-            ClickFunction = "onclick=\"javascript: outstandingReport.showBetListDetails({0},'{1}')\"";
+            ClickFunction = "onclick=\"javascript: report.agentOutstanding.showBetListDetails({0},'{1}')\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

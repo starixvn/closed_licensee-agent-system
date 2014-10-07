@@ -1,0 +1,26 @@
+﻿@model LicenseeAgent.Web.ViewModels.AgentBreadcrumbViewModel
+@{
+    ViewBag.Title = Las.AgentOutstanding + " - " + Las.Report;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/betlist")
+    @Styles.Render("~/css/report/agent-outstanding")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/report/agent-outstanding")
+    <script type="text/javascript">
+        $(function () {
+            report.agentOutstanding.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@Html.Partial("_Breadcrumb")
+<div id="BetListGrid" class="freegrid content-grid">
+</div>

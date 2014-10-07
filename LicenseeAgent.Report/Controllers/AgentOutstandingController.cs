@@ -1,17 +1,17 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.BetList.Entities;
     using LicenseeAgent.BetList.Services;
-    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Report.Criteria.AgentOutstanding;
+    using LicenseeAgent.Report.Entities.AgentOutstanding;
     using LicenseeAgent.Report.Services;
     using LicenseeAgent.Report.Utilities;
     using LicenseeAgent.Report.ViewModels.AgentOutstanding;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
@@ -51,16 +51,18 @@
         /// <summary>
         /// Outstanding Report.
         /// </summary>
-        /// <returns>Return a JSON object.</returns>
+        /// <returns>
+        /// Return a JSON object.
+        /// </returns>
         [HttpGet]
         public ActionResult Index()
         {
             var model = new AgentOutstandingViewModel
             {
-                AgentId = CurrentSession.AgentInfo.AgentId
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                ShowMembers = CurrentSession.AgentInfo.IsLastLevel
             };
 
-            ViewBag.PageContext = new PageContext(CurrentSession);
             return View(model);
         }
 
@@ -76,31 +78,42 @@
         public JsonResult IndexPost(AgentOutstandingViewModel model)
         {
             model.AgentId = model.AgentId == 0 ? CurrentSession.AgentInfo.AgentId : model.AgentId;
-            if (model.AgentId != CurrentSession.AgentInfo.AgentId && !_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
 
-            var agentOutstandings = _agentOutstandingService.GetAgentList(new AgentOutstandingReportCriteria
+            var list = new List<AgentOutstandingEntity>();
+            if (!model.ShowMembers)
             {
-                AgentId = model.AgentId
-            });
+                list.AddRange(_agentOutstandingService.GetAgentList(new AgentOutstandingReportCriteria
+                {
+                    AgentId = model.AgentId
+                }));
 
-            var memberOutstanding = _agentOutstandingService.GetMemberSum(new MemberOutstandingReportCriteria
-            {
-                AgentId = model.AgentId
-            });
+                var memberSum = _agentOutstandingService.GetMemberSum(new MemberOutstandingReportCriteria
+                {
+                    AgentId = model.AgentId
+                });
 
-            if (memberOutstanding != null)
+                if (memberSum != null)
+                {
+                    list.Add(memberSum);
+                }
+            }
+            else
             {
-                agentOutstandings.Add(memberOutstanding);
+                list.AddRange(_agentOutstandingService.GetMemberList(new MemberOutstandingReportCriteria
+                {
+                    AgentId = model.AgentId
+                }));
             }
 
-            decimal sumOutstanding = agentOutstandings.Sum(i => i.Outstanding);
-            decimal sumPositiontaking = agentOutstandings.Sum(i => i.Positiontaking);
+            decimal sumOutstanding = list.Sum(i => i.Outstanding);
+            decimal sumPositiontaking = list.Sum(i => i.Positiontaking);
             return Json(new
             {
-                List = agentOutstandings,
+                List = list,
                 SumOutstanding = sumOutstanding,
                 SumPositiontaking = sumPositiontaking
             });
@@ -113,17 +126,25 @@
         /// <summary>
         /// Outstanding - Bet List Report.
         /// </summary>
-        /// <param name="criteria">Outstanding Report Criteria.</param>
-        /// <returns>Return a JSON object.</returns>downlinemember
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a JSON object.
+        /// </returns>
+        /// Bet list result.
         [HttpPost]
-        public JsonResult BetList(OutstandingReportBetListCriteria criteria)
+        public JsonResult BetList(OutstandingReportBetListViewModel model)
         {
-            if (!_downLinePermissionService.IsDownLineMember(criteria.CustId))
+            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
             {
                 return RedirectToAccessDeniedJson();
             }
 
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var criteria = new OutstandingReportBetListCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                CustId = model.CustId
+            };
+
             var ticketResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
@@ -139,11 +160,11 @@
             return Json(new
             {
                 List = ticketTextList,
+                LegendType = CurrentSession.AgentInfo.LegendType,
                 TotalItem = ticketTextList.Count(),
                 SubTotalWinLost = subTotalWinLost,
                 SubTotalComm = subTotalComm,
-                TotalWinLost = subTotalWinLost + subTotalComm,
-                ErrCode = Result.SuccessValue
+                TotalWinLost = subTotalWinLost + subTotalComm
             });
         }
 

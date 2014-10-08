@@ -8,6 +8,7 @@ var MemberArrangement = (function ($) {
         init: function () {
             MemberArrangement.switchMode();
             $("form input:radio").click(function () {
+                $('#MemberName').val('');
                 MemberArrangement.switchMode();
             });
 

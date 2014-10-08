@@ -45,12 +45,29 @@
         public ViewResult MemberArrangement(MemberArrangementViewModel model)
         {
             var errCode = 0;
-            
             var customer = GetDepositMemberInformation(model.MemberName, ref errCode);
             if (errCode != 0)
             {
                 ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
                 return View(model);
+            }
+
+            var isFirstDeposit = IsFirstDepositMember(model.MemberName);
+            if (isFirstDeposit && model.Mode == ArrangementMode.SwitchFromNormal)
+            {
+                var criteria = new SwitchUserValidateCriteria
+                {
+                    AgentName = model.AgentName,
+                    CurrencyId = customer.Currency,
+                    LicenseeId = CurrentSession.AgentInfo.LicenseeId,
+                    MemberName = model.MemberName
+                };
+                _customerSettingService.SwitchUserValidate(criteria);
+                if (criteria.ErrCode != 0)
+                {
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
+                    return View(model);
+                }
             }
 
             // Close deposit member before Update (Pending member: CustId = 0).
@@ -64,7 +81,7 @@
                 }
             }
 
-            if (IsFirstDepositMember(model.MemberName))
+            if (isFirstDeposit)
             {
                 errCode = UpdateAgentIdDeposited(model);
             }

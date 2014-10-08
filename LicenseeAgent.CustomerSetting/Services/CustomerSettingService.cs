@@ -152,6 +152,11 @@
             QueryService.Execute(criteria);
         }
 
+        public void SwitchUserValidate(SwitchUserValidateCriteria criteria)
+        {
+            QueryService.Execute(criteria);
+        }
+
         public void GetLegendAgentId(GetLegendAgentIdCriteria criteria)
         {
             QueryService.Execute(criteria);

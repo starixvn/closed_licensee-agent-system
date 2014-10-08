@@ -6,11 +6,11 @@ report.agentWinLoss = (function ($) {
 
     var renderUsername = function (rowIndex, rowData, cell) {
         if (rowData.CustId !== 0) {
-            return '<a href="#" onclick="report.agentWinLoss.showBetList({0});">{1}</a>'.format(rowData.AgentId, cell.Value);
+            return '<a href="#" onclick="report.agentWinLoss.showBetList({0}, \'{1}\');">{1}</a>'.format(rowData.AgentId, cell.Value);
         } else if (rowData.AgentId === 0) {
             return '<a href="#" class="text-direct-member" onclick="report.agentWinLoss.showMember();">{0}</a>'.format(language.getString('DirectMembers'));
         } else {
-            return '<a href="#" onclick="report.agentWinLoss.showAgent({0});">{1}</a>'.format(rowData.AgentId, cell.Value);
+            return '<a href="#" onclick="report.agentWinLoss.showAgent({0}, \'{1}\');">{1}</a>'.format(rowData.AgentId, cell.Value);
         }
     };
 
@@ -328,10 +328,9 @@ report.agentWinLoss = (function ($) {
             core.breadcrumb.render();
             report.agentWinLoss.showData(agentId, true);
         },
-        showAgent: function (agentId) {
-            var agentName = $(event.target).text();
+        showAgent: function (agentId, userName) {
             core.breadcrumb.addItem({
-                Text: agentName,
+                Text: userName,
                 Data: {
                     AgentId: agentId
                 }
@@ -380,9 +379,9 @@ report.agentWinLoss = (function ($) {
                 $('#grid').show().fanexGrid(gridOptions);
             });
         },
-        showBetList: function (custId, agentLevel, username) {
+        showBetList: function (custId, userName) {
             report.setProductValue(); // Set Product selected values.
-            $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
+            $("#BreadCrumb").setBreadCrumb(custId, userName);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             location.href = core.resolveUrl(betListUrl, {
                 custId: custId,

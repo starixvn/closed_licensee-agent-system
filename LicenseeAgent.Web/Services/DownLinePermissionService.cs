@@ -119,6 +119,24 @@
         }
 
         /// <summary>
+        /// Determines whether [is direct down-line member] [the specified belonging checking base].
+        /// </summary>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns>Returns true if direct down-line.</returns>
+        public bool IsDirectDownLineMember(int agentId, int memberId)
+        {
+            var criteria = new CheckDownLineBelongCriteria
+            {
+                CustId = agentId,
+                TargetCustId = memberId,
+                Role = (int)DownLineRole.Member
+            };
+
+            return _downLineService.IsDirectDownLine(criteria);
+        }
+
+        /// <summary>
         /// Determines whether [is indirect down line agent] [the specified agent identifier].
         /// </summary>
         /// <param name="agentId">The agent identifier.</param>

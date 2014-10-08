@@ -15,9 +15,9 @@ report.agentOutstanding = (function ($) {
                         return '<a href="#" class="text-direct-member" onclick="report.agentOutstanding.showMember()">{0}</a>'.format(language.getString('DirectMembers'));
                     } else {
                         if (isShowBetList) {
-                            return '<a href="#" onclick="report.agentOutstanding.showBetList({0})">{1}</a>'.format(rowData.Id, rowData.Username);
+                            return '<a href="#" onclick="report.agentOutstanding.showBetList({0}, \'{1}\')">{1}</a>'.format(rowData.Id, rowData.Username);
                         } else {
-                            return '<a href="#" onclick="report.agentOutstanding.showAgent({0})">{1}</a>'.format(rowData.Id, rowData.Username);
+                            return '<a href="#" onclick="report.agentOutstanding.showAgent({0}, \'{1}\')">{1}</a>'.format(rowData.Id, rowData.Username);
                         }
                     }
                 }
@@ -88,10 +88,9 @@ report.agentOutstanding = (function ($) {
             core.breadcrumb.render();
             report.agentOutstanding.showData(agentId, true);
         },
-        showAgent: function (agentId) {
-            var agentName = $(event.target).text();
+        showAgent: function (agentId, userName) {
             core.breadcrumb.addItem({
-                Text: agentName,
+                Text: userName,
                 Data: {
                     AgentId: agentId
                 }
@@ -131,8 +130,7 @@ report.agentOutstanding = (function ($) {
                 $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
             });
         },
-        showBetList: function (custId) {
-            var userName = $(event.target).text();
+        showBetList: function (custId, userName) {
             core.breadcrumb.addItem({
                 Text: userName,
                 Data: {

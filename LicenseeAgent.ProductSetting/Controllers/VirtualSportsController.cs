@@ -67,29 +67,7 @@
         [HttpGet]
         public ActionResult EditMember(EditMemberViewModel model)
         {
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                FormId = FormType.Edit,
-                TargetCustId = model.MemberId,
-                TargetRoleId = (int)Role.Member,
-                Ip = Request.GetClientIp()
-            };
-
-            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
-            {
-                settingContext.FormId = FormType.Edit;
-            }
-            else
-            {
-                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
-                var agentLevel = model.AgentLevel ?? CurrentSession.AgentInfo.AgentLevel;
-                if (!CurrentSession.AgentInfo.IsLastAgent(agentLevel))
-                {
-                    settingContext.FormId = FormType.EditIndirectMember;
-                    settingContext.CustId = agentId;
-                }
-            }
-
+            var settingContext = GetEditMemberSettingContext(model);
             var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
 
             if (!productInfos.Where(x => x.ProductId == (int)ProductCode.Product_5).Any() || !CheckPermissionForEditing(settingContext))

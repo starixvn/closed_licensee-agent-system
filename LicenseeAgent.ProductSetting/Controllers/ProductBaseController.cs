@@ -11,6 +11,7 @@
     using LicenseeAgent.ProductSetting.Entities;
     using LicenseeAgent.ProductSetting.Services;
     using LicenseeAgent.ProductSetting.Services.ProductSetting;
+    using LicenseeAgent.ProductSetting.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Results;
@@ -18,6 +19,7 @@
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Mvc;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
@@ -202,6 +204,43 @@
             };
 
             return _downLinePermissionService.CheckForEditingCustomerSetting(editingCustomerSettingBelonging);
+        }
+
+        /// <summary>
+        /// Get edit member setting context.
+        /// </summary>
+        /// <param name="model">Edit member view model.</param>
+        /// <returns>Setting context.</returns>
+        protected SettingContext GetEditMemberSettingContext(EditMemberViewModel model)
+        {
+            var settingContext = new SettingContext(CurrentSession)
+            {
+                FormId = FormType.Edit,
+                TargetCustId = model.MemberId,
+                TargetRoleId = (int)Role.Member,
+                Ip = Request.GetClientIp()
+            };
+
+            if (CurrentSession.AgentInfo.IsLevel0 && (model.AgentId == null || model.AgentLevel == null))
+            {
+                settingContext.FormId = FormType.Edit;
+            }
+            else
+            {
+                var agentId = model.AgentId ?? CurrentSession.AgentInfo.AgentId;
+                settingContext.CustId = agentId;
+
+                if (DownLinePermissionService.IsDirectDownLineMember(agentId, model.MemberId))
+                {
+                    settingContext.FormId = FormType.Edit;
+                }
+                else
+                {
+                    settingContext.FormId = FormType.EditIndirectMember;
+                }
+            }
+
+            return settingContext;
         }
 
         #endregion Check permission

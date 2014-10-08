@@ -1,13 +1,17 @@
-namespace LicenseeAgent.Report.Criteria.AgentWinLoss
+﻿namespace LicenseeAgent.Report.Criteria.AgentWinLoss
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Fanex.Data.Repository;
 
     /// <summary>
-    /// Win Loss Super View Agent Criteria.
+    /// WinLossMemberCriteria class.
     /// </summary>
-    public class WinLossLicenseeViewAgentCriteria : WinlossBase
+    public class WinLossMemberViewCriteria : WinlossBase
     {
-        public WinLossLicenseeViewAgentCriteria(
+        public WinLossMemberViewCriteria(
             int agentId,
             DateTime fromDate,
             DateTime toDate,
@@ -21,7 +25,7 @@ namespace LicenseeAgent.Report.Criteria.AgentWinLoss
 
         public override string GetSettingKey()
         {
-            return "LAS_Rpt_WinLoss_SuperViewAgent";
+            return "LAS_Rpt_Winloss_DirectMem";
         }
     }
 }

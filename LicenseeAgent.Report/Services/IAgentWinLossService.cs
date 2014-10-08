@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Fanex.Data.Repository;
+    using LicenseeAgent.Report.Criteria.AgentWinLoss;
     using LicenseeAgent.Report.Entities.AgentWinLoss;
 
     /// <summary>
@@ -9,6 +10,10 @@
     /// </summary>
     public interface IAgentWinLossService
     {
-        IList<AgentWinLossEntity> GetData(ICriteria criteria);
+        IList<AgentWinLossEntity> GetAgentList(ICriteria criteria);
+
+        IList<AgentWinLossEntity> GetMemberList(ICriteria criteria);
+
+        AgentWinLossEntity GetMemberSum(WinLossMemberViewCriteria criteria);
     }
 }

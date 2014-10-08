@@ -11,11 +11,6 @@
     /// </summary>
     public class AgentOutstandingService : QueryService, IAgentOutstandingService
     {
-        /// <summary>
-        /// Get outstanding results.
-        /// </summary>
-        /// <param name="criteria">Outstanding Criteria.</param>
-        /// <returns>List of agent outstanding results.</returns>
         public IList<AgentOutstandingEntity> GetAgentList(AgentOutstandingReportCriteria criteria)
         {
             return GetEntites<AgentOutstandingEntity>(criteria);

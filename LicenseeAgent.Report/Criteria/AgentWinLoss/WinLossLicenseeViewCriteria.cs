@@ -3,11 +3,11 @@ namespace LicenseeAgent.Report.Criteria.AgentWinLoss
     using System;
 
     /// <summary>
-    /// Win Loss Agent View Agent Criteria.
+    /// Win Loss Super View Agent Criteria.
     /// </summary>
-    public class WinLossAgentViewAgentCriteria : WinlossBase
+    public class WinLossLicenseeViewCriteria : WinlossBase
     {
-        public WinLossAgentViewAgentCriteria(
+        public WinLossLicenseeViewCriteria(
             int agentId,
             DateTime fromDate,
             DateTime toDate,
@@ -21,7 +21,7 @@ namespace LicenseeAgent.Report.Criteria.AgentWinLoss
 
         public override string GetSettingKey()
         {
-            return "LAS_Rpt_WinLoss_AgentViewAgent";
+            return "LAS_Rpt_Winloss_LicenseeWL";
         }
     }
 }

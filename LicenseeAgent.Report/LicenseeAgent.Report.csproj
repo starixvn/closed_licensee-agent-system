@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Controllers\AgentOutstandingController.cs" />
     <Compile Include="Criteria\AgentOutstanding\MemberOutstandingReportCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossMemberViewCriteria.cs" />
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
@@ -172,9 +173,8 @@
     <Compile Include="ViewModels\StatementReportViewModel.cs" />
     <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />
-    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewAgentCriteria.cs" />
-    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewMemberCriteria.cs" />
-    <Compile Include="Criteria\AgentWinLoss\WinLossLicenseeViewAgentCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossLicenseeViewCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">

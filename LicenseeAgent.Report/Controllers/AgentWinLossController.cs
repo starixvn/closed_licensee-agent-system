@@ -1,16 +1,18 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using Fanex.Data.Repository;
+    using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Report.Criteria.AgentWinLoss;
+    using LicenseeAgent.Report.Entities.AgentWinLoss;
     using LicenseeAgent.Report.Services;
     using LicenseeAgent.Report.ViewModels.AgentWinLoss;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
-    using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
 
     /// <summary>
@@ -51,25 +53,19 @@
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
-        /// <param name="model">Agent Win Loss Report View Model.</param>
-        /// <returns>Return a view.</returns>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
         [HttpGet]
-        public ActionResult Index(AgentWinLossViewModel model)
+        public ActionResult Index()
         {
-            model.AgentId = model.AgentId > 0 ? model.AgentId : CurrentSession.AgentInfo.AgentId;
-            if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
+            var model = new AgentWinLossViewModel
             {
-                return RedirectToAccessDeniedPage();
-            }
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                ShowMembers = CurrentSession.AgentInfo.IsLastLevel,
+                ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId)
+            };
 
-            model.AgentLevel = model.AgentLevel > 0 ? model.AgentLevel : CurrentSession.AgentInfo.AgentLevel;
-            model.UserName = !string.IsNullOrEmpty(model.UserName) ? model.UserName : CurrentSession.AgentInfo.UserName;
-            model.BreadCrumb = !string.IsNullOrEmpty(model.BreadCrumb)
-                                ? model.BreadCrumb
-                                : model.AgentId + "," + model.AgentLevel + "," + model.UserName;
-            model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            model.IsDeposit = CurrentSession.AgentInfo.IsDeposit;
-            ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel, model.UserName);
             return View(model);
         }
 
@@ -80,34 +76,70 @@
         /// <returns>JSON Result.</returns>
         [HttpPost]
         [ActionName("Index")]
-        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         public JsonResult IndexPost(AgentWinLossViewModel model)
         {
+            model.AgentId = model.AgentId == 0 ? CurrentSession.AgentInfo.AgentId : model.AgentId;
             if (!_downLinePermissionService.IsDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedJson();
             }
 
-            CriteriaBase criteria = null;
+            var agentInfo = _coreService.GetAgentInfo(model.AgentId);
+            model.AgentLevel = agentInfo.AgentLevel;
             var balanceUpDay = _coreService.BalanceUpDay;
-            if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
+            var memberCriteria = new WinLossMemberViewCriteria(
+                model.AgentId,
+                model.FromDate,
+                model.ToDate,
+                balanceUpDay.MoveBetsDay,
+                balanceUpDay.BalanceUpDay,
+                (int)model.DrawFilter,
+                model.Product);
+            var list = new List<AgentWinLossEntity>();
+            if (!model.ShowMembers)
             {
-                criteria = new WinLossAgentViewMemberCriteria(
-                    model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
+                var listCriteria = GetCriteria(model, balanceUpDay);
+                list.AddRange(_agentWinLossService.GetAgentList(listCriteria));
+                var memberSum = _agentWinLossService.GetMemberSum(memberCriteria);
+                if (memberSum != null)
+                {
+                    list.Add(memberSum);
+                }
             }
-            else if (ModelHelper.IsAgentLevel0(model.AgentLevel))
+            else
             {
-                criteria = new WinLossLicenseeViewAgentCriteria(
+                list.AddRange(_agentWinLossService.GetMemberList(memberCriteria));
+            }
+
+            return Json(new
+            {
+                IsDeposit = CurrentSession.AgentInfo.IsDeposit,
+                AgentName = string.IsNullOrEmpty(agentInfo.UserName) ? CurrentSession.AgentInfo.LicenseeName : agentInfo.UserName,
+                AgentLevel = agentInfo.AgentLevel,
+                NumberOfLevel = CurrentSession.AgentInfo.NumberOfLevel,
+                List = list
+            });
+        }
+
+        /// <summary>
+        /// Gets the criteria.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="balanceUpDay">The balance up day.</param>
+        /// <returns>Returns criteria.</returns>
+        [NonAction]
+        public CriteriaBase GetCriteria(AgentWinLossViewModel model, SelBalanceUpDay balanceUpDay)
+        {
+            if (ModelHelper.IsAgentLevel0(model.AgentLevel))
+            {
+                return new WinLossLicenseeViewCriteria(
                     model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
             else
             {
-                criteria = new WinLossAgentViewAgentCriteria(
+                return new WinLossAgentViewCriteria(
                     model.AgentId, model.FromDate, model.ToDate, balanceUpDay.MoveBetsDay, balanceUpDay.BalanceUpDay, (int)model.DrawFilter, model.Product);
             }
-
-            var result = _agentWinLossService.GetData(criteria);
-            return Json(result);
         }
 
         #endregion Index

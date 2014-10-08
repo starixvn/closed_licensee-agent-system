@@ -438,7 +438,6 @@
     <Content Include="Areas\CustomerList\Views\Member\Index.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingDirectAgent.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingIndirectAgent.cshtml" />
-    <Content Include="Areas\Report\Views\AgentOutstanding\BetList.cshtml" />
     <Content Include="Areas\Report\Views\Shared\_Breadcrumb.cshtml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>

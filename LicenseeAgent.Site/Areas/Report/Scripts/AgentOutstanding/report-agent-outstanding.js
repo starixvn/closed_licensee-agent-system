@@ -12,7 +12,7 @@ report.agentOutstanding = (function ($) {
             { HeaderText: language.getString("Agent"), Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter:
                 function (rowIndex, rowData) {
                     if (rowData.Id === 0) {
-                        return '<a href="#" class="member" onclick="report.agentOutstanding.showMember()">{0}</a>'.format(language.getString('DirectMembers'));
+                        return '<a href="#" class="text-direct-member" onclick="report.agentOutstanding.showMember()">{0}</a>'.format(language.getString('DirectMembers'));
                     } else {
                         if (isShowBetList) {
                             return '<a href="#" onclick="report.agentOutstanding.showBetList({0})">{1}</a>'.format(rowData.Id, rowData.Username);

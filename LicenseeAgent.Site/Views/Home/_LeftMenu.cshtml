@@ -2,6 +2,7 @@
 @using LicenseeAgent.Core.Enumerations
 @{
     var isLastLevel = SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLastLevel;
+    var isAdmin = SessionManager.CurrentSession.AgentInfo != null && SessionManager.CurrentSession.AgentInfo.IsLevel0;
 }
 <ul class="nav nav-tabs">
     <li class="active"><a href="#MainMenu" id="tabMainMenu" data-toggle="tab">@Las.MainMenu</a></li>
@@ -44,6 +45,10 @@
                         @BootstrapHelper.LeftMenu(Las.NewAgent, Url.RouteUrl("ProductSetting_NewAgent"))
                     }
                     @BootstrapHelper.LeftMenu(Las.AgentList, Url.Action("Index", "Agent", new { area = "CustomerList" }))
+                    @if (!isAdmin)
+                    {
+                        @BootstrapHelper.LeftMenu(Las.DirectMemberList, Url.Action("Index", "Member", new { area = "CustomerList" }))
+                    }
                     @if (LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
                         @BootstrapHelper.LeftMenu(Las.PendingMemberList, Url.Action("Index", "PendingMember", new { area = "CustomerList" }))

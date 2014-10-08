@@ -1,8 +1,18 @@
-﻿/*global language, core, pageContext*/
+﻿/*global language, core*/
 
 var report = report || {};
 report.agentWinLoss = (function ($) {
     'use strict';
+
+    var renderUsername = function (rowIndex, rowData, cell) {
+        if (rowData.CustId !== 0) {
+            return '<a href="#" onclick="report.agentWinLoss.showBetList({0});">{1}</a>'.format(rowData.AgentId, cell.Value);
+        } else if (rowData.AgentId === 0) {
+            return '<a href="#" class="text-direct-member" onclick="report.agentWinLoss.showMember();">{0}</a>'.format(language.getString('DirectMembers'));
+        } else {
+            return '<a href="#" onclick="report.agentWinLoss.showAgent({0});">{1}</a>'.format(rowData.AgentId, cell.Value);
+        }
+    };
 
     /* jshint -W101 */
     var gridOptionsForAgentCash = {
@@ -17,11 +27,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -62,11 +68,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('Total'), Width: 100, Name: "MemberTotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -113,11 +115,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -162,11 +160,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewDownline({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.AgentId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Agent'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('Total'), Width: 100, Name: "MemberTotal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -209,11 +203,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Member'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewBetList({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.CustId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Member'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -253,11 +243,7 @@ report.agentWinLoss = (function ($) {
             }
         ],
         columns: [
-            { HeaderText: language.getString('Member'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left",
-                Formatter: function (rowIndex, rowData, cell) {
-                    return ("<a href='javascript:report.agentWinLoss.viewBetList({0}, {1}, \"{2}\");'>" + cell.Value + "</a>").format(rowData.CustId, rowData.AgentLevel, cell.Value);
-                }
-            },
+            { HeaderText: language.getString('Member'), Width: 100, Name: "Username", HeaderAlign: "center", CellAlign: "left", Formatter: renderUsername },
             { HeaderText: language.getString('BetCount'), Width: 70, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
             { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
             { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -294,52 +280,31 @@ report.agentWinLoss = (function ($) {
     /* jshint +W101 */
 
     var betListUrl = '~/BetList/BetListWinlossReport';
-    var gridOptions;
     return {
         init: function () {
-            report.agentWinLoss.initGridOptions();
             $("#tabs-area a:first").tab('show');
-            report.agentWinLoss.initDatePicker();
-            report.agentWinLoss.registerButtonClickEvent();
-            report.registerCheckboxProductEvent();
-            report.agentWinLoss.dataGridBinding();
-        },
-        initGridOptions: function () {
-            if (pageContext.IsLastLevel) {
-                if (pageContext.IsDeposit) {
-                    gridOptionsForMemberCash.groupHeaderRows[0].Columns[2].HeaderText = pageContext.AgentName;
-                    gridOptions = gridOptionsForMemberCash;
-                } else {
-                    gridOptionsForMemberCredit.groupHeaderRows[0].Columns[2].HeaderText = pageContext.AgentName;
-                    gridOptions = gridOptionsForMemberCredit;
-                }
-            } else {
-                if (pageContext.AgentLevel === 1) {
-                    if (pageContext.IsDeposit) {
-                        gridOptionsForLicenseeCash.groupHeaderRows[0].Columns[2].HeaderText = pageContext.AgentName;
-                        gridOptions = gridOptionsForLicenseeCash;
-                    } else {
-                        gridOptionsForLicenseeCredit.groupHeaderRows[0].Columns[3].HeaderText = pageContext.AgentName;
-                        gridOptions = gridOptionsForLicenseeCredit;
-                    }
-                } else {
-                    if (pageContext.IsDeposit) {
-                        gridOptionsForAgentCash.groupHeaderRows[0].Columns[2].HeaderText = pageContext.AgentName;
-                        gridOptions = gridOptionsForAgentCash;
-                    } else {
-                        gridOptionsForAgentCredit.groupHeaderRows[0].Columns[3].HeaderText = pageContext.AgentName;
-                        gridOptions = gridOptionsForAgentCredit;
-                    }
-                }
-            }
-        },
-        initDatePicker: function () {
+
             $('#fromDatePicker').datepicker();
             $('#toDatePicker').datepicker();
+
+            var breadcrumb = core.breadcrumb.init();
+            breadcrumb.on('itemClicked', function (item, data) {
+                if (data.AgentId > 0) {
+                    report.agentWinLoss.showData(data.AgentId, false);
+                    var lastItem = core.breadcrumb.getLastItem();
+                    lastItem.IsLink = false;
+                    core.breadcrumb.render();
+                }
+            });
+
+            report.agentWinLoss.registerButtonClickEvent();
+            report.registerCheckboxProductEvent();
+            $('form').submit();
         },
         registerButtonClickEvent: function () {
             $('form').submit(function (e) {
-                report.agentWinLoss.dataGridBinding();
+                var agentId = $('#AgentId').val();
+                report.agentWinLoss.showData(agentId, false);
                 e.preventDefault();
             });
 
@@ -355,43 +320,67 @@ report.agentWinLoss = (function ($) {
                 $('#toDatePicker').datepicker('update', yesterday);
                 $('form').submit();
             });
-
-            // breadcrum
-            $('.breadcrumb a').click(function () {
-                var agentId = $(this).data('agent-id');
-                var agentLevel = $(this).data('agent-level');
-                var agentName = $(this).text();
-                report.agentWinLoss.viewDownline(agentId, agentLevel, agentName);
-            });
         },
-        dataGridBinding: function () {
+        showMember: function () {
+            var agentId = $('#AgentId').val();
+            var item = core.breadcrumb.getLastItem();
+            item.IsLink = true;
+            core.breadcrumb.render();
+            report.agentWinLoss.showData(agentId, true);
+        },
+        showAgent: function (agentId) {
+            var agentName = $(event.target).text();
+            core.breadcrumb.addItem({
+                Text: agentName,
+                Data: {
+                    AgentId: agentId
+                }
+            });
+            report.agentWinLoss.showData(agentId, false);
+        },
+        showData: function (agentId, showMembers) {
+            // update form input
+            $('#AgentId').val(agentId);
+            $('#ShowMembers').val(showMembers);
             report.setProductValue();
-
-            var submitOptions = $('form').serializeObject();
             core.ajaxJSON({
                 url: $('form').attr('action'),
-                data: jQuery.param(submitOptions)
+                data: $('form').serializeObject()
             }, function (data) {
-                gridOptions.bodyRows = core.genGridRows(data, gridOptions);
+                var gridOptions;
+                if (data.NumberOfLevel === data.AgentLevel - 1) {
+                    if (data.IsDeposit) {
+                        gridOptionsForMemberCash.groupHeaderRows[0].Columns[2].HeaderText = data.AgentName;
+                        gridOptions = gridOptionsForMemberCash;
+                    } else {
+                        gridOptionsForMemberCredit.groupHeaderRows[0].Columns[2].HeaderText = data.AgentName;
+                        gridOptions = gridOptionsForMemberCredit;
+                    }
+                } else {
+                    if (data.AgentLevel === 1) {
+                        if (data.IsDeposit) {
+                            gridOptionsForLicenseeCash.groupHeaderRows[0].Columns[2].HeaderText = data.AgentName;
+                            gridOptions = gridOptionsForLicenseeCash;
+                        } else {
+                            gridOptionsForLicenseeCredit.groupHeaderRows[0].Columns[3].HeaderText = data.AgentName;
+                            gridOptions = gridOptionsForLicenseeCredit;
+                        }
+                    } else {
+                        if (data.IsDeposit) {
+                            gridOptionsForAgentCash.groupHeaderRows[0].Columns[2].HeaderText = data.AgentName;
+                            gridOptions = gridOptionsForAgentCash;
+                        } else {
+                            gridOptionsForAgentCredit.groupHeaderRows[0].Columns[3].HeaderText = data.AgentName;
+                            gridOptions = gridOptionsForAgentCredit;
+                        }
+                    }
+                }
+                gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
                 core.genGridTotalRows(gridOptions.bodyRows, gridOptions);
                 $('#grid').show().fanexGrid(gridOptions);
             });
         },
-        viewDownline: function (agentId, agentLevel, username) {
-            report.setProductValue();
-            $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
-            location.href = $('form').attr('action') + '?' + $.param({
-                agentId: agentId,
-                agentLevel: agentLevel,
-                username: username,
-                drawFilter: $('input[name=DrawFilter]:checked', '#search-form').val(),
-                breadcrumb: $("#BreadCrumb").val(),
-                FromDate: $("#FromDate").val(),
-                ToDate: $("#ToDate").val(),
-                Product: $("#Product").val()
-            });
-        },
-        viewBetList: function (custId, agentLevel, username) {
+        showBetList: function (custId, agentLevel, username) {
             report.setProductValue(); // Set Product selected values.
             $("#BreadCrumb").setBreadCrumb(custId, agentLevel, username);
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();

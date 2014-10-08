@@ -19,13 +19,10 @@
             DrawFilter = DrawFilter.Normal;
         }
 
+        [Required]
         public int AgentId { get; set; }
 
         public int AgentLevel { get; set; }
-
-        public string UserName { get; set; }
-
-        public string BreadCrumb { get; set; }
 
         [Required]
         [Display(Name = "DateRange", ResourceType = typeof(Las))]
@@ -39,9 +36,9 @@
         [Display(Name = "DrawFilter", ResourceType = typeof(Las))]
         public DrawFilter DrawFilter { get; set; }
 
-        public string Product { get; set; }
+        public bool ShowMembers { get; set; }
 
-        public bool IsDeposit { get; set; }
+        public string Product { get; set; }
 
         public IList<ProductInfo> ProductList { get; set; }
     }

@@ -53,6 +53,54 @@
 
         #endregion Constructors
 
+        #region Index
+
+        /// <summary>
+        /// Bet List data.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns bet list data.</returns>
+        [HttpPost]
+        public JsonResult Index(BetListViewModel model)
+        {
+            var balanceUp = _coreService.BalanceUpDay;
+            var criteria = new BetListSelByMemberCriteria
+            {
+                CustId = model.CustId,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                StatusIds = model.Status,
+                ProductIds = model.Product,
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                MoveBetsDay = balanceUp.MoveBetsDay,
+                BalanceUpDay = balanceUp.BalanceUpDay
+            };
+            var ticketResult = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = ticketResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
+            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
+            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
+            return Json(new
+            {
+                List = ticketTextList,
+                LegendType = CurrentSession.AgentInfo.LegendType,
+                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
+                TotalItem = criteria.TotalRows,
+                SubTotalWinLost = subTotalWinLost,
+                SubTotalComm = subTotalComm,
+                TotalWinLost = subTotalWinLost + subTotalComm
+            });
+        }
+
+        #endregion Index
+
         /// <summary>
         /// Index page of Bet List.
         /// </summary>

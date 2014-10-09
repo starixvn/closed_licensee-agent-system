@@ -142,6 +142,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SportType.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enumerations\TicketStatus.cs" />
     <Compile Include="Enumerations\TopMenu.cs" />
     <Compile Include="Enumerations\PasswordStatus.cs" />
     <Compile Include="Enumerations\Role.cs" />

@@ -41,14 +41,14 @@
                 return new List<SelectListItem>
                 {
                     new SelectListItem { Text = Las.All, Value = string.Empty },
-                    new SelectListItem { Text = Las.Waiting, Value = "1" },
-                    new SelectListItem { Text = Las.Running, Value = "0" },
-                    new SelectListItem { Text = Las.Won, Value = "112" },
-                    new SelectListItem { Text = Las.Lose, Value = "113" },
-                    new SelectListItem { Text = Las.Draw, Value = "111" },
-                    new SelectListItem { Text = Las.Void, Value = "102" },
-                    new SelectListItem { Text = Las.Reject, Value = "101" },
-                    new SelectListItem { Text = Las.Refund, Value = "103" },
+                    new SelectListItem { Text = Las.Waiting, Value = ((int)TicketStatus.Waiting).ToString() },
+                    new SelectListItem { Text = Las.Running, Value = ((int)TicketStatus.Running).ToString() },
+                    new SelectListItem { Text = Las.Won, Value = ((int)TicketStatus.Won).ToString() },
+                    new SelectListItem { Text = Las.Lose, Value = ((int)TicketStatus.Lose).ToString() },
+                    new SelectListItem { Text = Las.Draw, Value = ((int)TicketStatus.Draw).ToString() },
+                    new SelectListItem { Text = Las.Void, Value = ((int)TicketStatus.Void).ToString() },
+                    new SelectListItem { Text = Las.Reject, Value = ((int)TicketStatus.Reject).ToString() },
+                    new SelectListItem { Text = Las.Refund, Value = ((int)TicketStatus.Refund).ToString() },
                 };
             }
         }

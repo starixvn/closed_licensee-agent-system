@@ -60,6 +60,11 @@
                 "~/scripts/ResourcesJs/BetType.en-US.js",
                 "~/scripts/ResourcesJs/BetType.zh-CN.js",
                 "~/scripts/ResourcesJs/BetType.zh-TW.js"));
+
+            bundles.Add(new ScriptBundle("~/js/report/betlist").Include(
+                "~/scripts/report.js").Include(
+                "~/scripts/report-betlist.js").Include(
+                "~/Views/BetList/Resources/betlist-core.js"));
         }
 
         #endregion Core

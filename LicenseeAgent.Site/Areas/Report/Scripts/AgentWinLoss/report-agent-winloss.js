@@ -6,7 +6,7 @@ report.agentWinLoss = (function ($) {
 
     var renderUsername = function (rowIndex, rowData, cell) {
         if (rowData.CustId !== 0) {
-            return '<a href="#" onclick="report.agentWinLoss.showBetList({0}, \'{1}\');">{1}</a>'.format(rowData.AgentId, cell.Value);
+            return '<a href="#" onclick="report.agentWinLoss.showBetList({0}, \'{1}\');">{1}</a>'.format(rowData.CustId, cell.Value);
         } else if (rowData.AgentId === 0) {
             return '<a href="#" class="text-direct-member" onclick="report.agentWinLoss.showMember();">{0}</a>'.format(language.getString('DirectMembers'));
         } else {
@@ -279,7 +279,6 @@ report.agentWinLoss = (function ($) {
     };
     /* jshint +W101 */
 
-    var betListUrl = '~/BetList/BetListWinlossReport';
     return {
         init: function () {
             $("#tabs-area a:first").tab('show');
@@ -380,18 +379,23 @@ report.agentWinLoss = (function ($) {
             });
         },
         showBetList: function (custId, userName) {
-            report.setProductValue(); // Set Product selected values.
-            $("#BreadCrumb").setBreadCrumb(custId, userName);
+            core.breadcrumb.addItem({
+                Text: userName,
+                Data: {
+                    CustId: custId
+                }
+            });
+
+            report.setProductValue();
+            var input = $('form').serializeObject();
+            input.CustId = custId;
+            var settledNoDraw = [core.enums.TicketStatus.Won, core.enums.TicketStatus.Lose].join(',');
+            var settledHasDraw = [core.enums.TicketStatus.Draw, core.enums.TicketStatus.Won, core.enums.TicketStatus.Lose].join(',');
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
-            location.href = core.resolveUrl(betListUrl, {
-                custId: custId,
-                breadcrumb: $("#BreadCrumb").val(),
-                FromDate: $("#FromDate").val(),
-                ToDate: $("#ToDate").val(),
-                drawFilter: drawFilter,
-                statusIDs: (drawFilter === "1" ? report.SettledNoDraw : report.SettledHasDraw),
-                ProductIds: $("#Product").val(),
-                title: document.title
+            input.Status = drawFilter === "1" ? settledNoDraw : settledHasDraw;
+            report.betlist.render({
+                Input: input,
+                ShowTotalRow: true
             });
         }
     };

@@ -329,6 +329,7 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\report-betlist.js" />
     <Content Include="Scripts\core-breadcrumb.js" />
     <Content Include="Scripts\core-grid.js" />
     <Content Include="Scripts\core-common.js" />
@@ -439,6 +440,7 @@
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingDirectAgent.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingIndirectAgent.cshtml" />
     <Content Include="Areas\Report\Views\Shared\_Breadcrumb.cshtml" />
+    <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -853,7 +855,6 @@
     <Content Include="Views\Instruction\zh-TW\MemberCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSetting.cshtml" />
     <Content Include="Content\customizeFanexGrid.less" />
-    <None Include="Properties\PublishProfiles\GitDeploy.pubxml" />
     <None Include="Scripts\bootstrap\.jshintrc" />
     <Content Include="Content\bootstrap\accordion.less" />
     <Content Include="Content\bootstrap\alerts.less" />

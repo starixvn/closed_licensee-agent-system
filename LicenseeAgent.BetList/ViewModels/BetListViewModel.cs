@@ -1,21 +1,26 @@
 ﻿namespace LicenseeAgent.BetList.ViewModels
 {
-    using System.Collections.Generic;
-    using Entities;
+    using System;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Bet List View Model.
     /// </summary>
     public class BetListViewModel
     {
-        public IList<TicketText> TicketTextList { get; set; }
+        [Required]
+        public int CustId { get; set; }
 
-        public TicketResult TicketResult { get; set; }
+        [Required]
+        public DateTime FromDate { get; set; }
 
-        public bool IsShowSystemIdAndExternalId { get; set; }
+        [Required]
+        public DateTime ToDate { get; set; }
 
-        public bool IsShowWinLoss { get; set; }
+        [Required]
+        public string Status { get; set; }
 
-        public decimal ExchangeRate { get; set; }
+        [Required]
+        public string Product { get; set; }
     }
 }

@@ -36,9 +36,10 @@
                 "~/scripts/mutate/mutate.js",
                 "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
-                "~/scripts/core-enums.js",
-                "~/scripts/core-common.js",
                 "~/scripts/core-breadcrumb.js",
+                "~/scripts/core-common.js",
+                "~/scripts/core-enums.js",
+                "~/scripts/core-ibc.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
                 "~/scripts/report.js"));
@@ -116,6 +117,10 @@
             // Auto numeric
             bundles.Add(new ScriptBundle("~/js/autonumeric").Include(
                 "~/scripts/autonumeric/autonumeric.js"));
+
+            // CryptoJS
+            bundles.Add(new ScriptBundle("~/js/cryptojs").IncludeDirectory(
+                "~/scripts/cryptojs", "*.js"));
         }
 
         /// <summary>

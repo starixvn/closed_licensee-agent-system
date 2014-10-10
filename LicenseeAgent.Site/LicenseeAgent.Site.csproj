@@ -329,6 +329,9 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\core-ibc.js" />
+    <Content Include="Scripts\CryptoJS\core.js" />
+    <Content Include="Scripts\CryptoJS\sha256.js" />
     <Content Include="Scripts\report-betlist.js" />
     <Content Include="Scripts\core-breadcrumb.js" />
     <Content Include="Scripts\core-grid.js" />

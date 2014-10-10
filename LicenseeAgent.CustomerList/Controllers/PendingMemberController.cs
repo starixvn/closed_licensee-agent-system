@@ -67,13 +67,17 @@
         [LegendType(LegendType.Deposit)]
         public JsonResult Index(IndirectMemberViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return JsonResult(ErrCode.Msg_2110);
+            }
+
             var agentId = _pendingMemberService.GetAgentIdByUserName(new GetAgentIdByUsernameCriteria
             {
                 UserName = model.AgentUserName,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                 LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
             });
-
             if (agentId == 0)
             {
                 return JsonResult(ErrCode.Msg_2002);
@@ -84,7 +88,7 @@
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 LASAgentId = agentId,
                 DepositOption = (int)DepositOption.DepositNot,
-                Username = model.MemberUserName
+                Username = model.IndirectMemberUserName
             });
 
             return Json(result);
@@ -108,7 +112,7 @@
                 SiteName = CurrentSession.AgentInfo.LicenseeName,
                 LASAgentId = CurrentSession.AgentInfo.AgentId,
                 DepositOption = (int)DepositOption.DepositNot,
-                Username = model.MemberUserName
+                Username = model.DirectMemberUserName
             });
 
             return Json(result);

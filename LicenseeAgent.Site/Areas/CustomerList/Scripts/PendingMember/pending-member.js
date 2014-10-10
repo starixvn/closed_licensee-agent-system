@@ -20,18 +20,25 @@ customerList.pendingMember = (function ($) {
     return {
         init: function () {
             customerList.pendingMember.hideGrid();
-
+            
             $('form').submit(function (e) {
                 var url = $(this).attr('action');
-                if ($(this).valid()) {
-                    customerList.pendingMember.submit(url);
+                if ($(this).find('#AgentUserName').length > 0) {
+                    if (!$('#AgentUserName').val().trim()) {
+                        core.showErrorMsg(language.getString('AgentUserNameIsEmpty'));
+                        customerList.pendingMember.hideGrid();
+                    }
+                    else {
+                        customerList.pendingMember.submit(url);
+                    }
                 } else {
-                    customerList.pendingMember.hideGrid();
+                    customerList.pendingMember.submit(url);
                 }
                 e.preventDefault();
             });
 
             $('a[data-toggle="tab"]').on('shown', function (e) {
+                core.hideErrors();
                 if ($(e.target).attr('href') === "#direct-agent") {
                     customerList.pendingMember.hideGrid();
                     $('#directMember').submit();

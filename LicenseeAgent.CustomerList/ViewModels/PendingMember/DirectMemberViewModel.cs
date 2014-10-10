@@ -9,6 +9,6 @@
     public class DirectMemberViewModel
     {
         [Display(Name = "Member", ResourceType = typeof(Las))]
-        public string MemberUserName { get; set; }
+        public string DirectMemberUserName { get; set; }
     }
 }

@@ -420,6 +420,9 @@
   <data name="DirectMember" xml:space="preserve">
     <value>Direct Member</value>
   </data>
+  <data name="IndirectMember" xml:space="preserve">
+    <value>Indirect Member</value>
+  </data>
   <data name="Casino" xml:space="preserve">
     <value>Casino</value>
   </data>

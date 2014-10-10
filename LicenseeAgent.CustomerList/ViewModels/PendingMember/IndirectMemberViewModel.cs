@@ -9,10 +9,9 @@
     public class IndirectMemberViewModel
     {
         [Display(Name = "Member", ResourceType = typeof(Las))]
-        public string MemberUserName { get; set; }
+        public string IndirectMemberUserName { get; set; }
 
-        [Display(Name = "DirectAgent", ResourceType = typeof(Las))]
-        [Required(ErrorMessageResourceName = "Msg_2110", ErrorMessageResourceType = typeof(LangMsg))]
+        [Display(Name = "Agent", ResourceType = typeof(Las))]
         public string AgentUserName { get; set; }
     }
 }

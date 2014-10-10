@@ -60,7 +60,7 @@
             object value)
         {
             var isValidRequest = controllerContext.Controller.ValidateRequest
-                                    && bindingContext.PropertyMetadata[propertyDescriptor.Name].RequestValidationEnabled;
+                && bindingContext.PropertyMetadata[propertyDescriptor.Name].RequestValidationEnabled;
             if (isValidRequest && IsDangerousString(value.ToString()))
             {
                 bindingContext.ModelState.AddModelError(propertyDescriptor.Name, Las.HtmlDisallowed);
@@ -83,7 +83,8 @@
             PropertyDescriptor propertyDescriptor,
             object value)
         {
-            if (propertyDescriptor.PropertyType == typeof(string))
+            var propertyType = propertyDescriptor.PropertyType;
+            if (propertyType == typeof(string))
             {
                 var stringValue = (string)value;
                 if (!string.IsNullOrEmpty(stringValue))
@@ -92,6 +93,19 @@
                 }
 
                 value = stringValue;
+            }
+            else if (propertyType == typeof(DateTime))
+            {
+                if (value != null)
+                {
+                    var dateTime = (DateTime)value;
+                    if (dateTime.Year < 1900)
+                    {
+                        var message = string.Format("Invalid date {0}", dateTime.ToShortDateString());
+                        bindingContext.ModelState.AddModelError(propertyDescriptor.Name, message);
+                        value = DateTime.Now;
+                    }
+                }
             }
 
             base.SetProperty(controllerContext, bindingContext, propertyDescriptor, value);

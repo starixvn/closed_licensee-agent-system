@@ -303,7 +303,8 @@ report.agentWinLoss = (function ($) {
         registerButtonClickEvent: function () {
             $('form').submit(function (e) {
                 var agentId = $('#AgentId').val();
-                report.agentWinLoss.showData(agentId, false);
+                var showMembers = $('#ShowMembers').val();
+                report.agentWinLoss.showData(agentId, showMembers);
                 e.preventDefault();
             });
 

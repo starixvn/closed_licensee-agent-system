@@ -6,10 +6,9 @@ var MemberArrangement = (function ($) {
         isConfirm: false,
         confirmMessage: "",
         init: function () {
-            MemberArrangement.switchMode();
+            MemberArrangement.switchMode(true);
             $("form input:radio").click(function () {
-                $('#MemberName').val('');
-                MemberArrangement.switchMode();
+                MemberArrangement.switchMode(false);
             });
 
             $('form').submit(function () {
@@ -20,8 +19,12 @@ var MemberArrangement = (function ($) {
             });
         },
 
-        switchMode: function () {
-            core.hideErrors();
+        switchMode: function (isPostBack) {
+            if (!isPostBack) {
+                core.hideErrors();
+                $('form input:text').val('');
+            }
+
             if ($('input[name=Mode]:checked', 'form').val() === "0") {
                 $('.normalCash').show();
                 $('.assignMember').hide();

@@ -563,4 +563,7 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_2142" xml:space="preserve">
     <value>Mandatory product could not be disabled.</value>
   </data>
+  <data name="Msg_2133" xml:space="preserve">
+    <value>Agency system currently does not support this model. Please contact Administrator.</value>
+  </data>
 </root>

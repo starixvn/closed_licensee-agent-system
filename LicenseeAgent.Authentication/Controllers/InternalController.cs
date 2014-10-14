@@ -62,7 +62,13 @@
         [HttpGet]
         public ActionResult Lrf(string authKey)
         {
-            var internalInfo = _integration.GetInternalInfo(authKey);
+            var internalInfoResult = _integration.GetInternalInfo(authKey);
+            if (internalInfoResult.ErrCode != Result.SuccessValue)
+            {
+                return Content(GetErrMsg(internalInfoResult.ErrCode));
+            }
+
+            var internalInfo = internalInfoResult.InternalInfo;
             if (internalInfo == null)
             {
                 return Content(Las.SessionExpired);

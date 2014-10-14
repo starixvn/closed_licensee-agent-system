@@ -22,10 +22,12 @@
         /// Bootstrap date picker.
         /// </summary>
         /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
         /// <param name="htmlHelper">The HTML helper.</param>
         /// <param name="expression">The expression.</param>
-        /// <returns>Returns HTML content.</returns>
+        /// <returns>
+        /// Returns HTML content.
+        /// </returns>
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an appropriate nesting of generic types")]
         public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {

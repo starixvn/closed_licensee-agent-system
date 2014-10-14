@@ -331,10 +331,8 @@
                 LicenseeID = CurrentSession.AgentInfo.LicenseeId
             };
             _groupCommissionService.GroupCommCheckByName(criteria);
-            return Json(new
-            {
-                IsAvailable = criteria.IsAvailable
-            });
+            var errCode = criteria.IsAvailable ? Result.SuccessValue : ErrCode.Msg_2093;
+            return JsonResult(errCode);
         }
 
         /// <summary>

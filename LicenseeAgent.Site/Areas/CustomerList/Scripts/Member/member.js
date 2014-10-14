@@ -260,7 +260,7 @@ customerList.member = (function ($) {
             }
             var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             var newStatus = currentStatus === 0 ? 1 : 0;
-            var message = newStatus === core.enums.Status.Closed
+            var message = newStatus === core.enums.AccountStatus.Closed
                 ? language.getString('ChangeStatusMember')
                 : language.getString('ChangeStatusAgent');
             var title = language.getString('ChangeStatus');

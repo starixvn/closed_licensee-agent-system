@@ -46,18 +46,15 @@ var CommissionGroupUtility = (function ($) {
 
             $('.product-comm').change();
         },
-
         checkAvailability: function () {
             var validator = { errorList: [] };
             if (!$.trim($('#GroupName').val())) {
                 validator.errorList.push({ message: language.getString('GroupNameIsEmpty') });
             }
             if (validator.errorList.length > 0) {
+                $('#iconCheck').removeClass('icon-input-valid').addClass('icon-input-invalid');
                 core.showErrors(validator);
                 return;
-            }
-            else {
-                core.hideErrors();
             }
 
             $.ajax({
@@ -68,11 +65,13 @@ var CommissionGroupUtility = (function ($) {
                     core.blockUI();
                 },
                 success: function (data) {
-                    if (data.IsAvailable) {
+                    if (data.ErrCode === 0) {
                         $('#iconCheck').removeClass('icon-input-invalid').addClass('icon-input-valid');
+                        core.hideErrors();
                     }
                     else {
                         $('#iconCheck').removeClass('icon-input-valid').addClass('icon-input-invalid');
+                        core.showErrorMsg(data.ErrMsg);
                     }
                 },
                 complete: function () {
@@ -80,13 +79,11 @@ var CommissionGroupUtility = (function ($) {
                 }
             });
         },
-
         ViewDetail: function (agentId, username) {
             location.href = core.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}&parentUsername={5}"
                                             .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username,
                                                     pageContext.IsLastLevel, $('#Username').val()));
         },
-
         confirmDefaultGroup: function () {
             var buttons = [{
                 label: language.getString('Yes'),

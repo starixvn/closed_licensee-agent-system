@@ -57,7 +57,6 @@ var CommissionGroup = (function ($) {
         formatNumber: function (value) {
             return numeral(value * 100).format('0.00');
         },
-
         confirmDeleteGroup: function (groupCommId) {
             var buttons = [{
                 label: language.getString('OK'),
@@ -80,7 +79,6 @@ var CommissionGroup = (function ($) {
                 top: 120,
                 width: 420
             });
-
         }
     };
 })(jQuery);

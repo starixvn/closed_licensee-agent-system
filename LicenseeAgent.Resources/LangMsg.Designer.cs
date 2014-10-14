@@ -1260,6 +1260,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agency system currently does not support this model. Please contact Administrator..
+        /// </summary>
+        public static string Msg_2133 {
+            get {
+                return ResourceManager.GetString("Msg_2133", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to update data. Please try again..
         /// </summary>
         public static string Msg_2138 {

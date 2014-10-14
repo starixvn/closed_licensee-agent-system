@@ -2,7 +2,7 @@
 core.enums = (function () {
     'use strict';
     return {
-        Status: {
+        AccountStatus: {
             Closed: 0,
             Open: 1,
             Locked: 2

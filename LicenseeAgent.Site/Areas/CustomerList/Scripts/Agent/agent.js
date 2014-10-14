@@ -122,7 +122,7 @@ customerList.agent = (function ($) {
             editAgentLevel = parseInt($(target).data('agentlevel'), null);
 
             if (pageContext.IsAdmin
-                && parseInt($(target).data('status')) === core.enums.Status.Open
+                && parseInt($(target).data('status')) === core.enums.AccountStatus.Open
                 && pageContext.AgentLevel < pageContext.NumberOfLevel) {
                 $('#menuAddDownline').show();
             } else {
@@ -145,7 +145,7 @@ customerList.agent = (function ($) {
             }
             var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
             var newStatus = currentStatus === 0 ? 1 : 0;
-            var message = newStatus === core.enums.Status.Closed
+            var message = newStatus === core.enums.AccountStatus.Closed
                 ? language.getString('ChangeStatusAgent')
                 : language.getString('ChangeCloseToOpenAgent');
             var title = language.getString('ChangeStatus');

@@ -98,9 +98,9 @@
     <Setting Key="LAS_RefNo_CheckBelonging" SpName="LAS_RefNo_CheckBelonging" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="CustomerList">
-    <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentGetByAgent" SpName="Las_AgentGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_MemberGetByAgent" SpName="Las_MemberGetByAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_SearchAgent" SpName="Las_SearchAgent_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_SearchAgent" SpName="Las_SearchAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_SearchMember" SpName="Las_SearchMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_UpdateAgentAccStatus" SpName="Las_UpdateAgentAccStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_UpdateAgentBetStatus" SpName="Las_UpdateAgentBetStatus" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -110,7 +110,7 @@
     <Setting Key="Las_MemberGetAutoCompleteUserName" SpName="Las_MemberGetAutoCompleteUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_CheckMemberUplineStatusForUpdate" SpName="Las_CheckMemberUplineStatusForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_Cash_GetLegendAgentId" SpName="Las_Cash_GetLegendAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_SearchMemberByListId" SpName="Las_SearchMemberByListId_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_SearchMemberByListId" SpName="Las_SearchMemberByListId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetUplineByAgentId" SpName="Las_GetUplineByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetUplineByCustId" SpName="Las_GetUplineByCustId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
@@ -155,11 +155,7 @@
     <Setting Key="LAS_Result_MatchSelNumberGameByLeague" SpName="LAS_Result_MatchSelNumberGameByLeague" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Result_VirtualHRSelByMeeting" SpName="LAS_Result_VirtualHRSelByMeeting" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Result_Outright" SpName="LAS_Result_Outright" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Rpt_WinLoss_SuperViewAgent" SpName="LAS_Rpt_WinLoss_SuperViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_Rpt_Outstanding" SpName="Las_Rpt_Outstanding" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_BetlistOutStanding_SelByMember" SpName="Las_BetlistOutStanding_SelByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Rpt_WinLoss_AgentViewAgent" SpName="LAS_Rpt_WinLoss_AgentViewAgent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="LAS_Rpt_WinLoss_Member" SpName="LAS_Rpt_WinLoss_Member" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_SelDownlineAgents" SpName="LAS_Statement_SelDownlineAgents" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_SelDownlineMembers" SpName="LAS_Statement_SelDownlineMembers" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Statement_SelAgentStatement" SpName="LAS_Statement_SelAgentStatement" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -168,18 +164,27 @@
     <!--Other reports should be appended here-->
     <Setting Key="LAS_Statement_SelByUsername" SpName="LAS_Statement_SelByUsername" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
+  <Function Name="Report-Outstanding">
+    <Setting Key="Las_Rpt_Outstanding" SpName="Las_Rpt_Outstanding" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Rpt_Outstanding_DirectMem" SpName="Las_Rpt_Outstanding_DirectMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
+  <Function Name="Report-WinLoss">
+    <Setting Key="LAS_Rpt_Winloss_LicenseeWL" SpName="LAS_Rpt_Winloss_LicenseeWL" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_Rpt_Winloss_AgentWL" SpName="LAS_Rpt_Winloss_AgentWL" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="LAS_Rpt_Winloss_DirectMem" SpName="LAS_Rpt_Winloss_DirectMem" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
   <Function Name="AccountInformation">
     <Setting Key="Las_SuggestSearchMember_Admin" SpName="Las_SuggestSearchMember_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_SuggestSearchMember_Agent" SpName="Las_SuggestSearchMember_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_GetMemberList_Admin" SpName="Las_GetMemberList_Admin_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_GetMemberList_Agent" SpName="Las_GetMemberList_Agent_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetMemberList_Admin" SpName="Las_GetMemberList_Admin" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetMemberList_Agent" SpName="Las_GetMemberList_Agent" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetDownlineList" SpName="Las_GetDownlineList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetAncestorList" SpName="Las_GetAncestorList" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Balance_SelAgentBalance" SpName="LAS_Balance_SelAgentBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Balance_SelMemberBalance" SpName="LAS_Balance_SelMemberBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Cash_Balance_SelAgentBalance" SpName="LAS_Cash_Balance_SelAgentBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_Cash_Balance_SelMemberBalance" SpName="LAS_Cash_Balance_SelMemberBalance" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_GetDirectDownline" SpName="Las_GetDirectDownline_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_GetDirectDownline" SpName="Las_GetDirectDownline" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetProductSettingByAgentId" SpName="Las_GetProductSettingByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetProductSettingByCustId" SpName="Las_GetProductSettingByCustId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_UpdateProductSettingByAgentId" SpName="Las_UpdateProductSettingByAgentId" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

@@ -206,6 +206,7 @@ language.Las['en-US'] = {
 	HttpError_Default : "Oops... you are here because of a system error, please notify your administrator.",
 	IncorrectCaptchaMsg : "You have entered an incorrect answer for CAPTCHA.",
 	IndirectAgent : "Indirect Agent",
+	IndirectMember : "Indirect Member",
 	InsertCustomer : "Insert Customer",
 	InsertSuccessfully : "Insert Successfully.",
 	Integration : "Integration",

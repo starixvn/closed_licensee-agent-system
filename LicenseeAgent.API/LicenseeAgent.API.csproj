@@ -46,6 +46,7 @@
     <Compile Include="LRF\Entities\ClientInfo.cs" />
     <Compile Include="LRF\Entities\InternalInfo.cs" />
     <Compile Include="LRF\Integration.cs" />
+    <Compile Include="LRF\Results\GetInternalInfoResult.cs" />
     <Compile Include="LRF\Services\AuthorityService.cs" />
     <Compile Include="LRF\Services\IAuthorityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

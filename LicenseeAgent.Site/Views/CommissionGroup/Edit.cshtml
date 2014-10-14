@@ -2,6 +2,11 @@
 @model CommissionGroupViewModel
 @{
     ViewBag.Title = Las.EditGroup;
+    var widthColumn1 = 120;
+    var widthColumn2 = 140;
+    var widthColumn3 = 180;
+    var widthColumn23 = widthColumn2 + widthColumn3;
+    var totalWidth = widthColumn1 + widthColumn2 + widthColumn3;
 }
 @section scripts{
     @Scripts.Render("~/js/CommissionGroupUtility")
@@ -9,7 +14,7 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div class="pull-left" style="width: 420px;">
+<div class="pull-left" style="width: @(totalWidth)px">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table", @id = "actionForm" }))
     {
         @Html.AntiForgeryToken()
@@ -28,9 +33,9 @@
         }
         <table class="noborder">
             <colgroup>
-                <col width="100" />
-                <col width="140" />
-                <col />
+                <col width="@widthColumn1" />
+                <col width="@widthColumn2" />
+                <col width="@widthColumn3" />
             </colgroup>
             <tbody>
                 <tr>
@@ -121,7 +126,7 @@
                     <td>
                         @Las.SetAsDefaultGroup
                     </td>
-                    <td colspan="2">
+                    <td colspan="2" width="@widthColumn23">
                         @Html.CheckBoxFor(m => m.IsDefault)<br />
                         <span class="text-warning">@Las.GroupCommissionNote</span>
                     </td>

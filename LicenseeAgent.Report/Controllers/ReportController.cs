@@ -9,10 +9,8 @@
     using Criteria;
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
-    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Web;
-    using LicenseeAgent.Web.Services;
     using Services;
     using ViewModels;
     using Web.Controllers;
@@ -62,7 +60,13 @@
         [HttpGet]
         public ActionResult Results()
         {
-            return View();
+            var balanceUp = _coreService.BalanceUpDay;
+            var model = new ResultsReportViewModel
+            {
+                BalanceUpDay = balanceUp.BalanceUpDay
+            };
+
+            return View(model);
         }
 
         /// <summary>

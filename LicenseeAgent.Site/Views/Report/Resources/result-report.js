@@ -6,14 +6,13 @@ var resultReport = (function ($) {
     return {
         init: function () {
             $('.selectpicker').selectpicker();
-            resultReport.getBalanceUpMoveBet();
-            resultReport.initData();
-        },
-
-        initData: function () {
-            var currentTime = new Date();
-            var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
-            resultReport.matchSubmit(todayStr);
+            $('.datepicker').each(function () {
+                var startDate = $(this).data('start-date');
+                $(this).datepicker({
+                    startDate: startDate
+                });
+            });
+            resultReport.matchSubmit($('#matchdatetime').val());
 
             $('a[data-toggle="tab"]').on('shown', function (e) {
                 if ($(e.target).attr('href') === "#filter-tab-outright") {
@@ -40,33 +39,6 @@ var resultReport = (function ($) {
                 resultReport.manageOutrightLeagueSelect();
             });
         },
-
-        getBalanceUpMoveBet: function () {
-            $.ajax({
-                url: core.resolveUrl("~/Report/BalanceUpMoveBet"),
-                type: 'POST',
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                        return;
-                    }
-                    var currentTime = new Date();
-                    var todayStr = (currentTime.getMonth() + 1) + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
-
-                    $('#matchdatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr });
-                    $('#outrightfromdatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr });
-                    $('#outrighttodatetimepicker').datepicker({ startDate: data.BalanceUp, endDate: todayStr });
-                },
-                complete: function () {
-                    core.unblockUI();
-                }
-            });
-        },
-
         manageSportSelect: function () {
             var params = {
                 EventDate: $("#matchdatetime").val(),

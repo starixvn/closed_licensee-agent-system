@@ -36,6 +36,7 @@
                 "~/scripts/mutate/mutate.js",
                 "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
+                "~/scripts/core-components.js",
                 "~/scripts/core-breadcrumb.js",
                 "~/scripts/core-common.js",
                 "~/scripts/core-enums.js",
@@ -45,7 +46,8 @@
                 "~/scripts/report.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
-                "~/content/core.less"));
+                "~/content/core.less",
+                "~/content/core-components.less"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
                 "~/scripts/language.js",
@@ -98,9 +100,10 @@
 
             // Datetimepicker
             bundles.Add(new ScriptBundle("~/js/datetimepicker").Include(
-                "~/scripts/moment-datepicker/moment-datepicker.js"));
+                "~/scripts/bootstrap-datepicker/bootstrap-datepicker.js"));
             bundles.Add(new LessBundle("~/css/datetimepicker").Include(
-                "~/content/moment-datepicker/datepicker.css"));
+                "~/content/bootstrap-datepicker/datepicker.less",
+                "~/content/bootstrap-datepicker/override.less"));
 
             // Fanex.Grid
             bundles.Add(new ScriptBundle("~/js/fanexgrid").IncludeDirectory(

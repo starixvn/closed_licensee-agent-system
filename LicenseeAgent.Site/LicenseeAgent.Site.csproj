@@ -318,6 +318,8 @@
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer-detail.js" />
     <Content Include="Areas\TotalBets\Scripts\totalBets.js" />
+    <Content Include="Content\bootstrap-datepicker\override.less" />
+    <Content Include="Content\core-components.less" />
     <Content Include="Content\Fanex.Result\images\1F.gif" />
     <Content Include="Content\Fanex.Result\images\1L.gif" />
     <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
@@ -329,6 +331,9 @@
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
     <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
     <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="Content\bootstrap-datepicker\datepicker.less" />
+    <Content Include="Scripts\core-components.js" />
     <Content Include="Scripts\core-ibc.js" />
     <Content Include="Scripts\CryptoJS\core.js" />
     <Content Include="Scripts\CryptoJS\sha256.js" />
@@ -643,8 +648,6 @@
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Content\moment-datepicker\datepicker.css" />
     <Content Include="Images\loader.gif" />
-    <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
-    <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />
     <Content Include="Scripts\Select2\select2.js" />
     <Content Include="Scripts\utility.js" />

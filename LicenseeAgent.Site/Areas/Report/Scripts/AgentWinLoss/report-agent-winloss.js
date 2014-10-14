@@ -282,9 +282,7 @@ report.agentWinLoss = (function ($) {
     return {
         init: function () {
             $("#tabs-area a:first").tab('show');
-
-            $('#fromDatePicker').datepicker();
-            $('#toDatePicker').datepicker();
+            $('.datepicker').datepicker();
 
             var breadcrumb = core.breadcrumb.init();
             breadcrumb.on('itemClicked', function (item, data) {
@@ -308,16 +306,16 @@ report.agentWinLoss = (function ($) {
                 e.preventDefault();
             });
 
-            $('#today').click(function () {
+            $('#btnToday').click(function () {
                 var today = $(this).data('date');
-                $('#fromDatePicker').datepicker('update', today);
-                $('#toDatePicker').datepicker('update', today);
+                $('#dpFromDate').datepicker('update', today);
+                $('#dpToDate').datepicker('update', today);
                 $('form').submit();
             });
-            $('#yesterday').click(function () {
+            $('#btnYesterday').click(function () {
                 var yesterday = $(this).data('date');
-                $('#fromDatePicker').datepicker('update', yesterday);
-                $('#toDatePicker').datepicker('update', yesterday);
+                $('#dpFromDate').datepicker('setDates', yesterday);
+                $('#dpToDate').datepicker('setDates', yesterday);
                 $('form').submit();
             });
         },

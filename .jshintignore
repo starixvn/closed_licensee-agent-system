@@ -1,6 +1,7 @@
 **/Scripts/AngularJS
 **/Scripts/autoNumeric
 **/Scripts/bootstrap
+**/Scripts/bootstrap-datepicker
 **/Scripts/contextmenu
 **/Scripts/cookie
 **/Scripts/CryptoJS
@@ -11,7 +12,6 @@
 **/Scripts/jquery
 **/Scripts/jquery-form
 **/Scripts/jquery-validate
-**/Scripts/moment-datepicker
 **/Scripts/MomentJS
 **/Scripts/MonthPicker
 **/Scripts/mutate

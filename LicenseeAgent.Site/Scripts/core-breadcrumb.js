@@ -64,7 +64,9 @@ core.breadcrumb = (function ($) {
                 for (var j = 0; j < items.length; j++) {
                     var item = items[j];
                     if (item.Guid === guid) {
-                        items.splice(j + 1);
+                        var index = j + 1;
+                        var total = items.length - index;
+                        items.splice(index, total);
                         core.breadcrumb.render();
                         break;
                     }

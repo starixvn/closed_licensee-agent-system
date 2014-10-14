@@ -1,4 +1,4 @@
-﻿/*global appSettings, language, moment, popup, pageContext, numeral */
+﻿/*global appSettings, popup, pageContext, numeral */
 
 var core = (function ($) {
     'use strict';
@@ -63,76 +63,6 @@ var core = (function ($) {
                     core.handleError(data);
                 }
             });
-
-            // set behaviour with 3rd.
-            $('input, textarea').placeholder();
-            if ($.fn.datepicker) {
-                $('.datepicker').data('datepicker-format', core.DATE_FORMAT);
-            }
-
-            // customize scrollbars.
-            if ($.fn.niceScroll) {
-                $('html').niceScroll({
-                    cursorcolor: "#8a8a8a",
-                    autohidemode: false
-                });
-
-                $('body').mutate('height width', function () {
-                    $('html').getNiceScroll().resize();
-                });
-            }
-
-            // set href for button.
-            $("button[data-href]").click(function () {
-                location.href = core.resolveUrl($(this).attr("data-href"));
-            });
-
-            // handle click in iframe.
-            if ($('#frmMain').length === 0) {
-                $('html').on('click', function () {
-                    if (parent !== null) {
-                        parent.$('#frmMain').trigger('click');
-                    }
-                });
-            }
-
-            // set language for 3rd.
-            if (typeof moment !== 'undefined') {
-                moment.lang(language.getSelectedLanguageCode().toLowerCase());
-            }
-            if ($.fn.fanexGrid) {
-                //$.fn.fanexGrid.defaults.marginRight = 0;
-                $.fn.fanexGrid.defaults.scrollWidth = 24;
-                $.fn.fanexGrid.defaults.language = language.getSelectedLanguage();
-                $.fn.fanexGrid.defaults.timeZone = core.ServerUtcOffset;
-            }
-
-            // handle tooltip.
-            $(document).click(function (e) {
-                if ($().tooltip) {
-                    $('.tooltip').prev().each(function (index, element) {
-                        if (element === e.target) {
-                            return;
-                        }
-                        if ($(e.target).is('button')) {
-                            return;
-                        }
-                        if ($(e.target).attr('title')) {
-                            return;
-                        }
-                        $(element).tooltip('hide');
-                    });
-                }
-            });
-
-            // Override the fanexGrid
-            var fanexGridOrigin = jQuery.fn.fanexGrid;
-            if (fanexGridOrigin !== undefined) {
-                jQuery.fn.fanexGrid = function () {
-                    jQuery.fn.fanexGrid = fanexGridOrigin;
-                    return fanexGridOrigin.apply(this, arguments);
-                };
-            }
 
             // call if page is not in frame & not be a popup
             if (window.parent.frmMain === undefined && !popup.isIframe() && !core.DisableRecheckIn) {

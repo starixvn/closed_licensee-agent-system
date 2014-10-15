@@ -109,6 +109,7 @@ language.Las['en-US'] = {
 	CorrectScore : "Correct Score",
 	Country : "Country",
 	CreatedDate : "Created Date",
+	CreatedSuccessfully : "Created successfully",
 	CreateGroup : "Create Group",
 	CreateNewGroup : "Create New Group",
 	Credit : "Credit",

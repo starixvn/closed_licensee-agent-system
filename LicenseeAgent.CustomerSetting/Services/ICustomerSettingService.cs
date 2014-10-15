@@ -25,6 +25,8 @@
 
         void SwitchUserFromNormalToLegend(SwitchUserFromNormalToLegendCriteria criteria);
 
+        void SwitchUserValidate(SwitchUserValidateCriteria criteria);
+
         void GetLegendAgentId(GetLegendAgentIdCriteria criteria);
 
         void GetLegendAgentIdHasDeposit(GetLegendAgentIdHasDepositCriteria criteria);

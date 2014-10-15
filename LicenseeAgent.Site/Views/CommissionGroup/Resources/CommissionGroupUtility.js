@@ -9,10 +9,6 @@ var CommissionGroupUtility = (function ($) {
                 CommissionGroupUtility.checkAvailability();
             });
 
-            $('#cancel').click(function () {
-                popup.close();
-            });
-
             $('form').submit(function () {
                 if ($('#IsDefault').is(":checked") && !CommissionGroupUtility.isConfirm) {
                     if ($('#action').val() === "edit") {

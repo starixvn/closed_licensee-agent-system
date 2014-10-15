@@ -394,17 +394,17 @@ var core = (function ($) {
             return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
         },
         showErrorMsg: function (msg) {
-            var msgWrp = $('.validation-summary-valid');
-            msgWrp.show();
-            msgWrp.addClass('validation-summary-errors')
+            var container = $('[data-valmsg-summary=true]');
+            container.show();
+            container.addClass('validation-summary-errors')
                 .find('li:first').html(msg).show();
         },
         showSuccessMsg: function (msg) {
-            var msgWrp = $('.validation-summary-valid');
-            msgWrp.show();
-            msgWrp.addClass('success').find('li:first').html(msg).show();
+            var container = $('[data-valmsg-summary=true]');
+            container.show();
+            container.addClass('success').find('li:first').html(msg).show();
         },
-        showErrors: function (validator) {  // 'this' is the form element
+        showErrors: function (validator) {
             var container = $('[data-valmsg-summary=true]');
             var list = container.find("ul");
 
@@ -418,9 +418,9 @@ var core = (function ($) {
                 });
             }
         },
-        hideErrors: function () {  // 'this' is the form element
-            $('.validation-summary-valid').hide();
-            $('.validation-summary-errors').hide();
+        hideErrors: function () {
+            var container = $('[data-valmsg-summary=true]');
+            container.hide();
         },
         getQueryParamValue: function (name) {
             name = name.toLowerCase().replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

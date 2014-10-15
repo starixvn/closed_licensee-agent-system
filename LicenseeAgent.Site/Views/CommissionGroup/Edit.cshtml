@@ -136,7 +136,7 @@
                         <button type="submit" class="btn btn-primary" id="submit">
                             @Las.Save
                         </button>
-                        <button type="button" id="cancel" class="btn btn-primary">
+                        <button type="button" id="cancel" class="btn btn-primary" onclick="popup.close();">
                             @Las.Cancel
                         </button>
                         <a class="btn btn-primary" href="@Url.Action("Index", "MemberCommission", new { GroupCommId = Model.GroupCommId })" target="_parent">
@@ -154,14 +154,14 @@
         @Html.HiddenFor(m => m.HasSportbook)
         @Html.HiddenFor(m => m.ProductCount)
         @Html.HiddenFor(m => m.IsResetDefault)
-                if (Model.IsResetDefault)
-                {
-        @Html.HiddenFor(m => m.GroupCommId, new { @id = "DefaultGroupId" })
-                }
-                else
-                {
-        @Html.HiddenFor(m => m.DefaultGroupId)
-                }
+        if (Model.IsResetDefault)
+        {
+            @Html.HiddenFor(m => m.GroupCommId, new { @id = "DefaultGroupId" })
+        }
+        else
+        {
+            @Html.HiddenFor(m => m.DefaultGroupId)
+        }
         <input type="hidden" value="edit" id="action" />
     }
 </div>

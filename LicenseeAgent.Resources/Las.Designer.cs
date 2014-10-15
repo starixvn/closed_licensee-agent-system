@@ -124,11 +124,29 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Agent.
+        /// </summary>
+        public static string AddAgent {
+            get {
+                return ResourceManager.GetString("AddAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Downline.
         /// </summary>
         public static string AddDownline {
             get {
                 return ResourceManager.GetString("AddDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Downline Agent.
+        /// </summary>
+        public static string AddDownlineAgent {
+            get {
+                return ResourceManager.GetString("AddDownlineAgent", resourceCulture);
             }
         }
         
@@ -255,6 +273,33 @@ namespace LicenseeAgent.Resources {
         public static string AgentWinLoss {
             get {
                 return ResourceManager.GetString("AgentWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable {0} for this agent and his downlines?.
+        /// </summary>
+        public static string AlertDisableAgentProduct {
+            get {
+                return ResourceManager.GetString("AlertDisableAgentProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable {0} for this member?.
+        /// </summary>
+        public static string AlertDisableMemberProduct {
+            get {
+                return ResourceManager.GetString("AlertDisableMemberProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is enabled for this agent. Do you want to enable for his downlines too?.
+        /// </summary>
+        public static string AlertEnableAgentProduct {
+            get {
+                return ResourceManager.GetString("AlertEnableAgentProduct", resourceCulture);
             }
         }
         
@@ -1170,6 +1215,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Member.
+        /// </summary>
+        public static string DirectMember {
+            get {
+                return ResourceManager.GetString("DirectMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Member List.
+        /// </summary>
+        public static string DirectMemberList {
+            get {
+                return ResourceManager.GetString("DirectMemberList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Members.
+        /// </summary>
+        public static string DirectMembers {
+            get {
+                return ResourceManager.GetString("DirectMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this message again..
         /// </summary>
         public static string DontShowMessageAgain {
@@ -1184,6 +1256,15 @@ namespace LicenseeAgent.Resources {
         public static string Downline {
             get {
                 return ResourceManager.GetString("Downline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downline Agent.
+        /// </summary>
+        public static string DownlineAgent {
+            get {
+                return ResourceManager.GetString("DownlineAgent", resourceCulture);
             }
         }
         
@@ -1805,6 +1886,24 @@ namespace LicenseeAgent.Resources {
         public static string IncorrectCaptchaMsg {
             get {
                 return ResourceManager.GetString("IncorrectCaptchaMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indirect Agent.
+        /// </summary>
+        public static string IndirectAgent {
+            get {
+                return ResourceManager.GetString("IndirectAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indirect Member.
+        /// </summary>
+        public static string IndirectMember {
+            get {
+                return ResourceManager.GetString("IndirectMember", resourceCulture);
             }
         }
         
@@ -3352,6 +3451,15 @@ namespace LicenseeAgent.Resources {
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
             }
         }
         

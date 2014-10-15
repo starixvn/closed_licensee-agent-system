@@ -1,11 +1,6 @@
 ﻿@import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 
-/* Place Holder */
-.placeholder {
-    color: #acacac;
- }
-
 /* Instruction */
 .instruction
 {
@@ -242,6 +237,10 @@ iframe
 {
     margin-left: 60px !important;
 }
+.w50
+{
+    width: 50px !important;
+}
 .w60
 {
     width: 60px !important;
@@ -257,6 +256,10 @@ iframe
 .w100
 {
     width: 100px !important;
+}
+.w140
+{
+    width: 140px !important;
 }
 .w160
 {
@@ -525,4 +528,32 @@ table.dropdown
         background-color: #edf0f0;
         white-space: nowrap;
     }
+}
+
+.popover 
+{
+    border-radius: 0;
+    box-shadow: 0;
+    padding: 2px 1px;
+
+    .arrow 
+    { 
+        display: none !important; 
+    }
+
+    .popover-content 
+    { 
+        padding: 0;
+    }
+
+    .popover-title
+    {
+        padding: 0;
+    }
+}
+
+.text-direct-member
+{
+    font-weight: bold;
+    text-transform: uppercase;
 }

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IGroupCommissionService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace LicenseeAgent.CustomerSetting.Services
+﻿namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
     using LicenseeAgent.CustomerSetting.Criteria;
@@ -15,7 +9,7 @@ namespace LicenseeAgent.CustomerSetting.Services
     /// </summary>
     public interface IGroupCommissionService
     {
-        IEnumerable<GroupCommission> GetGroupCommissions(GroupCommissionSelCriteria criteria);
+        IList<GroupCommission> GetGroupCommissions(GroupCommissionSelCriteria criteria);
 
         GroupCommission GetGroupCommissionById(GroupCommGetByIdCriteria criteria);
 

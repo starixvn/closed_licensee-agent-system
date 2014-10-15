@@ -146,10 +146,8 @@
                         return "http://10.40.40.109:8089/API";
 
                     case SiteEnvironment.Local:
-                        return "http://10.18.200.209:7981/API";
-
                     case SiteEnvironment.Sandbox:
-                        return "http://lastest.net2cast.com/API";
+                        return "http://10.18.200.209:7981/API";
 
                     default:
                         return string.Empty;

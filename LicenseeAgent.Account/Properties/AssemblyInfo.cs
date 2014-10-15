@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LicenseeAgent.Account")]
+[assembly: AssemblyTitle("LicenseeAgent.AccountInformation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LicenseeAgent.Account")]
+[assembly: AssemblyProduct("LicenseeAgent.AccountInformation")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,4 +20,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("512f6a35-173d-4afb-903b-8dc54e937d7b")]
+[assembly: Guid("6bc6f57e-cc5b-4cf3-85fe-a12ea2d3c542")]
+[assembly: InternalsVisibleTo("LicenseeAgent.Account.Tests")]

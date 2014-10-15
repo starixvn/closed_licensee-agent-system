@@ -533,7 +533,37 @@ If that is not you, please contact your upline!!!</value>
   <data name="Msg_2077" xml:space="preserve">
     <value>Failed to move member. Please contact administrator immediately!</value>
   </data>
+  <data name="Msg_2130" xml:space="preserve">
+    <value>Invalid user information.</value>
+  </data>
   <data name="Msg_2086" xml:space="preserve">
     <value>Cannot switch this member to Agency member since his first deposit had been made for more than 7 days. Please contact Administrator.</value>
+  </data>
+  <data name="Msg_2131" xml:space="preserve">
+    <value>Fail to insert user information.</value>
+  </data>
+  <data name="Msg_2132" xml:space="preserve">
+    <value>Domain name is empty.</value>
+  </data>
+  <data name="Msg_2138" xml:space="preserve">
+    <value>Failed to update data. Please try again.</value>
+  </data>
+  <data name="Msg_2139" xml:space="preserve">
+    <value>{0} has been disabled by upline.</value>
+  </data>
+  <data name="Msg_2140" xml:space="preserve">
+    <value>Member does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2141" xml:space="preserve">
+    <value>Agent does not exist. Please check again.</value>
+  </data>
+  <data name="Msg_2148" xml:space="preserve">
+    <value>This username is invalid. Please check again.</value>
+  </data>
+  <data name="Msg_2142" xml:space="preserve">
+    <value>Mandatory product could not be disabled.</value>
+  </data>
+  <data name="Msg_2133" xml:space="preserve">
+    <value>Agency system currently does not support this model. Please contact Administrator.</value>
   </data>
 </root>

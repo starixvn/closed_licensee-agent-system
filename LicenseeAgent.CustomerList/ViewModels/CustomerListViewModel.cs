@@ -11,9 +11,6 @@
         [Required]
         public int AgentId { get; set; }
 
-        [Required]
-        public int AgentLevel { get; set; }
-
         public int? Status { get; set; }
 
         [AllowHtml]

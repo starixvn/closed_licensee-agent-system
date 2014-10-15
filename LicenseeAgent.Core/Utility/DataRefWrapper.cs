@@ -84,13 +84,13 @@
             switch (sportTypeId)
             {
                 case (int)SportType.SportType_162:
-                    return (int)Product.Product_4;
+                    return (int)ProductCode.Product_4;
 
                 case (int)SportType.SportType_202:
-                    return (int)Product.Product_8;
+                    return (int)ProductCode.Product_8;
 
                 case (int)SportType.SportType_161:
-                    return (int)Product.Product_2;
+                    return (int)ProductCode.Product_2;
 
                 case (int)SportType.SportType_180:
                 case (int)SportType.SportType_181:
@@ -99,10 +99,10 @@
                 case (int)SportType.SportType_184:
                 case (int)SportType.SportType_185:
                 case (int)SportType.SportType_186:
-                    return (int)Product.Product_5;
+                    return (int)ProductCode.Product_5;
 
                 default:
-                    return (int)Product.Product_0;
+                    return (int)ProductCode.Product_0;
             }
         }
 
@@ -115,32 +115,35 @@
         {
             switch (productId)
             {
-                case (int)Product.Product_0:
+                case (int)ProductCode.Product_0:
                     return Las.Sportsbook;
 
-                case (int)Product.Product_1:
-                    return "Horse Racing, Greyhound and Harness";
+                case (int)ProductCode.Product_1:
+                    return Las.Racing;
 
-                case (int)Product.Product_2:
+                case (int)ProductCode.Product_2:
                     return Las.NumberGame;
 
-                case (int)Product.Product_4:
+                case (int)ProductCode.Product_4:
                     return Las.LiveCasino;
 
-                case (int)Product.Product_5:
+                case (int)ProductCode.Product_5:
                     return Las.VirtualSports;
 
-                case (int)Product.Product_6:
+                case (int)ProductCode.Product_6:
                     return Las.RNGCasino;
 
-                case (int)Product.Product_7:
+                case (int)ProductCode.Product_7:
                     return Las.Bingo;
 
-                case (int)Product.Product_8:
+                case (int)ProductCode.Product_8:
                     return Las.Keno;
 
-                case (int)Product.Product_9:
+                case (int)ProductCode.Product_9:
                     return Las.PlaytechCasino;
+
+                case (int)ProductCode.Product_1000:
+                    return Las.HrFixedOdds;
             }
 
             return string.Format("Undefined product name {0}", productId);

@@ -3,7 +3,7 @@
     using System;
     using System.Web;
     using LicenseeAgent.API.LRF.Criteria;
-    using LicenseeAgent.API.LRF.Entities;
+    using LicenseeAgent.API.LRF.Results;
     using LicenseeAgent.API.LRF.Services;
     using LicenseeAgent.API.Utility;
 
@@ -12,7 +12,13 @@
     /// </summary>
     public class Integration
     {
+        #region Variables
+
         private readonly IAuthorityService _authorityService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public Integration(IAuthorityService authorityService, string legendEnvironment, string legendAdminSite)
         {
@@ -26,9 +32,17 @@
         {
         }
 
+        #endregion Constructors
+
+        #region Properties
+
         public string LegendEnvironment { get; private set; }
 
         public string LegendAdminSite { get; private set; }
+
+        #endregion Properties
+
+        #region Generate link
 
         /// <summary>
         /// Generates the link.
@@ -76,6 +90,10 @@
             return link;
         }
 
+        #endregion Generate link
+
+        #region Get link info
+
         /// <summary>
         /// Gets the internal information.
         /// </summary>
@@ -83,7 +101,7 @@
         /// <returns>
         /// Returns internal information.
         /// </returns>
-        public InternalInfo GetInternalInfo(string authKey)
+        public GetInternalInfoResult GetInternalInfo(string authKey)
         {
             var guid = string.Empty;
             try
@@ -112,7 +130,14 @@
                 Browser = clientInfo.BrowserName
             };
 
-            return _authorityService.GetInternalAuthority(criteria);
+            var internalInfo = _authorityService.GetInternalAuthority(criteria);
+            return new GetInternalInfoResult
+            {
+                ErrCode = criteria.ErrCode,
+                InternalInfo = internalInfo
+            };
         }
+
+        #endregion Get link info
     }
 }

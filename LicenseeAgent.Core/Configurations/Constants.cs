@@ -10,6 +10,7 @@
         public const string AppSessionCaptcha = "LasCaptcha";
         public const string AppCookieLanguage = "LasLanguage";
         public const string AppCookieTopMenu = "LasTopMenu";
+        public const string LocalTestCaptcha = "999999";
 
         public const int LrfAuthMinuteTimeout = 5;
         public const int MinimumUsernameLength = 6;

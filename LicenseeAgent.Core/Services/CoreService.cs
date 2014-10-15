@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using Fanex.Caching;
@@ -80,10 +81,29 @@
             }
         }
 
-        public string GetLicenseeDomain(int licenseeId)
+        /// <summary>
+        /// Gets the licensee domain.
+        /// </summary>
+        /// <param name="licenseeId">The licensee identifier.</param>
+        /// <returns>Returns URL.</returns>
+        [SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings",
+            Justification = "https://connect.microsoft.com/VisualStudio/feedback/details/382585/ca2234-asking-me-to-self-reference-a-method")]
+        public Uri GetLicenseeDomain(int licenseeId)
         {
             var licenseeDomains = LicenseeDomains;
-            return licenseeDomains.Where(x => x.LicenseeId == licenseeId).Select(x => x.DomainName).FirstOrDefault();
+            var domain = licenseeDomains.Where(x => x.LicenseeId == licenseeId).Select(x => x.DomainName).FirstOrDefault();
+            if (!domain.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            {
+                domain = string.Format("http://{0}", domain);
+            }
+
+            if (AppSettings.SiteEnvironment == SiteEnvironment.Local)
+            {
+                var request = HttpContext.Current.Request;
+                return new Uri(new Uri(domain), request.ApplicationPath);
+            }
+
+            return new Uri(domain);
         }
 
         /// <summary>
@@ -104,7 +124,7 @@
 
             if (AppSettings.IsLocalRequest)
             {
-                return (int)Licensee.Licensee_27;
+                return (int)LicenseeCode.Licensee_27;
             }
 
             return null;
@@ -127,7 +147,7 @@
 
             if (AppSettings.IsLocalRequest)
             {
-                return (int)Licensee.Licensee_27;
+                return (int)LicenseeCode.Licensee_27;
             }
 
             return null;
@@ -168,7 +188,7 @@
             return HasProductOffered(productInfos, productId);
         }
 
-        public bool HasProductOffered(int licenseeId, Product product)
+        public bool HasProductOffered(int licenseeId, ProductCode product)
         {
             return HasProductOffered(licenseeId, (int)product);
         }
@@ -196,7 +216,9 @@
                 AgentId = agentId
             };
 
-            return GetEntity<AgentInfo>(criteria);
+            var result = GetEntity<AgentInfo>(criteria);
+            result.AgentId = agentId;
+            return result;
         }
 
         /// <summary>

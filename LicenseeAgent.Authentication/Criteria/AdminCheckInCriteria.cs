@@ -1,0 +1,33 @@
+﻿namespace LicenseeAgent.Authentication.Criteria
+{
+    using Fanex.Data.Repository;
+
+    /// <summary>
+    /// AdminCheckInCriteria class.
+    /// </summary>
+    public class AdminCheckInCriteria : CriteriaBase
+    {
+        public int AdminId { get; set; }
+
+        public int? LicenseeId { get; set; }
+
+        public string NetSessionId { get; set; }
+
+        [SpParam(SqlParamName = "On_AdminId")]
+        public int OnAdminId { get; set; }
+
+        public string IP { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Las_AdminCheckIn";
+        }
+
+        public override bool IsValid()
+        {
+            return AdminId > 0
+                && !string.IsNullOrEmpty(IP)
+                && !string.IsNullOrEmpty(NetSessionId);
+        }
+    }
+}

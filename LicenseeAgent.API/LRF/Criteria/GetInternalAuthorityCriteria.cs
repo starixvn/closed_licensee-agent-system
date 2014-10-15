@@ -13,6 +13,8 @@
 
         public string Ip { get; set; }
 
+        public int ErrCode { get; set; }
+
         public override string GetSettingKey()
         {
             return "LAS_GetInternalAuthority";

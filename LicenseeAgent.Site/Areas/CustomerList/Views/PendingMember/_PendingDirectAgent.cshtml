@@ -1,0 +1,16 @@
+﻿@model DirectMemberViewModel
+<div class="tab-pane active pull-left" id="direct-agent">
+    @using (Html.BeginForm("DirectMember", null, FormMethod.Post,
+    new { @class = "form-inline form-filter", id = "directMember" }))
+    {
+        <div class="controls-row">
+            @Html.LabelFor(x => x.DirectMemberUserName)
+            @Html.TextBoxFor(x => x.DirectMemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
+        </div>
+    }
+</div>

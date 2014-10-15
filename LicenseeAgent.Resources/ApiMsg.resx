@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckUserName_1" xml:space="preserve">
-    <value>This username is not available.</value>
+    <value>This username is not available</value>
   </data>
   <data name="InsertNewMember_2" xml:space="preserve">
-    <value>Fail to create customer. Please try again.</value>
+    <value>Fail to create customer. Please try again</value>
   </data>
   <data name="ResetPassword_1" xml:space="preserve">
     <value>Update failed</value>
@@ -139,9 +139,45 @@
     <value>No information available!</value>
   </data>
   <data name="GetDepositMemberInfoList_1" xml:space="preserve">
-    <value>Member does not exist. Please check again.</value>
+    <value>Member does not exist. Please check again</value>
   </data>
   <data name="GetDepositMemberInfoList_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="CheckUserName_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="GetDepositMemberInfo_1" xml:space="preserve">
+    <value>No information available!</value>
+  </data>
+  <data name="GetDepositMemberInfo_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="GetMemberInfo_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="GetMemberInfoList_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="InsertNewMember_1" xml:space="preserve">
+    <value>This username is not available</value>
+  </data>
+  <data name="UpdateAgentID_1" xml:space="preserve">
+    <value>Update failed</value>
+  </data>
+  <data name="UpdateMemberStatus_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="UpdateMemberStatus_3" xml:space="preserve">
+    <value>Invalid param value</value>
+  </data>
+  <data name="InsertNewMember_3" xml:space="preserve">
+    <value>Fail to create customer. Please try again</value>
+  </data>
+  <data name="ResetPassword_2" xml:space="preserve">
+    <value>System error</value>
+  </data>
+  <data name="UpdateMemberInfo_2" xml:space="preserve">
     <value>System error</value>
   </data>
 </root>

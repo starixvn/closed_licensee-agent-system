@@ -6,7 +6,7 @@
     /// <summary>
     /// Down-line service.
     /// </summary>
-    public class DownLineService : QueryService, IDownLineService
+    internal class DownLineService : QueryService, IDownLineService
     {
         /// <summary>
         /// Check if the target user is child of current user.

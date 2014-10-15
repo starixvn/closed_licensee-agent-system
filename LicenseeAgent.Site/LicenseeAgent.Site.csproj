@@ -72,8 +72,9 @@
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Result.Core, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Dependencies\Fanex.Result.Core.dll</HintPath>
+    <Reference Include="Fanex.Result.Core, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Result.Core-NPOI.2.0.6.1.5.5.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -108,7 +109,7 @@
       <HintPath>..\packages\MiniProfiler.3.1.1.140\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -210,21 +211,137 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\CustomerList\CustomerListAreaRegistration.cs" />
+    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\ProductSetting\ProductSettingAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
+    <Compile Include="Areas\TotalBets\TotalBetsAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Areas\Customer\Scripts\AccountInformation\account-information.js" />
+    <Content Include="Areas\CustomerList\Scripts\Member\member.js" />
+    <Content Include="Areas\CustomerList\Scripts\ResetPassword\reset-password.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-result.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-product.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information-info.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\actions\bet-limit-action.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\controllers\bet-limit-controller.js" />
+    <Content Include="Areas\Account\Content\HomePage\home-page.less" />
+    <Content Include="Areas\Account\Scripts\HomePage\home-page.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\controllers\position-taking-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\directives\bet-limit-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\directives\position-taking-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\number-game-setting.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\services\bet-limit-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\services\commission-setting-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\services\position-taking-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\betsetting\bet-setting-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\betsetting\bet-setting-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\betsetting\bet-setting-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-member-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\agent-edit-member-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\NumberGame\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\actions\position-taking-action.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\controllers\cust-info-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\directives\cust-info-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\directives\position-taking-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\edit-product.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\fanex-angular.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\fanex-core.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\fanex.customer-setting.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\services\bet-limit-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\services\cust-info-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\services\cust-setting-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\services\language-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\Shared\services\position-taking-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\actions\bet-limit-action.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\actions\commission-action.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\controllers\bet-limit-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\controllers\commission-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\controllers\cust-setting-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\controllers\position-taking-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\directives\bet-limit-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\directives\commission-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\directives\position-taking-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\services\bet-limit-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\services\commission-setting-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\services\position-taking-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\betsetting\bet-setting-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\betsetting\bet-setting-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\betsetting\bet-setting-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\commission\agent-edit-customer.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\commission\licensee-or-agent-edit-agent-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\commission\licensee-or-agent-edit-agent.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-member-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\agent-edit-member-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\SportsBook\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\actions\bet-limit-action.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\controllers\bet-limit-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\controllers\cust-setting-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\controllers\position-taking-controller.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\directives\bet-limit-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\directives\position-taking-directive.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\services\bet-limit-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\services\position-taking-service.js" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\betsetting\bet-setting-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\betsetting\bet-setting-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\betsetting\bet-setting-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-member-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\agent-edit-member-simple-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
+    <Content Include="Areas\ProductSetting\Scripts\VirtualSports\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
+    <Content Include="Areas\CustomerList\Content\customer-list.less" />
+    <Content Include="Areas\CustomerList\Scripts\Agent\agent.js" />
+    <Content Include="Areas\CustomerList\Scripts\PendingMember\pending-member.js" />
+    <Content Include="Areas\CustomerList\Scripts\customer-list.js" />
+    <Content Include="Areas\Home\Scripts\AccountInformation\account-information.js" />
+    <Content Include="Areas\TotalBets\Scripts\Soccer\soccer-detail.js" />
+    <Content Include="Areas\TotalBets\Scripts\totalBets.js" />
+    <Content Include="Content\bootstrap-datepicker\override.less" />
+    <Content Include="Content\core-components.less" />
     <Content Include="Content\Fanex.Result\images\1F.gif" />
     <Content Include="Content\Fanex.Result\images\1L.gif" />
     <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
     <Content Include="Content\Fanex.Result\images\first-goal.gif" />
     <Content Include="Content\Fanex.Result\images\last-goal.gif" />
     <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
+    <Content Include="Areas\TotalBets\Content\totalbets.less" />
+    <Content Include="Areas\TotalBets\Scripts\Basketball\basketball.js" />
+    <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
+    <Content Include="Areas\TotalBets\Scripts\Outright\outright.js" />
+    <Content Include="Areas\TotalBets\Scripts\Soccer\soccer.js" />
+    <Content Include="Scripts\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="Content\bootstrap-datepicker\datepicker.less" />
+    <Content Include="Scripts\core-components.js" />
+    <Content Include="Scripts\core-ibc.js" />
+    <Content Include="Scripts\CryptoJS\core.js" />
+    <Content Include="Scripts\CryptoJS\sha256.js" />
+    <Content Include="Scripts\report-betlist.js" />
+    <Content Include="Scripts\core-breadcrumb.js" />
+    <Content Include="Scripts\core-grid.js" />
+    <Content Include="Scripts\core-common.js" />
+    <Content Include="Scripts\core-enums.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
     <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">
@@ -240,32 +357,106 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SpNames.Uat.tt</DependentUpon>
     </Content>
-    <Content Include="Areas\Account\Scripts\HomePage\account-homepage.js" />
     <Content Include="Areas\Report\Views\_ViewStart.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\CustomerList\Resources\pending-member-list.js" />
-    <Content Include="Views\CustomerSetting\Resources\MemberArrangement.js" />
+    <Content Include="Views\MemberRearrangement\Resources\MemberArrangement.js" />
+    <Content Include="Areas\Home\Scripts\TopMenu\top-menu.js" />
     <Content Include="Views\MemberCommission\Resources\member-commission.js" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Content\AccountInformation\account-information.less" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_AgentInfo.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_BalanceDownline.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_Action.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\Search.cshtml" />
-    <Content Include="Areas\Customer\Views\Web.config" />
-    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_UpLinesPopover.cshtml" />
-    <Content Include="Areas\Customer\Views\AccountInformation\_SettingPopover.cshtml" />
+    <Content Include="Areas\Home\Content\AccountInformation\account-information.less" />
+    <Content Include="Areas\Home\Views\AccountInformation\_AgentInfo.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_BalanceInfoTab.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_ActionTab.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Index.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\Search.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_UpLinesPopover.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_SettingPopover.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Web.config" />
+    <Content Include="Areas\TotalBets\Views\Basketball\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\OtherSports\Index.cshtml" />
+    <Content Include="App_Code\ReportHelper.cshtml" />
+    <Content Include="App_Code\LanguageHelper.cshtml" />
+    <Content Include="App_Code\InstructionHelper.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Outright\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\Index.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\Detail.cshtml" />
+    <Content Include="Areas\TotalBets\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\Web.config" />
+    <Content Include="Areas\ProductSetting\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ProductSetting\Content\fanex.customerSetting.less" />
+    <Content Include="Areas\ProductSetting\Content\edit-product.less" />
+    <Content Include="Areas\ProductSetting\Views\CustomerInfo.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\ViewCustomerInfo.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\Product\EditProduct.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\SportsBook\InsertCustomer.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\SportsBook\BetSetting.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\SportsBook\PositionTaking.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\SportsBook\Commission.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\VirtualSports\BetSetting.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\VirtualSports\PositionTaking.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\VirtualSports\EditCustomer.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\NumberGame\BetSetting.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\NumberGame\PositionTaking.cshtml" />
+    <Content Include="Areas\ProductSetting\Views\SportsBook\EditCustomer.cshtml" />
+    <Content Include="Areas\Home\Views\TopMenu\SelectMenu.cshtml" />
+    <Content Include="Areas\Authentication\Views\Admin\SignIn.cshtml" />
+    <Content Include="Areas\Authentication\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Authentication\Views\Web.config" />
+    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Account\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Account\Views\Web.config" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\Index.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\_BalanceInfo.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Cash\_MemberLink.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Credit\Index.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\Credit\_BalanceInfo.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\NewMembers.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\TopTurnover.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\TopWinning.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\_Announcement.cshtml" />
+    <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Soccer\DetailBetList.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_DownLineListTab.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_ProductsTab.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Web.config" />
+    <Content Include="Views\Common\IP.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Agent\Index.cshtml" />
+    <Content Include="Areas\CustomerList\Views\PendingMember\Index.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Shared\ResetPassword.cshtml" />
+    <Content Include="Areas\CustomerList\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Shared\EditInfo.cshtml" />
+    <None Include="App_Data\Fanex.Result\Badminton.xls" />
+    <None Include="App_Data\Fanex.Result\BaseBall.xls" />
+    <None Include="App_Data\Fanex.Result\Basketball.xls" />
+    <None Include="App_Data\Fanex.Result\Billiard.xls" />
+    <None Include="App_Data\Fanex.Result\Hockey.xls" />
+    <None Include="App_Data\Fanex.Result\HorseRacing.xls" />
+    <None Include="App_Data\Fanex.Result\LiveCasino.xls" />
+    <None Include="App_Data\Fanex.Result\NumberGame.xls" />
+    <None Include="App_Data\Fanex.Result\OtherSport.xls" />
+    <None Include="App_Data\Fanex.Result\Outright.xls" />
+    <None Include="App_Data\Fanex.Result\Soccer.xls" />
+    <None Include="App_Data\Fanex.Result\Tennis.xls" />
+    <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
+    <None Include="App_Data\Fanex.Result\VSTennis.xls" />
+    <Content Include="Areas\CustomerList\Views\Member\DirectUplines.cshtml" />
+    <Content Include="Areas\CustomerList\Views\Member\Index.cshtml" />
+    <Content Include="Areas\CustomerList\Views\PendingMember\_PendingDirectAgent.cshtml" />
+    <Content Include="Areas\CustomerList\Views\PendingMember\_PendingIndirectAgent.cshtml" />
+    <Content Include="Areas\Report\Views\Shared\_Breadcrumb.cshtml" />
+    <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.AppSettings.Config.tt</DependentUpon>
     </None>
+    <Content Include="Views\Shared\_Breadcrumb.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.ConnectionStrings.Local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -349,64 +540,7 @@
     <Content Include="Scripts\ResourcesJs\SportType.zh-TW.js">
       <DependentUpon>SportType.tt</DependentUpon>
     </Content>
-    <Content Include="Views\CustomerList\Resources\customer-list.js" />
-    <Content Include="Views\CustomerList\Resources\customer-list.less" />
-    <Content Include="Views\CustomerList\Resources\reset-password.js" />
-    <Content Include="Views\CustomerSetting\Resources\edit-product.js" />
-    <Content Include="Views\CustomerSetting\Resources\edit-product.less" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-setting-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\language-service.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\actions\bet-limit-action.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\bet-limit-controller.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\cust-setting-controller.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\controllers\position-taking-controller.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\directives\bet-limit-directive.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\services\position-taking-service.js" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\betsetting\bet-setting-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\betsetting\bet-setting-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-member-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\agent-edit-member-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\VirtualSports\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
     <Content Include="Scripts\report.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\actions\bet-limit-action.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\bet-limit-controller.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\controllers\position-taking-controller.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\bet-limit-directive.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\number-game-setting.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\commission-setting-service.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\services\position-taking-service.js" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\betsetting\bet-setting-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-member-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\agent-edit-member-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\NumberGame\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\actions\position-taking-action.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\controllers\cust-info-controller.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\directives\cust-info-directive.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\cust-info-service.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\services\position-taking-service.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\bet-limit-action.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\actions\commission-action.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement-transferDetail.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement-detail.js" />
@@ -425,33 +559,6 @@
     <Content Include="Views\BetList\Resources\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\fanex-core.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\cust-setting-controller.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\bet-limit-controller.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\commission-controller.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\controllers\position-taking-controller.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\bet-limit-directive.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\commission-directive.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\directives\position-taking-directive.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\fanex.customer-setting.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\services\bet-limit-service.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\services\commission-setting-service.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\services\position-taking-service.js" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\betsetting\bet-setting-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\commission\agent-edit-customer.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\commission\licensee-or-agent-edit-agent-readonly.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\commission\licensee-or-agent-edit-agent.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-member-advanced-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-member-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-agent-pt-advanced-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\agent-edit-agent-pt-simple-mode-readonly.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-simple-mode.html" />
-    <Content Include="Views\CustomerSetting\SportsBook\scripts\templates\positiontaking\licensee-edit-agent-one-pt-advanced-mode.html" />
     <Content Include="Views\BetList\Resources\betlist-manager.js" />
     <Content Include="Views\BetList\Resources\betlist-core.js" />
     <Content Include="Views\BetList\Resources\totalbets-parlay.js" />
@@ -460,7 +567,6 @@
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
     <Content Include="Views\Error\Resources\images\unauthorized-access.png" />
     <Content Include="Views\Error\Resources\images\Under-Maintenace.png" />
-    <Content Include="Views\Internal\Resources\internal-header.js" />
     <Content Include="Content\sprite.less" />
     <Content Include="Content\fanexgrid\Fanex.Grid.css" />
     <Content Include="Content\fanexgrid\Fanex.Pagination.css" />
@@ -531,7 +637,6 @@
     <Content Include="Scripts\AngularJS\angular-scenario.js" />
     <Content Include="Scripts\AngularJS\angular-touch.js" />
     <Content Include="Scripts\AngularJS\angular.js" />
-    <Content Include="Views\CustomerSetting\Resources\scripts\fanex-angular.js" />
     <Content Include="Scripts\autoNumeric\autoNumeric.js" />
     <Content Include="Scripts\bootstrap\bootstrap-switch.js" />
     <Content Include="Scripts\bootstrap\bootstrap-combobox.js" />
@@ -543,8 +648,6 @@
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Content\moment-datepicker\datepicker.css" />
     <Content Include="Images\loader.gif" />
-    <Content Include="Scripts\moment-datepicker\moment-datepicker.d.ts" />
-    <Content Include="Scripts\moment-datepicker\moment-datepicker.js" />
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />
     <Content Include="Scripts\Select2\select2.js" />
     <Content Include="Scripts\utility.js" />
@@ -566,21 +669,15 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Views\Home\Resources\home-menu.js" />
     <Content Include="Scripts\Results\Result.js" />
-    <Content Include="Views\Report\Resources\agent-winloss-report.js" />
-    <Content Include="Views\Report\Resources\outstanding-report.js" />
+    <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
+    <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
     <Content Include="Views\Report\Resources\result-report.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
-    <Content Include="Views\TotalBets\Resources\basketball.js" />
-    <Content Include="Views\TotalBets\Resources\soccer.betlist.js" />
-    <Content Include="Views\TotalBets\Resources\OtherSports.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
     <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
-    <Content Include="Views\TotalBets\Resources\outright.js" />
-    <Content Include="Views\TotalBets\Resources\total-bets.less" />
-    <Content Include="Views\TotalBets\Resources\soccer.js" />
     <Content Include="Views\Transfer\Resources\transfer-list.js" />
     <Content Include="Views\Transfer\Resources\transfer-popup.js" />
     <Content Include="Web.config">
@@ -648,10 +745,10 @@
     <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Home\Resources\home.less" />
-    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Areas\Authentication\Views\Agent\SignIn.cshtml" />
     <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\_ViewStart.cshtml" />
-    <Content Include="Views\CustomerSetting\MemberArrangement.cshtml" />
+    <Content Include="Views\MemberRearrangement\Index.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingAdvNG.cshtml" />
     <None Include="App_Data\SpNames.Prod.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -662,23 +759,15 @@
       <LastGenOutput>SpNames.Uat.xml</LastGenOutput>
     </None>
     <Content Include="Areas\Report\Views\Web.config" />
-    <Content Include="Areas\Account\Views\Web.config" />
-    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\_BalanceInfo.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\Index.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Cash\_MemberLink.cshtml" />
+    <Content Include="Areas\Home\Views\Web.config" />
+    <Content Include="Areas\Home\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <Content Include="Views\Report\AgentWinLoss.AgentGrid.Cash.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.Cash.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.MemberGrid.Cash.cshtml" />
-    <Content Include="Views\CustomerList\PendingMemberList.cshtml" />
     <Content Include="Views\MemberCommission\Index.cshtml" />
     <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
     <Content Include="Views\MemberCommission\RemoveFromGroup.cshtml" />
     <Content Include="Views\MemberCommission\Resources\member-commission.less" />
     <Content Include="Views\MemberCommission\UpdateMemberCommission.cshtml" />
     <Content Include="Views\MemberCommission\_MemberCommission.cshtml" />
-    <Content Include="Views\CustomerList\_MemberGridDeposit.cshtml" />
     <Content Include="Views\CommissionGroup\_CommissionGroupGrid.cshtml" />
     <Content Include="Views\CommissionGroup\Delete.cshtml" />
     <Content Include="Views\CommissionGroup\Add.cshtml" />
@@ -688,8 +777,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
     </None>
-    <Content Include="Views\CustomerSetting\NumberGame\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\NumberGame\PositionTaking.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdvNG.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdvNG.cshtml" />
     <None Include="SiteConfiguration.ttinclude" />
@@ -716,25 +803,16 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Areas\Admin\Views\Maintenance\WhoAmI.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Internal\SignIn.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_LeftMenu.cshtml" />
-    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Areas\Authentication\Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\_AccountBox.cshtml" />
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Home\_TopMenu.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Credit\Index.cshtml" />
     <Content Include="App_Code\BootstrapHelper.cshtml" />
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Content\core.less" />
-    <Content Include="Views\CustomerSetting\InsertCustomer.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\PositionTaking.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\Commission.cshtml" />
-    <Content Include="Views\CustomerSetting\SportsBook\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\Resources\styles\fanex.customerSetting.less" />
-    <Content Include="Areas\Account\Content\HomePage\account-homepage.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentCommissionSetting.cshtml" />
@@ -749,17 +827,9 @@
     <Content Include="Views\Instruction\en-US\LicenseeCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\Shared\_Layout.cshtml" />
-    <Content Include="Views\Internal\SelectMenu.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\Credit\_BalanceInfo.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\_Statistics.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\_Announcement.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseePositionTakingSettingAdv.cshtml" />
     <Content Include="Content\bootstrap\components\bootstrap-switch.less" />
-    <Content Include="Views\Shared\_Breadcrumb.cshtml" />
-    <Content Include="Views\CustomerList\_Link.cshtml" />
-    <Content Include="Views\CustomerSetting\EditCustomer.cshtml" />
-    <Content Include="Views\CustomerSetting\ViewCustomerInfo.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\zh-CN\MemberPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-CN\AgentBetSettingAdv.cshtml" />
@@ -791,7 +861,6 @@
     <Content Include="Views\Instruction\zh-TW\MemberCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\MemberPositionTakingSetting.cshtml" />
     <Content Include="Content\customizeFanexGrid.less" />
-    <None Include="Properties\PublishProfiles\GitDeploy.pubxml" />
     <None Include="Scripts\bootstrap\.jshintrc" />
     <Content Include="Content\bootstrap\accordion.less" />
     <Content Include="Content\bootstrap\alerts.less" />
@@ -835,24 +904,10 @@
     <Content Include="Content\bootstrap\utilities.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\wells.less" />
-    <Content Include="Views\CustomerList\_Script.cshtml" />
-    <Content Include="Views\CustomerList\Index.cshtml" />
-    <Content Include="Views\CustomerList\_MemberGrid.cshtml" />
-    <Content Include="Views\CustomerList\GetIpInformation.cshtml" />
-    <Content Include="Views\CustomerList\_AgentGrid.cshtml" />
-    <Content Include="Views\TotalBets\Soccer.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\BetList\BetListSelByMember.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
-    <Content Include="Views\TotalBets\SoccerDetail.cshtml" />
-    <Content Include="Views\TotalBets\Basketball.cshtml" />
-    <Content Include="Views\TotalBets\Basketball.Script.cshtml" />
-    <Content Include="Views\TotalBets\Soccer.Script.cshtml" />
-    <Content Include="Views\TotalBets\OtherSports.cshtml" />
-    <Content Include="Views\TotalBets\OtherSports.Script.cshtml" />
-    <Content Include="Views\TotalBets\Outright.cshtml" />
-    <Content Include="Views\TotalBets\Outright.Script.cshtml" />
     <None Include="Scripts\ResourcesJs\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BetType.js</LastGenOutput>
@@ -875,26 +930,18 @@
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Views\Report\Results.cshtml" />
-    <Content Include="Views\CustomerList\ResetPassword.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
-    <Content Include="Areas\Account\Views\HomePage\TopWinning.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\TopTurnover.cshtml" />
-    <Content Include="Areas\Account\Views\HomePage\NewMembers.cshtml" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />
     <Content Include="Views\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\CreditBalance\Index.cshtml" />
-    <Content Include="Views\CustomerList\EditInfo.cshtml" />
     <Content Include="Views\CreditBalance\EditAgentCredit.cshtml" />
     <Content Include="Views\CreditBalance\AgentEditMemberCredit.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\Password.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.cshtml" />
+    <Content Include="Areas\Report\Views\AgentWinLoss\Index.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.LicenseeGrid.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.MemberGrid.cshtml" />
-    <Content Include="Views\Report\AgentWinLoss.AgentGrid.cshtml" />
-    <Content Include="Views\Report\Outstanding.cshtml" />
-    <Content Include="Views\Report\Resources\Outstanding.less" />
+    <Content Include="Areas\Report\Views\AgentOutstanding\Index.cshtml" />
+    <Content Include="Areas\Report\Content\AgentOutstanding\report-agent-outstanding.less" />
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Areas\Report\Views\Statement\Index.cshtml" />
@@ -907,11 +954,6 @@
     <Content Include="Views\Instruction\zh-CN\AgentEditAgentPositionTakingSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\AgentEditAgentPositionTakingSettingAdv.cshtml" />
-    <Content Include="Views\CustomerSetting\VirtualSports\BetSetting.cshtml" />
-    <Content Include="Views\CustomerSetting\CustomerInfo.cshtml" />
-    <Content Include="Views\CustomerSetting\VirtualSports\PositionTaking.cshtml" />
-    <Content Include="Views\CustomerSetting\VirtualSports\EditCustomer.cshtml" />
-    <Content Include="Views\CustomerSetting\EditProduct.cshtml" />
     <Content Include="Views\Instruction\en-US\LicenseeBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingNG.cshtml" />
     <Content Include="Views\Instruction\en-US\MemberBetSettingNG.cshtml" />
@@ -956,7 +998,6 @@
     <Content Include="Areas\Report\Views\Statement\Detail.cshtml" />
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
-    <Content Include="Views\TotalBets\SoccerBetList.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\SyncMonitoring.cshtml" />
     <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
     <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />
@@ -986,13 +1027,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LicenseeAgent.AccountInformation\LicenseeAgent.AccountInformation.csproj">
-      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
-      <Name>LicenseeAgent.AccountInformation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
-      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Project>{2FCA7520-4C21-487A-B5EF-4104A9DA0E48}</Project>
       <Name>LicenseeAgent.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Authentication\LicenseeAgent.Authentication.csproj">
+      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Name>LicenseeAgent.Authentication</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">
       <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
@@ -1018,9 +1059,17 @@
       <Project>{90224F27-06A4-4BEE-979D-4F085F6851C7}</Project>
       <Name>LicenseeAgent.Forecast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Home\LicenseeAgent.Home.csproj">
+      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
+      <Name>LicenseeAgent.Home</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Message\LicenseeAgent.Message.csproj">
       <Project>{EA04AEE5-B144-43EE-8449-563F2C6847AF}</Project>
       <Name>LicenseeAgent.Message</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.ProductSetting\LicenseeAgent.ProductSetting.csproj">
+      <Project>{4342ADD8-5CAB-43AD-A30A-477568680CA6}</Project>
+      <Name>LicenseeAgent.ProductSetting</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Report\LicenseeAgent.Report.csproj">
       <Project>{27E8A480-C746-450C-B00A-6DF69BC29149}</Project>

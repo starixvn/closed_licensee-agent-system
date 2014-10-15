@@ -30,6 +30,8 @@
 
         public int NumberOfLevel { get; set; }
 
+        public bool IsDirect { get; set; }
+
         public int Status { get; set; }
 
         public string FullName

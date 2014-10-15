@@ -35,14 +35,5 @@
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>List of outright results.</returns>
         IList<OutRight> GetOutrightResults(ICriteria criteria);
-
-        /// <summary>
-        /// Get outstanding results.
-        /// </summary>
-        /// <param name="criteria">Outstanding Criteria.</param>
-        /// <returns>List of agent outstanding results.</returns>
-        IList<AgentOutstanding> GetOutstandings(ICriteria criteria);
-
-        IList<AgentWinLoss> AgentWinLossReport(ICriteria criteria);
     }
 }

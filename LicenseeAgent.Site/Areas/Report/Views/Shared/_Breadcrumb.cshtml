@@ -1,0 +1,15 @@
+﻿@{
+    var agentInfo = SessionManager.CurrentSession.AgentInfo;
+    var item = new
+    {
+        Text = agentInfo.UserName,
+        Data = new
+        {
+            AgentId = agentInfo.AgentId
+        }
+    };
+}
+<div class="clearfix">
+    <ul class="breadcrumb" data-item="@Formatter.FormatJson(item)">
+    </ul>
+</div>

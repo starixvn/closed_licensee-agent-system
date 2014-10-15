@@ -1,24 +1,17 @@
 ﻿namespace LicenseeAgent.CustomerSetting.Services
 {
     using System.Collections.Generic;
+    using Fanex.Data.Repository;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.CustomerSetting.Criteria;
     using LicenseeAgent.CustomerSetting.Entities;
     using LicenseeAgent.CustomerSetting.ViewModels;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// ICustomerSettingService interface.
     /// </summary>
     public interface ICustomerSettingService
     {
-        void CheckExistUserName(CheckExistUserNameCriteria criteria);
-
-        InsertResult InsertCustomer(InsertCustomerViewModel model);
-
-        IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);
-
-        IList<UpdateResult> UpdateIndirectCustomer(UpdateCustomerViewModel model);
-
         void MemberIsFirstDeposit(MemberIsFirstDepositCriteria criteria);
 
         void MemberReArrangement(ReArrangementMemberCriteria criteria);

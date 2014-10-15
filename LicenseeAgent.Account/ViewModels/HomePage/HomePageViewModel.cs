@@ -9,6 +9,6 @@
     {
         public StatisticInfo StatisticInfo { get; set; }
 
-        public BalanceInfo BalanceInfo { get; set; }
+        public CreditBalanceInfo BalanceInfo { get; set; }
     }
 }

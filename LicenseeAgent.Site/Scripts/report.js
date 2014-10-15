@@ -11,8 +11,6 @@ var report = (function ($) {
         Draw: 111, 
         Won: 112,
         Lose: 113,
-        SettledNoDraw: "112,113",
-        SettledHasDraw: "111,112,113",
         Betting: "101,102,103,111,112,113",
         Outstanding: "0,1",
         registerCheckboxProductEvent: function () {

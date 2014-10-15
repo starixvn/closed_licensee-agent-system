@@ -25,7 +25,7 @@
         /// </summary>
         /// <param name="criteria">Criteria store procedure.</param>
         /// <returns>List log information.</returns>
-        public IEnumerable<UpdateMemberStatusLogEntity> GetUpdateMemberStatusLogs(ICriteria criteria)
+        public IList<UpdateMemberStatusLogEntity> GetUpdateMemberStatusLogs(ICriteria criteria)
         {
             return GetEntites<UpdateMemberStatusLogEntity>(criteria);
         }

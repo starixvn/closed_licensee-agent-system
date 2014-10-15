@@ -1,9 +1,10 @@
 ﻿@using LicenseeAgent.Web.ViewModels
+@using LicenseeAgent.Web.Entities
 @model AgentBreadcrumbViewModel
 @{
-    var isShowBreadcrumb = !SessionManager.CurrentSession.AgentInfo.IsLastLevel &&
-        Model.Breadcrumb != null
-        && Model.Breadcrumb.Count > 1;
+    var isShowBreadcrumb = !SessionManager.CurrentSession.AgentInfo.IsLastLevel
+            && Model.Breadcrumb != null
+            && Model.Breadcrumb.Count > 1;
 }
 @if (isShowBreadcrumb)
 {
@@ -14,7 +15,9 @@
                 <li>
                     @if (item.AgentLevel != Model.AgentLevel)
                     {
-                        <a href="#" data-agent-id="@item.AgentId" data-agent-level="@item.AgentLevel">@item.AgentName</a>
+                        <a href="#" data-agent-id="@item.AgentId" data-agent-level="@item.AgentLevel">
+                            @item.AgentName
+                        </a>
                         <span class="divider">>></span>
                     }
                     else

@@ -501,7 +501,7 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_2074 = 2074,
 
         /// <summary>
-        /// Member already has BA. Please check again..
+        /// Member already has BA setting. Please check again..
         /// </summary>
         Msg_2075 = 2075,
 
@@ -551,6 +551,46 @@ namespace LicenseeAgent.Core.Enumerations
         Msg_2085 = 2085,
 
         /// <summary>
+        /// No member is selected, please check again..
+        /// </summary>
+        Msg_2090 = 2090,
+
+        /// <summary>
+        /// The Group Commission does not exist, please check again..
+        /// </summary>
+        Msg_2091 = 2091,
+
+        /// <summary>
+        /// Member commission should not be greater than 15%..
+        /// </summary>
+        Msg_2092 = 2092,
+
+        /// <summary>
+        /// This group name is not available, please try another one..
+        /// </summary>
+        Msg_2093 = 2093,
+
+        /// <summary>
+        /// Another group is set as default. Are you sure you want to set this group as default?.
+        /// </summary>
+        Msg_2094 = 2094,
+
+        /// <summary>
+        /// Failed to create new group commission..
+        /// </summary>
+        Msg_2095 = 2095,
+
+        /// <summary>
+        /// This is the default group. Are you sure you want to delete this group?.
+        /// </summary>
+        Msg_2096 = 2096,
+
+        /// <summary>
+        /// One or more members do not exist. Please check again..
+        /// </summary>
+        Msg_2097 = 2097,
+
+        /// <summary>
         /// Agent username is empty..
         /// </summary>
         Msg_2110 = 2110,
@@ -574,6 +614,86 @@ namespace LicenseeAgent.Core.Enumerations
         /// Cannot assign member to this agent..
         /// </summary>
         Msg_2114 = 2114,
+
+        /// <summary>
+        /// Agent username is empty..
+        /// </summary>
+        Msg_2120 = 2120,
+
+        /// <summary>
+        /// Member does not exist. Please check again..
+        /// </summary>
+        Msg_2121 = 2121,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match..
+        /// </summary>
+        Msg_2122 = 2122,
+
+        /// <summary>
+        /// Agent does not exist. Please check again.
+        /// </summary>
+        Msg_2123 = 2123,
+
+        /// <summary>
+        /// Currencies of Member and Agent do not match.
+        /// </summary>
+        Msg_2124 = 2124,
+
+        /// <summary>
+        /// Cannot assign member to this agent..
+        /// </summary>
+        Msg_2125 = 2125,
+
+        /// <summary>
+        /// Member username is empty..
+        /// </summary>
+        Msg_2126 = 2126,
+
+        /// <summary>
+        /// Invalid user information..
+        /// </summary>
+        Msg_2130 = 2130,
+
+        /// <summary>
+        /// Fail to insert user information..
+        /// </summary>
+        Msg_2131 = 2131,
+
+        /// <summary>
+        /// Domain name is empty..
+        /// </summary>
+        Msg_2132 = 2132,
+
+        /// <summary>
+        /// Failed to update data. Please try again..
+        /// </summary>
+        Msg_2138 = 2138,
+
+        /// <summary>
+        /// {0} has been disabled by upline..
+        /// </summary>
+        Msg_2139 = 2139,
+
+        /// <summary>
+        /// Member does not exist. Please check again..
+        /// </summary>
+        Msg_2140 = 2140,
+
+        /// <summary>
+        /// Agent does not exist. Please check again..
+        /// </summary>
+        Msg_2141 = 2141,
+
+        /// <summary>
+        /// Mandatory product could not be disabled..
+        /// </summary>
+        Msg_2142 = 2142,
+
+        /// <summary>
+        /// This username is invalid. Please check again..
+        /// </summary>
+        Msg_2148 = 2148,
 
         /// <summary>
         /// Invalid level..

@@ -54,6 +54,8 @@
             {
                 var param = criteria.GetSpParams();
                 var list = objectDb.Query<InternalInfo>(param);
+                var outputParams = objectDb.GetOuputParams();
+                criteria.ErrCode = Converter.ToInt(outputParams["errcode"]);
                 return list.Any() ? list.First() : null;
             }
         }

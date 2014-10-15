@@ -13,13 +13,38 @@
     public static class ServiceMapper
     {
         /// <summary>
+        /// Map data of sources to compatible destinations.
+        /// </summary>
+        /// <typeparam name="T1">Type source.</typeparam>
+        /// <typeparam name="T2">Type destination.</typeparam>
+        /// <param name="sources">List Source entity.</param>
+        /// <param name="destinations">List Destination entity.</param>
+        /// <param name="serviceFilter">Service filter.</param>
+        public static void Map<T1, T2>(IList<T1> sources, IList<T2> destinations, IServiceFilter serviceFilter)
+        {
+            if (sources == null || destinations == null)
+            {
+                return;
+            }
+
+            foreach (var destination in destinations)
+            {
+                var source = (from s in sources
+                              where serviceFilter.IsEquals(s, destination)
+                              select s).FirstOrDefault();
+
+                ServiceMapper.Map(source, destination);
+            }
+        }
+
+        /// <summary>
         /// Map data of source to destination.
         /// </summary>
         /// <typeparam name="T1">Type source.</typeparam>
         /// <typeparam name="T2">Type destination.</typeparam>
         /// <param name="source">Source entity.</param>
         /// <param name="destination">Destination entity.</param>
-        public static void MapObject<T1, T2>(T1 source, T2 destination)
+        public static void Map<T1, T2>(T1 source, T2 destination)
         {
             if (source == null || destination == null)
             {
@@ -46,31 +71,6 @@
                         destinationProperty.SetValue(destination, ServiceMapper.GetValue(sourceProperty, sourceProperty.GetValue(source, null)), null);
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Map data of sources to compatible destinations.
-        /// </summary>
-        /// <typeparam name="T1">Type source.</typeparam>
-        /// <typeparam name="T2">Type destination.</typeparam>
-        /// <param name="sources">List Source entity.</param>
-        /// <param name="destinations">List Destination entity.</param>
-        /// <param name="serviceFilter">Service filter.</param>
-        public static void MapObjects<T1, T2>(IEnumerable<T1> sources, IEnumerable<T2> destinations, IServiceFilter serviceFilter)
-        {
-            if (sources == null || destinations == null)
-            {
-                return;
-            }
-
-            foreach (var destination in destinations)
-            {
-                var source = (from s in sources
-                              where serviceFilter.IsEquals(s, destination)
-                              select s).FirstOrDefault();
-
-                ServiceMapper.MapObject(source, destination);
             }
         }
 

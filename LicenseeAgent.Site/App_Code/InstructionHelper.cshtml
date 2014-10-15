@@ -1,0 +1,28 @@
+﻿@using LicenseeAgent.Resources
+@helper Render(string text, string id)
+    {
+    <div class="instruction">
+        @text
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
+        </span>
+    </div>
+}
+@helper Render(string text, string id, bool simpleMode)
+    {
+        if (simpleMode)
+        {
+    <div class="instruction" data-ng-show="settingMode">
+        @text
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
+        </span>
+    </div>
+        }
+        else
+        {
+    <div class="instruction" data-ng-hide="settingMode">
+        @text
+        <span class="icon-instruction-exclamation" data-title="@Las.ClickToViewInstructions" id="@id">
+        </span>
+    </div>
+        }
+}

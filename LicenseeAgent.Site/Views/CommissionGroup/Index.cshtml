@@ -5,8 +5,6 @@
 @using LicenseeAgent.CustomerSetting.ViewModels
 @model CommissionGroupBaseViewModel
 @{
-    var pageContext = (PageContext)ViewBag.PageContext;
-    
     ViewBag.Title = Las.CommissionGroup;
 }
 @section css{
@@ -21,11 +19,11 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div class="controls-row">    
-    <p><span class="text-warning"><span class="icon-note-header">&nbsp;</span><strong><i>@Las.GroupCommissionNote</i></strong></span></p>
+<div class="controls-row">
+    <p>
+        <span class="text-warning"><span class="icon-note-header">&nbsp;</span><strong><i>@Las.GroupCommissionNote</i></strong></span></p>
     <button id="newGroup" class="btn btn-primary left-button">@Las.NewGroup</button>
     <a href="@Url.Action("Index", "MemberCommission")" class="btn btn-link">@Las.MemberCommissionList</a>
 </div>
-
 <div id="grid" class="freegrid">
 </div>

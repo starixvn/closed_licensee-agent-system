@@ -1,0 +1,203 @@
+﻿@model SettingContext
+@{
+    if (Model.TargetRoleId == (int)Role.Member)
+    {
+        ViewBag.Title = Las.EditVirtualSportsMember;
+    }
+    else
+    {
+        ViewBag.Title = Model.FormId == FormType.ViewIndirectAgent ? Las.ViewVirtualSportsAgent : Las.EditVirtualSportsAgent;
+    }
+
+    var scriptUrl = Url.Action("GetSetting", "Product", new
+    {
+        productId = (int)ProductCode.Product_5,
+        custId = Model.CustId,
+        roleId = Model.RoleId,
+        targetCustId = Model.TargetCustId,
+        targetRoleId = Model.TargetRoleId,
+        formId = (int)Model.FormId
+    });
+}
+@section css
+{
+    @Styles.Render("~/css/productsetting")
+}
+@section scripts
+{
+    <script type="text/javascript" src="@scriptUrl"></script>
+    @Scripts.Render("~/js/angular")
+    @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/productsetting")
+    @Scripts.Render("~/js/productsetting/virtualsports")
+}
+@RazorHelper.Legend(ViewBag.Title)
+<div id="custSetting" style="display: none" data-ng-app="fanex.customerSetting"
+    class="fanex-customer-setting fanex-virtual-sports-setting" data-ng-controller="CustomerSettingController"
+    data-href="@("~/ProductSetting/VirtualSports/UpdateCustomer")" data-updated-href="@("~/ProductSetting/Product/GetSetting")" data-product="@((int)ProductCode.Product_5)">
+    <div class="clearfix">
+        <div class="messages" data-ng-show="Messages != null && Messages.length > 0">
+            <p data-ng-repeat="message in Messages" data-ng-class="{'success': message.ErrCode == result.Success, 'warning': message.ErrCode == result.NoChange, 'error' : message.ErrCode != result.Success && message.ErrCode != result.NoChange}">
+                <i data-ng-class="{'icon-message-success': message.ErrCode == result.Success, 'icon-message-warning': message.ErrCode == result.NoChange, 'icon-message-error' : message.ErrCode != result.Success && message.ErrCode != result.NoChange}">
+                </i>{{message.ErrMsg}}
+            </p>
+        </div>
+    </div>
+    <div class="clearfix">
+        @if (Model.FormId != FormType.ViewIndirectAgent)
+        {
+            <div class="control-group" data-ng-hide="settingMode">
+                <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                    @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
+                </button>
+            </div>
+        }
+    </div>
+    <div class="clearfix customerinfo-box">
+        @Html.Partial("~/Areas/ProductSetting/Views/ViewCustomerInfo.cshtml")
+    </div>
+    <div class="clearfix" data-ng-if="false">
+        <div class="container-mode">
+            <span class="mode-text">@Las.AdvancedMode</span>
+            <div class="make-switch switch-small" id="modeSwitcher">
+                <input type="checkbox" />
+            </div>
+        </div>
+    </div>
+    <div data-ng-class="{'clearfix': true, 'product-group': settingMode}">
+        <div class="product-container">
+            <div class="clearfix">
+                <div class="edit-setting-warning" data-ng-show="settingMode">
+                    @Las.VirtualSportsSimpleModeNote
+                </div>
+            </div>
+            @if (Model.FormId != FormType.EditIndirectMember)
+            {
+                <div class="clearfix">
+                    @Html.Partial("~/Areas/ProductSetting/Views/VirtualSports/BetSetting.cshtml", Model)
+                </div>
+            }
+            <div class="clearfix">
+                @Html.Partial("~/Areas/ProductSetting/Views/VirtualSports/PositionTaking.cshtml", Model)
+            </div>
+        </div>
+        <div class="clearfix">
+            @if (Model.FormId != FormType.ViewIndirectAgent)
+            {
+                <div class="control-group">
+                    <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
+                       @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@if (Model.TargetRoleId == (int)Role.AgentLevel1)
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSports",
+        trigger = "licensee-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSportsAdv",
+        trigger = "licensee-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseePositionTakingSettingVirtualSports",
+        trigger = "licensee-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseePositionTakingSettingVirtualSportsAdv",
+        trigger = "licensee-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}
+else if (Model.TargetRoleId == (int)Role.Agent)
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSports",
+        trigger = "agent-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSportsAdv",
+        trigger = "agent-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "AgentEditAgentPositionTakingSettingVirtualSports",
+        trigger = "agent-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "AgentEditAgentPositionTakingSettingVirtualSportsAdv",
+        trigger = "agent-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}
+else
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSports",
+        trigger = "member-bet-limit-info-button",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "LicenseeBetSettingVirtualSportsAdv",
+        trigger = "member-bet-limit-info-button-adv",
+        title = Las.BetSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "MemberPositionTakingSettingVirtualSports",
+        trigger = "member-position-taking-info-button",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        area = "",
+        key = "MemberPositionTakingSettingVirtualSportsAdv",
+        trigger = "member-position-taking-info-button-adv",
+        title = Las.PositionTakingSettingInstructions,
+        tipTitle = Las.ClickToViewInstructions
+    })
+}

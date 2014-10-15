@@ -63,27 +63,7 @@ fanex.betlist.core = {
     },
     getIpInformation: function (ipAddress) {
         'use strict';
-        var urlIpInformation = $("#BetListGrid").data('url-ip');
-        $.ajax({
-            url: urlIpInformation,
-            type: 'post',
-            data: { IpAddress: ipAddress },
-            beforeSend: function () {
-                core.blockUI();
-            },
-            success: function (data) {
-                if (data != null) {
-                    popup.open({
-                        title: language.getString("IpInformation"),
-                        message: data,
-                        clickout: true
-                    });
-                }
-            },
-            complete: function () {
-                core.unblockUI();
-            }
-        });
+        core.common.showIP(ipAddress);
     },
     showDetails: function (transId, status, sportType, betType) {
         'use strict';

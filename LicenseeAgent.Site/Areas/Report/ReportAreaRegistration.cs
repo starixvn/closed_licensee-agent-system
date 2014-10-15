@@ -33,15 +33,50 @@
                 },
                 namespaces: new[] { "LicenseeAgent.Report.Controllers" });
 
+            context.MapRoute(
+                "Report_AgentWinLoss",
+                "Report/AgentWinLoss/{action}/{id}",
+                new
+                {
+                    controller = "AgentWinLoss",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
+
+            context.MapRoute(
+                "Report_AgentOutstanding",
+                "Report/AgentOutstanding/{action}/{id}",
+                new
+                {
+                    controller = "AgentOutstanding",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
+
             RegisterBundles(BundleTable.Bundles);
         }
 
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/report/statement").Include(
                 "~/Areas/Report/Scripts/Statement/report-statement.js").Include(
                 "~/Areas/Report/Scripts/Statement/report-statement-detail.js").Include(
                 "~/Areas/Report/Scripts/Statement/report-statement-transferDetail.js"));
+
+            bundles.Add(new ScriptBundle("~/js/report/agent-win-loss").Include(
+                "~/Areas/Report/Scripts/AgentWinLoss/report-agent-winloss.js"));
+
+            bundles.Add(new ScriptBundle("~/js/report/agent-outstanding").Include(
+                "~/Areas/Report/Scripts/AgentOutstanding/report-agent-outstanding.js").Include(
+                "~/Views/BetList/Resources/betlist-core.js"));
+            bundles.Add(new LessBundle("~/css/report/agent-outstanding").Include(
+                "~/Areas/Report/Content/AgentOutstanding/report-agent-outstanding.less"));
         }
     }
 }

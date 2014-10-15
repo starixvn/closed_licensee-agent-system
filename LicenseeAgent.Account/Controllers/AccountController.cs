@@ -1,21 +1,17 @@
 ﻿namespace LicenseeAgent.Account.Controllers
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing.Imaging;
     using System.IO;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
     using Fanex.Common;
-    using LicenseeAgent.Account.Criteria;
+    using LicenseeAgent.Account.Criteria.Account;
     using LicenseeAgent.Account.Services;
-    using LicenseeAgent.Account.ViewModels;
-    using LicenseeAgent.Account.ViewResults;
-    using LicenseeAgent.Core.Configurations;
+    using LicenseeAgent.Account.ViewModels.Account;
+    using LicenseeAgent.Account.ViewResults.Account;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
@@ -26,156 +22,36 @@
     using LicenseeAgent.Web.Services;
 
     /// <summary>
-    /// Account controllers.
+    /// AccountController class.
     /// </summary>
-    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Review")]
     [SessionState(SessionStateBehavior.Default)]
-    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Fix later.")]
     public class AccountController : BaseController
     {
+        #region Variables
+
         private readonly IAccountService _accountService;
-
-        private readonly ICoreService _coreService;
-
-        private readonly CaptchaImage _captchaImage;
-
         private readonly IAuthenticateService _authenticateService;
 
+        #endregion Variables
+
+        #region Constructors
+
         public AccountController()
-            : this(null, null, null, null)
+            : this(null, null)
         {
         }
 
         public AccountController(
             IAccountService accountService,
-            ICoreService coreService,
-            CaptchaImage captchaImage,
             IAuthenticateService authenticateService)
         {
             _accountService = accountService ?? new AccountService();
-            _coreService = coreService ?? new CoreService();
-            _captchaImage = captchaImage ?? new CaptchaImage();
             _authenticateService = authenticateService ?? new AuthenticateService();
         }
 
-        /// <summary>
-        /// Generate Captcha Image.
-        /// </summary>
-        /// <returns>
-        /// Return image.
-        /// </returns>
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult CaptchaImage()
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                _captchaImage.RandomText();
-                Session[Constants.AppSessionCaptcha] = _captchaImage.Text;
-                var image = _captchaImage.RenderImage();
-                image.Save(memoryStream, ImageFormat.Png);
-                return File(memoryStream.GetBuffer(), "image/png");
-            }
-        }
+        #endregion Constructors
 
-        /// <summary>
-        /// Sign-in page.
-        /// </summary>
-        /// <returns>Returns Sign-in HTML content.</returns>
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult SignIn()
-        {
-            if (AppSettings.IsAdminSite)
-            {
-                return RedirectToAction("SignIn", "Internal");
-            }
-
-            var currentLanguage = Language;
-            var model = new AgentSignInViewModel
-            {
-                Language = currentLanguage,
-                Captcha = AppSettings.IsLocalRequest ? "999999" : string.Empty
-            };
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Post SignIn Page.
-        /// </summary>
-        /// <param name="model">Input model.</param>
-        /// <returns>Redirect to home page.</returns>
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult SignIn(AgentSignInViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var captcha = Session[Constants.AppSessionCaptcha] as string;
-                if (string.IsNullOrEmpty(captcha))
-                {
-                    ModelState.AddModelError("Captcha", Las.SessionError);
-                }
-                else
-                {
-                    if ((AppSettings.IsLocalRequest && model.Captcha == "999999") || string.Compare(captcha, model.Captcha, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        var licenseeId = _coreService.GetLicenseeId(Request);
-                        if (licenseeId == null)
-                        {
-                            ModelState.AddModelError(string.Empty, string.Format(Las.NoLicenseeDomainFound, Request.Url.Host));
-                        }
-                        else
-                        {
-                            if (AuthenticateUser(model, licenseeId.Value))
-                            {
-                                return CheckAgentPasswordStatus(model);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, Las.IncorrectCaptchaMsg);
-                    }
-                }
-            }
-
-            // Always remove captcha value from input because it can't be reused.
-            if (!ModelState.IsValid && !AppSettings.IsLocalRequest)
-            {
-                ModelState.Remove("Captcha");
-                model.Captcha = string.Empty;
-            }
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Checks the agent password status.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Returns view.</returns>
-        [NonAction]
-        public ActionResult CheckAgentPasswordStatus(AgentSignInViewModel model)
-        {
-            // check account password
-            var agentInfo = CurrentSession.AgentInfo;
-            var passwordStatus = PasswordRule.GetPasswordStatus(agentInfo, agentInfo.LastLoggedTime);
-            if (passwordStatus == PasswordStatus.Normal)
-            {
-                return Redirect(FormsAuthentication.DefaultUrl);
-            }
-
-            ViewBag.Result = new SignInViewResult
-            {
-                IsConfirm = passwordStatus == PasswordStatus.Alert,
-                Message = PasswordRule.GetStatusMessage(passwordStatus, agentInfo.PwdExpiry)
-            };
-
-            return View(model);
-        }
+        #region Change password
 
         /// <summary>
         /// Changes the password.
@@ -204,19 +80,19 @@
             {
                 var oldPassword = Cryptography.CreateHash(model.CurrentPassword, CurrentSession.AgentInfo.UserSalt);
                 var newPassword = Cryptography.CreateHash(model.NewPassword, CurrentSession.AgentInfo.UserSalt);
-                var criteria = new AgentChangePwdCriteria
+                var criteria = new AgentChangePasswordCriteria
                 {
                     Updater = CurrentSession.LoginUserId,
                     AgentId = CurrentSession.AgentInfo.AgentId,
-                    OldPwd = oldPassword,
-                    Pwd = newPassword,
+                    OldPassword = oldPassword,
+                    Password = newPassword,
                     LoginIp = Request.GetClientIp()
                 };
 
                 _accountService.AgentChangePassword(criteria);
-                if (criteria.MsgId != Result.SuccessValue)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
-                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.MsgId));
+                    ModelState.AddModelError(string.Empty, GetErrMsg(criteria.ErrCode));
                 }
                 else
                 {
@@ -226,7 +102,7 @@
                         IsReload = CurrentSession.IsAgentChangePassword()
                     };
 
-                    // after changing password successfully, re-update some status to not validate user password again.
+                    // after changing password successfully, re-update status to not validate user password again.
                     CurrentSession.AgentInfo.IsFirstLogin = false;
                     CurrentSession.AgentInfo.PwdExpiry = DateTime.Today.AddDays(PasswordRule.PasswordExpiredTotalDays);
                 }
@@ -234,6 +110,10 @@
 
             return View();
         }
+
+        #endregion Change password
+
+        #region ReCheckIn
 
         /// <summary>
         /// Post ReCheckIn.
@@ -271,16 +151,22 @@
             return JsonResult(errCode);
         }
 
+        /// <summary>
+        /// Admin re-check in on current session to kick out when having another login session behalf on current admin.
+        /// </summary>
+        /// <returns>
+        /// Returns true whether having another login session.
+        /// </returns>
         [NonAction]
-        public int AgentReCheckInLicensee()
+        public int AdminReCheckIn()
         {
-            var criteria = new AgentReCheckInLicenseeCriteria
+            var criteria = new AdminReCheckInCriteria
             {
                 OnAdminId = CurrentSession.OnUserId,
-                LicenseeId = CurrentSession.OnLicenseeId
+                OnLicenseeId = CurrentSession.OnLicenseeId == 0 ? null : (int?)CurrentSession.OnLicenseeId
             };
 
-            _accountService.AgentReCheckInLicensee(criteria);
+            _accountService.AdminReCheckIn(criteria);
             return criteria.ErrCode;
         }
 
@@ -300,24 +186,9 @@
             return criteria.ErrCode;
         }
 
-        /// <summary>
-        /// Admin re-check in on current session to kick out when having another login session behalf on current admin.
-        /// </summary>
-        /// <returns>
-        /// Returns true whether having another login session.
-        /// </returns>
-        [NonAction]
-        public int AdminReCheckIn()
-        {
-            var criteria = new AdminReCheckInCriteria
-            {
-                OnAdminId = CurrentSession.OnUserId,
-                OnLicenseeId = CurrentSession.OnLicenseeId == 0 ? null : (int?)CurrentSession.OnLicenseeId
-            };
+        #endregion ReCheckIn
 
-            _accountService.AdminReCheckIn(criteria);
-            return criteria.ErrCode;
-        }
+        #region SignOut
 
         /// <summary>
         /// Sign out action.
@@ -386,27 +257,9 @@
             _accountService.AdminUserLogout(criteria);
         }
 
-        /// <summary>
-        /// Call to change language.
-        /// </summary>
-        /// <param name="language">The selected language.</param>
-        /// <returns>Returns action status.</returns>
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult ChangeLanguage(string language)
-        {
-            var result = false;
-            if (Language != language)
-            {
-                Language = language;
-                result = true;
-            }
+        #endregion SignOut
 
-            return Json(new
-            {
-                isChanged = result
-            });
-        }
+        #region Avatar
 
         [HttpGet]
         [AppAuthorize(IsValidateAgent = false)]
@@ -418,72 +271,27 @@
             return Content(imgSrc);
         }
 
-        /// <summary>
-        /// Validates the Agent user.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="licenseeId">Name of the domain.</param>
-        /// <returns>
-        /// Returns true whether username/password is valid.
-        /// </returns>
-        private bool AuthenticateUser(AgentSignInViewModel model, int licenseeId)
-        {
-            var userSaltCriteria = new AgentSaltSelCriteria
-            {
-                UserName = model.Username,
-                LicenseeId = licenseeId
-            };
+        #endregion Avatar
 
-            var userSalt = _accountService.GetAgentSalt(userSaltCriteria);
-            if (userSaltCriteria.ErrCode != Result.SuccessValue)
-            {
-                ModelState.AddModelError(string.Empty, GetErrMsg(userSaltCriteria.ErrCode));
-                return false;
-            }
-
-            var clientInfo = Request.GetClientInfo();
-            var criteria = new AgentLoginCriteria
-            {
-                UserName = model.Username,
-                UserPwd = model.Password,
-                UserSalt = userSalt,
-                LoginIp = clientInfo.Ip,
-                LicenseeId = licenseeId,
-                BrowserName = clientInfo.BrowserName,
-                Platform = clientInfo.Platform,
-                CountryCode = clientInfo.CountryCode
-            };
-
-            var agentInfo = _accountService.AuthenticateAgent(criteria);
-            if (criteria.ErrCode != Result.SuccessValue)
-            {
-                var errorMessage = GetErrMsg(criteria.ErrCode);
-                errorMessage = string.Format(errorMessage, criteria.LastChangedPwdDate.ToShortDateString());
-                ModelState.AddModelError(string.Empty, errorMessage);
-                return false;
-            }
-
-            CheckIn(agentInfo, model.Language);
-            return true;
-        }
+        #region Change language
 
         /// <summary>
-        /// Store current user session.
+        /// Call to change language.
         /// </summary>
-        /// <param name="agentInfo">The agent information.</param>
-        /// <param name="language">The language.</param>
-        private void CheckIn(AgentInfo agentInfo, string language)
+        /// <param name="language">The selected language.</param>
+        /// <returns>Returns action status.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ChangeLanguage(string language)
         {
-            var criteria = new AgentCheckInCriteria
+            if (Language != language)
             {
-                AgentId = agentInfo.AgentId,
-                Ip = Request.GetClientIp(),
-                NetSessionId = Session.SessionID
-            };
+                Language = language;
+            }
 
-            _accountService.AgentCheckIn(criteria);
-            SessionManager.CurrentSession = new CurrentSession(agentInfo, criteria.OnUserId, language);
-            _authenticateService.Login(agentInfo.UserName);
+            return JsonResult(new Result(Result.SuccessValue));
         }
+
+        #endregion Change language
     }
 }

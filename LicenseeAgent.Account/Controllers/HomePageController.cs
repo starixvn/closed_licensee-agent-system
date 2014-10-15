@@ -16,9 +16,14 @@
     /// </summary>
     public class HomePageController : BaseController
     {
-        private readonly IHomePageService _homePageService;
+        #region Variables
 
+        private readonly IHomePageService _homePageService;
         private readonly ICoreService _coreService;
+
+        #endregion Variables
+
+        #region Controllers
 
         public HomePageController()
             : this(null, null)
@@ -33,6 +38,10 @@
             _coreService = coreService ?? new CoreService();
         }
 
+        #endregion Controllers
+
+        #region Page Index
+
         /// <summary>
         /// Home page.
         /// </summary>
@@ -41,14 +50,9 @@
         public ViewResult Index()
         {
             var agentInfo = CurrentSession.AgentInfo;
-            if (agentInfo == null || agentInfo.LegendType == LegendType.Credit)
-            {
-                return IndexCredit();
-            }
-            else
-            {
-                return IndexCash();
-            }
+            return agentInfo == null || agentInfo.LegendType == LegendType.Credit
+                ? IndexCredit()
+                : IndexCash();
         }
 
         /// <summary>
@@ -61,7 +65,7 @@
             var model = new HomePageViewModel
             {
                 StatisticInfo = new StatisticInfo(),
-                BalanceInfo = new BalanceInfo()
+                BalanceInfo = new CreditBalanceInfo()
             };
 
             if (CurrentSession.AgentInfo != null)
@@ -72,7 +76,7 @@
                 });
 
                 var balanceUp = _coreService.BalanceUpDay;
-                var balanceInfo = _homePageService.GetBalanceInfo(new GetBalanceInfoCriteria
+                var balanceInfo = _homePageService.GetCreditBalanceInfo(new GetCreditBalanceInfoCriteria
                 {
                     AgentId = CurrentSession.AgentInfo.AgentId,
                     MoveBetDay = balanceUp.MoveBetsDay
@@ -101,7 +105,7 @@
             });
 
             var balanceUp = _coreService.BalanceUpDay;
-            var balanceInfo = _homePageService.GetBalanceCashInfo(new GetBalanceCashInfoCriteria
+            var balanceInfo = _homePageService.GetCashBalanceInfo(new GetCashBalanceInfoCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 MoveBetDay = balanceUp.MoveBetsDay,
@@ -109,7 +113,7 @@
             });
 
             IList<string> memberSiteLinks = new List<string>();
-            if (CurrentSession.AgentInfo.IsLastLevel)
+            if (!CurrentSession.AgentInfo.IsLevel0)
             {
                 memberSiteLinks = _homePageService.GetMemberSiteLinks(new GetMemberSiteLinkCriteria
                 {
@@ -128,10 +132,15 @@
             return View("~/Areas/Account/Views/HomePage/Cash/Index.cshtml", model);
         }
 
+        #endregion Page Index
+
+        #region Page drop-down statistics
+
         /// <summary>
         /// Statistics top 10 winning members.
         /// </summary>
         /// <returns>View result.</returns>
+        [HttpGet]
         public ViewResult TopWinning()
         {
             var balanceUp = _coreService.BalanceUpDay;
@@ -150,6 +159,7 @@
         /// Statistics top 10 turnover members.
         /// </summary>
         /// <returns>View result.</returns>
+        [HttpGet]
         public ViewResult TopTurnover()
         {
             var balanceUp = _coreService.BalanceUpDay;
@@ -168,6 +178,7 @@
         /// New members of the month.
         /// </summary>
         /// <returns>View result.</returns>
+        [HttpGet]
         public ViewResult NewMembers()
         {
             var newMemberData = _homePageService.GetNewMemberOfMonth(new NewMemberOfMonthCriteria
@@ -177,5 +188,7 @@
 
             return View(newMemberData);
         }
+
+        #endregion Page drop-down statistics
     }
 }

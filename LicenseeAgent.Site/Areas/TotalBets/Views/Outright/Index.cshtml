@@ -1,0 +1,55 @@
+﻿@model OutrightViewModel
+@{
+    ViewBag.Title = Las.Outright + " - " + Las.TotalBets;
+}
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/plugin")
+    @Styles.Render("~/css/totalbets")
+    @Styles.Render("~/css/betlist")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/plugin")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/totalbets")
+    <script type="text/javascript">
+        $(function () {
+            totalBets.outright.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+    <span id="totalbets-back" onclick="totalBets.submitForm();" class="history-back hide">
+        <i class="icon-history-back"></i>
+        @Las.Back
+    </span>
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-inline form-filter ", id = "main-form" }))
+{
+    <div class="controls-row">
+        <div id="sport-multi-select">
+        </div>
+    </div>
+    <div class="controls-row">
+        <div id="league-multi-select">
+        </div>
+    </div>
+    <div class="controls-row">
+        <div id="team-multi-select">
+        </div>
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+    <div class="controls-row refresh-count-down-area">
+        <div class="refresh-count-down" id="refresh-count-down">
+        </div>
+        <input type="hidden" value="@Model.TimeInterval" id="server-time-interval" />
+    </div>
+}
+<div id="BetListGrid" class="freegrid content-grid">
+</div>

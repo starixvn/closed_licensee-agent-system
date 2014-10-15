@@ -1,0 +1,33 @@
+﻿@model AdminSignInViewModel
+@{
+    ViewBag.Title = Las.SignIn;
+}
+@section css
+{
+    @Styles.Render("~/css/login/internal")
+}
+<div class="container">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Language)
+        <div class="login-box">
+            <div class="header-box">
+                <div class="title">@Las.SignIn</div>
+                @LanguageHelper.DropDown(Model.Language)
+            </div>
+            <div class="content-box">
+                <div class="control-group">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "input-text", autocomplete = "off", placeholder = Las.Username })
+                </div>
+                <div class="control-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "input-text", autocomplete = "off", placeholder = Las.Password })
+                </div>
+                <div class="control-group">
+                    <input id="btnSubmit" type="submit" value="@Las.Submit" />
+                </div>
+            </div>
+        </div>
+        @Html.ValidationSummary()
+    }
+</div>

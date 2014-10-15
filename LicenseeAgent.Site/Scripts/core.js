@@ -1,4 +1,4 @@
-﻿/*global appSettings, language, moment, popup, pageContext, numeral */
+﻿/*global appSettings, popup, pageContext, numeral */
 
 var core = (function ($) {
     'use strict';
@@ -63,76 +63,6 @@ var core = (function ($) {
                     core.handleError(data);
                 }
             });
-
-            // set behaviour with 3rd.
-            $('input, textarea').placeholder();
-            if ($.fn.datepicker) {
-                $('.datepicker').data('datepicker-format', core.DATE_FORMAT);
-            }
-
-            // customize scrollbars.
-            if ($.fn.niceScroll) {
-                $('html').niceScroll({
-                    cursorcolor: "#8a8a8a",
-                    autohidemode: false
-                });
-
-                $('body').mutate('height width', function () {
-                    $('html').getNiceScroll().resize();
-                });
-            }
-
-            // set href for button.
-            $("button[data-href]").click(function () {
-                location.href = core.resolveUrl($(this).attr("data-href"));
-            });
-
-            // handle click in iframe.
-            if ($('#frmMain').length === 0) {
-                $('html').on('click', function () {
-                    if (parent !== null) {
-                        parent.$('#frmMain').trigger('click');
-                    }
-                });
-            }
-
-            // set language for 3rd.
-            if (typeof moment !== 'undefined') {
-                moment.lang(language.getSelectedLanguageCode().toLowerCase());
-            }
-            if ($.fn.fanexGrid) {
-                //$.fn.fanexGrid.defaults.marginRight = 0;
-                $.fn.fanexGrid.defaults.scrollWidth = 24;
-                $.fn.fanexGrid.defaults.language = language.getSelectedLanguage();
-                $.fn.fanexGrid.defaults.timeZone = core.ServerUtcOffset;
-            }
-
-            // handle tooltip.
-            $(document).click(function (e) {
-                if ($().tooltip) {
-                    $('.tooltip').prev().each(function (index, element) {
-                        if (element === e.target) {
-                            return;
-                        }
-                        if ($(e.target).is('button')) {
-                            return;
-                        }
-                        if ($(e.target).attr('title')) {
-                            return;
-                        }
-                        $(element).tooltip('hide');
-                    });
-                }
-            });
-
-            // Override the fanexGrid
-            var fanexGridOrigin = jQuery.fn.fanexGrid;
-            if (fanexGridOrigin !== undefined) {
-                jQuery.fn.fanexGrid = function () {
-                    jQuery.fn.fanexGrid = fanexGridOrigin;
-                    return fanexGridOrigin.apply(this, arguments);
-                };
-            }
 
             // call if page is not in frame & not be a popup
             if (window.parent.frmMain === undefined && !popup.isIframe() && !core.DisableRecheckIn) {
@@ -203,6 +133,52 @@ var core = (function ($) {
             }
 
             return absoluteUrl;
+        },
+        ajaxJSON: function (settings, onSuccess, onFailure) {
+            settings = $.extend(settings, {
+                type: 'POST',
+                dataType: 'json',
+                beforeSend: function () {
+                    if ($('.validation-summary-valid').length > 0) {
+                        core.hideErrors();
+                    }
+                    core.blockUI();
+                },
+                success: function (data) {
+                    if (!core.isSuccessAjax(data)) {
+                        var errorHandler = function (data) {
+                            if ($('.validation-summary-valid').length > 0) {
+                                core.showErrorMsg(data.ErrMsg);
+                            } else {
+                                alert(data.ErrMsg);
+                            }
+                        };
+
+                        if (typeof (onFailure) === 'function') {
+                            onFailure(data, errorHandler);
+                        } else {
+                            errorHandler(data);
+                        }
+
+                        return;
+                    }
+
+                    if (typeof (onSuccess) === 'function') {
+                        onSuccess(data);
+                    }
+                },
+                complete: function () {
+                    core.unblockUI();
+                }
+            });
+            return $.ajax(settings);
+        },
+        isSuccessAjax: function (data) {
+            return typeof (data) !== 'undefined'
+                && typeof (data.ErrCode) !== 'undefined'
+                && data.ErrCode !== 0
+            ? false
+            : true;
         },
         console: {
             write: function (msg, consoleFunc) {
@@ -418,17 +394,17 @@ var core = (function ($) {
             return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
         },
         showErrorMsg: function (msg) {
-            var msgWrp = $('.validation-summary-valid');
-            msgWrp.show();
-            msgWrp.addClass('validation-summary-errors')
+            var container = $('[data-valmsg-summary=true]');
+            container.show();
+            container.addClass('validation-summary-errors')
                 .find('li:first').html(msg).show();
         },
         showSuccessMsg: function (msg) {
-            var msgWrp = $('.validation-summary-valid');
-            msgWrp.show();
-            msgWrp.addClass('success').find('li:first').html(msg).show();
+            var container = $('[data-valmsg-summary=true]');
+            container.show();
+            container.addClass('success').find('li:first').html(msg).show();
         },
-        showErrors: function (validator) {  // 'this' is the form element
+        showErrors: function (validator) {
             var container = $('[data-valmsg-summary=true]');
             var list = container.find("ul");
 
@@ -442,9 +418,9 @@ var core = (function ($) {
                 });
             }
         },
-        hideErrors: function () {  // 'this' is the form element
-            $('.validation-summary-valid').hide();
-            $('.validation-summary-errors').hide();
+        hideErrors: function () {
+            var container = $('[data-valmsg-summary=true]');
+            container.hide();
         },
         getQueryParamValue: function (name) {
             name = name.toLowerCase().replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -514,7 +490,7 @@ var core = (function ($) {
         },
         handleError: function (data) {
             if (data && data.ErrCode) {
-                if (data.ErrCode === -3 || data.ErrCode=== -5) {
+                if (data.ErrCode === -3 || data.ErrCode === -5) {
                     // UM
                     location.href = core.UrlRoot;
                     return;

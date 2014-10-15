@@ -1,0 +1,100 @@
+﻿@model SearchUserResultViewModel
+@{
+    Layout = null;
+    var pageContext = (PageContext)ViewBag.PageContext;
+    var viewResult = (SearchUserViewResult)ViewBag.Result;
+}
+@if (viewResult != null)
+{
+    if (viewResult.IsChangeCurrency)
+    {
+    <script type="text/javascript">
+        var alertMessage = '@string.Format(viewResult.ErrMsg, viewResult.CurrencyName)';
+        home.accountInformation.showCurrencyAlert('@viewResult.CurrencyId', '@viewResult.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
+    </script>
+    }
+    else if (viewResult.ErrCode != Result.SuccessValue)
+    {
+    <script type="text/javascript">
+        home.accountInformation.showNoUserAlert('@viewResult.ErrMsg');
+    </script>
+    }
+}
+@if (pageContext != null)
+{
+    <script type="text/javascript">
+        @Html.Raw(Formatter.FormatJson("pageContext", pageContext))
+    </script>
+}
+@if (pageContext != null && viewResult == null)
+{
+    @Html.Partial("_AgentInfo", Model)
+
+    <div class="controls-row">
+        @if (pageContext.IsMember)
+        {
+            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">
+                @Las.BetList
+            </button>
+        }
+        else
+        {
+            if (!pageContext.IsLastLevel)
+            {
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Agent", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+                @Las.AgentList
+            </button>
+            }
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Member", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+                @Las.DirectMemberList
+            </button>
+        }
+        @if (Model.IsShowStatement)
+        {
+            <button class="btn btn-inverse" data-url="@Url.RouteUrl("Report_Statement", new { area = "", action = "Detail", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">
+                @Las.Statement
+            </button>
+        }
+    </div>
+        if (Model.Customer.CustId != SessionManager.CurrentSession.AgentInfo.AgentId)
+        {
+    <div class="controls-row">
+        <div class="row-line">
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#balanceInfo" id="tabBalance" data-toggle="tab">
+                @Las.BalanceInfo
+            </a></li>
+            @if (!pageContext.IsMember)
+            {
+                <li><a href="#downlineList" id="tabDownline" data-toggle="tab">
+                    @Las.DownlineAgent
+                </a></li>
+            }
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_BalanceInfoTab", Model)
+            @if (!pageContext.IsMember)
+            {
+                @Html.Partial("_DownLineListTab", Model)
+            }
+        </div>
+    </div>
+    <div class="controls-row last">
+        <div class="row-line">
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#panel-action" id="tabAction" data-toggle="tab">
+                @Las.Action
+            </a></li>
+            <li><a href="#panel-products" id="tabProducts" data-toggle="tab">
+                @Las.Products
+            </a></li>
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_ActionTab", Model)
+            @Html.Partial("_ProductsTab", Model)
+        </div>
+    </div>
+        }
+}

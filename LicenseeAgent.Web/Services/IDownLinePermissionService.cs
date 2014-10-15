@@ -16,6 +16,8 @@
 
         bool IsDirectDownLineMember(int memberId);
 
+        bool IsDirectDownLineMember(int agentId, int memberId);
+
         bool IsIndirectDownLineAgent(int agentId);
 
         bool IsIndirectDownLineMember(int memberId);

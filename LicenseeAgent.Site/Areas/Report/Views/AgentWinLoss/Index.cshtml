@@ -1,0 +1,64 @@
+﻿@model AgentWinLossViewModel
+@{
+    ViewBag.Title = Las.AgentWinLoss + " - " + Las.Report;
+    var pageContext = (PageContext)ViewBag.PageContext;
+}
+@section css
+{
+    @Styles.Render("~/css/datetimepicker")
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/betlist")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/datetimepicker")
+    @Scripts.Render("~/js/report/betlist")
+    @Scripts.Render("~/js/report/agent-win-loss")
+    <script type="text/javascript">
+        $(function () {
+            report.agentWinLoss.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post,
+    new { @class = "form-filter form-inline", id = "search-form" }))
+{
+    <div class="controls-row">
+        @Html.LabelFor(m => m.FromDate)
+        @Html.DatePickerFor(m => m.FromDate)
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.ToDate, new { @class = "small-label" })
+        @Html.DatePickerFor(m => m.ToDate)
+    </div>
+    <div class="newline">
+    </div>
+    @ReportHelper.CheckBoxes(Model.ProductList, Model.Product, "inline w60")
+    <div class="controls-row">
+        @ReportHelper.Radios(Model.DrawFilter)
+    </div>
+    <div class="newline">
+    </div>
+    <div class="l80 controls-row">
+        <button class="btn btn-primary left-button" id="btnSearch">
+            @Las.Generate
+        </button>
+        <button class="btn btn-primary" id="btnToday" data-date="@Formatter.FormatDate(DateTime.Now)">
+            @Las.Today
+        </button>
+        <button class="btn btn-primary" id="btnYesterday" data-date="@Formatter.FormatDate(DateTime.Now.AddDays(-1))">
+            @Las.Yesterday
+        </button>
+    </div>
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.ShowMembers)
+    @Html.HiddenFor(m => m.Product)
+}
+@Html.Partial("_Breadcrumb")
+<div id="grid" class="freegrid fix-header-border">
+</div>

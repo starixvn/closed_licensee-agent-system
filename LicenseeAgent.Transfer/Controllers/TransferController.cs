@@ -116,7 +116,7 @@
             }
 
             list = list.Where(x => x.UserName.Contains(model.UserName, StringComparison.OrdinalIgnoreCase) &&
-                (model.Status == null || x.Status == model.Status));
+                (model.Status == null || x.Status == model.Status)).ToList();
             return Json(new
             {
                 ErrCode = Result.SuccessValue,

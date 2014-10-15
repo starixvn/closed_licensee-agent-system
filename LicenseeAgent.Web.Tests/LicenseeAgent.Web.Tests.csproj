@@ -71,12 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Account\LicenseeAgent.Account.csproj">
-      <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
+      <Project>{2FCA7520-4C21-487A-B5EF-4104A9DA0E48}</Project>
       <Name>LicenseeAgent.Account</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.Home\LicenseeAgent.Home.csproj">
+      <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
+      <Name>LicenseeAgent.Home</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Tests\LicenseeAgent.Tests.csproj">
       <Project>{2F5C695A-1973-4025-B4EE-6322954A1C52}</Project>

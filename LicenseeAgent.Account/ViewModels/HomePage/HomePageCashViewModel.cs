@@ -10,7 +10,7 @@
     {
         public StatisticInfo StatisticInfo { get; set; }
 
-        public BalanceCashInfo BalanceInfo { get; set; }
+        public CashBalanceInfo BalanceInfo { get; set; }
 
         public IList<string> MemberSiteLinks { get; set; }
     }

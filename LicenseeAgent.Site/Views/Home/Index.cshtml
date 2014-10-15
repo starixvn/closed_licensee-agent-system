@@ -5,21 +5,8 @@
 @{
     ViewBag.Title = Las.LasTitle;
     Layout = null;
-    var iframeSrc = string.Empty;
-    if (Model.TopMenu == TopMenu.Home)
-    {
-        iframeSrc = Url.RouteUrl("Account_HomePage");
-    }
-    else
-    {
-        var action = "Index";
-        if (Model.TopMenu == TopMenu.Security)
-        {
-            action = "ChangePassword";
-        }
-
-        iframeSrc = Url.Action(action, "Account");
-    }
+    var action = Model.TopMenu == TopMenu.Security ? "ChangePassword" : "Index";
+    var iframeSrc = Url.Action(action, "Account");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +17,7 @@
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/core")
     @Styles.Render("~/css/home")
-    @Styles.Render("~/css/customer/accountinformation")
+    @Styles.Render("~/css/home/account-information")
     @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/bootstrap")
@@ -38,10 +25,15 @@
     @Scripts.Render("~/js/core")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/home")
-    @Scripts.Render("~/js/customer/accountinformation")
+    @Scripts.Render("~/js/home/account-information")
     @if (SessionManager.CurrentSession.IsViewSelectMenu())
     {
-        @Scripts.Render("~/js/home/internal")
+        @Scripts.Render("~/js/home/top-menu")
+        <script type="text/javascript">
+            $(function () {
+                home.topMenu.init();
+            });
+        </script>
     }
 </head>
 <body>
@@ -61,8 +53,7 @@
             <div class="control-box">
                 <i class="icon-expand-home" title="@Las.Close"></i>
             </div>
-            <iframe id="frmMain" name="frmMain" frameborder=0 src="@iframeSrc">
-            </iframe>
+            <iframe id="frmMain" name="frmMain" frameborder=0 src="@iframeSrc"></iframe>
         </div>
     </div>
     @if (SessionManager.CurrentSession.IsViewIntro())

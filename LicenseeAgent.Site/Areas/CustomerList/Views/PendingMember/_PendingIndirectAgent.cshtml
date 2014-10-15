@@ -1,0 +1,21 @@
+﻿@model IndirectMemberViewModel
+<div class="tab-pane pull-left" id="indirect-agent">
+    @using (Html.BeginForm("Index", null, FormMethod.Post,
+    new { @class = "form-inline form-filter", id = "indirectMember" }))
+    {
+        @Html.ValidationSummary()
+        <div class="controls-row">
+            @Html.LabelFor(x => x.AgentUserName) <span class="require"></span>
+            @Html.TextBoxFor(x => x.AgentUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        <div class="controls-row">
+            @Html.LabelFor(x => x.IndirectMemberUserName)
+            @Html.TextBoxFor(x => x.IndirectMemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        </div>
+        <div class="controls-row">
+            <button class="btn btn-primary" type="submit">
+                @Las.Submit
+            </button>
+        </div>
+    }
+</div>

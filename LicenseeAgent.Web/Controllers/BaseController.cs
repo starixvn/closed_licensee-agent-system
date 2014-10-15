@@ -274,7 +274,7 @@
 
         protected JavaScriptResult RedirectToAccessDeniedJavascript()
         {
-            string script = string.Format("alert('{0}'", Las.AccessDeniedMsg);
+            string script = string.Format("alert('{0}')", Las.AccessDeniedMsg);
             return JavaScript(script);
         }
 

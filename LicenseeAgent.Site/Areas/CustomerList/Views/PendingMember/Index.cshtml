@@ -1,0 +1,46 @@
+﻿@model PendingMemberViewModel
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+    ViewBag.Title = Las.PendingMemberList;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/customer-list/pending-member")
+    <script type="text/javascript">
+        $(function () {
+            customerList.pendingMember.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+
+@if (pageContext.IsAdmin)
+{
+    @Html.Partial("_PendingIndirectAgent", Model.IndirectMember)
+}
+else
+{
+    <div id="filter-tabs" class="filter-tabs">
+        <ul id="tabs-area" class="nav nav-tabs">
+            <li class="active">
+                <a id="directAgent" href="#direct-agent" data-toggle="tab">@Las.DirectMember</a>
+            </li>
+            <li>
+                <a id="indirectAgent" href="#indirect-agent" data-toggle="tab">@Las.IndirectMember</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            @Html.Partial("_PendingIndirectAgent", Model.IndirectMember)
+            @Html.Partial("_PendingDirectAgent", Model.DirectMember)
+        </div>
+    </div>
+}
+
+<div id="grid" class="freegrid">
+</div>

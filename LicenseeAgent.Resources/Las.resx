@@ -414,6 +414,15 @@
   <data name="AddDownline" xml:space="preserve">
     <value>Add Downline</value>
   </data>
+  <data name="AddAgent" xml:space="preserve">
+    <value>Add Agent</value>
+  </data>
+  <data name="DirectMember" xml:space="preserve">
+    <value>Direct Member</value>
+  </data>
+  <data name="IndirectMember" xml:space="preserve">
+    <value>Indirect Member</value>
+  </data>
   <data name="Casino" xml:space="preserve">
     <value>Casino</value>
   </data>
@@ -1429,6 +1438,9 @@ Please note that this action cannot be undone.</value>
   <data name="DirectAgent" xml:space="preserve">
     <value>Direct Agent</value>
   </data>
+  <data name="IndirectAgent" xml:space="preserve">
+    <value>Indirect Agent</value>
+  </data>
   <data name="AlertRemoveToGroup" xml:space="preserve">
     <value>Are you sure you want to remove this member from group?</value>
   </data>
@@ -1606,5 +1618,29 @@ Please note that this action cannot be undone.</value>
   <data name="ConfirmSwitchMember" xml:space="preserve">
     <value>Are you sure you want to save the change? 
 Please note that this action cannot be undone and this account will be temporarily closed to process the change and back to normal shortly.</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="AlertDisableAgentProduct" xml:space="preserve">
+    <value>Are you sure you want to disable {0} for this agent and his downlines?</value>
+  </data>
+  <data name="AlertDisableMemberProduct" xml:space="preserve">
+    <value>Are you sure you want to disable {0} for this member?</value>
+  </data>
+  <data name="AlertEnableAgentProduct" xml:space="preserve">
+    <value>{0} is enabled for this agent. Do you want to enable for his downlines too?</value>
+  </data>
+  <data name="DownlineAgent" xml:space="preserve">
+    <value>Downline Agent</value>
+  </data>
+  <data name="DirectMemberList" xml:space="preserve">
+    <value>Direct Member List</value>
+  </data>
+  <data name="AddDownlineAgent" xml:space="preserve">
+    <value>Add Downline Agent</value>
+  </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct Members</value>
   </data>
 </root>

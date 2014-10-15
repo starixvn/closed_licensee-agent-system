@@ -12,9 +12,9 @@
 
         public string MatchName { get; set; }
 
-        public string SelectedLeague { get; set; }
+        public string SelectedLeagues { get; set; }
 
-        public string SelectedEvent { get; set; }
+        public string SelectedEvents { get; set; }
 
         public bool CheckAllLeague { get; set; }
 

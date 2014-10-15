@@ -1,6 +1,5 @@
 ﻿namespace LicenseeAgent.Web.ViewModels
 {
-    using System.Collections.Generic;
     using LicenseeAgent.Web.Entities;
 
     /// <summary>
@@ -8,27 +7,6 @@
     /// </summary>
     public class AgentBreadcrumbViewModel
     {
-        public AgentBreadcrumbViewModel()
-        {
-        }
-
-        public AgentBreadcrumbViewModel(int agentId, string agentName, short agentLevel)
-        {
-            AgentId = agentId;
-            AgentName = agentName;
-            AgentLevel = agentLevel;
-
-            var list = new List<BreadcrumbItem>();
-            list.Add(new BreadcrumbItem
-                {
-                    AgentId = agentId,
-                    AgentLevel = agentLevel,
-                    AgentName = agentName
-                });
-
-            Breadcrumb = new Breadcrumb(list);
-        }
-
         public int AgentId { get; set; }
 
         public short AgentLevel { get; set; }

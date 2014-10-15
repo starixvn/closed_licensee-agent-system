@@ -12,9 +12,6 @@
         public int AgentId { get; set; }
 
         [Required]
-        public int AgentLevel { get; set; }
-
-        [Required]
         [StringLength(50, MinimumLength = 2)]
         [AllowHtml]
         public string UserName { get; set; }

@@ -1,0 +1,53 @@
+﻿@model DirectUpLinesViewModel
+@{
+    Layout = null;
+    var controllerName = string.Empty;
+    switch (Model.ProductId)
+    {
+        case (int)ProductCode.Product_0:
+            controllerName = "SportsBook";
+            break;
+
+        case (int)ProductCode.Product_5:
+            controllerName = "VirtualSports";
+            break;
+    }
+}
+<table class="dropdown">
+    <colgroup>
+        <col width="80" />
+        <col width="80" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                @Las.Level
+            </th>
+            <th>
+                @Las.Username
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model.AgentList)
+        {
+            var url = Url.Action("EditMember", controllerName, new
+            {
+                area = "ProductSetting",
+                memberId = Model.CustId,
+                agentId = entity.AgentId,
+                agentLevel = entity.AgentLevel
+            });
+            <tr>
+                <td>
+                    @string.Format(Las.AgentLevelFormat, entity.AgentLevel - 1)
+                </td>
+                <td>
+                    <a class="agent-inline" href="#" onclick="customerList.member.openProductSetting('@url')" title="@entity.UserName">
+                        @entity.MediumUserName
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

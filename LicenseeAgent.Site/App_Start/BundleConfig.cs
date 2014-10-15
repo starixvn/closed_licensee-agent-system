@@ -36,12 +36,18 @@
                 "~/scripts/mutate/mutate.js",
                 "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
+                "~/scripts/core-components.js",
+                "~/scripts/core-breadcrumb.js",
+                "~/scripts/core-common.js",
+                "~/scripts/core-enums.js",
+                "~/scripts/core-ibc.js",
                 "~/scripts/utility.js",
                 "~/scripts/popup.js",
                 "~/scripts/report.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
-                "~/content/core.less"));
+                "~/content/core.less",
+                "~/content/core-components.less"));
 
             bundles.Add(new ScriptBundle("~/js/language").Include(
                 "~/scripts/language.js",
@@ -57,6 +63,11 @@
                 "~/scripts/ResourcesJs/BetType.en-US.js",
                 "~/scripts/ResourcesJs/BetType.zh-CN.js",
                 "~/scripts/ResourcesJs/BetType.zh-TW.js"));
+
+            bundles.Add(new ScriptBundle("~/js/report/betlist").Include(
+                "~/scripts/report.js").Include(
+                "~/scripts/report-betlist.js").Include(
+                "~/Views/BetList/Resources/betlist-core.js"));
         }
 
         #endregion Core
@@ -89,9 +100,10 @@
 
             // Datetimepicker
             bundles.Add(new ScriptBundle("~/js/datetimepicker").Include(
-                "~/scripts/moment-datepicker/moment-datepicker.js"));
+                "~/scripts/bootstrap-datepicker/bootstrap-datepicker.js"));
             bundles.Add(new LessBundle("~/css/datetimepicker").Include(
-                "~/content/moment-datepicker/datepicker.css"));
+                "~/content/bootstrap-datepicker/datepicker.less",
+                "~/content/bootstrap-datepicker/override.less"));
 
             // Fanex.Grid
             bundles.Add(new ScriptBundle("~/js/fanexgrid").IncludeDirectory(
@@ -108,6 +120,10 @@
             // Auto numeric
             bundles.Add(new ScriptBundle("~/js/autonumeric").Include(
                 "~/scripts/autonumeric/autonumeric.js"));
+
+            // CryptoJS
+            bundles.Add(new ScriptBundle("~/js/cryptojs").IncludeDirectory(
+                "~/scripts/cryptojs", "*.js"));
         }
 
         /// <summary>
@@ -157,10 +173,8 @@
             RegisterErrorPage(bundles);
             RegisterLoginPage(bundles);
             RegisterHomePage(bundles);
-            RegisterCustomerListPage(bundles);
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
-            RegisterTotalBetsPages(bundles);
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
@@ -210,9 +224,6 @@
             bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
                 "~/views/accountinformation/resources/account-information.js"));
 
-            bundles.Add(new ScriptBundle("~/js/home/internal").Include(
-                "~/views/internal/resources/internal-header.js"));
-
             bundles.Add(new LessBundle("~/css/home").Include(
                 "~/views/home/resources/home.less"));
 
@@ -226,42 +237,8 @@
         /// <param name="bundles">Bundle collection.</param>
         private static void RegisterCustomerSetting(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/customersetting").IncludeDirectory(
-                "~/views/customersetting/resources/scripts", "*.js", true));
-            bundles.Add(new ScriptBundle("~/js/customersetting/sportsbook").IncludeDirectory(
-                "~/views/customersetting/sportsbook/scripts", "*.js", true).IncludeDirectory(
-                "~/views/customersetting/numbergame/scripts", "*.js", true));
-            bundles.Add(new ScriptBundle("~/js/customersetting/virtualsports").IncludeDirectory(
-               "~/views/customersetting/virtualsports/scripts", "*.js", true));
-            bundles.Add(new LessBundle("~/css/customersetting").Include(
-                "~/views/customersetting/resources/styles/fanex.customerSetting.less"));
-
-            bundles.Add(new ScriptBundle("~/js/customersetting/editproduct").Include(
-                "~/views/customersetting/resources/edit-product.js"));
-            bundles.Add(new LessBundle("~/css/customersetting/editproduct").Include(
-                "~/views/customersetting/resources/edit-product.less"));
-
             bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
-                "~/views/customersetting/Resources/MemberArrangement.js"));
-        }
-
-        /// <summary>
-        /// Registers the agent list page bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterCustomerListPage(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/css/customerlist").Include(
-                "~/views/customerlist/resources/customer-list.less"));
-
-            bundles.Add(new ScriptBundle("~/js/customerlist").Include(
-                "~/views/customerList/resources/customer-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/resetpassword").Include(
-                "~/views/customerlist/resources/reset-password.js"));
-
-            bundles.Add(new ScriptBundle("~/js/pending-member-list").Include(
-                "~/views/customerlist/resources/pending-member-list.js"));
+                "~/views/MemberRearrangement/Resources/MemberArrangement.js"));
         }
 
         /// <summary>
@@ -309,45 +286,6 @@
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Fanex.Result/fanex.result.css",
                 "~/Content/Fanex.Result/fanex.result.override.less"));
-
-            bundles.Add(new LessBundle("~/css/outstandingreport").Include(
-                 "~/Views/Report/Resources/Outstanding.less"));
-            bundles.Add(new ScriptBundle("~/js/outstandingreport").Include(
-                "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/Report/Resources/outstanding-report.js"));
-
-            bundles.Add(new ScriptBundle("~/js/agentwinlostreport").Include(
-                "~/Views/Report/Resources/agent-winloss-report.js"));
-        }
-
-        /// <summary>
-        /// Registers the total bets pages bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterTotalBetsPages(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/css/totalbets").Include(
-                "~/Views/TotalBets/Resources/total-bets.less"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-soccer").Include(
-                "~/Views/TotalBets/Resources/soccer.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-soccer-betlist").Include(
-                "~/Views/TotalBets/Resources/soccer.betlist.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-basketball").Include(
-                "~/Views/TotalBets/Resources/basketball.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-OtherSports").Include(
-                "~/Views/TotalBets/Resources/OtherSports.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
-
-            bundles.Add(new ScriptBundle("~/js/totalbets-outright").Include(
-                "~/Views/TotalBets/Resources/outright.js",
-                "~/Views/BetList/Resources/betlist-core.js"));
         }
 
         /// <summary>

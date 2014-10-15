@@ -1,0 +1,53 @@
+﻿@model AgentBreadcrumbViewModel
+@{
+    var pageContext = (PageContext)ViewBag.PageContext;
+    ViewBag.Title = Las.AgentList;
+}
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/customer-list")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/contextmenu")
+    @Scripts.Render("~/js/customer-list/agent")
+    <script type="text/javascript">
+        $(function () {
+            customerList.agent.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "agent-form", @class = "hide" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.Breadcrumb)
+}
+@using (Html.BeginForm(null, "Member", FormMethod.Get, new { id = "member-form", @class = "hide" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.Breadcrumb)
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
+{
+    @Html.HiddenFor(m => m.AgentId)
+    <div class="controls-row">
+        @Html.Label("Username", Las.Username)
+        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off", data_autocomplete_url = Url.Action("AutoComplete") })
+    </div>
+    <div class="controls-row">
+        @Html.Label("Status", Las.Status)
+        @Html.DropDownList("Status", ModelSettings.StatusList, new { @class = "selectpicker w100" })
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+}
+@Html.Partial("_Breadcrumb")
+<div id="grid" class="freegrid">
+</div>

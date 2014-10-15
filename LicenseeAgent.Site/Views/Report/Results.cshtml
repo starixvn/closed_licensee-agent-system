@@ -1,6 +1,10 @@
-﻿@model LicenseeAgent.Report.ViewModels.ResultsReportViewModel
+﻿@using LicenseeAgent.Report.ViewModels
+@using LicenseeAgent.Core.Utility
+@model ResultsReportViewModel
 @{
     ViewBag.Title = Las.Results + " - " + Las.Report;
+    var todayString = Formatter.FormatDate(Model.Today);
+    var balanceUpDayString = Formatter.FormatDate(Model.BalanceUpDay);
 }
 @section css
 {
@@ -30,16 +34,24 @@
                 new { @class = "form-inline form-filter", id = "search-form" }))
             {
                 <div class="controls-row">
-                    <label for="matchdatetime">@Las.Date</label>
-                    <div class="input-append date datepicker" id="matchdatetimepicker">
-                        <input class="input-add-on span2" id="matchdatetime" size="16" type="text" value="@DateTime.Today" />
+                    <label for="matchdatetime">
+                        @Las.Date
+                    </label>
+                    <div class="input-append date datepicker" id="matchdatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
+                        <input class="input-add-on span2" id="matchdatetime" size="16" type="text" value="@todayString" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                 </div>
                 <div class="controls-row">
-                    <button class="btn btn-primary" onclick="return matchSubmit();">@Las.Submit</button>
-                    <button class="btn btn-primary" onclick="return resultReport.matchYesterday();">@Las.Yesterday</button>
-                    <button class="btn btn-primary" onclick="return resultReport.matchToday();">@Las.Today</button>
+                    <button class="btn btn-primary" onclick="return matchSubmit();">
+                        @Las.Submit
+                    </button>
+                    <button class="btn btn-primary" onclick="return resultReport.matchYesterday();">
+                        @Las.Yesterday
+                    </button>
+                    <button class="btn btn-primary" onclick="return resultReport.matchToday();">
+                        @Las.Today
+                    </button>
                 </div>
                 <div class="newline">
                 </div>
@@ -55,29 +67,35 @@
             {
                 <div class="controls-row">
                     <label for="outrightFromDate">@Las.From</label>
-                    <div class="input-append date datepicker" id="outrightfromdatetimepicker" data-date="@DateTime.Today">
-                        <input class="input-add-on span2" id="outrightFromDate" size="16" type="text" value="@DateTime.Today" />
+                    <div class="input-append date datepicker" id="outrightfromdatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
+                        <input class="input-add-on span2" id="outrightFromDate" size="16" type="text" value="@todayString" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                 </div>
                 <div class="controls-row">
                     <label for="outrightToDate">@Las.To</label>
-                    <div class="input-append date datepicker" id="outrighttodatetimepicker" data-date="@DateTime.Today">
-                        <input class="input-add-on span2" id="outrightToDate" size="16" type="text" value="@DateTime.Today" />
+                    <div class="input-append date datepicker" id="outrighttodatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
+                        <input class="input-add-on span2" id="outrightToDate" size="16" type="text" value="@todayString" />
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                 </div>
                 <div class="controls-row">
-                    <button class="btn btn-primary" onclick="return outrightSubmit();">@Las.Submit</button>
-                    <button class="btn btn-primary" onclick="return resultReport.outrightYesterday();">@Las.Yesterday</button>
-                    <button class="btn btn-primary" onclick="return resultReport.outrightToday();">@Las.Today</button>
+                    <button class="btn btn-primary" onclick="return outrightSubmit();">
+                        @Las.Submit
+                    </button>
+                    <button class="btn btn-primary" onclick="return resultReport.outrightYesterday();">
+                        @Las.Yesterday
+                    </button>
+                    <button class="btn btn-primary" onclick="return resultReport.outrightToday();">
+                        @Las.Today
+                    </button>
                 </div>
                 <div class="hide">
                     <div class="newline">
                     </div>
                     <div class="controls-row">
-                        @Html.DropDownList("OutrightSport", new List<SelectListItem>(), new { @class = "selectpicker w160" })
-                        @Html.DropDownList("OutrightLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
+                        @Html.DropDownList("OutrightSport", Model.Sports, new { @class = "selectpicker w160" })
+                        @Html.DropDownList("OutrightLeague", Model.Leagues, new { @class = "selectpicker w320" })
                     </div>
                 </div>
             }

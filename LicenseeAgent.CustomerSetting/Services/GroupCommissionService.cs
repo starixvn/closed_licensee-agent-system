@@ -10,7 +10,7 @@
     /// </summary>
     public class GroupCommissionService : QueryService, IGroupCommissionService
     {
-        public IEnumerable<GroupCommission> GetGroupCommissions(GroupCommissionSelCriteria criteria)
+        public IList<GroupCommission> GetGroupCommissions(GroupCommissionSelCriteria criteria)
         {
             return GetEntites<GroupCommission>(criteria);
         }

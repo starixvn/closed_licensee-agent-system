@@ -1,0 +1,52 @@
+﻿@using LicenseeAgent.Report.Enumerations
+@using LicenseeAgent.Resources
+@using LicenseeAgent.Core.Entities
+@using LicenseeAgent.Core.Utility
+@helper Radios(DrawFilter drawFilter)
+    {
+    <label class="radio inline">
+        @Las.DrawFilter
+    </label>
+        var dictionary = new Dictionary<DrawFilter, string>
+        {
+            { DrawFilter.Normal, Las.Normal},
+            { DrawFilter.NoDraw, Las.NoDraw},
+            { DrawFilter.NoDrawForTurnoverOnly, Las.NoDrawForTurnoverOnly},
+        };
+        foreach (var key in dictionary.Keys)
+        {
+            var value = dictionary[key];
+    <label class="radio inline">
+        <input type="radio" name="DrawFilter" value="@((int)key)" @(drawFilter == key ? "checked" : "") />
+        @value
+    </label>
+        }
+}
+@helper CheckBoxes(IList<ProductInfo> productList, string selectedProducts, string classNameProduct)
+    {
+        if (productList.Count() > 1)
+        {
+            var selectedProductIds = string.IsNullOrEmpty(selectedProducts)
+                ? new List<int>()
+                : selectedProducts.Split(',').Where(x => !string.IsNullOrEmpty(x)).Select(x => Convert.ToInt32(x)).ToList();
+            var isCheckAll = selectedProductIds.Count == 0 || selectedProductIds.Count == productList.Count;
+    <div class="controls-row">
+        <label class="checkbox @classNameProduct">
+            @Las.Product
+        </label>
+        <label class="checkbox inline">
+            <input type="checkbox" id="selectAll" value="0" @(isCheckAll ? "checked" : string.Empty) />
+            @Las.All
+        </label>
+        @foreach (var item in productList)
+        {
+            <label class="checkbox inline">
+                <input type="checkbox" class="case" value="@item.ProductId" @(isCheckAll || selectedProductIds.Contains(item.ProductId) ? "checked" : string.Empty) />
+                @DataRefWrapper.GetProductName(item.ProductId)
+            </label>
+        }
+    </div>
+    <div class="newline">
+    </div>
+        }
+}

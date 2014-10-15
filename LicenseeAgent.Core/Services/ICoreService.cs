@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.Core.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Web;
     using LicenseeAgent.Core.Entities;
@@ -11,7 +12,7 @@
 
         IList<LicenseeDomain> LicenseeDomains { get; }
 
-        string GetLicenseeDomain(int licenseeId);
+        Uri GetLicenseeDomain(int licenseeId);
 
         int? GetLicenseeId(string licenseeName);
 
@@ -21,7 +22,7 @@
 
         bool HasProductOffered(int licenseeId, int productId);
 
-        bool HasProductOffered(int licenseeId, Product product);
+        bool HasProductOffered(int licenseeId, ProductCode product);
 
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
 

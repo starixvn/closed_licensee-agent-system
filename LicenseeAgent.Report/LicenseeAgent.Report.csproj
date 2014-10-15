@@ -54,8 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Result.Core, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Dependencies\Fanex.Result.Core.dll</HintPath>
+    <Reference Include="Fanex.Result.Core, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Result.Core-NPOI.2.0.6.1.5.5.0\lib\net40\Fanex.Result.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
@@ -68,7 +69,7 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
@@ -123,29 +124,36 @@
     <Compile Include="..\LicenseeAgent.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\AgentOutstandingController.cs" />
+    <Compile Include="Criteria\AgentOutstanding\MemberOutstandingReportCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossMemberViewCriteria.cs" />
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
     <Compile Include="Criteria\MatchResultsVirtualHorseRacingCriteria.cs" />
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\StatementController.cs" />
-    <Compile Include="Controllers\ReportController.AgentWinloss.cs" />
+    <Compile Include="Controllers\AgentWinLossController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Criteria\OutstandingReportBetListCriteria.cs" />
-    <Compile Include="Criteria\OutstandingReportCriteria.cs" />
+    <Compile Include="Criteria\AgentOutstanding\OutstandingReportBetListCriteria.cs" />
+    <Compile Include="Criteria\AgentOutstanding\AgentOutstandingReportCriteria.cs" />
     <Compile Include="Criteria\OutrightResultsReportCriteria.cs" />
     <Compile Include="Criteria\LeagueCriteria.cs" />
     <Compile Include="Criteria\SportCriteria.cs" />
     <Compile Include="Criteria\ReportCriteriaBase.cs" />
     <Compile Include="Criteria\MatchResultsReportCriteria.cs" />
-    <Compile Include="Criteria\WinlossBase.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinlossBase.cs" />
     <Compile Include="DataAccess\ResultsReportDataAccess.cs" />
     <Compile Include="DataAccess\IResultsReportDataAccess.cs" />
-    <Compile Include="Entities\AgentWinLoss.cs" />
-    <Compile Include="Entities\AgentOutstanding.cs" />
+    <Compile Include="Entities\AgentWinLoss\AgentWinLossEntity.cs" />
+    <Compile Include="Entities\AgentOutstanding\AgentOutstandingEntity.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\TransferDetail.cs" />
     <Compile Include="Enumerations\DrawFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AgentOutstandingService.cs" />
+    <Compile Include="Services\AgentWinLossService.cs" />
+    <Compile Include="Services\IAgentOutstandingService.cs" />
+    <Compile Include="Services\IAgentWinLossService.cs" />
     <Compile Include="Services\IStatementService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\IReportService.cs" />
@@ -157,15 +165,16 @@
     <Compile Include="Criteria\StatementDetailCriteria.cs" />
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
-    <Compile Include="ViewModels\AgentWinLossReportViewModel.cs" />
+    <Compile Include="ViewModels\AgentOutstanding\AgentOutstandingViewModel.cs" />
+    <Compile Include="ViewModels\AgentOutstanding\OutstandingReportBetListViewModel.cs" />
+    <Compile Include="ViewModels\AgentWinLoss\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\TransferDetailViewModel.cs" />
     <Compile Include="ViewModels\StatementDetailReportViewModel.cs" />
     <Compile Include="ViewModels\StatementReportViewModel.cs" />
     <Compile Include="ViewModels\OutstandingReportViewModel.cs" />
     <Compile Include="ViewModels\ResultsReportViewModel.cs" />
-    <Compile Include="Criteria\WinLossAgentViewAgentCriteria.cs" />
-    <Compile Include="Criteria\WinLossMemberCriteria.cs" />
-    <Compile Include="Criteria\WinLossSuperViewAgentCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossAgentViewCriteria.cs" />
+    <Compile Include="Criteria\AgentWinLoss\WinLossLicenseeViewCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.BetList\LicenseeAgent.BetList.csproj">

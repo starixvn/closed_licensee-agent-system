@@ -146,21 +146,6 @@
             return new List<OutRight>();
         }
 
-        /// <summary>
-        /// Get outstanding results.
-        /// </summary>
-        /// <param name="criteria">Outstanding Criteria.</param>
-        /// <returns>List of agent outstanding results.</returns>
-        public IList<AgentOutstanding> GetOutstandings(ICriteria criteria)
-        {
-            return GetEntites<AgentOutstanding>(criteria);
-        }
-
-        public IList<AgentWinLoss> AgentWinLossReport(ICriteria criteria)
-        {
-            return GetEntites<AgentWinLoss>(criteria);
-        }
-
         #endregion Methods
     }
 }

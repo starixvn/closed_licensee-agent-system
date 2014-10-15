@@ -1,12 +1,6 @@
 ﻿namespace LicenseeAgent.Account.Services
 {
-    using System.Collections.Generic;
-    using Fanex.Common;
-    using LicenseeAgent.Account.Criteria;
-    using LicenseeAgent.Account.Entities;
-    using LicenseeAgent.Core.Criteria;
-    using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.Core.Enumerations;
+    using LicenseeAgent.Account.Criteria.Account;
     using LicenseeAgent.Core.Services;
 
     /// <summary>
@@ -14,98 +8,12 @@
     /// </summary>
     public class AccountService : QueryService, IAccountService
     {
-        /// <summary>
-        /// Authenticates the agent.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Returns agent information.</returns>
-        public AgentInfo AuthenticateAgent(AgentLoginCriteria criteria)
-        {
-            var result = new AgentInfo();
-            criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
-            Execute(criteria);
-            if (criteria.ErrCode == Result.SuccessValue)
-            {
-                result = new AgentInfo
-                {
-                    UserName = criteria.UserName,
-                    UserSalt = criteria.UserSalt,
-                    AgentId = criteria.AgentId,
-                    AgentLevel = criteria.AgentLevel,
-                    NumberOfLevel = criteria.NumberOfLevel,
-                    SubAccId = criteria.SubAccId,
-                    CurrencyName = criteria.Currency,
-                    CurrencyId = criteria.CurrencyId,
-                    IsFirstLogin = criteria.IsFirstLogin,
-                    PwdExpiry = criteria.PwdExpiry,
-                    LastChangedPwdDate = criteria.LastChangedPwdDate,
-                    LicenseeId = criteria.LicenseeId,
-                    IsNickName = criteria.IsNickName,
-                    LastLoggedTime = criteria.LastLoggedTime,
-                    LicenseeName = criteria.LicenseeName,
-                    LegendType = (LegendType)criteria.LegendType,
-                    IsAllowedMemberComm = criteria.IsAllowedMemberComm
-                };
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Authenticates the admin.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Return admin information.</returns>
-        public AdminInfo AuthenticateAdmin(AdminLoginCriteria criteria)
-        {
-            criteria.UserPwd = Cryptography.CreateHash(criteria.UserPwd, criteria.UserSalt);
-            Execute(criteria);
-            if (criteria.ErrCode == Result.SuccessValue)
-            {
-                return new AdminInfo
-                {
-                    UserId = criteria.UserId,
-                    UserName = criteria.UserName,
-                    AccountType = AccountType.CSDIT
-                };
-            }
-
-            return null;
-        }
-
-        public string GetAgentSalt(AgentSaltSelCriteria criteria)
-        {
-            Execute(criteria);
-            return criteria.UserSalt;
-        }
-
-        public string GetAdminSalt(AdminSaltSelCriteria criteria)
-        {
-            Execute(criteria);
-            return criteria.UserSalt;
-        }
-
-        public void AdminCheckIn(AdminCheckInCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AgentCheckIn(AgentCheckInCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AgentChangePassword(AgentChangePwdCriteria criteria)
+        public void AgentChangePassword(AgentChangePasswordCriteria criteria)
         {
             Execute(criteria);
         }
 
         public void AgentReCheckIn(AgentReCheckInCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminReCheckIn(AdminReCheckInCriteria criteria)
         {
             Execute(criteria);
         }
@@ -120,32 +28,7 @@
             Execute(criteria);
         }
 
-        public IList<LicenseeEntity> GetLicenseeList(int userId)
-        {
-            var criteria = new GetLicenseeListCriteria
-            {
-                UserId = userId
-            };
-
-            return GetEntites<LicenseeEntity>(criteria);
-        }
-
-        public void InternalLoginAsUser(InternalLoginAsUserCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AdminCheckInLicensee(AdminCheckInLicenseeCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void AgentReCheckInLicensee(AgentReCheckInLicenseeCriteria criteria)
-        {
-            Execute(criteria);
-        }
-
-        public void LicenseeAdminLogin(LicenseeAdminLoginCriteria criteria)
+        public void AdminReCheckIn(AdminReCheckInCriteria criteria)
         {
             Execute(criteria);
         }

@@ -149,7 +149,7 @@
                 else
                 {
                     model.DefaultGroupId = model.IsResetDefault ? model.GroupCommId : model.DefaultGroupId;
-                    ViewBag.Result = Las.UpdateSuccessfully;
+                    ViewBag.Result = Las.CreatedSuccessfully;
                 }
             }
 

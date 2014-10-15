@@ -90,6 +90,7 @@
     <Setting Key="LAS_Switch_UpdateAgentId_Writelog" SpName="LAS_Switch_UpdateAgentId_Writelog" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_GetMemberInfo" SpName="LAS_GetMemberInfo" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="LAS_GetAgentInfoByMember" SpName="LAS_GetAgentInfoByMember" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_Cash_SwitchUserValidate" SpName="Las_Cash_SwitchUserValidate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="Authorize">
     <Setting Key="Las_CheckCurrencyPermission" SpName="Las_CheckCurrencyPermission" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

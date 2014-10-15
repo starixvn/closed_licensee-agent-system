@@ -443,8 +443,8 @@ var core = (function ($) {
             }
         },
         hideErrors: function () {  // 'this' is the form element
-            var container = $('.validation-summary-valid');
-            container.hide();
+            $('.validation-summary-valid').hide();
+            $('.validation-summary-errors').hide();
         },
         getQueryParamValue: function (name) {
             name = name.toLowerCase().replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

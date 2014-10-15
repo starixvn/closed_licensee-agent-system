@@ -73,10 +73,10 @@
             // Close deposit member before Update (Pending member: CustId = 0).
             if (!customer.IsClosed && customer.CustId > 0 && model.Mode == ArrangementMode.SwitchFromNormal)
             {
-                var errMsg = UpdateCustomerStatus(customer, true);
-                if (!string.IsNullOrEmpty(errMsg))
+                errCode = UpdateCustomerStatus(customer, true);
+                if (errCode != 0)
                 {
-                    ModelState.AddModelError(string.Empty, errMsg);
+                    ModelState.AddModelError(string.Empty, GetErrMsg(errCode));
                     return View(model);
                 }
             }
@@ -385,7 +385,7 @@
         /// <param name="customer">The customer.</param>
         /// <param name="isClosed">Member Status.</param>
         /// <returns>Error Code.</returns>
-        private string UpdateCustomerStatus(DepositCustomerEntity customer, bool isClosed)
+        private int UpdateCustomerStatus(DepositCustomerEntity customer, bool isClosed)
         {
             var action = new UpdateMemberStatusAction
             {
@@ -401,10 +401,10 @@
 
             if (serviceResult.ErrCode != Result.SuccessValue)
             {
-                return serviceResult.ErrMsg;
+                return (int)ErrCode.Msg_2022;
             }
 
-            return string.Empty;
+            return Result.SuccessValue;
         }
 
         /// <summary>

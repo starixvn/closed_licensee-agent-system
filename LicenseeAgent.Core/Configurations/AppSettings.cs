@@ -12,10 +12,7 @@
     /// </summary>
     public static class AppSettings
     {
-        [SuppressMessage(
-           "StyleCop.CSharp.Nexcel.NexcelCustomRules",
-           "SP2101:MethodMustNotContainMoreLinesThan",
-           Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Having many application settings")]
         static AppSettings()
         {
             var downTimeValue = GetValue("DownTime");
@@ -88,7 +85,7 @@
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Verified.")]
+        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "This URL is allowed empty in local environment")]
         public static string UnderMaintenanceUrl { get; private set; }
 
         public static bool IsDownTime { get; private set; }

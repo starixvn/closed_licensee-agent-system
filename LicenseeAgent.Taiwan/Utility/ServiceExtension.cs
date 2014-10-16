@@ -40,7 +40,7 @@
         /// </summary>
         /// <param name="logInformations">List log information.</param>
         /// <param name="memberStatusResult">Member status result.</param>
-        public static void UpdateLogInformations(IList<UpdateMemberStatusLogEntity> logInformations, MemberStatusResult memberStatusResult)
+        public static void UpdateLogInformations(IList<UpdateMemberStatusLogEntity> logInformations, UpdateMemberStatusResult memberStatusResult)
         {
             if (memberStatusResult.ErrCode == Result.SuccessValue)
             {

@@ -8,9 +8,9 @@
     /// MemberListResult class.
     /// </summary>
     [DataContract]
-    public class MemberListResult : ResponseResult
+    public class GetMemberInfoListResult : ResponseResult
     {
-        public MemberListResult(int errorCode, string errorMessage)
+        public GetMemberInfoListResult(int errorCode, string errorMessage)
             : base(errorCode, errorMessage)
         {
             Members = new List<ServiceMemberEntity>();

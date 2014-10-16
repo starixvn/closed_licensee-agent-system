@@ -1,6 +1,5 @@
 ﻿namespace LicenseeAgent.CustomerList.Controllers
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Common;
@@ -203,8 +202,7 @@
                 AgentId = model.AgentId,
                 AccStatus = model.Status
             };
-
-            var agents = _agentListService.UpdateAgentAccStatus(criteria);
+            var agentsHasMember = _agentListService.UpdateAgentAccStatus(criteria);
             if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
@@ -212,7 +210,7 @@
                     LicenseeId = CurrentSession.AgentInfo.LicenseeId,
                     UserId = CurrentSession.LoginUserId,
                     SiteName = CurrentSession.AgentInfo.LicenseeName,
-                    LASAgentId = string.Join(",", agents.Select(a => a.AgentId.ToString()).ToArray()),
+                    LASAgentId = string.Join(",", agentsHasMember.Select(a => a.AgentId.ToString()).ToArray()),
                     IsClosed = true
                 });
 

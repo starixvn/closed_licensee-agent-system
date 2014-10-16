@@ -21,6 +21,11 @@
             return GetEntites<AgentEntity>(criteria);
         }
 
+        /// <summary>
+        /// Updates the agent account status and get list of agents who has direct members.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns list of agents.</returns>
         public IList<AgentEntity> UpdateAgentAccStatus(UpdateAgentStatusCriteria criteria)
         {
             return GetEntites<AgentEntity>(criteria);

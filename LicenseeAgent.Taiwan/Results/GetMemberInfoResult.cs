@@ -7,9 +7,9 @@
     /// MemberResult class.
     /// </summary>
     [DataContract]
-    public class MemberResult : ResponseResult
+    public class GetMemberInfoResult : ResponseResult
     {
-        public MemberResult(int errorCode, string errorMessage)
+        public GetMemberInfoResult(int errorCode, string errorMessage)
             : base(errorCode, errorMessage)
         {
         }

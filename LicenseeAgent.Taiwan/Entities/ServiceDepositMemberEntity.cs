@@ -23,5 +23,13 @@
 
         [DataMember(Name = "LASAgentID")]
         public int LASAgentId { get; set; }
+
+        public int Status
+        {
+            get
+            {
+                return IsClosed ? (int)AccountStatus.Closed : (int)AccountStatus.Open;
+            }
+        }
     }
 }

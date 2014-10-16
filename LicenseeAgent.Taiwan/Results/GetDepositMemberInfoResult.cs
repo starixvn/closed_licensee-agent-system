@@ -1,21 +1,20 @@
 ﻿namespace LicenseeAgent.Taiwan.Results
 {
-    using System.Collections.ObjectModel;
     using System.Runtime.Serialization;
     using LicenseeAgent.Taiwan.Entities;
 
     /// <summary>
-    /// MemberStatusResult class.
+    /// MemberResult class.
     /// </summary>
     [DataContract]
-    public class MemberStatusResult : ResponseResult
+    public class GetDepositMemberInfoResult : ResponseResult
     {
-        public MemberStatusResult(int errorCode, string errorMessage)
+        public GetDepositMemberInfoResult(int errorCode, string errorMessage)
             : base(errorCode, errorMessage)
         {
         }
 
         [DataMember(Name = "Data")]
-        public Collection<MemberStatusEntity> MemberStatuses { get; set; }
+        public ServiceDepositMemberEntity Member { get; set; }
     }
 }

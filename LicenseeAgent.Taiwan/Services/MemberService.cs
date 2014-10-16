@@ -125,7 +125,7 @@
         /// <returns>Member entity after merging.</returns>
         public ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action)
         {
-            var memberResult = ServiceWrapper.GetActionResponse<MemberResult>(action);
+            var memberResult = ServiceWrapper.GetActionResponse<GetMemberInfoResult>(action);
             if (memberResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.Map(memberResult.Member, memberEntity);
@@ -147,7 +147,7 @@
         /// <returns>List member entity after merging.</returns>
         public ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, GetMemberInfoListAction action)
         {
-            var memberListResult = ServiceWrapper.GetActionResponse<MemberListResult>(action);
+            var memberListResult = ServiceWrapper.GetActionResponse<GetMemberInfoListResult>(action);
             if (memberListResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.Map(memberListResult.Members, memberEntitys, new MemberFilter());
@@ -176,7 +176,7 @@
         /// </returns>
         public ResponseResult GetDepositMemberInformation<T>(T memberEntity, GetDepositMemberInfoAction action)
         {
-            var memberResult = ServiceWrapper.GetActionResponse<DepositMemberResult>(action);
+            var memberResult = ServiceWrapper.GetActionResponse<GetDepositMemberInfoResult>(action);
             if (memberResult.ErrCode == Result.SuccessValue)
             {
                 ServiceMapper.Map(memberResult.Member, memberEntity);
@@ -216,7 +216,7 @@
             var criteria = (ChangeStatusMemberCriteria)action.CreateCriteria();
             var customerLogs = _logService.GetUpdateMemberStatusLogs(criteria);
 
-            var memberStatusResult = ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
+            var memberStatusResult = ServiceWrapper.GetActionResponse<UpdateMemberStatusResult>(action);
             if (ServiceExtension.IsUpdateMultipleStatus(action.IBCCustId))
             {
                 ServiceExtension.UpdateLogInformations(customerLogs, memberStatusResult);
@@ -254,7 +254,7 @@
         /// <returns>Response result.</returns>
         public ResponseResult SyncMonitoringUpdateMemberStatus(UpdateMemberStatusAction action)
         {
-            return ServiceWrapper.GetActionResponse<MemberStatusResult>(action);
+            return ServiceWrapper.GetActionResponse<UpdateMemberStatusResult>(action);
         }
 
         /// <summary>

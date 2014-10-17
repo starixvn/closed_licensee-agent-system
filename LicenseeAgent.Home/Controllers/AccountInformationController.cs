@@ -214,6 +214,7 @@
                 var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
                 ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
+                    IsDirectDownLine = customer.IsDirect,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
                 };
             }
@@ -282,6 +283,7 @@
                 var isMember = customer.Level == Constants.MemberLevel;
                 ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
+                    IsDirectDownLine = customer.IsDirect,
                     IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
                 };
             }

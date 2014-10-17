@@ -81,7 +81,7 @@
 
         public int NumberOfLevel { get; private set; }
 
-        public bool IsDirectDownLine { get; private set; }
+        public bool IsDirectDownLine { get; set; }
 
         public int CustId { get; private set; }
 

@@ -72,7 +72,7 @@
         /// <param name="model">The model.</param>
         /// <returns>Page member list.</returns>
         [HttpGet]
-        public ActionResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
+        public ViewResult Index([ModelBinder(typeof(AgentBreadcrumbModelBinder))]AgentBreadcrumbViewModel model)
         {
             var productInfos = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)

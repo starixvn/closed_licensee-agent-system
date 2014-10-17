@@ -162,8 +162,9 @@ report.statement.detail = (function ($) {
 
     return {
         init: function () {
-            $('#fromDatePicker').datepicker();
-            $('#toDatePicker').datepicker();
+            $('.datepicker').datepicker({
+                endDate: '+3y'
+            });
             $('form').submit(function (e) {
                 report.statement.detail.submit();
                 e.preventDefault();

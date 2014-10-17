@@ -366,7 +366,7 @@
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Home\Content\AccountInformation\account-information.less" />
-    <Content Include="Areas\Home\Views\AccountInformation\_AgentInfo.cshtml" />
+    <Content Include="Areas\Home\Views\AccountInformation\_CustomerInfo.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_BalanceInfoTab.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Credit\_BalanceInformation.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\Cash\_BalanceInformation.cshtml" />

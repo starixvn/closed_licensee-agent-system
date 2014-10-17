@@ -6,6 +6,7 @@
     var hasResetPassword = true;
     var hasEditInfo = (SessionManager.CurrentSession.IsAdmin || pageContext.IsDirectDownLine) && !(pageContext.IsMember && pageContext.IsDeposit);
     var hasAddDownLine = !pageContext.IsMember
+        && Model.Customer.Status == (int)AccountStatus.Open
         && (currentSession.IsAdmin || pageContext.IsDirectDownLine)
         && (currentSession.AgentInfo.IsCredit || (!pageContext.IsLastLevel && currentSession.AgentInfo.IsDeposit));
 }

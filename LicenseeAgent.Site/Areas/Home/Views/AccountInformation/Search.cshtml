@@ -28,7 +28,7 @@
 }
 @if (pageContext != null && viewResult == null)
 {
-    @Html.Partial("_AgentInfo", Model)
+    @Html.Partial("_CustomerInfo", Model)
 
     <div class="controls-row">
         @if (pageContext.IsMember)
@@ -41,11 +41,11 @@
         {
             if (!pageContext.IsLastLevel)
             {
-            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Agent", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Agent", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName })">
                 @Las.AgentList
             </button>
             }
-            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Member", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName, numberOfLevel = Model.Customer.NumberOfLevel })">
+            <button class="btn btn-inverse" data-url="@Url.Action("Index", "Member", new { area = "CustomerList", agentId = Model.Customer.CustId, agentLevel = Model.Customer.Level, agentName = Model.Customer.UserName })">
                 @Las.DirectMemberList
             </button>
         }

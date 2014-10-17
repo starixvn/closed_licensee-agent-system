@@ -46,7 +46,7 @@
             {
                 agentInfo = currentSession.AgentInfo;
             }
-            else if (_downLinePermissionService.IsDirectDownLineAgent(agentId))
+            else if (_downLinePermissionService.IsDownLineAgent(agentId))
             {
                 agentInfo = _coreService.GetAgentInfo(agentId);
             }

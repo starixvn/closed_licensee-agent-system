@@ -3,6 +3,7 @@
     @using (Html.BeginForm("DirectMember", null, FormMethod.Post,
     new { @class = "form-inline form-filter", id = "directMember" }))
     {
+        @Html.ValidationSummary()
         <div class="controls-row">
             @Html.LabelFor(x => x.DirectMemberUserName)
             @Html.TextBoxFor(x => x.DirectMemberUserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })

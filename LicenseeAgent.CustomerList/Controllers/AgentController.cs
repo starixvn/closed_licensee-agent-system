@@ -203,7 +203,7 @@
                 AccStatus = model.Status
             };
             var agentsHasMember = _agentListService.UpdateAgentAccStatus(criteria);
-            if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed)
+            if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed && agentsHasMember.Count > 0)
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
                 {

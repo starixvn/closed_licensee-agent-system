@@ -84,7 +84,7 @@ var betList = (function ($) {
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();
-                        $('#BetListGrid').fanexGrid('resizeGrid');
+                        $('.freegrid').fanexGrid('resizeGrid');
                     },
                     complete: function () {
                         core.unblockUI();
@@ -97,7 +97,7 @@ var betList = (function ($) {
             if (!dataExisted) {
                 loadMixParlayDetail(transId);
             } else {
-                $('#BetListGrid').fanexGrid('resizeGrid');
+                $('.freegrid').fanexGrid('resizeGrid');
             }
         },
         ViewDownline: function (agentId, agentLevel, username) {

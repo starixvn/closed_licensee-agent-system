@@ -125,7 +125,7 @@ totalBets.otherSports = (function ($) {
                 }
             }, function (data) {
                 gridOptions.bodyRows = totalBets.otherSports.genGridRows(data);
-                $('#BetListGrid').show().fanexGrid(gridOptions);
+                $('.freegrid').show().fanexGrid(gridOptions);
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
             });
         },

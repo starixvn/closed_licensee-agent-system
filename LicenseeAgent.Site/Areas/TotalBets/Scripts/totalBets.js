@@ -137,7 +137,7 @@ var totalBets = (function ($) {
                 }
             }, function (data) {
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
-                $('#BetListGrid').trigger('data', [data]);
+                $('.freegrid').trigger('data', [data]);
             });
         },
         generateBetListLink: function (matchId, bettype, betteam, showliveticket, linkvalue) {

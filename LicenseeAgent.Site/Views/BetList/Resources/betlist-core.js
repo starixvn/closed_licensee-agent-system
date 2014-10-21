@@ -59,7 +59,7 @@ fanex.betlist.core = {
             ];
         }
         gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-        $('#BetListGrid').show().fanexGrid(gridOptions);
+        $('.freegrid').show().fanexGrid(gridOptions);
     },
     getIpInformation: function (ipAddress) {
         'use strict';
@@ -99,7 +99,7 @@ fanex.betlist.core = {
                 success: function (response) {
                     divEvent.html(response);
                     $(".line:last", divEvent).remove();
-                    $('#BetListGrid').fanexGrid('resizeGrid');
+                    $('.freegrid').fanexGrid('resizeGrid');
                 },
                 beforeSend: function () {
                     core.blockUI();
@@ -115,7 +115,7 @@ fanex.betlist.core = {
         if (!dataExisted) {
             loadMixParlayDetail(transId, sportType, betType);
         } else {
-            $('#BetListGrid').fanexGrid('resizeGrid');
+            $('.freegrid').fanexGrid('resizeGrid');
         }
     },
     showSystemParlayDetails: function (refNo, transId, betTeam) {

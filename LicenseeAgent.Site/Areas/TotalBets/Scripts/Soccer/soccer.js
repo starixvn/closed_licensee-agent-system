@@ -46,7 +46,7 @@ totalBets.soccer = (function ($) {
             totalBets.soccer.initBetListGridOptions();
             totalBets.init(betListGridOptions);
 
-            $('#BetListGrid').on('data', function (e, data) {
+            $('.freegrid').on('data', function (e, data) {
                 gridOptions.bodyRows = totalBets.soccer.genGridRows(data);
                 $(this).show().fanexGrid(gridOptions);
             });

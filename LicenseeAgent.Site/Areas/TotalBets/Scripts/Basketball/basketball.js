@@ -53,7 +53,7 @@ totalBets.basketball = (function ($) {
 
             totalBets.init(betListGridOptions);
 
-            $('#BetListGrid').on('data', function (e, data) {
+            $('.freegrid').on('data', function (e, data) {
                 gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
                 $(this).show().fanexGrid(gridOptions);
             });
@@ -65,7 +65,7 @@ totalBets.basketball = (function ($) {
                 e.preventDefault();
             });
 
-            $('#BetListGrid').on('data', function (e, data) {
+            $('.freegrid').on('data', function (e, data) {
                 gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
                 $(this).show().fanexGrid(gridOptions);
             });

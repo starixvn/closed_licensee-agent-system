@@ -119,7 +119,7 @@ var betList = (function ($) {
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();
-                        $('#BetListGrid').fanexGrid('resizeGrid');
+                        $('.freegrid').fanexGrid('resizeGrid');
                     },
                     beforeSend: function () {
                         core.blockUI();
@@ -136,7 +136,7 @@ var betList = (function ($) {
                 loadMixParlayDetail(transId);
             }
             else {
-                $('#BetListGrid').fanexGrid('resizeGrid');
+                $('.freegrid').fanexGrid('resizeGrid');
             }
         }
     };

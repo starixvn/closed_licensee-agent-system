@@ -127,7 +127,7 @@ report.agentOutstanding = (function ($) {
 
                 outstandingGridOptions.bodyRows = core.genGridRows(data.List, outstandingGridOptions);
                 outstandingGridOptions.footerRows = footerRows;
-                $('#BetListGrid').show().fanexGrid(outstandingGridOptions);
+                $('.freegrid').show().fanexGrid(outstandingGridOptions);
             });
         },
         showBetList: function (custId, userName) {
@@ -153,7 +153,7 @@ report.agentOutstanding = (function ($) {
                 }
                 gridOptions.hiddenColumns = hiddenColumns;
                 gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
-                $('#BetListGrid').show().fanexGrid(gridOptions);
+                $('.freegrid').show().fanexGrid(gridOptions);
             });
         },
         showBetListDetails: function (transId, status) {

@@ -17,9 +17,9 @@
     /// <summary>
     /// Customer repository.
     /// </summary>
-    public class VirtualSportsSettingService : SettingServiceBase, IVirtualSportsSettingService
+    public class VirtualSportsSettingService : ThirdProductService, IVirtualSportsSettingService
     {
-        public ProductCode ProductId
+        public override ProductCode ProductId
         {
             get
             {
@@ -27,42 +27,12 @@
             }
         }
 
-        public string Name
+        public override string Name
         {
             get
             {
                 return "virtualSportsSetting";
             }
-        }
-
-        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
-        {
-            errCode = Result.FailureValue;
-            return null;
-        }
-
-        /// <summary>
-        /// Get customer setting for updating.
-        /// </summary>
-        /// <param name="settingContext">Current setting Context.</param>
-        /// <param name="errCode">The error code.</param>
-        /// <returns>
-        /// Virtual Sports customer setting.
-        /// </returns>
-        public CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode)
-        {
-            CustomerSetting customerSetting;
-            errCode = Result.FailureValue;
-            if (settingContext.TargetRoleId == (int)Role.Member)
-            {
-                GetSettingForUpdateMember(settingContext, out customerSetting, out errCode);
-            }
-            else
-            {
-                GetSettingForUpdateAgent(settingContext, out customerSetting, out errCode);
-            }
-
-            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode);
         }
 
         /// <summary>
@@ -144,118 +114,11 @@
         }
 
         /// <summary>
-        /// Get default setting for edit customer.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="customerSetting">The customer setting.</param>
-        /// <param name="errCode">The MSG unique identifier.</param>
-        private void GetSettingForUpdateAgent(
-            SettingContext settingContext,
-            out CustomerSetting customerSetting,
-            out int errCode)
-        {
-            var criteria = GetCriteriaForUpdateAgent(settingContext);
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var custInfo = new CustomerInfo();
-                IList<BettingLimitItem> bettingLimiList = null;
-                IList<PositionTakingItem> positionTakingList = null;
-                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
-                    {
-                        custInfo = CustomerInfoDataReader.ReaderAgentInfo(reader);
-
-                        if (settingContext.FormId != FormType.EditIndirectMember)
-                        {
-                            if (reader.NextResult())
-                            {
-                                bettingLimiList = BettingLimitDataReader.ReadBetLimitData(reader, true);
-                            }
-                        }
-
-                        if (reader.NextResult())
-                        {
-                            positionTakingList = PositionTakingDataReader.ReadAgentPositionTakingDataForUpdate(reader, settingContext.TargetRoleId);
-                        }
-                    }
-
-                    var outputParams = objDb.GetOuputParams();
-                    errCode = Converter.ToInt(outputParams["msgid"]);
-                    customerSetting = CreateCustomerSetting(custInfo, bettingLimiList, positionTakingList);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
-        }
-
-        /// <summary>
-        /// Get default setting for edit member.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="customerSetting">The customer setting.</param>
-        /// <param name="errCode">The MSG unique identifier.</param>
-        private void GetSettingForUpdateMember(
-            SettingContext settingContext,
-            out CustomerSetting customerSetting,
-            out int errCode)
-        {
-            var criteria = GetCriteriaForUpdateMember(settingContext);
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                var custInfo = new CustomerInfo();
-                IList<BettingLimitItem> bettingLimiList = null;
-                IList<PositionTakingItem> positionTakingList = null;
-                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
-                    {
-                        string userGroup;
-                        custInfo = CustomerInfoDataReader.ReaderMemberInfo(reader, out userGroup);
-
-                        if (settingContext.FormId != FormType.EditIndirectMember)
-                        {
-                            if (reader.NextResult())
-                            {
-                                bettingLimiList = BettingLimitDataReader.ReadBetLimitData(reader, true);
-                            }
-                        }
-
-                        if (reader.NextResult())
-                        {
-                            positionTakingList = PositionTakingDataReader.ReadMemberPositionTakingData(reader);
-                        }
-                    }
-
-                    var outputParams = objDb.GetOuputParams();
-                    errCode = Converter.ToInt(outputParams["msgid"]);
-                    customerSetting = CreateCustomerSetting(custInfo, bettingLimiList, positionTakingList);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message, exception.InnerException);
-            }
-        }
-
-        /// <summary>
         /// Initializes the criteria for getting Virtual Sports setting for update.
         /// </summary>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Criteria for getting Virtual Sports setting.</returns>
-        private ICriteria GetCriteriaForUpdateAgent(SettingContext settingContext)
+        public override ICriteria GetCriteriaForUpdateAgent(SettingContext settingContext)
         {
             ICriteria criteria = null;
 
@@ -282,7 +145,7 @@
         /// </summary>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Criteria for getting Virtual Sports setting.</returns>
-        private ICriteria GetCriteriaForUpdateMember(SettingContext settingContext)
+        public override ICriteria GetCriteriaForUpdateMember(SettingContext settingContext)
         {
             ICriteria criteria = null;
 
@@ -306,26 +169,6 @@
             }
 
             return criteria;
-        }
-
-        /// <summary>
-        /// Create Customer setting Virtual Sports  for update.
-        /// </summary>
-        /// <param name="custInfo">The customer info.</param>
-        /// <param name="bettingLimiList">The betting limit info.</param>
-        /// <param name="positionTakingList">The position taking info.</param>
-        /// <returns>Customer Setting Virtual Sports.</returns>
-        private CustomerSetting CreateCustomerSetting(
-            CustomerInfo custInfo,
-            IList<BettingLimitItem> bettingLimiList,
-            IList<PositionTakingItem> positionTakingList)
-        {
-            return new CustomerSetting
-            {
-                CustInfo = custInfo,
-                BettingLimitSetting = bettingLimiList,
-                PositionTakingSetting = positionTakingList
-            };
         }
 
         /// <summary>

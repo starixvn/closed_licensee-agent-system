@@ -412,6 +412,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Australia Acttab.
+        /// </summary>
+        public static string AustraliaActtab {
+            get {
+                return ResourceManager.GetString("AustraliaActtab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Australia Acttab position taking setting is being applied to:.
+        /// </summary>
+        public static string AustraliaActtabCopyPt {
+            get {
+                return ResourceManager.GetString("AustraliaActtabCopyPt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy all below position taking settings from Australia Acttab.
+        /// </summary>
+        public static string AustraliaActtabCopyPtTooltip {
+            get {
+                return ResourceManager.GetString("AustraliaActtabCopyPtTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available Fund.
         /// </summary>
         public static string AvailableFund {
@@ -529,6 +556,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bejing Keno 8.
+        /// </summary>
+        public static string BejingKeno8 {
+            get {
+                return ResourceManager.GetString("BejingKeno8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet.
         /// </summary>
         public static string Bet {
@@ -624,6 +660,15 @@ namespace LicenseeAgent.Resources {
         public static string Both {
             get {
                 return ResourceManager.GetString("Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Canada Keno.
+        /// </summary>
+        public static string CanadaKeno {
+            get {
+                return ResourceManager.GetString("CanadaKeno", resourceCulture);
             }
         }
         
@@ -1359,6 +1404,33 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Keno.
+        /// </summary>
+        public static string EditKeno {
+            get {
+                return ResourceManager.GetString("EditKeno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Keno Agent.
+        /// </summary>
+        public static string EditKenoAgent {
+            get {
+                return ResourceManager.GetString("EditKenoAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Keno Member.
+        /// </summary>
+        public static string EditKenoMember {
+            get {
+                return ResourceManager.GetString("EditKenoMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Setting Of Other Products.
         /// </summary>
         public static string EditSettingOfOtherProducts {
@@ -2034,6 +2106,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note: In simple mode, your changes of keno setting will be applied to all sport types as well..
+        /// </summary>
+        public static string KenoSimpleModeNote {
+            get {
+                return ResourceManager.GetString("KenoSimpleModeNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kick Off. Time.
         /// </summary>
         public static string KickOffTime {
@@ -2255,6 +2336,24 @@ namespace LicenseeAgent.Resources {
         public static string Maintenance {
             get {
                 return ResourceManager.GetString("Maintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Malta.
+        /// </summary>
+        public static string Malta {
+            get {
+                return ResourceManager.GetString("Malta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Massac.
+        /// </summary>
+        public static string Massac {
+            get {
+                return ResourceManager.GetString("Massac", resourceCulture);
             }
         }
         
@@ -3006,6 +3105,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ohio.
+        /// </summary>
+        public static string Ohio {
+            get {
+                return ResourceManager.GetString("Ohio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string OK {
@@ -3128,6 +3236,15 @@ namespace LicenseeAgent.Resources {
         public static string OtherSports {
             get {
                 return ResourceManager.GetString("OtherSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other sport types of Australia Acttab.
+        /// </summary>
+        public static string OtherSporttypeOfAustraliaActtab {
+            get {
+                return ResourceManager.GetString("OtherSporttypeOfAustraliaActtab", resourceCulture);
             }
         }
         
@@ -3770,6 +3887,15 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slovakia Eklub.
+        /// </summary>
+        public static string SlovakiaEklub {
+            get {
+                return ResourceManager.GetString("SlovakiaEklub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Soccer.
         /// </summary>
         public static string Soccer {
@@ -3946,6 +4072,15 @@ namespace LicenseeAgent.Resources {
         public static string SystemParlay {
             get {
                 return ResourceManager.GetString("SystemParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taiwan Bingo Bingo.
+        /// </summary>
+        public static string TaiwanBingoBingo {
+            get {
+                return ResourceManager.GetString("TaiwanBingoBingo", resourceCulture);
             }
         }
         
@@ -4346,6 +4481,24 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Keno.
+        /// </summary>
+        public static string ViewKeno {
+            get {
+                return ResourceManager.GetString("ViewKeno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Keno Agent.
+        /// </summary>
+        public static string ViewKenoAgent {
+            get {
+                return ResourceManager.GetString("ViewKenoAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Log.
         /// </summary>
         public static string ViewLog {
@@ -4486,6 +4639,15 @@ namespace LicenseeAgent.Resources {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to West Canada Keno.
+        /// </summary>
+        public static string WestCanadaKeno {
+            get {
+                return ResourceManager.GetString("WestCanadaKeno", resourceCulture);
             }
         }
         

@@ -1,0 +1,25 @@
+﻿<div>
+    <div class="betting-limit-sport">
+        <span>{{betSetting.betTypeName}}</span> <span data-ng-click="betLimitService.copyPartial(betSetting, currentIndex, bettingLimitsModel)"
+            class="icon-setting-copy" data-ng-if="currentIndex == 0" title="{{languageService.getString('CopyAllBetSettingVirtualSoccer')}}">
+        </span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMinBet()"}'>
+        <span data-ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number
+            : 0}} </span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMaxBet()"}'>
+        <span data-ng-show="betSetting.MinMaxBet > 0">&lt;= {{betSetting.MinMaxBet | number
+            : 0}} </span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMaxPerMatch()"}'>
+        <span data-ng-show="betSetting.MinMaxPerMatch > 0">&lt;= {{betSetting.MinMaxPerMatch
+            | number : 0}} </span>
+    </div>
+</div>

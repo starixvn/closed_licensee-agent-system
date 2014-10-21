@@ -41,6 +41,9 @@
                     case (int)ProductCode.Product_5:
                         url = Url.Action("EditAgent", "VirtualSports", new { agentId = model.AgentId });
                         break;
+                    case (int)ProductCode.Product_8:
+                        url = Url.Action("EditAgent", "Keno", new { agentId = model.AgentId });
+                        break;
                 }
 
                 if (!string.IsNullOrEmpty(url))
@@ -81,6 +84,9 @@
                 {
                     case (int)ProductCode.Product_5:
                         url = Url.Action("EditMember", "VirtualSports", new { memberId = model.CustId });
+                        break;
+                    case (int)ProductCode.Product_8:
+                        url = Url.Action("EditMember", "Keno", new { memberId = model.CustId });
                         break;
                 }
 
@@ -128,6 +134,7 @@
                 RoleId = model.RoleId,
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId,
+                ProductId = (int)model.ProductId,
                 Ip = Request.GetClientIp()
             };
 
@@ -136,12 +143,12 @@
                 return RedirectToAccessDeniedJavascript();
             }
 
-            var errCode = Result.FailureValue;
+            var result = new Result { ErrCode = Result.FailureValue };
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(Formatter.FormatJson("settingContext", settingContext));
             var productService = GetProductService(model.ProductId);
-            var productSetting = productService.GetSettingForUpdate(settingContext, out errCode);
-            if (errCode == Result.SuccessValue)
+            var productSetting = productService.GetSettingForUpdate(settingContext, result);
+            if (result.ErrCode == Result.SuccessValue)
             {
                 if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
                 {
@@ -154,8 +161,8 @@
                 {
                     if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                     {
-                        var numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, out errCode);
-                        if (errCode == Result.SuccessValue)
+                        var numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, result);
+                        if (result.ErrCode == Result.SuccessValue)
                         {
                             stringBuilder.Append(Formatter.FormatJson(NumberGameService.Name, numberGameSetting));
                         }
@@ -163,10 +170,9 @@
                 }
             }
 
-            if (errCode != Result.SuccessValue)
+            if (result.ErrCode != Result.SuccessValue)
             {
-                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
-                stringBuilder.Append(Formatter.FormatJson("result", result));
+                stringBuilder.Append(Formatter.FormatJson("result", new Result(result.ErrCode, ResourceManager.GetErrMsg(result.ErrCode))));
             }
 
             return JavaScript(stringBuilder.ToString());
@@ -188,6 +194,7 @@
                 RoleId = model.RoleId,
                 TargetCustId = model.TargetCustId,
                 TargetRoleId = model.TargetRoleId,
+                ProductId = (int)model.ProductId,
                 Ip = Request.GetClientIp()
             };
 
@@ -196,9 +203,9 @@
                 return RedirectToAccessDeniedJson();
             }
 
-            var errCode = Result.FailureValue;
+            var result = new Result { ErrCode = Result.FailureValue };
             var productService = GetProductService(model.ProductId);
-            var productSetting = productService.GetSettingForUpdate(settingContext, out errCode);
+            var productSetting = productService.GetSettingForUpdate(settingContext, result);
             CustomerSetting2 numberGameSetting = null;
             if (model.TargetRoleId == (int)Role.Member && productSetting.CustInfo != null)
             {
@@ -210,7 +217,7 @@
             {
                 if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                 {
-                    numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, out errCode);
+                    numberGameSetting = NumberGameService.GetSettingForUpdate(settingContext, result);
                 }
             }
 
@@ -237,6 +244,9 @@
 
                 case ProductCode.Product_5:
                     return VirtualSportsService;
+
+                case ProductCode.Product_8:
+                    return KenoService;
             }
 
             return null;

@@ -78,6 +78,7 @@
             ViewBag.PageContext = new PageContext(CurrentSession, model.AgentId, model.AgentLevel)
             {
                 IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                IsOfferedKeno = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_8),
                 IsMember = true
             };
 

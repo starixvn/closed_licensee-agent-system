@@ -103,6 +103,8 @@
 
         public bool IsOfferedVirtualSports { get; set; }
 
+        public bool IsOfferedKeno { get; set; }
+
         public bool IsDeposit { get; set; }
     }
 }

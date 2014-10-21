@@ -13,17 +13,8 @@
     /// <summary>
     /// VirtualSportsController class.
     /// </summary>
-    public class VirtualSportsController : ProductBaseController
+    public class VirtualSportsController : ThirdProductController
     {
-        #region Constructors
-
-        public VirtualSportsController()
-            : base(null, null, null, null, null, null, null)
-        {
-        }
-
-        #endregion Constructors
-
         #region Update setting
 
         /// <summary>
@@ -36,25 +27,7 @@
         [HttpGet]
         public ActionResult EditAgent(EditAgentViewModel model)
         {
-            var agentInfo = CoreService.GetAgentInfo(model.AgentId);
-            var settingContext = new SettingContext(CurrentSession)
-            {
-                FormId = (CurrentSession.AgentInfo.IsLevel0 || agentInfo.AgentLevel - CurrentSession.AgentInfo.AgentLevel == 1)
-                    ? FormType.Edit
-                    : FormType.ViewIndirectAgent,
-                TargetCustId = model.AgentId,
-                TargetRoleId = ModelHelper.IsAgentLevel1(agentInfo.AgentLevel) ? (int)Role.AgentLevel1 : (int)Role.Agent,
-                Ip = Request.GetClientIp()
-            };
-
-            var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-            if (!productInfos.Where(x => x.ProductId == (int)ProductCode.Product_5).Any() || !CheckPermissionForEditing(settingContext))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            return View("EditCustomer", settingContext);
+            return EditAgent(model, ProductCode.Product_5);
         }
 
         /// <summary>
@@ -67,15 +40,7 @@
         [HttpGet]
         public ActionResult EditMember(EditMemberViewModel model)
         {
-            var settingContext = GetEditMemberSettingContext(model);
-            var productInfos = CoreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-
-            if (!productInfos.Where(x => x.ProductId == (int)ProductCode.Product_5).Any() || !CheckPermissionForEditing(settingContext))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-            
-            return View("EditCustomer", settingContext);
+            return EditMember(model, ProductCode.Product_5);
         }
 
         /// <summary>

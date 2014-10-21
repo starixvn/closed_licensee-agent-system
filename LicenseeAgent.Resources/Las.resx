@@ -1646,4 +1646,58 @@ Please note that this action cannot be undone and this account will be temporari
   <data name="CreatedSuccessfully" xml:space="preserve">
     <value>Created successfully</value>
   </data>
+  <data name="AustraliaActtab" xml:space="preserve">
+    <value>Australia Acttab</value>
+  </data>
+  <data name="AustraliaActtabCopyPt" xml:space="preserve">
+    <value>Australia Acttab position taking setting is being applied to:</value>
+  </data>
+  <data name="AustraliaActtabCopyPtTooltip" xml:space="preserve">
+    <value>Copy all below position taking settings from Australia Acttab</value>
+  </data>
+  <data name="BejingKeno8" xml:space="preserve">
+    <value>Bejing Keno 8</value>
+  </data>
+  <data name="CanadaKeno" xml:space="preserve">
+    <value>Canada Keno</value>
+  </data>
+  <data name="EditKeno" xml:space="preserve">
+    <value>Edit Keno</value>
+  </data>
+  <data name="EditKenoAgent" xml:space="preserve">
+    <value>Edit Keno Agent</value>
+  </data>
+  <data name="EditKenoMember" xml:space="preserve">
+    <value>Edit Keno Member</value>
+  </data>
+  <data name="KenoSimpleModeNote" xml:space="preserve">
+    <value>Note: In simple mode, your changes of keno setting will be applied to all sport types as well.</value>
+  </data>
+  <data name="Malta" xml:space="preserve">
+    <value>Malta</value>
+  </data>
+  <data name="Massac" xml:space="preserve">
+    <value>Massac</value>
+  </data>
+  <data name="Ohio" xml:space="preserve">
+    <value>Ohio</value>
+  </data>
+  <data name="OtherSporttypeOfAustraliaActtab" xml:space="preserve">
+    <value>Other sport types of Australia Acttab</value>
+  </data>
+  <data name="SlovakiaEklub" xml:space="preserve">
+    <value>Slovakia Eklub</value>
+  </data>
+  <data name="TaiwanBingoBingo" xml:space="preserve">
+    <value>Taiwan Bingo Bingo</value>
+  </data>
+  <data name="ViewKeno" xml:space="preserve">
+    <value>View Keno</value>
+  </data>
+  <data name="ViewKenoAgent" xml:space="preserve">
+    <value>View Keno Agent</value>
+  </data>
+  <data name="WestCanadaKeno" xml:space="preserve">
+    <value>West Canada Keno</value>
+  </data>
 </root>

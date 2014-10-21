@@ -1,0 +1,23 @@
+﻿<div>
+    <div class="betting-limit-sport">
+        <span>{{betSetting.betTypeName}}</span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MinBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMinBet()"}' readonly="readonly" />
+        <span data-ng-show="betSetting.MaxMinBet > 0">&gt;= {{betSetting.MaxMinBet | number : 0}}
+        </span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MaxBet" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMaxBet()"}' readonly="readonly" />
+        <span data-ng-show="betSetting.MinMaxBet > 0">&lt;= {{betSetting.MinMaxBet | number : 0}}
+        </span>
+    </div>
+    <div class="betting-limit-item">
+        <input type="text" class="input" data-ng-model="betSetting.MaxPerMatch" maxlength="{{config.maxInput}}"
+            auto-numeric-format='{"command":"betSetting.actions.onChangeMaxPerMatch()"}' readonly="readonly" />
+        <span data-ng-show="betSetting.MinMaxPerMatch > 0">&lt;= {{betSetting.MinMaxPerMatch | number
+            : 0}} </span>
+    </div>
+</div>

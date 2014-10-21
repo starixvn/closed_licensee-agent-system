@@ -215,7 +215,8 @@
                 ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
                     IsDirectDownLine = customer.IsDirect,
-                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                    IsOfferedKeno = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_8)
                 };
             }
         }
@@ -284,7 +285,8 @@
                 ViewBag.PageContext = new PageContext(CurrentSession, isMember, customer.CustId, customer.Level, customer.UserName)
                 {
                     IsDirectDownLine = customer.IsDirect,
-                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5)
+                    IsOfferedVirtualSports = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_5),
+                    IsOfferedKeno = _coreService.HasProductOffered(productInfos, (int)ProductCode.Product_8)
                 };
             }
         }

@@ -17,7 +17,7 @@
         /// <param name="product">The product.</param>
         /// <param name="customerSetting">The customer setting.</param>
         /// <param name="settingContext">The setting context.</param>
-        /// <param name="errCode">The error code.</param>
+        /// <param name="result">The error code.</param>
         /// <param name="maxLicenseePT">The maximum licensee PT.</param>
         /// <returns>Returns customer setting 2.</returns>
         [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Verified.")]
@@ -25,28 +25,26 @@
             ProductCode product,
             CustomerSetting customerSetting,
             SettingContext settingContext,
-            ref int errCode,
+            Result result,
             int maxLicenseePT = 0)
         {
-            if (errCode != Result.SuccessValue)
+            if (result.ErrCode != Result.SuccessValue)
             {
                 return null;
             }
 
             if (!customerSetting.IsValid(product, settingContext, true))
             {
-                errCode = Result.InvalidDbData;
+                result.ErrCode = Result.InvalidDbData;
             }
 
-            var result = new CustomerSetting2
+            return new CustomerSetting2
             {
                 CustInfo = customerSetting.CustInfo,
                 CommissionSetting = customerSetting.CommissionSetting,
                 BettingLimitSetting = customerSetting.BettingLimitSetting,
                 PositionTakingSetting = PositionTakingBuilder.BuildGroups((int)product, settingContext, customerSetting.PositionTakingSetting, maxLicenseePT)
             };
-
-            return result;
         }
     }
 }

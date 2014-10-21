@@ -82,6 +82,10 @@
       <Project>{63C449DA-F0B0-4A83-A15D-2AFEF7B0C55B}</Project>
       <Name>LicenseeAgent.Home</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.ProductSetting\LicenseeAgent.ProductSetting.csproj">
+      <Project>{4342ADD8-5CAB-43AD-A30A-477568680CA6}</Project>
+      <Name>LicenseeAgent.ProductSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Tests\LicenseeAgent.Tests.csproj">
       <Project>{2F5C695A-1973-4025-B4EE-6322954A1C52}</Project>
       <Name>LicenseeAgent.Tests</Name>

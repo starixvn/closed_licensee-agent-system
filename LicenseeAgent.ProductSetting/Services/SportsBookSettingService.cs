@@ -43,42 +43,42 @@
         /// Get Agent setting for insert new.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
-        /// <param name="errCode">The error code.</param>
+        /// <param name="result">The error code.</param>
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, out int errCode)
+        public CustomerSetting2 GetSettingForInsert(SettingContext settingContext, Result result)
         {
             CustomerSetting customerSetting;
-            errCode = Result.FailureValue;
+            result.ErrCode = Result.FailureValue;
             var maxLicenseePt = 0;
             GetSettingForInsert(
                 settingContext,
                 out customerSetting,
-                out errCode,
+                result,
                 out maxLicenseePt);
 
-            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode, maxLicenseePt);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, result, maxLicenseePt);
         }
 
         /// <summary>
         /// Get Agent setting for updating.
         /// </summary>
         /// <param name="settingContext">Current setting Context.</param>
-        /// <param name="errCode">The error code.</param>
+        /// <param name="result">The error code.</param>
         /// <returns>
         /// Sports book customer setting.
         /// </returns>
-        public CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, out int errCode)
+        public CustomerSetting2 GetSettingForUpdate(SettingContext settingContext, Result result)
         {
             CustomerSetting customerSetting;
-            errCode = Result.FailureValue;
+            result.ErrCode = Result.FailureValue;
             GetSettingForUpdate(
                 settingContext,
                 out customerSetting,
-                out errCode);
+                result);
 
-            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, ref errCode);
+            return BuildCustomerSetting2(ProductId, customerSetting, settingContext, result);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="customerSetting">The customer setting.</param>
-        /// <param name="errCode">The MSG unique identifier.</param>
+        /// <param name="result">The MSG unique identifier.</param>
         /// <param name="maxLicenseePt">Max PT in case insert agent level 1.</param>
         [SuppressMessage(
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
@@ -306,7 +306,7 @@
         private void GetSettingForInsert(
             SettingContext settingContext,
             out CustomerSetting customerSetting,
-            out int errCode,
+            Result result,
             out int maxLicenseePt)
         {
             var criteria = GetCriteriaForInsert(settingContext);
@@ -339,7 +339,7 @@
                     }
 
                     var outputParams = objDb.GetOuputParams();
-                    errCode = Converter.ToInt(outputParams["msgid"]);
+                    result.ErrCode = Converter.ToInt(outputParams["msgid"]);
                     custInfo.MaxCredit = DbConverter.ToDecimal(outputParams["maxcredit"]);
                     if (settingContext.TargetRoleId == (int)Role.AgentLevel1)
                     {
@@ -366,7 +366,7 @@
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="customerSetting">The customer setting.</param>
-        /// <param name="errCode">The MSG unique identifier.</param>
+        /// <param name="result">The MSG unique identifier.</param>
         [SuppressMessage(
            "StyleCop.CSharp.Nexcel.NexcelCustomRules",
            "SP2101:MethodMustNotContainMoreLinesThan",
@@ -374,7 +374,7 @@
         private void GetSettingForUpdate(
             SettingContext settingContext,
             out CustomerSetting customerSetting,
-            out int errCode)
+            Result result)
         {
             var criteria = GetCriteriaForUpdate(settingContext);
             try
@@ -427,7 +427,7 @@
                     }
 
                     var outputParams = objDb.GetOuputParams();
-                    errCode = Converter.ToInt(outputParams["msgid"]);
+                    result.ErrCode = Converter.ToInt(outputParams["msgid"]);
                     customerSetting = new CustomerSetting
                     {
                         CustInfo = custInfo,

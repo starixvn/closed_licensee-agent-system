@@ -59,8 +59,14 @@
                 "~/Areas/ProductSetting/Scripts/SportsBook", "*.js", true).IncludeDirectory(
                 "~/Areas/ProductSetting/Scripts/NumberGame", "*.js", true));
 
+            bundles.Add(new ScriptBundle("~/js/productsetting/thirdproduct").IncludeDirectory(
+               "~/Areas/ProductSetting/Scripts/ThirdProduct", "*.js", true));
+
             bundles.Add(new ScriptBundle("~/js/productsetting/virtualsports").IncludeDirectory(
                "~/Areas/ProductSetting/Scripts/VirtualSports", "*.js", true));
+
+            bundles.Add(new ScriptBundle("~/js/productsetting/keno").IncludeDirectory(
+               "~/Areas/ProductSetting/Scripts/Keno", "*.js", true));
 
             bundles.Add(new LessBundle("~/css/productsetting").Include(
                 "~/Areas/ProductSetting/Content/fanex.customerSetting.less"));

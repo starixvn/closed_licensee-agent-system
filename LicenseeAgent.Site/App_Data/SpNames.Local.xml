@@ -44,9 +44,9 @@
   <Function Name="CustomerSetting">
     <Setting Key="Las_CheckExistUserName" SpName="Las_CheckExistUserName" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_GetGeneralInfo" SpName="Las_GeneralInfoSel" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_LicenseeInsertAgent" SpName="Las_LicenseeInsAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_AgentInsertAgent" SpName="Las_AgentInsAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
-    <Setting Key="Las_AgentInsertMember" SpName="Las_AgentInsMemMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeInsertAgent" SpName="Las_LicenseeInsAgentMain_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentInsertAgent" SpName="Las_AgentInsAgentMain_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentInsertMember" SpName="Las_AgentInsMemMain_xpre" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_LicenseeEditAgent" SpName="Las_LicenseeEditAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditAgent" SpName="Las_AgentEditAgentMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditMem" SpName="Las_AgentEditMemMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
@@ -80,6 +80,16 @@
     <Setting Key="Las_AgentEditMemberVirtualSports" SpName="Las_AgentEditMemVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentGetMemberIndirectForUpdateVirtualSports" SpName="Las_AgentSelMemIndirectForUpdateVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
     <Setting Key="Las_AgentEditMemberIndirectVirtualSports" SpName="Las_AgentEditMemIndirectVS" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+  </Function>
+  <Function Name="CustomerSetting - Keno">
+    <Setting Key="Las_AgentEditAgentGameMain" SpName="Las_AgentEditAgentGameMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentEditMemGameMain" SpName="Las_AgentEditMemGameMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentGetAgentSettingGameForUpdate" SpName="Las_AgentGetAgentSettingGameForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentGetMemberSettingGameForUpdate" SpName="Las_AgentGetMemberSettingGameForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeEditAgentGameMain" SpName="Las_LicenseeEditAgentGameMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_LicenseeGetAgentGameSettingForUpdate" SpName="Las_LicenseeGetAgentGameSettingForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentGetMemIndirectSettingGameForUpdate" SpName="Las_AgentGetMemIndirectSettingGameForUpdate" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
+    <Setting Key="Las_AgentEditMemIndirectGameMain" SpName="Las_AgentEditMemIndirectGameMain" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />
   </Function>
   <Function Name="CustomerSetting - Member Re-arrangement">
     <Setting Key="Las_Cash_SwitchUserFromNormalToLegend" SpName="Las_Cash_SwitchUserFromNormalToLegend" DbName="DBLAS.LASDB.bodbLicenseeNet" Plain="0" TimeOut="600" />

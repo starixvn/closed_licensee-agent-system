@@ -147,6 +147,22 @@ customerList.member = (function ($) {
                     }
                 },
                 {
+                    id: 'menuKeno',
+                    icon: 'icon-customer-canedit',
+                    text: language.getString('Keno'),
+                    href: '#',
+                    css: 'popover-link',
+                    action: function (e) {
+                        e.stopPropagation();
+                        if (pageContext.IsAdmin) {
+                            customerList.hidePopover();
+                            $('#menuKeno').popover("show");
+                        } else {
+                            customerList.member.editKeno();
+                        }
+                    }
+                },
+                {
                     id: 'menuEditInfo',
                     icon: 'icon-customer-canedit',
                     text: language.getString('EditInfo'),
@@ -183,6 +199,10 @@ customerList.member = (function ($) {
             if (!pageContext.IsOfferedVirtualSports) {
                 $('#menuVirtualSports').hide();
             }
+
+            if (!pageContext.IsOfferedKeno) {
+                $('#menuKeno').hide();
+            }
         },
         createPopover: function () {
             $('#menuSportsbook').popover({
@@ -202,6 +222,16 @@ customerList.member = (function ($) {
                 content: function () {
                     var divId = "tmp-id-" + $.now();
                     return customerList.member.getDirectUplines(divId, core.enums.Product.VirtualSports);
+                }
+            });
+
+            $('#menuKeno').popover({
+                html: true,
+                placement: 'right',
+                trigger: 'manual',
+                content: function () {
+                    var divId = "tmp-id-" + $.now();
+                    return customerList.member.getDirectUplines(divId, core.enums.Product.Keno);
                 }
             });
 
@@ -234,6 +264,15 @@ customerList.member = (function ($) {
         },
         editVirtualSports: function () {
             var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditMember', {
+                memberId: editMemberId
+            });
+            popup.openFrame(url, {
+                width: 1008,
+                height: 680
+            });
+        },
+        editKeno: function () {
+            var url = core.resolveUrl('~/ProductSetting/Keno/EditMember', {
                 memberId: editMemberId
             });
             popup.openFrame(url, {

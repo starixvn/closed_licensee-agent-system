@@ -24,7 +24,7 @@
         #region Constructors
 
         public SportsBookController()
-            : base(null, null, null, null, null, null, null)
+            : base(null, null, null, null, null, null, null, null)
         {
         }
 
@@ -95,27 +95,27 @@
                 return RedirectToAccessDeniedJavascript();
             }
 
-            var errCode = Result.FailureValue;
+            var result = new Result { ErrCode = Result.FailureValue };
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(Formatter.FormatJson("settingContext", settingContext));
-            var sportsBookSetting = SportsBookService.GetSettingForInsert(settingContext, out errCode);
-            if (errCode == Result.SuccessValue)
+            var sportsBookSetting = SportsBookService.GetSettingForInsert(settingContext, result);
+            
+            if (result.ErrCode == Result.SuccessValue)
             {
                 stringBuilder.AppendLine(Formatter.FormatJson("sportsBookSetting", sportsBookSetting));
                 if (CoreService.HasProductOffered(CurrentSession.AgentInfo.LicenseeId, (int)ProductCode.Product_2))
                 {
-                    var numberGameCustomer = NumberGameService.GetSettingForInsert(settingContext, out errCode);
-                    if (errCode == Result.SuccessValue)
+                    var numberGameCustomer = NumberGameService.GetSettingForInsert(settingContext, result);
+                    if (result.ErrCode == Result.SuccessValue)
                     {
                         stringBuilder.Append(Formatter.FormatJson("numberGameSetting", numberGameCustomer));
                     }
                 }
             }
 
-            if (errCode != Result.SuccessValue)
+            if (result.ErrCode != Result.SuccessValue)
             {
-                var result = new Result(errCode, ResourceManager.GetErrMsg(errCode));
-                stringBuilder.Append(Formatter.FormatJson("result", result));
+                stringBuilder.Append(Formatter.FormatJson("result", new Result(result.ErrCode, ResourceManager.GetErrMsg(result.ErrCode))));
             }
 
             return JavaScript(stringBuilder.ToString());

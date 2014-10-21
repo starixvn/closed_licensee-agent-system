@@ -1,0 +1,24 @@
+﻿<div>
+    <div data-ng-if="$index % config.breakNewLine == 0" class="pt-header-box">
+        <div class="pt-header-bettype" data-html="true">
+        </div>
+        <div class="pt-header">
+            <span>{{languageService.getString('OnMember')}}</span>
+        </div>
+    </div>
+    <div class="pt-content-box">
+        <div class="pt-content-bettype" data-html="true" id="copy_sport_{{pt.PositionTakings[0].SportId}}_bettype_{{pt.PositionTakings[0].BetTypeId}}">
+            <span>{{languageService.getBetTypeName(pt.PositionTakings[0].BetTypeId)}}</span>
+            <span data-ng-if="$index % config.breakNewLine == 0 && ptGroup.PositionTakings.length > 1"
+                class="icon-setting-copy" data-ng-click="positionTakingService.copyPartial(pt, ptGroup, config.breakNewLine)"
+                title="{{$index==0 ? languageService.getString('SoccerHandicapCopyPtTooltip') : languageService.getString('SoccerOnexTwoCopyPtTooltip')}}">
+            </span>
+        </div>
+        <div class="pt-content">
+            <input class="value-input" type="text" maxlength="{{config.maxInput}}" data-ng-model="pt.PositionTakings[0].Value"
+                auto-numeric-format='{"mDec":"2","command":"pt.PositionTakings[0].actions.onChangeValue()"}' />
+            <span>[{{pt.PositionTakings[0].MinRangeOfValue | number:config.decNumber}} - {{pt.PositionTakings[0].MaxRangeOfValue
+                | number:config.decNumber}}]</span>
+        </div>
+    </div>
+</div>

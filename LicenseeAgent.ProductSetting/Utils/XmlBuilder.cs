@@ -120,6 +120,33 @@
         /// <summary>
         /// Build XML String for Updating.
         /// </summary>
+        /// <param name="bettingLimits">Betting limits data.</param>
+        /// <returns>String data to update database.</returns>
+        public static string BuildForKeno(IList<BettingLimitItem> bettingLimits)
+        {
+            string xmlStringData = string.Empty;
+            if (bettingLimits != null && bettingLimits.Any())
+            {
+                foreach (BettingLimitItem betLimit in bettingLimits)
+                {
+                    xmlStringData += string.Format(
+                        Constant.FormatBettingLimitXml,
+                        betLimit.SportId,
+                        betLimit.GameTypeId,
+                        betLimit.MinBet,
+                        betLimit.MaxBet,
+                        betLimit.MaxPerMatch);
+                }
+            }
+
+            return !string.IsNullOrEmpty(xmlStringData)
+                ? string.Format(Constant.FormatRootXml, xmlStringData)
+                : string.Empty;
+        }
+
+        /// <summary>
+        /// Build XML String for Updating.
+        /// </summary>
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingSetting">Position taking data.</param>
         /// <returns>String data to update database.</returns>

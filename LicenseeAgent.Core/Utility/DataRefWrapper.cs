@@ -38,6 +38,11 @@
             return GetBetTypeName((int)betType);
         }
 
+        public static string GetKenoBetTypeName(int betType)
+        {
+            return RefData.GetKenoBettype(betType.ToString(), RefLanguageCode);
+        }
+
         public static string GetSportName(int sportType)
         {
             return GetSportName(sportType, 0);

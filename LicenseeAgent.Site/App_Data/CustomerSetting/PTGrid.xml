@@ -30,4 +30,16 @@
     <SportType Id="185" IsLive="false" BetTypeIds="1231" />
     <SportType Id="186" IsLive="false" BetTypeIds="1220" />
   </Product>
+  <!--Keno-->
+  <Product Id="8">
+    <SportType Id="202" IsLive="false" BetTypeIds="1501" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1503" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1504" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1505" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1507" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1508" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1509" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1511" />
+    <SportType Id="202" IsLive="false" BetTypeIds="1513" />
+  </Product>
 </PtSettings>

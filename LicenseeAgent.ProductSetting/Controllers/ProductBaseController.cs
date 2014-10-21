@@ -36,13 +36,14 @@
         private readonly ISportsBookSettingService _sportsBookService;
         private readonly ISettingService _numberGameService;
         private readonly IVirtualSportsSettingService _virtualSportsService;
+        private readonly IKenoSettingService _kenoService;
 
         #endregion Variables
 
         #region Constructors
 
         protected ProductBaseController()
-            : this(null, null, null, null, null, null, null)
+            : this(null, null, null, null, null, null, null, null)
         {
         }
 
@@ -53,7 +54,8 @@
             ICustomerSettingService customerSettingService,
             ISportsBookSettingService sportsBookService,
             ISettingService numberGameService,
-            IVirtualSportsSettingService virtualSportsService)
+            IVirtualSportsSettingService virtualSportsService,
+            IKenoSettingService kenoService)
         {
             _memberService = memberService ?? new MemberService();
             _coreService = coreService ?? new CoreService();
@@ -62,6 +64,7 @@
             _sportsBookService = sportsBookService ?? new SportsBookSettingService();
             _numberGameService = numberGameService ?? new NumberGameSettingService();
             _virtualSportsService = virtualSportsService ?? new VirtualSportsSettingService();
+            _kenoService = kenoService ?? new KenoSettingService();
         }
 
         #endregion Constructors
@@ -101,6 +104,11 @@
         protected IVirtualSportsSettingService VirtualSportsService
         {
             get { return _virtualSportsService; }
+        }
+
+        protected IKenoSettingService KenoService
+        {
+            get { return _kenoService; }
         }
 
         #endregion Properties

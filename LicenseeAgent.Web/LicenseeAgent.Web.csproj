@@ -116,7 +116,6 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Core\SitePath.cs" />
     <Compile Include="Criteria\CheckCurrencyPermissionCriteria.cs" />

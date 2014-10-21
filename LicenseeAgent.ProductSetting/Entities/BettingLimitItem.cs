@@ -1,13 +1,19 @@
 ﻿namespace LicenseeAgent.ProductSetting.Entities
 {
+    using Fanex.Data.Repository;
+
     /// <summary>
     /// BettingLimitItem name.
     /// </summary>
     public class BettingLimitItem
     {
+        [SpParam(SqlParamName = "SportType")]
         public int SportId { get; set; }
 
+        [SpParam(SqlParamName = "BetType")]
         public int BetTypeId { get; set; }
+
+        public int GameTypeId { get; set; }
 
         public decimal MinBet { get; set; }
 

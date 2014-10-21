@@ -29,6 +29,7 @@
     @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/autonumeric")
     @Scripts.Render("~/js/productsetting")
+    @Scripts.Render("~/js/productsetting/thirdproduct")
     @Scripts.Render("~/js/productsetting/virtualsports")
 }
 @RazorHelper.Legend(ViewBag.Title)
@@ -98,35 +99,39 @@
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSports",
+        key = "LicenseeBetSetting",
         trigger = "licensee-bet-limit-info-button",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSportsAdv",
+        key = "LicenseeBetSettingAdv",
         trigger = "licensee-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseePositionTakingSettingVirtualSports",
+        key = "LicenseePositionTakingSetting",
         trigger = "licensee-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseePositionTakingSettingVirtualSportsAdv",
+        key = "LicenseePositionTakingSettingAdv",
         trigger = "licensee-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 }
 else if (Model.TargetRoleId == (int)Role.Agent)
@@ -134,35 +139,39 @@ else if (Model.TargetRoleId == (int)Role.Agent)
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSports",
+        key = "AgentBetSetting",
         trigger = "agent-bet-limit-info-button",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSportsAdv",
+        key = "AgentBetSettingAdv",
         trigger = "agent-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "AgentEditAgentPositionTakingSettingVirtualSports",
+        key = "AgentEditAgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "AgentEditAgentPositionTakingSettingVirtualSportsAdv",
+        key = "AgentEditAgentPositionTakingSettingAdv",
         trigger = "agent-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 }
 else
@@ -170,34 +179,38 @@ else
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSports",
+        key = "MemberBetSetting",
         trigger = "member-bet-limit-info-button",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "LicenseeBetSettingVirtualSportsAdv",
+        key = "MemberBetSettingAdv",
         trigger = "member-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "MemberPositionTakingSettingVirtualSports",
+        key = "MemberPositionTakingSetting",
         trigger = "member-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
     @Html.Action("Index", "Instruction", new
     {
         area = "",
-        key = "MemberPositionTakingSettingVirtualSportsAdv",
+        key = "MemberPositionTakingSettingAdv",
         trigger = "member-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "VirtualSports"
     })
 }

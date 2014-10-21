@@ -89,6 +89,16 @@ customerList.agent = (function ($) {
                     action: customerList.agent.editVirtualSports
                 },
                 {
+                    id: 'menuKeno',
+                    icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
+                        ? 'icon-customer-canedit'
+                        : 'icon-customer-canview'),
+                    text: language.getString('Keno'),
+                    href: '#',
+                    css: 'popover-link',
+                    action: customerList.agent.editKeno
+                },
+                {
                     id: 'menuEditInfo',
                     icon: 'icon-customer-canedit',
                     text: language.getString('EditInfo'),
@@ -137,6 +147,10 @@ customerList.agent = (function ($) {
 
             if (!pageContext.IsOfferedVirtualSports) {
                 $('#menuVirtualSports').hide();
+            }
+
+            if (!pageContext.IsOfferedKeno) {
+                $('#menuKeno').hide();
             }
         },
         changeStatus: function (target, custId) {
@@ -208,6 +222,15 @@ customerList.agent = (function ($) {
         },
         editVirtualSports: function () {
             var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditAgent', {
+                agentId: editAgentId
+            });
+            popup.openFrame(url, {
+                width: 1008,
+                height: 680
+            });
+        },
+        editKeno: function () {
+            var url = core.resolveUrl('~/ProductSetting/Keno/EditAgent', {
                 agentId: editAgentId
             });
             popup.openFrame(url, {

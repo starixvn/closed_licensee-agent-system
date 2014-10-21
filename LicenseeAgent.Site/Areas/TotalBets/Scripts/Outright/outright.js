@@ -121,7 +121,7 @@ totalBets.outright = (function ($) {
                 }
             }, function (data) {
                 gridOptions.bodyRows = totalBets.outright.genGridRows(data);
-                $('#BetListGrid').show().fanexGrid(gridOptions);
+                $('.freegrid').show().fanexGrid(gridOptions);
                 refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
             });
         },

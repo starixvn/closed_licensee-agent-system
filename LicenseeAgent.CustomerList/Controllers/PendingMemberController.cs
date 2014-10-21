@@ -76,7 +76,8 @@
             {
                 UserName = model.AgentUserName,
                 LicenseeId = CurrentSession.AgentInfo.LicenseeId,
-                LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId
+                LicenseeCurrencyId = CurrentSession.AgentInfo.CurrencyId,
+                UserId = CurrentSession.IsAdmin ? 0 : CurrentSession.AgentInfo.AgentId
             });
             if (agentId == 0)
             {

@@ -14,6 +14,8 @@
         public int LicenseeCurrencyId { get; set; }
 
         public int AgentId { get; set; }
+        
+        public int UserId { get; set; }        
 
         public override string GetSettingKey()
         {

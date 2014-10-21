@@ -258,8 +258,12 @@ customerList.member = (function ($) {
             if (!pageContext.IsDirectDownLine) {
                 return;
             }
-            var currentStatus = $(target).find('.icon-status-open').length > 0 ? 1 : 0;
-            var newStatus = currentStatus === 0 ? 1 : 0;
+            var currentStatus = $(target).find('.icon-status-open').length > 0
+                ? core.enums.AccountStatus.Open
+                : core.enums.AccountStatus.Closed;
+            var newStatus = currentStatus === core.enums.AccountStatus.Closed
+                ? core.enums.AccountStatus.Open
+                : core.enums.AccountStatus.Closed;
             var message = newStatus === core.enums.AccountStatus.Closed
                 ? language.getString('ChangeStatusMember')
                 : language.getString('ChangeStatusAgent');
@@ -293,7 +297,7 @@ customerList.member = (function ($) {
                     agentid: $("#AgentId").val()
                 }
             }, function () {
-                if (statusId === 0) {
+                if (statusId === core.enums.AccountStatus.Closed) {
                     $(target).find('.icon-status-open')
                         .addClass('icon-status-closed')
                         .removeClass('icon-status-open')
@@ -306,7 +310,7 @@ customerList.member = (function ($) {
                         .find('span')
                         .text('Open');
                 }
-                $('#' + custId).attr('data-status', statusId);
+                $('#' + custId).data('status', statusId);
             });
         },
         openProductSetting: function (url) {

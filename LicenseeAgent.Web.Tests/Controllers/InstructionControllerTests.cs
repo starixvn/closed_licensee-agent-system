@@ -1,6 +1,7 @@
 ﻿namespace LicenseeAgent.Web.Tests.Controllers
 {
     using System.Web.Mvc;
+    using LicenseeAgent.ProductSetting.ViewModels;
     using LicenseeAgent.Tests.Fakes;
     using LicenseeAgent.Web.Controllers;
     using NUnit.Framework;
@@ -40,13 +41,13 @@
         public void IndexAction_Should_ReturnJsonResult()
         {
             // Arrange
-            var key = "Commission";
             var language = "en-US";
-            var viewName = string.Format("~/Views/Instruction/{0}/{1}.cshtml", language, key);
+            var viewModel = new InstructionViewModel { Key = "Commission" };
+            var viewName = string.Format("~/Views/Instruction/{0}/{1}.cshtml", language, viewModel.Key);
             FakeSession.SetAdminLevel();
 
             // Act
-            var result = _controller.Index(key) as ViewResult;
+            var result = _controller.Index(viewModel) as ViewResult;
 
             // Assert
             Assert.AreEqual(viewName, result.ViewName);

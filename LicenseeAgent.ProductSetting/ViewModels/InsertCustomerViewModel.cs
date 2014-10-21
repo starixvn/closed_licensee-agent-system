@@ -28,13 +28,13 @@
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!SportsBookSetting.IsValid(ProductCode.Product_0, SettingContext))
+            if (!SportsBookSetting.IsValid(SettingContext.ProductId, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid SportsBook setting"));
                 return results;
             }
 
-            if (NumberGameSetting != null && !NumberGameSetting.IsValid(ProductCode.Product_2, SettingContext))
+            if (NumberGameSetting != null && !NumberGameSetting.IsValid((int)ProductCode.Product_2, SettingContext))
             {
                 results.Add(new ValidationResult("Invalid NumberGame setting"));
                 return results;

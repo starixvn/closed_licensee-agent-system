@@ -49,7 +49,7 @@
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON result.</returns>
         [HttpPost]
-        public JsonResult UpdateCustomer(UpdateVirtualSportsCustomerViewModel model)
+        public JsonResult UpdateCustomer(UpdateCustomerViewModel model)
         {
             if (!ModelState.IsValid || model.SettingContext.LoginUserId != CurrentSession.LoginUserId)
             {

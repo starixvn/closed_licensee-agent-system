@@ -27,14 +27,6 @@
             }
         }
 
-        public override string Name
-        {
-            get
-            {
-                return "virtualSportsSetting";
-            }
-        }
-
         /// <summary>
         /// Insert customer setting.
         /// </summary>
@@ -42,7 +34,7 @@
         /// <returns>
         /// Status of insert command.
         /// </returns>
-        public IList<UpdateResult> UpdateCustomer(UpdateVirtualSportsCustomerViewModel model)
+        public IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model)
         {
             var criteria = CreateUpdateCustomerCriteria(model);
             try
@@ -71,15 +63,15 @@
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Returns criteria.</returns>
-        public ICriteria CreateUpdateCustomerCriteria(UpdateVirtualSportsCustomerViewModel model)
+        public ICriteria CreateUpdateCustomerCriteria(UpdateCustomerViewModel model)
         {
             var betLimit3RDXml = string.Empty;
             var positionTaking3RDXml = string.Empty;
-            positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.VirtualSportsSetting.PositionTakingSetting);
+            positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.CustomerSetting.PositionTakingSetting);
 
             if (model.SettingContext.FormId != FormType.EditIndirectMember)
             {
-                betLimit3RDXml = XmlBuilder.Build(model.VirtualSportsSetting.BettingLimitSetting);
+                betLimit3RDXml = XmlBuilder.Build(model.CustomerSetting.BettingLimitSetting);
             }
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
@@ -178,7 +170,7 @@
         /// <param name="positionTaking">The position taking 3RD.</param>
         /// <param name="betLimit">The betLimit 3RD.</param>
         /// <returns>Returns criteria.</returns>
-        private ICriteria CreateUpdateMemberCriteria(UpdateVirtualSportsCustomerViewModel model, string positionTaking, string betLimit)
+        private ICriteria CreateUpdateMemberCriteria(UpdateCustomerViewModel model, string positionTaking, string betLimit)
         {
             if (model.SettingContext.FormId == FormType.EditIndirectMember)
             {

@@ -24,25 +24,25 @@
         /// <summary>
         /// Determines whether this instance is valid.
         /// </summary>
-        /// <param name="product">The product id.</param>
+        /// <param name="productCode">The product id.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <param name="isGet">If set to <c>true</c> mean that settings is get from DB.</param>
         /// <returns>
         /// Returns true if entity is valid.
         /// </returns>
-        public bool IsValid(ProductCode product, SettingContext settingContext, bool isGet = false)
+        public bool IsValid(int productCode, SettingContext settingContext, bool isGet = false)
         {
-            if (!ValidateBetSetting(product, settingContext))
+            if (!ValidateBetSetting(productCode, settingContext))
             {
                 return false;
             }
 
-            if (settingContext.IsCredit && !ValidateCommissionSetting(product, settingContext))
+            if (settingContext.IsCredit && !ValidateCommissionSetting(productCode, settingContext))
             {
                 return false;
             }
 
-            if (!ValidatePositionTakingSetting(product, settingContext, isGet))
+            if (!ValidatePositionTakingSetting(productCode, settingContext, isGet))
             {
                 return false;
             }
@@ -53,10 +53,10 @@
         /// <summary>
         /// Validates the bet setting.
         /// </summary>
-        /// <param name="product">The product.</param>
+        /// <param name="productCode">The product.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidateBetSetting(ProductCode product, SettingContext settingContext)
+        private bool ValidateBetSetting(int productCode, SettingContext settingContext)
         {
             if (settingContext.FormId == FormType.Add)
             {
@@ -69,7 +69,7 @@
 
             if (BettingLimitSetting != null)
             {
-                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings(productCode);
                 foreach (var item in BettingLimitSetting)
                 {
                     if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
@@ -85,12 +85,12 @@
         /// <summary>
         /// Validates the commission setting.
         /// </summary>
-        /// <param name="product">The product.</param>
+        /// <param name="productCode">The product.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidateCommissionSetting(ProductCode product, SettingContext settingContext)
+        private bool ValidateCommissionSetting(int productCode, SettingContext settingContext)
         {
-            if (product == ProductCode.Product_5)
+            if (productCode == (int)ProductCode.Product_5)
             {
                 return true;
             }
@@ -107,7 +107,7 @@
 
             if (CommissionSetting != null && CommissionSetting.CommissionItems != null)
             {
-                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings(settingContext.ProductId);
                 foreach (var item in CommissionSetting.CommissionItems)
                 {
                     if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())
@@ -123,11 +123,11 @@
         /// <summary>
         /// Validates the position taking setting.
         /// </summary>
-        /// <param name="product">The product.</param>
+        /// <param name="productCode">The product.</param>
         /// <param name="settingContext">The setting context.</param>
         /// <param name="isGet">If set to <c>true</c> [is strict].</param>
         /// <returns>Returns true if valid.</returns>
-        private bool ValidatePositionTakingSetting(ProductCode product, SettingContext settingContext, bool isGet)
+        private bool ValidatePositionTakingSetting(int productCode, SettingContext settingContext, bool isGet)
         {
             if (settingContext.FormId == FormType.Add)
             {
@@ -146,7 +146,7 @@
             if (PositionTakingSetting != null)
             {
                 var configKeys = new List<string>();
-                var productSettings = SettingConfiguration.GetProductPtSettings((int)product);
+                var productSettings = SettingConfiguration.GetProductPtSettings(productCode);
                 foreach (var sportType in productSettings.SportType)
                 {
                     var betTypeIds = sportType.BetTypeIds.Split(',');

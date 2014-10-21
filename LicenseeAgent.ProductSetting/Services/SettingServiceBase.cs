@@ -33,7 +33,7 @@
                 return null;
             }
 
-            if (!customerSetting.IsValid(product, settingContext, true))
+            if (!customerSetting.IsValid((int)product, settingContext, true))
             {
                 result.ErrCode = Result.InvalidDbData;
             }

@@ -1,5 +1,6 @@
 ﻿namespace LicenseeAgent.ProductSetting.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using LicenseeAgent.Core.Enumerations;
@@ -8,13 +9,13 @@
     /// <summary>
     /// UpdateCustomerViewModel class.
     /// </summary>
-    public class UpdateVirtualSportsCustomerViewModel : IValidatableObject
+    public class UpdateCustomerViewModel : IValidatableObject
     {
         [Required]
         public SettingContext SettingContext { get; set; }
 
         [Required]
-        public CustomerSetting VirtualSportsSetting { get; set; }
+        public CustomerSetting CustomerSetting { get; set; }
 
         /// <summary>
         /// Determines whether the specified object is valid.
@@ -26,9 +27,10 @@
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!VirtualSportsSetting.IsValid(ProductCode.Product_5, SettingContext))
+
+            if (!CustomerSetting.IsValid(SettingContext.ProductId, SettingContext))
             {
-                results.Add(new ValidationResult("Invalid Virtual Sports setting"));
+                results.Add(new ValidationResult("Invalid Customer setting"));
                 return results;
             }
 

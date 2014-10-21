@@ -2,6 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
+/*global customerSetting */
 if (fanex.customerSetting) {
     //// Helper
 
@@ -28,14 +29,14 @@ if (fanex.customerSetting) {
 
             positionTakingSetting[0].Expand = true;
         },
-        getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData, thirdProductFactory) {
+        getPositionTakingUpdate: function (settingContext, simpleModeData, advancedModeData) {
             'use strict';
             var self = this, dataLength, indexData, indexGroup, currentGroup, currentPositionTaking, positionTakingSave = [];
             if (settingContext.IsSimpleMode) {
                 var updatedPt = simpleModeData;
-                dataLength = thirdProductFactory.productSetting.PositionTakingSetting.length;
+                dataLength = customerSetting.PositionTakingSetting.length;
                 for (indexData = 0; indexData < dataLength; indexData++) {
-                    currentGroup = thirdProductFactory.productSetting.PositionTakingSetting[indexData];
+                    currentGroup = customerSetting.PositionTakingSetting[indexData];
                     if (currentGroup) {
                         var groupLength = currentGroup.PositionTakings.length;
                         for (indexGroup = 0; indexGroup < groupLength; indexGroup++) {

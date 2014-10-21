@@ -15,5 +15,7 @@
 }
 	
 <div id="@trigger" class="instruction-container" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
-	@RenderBody()
+    <div class="instruction-content">
+        @RenderBody()
+    </div>
 </div>

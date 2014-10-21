@@ -10,6 +10,6 @@
     /// </summary>
     public interface IKenoSettingService : ISettingService
     {
-        IList<UpdateResult> UpdateCustomer(UpdateKenoCustomerViewModel model);
+        IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);
     }
 }

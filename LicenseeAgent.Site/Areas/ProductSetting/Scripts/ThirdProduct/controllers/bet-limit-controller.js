@@ -2,15 +2,14 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global settingContext */
+/*global settingContext, customerSetting */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('BetLimitController',
     [
         '$scope',
         'Fanex.CustomerSetting.LanguageService',
-        'ThirdProductFactory',
-        function ($scope, languageService, thirdProductFactory) {
+        function ($scope, languageService) {
             'use strict';
             $scope.languageService = languageService;
             $scope.config = fanex.customerSetting.betLimitService.config;
@@ -19,14 +18,14 @@ if (fanex.customerSetting) {
 
             $scope.model = {
                 // For all sport types
-                bettingLimitsModel: fanex.cloneObject(thirdProductFactory.productSetting.BettingLimitSetting),
+                bettingLimitsModel: fanex.cloneObject(customerSetting.BettingLimitSetting),
                 // For only soccer setting
-                firstRecord: fanex.cloneObject(thirdProductFactory.productSetting.BettingLimitSetting[0]),
+                firstRecord: fanex.cloneObject(customerSetting.BettingLimitSetting[0]),
                 settingContext: settingContext
             };
 
             $scope.updateSettingModel = function () {
-                $scope.betLimitService.updateScope($scope, fanex.cloneObject(thirdProductFactory.productSetting.BettingLimitSetting));
+                $scope.betLimitService.updateScope($scope, fanex.cloneObject(customerSetting.BettingLimitSetting));
             };
 
             $scope.saveData = function () {
@@ -44,15 +43,13 @@ if (fanex.customerSetting) {
             };
 
             $scope.updatePartial = function () {
-                var settings = {};
-
                 if (!$scope.isValidData()) {
                     return;
                 }
 
-                settings[thirdProductFactory.productSettingName] = { BettingLimitSetting: $scope.saveData() };
+                var settings = { customerSetting: { BettingLimitSetting: $scope.saveData()} };
 
-                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings[thirdProductFactory.productSettingName]));
+                $scope.$parent.updatePartial(settings, fanex.isChangedData(settings.customerSetting));
             };
         }
     ]);

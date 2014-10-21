@@ -99,7 +99,7 @@
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(Formatter.FormatJson("settingContext", settingContext));
             var sportsBookSetting = SportsBookService.GetSettingForInsert(settingContext, result);
-
+            
             if (result.ErrCode == Result.SuccessValue)
             {
                 stringBuilder.AppendLine(Formatter.FormatJson("sportsBookSetting", sportsBookSetting));

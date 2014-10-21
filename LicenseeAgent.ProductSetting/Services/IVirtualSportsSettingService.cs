@@ -9,6 +9,6 @@
     /// </summary>
     public interface IVirtualSportsSettingService : ISettingService
     {
-        IList<UpdateResult> UpdateCustomer(UpdateVirtualSportsCustomerViewModel model);
+        IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model);
     }
 }

@@ -20,9 +20,15 @@
     {
         private const int Keno = 1500;
 
-        public abstract ProductCode ProductId { get; }
+        public string Name
+        {
+            get
+            {
+                return "customerSetting";
+            }
+        }
 
-        public abstract string Name { get; }
+        public abstract ProductCode ProductId { get; }
 
         public abstract ICriteria GetCriteriaForUpdateAgent(SettingContext settingContext);
 

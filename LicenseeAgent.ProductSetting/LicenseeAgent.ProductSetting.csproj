@@ -181,13 +181,13 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
+    <Compile Include="ViewModels\InstructionViewModel.cs" />
     <Compile Include="ViewModels\Status\UpdateMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductAgentViewModel.cs" />
     <Compile Include="ViewModels\EditProductMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\Status\UpdateAgentViewModel.cs" />
-    <Compile Include="ViewModels\UpdateKenoCustomerViewModel.cs" />
-    <Compile Include="ViewModels\UpdateVirtualSportsCustomerViewModel.cs" />
+    <Compile Include="ViewModels\UpdateCustomerViewModel.cs" />
     <Compile Include="ViewModels\GetSettingForInsertViewModel.cs" />
     <Compile Include="ViewModels\UpdateSportsBookCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditMemberViewModel.cs" />

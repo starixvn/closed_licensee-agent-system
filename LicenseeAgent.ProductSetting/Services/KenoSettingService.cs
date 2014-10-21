@@ -25,14 +25,6 @@
             }
         }
 
-        public override string Name
-        {
-            get
-            {
-                return "kenoSetting";
-            }
-        }
-
         /// <summary>
         /// Insert customer setting.
         /// </summary>
@@ -40,7 +32,7 @@
         /// <returns>
         /// Status of insert command.
         /// </returns>
-        public IList<UpdateResult> UpdateCustomer(UpdateKenoCustomerViewModel model)
+        public IList<UpdateResult> UpdateCustomer(UpdateCustomerViewModel model)
         {
             var criteria = CreateUpdateCustomerCriteria(model);
             try
@@ -69,15 +61,15 @@
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Returns criteria.</returns>
-        public ICriteria CreateUpdateCustomerCriteria(UpdateKenoCustomerViewModel model)
+        public ICriteria CreateUpdateCustomerCriteria(UpdateCustomerViewModel model)
         {
             var betLimit3RDXml = string.Empty;
             var positionTaking3RDXml = string.Empty;
-            positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.KenoSetting.PositionTakingSetting);
+            positionTaking3RDXml = XmlBuilder.Build(model.SettingContext, model.CustomerSetting.PositionTakingSetting);
 
             if (model.SettingContext.FormId != FormType.EditIndirectMember)
             {
-                betLimit3RDXml = XmlBuilder.BuildForKeno(model.KenoSetting.BettingLimitSetting);
+                betLimit3RDXml = XmlBuilder.BuildForKeno(model.CustomerSetting.BettingLimitSetting);
             }
 
             if (model.SettingContext.TargetRoleId == (int)Role.Member)
@@ -182,7 +174,7 @@
         /// <param name="positionTaking">The position taking 3RD.</param>
         /// <param name="betLimit">The betLimit 3RD.</param>
         /// <returns>Returns criteria.</returns>
-        private ICriteria CreateUpdateMemberCriteria(UpdateKenoCustomerViewModel model, string positionTaking, string betLimit)
+        private ICriteria CreateUpdateMemberCriteria(UpdateCustomerViewModel model, string positionTaking, string betLimit)
         {
             if (model.SettingContext.FormId == FormType.EditIndirectMember)
             {

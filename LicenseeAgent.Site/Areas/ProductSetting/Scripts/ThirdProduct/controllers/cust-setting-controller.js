@@ -1,4 +1,4 @@
-﻿/*global core, settingContext, result */
+﻿/*global core, settingContext, result, customerSetting:true */
 
 if (fanex.customerSetting) {
 
@@ -8,16 +8,12 @@ if (fanex.customerSetting) {
         switch (settingContext.ProductId) {
             case 5:
                 settings = {
-                    productSetting : window['virtualSportsSetting'],
-                    productSettingName: "virtualSportsSetting",
                     firstSportType: languageService.getString('VirtualSoccerCopyPt'),
                     otherSportType: languageService.getString('OtherSporttypeOfVirtualSoccer')
                 };
                 break;
             case 8:
                 settings = {
-                    productSetting : window['kenoSetting'],
-                    productSettingName : "kenoSetting",
                     firstSportType: languageService.getString('AustraliaActtabCopyPt'),
                     otherSportType: languageService.getString('OtherSporttypeOfAustraliaActtab')
                 };
@@ -51,7 +47,7 @@ if (fanex.customerSetting) {
             $scope.settingMode = settingContext.IsSimpleMode;
             $scope.formId = settingContext.FormId;
             $scope.result = fanex.customerSetting.Result;
-            $scope.custInfo = thirdProductFactory.productSetting.CustInfo;
+            $scope.custInfo = customerSetting.CustInfo;
             $scope.isDeposit = settingContext.IsDeposit;
 
             $('#modeSwitcher').on('switch-change', function (e, data) {
@@ -64,7 +60,7 @@ if (fanex.customerSetting) {
             });
 
             $scope.updateProductSetting = function (data) {
-                thirdProductFactory.productSetting = data.productSetting;
+                customerSetting = data.productSetting;
             };
 
             $scope.updateCustomer = function () {
@@ -124,7 +120,11 @@ if (fanex.customerSetting) {
                     method: 'POST',
                     url: core.resolveUrl($('#custSetting').data('href')),
                     headers: { 'Content-Type': 'application/json' },
-                    data: updateData
+                    data: 
+                    {
+                        settingContext: settingContext,
+                        customerSetting: productSetting 
+                    }
                 }).
                     success(function (data) {
                         var timeout = 0;
@@ -213,7 +213,7 @@ if (fanex.customerSetting) {
                     alert(data.ErrMsg);
                 });
             };
-            
+
             if (typeof settingContext === 'undefined') {
                 $('#custSetting').html("It has a problem about data.");
             }

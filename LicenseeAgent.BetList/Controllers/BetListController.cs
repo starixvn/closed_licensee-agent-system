@@ -101,6 +101,45 @@
 
         #endregion Index
 
+        #region Total bets
+
+        /// <summary>
+        /// Generate Bet List.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return JSONRESULT.
+        /// </returns>
+        [HttpPost]
+        public JsonResult TotalBets(BetListTotalBetsViewModel model)
+        {
+            var criteria = new BetListTotalBetsCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                BetTeam = model.BetTeam,
+                BetType = model.BetType,
+                MatchId = model.MatchId,
+                ShowLiveTicket = model.ShowLiveTicket
+            };
+            var ticketResult = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = ticketResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
+            return Json(new
+            {
+                List = ticketTextList,
+                TotalItem = criteria.TotalRows
+            });
+        }
+
+        #endregion Total bets
+
         /// <summary>
         /// Index page of Bet List.
         /// </summary>

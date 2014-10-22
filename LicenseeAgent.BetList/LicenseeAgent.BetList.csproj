@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
+    <Compile Include="Criteria\BetListTotalBetsCriteria.cs" />
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListResultCriteria.cs" />
     <Compile Include="Criteria\BetListResultsNumberGameCriteria.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Utilities\LasTrans.cs" />
     <Compile Include="ViewModels\BetListResultViewModel.cs" />
     <Compile Include="ViewModels\BetListSelectByMemberViewModel.cs" />
+    <Compile Include="ViewModels\BetListTotalBetsViewModel.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
     <Compile Include="ViewModels\BetListWinLossViewModel.cs" />

@@ -146,17 +146,17 @@ var totalBets = (function ($) {
             linkHtmlString += linkvalue + "</span>";
             return linkHtmlString;
         },
-        showBetList: function (matchId, bettype, betteam, showliveticket) {
+        showBetList: function (matchId, betType, betTeam, showliveticket) {
             refreshCountDownMethods.stopCountDown();
             $('form').hide();
             $("#totalbets-back").attr("class", "history-back");
 
             core.ajaxJSON({
-                url: core.resolveUrl("~/Totalbets/Common/BetList"),
+                url: core.resolveUrl("~/BetList/TotalBets"),
                 data: {
                     MatchId: matchId,
-                    Bettype: bettype,
-                    Betteam: betteam,
+                    BetType: betType,
+                    BetTeam: betTeam,
                     ShowLiveTicket: showliveticket
                 }
             }, function (data) {

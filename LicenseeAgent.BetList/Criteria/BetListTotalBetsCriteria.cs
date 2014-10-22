@@ -1,19 +1,19 @@
-namespace LicenseeAgent.TotalBets.Criteria
+namespace LicenseeAgent.BetList.Criteria
 {
     using Fanex.Data.Repository;
 
     /// <summary>
     /// Bet list by match Criteria.
     /// </summary>
-    public class BetListByMatchCriteria : CriteriaBase
+    public class BetListTotalBetsCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
         public int MatchId { get; set; }
 
-        public int Bettype { get; set; }
+        public int BetType { get; set; }
 
-        public string Betteam { get; set; }
+        public string BetTeam { get; set; }
 
         public bool? ShowLiveTicket { get; set; }
 
@@ -27,7 +27,7 @@ namespace LicenseeAgent.TotalBets.Criteria
         public override bool IsValid()
         {
             return (AgentId > 0 && MatchId > 0)
-                && (Bettype > 0 && !string.IsNullOrEmpty(Betteam));
+                && (BetType > 0 && !string.IsNullOrEmpty(BetTeam));
         }
     }
 }

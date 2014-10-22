@@ -3,9 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.BetList.Entities;
-    using LicenseeAgent.BetList.Services;
-    using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.TotalBets.Criteria;
     using LicenseeAgent.TotalBets.Entities;
     using LicenseeAgent.TotalBets.Services;
@@ -20,7 +17,6 @@
     {
         #region Variables
 
-        private readonly IBetListService _betlistService;
         private readonly ICommonService _commonService;
 
         #endregion Variables
@@ -28,16 +24,14 @@
         #region Controllers
 
         public TotalBetsController()
-            : this(null, null)
+            : this(null)
         {
         }
 
         public TotalBetsController(
-            CommonService commonService,
-            BetListService betlistService)
+            CommonService commonService)
         {
             _commonService = commonService ?? new CommonService();
-            _betlistService = betlistService ?? new BetListService();
         }
 
         #endregion Controllers
@@ -138,35 +132,5 @@
         }
 
         #endregion Get events
-
-        #region Bet List
-
-        /// <summary>
-        /// Generate Bet List.
-        /// </summary>
-        /// <param name="criteria">Bet List By Match Criteria.</param>
-        /// <returns>Return JSONRESULT.</returns>
-        [HttpPost]
-        public JsonResult BetList(BetListByMatchCriteria criteria)
-        {
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var ticketResult = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = ticketResult,
-                IsAdmin = CurrentSession.IsAdmin,
-                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
-            };
-
-            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
-            var ticketTextList = betListTicketBuilder.BuildTickets();
-            return Json(new
-            {
-                List = ticketTextList,
-                TotalItem = criteria.TotalRows
-            });
-        }
-
-        #endregion Bet List
     }
 }

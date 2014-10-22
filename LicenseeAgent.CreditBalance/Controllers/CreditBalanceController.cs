@@ -188,9 +188,9 @@
                 };
                 _creditBalanceService.UpdateAgentCredit(criteria);
 
-                if (criteria.MsgId != Result.SuccessValue)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
-                    ModelState.AddModelError(criteria.MsgId.ToString(), GetErrMsg(criteria.MsgId));
+                    ModelState.AddModelError(criteria.ErrCode.ToString(), GetErrMsg(criteria.ErrCode));
                 }
                 else
                 {
@@ -260,9 +260,9 @@
                 };
                 _creditBalanceService.AgentUpdateMemberCredit(criteria);
 
-                if (criteria.MsgId != Result.SuccessValue)
+                if (criteria.ErrCode != Result.SuccessValue)
                 {
-                    ModelState.AddModelError(criteria.MsgId.ToString(), GetErrMsg(criteria.MsgId));
+                    ModelState.AddModelError(criteria.ErrCode.ToString(), GetErrMsg(criteria.ErrCode));
                 }
                 else
                 {

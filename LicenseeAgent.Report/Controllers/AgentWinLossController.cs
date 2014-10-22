@@ -128,7 +128,7 @@
         /// <param name="balanceUpDay">The balance up day.</param>
         /// <returns>Returns criteria.</returns>
         [NonAction]
-        public CriteriaBase GetCriteria(AgentWinLossViewModel model, SelBalanceUpDay balanceUpDay)
+        public CriteriaBase GetCriteria(AgentWinLossViewModel model, SelectBalanceUpDay balanceUpDay)
         {
             if (ModelHelper.IsAgentLevel0(model.AgentLevel))
             {

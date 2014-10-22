@@ -11,7 +11,8 @@
 
         public string UserName { get; set; }
 
-        public int MsgId { get; set; }
+        [SpParam(SqlParamName = "MsgId")]
+        public int ErrCode { get; set; }
 
         public int PageSize { get; set; }
 

@@ -16,9 +16,13 @@
     /// </summary>
     public class CoreService : QueryService, ICoreService
     {
-        private const string BalanceUpDayCacheKey = "LAS_BalanceUpDayCacheKey";
-        private const string LicenseDomainsCacheKey = "LAS_LICENSEE_DOMAINS";
+        #region Variables
+
         private readonly ICache _cache;
+
+        #endregion Variables
+
+        #region Constructors
 
         public CoreService()
             : this(null)
@@ -30,24 +34,30 @@
             _cache = cache ?? CacheService.CreateInstance();
         }
 
+        #endregion Constructors
+
+        #region Properties
+
         /// <summary>
         /// Gets the balance up day.
         /// </summary>
         /// <value>
         /// The balance up day.
         /// </value>
-        public SelBalanceUpDay BalanceUpDay
+        public SelectBalanceUpDay BalanceUpDay
         {
             get
             {
-                var result = _cache.Get<SelBalanceUpDay>(BalanceUpDayCacheKey);
+                var result = _cache.Get<SelectBalanceUpDay>(Constants.AppCacheBalanceUpDay);
                 if (result == null)
                 {
-                    result = GetEntity<SelBalanceUpDay>(new SelBalanceUpDayCriteria());
+                    result = GetEntity<SelectBalanceUpDay>(new SelectBalanceUpDayCriteria());
                     if (result == null)
                     {
                         throw new InvalidOperationException("Can't get balance up day.");
                     }
+
+                    _cache.Set(Constants.AppCacheBalanceUpDay, result);
                 }
 
                 return result;
@@ -65,7 +75,7 @@
         {
             get
             {
-                var licenseeDomains = _cache.Get<IList<LicenseeDomain>>(LicenseDomainsCacheKey);
+                var licenseeDomains = _cache.Get<IList<LicenseeDomain>>(Constants.AppCacheLicenseDomain);
                 if (licenseeDomains == null)
                 {
                     licenseeDomains = InternalGetLicenseeDomains();
@@ -74,12 +84,16 @@
                         throw new InvalidOperationException("Licensee domains configuration is fail.");
                     }
 
-                    _cache.Set(LicenseDomainsCacheKey, licenseeDomains);
+                    _cache.Set(Constants.AppCacheLicenseDomain, licenseeDomains);
                 }
 
                 return licenseeDomains;
             }
         }
+
+        #endregion Properties
+
+        #region Licensee domain
 
         /// <summary>
         /// Gets the licensee domain.
@@ -153,6 +167,10 @@
             return null;
         }
 
+        #endregion Licensee domain
+
+        #region Product control
+
         /// <summary>
         /// Gets the products.
         /// </summary>
@@ -160,7 +178,7 @@
         /// <returns>Returns list of offered products.</returns>
         public IList<ProductInfo> GetProducts(int licenseeId)
         {
-            var cacheKey = string.Format("LAS_PRODUCTS_{0}", licenseeId);
+            var cacheKey = string.Concat(Constants.AppCacheLicenseeProduct, licenseeId);
             var products = _cache.Get<IList<ProductInfo>>(cacheKey);
             if (products == null)
             {
@@ -204,6 +222,8 @@
             return productInfos.Where(x => x.ProductId == productId).Count() == 1;
         }
 
+        #endregion Product control
+
         /// <summary>
         /// Get agent information.
         /// </summary>
@@ -220,6 +240,8 @@
             result.AgentId = agentId;
             return result;
         }
+
+        #region Utilities
 
         /// <summary>
         /// Gets the licensee domains. If licenseeId=0 then get all licensee domains.
@@ -257,5 +279,7 @@
 
             return products;
         }
+
+        #endregion Utilities
     }
 }

@@ -92,7 +92,7 @@
                     .Returns(args =>
                     {
                         var criteria = (MemberGetByAgentCriteria)args[0];
-                        criteria.MsgId = Result.SuccessValue;
+                        criteria.ErrCode = Result.SuccessValue;
 
                         return members;
                     });
@@ -100,7 +100,7 @@
                     .Returns(args =>
                     {
                         var criteria = (SearchMemberCriteria)args[0];
-                        criteria.MsgId = Result.SuccessValue;
+                        criteria.ErrCode = Result.SuccessValue;
 
                         return members;
                     });

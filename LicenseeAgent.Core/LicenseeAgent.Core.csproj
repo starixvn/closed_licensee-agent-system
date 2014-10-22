@@ -105,11 +105,11 @@
     <Compile Include="Criteria\GetAgentInfoCriteria.cs" />
     <Compile Include="Criteria\GetLicenseeDomainCriteria.cs" />
     <Compile Include="Criteria\GetProductCriteria.cs" />
-    <Compile Include="Criteria\SelBalanceUpDayCriteria.cs" />
+    <Compile Include="Criteria\SelectBalanceUpDayCriteria.cs" />
     <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\FormType.cs" />
     <Compile Include="Enumerations\LegendType.cs" />
-    <Compile Include="Entities\SelBalanceUpDay.cs" />
+    <Compile Include="Entities\SelectBalanceUpDay.cs" />
     <Compile Include="Entities\CurrencyInfo.cs" />
     <Compile Include="Entities\InternalLoginInfo.cs" />
     <Compile Include="Entities\LicenseeDomain.cs" />

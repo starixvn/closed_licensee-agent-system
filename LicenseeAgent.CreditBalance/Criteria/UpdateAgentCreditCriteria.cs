@@ -18,7 +18,8 @@
 
         public decimal Credit { get; set; }
 
-        public int MsgId { get; set; }
+        [SpParam(SqlParamName = "MsgId")]
+        public int ErrCode { get; set; }
 
         public int Updater { get; set; }
 

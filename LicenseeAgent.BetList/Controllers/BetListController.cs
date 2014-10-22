@@ -64,7 +64,7 @@
         public JsonResult Index(BetListViewModel model)
         {
             var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new BetListSelByMemberCriteria
+            var criteria = new BetListSelectByMemberCriteria
             {
                 CustId = model.CustId,
                 FromDate = model.FromDate,
@@ -183,7 +183,7 @@
             }
 
             var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new BetListSelByMemberCriteria
+            var criteria = new BetListSelectByMemberCriteria
             {
                 CustId = model.CustId,
                 FromDate = model.FromDate,

@@ -133,7 +133,7 @@
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListResultCriteria.cs" />
     <Compile Include="Criteria\BetListResultsNumberGameCriteria.cs" />
-    <Compile Include="Criteria\BetListSelByMemberCriteria.cs" />
+    <Compile Include="Criteria\BetListSelectByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
     <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
     <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />

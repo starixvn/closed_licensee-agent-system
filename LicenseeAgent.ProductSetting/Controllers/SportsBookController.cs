@@ -50,7 +50,7 @@
             };
 
             CustomerSettingService.CheckExistUserName(criteria);
-            if (criteria.MsgId == Result.SuccessValue)
+            if (criteria.ErrCode == Result.SuccessValue)
             {
                 var serviceResult = MemberService.CheckUserName(new CheckUserNameAction
                 {
@@ -64,7 +64,7 @@
                 }
             }
 
-            return JsonResult(criteria.MsgId);
+            return JsonResult(criteria.ErrCode);
         }
 
         #endregion Utility
@@ -99,7 +99,7 @@
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(Formatter.FormatJson("settingContext", settingContext));
             var sportsBookSetting = SportsBookService.GetSettingForInsert(settingContext, result);
-            
+
             if (result.ErrCode == Result.SuccessValue)
             {
                 stringBuilder.AppendLine(Formatter.FormatJson("sportsBookSetting", sportsBookSetting));
@@ -300,7 +300,7 @@
             {
                 return RedirectToAccessDeniedPage();
             }
-            
+
             return View("EditCustomer", settingContext);
         }
 

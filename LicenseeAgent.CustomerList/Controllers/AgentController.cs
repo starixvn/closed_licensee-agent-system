@@ -111,8 +111,8 @@
             var agents = _agentListService.GetAgentList(criteria);
             return Json(new
             {
-                ErrCode = criteria.MsgId,
-                ErrMsg = GetErrMsg(criteria.MsgId),
+                ErrCode = criteria.ErrCode,
+                ErrMsg = GetErrMsg(criteria.ErrCode),
                 List = agents,
                 CurrentPage = criteria.PageIndex,
                 ItemsPerPage = criteria.PageSize,
@@ -140,8 +140,8 @@
             var agents = _agentListService.SearchAgent(criteria);
             return Json(new
             {
-                ErrCode = criteria.MsgId,
-                ErrMsg = GetErrMsg(criteria.MsgId),
+                ErrCode = criteria.ErrCode,
+                ErrMsg = GetErrMsg(criteria.ErrCode),
                 List = agents,
                 CurrentPage = criteria.PageIndex,
                 ItemsPerPage = criteria.PageSize,
@@ -204,7 +204,7 @@
                 AccStatus = model.Status
             };
             var agentsHasMember = _agentListService.UpdateAgentAccStatus(criteria);
-            if (criteria.MsgId == Result.SuccessValue && model.Status == (int)AccountStatus.Closed && agentsHasMember.Count > 0)
+            if (criteria.ErrCode == Result.SuccessValue && model.Status == (int)AccountStatus.Closed && agentsHasMember.Count > 0)
             {
                 var serviceResult = _memberService.UpdateMemberStatus(new UpdateMemberStatusAction
                 {
@@ -221,7 +221,7 @@
                 }
             }
 
-            return JsonResult(criteria.MsgId);
+            return JsonResult(criteria.ErrCode);
         }
 
         #endregion Change status

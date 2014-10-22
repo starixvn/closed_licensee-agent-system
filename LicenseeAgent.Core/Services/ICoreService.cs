@@ -8,7 +8,7 @@
 
     public interface ICoreService
     {
-        SelBalanceUpDay BalanceUpDay { get; }
+        SelectBalanceUpDay BalanceUpDay { get; }
 
         IList<LicenseeDomain> LicenseeDomains { get; }
 

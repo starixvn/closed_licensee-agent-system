@@ -35,6 +35,8 @@
 
         #endregion Constructors
 
+        #region Index
+
         /// <summary>
         /// Generate Captcha Image.
         /// </summary>
@@ -53,5 +55,7 @@
                 return File(memoryStream.GetBuffer(), "image/png");
             }
         }
+
+        #endregion Index
     }
 }

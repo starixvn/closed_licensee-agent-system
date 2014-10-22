@@ -140,6 +140,8 @@
 
         #endregion Total bets
 
+        #region BetListSelByMember
+
         /// <summary>
         /// Index page of Bet List.
         /// </summary>
@@ -148,6 +150,11 @@
         [HttpGet]
         public ActionResult BetListSelByMember(int custId)
         {
+            if (!_downLinePermissionService.IsDownLineMember(custId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
             var productList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             ViewBag.PageContext = new PageContext(CurrentSession, custId);
             var viewResult = new BetListSelectByMemberViewResult
@@ -156,6 +163,7 @@
                 ProductList = productList,
                 IsAdmin = CurrentSession.IsAdmin
             };
+
             return View(viewResult);
         }
 
@@ -169,6 +177,11 @@
         [HttpPost]
         public JsonResult BetListSelByMember(BetListSelectByMemberViewModel model)
         {
+            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var balanceUp = _coreService.BalanceUpDay;
             var criteria = new BetListSelByMemberCriteria
             {
@@ -202,6 +215,8 @@
                 TotalWinLost = subTotalWinLost + subTotalComm
             });
         }
+
+        #endregion BetListSelByMember
 
         /// <summary>
         /// Index page of Bet List.

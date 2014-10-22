@@ -423,7 +423,7 @@ language.Las['en-US'] = {
 	SportsBookSimpleModeNote : "Note: In simple mode, your changes of soccer setting will be applied to all sport types/bet types as well.",
 	Stake : "Stake",
 	Statement : "Statement",
-	StatementDetail : "Statement Detail",
+	StatementDetails : "Statement Details",
 	Status : "Status",
 	Stopped : "Stopped",
 	Submit : "Submit",

@@ -3869,11 +3869,11 @@ namespace LicenseeAgent.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statement Detail.
+        ///   Looks up a localized string similar to Statement Details.
         /// </summary>
-        public static string StatementDetail {
+        public static string StatementDetails {
             get {
-                return ResourceManager.GetString("StatementDetail", resourceCulture);
+                return ResourceManager.GetString("StatementDetails", resourceCulture);
             }
         }
         

@@ -75,10 +75,16 @@ var CommissionGroupUtility = (function ($) {
                 }
             });
         },
-        ViewDetail: function (agentId, username) {
-            location.href = core.resolveUrl("~/Report/StatementDetail?agentId={0}&fromDate={1}&toDate={2}&username={3}&isMember={4}&parentUsername={5}"
-                                            .format(agentId, $('#FromDate').val(), $('#ToDate').val(), username,
-                                                    pageContext.IsLastLevel, $('#Username').val()));
+        ViewDetail: function (agentId, userName) {
+            var url = core.resolveUrl('~/Report/Statement/Detail', {
+                agentId: agentId,
+                fromDate: $('#FromDate').val(),
+                toDate: $('#ToDate').val(),
+                userName: userName,
+                isMember: pageContext.IsLastLevel,
+                parentUsername: $('#Username').val()
+            });
+            location.href = url;
         },
         confirmDefaultGroup: function () {
             var buttons = [{

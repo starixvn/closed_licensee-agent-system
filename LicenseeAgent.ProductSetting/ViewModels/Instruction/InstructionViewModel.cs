@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.ProductSetting.ViewModels
+﻿namespace LicenseeAgent.ProductSetting.ViewModels.Instruction
 {
     using System.ComponentModel.DataAnnotations;
 

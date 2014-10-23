@@ -1,9 +1,9 @@
 ﻿namespace LicenseeAgent.Web.Tests.Controllers
 {
     using System.Web.Mvc;
-    using LicenseeAgent.ProductSetting.ViewModels;
+    using LicenseeAgent.ProductSetting.Controllers;
+    using LicenseeAgent.ProductSetting.ViewModels.Instruction;
     using LicenseeAgent.Tests.Fakes;
-    using LicenseeAgent.Web.Controllers;
     using NUnit.Framework;
 
     /// <summary>

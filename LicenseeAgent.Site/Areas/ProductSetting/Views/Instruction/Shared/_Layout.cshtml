@@ -1,19 +1,20 @@
-﻿@{
-	string trigger = ViewBag.Trigger;
-	string title = ViewBag.Title;
-	string tipTitle = ViewBag.TipTitle;
-	
-	if (!string.IsNullOrWhiteSpace(title))
-	{
-		title = string.Format("title='{0}'", title);
-	}
-	if (!string.IsNullOrWhiteSpace(tipTitle))
-	{
-		tipTitle = string.Format("tip-title='{0}'", tipTitle);
-	}
-	trigger = string.IsNullOrWhiteSpace(trigger) ? "page-info" : trigger + "-info";
+﻿@model InstructionViewModel
+@{
+    string title = Model.Title;
+    if (!string.IsNullOrWhiteSpace(title))
+    {
+        title = string.Format("title='{0}'", title);
+    }
+
+    string tipTitle = Model.TipTitle;
+    if (!string.IsNullOrWhiteSpace(tipTitle))
+    {
+        tipTitle = string.Format("tip-title='{0}'", tipTitle);
+    }
+
+    string trigger = Model.Trigger;
+    trigger = string.IsNullOrWhiteSpace(trigger) ? "page-info" : trigger + "-info";
 }
-	
 <div id="@trigger" class="instruction-container" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
     <div class="instruction-content">
         @RenderBody()

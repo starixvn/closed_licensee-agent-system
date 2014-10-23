@@ -1,7 +1,8 @@
-﻿namespace LicenseeAgent.Web.Controllers
+﻿namespace LicenseeAgent.ProductSetting.Controllers
 {
     using System.Web.Mvc;
-    using LicenseeAgent.ProductSetting.ViewModels;
+    using LicenseeAgent.ProductSetting.ViewModels.Instruction;
+    using LicenseeAgent.Web.Controllers;
 
     /// <summary>
     /// Show instruction.
@@ -12,21 +13,19 @@
         /// <summary>
         /// Instruction Index.
         /// </summary>
-        /// <param name="viewModel">Instruction view model.</param>
-        /// <returns>Action result.</returns>
-        public ActionResult Index(InstructionViewModel viewModel)
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Action result.
+        /// </returns>
+        public ActionResult Index(InstructionViewModel model)
         {
-            ViewBag.Trigger = viewModel.Trigger;
-            ViewBag.Title = viewModel.Title;
-            ViewBag.TipTitle = viewModel.TipTitle;
-
             string viewName = string.Format(
-                "~/Areas/ProductSetting/Views/Instruction/{0}/{1}/{2}.cshtml", 
-                CurrentSession.Language, 
-                viewModel.Product, 
-                viewModel.Key);
+                "~/Areas/ProductSetting/Views/Instruction/{0}/{1}/{2}.cshtml",
+                CurrentSession.Language,
+                model.Product,
+                model.Key);
 
-            return View(viewName);
+            return View(viewName, model);
         }
     }
 }

@@ -87,7 +87,7 @@
             {
                 <div class="control-group">
                     <button class="btn btn-primary" data-ng-click="updateCustomer($event)">
-                       @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
+                        @(Model.IsDeposit ? Las.UpdateAll : Las.Update)
                     </button>
                 </div>
             }
@@ -98,26 +98,22 @@
 {
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "LicenseeBetSetting",
         trigger = "licensee-bet-limit-info-button",
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,
-        product="Keno"
+        product = "Keno"
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "LicenseeBetSettingAdv",
+        key = "LicenseeBetSetting",
         trigger = "licensee-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,
         product = "Keno"
     })
-
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "LicenseePositionTakingSetting",
         trigger = "licensee-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
@@ -126,7 +122,6 @@
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "LicenseePositionTakingSettingAdv",
         trigger = "licensee-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
@@ -138,7 +133,6 @@ else if (Model.TargetRoleId == (int)Role.Agent)
 {
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "AgentBetSetting",
         trigger = "agent-bet-limit-info-button",
         title = Las.BetSettingInstructions,
@@ -147,8 +141,7 @@ else if (Model.TargetRoleId == (int)Role.Agent)
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "AgentBetSettingAdv",
+        key = "AgentBetSetting",
         trigger = "agent-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,
@@ -157,16 +150,15 @@ else if (Model.TargetRoleId == (int)Role.Agent)
 
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "AgentEditAgentPositionTakingSetting",
+        key = "AgentPositionTakingSetting",
         trigger = "agent-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
-        tipTitle = Las.ClickToViewInstructions
+        tipTitle = Las.ClickToViewInstructions,
+        product = "Keno"
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "AgentEditAgentPositionTakingSettingAdv",
+        key = "AgentPositionTakingSettingAdv",
         trigger = "agent-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,
@@ -177,7 +169,6 @@ else
 {
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "MemberBetSetting",
         trigger = "member-bet-limit-info-button",
         title = Las.BetSettingInstructions,
@@ -186,17 +177,14 @@ else
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "MemberBetSettingAdv",
+        key = "MemberBetSetting",
         trigger = "member-bet-limit-info-button-adv",
         title = Las.BetSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,
         product = "Keno"
     })
-
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
         key = "MemberPositionTakingSetting",
         trigger = "member-position-taking-info-button",
         title = Las.PositionTakingSettingInstructions,
@@ -205,8 +193,7 @@ else
     })
     @Html.Action("Index", "Instruction", new
     {
-        area = "",
-        key = "MemberPositionTakingSettingAdv",
+        key = "MemberPositionTakingSetting",
         trigger = "member-position-taking-info-button-adv",
         title = Las.PositionTakingSettingInstructions,
         tipTitle = Las.ClickToViewInstructions,

@@ -181,7 +181,7 @@
     <Compile Include="Utils\CustomerInfoDataReader.cs" />
     <Compile Include="Utils\PositionTakingDataReader.cs" />
     <Compile Include="ViewModels\CheckExistUserNameViewModel.cs" />
-    <Compile Include="ViewModels\InstructionViewModel.cs" />
+    <Compile Include="ViewModels\Instruction\InstructionViewModel.cs" />
     <Compile Include="ViewModels\Status\UpdateMemberViewModel.cs" />
     <Compile Include="ViewModels\EditProductAgentViewModel.cs" />
     <Compile Include="ViewModels\EditProductMemberViewModel.cs" />

@@ -6,8 +6,6 @@
     {
         bool CheckForEditingCustomerSetting(CustomerSettingBelonging customerSettingBelonging);
 
-        bool CheckForInsertingCustomerSetting(CustomerSettingBelonging customerSettingBelonging);
-
         bool IsDownLineMember(int memberId);
 
         bool IsDownLineAgent(int agentId);

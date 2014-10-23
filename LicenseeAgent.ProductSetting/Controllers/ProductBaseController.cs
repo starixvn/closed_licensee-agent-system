@@ -176,15 +176,7 @@
                 return true;
             }
 
-            var insertingCustomerSettingBelonging = new CustomerSettingBelonging
-            {
-                FormId = settingContext.FormId,
-                CustId = settingContext.CustId,
-                RoleId = settingContext.RoleId,
-                TargetRoleId = settingContext.TargetRoleId
-            };
-
-            return _downLinePermissionService.CheckForInsertingCustomerSetting(insertingCustomerSettingBelonging);
+            return CurrentSession.IsAdmin || CurrentSession.AgentInfo.AgentId == settingContext.CustId;
         }
 
         /// <summary>

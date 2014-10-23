@@ -30,14 +30,6 @@
                 : CheckForEditingAgentSetting(customerSettingBelonging);
         }
 
-        public bool CheckForInsertingCustomerSetting(CustomerSettingBelonging customerSettingBelonging)
-        {
-            return customerSettingBelonging.FormId == FormType.Add
-                && IsDirectDownLineAgent(customerSettingBelonging.CustId)
-                ? true
-                : false;
-        }
-
         /// <summary>
         /// Determines whether [is down-line member] [the specified belonging checking base].
         /// </summary>

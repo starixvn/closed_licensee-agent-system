@@ -55,6 +55,17 @@
                 },
                 namespaces: new[] { "LicenseeAgent.Report.Controllers" });
 
+            context.MapRoute(
+                "Report_Result",
+                "Report/Results/{action}/{id}",
+                new
+                {
+                    controller = "Results",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
+
             RegisterBundles(BundleTable.Bundles);
         }
 
@@ -77,6 +88,13 @@
                 "~/Views/BetList/Resources/betlist-core.js"));
             bundles.Add(new LessBundle("~/css/report/agent-outstanding").Include(
                 "~/Areas/Report/Content/AgentOutstanding/report-agent-outstanding.less"));
+
+            bundles.Add(new ScriptBundle("~/js/report/resultsreport").Include(
+                "~/Areas/Report/Scripts/Results/result-report.js"));
+
+            bundles.Add(new LessBundle("~/css/report/resultsreport").Include(
+                "~/Areas/Report/Content/Results/fanex.result.css",
+                "~/Areas/Report/Content/Results/fanex.result.override.less"));
         }
     }
 }

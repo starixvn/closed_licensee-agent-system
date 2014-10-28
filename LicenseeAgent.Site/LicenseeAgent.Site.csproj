@@ -335,12 +335,12 @@
     <Content Include="Areas\TotalBets\Scripts\totalBets.js" />
     <Content Include="Content\bootstrap-datepicker\override.less" />
     <Content Include="Content\core-components.less" />
-    <Content Include="Content\Fanex.Result\images\1F.gif" />
-    <Content Include="Content\Fanex.Result\images\1L.gif" />
-    <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
-    <Content Include="Content\Fanex.Result\images\first-goal.gif" />
-    <Content Include="Content\Fanex.Result\images\last-goal.gif" />
-    <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
+    <Content Include="Areas\Report\Content\Results\images\1F.gif" />
+    <Content Include="Areas\Report\Content\Results\images\1L.gif" />
+    <Content Include="Areas\Report\Content\Results\images\bg_header03.jpg" />
+    <Content Include="Areas\Report\Content\Results\images\first-goal.gif" />
+    <Content Include="Areas\Report\Content\Results\images\last-goal.gif" />
+    <Content Include="Areas\Report\Content\Results\images\tab_topbg.gif" />
     <Content Include="Areas\TotalBets\Content\totalbets.less" />
     <Content Include="Areas\TotalBets\Scripts\Basketball\basketball.js" />
     <Content Include="Areas\TotalBets\Scripts\OtherSports\othersports.js" />
@@ -497,8 +497,8 @@
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
-    <Content Include="Content\Fanex.Result\fanex.result.css" />
-    <Content Include="Content\Fanex.Result\fanex.result.override.less" />
+    <Content Include="Areas\Report\Content\Results\fanex.result.css" />
+    <Content Include="Areas\Report\Content\Results\fanex.result.override.less" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ja-JP.js" />
@@ -686,7 +686,7 @@
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
     <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
-    <Content Include="Views\Report\Resources\result-report.js" />
+    <Content Include="Areas\Report\Scripts\Results\result-report.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
@@ -944,7 +944,7 @@
     <Content Include="Views\Transfer\AgentList.cshtml" />
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
-    <Content Include="Views\Report\Results.cshtml" />
+    <Content Include="Areas\Report\Views\Results\Index.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />
@@ -1014,8 +1014,8 @@
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\SyncMonitoring.cshtml" />
-    <Content Include="Views\Report\ResultsMatch.NoData.cshtml" />
-    <Content Include="Views\Report\ResultsOutright.NoData.cshtml" />
+    <Content Include="Areas\Report\Views\Results\ResultsMatch.NoData.cshtml" />
+    <Content Include="Areas\Report\Views\Results\ResultsOutright.NoData.cshtml" />
     <Content Include="Web.ConnectionStrings.Prod.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>

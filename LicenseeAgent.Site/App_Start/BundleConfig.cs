@@ -174,7 +174,6 @@
             RegisterLoginPage(bundles);
             RegisterHomePage(bundles);
             RegisterBetListPage(bundles);
-            RegisterReportPage(bundles);
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
@@ -273,19 +272,6 @@
             bundles.Add(new ScriptBundle("~/js/betlistwinlost").Include(
                 "~/Views/BetList/Resources/betlist-core.js",
                 "~/Views/BetList/Resources/betlist-winlost.js"));
-        }
-
-        /// <summary>
-        /// Registers the report page bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterReportPage(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
-                "~/Views/Report/Resources/result-report.js"));
-            bundles.Add(new LessBundle("~/css/resultsreport").Include(
-                "~/Content/Fanex.Result/fanex.result.css",
-                "~/Content/Fanex.Result/fanex.result.override.less"));
         }
 
         /// <summary>

@@ -10,14 +10,14 @@
 {
     @Styles.Render("~/css/datetimepicker")
     @Styles.Render("~/css/fanexgrid")
-    @Styles.Render("~/css/resultsreport")
+    @Styles.Render("~/css/report/resultsreport")
 }
 @section scripts
 {
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
-    @Scripts.Render("~/js/resultsreport")
+    @Scripts.Render("~/js/report/resultsreport")
 }
 <div class="legend">
     @ViewBag.Title
@@ -30,7 +30,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="filter-tab-match">
-            @using (Html.BeginForm("Results", "Report", FormMethod.Post,
+            @using (Html.BeginForm(null, null, FormMethod.Post,
                 new { @class = "form-inline form-filter", id = "search-form" }))
             {
                 <div class="controls-row">
@@ -66,7 +66,7 @@
             }
         </div>
         <div class="tab-pane" id="filter-tab-outright">
-            @using (Html.BeginForm("Results", "Report", FormMethod.Post,
+            @using (Html.BeginForm("OutrightResults", "Results", new { area = "Report" }, FormMethod.Post,
                 new { @class = "form-inline form-filter", id = "search-form" }))
             {
                 <div class="controls-row">

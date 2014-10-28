@@ -18,7 +18,7 @@
     /// <summary>
     /// Report Controller.
     /// </summary>
-    public partial class ReportController : BaseController
+    public class ResultsController : BaseController
     {
         #region Services
 
@@ -36,12 +36,12 @@
 
         #region Constructor
 
-        public ReportController()
+        public ResultsController()
             : this(null, null)
         {
         }
 
-        public ReportController(
+        public ResultsController(
             ICoreService coreService,
             IReportService reportService)
         {
@@ -58,7 +58,7 @@
         /// </summary>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult Results()
+        public ActionResult Index()
         {
             var balanceUp = _coreService.BalanceUpDay;
             var model = new ResultsReportViewModel
@@ -75,7 +75,7 @@
         /// <param name="criteria">Sport criteria.</param>
         /// <returns>Return a view.</returns>
         [HttpPost]
-        public JsonResult Results(SportCriteria criteria)
+        public JsonResult Index(SportCriteria criteria)
         {
             criteria.IsShowAll = _includeTestData;
             var sports = _reportService.GetSports(criteria);
@@ -265,10 +265,11 @@
         /// <returns>HTML string.</returns>
         private string ResultsNoData()
         {
-            return RenderRazorViewToString("~/Views/Report/Results.NoData.cshtml", null);
+            return RenderRazorViewToString("~/Areas/Report/Views/Results/ResultsMatch.NoData.cshtml", null);
         }
 
         /// <summary>
+            return RenderRazorViewToString("~/Areas/Report/Views/Results/ResultsOutright.NoData.cshtml", null);
         /// Get Match Results Data.
         /// </summary>
         /// <param name="criteria">Match Results Report Criteria.</param>

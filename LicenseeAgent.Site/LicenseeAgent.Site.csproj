@@ -603,6 +603,7 @@
     <Content Include="Content\BetList\rng-casino-hand-history.css" />
     <Content Include="Content\BetList\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
+    <Content Include="Areas\Report\Content\Results\fanex.result.css" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
     <Content Include="Scripts\fanexgrid\Fanex.Grid.Lang.ja-JP.js" />
@@ -785,7 +786,7 @@
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
     <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
-    <Content Include="Views\Report\Resources\result-report.js" />
+    <Content Include="Areas\Report\Scripts\Results\result-report.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
@@ -995,7 +996,7 @@
     <Content Include="Views\Transfer\AgentList.cshtml" />
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
-    <Content Include="Views\Report\Results.cshtml" />
+    <Content Include="Areas\Report\Views\Results\Index.cshtml" />
     <Content Include="Views\BetList\ParlayList.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />

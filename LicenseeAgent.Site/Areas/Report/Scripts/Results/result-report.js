@@ -47,26 +47,17 @@ var resultReport = (function ($) {
                 SportType: $("#MatchSport").val()
             };
 
-            $.ajax({
+            core.ajaxJSON({
                 url: core.resolveUrl("~/Report/GetLeagues"),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                        return;
-                    }
-                    if (data.Leagues != null) {
-                        resultReport.generateLeagues(data.Leagues, 1);
-                        resultReport.generateResults(data.Results, 1);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+                data: params
+            }, function (data) {
+                if (data.ErrCode !== 0) {
+                    alert(data.ErrMsg);
+                    return;
+                }
+                if (data.Leagues != null) {
+                    resultReport.generateLeagues(data.Leagues, 1);
+                    resultReport.generateResults(data.Results, 1);
                 }
             });
         },
@@ -78,25 +69,16 @@ var resultReport = (function ($) {
                 LeagueId: $("#MatchLeague").val()
             };
 
-            $.ajax({
-                url: core.resolveUrl("~/Report/GetMatchResults"),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                        return;
-                    }
-                    if (data.Results != null) {
-                        resultReport.generateResults(data.Results, 1);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+            core.ajaxJSON({
+                url: core.resolveUrl("~/Report/Results"),
+                data: params
+            }, function (data) {
+                if (data.ErrCode !== 0) {
+                    alert(data.ErrMsg);
+                    return;
+                }
+                if (data.Results != null) {
+                    resultReport.generateResults(data.Results, 1);
                 }
             });
         },
@@ -108,26 +90,17 @@ var resultReport = (function ($) {
                 SportType: $("#OutrightSport").val()
             };
 
-            $.ajax({
-                url: core.resolveUrl("~/Report/OutrightResults"),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode !== 0) {
-                        alert(data.ErrMsg);
-                        return;
-                    }
-                    if (data.Leagues != null) {
-                        resultReport.generateLeagues(data.Leagues, 0);
-                        resultReport.generateResults(data.Results, 0);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+            core.ajaxJSON({
+                url: core.resolveUrl("~/Report/Results/OutrightResults"),
+                data: params
+            }, function (data) {
+                if (data.ErrCode !== 0) {
+                    alert(data.ErrMsg);
+                    return;
+                }
+                if (data.Leagues != null) {
+                    resultReport.generateLeagues(data.Leagues, 0);
+                    resultReport.generateResults(data.Results, 0);
                 }
             });
         },
@@ -153,50 +126,30 @@ var resultReport = (function ($) {
                 LeagueId: leagueid
             };
 
-            $.ajax({
-                url: core.resolveUrl("~/Report/OutrightResults"),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.Results != null) {
-                        resultReport.generateResults(data.Results, 0);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+            core.ajaxJSON({
+                url: core.resolveUrl("~/Report/Results/OutrightResults"),
+                data: params
+            }, function (data) {
+                if (data.Results != null) {
+                    resultReport.generateResults(data.Results, 0);
                 }
             });
         },
 
         updateContent: function (params, viewMatchResults) {
-            var actionUrl = "~/Report/OutrightResults";
+            var actionUrl = "~/Report/Results/OutrightResults";
             if (viewMatchResults === 1) {
                 actionUrl = "~/Report/Results";
             }
 
-            $.ajax({
+            core.ajaxJSON({
                 url: core.resolveUrl(actionUrl),
-                type: 'POST',
-                data: params,
-                dataType: "json",
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.Sports != null) {
-                        resultReport.generateSports(data.Sports, viewMatchResults);
-
-                        resultReport.generateLeagues(data.Leagues, viewMatchResults);
-
-                        resultReport.generateResults(data.Results, viewMatchResults);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
+                data: params
+            }, function (data) {
+                if (data.Sports != null) {
+                    resultReport.generateSports(data.Sports, viewMatchResults);
+                    resultReport.generateLeagues(data.Leagues, viewMatchResults);
+                    resultReport.generateResults(data.Results, viewMatchResults);
                 }
             });
         },

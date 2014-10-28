@@ -173,7 +173,6 @@
             RegisterErrorPage(bundles);
             RegisterHomePage(bundles);
             RegisterBetListPage(bundles);
-            RegisterReportPage(bundles);
             RegisterTransferPage(bundles);
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
@@ -258,18 +257,7 @@
         }
 
         /// <summary>
-        /// Registers the report page bundles.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterReportPage(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
-                "~/Views/Report/Resources/result-report.js"));
-            bundles.Add(new LessBundle("~/css/resultsreport").Include(
                 "~/Content/Fanex.Result/fanex.result.less"));
-        }
-
-        /// <summary>
         /// Registers the plugin bundles.
         /// </summary>
         /// <param name="bundles">The bundles.</param>

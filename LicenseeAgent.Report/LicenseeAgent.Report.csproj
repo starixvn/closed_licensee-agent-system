@@ -124,6 +124,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\AgentOutstandingController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Criteria\AgentOutstanding\MemberOutstandingReportCriteria.cs" />
     <Compile Include="Criteria\AgentWinLoss\WinLossMemberViewCriteria.cs" />
     <Compile Include="Criteria\MatchResultsNumberGameCriteria.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="Criteria\TransferDetailAgentCriteria.cs" />
     <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\AgentWinLossController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Criteria\AgentOutstanding\OutstandingReportBetListCriteria.cs" />
     <Compile Include="Criteria\AgentOutstanding\AgentOutstandingReportCriteria.cs" />
     <Compile Include="Criteria\OutrightResultsReportCriteria.cs" />

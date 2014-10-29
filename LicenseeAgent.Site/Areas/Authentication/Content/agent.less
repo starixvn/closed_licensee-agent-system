@@ -1,0 +1,80 @@
+@import "authentication.less";
+
+@role: 'agent';
+@color: #bd3333;
+@hover-color: #d63838;
+
+body
+{
+    .container {
+        .fn-container(@role);
+
+        form {
+            .fn-header(@role);
+
+            .login-box {
+                .fn-form(@role);
+
+                .header-box {
+                    .title {
+                        color: #fff;
+                    }
+
+                    .language {
+                        #nav {
+                            li {
+                                border: 1px solid #fff;
+                                    
+                                ul {
+                                    border: 1px solid @color;
+                                    li:hover {
+                                        background-color: @hover-color;
+                                    }
+                                }
+                            }
+
+                            .icon-language-arrow {
+                                background-position:-116px 3px !important;
+                            }
+                        }
+                    }
+                }
+
+                .content-box {
+                    #Captcha {
+                        width: 82px;
+                        padding: 8px;
+                    }
+
+                    #btnSubmit {
+                        color: #fff;
+                        background-color: @color;
+                        border: 0;
+                        height: 32px;
+                        cursor: pointer;
+                        margin-left: 5px;
+                        width: 138px;
+                        &:hover
+                        {
+                            background-color: @hover-color;
+                        }
+                    }
+
+                    #img-captcha {
+                        width: 109px;
+                        height: 32px;
+                        margin-left: 5px;
+                    }
+
+                    #reload {
+                        padding-left: 5px;
+                        padding-top: 5px;
+                        width: 24px;
+                        height: 24px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,10 +2,6 @@
 @{
     ViewBag.Title = Las.SignIn;
 }
-@section css
-{
-    @Styles.Render("~/css/login/internal")
-}
 <div class="container">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
@@ -28,6 +24,6 @@
                 </div>
             </div>
         </div>
-        @Html.ValidationSummary()
+        @Html.ValidationSummary(null, new { @class = "alert alert-danger" })
     }
 </div>

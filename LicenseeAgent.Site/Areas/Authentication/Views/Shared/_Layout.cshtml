@@ -6,18 +6,23 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/css/bootstrap")
     @Styles.Render("~/css/core")
-    @Styles.Render("~/css/login")
+    @Styles.Render("~/css/authentication")
     @RenderSection("css", false)
     @Html.Partial("_AppScript")
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/bootstrap")
     @Scripts.Render("~/js/language")
     @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/login")
+    @Scripts.Render("~/js/authentication")
     @Scripts.Render("~/js/cryptojs")
 </head>
 <body>
     @RenderBody()
+    <script type="text/javascript">
+        $(function () {
+            authentication.init();
+        });
+    </script>
     @RenderSection("scripts", false)
 </body>
 </html>

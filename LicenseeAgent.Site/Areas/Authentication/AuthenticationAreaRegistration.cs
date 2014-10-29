@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using System.Web.Optimization;
+    using LicenseeAgent.Core.Configurations;
 
     /// <summary>
     /// AccountAreaRegistration class.
@@ -42,6 +43,32 @@
                     id = UrlParameter.Optional
                 },
                 new[] { "LicenseeAgent.Authentication.Controllers" });
+
+            RegisterBundles(BundleTable.Bundles);
+        }
+
+        /// <summary>
+        /// Registers the login page.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/js/authentication").Include(
+                "~/scripts/cookie/jquery.cookie.js",
+                "~/Areas/Authentication/Scripts/authentication.js"));
+
+            if (AppSettings.IsAdminSite)
+            {
+                bundles.Add(new LessBundle("~/css/authentication").Include(
+                "~/content/language.less",
+                "~/Areas/Authentication/Content/admin.less"));
+            }
+            else
+            {
+                bundles.Add(new LessBundle("~/css/authentication").Include(
+                "~/content/language.less",
+                "~/Areas/Authentication/Content/agent.less"));
+            }
         }
     }
 }

@@ -1,0 +1,116 @@
+@import "../../../Content/bootstrap/variables.less";
+@import "../../../Content/bootstrap/mixins.less";
+
+@box-width: 440px;
+@header-height: 62px;
+@control-left: 23px;
+
+.fn-container(@role) {
+    background: url(%("images/%s/bg-header-repeat.jpg", @role)) repeat-x center top;
+}
+
+.fn-header(@role) {
+    background: url(%("images/%s/bg-header.jpg", @role)) no-repeat center top;
+}
+
+.fn-form(@role) {
+    background: url(%("images/%s/login-form.png", @role)) no-repeat;
+}
+
+body {
+    font-size: 9pt;
+    background: url("images/bg-repeat.jpg") repeat;
+
+    .container {
+        margin: auto;
+
+        form {
+            width: 960px;
+            height: 100%; 		
+            margin: auto;
+
+            .login-box 
+            {
+                top: 215px;
+                width: @box-width;
+                height: 300px;
+                margin: auto;
+                position: relative;
+
+                .header-box
+                {
+                    height: @header-height;
+
+                    .title {
+                        width: 340px;
+                        line-height: @header-height;
+                        float: left;
+                        font-size: 18pt;
+                        margin-left: @control-left;
+                    }
+
+                    .language {
+                        float: right;
+                        margin-right: 23px;
+
+                        #nav {
+                            ul {
+                                position: absolute;
+                                right: -1px;	
+
+                                li {
+                                    border: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content-box {
+                    margin-top: 27px;
+                    padding: 0 @control-left;
+
+                    .control-group {
+                        margin-bottom: 28px;
+
+                        input[type="text"],
+                        input[type="password"] {
+                            background-color: transparent;
+                            padding: 12px 40px 12px 8px;
+                            height: 18px;
+                            line-height: 18px;
+                            width: 346px;
+                            border: 0;
+                            color: #5c5c5c;
+
+                            &:focus {
+                                border-color: transparent;
+                                outline: 0;
+                                .box-shadow(none);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .validation-summary-errors
+            {
+                font-size: 12pt;
+                text-align: center;
+                width: @box-width;
+                margin: auto;
+                margin-top: 240px;
+                border-color: #eed3d7;
+
+                ul {
+                    margin-left: 0;
+                    list-style: none;
+                    li
+                    {
+                        padding: 5px 0px;
+                    }
+                }
+            }
+        }
+    }
+}

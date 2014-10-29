@@ -1,6 +1,6 @@
 ﻿/*global core, language, popup */
 
-var logIn = (function ($) {
+var authentication = (function ($) {
     'use strict';
     core.DisableRecheckIn = true;
     return {
@@ -10,11 +10,11 @@ var logIn = (function ($) {
                 return;
             }
 
-            logIn.setFocus($('.btn-primary'));
+            authentication.setFocus($('.btn-primary'));
             if ($('#Username').val().length === 0) {
-                logIn.setFocus($('#Username'));
+                authentication.setFocus($('#Username'));
             } else {
-                logIn.setFocus($('#Password'));
+                authentication.setFocus($('#Password'));
             }
 
             $('#reload').click(function (e) {
@@ -41,7 +41,7 @@ var logIn = (function ($) {
                 label: language.getString('ChangePassword'),
                 action: function () {
                     $.cookie('LasTopMenu', 'security', { path: '/' });
-                    logIn.gotoHome();
+                    authentication.gotoHome();
                 }
             }];
 
@@ -51,7 +51,7 @@ var logIn = (function ($) {
                 buttons: buttons,
                 top: 120,
                 width: 420,
-                onHide: logIn.gotoHome
+                onHide: authentication.gotoHome
             });
         },
         gotoHome: function () {
@@ -59,8 +59,3 @@ var logIn = (function ($) {
         }
     };
 } (jQuery));
-
-$(function () {
-    'use strict';
-    logIn.init();
-});

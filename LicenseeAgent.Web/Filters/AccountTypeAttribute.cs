@@ -43,27 +43,27 @@
                     break;
 
                 case AccountType.CSDIT:
-                    isAuthorized = currentSession.IsCSDIT;
+                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.CSDIT;
                     break;
 
                 case AccountType.Licensee:
-                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee ? true : false;
+                    isAuthorized = currentSession.IsAdmin && currentSession.LoginAccountType == AccountType.Licensee;
                     break;
 
                 case AccountType.Agent:
-                    isAuthorized = !currentSession.IsAdmin ? true : false;
+                    isAuthorized = !currentSession.IsAdmin;
                     break;
 
                 case AccountType.AgentLevel0:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0 ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel0;
                     break;
 
                 case AccountType.AgentLevel1:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1 ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLevel1;
                     break;
 
                 case AccountType.AgentLeveln:
-                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel ? true : false;
+                    isAuthorized = !currentSession.IsAdmin && currentSession.AgentInfo.IsLastLevel;
                     break;
 
                 default:

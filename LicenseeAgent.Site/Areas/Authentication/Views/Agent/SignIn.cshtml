@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        @Html.ValidationSummary()
+        @Html.ValidationSummary(null, new { @class = "alert alert-danger" })
     }
 </div>
 @section scripts{
@@ -40,7 +40,7 @@
     {
         var result = (SignInViewResult)ViewBag.Result;
         <script type="text/javascript">
-            logIn.showPasswordAlert('@result.Message');
+            authentication.showPasswordAlert('@result.Message');
         </script>
     }
 }

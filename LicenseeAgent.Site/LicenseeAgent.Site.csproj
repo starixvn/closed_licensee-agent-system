@@ -238,6 +238,16 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\Authentication\Content\Images\agent\bg-header-repeat.jpg" />
+    <Content Include="Areas\Authentication\Content\Images\agent\bg-header.jpg" />
+    <Content Include="Areas\Authentication\Content\Images\agent\login-form.png" />
+    <Content Include="Areas\Authentication\Content\Images\admin\bg-header-repeat.jpg" />
+    <Content Include="Areas\Authentication\Content\Images\admin\bg-header.jpg" />
+    <Content Include="Areas\Authentication\Content\Images\admin\login-form.png" />
+    <Content Include="Areas\Authentication\Content\admin.less" />
+    <Content Include="Areas\Authentication\Content\agent.less" />
+    <Content Include="Areas\Authentication\Content\authentication.less" />
+    <Content Include="Areas\Authentication\Content\Images\bg-repeat.jpg" />
     <Content Include="Areas\CustomerList\Scripts\Member\member.js" />
     <Content Include="Areas\CustomerList\Scripts\ResetPassword\reset-password.js" />
     <Content Include="Areas\Home\Scripts\AccountInformation\account-information-result.js" />
@@ -418,7 +428,6 @@
     <Content Include="Areas\ProductSetting\Views\NumberGame\PositionTaking.cshtml" />
     <Content Include="Areas\ProductSetting\Views\SportsBook\EditCustomer.cshtml" />
     <Content Include="Areas\Home\Views\TopMenu\SelectMenu.cshtml" />
-    <Content Include="Areas\Authentication\Views\Admin\SignIn.cshtml" />
     <Content Include="Areas\Authentication\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Authentication\Views\Web.config" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
@@ -463,6 +472,7 @@
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingDirectAgent.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\_PendingIndirectAgent.cshtml" />
     <Content Include="Areas\Report\Views\Shared\_Breadcrumb.cshtml" />
+    <Content Include="Areas\Authentication\Views\Admin\SignIn.cshtml" />
     <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="Web.AppSettings.Config.txt">
       <AutoGen>True</AutoGen>
@@ -639,9 +649,6 @@
     <Content Include="Views\Home\Resources\Images\bgheader.png" />
     <Content Include="Content\Select2\select2.css" />
     <Content Include="Images\flags.png" />
-    <Content Include="Images\login\bg-repeat.jpg" />
-    <Content Include="Images\login\login-form-noncaptcha.png" />
-    <Content Include="Images\login\login-form.png" />
     <Content Include="Images\sprite.png" />
     <Content Include="Scripts\AngularJS\angular-animate.js" />
     <Content Include="Scripts\AngularJS\angular-cookies.js" />
@@ -678,10 +685,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Content\internal.less" />
-    <Content Include="Content\login.less" />
     <Content Include="Views\Home\Resources\home-header.js" />
-    <Content Include="Scripts\login.js" />
+    <Content Include="Areas\Authentication\Scripts\authentication.js" />
     <Content Include="Views\Home\Resources\home-menu.js" />
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />

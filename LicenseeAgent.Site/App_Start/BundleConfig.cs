@@ -171,7 +171,6 @@
         private static void RegisterPages(BundleCollection bundles)
         {
             RegisterErrorPage(bundles);
-            RegisterLoginPage(bundles);
             RegisterHomePage(bundles);
             RegisterBetListPage(bundles);
             RegisterReportPage(bundles);
@@ -189,22 +188,6 @@
                 "~/views/error/resources/under-maintenance-error.js"));
             bundles.Add(new LessBundle("~/css/error").Include(
                 "~/views/error/resources/Index.less"));
-        }
-
-        /// <summary>
-        /// Registers the login page.
-        /// </summary>
-        /// <param name="bundles">The bundles.</param>
-        private static void RegisterLoginPage(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/login").Include(
-                "~/scripts/cookie/jquery.cookie.js",
-                "~/scripts/login.js"));
-            bundles.Add(new LessBundle("~/css/login").Include(
-                "~/content/language.less",
-                "~/content/login.less"));
-            bundles.Add(new LessBundle("~/css/login/internal").Include(
-                "~/content/internal.less"));
         }
 
         /// <summary>

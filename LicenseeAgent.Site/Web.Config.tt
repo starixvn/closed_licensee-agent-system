@@ -49,7 +49,7 @@
     <machineKey validationKey="ADB47DEBFEE5DF43C2735DAA1D47AB392AD0B715CDF124EA9BE8E5E16349682947937C0691826E7D0D4226848C8EC809E6EE67E7348060325C7D1B04D5579085" decryptionKey="B525A0C4BC396F84ACA7334E1EBCB52332E4F588A2DDB16735A7DC20F7DFDF9A" validation="SHA1" decryption="AES" />
     <httpRuntime executionTimeout="600" maxRequestLength="2000000000" maxUrlLength="200" maxQueryStringLength="2097151" requestPathInvalidCharacters="*,:,&amp;,\" />
     <authentication mode="Forms">
-      <forms loginUrl="~/Authentication/Agent/SignIn" timeout="30" path="/" defaultUrl="~/" cookieless="UseCookies" name=".LASFORMSAUTH" protection="All" />
+      <forms loginUrl="~/Authentication" timeout="30" path="/" defaultUrl="~/" cookieless="UseCookies" name=".LASFORMSAUTH" protection="All" />
     </authentication>
     <compilation debug="false" targetFramework="4.0" />
     <customErrors mode="RemoteOnly" defaultRedirect="~/Error">

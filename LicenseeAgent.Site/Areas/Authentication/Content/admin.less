@@ -1,0 +1,58 @@
+@import "authentication.less";
+
+@role:'admin';
+@color: #284c86;
+
+body
+{
+    .container {
+        .fn-container(@role);
+
+        form {
+            .fn-header(@role);
+
+            .login-box {
+                .fn-form(@role);
+
+                .header-box {
+                    .title {
+                        color:@color;
+                    }
+
+                    .language {
+                        #nav {
+                            li {
+                                border: 1px solid @color;
+                                ul {
+                                    border: 1px solid @color;
+                                    li:hover {
+                                        background-color: @color;
+                                    }
+                                }
+                            }
+
+                            .icon-language-arrow {
+                                background-position:-116px -13px !important;
+                            }
+                        }
+                    }
+                }
+
+                .content-box {
+                    #btnSubmit {
+                        color: #fff;
+                        background-color: @color;
+                        border: 0;
+                        height: 32px;
+                        cursor: pointer;
+                        width: 395px;
+                        &:hover
+                        {
+                            background-color: #315da3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

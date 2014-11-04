@@ -1,9 +1,9 @@
-﻿namespace LicenseeAgent.CustomerSetting.Services
+﻿namespace LicenseeAgent.MemberReArrangement.Services
 {
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Entities;
+    using LicenseeAgent.MemberReArrangement.Criteria;
+    using LicenseeAgent.MemberReArrangement.Entities;
 
     /// <summary>
     /// TODO: Update summary.

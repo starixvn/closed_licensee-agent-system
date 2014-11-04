@@ -1,7 +1,7 @@
-namespace LicenseeAgent.CustomerSetting.ViewModels
+namespace LicenseeAgent.MemberReArrangement.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
-    using LicenseeAgent.CustomerSetting.Enumerations;
+    using LicenseeAgent.MemberReArrangement.Enumerations;
     using LicenseeAgent.Resources;
 
     /// <summary>

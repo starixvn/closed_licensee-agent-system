@@ -225,10 +225,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\CommissionGroup\CommissionGroupAreaRegistration.cs" />
     <Compile Include="Areas\CustomerList\CustomerListAreaRegistration.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\MemberReArrangement\MemberReArrangementAreaRegistration.cs" />
     <Compile Include="Areas\ProductSetting\ProductSettingAreaRegistration.cs" />
     <Compile Include="Areas\Report\ReportAreaRegistration.cs" />
     <Compile Include="Areas\TotalBets\TotalBetsAreaRegistration.cs" />
@@ -382,8 +384,8 @@
     <Content Include="Scripts\core-common.js" />
     <Content Include="Scripts\core-enums.js" />
     <Content Include="tips.txt" />
-    <Content Include="Views\CommissionGroup\Resources\CommissionGroup.js" />
-    <Content Include="Views\CommissionGroup\Resources\CommissionGroupUtility.js" />
+    <Content Include="Areas\CommissionGroup\Scripts\Group\CommissionGroup.js" />
+    <Content Include="Areas\CommissionGroup\Scripts\Group\CommissionGroupUtility.js" />
     <Content Include="App_Data\SpNames.Local.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -400,9 +402,9 @@
     <Content Include="Areas\Report\Views\_ViewStart.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\MemberRearrangement\Resources\MemberArrangement.js" />
+    <Content Include="Areas\MemberReArrangement\Scripts\MemberRearrangement\MemberArrangement.js" />
     <Content Include="Areas\Home\Scripts\TopMenu\top-menu.js" />
-    <Content Include="Views\MemberCommission\Resources\member-commission.js" />
+    <Content Include="Areas\CommissionGroup\Scripts\Member\member-commission.js" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Home\Content\AccountInformation\account-information.less" />
@@ -495,6 +497,10 @@
     <Content Include="Areas\ProductSetting\Views\Keno\PositionTaking.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\_ViewStart.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\en-US\VirtualSports\AgentBetSetting.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Web.config" />
+    <Content Include="Areas\CommissionGroup\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MemberReArrangement\Views\Web.config" />
+    <Content Include="Areas\MemberReArrangement\Views\_ViewStart.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\zh-CN\VirtualSports\AgentBetSetting.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\zh-TW\VirtualSports\AgentBetSetting.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\en-US\VirtualSports\AgentPositionTakingSettingAdv.cshtml" />
@@ -865,7 +871,7 @@
     <Content Include="Areas\Authentication\Views\Agent\SignIn.cshtml" />
     <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\_ViewStart.cshtml" />
-    <Content Include="Views\MemberRearrangement\Index.cshtml" />
+    <Content Include="Areas\MemberReArrangement\Views\MemberRearrangement\Index.cshtml" />
     <None Include="App_Data\SpNames.Prod.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SpNames.Prod.xml</LastGenOutput>
@@ -878,17 +884,17 @@
     <Content Include="Areas\Home\Views\Web.config" />
     <Content Include="Areas\Home\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <Content Include="Views\MemberCommission\Index.cshtml" />
-    <Content Include="Views\MemberCommission\MoveToGroup.cshtml" />
-    <Content Include="Views\MemberCommission\RemoveFromGroup.cshtml" />
-    <Content Include="Views\MemberCommission\Resources\member-commission.less" />
-    <Content Include="Views\MemberCommission\UpdateMemberCommission.cshtml" />
-    <Content Include="Views\MemberCommission\_MemberCommission.cshtml" />
-    <Content Include="Views\CommissionGroup\_CommissionGroupGrid.cshtml" />
-    <Content Include="Views\CommissionGroup\Delete.cshtml" />
-    <Content Include="Views\CommissionGroup\Add.cshtml" />
-    <Content Include="Views\CommissionGroup\Edit.cshtml" />
-    <Content Include="Views\CommissionGroup\Index.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Member\Index.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Member\MoveToGroup.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Member\RemoveFromGroup.cshtml" />
+    <Content Include="Areas\CommissionGroup\Content\member-commission.less" />
+    <Content Include="Areas\CommissionGroup\Views\Member\UpdateMemberCommission.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Member\_MemberCommission.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Group\_CommissionGroupGrid.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Group\Delete.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Group\Add.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Group\Edit.cshtml" />
+    <Content Include="Areas\CommissionGroup\Views\Group\Index.cshtml" />
     <None Include="Web.AppSettings.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.Config.txt</LastGenOutput>
@@ -1063,6 +1069,10 @@
       <Project>{A3461378-6622-4A2B-BC73-482E92B7C96F}</Project>
       <Name>LicenseeAgent.BetList</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LicenseeAgent.CommissionGroup\LicenseeAgent.CommissionGroup.csproj">
+      <Project>{EA01C235-C510-426E-AA18-80808F81FEEB}</Project>
+      <Name>LicenseeAgent.CommissionGroup</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>LicenseeAgent.Core</Name>
@@ -1075,9 +1085,9 @@
       <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
       <Name>LicenseeAgent.CustomerList</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj">
+    <ProjectReference Include="..\LicenseeAgent.CustomerSetting\LicenseeAgent.MemberReArrangement.csproj">
       <Project>{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}</Project>
-      <Name>LicenseeAgent.CustomerSetting</Name>
+      <Name>LicenseeAgent.MemberReArrangement</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Forecast\LicenseeAgent.Forecast.csproj">
       <Project>{90224F27-06A4-4BEE-979D-4F085F6851C7}</Project>

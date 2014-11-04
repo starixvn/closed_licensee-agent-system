@@ -1,0 +1,78 @@
+﻿@using LicenseeAgent.CommissionGroup.ViewModels
+@model CommissionGroupBaseViewModel
+
+<script type="text/javascript">
+    var gridOptions = {
+        columns: [
+            { HeaderText: "#", Name: "No", Width: 30, HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: "@Las.GroupName", Width: 200, Name: "GroupName", HeaderAlign: "center", AllowTruncate: true, CanResize: false },
+            { HeaderText: "@Las.DefaultGroup", Width: 50, Name: "IsDefault", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return (cell.Value ? '<span class="icon-input-valid">&nbsp;</span>' : '');
+                }
+            },
+            { HeaderText: "@Las.NoOfMember", Width: 50, Name: "NumberOfCustomer", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="downline"><a href="@Url.Action("Index", "Member", new { area = "CommissionGroup" })?GroupCommId={0}">{1}</a></span>'.format(rowData['GroupCommId'], cell.Value);
+                }
+            },
+            { HeaderText: "@Las.SBCommission", Width: 50, Name: "SBComm", FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="sb-comm">' + CommissionGroup.formatNumber(cell.Value) + '</span>';
+                }
+            },
+            @if (Model.HasRacing)
+            {
+                <text>
+                { HeaderText: "@Las.RacingCommission", Width: 50, Name: "RacingComm", FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="sb-comm">' + CommissionGroup.formatNumber(cell.Value) + '</span>';
+                    }
+                },
+                </text>
+            }
+            @if (Model.HasNumberGame)
+            {
+                <text>
+                { HeaderText: "@Las.NGCommission", Width: 50, Name: "NGComm", FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="sb-comm">' + CommissionGroup.formatNumber(cell.Value) + '</span>';
+                    }
+                },
+                </text>
+            }
+            @if (Model.HasLiveCasino)
+            {
+                <text>
+                { HeaderText: "@Las.LCCommission", Width: 50, Name: "LCComm", FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="sb-comm">' + CommissionGroup.formatNumber(cell.Value) + '</span>';
+                    }
+                },
+                </text>
+            }
+            @if (Model.HasRNGCasino)
+            {
+                <text>
+                { HeaderText: "@Las.RNGCommission", Width: 50, Name: "RNGComm", FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return '<span class="sb-comm">' + CommissionGroup.formatNumber(cell.Value) + '</span>';
+                    }
+                },
+                </text>
+            }
+            { HeaderText: "@Las.Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
+                Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                    return '<span class="icon-customer-edit" onclick="CommissionGroup.editGroup({0})">&nbsp;</span>&nbsp;<span class="icon-customer-delete" onclick="CommissionGroup.deleteGroup({0}, {1})">&nbsp;</span>'.format(rowData['GroupCommId'], rowData['IsDefault']);
+                }
+            }
+            
+        ],
+        gridExpandHeight: 125,
+        showPager: true,
+        showNumberColumn: true,
+        indexNumberColumn: 0,
+        autoResizeColumn: true,
+        bodyRowHeight: 29
+    };
+</script>

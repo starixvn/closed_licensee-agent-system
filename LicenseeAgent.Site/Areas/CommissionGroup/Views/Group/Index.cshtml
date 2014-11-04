@@ -1,0 +1,29 @@
+﻿@using LicenseeAgent.Core.Enumerations
+@using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Web.ViewModels
+@using LicenseeAgent.Web.Entities
+@using LicenseeAgent.CommissionGroup.ViewModels
+@model CommissionGroupBaseViewModel
+@{
+    ViewBag.Title = Las.CommissionGroup;
+}
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/CommissionGroup")
+    @Html.Partial("_CommissionGroupGrid", Model)
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="controls-row">
+    <p>
+        <span class="text-warning"><span class="icon-note-header">&nbsp;</span><strong><i>@Las.GroupCommissionNote</i></strong></span></p>
+    <button id="newGroup" class="btn btn-primary left-button">@Las.NewGroup</button>
+    <a href="@Url.Action("Index", "Member", new { area = "CommissionGroup" })" class="btn btn-link">@Las.MemberCommissionList</a>
+</div>
+<div id="grid" class="freegrid">
+</div>

@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerSetting.Entities
+﻿namespace LicenseeAgent.MemberReArrangement.Entities
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;

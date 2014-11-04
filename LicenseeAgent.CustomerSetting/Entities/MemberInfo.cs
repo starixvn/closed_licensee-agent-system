@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerSetting.Entities
+﻿namespace LicenseeAgent.MemberReArrangement.Entities
 {
     /// <summary>
     /// Class name.

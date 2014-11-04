@@ -1,13 +1,13 @@
-﻿namespace LicenseeAgent.CustomerSetting.Controllers
+﻿namespace LicenseeAgent.MemberReArrangement.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
-    using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Enumerations;
-    using LicenseeAgent.CustomerSetting.Services;
-    using LicenseeAgent.CustomerSetting.ViewModels;
+    using LicenseeAgent.MemberReArrangement.Criteria;
+    using LicenseeAgent.MemberReArrangement.Enumerations;
+    using LicenseeAgent.MemberReArrangement.Services;
+    using LicenseeAgent.MemberReArrangement.ViewModels;
     using LicenseeAgent.Resources;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Entities;

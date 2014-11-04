@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerSetting.Enumerations
+﻿namespace LicenseeAgent.MemberReArrangement.Enumerations
 {
     public enum DeleteMode
     {

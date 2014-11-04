@@ -1,0 +1,47 @@
+﻿@using LicenseeAgent.CommissionGroup.ViewModels
+@using LicenseeAgent.CommissionGroup.Enumerations
+@model CommissionGroupDeleteViewModel
+@{
+    ViewBag.Title = Las.DeleteCommissionGroup;
+}
+@section scripts{
+    @Scripts.Render("~/js/CommissionGroupUtility")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left" style="width: 300px;">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        if (ViewBag.Result != null)
+        {
+        <p class="text-success">
+            @ViewBag.Result.ToString()
+        </p>
+        <script type="text/javascript">
+            if (window.parent) {
+                parent.CommissionGroup.dataGridBinding();
+            }
+        </script>
+        }
+
+        <label class="radio">
+            <input type="radio" name="Mode" value="0" @(Model.Mode == DeleteMode.KeepCurrentCommission ? "checked" : string.Empty) />
+            Keep current commission
+        </label>
+        <label class="radio">
+            <input type="radio" name="Mode" value="1" @(Model.Mode == DeleteMode.ClearMemberComission ? "checked" : string.Empty) />
+            Clear member's commission
+        </label>
+
+        <button type="submit" class="btn btn-primary">
+            @Las.Delete
+        </button>
+        <button type="button" id="cancel" class="btn btn-primary">
+            @Las.Cancel
+        </button>
+        @Html.HiddenFor(m => m.GroupCommId)
+        @Html.HiddenFor(m => m.IsDefault)
+    }
+</div>

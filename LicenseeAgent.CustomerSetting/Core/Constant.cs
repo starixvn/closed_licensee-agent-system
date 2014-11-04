@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.CustomerSetting.Core
+﻿namespace LicenseeAgent.MemberReArrangement.Core
 {
     using System.Diagnostics.CodeAnalysis;
     using LicenseeAgent.Core.Configurations;

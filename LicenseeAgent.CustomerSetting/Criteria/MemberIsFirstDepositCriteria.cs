@@ -1,4 +1,4 @@
-namespace LicenseeAgent.CustomerSetting.Criteria
+namespace LicenseeAgent.MemberReArrangement.Criteria
 {
     using Fanex.Data.Repository;
 

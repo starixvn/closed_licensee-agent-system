@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysi
 		CodeAnalysis\FxCopDictionary.xml = CodeAnalysis\FxCopDictionary.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CustomerSetting", "LicenseeAgent.CustomerSetting\LicenseeAgent.CustomerSetting.csproj", "{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.MemberReArrangement", "LicenseeAgent.CustomerSetting\LicenseeAgent.MemberReArrangement.csproj", "{C9EF2C5B-1FD0-4CC8-84B8-2CEB6E8C3C3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Report", "LicenseeAgent.Report\LicenseeAgent.Report.csproj", "{27E8A480-C746-450C-B00A-6DF69BC29149}"
 EndProject
@@ -77,6 +77,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.Web", "LicenseeAgent.Web\LicenseeAgent.Web.csproj", "{126C63A6-33AC-482C-A100-E077C91B7912}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CustomerList.Tests", "LicenseeAgent.CustomerList.Tests\LicenseeAgent.CustomerList.Tests.csproj", "{17C124CA-F4DE-42A2-99FE-CEF3F883D47C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseeAgent.CommissionGroup", "LicenseeAgent.CommissionGroup\LicenseeAgent.CommissionGroup.csproj", "{EA01C235-C510-426E-AA18-80808F81FEEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -408,6 +410,16 @@ Global
 		{17C124CA-F4DE-42A2-99FE-CEF3F883D47C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{17C124CA-F4DE-42A2-99FE-CEF3F883D47C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{17C124CA-F4DE-42A2-99FE-CEF3F883D47C}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EA01C235-C510-426E-AA18-80808F81FEEB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

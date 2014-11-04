@@ -16,7 +16,6 @@
         {
             RegisterCore(bundles);
             RegisterComponents(bundles);
-            RegisterCustomerSetting(bundles);
             RegisterPages(bundles);
             bundles.FileSetOrderList.Clear();
         }
@@ -178,8 +177,6 @@
             RegisterPluginControl(bundles);
             RegisterCreditBalancePage(bundles);
             RegisterMessagePage(bundles);
-            RegisterCommissionGroupPage(bundles);
-            RegisterMemberCommissionPages(bundles);
         }
 
         private static void RegisterErrorPage(BundleCollection bundles)
@@ -228,16 +225,6 @@
 
             bundles.Add(new LessBundle("~/css/home/accountinfo").Include(
                 "~/views/accountinformation/resources/account-information.less"));
-        }
-
-        /// <summary>
-        /// Register customer setting bundle.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
-        private static void RegisterCustomerSetting(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/customersetting/memberarrangement").Include(
-                "~/views/MemberRearrangement/Resources/MemberArrangement.js"));
         }
 
         /// <summary>
@@ -314,27 +301,6 @@
 
             bundles.Add(new ScriptBundle("~/js/message").Include(
                 "~/views/message/resources/message.js"));
-        }
-
-        private static void RegisterCommissionGroupPage(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/CommissionGroup").Include(
-                "~/views/CommissionGroup/resources/CommissionGroup.js"));
-
-            bundles.Add(new ScriptBundle("~/js/CommissionGroupUtility").Include(
-                "~/views/CommissionGroup/resources/CommissionGroupUtility.js"));
-
-            bundles.Add(new LessBundle("~/css/membercommission").Include(
-                "~/views/membercommission/resources/member-commission.less"));
-        }
-
-        private static void RegisterMemberCommissionPages(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/js/membercommission").Include(
-                "~/views/membercommission/resources/member-commission.js"));
-
-            bundles.Add(new LessBundle("~/css/membercommission").Include(
-                "~/views/membercommission/resources/member-commission.less"));
         }
 
         #endregion Pages

@@ -86,7 +86,7 @@
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.CustomerList\LicenseeAgent.CustomerList.csproj">
       <Project>{431F4C65-A756-45EC-BD0C-05F8EC35004A}</Project>
-      <Name>LicenseeAgent.Customer</Name>
+      <Name>LicenseeAgent.CustomerList</Name>
     </ProjectReference>
     <ProjectReference Include="..\LicenseeAgent.Resources\LicenseeAgent.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>

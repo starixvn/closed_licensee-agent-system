@@ -1,0 +1,82 @@
+﻿@using LicenseeAgent.MemberReArrangement.ViewModels;
+@using LicenseeAgent.MemberReArrangement.Enumerations;
+
+@model MemberArrangementViewModel
+@{
+    ViewBag.Title = Las.MemberReArrangement;
+}
+@section scripts{
+    @Scripts.Render("~/js/MemberArrangement")
+}
+@RazorHelper.Legend(ViewBag.Title)
+<div class="pull-left" style="width: 364px;">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table", role = "form" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+            }
+            @Html.AntiForgeryToken()
+            <p>
+                <label class="radio inline">
+                    <input type="radio" name="Mode" value="0" @(Model.Mode == ArrangementMode.SwitchFromNormal ? "checked" : string.Empty) />
+                    @Las.SwitchFromNormal
+                </label>
+                <label class="radio inline">
+                    <input type="radio" name="Mode" value="1" @(Model.Mode == ArrangementMode.AssignMember ? "checked" : string.Empty) />
+                    @Las.AssignMember
+                </label>
+            </p>
+            <table class="no-wrap">
+                <colgroup>
+                    <col style="width: 130px;" />
+                    <col style="width: 320px;"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.MemberName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.MemberName, new { autocomplete = "off" })
+                            <span id="iconValid">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr class="normalCash">
+                        <td>
+                            @Html.LabelFor(m => m.AgentName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.AgentName, new { autocomplete = "off" })
+                        </td>
+                    </tr>
+                    <tr class="assignMember">
+                        <td>
+                            @Html.LabelFor(m => m.OldAgentName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.OldAgentName, new { autocomplete = "off" })
+                        </td>
+                    </tr>
+                    <tr class="assignMember">
+                        <td>
+                            @Html.LabelFor(m => m.NewAgentName)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.NewAgentName, new { autocomplete = "off" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Submit
+                </button>
+            </div>
+        </fieldset>
+    }
+</div>

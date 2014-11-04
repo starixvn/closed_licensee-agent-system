@@ -1,0 +1,160 @@
+﻿@using LicenseeAgent.CommissionGroup.ViewModels
+@model CommissionGroupViewModel
+@{
+    ViewBag.Title = Las.CreateNewGroup;
+    var widthColumn1 = 120;
+    var widthColumn2 = 140;
+    var widthColumn3 = 180;
+    var widthColumn23 = widthColumn2 + widthColumn3;
+    var totalWidth = widthColumn1 + widthColumn2 + widthColumn3;
+}
+@section scripts{
+    @Scripts.Render("~/js/CommissionGroupUtility")
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left" style="width: @(totalWidth)px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table", @id = "actionForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        if (ViewBag.Result != null)
+        {
+        <p class="text-success">
+            @ViewBag.Result.ToString()
+        </p>
+        <script type="text/javascript">
+            if (window.parent) {
+                parent.CommissionGroup.dataGridBinding();
+            }
+        </script>
+        }
+        <table class="noborder">
+            <colgroup>
+                <col width="@widthColumn1" />
+                <col width="@widthColumn2" />
+                <col width="@widthColumn3" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="GroupName">
+                            @Las.GroupName
+                        </label>
+                    </td>
+                    <td colspan="2">
+                        @Html.TextBoxFor(m => m.GroupName, new { @class = "w140" })
+                        <span id="iconCheck">&nbsp;</span>
+                        <button type="button" id="check" class="btn btn-primary">
+                            @Las.CheckAvailability
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="@Model.ProductCount">
+                        <label>
+                            @Las.CommissionHeader
+                        </label>
+                    </td>
+                    <td width="130">
+                        @Las.Sportsbook
+                    </td>
+                    <td>
+                        @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "SBComm1", "selectpicker w50 product-comm", Model.SBComm1, "SBComm2", "SBComm3")
+                        <span class="dot-comm">•</span>
+                        @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "SBComm2", "selectpicker w50 upd-comm", Model.SBComm2)
+                        @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "SBComm3", "selectpicker w50 upd-comm last", Model.SBComm3)
+                    </td>
+                </tr>
+                @if (Model.HasRacing)
+                {
+                    <tr>
+                        <td>
+                            @Las.Racing
+                        </td>
+                        <td>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "RCComm1", "selectpicker w50 product-comm", Model.RCComm1, "RCComm2", "RCComm3")
+                            <span class="dot-comm">•</span>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "RCComm2", "selectpicker w50 upd-comm", Model.RCComm2)
+                            @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "RCComm3", "selectpicker w50 upd-comm last", Model.RCComm3)
+                        </td>
+                    </tr>
+                }
+                @if (Model.HasNumberGame)
+                {
+                    <tr>
+                        <td>
+                            @Las.NumberGame
+                        </td>
+                        <td>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "NGComm1", "selectpicker w50 product-comm", Model.NGComm1, "NGComm2", "NGComm3")
+                            <span class="dot-comm">•</span>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "NGComm2", "selectpicker w50 upd-comm", Model.NGComm2)
+                            @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "NGComm3", "selectpicker w50 upd-comm last", Model.NGComm3)
+                        </td>
+                    </tr>
+                }
+                @if (Model.HasLiveCasino)
+                {
+                    <tr>
+                        <td>
+                            @Las.LiveCasino
+                        </td>
+                        <td>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "LCComm1", "selectpicker w50 product-comm", Model.LCComm1, "LCComm2", "LCComm3")
+                            <span class="dot-comm">•</span>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "LCComm2", "selectpicker w50 upd-comm", Model.LCComm2)
+                            @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "LCComm3", "selectpicker w50 upd-comm last", Model.LCComm3)
+                        </td>
+                    </tr>
+                }
+                @if (Model.HasRNGCasino)
+                {
+                    <tr>
+                        <td>
+                            @Las.RNGCasino
+                        </td>
+                        <td>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 16), "RNGComm1", "selectpicker w50 product-comm", Model.RNGComm1, "RNGComm2", "RNGComm3")
+                            <span class="dot-comm">•</span>
+                            @RazorHelper.ProductCommission(Enumerable.Range(0, 10), "RNGComm2", "selectpicker w50 upd-comm", Model.RNGComm2)
+                            @RazorHelper.ProductCommission(new List<int> { 0, 5 }, "RNGComm3", "selectpicker w50 upd-comm last", Model.RNGComm3)
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        @Las.SetAsDefaultGroup
+                    </td>
+                    <td colspan="2" width="@widthColumn23">
+                        @Html.CheckBoxFor(m => m.IsDefault)<br />
+                        <span class="text-warning">
+                            @Las.GroupCommissionNote
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">
+                        <button type="submit" class="btn btn-primary" id="submit">
+                            @Las.CreateGroup
+                        </button>
+                        <button type="button" id="cancel" class="btn btn-primary" onclick="popup.close();">
+                            @Las.Cancel
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        @Html.HiddenFor(m => m.HasLiveCasino)
+        @Html.HiddenFor(m => m.HasNumberGame)
+        @Html.HiddenFor(m => m.HasRacing)
+        @Html.HiddenFor(m => m.HasRNGCasino)
+        @Html.HiddenFor(m => m.HasSportbook)
+        @Html.HiddenFor(m => m.ProductCount)
+        @Html.HiddenFor(m => m.DefaultGroupId)
+        @Html.HiddenFor(m => m.IsResetDefault)
+        <input type="hidden" value="add" id="action" />
+    }
+</div>

@@ -1,11 +1,11 @@
-﻿namespace LicenseeAgent.CustomerSetting.Services
+﻿namespace LicenseeAgent.MemberReArrangement.Services
 {
     using System.Collections.Generic;
     using Fanex.Data.Repository;
     using LicenseeAgent.Core.Entities;
-    using LicenseeAgent.CustomerSetting.Criteria;
-    using LicenseeAgent.CustomerSetting.Entities;
-    using LicenseeAgent.CustomerSetting.ViewModels;
+    using LicenseeAgent.MemberReArrangement.Criteria;
+    using LicenseeAgent.MemberReArrangement.Entities;
+    using LicenseeAgent.MemberReArrangement.ViewModels;
 
     /// <summary>
     /// ICustomerSettingService interface.

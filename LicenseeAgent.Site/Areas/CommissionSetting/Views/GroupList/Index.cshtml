@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = Las.CommissionGroup;
+}
+@section css{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/commission-setting/group-list")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.groupList.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<ul class="bullet-star">
+    <li class="text-warning">
+        @Las.GroupCommissionNote
+    </li>
+</ul>
+<div class="control-group">
+    <button id="newGroup" class="btn btn-primary">
+        @Las.NewGroup
+    </button>
+    <button id="memberList" class="btn btn-link">
+        @Las.MemberCommissionList
+    </button>
+</div>
+<div id="grid" class="freegrid">
+</div>

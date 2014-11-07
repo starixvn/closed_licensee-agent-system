@@ -114,44 +114,49 @@
         /// <summary>
         /// Gets the name of the product.
         /// </summary>
-        /// <param name="productId">The product identifier.</param>
+        /// <param name="productCode">The product identifier.</param>
         /// <returns>Returns product name.</returns>
-        public static string GetProductName(int productId)
+        public static string GetProductName(ProductCode productCode)
         {
-            switch (productId)
+            switch (productCode)
             {
-                case (int)ProductCode.Product_0:
+                case ProductCode.Product_0:
                     return Las.Sportsbook;
 
-                case (int)ProductCode.Product_1:
+                case ProductCode.Product_1:
                     return Las.Racing;
 
-                case (int)ProductCode.Product_2:
+                case ProductCode.Product_2:
                     return Las.NumberGame;
 
-                case (int)ProductCode.Product_4:
+                case ProductCode.Product_4:
                     return Las.LiveCasino;
 
-                case (int)ProductCode.Product_5:
+                case ProductCode.Product_5:
                     return Las.VirtualSports;
 
-                case (int)ProductCode.Product_6:
+                case ProductCode.Product_6:
                     return Las.RNGCasino;
 
-                case (int)ProductCode.Product_7:
+                case ProductCode.Product_7:
                     return Las.Bingo;
 
-                case (int)ProductCode.Product_8:
+                case ProductCode.Product_8:
                     return Las.Keno;
 
-                case (int)ProductCode.Product_9:
+                case ProductCode.Product_9:
                     return Las.PlaytechCasino;
 
-                case (int)ProductCode.Product_1000:
+                case ProductCode.Product_1000:
                     return Las.HrFixedOdds;
             }
 
-            return string.Format("Undefined product name {0}", productId);
+            return string.Format("Undefined product name {0}", productCode);
+        }
+
+        public static string GetProductName(int productId)
+        {
+            return GetProductName((ProductCode)productId);
         }
 
         /// <summary>

@@ -1,0 +1,55 @@
+﻿@model IndexViewModel
+@{
+    ViewBag.Title = Las.CommissionMemberList;
+}
+@section css
+{
+    @Styles.Render("~/css/fanexgrid")
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/commission-setting/member-list")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.memberList.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+    <span id="membercomm-back" class="history-back"><i class="icon-history-back"></i><a href="@Url.Action("Index", "GroupList", new { area = "CommissionSetting" })">@Las.Back</a>
+    </span>
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-inline form-filter ", id = "search-form" }))
+{
+    <div class="controls-row">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "w160", placeholder = Las.Username, autocomplete = "off" })
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.GroupCommId)
+        @Html.DropDownListFor(m => m.GroupCommId, new SelectList(Model.CommissionGroups, "GroupCommId", "GroupName"), new { @class = "selectpicker w160" })
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+    </div>
+    @Html.Hidden("MemberIds")
+}
+<div class="controls-row">
+    <button class="btn btn-primary left-button disabled" id="moveToGroup">
+        @Las.MoveToGroup
+    </button>
+    <button class="btn btn-primary disabled" id="updateCommission">
+        @Las.UpdateCommission
+    </button>
+    <button class="btn btn-primary disabled" id="removeFromGroup">
+        @Las.RemoveFromGroup
+    </button>
+</div>
+<div id="grid" class="freegrid fix-header-border">
+</div>

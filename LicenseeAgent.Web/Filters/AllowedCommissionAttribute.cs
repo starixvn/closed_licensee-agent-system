@@ -12,12 +12,13 @@
         public static bool IsAllowedCommission()
         {
             var currentSession = SessionManager.CurrentSession;
-            if (currentSession.AgentInfo == null)
+            var agentInfo = currentSession.AgentInfo;
+            if (agentInfo == null || !agentInfo.IsDeposit)
             {
                 return false;
             }
 
-            return SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm && SessionManager.CurrentSession.IsAdmin;
+            return currentSession.IsAdmin || agentInfo.IsAllowedMemberComm;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

@@ -224,6 +224,11 @@
 
         #endregion Product control
 
+        public bool HasProductOffered(IList<ProductInfo> productInfos, ProductCode productId)
+        {
+            return HasProductOffered(productInfos, (int)productId);
+        }
+
         /// <summary>
         /// Get agent information.
         /// </summary>

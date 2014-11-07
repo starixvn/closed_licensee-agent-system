@@ -26,6 +26,8 @@
 
         bool HasProductOffered(IList<ProductInfo> productInfos, int productId);
 
+        bool HasProductOffered(IList<ProductInfo> productInfos, ProductCode productId);
+
         AgentInfo GetAgentInfo(int agentId);
     }
 }

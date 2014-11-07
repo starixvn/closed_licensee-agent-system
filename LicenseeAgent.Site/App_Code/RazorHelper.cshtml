@@ -5,8 +5,6 @@
 @using LicenseeAgent.Resources
 @using LicenseeAgent.Core.Entities
 @using LicenseeAgent.Core.Utility
-@using LicenseeAgent.Report.Enumerations
-@using LicenseeAgent.CommissionGroup.Entities
 @helper FormatNegative(decimal value)
     {
         var className = value < 0 ? "number-negative" : string.Empty;
@@ -53,31 +51,4 @@
     <div class="legend @(Request.IsPopup() ? "popup" : "")">
         @title
     </div>
-}
-@helper GroupCommision(IList<GroupCommission> groupCommissions, int selectedGroup = 0, bool haveAll = true, string className = "")
-    {
-    <select id="GroupCommId" name="GroupCommId" class="@className">
-        @if (haveAll)
-        {
-            <option value="-1">@Las.All</option>
-            <option value="0">@Las.None</option>
-        }
-        else
-        {
-            <option value="">@Las.SelectGroup</option>
-        }
-        @foreach (var group in groupCommissions)
-        {
-            <option @(selectedGroup == group.GroupCommId ? "selected=selected" : string.Empty) value="@group.GroupCommId">@group.GroupName</option>
-        }
-    </select>
-}
-@helper ProductCommission(IEnumerable<int> range, string id, string className, int selectedValue = 0, string id2 = "", string id3 = "")
-    {
-    <select id="@id" name="@id" class="@className" @(string.IsNullOrEmpty(id2) ? string.Empty : "data-comm2=" + id2) @(string.IsNullOrEmpty(id3) ? string.Empty : "data-comm3=" + id3)>
-        @foreach (var value in range)
-        {
-            <option value="@value" @(value == selectedValue ? "selected" : string.Empty)>@value</option>
-        }
-    </select>
 }

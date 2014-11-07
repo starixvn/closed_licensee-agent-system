@@ -1,0 +1,55 @@
+﻿@model RemoveFromGroupViewModel
+@{
+    ViewBag.Title = Las.RemoveFromGroup;
+    var viewResult = ViewBag.Result as UpdateMemberCommissionViewResult;
+}
+@section css
+{
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/commission-setting/member-crud")
+}
+<div class="legend">
+    @Las.RemoveFromGroup
+</div>
+<div class="pull-left" style="width: 400px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.CustIds)
+        if (viewResult != null)
+        {
+        <p class="text-success">
+            @viewResult.Message
+        </p>
+        <script type="text/javascript">
+            popup.trigger('remove-from-commission-group', @(Html.Raw(Formatter.FormatJson(viewResult.MemberCommissions))));
+        </script>
+        }
+        <p>
+            @Las.AlertRemoveToGroup
+        </p>
+        <p>
+            <b>@Las.ConfirmMemberCommission</b>
+        </p>
+        <label class="radio">
+            <input type="radio" name="Mode" value="@((int)DeleteMode.KeepCurrentCommission)" checked="checked" />
+            @Las.KeepCurrentCommission
+        </label>
+        <label class="radio">
+            <input type="radio" name="Mode" value="@((int)DeleteMode.ClearMemberComission)" />
+            @Las.ClearMemberCommission
+        </label>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">
+                @Las.Submit
+            </button>
+            <button type="button" class="btn btn-primary" onclick="popup.close()">
+                @Las.Cancel
+            </button>
+        </div>
+    }
+</div>

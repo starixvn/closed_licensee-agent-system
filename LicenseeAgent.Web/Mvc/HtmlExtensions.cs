@@ -6,6 +6,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
+    using System.Web.WebPages;
     using LicenseeAgent.Core.Utility;
 
     /// <summary>
@@ -13,6 +14,14 @@
     /// </summary>
     public static class HtmlExtensions
     {
+        public static HtmlHelper Helper
+        {
+            get
+            {
+                return ((WebViewPage)WebPageContext.Current.Page).Html;
+            }
+        }
+
         public static IHtmlString Javascript(object value, string name)
         {
             return MvcHtmlString.Create(Formatter.FormatJson(name, value));

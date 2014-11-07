@@ -1,0 +1,82 @@
+﻿@model MemberArrangementViewModel
+@{
+    ViewBag.Title = Las.MemberReArrangement;
+}
+@section scripts{
+    @Scripts.Render("~/js/member-arrangement")
+    <script type="text/javascript">
+        $(function () {
+            memberArrangement.init();
+        });
+    </script>
+}
+@RazorHelper.Legend(ViewBag.Title)
+<div class="pull-left" style="width: 364px;">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        if (ViewBag.Result != null)
+        {
+        <p class="text-success">
+            @ViewBag.Result.ToString()
+        </p>
+        }
+        <p>
+            <label class="radio inline">
+                <input type="radio" name="Mode" value="@((int)ArrangementMode.SwitchFromNormal)" checked="checked" />
+                @Las.SwitchFromNormal
+            </label>
+            <label class="radio inline">
+                <input type="radio" name="Mode" value="@((int)ArrangementMode.AssignMember)" />
+                @Las.AssignMember
+            </label>
+        </p>
+        <table class="no-wrap">
+            <colgroup>
+                <col style="width: 130px;" />
+                <col style="width: 320px;" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.MemberName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.MemberName, new { autocomplete = "off" })
+                        <span id="iconValid">&nbsp;</span>
+                    </td>
+                </tr>
+                <tr data-mode="@((int)ArrangementMode.SwitchFromNormal)">
+                    <td>
+                        @Html.LabelFor(m => m.AgentName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.AgentName, new { autocomplete = "off", data_message = @Las.AgentUserNameIsEmpty })
+                    </td>
+                </tr>
+                <tr data-mode="@((int)ArrangementMode.AssignMember)">
+                    <td>
+                        @Html.LabelFor(m => m.OldAgentName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.OldAgentName, new { autocomplete = "off", data_message = @Las.OldAgentIsEmpty })
+                    </td>
+                </tr>
+                <tr data-mode="@((int)ArrangementMode.AssignMember)">
+                    <td>
+                        @Html.LabelFor(m => m.NewAgentName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.NewAgentName, new { autocomplete = "off", data_message = @Las.NewAgentIsEmpty })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">
+                @Las.Submit
+            </button>
+        </div>
+    }
+</div>

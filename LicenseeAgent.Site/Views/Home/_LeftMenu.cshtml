@@ -59,11 +59,11 @@
                     }
                     @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit))
                     {
-                        @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("Index", "MemberReArrangement"))
+                        @BootstrapHelper.LeftMenu(Las.MemberReArrangement, Url.Action("Index", "MemberArrangement", new { area = "MemberArrangement" }))
                     }
                     @if (AccountTypeAttribute.Authorize(AccountType.Admin) && LegendTypeAttribute.Authorize(LegendType.Deposit) && SessionManager.CurrentSession.AgentInfo.IsAllowedMemberComm)
                     {
-                        @BootstrapHelper.LeftMenu(Las.CommissionGroup, Url.Action("Index", "CommissionGroup"))
+                        @BootstrapHelper.LeftMenu(Las.CommissionGroup, Url.Action("Index", "GroupList", new { area = "CommissionSetting" }))
                     }
                 </ul>
             </li>

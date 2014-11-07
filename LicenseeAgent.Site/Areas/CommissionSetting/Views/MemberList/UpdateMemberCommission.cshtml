@@ -1,0 +1,69 @@
+﻿@model UpdateMemberCommissionViewModel
+@{
+    ViewBag.Title = Las.UpdateMemberCommission;
+    var viewResult = ViewBag.Result as UpdateMemberCommissionViewResult;
+}
+@section css
+{
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/commission-setting/member-crud")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.memberCrud.updateMemberCommission();
+        });
+    </script>
+}
+<div class="legend">
+    @Las.UpdateMemberCommission
+</div>
+<div style="width: 300px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", @id = "action-form" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.CustIds)
+        if (viewResult != null)
+        {
+        <p class="text-success">
+            @viewResult.Message
+        </p>
+        <script type="text/javascript">
+            popup.trigger('update-member-commission', @(Html.Raw(Formatter.FormatJson(viewResult.MemberCommissions))));
+        </script>
+        }
+        foreach (var productCommission in Model.ProductCommissions)
+        {
+            var index = Model.ProductCommissions.IndexOf(productCommission);
+        <div class="control-group">
+            <label class="control-label">
+                @Las.ResourceManager.GetString(productCommission.HeaderResource)
+            </label>
+            <div class="controls" data-commission-product-id="@productCommission.ProductId" data-index="@index">
+                @CommissionHelper.ProductCommission(productCommission)
+                @Html.HiddenFor(m => m.ProductCommissions[index].ProductId)
+                @Html.HiddenFor(m => m.ProductCommissions[index].Commission)
+                @Html.HiddenFor(m => m.ProductCommissions[index].HeaderResource)
+            </div>
+        </div>
+        }
+        <div class="control-group">
+            <span class="note-text">
+                @Las.Note: @Html.Raw(Las.NoteUpdateMemberCommission)
+            </span>
+        </div>
+        <div class="control-group">
+            <div class="controls pull-right">
+                <button type="submit" class="btn btn-primary">
+                    @Las.Submit
+                </button>
+                <button type="button" class="btn btn-primary" onclick="popup.close();">
+                    @Las.Cancel
+                </button>
+            </div>
+        </div>
+    }
+</div>

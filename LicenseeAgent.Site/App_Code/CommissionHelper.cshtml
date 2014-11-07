@@ -1,0 +1,26 @@
+﻿@using LicenseeAgent.CommissionSetting.Entities
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using LicenseeAgent.Web.Mvc
+@helper ProductCommission(ProductCommission productCommission)
+    {
+        var tempCommission = Convert.ToInt32(productCommission.Commission * 10000);
+        var comm1 = tempCommission / 100;
+        var comm2 = (tempCommission % 100) / 10;
+        var comm3 = tempCommission % 10;
+        var htmlHelper = HtmlExtensions.Helper;
+    @htmlHelper.DropDownList(
+        string.Format("comm1_{0}", productCommission.ProductId),
+        new SelectList(Enumerable.Range(0, 16), comm1),
+        new { @class = "selectpicker commission" })
+    <span>•</span>
+    @htmlHelper.DropDownList(
+        string.Format("comm2_{0}", productCommission.ProductId),
+        new SelectList(Enumerable.Range(0, 10), comm2),
+        new { @class = "selectpicker commission" })
+    <span></span>
+    @htmlHelper.DropDownList(
+        string.Format("comm3_{0}", productCommission.ProductId),
+        new SelectList(new List<int> { 0, 5 }, comm3),
+        new { @class = "selectpicker commission" })
+}

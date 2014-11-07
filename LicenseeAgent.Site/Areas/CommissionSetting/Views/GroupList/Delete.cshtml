@@ -1,0 +1,47 @@
+﻿@model CommissionGroupDeleteViewModel
+@{
+    ViewBag.Title = Las.DeleteCommissionGroup;
+}
+@section scripts{
+    @Scripts.Render("~/js/commission-setting/group-crud")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.groupCrud.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left" style="width: 300px;">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.GroupCommId)
+        @Html.HiddenFor(m => m.IsDefault)
+        if (ViewBag.Result != null)
+        {
+        <p class="text-success">
+            @ViewBag.Result.ToString()
+        </p>
+        <script type="text/javascript">
+            popup.trigger('delete-commission-group')
+        </script>
+        }
+        <label class="radio">
+            <input type="radio" name="Mode" value="@((int)DeleteMode.KeepCurrentCommission)" checked="checked" />
+            @Las.KeepCurrentCommission
+        </label>
+        <label class="radio">
+            <input type="radio" name="Mode" value="@((int)DeleteMode.ClearMemberComission)" />
+            @Las.ClearMemberCommission
+        </label>
+        <button type="submit" class="btn btn-primary">
+            @Las.Delete
+        </button>
+        <button type="button" class="btn btn-primary" onclick="popup.close()">
+            @Las.Cancel
+        </button>
+    }
+</div>

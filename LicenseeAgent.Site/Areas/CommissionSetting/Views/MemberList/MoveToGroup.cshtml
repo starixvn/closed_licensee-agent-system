@@ -1,0 +1,82 @@
+﻿@model MoveToGroupViewModel
+@{
+    ViewBag.Title = Las.MoveToGroup;
+    var viewResult = ViewBag.Result as UpdateMemberCommissionViewResult;
+}
+@section css
+{
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts
+{
+    @Scripts.Render("~/js/fanexgrid")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/commission-setting/member-crud")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.memberCrud.moveToGroup();
+        });
+    </script>
+}
+@helper CommissionGroup()
+    {
+    <select class="selectpicker" id="GroupCommId" name="GroupCommId">
+        <option value="">@Las.SelectGroup</option>
+        @foreach (var group in Model.CommissionGroups)
+        {
+            <option value="@group.GroupCommId"
+                data-sbcomm="@Formatter.FormatDecimal(group.SBComm)"
+                data-ngcomm="@Formatter.FormatDecimal(group.NGComm)"
+                data-racingComm="@Formatter.FormatDecimal(group.RacingComm)"
+                data-lccomm="@Formatter.FormatDecimal(group.LCComm)"
+                data-rngcomm="@Formatter.FormatDecimal(group.RNGComm)">
+                @group.GroupName
+            </option>
+        }
+    </select>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CustIds)
+    if (viewResult != null)
+    {
+    <p class="text-success">
+        @viewResult.Message
+    </p>
+    <script type="text/javascript">
+        popup.trigger('move-to-commission-group', @(Html.Raw(Formatter.FormatJson(viewResult.MemberCommissions))));
+    </script>
+    }
+    <div class="control-group">
+        @Html.LabelFor(m => m.GroupCommId, new { @class = "control-label" })
+        <div class="controls">
+            @CommissionGroup()
+        </div>
+    </div>
+    foreach (var productColumn in Model.ProductColumns)
+    {
+    <div class="control-group">
+        <label for="@productColumn.ColumnName" class="control-label">
+            @Las.ResourceManager.GetString(productColumn.HeaderResource)
+        </label>
+        <div class="controls">
+            @Html.TextBox(productColumn.ColumnName, string.Empty, new { disabled = "disabled" })
+        </div>
+    </div>
+    }
+    <div class="control-group">
+        <div class="controls pull-right">
+            <button type="submit" class="btn btn-primary">
+                @Las.Submit
+            </button>
+            <button type="button" class="btn btn-primary" onclick="popup.close();">
+                @Las.Cancel
+            </button>
+        </div>
+    </div>
+}

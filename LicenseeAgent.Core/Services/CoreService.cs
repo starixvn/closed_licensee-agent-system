@@ -204,6 +204,11 @@
             return productInfos.Where(x => x.ProductId == productId).Count() == 1;
         }
 
+        public bool HasProductOffered(IList<ProductInfo> productInfos, ProductCode productId)
+        {
+            return HasProductOffered(productInfos, (int)productId);
+        }
+
         /// <summary>
         /// Get agent information.
         /// </summary>

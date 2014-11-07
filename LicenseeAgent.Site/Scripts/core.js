@@ -1,4 +1,4 @@
-﻿/*global appSettings, popup, pageContext, numeral */
+﻿/*global appSettings, popup, pageContext */
 
 var core = (function ($) {
     'use strict';
@@ -533,9 +533,6 @@ var core = (function ($) {
                 messages.push(message);
             }
             return messages;
-        },
-        formatCommissionPercent: function (value) {
-            return numeral(value * 100).format('0.00');
         }
     };
 } (jQuery));

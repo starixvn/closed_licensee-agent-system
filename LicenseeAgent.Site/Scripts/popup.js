@@ -46,6 +46,17 @@ var popup = (function ($) {
                 'top': 0,
                 'left': 0
             });
+            if (this.options.width !== 0) {
+                modalBody.css({
+                    width: this.options.width
+                });
+            }
+            if (this.options.height !== 0) {
+                modalBody.css({
+                    height: this.options.height
+                });
+            }
+
             $('body').append(modal);
 
             var $this = this;
@@ -295,6 +306,24 @@ var popup = (function ($) {
             if (this.$modal != null) {
                 this.$modal.on('hidden', callback);
             }
+        },
+        on: function (eventName, callback) {
+            if (this.$eventHandlers === undefined) {
+                this.$eventHandlers = [];
+            }
+            this.$eventHandlers.push({
+                name: eventName,
+                callback: callback
+            });
+        },
+        trigger: function (eventName, data) {
+            if (this.$eventHandlers !== undefined) {
+                $.each(this.$eventHandlers, function () {
+                    if (this.name === eventName) {
+                        this.callback(data);
+                    }
+                });
+            }
         }
     };
 
@@ -313,18 +342,22 @@ var popup = (function ($) {
             };
             var $options = $.extend({}, defaultOptions, options);
             popup.confirm($options);
+            return $currentPopup;
         },
         confirm: function (options) {
             $currentPopup = new Popup(options).showConfirm();
+            return $currentPopup;
         },
         openFrame: function (url, options) {
             if (url.indexOf(core.UrlRoot) !== 0) {
                 url = core.resolveUrl(url);
             }
             $currentPopup = new Popup(options).showFrame(url);
+            return $currentPopup;
         },
         open: function (options) {
             $currentPopup = new Popup(options).showContent();
+            return $currentPopup;
         },
         isIframe: function () {
             if ($(document).find('#' + Popup.iframeId).length === 0 &&
@@ -362,6 +395,18 @@ var popup = (function ($) {
                         $closeTimeout = null;
                     }
                 });
+            }
+        },
+        on: function (eventName, callback) {
+            if ($currentPopup != null) {
+                $currentPopup.on(eventName, callback);
+            }
+        },
+        trigger: function (eventName, data) {
+            if ($currentPopup !== null) {
+                $currentPopup.trigger(eventName, data);
+            } else if (this.isIframe()) {
+                window.parent.popup.trigger(eventName, data);
             }
         }
     };

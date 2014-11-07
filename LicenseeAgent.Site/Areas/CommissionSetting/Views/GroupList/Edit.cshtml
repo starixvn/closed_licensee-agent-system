@@ -1,0 +1,107 @@
+﻿@model CommissionGroupEditViewModel
+@{
+    ViewBag.Title = Las.EditGroup;
+    var widthColumn1 = 120;
+    var widthColumn2 = 140;
+    var widthColumn3 = 180;
+    var widthColumn23 = widthColumn2 + widthColumn3;
+    var totalWidth = widthColumn1 + widthColumn2 + widthColumn3;
+}
+@section css{
+    @Styles.Render("~/css/commission-setting")
+}
+@section scripts{
+    @Scripts.Render("~/js/commission-setting/group-crud")
+    <script type="text/javascript">
+        $(function () {
+            commissionSetting.groupCrud.init();
+        });
+    </script>
+}
+<div class="legend">
+    @ViewBag.Title
+</div>
+<div class="pull-left" style="width: @(totalWidth)px">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table", @id = "actionForm" }))
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.GroupCommId)
+        @Html.HiddenFor(m => m.DefaultGroupId)
+        if (ViewBag.Result != null)
+        {
+        <p class="text-success">
+            @ViewBag.Result.ToString()
+        </p>
+        <script type="text/javascript">
+            popup.trigger('update-commission-group')
+        </script>
+        }
+        <table class="noborder">
+            <colgroup>
+                <col width="@widthColumn1" />
+                <col width="@widthColumn2" />
+                <col width="@widthColumn3" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.GroupName)
+                    </td>
+                    <td colspan="2">
+                        @Html.TextBoxFor(m => m.GroupName, new { @class = "w140" })
+                        <span id="iconCheck">&nbsp;</span>
+                        <button type="button" id="check" class="btn btn-primary">
+                            @Las.CheckAvailability
+                        </button>
+                    </td>
+                </tr>
+                @foreach (var productCommission in Model.ProductCommissions)
+                {
+                    var index = Model.ProductCommissions.IndexOf(productCommission);
+                    <tr>
+                        @if (Model.ProductCommissions.IndexOf(productCommission) == 0)
+                        {
+                            <td rowspan="@Model.ProductCommissions.Count">
+                                <label>
+                                    @Las.CommissionHeader
+                                </label>
+                            </td>
+                        }
+                        <td width="130">
+                            @DataRefWrapper.GetProductName(productCommission.ProductId)
+                        </td>
+                        <td data-commission-product-id="@productCommission.ProductId" data-index="@index">
+                            @CommissionHelper.ProductCommission(productCommission)
+                            @Html.HiddenFor(m => m.ProductCommissions[index].ProductId)
+                            @Html.HiddenFor(m => m.ProductCommissions[index].Commission)
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.IsDefault)
+                    </td>
+                    <td colspan="2" width="@widthColumn23">
+                        @Html.CheckBoxFor(m => m.IsDefault)
+                        <br />
+                        <span class="text-warning">@Las.GroupCommissionNote</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                            @Las.Save
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="popup.close();">
+                            @Las.Cancel
+                        </button>
+                        <a class="btn btn-primary" href="@Url.Action("Index", "MemberList", new { area = "CommissionSetting", GroupCommId = Model.GroupCommId })" target="_parent">
+                            @Las.MemberCommissionList
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>

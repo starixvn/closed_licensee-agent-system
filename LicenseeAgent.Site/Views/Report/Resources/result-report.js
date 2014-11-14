@@ -16,10 +16,12 @@ var resultReport = (function ($) {
 
             $('a[data-toggle="tab"]').on('shown', function (e) {
                 if ($(e.target).attr('href') === "#filter-tab-outright") {
-                    resultReport.manageOutrightLeagueSelect();
+                    //resultReport.manageOutrightLeagueSelect();
+                    outrightSubmit();
                 }
                 else {
-                    resultReport.manageLeagueSelect();
+                    //resultReport.manageLeagueSelect();
+                    matchSubmit();
                 }
             });
 

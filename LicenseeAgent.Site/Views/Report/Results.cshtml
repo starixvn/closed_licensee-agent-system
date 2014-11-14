@@ -55,8 +55,12 @@
                 </div>
                 <div class="newline">
                 </div>
-                <div class="controls-row margin-top-10px">
+                <div class="controls-row">
+                    <label>@Las.Sport</label>
                     @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w160" })
+                </div>
+                <div class="controls-row">
+                    <label>@Las.League</label>
                     @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
                 </div>
             }
@@ -94,7 +98,11 @@
                     <div class="newline">
                     </div>
                     <div class="controls-row">
+                        <label>@Las.Sport</label>
                         @Html.DropDownList("OutrightSport", Model.Sports, new { @class = "selectpicker w160" })
+                    </div>
+                    <div class="controls-row">
+                        <label>@Las.League</label>
                         @Html.DropDownList("OutrightLeague", Model.Leagues, new { @class = "selectpicker w320" })
                     </div>
                 </div>

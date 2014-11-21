@@ -164,7 +164,8 @@ fanex.betlist.core = {
             success: function (response) {
                 popup.open({
                     title: language.getString("Results"),
-                    message: response
+                    message: response,
+                    height: 200
                 });
             },
             beforeSend: function () {

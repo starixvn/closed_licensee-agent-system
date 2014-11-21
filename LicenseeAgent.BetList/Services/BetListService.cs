@@ -181,7 +181,7 @@
         /// <returns>Return number game result.</returns>
         /// <exception cref="System.InvalidOperationException">Invalid criteria.</exception>
         /// <exception cref="CriteriaException"></exception>
-        public IList<Sportbook> GetSportsBookResults(int matchId)
+        public IList<Sportsbook> GetSportsBookResults(int matchId)
         {
             var criteria = new BetListResultsSportsBookCriteria
             {

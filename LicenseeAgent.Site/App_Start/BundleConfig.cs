@@ -260,8 +260,7 @@
                 "~/content/betlist/betlist.core.css",
                 "~/content/betlist/betlist.css",
                 "~/content/betlist/system-parlay-detail.css",
-                "~/Content/Fanex.Result/fanex.result.css",
-                "~/Content/Fanex.Result/fanex.result.override.less"));
+                "~/Content/Fanex.Result/fanex.result.less"));
             bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
                 "~/Views/BetList/Resources/totalbets.parlay.less"));
             bundles.Add(new ScriptBundle("~/js/betlist").Include(
@@ -284,8 +283,7 @@
             bundles.Add(new ScriptBundle("~/js/resultsreport").Include(
                 "~/Views/Report/Resources/result-report.js"));
             bundles.Add(new LessBundle("~/css/resultsreport").Include(
-                "~/Content/Fanex.Result/fanex.result.css",
-                "~/Content/Fanex.Result/fanex.result.override.less"));
+                "~/Content/Fanex.Result/fanex.result.less"));
         }
 
         /// <summary>

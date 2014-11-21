@@ -23,7 +23,7 @@
         /// <returns>List of leagues.</returns>
         IList<League> GetLeagues(LeagueCriteria criteria);
 
-        IList<Sportbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll);
+        IList<Sportsbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll);
 
         IList<NumberGame> GetMatchResultsNumberGame(DateTime eventDate, int leagueId, bool isShowAll);
 

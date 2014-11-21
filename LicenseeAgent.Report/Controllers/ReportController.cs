@@ -117,7 +117,7 @@
                 ErrCode = Result.SuccessValue,
                 Sports = new List<SelectListItem>(),
                 Leagues = new List<SelectListItem>(),
-                Results = ResultsMatchNoData()
+                Results = ResultsNoData()
             });
         }
 
@@ -169,7 +169,7 @@
                 ErrCode = Result.SuccessValue,
                 Sports = new List<SelectListItem>(),
                 Leagues = new List<SelectListItem>(),
-                Results = ResultsOutrightNoData(),
+                Results = ResultsNoData(),
                 TotalRows = 0
             });
         }
@@ -185,7 +185,7 @@
             var results = string.Empty;
             if (criteria.SportType == 0)
             {
-                results = ResultsMatchNoData();
+                results = ResultsNoData();
             }
             else
             {
@@ -263,18 +263,9 @@
         /// Return match no data.
         /// </summary>
         /// <returns>HTML string.</returns>
-        private string ResultsMatchNoData()
+        private string ResultsNoData()
         {
-            return RenderRazorViewToString("~/Views/Report/ResultsMatch.NoData.cshtml", null);
-        }
-
-        /// <summary>
-        /// Return outright no data.
-        /// </summary>
-        /// <returns>HTML string.</returns>
-        private string ResultsOutrightNoData()
-        {
-            return RenderRazorViewToString("~/Views/Report/ResultsOutright.NoData.cshtml", null);
+            return RenderRazorViewToString("~/Views/Report/Results.NoData.cshtml", null);
         }
 
         /// <summary>

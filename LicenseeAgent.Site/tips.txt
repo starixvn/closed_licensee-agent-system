@@ -1,0 +1,33 @@
+﻿* Open result popup:
+- Make a query to get a list of matches with sport types:
+SELECT TOP 100 matchid, sporttype, *
+FROM bodb02.dbo.match WITH (NOLOCK)
+
+The following query will get a list of matches of sport type = 1 (Soccer):
+SELECT TOP 100 matchid, sporttype, *
+FROM bodb02.dbo.match WITH (NOLOCK)
+where sporttype = 1
+
+If don't find a match for specified sport type, try to query on table match14.
+
+- Open chrome console and execute javasscript with your input matchid and sporttype:
+var url = core.resolveUrl('~/BetList/Results?matchId=11066071&sportType=1');
+$.ajax({
+    type: "GET",
+    contentType: "text/html",
+    cache: false,
+    url: url,
+    success: function(response) {
+        popup.open({
+            title: 'Results',
+            message: response
+        });
+    },
+    beforeSend: function() {
+        core.blockUI();
+    },
+    complete: function() {
+        core.unblockUI();
+    }
+});
+

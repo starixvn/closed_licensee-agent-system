@@ -73,7 +73,7 @@
         /// <returns>
         /// List of sports book results.
         /// </returns>
-        public IList<Sportbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll)
+        public IList<Sportsbook> GetMatchResults(DateTime eventDate, int sportType, int leagueId, bool isShowAll)
         {
             var criteria = new MatchResultsReportCriteria
             {

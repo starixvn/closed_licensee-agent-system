@@ -254,6 +254,12 @@ var resultReport = (function ($) {
                 }
             }
             $("#ResultsArea").html(results);
+            $('.penalty-result').each(function () {
+                var title = $(this).attr('original-title');
+                $(this).tooltip({
+                    title: title
+                });
+            });
         },
 
         matchSubmit: function (eventDateString) {

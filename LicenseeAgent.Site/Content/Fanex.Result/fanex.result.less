@@ -1,0 +1,336 @@
+﻿/*Html & css strucure
+/* table.fanex-result
+**     table.fanex-result tr.row-header
+***      table.fanex-result tr.row-header th
+**     table.fanex-result tr.row-data
+***      table.fanex-result tr.row-data td.*
+*/
+@font-style: Arial, Helvetica, sans-serif;
+@font-size: 12px;
+@goal-icon: "../../images/sprite.png";
+@header-background: #8a8a8a;
+@header-color: #fff;
+@border-color: #dedede;
+@league-color: #1d3968;
+@league-background: #cccccc;
+@title-color: #6d6d6d;
+@title-background: #edf0f0;
+@row-even-background: #f5f6fa;
+@row-odd-background: #edf0f0;
+@home-color:#6678e0;
+@away-color:#008d95;
+@bg_pending: Yellow;
+@bg_postponed: #FDFD87;
+div.fn-rs-content-header
+{
+    border: 1px solid @border-color;
+    padding-right: 15px;
+}
+
+div.fn-rs-content-scroll
+{
+    max-height: 740px;
+    overflow-y: scroll;
+    -ms-overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-x: hidden;
+    width: 100%;
+    max-height: 780px;
+}
+
+table
+{
+    font-family: @font-style;
+    font-size: @font-size;
+
+    &.fn-rs
+    {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 1000px;
+        line-height: 16px;
+        text-align: center;
+
+        &.popup
+        {
+            min-width: 650px;
+        }
+
+        thead
+        {
+           th
+           {
+                border-right: 1px solid @border-color;
+                font-weight: bold;
+                vertical-align: middle;
+                text-align: center;
+                color: #FFF;
+                height: 28px;
+                &.cl-title
+                {
+                    color: @title-color;
+                    background: @title-background;
+                    border-color: @title-background; // trick to avoid broken layout on IE9, IE10.
+                }
+           }
+        }
+        .header,.sub-header
+        {
+                color: @header-color;
+                 background-color: @header-background;
+        }
+        tbody
+        {
+            tr
+            {
+                &.even
+                {
+                    background-color: @row-even-background;
+                }
+                &.odd
+                {
+                    background-color: @row-odd-background;
+                }
+                &.data:hover
+                {
+                    background: #e2ffff;
+                }
+            }
+            td
+            {
+                border: solid 1px @border-color;
+                padding: 0px 5px;
+                vertical-align: middle;
+                height: 20px;
+            }
+            .cl-league
+            {
+                color: @league-color;
+                background: @league-background;
+                vertical-align: middle;
+                font-weight: bold;
+                text-align: left;
+                line-height: 7px;
+                height: 21px;
+            }
+            .cl-result
+            {
+                text-align: center;
+            }
+            .cl-team
+            {
+                text-align: left;
+            }
+            .cl-match
+            {
+                text-align:left;
+                font-weight: bold;
+                &.home
+                {
+                    color: @home-color;
+                }
+                &.away
+                {
+                    color: @away-color;
+                }
+                div
+                {
+                    width: 14px;
+                    height: 14px;
+                    display: inline-block;
+                    &.first-goal
+                    {
+                        background: url(@goal-icon) no-repeat -786px 0px;
+                    }
+                    &.last-goal
+                    {
+                        background: url(@goal-icon) no-repeat -806px 0px;
+                    }
+                    &.first-half-first-goal
+                    {
+                        background: url(@goal-icon) no-repeat -786px -16px;
+                    }
+                    &.first-half-last-goal
+                    {
+                        background: url(@goal-icon) no-repeat no-repeat -806px -16px;
+                    }
+                    &.home
+                    {
+                    color:@home-color;
+                    }
+                    &.away
+                    {
+                    color:@away-color;
+                    }
+                }
+                div.home ,div.away
+                {
+                    width:100%;
+                    display:inline-block;
+                    margin-top:10px;
+                    
+                }
+            }
+            .cl-f-score
+            {
+                color: #fd537d;
+            }
+        }
+
+        .cl-m-code
+        {
+            width: 112px;
+            .m-code
+            {
+                color: #599ced;
+            }
+        }
+        .cl-ko-time
+        {
+            width: 100px;
+        }
+
+        .cl-match
+        {
+           min-width: 82px;
+        }
+        .cl-s, .cl-ot, .cl-ei
+        {
+            width: 40px;
+        }
+        td.cl-totalgames, td.cl-totalpoint
+        {
+            width: 80px;
+            color: #6877b4;
+        }
+        td.cl-totalset
+        {
+            width: 58px;
+            color: #fd537d;
+        }
+        .cl-ht-score, .cl-f-score
+        {
+            width: 78px;
+        }
+        .cl-status
+        {
+            text-transform: capitalize;
+            width: 94px;
+            .detail-link
+            {
+                color: #0273FF;
+                cursor: pointer;
+                text-decoration: none;
+                &:hover
+                {
+                    color: #D2592D;
+                }
+            }
+        }
+        .cl-bg-pending
+        {
+            background:@bg_pending;
+        }
+        .cl-bg-postponed
+        {
+            background:@bg_postponed;
+        }
+    }
+    &.number-game
+    {
+         /*header*/
+        .cl-result
+        {
+            width:150px;
+            
+        }
+        .cl-warrior,.cl-lblOEFT,.cl-lbl1stball,.cl-lastball
+       
+        {
+            width:70px;
+        }
+        span.ball
+        {
+            padding: 3px 5px;
+            font-size: 11px;
+            background: -moz-linear-gradient(top,#f2f2f2 0%, #ffffff 25%,#ffffff 50%, #ffffff 75%, #d1cdcd);
+            background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2),color-stop(0.25, #ffffff), color-stop(0.50, #ffffff), color-stop(0.75, #ffffff),to(#d1cdcd));
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 0px;
+            border-radius: 0px;
+            border: 1px solid #5c5757;
+            text-shadow: 1px 0px 0px rgba(000,000,000,0.4), 1px 1px 0px rgba(255,255,255,0.4);
+            display: inline-block;
+            text-align: center;
+            margin-left:2px;
+        }
+    
+    }
+    &.casino
+    {
+        /*header*/
+        .cl-result
+        {
+            width: 334px;
+        }
+    }
+    &.racing
+    {
+        /* Header */
+        .cl-race
+        {
+            width: 180px;
+        }
+    
+        td.cl-result
+        {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .cl-win, .cl-place
+        {
+            width: 100px;
+        }
+        .cl-status
+        {
+            width: 150px;
+           .official {
+                color: red;
+                font-weight: bold;
+            }
+        }
+        /* Body */
+        .cl-race-name
+        {
+            width: 83px;
+        }
+        .cl-placing
+        {
+            width: 50px;
+        }
+        .cl-engine-no
+        {
+            width: 48px;
+        }
+    }
+
+    .row-noinfo
+    {
+        border: 1px solid @border-color;
+        border-top: 0;
+        text-align: center;
+        padding: 4px;
+    }
+}
+
+div.no-data
+{
+    color: red;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+    background: #edf0f0;
+    height: 30px;
+    line-height: 30px;
+}

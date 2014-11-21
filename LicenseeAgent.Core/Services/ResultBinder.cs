@@ -19,7 +19,7 @@
         /// <param name="data">The data table.</param>
         /// <returns>The sport-book data list.</returns>
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1125:UseShorthandForNullableTypes", Justification = "Reviewed.")]
-        public static IList<Sportbook> BindingSportsBook(DataTable data)
+        public static IList<Sportsbook> BindingSportsBook(DataTable data)
         {
             if (data != null && data.Rows.Count > 0)
             {
@@ -27,7 +27,7 @@
                     data.AsEnumerable()
                         .Select(
                             i =>
-                                new Sportbook
+                                new Sportsbook
                                 {
                                     AwayId = int.Parse(i["awayID"].ToString()),
                                     HomeId = int.Parse(i["homeID"].ToString()),
@@ -57,7 +57,6 @@
                                     KickOffTime = DateTime.Parse(i["kickofftime"].ToString()),
                                     MatchCode = i["matchcode"].ToString(),
                                     GoalRecord = i["goalrecord"].ToString(),
-                                    ResultValue = string.Empty,
                                     IsHTCal = Convert.ToBoolean(i["IsHTCal"]),
                                     Calculate = Convert.ToBoolean(i["Calculate"]),
                                     RefNo = string.Empty
@@ -65,7 +64,7 @@
                         .ToList();
             }
 
-            return new List<Sportbook>();
+            return new List<Sportsbook>();
         }
 
         /// <summary>
@@ -224,7 +223,7 @@
                                     dataList.Where(i => i["LeagueID"].ToString() == leagueId.ToString(CultureInfo.InvariantCulture))
                                         .Select(
                                             i =>
-                                                new Sportbook
+                                                new Sportsbook
                                                 {
                                                     AwayId = int.Parse(i["awayID"].ToString()),
                                                     HomeId = int.Parse(i["homeID"].ToString()),
@@ -261,7 +260,6 @@
                                                     KickOffTime = DateTime.Parse(i["kickofftime"].ToString()),
                                                     MatchCode = i["matchcode"].ToString(),
                                                     GoalRecord = i["goalrecord"].ToString(),
-                                                    ResultValue = string.Empty, // "6-1 *30-40 40-30* *40-0 40-0* *40-0 40-0* *40-0",
                                                     IsHTCal = Convert.ToBoolean(i["IsHTCal"]),
                                                     Calculate = Convert.ToBoolean(i["Calculate"]),
                                                     RefNo = (refNo == -1)

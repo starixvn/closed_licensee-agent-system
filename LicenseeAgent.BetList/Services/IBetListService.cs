@@ -57,7 +57,7 @@
 
         IList<Racing> GetVirtualRacingResults(int matchId, string raceNo);
 
-        IList<Sportbook> GetSportsBookResults(int matchId);
+        IList<Sportsbook> GetSportsBookResults(int matchId);
 
         /// <summary>
         /// Get Parlay Results.

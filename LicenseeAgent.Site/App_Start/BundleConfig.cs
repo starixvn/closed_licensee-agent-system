@@ -244,7 +244,6 @@
         }
 
         /// <summary>
-                "~/Content/Fanex.Result/fanex.result.less"));
         /// Registers the plugin bundles.
         /// </summary>
         /// <param name="bundles">The bundles.</param>

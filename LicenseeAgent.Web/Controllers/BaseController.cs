@@ -118,6 +118,11 @@
             return ResourceManager.GetErrMsg(errCode);
         }
 
+        protected string RenderRazorViewToString(string viewName)
+        {
+            return RenderRazorViewToString(viewName, null);
+        }
+
         /// <summary>
         /// Renders the razor view to string.
         /// </summary>

@@ -265,11 +265,10 @@
         /// <returns>HTML string.</returns>
         private string ResultsNoData()
         {
-            return RenderRazorViewToString("~/Areas/Report/Views/Results/ResultsMatch.NoData.cshtml", null);
+            return RenderRazorViewToString("~/Areas/Report/Views/Results/Results.NoData.cshtml");
         }
 
         /// <summary>
-            return RenderRazorViewToString("~/Areas/Report/Views/Results/ResultsOutright.NoData.cshtml", null);
         /// Get Match Results Data.
         /// </summary>
         /// <param name="criteria">Match Results Report Criteria.</param>

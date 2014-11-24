@@ -87,14 +87,13 @@
                 "~/Areas/Report/Scripts/AgentOutstanding/report-agent-outstanding.js").Include(
                 "~/Views/BetList/Resources/betlist-core.js"));
             bundles.Add(new LessBundle("~/css/report/agent-outstanding").Include(
-                "~/Areas/Report/Content/AgentOutstanding/report-agent-outstanding.less"));
+                "~/Areas/Report/Content/agent-outstanding.less"));
 
-            bundles.Add(new ScriptBundle("~/js/report/resultsreport").Include(
+            bundles.Add(new ScriptBundle("~/js/report/results").Include(
                 "~/Areas/Report/Scripts/Results/result-report.js"));
 
-            bundles.Add(new LessBundle("~/css/report/resultsreport").Include(
-                "~/Areas/Report/Content/Results/fanex.result.css",
-                "~/Areas/Report/Content/Results/fanex.result.override.less"));
+            bundles.Add(new LessBundle("~/css/report/results").Include(
+                "~/Content/Fanex.Result/fanex.result.less"));
         }
     }
 }

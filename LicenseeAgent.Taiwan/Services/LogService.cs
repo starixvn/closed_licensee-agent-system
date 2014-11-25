@@ -8,7 +8,7 @@
     /// <summary>
     /// LogService class.
     /// </summary>
-    internal class LogService : QueryService, ILogService
+    public class LogService : QueryService, ILogService
     {
         /// <summary>
         /// Write log when call API.

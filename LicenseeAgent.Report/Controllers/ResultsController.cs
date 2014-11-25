@@ -1,19 +1,20 @@
 ﻿namespace LicenseeAgent.Report.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using Core.Entities;
-    using Core.Services;
-    using Criteria;
     using Fanex.Result.Core;
     using Fanex.Result.Core.DTO;
+    using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
+    using LicenseeAgent.Report.Criteria.Results;
+    using LicenseeAgent.Report.Entities.Results;
+    using LicenseeAgent.Report.Services;
+    using LicenseeAgent.Report.ViewModels.Results;
+    using LicenseeAgent.Resources;
     using LicenseeAgent.Web;
-    using Services;
-    using ViewModels;
-    using Web.Controllers;
+    using LicenseeAgent.Web.Controllers;
 
     /// <summary>
     /// Report Controller.
@@ -23,16 +24,9 @@
         #region Services
 
         private readonly ICoreService _coreService;
-
-        private readonly IReportService _reportService;
+        private readonly IResultsService _resultsService;
 
         #endregion Services
-
-        #region Constant
-
-        private bool _includeTestData = false;
-
-        #endregion Constant
 
         #region Constructor
 
@@ -43,15 +37,15 @@
 
         public ResultsController(
             ICoreService coreService,
-            IReportService reportService)
+            IResultsService reportService)
         {
             _coreService = coreService ?? new CoreService();
-            _reportService = reportService ?? new ReportService();
+            _resultsService = reportService ?? new ResultsService();
         }
 
         #endregion Constructor
 
-        #region Results Report
+        #region Index
 
         /// <summary>
         /// Index page of Results report.
@@ -61,203 +55,305 @@
         public ActionResult Index()
         {
             var balanceUp = _coreService.BalanceUpDay;
-            var model = new ResultsReportViewModel
+            var matchResultsViewModel = new MatchResultsViewModel
             {
-                BalanceUpDay = balanceUp.BalanceUpDay
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                Date = DateTime.Today
+            };
+            var outrightResultsViewModel = new OutrightResultsViewModel
+            {
+                BalanceUpDay = balanceUp.BalanceUpDay,
+                FromDate = DateTime.Today,
+                ToDate = DateTime.Today
+            };
+
+            var model = new ResultsViewModel
+            {
+                MatchResults = matchResultsViewModel,
+                OutrightResults = outrightResultsViewModel
             };
 
             return View(model);
         }
 
-        /// <summary>
-        /// Index page of Results report.
-        /// </summary>
-        /// <param name="criteria">Sport criteria.</param>
-        /// <returns>Return a view.</returns>
-        [HttpPost]
-        public JsonResult Index(SportCriteria criteria)
-        {
-            criteria.IsShowAll = _includeTestData;
-            var sports = _reportService.GetSports(criteria);
-            var model = new ResultsReportViewModel();
-            model.Sports = sports.Select(i => new SelectListItem
-            {
-                Text = DataRefWrapper.GetSportName(i.SportType),
-                Value = i.SportType.ToString()
-            }).ToList();
+        #endregion Index
 
-            if (model.Sports.Count > 0)
-            {
-                model.Sports[0].Selected = true;
-                var leagueCriteria = new LeagueCriteria
-                {
-                    IsShowAll = criteria.IsShowAll,
-                    EventDate = criteria.EventDate,
-                    SportType = int.Parse(model.Sports[0].Value)
-                };
-
-                var leagues = _reportService.GetLeagues(leagueCriteria);
-                model.Leagues = leagues.Select(i => new SelectListItem
-                {
-                    Text = DataRefWrapper.GetLeagueName(i.LeagueId),
-                    Value = i.LeagueId.ToString()
-                }).OrderBy(j => j.Text).ToList();
-
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    Sports = model.Sports,
-                    Leagues = model.Leagues,
-                    Results = GetMatchResultsData(leagueCriteria, 0)
-                });
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                Sports = new List<SelectListItem>(),
-                Leagues = new List<SelectListItem>(),
-                Results = ResultsNoData()
-            });
-        }
+        #region Match results
 
         /// <summary>
         /// Index page of Results report.
         /// </summary>
-        /// <param name="criteria">Sport criteria.</param>
-        /// <returns>Return a view.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
         [HttpPost]
-        public JsonResult OutrightResults(OutrightResultsReportCriteria criteria)
+        public JsonResult Match(MatchResultsViewModel model)
         {
-            var setting = new ResultSetting { IsOutRight = true, LanguageCode = LanguageManager.Language };
-
-            var resultsHtmlString = string.Empty;
-            var cacheKey = GenerateOutRightCacheKey(criteria);
-            var outRightData = (IList<OutRight>)HttpRuntime.Cache.Get(cacheKey) ?? _reportService.GetOutrightResults(criteria);
-
-            if (outRightData.Count > 0)
+            IList<SportEntity> sports = null;
+            if (model.Sport == 0)
             {
-                var sports = outRightData.GroupBy(i => i.SportType)
-                    .Select(j => new SelectListItem
-                    {
-                        Text = DataRefWrapper.GetSportName(j.First().SportType),
-                        Value = j.First().SportType.ToString(),
-                        Selected = j.First().SportType == criteria.SportType
-                    }).OrderBy(a => int.Parse(a.Value)).ToList();
-                var sportType = criteria.SportType == 0 ? int.Parse(sports[0].Value) : criteria.SportType;
-                var leagues = outRightData.Where(i => i.SportType == sportType).GroupBy(i => i.LeagueId)
-                    .Select(j => new SelectListItem { Text = DataRefWrapper.GetLeagueName(j.First().LeagueId), Value = j.First().LeagueId.ToString() })
-                    .OrderBy(k => k.Text).ToList();
-                var data = outRightData.Where(i => i.SportType == sportType && (criteria.LeagueId == 0 || criteria.LeagueId == i.LeagueId)).ToList();
-                if (data.Count > 0)
-                {
-                    resultsHtmlString = ResultEngine.HtmlParser(data, setting);
-                }
-
-                return Json(new
-                {
-                    ErrCode = Result.SuccessValue,
-                    Sports = sports,
-                    Leagues = leagues,
-                    Results = resultsHtmlString,
-                    TotalRows = data.Count
-                });
+                sports = GetMatchSports(model);
             }
 
+            IList<LeagueEntity> leagues = null;
+            if (model.League == 0 && model.Sport != 0)
+            {
+                leagues = GetMatchLeagues(model);
+            }
+
+            var results = model.Sport != 0
+                ? GetMatchResults(model)
+                : ResultsNoData();
             return Json(new
             {
-                ErrCode = Result.SuccessValue,
-                Sports = new List<SelectListItem>(),
-                Leagues = new List<SelectListItem>(),
-                Results = ResultsNoData(),
-                TotalRows = 0
-            });
-        }
-
-        /// <summary>
-        /// Get list of results.
-        /// </summary>
-        /// <param name="criteria">Results Report criteria.</param>
-        /// <returns>JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetMatchResults(MatchResultsReportCriteria criteria)
-        {
-            var results = string.Empty;
-            if (criteria.SportType == 0)
-            {
-                results = ResultsNoData();
-            }
-            else
-            {
-                var leagueCriteria = new LeagueCriteria
-                {
-                    SportType = criteria.SportType,
-                    EventDate = criteria.EventDate
-                };
-
-                results = GetMatchResultsData(leagueCriteria, criteria.LeagueId);
-            }
-
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
+                Sports = sports,
+                Leagues = leagues,
                 Results = results
             });
         }
 
         /// <summary>
-        /// Get list of leagues.
+        /// Gets the match sports.
         /// </summary>
-        /// <param name="criteria">League criteria.</param>
-        /// <returns>JSON object.</returns>
-        [HttpPost]
-        public JsonResult GetLeagues(LeagueCriteria criteria)
+        /// <param name="model">The model.</param>
+        /// <returns>Returns list of sports.</returns>
+        [NonAction]
+        public IList<SportEntity> GetMatchSports(MatchResultsViewModel model)
         {
-            var leagues = _reportService.GetLeagues(criteria);
-            var leagueItems = leagues.Select(i => new SelectListItem
+            var criteria = new GetSportCriteria
             {
-                Text = DataRefWrapper.GetLeagueName(i.LeagueId),
-                Value = i.LeagueId.ToString()
-            }).OrderBy(j => j.Text).ToList();
+                EventDate = model.Date,
+                IsShowAll = model.IsShowAll
+            };
 
-            return Json(new
+            var sports = _resultsService.GetSports(criteria);
+            sports.ToList().ForEach(x =>
             {
-                ErrCode = Result.SuccessValue,
-                Leagues = leagueItems,
-                Results = GetMatchResultsData(criteria, 0)
+                x.SportName = DataRefWrapper.GetSportName(x.SportType);
             });
+
+            if (sports.Count > 0)
+            {
+                model.Sport = sports[0].SportType;
+            }
+
+            return sports;
         }
 
         /// <summary>
-        /// Get Balance up and move bet dates.
+        /// Gets the match leagues.
         /// </summary>
-        /// <returns>JSON object.</returns>
-        [HttpPost]
-        public JsonResult BalanceUpMoveBet()
+        /// <param name="model">The model.</param>
+        /// <returns>Returns list of leagues.</returns>
+        [NonAction]
+        public IList<LeagueEntity> GetMatchLeagues(MatchResultsViewModel model)
         {
-            var balanceUp = _coreService.BalanceUpDay;
+            var criteria = new GetLeagueCriteria
+            {
+                IsShowAll = model.IsShowAll,
+                EventDate = model.Date,
+                SportType = model.Sport
+            };
+
+            var leagues = _resultsService.GetLeagues(criteria);
+            leagues.ToList().ForEach(x =>
+            {
+                x.LeagueName = DataRefWrapper.GetLeagueName(x.LeagueId);
+            });
+
+            if (leagues.Count > 0)
+            {
+                leagues.Insert(
+                    0,
+                    new LeagueEntity
+                    {
+                        LeagueId = 0,
+                        LeagueName = Las.AllLeagues
+                    });
+                model.League = leagues[0].LeagueId;
+            }
+
+            return leagues;
+        }
+
+        /// <summary>
+        /// Get Match Results Data.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// HTML string.
+        /// </returns>
+        [NonAction]
+        public string GetMatchResults(MatchResultsViewModel model)
+        {
+            var setting = new ResultSetting
+            {
+                SportType = (SportType)model.Sport,
+                LanguageCode = CurrentSession.Language
+            };
+            switch ((SportType)model.Sport)
+            {
+                case SportType.VirtualHorseRacing:
+                case SportType.VirtualGreyhounds:
+                case SportType.VirtualSpeedway:
+                case SportType.VirtualMotorRacing:
+                case SportType.VirtualCycling:
+                    var virtualHorseRacingCriteria = new MatchResultsVirtualHorseRacingCriteria
+                    {
+                        IsShowAll = model.IsShowAll,
+                        EventDate = model.Date,
+                        LeagueId = model.League,
+                        SportType = model.Sport
+                    };
+                    var data = _resultsService.GetMatchResultsVirtualHorseRacing(virtualHorseRacingCriteria);
+                    return data != null ? ResultEngine.HtmlParser(data, setting) : string.Empty;
+
+                case SportType.LiveCasino:
+                    return string.Empty;
+
+                case SportType.NumberGame:
+                    var numberGameCriteria = new MatchResultsNumberGameCriteria
+                    {
+                        IsShowAll = model.IsShowAll,
+                        EventDate = model.Date,
+                        LeagueId = model.League
+                    };
+                    var numberGameData = _resultsService.GetMatchResultsNumberGame(numberGameCriteria);
+                    return numberGameData != null ? ResultEngine.HtmlParser(numberGameData, setting) : string.Empty;
+
+                default:
+                    var sportsBookCriteria = new MatchResultsSportsBookCriteria
+                    {
+                        IsShowAll = model.IsShowAll,
+                        EventDate = model.Date,
+                        SportType = model.Sport,
+                        LeagueId = model.League
+                    };
+                    var sportsBookData = _resultsService.GetMatchResultsSportsBook(sportsBookCriteria);
+                    return sportsBookData != null ? ResultEngine.HtmlParser(sportsBookData, setting) : string.Empty;
+            }
+        }
+
+        #endregion Match results
+
+        #region Outright results
+
+        /// <summary>
+        /// Index page of Results report.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
+        [HttpPost]
+        public JsonResult Outright(OutrightResultsViewModel model)
+        {
+            var criteria = new OutrightResultsReportCriteria
+            {
+                IsShowAll = model.IsShowAll,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                LeagueId = model.League,
+                SportType = model.Sport
+            };
+            var outRightData = _resultsService.GetOutrightResults(criteria);
+
+            IList<SportEntity> sports = null;
+            IList<LeagueEntity> leagues = null;
+            var results = string.Empty;
+            if (outRightData.Count > 0)
+            {
+                if (model.Sport == 0)
+                {
+                    sports = GetOutrightSports(outRightData);
+                }
+
+                var sportType = model.Sport == 0 ? sports[0].SportType : model.Sport;
+                if (model.League == 0 && sportType != 0)
+                {
+                    leagues = GetOutrightLeagues(outRightData, sportType);
+                }
+
+                if (sportType != 0)
+                {
+                    results = GetOutrightResults(outRightData, sportType, model.League);
+                }
+            }
+
             return Json(new
             {
-                ErrCode = Result.SuccessValue,
-                BalanceUp = balanceUp.BalanceUpDay.ToShortDateString(),
-                MoveBet = balanceUp.MoveBetsDay.ToShortDateString()
+                Sports = sports,
+                Leagues = leagues,
+                Results = string.IsNullOrEmpty(results) ? ResultsNoData() : results
             });
         }
 
-        #endregion Results Report
+        [NonAction]
+        public IList<SportEntity> GetOutrightSports(IList<OutRight> data)
+        {
+            return data.GroupBy(i => i.SportType).Select(x => new SportEntity
+            {
+                SportType = x.First().SportType,
+                SportName = DataRefWrapper.GetSportName(x.First().SportType)
+            }).OrderBy(x => x.SportType).ToList();
+        }
+
+        /// <summary>
+        /// Gets the outright leagues.
+        /// </summary>
+        /// <param name="data">The outright data.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <returns>Returns list of leagues.</returns>
+        [NonAction]
+        public IList<LeagueEntity> GetOutrightLeagues(IList<OutRight> data, int sportType)
+        {
+            var leagues = data.Where(x => x.SportType == sportType).GroupBy(x => x.LeagueId).Select(x => new LeagueEntity
+            {
+                LeagueId = x.First().LeagueId,
+                LeagueName = DataRefWrapper.GetLeagueName(x.First().LeagueId)
+            }).OrderBy(x => x.LeagueName).ToList();
+            if (leagues.Count > 0)
+            {
+                leagues.Insert(
+                    0,
+                    new LeagueEntity
+                    {
+                        LeagueId = 0,
+                        LeagueName = Las.AllLeagues
+                    });
+            }
+
+            return leagues;
+        }
+
+        /// <summary>
+        /// Gets the outright result.
+        /// </summary>
+        /// <param name="data">The outright data.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <returns>Returns outright result.</returns>
+        [NonAction]
+        public string GetOutrightResults(IList<OutRight> data, int sportType, int leagueId)
+        {
+            var filteredData = data.Where(i => i.SportType == sportType && (leagueId == 0 || leagueId == i.LeagueId)).ToList();
+            if (data.Count > 0)
+            {
+                var setting = new ResultSetting
+                {
+                    IsOutRight = true,
+                    LanguageCode = LanguageManager.Language
+                };
+                return ResultEngine.HtmlParser(filteredData, setting);
+            }
+
+            return string.Empty;
+        }
+
+        #endregion Outright results
 
         #region Utilities
-
-        /// <summary>
-        /// Generate Outright Cache Key.
-        /// </summary>
-        /// <param name="criteria">Outright Results Report Criteria.</param>
-        /// <returns>HTML string.</returns>
-        private static string GenerateOutRightCacheKey(OutrightResultsReportCriteria criteria)
-        {
-            const string PatternKey = "{0}{1}Results.OutRight.Data_{2}";
-            return string.Format(PatternKey, criteria.FromDate, criteria.ToDate, CurrentSession.OnUserId);
-        }
 
         /// <summary>
         /// Return match no data.
@@ -265,44 +361,7 @@
         /// <returns>HTML string.</returns>
         private string ResultsNoData()
         {
-            return RenderRazorViewToString("~/Areas/Report/Views/Results/Results.NoData.cshtml");
-        }
-
-        /// <summary>
-        /// Get Match Results Data.
-        /// </summary>
-        /// <param name="criteria">Match Results Report Criteria.</param>
-        /// <param name="leagueId">League ID input.</param>
-        /// <returns>HTML string.</returns>
-        private string GetMatchResultsData(LeagueCriteria criteria, int leagueId)
-        {
-            var setting = new ResultSetting
-            {
-                SportType = (SportType)criteria.SportType,
-                LanguageCode = CurrentSession.Language
-            };
-
-            switch ((SportType)criteria.SportType)
-            {
-                case SportType.VirtualHorseRacing:
-                case SportType.VirtualGreyhounds:
-                case SportType.VirtualSpeedway:
-                case SportType.VirtualMotorRacing:
-                case SportType.VirtualCycling:
-                    var data = _reportService.GetMatchResultsVirtualHorseRacing(criteria.EventDate, criteria.SportType, leagueId, _includeTestData);
-                    return data != null ? ResultEngine.HtmlParser(data, setting) : string.Empty;
-
-                case SportType.LiveCasino:
-                    return string.Empty;
-
-                case SportType.NumberGame:
-                    var numberGameData = _reportService.GetMatchResultsNumberGame(criteria.EventDate, leagueId, _includeTestData);
-                    return numberGameData != null ? ResultEngine.HtmlParser(numberGameData, setting) : string.Empty;
-
-                default:
-                    var sportsBookData = _reportService.GetMatchResults(criteria.EventDate, criteria.SportType, leagueId, _includeTestData);
-                    return sportsBookData != null ? ResultEngine.HtmlParser(sportsBookData, setting) : string.Empty;
-            }
+            return RenderRazorViewToString("~/Areas/Report/Views/Results/_NoData.cshtml");
         }
 
         #endregion Utilities

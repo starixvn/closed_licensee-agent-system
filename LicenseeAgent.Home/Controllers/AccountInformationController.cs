@@ -304,7 +304,7 @@
                 ResponseResult serviceResult = null;
                 if (CurrentSession.AgentInfo.IsDeposit)
                 {
-                    serviceResult = _memberService.GetDepositMemberInformation(
+                    serviceResult = _memberService.GetDepositMemberInfo(
                         customer,
                         new GetDepositMemberInfoAction
                         {
@@ -314,7 +314,7 @@
                 }
                 else if (CurrentSession.AgentInfo.IsCredit)
                 {
-                    serviceResult = _memberService.GetMemberInformation(
+                    serviceResult = _memberService.GetMemberInfo(
                         customer,
                         new GetMemberInfoAction
                         {

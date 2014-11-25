@@ -5,20 +5,20 @@
     using System.Linq;
     using System.Web.Mvc;
     using Core.Entities;
-    using Criteria;
     using Fanex.Data.Repository;
     using LicenseeAgent.Core.Enumerations;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Core.Utility;
-    using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Report.Criteria.Statement;
+    using LicenseeAgent.Report.Entities.Statement;
     using LicenseeAgent.Report.Services;
+    using LicenseeAgent.Report.ViewModels.Statement;
     using LicenseeAgent.Taiwan.Actions;
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
     using LicenseeAgent.Web.Entities;
     using LicenseeAgent.Web.Services;
-    using ViewModels;
 
     /// <summary>
     /// Report Controller.
@@ -91,7 +91,7 @@
             }
 
             var balanceUp = _coreService.BalanceUpDay;
-            IList<Statement> result;
+            IList<StatementEntity> result;
             if (ModelHelper.IsLastAgent(model.AgentLevel, CurrentSession.AgentInfo.NumberOfLevel))
             {
                 result = _statementService.GetStatementList(new StatementMemberCriteria
@@ -102,7 +102,7 @@
                     ToDate = model.ToDate,
                     Username = model.UserName
                 });
-                var serviceResult = _memberService.GetMemberInformations(
+                var serviceResult = _memberService.GetMemberInfoList(
                     result,
                     new GetMemberInfoListAction
                     {
@@ -218,7 +218,7 @@
             {
                 if (criteria.IsAgent)
                 {
-                    result = new List<Statement>();
+                    result = new List<StatementEntity>();
                 }
 
                 criteria.IsAgent = false;

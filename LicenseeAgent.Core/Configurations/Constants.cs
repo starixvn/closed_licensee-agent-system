@@ -37,6 +37,7 @@
         public const string EmptyString = "---";
         public const int PageSize = 20;
         public const int MemberLevel = -1;
+        public const bool IsShowTestData = false;
 
         #region Captcha
 

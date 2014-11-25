@@ -4,7 +4,7 @@
     using Fanex.Data.Repository;
     using LicenseeAgent.Taiwan.Entities;
 
-    internal interface ILogService
+    public interface ILogService
     {
         /// <summary>
         /// Write log when call API.

@@ -1,22 +1,21 @@
-﻿namespace LicenseeAgent.Report.Criteria
+﻿namespace LicenseeAgent.Report.Criteria.Results
 {
     using System;
-    using Fanex.Data.Repository;
 
     /// <summary>
-    /// League Criteria.
+    /// Results Report Criteria.
     /// </summary>
-    public class LeagueCriteria : CriteriaBase
+    public class MatchResultsSportsBookCriteria : ReportCriteriaBase
     {
-        public bool IsShowAll { get; set; }
-
         public DateTime EventDate { get; set; }
 
         public int SportType { get; set; }
 
+        public int LeagueId { get; set; }
+
         public override string GetSettingKey()
         {
-            return "LAS_Result_LeagueSelByDate";
+            return "LAS_Result_MatchSelByLeague";
         }
 
         public override bool IsValid()

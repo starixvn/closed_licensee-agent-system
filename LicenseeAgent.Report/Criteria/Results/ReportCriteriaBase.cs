@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Report.Criteria
+﻿namespace LicenseeAgent.Report.Criteria.Results
 {
     using Fanex.Data.Repository;
 

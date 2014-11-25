@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Report.ViewModels
+﻿namespace LicenseeAgent.Report.ViewModels.Statement
 {
     using System;
 

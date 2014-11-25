@@ -1,10 +1,6 @@
-﻿@using LicenseeAgent.Report.ViewModels
-@using LicenseeAgent.Core.Utility
-@model ResultsReportViewModel
+﻿@model ResultsViewModel
 @{
     ViewBag.Title = Las.Results + " - " + Las.Report;
-    var todayString = Formatter.FormatDate(Model.Today);
-    var balanceUpDayString = Formatter.FormatDate(Model.BalanceUpDay);
 }
 @section css
 {
@@ -18,95 +14,26 @@
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
     @Scripts.Render("~/js/report/results")
+    <script type="text/javascript">
+        $(function () {
+            report.results.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
 <div id="filter-tabs" class="filter-tabs">
     <ul id="tabs-area" class="nav nav-tabs">
-        <li class="active"><a href="#filter-tab-match" data-toggle="tab">@Las.MatchResults</a>
-        </li>
-        <li><a href="#filter-tab-outright" data-toggle="tab">@Las.OutrightResults</a> </li>
+        <li class="active"><a href="#filter-tab-match" data-toggle="tab">@Las.MatchResults</a></li>
+        <li><a href="#filter-tab-outright" data-toggle="tab">@Las.OutrightResults</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="filter-tab-match">
-            @using (Html.BeginForm(null, null, FormMethod.Post,
-                new { @class = "form-inline form-filter", id = "search-form" }))
-            {
-                <div class="controls-row">
-                    <label for="matchdatetime">
-                        @Las.Date
-                    </label>
-                    <div class="input-append date datepicker" id="matchdatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
-                        <input class="input-add-on span2" id="matchdatetime" size="16" type="text" value="@todayString" />
-                        <span class="add-on"><i class="icon-th"></i></span>
-                    </div>
-                </div>
-                <div class="controls-row">
-                    <button class="btn btn-primary" onclick="return matchSubmit();">
-                        @Las.Submit
-                    </button>
-                    <button class="btn btn-primary" onclick="return resultReport.matchYesterday();">
-                        @Las.Yesterday
-                    </button>
-                    <button class="btn btn-primary" onclick="return resultReport.matchToday();">
-                        @Las.Today
-                    </button>
-                </div>
-                <div class="newline">
-                </div>
-                <div class="controls-row">
-                    <label>@Las.Sport</label>
-                    @Html.DropDownList("MatchSport", new List<SelectListItem>(), new { @class = "selectpicker w160" })
-                </div>
-                <div class="controls-row">
-                    <label>@Las.League</label>
-                    @Html.DropDownList("MatchLeague", new List<SelectListItem>(), new { @class = "selectpicker w320" })
-                </div>
-            }
+            @Html.Partial("_Match", Model.MatchResults)
         </div>
         <div class="tab-pane" id="filter-tab-outright">
-            @using (Html.BeginForm("OutrightResults", "Results", new { area = "Report" }, FormMethod.Post,
-                new { @class = "form-inline form-filter", id = "search-form" }))
-            {
-                <div class="controls-row">
-                    <label for="outrightFromDate">@Las.From</label>
-                    <div class="input-append date datepicker" id="outrightfromdatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
-                        <input class="input-add-on span2" id="outrightFromDate" size="16" type="text" value="@todayString" />
-                        <span class="add-on"><i class="icon-th"></i></span>
-                    </div>
-                </div>
-                <div class="controls-row">
-                    <label for="outrightToDate">@Las.To</label>
-                    <div class="input-append date datepicker" id="outrighttodatetimepicker" data-date="@todayString" data-start-date="@balanceUpDayString">
-                        <input class="input-add-on span2" id="outrightToDate" size="16" type="text" value="@todayString" />
-                        <span class="add-on"><i class="icon-th"></i></span>
-                    </div>
-                </div>
-                <div class="controls-row">
-                    <button class="btn btn-primary" onclick="return outrightSubmit();">
-                        @Las.Submit
-                    </button>
-                    <button class="btn btn-primary" onclick="return resultReport.outrightYesterday();">
-                        @Las.Yesterday
-                    </button>
-                    <button class="btn btn-primary" onclick="return resultReport.outrightToday();">
-                        @Las.Today
-                    </button>
-                </div>
-                <div class="hide">
-                    <div class="newline">
-                    </div>
-                    <div class="controls-row">
-                        <label>@Las.Sport</label>
-                        @Html.DropDownList("OutrightSport", Model.Sports, new { @class = "selectpicker w160" })
-                    </div>
-                    <div class="controls-row">
-                        <label>@Las.League</label>
-                        @Html.DropDownList("OutrightLeague", Model.Leagues, new { @class = "selectpicker w320" })
-                    </div>
-                </div>
-            }
+            @Html.Partial("_Outright", Model.OutrightResults)
         </div>
     </div>
 </div>

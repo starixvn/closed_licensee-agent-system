@@ -1,14 +1,16 @@
-namespace LicenseeAgent.Report.Criteria
+namespace LicenseeAgent.Report.Criteria.Statement
 {
     using System;
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// Transfer Detail Agent Criteria.
+    /// Statement Agent Criteria.
     /// </summary>
-    public class TransferDetailAgentCriteria : CriteriaBase
+    public class StatementAgentCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
+
+        public string Username { get; set; }
 
         public DateTime FromDate { get; set; }
 
@@ -18,7 +20,7 @@ namespace LicenseeAgent.Report.Criteria
 
         public override string GetSettingKey()
         {
-            return "LAS_Statement_AgentTransferDetail";
+            return "LAS_Statement_SelDownlineAgents";
         }
 
         public override bool IsValid()

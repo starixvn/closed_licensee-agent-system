@@ -1,14 +1,12 @@
-﻿namespace LicenseeAgent.Report.Criteria
+﻿namespace LicenseeAgent.Report.Criteria.Results
 {
     using System;
 
     /// <summary>
-    /// Results Report Criteria.
+    /// TODO: Update summary.
     /// </summary>
-    public class MatchResultsReportCriteria : ReportCriteriaBase
+    public class MatchResultsVirtualHorseRacingCriteria : ReportCriteriaBase
     {
-        public int CustId { get; set; }
-
         public DateTime EventDate { get; set; }
 
         public int SportType { get; set; }
@@ -17,12 +15,12 @@
 
         public override string GetSettingKey()
         {
-            return "LAS_Result_MatchSelByLeague";
+            return "LAS_Result_VirtualHRSelByMeeting";
         }
 
         public override bool IsValid()
         {
-            return true;
+            return SportType > 0;
         }
     }
 }

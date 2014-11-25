@@ -6,90 +6,24 @@
 
     public interface IMemberService
     {
-        /// <summary>
-        /// Check username.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
         ResponseResult CheckUserName(CheckUserNameAction action);
 
-        /// <summary>
-        /// Insert member.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
-        /// <param name="logId">Input Log ID.</param>
-        /// <returns>Response result.</returns>
         ResponseResult InsertNewMember(InsertNewMemberAction action, bool isReinvoke = false, int logId = 0);
 
-        /// <summary>
-        /// Reset password.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
-        /// <param name="logId">Input Log ID.</param>
-        /// <returns>Response result.</returns>
         ResponseResult ResetPassword(ResetPasswordAction action, bool isReinvoke = false, int logId = 0);
 
-        /// <summary>
-        /// Update member information.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
-        /// <param name="logId">Input Log ID.</param>
-        /// <returns>Response result.</returns>
         ResponseResult UpdateMemberInfo(UpdateMemberInfoAction action, bool isReinvoke = false, int logId = 0);
 
-        /// <summary>
-        /// Update member status.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
-        ResponseResult UpdateMemberStatus(UpdateMemberStatusAction action);
+        UpdateMemberStatusResult UpdateMemberStatus(UpdateMemberStatusAction action, bool isReinvoke = false, int logId = 0);
 
-        /// <summary>
-        /// Synchronization Monitoring - Update member status.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <returns>Response result.</returns>
-        ResponseResult SyncMonitoringUpdateMemberStatus(UpdateMemberStatusAction action);
+        ResponseResult GetMemberInfo<T>(T memberEntity, GetMemberInfoAction action);
 
-        /// <summary>
-        /// Get member information.
-        /// </summary>
-        /// <typeparam name="T">Type object response.</typeparam>
-        /// <param name="memberEntity">Member entity.</param>
-        /// <param name="action">Service action.</param>
-        /// <returns>Member entity after merging.</returns>
-        ResponseResult GetMemberInformation<T>(T memberEntity, GetMemberInfoAction action);
+        GetMemberInfoListResult GetMemberInfoList<T>(IList<T> memberEntitys, GetMemberInfoListAction action);
 
-        /// <summary>
-        /// Get list member information.
-        /// </summary>
-        /// <typeparam name="T">Type object response.</typeparam>
-        /// <param name="memberEntitys">List member entity.</param>
-        /// <param name="action">Service action.</param>
-        /// <returns>List member entity after merging.</returns>
-        ResponseResult GetMemberInformations<T>(IList<T> memberEntitys, GetMemberInfoListAction action);
-
-        /// <summary>
-        /// Get member information.
-        /// </summary>
-        /// <typeparam name="T">Type object response.</typeparam>
-        /// <param name="memberEntity">Member entity.</param>
-        /// <param name="action">Service action.</param>
-        /// <returns>Member entity after merging.</returns>
-        ResponseResult GetDepositMemberInformation<T>(T memberEntity, GetDepositMemberInfoAction action);
-
-        /// <summary>
-        /// Update member information.
-        /// </summary>
-        /// <param name="action">Service action.</param>
-        /// <param name="isReinvoke">Is Re-invoke.</param>
-        /// <param name="logId">Input Log ID.</param>
-        /// <returns>Response result.</returns>
-        ResponseResult UpdateAgentId(UpdateAgentIDAction action, bool isReinvoke = false, int logId = 0);
+        ResponseResult GetDepositMemberInfo<T>(T memberEntity, GetDepositMemberInfoAction action);
 
         GetDepositMemberInfoListResult GetDepositMemberInfoList(GetDepositMemberInfoListAction action);
+
+        ResponseResult UpdateAgentId(UpdateAgentIdAction action, bool isReinvoke = false, int logId = 0);
     }
 }

@@ -1,0 +1,29 @@
+﻿@model MatchResultsViewModel
+@using (Html.BeginForm("Match", null, FormMethod.Post, new { @class = "form-inline form-filter" }))
+{
+    <div class="controls-row">
+        @Html.LabelFor(m => m.Date)
+        @Html.DatePickerFor(m => m.Date, Model.BalanceUpDay)
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+        <button class="btn btn-primary" type="button" data-date="@Formatter.FormatDate(Model.Date.AddDays(-1))">
+            @Las.Yesterday
+        </button>
+        <button class="btn btn-primary" type="button" data-date="@Formatter.FormatDate(Model.Date)">
+            @Las.Today
+        </button>
+    </div>
+    <div class="newline">
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.Sport)
+        @Html.DropDownListFor(m => m.Sport, new List<SelectListItem>(), new { @class = "selectpicker w160" })
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.League)
+        @Html.DropDownListFor(m => m.League, new List<SelectListItem>(), new { @class = "selectpicker w320" })
+    </div>
+}

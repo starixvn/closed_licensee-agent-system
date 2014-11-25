@@ -1,9 +1,9 @@
-﻿namespace LicenseeAgent.Report.Entities
+﻿namespace LicenseeAgent.Report.Entities.Results
 {
     /// <summary>
     /// Sport class.
     /// </summary>
-    public class Sport
+    public class SportEntity
     {
         public int SportType { get; set; }
 

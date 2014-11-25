@@ -93,7 +93,7 @@
             get
             {
                 var memberService = Substitute.For<IMemberService>();
-                memberService.GetMemberInformations<MemberBalanceInfo>(Arg.Any<List<MemberBalanceInfo>>(), Arg.Any<GetMemberInfoListAction>())
+                memberService.GetMemberInfoList<MemberBalanceInfo>(Arg.Any<List<MemberBalanceInfo>>(), Arg.Any<GetMemberInfoListAction>())
                     .Returns(arg =>
                         {
                             return new ResponseResult(1, "Fail.");

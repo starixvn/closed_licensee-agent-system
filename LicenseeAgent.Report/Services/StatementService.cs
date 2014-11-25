@@ -3,16 +3,16 @@
     using System.Collections.Generic;
     using Fanex.Data.Repository;
     using LicenseeAgent.Core.Services;
-    using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Report.Entities.Statement;
 
     /// <summary>
     /// StatementService class.
     /// </summary>
     public class StatementService : QueryService, IStatementService
     {
-        public IList<Statement> GetStatementList(ICriteria criteria)
+        public IList<StatementEntity> GetStatementList(ICriteria criteria)
         {
-            return GetEntites<Statement>(criteria);
+            return GetEntites<StatementEntity>(criteria);
         }
 
         public IList<TransferDetail> GetTransferDetailList(ICriteria criteria)

@@ -76,7 +76,7 @@
                 IsYBFiltered = false
             });
 
-            _memberService.GetMemberInformations(
+            _memberService.GetMemberInfoList(
                                 memberBalanceInfo,
                                 new GetMemberInfoListAction
                                 {

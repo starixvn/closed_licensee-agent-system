@@ -1,4 +1,4 @@
-namespace LicenseeAgent.Report.Entities
+namespace LicenseeAgent.Report.Entities.Statement
 {
     using System;
     using LicenseeAgent.Taiwan.Attributes;
@@ -6,7 +6,7 @@ namespace LicenseeAgent.Report.Entities
     /// <summary>
     /// Statement Entity.
     /// </summary>
-    public class Statement
+    public class StatementEntity
     {
         [Service(Name = "IBCCustId")]
         public int CustId { get; set; }

@@ -146,7 +146,7 @@
         {
             if (CurrentSession.AgentInfo.IsDeposit)
             {
-                return MemberService.GetDepositMemberInformation(
+                return MemberService.GetDepositMemberInfo(
                     custInfo,
                     new GetDepositMemberInfoAction
                     {
@@ -156,7 +156,7 @@
             }
             else if (CurrentSession.AgentInfo.IsCredit)
             {
-                return MemberService.GetMemberInformation(
+                return MemberService.GetMemberInfo(
                     custInfo,
                     new GetMemberInfoAction
                     {

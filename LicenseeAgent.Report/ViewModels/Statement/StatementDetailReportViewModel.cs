@@ -1,4 +1,4 @@
-﻿namespace LicenseeAgent.Report.ViewModels
+﻿namespace LicenseeAgent.Report.ViewModels.Statement
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@
     /// <summary>
     /// Statement Report View Model.
     /// </summary>
-    public class StatementReportViewModel
+    public class StatementDetailReportViewModel
     {
         public int AgentId { get; set; }
 
@@ -22,6 +22,14 @@
 
         [AllowHtml]
         [Display(Name = "Username", ResourceType = typeof(Las))]
-        public string UserName { get; set; }
+        public string Username { get; set; }
+
+        public string Product { get; set; }
+
+        public bool HideUsername { get; set; }
+
+        public bool IsMember { get; set; }
+
+        public bool ShowBackButton { get; set; }
     }
 }

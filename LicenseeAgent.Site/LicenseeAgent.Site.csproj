@@ -507,6 +507,8 @@
     <Content Include="Areas\ProductSetting\Views\Instruction\zh-CN\VirtualSports\AgentBetSetting.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\zh-TW\VirtualSports\AgentBetSetting.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\en-US\VirtualSports\AgentPositionTakingSettingAdv.cshtml" />
+    <Content Include="Areas\Report\Views\Results\_Match.cshtml" />
+    <Content Include="Areas\Report\Views\Results\_Outright.cshtml" />
     <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\en-US\Keno\AgentBetSetting.cshtml" />
     <Content Include="Areas\ProductSetting\Views\Instruction\en-US\Keno\AgentPositionTakingSetting.cshtml" />
@@ -794,7 +796,7 @@
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
     <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
-    <Content Include="Areas\Report\Scripts\Results\result-report.js" />
+    <Content Include="Areas\Report\Scripts\Results\report-results.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
     <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
@@ -1014,7 +1016,7 @@
     <Content Include="Areas\Report\Views\AgentWinLoss\Index.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
     <Content Include="Areas\Report\Views\AgentOutstanding\Index.cshtml" />
-    <Content Include="Areas\Report\Content\agent-outstanding.less" />
+    <Content Include="Areas\Report\Content\AgentOutstanding\agent-outstanding.less" />
     <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Areas\Report\Views\Statement\Index.cshtml" />
@@ -1030,7 +1032,7 @@
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\SyncMonitoring.cshtml" />
-    <Content Include="Areas\Report\Views\Results\Results.NoData.cshtml" />
+    <Content Include="Areas\Report\Views\Results\_NoData.cshtml" />
     <Content Include="Web.ConnectionStrings.Prod.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>

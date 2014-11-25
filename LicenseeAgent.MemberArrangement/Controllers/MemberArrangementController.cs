@@ -316,7 +316,7 @@
                 return criteria.ErrCode == (int)ErrCode.Msg_2111 && model.Mode == ArrangementMode.AssignMember ? (int)ErrCode.Msg_2051 : criteria.ErrCode;
             }
 
-            var action = new UpdateAgentIDAction(customer.CustId, customer.Currency, model.MemberName, agentName, criteria.IBCAgentId, criteria.LegendAgentId);
+            var action = new UpdateAgentIdAction(customer.CustId, customer.Currency, model.MemberName, agentName, criteria.IBCAgentId, criteria.LegendAgentId);
 
             return UpdateAgentIdDepositDB(action, model.Mode);
         }
@@ -351,7 +351,7 @@
                 return criteria.ErrCode == (int)ErrCode.Msg_2111 && model.Mode == ArrangementMode.AssignMember ? (int)ErrCode.Msg_2051 : criteria.ErrCode;
             }
 
-            var action = new UpdateAgentIDAction(customerInfo.CustId, customerInfo.Currency, model.MemberName, agentName, criteria.IBCAgentId, criteria.LegendAgentId);
+            var action = new UpdateAgentIdAction(customerInfo.CustId, customerInfo.Currency, model.MemberName, agentName, criteria.IBCAgentId, criteria.LegendAgentId);
 
             return UpdateAgentIdDepositDB(action, model.Mode);
         }
@@ -362,7 +362,7 @@
         /// <param name="action">The action.</param>
         /// <param name="mode">The mode of Re-Arrangement.</param>
         /// <returns>Error Code.</returns>
-        private int UpdateAgentIdDepositDB(UpdateAgentIDAction action, ArrangementMode mode)
+        private int UpdateAgentIdDepositDB(UpdateAgentIdAction action, ArrangementMode mode)
         {
             // Log old agent name if assign member.
             var errCode = Result.SuccessValue;
@@ -424,7 +424,7 @@
         private DepositCustomerEntity GetDepositMemberInformation(string userName, ref int errCode)
         {
             var customer = new DepositCustomerEntity();
-            var serviceResult = _memberService.GetDepositMemberInformation(
+            var serviceResult = _memberService.GetDepositMemberInfo(
                 customer,
                 new GetDepositMemberInfoAction
                 {

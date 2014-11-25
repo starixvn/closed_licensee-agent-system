@@ -1,16 +1,16 @@
-namespace LicenseeAgent.Report.Criteria
+namespace LicenseeAgent.Report.Criteria.Statement
 {
     using System;
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// StatementDetailCriteria class.
+    /// Statement Detail Of Agent Criteria.
     /// </summary>
-    public class StatementDetailCriteria : CriteriaBase
+    public class StatementAgentDetailCriteria : CriteriaBase
     {
         public int UserId { get; set; }
 
-        public string Username { get; set; }
+        public string AgentUsername { get; set; }
 
         public DateTime FromDate { get; set; }
 
@@ -18,16 +18,14 @@ namespace LicenseeAgent.Report.Criteria
 
         public DateTime BalanceUpDay { get; set; }
 
-        public bool IsAgent { get; set; }
-
         public override string GetSettingKey()
         {
-            return "LAS_Statement_SelByUsername";
+            return "LAS_Statement_SelAgentStatement";
         }
 
         public override bool IsValid()
         {
-            return !string.IsNullOrEmpty(Username);
+            return !string.IsNullOrEmpty(AgentUsername);
         }
     }
 }

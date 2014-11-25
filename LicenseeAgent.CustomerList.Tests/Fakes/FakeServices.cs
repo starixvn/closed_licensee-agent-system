@@ -128,9 +128,9 @@
             get
             {
                 var memberService = Substitute.For<IMemberService>();
-                memberService.GetMemberInformations(Arg.Any<IList<MemberEntity>>(), Arg.Is<GetMemberInfoListAction>(x => x.LASAgentId == 100))
+                memberService.GetMemberInfoList(Arg.Any<IList<MemberEntity>>(), Arg.Is<GetMemberInfoListAction>(x => x.LASAgentId == 100))
                                 .Returns(new ResponseResult(0, "Success"));
-                memberService.GetMemberInformations(Arg.Any<IList<MemberEntity>>(), Arg.Is<GetMemberInfoListAction>(x => x.LASAgentId != 100))
+                memberService.GetMemberInfoList(Arg.Any<IList<MemberEntity>>(), Arg.Is<GetMemberInfoListAction>(x => x.LASAgentId != 100))
                                 .Returns(new ResponseResult(1, "Fail"));
                 memberService.UpdateMemberStatus(Arg.Is<UpdateMemberStatusAction>(x => x.LASAgentId.IndexOf("101") >= 0))
                                 .Returns(new ResponseResult(0, "Success"));

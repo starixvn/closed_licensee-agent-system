@@ -102,7 +102,7 @@
                     Username = model.UserName
                 });
 
-            var response = _memberService.GetMemberInformations<MemberBalanceInfo>(
+            var response = _memberService.GetMemberInfoList<MemberBalanceInfo>(
                 list,
                 new GetMemberInfoListAction
                 {

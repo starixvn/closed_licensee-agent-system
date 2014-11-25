@@ -92,7 +92,7 @@
             var list = transferService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria());
 
             // Act
-            var response = memberService.GetMemberInformations<MemberBalanceInfo>(
+            var response = memberService.GetMemberInfoList<MemberBalanceInfo>(
                list,
                new GetMemberInfoListAction
                {

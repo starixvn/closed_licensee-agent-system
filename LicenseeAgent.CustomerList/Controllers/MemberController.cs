@@ -314,7 +314,7 @@
 
             var memberInfo = new CustomerEntity { CustId = memberId };
 
-            _memberService.GetMemberInformation(
+            _memberService.GetMemberInfo(
                 memberInfo,
                 new GetMemberInfoAction
                 {

@@ -1,0 +1,33 @@
+﻿@model OutrightResultsViewModel
+@using (Html.BeginForm("Outright", null, FormMethod.Post, new { @class = "form-inline form-filter" }))
+{
+    <div class="controls-row">
+        @Html.LabelFor(m => m.FromDate)
+        @Html.DatePickerFor(m => m.FromDate, Model.BalanceUpDay)
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.ToDate)
+        @Html.DatePickerFor(m => m.ToDate, Model.BalanceUpDay)
+    </div>
+    <div class="controls-row">
+        <button class="btn btn-primary" type="submit">
+            @Las.Submit
+        </button>
+        <button class="btn btn-primary" type="button" data-date="@Formatter.FormatDate(Model.FromDate.AddDays(-1))">
+            @Las.Yesterday
+        </button>
+        <button class="btn btn-primary" type="button" data-date="@Formatter.FormatDate(Model.FromDate)">
+            @Las.Today
+        </button>
+    </div>
+    <div class="newline">
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.Sport)
+        @Html.DropDownListFor(m => m.Sport, new List<SelectListItem>(), new { @class = "selectpicker w160" })
+    </div>
+    <div class="controls-row">
+        @Html.LabelFor(m => m.League)
+        @Html.DropDownListFor(m => m.League, new List<SelectListItem>(), new { @class = "selectpicker w320" })
+    </div>
+}

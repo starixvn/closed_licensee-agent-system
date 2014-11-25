@@ -21,21 +21,6 @@
     public static class ServiceExtension
     {
         /// <summary>
-        /// Check is updated multiple status member.
-        /// </summary>
-        /// <param name="custId">List member ID.</param>
-        /// <returns>If is multiple return true, else return false.</returns>
-        public static bool IsUpdateMultipleStatus(string custId)
-        {
-            if (!string.IsNullOrEmpty(custId) && custId.Split(',').Count() <= 1)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Update log Information.
         /// </summary>
         /// <param name="logInformations">List log information.</param>

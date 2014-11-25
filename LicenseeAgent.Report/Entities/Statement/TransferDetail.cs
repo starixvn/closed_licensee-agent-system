@@ -1,4 +1,4 @@
-namespace LicenseeAgent.Report.Entities
+namespace LicenseeAgent.Report.Entities.Statement
 {
     using System;
 

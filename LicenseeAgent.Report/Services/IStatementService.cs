@@ -2,14 +2,14 @@
 {
     using System.Collections.Generic;
     using Fanex.Data.Repository;
-    using LicenseeAgent.Report.Entities;
+    using LicenseeAgent.Report.Entities.Statement;
 
     /// <summary>
     /// IStatementService class.
     /// </summary>
     public interface IStatementService
     {
-        IList<Statement> GetStatementList(ICriteria criteria);
+        IList<StatementEntity> GetStatementList(ICriteria criteria);
 
         IList<TransferDetail> GetTransferDetailList(ICriteria criteria);
     }

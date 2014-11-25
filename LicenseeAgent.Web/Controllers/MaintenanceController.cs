@@ -226,11 +226,11 @@
                         break;
 
                     case (int)LogActionId.UpdateMemberStatus:
-                        responseResult = _memberService.SyncMonitoringUpdateMemberStatus((UpdateMemberStatusAction)logAction);
+                        responseResult = _memberService.UpdateMemberStatus((UpdateMemberStatusAction)logAction, true, logData.KeyId);
                         break;
 
                     case (int)LogActionId.UpdateAgentID:
-                        responseResult = _memberService.UpdateAgentId((UpdateAgentIDAction)logAction, true, logData.KeyId);
+                        responseResult = _memberService.UpdateAgentId((UpdateAgentIdAction)logAction, true, logData.KeyId);
                         break;
                 }
             }

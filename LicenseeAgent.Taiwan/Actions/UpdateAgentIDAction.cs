@@ -6,13 +6,13 @@
     /// <summary>
     /// UpdateMemberInfoAction class.
     /// </summary>
-    public class UpdateAgentIDAction : LogAction
+    public class UpdateAgentIdAction : LogAction
     {
-        public UpdateAgentIDAction()
+        public UpdateAgentIdAction()
         {
         }
 
-        public UpdateAgentIDAction(int custId, int currency, string username, string agentName, int ibcAgentId, int legendAgentId)
+        public UpdateAgentIdAction(int custId, int currency, string username, string agentName, int ibcAgentId, int legendAgentId)
         {
             IBCCustId = custId;
             MemberCurrencyId = currency;

@@ -5,7 +5,7 @@
     /// <summary>
     /// TotalBetsParlayListCriteria class.
     /// </summary>
-    public class TotalBetsParlayListCriteria : CriteriaBase
+    public class TotalBetsParlayCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
@@ -18,7 +18,7 @@
 
         public override bool IsValid()
         {
-            return AgentId > 0;
+            return AgentId > 0 && BetType > 0;
         }
     }
 }

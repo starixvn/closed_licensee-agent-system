@@ -114,6 +114,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\BasketballController.cs" />
+    <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\TotalBetsController.cs" />
     <Compile Include="Controllers\OtherSportsController.cs" />
     <Compile Include="Controllers\OutrightController.cs" />

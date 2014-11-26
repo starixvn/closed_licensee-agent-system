@@ -3,18 +3,19 @@
 }
 @section css
 {
-    @Styles.Render("~/css/monthpicker")
     @Styles.Render("~/css/betlist")
     @Styles.Render("~/css/fanexgrid")
-    @Styles.Render("~/css/totalbets/parlay")
+    @Styles.Render("~/css/totalbets")
 }
 @section scripts
 {
-    @Scripts.Render("~/js/angular")
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/moment")
-    @Scripts.Render("~/js/monthpicker")
-    @Scripts.Render("~/js/totalbets/parlay")
+    @Scripts.Render("~/js/totalbets")
+    <script type="text/javascript">
+        $(function () {
+            totalBets.parlay.init();
+        });
+    </script>
     <script type="text/javascript">
         var _today = '@DateTime.Today.ToShortDateString()';
         var _minDate = '10/1/2013';
@@ -27,9 +28,13 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-<div class="parlay-tabs">
-    <span id="mixParlayTab">@Las.MixParlay</span><span class="separate"></span><span
-        id="systemParlayTab">@Las.SystemParlay</span>
+<div class="controls-row">
+    <button class="btn btn-parlay active" type="button" data-bet-type="@((int)BetType.BetType_9)">
+        @Las.MixParlay
+    </button>
+    <button class="btn btn-parlay" type="button" data-bet-type="@((int)BetType.BetType_29)">
+        @Las.SystemParlay
+    </button>
 </div>
 <div id="BetListGrid" class="freegrid content-grid">
 </div>

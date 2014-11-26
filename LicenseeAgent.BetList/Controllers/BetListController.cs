@@ -218,6 +218,41 @@
 
         #endregion BetListSelByMember
 
+        #region Total Bet Parlay
+
+        /// <summary>
+        /// Index page of Bet List.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// JSON object.
+        /// </returns>
+        [HttpPost]
+        public JsonResult Parlay(TotalBetParlayViewModel model)
+        {
+            var criteria = new TotalBetsParlayCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                BetType = model.BetType
+            };
+            var ticketResult = _betlistService.GetParlayList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = ticketResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+            var betListTicketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            var ticketTextList = betListTicketBuilder.BuildTickets();
+            return Json(new
+            {
+                List = ticketTextList,
+                TotalItem = ticketTextList.Count
+            });
+        }
+
+        #endregion Total Bet Parlay
+
         /// <summary>
         /// Index page of Bet List.
         /// </summary>

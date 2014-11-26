@@ -129,7 +129,6 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\BetListController.cs" />
-    <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Criteria\BetListTotalBetsCriteria.cs" />
     <Compile Include="Criteria\BetListDetailsCriteria.cs" />
     <Compile Include="Criteria\BetListResultCriteria.cs" />
@@ -139,7 +138,7 @@
     <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
     <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />
     <Compile Include="Criteria\BetListResultsVirtualRacingCriteria.cs" />
-    <Compile Include="Criteria\TotalBetsParlayListCriteria.cs" />
+    <Compile Include="Criteria\TotalBetsParlayCriteria.cs" />
     <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
     <Compile Include="Criteria\MixParlayDetailsCriteria.cs" />
     <Compile Include="DataAccess\BetListDataAccess.cs" />
@@ -168,6 +167,7 @@
     <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
     <Compile Include="ViewModels\BetListWinLossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TotalBetParlayViewModel.cs" />
     <Compile Include="ViewResults\BetListSelectByMemberViewResult.cs" />
   </ItemGroup>
   <ItemGroup>

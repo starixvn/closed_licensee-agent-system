@@ -691,7 +691,7 @@
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
     <Content Include="Views\BetList\Resources\betlist-manager.js" />
     <Content Include="Views\BetList\Resources\betlist-core.js" />
-    <Content Include="Views\BetList\Resources\totalbets-parlay.js" />
+    <Content Include="Areas\TotalBets\Scripts\Parlay\parlay.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
     <Content Include="Views\Error\Resources\images\page-not-found.png" />
@@ -1005,7 +1005,7 @@
     <Content Include="Views\Transfer\MemberList.cshtml" />
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Areas\Report\Views\Results\Index.cshtml" />
-    <Content Include="Views\BetList\ParlayList.cshtml" />
+    <Content Include="Areas\TotalBets\Views\Parlay\Index.cshtml" />
     <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />
     <Content Include="Views\CreditBalance\AgentList.cshtml" />

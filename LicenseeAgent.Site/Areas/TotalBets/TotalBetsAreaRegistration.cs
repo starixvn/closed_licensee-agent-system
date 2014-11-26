@@ -52,6 +52,7 @@
                 "~/Areas/TotalBets/Scripts/Basketball/basketball.js",
                 "~/Areas/TotalBets/Scripts/OtherSports/othersports.js",
                 "~/Areas/TotalBets/Scripts/Outright/outright.js",
+                "~/Areas/TotalBets/Scripts/Parlay/parlay.js",
                 "~/Views/BetList/Resources/betlist-core.js"));
         }
     }

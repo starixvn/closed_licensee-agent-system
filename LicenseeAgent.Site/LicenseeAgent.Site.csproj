@@ -797,8 +797,8 @@
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
     <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
     <Content Include="Areas\Report\Scripts\Results\report-results.js" />
-    <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-password.js" />
-    <Content Include="Areas\Admin\Scripts\Maintenance\admin-maintenance-syncmonitoring.js" />
+    <Content Include="Areas\Admin\Scripts\Maintenance\password.js" />
+    <Content Include="Areas\Admin\Scripts\Maintenance\sync-monitoring.js" />
     <Content Include="Content\refresh.countdown\plugin.refresh.countdown.less" />
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />

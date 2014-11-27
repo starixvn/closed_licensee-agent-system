@@ -39,8 +39,8 @@
         private static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/admin/maintenance").Include(
-                "~/Areas/Admin/Scripts/Maintenance/admin-maintenance-password.js").Include(
-                "~/Areas/Admin/Scripts/Maintenance/admin-maintenance-syncmonitoring.js"));
+                "~/Areas/Admin/Scripts/Maintenance/password.js").Include(
+                "~/Areas/Admin/Scripts/Maintenance/syncmonitoring.js"));
         }
     }
 }

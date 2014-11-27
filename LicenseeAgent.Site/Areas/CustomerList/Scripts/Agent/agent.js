@@ -1,9 +1,8 @@
 ﻿/*global core, language, popup, pageContext, context */
+'use strict';
 
 var customerList = customerList || {};
-customerList.agent = (function ($) {
-    'use strict';
-
+customerList.agent = (function ($this, $) {
     /* jshint -W101 */
     var gridOptions = {
         columns: [
@@ -59,15 +58,17 @@ customerList.agent = (function ($) {
     };
     /* jshint +W101 */
 
+    var openProductSetting = function (url) {
+        popup.openFrame(url, {
+            width: 1008,
+            height: 680
+        });
+    };
+
     var editAgentId = 0;
     var editAgentLevel = 0;
-    return {
-        init: function () {
-            customerList.initCustomerList(gridOptions);
-            customerList.agent.createContextMenu();
-        },
-        createContextMenu: function () {
-            context.attach('.icon-customer-edit', [
+    var createContextMenu = function () {
+        context.attach('.icon-customer-edit', [
                 {
                     id: 'menuSportsbook',
                     icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
@@ -121,143 +122,148 @@ customerList.agent = (function ($) {
                 }
             ]);
 
-            // create action context menu
-            context.init({
-                preventDoubleContext: false,
-                beforeShow: customerList.agent.beforeShowContext
-            });
-        },
-        beforeShowContext: function (target) {
-            editAgentId = parseInt($(target).data('agentid'), null);
-            editAgentLevel = parseInt($(target).data('agentlevel'), null);
+        // create action context menu
+        context.init({
+            preventDoubleContext: false,
+            beforeShow: beforeShowContext
+        });
+    };
 
-            if (pageContext.IsAdmin
+    var beforeShowContext = function (target) {
+        editAgentId = parseInt($(target).data('agentid'), null);
+        editAgentLevel = parseInt($(target).data('agentlevel'), null);
+
+        if (pageContext.IsAdmin
                 && parseInt($(target).data('status')) === core.enums.AccountStatus.Open
                 && pageContext.AgentLevel < pageContext.NumberOfLevel) {
-                $('#menuAddDownline').show();
-            } else {
-                $('#menuAddDownline').hide();
-            }
+            $('#menuAddDownline').show();
+        } else {
+            $('#menuAddDownline').hide();
+        }
 
-            if (pageContext.IsAdmin || pageContext.IsDirectDownLine) {
-                $('#menuEditInfo').show();
-            } else {
-                $('#menuEditInfo').hide();
-            }
+        if (pageContext.IsAdmin || pageContext.IsDirectDownLine) {
+            $('#menuEditInfo').show();
+        } else {
+            $('#menuEditInfo').hide();
+        }
 
-            if (!pageContext.IsOfferedVirtualSports) {
-                $('#menuVirtualSports').hide();
-            }
+        if (!pageContext.IsOfferedVirtualSports) {
+            $('#menuVirtualSports').hide();
+        }
 
-            if (!pageContext.IsOfferedKeno) {
-                $('#menuKeno').hide();
-            }
-        },
-        changeStatus: function (target, custId) {
-            if (!pageContext.IsDirectDownLine) {
-                return;
-            }
-            var currentStatus = $(target).find('.icon-status-open').length > 0
+        if (!pageContext.IsOfferedKeno) {
+            $('#menuKeno').hide();
+        }
+    };
+    $this.init = function () {
+        customerList.initCustomerList(gridOptions);
+        createContextMenu();
+    };
+
+    $this.changeStatus = function (target, custId) {
+        if (!pageContext.IsDirectDownLine) {
+            return;
+        }
+        var currentStatus = $(target).find('.icon-status-open').length > 0
                 ? core.enums.AccountStatus.Open
                 : core.enums.AccountStatus.Closed;
-            var newStatus = currentStatus === core.enums.AccountStatus.Closed
+        var newStatus = currentStatus === core.enums.AccountStatus.Closed
                 ? core.enums.AccountStatus.Open
                 : core.enums.AccountStatus.Closed;
-            var message = newStatus === core.enums.AccountStatus.Closed
+        var message = newStatus === core.enums.AccountStatus.Closed
                 ? language.getString('ChangeStatusAgent')
                 : language.getString('ChangeCloseToOpenAgent');
-            var title = language.getString('ChangeStatus');
-            var buttons = [{
-                label: language.getString('Yes'),
-                action: function () {
-                    popup.close();
-                    customerList.agent.updateStatus(target, custId, newStatus);
-                }
-            }, {
-                label: language.getString('No'),
-                action: function () {
-                    popup.close();
-                }
-            }];
+        var title = language.getString('ChangeStatus');
+        var buttons = [{
+            label: language.getString('Yes'),
+            action: function () {
+                popup.close();
+                customerList.agent.updateStatus(target, custId, newStatus);
+            }
+        }, {
+            label: language.getString('No'),
+            action: function () {
+                popup.close();
+            }
+        }];
 
-            popup.confirm({
-                title: title,
-                message: message,
-                buttons: buttons
-            });
-        },
-        updateStatus: function (target, custId, statusId) {
-            core.ajaxJSON({
-                url: core.resolveUrl('~/CustomerList/Agent/ChangeStatus'),
-                type: 'post',
-                data: {
-                    agentid: custId,
-                    status: statusId
-                }
-            }, function () {
-                if (statusId === core.enums.AccountStatus.Closed) {
-                    $(target).find('.icon-status-open')
+        popup.confirm({
+            title: title,
+            message: message,
+            buttons: buttons
+        });
+    };
+
+    $this.updateStatus = function (target, custId, statusId) {
+        core.ajaxJSON({
+            url: core.resolveUrl('~/CustomerList/Agent/ChangeStatus'),
+            type: 'post',
+            data: {
+                agentid: custId,
+                status: statusId
+            }
+        }, function () {
+            if (statusId === core.enums.AccountStatus.Closed) {
+                $(target).find('.icon-status-open')
                         .addClass('icon-status-closed')
                         .removeClass('icon-status-open')
                         .find('span')
                         .text('Closed');
-                } else {
-                    $(target).find('.icon-status-closed')
+            } else {
+                $(target).find('.icon-status-closed')
                         .addClass('icon-status-open')
                         .removeClass('icon-status-closed')
                         .find('span')
                         .text('Open');
-                }
-                $('#' + custId).data('status', statusId);
-            });
-        },
-        editSportsBook: function () {
-            var url = core.resolveUrl('~/ProductSetting/SportsBook/EditAgent', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        editVirtualSports: function () {
-            var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditAgent', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        editKeno: function () {
-            var url = core.resolveUrl('~/ProductSetting/Keno/EditAgent', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        editInfo: function () {
-            var url = core.resolveUrl('~/CustomerList/Agent/EditInfo', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url);
-        },
-        addAgent: function () {
-            var url = core.resolveUrl('~/ProductSetting/NewAgent', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        resetPassword: function () {
-            var url = core.resolveUrl('~/CustomerList/Agent/ResetPassword', {
-                agentId: editAgentId
-            });
-            popup.openFrame(url);
-        }
+            }
+            $('#' + custId).data('status', statusId);
+        });
     };
-} (jQuery));
+
+    $this.editSportsBook = function () {
+        var url = core.resolveUrl('~/ProductSetting/SportsBook/EditAgent', {
+            agentId: editAgentId
+        });
+        openProductSetting(url);
+    };
+
+    $this.editVirtualSports = function () {
+        var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditAgent', {
+            agentId: editAgentId
+        });
+        openProductSetting(url);
+    };
+
+    $this.editKeno = function () {
+        var url = core.resolveUrl('~/ProductSetting/Keno/EditAgent', {
+            agentId: editAgentId
+        });
+        openProductSetting(url);
+    };
+
+    $this.editInfo = function () {
+        var url = core.resolveUrl('~/CustomerList/Agent/EditInfo', {
+            agentId: editAgentId
+        });
+        popup.openFrame(url);
+    };
+
+    $this.addAgent = function () {
+        var url = core.resolveUrl('~/ProductSetting/NewAgent', {
+            agentId: editAgentId
+        });
+        popup.openFrame(url, {
+            width: 1008,
+            height: 680
+        });
+    };
+
+    $this.resetPassword = function () {
+        var url = core.resolveUrl('~/CustomerList/Agent/ResetPassword', {
+            agentId: editAgentId
+        });
+        popup.openFrame(url);
+    };
+
+    return $this;
+} (customerList.agent || {}, jQuery));

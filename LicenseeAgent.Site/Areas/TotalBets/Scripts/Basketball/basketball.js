@@ -1,8 +1,8 @@
 ﻿/*global core, language, pageContext*/
+'use strict';
 
 var totalBets = totalBets || {};
-totalBets.basketball = (function ($) {
-    'use strict';
+totalBets.basketball = (function ($this, $) {
     var betListGridOptions = {
         columns: [
             { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
@@ -40,139 +40,143 @@ totalBets.basketball = (function ($) {
 
     var sportType = 2;
     var initialized = false;
-    return {
-        init: function () {
-            var hiddenColumns = [];
-            if (pageContext.LegendType === 1) {
-                hiddenColumns.push(9);
-            }
-            if (pageContext.IsLastLevel) {
-                hiddenColumns.push(10);
-            }
-            gridOptions.hiddenColumns = hiddenColumns;
 
-            totalBets.init(betListGridOptions);
+    $this.init = function () {
+        var hiddenColumns = [];
+        if (pageContext.LegendType === 1) {
+            hiddenColumns.push(9);
+        }
+        if (pageContext.IsLastLevel) {
+            hiddenColumns.push(10);
+        }
+        gridOptions.hiddenColumns = hiddenColumns;
 
-            $('.freegrid').on('data', function (e, data) {
-                gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
-                $(this).show().fanexGrid(gridOptions);
-            });
+        totalBets.init(betListGridOptions);
 
-            $('form').submit(function (e) {
-                totalBets.basketball.getLeagues();
-                totalBets.basketball.getEvents();
-                totalBets.reRenderAfterPaged();
-                e.preventDefault();
-            });
+        $('.freegrid').on('data', function (e, data) {
+            gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
+            $(this).show().fanexGrid(gridOptions);
+        });
 
-            $('.freegrid').on('data', function (e, data) {
-                gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
-                $(this).show().fanexGrid(gridOptions);
-            });
-
+        $('form').submit(function (e) {
             totalBets.basketball.getLeagues();
             totalBets.basketball.getEvents();
             totalBets.reRenderAfterPaged();
-            initialized = true;
-        },
-        getLeagues: function () {
-            core.ajaxJSON({
-                async: false,
-                url: core.resolveUrl("~/TotalBets/Basketball/GetLeagues"),
-                data: {
-                    sportType: sportType,
-                    selectedLeagues: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
-                    checkedAll: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
-                }
-            }, function (data) {
-                totalBets.initLeagueMultiSelect(data, function () {
-                    totalBets.basketball.getEvents();
-                });
-            });
-        },
-        getEvents: function () {
-            core.ajaxJSON({
-                async: false,
-                url: core.resolveUrl("~/TotalBets/Basketball/GetEvents"),
-                data: {
-                    sportType: sportType,
-                    selectedLeagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
-                    selectedEvents: initialized ? $("#event-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
-                    checkedAll: initialized ? $("#event-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
-                }
-            }, function (data) {
-                totalBets.initEventMultiSelect(data, function () {
-                    totalBets.reRenderAfterPaged();
-                });
-            });
-        },
-        genGridRows: function (list) {
-            var len = list.length;
-            var bodyRows = [];
-            var oldLeagueId = 0;
-            var rowIndex = 0;
+            e.preventDefault();
+        });
 
-            for (var i = 0; i < len; i++) {//League
-                var league = list[i];
-                var newLeagueId = league.LeagueId;
+        $('.freegrid').on('data', function (e, data) {
+            gridOptions.bodyRows = totalBets.basketball.genGridRows(data);
+            $(this).show().fanexGrid(gridOptions);
+        });
 
-                if (oldLeagueId !== newLeagueId) {
-                    rowIndex = 0;
-                    oldLeagueId = newLeagueId;
-                    //Push League row
-                    bodyRows.push({
-                        Columns: ([
+        totalBets.basketball.getLeagues();
+        totalBets.basketball.getEvents();
+        totalBets.reRenderAfterPaged();
+        initialized = true;
+    };
+
+    $this.getLeagues = function () {
+        core.ajaxJSON({
+            async: false,
+            url: core.resolveUrl("~/TotalBets/Basketball/GetLeagues"),
+            data: {
+                sportType: sportType,
+                selectedLeagues: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
+                checkedAll: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
+            }
+        }, function (data) {
+            totalBets.initLeagueMultiSelect(data, function () {
+                totalBets.basketball.getEvents();
+            });
+        });
+    };
+
+    $this.getEvents = function () {
+        core.ajaxJSON({
+            async: false,
+            url: core.resolveUrl("~/TotalBets/Basketball/GetEvents"),
+            data: {
+                sportType: sportType,
+                selectedLeagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
+                selectedEvents: initialized ? $("#event-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
+                checkedAll: initialized ? $("#event-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
+            }
+        }, function (data) {
+            totalBets.initEventMultiSelect(data, function () {
+                totalBets.reRenderAfterPaged();
+            });
+        });
+    };
+
+    $this.genGridRows = function (list) {
+        var len = list.length;
+        var bodyRows = [];
+        var oldLeagueId = 0;
+        var rowIndex = 0;
+
+        for (var i = 0; i < len; i++) {//League
+            var league = list[i];
+            var newLeagueId = league.LeagueId;
+
+            if (oldLeagueId !== newLeagueId) {
+                rowIndex = 0;
+                oldLeagueId = newLeagueId;
+                //Push League row
+                bodyRows.push({
+                    Columns: ([
                             { Name: "RowID", Value: "<div align='left'>" + league.LeagueName + "</div>", MergeColNumber: 13 }
                         ]),
-                        CssClass: "league-row"
-                    });
-                }
-
-                //Push Match Row
-                var matches = league.MatchList;
-                var numMatches = matches.length;
-
-                for (var j = 0; j < numMatches; j++) {
-                    var match = matches[j];
-                    var homeTeam = [];
-                    var showLiveTicket = match.LiveIndicator ? true : false;
-                    rowIndex++;
-                    //Home team
-                    homeTeam.push(
-                        { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 2 },
-                        { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
-                        { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'h', showLiveTicket, match.HomeFulltimeHandicap) },
-                        { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'h', showLiveTicket, match.HomeFulltimeOverUnder) },
-                        { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'h', showLiveTicket, match.HomeFulltimeOddEven) },
-                        { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
-                        { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) },
-                        { Name: "FHOE", Value: totalBets.generateBetListLink(match.MatchId, 12, 'h', showLiveTicket, match.HomeFirstHalfOddEven) }
-                    );
-
-                    var awayTeam = [];
-                    //Away team
-                    awayTeam.push(
-                        { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                        { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'a', showLiveTicket, match.AwayFulltimeHandicap) },
-                        { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'a', showLiveTicket, match.AwayFulltimeOverUnder) },
-                        { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'a', showLiveTicket, match.AwayFulltimeOddEven) },
-                        { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'a', showLiveTicket, match.AwayFirstHalfHandicap) },
-                        { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'a', showLiveTicket, match.AwayFirstHalfOverUnder) },
-                        { Name: "FHOE", Value: totalBets.generateBetListLink(match.MatchId, 12, 'a', showLiveTicket, match.AwayFirstHalfOddEven) }
-                    );
-
-                    bodyRows.push({
-                        Columns: homeTeam,
-                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
-                    });
-                    bodyRows.push({
-                        Columns: awayTeam,
-                        CssClass: match.LiveIndicator ? "live-row" : "normal-row"
-                    });
-                }
+                    CssClass: "league-row"
+                });
             }
-            return bodyRows;
+
+            //Push Match Row
+            var matches = league.MatchList;
+            var numMatches = matches.length;
+
+            for (var j = 0; j < numMatches; j++) {
+                var match = matches[j];
+                var homeTeam = [];
+                var showLiveTicket = match.LiveIndicator ? true : false;
+                rowIndex++;
+                //Home team
+                homeTeam.push(
+                    { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 2 },
+                    { Name: "Time", Value: match.Time, MergeRowNumber: 2, CssClass: "bold" },
+                    { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
+                    { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'h', showLiveTicket, match.HomeFulltimeHandicap) },
+                    { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'h', showLiveTicket, match.HomeFulltimeOverUnder) },
+                    { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'h', showLiveTicket, match.HomeFulltimeOddEven) },
+                    { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
+                    { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) },
+                    { Name: "FHOE", Value: totalBets.generateBetListLink(match.MatchId, 12, 'h', showLiveTicket, match.HomeFirstHalfOddEven) }
+                );
+
+                var awayTeam = [];
+                //Away team
+                awayTeam.push(
+                    { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
+                    { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'a', showLiveTicket, match.AwayFulltimeHandicap) },
+                    { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'a', showLiveTicket, match.AwayFulltimeOverUnder) },
+                    { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'a', showLiveTicket, match.AwayFulltimeOddEven) },
+                    { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'a', showLiveTicket, match.AwayFirstHalfHandicap) },
+                    { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'a', showLiveTicket, match.AwayFirstHalfOverUnder) },
+                    { Name: "FHOE", Value: totalBets.generateBetListLink(match.MatchId, 12, 'a', showLiveTicket, match.AwayFirstHalfOddEven) }
+                );
+
+                bodyRows.push({
+                    Columns: homeTeam,
+                    CssClass: match.LiveIndicator ? "live-row" : "normal-row"
+                });
+                bodyRows.push({
+                    Columns: awayTeam,
+                    CssClass: match.LiveIndicator ? "live-row" : "normal-row"
+                });
+            }
         }
+        return bodyRows;
     };
-} (jQuery));
+
+    return $this;
+} (totalBets.basketball || {}, jQuery));

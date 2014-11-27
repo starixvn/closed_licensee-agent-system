@@ -1,8 +1,8 @@
 ﻿/*global core, language, popup, pageContext, context */
-var customerList = customerList || {};
-customerList.member = (function ($) {
-    'use strict';
+'use strict';
 
+var customerList = customerList || {};
+customerList.member = (function ($this, $) {
     /* jshint -W101 */
     var gridOptionsForCredit = {
         columns:
@@ -104,16 +104,8 @@ customerList.member = (function ($) {
             });
     }
 
-    var editMemberId;
-    var editUsername;
-    return {
-        init: function () {
-            customerList.initCustomerList(gridOptions);
-            customerList.member.createContextMenu();
-            customerList.member.createPopover();
-        },
-        createContextMenu: function () {
-            var listAction = [
+    var createContextMenu = function () {
+        var listAction = [
                 {
                     id: 'menuSportsbook',
                     icon: 'icon-customer-canedit',
@@ -178,185 +170,195 @@ customerList.member = (function ($) {
                 }
             ];
 
-            context.attach('.icon-customer-edit', listAction);
+        context.attach('.icon-customer-edit', listAction);
 
-            // create action context menu
-            context.init({
-                preventDoubleContext: false,
-                beforeShow: customerList.member.beforeShowContext
-            });
-        },
-        beforeShowContext: function (target) {
-            editMemberId = parseInt($(target).data('memberid'), null);
-            editUsername = $(target).data('username');
+        // create action context menu
+        context.init({
+            preventDoubleContext: false,
+            beforeShow: beforeShowContext
+        });
+    };
+    var beforeShowContext = function (target) {
+        editMemberId = parseInt($(target).data('memberid'), null);
+        editUsername = $(target).data('username');
 
-            if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !pageContext.IsDeposit) {
-                $('#menuEditInfo').show();
-            } else {
-                $('#menuEditInfo').hide();
+        if ((pageContext.IsAdmin || pageContext.IsDirectDownLine) && !pageContext.IsDeposit) {
+            $('#menuEditInfo').show();
+        } else {
+            $('#menuEditInfo').hide();
+        }
+
+        if (!pageContext.IsOfferedVirtualSports) {
+            $('#menuVirtualSports').hide();
+        }
+
+        if (!pageContext.IsOfferedKeno) {
+            $('#menuKeno').hide();
+        }
+    };
+
+    var createPopover = function () {
+        $('#menuSportsbook').popover({
+            html: true,
+            placement: 'right',
+            trigger: 'manual',
+            content: function () {
+                var divId = "tmp-id-" + $.now();
+                return customerList.member.getDirectUplines(divId, core.enums.Product.SportsBook);
             }
+        });
 
-            if (!pageContext.IsOfferedVirtualSports) {
-                $('#menuVirtualSports').hide();
+        $('#menuVirtualSports').popover({
+            html: true,
+            placement: 'right',
+            trigger: 'manual',
+            content: function () {
+                var divId = "tmp-id-" + $.now();
+                return customerList.member.getDirectUplines(divId, core.enums.Product.VirtualSports);
             }
+        });
 
-            if (!pageContext.IsOfferedKeno) {
-                $('#menuKeno').hide();
+        $('#menuKeno').popover({
+            html: true,
+            placement: 'right',
+            trigger: 'manual',
+            content: function () {
+                var divId = "tmp-id-" + $.now();
+                return customerList.member.getDirectUplines(divId, core.enums.Product.Keno);
             }
-        },
-        createPopover: function () {
-            $('#menuSportsbook').popover({
-                html: true,
-                placement: 'right',
-                trigger: 'manual',
-                content: function () {
-                    var divId = "tmp-id-" + $.now();
-                    return customerList.member.getDirectUplines(divId, core.enums.Product.SportsBook);
-                }
-            });
+        });
 
-            $('#menuVirtualSports').popover({
-                html: true,
-                placement: 'right',
-                trigger: 'manual',
-                content: function () {
-                    var divId = "tmp-id-" + $.now();
-                    return customerList.member.getDirectUplines(divId, core.enums.Product.VirtualSports);
-                }
-            });
+        $(document).on('click', 'html', function () {
+            customerList.hidePopover();
+        });
+    };
 
-            $('#menuKeno').popover({
-                html: true,
-                placement: 'right',
-                trigger: 'manual',
-                content: function () {
-                    var divId = "tmp-id-" + $.now();
-                    return customerList.member.getDirectUplines(divId, core.enums.Product.Keno);
-                }
-            });
+    var openProductSetting = function (url) {
+        popup.openFrame(url, {
+            width: 1008,
+            height: 680
+        });
+    };
 
-            $(document).on('click', 'html', function () {
-                customerList.hidePopover();
-            });
-        },
-        getDirectUplines: function (divId, productId) {
-            $.ajax({
-                url: core.resolveUrl('~/CustomerList/Member/DirectUpLines'),
-                type: 'post',
-                data: {
-                    custId: editMemberId,
-                    productId: productId
-                },
-                success: function (response) {
-                    $('#' + divId).html(response);
-                }
-            });
-            return '<div id="' + divId + '">Loading...</div>';
-        },
-        editSportsBook: function () {
-            var url = core.resolveUrl('~/ProductSetting/SportsBook/EditMember', {
-                memberId: editMemberId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        editVirtualSports: function () {
-            var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditMember', {
-                memberId: editMemberId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        editKeno: function () {
-            var url = core.resolveUrl('~/ProductSetting/Keno/EditMember', {
-                memberId: editMemberId
-            });
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        },
-        resetPassword: function () {
-            var url = core.resolveUrl('~/CustomerList/Member/ResetPassword', {
-                memberId: editMemberId
-            });
-            popup.openFrame(url);
-        },
-        editInfo: function () {
+    var editMemberId;
+    var editUsername;
+    $this.init = function () {
+        customerList.initCustomerList(gridOptions);
+        createContextMenu();
+        createPopover();
+    };
+
+    $this.getDirectUplines = function (divId, productId) {
+        $.ajax({
+            url: core.resolveUrl('~/CustomerList/Member/DirectUpLines'),
+            type: 'post',
+            data: {
+                custId: editMemberId,
+                productId: productId
+            },
+            success: function (response) {
+                $('#' + divId).html(response);
+            }
+        });
+        return '<div id="' + divId + '">Loading...</div>';
+    };
+
+    $this.editSportsBook = function () {
+        var url = core.resolveUrl('~/ProductSetting/SportsBook/EditMember', {
+            memberId: editMemberId
+        });
+        openProductSetting(url);
+    };
+
+    $this.editVirtualSports = function () {
+        var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditMember', {
+            memberId: editMemberId
+        });
+        openProductSetting(url);
+    };
+
+    $this.editKeno = function () {
+        var url = core.resolveUrl('~/ProductSetting/Keno/EditMember', {
+            memberId: editMemberId
+        });
+        openProductSetting(url);
+    };
+
+    $this.resetPassword = function () {
+        var url = core.resolveUrl('~/CustomerList/Member/ResetPassword', {
+            memberId: editMemberId
+        });
+        popup.openFrame(url);
+    },
+
+        $this.editInfo = function () {
             var url = core.resolveUrl('~/CustomerList/Member/EditInfo', {
                 memberId: editMemberId,
                 userName: editUsername
             });
             popup.openFrame(url);
-        },
-        changeStatus: function (target, custId) {
-            if (!pageContext.IsDirectDownLine) {
-                return;
-            }
-            var currentStatus = $(target).find('.icon-status-open').length > 0
+        };
+
+    $this.changeStatus = function (target, custId) {
+        if (!pageContext.IsDirectDownLine) {
+            return;
+        }
+        var currentStatus = $(target).find('.icon-status-open').length > 0
                 ? core.enums.AccountStatus.Open
                 : core.enums.AccountStatus.Closed;
-            var newStatus = currentStatus === core.enums.AccountStatus.Closed
+        var newStatus = currentStatus === core.enums.AccountStatus.Closed
                 ? core.enums.AccountStatus.Open
                 : core.enums.AccountStatus.Closed;
-            var message = newStatus === core.enums.AccountStatus.Closed
+        var message = newStatus === core.enums.AccountStatus.Closed
                 ? language.getString('ChangeStatusMember')
                 : language.getString('ChangeStatusAgent');
-            var title = language.getString('ChangeStatus');
-            var buttons = [{
-                label: language.getString('Yes'),
-                action: function () {
-                    popup.close();
-                    customerList.member.updateStatus(target, custId, newStatus);
-                }
-            }, {
-                label: language.getString('No'),
-                action: function () {
-                    popup.close();
-                }
-            }];
+        var title = language.getString('ChangeStatus');
+        var buttons = [{
+            label: language.getString('Yes'),
+            action: function () {
+                popup.close();
+                customerList.member.updateStatus(target, custId, newStatus);
+            }
+        }, {
+            label: language.getString('No'),
+            action: function () {
+                popup.close();
+            }
+        }];
 
-            popup.confirm({
-                title: title,
-                message: message,
-                buttons: buttons
-            });
-        },
-        updateStatus: function (target, custId, statusId) {
-            core.ajaxJSON({
-                url: core.resolveUrl('~/CustomerList/Member/ChangeStatus'),
-                type: 'post',
-                data: {
-                    memberid: custId,
-                    status: statusId,
-                    agentid: $("#AgentId").val()
-                }
-            }, function () {
-                if (statusId === core.enums.AccountStatus.Closed) {
-                    $(target).find('.icon-status-open')
+        popup.confirm({
+            title: title,
+            message: message,
+            buttons: buttons
+        });
+    };
+
+    $this.updateStatus = function (target, custId, statusId) {
+        core.ajaxJSON({
+            url: core.resolveUrl('~/CustomerList/Member/ChangeStatus'),
+            type: 'post',
+            data: {
+                memberid: custId,
+                status: statusId,
+                agentid: $("#AgentId").val()
+            }
+        }, function () {
+            if (statusId === core.enums.AccountStatus.Closed) {
+                $(target).find('.icon-status-open')
                         .addClass('icon-status-closed')
                         .removeClass('icon-status-open')
                         .find('span')
                         .text('Closed');
-                } else {
-                    $(target).find('.icon-status-closed')
+            } else {
+                $(target).find('.icon-status-closed')
                         .addClass('icon-status-open')
                         .removeClass('icon-status-closed')
                         .find('span')
                         .text('Open');
-                }
-                $('#' + custId).data('status', statusId);
-            });
-        },
-        openProductSetting: function (url) {
-            popup.openFrame(url, {
-                width: 1008,
-                height: 680
-            });
-        }
+            }
+            $('#' + custId).data('status', statusId);
+        });
     };
-} (jQuery));
+
+    return $this;
+} (customerList.member || {}, jQuery));

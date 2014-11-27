@@ -32,20 +32,11 @@
         /// <param name="bundles">Bundle Collection.</param>
         private static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/commission-setting/group-list").Include(
+            bundles.Add(new ScriptBundle("~/js/commission-setting").Include(
                 "~/Areas/CommissionSetting/Scripts/commission-setting.js",
-                "~/Areas/CommissionSetting/Scripts/GroupList/group-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/commission-setting/group-crud").Include(
-                "~/Areas/CommissionSetting/Scripts/commission-setting.js",
-                "~/Areas/CommissionSetting/Scripts/GroupList/group-crud.js"));
-
-            bundles.Add(new ScriptBundle("~/js/commission-setting/member-list").Include(
-                "~/Areas/CommissionSetting/Scripts/commission-setting.js",
-                "~/Areas/CommissionSetting/Scripts/MemberList/member-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/commission-setting/member-crud").Include(
-                "~/Areas/CommissionSetting/Scripts/commission-setting.js",
+                "~/Areas/CommissionSetting/Scripts/GroupList/group-list.js",
+                "~/Areas/CommissionSetting/Scripts/GroupList/group-crud.js",
+                "~/Areas/CommissionSetting/Scripts/MemberList/member-list.js",
                 "~/Areas/CommissionSetting/Scripts/MemberList/member-crud.js"));
 
             bundles.Add(new LessBundle("~/css/commission-setting").Include(

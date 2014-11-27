@@ -6,7 +6,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BetListResultViewModel
+    public class ResultViewModel
     {
         [Required]
         public int SportType { get; set; }
@@ -29,5 +29,14 @@
         public long? RefNoMixParlay { get; set; }
 
         public int? LeagueId { get; set; }
+
+        public bool IsParlayPopup
+        {
+            get
+            {
+                return BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_9
+                    || BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_29;
+            }
+        }
     }
 }

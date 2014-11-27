@@ -392,7 +392,7 @@ report.agentWinLoss = (function ($) {
             var settledHasDraw = [core.enums.TicketStatus.Draw, core.enums.TicketStatus.Won, core.enums.TicketStatus.Lose].join(',');
             var drawFilter = $('input[name=DrawFilter]:checked', '#search-form').val();
             input.Status = drawFilter === "1" ? settledNoDraw : settledHasDraw;
-            report.betlist.render({
+            report.betlist.showByMember({
                 Input: input,
                 ShowTotalRow: true
             });

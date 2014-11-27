@@ -5,7 +5,7 @@
     /// <summary>
     /// BetListSelectByMemberCriteria class.
     /// </summary>
-    public class BetListSelectByMemberCriteria : BetListCriteriaBase
+    public class SelectByMemberCriteria : BetListCriteriaBase
     {
         public string StatusIds { get; set; }
 

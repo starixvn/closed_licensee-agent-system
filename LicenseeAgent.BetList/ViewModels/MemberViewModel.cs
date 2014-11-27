@@ -1,12 +1,14 @@
 ﻿namespace LicenseeAgent.BetList.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using LicenseeAgent.Core.Entities;
 
     /// <summary>
-    /// Bet List View Model.
+    /// BetListSelectByMemberViewModel class.
     /// </summary>
-    public class BetListViewModel
+    public class MemberViewModel
     {
         [Required]
         public int CustId { get; set; }
@@ -17,10 +19,12 @@
         [Required]
         public DateTime ToDate { get; set; }
 
-        [Required]
         public string Status { get; set; }
 
-        [Required]
         public string Product { get; set; }
+
+        public bool IsAdmin { get; set; }
+
+        public IList<ProductInfo> ProductList { get; set; }
     }
 }

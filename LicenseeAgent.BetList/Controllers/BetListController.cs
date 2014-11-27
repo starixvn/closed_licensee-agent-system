@@ -1,12 +1,9 @@
 ﻿namespace LicenseeAgent.BetList.Controllers
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
     using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Result.Core;
     using LicenseeAgent.BetList.Criteria;
@@ -14,7 +11,6 @@
     using LicenseeAgent.BetList.Services;
     using LicenseeAgent.BetList.Utilities;
     using LicenseeAgent.BetList.ViewModels;
-    using LicenseeAgent.BetList.ViewResults;
     using LicenseeAgent.Core.Services;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -53,18 +49,50 @@
 
         #endregion Constructors
 
-        #region Index
+        #region Select By Member
 
         /// <summary>
-        /// Bet List data.
+        /// Index page of Bet List.
+        /// </summary>
+        /// <param name="custId">Customer ID.</param>
+        /// <returns>Return a view.</returns>
+        [HttpGet]
+        public ActionResult Member(int custId)
+        {
+            if (!_downLinePermissionService.IsDownLineMember(custId))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
+            var productList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
+            ViewBag.PageContext = new PageContext(CurrentSession, custId);
+            var model = new MemberViewModel
+            {
+                CustId = custId,
+                ProductList = productList,
+                IsAdmin = CurrentSession.IsAdmin
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Index page of Bet List.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <returns>Returns bet list data.</returns>
+        /// <returns>
+        /// JSON object.
+        /// </returns>
         [HttpPost]
-        public JsonResult Index(BetListViewModel model)
+        public JsonResult Member(MemberViewModel model)
         {
+            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
             var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new BetListSelectByMemberCriteria
+            var criteria = new SelectByMemberCriteria
             {
                 CustId = model.CustId,
                 FromDate = model.FromDate,
@@ -75,33 +103,21 @@
                 MoveBetsDay = balanceUp.MoveBetsDay,
                 BalanceUpDay = balanceUp.BalanceUpDay
             };
-            var ticketResult = _betlistService.GetBetList(criteria);
+            var betListResult = _betlistService.GetBetList(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
-                TicketResult = ticketResult,
+                TicketResult = betListResult,
                 IsAdmin = CurrentSession.IsAdmin,
                 IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
             };
 
-            var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
-            var ticketTextList = betListTicketBuilder.BuildTickets();
-            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
-            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
-            return Json(new
-            {
-                List = ticketTextList,
-                LegendType = CurrentSession.AgentInfo.LegendType,
-                IsLastLevel = CurrentSession.AgentInfo.IsLastLevel,
-                TotalItem = criteria.TotalRows,
-                SubTotalWinLost = subTotalWinLost,
-                SubTotalComm = subTotalComm,
-                TotalWinLost = subTotalWinLost + subTotalComm
-            });
+            var ticketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
+            return BetListJsonResult(ticketBuilder, betListResult);
         }
 
-        #endregion Index
+        #endregion Select By Member
 
-        #region Total bets
+        #region Total Bets
 
         /// <summary>
         /// Generate Bet List.
@@ -111,9 +127,9 @@
         /// Return JSONRESULT.
         /// </returns>
         [HttpPost]
-        public JsonResult TotalBets(BetListTotalBetsViewModel model)
+        public JsonResult TotalBets(TotalBetsViewModel model)
         {
-            var criteria = new BetListTotalBetsCriteria
+            var criteria = new TotalBetsCriteria
             {
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 BetTeam = model.BetTeam,
@@ -138,87 +154,9 @@
             });
         }
 
-        #endregion Total bets
+        #endregion Total Bets
 
-        #region BetListSelByMember
-
-        /// <summary>
-        /// Index page of Bet List.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>Return a view.</returns>
-        [HttpGet]
-        public ActionResult BetListSelByMember(int custId)
-        {
-            if (!_downLinePermissionService.IsDownLineMember(custId))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            var productList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
-            ViewBag.PageContext = new PageContext(CurrentSession, custId);
-            var viewResult = new BetListSelectByMemberViewResult
-            {
-                CustId = custId,
-                ProductList = productList,
-                IsAdmin = CurrentSession.IsAdmin
-            };
-
-            return View(viewResult);
-        }
-
-        /// <summary>
-        /// Index page of Bet List.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// JSON object.
-        /// </returns>
-        [HttpPost]
-        public JsonResult BetListSelByMember(BetListSelectByMemberViewModel model)
-        {
-            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
-            var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new BetListSelectByMemberCriteria
-            {
-                CustId = model.CustId,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                StatusIds = model.StatusIds,
-                ProductIds = model.ProductIds,
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                MoveBetsDay = balanceUp.MoveBetsDay,
-                BalanceUpDay = balanceUp.BalanceUpDay
-            };
-            var ticketResult = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = ticketResult,
-                IsAdmin = CurrentSession.IsAdmin,
-                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
-            };
-
-            var betListTicketBuilder = new BetListTicketBuilder(ticketBuilderParameters, criteria);
-            var ticketTextList = betListTicketBuilder.BuildTickets();
-            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
-            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
-            return Json(new
-            {
-                List = ticketTextList,
-                TotalItem = criteria.TotalRows,
-                SubTotalWinLost = subTotalWinLost,
-                SubTotalComm = subTotalComm,
-                TotalWinLost = subTotalWinLost + subTotalComm
-            });
-        }
-
-        #endregion BetListSelByMember
-
-        #region Total Bet Parlay
+        #region Total Bets Parlay
 
         /// <summary>
         /// Index page of Bet List.
@@ -251,41 +189,57 @@
             });
         }
 
-        #endregion Total Bet Parlay
+        #endregion Total Bets Parlay
+
+        #region Win Loss
 
         /// <summary>
-        /// Index page of Bet List.
+        /// Bet List for Win Loss.
         /// </summary>
         /// <param name="model">Bet List Win loss View Model.</param>
         /// <returns>Return a view.</returns>
         [HttpGet]
-        public ActionResult BetListWinLossReport(BetListWinLossViewModel model)
+        public ActionResult WinLoss(WinLossViewModel model)
         {
             ViewBag.PageContext = new PageContext(CurrentSession, model.CustId);
             return View(model);
         }
 
+        #endregion Win Loss
+
+        #region Mix Parlay Details
+
         /// <summary>
         /// Mix Parlay Details.
         /// </summary>
-        /// <param name="transId">Transaction ID.</param>
-        /// <param name="sportType">Sport Type.</param>
-        /// <param name="betType">Bet Type of Transaction.</param>
-        /// <returns>Return a view.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
         [HttpGet]
-        public ActionResult MixParlayDetails(long transId, int sportType, int betType)
+        public ActionResult MixParlayDetails(MixParlayDetailsViewModel model)
         {
-            if (!_downLinePermissionService.IsDownLineTransaction(transId, sportType, betType))
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelViewResult();
+            }
+
+            if (!_downLinePermissionService.IsDownLineTransaction(model.TransId, model.SportType, model.BetType))
             {
                 return RedirectToAccessDeniedPage();
             }
 
-            var agentId = CurrentSession.AgentInfo.AgentId;
-            var criteria = new MixParlayDetailsCriteria { AgentId = agentId, TransId = transId };
+            var criteria = new MixParlayDetailsCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                TransId = model.TransId
+            };
             var ticketResult = _betlistService.GetMixParlayDetails(criteria);
-
             var builder = new BetListHTMLBuilder();
-            var ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
+            var ticketHelper = new TicketHelper
+            {
+                IsShowOddsWithChoice = true
+            };
 
             var stringBuilder = new StringBuilder();
             foreach (var ticket in ticketResult.MainTicketList)
@@ -297,118 +251,40 @@
             return Content(stringBuilder.ToString());
         }
 
+        #endregion Mix Parlay Details
+
+        #region System Parlay Details
+
         /// <summary>
-        /// System Parlay Result action.
+        /// System Parlay Details.
         /// </summary>
-        /// <param name="refNo">Reference number of transaction.</param>
-        /// <returns>String content.</returns>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// String content.
+        /// </returns>
         [HttpGet]
-        public ActionResult SystemParlayResult(long refNo)
+        public ActionResult SystemParlayDetails(SystemParlayDetailsViewModel model)
         {
-            if (!_downLinePermissionService.IsDownLineReferenceNumber(refNo))
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelViewResult();
+            }
+
+            if (!_downLinePermissionService.IsDownLineReferenceNumber(model.RefNo))
             {
                 return RedirectToAccessDeniedPage();
             }
 
-            var agentId = CurrentSession.AgentInfo.AgentId;
             var balanceUp = _coreService.BalanceUpDay;
-            var criteria = new SystemParlayResultCriteria
+            var criteria = new SystemParlayDetailsCriteria
             {
-                AgentId = agentId,
-                RefNo = refNo,
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                RefNo = model.RefNo,
                 BalanceUpDay = balanceUp.BalanceUpDay,
                 MoveBetsDay = balanceUp.MoveBetsDay
             };
 
             var systemParlayData = _betlistService.GetSystemParlayResult(criteria);
-            var systemParlayText = BuildSystemParlayDetail(systemParlayData);
-
-            return Content(systemParlayText);
-        }
-
-        /// <summary>
-        /// Bet List Details.
-        /// </summary>
-        /// <param name="criteria">Bet List Details Criteria.</param>
-        /// <returns>Return a view.</returns>
-        [HttpGet]
-        public ActionResult Details(BetListDetailsCriteria criteria)
-        {
-            if (!_downLinePermissionService.IsDownLineTransaction(criteria.TransId, criteria.SportType, criteria.BetType))
-            {
-                return RedirectToAccessDeniedPage();
-            }
-
-            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
-            var rawBetListDetails = _betlistService.GetBetListDetails(criteria);
-            var viewModel = new BetListDetailsViewModel
-            {
-                BetListDetails = FormatRawBetListDetails(rawBetListDetails, criteria.Status),
-                IsDeposit = CurrentSession.AgentInfo.IsDeposit
-            };
-
-            return View(viewModel);
-        }
-
-        /// <summary>
-        /// Bet List Results.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// JSON result.
-        /// </returns>
-        public ActionResult Results(BetListResultViewModel model)
-        {
-            var isParlayPopup =
-                model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_9
-                || model.BetType == (int)LicenseeAgent.Core.Enumerations.BetType.BetType_29;
-            var setting = new ResultSetting
-            {
-                SportType = (SportType)model.SportType,
-                IsOutRight = model.IsOutright,
-                IsParlayPopUp = isParlayPopup,
-                IsPopUp = true,
-                VisiblePopUpTitle = true,
-                LanguageCode = CurrentSession.Language
-            };
-
-            var data = string.Empty;
-            if (setting.IsParlayPopUp)
-            {
-                data = GetParlayResults(model.RefNoMixParlay.Value, setting);
-            }
-            else
-            {
-                data = GetResultNormalData(model, setting);
-            }
-
-            return View((object)data);
-        }
-
-        /// <summary>
-        /// Format raw bet list details.
-        /// </summary>
-        /// <param name="originalData">List of raw bet list details.</param>
-        /// <param name="status">Ticket status ID.</param>
-        /// <returns>List of formatted bet list details.</returns>
-        public Collection<BetListDetails> FormatRawBetListDetails(IList<RawBetListDetails> originalData, string status)
-        {
-            var formattedData = new Collection<BetListDetails>();
-            foreach (var item in originalData)
-            {
-                formattedData.Add(new BetListDetails
-                {
-                    Agent = item.AgentName,
-                    PositionTaking = GenerateHtmlStringForAgentPT(item, status),
-                    Commission = GenerateHtmlStringForAgentComm(item, status)
-                });
-            }
-
-            return formattedData;
-        }
-
-        public string BuildSystemParlayDetail(ISystemParlayData systemParlayData)
-        {
             var builder = new BetListHTMLBuilder();
             var ticketHelper = new TicketHelper()
             {
@@ -416,7 +292,76 @@
             };
 
             var systemParlayText = builder.BuildSystemParlayDetail(ticketHelper, systemParlayData);
-            return systemParlayText;
+            return Content(systemParlayText);
+        }
+
+        #endregion System Parlay Details
+
+        #region Ticket Details
+
+        /// <summary>
+        /// Bet List Details.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a view.
+        /// </returns>
+        [HttpGet]
+        public ActionResult Details(DetailsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelViewResult();
+            }
+
+            if (!_downLinePermissionService.IsDownLineTransaction(model.TransId, model.SportType, model.BetType))
+            {
+                return RedirectToAccessDeniedPage();
+            }
+
+            var criteria = new TicketDetailsCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                TransId = model.TransId,
+                SportType = model.SportType,
+                BetType = model.BetType
+            };
+            model.TicketDetails = _betlistService.GetBetListDetails(criteria);
+            model.IsDeposit = CurrentSession.AgentInfo.IsDeposit;
+            return View(model);
+        }
+
+        #endregion Ticket Details
+
+        #region Ticket Results
+
+        /// <summary>
+        /// Bet List Results.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// View result.
+        /// </returns>
+        public ActionResult Results(ResultViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelViewResult();
+            }
+
+            var setting = new ResultSetting
+            {
+                SportType = (SportType)model.SportType,
+                IsOutRight = model.IsOutright,
+                IsParlayPopUp = model.IsParlayPopup,
+                IsPopUp = true,
+                VisiblePopUpTitle = true,
+                LanguageCode = CurrentSession.Language
+            };
+            var data = setting.IsParlayPopUp
+                ? GetParlayResults(model.RefNoMixParlay.Value, setting)
+                : GetNormalResults(model, setting);
+            return View((object)data);
         }
 
         /// <summary>
@@ -425,7 +370,8 @@
         /// <param name="model">The model.</param>
         /// <param name="setting">The setting.</param>
         /// <returns>Returns result string.</returns>
-        private string GetResultNormalData(BetListResultViewModel model, ResultSetting setting)
+        [NonAction]
+        public string GetNormalResults(ResultViewModel model, ResultSetting setting)
         {
             switch ((SportType)model.SportType)
             {
@@ -435,18 +381,24 @@
                 case SportType.VirtualMotorRacing:
                 case SportType.VirtualCycling:
                     var racingData = _betlistService.GetVirtualRacingResults(model.MatchId.Value, model.RaceNo);
-                    return racingData != null ? ResultEngine.HtmlParser(racingData, setting) : string.Empty;
+                    return racingData != null
+                        ? ResultEngine.HtmlParser(racingData, setting)
+                        : string.Empty;
 
                 case SportType.LiveCasino:
                     return string.Empty;
 
                 case SportType.NumberGame:
                     var numberGameData = _betlistService.GetNumberGameResults(model.MatchId.Value);
-                    return numberGameData != null ? ResultEngine.HtmlParser(numberGameData, setting) : string.Empty;
+                    return numberGameData != null
+                        ? ResultEngine.HtmlParser(numberGameData, setting)
+                        : string.Empty;
 
                 default:
                     var sportsBookData = _betlistService.GetSportsBookResults(model.MatchId.Value);
-                    return sportsBookData != null ? ResultEngine.HtmlParser(sportsBookData, setting) : string.Empty;
+                    return sportsBookData != null
+                        ? ResultEngine.HtmlParser(sportsBookData, setting)
+                        : string.Empty;
             }
         }
 
@@ -456,35 +408,83 @@
         /// <param name="refNo">Reference Number.</param>
         /// <param name="setting">Results Setting.</param>
         /// <returns>JSON object.</returns>
-        private string GetParlayResults(long refNo, ResultSetting setting)
+        [NonAction]
+        public string GetParlayResults(long refNo, ResultSetting setting)
         {
-            var data = _betlistService.GetParlayResults(new BetListResultsParlayCriteria { RefNo = refNo });
+            var criteria = new ResultsParlayCriteria
+            {
+                RefNo = refNo
+            };
+            var data = _betlistService.GetParlayResults(criteria);
             return data != null
                 ? ResultEngine.HtmlParser(data, setting)
                 : string.Empty;
         }
 
-        private string GenerateHtmlStringForAgentPT(RawBetListDetails data, string status)
-        {
-            var colorValue = data.AgentPT >= 0 ? ">" : " class=\"red-text\">";
-            var htmlString = "<div>" + string.Format("{0:#,##0.00}", data.AgentPTPercent * 100) + "%</div>";
-            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
-                ? string.Empty
-                : "<div" + colorValue + string.Format("{0:#,##0.00}", data.AgentPT) + "</div>";
+        #endregion Ticket Results
 
-            return htmlString;
+        #region Outstanding
+
+        /// <summary>
+        /// Outstanding - Bet List Report.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Return a JSON object.
+        /// </returns>
+        /// Bet list result.
+        [HttpPost]
+        public JsonResult Outstanding(OutstandingViewModel model)
+        {
+            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
+            {
+                return RedirectToAccessDeniedJson();
+            }
+
+            var criteria = new MemberOutstandingCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                CustId = model.CustId
+            };
+
+            var betListResult = _betlistService.GetBetList(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = betListResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var ticketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
+            return BetListJsonResult(ticketBuilder, betListResult);
         }
 
-        private string GenerateHtmlStringForAgentComm(RawBetListDetails data, string status)
-        {
-            var htmlString = data.AgentLevel == 1
-                ? string.Empty
-                : "<div>" + string.Format("{0:#,##0.00}", data.AgentCommPercent * 100) + "%</div>";
-            htmlString += (status == BetStatus.Running || status == BetStatus.Waiting)
-                ? (data.AgentLevel == 1 ? "-" : string.Empty)
-                : "<div>" + string.Format("{0:#,##0.00}", data.AgentComm) + "</div>";
+        #endregion Outstanding
 
-            return htmlString;
+        #region Common
+
+        /// <summary>
+        /// Bets the list JSON result.
+        /// </summary>
+        /// <param name="ticketBuilder">The ticket builder.</param>
+        /// <param name="betListResult">The bet list result.</param>
+        /// <returns>JSON result.</returns>
+        private JsonResult BetListJsonResult(ITicketBuilder ticketBuilder, BetListResult betListResult)
+        {
+            var ticketTextList = ticketBuilder.BuildTickets();
+            var subTotalWinLost = betListResult.MainTicketList.Sum(x => x.Winlost);
+            var subTotalComm = betListResult.MainTicketList.Sum(x => x.PlayerComm);
+            return Json(new
+            {
+                List = ticketTextList,
+                LegendType = CurrentSession.AgentInfo.LegendType,
+                TotalItem = ticketTextList.Count(),
+                SubTotalWinLost = subTotalWinLost,
+                SubTotalComm = subTotalComm,
+                TotalWinLost = subTotalWinLost + subTotalComm
+            });
         }
+
+        #endregion Common
     }
 }

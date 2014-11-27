@@ -3,7 +3,7 @@
     /// <summary>
     /// BetListResultCriteria class.
     /// </summary>
-    public class BetListResultCriteria
+    public class ResultCriteria
     {
         public bool IsSportsBook { get; set; }
 

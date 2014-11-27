@@ -5,7 +5,7 @@
     /// <summary>
     /// BetListTotalBetsViewModel class.
     /// </summary>
-    public class BetListTotalBetsViewModel
+    public class TotalBetsViewModel
     {
         [Required]
         public int MatchId { get; set; }

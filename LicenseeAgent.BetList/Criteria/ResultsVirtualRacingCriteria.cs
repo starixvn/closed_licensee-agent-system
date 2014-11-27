@@ -3,11 +3,13 @@
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// BetListResultsSportsBookCriteria class.
+    /// TODO: Update summary.
     /// </summary>
-    public class BetListResultsSportsBookCriteria : CriteriaBase
+    public class ResultsVirtualRacingCriteria : CriteriaBase
     {
         public int MatchId { get; set; }
+
+        public string RaceNo { get; set; }
 
         /// <summary>
         /// Get SP name.
@@ -15,7 +17,7 @@
         /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            return "LAS_BetList_SelMatchResult";
+            return "LAS_BetList_SelMatchResultVirtualRacing";
         }
 
         public override bool IsValid()

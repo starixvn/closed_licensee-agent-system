@@ -598,21 +598,21 @@
     <Content Include="App_Data\TotalBets\SoccerDetail.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\BetList\betlist.core.css" />
-    <Content Include="Content\BetList\betlist.css" />
-    <Content Include="Content\BetList\images\bar-loader.gif" />
-    <Content Include="Content\BetList\images\bgHeader.jpg" />
-    <Content Include="Content\BetList\images\blank.gif" />
-    <Content Include="Content\BetList\images\link_14x14.png" />
-    <Content Include="Content\BetList\images\link_16x16.png" />
-    <Content Include="Content\BetList\images\note.png" />
-    <Content Include="Content\BetList\images\plus.png" />
-    <Content Include="Content\BetList\images\system-parlay-detail-hover.png" />
-    <Content Include="Content\BetList\images\system-parlay-detail.png" />
-    <Content Include="Content\BetList\images\undo.png" />
-    <Content Include="Content\BetList\images\up.png" />
-    <Content Include="Content\BetList\rng-casino-hand-history.css" />
-    <Content Include="Content\BetList\system-parlay-detail.css" />
+    <Content Include="Views\BetList\Content\betlist.core.css" />
+    <Content Include="Views\BetList\Content\betlist.css" />
+    <Content Include="Views\BetList\Content\images\bar-loader.gif" />
+    <Content Include="Views\BetList\Content\images\bgHeader.jpg" />
+    <Content Include="Views\BetList\Content\images\blank.gif" />
+    <Content Include="Views\BetList\Content\images\link_14x14.png" />
+    <Content Include="Views\BetList\Content\images\link_16x16.png" />
+    <Content Include="Views\BetList\Content\images\note.png" />
+    <Content Include="Views\BetList\Content\images\plus.png" />
+    <Content Include="Views\BetList\Content\images\system-parlay-detail-hover.png" />
+    <Content Include="Views\BetList\Content\images\system-parlay-detail.png" />
+    <Content Include="Views\BetList\Content\images\undo.png" />
+    <Content Include="Views\BetList\Content\images\up.png" />
+    <Content Include="Views\BetList\Content\rng-casino-hand-history.css" />
+    <Content Include="Views\BetList\Content\system-parlay-detail.css" />
     <Content Include="Content\bootstrap\components\bootstrap-select.less" />
     <Content Include="Images\bullet-star.png" />
     <Content Include="Images\intro-arrow.png" />
@@ -686,11 +686,11 @@
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
-    <Content Include="Views\BetList\Resources\betlist-winlost.js" />
+    <Content Include="Views\BetList\Scripts\betlist-winlost.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
     <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
-    <Content Include="Views\BetList\Resources\betlist-manager.js" />
-    <Content Include="Views\BetList\Resources\betlist-core.js" />
+    <Content Include="Views\BetList\Scripts\betlist-manager.js" />
+    <Content Include="Views\BetList\Scripts\betlist-core.js" />
     <Content Include="Areas\TotalBets\Scripts\Parlay\parlay.js" />
     <Content Include="Views\Error\Resources\images\background.jpg" />
     <Content Include="Views\Error\Resources\images\internal-error-page.png" />
@@ -981,7 +981,7 @@
     <Content Include="Content\bootstrap\utilities.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\wells.less" />
-    <Content Include="Views\BetList\BetListSelByMember.cshtml" />
+    <Content Include="Views\BetList\Member.cshtml" />
     <Content Include="Views\BetList\Details.cshtml" />
     <None Include="Scripts\ResourcesJs\BetType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1006,7 +1006,6 @@
     <Content Include="Views\Transfer\Member.cshtml" />
     <Content Include="Areas\Report\Views\Results\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\Parlay\Index.cshtml" />
-    <Content Include="Views\BetList\Resources\totalbets.parlay.less" />
     <Content Include="Views\CreditBalance\MemberList.cshtml" />
     <Content Include="Views\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\CreditBalance\Index.cshtml" />
@@ -1017,7 +1016,7 @@
     <Content Include="Views\Home\_Intro.cshtml" />
     <Content Include="Areas\Report\Views\AgentOutstanding\Index.cshtml" />
     <Content Include="Areas\Report\Content\AgentOutstanding\agent-outstanding.less" />
-    <Content Include="Views\BetList\BetListWinlossReport.cshtml" />
+    <Content Include="Views\BetList\WinLoss.cshtml" />
     <Content Include="Views\BetList\Results.cshtml" />
     <Content Include="Areas\Report\Views\Statement\Index.cshtml" />
     <Content Include="Views\Error\CurrencyPermissionDenied.cshtml" />

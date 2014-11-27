@@ -1,4 +1,7 @@
-﻿@model LicenseeAgent.BetList.ViewModels.BetListDetailsViewModel
+﻿@using LicenseeAgent.BetList.Entities
+@using LicenseeAgent.BetList.ViewModels
+@using Fanex.BetList.Core.Entities
+@model DetailsViewModel
 @{
     Layout = null;
 }
@@ -21,16 +24,19 @@
     </thead>
     <tbody>
         @{var rowIndex = 1;}
-        @foreach (var detail in Model.BetListDetails)
+        @foreach (var detail in Model.TicketDetails)
         {
             <tr class="@(rowIndex % 2 == 0 ? "even-row" : "")">
-                <td class="agent-name">@Html.Raw(detail.Agent)
+                <td class="agent-name">
+                    @detail.AgentName
                 </td>
-                <td>@Html.Raw(detail.PositionTaking)
+                <td>
+                    @GeneratePositionTaking(detail)
                 </td>
                 @if (!Model.IsDeposit)
                 {
-                    <td>@Html.Raw(detail.Commission)
+                    <td>
+                        @GenerateCommission(detail)
                     </td>
                 }
             </tr>
@@ -38,3 +44,38 @@
         }
     </tbody>
 </table>
+@helper GeneratePositionTaking(TicketDetail detail)
+    {
+    <div>
+        @string.Format("{0:#,##0.00} %", detail.AgentPTPercent * 100)
+    </div>
+    <div>
+        @if (Model.Status != BetStatus.Running && Model.Status != BetStatus.Waiting)
+        {
+            var className = detail.AgentPT >= 0 ? string.Empty : "red-text";
+            <div class="@className">
+                @string.Format("{0:#,##0.00}", detail.AgentPT)
+            </div>
+        }
+    </div>
+}
+@helper GenerateCommission(TicketDetail detail)
+    {
+        if (detail.AgentLevel != 1)
+        {
+    <div>
+        @string.Format("{0:#,##0.00} %", detail.AgentCommPercent * 100)
+    </div>
+        }
+        if (Model.Status != BetStatus.Running || Model.Status != BetStatus.Waiting)
+        {
+            var className = detail.AgentComm >= 0 ? string.Empty : "red-text";
+    <div class="@className">
+        @string.Format("{0:#,##0.00}", detail.AgentComm)
+    </div>
+        }
+        else if (detail.AgentLevel == 1)
+        {
+    @Html.Raw("-")
+        }
+}

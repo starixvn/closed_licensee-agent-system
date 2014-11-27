@@ -1,7 +1,6 @@
-﻿namespace LicenseeAgent.Report.Utilities
+﻿namespace LicenseeAgent.BetList.Utilities
 {
     using LicenseeAgent.BetList.Entities;
-    using LicenseeAgent.BetList.Utilities;
 
     /// <summary>
     /// Build ticket.

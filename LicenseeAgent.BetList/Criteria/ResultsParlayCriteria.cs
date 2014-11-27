@@ -3,11 +3,11 @@
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// BetListResultsParlayCriteria class.
     /// </summary>
-    public class BetListResultsNumberGameCriteria : CriteriaBase
+    public class ResultsParlayCriteria : CriteriaBase
     {
-        public int MatchId { get; set; }
+        public long RefNo { get; set; }
 
         /// <summary>
         /// Get SP name.
@@ -15,12 +15,12 @@
         /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            return "LAS_Betlist_SelMatchResultNumberGame";
+            return "LAS_BetList_SelMatchResultParlay";
         }
 
         public override bool IsValid()
         {
-            return MatchId > 0;
+            return RefNo > 0;
         }
     }
 }

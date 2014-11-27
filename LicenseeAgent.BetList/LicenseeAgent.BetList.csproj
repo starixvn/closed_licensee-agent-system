@@ -129,27 +129,28 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\BetListController.cs" />
-    <Compile Include="Criteria\BetListTotalBetsCriteria.cs" />
-    <Compile Include="Criteria\BetListDetailsCriteria.cs" />
-    <Compile Include="Criteria\BetListResultCriteria.cs" />
-    <Compile Include="Criteria\BetListResultsNumberGameCriteria.cs" />
-    <Compile Include="Criteria\BetListSelectByMemberCriteria.cs" />
+    <Compile Include="Criteria\MemberOutstandingCriteria.cs" />
+    <Compile Include="Criteria\TotalBetsCriteria.cs" />
+    <Compile Include="Criteria\TicketDetailsCriteria.cs" />
+    <Compile Include="Criteria\ResultCriteria.cs" />
+    <Compile Include="Criteria\ResultsNumberGameCriteria.cs" />
+    <Compile Include="Criteria\SelectByMemberCriteria.cs" />
     <Compile Include="Criteria\BetListCriteriaBase.cs" />
-    <Compile Include="Criteria\BetListResultsSportsBookCriteria.cs" />
-    <Compile Include="Criteria\BetListResultsParlayCriteria.cs" />
-    <Compile Include="Criteria\BetListResultsVirtualRacingCriteria.cs" />
+    <Compile Include="Criteria\ResultsSportsBookCriteria.cs" />
+    <Compile Include="Criteria\ResultsParlayCriteria.cs" />
+    <Compile Include="Criteria\ResultsVirtualRacingCriteria.cs" />
+    <Compile Include="Utilities\OutstandingBetListTicketBuilder.cs" />
+    <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="Criteria\TotalBetsParlayCriteria.cs" />
-    <Compile Include="Criteria\SystemParlayResultCriteria.cs" />
+    <Compile Include="Criteria\SystemParlayDetailsCriteria.cs" />
     <Compile Include="Criteria\MixParlayDetailsCriteria.cs" />
     <Compile Include="DataAccess\BetListDataAccess.cs" />
     <Compile Include="DataAccess\IBetListDataAccess.cs" />
-    <Compile Include="Entities\BetListCustomerInfo.cs" />
-    <Compile Include="Entities\BetListDetails.cs" />
     <Compile Include="Entities\LasTicketData.cs" />
     <Compile Include="Entities\TicketBuilderParameters.cs" />
-    <Compile Include="Entities\RawBetListDetails.cs" />
+    <Compile Include="Entities\TicketDetail.cs" />
     <Compile Include="Entities\LasTicket.cs" />
-    <Compile Include="Entities\TicketResult.cs" />
+    <Compile Include="Entities\BetListResult.cs" />
     <Compile Include="Entities\TicketText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BetListService.cs" />
@@ -160,15 +161,14 @@
     <Compile Include="Utilities\TicketBuilder.cs" />
     <Compile Include="Utilities\LasBetListHtmlBuilder.cs" />
     <Compile Include="Utilities\LasTrans.cs" />
-    <Compile Include="ViewModels\BetListResultViewModel.cs" />
-    <Compile Include="ViewModels\BetListSelectByMemberViewModel.cs" />
-    <Compile Include="ViewModels\BetListTotalBetsViewModel.cs" />
-    <Compile Include="ViewModels\BetListViewModel.cs" />
-    <Compile Include="ViewModels\BetListDetailsViewModel.cs" />
-    <Compile Include="ViewModels\BetListWinLossViewModel.cs" />
+    <Compile Include="ViewModels\OutstandingViewModel.cs" />
+    <Compile Include="ViewModels\ResultViewModel.cs" />
+    <Compile Include="ViewModels\MemberViewModel.cs" />
+    <Compile Include="ViewModels\TotalBetsViewModel.cs" />
+    <Compile Include="ViewModels\WinLossViewModel.cs" />
     <Compile Include="ViewModels\MixParlayDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SystemParlayDetailsViewModel.cs" />
     <Compile Include="ViewModels\TotalBetParlayViewModel.cs" />
-    <Compile Include="ViewResults\BetListSelectByMemberViewResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -226,15 +226,15 @@ report.statement.detail = (function ($) {
                 height: 400
             });
         },
-        viewBetList: function (custId, statusIDs, date, hideFooter) {
+        viewBetList: function (custId, status, date, hideFooter) {
             var dateTime = moment(date).format("MM/DD/YYYY");
             hideFooter = hideFooter || false;
-            var url = core.resolveUrl('~/BetList/BetListWinlossReport', {
+            var url = core.resolveUrl('~/BetList/WinLoss', {
                 custId: custId,
                 fromDate: dateTime,
                 toDate: dateTime,
-                statusIDs: statusIDs,
-                ProductIds: $("#Product").val(),
+                status: status,
+                product: $("#Product").val(),
                 hideFooter: hideFooter
             });
             popup.openFrame(url, {

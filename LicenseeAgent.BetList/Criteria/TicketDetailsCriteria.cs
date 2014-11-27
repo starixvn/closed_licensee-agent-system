@@ -5,7 +5,7 @@
     /// <summary>
     /// BetListDetailsCriteria class.
     /// </summary>
-    public class BetListDetailsCriteria : CriteriaBase
+    public class TicketDetailsCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
@@ -14,9 +14,6 @@
         public int SportType { get; set; }
 
         public int BetType { get; set; }
-
-        [SpParam(Ignored = true)]
-        public string Status { get; set; }
 
         /// <summary>
         /// Get SP name.

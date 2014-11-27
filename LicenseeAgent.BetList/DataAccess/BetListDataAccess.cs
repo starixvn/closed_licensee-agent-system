@@ -22,9 +22,9 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetList(ICriteria criteria)
+        public BetListResult GetBetList(ICriteria criteria)
         {
-            var result = new TicketResult();
+            var result = new BetListResult();
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
@@ -47,9 +47,9 @@
         /// </summary>
         /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
+        public BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
-            var result = new TicketResult();
+            var result = new BetListResult();
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
@@ -67,9 +67,9 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetParlayList(ICriteria criteria)
+        public BetListResult GetParlayList(ICriteria criteria)
         {
-            var result = new TicketResult();
+            var result = new BetListResult();
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
@@ -87,7 +87,7 @@
         /// </summary>
         /// <param name="criteria">System parlay result criteria.</param>
         /// <returns>System Parlay Data.</returns>
-        public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
+        public SystemParlayData GetSystemParlayResult(SystemParlayDetailsCriteria criteria)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {

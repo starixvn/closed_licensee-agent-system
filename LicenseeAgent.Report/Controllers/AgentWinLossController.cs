@@ -53,19 +53,16 @@
         /// <summary>
         /// Agent Win Loss.
         /// </summary>
+        /// <param name="model">The model.</param>
         /// <returns>
         /// Return a view.
         /// </returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(AgentWinLossViewModel model)
         {
-            var model = new AgentWinLossViewModel
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                ShowMembers = CurrentSession.AgentInfo.IsLastLevel,
-                ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId)
-            };
-
+            model.AgentId = CurrentSession.AgentInfo.AgentId;
+            model.ShowMembers = CurrentSession.AgentInfo.IsLastLevel;
+            model.ProductList = _coreService.GetProducts(CurrentSession.AgentInfo.LicenseeId);
             return View(model);
         }
 

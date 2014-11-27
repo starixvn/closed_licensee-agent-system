@@ -43,7 +43,7 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetBetList(ICriteria criteria)
+        public BetListResult GetBetList(ICriteria criteria)
         {
             try
             {
@@ -65,7 +65,7 @@
         /// </summary>
         /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
+        public BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
             try
             {
@@ -87,7 +87,7 @@
         /// </summary>
         /// <param name="criteria">System parlay result criteria.</param>
         /// <returns>System Parlay Data.</returns>
-        public SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria)
+        public SystemParlayData GetSystemParlayResult(SystemParlayDetailsCriteria criteria)
         {
             try
             {
@@ -109,9 +109,9 @@
         /// </summary>
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>A list of bet list details.</returns>
-        public IList<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria)
+        public IList<TicketDetail> GetBetListDetails(TicketDetailsCriteria criteria)
         {
-            return GetEntites<RawBetListDetails>(criteria);
+            return GetEntites<TicketDetail>(criteria);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        public TicketResult GetParlayList(ICriteria criteria)
+        public BetListResult GetParlayList(ICriteria criteria)
         {
             try
             {
@@ -147,7 +147,7 @@
         /// <exception cref="CriteriaException"></exception>
         public IList<NumberGame> GetNumberGameResults(int matchId)
         {
-            var criteria = new BetListResultsNumberGameCriteria
+            var criteria = new ResultsNumberGameCriteria
             {
                 MatchId = matchId
             };
@@ -164,7 +164,7 @@
         /// <returns>Returns list of Racing item.</returns>
         public IList<Racing> GetVirtualRacingResults(int matchId, string raceNo)
         {
-            var criteria = new BetListResultsVirtualRacingCriteria
+            var criteria = new ResultsVirtualRacingCriteria
             {
                 MatchId = matchId,
                 RaceNo = raceNo
@@ -183,7 +183,7 @@
         /// <exception cref="CriteriaException"></exception>
         public IList<Sportsbook> GetSportsBookResults(int matchId)
         {
-            var criteria = new BetListResultsSportsBookCriteria
+            var criteria = new ResultsSportsBookCriteria
             {
                 MatchId = matchId
             };
@@ -197,7 +197,7 @@
         /// </summary>
         /// <param name="criteria">Bet List Results Parlay Criteria.</param>
         /// <returns>The parlay list.</returns>
-        public IList<Parlay> GetParlayResults(BetListResultsParlayCriteria criteria)
+        public IList<Parlay> GetParlayResults(ResultsParlayCriteria criteria)
         {
             var dataTable = ExecuteDataTable(criteria);
             return ResultBinder.BindingParlay(dataTable, criteria.RefNo);

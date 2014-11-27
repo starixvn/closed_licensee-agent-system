@@ -1,11 +1,11 @@
-﻿namespace LicenseeAgent.Report.Criteria.AgentOutstanding
+﻿namespace LicenseeAgent.BetList.Criteria
 {
     using Fanex.Data.Repository;
 
     /// <summary>
     /// Outstanding Report Bet List Criteria.
     /// </summary>
-    public class OutstandingReportBetListCriteria : CriteriaBase
+    public class MemberOutstandingCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

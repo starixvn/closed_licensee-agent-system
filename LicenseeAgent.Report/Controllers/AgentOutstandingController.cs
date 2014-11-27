@@ -3,12 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using LicenseeAgent.BetList.Entities;
-    using LicenseeAgent.BetList.Services;
     using LicenseeAgent.Report.Criteria.AgentOutstanding;
     using LicenseeAgent.Report.Entities.AgentOutstanding;
     using LicenseeAgent.Report.Services;
-    using LicenseeAgent.Report.Utilities;
     using LicenseeAgent.Report.ViewModels.AgentOutstanding;
     using LicenseeAgent.Web;
     using LicenseeAgent.Web.Controllers;
@@ -23,25 +20,22 @@
 
         private readonly IDownLinePermissionService _downLinePermissionService;
         private readonly IAgentOutstandingService _agentOutstandingService;
-        private readonly IBetListService _betlistService;
 
         #endregion Variables
 
         #region Constructors
 
         public AgentOutstandingController()
-            : this(null, null, null)
+            : this(null, null)
         {
         }
 
         public AgentOutstandingController(
             IDownLinePermissionService downLinePermissionService,
-            IAgentOutstandingService agentOutstandingService,
-            IBetListService betlistService)
+            IAgentOutstandingService agentOutstandingService)
         {
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
             _agentOutstandingService = agentOutstandingService ?? new AgentOutstandingService();
-            _betlistService = betlistService ?? new BetListService();
         }
 
         #endregion Constructors
@@ -120,54 +114,5 @@
         }
 
         #endregion Index
-
-        #region BetList
-
-        /// <summary>
-        /// Outstanding - Bet List Report.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// Return a JSON object.
-        /// </returns>
-        /// Bet list result.
-        [HttpPost]
-        public JsonResult BetList(OutstandingReportBetListViewModel model)
-        {
-            if (!_downLinePermissionService.IsDownLineMember(model.CustId))
-            {
-                return RedirectToAccessDeniedJson();
-            }
-
-            var criteria = new OutstandingReportBetListCriteria
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                CustId = model.CustId
-            };
-
-            var ticketResult = _betlistService.GetBetList(criteria);
-            var ticketBuilderParameters = new TicketBuilderParameters
-            {
-                TicketResult = ticketResult,
-                IsAdmin = CurrentSession.IsAdmin,
-                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
-            };
-
-            var betListTicketBuilder = new OutstandingBetListTicketBuilder(ticketBuilderParameters);
-            var ticketTextList = betListTicketBuilder.BuildTickets();
-            var subTotalWinLost = ticketResult.MainTicketList.Sum(x => x.Winlost);
-            var subTotalComm = ticketResult.MainTicketList.Sum(x => x.PlayerComm);
-            return Json(new
-            {
-                List = ticketTextList,
-                LegendType = CurrentSession.AgentInfo.LegendType,
-                TotalItem = ticketTextList.Count(),
-                SubTotalWinLost = subTotalWinLost,
-                SubTotalComm = subTotalComm,
-                TotalWinLost = subTotalWinLost + subTotalComm
-            });
-        }
-
-        #endregion BetList
     }
 }

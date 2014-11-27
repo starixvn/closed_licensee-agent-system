@@ -5,7 +5,7 @@ namespace LicenseeAgent.BetList.Criteria
     /// <summary>
     /// Bet list by match Criteria.
     /// </summary>
-    public class BetListTotalBetsCriteria : CriteriaBase
+    public class TotalBetsCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

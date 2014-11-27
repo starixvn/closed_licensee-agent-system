@@ -5,7 +5,7 @@
     /// </summary>
     public class TicketBuilderParameters
     {
-        public TicketResult TicketResult { get; set; }
+        public BetListResult TicketResult { get; set; }
 
         public bool IsAdmin { get; set; }
 

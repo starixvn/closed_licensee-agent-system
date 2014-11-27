@@ -1,9 +1,9 @@
 ﻿namespace LicenseeAgent.BetList.Entities
 {
     /// <summary>
-    /// RawBetListDetails class.
+    /// TicketDetail class.
     /// </summary>
-    public class RawBetListDetails
+    public class TicketDetail
     {
         public int AgentId { get; set; }
 

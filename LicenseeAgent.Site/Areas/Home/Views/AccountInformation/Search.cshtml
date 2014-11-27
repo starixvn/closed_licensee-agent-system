@@ -33,7 +33,7 @@
     <div class="controls-row">
         @if (pageContext.IsMember)
         {
-            <button class="btn btn-inverse"  data-url="@Url.Action("BetListSelByMember", "BetList", new { area = "", custId = Model.Customer.CustId })">
+            <button class="btn btn-inverse"  data-url="@Url.Action("Member", "BetList", new { area = "", custId = Model.Customer.CustId })">
                 @Las.BetList
             </button>
         }

@@ -1,18 +1,18 @@
-﻿/*global core, language, showMixParlayDetailurl, pageContext, report*/
+﻿/*global core, language, pageContext, report*/
 
 var gridOptions = {
     columns: [
-                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
-                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: language.getString("Choice"), Width: 335, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: language.getString("AgentPT"), Width: 75, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
-            ],
+        { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center" },
+        { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center" },
+        { HeaderText: language.getString("Choice"), Width: 335, Name: "Choice", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center" },
+        { HeaderText: language.getString("AgentPT"), Width: 75, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right" },
+        { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center" }
+    ],
     showPager: true,
     enableHiddenColumns: false,
     gridExpandHeight: 200,
@@ -61,8 +61,8 @@ var betList = (function ($) {
                 CustId: pageContext.CustId,
                 FromDate: fromDate,
                 ToDate: toDate,
-                StatusIDs: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255',
-                ProductIds: $("#Product").val()
+                Status: $("#Status").val() !== 255 ? $.trim($("#Status").val()) : '255',
+                Product: $("#Product").val()
             };
 
             $.ajax({
@@ -110,12 +110,14 @@ var betList = (function ($) {
         },
         showMixParlayDetail: function (transId, divEvent) {
             var loadMixParlayDetail = function (transId) {
-                var url = showMixParlayDetailurl + transId;
+                var url = core.resolveUrl('~/BetList/MixParlayDetails', {
+                    transId: transId
+                });
                 $.ajax({
                     type: "GET",
                     contentType: "text/html",
                     cache: false,
-                    url: core.resolveUrl(url),
+                    url: url,
                     success: function (response) {
                         divEvent.html(response);
                         $(".line:last", divEvent).remove();

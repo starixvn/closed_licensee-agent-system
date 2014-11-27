@@ -1,12 +1,19 @@
 ﻿namespace LicenseeAgent.BetList.ViewModels
 {
-    using LicenseeAgent.BetList.Entities;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// MixParlayDetailsViewModel class.
     /// </summary>
     public class MixParlayDetailsViewModel
     {
-        public TicketResult TicketResult { get; set; }
+        [Required]
+        public long TransId { get; set; }
+
+        [Required]
+        public int SportType { get; set; }
+
+        [Required]
+        public int BetType { get; set; }
     }
 }

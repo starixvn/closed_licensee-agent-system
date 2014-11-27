@@ -1,7 +1,8 @@
-﻿@{
+﻿@using LicenseeAgent.BetList.ViewModels
+@{
     ViewBag.Title = Model.Title ?? @Las.BetList;
 }
-@model LicenseeAgent.BetList.ViewModels.BetListWinLossViewModel
+@model WinLossViewModel
 @section css
 {
     @Styles.Render("~/css/monthpicker")
@@ -19,14 +20,14 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
+@using (Html.BeginForm("Member", "BetList", FormMethod.Post,
     new { @class = "hide", id = "search-form" }))
 {
     @Html.HiddenFor(m => m.CustId)
     @Html.HiddenFor(m => m.FromDate)
     @Html.HiddenFor(m => m.ToDate)
-    @Html.HiddenFor(m => m.StatusIds)
-    @Html.HiddenFor(m => m.ProductIds)
+    @Html.HiddenFor(m => m.Status)
+    @Html.HiddenFor(m => m.Product)
 }
 @Html.HiddenFor(m => m.DrawFilter)
 @Html.HiddenFor(m => m.BreadCrumb)

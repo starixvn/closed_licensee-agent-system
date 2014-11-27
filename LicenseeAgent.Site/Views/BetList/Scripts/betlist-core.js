@@ -1,23 +1,21 @@
 ﻿/*global popup, language, core, fanex:true*/
 /* exported OpenIPInfo, showMP, showCombMP, ViewResult */
+'use strict';
 
 var sportTypeParlay = 0;
 var betTypeMixParlay = 9;
 var betTypeSystemParlay = 29;
 
 function OpenIPInfo(ipstring) {
-    'use strict';
     fanex.betlist.core.getIpInformation(ipstring);
 }
 
 function showMP(transId) {
-    'use strict';
     var divEvent = $('#divEvent_' + transId);
     fanex.betlist.core.showMixParlayDetails(transId, sportTypeParlay, betTypeMixParlay, divEvent);
 }
 
 function showCombMP(transId, index) {
-    'use strict';
     var divEvent = $('#divEvent_' + transId + "" + index);
     fanex.betlist.core.showMixParlayDetails(transId, sportTypeParlay, betTypeSystemParlay, divEvent);
 }
@@ -26,7 +24,6 @@ var fanex = fanex || {};
 fanex.betlist = fanex.betlist || {};
 fanex.betlist.core = {
     reRenderAfterPagedSuccessfully: function (gridOptions, data, hasTotalRow) {
-        'use strict';
         gridOptions.pagerOption = {
             itemsPerPage: core.pageSizes[0],
             itemsPerPageArray: core.pageSizes,
@@ -62,11 +59,9 @@ fanex.betlist.core = {
         $('.freegrid').show().fanexGrid(gridOptions);
     },
     getIpInformation: function (ipAddress) {
-        'use strict';
         core.common.showIP(ipAddress);
     },
     showDetails: function (transId, status, sportType, betType) {
-        'use strict';
         var url = "~/BetList/Details?transId={0}&status={1}&SportType={2}&BetType={3}".format(transId, status, sportType, betType);
         $.ajax({
             type: "GET",
@@ -88,9 +83,12 @@ fanex.betlist.core = {
         });
     },
     showMixParlayDetails: function (transId, sportType, betType, divEvent) {
-        'use strict';
         var loadMixParlayDetail = function (transId, sportType, betType) {
-            var url = "~/BetList/MixParlayDetails?transid={0}&sportType={1}&betType={2}".format(transId, sportType, betType);
+            var url = core.resolveUrl('~/BetList/MixParlayDetails', {
+                transid: transId,
+                sportType: sportType,
+                betType: betType
+            });
             $.ajax({
                 type: "GET",
                 contentType: "text/html",
@@ -119,8 +117,9 @@ fanex.betlist.core = {
         }
     },
     showSystemParlayDetails: function (refNo, transId, betTeam) {
-        'use strict';
-        var url = "~/BetList/SystemParlayResult?refNo=" + refNo;
+        var url = core.resolveUrl('~/BetList/SystemParlayDetails', {
+            refNo: refNo
+        });
         $.ajax({
             type: "GET",
             contentType: "text/html",
@@ -141,7 +140,6 @@ fanex.betlist.core = {
         });
     },
     showResults: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
-        'use strict';
         var data = {
             matchId: matchid,
             raceNo: raceNo,

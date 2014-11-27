@@ -42,7 +42,7 @@
 
         protected TicketBuilderParameters Parameters { get; private set; }
 
-        protected TicketResult TicketResult
+        protected BetListResult TicketResult
         {
             get { return Parameters.TicketResult; }
         }

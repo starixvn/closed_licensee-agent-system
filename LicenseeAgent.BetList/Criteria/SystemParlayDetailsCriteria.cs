@@ -6,7 +6,7 @@
     /// <summary>
     /// SystemParlayResultCriteria class.
     /// </summary>
-    public class SystemParlayResultCriteria : CriteriaBase
+    public class SystemParlayDetailsCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

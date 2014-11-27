@@ -23,41 +23,8 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Report_Statement",
-                "Report/Statement/{action}/{id}",
-                new
-                {
-                    controller = "Statement",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                },
-                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
-
-            context.MapRoute(
-                "Report_AgentWinLoss",
-                "Report/AgentWinLoss/{action}/{id}",
-                new
-                {
-                    controller = "AgentWinLoss",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                },
-                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
-
-            context.MapRoute(
-                "Report_AgentOutstanding",
-                "Report/AgentOutstanding/{action}/{id}",
-                new
-                {
-                    controller = "AgentOutstanding",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                },
-                namespaces: new[] { "LicenseeAgent.Report.Controllers" });
-
-            context.MapRoute(
-                "Report_Result",
-                "Report/Results/{action}/{id}",
+                "Report_Default",
+                "Report/{controller}/{action}/{id}",
                 new
                 {
                     controller = "Results",

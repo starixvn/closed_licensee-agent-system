@@ -14,28 +14,28 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetBetList(ICriteria criteria);
+        BetListResult GetBetList(ICriteria criteria);
 
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
         /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
+        BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
 
         /// <summary>
         /// Get system parlay result data.
         /// </summary>
         /// <param name="criteria">System parlay result criteria.</param>
         /// <returns>System Parlay Data.</returns>
-        SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria);
+        SystemParlayData GetSystemParlayResult(SystemParlayDetailsCriteria criteria);
 
         /// <summary>
         /// Get Bet List Details.
         /// </summary>
         /// <param name="criteria">Bet List Details Criteria.</param>
         /// <returns>A list of bet list details.</returns>
-        IList<RawBetListDetails> GetBetListDetails(BetListDetailsCriteria criteria);
+        IList<TicketDetail> GetBetListDetails(TicketDetailsCriteria criteria);
 
         /// <summary>
         /// Get Parlay List.
@@ -44,7 +44,7 @@
         /// <returns>
         /// Ticket results.
         /// </returns>
-        TicketResult GetParlayList(ICriteria criteria);
+        BetListResult GetParlayList(ICriteria criteria);
 
         /// <summary>
         /// Get Sports book Results.
@@ -64,6 +64,6 @@
         /// </summary>
         /// <param name="criteria">Bet List Results Parlay Criteria.</param>
         /// <returns>The parlay list.</returns>
-        IList<Parlay> GetParlayResults(BetListResultsParlayCriteria criteria);
+        IList<Parlay> GetParlayResults(ResultsParlayCriteria criteria);
     }
 }

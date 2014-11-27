@@ -8,6 +8,8 @@
     /// </summary>
     public static class BundleConfig
     {
+        #region Register bundles
+
         /// <summary>
         /// Registers the bundles.
         /// </summary>
@@ -19,6 +21,8 @@
             RegisterPages(bundles);
             bundles.FileSetOrderList.Clear();
         }
+
+        #endregion Register bundles
 
         #region Core
 
@@ -64,9 +68,9 @@
                 "~/scripts/ResourcesJs/BetType.zh-TW.js"));
 
             bundles.Add(new ScriptBundle("~/js/report/betlist").Include(
-                "~/scripts/report.js").Include(
-                "~/scripts/report-betlist.js").Include(
-                "~/Views/BetList/Resources/betlist-core.js"));
+                "~/scripts/report.js",
+                "~/scripts/report-betlist.js",
+                "~/Views/BetList/Scripts/betlist-core.js"));
         }
 
         #endregion Core
@@ -180,7 +184,7 @@
 
         private static void RegisterErrorPage(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/error/UnderMaintenance").Include(
+            bundles.Add(new ScriptBundle("~/js/error/under-maintenance").Include(
                 "~/views/error/resources/under-maintenance-error.js"));
             bundles.Add(new LessBundle("~/css/error").Include(
                 "~/views/error/resources/Index.less"));
@@ -223,24 +227,20 @@
                 "~/scripts/MonthPicker/monPickr-0.0.3.css"));
 
             // For Bet List
-            bundles.Add(new ScriptBundle("~/js/angulargrid").Include(
-                "~/scripts/angularjs/angular-sanitize.js"));
             bundles.Add(new LessBundle("~/css/betlist").Include(
-                "~/content/betlist/betlist.core.css",
-                "~/content/betlist/betlist.css",
-                "~/content/betlist/system-parlay-detail.css",
+                "~/Views/BetList/Content/betlist.core.css",
+                "~/Views/BetList/Content/betlist.css",
+                "~/Views/BetList/Content/system-parlay-detail.css",
                 "~/Content/Fanex.Result/fanex.result.less"));
-            bundles.Add(new LessBundle("~/css/totalbets/parlay").Include(
-                "~/Views/BetList/Resources/totalbets.parlay.less"));
             bundles.Add(new ScriptBundle("~/js/betlist").Include(
-                "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/BetList/Resources/betlist-manager.js"));
+                "~/Views/BetList/Scripts/betlist-core.js",
+                "~/Views/BetList/Scripts/betlist-manager.js"));
             bundles.Add(new ScriptBundle("~/js/totalbets/parlay").Include(
-                "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/BetList/Resources/totalbets-parlay.js"));
+                "~/Views/BetList/Scripts/betlist-core.js",
+                "~/Views/BetList/Scripts/totalbets-parlay.js"));
             bundles.Add(new ScriptBundle("~/js/betlistwinlost").Include(
-                "~/Views/BetList/Resources/betlist-core.js",
-                "~/Views/BetList/Resources/betlist-winlost.js"));
+                "~/Views/BetList/Scripts/betlist-core.js",
+                "~/Views/BetList/Scripts/betlist-winlost.js"));
         }
 
         /// <summary>

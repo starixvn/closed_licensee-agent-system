@@ -15,27 +15,27 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetBetList(ICriteria criteria);
+        BetListResult GetBetList(ICriteria criteria);
 
         /// <summary>
         /// Get Bet List Parlay.
         /// </summary>
         /// <param name="criteria">Mix Parlay Details Criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
+        BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria);
 
         /// <summary>
         /// Get system parlay result data.
         /// </summary>
         /// <param name="criteria">System parlay result criteria.</param>
         /// <returns>System Parlay Data.</returns>
-        SystemParlayData GetSystemParlayResult(SystemParlayResultCriteria criteria);
+        SystemParlayData GetSystemParlayResult(SystemParlayDetailsCriteria criteria);
 
         /// <summary>
         /// Get Parlay List.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Ticket results.</returns>
-        TicketResult GetParlayList(ICriteria criteria);
+        BetListResult GetParlayList(ICriteria criteria);
     }
 }

@@ -6,9 +6,9 @@
     /// <summary>
     /// TicketResult class.
     /// </summary>
-    public class TicketResult
+    public class BetListResult
     {
-        public TicketResult()
+        public BetListResult()
         {
             MainTicketList = new List<LasTicket>();
             TicketDataList = new List<ITicketData>();

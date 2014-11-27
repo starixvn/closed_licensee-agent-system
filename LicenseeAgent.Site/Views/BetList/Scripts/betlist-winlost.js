@@ -1,4 +1,4 @@
-﻿/*global core, language, showMixParlayDetailurl, pageContext*/
+﻿/*global core, language, pageContext*/
 
 var gridOptions = {
     columns: [
@@ -27,7 +27,7 @@ var betList = (function ($) {
                 var agentId = $(this).data('agent-id');
                 var agentLevel = $(this).data('agent-level');
                 var agentName = $(this).text();
-                betList.ViewDownline(agentId, agentLevel, agentName);
+                betList.viewDownline(agentId, agentLevel, agentName);
             });
 
             var hiddenColumns = [];
@@ -72,12 +72,14 @@ var betList = (function ($) {
         },
         showMixParlayDetail: function (transId, divEvent) {
             var loadMixParlayDetail = function (transId) {
-                var url = showMixParlayDetailurl + transId;
+                var url = core.resolveUrl('~/BetList/MixParlayDetails', {
+                    transId: transId
+                });
                 $.ajax({
                     type: "GET",
                     contentType: "text/html",
                     cache: false,
-                    url: core.resolveUrl(url),
+                    url: url,
                     beforeSend: function () {
                         core.blockUI();
                     },
@@ -100,11 +102,11 @@ var betList = (function ($) {
                 $('.freegrid').fanexGrid('resizeGrid');
             }
         },
-        ViewDownline: function (agentId, agentLevel, username) {
+        viewDownline: function (agentId, agentLevel, username) {
             $("#BreadCrumb").setBreadCrumb(agentId, agentLevel, username);
             location.href = core.resolveUrl("~/Report/AgentWinLoss?agentId=" + agentId + "&agentLevel=" + agentLevel
-                                    + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb=" + $("#BreadCrumb").val()
-                                    + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#ProductIds").val());
+                + "&username=" + username + "&drawFilter=" + $('#DrawFilter').val() + "&breadcrumb=" + $("#BreadCrumb").val()
+                + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&Product=" + $("#ProductIds").val());
         }
     };
 } (jQuery));

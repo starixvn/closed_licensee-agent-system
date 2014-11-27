@@ -5,7 +5,7 @@
     /// <summary>
     /// BetListWinLossViewModel class.
     /// </summary>
-    public class BetListWinLossViewModel
+    public class WinLossViewModel
     {
         public int CustId { get; set; }
 
@@ -17,9 +17,9 @@
 
         public string DrawFilter { get; set; }
 
-        public string StatusIds { get; set; }
+        public string Status { get; set; }
 
-        public string ProductIds { get; set; }
+        public string Product { get; set; }
 
         public string Title { get; set; }
     }

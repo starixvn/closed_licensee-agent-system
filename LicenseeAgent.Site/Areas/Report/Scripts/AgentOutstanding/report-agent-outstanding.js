@@ -1,9 +1,8 @@
 ﻿/*global core, language */
+'use strict';
 
 var report = report || {};
 report.agentOutstanding = (function ($) {
-    'use strict';
-
     var isShowBetList = false;
 
     /* jshint -W101 */
@@ -139,7 +138,7 @@ report.agentOutstanding = (function ($) {
             });
 
             core.ajaxJSON({
-                url: core.resolveUrl('~/Report/AgentOutstanding/BetList'),
+                url: core.resolveUrl('~/BetList/Outstanding'),
                 data: {
                     CustId: custId
                 }

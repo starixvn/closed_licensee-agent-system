@@ -19,10 +19,10 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                     "MemberArrangement_default",
-                     "MemberArrangement/{action}/{id}",
-                     new { controller = "MemberArrangement", action = "Index", id = UrlParameter.Optional },
-                     new[] { "LicenseeAgent.MemberArrangement.Controllers" });
+                "MemberArrangement_default",
+                "MemberArrangement/{action}/{id}",
+                new { controller = "MemberArrangement", action = "Index", id = UrlParameter.Optional },
+                new[] { "LicenseeAgent.MemberArrangement.Controllers" });
             RegisterBundles(BundleTable.Bundles);
         }
 

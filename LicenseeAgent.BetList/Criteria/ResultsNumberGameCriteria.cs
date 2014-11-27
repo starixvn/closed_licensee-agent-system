@@ -5,11 +5,9 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BetListResultsVirtualRacingCriteria : CriteriaBase
+    public class ResultsNumberGameCriteria : CriteriaBase
     {
         public int MatchId { get; set; }
-
-        public string RaceNo { get; set; }
 
         /// <summary>
         /// Get SP name.
@@ -17,7 +15,7 @@
         /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            return "LAS_BetList_SelMatchResultVirtualRacing";
+            return "LAS_Betlist_SelMatchResultNumberGame";
         }
 
         public override bool IsValid()

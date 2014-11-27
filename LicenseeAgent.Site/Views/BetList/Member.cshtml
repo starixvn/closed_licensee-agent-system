@@ -1,5 +1,5 @@
-﻿@using LicenseeAgent.BetList.ViewResults
-@model BetListSelectByMemberViewResult
+﻿@using LicenseeAgent.BetList.ViewModels
+@model MemberViewModel
 @{
     ViewBag.Title = Las.PageTitle_BetList;
 }
@@ -21,12 +21,14 @@
     @ViewBag.Title
 </div>
 <div>
-    @using (Html.BeginForm("BetListSelByMember", "BetList", FormMethod.Post,
+    @using (Html.BeginForm(null, null, FormMethod.Post,
         new { @class = "form-inline form-filter ", id = "search-form" }))
     {
         <div id="filter-area" class="clearfix filter-area">
             <div class="controls-row inline">
-                <label class="w60">@Las.Month</label>
+                <label class="w60">
+                    @Las.Month
+                </label>
                 <div id="month-picker-control" class="inline">
                 </div>
             </div>

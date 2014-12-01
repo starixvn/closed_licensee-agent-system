@@ -14,13 +14,13 @@
     @Scripts.Render("~/js/totalbets")
     <script type="text/javascript">
         $(function () {
-            totalBets.basketball.init();
+            TOTAL_BETS.BASKETBALL.init();
         });
     </script>
 }
 <div class="legend">
     @ViewBag.Title
-    <span id="totalbets-back" onclick="totalBets.submitForm();" class="history-back hide">
+    <span id="totalbets-back" onclick="TOTAL_BETS.submitForm();" class="history-back hide">
         <i class="icon-history-back"></i>
         @Las.Back
     </span>

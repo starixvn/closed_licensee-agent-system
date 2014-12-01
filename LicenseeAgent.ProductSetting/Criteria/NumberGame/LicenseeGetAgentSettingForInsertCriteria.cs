@@ -9,7 +9,8 @@
     {
         public int AgentL0Id { get; set; }
 
-        public int MsgId { get; set; }
+        [SpParam(SqlParamName = "MsgId")]
+        public int ErrCode { get; set; }
 
         public short MaxPTOfLicensee { get; set; }
 

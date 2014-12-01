@@ -1,9 +1,9 @@
-﻿@{
+﻿@model IList<NewMemberOfMonthEntity>
+@{
     Layout = null;
     var isShowCredit = SessionManager.CurrentSession.AgentInfo.LegendType == LegendType.Credit;
     var colSpan = isShowCredit ? 3 : 2;
 }
-@model IList<NewMemberOfMonthEntity>
 <table>
     <colgroup>
         <col />

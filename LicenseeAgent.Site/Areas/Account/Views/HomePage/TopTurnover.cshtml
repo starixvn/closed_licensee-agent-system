@@ -1,13 +1,15 @@
-﻿@{
+﻿@model IList<TopTurnoverEntity>
+@{
     Layout = null;
 }
-@model IList<TopTurnoverEntity>
 <table>
     <thead>
         <tr>
-            <th>@Las.Username
+            <th>
+                @Las.Username
             </th>
-            <th>@Las.Turnover
+            <th>
+                @Las.Turnover
             </th>
         </tr>
     </thead>
@@ -17,9 +19,11 @@
             foreach (var member in Model)
             {
             <tr>
-                <td>@member.Username
+                <td>
+                    @member.Username
                 </td>
-                <td class="text-right">@LicenseeAgent.Core.Utility.Formatter.FormatDecimal(member.Turnover)
+                <td class="text-right">
+                    @LicenseeAgent.Core.Utility.Formatter.FormatDecimal(member.Turnover)
                 </td>
             </tr>
             }

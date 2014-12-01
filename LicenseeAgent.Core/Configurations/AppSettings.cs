@@ -12,43 +12,13 @@
     /// </summary>
     public static class AppSettings
     {
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Having many application settings")]
+        #region Constructors
+
         static AppSettings()
         {
-            var downTimeValue = GetValue("DownTime");
-            if (string.IsNullOrEmpty(downTimeValue))
-            {
-                IsDownTime = false;
-            }
-            else
-            {
-                IsDownTime = true;
-                var downTimes = downTimeValue.Split('-');
-                BeginTime = downTimes[0].Trim();
-                EndTime = downTimes[1].Trim();
-            }
-
+            InitDownTime();
+            InitSiteEnvironment();
             IsAdminSite = GetValue("IsAdminSite") == "1";
-            var siteEnvironment = GetValue("SiteEnvironment").ToLower();
-            switch (siteEnvironment)
-            {
-                case "prod":
-                    SiteEnvironment = SiteEnvironment.Production;
-                    break;
-
-                case "uat":
-                    SiteEnvironment = SiteEnvironment.Uat;
-                    break;
-
-                case "local":
-                    SiteEnvironment = SiteEnvironment.Local;
-                    break;
-
-                default:
-                    ThrowInvalidValueException("SiteEnvironment");
-                    break;
-            }
-
             UnderMaintenanceUrl = GetValue("UnderMaintenanceUrl");
             TaiwanAPIUrl = new Uri(GetValue("TaiwanAPIUrl"));
             TrustedAdmins = GetValue("TrustedAdmins");
@@ -65,6 +35,10 @@
                 Logger.Error("Key 'OfferedProducts' has an invalid value");
             }
         }
+
+        #endregion Constructors
+
+        #region Properties
 
         public static bool IsAdminSite { get; private set; }
 
@@ -108,6 +82,55 @@
 
         public static string OfferedProducts { get; private set; }
 
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Initializes down time.
+        /// </summary>
+        private static void InitDownTime()
+        {
+            var downTimeValue = GetValue("DownTime");
+            if (string.IsNullOrEmpty(downTimeValue))
+            {
+                IsDownTime = false;
+            }
+            else
+            {
+                IsDownTime = true;
+                var downTimes = downTimeValue.Split('-');
+                BeginTime = downTimes[0].Trim();
+                EndTime = downTimes[1].Trim();
+            }
+        }
+
+        /// <summary>
+        /// Initializes the site environment.
+        /// </summary>
+        private static void InitSiteEnvironment()
+        {
+            var siteEnvironment = GetValue("SiteEnvironment").ToLower();
+            switch (siteEnvironment)
+            {
+                case "prod":
+                    SiteEnvironment = SiteEnvironment.Production;
+                    break;
+
+                case "uat":
+                    SiteEnvironment = SiteEnvironment.Uat;
+                    break;
+
+                case "local":
+                    SiteEnvironment = SiteEnvironment.Local;
+                    break;
+
+                default:
+                    ThrowInvalidValueException("SiteEnvironment");
+                    break;
+            }
+        }
+
         /// <summary>
         /// Gets the value.
         /// </summary>
@@ -133,5 +156,7 @@
             Logger.HandleException(exception);
             throw exception;
         }
+
+        #endregion Methods
     }
 }

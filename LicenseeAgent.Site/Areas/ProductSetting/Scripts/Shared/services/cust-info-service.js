@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global core */
+/*global CORE */
 
 if (fanex.customerSetting) {
     //// Helper
@@ -15,7 +15,7 @@ if (fanex.customerSetting) {
         function ($http, $timeout, $rootScope, $q) {
             'use strict';
             if ($('#userName').length > 0) {
-                var apiPath = core.resolveUrl($('#userName').data('href'));
+                var apiPath = CORE.resolveUrl($('#userName').data('href'));
                 return {
                     checkUsername: function (scope, userName) {
                         var params = {

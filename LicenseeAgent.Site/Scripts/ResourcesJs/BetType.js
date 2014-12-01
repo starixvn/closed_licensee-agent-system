@@ -1,7 +1,7 @@
 ﻿
-/*global language*/
+/*global LANGUAGE*/
 
-language.BetType = {};
+LANGUAGE.BetType = {};
 
 // Generated helper templates
 // Generated items

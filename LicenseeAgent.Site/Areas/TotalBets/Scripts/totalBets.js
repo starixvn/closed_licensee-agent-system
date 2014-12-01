@@ -1,16 +1,18 @@
-﻿/*global core, language, refreshCountDownMethods*/
+﻿/*global CORE, LANGUAGE, BET_LIST, refreshCountDownMethods*/
+/*exported TOTAL_BETS*/
 'use strict';
 
-var totalBets = (function ($this, $) {
+var TOTAL_BETS = (function ($this, $) {
     var $betListGridOptions;
+
     $this.init = function (betListGridOptions) {
         $betListGridOptions = betListGridOptions;
-        totalBets.initCountDown();
+        $this.initCountDown();
     };
 
     $this.initCountDown = function () {
         $("#refresh-count-down").refreshCountDown({
-            listTimeInterval: core.TimeInterval,
+            listTimeInterval: [15, 30, 45, 60, 75],
             timeIntervalName: "TimeInterval",
             timeIntervalValue: $("#server-time-interval").val(),
             formName: "main-form"
@@ -23,16 +25,16 @@ var totalBets = (function ($this, $) {
             showTooltip: true,
             maxHeight: 500,
             minWidth: 150,
-            checkAllText: language.getString('AllSports'),
-            noItemText: language.getString('NoSelectedSport'),
-            noneSelectedText: language.getString('PleaseSelectSport'),
-            selectedText: language.getString('NumberOfSelectedSports'),
-            tooltipNoItem: language.getString('NoSelectedSport'),
+            checkAllText: LANGUAGE.getString('AllSports'),
+            noItemText: LANGUAGE.getString('NoSelectedSport'),
+            noneSelectedText: LANGUAGE.getString('PleaseSelectSport'),
+            selectedText: LANGUAGE.getString('NumberOfSelectedSports'),
+            tooltipNoItem: LANGUAGE.getString('NoSelectedSport'),
             useCustomCheckAllText: true,
-            customCheckAllText: language.getString('AllSports'),
+            customCheckAllText: LANGUAGE.getString('AllSports'),
             showParentSelectedText: false,
             showFooter: true,
-            footerButtonText: language.getString('OK'),
+            footerButtonText: LANGUAGE.getString('OK'),
             onLeave: function () {
                 onChange();
             },
@@ -52,16 +54,16 @@ var totalBets = (function ($this, $) {
             showTooltip: true,
             maxHeight: 500,
             minWidth: 300,
-            checkAllText: language.getString('AllLeagues'),
-            noItemText: language.getString('NoSelectedLeague'),
-            noneSelectedText: language.getString('PleaseSelectLeague'),
-            selectedText: language.getString('NumberOfSelectedLeagues'),
-            tooltipNoItem: language.getString('NoSelectedLeague'),
+            checkAllText: LANGUAGE.getString('AllLeagues'),
+            noItemText: LANGUAGE.getString('NoSelectedLeague'),
+            noneSelectedText: LANGUAGE.getString('PleaseSelectLeague'),
+            selectedText: LANGUAGE.getString('NumberOfSelectedLeagues'),
+            tooltipNoItem: LANGUAGE.getString('NoSelectedLeague'),
             useCustomCheckAllText: true,
-            customCheckAllText: language.getString('AllLeagues'),
+            customCheckAllText: LANGUAGE.getString('AllLeagues'),
             showParentSelectedText: false,
             showFooter: true,
-            footerButtonText: language.getString('OK'),
+            footerButtonText: LANGUAGE.getString('OK'),
             onLeave: function () {
                 onChange();
             },
@@ -81,16 +83,16 @@ var totalBets = (function ($this, $) {
             showTooltip: true,
             maxHeight: 500,
             minWidth: 250,
-            checkAllText: language.getString('AllEvents'),
-            noItemText: language.getString('NoSelectedEvent'),
-            noneSelectedText: language.getString('PleaseSelectEvent'),
-            selectedText: language.getString('NumberOfSelectedEvents'),
-            tooltipNoItem: language.getString('NoSelectedEvent'),
+            checkAllText: LANGUAGE.getString('AllEvents'),
+            noItemText: LANGUAGE.getString('NoSelectedEvent'),
+            noneSelectedText: LANGUAGE.getString('PleaseSelectEvent'),
+            selectedText: LANGUAGE.getString('NumberOfSelectedEvents'),
+            tooltipNoItem: LANGUAGE.getString('NoSelectedEvent'),
             useCustomCheckAllText: true,
-            customCheckAllText: language.getString('AllEvents'),
+            customCheckAllText: LANGUAGE.getString('AllEvents'),
             showParentSelectedText: false,
             showFooter: true,
-            footerButtonText: language.getString('OK'),
+            footerButtonText: LANGUAGE.getString('OK'),
             onLeave: function () {
                 onChange();
             },
@@ -110,16 +112,16 @@ var totalBets = (function ($this, $) {
             showTooltip: true,
             maxHeight: 500,
             minWidth: 250,
-            checkAllText: language.getString('AllTeams'),
-            noItemText: language.getString('NoSelectedTeam'),
-            noneSelectedText: language.getString('PleaseSelectTeam'),
-            selectedText: language.getString('NumberOfSelectedTeams'),
-            tooltipNoItem: language.getString('NoSelectedTeam'),
+            checkAllText: LANGUAGE.getString('AllTeams'),
+            noItemText: LANGUAGE.getString('NoSelectedTeam'),
+            noneSelectedText: LANGUAGE.getString('PleaseSelectTeam'),
+            selectedText: LANGUAGE.getString('NumberOfSelectedTeams'),
+            tooltipNoItem: LANGUAGE.getString('NoSelectedTeam'),
             useCustomCheckAllText: true,
-            customCheckAllText: language.getString('AllTeams'),
+            customCheckAllText: LANGUAGE.getString('AllTeams'),
             showParentSelectedText: false,
             showFooter: true,
-            footerButtonText: language.getString('OK'),
+            footerButtonText: LANGUAGE.getString('OK'),
             onLeave: function () {
                 onChange();
             },
@@ -134,7 +136,7 @@ var totalBets = (function ($this, $) {
     };
 
     $this.reRenderAfterPaged = function () {
-        core.ajaxJSON({
+        CORE.ajaxJSON({
             url: $('form').attr('action'),
             data: {
                 LeagueList: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -147,7 +149,7 @@ var totalBets = (function ($this, $) {
     };
 
     $this.generateBetListLink = function (matchId, bettype, betteam, showliveticket, linkvalue) {
-        var linkHtmlString = "<span class=\"data-link\" onclick=\"totalBets.showBetList(";
+        var linkHtmlString = "<span class=\"data-link\" onclick=\"TOTAL_BETS.showBetList(";
         linkHtmlString += matchId + ",'" + bettype + "','" + betteam + "'," + showliveticket + ")\">";
         linkHtmlString += linkvalue + "</span>";
         return linkHtmlString;
@@ -158,8 +160,8 @@ var totalBets = (function ($this, $) {
         $('form').hide();
         $("#totalbets-back").attr("class", "history-back");
 
-        core.ajaxJSON({
-            url: core.resolveUrl("~/BetList/TotalBets"),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl("~/BetList/TotalBets"),
             data: {
                 MatchId: matchId,
                 BetType: betType,
@@ -167,7 +169,7 @@ var totalBets = (function ($this, $) {
                 ShowLiveTicket: showliveticket
             }
         }, function (data) {
-            fanex.betlist.core.reRenderAfterPagedSuccessfully($betListGridOptions, data);
+            BET_LIST.reRenderAfterPagedSuccessfully($betListGridOptions, data);
         });
     };
 
@@ -178,4 +180,4 @@ var totalBets = (function ($this, $) {
     };
 
     return $this;
-} (totalBets || {}, jQuery));
+} (TOTAL_BETS || {}, jQuery));

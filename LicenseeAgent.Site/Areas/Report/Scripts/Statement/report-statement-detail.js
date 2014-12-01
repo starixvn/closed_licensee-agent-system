@@ -1,24 +1,23 @@
-﻿/*global core, popup, language, moment, pageContext */
+﻿/*global CORE, LANGUAGE, POPUP, ENUMS, GRID, moment, pageContext */
+'use strict';
 
-var report = report || {};
-report.statement = report.statement || {};
-report.statement.detail = (function ($) {
-    'use strict';
+var REPORT = REPORT || {};
+REPORT.STATEMENT = REPORT.STATEMENT || {};
+REPORT.STATEMENT.DETAIL = (function ($this, $) {
     /* jshint -W101 */
     var agentGridOptions = {
         columns: [
-            { HeaderText: language.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
-            { HeaderText: language.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
+            { HeaderText: LANGUAGE.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
+            { HeaderText: LANGUAGE.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('WinLoss'), Width: 100, Name: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, false, {1});'>{2}</a>".format(rowData.AgentId, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewTransferDetail({0}, false, {1});'>{2}</a>".format(rowData.AgentId, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
+            { HeaderText: LANGUAGE.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
         ],
-        gridExpandHeight: 125,
         showNumberColumn: false,
         showPager: true,
         autoResizeColumn: true
@@ -26,28 +25,27 @@ report.statement.detail = (function ($) {
 
     var memberGridOptions = {
         columns: [
-            { HeaderText: language.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
-            { HeaderText: language.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
+            { HeaderText: LANGUAGE.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
+            { HeaderText: LANGUAGE.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('WinLoss'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, report.Betting, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, ENUMS.TicketStatus.Betting, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
+            { HeaderText: LANGUAGE.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, report.Outstanding, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, ENUMS.TicketStatus.Outstanding, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
+            { HeaderText: LANGUAGE.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('TransferAmt'), Width: 100, Name: "TransferAmt", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewTransferDetail({0}, true, {1});'>{2}</a>".format(rowData.CustId, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewTransferDetail({0}, true, {1});'>{2}</a>".format(rowData.CustId, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
+            { HeaderText: LANGUAGE.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
         ],
-        gridExpandHeight: 125,
         showNumberColumn: false,
         showPager: true,
         autoResizeColumn: true
@@ -55,34 +53,33 @@ report.statement.detail = (function ($) {
 
     var memberGridOptionsForCash = {
         columns: [
-            { HeaderText: language.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
-            { HeaderText: language.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
-            { HeaderText: language.getString('WinLoss'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
+            { HeaderText: LANGUAGE.getString('Date'), Width: 100, Name: "Date", HeaderAlign: "center", CellAlign: "center", FormatDateTime: "MM/DD/YYYY", CanResize: false },
+            { HeaderText: LANGUAGE.getString('OpeningBalance'), Width: 100, Name: "OpeningBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('Turnover'), Width: 100, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' },
+            { HeaderText: LANGUAGE.getString('WinLoss'), Width: 100, Name: "Betting", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, report.Betting, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewBetList({0}, \"{1}\", \"{2}\");'>{3}</a>".format(rowData.CustId, ENUMS.TicketStatus.Betting, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
+            { HeaderText: LANGUAGE.getString('Outstanding'), Width: 100, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$',
                 Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                    return "<a class='num-link' href='javascript:report.statement.detail.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, report.Outstanding, rowData.Date, cellFormated);
+                    return "<a class='num-link' href='javascript:REPORT.STATEMENT.DETAIL.viewBetList({0}, \"{1}\", \"{2}\", true);'>{3}</a>".format(rowData.CustId, ENUMS.TicketStatus.Outstanding, rowData.Date, cellFormated);
                 }
             },
-            { HeaderText: language.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('Deposit'), Width: 100, Name: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('Withdrawal'), Width: 100, Name: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('Bonus'), Width: 100, Name: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('Adjustment'), Width: 100, Name: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
-            { HeaderText: language.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
+            { HeaderText: LANGUAGE.getString('Commission'), Width: 100, Name: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('Deposit'), Width: 100, Name: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('Withdrawal'), Width: 100, Name: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('Bonus'), Width: 100, Name: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('Adjustment'), Width: 100, Name: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$', ThClass: 'alter-column' },
+            { HeaderText: LANGUAGE.getString('ClosingBalance'), Width: 100, Name: "ClosingBalance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '$' }
         ],
-        gridExpandHeight: 125,
         showNumberColumn: false,
         showPager: true,
         autoResizeColumn: true
     };
     /* jshint +W101 */
 
-    var genGridRows = function (list, options) {
+    var generateBodyRows = function (list, options) {
         var columns = options.columns;
         var rowCssClass = options.rowCssClass; // custom option
         var rowHeight = options.RowHeight;
@@ -160,87 +157,76 @@ report.statement.detail = (function ($) {
         };
     };
 
-    return {
-        init: function () {
-            $('.datepicker').datepicker({
-                endDate: '+3y'
-            });
-            $('form').submit(function (e) {
-                report.statement.detail.submit();
-                e.preventDefault();
-            });
-            $('form').submit();
-        },
-        submit: function () {
-            if (!$.trim($('#Username').val())) {
-                alert(language.getString('UsernameRequired'));
-                return;
-            }
-            var submitOptions = $('form').serializeObject();
-            $.ajax({
-                url: $('form').attr('action'),
-                type: 'post',
-                data: jQuery.param(submitOptions),
-                beforeSend: function () {
-                    core.blockUI();
-                },
-                success: function (data) {
-                    if (data.ErrCode === 0) {
-                        var gridOptions = data.IsAgent
-                            ? agentGridOptions
-                            : pageContext.LegendType === 0 ? memberGridOptions : memberGridOptionsForCash;
-                        gridOptions.pagerOption = {
-                            itemsPerPage: core.pageSizes[2],
-                            currentPage: 0,
-                            itemsPerPageArray: core.pageSizes,
-                            totalItem: data.List.length
-                        };
-
-                        gridOptions.bodyRows = genGridRows(data.List, gridOptions);
-                        $('#grid').show().fanexGrid(gridOptions);
-
-                        if ($('#spanUsername').length > 0) {
-                            $('#spanUsername').html($('#Username').val());
-                        }
-                    }
-                    else {
-                        alert(data.ErrMsg);
-                    }
-                },
-                complete: function () {
-                    core.unblockUI();
-                }
-            });
-        },
-        viewTransferDetail: function (custId, isMember, date) {
-            var dateTime = moment(date).format("MM/DD/YYYY");
-            var url = core.resolveUrl('~/Report/Statement/TransferDetail', {
-                custId: custId,
-                fromDate: dateTime,
-                toDate: dateTime,
-                userName: $('#Username').val(),
-                isMember: isMember
-            });
-            popup.openFrame(url, {
-                width: 550,
-                height: 400
-            });
-        },
-        viewBetList: function (custId, status, date, hideFooter) {
-            var dateTime = moment(date).format("MM/DD/YYYY");
-            hideFooter = hideFooter || false;
-            var url = core.resolveUrl('~/BetList/WinLoss', {
-                custId: custId,
-                fromDate: dateTime,
-                toDate: dateTime,
-                status: status,
-                product: $("#Product").val(),
-                hideFooter: hideFooter
-            });
-            popup.openFrame(url, {
-                width: 970,
-                height: 600
-            });
+    var submit = function () {
+        if (!$.trim($('#Username').val())) {
+            alert(LANGUAGE.getString('UsernameRequired'));
+            return;
         }
+        CORE.ajaxJSON({
+            url: $('form').attr('action'),
+            data: $('form').serialize()
+        }, function (response) {
+            var gridOptions = response.IsAgent
+                ? agentGridOptions
+                : pageContext.LegendType === 0 ? memberGridOptions : memberGridOptionsForCash;
+            gridOptions.pagerOption = {
+                itemsPerPage: GRID.PageSizes[2],
+                currentPage: 0,
+                itemsPerPageArray: GRID.PageSizes,
+                totalItem: response.List.length
+            };
+
+            gridOptions.bodyRows = generateBodyRows(response.List, gridOptions);
+            $('#grid').show().fanexGrid(gridOptions);
+
+            if ($('#spanUsername').length > 0) {
+                $('#spanUsername').html($('#Username').val());
+            }
+        });
     };
-} (jQuery));
+
+    $this.init = function () {
+        $('.datepicker').datepicker({
+            endDate: '+3y'
+        });
+        $('form').submit(function (e) {
+            submit();
+            e.preventDefault();
+        });
+        $('form').submit();
+    };
+
+    $this.viewTransferDetail = function (custId, isMember, date) {
+        var dateTime = moment(date).format("MM/DD/YYYY");
+        var url = CORE.resolveUrl('~/Report/Statement/TransferDetail', {
+            custId: custId,
+            fromDate: dateTime,
+            toDate: dateTime,
+            userName: $('#Username').val(),
+            isMember: isMember
+        });
+        POPUP.openFrame(url, {
+            width: 550,
+            height: 400
+        });
+    };
+
+    $this.viewBetList = function (custId, status, date, hideFooter) {
+        var dateTime = moment(date).format("MM/DD/YYYY");
+        hideFooter = hideFooter || false;
+        var url = CORE.resolveUrl('~/BetList/WinLoss', {
+            custId: custId,
+            fromDate: dateTime,
+            toDate: dateTime,
+            status: status,
+            product: $("#Product").val(),
+            hideFooter: hideFooter
+        });
+        POPUP.openFrame(url, {
+            width: 970,
+            height: 600
+        });
+    };
+
+    return $this;
+} (REPORT.STATEMENT.DETAIL || {}, jQuery));

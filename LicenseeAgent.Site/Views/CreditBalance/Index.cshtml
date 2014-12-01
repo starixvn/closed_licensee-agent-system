@@ -1,5 +1,8 @@
-﻿@{
-    ViewBag.Title = @Las.CreditBalance;
+﻿@using LicenseeAgent.CreditBalance.ViewModels
+@using LicenseeAgent.Core.Utility
+@model CreditBalanceViewModel
+@{
+    ViewBag.Title = Las.CreditBalance;
 }
 @section css
 {
@@ -8,16 +11,15 @@
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm("Search", null, FormMethod.Post,
-    new { @class = "form-inline form-filter ", id = "search-form" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-inline form-filter " }))
 {
     <div class="controls-row">
-        @Html.Label("Username", Las.Username)
-        @Html.TextBox("Username", string.Empty, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "w160", @placeholder = @Las.Username, @autocomplete = "off" })
     </div>
     <div class="controls-row">
-        @Html.Label("Status", Las.Status)
-        @Html.DropDownList("Status", ModelSettings.StatusList, new { @class = "selectpicker w100" })
+        @Html.LabelFor(m => m.Status)
+        @Html.DropDownListFor(m => m.Status, ModelSettings.StatusList, new { @class = "selectpicker w100" })
     </div>
     <div class="controls-row">
         <button class="btn btn-primary" type="submit">
@@ -31,13 +33,10 @@
 {
     @Scripts.Render("~/js/contextmenu")
     @Scripts.Render("~/js/fanexgrid")
-    @Scripts.Render("~/js/creditbalance-list")
-    @if (SessionManager.CurrentSession.AgentInfo.IsLastLevel)
-    {
-        @Html.Partial("~/Views/CreditBalance/MemberList.cshtml")
-    }
-    else
-    {
-        @Html.Partial("~/Views/CreditBalance/AgentList.cshtml")
-    }
+    @Scripts.Render("~/js/credit-balance")
+    <script type="text/javascript">
+        $(function () {
+            CREDIT_BALANCE_LIST.init(@Formatter.FormatJson(SessionManager.CurrentSession.AgentInfo.IsLastLevel));
+        });
+    </script>
 }

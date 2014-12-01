@@ -2,12 +2,12 @@
 @{
     ViewBag.Title = Model.MatchName;
     var backLink = Url.Action("Index", "Soccer", new SoccerViewModel
-    { 
-        SelectedLeagues = Model.SelectedLeagues, 
-        SelectedEvents = Model.SelectedEvents, 
-        TimeInterval = Model.TimeInterval, 
-        CheckAllLeague = Model.CheckAllLeague, 
-        CheckAllEvent = Model.CheckAllEvent 
+    {
+        SelectedLeagues = Model.SelectedLeagues,
+        SelectedEvents = Model.SelectedEvents,
+        TimeInterval = Model.TimeInterval,
+        CheckAllLeague = Model.CheckAllLeague,
+        CheckAllEvent = Model.CheckAllEvent
     });
     var soccerDetailConfiguration = SettingConfigurations.SoccerDetailConfiguration;
 }

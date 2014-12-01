@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global core */
+/*global CORE */
 
 if (fanex.customerSetting) {
     // An agent edit another agent in the simple mode
@@ -18,7 +18,7 @@ if (fanex.customerSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-simple-mode.html'),
+            templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-simple-mode.html'),
             link: function (scope, element) {
                 var modelData = scope.modelData;
                 fanex.customerSetting.betLimitService.changeSettingValidation(modelData);
@@ -40,7 +40,7 @@ if (fanex.customerSetting) {
             scope: {
                 modelData: '='
             },
-            templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-simple-mode-readonly.html'),
+            templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-simple-mode-readonly.html'),
             link: function (scope, element) {
                 var modelData = scope.modelData;
                 modelData.sportTypeName = languageService.getSportName(modelData.SportId, modelData.BetTypeId);
@@ -65,7 +65,7 @@ if (fanex.customerSetting) {
                 betSetting: '=',
                 currentIndex: '='
             },
-            templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-advanced-mode.html'),
+            templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-advanced-mode.html'),
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');
@@ -90,7 +90,7 @@ if (fanex.customerSetting) {
                 betSetting: '=',
                 currentIndex: '='
             },
-            templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-advanced-mode-readonly.html'),
+            templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Sportsbook/templates/betsetting/bet-setting-advanced-mode-readonly.html'),
             link: function (scope, element) {
                 var betSetting = scope.betSetting;
                 var inputControl = element.find('.input');

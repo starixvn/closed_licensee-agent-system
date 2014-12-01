@@ -1,6 +1,6 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 
-language.SportType['en-US'] = {
+LANGUAGE.SportType['en-US'] = {
 	'1' : 'Soccer',
 	'2' : 'Basketball',
 	'3' : 'Football',
@@ -60,9 +60,11 @@ language.SportType['en-US'] = {
 	'186' : 'Virtual Tennis',
 	'201' : 'Financials',
 	'202' : 'Keno',
+	'249' : 'Voidbridge',
 	'250' : 'AG Casino',
 	'251' : 'Casino',
 	'252' : 'Bingo',
 	'253' : 'Games',
-	'254' : 'Playtech Casino'
+	'254' : 'Playtech Casino',
+	'255' : 'Gold Deluxe'
 };

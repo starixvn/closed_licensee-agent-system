@@ -26,7 +26,7 @@
             @viewResult.Message
         </p>
         <script type="text/javascript">
-            popup.trigger('remove-from-commission-group', @(Html.Raw(Formatter.FormatJson(viewResult.MemberCommissions))));
+            POPUP.trigger('remove-from-commission-group', @(Html.Raw(Formatter.FormatJson(viewResult.MemberCommissions))));
         </script>
         }
         <p>
@@ -47,7 +47,7 @@
             <button type="submit" class="btn btn-primary">
                 @Las.Submit
             </button>
-            <button type="button" class="btn btn-primary" onclick="popup.close()">
+            <button type="button" class="btn btn-primary" onclick="POPUP.close()">
                 @Las.Cancel
             </button>
         </div>

@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/angular.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global core */
+/*global CORE */
 
 if (fanex.customerSetting) {
     //// Edit position taking advanced mode.
@@ -17,7 +17,7 @@ if (fanex.customerSetting) {
                 restrict: 'E',
                 replace: true,
                 controller: 'PositionTakingController',
-                templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html'), // jshint ignore:line
+                templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-advanced-mode.html'), // jshint ignore:line
                 link: function (scope, element) {
                     //// Cache Elements.
                     var presetInput = element.find('.preset-input');
@@ -54,7 +54,7 @@ if (fanex.customerSetting) {
                 restrict: 'E',
                 replace: true,
                 controller: 'PositionTakingController',
-                templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html'), // jshint ignore:line
+                templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-advanced-mode-readonly.html'), // jshint ignore:line
                 link: function (scope, element) {
                     //// Cache Elements.
                     var presetInput = element.find('.preset-input');
@@ -91,7 +91,7 @@ if (fanex.customerSetting) {
                 restrict: 'E',
                 replace: true,
                 controller: 'PositionTakingController',
-                templateUrl: core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html'), // jshint ignore:line
+                templateUrl: CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/licensee-edit-agent-one-pt-advanced-mode.html'), // jshint ignore:line
                 link: function (scope, element) {
                     //// Cache Elements.
                     var maxInput = element.find('.max-input');
@@ -126,7 +126,7 @@ if (fanex.customerSetting) {
                 replace: true,
                 controller: 'PositionTakingController',
                 templateUrl:
-                    core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-member-advanced-mode.html'),
+                    CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-member-advanced-mode.html'),
                 link: function (scope, element) {
                     //// Cache Elements.
                     var valueInput = element.find('.value-input');
@@ -163,7 +163,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
                 templateUrl:
-                    core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
+                    CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-simple-mode.html'),
                 link: function (scope, element) {
                     fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleMode(
                         $timeout,
@@ -190,7 +190,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
                 templateUrl:
-                    core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html'), // jshint ignore:line
+                    CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-agent-pt-simple-mode-readonly.html'), // jshint ignore:line
                 link: function (scope, element) {
                     fanex.customerSetting.positionTakingDirective.agentEditAgentPtSimpleModeReadOnly(
                         $timeout,
@@ -217,7 +217,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
                 templateUrl:
-                    core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'), // jshint ignore:line
+                    CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/licensee-edit-agent-one-pt-simple-mode.html'), // jshint ignore:line
                 link: function (scope, element) {
                     fanex.customerSetting.positionTakingDirective.licenseeEditAgentOnePtSimpleMode(
                         $timeout,
@@ -244,7 +244,7 @@ if (fanex.customerSetting) {
                     ptSimple: '='
                 },
                 templateUrl:
-                    core.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-member-simple-mode.html'),
+                    CORE.resolveUrl('~/Areas/ProductSetting/Scripts/Keno/templates/positiontaking/agent-edit-member-simple-mode.html'),
                 link: function (scope, element) {
                     fanex.customerSetting.positionTakingDirective.agentEditMemberPtSimpleMode(
                         $timeout,

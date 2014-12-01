@@ -1,30 +1,29 @@
-﻿'use strict';
+﻿/* global CORE*/
+'use strict';
 
-var admin = admin || {};
-admin.maintenance = admin.maintenance || {};
-admin.maintenance.password = (function ($this, $) {
+var ADMIN = ADMIN || {};
+ADMIN.MAINTENANCE = ADMIN.MAINTENANCE || {};
+ADMIN.MAINTENANCE.PASSWORD = (function ($this, $) {
     $this.init = function () {
         $("#encode").click(function () {
-            $.ajax({
-                type: "POST",
+            CORE.ajaxJSON({
                 url: $(this).data("url"),
-                data: { password: $("#password").val() }
-            })
-            .done(function (data) {
-                if (data.ErrCode !== 0) {
-                    alert(data.ErrMsg);
+                data: {
+                    password: $("#password").val()
                 }
+            }, function (data) {
                 $("#encodepassword").val(data.Value);
             });
             return false;
         });
+
         $("#decode").click(function () {
-            $.ajax({
-                type: "POST",
+            CORE.ajaxJSON({
                 url: $(this).data("url"),
-                data: { encodedpassword: $("#encodepassword").val() }
-            })
-            .done(function (data) {
+                data: {
+                    encodedpassword: $("#encodepassword").val()
+                }
+            }, function (data) {
                 if (data.ErrCode !== 0) {
                     alert(data.ErrMsg);
                 }
@@ -35,4 +34,4 @@ admin.maintenance.password = (function ($this, $) {
     };
 
     return $this;
-} (admin.maintenance.password || {}, jQuery));
+} (ADMIN.MAINTENANCE.PASSWORD || {}, jQuery));

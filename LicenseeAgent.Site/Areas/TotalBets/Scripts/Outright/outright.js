@@ -1,21 +1,21 @@
-﻿/*global refreshCountDownMethods, core, language, pageContext*/
+﻿/*global refreshCountDownMethods, CORE, LANGUAGE, BET_LIST, pageContext*/
 'use strict';
 
-var totalBets = totalBets || {};
-totalBets.outright = (function ($this, $) {
+var TOTAL_BETS = TOTAL_BETS || {};
+TOTAL_BETS.OUTRIGHT = (function ($this, $) {
     var betListGridOptions = {
         columns: [
             { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
-            { HeaderText: language.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
+            { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
+            { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
         ],
         showPager: true,
         enableHiddenColumns: false,
@@ -25,82 +25,53 @@ totalBets.outright = (function ($this, $) {
     var gridOptions = {
         columns: [
             { HeaderText: "#", Width: 40, Name: "RowID", CanResize: false },
-            { HeaderText: language.getString("Team"), Width: 520, Name: "Team", HeaderAlign: "center", CellAlign: "left", CanResize: false },
-            { HeaderText: language.getString("BetCount"), Width: 100, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0." },
-            { HeaderText: language.getString("Balance"), Width: 150, Name: "Balance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-            { HeaderText: language.getString("Forecast"), Width: 150, Name: "Forecast", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
+            { HeaderText: LANGUAGE.getString("Team"), Width: 520, Name: "Team", HeaderAlign: "center", CellAlign: "left", CanResize: false },
+            { HeaderText: LANGUAGE.getString("BetCount"), Width: 100, Name: "BetCount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0." },
+            { HeaderText: LANGUAGE.getString("Balance"), Width: 150, Name: "Balance", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+            { HeaderText: LANGUAGE.getString("Forecast"), Width: 150, Name: "Forecast", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                 FormatPositive: '$'
             }
         ],
-        indexNumberColumn: 1,
         autoResizeColumn: true
     };
 
     var initialized = false;
-
-    $this.init = function () {
-        var hiddenColumns = [];
-        if (pageContext.LegendType === 1) {
-            hiddenColumns.push(9);
-        }
-        if (pageContext.IsLastLevel) {
-            hiddenColumns.push(10);
-        }
-        betListGridOptions.hiddenColumns = hiddenColumns;
-
-        totalBets.init(betListGridOptions);
-
-        $('form').submit(function (e) {
-            totalBets.outright.getSports();
-            totalBets.outright.getLeagues();
-            totalBets.outright.getTeams();
-            totalBets.outright.reRenderAfterPaged();
-            e.preventDefault();
-        });
-
-        totalBets.outright.getSports();
-        totalBets.outright.getLeagues();
-        totalBets.outright.getTeams();
-        totalBets.outright.reRenderAfterPaged();
-        initialized = true;
-    };
-
-    $this.getSports = function () {
-        core.ajaxJSON({
+    var getSports = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/TotalBets/Outright/GetSports"),
+            url: CORE.resolveUrl("~/TotalBets/Outright/GetSports"),
             data: {
                 selectedSports: initialized ? $("#sport-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
                 checkedAll: initialized ? $("#sport-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initSportMultiSelect(data, function () {
-                totalBets.outright.getLeagues();
-                totalBets.outright.getTeams();
+            TOTAL_BETS.initSportMultiSelect(data, function () {
+                getLeagues();
+                getTeams();
             });
         });
     };
 
-    $this.getLeagues = function () {
-        core.ajaxJSON({
+    var getLeagues = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/Totalbets/Outright/GetLeagues"),
+            url: CORE.resolveUrl("~/Totalbets/Outright/GetLeagues"),
             data: {
                 selectedSports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 selectedLeagues: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
                 checkedAll: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initLeagueMultiSelect(data, function () {
-                totalBets.outright.getTeams();
+            TOTAL_BETS.initLeagueMultiSelect(data, function () {
+                getTeams();
             });
         });
     };
 
-    $this.getTeams = function () {
-        core.ajaxJSON({
+    var getTeams = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/TotalBets/Outright/GetTeams"),
+            url: CORE.resolveUrl("~/TotalBets/Outright/GetTeams"),
             data: {
                 selectedSports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 selectedLeagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -108,14 +79,14 @@ totalBets.outright = (function ($this, $) {
                 checkedAll: initialized ? $("#team-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initTeamMultiSelect(data, function () {
-                totalBets.outright.reRenderAfterPaged();
+            TOTAL_BETS.initTeamMultiSelect(data, function () {
+                reRenderAfterPaged();
             });
         });
     };
 
-    $this.reRenderAfterPaged = function () {
-        core.ajaxJSON({
+    var reRenderAfterPaged = function () {
+        CORE.ajaxJSON({
             url: $('form').attr('action'),
             data: {
                 SportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -123,13 +94,13 @@ totalBets.outright = (function ($this, $) {
                 TeamList: $("#team-multi-select").fanexMultiSelect('getItems', true).join(',')
             }
         }, function (data) {
-            gridOptions.bodyRows = totalBets.outright.genGridRows(data);
+            gridOptions.bodyRows = genGridBodyRows(data);
             $('.freegrid').show().fanexGrid(gridOptions);
             refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
         });
     };
 
-    $this.genGridRows = function (list) {
+    var genGridBodyRows = function (list) {
         var len = list.length;
         var bodyRows = [];
         var rowIndex = 0;
@@ -168,7 +139,7 @@ totalBets.outright = (function ($this, $) {
                     //Home team
                     teamRow.push(
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>" },
-                        { Name: "Team", Value: totalBets.outright.generateBetListLink(league.LeagueId, match.TeamId, match.TeamName), CssClass: "bold" },
+                        { Name: "Team", Value: TOTAL_BETS.OUTRIGHT.generateBetListLink(league.LeagueId, match.TeamId, match.TeamName), CssClass: "bold" },
                         { Name: "BetCount", Value: match.BetCount },
                         { Name: "Balance", Value: match.Balance },
                         { Name: "Forecast", Value: match.Forecast }
@@ -183,8 +154,35 @@ totalBets.outright = (function ($this, $) {
         return bodyRows;
     };
 
+    $this.init = function () {
+        var hiddenColumns = [];
+        if (pageContext.LegendType === 1) {
+            hiddenColumns.push(9);
+        }
+        if (pageContext.IsLastLevel) {
+            hiddenColumns.push(10);
+        }
+        betListGridOptions.hiddenColumns = hiddenColumns;
+
+        TOTAL_BETS.init(betListGridOptions);
+
+        $('form').submit(function (e) {
+            getSports();
+            getLeagues();
+            getTeams();
+            reRenderAfterPaged();
+            e.preventDefault();
+        });
+
+        getSports();
+        getLeagues();
+        getTeams();
+        reRenderAfterPaged();
+        initialized = true;
+    };
+
     $this.generateBetListLink = function (leagueId, teamId, linkvalue) {
-        var linkHtmlString = "<span class=\"data-link\" onclick=\"totalBets.outright.showBetList(";
+        var linkHtmlString = "<span class=\"data-link\" onclick=\"TOTAL_BETS.OUTRIGHT.showBetList(";
         linkHtmlString += leagueId + "," + teamId + ")\">";
         linkHtmlString += linkvalue + "</span>";
         return linkHtmlString;
@@ -195,16 +193,16 @@ totalBets.outright = (function ($this, $) {
         $('form').hide();
         $("#totalbets-back").attr("class", "history-back");
 
-        core.ajaxJSON({
-            url: core.resolveUrl("~/Totalbets/Outright/OutrightBetList"),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl("~/BetList/Outright"),
             data: {
                 LeagueId: leagueId,
                 TeamId: teamId
             }
         }, function (data) {
-            fanex.betlist.core.reRenderAfterPagedSuccessfully(betListGridOptions, data);
+            BET_LIST.reRenderAfterPagedSuccessfully(betListGridOptions, data);
         });
     };
 
     return $this;
-} (totalBets.outright || {}, jQuery));
+} (TOTAL_BETS.OUTRIGHT || {}, jQuery));

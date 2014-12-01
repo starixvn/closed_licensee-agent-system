@@ -40,7 +40,7 @@
         {
             bundles.Add(new ScriptBundle("~/js/admin/maintenance").Include(
                 "~/Areas/Admin/Scripts/Maintenance/password.js").Include(
-                "~/Areas/Admin/Scripts/Maintenance/syncmonitoring.js"));
+                "~/Areas/Admin/Scripts/Maintenance/sync-monitoring.js"));
         }
     }
 }

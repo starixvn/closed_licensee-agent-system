@@ -11,9 +11,9 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Windows.Forms" #>
 <#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
-/*global language*/
+/*global LANGUAGE*/
 
-language.Las = {};
+LANGUAGE.Las = {};
 <# 
     var solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
     var resourcePath = Path.Combine(solutionPath, "LicenseeAgent.Resources");
@@ -27,13 +27,13 @@ language.Las = {};
     var manager = TemplateFileManager.Create(this);
     foreach (string filePath in fileNames) 
     {
-        var language = new StringBuilder("/*global language*/");
+        var language = new StringBuilder("/*global LANGUAGE*/");
         language.Append("\r\n/*jshint -W101,-W106,-W044,-W098*/");
         var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1).Replace(".resx","");
         var cultureIndex = fileName.IndexOf(".");
         var fileOrigin = cultureIndex > 0 ? fileName.Substring(0, cultureIndex) : fileName;
         var culture = cultureIndex > 0 ? fileName.Substring(cultureIndex + 1) : "en-US";
-        language.AppendFormat("\r\n\r\nlanguage.Las['{0}'] = {{", culture);
+        language.AppendFormat("\r\n\r\nLANGUAGE.Las['{0}'] = {{", culture);
         using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
         {
             var xDoc = XDocument.Load(stream);

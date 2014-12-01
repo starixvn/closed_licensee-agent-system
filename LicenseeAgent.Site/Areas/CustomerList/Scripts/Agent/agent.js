@@ -1,65 +1,63 @@
-﻿/*global core, language, popup, pageContext, context */
+﻿/*global CORE, LANGUAGE, POPUP, ENUMS, pageContext, context */
 'use strict';
 
-var customerList = customerList || {};
-customerList.agent = (function ($this, $) {
+var CUSTOMER_LIST = CUSTOMER_LIST || {};
+CUSTOMER_LIST.AGENT_LIST = (function ($this, $) {
     /* jshint -W101 */
     var gridOptions = {
         columns: [
             { HeaderText: "#", Width: 30, Name: "AgentId", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData) {
                     return '<i id="{0}" class="icon-customer-edit" data-agentid="{0}" data-agentlevel="{1}" data-status="{2}"></i>'.format(rowData.AgentId, rowData.AgentLevel, rowData.Status);
                 }
             },
-            { HeaderText: language.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
-            { HeaderText: language.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
+            { HeaderText: LANGUAGE.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
-                    return '<div class="cust-status" onclick="customerList.agent.changeStatus(this, ' + rowData.AgentId + ')">'
+                    return '<div class="cust-status" onclick="CUSTOMER_LIST.AGENT_LIST.changeStatus(this, ' + rowData.AgentId + ')">'
                         + (cell.Value === 1
-                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(language.getString('Open'))
-                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(language.getString('Closed')))
+                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(LANGUAGE.getString('Open'))
+                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(LANGUAGE.getString('Closed')))
                         + '</div>';
                 }
             },
-            { HeaderText: language.getString('Downline'), Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Downline'), Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
                     if (cell.Value === 0) {
                         return '<span class="downline">' + cell.Value + '</span>';
                     }
-                    return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:customerList.showAgent({0})">{1}</a></span>'.format(rowData.AgentId, cell.Value);
+                    return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:CUSTOMER_LIST.showAgent({0})">{1}</a></span>'.format(rowData.AgentId, cell.Value);
                 }
             },
-            { HeaderText: language.getString('DirectMember'), Width: 90, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('DirectMember'), Width: 90, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
                     if (cell.Value === 0) {
                         return '<span class="downline">' + cell.Value + '</span>';
                     }
-                    return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:customerList.showMember({0})">{1}</a></span>'.format(rowData.AgentId, cell.Value);
+                    return '<span class="downline"><a href="javascript:void(0);" onclick="javascript:CUSTOMER_LIST.showMember({0})">{1}</a></span>'.format(rowData.AgentId, cell.Value);
                 }
             },
-            { HeaderText: language.getString('FullName'), Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300 },
-            { HeaderText: language.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL },
-            { HeaderText: language.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('FullName'), Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300 },
+            { HeaderText: LANGUAGE.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: CORE.FullDateFormat },
+            { HeaderText: LANGUAGE.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
                     if (cell.Value == null) {
                         return '';
                     }
-                    return '<a onclick=core.common.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
+                    return '<a onclick=PAGE.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
                 }
             }
         ],
         showPager: true,
         customPager: true,
-        gridExpandHeight: 125,
-        indexNumberColumn: 0,
-        bodyRowHeight: 29,
+        showNumberColumn: true,
         autoResizeColumn: true
     };
     /* jshint +W101 */
 
     var openProductSetting = function (url) {
-        popup.openFrame(url, {
+        POPUP.openFrame(url, {
             width: 1008,
             height: 680
         });
@@ -69,58 +67,65 @@ customerList.agent = (function ($this, $) {
     var editAgentLevel = 0;
     var createContextMenu = function () {
         context.attach('.icon-customer-edit', [
-                {
-                    id: 'menuSportsbook',
-                    icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
-                        ? 'icon-customer-canedit'
-                        : 'icon-customer-canview'),
-                    text: language.getString('Sportsbook'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: customerList.agent.editSportsBook
-                },
-                {
-                    id: 'menuVirtualSports',
-                    icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
-                        ? 'icon-customer-canedit'
-                        : 'icon-customer-canview'),
-                    text: language.getString('VirtualSports'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: customerList.agent.editVirtualSports
-                },
-                {
-                    id: 'menuKeno',
-                    icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
-                        ? 'icon-customer-canedit'
-                        : 'icon-customer-canview'),
-                    text: language.getString('Keno'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: customerList.agent.editKeno
-                },
-                {
-                    id: 'menuEditInfo',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('EditInfo'),
-                    href: '#',
-                    action: customerList.agent.editInfo
-                },
-                {
-                    id: 'menuResetPassword',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('ResetPassword'),
-                    href: '#',
-                    action: customerList.agent.resetPassword
-                },
-                {
-                    id: 'menuAddDownline',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('AddDownlineAgent'),
-                    href: '#',
-                    action: customerList.agent.addAgent
-                }
-            ]);
+            {
+                id: 'menuSportsbook',
+                icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
+                    ? 'icon-customer-canedit'
+                    : 'icon-customer-canview'),
+                text: LANGUAGE.getString('Sportsbook'),
+                href: '#',
+                css: 'popover-link',
+                action: editSportsBook
+            },
+            {
+                id: 'menuVirtualSports',
+                icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
+                    ? 'icon-customer-canedit'
+                    : 'icon-customer-canview'),
+                text: LANGUAGE.getString('VirtualSports'),
+                href: '#',
+                css: 'popover-link',
+                action: editVirtualSports
+            },
+            {
+                id: 'menuKeno',
+                icon: (pageContext.IsAdmin || pageContext.IsDirectDownLine
+                    ? 'icon-customer-canedit'
+                    : 'icon-customer-canview'),
+                text: LANGUAGE.getString('Keno'),
+                href: '#',
+                css: 'popover-link',
+                action: editKeno
+            },
+            {
+                id: 'menuEditInfo',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('EditInfo'),
+                href: '#',
+                action: editInfo
+            },
+            {
+                id: 'menuResetPassword',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('ResetPassword'),
+                href: '#',
+                action: resetPassword
+            },
+            {
+                id: 'menuAddDownline',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('AddDownlineAgent'),
+                href: '#',
+                action: addAgent
+            },
+            {
+                id: 'menuAddMember',
+                icon: 'icon-customer-canedit',
+                text: "Add Member",
+                href: '#',
+                action: addMember
+            }
+        ]);
 
         // create action context menu
         context.init({
@@ -134,7 +139,7 @@ customerList.agent = (function ($this, $) {
         editAgentLevel = parseInt($(target).data('agentlevel'), null);
 
         if (pageContext.IsAdmin
-                && parseInt($(target).data('status')) === core.enums.AccountStatus.Open
+                && parseInt($(target).data('status')) === ENUMS.AccountStatus.Open
                 && pageContext.AgentLevel < pageContext.NumberOfLevel) {
             $('#menuAddDownline').show();
         } else {
@@ -155,8 +160,9 @@ customerList.agent = (function ($this, $) {
             $('#menuKeno').hide();
         }
     };
+
     $this.init = function () {
-        customerList.initCustomerList(gridOptions);
+        CUSTOMER_LIST.init(gridOptions);
         createContextMenu();
     };
 
@@ -165,29 +171,29 @@ customerList.agent = (function ($this, $) {
             return;
         }
         var currentStatus = $(target).find('.icon-status-open').length > 0
-                ? core.enums.AccountStatus.Open
-                : core.enums.AccountStatus.Closed;
-        var newStatus = currentStatus === core.enums.AccountStatus.Closed
-                ? core.enums.AccountStatus.Open
-                : core.enums.AccountStatus.Closed;
-        var message = newStatus === core.enums.AccountStatus.Closed
-                ? language.getString('ChangeStatusAgent')
-                : language.getString('ChangeCloseToOpenAgent');
-        var title = language.getString('ChangeStatus');
+                ? ENUMS.AccountStatus.Open
+                : ENUMS.AccountStatus.Closed;
+        var newStatus = currentStatus === ENUMS.AccountStatus.Closed
+                ? ENUMS.AccountStatus.Open
+                : ENUMS.AccountStatus.Closed;
+        var message = newStatus === ENUMS.AccountStatus.Closed
+                ? LANGUAGE.getString('ChangeStatusAgent')
+                : LANGUAGE.getString('ChangeCloseToOpenAgent');
+        var title = LANGUAGE.getString('ChangeStatus');
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
-                customerList.agent.updateStatus(target, custId, newStatus);
+                POPUP.close();
+                CUSTOMER_LIST.AGENT_LIST.updateStatus(target, custId, newStatus);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons
@@ -195,75 +201,79 @@ customerList.agent = (function ($this, $) {
     };
 
     $this.updateStatus = function (target, custId, statusId) {
-        core.ajaxJSON({
-            url: core.resolveUrl('~/CustomerList/Agent/ChangeStatus'),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl('~/CustomerList/Agent/ChangeStatus'),
             type: 'post',
             data: {
                 agentid: custId,
                 status: statusId
             }
         }, function () {
-            if (statusId === core.enums.AccountStatus.Closed) {
+            if (statusId === ENUMS.AccountStatus.Closed) {
                 $(target).find('.icon-status-open')
-                        .addClass('icon-status-closed')
-                        .removeClass('icon-status-open')
-                        .find('span')
-                        .text('Closed');
+                    .addClass('icon-status-closed')
+                    .removeClass('icon-status-open')
+                    .find('span')
+                    .text('Closed');
             } else {
                 $(target).find('.icon-status-closed')
-                        .addClass('icon-status-open')
-                        .removeClass('icon-status-closed')
-                        .find('span')
-                        .text('Open');
+                    .addClass('icon-status-open')
+                    .removeClass('icon-status-closed')
+                    .find('span')
+                    .text('Open');
             }
             $('#' + custId).data('status', statusId);
         });
     };
 
-    $this.editSportsBook = function () {
-        var url = core.resolveUrl('~/ProductSetting/SportsBook/EditAgent', {
+    var editSportsBook = function () {
+        var url = CORE.resolveUrl('~/ProductSetting/SportsBook/EditAgent', {
             agentId: editAgentId
         });
         openProductSetting(url);
     };
 
-    $this.editVirtualSports = function () {
-        var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditAgent', {
+    var editVirtualSports = function () {
+        var url = CORE.resolveUrl('~/ProductSetting/VirtualSports/EditAgent', {
             agentId: editAgentId
         });
         openProductSetting(url);
     };
 
-    $this.editKeno = function () {
-        var url = core.resolveUrl('~/ProductSetting/Keno/EditAgent', {
+    var editKeno = function () {
+        var url = CORE.resolveUrl('~/ProductSetting/Keno/EditAgent', {
             agentId: editAgentId
         });
         openProductSetting(url);
     };
 
-    $this.editInfo = function () {
-        var url = core.resolveUrl('~/CustomerList/Agent/EditInfo', {
+    var editInfo = function () {
+        var url = CORE.resolveUrl('~/CustomerList/Agent/EditInfo', {
             agentId: editAgentId
         });
-        popup.openFrame(url);
+        POPUP.openFrame(url);
     };
 
-    $this.addAgent = function () {
-        var url = core.resolveUrl('~/ProductSetting/NewAgent', {
+    var addAgent = function () {
+        var url = CORE.resolveUrl('~/ProductSetting/NewAgent', {
             agentId: editAgentId
         });
-        popup.openFrame(url, {
-            width: 1008,
-            height: 680
-        });
+        openProductSetting(url);
     };
 
-    $this.resetPassword = function () {
-        var url = core.resolveUrl('~/CustomerList/Agent/ResetPassword', {
+    var addMember = function () {
+        var url = CORE.resolveUrl('~/ProductSetting/SportsBook/InsertCustomer', {
             agentId: editAgentId
         });
-        popup.openFrame(url);
+        openProductSetting(url);
+    };
+
+    var resetPassword = function () {
+        var url = CORE.resolveUrl('~/CustomerList/Agent/ResetPassword', {
+            agentId: editAgentId
+        });
+        POPUP.openFrame(url);
     };
 
     return $this;
-} (customerList.agent || {}, jQuery));
+} (CUSTOMER_LIST.AGENT_LIST || {}, jQuery));

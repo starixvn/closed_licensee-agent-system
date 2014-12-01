@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="model">IP view model.</param>
         /// <returns>Action result.</returns>
-        [HttpPost]
+        [HttpGet]
         public ActionResult IP(IpInformationViewModel model)
         {
             var criteria = new GetIpInformationCriteria { Ip = model.IpAddress };

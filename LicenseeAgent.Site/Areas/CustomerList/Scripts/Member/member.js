@@ -1,45 +1,43 @@
-﻿/*global core, language, popup, pageContext, context */
+﻿/*global CORE, LANGUAGE, POPUP, ENUMS, pageContext, context */
 'use strict';
 
-var customerList = customerList || {};
-customerList.member = (function ($this, $) {
+var CUSTOMER_LIST = CUSTOMER_LIST || {};
+CUSTOMER_LIST.MEMBER_LIST = (function ($this, $) {
     /* jshint -W101 */
     var gridOptionsForCredit = {
         columns:
         [
             { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData) {
                     return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                 }
             },
-            { HeaderText: language.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
-            { HeaderText: language.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
+            { HeaderText: LANGUAGE.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
-                    return '<div class="cust-status" onclick="customerList.member.changeStatus(this, ' + rowData.CustId + ')">'
+                    return '<div class="cust-status" onclick="CUSTOMER_LIST.MEMBER_LIST.changeStatus(this, ' + rowData.CustId + ')">'
                         + (cell.Value === 1
-                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(language.getString('Open'))
-                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(language.getString('Closed')))
+                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(LANGUAGE.getString('Open'))
+                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(LANGUAGE.getString('Closed')))
                         + '</div>';
                 }
             },
-            { HeaderText: language.getString('FullName'), Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300 },
-            { HeaderText: language.getString('Group'), Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL },
-            { HeaderText: language.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('FullName'), Width: 200, Name: "CustomerName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 300 },
+            { HeaderText: LANGUAGE.getString('Group'), Width: 50, Name: "GroupName", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: CORE.FullDateFormat },
+            { HeaderText: LANGUAGE.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
                     if (cell.Value == null) {
                         return '';
                     }
-                    return '<a onclick=core.common.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
+                    return '<a onclick=PAGE.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
                 }
             }
         ],
         showPager: true,
         customPager: true,
-        gridExpandHeight: 125,
-        indexNumberColumn: 0,
-        bodyRowHeight: 29,
+        showNumberColumn: true,
         autoResizeColumn: true
     };
 
@@ -47,38 +45,36 @@ customerList.member = (function ($this, $) {
         columns:
         [
             { HeaderText: "#", Width: 30, Name: "CustId", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Action'), Width: 35, Name: "Action", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData) {
                     return '<i class="icon-customer-edit" data-memberid="{0}" data-username="{1}"></i>'.format(rowData.CustId, rowData.UserName);
                 }
             },
-            { HeaderText: language.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
-            { HeaderText: language.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('Username'), Width: 100, Name: "UserName", HeaderAlign: "center", AllowTruncate: true, MaxResizeWidth: 200 },
+            { HeaderText: LANGUAGE.getString('Status'), Width: 65, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
-                    return '<div class="cust-status" onclick="customerList.member.changeStatus(this, ' + rowData.CustId + ')">'
+                    return '<div class="cust-status" onclick="CUSTOMER_LIST.MEMBER_LIST.changeStatus(this, ' + rowData.CustId + ')">'
                         + (cell.Value === 1
-                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(language.getString('Open'))
-                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(language.getString('Closed')))
+                            ? '<div class="icon-status-open"><span>{0}</span></div>'.format(LANGUAGE.getString('Open'))
+                            : '<div class="icon-status-closed"><span>{0}</span></div>'.format(LANGUAGE.getString('Closed')))
                         + '</div>';
                 }
             },
-            { HeaderText: language.getString('AvailableFund'), Width: 80, Name: "AvailableFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00" },
-            { HeaderText: language.getString('PendingFund'), Width: 80, Name: "PendingFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00" },
-            { HeaderText: language.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: core.DATE_FORMAT_FULL },
-            { HeaderText: language.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
+            { HeaderText: LANGUAGE.getString('AvailableFund'), Width: 80, Name: "AvailableFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00" },
+            { HeaderText: LANGUAGE.getString('PendingFund'), Width: 80, Name: "PendingFund", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true, MaxResizeWidth: 160, FormatNumber: "0,0.00" },
+            { HeaderText: LANGUAGE.getString('CreatedDate'), Width: 140, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", CanResize: false, FormatDateTime: CORE.FullDateFormat },
+            { HeaderText: LANGUAGE.getString('LoginIp'), Width: 100, Name: "IpLogin", HeaderAlign: "center", CellAlign: "center", CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
                     if (cell.Value == null) {
                         return '';
                     }
-                    return '<a onclick=core.common.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
+                    return '<a onclick=PAGE.showIP("{0}")>{1}</a>'.format(cell.Value, cell.Value);
                 }
             }
         ],
         showPager: true,
         customPager: true,
-        gridExpandHeight: 125,
-        indexNumberColumn: 0,
-        bodyRowHeight: 29,
+        showNumberColumn: true,
         autoResizeColumn: true
     };
     /* jshint +W101 */
@@ -87,7 +83,7 @@ customerList.member = (function ($this, $) {
     if (pageContext.IsDeposit) {
         if (pageContext.IsAllowedMemberComm) {
             gridOptionsForCash.columns.splice(4, 0,
-            { HeaderText: "@Las.CommGroup", Width: 80, Name: "GroupName", HeaderAlign: "center", MaxResizeWidth: 160 });
+            { HeaderText: LANGUAGE.getString('CommGroup'), Width: 80, Name: "GroupName", HeaderAlign: "center", MaxResizeWidth: 160 });
         }
         gridOptions = gridOptionsForCash;
     }
@@ -97,7 +93,7 @@ customerList.member = (function ($this, $) {
 
     if (pageContext.IsAdmin) {
         gridOptions.columns.splice(2, 0,
-            { HeaderText: language.getString('SystemId'), Width: 140, Name: "SystemId", Formatter:
+            { HeaderText: LANGUAGE.getString('SystemId'), Width: 140, Name: "SystemId", Formatter:
                 function (rowIndex, rowData, cell) {
                     return '<span title="' + rowData.SystemId + '">' + cell.Value + '</span>';
                 }
@@ -106,69 +102,69 @@ customerList.member = (function ($this, $) {
 
     var createContextMenu = function () {
         var listAction = [
-                {
-                    id: 'menuSportsbook',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('Sportsbook'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: function (e) {
-                        e.stopPropagation();
-                        if (pageContext.IsAdmin) {
-                            customerList.hidePopover();
-                            $('#menuSportsbook').popover("show");
-                        } else {
-                            customerList.member.editSportsBook();
-                        }
+            {
+                id: 'menuSportsbook',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('Sportsbook'),
+                href: '#',
+                css: 'popover-link',
+                action: function (e) {
+                    e.stopPropagation();
+                    if (pageContext.IsAdmin) {
+                        CUSTOMER_LIST.hidePopover();
+                        $('#menuSportsbook').popover("show");
+                    } else {
+                        CUSTOMER_LIST.MEMBER_LIST.editSportsBook();
                     }
-                },
-                {
-                    id: 'menuVirtualSports',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('VirtualSports'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: function (e) {
-                        e.stopPropagation();
-                        if (pageContext.IsAdmin) {
-                            customerList.hidePopover();
-                            $('#menuVirtualSports').popover("show");
-                        } else {
-                            customerList.member.editVirtualSports();
-                        }
-                    }
-                },
-                {
-                    id: 'menuKeno',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('Keno'),
-                    href: '#',
-                    css: 'popover-link',
-                    action: function (e) {
-                        e.stopPropagation();
-                        if (pageContext.IsAdmin) {
-                            customerList.hidePopover();
-                            $('#menuKeno').popover("show");
-                        } else {
-                            customerList.member.editKeno();
-                        }
-                    }
-                },
-                {
-                    id: 'menuEditInfo',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('EditInfo'),
-                    href: '#',
-                    action: customerList.member.editInfo
-                },
-                {
-                    id: 'menuResetPassword',
-                    icon: 'icon-customer-canedit',
-                    text: language.getString('ResetPassword'),
-                    href: '#',
-                    action: customerList.member.resetPassword
                 }
-            ];
+            },
+            {
+                id: 'menuVirtualSports',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('VirtualSports'),
+                href: '#',
+                css: 'popover-link',
+                action: function (e) {
+                    e.stopPropagation();
+                    if (pageContext.IsAdmin) {
+                        CUSTOMER_LIST.hidePopover();
+                        $('#menuVirtualSports').popover("show");
+                    } else {
+                        CUSTOMER_LIST.MEMBER_LIST.editVirtualSports();
+                    }
+                }
+            },
+            {
+                id: 'menuKeno',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('Keno'),
+                href: '#',
+                css: 'popover-link',
+                action: function (e) {
+                    e.stopPropagation();
+                    if (pageContext.IsAdmin) {
+                        CUSTOMER_LIST.hidePopover();
+                        $('#menuKeno').popover("show");
+                    } else {
+                        CUSTOMER_LIST.MEMBER_LIST.editKeno();
+                    }
+                }
+            },
+            {
+                id: 'menuEditInfo',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('EditInfo'),
+                href: '#',
+                action: CUSTOMER_LIST.MEMBER_LIST.editInfo
+            },
+            {
+                id: 'menuResetPassword',
+                icon: 'icon-customer-canedit',
+                text: LANGUAGE.getString('ResetPassword'),
+                href: '#',
+                action: CUSTOMER_LIST.MEMBER_LIST.resetPassword
+            }
+        ];
 
         context.attach('.icon-customer-edit', listAction);
 
@@ -204,7 +200,7 @@ customerList.member = (function ($this, $) {
             trigger: 'manual',
             content: function () {
                 var divId = "tmp-id-" + $.now();
-                return customerList.member.getDirectUplines(divId, core.enums.Product.SportsBook);
+                return CUSTOMER_LIST.MEMBER_LIST.getDirectUplines(divId, ENUMS.Product.SportsBook);
             }
         });
 
@@ -214,7 +210,7 @@ customerList.member = (function ($this, $) {
             trigger: 'manual',
             content: function () {
                 var divId = "tmp-id-" + $.now();
-                return customerList.member.getDirectUplines(divId, core.enums.Product.VirtualSports);
+                return CUSTOMER_LIST.MEMBER_LIST.getDirectUplines(divId, ENUMS.Product.VirtualSports);
             }
         });
 
@@ -224,17 +220,17 @@ customerList.member = (function ($this, $) {
             trigger: 'manual',
             content: function () {
                 var divId = "tmp-id-" + $.now();
-                return customerList.member.getDirectUplines(divId, core.enums.Product.Keno);
+                return CUSTOMER_LIST.MEMBER_LIST.getDirectUplines(divId, ENUMS.Product.Keno);
             }
         });
 
         $(document).on('click', 'html', function () {
-            customerList.hidePopover();
+            CUSTOMER_LIST.hidePopover();
         });
     };
 
     var openProductSetting = function (url) {
-        popup.openFrame(url, {
+        POPUP.openFrame(url, {
             width: 1008,
             height: 680
         });
@@ -242,15 +238,16 @@ customerList.member = (function ($this, $) {
 
     var editMemberId;
     var editUsername;
+
     $this.init = function () {
-        customerList.initCustomerList(gridOptions);
+        CUSTOMER_LIST.init(gridOptions);
         createContextMenu();
         createPopover();
     };
 
     $this.getDirectUplines = function (divId, productId) {
         $.ajax({
-            url: core.resolveUrl('~/CustomerList/Member/DirectUpLines'),
+            url: CORE.resolveUrl('~/CustomerList/Member/DirectUpLines'),
             type: 'post',
             data: {
                 custId: editMemberId,
@@ -264,69 +261,69 @@ customerList.member = (function ($this, $) {
     };
 
     $this.editSportsBook = function () {
-        var url = core.resolveUrl('~/ProductSetting/SportsBook/EditMember', {
+        var url = CORE.resolveUrl('~/ProductSetting/SportsBook/EditMember', {
             memberId: editMemberId
         });
         openProductSetting(url);
     };
 
     $this.editVirtualSports = function () {
-        var url = core.resolveUrl('~/ProductSetting/VirtualSports/EditMember', {
+        var url = CORE.resolveUrl('~/ProductSetting/VirtualSports/EditMember', {
             memberId: editMemberId
         });
         openProductSetting(url);
     };
 
     $this.editKeno = function () {
-        var url = core.resolveUrl('~/ProductSetting/Keno/EditMember', {
+        var url = CORE.resolveUrl('~/ProductSetting/Keno/EditMember', {
             memberId: editMemberId
         });
         openProductSetting(url);
     };
 
     $this.resetPassword = function () {
-        var url = core.resolveUrl('~/CustomerList/Member/ResetPassword', {
+        var url = CORE.resolveUrl('~/CustomerList/Member/ResetPassword', {
             memberId: editMemberId
         });
-        popup.openFrame(url);
-    },
+        POPUP.openFrame(url);
+    };
 
-        $this.editInfo = function () {
-            var url = core.resolveUrl('~/CustomerList/Member/EditInfo', {
-                memberId: editMemberId,
-                userName: editUsername
-            });
-            popup.openFrame(url);
-        };
+    $this.editInfo = function () {
+        var url = CORE.resolveUrl('~/CustomerList/Member/EditInfo', {
+            memberId: editMemberId,
+            userName: editUsername
+        });
+        POPUP.openFrame(url);
+    };
 
     $this.changeStatus = function (target, custId) {
         if (!pageContext.IsDirectDownLine) {
             return;
         }
         var currentStatus = $(target).find('.icon-status-open').length > 0
-                ? core.enums.AccountStatus.Open
-                : core.enums.AccountStatus.Closed;
-        var newStatus = currentStatus === core.enums.AccountStatus.Closed
-                ? core.enums.AccountStatus.Open
-                : core.enums.AccountStatus.Closed;
-        var message = newStatus === core.enums.AccountStatus.Closed
-                ? language.getString('ChangeStatusMember')
-                : language.getString('ChangeStatusAgent');
-        var title = language.getString('ChangeStatus');
+                ? ENUMS.AccountStatus.Open
+                : ENUMS.AccountStatus.Closed;
+        var newStatus = currentStatus === ENUMS.AccountStatus.Closed
+                ? ENUMS.AccountStatus.Open
+                : ENUMS.AccountStatus.Closed;
+        var message = newStatus === ENUMS.AccountStatus.Closed
+                ? LANGUAGE.getString('ChangeStatusMember')
+                : LANGUAGE.getString('ChangeStatusAgent');
+        var title = LANGUAGE.getString('ChangeStatus');
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
-                customerList.member.updateStatus(target, custId, newStatus);
+                POPUP.close();
+                CUSTOMER_LIST.MEMBER_LIST.updateStatus(target, custId, newStatus);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons
@@ -334,8 +331,8 @@ customerList.member = (function ($this, $) {
     };
 
     $this.updateStatus = function (target, custId, statusId) {
-        core.ajaxJSON({
-            url: core.resolveUrl('~/CustomerList/Member/ChangeStatus'),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl('~/CustomerList/Member/ChangeStatus'),
             type: 'post',
             data: {
                 memberid: custId,
@@ -343,7 +340,7 @@ customerList.member = (function ($this, $) {
                 agentid: $("#AgentId").val()
             }
         }, function () {
-            if (statusId === core.enums.AccountStatus.Closed) {
+            if (statusId === ENUMS.AccountStatus.Closed) {
                 $(target).find('.icon-status-open')
                         .addClass('icon-status-closed')
                         .removeClass('icon-status-open')
@@ -361,4 +358,4 @@ customerList.member = (function ($this, $) {
     };
 
     return $this;
-} (customerList.member || {}, jQuery));
+} (CUSTOMER_LIST.MEMBER_LIST || {}, jQuery));

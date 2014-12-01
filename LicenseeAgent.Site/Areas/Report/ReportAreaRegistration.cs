@@ -48,11 +48,12 @@
                 "~/Areas/Report/Scripts/Statement/report-statement-transferDetail.js"));
 
             bundles.Add(new ScriptBundle("~/js/report/agent-win-loss").Include(
-                "~/Areas/Report/Scripts/AgentWinLoss/report-agent-winloss.js"));
+                "~/Areas/Report/Scripts/AgentWinLoss/report-agent-winloss.js",
+                "~/Views/BetList/Scripts/core.js"));
 
             bundles.Add(new ScriptBundle("~/js/report/agent-outstanding").Include(
-                "~/Areas/Report/Scripts/AgentOutstanding/report-agent-outstanding.js").Include(
-                "~/Views/BetList/Resources/betlist-core.js"));
+                "~/Areas/Report/Scripts/AgentOutstanding/report-agent-outstanding.js",
+                "~/Views/BetList/Scripts/core.js"));
             bundles.Add(new LessBundle("~/css/report/agent-outstanding").Include(
                 "~/Areas/Report/Content/AgentOutstanding/agent-outstanding.less"));
 

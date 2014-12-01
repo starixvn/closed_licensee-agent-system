@@ -1,6 +1,7 @@
-﻿'use strict';
+﻿/*exported COMMISSION_SETTING*/
+'use strict';
 
-var commissionSetting = (function ($this, $) {
+var COMMISSION_SETTING = (function ($this, $) {
     $this.initProductCommissionSelect = function () {
         $('[data-commission-product-id] select').change(function () {
             var parent = $(this).parent();
@@ -32,4 +33,4 @@ var commissionSetting = (function ($this, $) {
     };
 
     return $this;
-} (commissionSetting || {}, jQuery));
+} (COMMISSION_SETTING || {}, jQuery));

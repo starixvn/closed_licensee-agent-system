@@ -12,8 +12,14 @@
     /// </summary>
     public class AgentBreadcrumbModelBinder : IModelBinder
     {
+        #region Variables
+
         private readonly IDownLinePermissionService _downLinePermissionService;
         private readonly ICoreService _coreService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public AgentBreadcrumbModelBinder()
             : this(null, null)
@@ -27,6 +33,8 @@
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
             _coreService = coreService ?? new CoreService();
         }
+
+        #endregion Constructors
 
         /// <summary>
         /// Binds the model to a value by using the specified controller context and binding context.

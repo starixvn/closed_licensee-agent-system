@@ -377,16 +377,13 @@
     <Content Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Scripts\bootstrap-datepicker\bootstrap-datepicker.js" />
     <Content Include="Content\bootstrap-datepicker\datepicker.less" />
-    <Content Include="Scripts\core-components.js" />
-    <Content Include="Scripts\core-ibc.js" />
     <Content Include="Scripts\CryptoJS\core.js" />
     <Content Include="Scripts\CryptoJS\sha256.js" />
-    <Content Include="Scripts\report-betlist.js" />
-    <Content Include="Scripts\core-breadcrumb.js" />
-    <Content Include="Scripts\core-grid.js" />
-    <Content Include="Scripts\core-common.js" />
-    <Content Include="Scripts\core-enums.js" />
-    <Content Include="tips.txt" />
+    <Content Include="Scripts\breadcrumb.js" />
+    <Content Include="Scripts\grid.js" />
+    <Content Include="Scripts\page.js" />
+    <Content Include="Scripts\enums.js" />
+    <None Include="tips.txt" />
     <Content Include="Areas\CommissionSetting\Scripts\GroupList\group-list.js" />
     <Content Include="Areas\CommissionSetting\Scripts\GroupList\group-crud.js" />
     <Content Include="App_Data\SpNames.Local.xml">
@@ -466,6 +463,7 @@
     <Content Include="Areas\Home\Views\AccountInformation\_DownLineListTab.cshtml" />
     <Content Include="Areas\Home\Views\AccountInformation\_ProductsTab.cshtml" />
     <Content Include="Areas\CustomerList\Views\Web.config" />
+    <Content Include="Views\BetList\Scripts\core.js" />
     <Content Include="Views\Common\IP.cshtml" />
     <Content Include="Areas\CustomerList\Views\Agent\Index.cshtml" />
     <Content Include="Areas\CustomerList\Views\PendingMember\Index.cshtml" />
@@ -670,12 +668,11 @@
     <Content Include="Scripts\ResourcesJs\SportType.zh-TW.js">
       <DependentUpon>SportType.tt</DependentUpon>
     </Content>
-    <Content Include="Scripts\report.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement-transferDetail.js" />
     <Content Include="Areas\Report\Scripts\Statement\report-statement-detail.js" />
-    <Content Include="Views\Error\Resources\under-maintenance-error.js" />
-    <Content Include="Views\Message\Resources\Message.js" />
+    <Content Include="Views\Error\Scripts\under-maintenance-page.js" />
+    <Content Include="Views\Message\Scripts\message.js" />
     <Content Include="Scripts\AngularJS\angular-mocks.js" />
     <Content Include="Scripts\bootstrap\bootstrap-paginator.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.js" />
@@ -686,17 +683,16 @@
     <Content Include="Scripts\MomentJS\moment-with-langs.js" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.css" />
     <Content Include="Scripts\MonthPicker\monPickr-0.0.3.js" />
-    <Content Include="Views\BetList\Scripts\betlist-winlost.js" />
-    <Content Include="Views\CreditBalance\Resources\creditbalance-list.js" />
-    <Content Include="Views\CreditBalance\Resources\creditbalance-popup.js" />
-    <Content Include="Views\BetList\Scripts\betlist-manager.js" />
-    <Content Include="Views\BetList\Scripts\betlist-core.js" />
+    <Content Include="Views\BetList\Scripts\winloss.js" />
+    <Content Include="Views\CreditBalance\Scripts\creditbalance-list.js" />
+    <Content Include="Views\CreditBalance\Scripts\creditbalance-popup.js" />
+    <Content Include="Views\BetList\Scripts\member.js" />
     <Content Include="Areas\TotalBets\Scripts\Parlay\parlay.js" />
-    <Content Include="Views\Error\Resources\images\background.jpg" />
-    <Content Include="Views\Error\Resources\images\internal-error-page.png" />
-    <Content Include="Views\Error\Resources\images\page-not-found.png" />
-    <Content Include="Views\Error\Resources\images\unauthorized-access.png" />
-    <Content Include="Views\Error\Resources\images\Under-Maintenace.png" />
+    <Content Include="Views\Error\Content\images\background.jpg" />
+    <Content Include="Views\Error\Content\images\internal-error-page.png" />
+    <Content Include="Views\Error\Content\images\page-not-found.png" />
+    <Content Include="Views\Error\Content\images\unauthorized-access.png" />
+    <Content Include="Views\Error\Content\images\Under-Maintenace.png" />
     <Content Include="Content\sprite.less" />
     <Content Include="Content\fanexgrid\Fanex.Grid.css" />
     <Content Include="Content\fanexgrid\Fanex.Pagination.css" />
@@ -751,7 +747,7 @@
     <Content Include="Content\fanexgrid\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\fanexgrid\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\avatar.png" />
-    <Content Include="Views\Home\Resources\Images\bgheader.png" />
+    <Content Include="Views\Home\Content\Images\bgheader.png" />
     <Content Include="Content\Select2\select2.css" />
     <Content Include="Images\flags.png" />
     <Content Include="Images\sprite.png" />
@@ -777,7 +773,7 @@
     <Content Include="Images\loader.gif" />
     <Content Include="Scripts\placeholder\jquery.placeholder.js" />
     <Content Include="Scripts\Select2\select2.js" />
-    <Content Include="Scripts\utility.js" />
+    <Content Include="Scripts\component.js" />
     <Content Include="Web.Sandbox.Admin.config">
       <DependentUpon>Web.Config.tt</DependentUpon>
     </Content>
@@ -790,9 +786,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Views\Home\Resources\home-header.js" />
+    <Content Include="Views\Home\Scripts\home-header.js" />
     <Content Include="Areas\Authentication\Scripts\authentication.js" />
-    <Content Include="Views\Home\Resources\home-menu.js" />
+    <Content Include="Views\Home\Scripts\home-menu.js" />
     <Content Include="Scripts\Results\Result.js" />
     <Content Include="Areas\Report\Scripts\AgentWinLoss\report-agent-winloss.js" />
     <Content Include="Areas\Report\Scripts\AgentOutstanding\report-agent-outstanding.js" />
@@ -803,8 +799,8 @@
     <Content Include="Scripts\refresh.countdown\plugin.refresh.countdown.js" />
     <Content Include="Content\fanex.multiSelect\fanex.multiSelect.css" />
     <Content Include="Scripts\fanex.multiSelect\fanex.multiSelect.js" />
-    <Content Include="Views\Transfer\Resources\transfer-list.js" />
-    <Content Include="Views\Transfer\Resources\transfer-popup.js" />
+    <Content Include="Views\Transfer\Scripts\transfer-list.js" />
+    <Content Include="Views\Transfer\Scripts\transfer-popup.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -869,9 +865,9 @@
   <ItemGroup>
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Error\Resources\Index.less" />
+    <Content Include="Views\Error\Content\error-page.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
-    <Content Include="Views\Home\Resources\home.less" />
+    <Content Include="Views\Home\Content\home.less" />
     <Content Include="Areas\Authentication\Views\Agent\SignIn.cshtml" />
     <Content Include="Views\Error\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\_ViewStart.cshtml" />
@@ -924,7 +920,6 @@
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Areas\Admin\Views\Maintenance\WhoAmI.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_LeftMenu.cshtml" />
     <Content Include="Areas\Authentication\Views\Shared\_Layout.cshtml" />
@@ -1000,17 +995,13 @@
       <LastGenOutput>Las.js</LastGenOutput>
     </None>
     <Content Include="Views\Transfer\Index.cshtml" />
-    <Content Include="Views\Transfer\Agent.cshtml" />
-    <Content Include="Views\Transfer\AgentList.cshtml" />
-    <Content Include="Views\Transfer\MemberList.cshtml" />
-    <Content Include="Views\Transfer\Member.cshtml" />
+    <Content Include="Views\Transfer\TransferAgent.cshtml" />
+    <Content Include="Views\Transfer\TransferMember.cshtml" />
     <Content Include="Areas\Report\Views\Results\Index.cshtml" />
     <Content Include="Areas\TotalBets\Views\Parlay\Index.cshtml" />
-    <Content Include="Views\CreditBalance\MemberList.cshtml" />
-    <Content Include="Views\CreditBalance\AgentList.cshtml" />
     <Content Include="Views\CreditBalance\Index.cshtml" />
-    <Content Include="Views\CreditBalance\EditAgentCredit.cshtml" />
-    <Content Include="Views\CreditBalance\AgentEditMemberCredit.cshtml" />
+    <Content Include="Views\CreditBalance\EditAgent.cshtml" />
+    <Content Include="Views\CreditBalance\EditMember.cshtml" />
     <Content Include="Areas\Admin\Views\Maintenance\Password.cshtml" />
     <Content Include="Areas\Report\Views\AgentWinLoss\Index.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
@@ -1026,7 +1017,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.Config.txt</LastGenOutput>
     </None>
-    <None Include="Views\Message\Resources\Message.less" />
+    <None Include="Views\Message\Content\message.less" />
     <Content Include="Areas\Report\Views\Statement\Detail.cshtml" />
     <Content Include="Areas\Report\Views\Statement\TransferDetail.cshtml" />
     <Content Include="Views\Shared\_AppScript.cshtml" />

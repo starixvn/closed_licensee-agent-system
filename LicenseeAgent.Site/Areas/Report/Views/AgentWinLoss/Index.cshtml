@@ -14,11 +14,10 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/datetimepicker")
-    @Scripts.Render("~/js/report/betlist")
     @Scripts.Render("~/js/report/agent-win-loss")
     <script type="text/javascript">
         $(function () {
-            report.agentWinLoss.init();
+            REPORT.AGENT_WINLOSS.init();
         });
     </script>
 }

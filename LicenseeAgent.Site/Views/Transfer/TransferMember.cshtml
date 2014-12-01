@@ -1,0 +1,95 @@
+﻿@using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Transfer.ViewModels
+@model TransferMemberViewModel
+@{
+    ViewBag.Title = Las.Transfer;
+}
+<div class="pull-left">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+                <script type="text/javascript">
+                    POPUP.trigger('transfer-member');
+                </script>
+            }
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.MemberId)
+            @Html.HiddenFor(m => m.MinAmount)
+            @Html.HiddenFor(m => m.MaxAmount)
+            @Html.HiddenFor(m => m.BetCredit)
+            @Html.HiddenFor(m => m.LastLogin)
+            @Html.HiddenFor(m => m.LastTransaction)
+            <table class="no-wrap">
+                <colgroup>
+                    <col width="150" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Las.Username
+                        </td>
+                        <td>
+                            @Model.UserName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.BetCredit
+                        </td>
+                        <td>
+                            @Formatter.FormatDecimal(Model.BetCredit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.LastLogin
+                        </td>
+                        <td>
+                            @Formatter.FormatDateTime(Model.LastLogin)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Las.LastTransaction
+                        </td>
+                        <td>
+                            @Formatter.FormatDateTime(Model.LastTransaction)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Amount)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Amount, new { @class = "w160", @data_min = Model.MinAmount, @data_max = Model.MaxAmount, title = Las.InvalidAmount })
+                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4(Model.MinAmount), Formatter.FormatDecimal4(Model.MaxAmount))</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="button" class="btn btn-primary pull-right" onclick="POPUP.close();">
+                    @Las.Cancel
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Transfer
+                </button>
+            </div>
+        </fieldset>
+    }
+</div>
+@section scripts
+{
+    @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/transfer")
+    <script type="text/javascript">
+        TRANSFER_POPUP.init();
+    </script>
+}

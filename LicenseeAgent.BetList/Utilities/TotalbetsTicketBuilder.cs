@@ -12,7 +12,7 @@
         {
             ShowOdds = false;
             IsShowMember = true;
-            ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}',{2},{3})\"";
+            ClickFunction = "onclick=\"javascript: BET_LIST.showDetails({0}, '{1}',{2},{3})\"";
         }
 
         public override string BuildStatus(LasTicket ticket)

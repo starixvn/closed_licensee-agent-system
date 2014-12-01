@@ -1,21 +1,21 @@
-﻿/*global core, language, pageContext, refreshCountDownMethods*/
+﻿/*global CORE, LANGUAGE, pageContext, refreshCountDownMethods*/
 'use strict';
 
-var totalBets = totalBets || {};
-totalBets.otherSports = (function ($this, $) {
+var TOTAL_BETS = TOTAL_BETS || {};
+TOTAL_BETS.OTHER_SPORTS = (function ($this, $) {
     var betListGridOptions = {
         columns: [
             { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
-            { HeaderText: language.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
+            { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
+            { HeaderText: LANGUAGE.getString("TransTime"), Width: 100, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Choice"), Width: 345, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentPT"), Width: 60, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
         ],
         showPager: true,
         enableHiddenColumns: false,
@@ -24,86 +24,56 @@ totalBets.otherSports = (function ($this, $) {
     var gridOptions = {
         columns: [
             { HeaderText: "#", Width: 20, Name: "RowID", CanResize: false },
-            { HeaderText: language.getString("Time"), Width: 80, Name: "Time", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString("Event"), Width: 200, Name: "Event", HeaderAlign: "center" },
-            { HeaderText: language.getBetTypeName(20), Width: 120, Name: "MoneyLine", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(1), Width: 120, Name: "FTHDP", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(3), Width: 120, Name: "FTOU", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(5), Width: 120, Name: "FT1X2", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(2), Width: 120, Name: "FTOE", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(7), Width: 120, Name: "FHHDP", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-            { HeaderText: language.getBetTypeName(8), Width: 120, Name: "FHOU", HeaderAlign: "center", CellAlign: "right", CanResize: false }
+            { HeaderText: LANGUAGE.getString("Time"), Width: 80, Name: "Time", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Event"), Width: 200, Name: "Event", HeaderAlign: "center" },
+            { HeaderText: LANGUAGE.getBetTypeName(20), Width: 120, Name: "MoneyLine", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(1), Width: 120, Name: "FTHDP", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(3), Width: 120, Name: "FTOU", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(5), Width: 120, Name: "FT1X2", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(2), Width: 120, Name: "FTOE", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(7), Width: 120, Name: "FHHDP", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getBetTypeName(8), Width: 120, Name: "FHOU", HeaderAlign: "center", CellAlign: "right", CanResize: false }
         ],
-        indexNumberColumn: 1,
         autoResizeColumn: true
     };
 
     var initialized = false;
-
-    $this.init = function () {
-        var hiddenColumns = [];
-        if (pageContext.LegendType === 1) {
-            hiddenColumns.push(9);
-        }
-        if (pageContext.IsLastLevel) {
-            hiddenColumns.push(10);
-        }
-        betListGridOptions.hiddenColumns = hiddenColumns;
-
-        totalBets.init(betListGridOptions);
-
-        // search
-        $('form').submit(function (e) {
-            totalBets.otherSports.getSports();
-            totalBets.otherSports.getLeagues();
-            totalBets.otherSports.getEvents();
-            totalBets.otherSports.reRenderAfterPaged();
-            e.preventDefault();
-        });
-
-        totalBets.otherSports.getSports();
-        totalBets.otherSports.getLeagues();
-        totalBets.otherSports.getEvents();
-        totalBets.otherSports.reRenderAfterPaged();
-        initialized = true;
-    };
-
-    $this.getSports = function () {
-        core.ajaxJSON({
+    var getSports = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/TotalBets/OtherSports/GetSports"),
+            url: CORE.resolveUrl("~/TotalBets/OtherSports/GetSports"),
             data: {
                 selectedSports: initialized ? $("#sport-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
                 checkedAll: initialized ? $("#sport-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initSportMultiSelect(data, function () {
-                totalBets.otherSports.getLeagues();
-                totalBets.otherSports.getEvents();
+            TOTAL_BETS.initSportMultiSelect(data, function () {
+                getLeagues();
+                getEvents();
             });
         });
     };
 
-    $this.getLeagues = function () {
-        core.ajaxJSON({
+    var getLeagues = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/Totalbets/OtherSports/GetLeagues"),
+            url: CORE.resolveUrl("~/TotalBets/OtherSports/GetLeagues"),
             data: {
                 selectedSports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 selectedLeagues: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', true).join(',') : '',
                 checkedAll: initialized ? $("#league-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initLeagueMultiSelect(data, function () {
-                totalBets.otherSports.getEvents();
+            TOTAL_BETS.initLeagueMultiSelect(data, function () {
+                getEvents();
             });
         });
     };
 
-    $this.getEvents = function () {
-        core.ajaxJSON({
+    var getEvents = function () {
+        CORE.ajaxJSON({
             async: false,
-            url: core.resolveUrl("~/Totalbets/OtherSports/GetEvents"),
+            url: CORE.resolveUrl("~/TotalBets/OtherSports/GetEvents"),
             data: {
                 selectedSports: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
                 selectedLeagues: $("#league-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -111,14 +81,14 @@ totalBets.otherSports = (function ($this, $) {
                 checkedAll: initialized ? $("#event-multi-select").fanexMultiSelect('getItems', false).length === 0 : true
             }
         }, function (data) {
-            totalBets.initEventMultiSelect(data, function () {
-                totalBets.otherSports.reRenderAfterPaged();
+            TOTAL_BETS.initEventMultiSelect(data, function () {
+                reRenderAfterPaged();
             });
         });
     };
 
-    $this.reRenderAfterPaged = function () {
-        core.ajaxJSON({
+    var reRenderAfterPaged = function () {
+        CORE.ajaxJSON({
             url: $('form').attr('action'),
             data: {
                 SportList: $("#sport-multi-select").fanexMultiSelect('getItems', true).join(','),
@@ -126,13 +96,13 @@ totalBets.otherSports = (function ($this, $) {
                 MatchList: $("#event-multi-select").fanexMultiSelect('getItems', true).join(',')
             }
         }, function (data) {
-            gridOptions.bodyRows = totalBets.otherSports.genGridRows(data);
+            gridOptions.bodyRows = genGridBodyRows(data);
             $('.freegrid').show().fanexGrid(gridOptions);
             refreshCountDownMethods.resetCountDown($("#server-time-interval").val(), "main-form");
         });
     };
 
-    $this.genGridRows = function (list) {
+    var genGridBodyRows = function (list) {
         var lenSports = list.length;
         var bodyRows = [];
         var oldSportId = 0;
@@ -182,33 +152,33 @@ totalBets.otherSports = (function ($this, $) {
                         { Name: "RowID", Value: "<div align='center'>" + rowIndex + "</div>", MergeRowNumber: 3 },
                         { Name: "Time", Value: match.Time, MergeRowNumber: 3, CssClass: "bold" },
                         { Name: "Event", Value: match.HomeName, TdClass: "team-name" },
-                        { Name: "MoneyLine", Value: totalBets.generateBetListLink(match.MatchId, 20, 'h', showLiveTicket, match.HomeFulltimeMoneyLine) },
-                        { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'h', showLiveTicket, match.HomeFulltimeHandicap) },
-                        { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'h', showLiveTicket, match.HomeFulltimeOverUnder) },
-                        { Name: "FT1X2", Value: totalBets.generateBetListLink(match.MatchId, 5, '1', showLiveTicket, match.HomeFulltimeOneXTwo) },
-                        { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'h', showLiveTicket, match.HomeFulltimeOddEven) },
-                        { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
-                        { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) }
+                        { Name: "MoneyLine", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 20, 'h', showLiveTicket, match.HomeFulltimeMoneyLine) },
+                        { Name: "FTHDP", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 1, 'h', showLiveTicket, match.HomeFulltimeHandicap) },
+                        { Name: "FTOU", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 3, 'h', showLiveTicket, match.HomeFulltimeOverUnder) },
+                        { Name: "FT1X2", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 5, '1', showLiveTicket, match.HomeFulltimeOneXTwo) },
+                        { Name: "FTOE", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 2, 'h', showLiveTicket, match.HomeFulltimeOddEven) },
+                        { Name: "FHHDP", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 7, 'h', showLiveTicket, match.HomeFirstHalfHandicap) },
+                        { Name: "FHOU", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 8, 'h', showLiveTicket, match.HomeFirstHalfOverUnder) }
                     );
 
                     var awayTeam = [];
                     //Away team
                     awayTeam.push(
                         { Name: "Event", Value: match.AwayName, TdClass: "team-name" },
-                        { Name: "MoneyLine", Value: totalBets.generateBetListLink(match.MatchId, 20, 'a', showLiveTicket, match.AwayFulltimeMoneyLine) },
-                        { Name: "FTHDP", Value: totalBets.generateBetListLink(match.MatchId, 1, 'a', showLiveTicket, match.AwayFulltimeHandicap) },
-                        { Name: "FTOU", Value: totalBets.generateBetListLink(match.MatchId, 3, 'a', showLiveTicket, match.AwayFulltimeOverUnder) },
-                        { Name: "FT1X2", Value: totalBets.generateBetListLink(match.MatchId, 5, '2', showLiveTicket, match.AwayFulltimeOneXTwo) },
-                        { Name: "FTOE", Value: totalBets.generateBetListLink(match.MatchId, 2, 'a', showLiveTicket, match.AwayFulltimeOddEven) },
-                        { Name: "FHHDP", Value: totalBets.generateBetListLink(match.MatchId, 7, 'a', showLiveTicket, match.AwayFirstHalfHandicap) },
-                        { Name: "FHOU", Value: totalBets.generateBetListLink(match.MatchId, 8, 'a', showLiveTicket, match.AwayFirstHalfOverUnder) }
+                        { Name: "MoneyLine", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 20, 'a', showLiveTicket, match.AwayFulltimeMoneyLine) },
+                        { Name: "FTHDP", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 1, 'a', showLiveTicket, match.AwayFulltimeHandicap) },
+                        { Name: "FTOU", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 3, 'a', showLiveTicket, match.AwayFulltimeOverUnder) },
+                        { Name: "FT1X2", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 5, '2', showLiveTicket, match.AwayFulltimeOneXTwo) },
+                        { Name: "FTOE", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 2, 'a', showLiveTicket, match.AwayFulltimeOddEven) },
+                        { Name: "FHHDP", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 7, 'a', showLiveTicket, match.AwayFirstHalfHandicap) },
+                        { Name: "FHOU", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 8, 'a', showLiveTicket, match.AwayFirstHalfOverUnder) }
                     );
 
                     var drawRow = [];
                     drawRow.push(
-                        { Name: "Event", Value: language.getString("Draw"), TdClass: "draw" },
+                        { Name: "Event", Value: LANGUAGE.getString("Draw"), TdClass: "draw" },
                         { Name: "MoneyLine", Value: "", MergeColNumber: 3 },
-                        { Name: "FT1X2", Value: totalBets.generateBetListLink(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
+                        { Name: "FT1X2", Value: TOTAL_BETS.generateBetListLink(match.MatchId, 5, 'x', showLiveTicket, match.DrawFulltimeOneXTwo) },
                         { Name: "FTOE", Value: "", MergeColNumber: 3 }
                     );
 
@@ -232,5 +202,33 @@ totalBets.otherSports = (function ($this, $) {
         return bodyRows;
     };
 
+    $this.init = function () {
+        var hiddenColumns = [];
+        if (pageContext.LegendType === 1) {
+            hiddenColumns.push(9);
+        }
+        if (pageContext.IsLastLevel) {
+            hiddenColumns.push(10);
+        }
+        betListGridOptions.hiddenColumns = hiddenColumns;
+
+        TOTAL_BETS.init(betListGridOptions);
+
+        // search
+        $('form').submit(function (e) {
+            getSports();
+            getLeagues();
+            getEvents();
+            reRenderAfterPaged();
+            e.preventDefault();
+        });
+
+        getSports();
+        getLeagues();
+        getEvents();
+        reRenderAfterPaged();
+        initialized = true;
+    };
+
     return $this;
-} (totalBets.otherSports || {}, jQuery));
+} (TOTAL_BETS.OTHER_SPORTS || {}, jQuery));

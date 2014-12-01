@@ -9,7 +9,7 @@
     @Scripts.Render("~/js/commission-setting")
     <script type="text/javascript">
         $(function () {
-            commissionSetting.groupCrud.init();
+            COMMISSION_SETTING.GROUP_CRUD.init();
         });
     </script>
 }
@@ -29,7 +29,7 @@
             @ViewBag.Result.ToString()
         </p>
         <script type="text/javascript">
-            popup.trigger('delete-commission-group')
+            POPUP.trigger('delete-commission-group')
         </script>
         }
         <label class="radio">
@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-primary">
             @Las.Delete
         </button>
-        <button type="button" class="btn btn-primary" onclick="popup.close()">
+        <button type="button" class="btn btn-primary" onclick="POPUP.close()">
             @Las.Cancel
         </button>
     }

@@ -11,7 +11,8 @@
 
         public int AgentId { get; set; }
 
-        public int MsgId { get; set; }
+        [SpParam(SqlParamName = "MsgId")]
+        public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {

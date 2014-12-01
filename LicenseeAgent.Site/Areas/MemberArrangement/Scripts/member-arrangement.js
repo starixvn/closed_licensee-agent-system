@@ -1,7 +1,8 @@
-﻿/*global language, popup */
+﻿/*global LANGUAGE, POPUP*/
+/*exported MEMBER_ARRANGEMENT*/
 'use strict';
 
-var memberArrangement = (function ($this, $) {
+var MEMBER_ARRANGEMENT = (function ($this, $) {
     var isConfirmed = false;
     var arrangementMode = {
         SwitchFromNormal: 0,
@@ -26,25 +27,25 @@ var memberArrangement = (function ($this, $) {
 
     var confirmSubmit = function () {
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
                 isConfirmed = true;
                 $('form').submit();
             }
         },
         {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }];
 
         var checkedMode = getCheckedMode();
         var confirmMessage = checkedMode === arrangementMode.SwitchFromNormal
-            ? language.getString('ConfirmSwitchMember')
-            : language.getString('ConfirmMemberReArangement');
-        popup.confirm({
-            title: language.getString('Confirmation'),
+            ? LANGUAGE.getString('ConfirmSwitchMember')
+            : LANGUAGE.getString('ConfirmMemberReArangement');
+        POPUP.confirm({
+            title: LANGUAGE.getString('Confirmation'),
             message: confirmMessage,
             buttons: buttons,
             width: 400
@@ -83,4 +84,4 @@ var memberArrangement = (function ($this, $) {
     };
 
     return $this;
-} (memberArrangement || {}, jQuery));
+} (MEMBER_ARRANGEMENT || {}, jQuery));

@@ -1,8 +1,10 @@
-﻿/*global core, language, popup */
+﻿/*global CORE, LANGUAGE, POPUP */
+/*exported AUTHENTICATION*/
 'use strict';
 
-var authentication = (function ($this, $) {
-    core.DisableRecheckIn = true;
+var AUTHENTICATION = (function ($this, $) {
+    CORE.DisableRecheckIn = true;
+
     var setFocus = function (element) {
         setTimeout(function () {
             element.focus();
@@ -10,7 +12,7 @@ var authentication = (function ($this, $) {
     };
 
     var gotoHome = function () {
-        window.location.href = core.resolveUrl('~/');
+        window.location.href = CORE.resolveUrl('~/');
     };
 
     $this.init = function () {
@@ -19,7 +21,7 @@ var authentication = (function ($this, $) {
             return;
         }
 
-        authentication.setFocus($('.btn-primary'));
+        setFocus($('.btn-primary'));
         if ($('#Username').val().length === 0) {
             setFocus($('#Username'));
         } else {
@@ -41,16 +43,16 @@ var authentication = (function ($this, $) {
     };
 
     $this.showPasswordAlert = function (message) {
-        var title = language.getString('PasswordAlert');
+        var title = LANGUAGE.getString('PasswordAlert');
         var buttons = [{
-            label: language.getString('ChangePassword'),
+            label: LANGUAGE.getString('ChangePassword'),
             action: function () {
                 $.cookie('LasTopMenu', 'security', { path: '/' });
                 gotoHome();
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons,
@@ -61,4 +63,4 @@ var authentication = (function ($this, $) {
     };
 
     return $this;
-} (authentication || {}, jQuery));
+} (AUTHENTICATION || {}, jQuery));

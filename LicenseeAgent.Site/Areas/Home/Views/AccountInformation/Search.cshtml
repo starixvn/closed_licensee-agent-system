@@ -10,13 +10,13 @@
     {
     <script type="text/javascript">
         var alertMessage = '@string.Format(viewResult.ErrMsg, viewResult.CurrencyName)';
-        home.accountInformation.showCurrencyAlert('@viewResult.CurrencyId', '@viewResult.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
+        HOME.ACCOUNT_INFORMATION.showCurrencyAlert('@viewResult.CurrencyId', '@viewResult.CurrencyName', alertMessage, "@LangMsg.Msg_1032");
     </script>
     }
     else if (viewResult.ErrCode != Result.SuccessValue)
     {
     <script type="text/javascript">
-        home.accountInformation.showNoUserAlert('@viewResult.ErrMsg');
+        HOME.ACCOUNT_INFORMATION.showNoUserAlert('@viewResult.ErrMsg');
     </script>
     }
 }
@@ -51,7 +51,7 @@
         }
         @if (Model.IsShowStatement)
         {
-            <button class="btn btn-inverse" data-url="@Url.RouteUrl("Report_Statement", new { area = "", action = "Detail", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">
+            <button class="btn btn-inverse" data-url="@Url.Action("Detail", "Statement", new { area = "Report", agentId = Model.Customer.CustId, isMember = pageContext.IsMember, username = Model.Customer.UserName })">
                 @Las.Statement
             </button>
         }

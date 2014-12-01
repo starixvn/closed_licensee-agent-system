@@ -12,7 +12,9 @@
     {
         <div class="login-box">
             <div class="header-box">
-                <div class="title">@Las.SignIn</div>
+                <div class="title">
+                    @Las.SignIn
+                </div>
                 @LanguageHelper.DropDown(Model.Language)
             </div>
             <div class="content-box">
@@ -40,7 +42,7 @@
     {
         var result = (SignInViewResult)ViewBag.Result;
         <script type="text/javascript">
-            authentication.showPasswordAlert('@result.Message');
+            AUTHENTICATION.showPasswordAlert('@result.Message');
         </script>
     }
 }

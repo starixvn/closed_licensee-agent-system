@@ -1,13 +1,13 @@
-﻿/*global core, popup */
+﻿/*global CORE, POPUP */
 'use strict';
 
-var home = home || {};
-home.accountInformation = home.accountInformation || {};
-home.accountInformation.result = (function ($this, $) {
+var HOME = HOME || {};
+HOME.ACCOUNT_INFORMATION = HOME.ACCOUNT_INFORMATION || {};
+HOME.ACCOUNT_INFORMATION.RESULT = (function ($this, $) {
     $this.init = function () {
         $('#tabDownline').on('shown', function () {
-            home.accountInformation.result.showScrollDownLine();
-            home.accountInformation.result.showScrollSearch();
+            showScrollDownLine();
+            showScrollSearch();
         });
 
         var pageIndex = $('#paging').data('page-index') + 1,
@@ -22,7 +22,7 @@ home.accountInformation.result = (function ($this, $) {
                 pageUrl: function () { return '#'; },
                 onPageChanged: function (e, oldPage, newPage) {
                     if (oldPage !== newPage && e) {
-                        home.accountInformation.result.getDownLines(newPage);
+                        getDownLines(newPage);
                     }
                 }
             });
@@ -79,52 +79,43 @@ home.accountInformation.result = (function ($this, $) {
             });
         }
 
-        home.accountInformation.info.init();
-        home.accountInformation.product.init();
-        home.accountInformation.result.showScrollSearch();
-        home.accountInformation.result.pagingBinding();
+        HOME.ACCOUNT_INFORMATION.INFO.init();
+        HOME.ACCOUNT_INFORMATION.PRODUCT.init();
+        showScrollSearch();
+        pagingBinding();
     };
 
-    $this.showScrollSearch = function () {
+    var showScrollSearch = function () {
         $("#searchResult").niceScroll({
             cursorcolor: "#8a8a8a",
             autohidemode: "leave",
             horizrailenabled: false
         });
-    },
-        $this.pagingBinding = function () {
-            $(".agent-inline").click(function (event) {
-                var userName = $(this).attr('title');
-                $("#accountInfo #UserName").val(userName);
-                $("#accountInfo form").submit();
-                event.preventDefault();
-            });
-        };
+    };
 
-    //get downline when click paging
-    $this.getDownLines = function (pageIndex) {
-        $.ajax({
-            url: core.resolveUrl('~/Home/AccountInformation/GetDownLines'),
-            type: 'post',
-            data: {
-                agentid: $("#AgentId").val(),
-                pageindex: pageIndex - 1
-            },
-            beforeSend: function () {
-                core.blockUI();
-            },
-            success: function (data) {
-                if (data.ErrCode === 0) {
-                    home.accountInformation.result.bindDownLines(data.List);
-                }
-            },
-            complete: function () {
-                core.unblockUI();
-            }
+    var pagingBinding = function () {
+        $(".agent-inline").click(function (event) {
+            var userName = $(this).attr('title');
+            $("#accountInfo #UserName").val(userName);
+            $("#accountInfo form").submit();
+            event.preventDefault();
         });
     };
 
-    $this.bindDownLines = function (downlines) {
+    //get downline when click paging
+    var getDownLines = function (pageIndex) {
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl('~/Home/AccountInformation/GetDownLines'),
+            data: {
+                agentid: $("#AgentId").val(),
+                pageindex: pageIndex - 1
+            }
+        }, function (response) {
+            bindDownLines(response.List);
+        }, null);
+    };
+
+    var bindDownLines = function (downlines) {
         var numberDownline = downlines.length,
             downlineHtml = '',
             index = 0;
@@ -136,11 +127,11 @@ home.accountInformation.result = (function ($this, $) {
                 downlines[index].UserName + '</a></li>';
         }
         $("#downlineContent ul").html(downlineHtml);
-        home.accountInformation.result.pagingBinding();
-        home.accountInformation.result.showScrollDownLine();
+        pagingBinding();
+        showScrollDownLine();
     };
 
-    $this.showScrollDownLine = function () {
+    var showScrollDownLine = function () {
         var niceScroll = $("#downlineContent").getNiceScroll();
         if (niceScroll.length === 0) {
             $("#downlineContent").niceScroll({
@@ -151,38 +142,44 @@ home.accountInformation.result = (function ($this, $) {
         $("#downlineContent").getNiceScroll().resize();
     };
 
+    var refreshGivenCredit = function (hasReplication) {
+        var timeout = 0;
+        if (hasReplication === true) {
+            timeout = CORE.ReplicationInterval;
+        }
+        CORE.blockUI();
+        setTimeout(function () {
+            $('#accountInfo form').submit();
+            CORE.unblockUI();
+        }, timeout);
+    };
+
     $this.editAgentCredit = function (agentId, agentName, agentLevel, givenCredit) {
-        var url = core.resolveUrl('~/CreditBalance/EditAgentCredit', {
+        var url = CORE.resolveUrl('~/CreditBalance/EditAgent', {
             agentId: agentId,
             agentName: agentName,
             givenCredit: givenCredit,
             agentLevel: agentLevel,
             isAccountInfo: true
         });
-        popup.openFrame(url);
+        POPUP.openFrame(url);
+        POPUP.on('edit-agent-credit', function () {
+            refreshGivenCredit(false);
+        });
     };
 
     $this.editMemberCredit = function (custId, custName, givenCredit) {
-        var url = core.resolveUrl('~/CreditBalance/AgentEditMemberCredit', {
+        var url = CORE.resolveUrl('~/CreditBalance/EditMember', {
             custId: custId,
             memberName: custName,
             givenCredit: givenCredit,
             isAccountInfo: true
         });
-        popup.openFrame(url);
-    };
-
-    $this.refreshGivenCredit = function (hasReplication) {
-        var timeout = 0;
-        if (hasReplication === true) {
-            timeout = core.REPLICATION_INTERVAL;
-        }
-        popup.block();
-        setTimeout(function () {
-            $('#accountInfo form').submit();
-            popup.unblock();
-        }, timeout);
+        POPUP.openFrame(url);
+        POPUP.on('edit-member-credit', function () {
+            refreshGivenCredit(true);
+        });
     };
 
     return $this;
-} (home.accountInformation.result || {}, jQuery));
+} (HOME.ACCOUNT_INFORMATION.RESULT || {}, jQuery));

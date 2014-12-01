@@ -2,7 +2,7 @@
 /// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../fanex.sports-book-setting.js" />
 
-/*global language */
+/*global LANGUAGE*/
 
 if (fanex.customerSetting) {
     //// Helper
@@ -15,26 +15,26 @@ if (fanex.customerSetting) {
                 switch (sportTypeId) {
                     case 99:
                         if (betTypeId === 1) {
-                            result = language.getString('OtherSports');
+                            result = LANGUAGE.getString('OtherSports');
                         } else {
-                            result = language.getString('MixSportsParlay');
+                            result = LANGUAGE.getString('MixSportsParlay');
                         }
                         break;
 
                     case 154:
-                        result = language.getString('HrFixedOdds');
+                        result = LANGUAGE.getString('HrFixedOdds');
                         break;
 
                     default:
-                        result = language.getSportName(sportTypeId);
+                        result = LANGUAGE.getSportName(sportTypeId);
                 }
 
                 if (isLive !== undefined) {
                     var status;
                     if (isLive === true) {
-                        status = language.getString('Live');
+                        status = LANGUAGE.getString('Live');
                     } else if (isLive === false) {
-                        status = language.getString('DeadBall');
+                        status = LANGUAGE.getString('DeadBall');
                     }
                     if (sportTypeId === 1) {
                         result = result + ' - ' + status;
@@ -50,24 +50,24 @@ if (fanex.customerSetting) {
                 var result = '';
                 switch (betTypeId) {
                     case 5:
-                        result = language.getString('OneXTwo');
+                        result = LANGUAGE.getString('OneXTwo');
                         break;
                     case 81:
-                        result = language.getString('FirstLastBallOverUnder');
+                        result = LANGUAGE.getString('FirstLastBallOverUnder');
                         break;
                     case 83:
-                        result = language.getString('FirstLastBallOddEven');
+                        result = LANGUAGE.getString('FirstLastBallOddEven');
                         break;
                     default:
-                        result = language.getBetTypeName(betTypeId);
+                        result = LANGUAGE.getBetTypeName(betTypeId);
                 }
                 return result;
             },
             getString: function (key) {
-                return language.getString(key);
+                return LANGUAGE.getString(key);
             },
             getFormatString: function () {
-                return language.getFormatString.apply(language, arguments);
+                return LANGUAGE.getFormatString.apply(LANGUAGE, arguments);
             }
         };
     });

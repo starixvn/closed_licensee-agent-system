@@ -1,0 +1,68 @@
+﻿@using LicenseeAgent.Core.Utility
+@using LicenseeAgent.Transfer.ViewModels
+@model TransferAgentViewModel
+@{
+    ViewBag.Title = Las.Transfer;
+}
+<div class="pull-left">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-table" }))
+    {
+        @Html.ValidationSummary()
+        <fieldset>
+            @if (ViewBag.Result != null)
+            {
+                <p class="text-success">
+                    @ViewBag.Result.ToString()
+                </p>
+                <script type="text/javascript">
+                    POPUP.trigger('transfer-agent');
+                </script>
+            }
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.AgentId)
+            @Html.HiddenFor(m => m.MinAmount)
+            @Html.HiddenFor(m => m.MaxAmount)
+            <table class="no-wrap">
+                <colgroup>
+                    <col width="150" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Las.Username
+                        </td>
+                        <td>
+                            @Model.AgentName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Amount)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Amount, new { @class = "w160", @data_min = Model.MinAmount, @data_max = Model.MaxAmount, title = Las.InvalidAmount })
+                            <span>@string.Format("[{0}; {1}]", Formatter.FormatDecimal4(Model.MinAmount), Formatter.FormatDecimal4(Model.MaxAmount))</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group row-fluid">
+                <button type="button" class="btn btn-primary pull-right" onclick="POPUP.close();">
+                    @Las.Cancel
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Las.Transfer
+                </button>
+            </div>
+        </fieldset>
+    }
+</div>
+@section scripts
+{
+    @Scripts.Render("~/js/autonumeric")
+    @Scripts.Render("~/js/transfer")
+    <script type="text/javascript">
+        TRANSFER_POPUP.init();
+    </script>
+}

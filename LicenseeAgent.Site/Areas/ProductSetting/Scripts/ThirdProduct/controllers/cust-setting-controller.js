@@ -1,7 +1,6 @@
-﻿/*global core, settingContext, result, customerSetting:true */
+﻿/*global CORE, settingContext, result, customerSetting:true */
 
 if (fanex.customerSetting) {
-
     fanex.customerSetting.factory('ThirdProductFactory', ['Fanex.CustomerSetting.LanguageService', function (languageService) {
         'use strict';
         var settings;
@@ -21,7 +20,7 @@ if (fanex.customerSetting) {
         }
 
         return settings;
-    }]);
+    } ]);
 
     fanex.customerSetting.controller('CustomerSettingController',
     [
@@ -32,16 +31,16 @@ if (fanex.customerSetting) {
         'ThirdProductFactory',
         function ($scope, $http, custSettingService, languageService, thirdProductFactory) {
             'use strict';
-            core.blockUI();
+            CORE.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
                 $('#custSetting').show();
-                core.unblockUI();
+                CORE.unblockUI();
                 return;
             }
-            core.initInstruction();
+            CORE.initInstruction();
             // reload setting mode from query string
-            settingContext.IsSimpleMode = core.getQueryParamValue('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
+            settingContext.IsSimpleMode = CORE.getQueryParamValue('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
             $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
 
             $scope.settingMode = settingContext.IsSimpleMode;
@@ -111,24 +110,24 @@ if (fanex.customerSetting) {
                     ];
                     return;
                 }
-                
-                core.blockUI();
+
+                CORE.blockUI();
                 updateData["settingContext"] = settingContext;
                 updateData[thirdProductFactory.productSettingName] = productSetting;
 
                 $http({
                     method: 'POST',
-                    url: core.resolveUrl($('#custSetting').data('href')),
+                    url: CORE.resolveUrl($('#custSetting').data('href')),
                     headers: { 'Content-Type': 'application/json' },
-                    data: 
+                    data:
                     {
                         settingContext: settingContext,
-                        customerSetting: productSetting 
+                        customerSetting: productSetting
                     }
                 }).
                     success(function (data) {
                         var timeout = 0;
-                        core.unblockUI();
+                        CORE.unblockUI();
 
                         if (data.ErrCode !== 0) {
                             $scope.Messages = [
@@ -146,16 +145,16 @@ if (fanex.customerSetting) {
                             timeout = 3000;
                         }
 
-                        core.blockUI();
+                        CORE.blockUI();
                         setTimeout(function () {
                             custSettingService.updateSettingModel();
                         }, timeout);
 
                         $('.messages').show();
-                        core.scrollTop();
+                        CORE.scrollTop();
                     }).
                     error(function (data) {
-                        core.unblockUI();
+                        CORE.unblockUI();
                         alert(data.ErrMsg);
                     });
             };
@@ -172,17 +171,17 @@ if (fanex.customerSetting) {
 
                 productSetting.settingContext = settingContext;
 
-                core.blockUI();
+                CORE.blockUI();
                 $http({
                     method: 'POST',
-                    url: core.resolveUrl($('#custSetting').data('href')),
+                    url: CORE.resolveUrl($('#custSetting').data('href')),
                     headers: { 'Content-Type': 'application/json' },
                     data: productSetting
                 }).
                 success(function (data) {
                     var timeout = 0;
 
-                    core.unblockUI();
+                    CORE.unblockUI();
 
                     if (data.ErrCode !== 0) {
                         $scope.Messages = [
@@ -200,16 +199,16 @@ if (fanex.customerSetting) {
                         timeout = 3000;
                     }
 
-                    core.blockUI();
+                    CORE.blockUI();
                     setTimeout(function () {
                         custSettingService.updateSettingModel();
                     }, timeout);
 
                     $('.messages').show();
-                    core.scrollTop();
+                    CORE.scrollTop();
                 }).
                 error(function (data) {
-                    core.unblockUI();
+                    CORE.unblockUI();
                     alert(data.ErrMsg);
                 });
             };
@@ -220,9 +219,9 @@ if (fanex.customerSetting) {
 
             $('#custSetting').show();
 
-            var messagesQueryString = core.getQueryParamValue('messages');
+            var messagesQueryString = CORE.getQueryParamValue('messages');
             if (messagesQueryString !== '') {
-                var messages = core.decodeMessages(messagesQueryString);
+                var messages = CORE.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;
             }
         }

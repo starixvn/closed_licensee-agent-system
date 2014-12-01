@@ -1,12 +1,12 @@
-﻿/*global core, language, popup, pageContext */
+﻿/*global CORE, LANGUAGE, POPUP, ENUMS, pageContext */
 'use strict';
 
-var home = home || {};
-home.accountInformation = home.accountInformation || {};
-home.accountInformation.info = (function ($this, $) {
+var HOME = HOME || {};
+HOME.ACCOUNT_INFORMATION = HOME.ACCOUNT_INFORMATION || {};
+HOME.ACCOUNT_INFORMATION.INFO = (function ($this, $) {
     $this.init = function () {
         $("#customer-status").click(function () {
-            home.accountInformation.info.changeStatus(this);
+            HOME.ACCOUNT_INFORMATION.INFO.changeStatus(this);
         });
 
         $(".cust-info .icon-collapse").click(function () {
@@ -33,44 +33,44 @@ home.accountInformation.info = (function ($this, $) {
         }
 
         currentStatus = $(target).hasClass('icon-status-open')
-            ? core.enums.AccountStatus.Open
-            : core.enums.AccountStatus.Closed;
-        newStatus = currentStatus === core.enums.AccountStatus.Closed
-            ? core.enums.AccountStatus.Open
-            : core.enums.AccountStatus.Closed;
-        home.accountInformation.info.alertChangeStatus(target, agentId, newStatus);
+            ? ENUMS.AccountStatus.Open
+            : ENUMS.AccountStatus.Closed;
+        newStatus = currentStatus === ENUMS.AccountStatus.Closed
+            ? ENUMS.AccountStatus.Open
+            : ENUMS.AccountStatus.Closed;
+        alertChangeStatus(target, agentId, newStatus);
     };
 
-    $this.alertChangeStatus = function (target, custId, statusId) {
+    var alertChangeStatus = function (target, custId, statusId) {
         var message = '';
-        if (statusId === core.enums.AccountStatus.Closed) {
+        if (statusId === ENUMS.AccountStatus.Closed) {
             if (pageContext.IsMember) {
-                message = language.getString('ChangeStatusMember');
+                message = LANGUAGE.getString('ChangeStatusMember');
             } else {
-                message = language.getString('ChangeStatusAgent');
+                message = LANGUAGE.getString('ChangeStatusAgent');
             }
         } else {
             if (pageContext.IsMember) {
-                message = language.getString('ChangeCloseToOpenMember');
+                message = LANGUAGE.getString('ChangeCloseToOpenMember');
             } else {
-                message = language.getString('ChangeCloseToOpenAgent');
+                message = LANGUAGE.getString('ChangeCloseToOpenAgent');
             }
         }
-        var title = language.getString('ChangeStatus');
+        var title = LANGUAGE.getString('ChangeStatus');
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
-                home.accountInformation.info.updateStatus(target, custId, statusId);
+                POPUP.close();
+                HOME.ACCOUNT_INFORMATION.INFO.updateStatus(target, custId, statusId);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons
@@ -80,29 +80,29 @@ home.accountInformation.info = (function ($this, $) {
     $this.updateStatus = function (target, custId, statusId) {
         var params, url;
         if (pageContext.IsMember) {
-            url = core.resolveUrl('~/CustomerList/Member/ChangeStatus');
+            url = CORE.resolveUrl('~/CustomerList/Member/ChangeStatus');
             params = {
                 memberid: custId,
                 status: statusId
             };
         }
         else {
-            url = core.resolveUrl('~/CustomerList/Agent/ChangeStatus');
+            url = CORE.resolveUrl('~/CustomerList/Agent/ChangeStatus');
             params = {
                 agentid: custId,
                 status: statusId
             };
         }
-        core.ajaxJSON({
+        CORE.ajaxJSON({
             url: url,
             type: 'post',
             data: params
         }, function () {
-            if (statusId === core.enums.AccountStatus.Closed) {
+            if (statusId === ENUMS.AccountStatus.Closed) {
                 $(target).addClass('icon-status-closed')
                         .removeClass('icon-status-open')
                         .find('span')
-                        .text(language.getString('Closed'));
+                        .text(LANGUAGE.getString('Closed'));
                 $('.cust-info').children(':first')
                         .addClass('closed')
                         .removeClass('open');
@@ -110,7 +110,7 @@ home.accountInformation.info = (function ($this, $) {
                 $(target).addClass('icon-status-open')
                         .removeClass('icon-status-closed')
                         .find('span')
-                        .text(language.getString('Open'));
+                        .text(LANGUAGE.getString('Open'));
                 $('.cust-info').children(':first')
                         .addClass('open')
                         .removeClass('closed');
@@ -119,4 +119,4 @@ home.accountInformation.info = (function ($this, $) {
     };
 
     return $this;
-} (home.accountInformation.info || {}, jQuery));
+} (HOME.ACCOUNT_INFORMATION.INFO || {}, jQuery));

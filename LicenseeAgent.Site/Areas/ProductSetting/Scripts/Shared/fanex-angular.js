@@ -1,4 +1,4 @@
-﻿/*global core, fanex:true*/
+﻿/*global CORE, fanex:true*/
 
 var fanex = fanex || {};
 
@@ -12,10 +12,10 @@ function ($httpProvider) {
     $httpProvider.responseInterceptors.push(function () {
         return function (promise) {
             numLoadings++;
-            core.blockUI();
+            CORE.blockUI();
             var hide = function (response) {
                 if (!(--numLoadings)) {
-                    core.unblockUI();
+                    CORE.unblockUI();
                 }
                 if (response.status !== 200 && response.status !== 404) {
                     core.handleError(response.data);

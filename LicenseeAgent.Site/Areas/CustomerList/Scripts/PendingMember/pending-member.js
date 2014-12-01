@@ -1,21 +1,21 @@
-﻿/*global core, language, pageContext*/
+﻿/*global CORE, LANGUAGE, GRID, pageContext*/
 'use strict';
 
-var customerList = customerList || {};
-customerList.pendingMember = (function ($this, $) {
+var CUSTOMER_LIST = CUSTOMER_LIST || {};
+CUSTOMER_LIST.PENDING_MEMBER_LIST = (function ($this, $) {
     var gridOptions = {
         columns: [
             { HeaderText: '#', Width: 50, Name: "No", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('Username'), Width: 300, HeaderAlign: "center", Name: "Username", CellAlign: "left" }
+            { HeaderText: LANGUAGE.getString('Username'), Width: 300, HeaderAlign: "center", Name: "Username", CellAlign: "left" }
         ],
         showPager: true,
         pagerOption: {
-            itemsPerPage: core.pageSizes[2],
+            itemsPerPage: GRID.PageSizes[2],
             currentPage: 0,
-            itemsPerPageArray: core.pageSizes,
+            itemsPerPageArray: GRID.PageSizes,
             showDetail: true
         },
-        indexNumberColumn: 0,
+        showNumberColumn: true,
         autoResizeColumn: true
     };
 
@@ -24,12 +24,12 @@ customerList.pendingMember = (function ($this, $) {
     };
 
     var submit = function (url) {
-        core.ajaxJSON({
+        CORE.ajaxJSON({
             url: url,
             data: $('form').serializeObject()
         }, function (data) {
             gridOptions.pagerOption.currentPage = 0;
-            gridOptions.bodyRows = core.genGridRows(data.Data, gridOptions);
+            gridOptions.bodyRows = GRID.generateBodyRows(data.Data, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
         }, function (data, errorHandler) {
             errorHandler(data);
@@ -44,7 +44,7 @@ customerList.pendingMember = (function ($this, $) {
             var url = $(this).attr('action');
             if ($(this).find('#AgentUserName').length > 0) {
                 if (!$('#AgentUserName').val().trim()) {
-                    core.showErrorMsg(language.getString('AgentUserNameIsEmpty'));
+                    CORE.showErrorMsg(LANGUAGE.getString('AgentUserNameIsEmpty'));
                     hideGrid();
                 }
                 else {
@@ -57,7 +57,7 @@ customerList.pendingMember = (function ($this, $) {
         });
 
         $('a[data-toggle="tab"]').on('shown', function (e) {
-            core.hideErrors();
+            CORE.hideErrors();
             if ($(e.target).attr('href') === "#direct-agent") {
                 hideGrid();
                 $('#directMember').submit();
@@ -73,4 +73,4 @@ customerList.pendingMember = (function ($this, $) {
     };
 
     return $this;
-} (customerList.pendingMember || {}, jQuery));
+} (CUSTOMER_LIST.PENDING_MEMBER_LIST || {}, jQuery));

@@ -1,16 +1,15 @@
-﻿/*global core, fanex:true */
+﻿/*global CORE, fanex:true */
+'use strict';
 
 var fanex = fanex || {};
 
 // Arguments: number to round, number of decimal places
 fanex.roundNumber = function (number, decimals) {
-    'use strict';
     var newnumber = Number(number + '').toFixed(parseInt(decimals));
     return parseFloat(newnumber); // Output the result to the form field (change for your purposes)
 };
 
 fanex.ShowInvalidRangeMessage = function (element, minValue, maxValue) {
-    'use strict';
     fanex.showHint(element, 'Invalid range, input must be in ['
                                 + minValue
                                 + ' - '
@@ -19,7 +18,6 @@ fanex.ShowInvalidRangeMessage = function (element, minValue, maxValue) {
 };
 
 fanex.showHint = function (element, content) {
-    'use strict';
     var option = {
         alignX: 'center'
     };
@@ -27,7 +25,6 @@ fanex.showHint = function (element, content) {
 };
 
 fanex.showHintDown = function (element, content) {
-    'use strict';
     var option = {
         alignX: 'center',
         alignY: 'bottom'
@@ -36,7 +33,6 @@ fanex.showHintDown = function (element, content) {
 };
 
 fanex.showHintOption = function (element, content) {
-    'use strict';
     if (typeof fanex.hintTarget !== 'undefined' && fanex.hintTarget[0] !== element[0]) {
         fanex.hideHint();
     }
@@ -56,8 +52,8 @@ fanex.showHintOption = function (element, content) {
         }
     }
     if (fanex.hintTarget !== element) {
-        if (!core.isScrolledIntoView(element)) {
-            core.scrollTo(element);
+        if (!CORE.isScrolledIntoView(element)) {
+            CORE.scrollTo(element);
         }
         $(element).tooltip('show');
     }
@@ -65,7 +61,6 @@ fanex.showHintOption = function (element, content) {
 };
 
 fanex.hideHint = function (element) {
-    'use strict';
     if (typeof element === 'undefined') {
         element = fanex.hintTarget;
     }
@@ -75,7 +70,6 @@ fanex.hideHint = function (element) {
 };
 
 fanex.cloneObject = function (obj) {
-    'use strict';
     var newObj = (obj instanceof Array) ? [] : {};
     for (var i in obj) {
         if (i === 'clone') {
@@ -91,15 +85,19 @@ fanex.cloneObject = function (obj) {
 };
 
 fanex.isChangedData = function (productSetting) {
-    'use strict';
-    var isChangedCommission = productSetting.CommissionSetting === undefined ? false :
-                                (productSetting.CommissionSetting !== null &&
-                                productSetting.CommissionSetting.CommissionItems !== null &&
-                                productSetting.CommissionSetting.CommissionItems.length > 0);
-    var isChangedBetSetting = productSetting.BettingLimitSetting === undefined ? false :
-                                (productSetting.BettingLimitSetting !== null && productSetting.BettingLimitSetting.length > 0);
-    var isChangedPositionTaking = productSetting.PositionTakingSetting === undefined ? false :
-                                    (productSetting.PositionTakingSetting != null && productSetting.PositionTakingSetting.length > 0);
+    var isChangedCommission = productSetting.CommissionSetting === undefined
+        ? false
+        : (productSetting.CommissionSetting !== null
+            && productSetting.CommissionSetting.CommissionItems !== null
+            && productSetting.CommissionSetting.CommissionItems.length > 0);
+    var isChangedBetSetting = productSetting.BettingLimitSetting === undefined
+        ? false
+        : (productSetting.BettingLimitSetting !== null
+            && productSetting.BettingLimitSetting.length > 0);
+    var isChangedPositionTaking = productSetting.PositionTakingSetting === undefined
+        ? false
+        : (productSetting.PositionTakingSetting != null
+            && productSetting.PositionTakingSetting.length > 0);
 
     return isChangedCommission || isChangedBetSetting || isChangedPositionTaking;
 };

@@ -1,7 +1,7 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 /*jshint -W101,-W106,-W044,-W098*/
 
-language.Las['zh-CN'] = {
+LANGUAGE.Las['zh-CN'] = {
 	AccessDeniedMsg : "抱歉!您没有此页面的权限",
 	AccountInfo : "账号资料",
 	AccountStatus : "账户状态",

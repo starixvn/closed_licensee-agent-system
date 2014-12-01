@@ -1,13 +1,13 @@
-﻿/*global core, language, popup, pageContext */
+﻿/*global CORE, LANGUAGE, POPUP, pageContext */
 'use strict';
 
-var home = home || {};
-home.accountInformation = home.accountInformation || {};
-home.accountInformation.product = (function ($this, $) {
+var HOME = HOME || {};
+HOME.ACCOUNT_INFORMATION = HOME.ACCOUNT_INFORMATION || {};
+HOME.ACCOUNT_INFORMATION.PRODUCT = (function ($this, $) {
     $this.init = function () {
         $('#panel-products .product[title]').tooltip();
         $('#panel-products input:enabled').click(function (e) {
-            home.accountInformation.product.updateStatus(this);
+            HOME.ACCOUNT_INFORMATION.PRODUCT.updateStatus(this);
             e.preventDefault();
         });
     };
@@ -18,20 +18,20 @@ home.accountInformation.product = (function ($this, $) {
         var productName = $.trim($(input).parent().text());
         var custId = pageContext.CustId;
         if (pageContext.IsMember) {
-            home.accountInformation.product.updateMemberStatus(input, custId, disable, productId, productName);
+            updateMemberStatus(input, custId, disable, productId, productName);
         } else {
-            home.accountInformation.product.updateAgentStatus(input, custId, disable, productId, productName);
+            updateAgentStatus(input, custId, disable, productId, productName);
         }
     };
 
-    $this.updateAgentStatus = function (input, agentId, disable, productId, productName) {
+    var updateAgentStatus = function (input, agentId, disable, productId, productName) {
         var message = disable
-            ? language.getString('AlertDisableAgentProduct').format(productName)
-            : language.getString('AlertEnableAgentProduct').format(productName);
-        var title = language.getString('ChangeStatus');
+            ? LANGUAGE.getString('AlertDisableAgentProduct').format(productName)
+            : LANGUAGE.getString('AlertEnableAgentProduct').format(productName);
+        var title = LANGUAGE.getString('ChangeStatus');
         var ajaxUpdateStatus = function (input, disable, productId, isAllDownLine) {
-            core.ajaxJSON({
-                url: core.resolveUrl('~/ProductSetting/Status/UpdateAgent'),
+            CORE.ajaxJSON({
+                url: CORE.resolveUrl('~/ProductSetting/Status/UpdateAgent'),
                 data: {
                     agentId: agentId,
                     productId: productId,
@@ -44,32 +44,32 @@ home.accountInformation.product = (function ($this, $) {
         };
 
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
+                POPUP.close();
                 ajaxUpdateStatus(input, disable, productId, true);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
                 if (!disable) {
                     ajaxUpdateStatus(input, disable, productId, false);
                 }
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons
         });
     };
 
-    $this.updateMemberStatus = function (input, custId, disable, productId, productName) {
+    var updateMemberStatus = function (input, custId, disable, productId, productName) {
         var ajaxUpdateStatus = function (input, disable, productId) {
-            core.ajaxJSON({
-                url: core.resolveUrl('~/ProductSetting/Status/UpdateMember'),
+            CORE.ajaxJSON({
+                url: CORE.resolveUrl('~/ProductSetting/Status/UpdateMember'),
                 data: {
                     custId: custId,
                     productId: productId,
@@ -86,24 +86,24 @@ home.accountInformation.product = (function ($this, $) {
         }
 
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
+                POPUP.close();
                 ajaxUpdateStatus(input, disable, productId);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }];
 
-        popup.confirm({
-            title: language.getString('ChangeStatus'),
-            message: language.getString('AlertDisableMemberProduct').format(productName),
+        POPUP.confirm({
+            title: LANGUAGE.getString('ChangeStatus'),
+            message: LANGUAGE.getString('AlertDisableMemberProduct').format(productName),
             buttons: buttons
         });
     };
 
     return $this;
-} (home.accountInformation.product || {}, jQuery));
+} (HOME.ACCOUNT_INFORMATION.PRODUCT || {}, jQuery));

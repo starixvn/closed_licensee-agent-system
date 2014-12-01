@@ -1,8 +1,8 @@
 ﻿'use strict';
 
-var commissionSetting = commissionSetting || {};
-commissionSetting.memberCrud = (function ($this, $) {
-    $this.moveToGroup = function () {
+var COMMISSION_SETTING = COMMISSION_SETTING || {};
+COMMISSION_SETTING.MEMBER_CRUD = (function ($this, $) {
+    $this.initMoveToGroup = function () {
         $('.selectpicker').selectpicker();
 
         $('#GroupCommId').change(function () {
@@ -21,9 +21,9 @@ commissionSetting.memberCrud = (function ($this, $) {
         });
     };
 
-    $this.updateMemberCommission = function () {
-        commissionSetting.initProductCommissionSelect();
+    $this.initUpdateMemberCommission = function () {
+        COMMISSION_SETTING.initProductCommissionSelect();
     };
 
     return $this;
-} (commissionSetting.memberCrud || {}, jQuery));
+} (COMMISSION_SETTING.MEMBER_CRUD || {}, jQuery));

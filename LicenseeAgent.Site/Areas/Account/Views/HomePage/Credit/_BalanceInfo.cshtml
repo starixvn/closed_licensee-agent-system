@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <td>
-                @Las.TodayWinLoss (@Model.Today.ToString("MM/dd/yyyy"))
+                @Las.TodayWinLoss (@Formatter.FormatDate(Model.Today))
             </td>
             <td>
                 @RazorHelper.FormatNegative(Model.TodayWinloss)
@@ -65,7 +65,7 @@
         </tr>
         <tr>
             <td>
-                @Las.YesterdayWinLoss (@Model.Yesterday.ToString("MM/dd/yyyy"))
+                @Las.YesterdayWinLoss (@Formatter.FormatDate(Model.Yesterday))
             </td>
             <td>
                 @RazorHelper.FormatNegative(Model.YesterdayWinloss)

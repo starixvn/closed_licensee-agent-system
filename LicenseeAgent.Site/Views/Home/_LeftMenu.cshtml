@@ -31,9 +31,9 @@
                     {
                         if (SessionManager.CurrentSession.AgentInfo != null && !SessionManager.CurrentSession.AgentInfo.IsLevel0)
                         {
-                        @BootstrapHelper.LeftMenu(Las.Statement, Url.RouteUrl("Report_Statement", new { action = "Current" }))
+                        @BootstrapHelper.LeftMenu(Las.Statement, Url.Action("Cunrrent", "Statement", new { area = "Report" }))
                         }
-                        @BootstrapHelper.LeftMenu(Las.DownlineStatement, Url.RouteUrl("Report_Statement", new { action = "Index" }))
+                        @BootstrapHelper.LeftMenu(Las.DownlineStatement, Url.Action("Index", "Statement", new { area = "Report" }))
                     }
                 </ul>
             </li>

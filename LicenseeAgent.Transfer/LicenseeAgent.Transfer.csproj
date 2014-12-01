@@ -89,7 +89,7 @@
     <Compile Include="Services\ITransferService.cs" />
     <Compile Include="ViewModels\TransferMemberViewModel.cs" />
     <Compile Include="ViewModels\TransferAgentViewModel.cs" />
-    <Compile Include="ViewModels\TransferSearchViewModel.cs" />
+    <Compile Include="ViewModels\TransferViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LicenseeAgent.Core\LicenseeAgent.Core.csproj">

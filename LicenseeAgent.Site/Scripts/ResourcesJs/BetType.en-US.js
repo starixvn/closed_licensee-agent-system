@@ -1,6 +1,6 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 
-language.BetType['en-US'] = {
+LANGUAGE.BetType['en-US'] = {
 	'1' : 'Handicap',
 	'2' : 'Odd/Even',
 	'3' : 'Over/Under',
@@ -214,13 +214,13 @@ language.BetType['en-US'] = {
 	'1332' : 'Set X Game Y Point Z Winner',
 	'1333' : 'Set X Games Y &amp; Y+1 Winner',
 	'1334' : 'Set X Games Y &amp; Y+1 Points',
-	'1501' : 'Australia Acttab',
-	'1502' : 'Bejing Keno 8',
-	'1503' : 'Slovakia Eklub',
-	'1504' : 'Canada Keno',
-	'1505' : 'West Canada Keno',
-	'1506' : 'Taiwan Bingo Bingo',
-	'1507' : 'Massac',
+	'1501' : 'Australia',
+	'1502' : 'Bejing',
+	'1503' : 'Slovakia',
+	'1504' : 'Canada',
+	'1505' : 'West Canada',
+	'1506' : 'Taiwan',
+	'1507' : 'Massachusetts',
 	'1508' : 'Ohio',
 	'1509' : 'Malta',
 	'1511' : 'Kentucky',
@@ -247,6 +247,10 @@ language.BetType['en-US'] = {
 	'22011' : 'DCANOPus',
 	'22014' : 'DTRAAGC',
 	'22015' : 'DCANAGC',
+	'22016' : 'DTRAGD',
+	'22017' : 'DCANGD',
+	'22018' : 'DTRAVoidbridge',
+	'22019' : 'DCANVoidbridge',
 	'23001' : 'CSTRA',
 	'23002' : 'CSPD',
 	'23101' : 'P2PTRA',

@@ -13,7 +13,13 @@
     [AllowAnonymous]
     public class ErrorController : BaseController
     {
+        #region Variables
+
         private IUnderMaintenanceService _maintenanceService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public ErrorController()
             : this(null)
@@ -24,6 +30,10 @@
         {
             _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
         }
+
+        #endregion Constructors
+
+        #region Default error page
 
         /// <summary>
         /// Show error page.
@@ -43,17 +53,29 @@
             return View(model);
         }
 
+        #endregion Default error page
+
+        #region Unauthorized page
+
         [HttpGet]
         public ActionResult Unauthorized()
         {
             return View();
         }
 
+        #endregion Unauthorized page
+
+        #region Access denied page
+
         [HttpGet]
         public ActionResult AccessDenied()
         {
             return View();
         }
+
+        #endregion Access denied page
+
+        #region Undermaintenance page
 
         /// <summary>
         /// Under maintenance page.
@@ -74,10 +96,16 @@
             }
         }
 
+        #endregion Undermaintenance page
+
+        #region No currency permission page
+
         [HttpGet]
         public ActionResult CurrencyPermissionDenied()
         {
             return View();
         }
+
+        #endregion No currency permission page
     }
 }

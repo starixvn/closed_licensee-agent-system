@@ -35,48 +35,11 @@
                 result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
 
                 // Reference ticket
-                var referenceTable = dataset.Tables.Count > 1 ? dataset.Tables[1] : new DataTable();
-                result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get Bet List Parlay.
-        /// </summary>
-        /// <param name="criteria">Mix Parlay Details Criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
-        {
-            var result = new BetListResult();
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
-
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get Parlay List.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public BetListResult GetParlayList(ICriteria criteria)
-        {
-            var result = new BetListResult();
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                var param = criteria.GetSpParams();
-                var dataset = objectDb.ExecuteDataSet(param);
-
-                var mainTable = dataset.Tables.Count > 0 ? dataset.Tables[0] : new DataTable();
-                result.MainTicketList = ReadMainTicketData(mainTable, string.Empty);
+                if (dataset.Tables.Count > 1)
+                {
+                    var referenceTable = dataset.Tables[1];
+                    result.TicketDataList = ReadReferenceTicket(referenceTable, string.Empty);
+                }
             }
 
             return result;
@@ -115,7 +78,6 @@
         /// <param name="baseCurrency"> Parameter value.</param>
         /// <returns>Result value.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Review")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Fix later.")]
         private static List<LasTicket> ReadMainTicketData(DataTable dataTable, string baseCurrency)
         {

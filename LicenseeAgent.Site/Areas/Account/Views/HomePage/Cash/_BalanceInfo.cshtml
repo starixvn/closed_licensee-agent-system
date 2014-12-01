@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td>
-                @string.Format("{0} - {1}", Las.Balance, Model.Today.ToString("MMM yyyy"))
+                @string.Format("{0} - {1}", Las.Balance, Formatter.FormatMonth(Model.Today))
             </td>
             <td>
                 @RazorHelper.FormatNegative(Model.Balance)
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td>
-                @Las.TodayWinLoss (@Model.Today.ToString("MM/dd/yyyy"))
+                @Las.TodayWinLoss (@Formatter.FormatDate(Model.Today))
             </td>
             <td>
                 @RazorHelper.FormatNegative(Model.TodayWinloss)
@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td>
-                @Las.YesterdayWinLoss (@Model.Yesterday.ToString("MM/dd/yyyy"))
+                @Las.YesterdayWinLoss (@Formatter.FormatDate(Model.Yesterday))
             </td>
             <td>
                 @RazorHelper.FormatNegative(Model.YesterdayWinloss)

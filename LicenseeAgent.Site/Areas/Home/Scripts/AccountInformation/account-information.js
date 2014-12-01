@@ -1,14 +1,14 @@
-﻿/*global core, popup, language */
+﻿/*global CORE, LANGUAGE, POPUP*/
 'use strict';
 
-var home = home || {};
-home.accountInformation = (function ($this, $) {
+var HOME = HOME || {};
+HOME.ACCOUNT_INFORMATION = (function ($this, $) {
     $this.init = function () {
         var userName;
 
         // username suggestion
         $("#accountInfo #UserName").typeahead({
-            source: home.accountInformation.getSuggestion,
+            source: getSuggestion,
             minLength: 2
         });
 
@@ -16,7 +16,7 @@ home.accountInformation = (function ($this, $) {
         $('#accountInfo form').submit(function (event) {
             userName = $.trim($("#UserName").val());
             if (userName !== '') {
-                home.accountInformation.search(userName);
+                search(userName);
             }
             event.preventDefault();
         });
@@ -33,11 +33,11 @@ home.accountInformation = (function ($this, $) {
             $("#accountInfo form").submit();
 
             $.removeCookie('username', { path: '/' });
-            home.accountInformation.changeAccountInfoActive();
+            changeAccountInfoActive();
         }
     };
 
-    $this.changeAccountInfoActive = function () {
+    var changeAccountInfoActive = function () {
         var tab, mainMenuId, accountInfoId;
         tab = $('.leftmenu-box').find('.nav-tabs').first();
         tab.find('li:first').removeClass('active');
@@ -51,9 +51,9 @@ home.accountInformation = (function ($this, $) {
         $(accountInfoId).addClass('active in');
     };
 
-    $this.getSuggestion = function (query, process) {
+    var getSuggestion = function (query, process) {
         return $.ajax({
-            url: core.resolveUrl('~/Home/AccountInformation/Suggest'),
+            url: CORE.resolveUrl('~/Home/AccountInformation/Suggest'),
             type: 'post',
             data: {
                 username: query
@@ -66,8 +66,8 @@ home.accountInformation = (function ($this, $) {
         });
     };
 
-    $this.search = function (userName) {
-        home.accountInformation.hidePopover();
+    var search = function (userName) {
+        $this.hidePopover();
         $("#accountInfo #UserName").val(userName);
         $.ajax({
             url: $('#accountInfo form').attr('action'),
@@ -78,24 +78,24 @@ home.accountInformation = (function ($this, $) {
             beforeSend: function () {
                 $("#searchAlert").hide();
                 $("#searchResult").html('');
-                core.blockUI();
+                CORE.blockUI();
             },
             success: function (data) {
                 if (typeof data === 'object') {
                     if (data.ErrCode === -4) {
-                        home.accountInformation.showNoUserAlert(data.ErrMsg);
+                        $this.showNoUserAlert(data.ErrMsg);
                     }
                     else {
-                        core.handleError(data);
+                        CORE.handleError(data);
                     }
                 }
                 else {
                     $('#searchResult').html(data);
-                    home.accountInformation.result.init();
+                    HOME.ACCOUNT_INFORMATION.RESULT.init();
                 }
             },
             complete: function () {
-                core.unblockUI();
+                CORE.unblockUI();
             }
         });
     };
@@ -114,22 +114,22 @@ home.accountInformation = (function ($this, $) {
     //show alert when search username exist in another currency
     $this.showCurrencyAlert = function (currencyId, currencyName, msgQuestion, msgAlert) {
         var message = msgQuestion;
-        var title = language.getString('Attention');
+        var title = LANGUAGE.getString('Attention');
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
-                home.accountInformation.changeCurrencyPage(currencyId, currencyName);
+                POPUP.close();
+                $this.changeCurrencyPage(currencyId, currencyName);
             }
         }, {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
-                home.accountInformation.showNoUserAlert(msgAlert);
+                POPUP.close();
+                $this.showNoUserAlert(msgAlert);
             }
         }];
 
-        popup.confirm({
+        POPUP.confirm({
             title: title,
             message: message,
             buttons: buttons
@@ -142,28 +142,16 @@ home.accountInformation = (function ($this, $) {
             licenseeid: $("#licensee").data("licensee-id"),
             currencyid: currencyId
         };
-        $.ajax({
+        CORE.ajaxJSON({
             url: $('#internal-form').attr('action'),
-            type: 'post',
-            data: data,
-            beforeSend: function () {
-                core.blockUI();
-            },
-            success: function (data) {
-                if (data.ErrCode !== 0) {
-                    alert(data.ErrMsg);
-                    return;
-                }
-                if (home.topMenu !== undefined) {
-                    $.cookie('username', $("#UserName").val(), { path: '/', expires: 1 });
-                    home.topMenu.setCurrency(currencyId);
-                }
-            },
-            complete: function () {
-                core.unblockUI();
+            data: data
+        }, function () {
+            if (HOME.TOP_MENU !== undefined) {
+                $.cookie('username', $("#UserName").val(), { path: '/', expires: 1 });
+                HOME.TOP_MENU.setCurrency(currencyId);
             }
         });
     };
 
     return $this;
-} (home.accountInformation || {}, jQuery));
+} (HOME.ACCOUNT_INFORMATION || {}, jQuery));

@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-var customerList = customerList || {};
-customerList.resetPassword = (function ($this, $) {
+var CUSTOMER_LIST = CUSTOMER_LIST || {};
+CUSTOMER_LIST.RESET_PASSWORD = (function ($this, $) {
     $this.init = function () {
         var passwordRegex = new RegExp($("#Password").data('regex'));
         $("#Password").keyup(function () {
@@ -18,4 +18,4 @@ customerList.resetPassword = (function ($this, $) {
     };
 
     return $this;
-} (customerList.resetPassword || {}, jQuery));
+} (CUSTOMER_LIST.RESET_PASSWORD || {}, jQuery));

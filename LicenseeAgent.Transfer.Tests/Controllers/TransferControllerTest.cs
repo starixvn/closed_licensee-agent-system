@@ -1,8 +1,5 @@
 ﻿namespace LicenseeAgent.Transfer.Tests.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Taiwan.Actions;
@@ -10,7 +7,6 @@
     using LicenseeAgent.Transfer.Controllers;
     using LicenseeAgent.Transfer.Criteria;
     using LicenseeAgent.Transfer.Entities;
-    using LicenseeAgent.Transfer.Services;
     using LicenseeAgent.Transfer.Tests.Fakes;
     using LicenseeAgent.Transfer.ViewModels;
     using NUnit.Framework;
@@ -52,11 +48,11 @@
         public void Search_IsAgent_ReturnAgent()
         {
             // Arrange
-            var viewModel = new TransferSearchViewModel();
+            var viewModel = new TransferViewModel();
             FakeSession.SetAgentLevel();
 
             // Act
-            var result = _controller.Search(viewModel) as JsonResult;
+            var result = _controller.Index(viewModel) as JsonResult;
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);
@@ -69,11 +65,11 @@
         public void Search_IsLastAgent_ReturnMember()
         {
             // Arrange
-            var viewModel = new TransferSearchViewModel();
+            var viewModel = new TransferViewModel();
             FakeSession.SetLastAgentLevel();
 
             // Act
-            var result = _controller.Search(viewModel) as JsonResult;
+            var result = _controller.Index(viewModel) as JsonResult;
 
             // Assert
             Assert.IsInstanceOf<JsonResult>(result);

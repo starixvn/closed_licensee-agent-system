@@ -1,13 +1,13 @@
 ﻿/// <reference path="../../../../libs/jquery-1.10.2.js" />
 /// <reference path="../../../../libs/angular.js" />
 
-/*global core, settingContext, numberGameSetting */
+/*global CORE, settingContext, numberGameSetting */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.BetLimitController = {
         updateScope: function ($scope) {
             'use strict';
-            core.initInstruction();
+            CORE.initInstruction();
             $scope.config = fanex.customerSetting.numberGameBetLimitService.config;
             $scope.settingContext = settingContext;
             $scope.betLimitService = fanex.customerSetting.numberGameBetLimitService;

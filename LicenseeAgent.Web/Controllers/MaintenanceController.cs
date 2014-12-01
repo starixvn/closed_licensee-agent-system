@@ -7,7 +7,6 @@
     using System.Reflection;
     using System.Web.Mvc;
     using Fanex.Common;
-    using Filters;
     using LicenseeAgent.Core.Configurations;
     using LicenseeAgent.Core.Entities;
     using LicenseeAgent.Core.Enumerations;
@@ -18,8 +17,9 @@
     using LicenseeAgent.Taiwan.Services;
     using LicenseeAgent.Web.Criteria;
     using LicenseeAgent.Web.Entities;
+    using LicenseeAgent.Web.Filters;
+    using LicenseeAgent.Web.Services;
     using LicenseeAgent.Web.ViewModels;
-    using Services;
 
     /// <summary>
     /// Tool controller.
@@ -29,9 +29,15 @@
     [AccountType(AccountType.CSDIT)]
     public class MaintenanceController : BaseController
     {
+        #region Variables
+
         private static readonly Dictionary<string, Type> ActionDictionary = InternalActionDictionary;
         private readonly IMonitoringService _monitoringService;
         private readonly IMemberService _memberService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public MaintenanceController()
             : this(null, null)
@@ -43,6 +49,8 @@
             _monitoringService = monitoringService ?? new MonitoringService();
             _memberService = memberService ?? new MemberService();
         }
+
+        #endregion Constructors
 
         private static Dictionary<string, Type> InternalActionDictionary
         {
@@ -66,6 +74,8 @@
             Logger.Error(message);
             return Content(message);
         }
+
+        #region Password
 
         /// <summary>
         /// Tool for check password.
@@ -109,11 +119,7 @@
             });
         }
 
-        [HttpGet]
-        public ActionResult WhoAmI()
-        {
-            return View();
-        }
+        #endregion Password
 
         /// <summary>
         /// Monitoring Data's synchronization.

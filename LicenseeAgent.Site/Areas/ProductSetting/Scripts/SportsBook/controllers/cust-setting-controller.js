@@ -1,4 +1,4 @@
-﻿/*global core, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
+﻿/*global CORE, settingContext, result, sportsBookSetting:true, numberGameSetting:true */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.controller('CustomerSettingController',
@@ -10,17 +10,17 @@ if (fanex.customerSetting) {
         'Fanex.CustomerSetting.LanguageService',
         function ($scope, $http, $window, custSettingService, languageService) {
             'use strict';
-            core.blockUI();
+            CORE.blockUI();
             if (typeof result !== 'undefined') {
                 $('#custSetting').html(result.ErrMsg);
                 $('#custSetting').show();
-                core.unblockUI();
+                CORE.unblockUI();
                 return;
             }
 
-            core.initInstruction();
+            CORE.initInstruction();
             // reload setting mode from query string
-            settingContext.IsSimpleMode = core.getQueryParamValue('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
+            settingContext.IsSimpleMode = CORE.getQueryParamValue('isSimpleMode') !== 'false' && settingContext.IsSimpleMode;
             $('#modeSwitcher').bootstrapSwitch('setState', !settingContext.IsSimpleMode);
 
             $scope.settingMode = settingContext.IsSimpleMode;
@@ -97,10 +97,10 @@ if (fanex.customerSetting) {
                     }
 
                     $scope.Messages = null;
-                    core.blockUI();
+                    CORE.blockUI();
                     $http({
                         method: 'POST',
-                        url: core.resolveUrl($('#custSetting').data('href')),
+                        url: CORE.resolveUrl($('#custSetting').data('href')),
                         headers: { 'Content-Type': 'application/json' },
                         data: {
                             settingContext: settingContext,
@@ -118,7 +118,7 @@ if (fanex.customerSetting) {
                         }
                     }).
                     success(function (data) {
-                        core.unblockUI();
+                        CORE.unblockUI();
 
                         if (data.ErrCode !== 0) {
                             $scope.Messages = [
@@ -131,7 +131,7 @@ if (fanex.customerSetting) {
                         }
 
                         $scope.Messages = data.Messages;
-                        core.scrollTop();
+                        CORE.scrollTop();
                         var isSuccess = true;
                         for (var i = 0; i < data.Messages.length; i++) {
                             var message = data.Messages[i];
@@ -153,16 +153,16 @@ if (fanex.customerSetting) {
                                 }
 
                                 setTimeout(function () {
-                                    window.location.href = core.resolveUrl(url);
+                                    window.location.href = CORE.resolveUrl(url);
                                 }, 5000);
                             }
-                            else if (window.parent.customerList) {
-                                window.parent.customerList.reRenderAfterPaged();
+                            else if (window.parent.CUSTOMER_LIST) {
+                                window.parent.CUSTOMER_LIST.reRenderAfterPaged();
                             }
                         }
                     }).
                     error(function (data) {
-                        core.unblockUI();
+                        CORE.unblockUI();
                         alert(data.ErrMsg);
                     });
                 }
@@ -264,17 +264,17 @@ if (fanex.customerSetting) {
             };
 
             $scope.callUpdate = function (productSetting) {
-                core.blockUI();
+                CORE.blockUI();
                 $http({
                     method: 'POST',
-                    url: core.resolveUrl($('#custSetting').data('href')),
+                    url: CORE.resolveUrl($('#custSetting').data('href')),
                     headers: { 'Content-Type': 'application/json' },
                     data: productSetting
                 }).
                 success(function (data) {
                     var timeout = 0;
 
-                    core.unblockUI();
+                    CORE.unblockUI();
 
                     if (data.ErrCode !== 0) {
                         $scope.Messages = [
@@ -292,16 +292,16 @@ if (fanex.customerSetting) {
                         timeout = 3000;
                     }
 
-                    core.blockUI();
+                    CORE.blockUI();
                     setTimeout(function () {
                         custSettingService.updateSettingModel();
                     }, timeout);
 
                     $('.messages').show();
-                    core.scrollTop();
+                    CORE.scrollTop();
                 }).
                 error(function (data) {
-                    core.unblockUI();
+                    CORE.unblockUI();
                     alert(data.ErrMsg);
                 });
             };
@@ -312,15 +312,14 @@ if (fanex.customerSetting) {
 
             $('#custSetting').show();
             setTimeout(function () {
-                core.scrollTop();
+                CORE.scrollTop();
                 $('#userName').focus();
             }, 100);
-            var messagesQueryString = core.getQueryParamValue('messages');
+            var messagesQueryString = CORE.getQueryParamValue('messages');
             if (messagesQueryString !== '') {
-                var messages = core.decodeMessages(messagesQueryString);
+                var messages = CORE.decodeMessages(messagesQueryString);
                 $scope.Messages = messages;
             }
         }
-
     ]);
 }

@@ -24,9 +24,15 @@
     [LegendType(LegendType.Credit)]
     public class CreditBalanceController : BaseController
     {
+        #region Variables
+
         private readonly ICreditBalanceService _creditBalanceService;
         private readonly IMemberService _memberService;
         private readonly IDownLinePermissionService _downLinePermissionService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public CreditBalanceController()
             : this(null, null, null)
@@ -43,9 +49,18 @@
             _downLinePermissionService = downLinePermissionService ?? new DownLinePermissionService();
         }
 
+        #endregion Constructors
+
+        #region Index
+
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var model = new CreditBalanceViewModel
+            {
+                Status = (int)AccountStatus.Open
+            };
+            return View(model);
         }
 
         /// <summary>
@@ -54,11 +69,34 @@
         /// <param name="model">The model.</param>
         /// <returns>Returns list of customer balance.</returns>
         [HttpPost]
-        public JsonResult Search(CreditBalanceSearchViewModel model)
+        public JsonResult Index(CreditBalanceViewModel model)
         {
             return SessionManager.CurrentSession.AgentInfo.IsLastLevel
                 ? SearchMember(model)
                 : SearchAgent(model);
+        }
+
+        /// <summary>
+        /// Searches the agent.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Returns JSON balance.</returns>
+        [NonAction]
+        public JsonResult SearchAgent(CreditBalanceViewModel model)
+        {
+            var agentBalanceInfo = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
+            {
+                AgentId = CurrentSession.AgentInfo.AgentId,
+                Username = model.UserName,
+                Status = model.Status,
+                IsYBFiltered = false
+            });
+
+            return Json(new
+            {
+                ErrCode = Result.SuccessValue,
+                List = agentBalanceInfo
+            });
         }
 
         /// <summary>
@@ -67,7 +105,7 @@
         /// <param name="model">The model.</param>
         /// <returns>Returns JSON balance.</returns>
         [NonAction]
-        public JsonResult SearchMember(CreditBalanceSearchViewModel model)
+        public JsonResult SearchMember(CreditBalanceViewModel model)
         {
             var memberBalanceInfo = _creditBalanceService.GetMemberBalanceInfo(new GetMemberBalanceInfoCriteria
             {
@@ -92,87 +130,70 @@
             });
         }
 
-        /// <summary>
-        /// Searches the agent.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Returns JSON balance.</returns>
-        [NonAction]
-        public JsonResult SearchAgent(CreditBalanceSearchViewModel model)
-        {
-            var agentBalanceInfo = _creditBalanceService.GetAgentBalanceInfo(new GetAgentBalanceInfoCriteria
-            {
-                AgentId = CurrentSession.AgentInfo.AgentId,
-                Username = model.UserName,
-                Status = model.Status,
-                IsYBFiltered = false
-            });
+        #endregion Index
 
-            return Json(new
-            {
-                ErrCode = Result.SuccessValue,
-                List = agentBalanceInfo
-            });
-        }
+        #region Edit agent credit
 
         /// <summary>
         /// Edit agent credit.
         /// </summary>
-        /// <param name="editAgentCreditViewModel">Edit agent credit view model.</param>
+        /// <param name="model">Edit agent credit view model.</param>
         /// <returns>
         /// The EditAgentCredit view.
         /// </returns>
         [HttpGet]
-        public ActionResult EditAgentCredit(EditAgentCreditViewModel editAgentCreditViewModel)
+        public ActionResult EditAgent(EditAgentViewModel model)
         {
-            if (!_downLinePermissionService.IsDirectDownLineAgent(editAgentCreditViewModel.AgentId))
+            if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
             {
                 return RedirectToAccessDeniedPage();
             }
 
-            var isAgentLevel0 = editAgentCreditViewModel.AgentLevel == 0
-                                ? SessionManager.CurrentSession.AgentInfo.IsLevel0
-                                : ModelHelper.IsAgentLevel1(editAgentCreditViewModel.AgentLevel);
+            var isAgentLevel0 = model.AgentLevel == 0
+                ? SessionManager.CurrentSession.AgentInfo.IsLevel0
+                : ModelHelper.IsAgentLevel1(model.AgentLevel);
 
             if (isAgentLevel0)
             {
                 var licenseeGetAgentRangeInfoCriteria = new LicenseeGetAgentRangeInfoCriteria
                 {
-                    AgentId = editAgentCreditViewModel.AgentId
+                    AgentId = model.AgentId
                 };
                 _creditBalanceService.LicenseeGetAgentRangeInfo(licenseeGetAgentRangeInfoCriteria);
-                editAgentCreditViewModel.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
-                editAgentCreditViewModel.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
-                editAgentCreditViewModel.GivenCredit = licenseeGetAgentRangeInfoCriteria.GivenCredit;
-                editAgentCreditViewModel.AgentName = licenseeGetAgentRangeInfoCriteria.Username;
+                model.MinCreditOutput = licenseeGetAgentRangeInfoCriteria.MinCreditOutput;
+                model.MaxCreditOutput = licenseeGetAgentRangeInfoCriteria.MaxCreditOutput;
+                model.GivenCredit = licenseeGetAgentRangeInfoCriteria.GivenCredit;
+                model.AgentName = licenseeGetAgentRangeInfoCriteria.Username;
             }
             else
             {
                 var agentGetAgentRangeInfoCriteria = new AgentGetAgentRangeInfoCriteria
                 {
-                    AgentId = editAgentCreditViewModel.AgentId
+                    AgentId = model.AgentId
                 };
                 _creditBalanceService.AgentGetAgentRangeInfo(agentGetAgentRangeInfoCriteria);
-                editAgentCreditViewModel.MinCreditOutput = agentGetAgentRangeInfoCriteria.MinCreditOutput;
-                editAgentCreditViewModel.MaxCreditOutput = agentGetAgentRangeInfoCriteria.MaxCreditOutput;
-                editAgentCreditViewModel.GivenCredit = agentGetAgentRangeInfoCriteria.GivenCredit;
-                editAgentCreditViewModel.AgentName = agentGetAgentRangeInfoCriteria.Username;
+                model.MinCreditOutput = agentGetAgentRangeInfoCriteria.MinCreditOutput;
+                model.MaxCreditOutput = agentGetAgentRangeInfoCriteria.MaxCreditOutput;
+                model.GivenCredit = agentGetAgentRangeInfoCriteria.GivenCredit;
+                model.AgentName = agentGetAgentRangeInfoCriteria.Username;
             }
 
-            return View(editAgentCreditViewModel);
+            return View(model);
         }
 
         /// <summary>
         /// Edit agent credit post.
         /// </summary>
-        /// <param name="editAgentCreditViewModel">Edit agent credit view model.</param>
-        /// <returns>The EditAgentCredit view.</returns>
-        [HttpPost, ActionName("EditAgentCredit")]
-        public ActionResult EditAgentCreditPost(EditAgentCreditViewModel editAgentCreditViewModel)
+        /// <param name="model">Edit agent credit view model.</param>
+        /// <returns>
+        /// The EditAgentCredit view.
+        /// </returns>
+        [HttpPost, ActionName("EditAgent")]
+        public ActionResult EditAgentPost(EditAgentViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (!_downLinePermissionService.IsDirectDownLineAgent(editAgentCreditViewModel.AgentId))
+                if (!_downLinePermissionService.IsDirectDownLineAgent(model.AgentId))
                 {
                     return RedirectToAccessDeniedPage();
                 }
@@ -181,8 +202,8 @@
 
                 var criteria = new UpdateAgentCreditCriteria(settingKey)
                 {
-                    AgentId = editAgentCreditViewModel.AgentId,
-                    Credit = editAgentCreditViewModel.GivenCredit,
+                    AgentId = model.AgentId,
+                    Credit = model.GivenCredit,
                     IP = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId
                 };
@@ -195,56 +216,60 @@
                 else
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
-                    if (editAgentCreditViewModel.IsAccountInfo)
+                    if (model.IsAccountInfo)
                     {
                         ViewBag.IsAccountInfo = true;
                     }
                 }
             }
 
-            return View(editAgentCreditViewModel);
+            return View(model);
         }
+
+        #endregion Edit agent credit
+
+        #region Edit member credit
 
         /// <summary>
         /// Agent the edit member credit.
         /// </summary>
-        /// <param name="agentEditMemberCreditViewModel">The agent edit member credit view model.</param>
+        /// <param name="model">The agent edit member credit view model.</param>
         /// <returns>
         /// The AgentEditMemberCredit view.
         /// </returns>
         [HttpGet]
-        public ActionResult AgentEditMemberCredit(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
+        public ActionResult EditMemberCredit(EditMemberViewModel model)
         {
-            if (!_downLinePermissionService.IsDirectDownLineMember(agentEditMemberCreditViewModel.CustId))
+            if (!_downLinePermissionService.IsDirectDownLineMember(model.CustId))
             {
                 return RedirectToAccessDeniedPage();
             }
 
             var agentGetMemberRangeInfoCriteria = new AgentGetMemberRangeInfoCriteria
             {
-                CustId = agentEditMemberCreditViewModel.CustId
+                CustId = model.CustId
             };
 
             _creditBalanceService.AgentGetMemberRangeInfo(agentGetMemberRangeInfoCriteria);
-            agentEditMemberCreditViewModel.MinCreditOutput = agentGetMemberRangeInfoCriteria.MinCreditOutput;
-            agentEditMemberCreditViewModel.MaxCreditOutput = agentGetMemberRangeInfoCriteria.MaxCreditOutput;
-            agentEditMemberCreditViewModel.GivenCredit = agentGetMemberRangeInfoCriteria.GivenCredit;
-            agentEditMemberCreditViewModel.MemberName = agentGetMemberRangeInfoCriteria.Username;
+            model.MinCreditOutput = agentGetMemberRangeInfoCriteria.MinCreditOutput;
+            model.MaxCreditOutput = agentGetMemberRangeInfoCriteria.MaxCreditOutput;
+            model.GivenCredit = agentGetMemberRangeInfoCriteria.GivenCredit;
+            model.MemberName = agentGetMemberRangeInfoCriteria.Username;
 
-            return View(agentEditMemberCreditViewModel);
+            return View(model);
         }
 
         /// <summary>
         /// Agent the edit member credit.
         /// </summary>
-        /// <param name="agentEditMemberCreditViewModel">The agent edit member credit view model.</param>
+        /// <param name="model">The agent edit member credit view model.</param>
         /// <returns>
         /// The AgentEditMemberCredit view.
         /// </returns>
-        [HttpPost, ActionName("AgentEditMemberCredit")]
-        public ActionResult AgentEditMemberCreditPost(AgentEditMemberCreditViewModel agentEditMemberCreditViewModel)
+        [HttpPost, ActionName("EditMemberCredit")]
+        public ActionResult EditMemberCreditPost(EditMemberViewModel model)
         {
-            if (!_downLinePermissionService.IsDirectDownLineMember(agentEditMemberCreditViewModel.CustId))
+            if (!_downLinePermissionService.IsDirectDownLineMember(model.CustId))
             {
                 return RedirectToAccessDeniedPage();
             }
@@ -253,8 +278,8 @@
             {
                 var criteria = new AgentUpdateMemberCreditCriteria
                 {
-                    CustId = agentEditMemberCreditViewModel.CustId,
-                    Credit = agentEditMemberCreditViewModel.GivenCredit,
+                    CustId = model.CustId,
+                    Credit = model.GivenCredit,
                     IP = Request.GetClientIp(),
                     Updater = CurrentSession.LoginUserId
                 };
@@ -267,14 +292,16 @@
                 else
                 {
                     ViewBag.Result = Las.UpdateSuccessfully;
-                    if (agentEditMemberCreditViewModel.IsAccountInfo)
+                    if (model.IsAccountInfo)
                     {
                         ViewBag.IsAccountInfo = true;
                     }
                 }
             }
 
-            return View(agentEditMemberCreditViewModel);
+            return View(model);
         }
+
+        #endregion Edit member credit
     }
 }

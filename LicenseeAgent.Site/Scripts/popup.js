@@ -1,8 +1,8 @@
-﻿/*global core, language */
-/*exported popup*/
+﻿/*global CORE, LANGUAGE */
+/*exported POPUP*/
+'use strict';
 
-var popup = (function ($) {
-    'use strict';
+var POPUP = (function ($this, $) {
     var Popup = function (options) {
         this.options = $.extend({}, Popup.defaultOptions, options);
     };
@@ -100,7 +100,7 @@ var popup = (function ($) {
                 width: 0,
                 height: 0
             });
-            core.blockUI();
+            CORE.blockUI();
             var $this = this;
             $(iframe).load(function () {
                 var popupDocument = this.contentDocument;
@@ -110,7 +110,7 @@ var popup = (function ($) {
                 popupBody.css('overflow', 'hidden'); // trick IE
                 var title = $(popupDocument).attr('title');
                 $this.setTitle(title).show();
-                core.unblockUI();
+                CORE.unblockUI();
                 $this.clearTimeout();
                 popupBody.css('overflow', ''); // trick IE
                 $this.calculate();
@@ -329,85 +329,82 @@ var popup = (function ($) {
 
     var $currentPopup = null;
     var $closeTimeout = null;
-    return {
-        error: function (options) {
-            var defaultOptions = {
-                title: language.getString('Error'),
-                buttons: [{
-                    label: language.getString('OK'),
-                    action: function () {
-                        popup.close(0);
-                    }
-                }]
-            };
-            var $options = $.extend({}, defaultOptions, options);
-            popup.confirm($options);
-            return $currentPopup;
-        },
-        confirm: function (options) {
-            $currentPopup = new Popup(options).showConfirm();
-            return $currentPopup;
-        },
-        openFrame: function (url, options) {
-            if (url.indexOf(core.UrlRoot) !== 0) {
-                url = core.resolveUrl(url);
-            }
-            $currentPopup = new Popup(options).showFrame(url);
-            return $currentPopup;
-        },
-        open: function (options) {
-            $currentPopup = new Popup(options).showContent();
-            return $currentPopup;
-        },
-        isIframe: function () {
-            if ($(document).find('#' + Popup.iframeId).length === 0 &&
+
+    $this.error = function (options) {
+        var defaultOptions = {
+            title: LANGUAGE.getString('Error'),
+            buttons: [{
+                label: LANGUAGE.getString('OK'),
+                action: function () {
+                    close();
+                }
+            }]
+        };
+        var $options = $.extend({}, defaultOptions, options);
+        confirm($options);
+        return $currentPopup;
+    };
+
+    $this.confirm = function (options) {
+        $currentPopup = new Popup(options).showConfirm();
+        return $currentPopup;
+    };
+
+    $this.openFrame = function (url, options) {
+        if (url.indexOf(CORE.UrlRoot) !== 0) {
+            url = CORE.resolveUrl(url);
+        }
+        $currentPopup = new Popup(options).showFrame(url);
+        return $currentPopup;
+    };
+
+    $this.open = function (options) {
+        $currentPopup = new Popup(options).showContent();
+        return $currentPopup;
+    };
+
+    $this.isIframe = function () {
+        if ($(document).find('#' + Popup.iframeId).length === 0 &&
                 $(window.parent.document).find('#' + Popup.iframeId).length === 1) {
-                return true;
-            }
-            return false;
-        },
-        close: function () {
-            if ($currentPopup === null && popup.isIframe()) {
-                window.parent.popup.close();
-            } else {
-                this.onHide();
-                $currentPopup.close();
-                $currentPopup = null;
-            }
-        },
-        block: function () {
-            if ($('#popup-dialog>.block-overlay').length === 0) {
-                $('#popup-dialog').append('<div class="block-overlay"></div>');
-                $('#popup-dialog').append('<div class="block-loading"></div>');
-            }
-            $('#popup-dialog>.block-overlay').show();
-            $('#popup-dialog>.block-loading').show();
-        },
-        unblock: function () {
-            $('#popup-dialog>.block-overlay').hide();
-            $('#popup-dialog>.block-loading').hide();
-        },
-        onHide: function () {
-            if ($currentPopup != null) {
-                $currentPopup.setHideCallback(function () {
-                    if ($closeTimeout != null) {
-                        window.clearTimeout($closeTimeout);
-                        $closeTimeout = null;
-                    }
-                });
-            }
-        },
-        on: function (eventName, callback) {
-            if ($currentPopup != null) {
-                $currentPopup.on(eventName, callback);
-            }
-        },
-        trigger: function (eventName, data) {
-            if ($currentPopup !== null) {
-                $currentPopup.trigger(eventName, data);
-            } else if (this.isIframe()) {
-                window.parent.popup.trigger(eventName, data);
-            }
+            return true;
+        }
+        return false;
+    };
+
+    $this.close = function () {
+        if ($currentPopup === null && $this.isIframe()) {
+            window.parent.POPUP.close();
+        } else {
+            $this.onHide();
+            $currentPopup.close();
+            $currentPopup = null;
         }
     };
-} (jQuery));
+
+    $this.onHide = function () {
+        if ($currentPopup != null) {
+            $currentPopup.setHideCallback(function () {
+                if ($closeTimeout != null) {
+                    window.clearTimeout($closeTimeout);
+                    $closeTimeout = null;
+                }
+            });
+        }
+    };
+
+    $this.on = function (eventName, callback) {
+        if ($currentPopup != null) {
+            $currentPopup.on(eventName, callback);
+        }
+    };
+
+    $this.trigger = function (eventName, data) {
+        if ($currentPopup !== null) {
+            $currentPopup.trigger(eventName, data);
+        } else if ($this.isIframe()) {
+            window.parent.POPUP.trigger(eventName, data);
+        }
+    };
+
+    return $this;
+} (POPUP || {}, jQuery));

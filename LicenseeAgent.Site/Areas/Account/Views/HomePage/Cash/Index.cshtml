@@ -1,7 +1,7 @@
-﻿@{
+﻿@model HomePageCashViewModel
+@{
     ViewBag.Title = "Index";
 }
-@model HomePageCashViewModel
 @section css
 {
     @Styles.Render("~/css/account/home-page")
@@ -10,7 +10,7 @@
     @Scripts.Render("~/js/account/home-page")
     <script type="text/javascript">
         $(function () {
-            account.homePage.init();
+            ACCOUNT.HOMEPAGE.init();
         });
     </script>
 }

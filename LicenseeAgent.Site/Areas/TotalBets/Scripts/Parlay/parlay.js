@@ -1,26 +1,26 @@
-﻿/*global core, language, fanex:true, pageContext*/
+﻿/*global CORE, LANGUAGE, GRID, BET_LIST, pageContext*/
 'use strict';
 
-var totalBets = totalBets || {};
-totalBets.parlay = (function ($this, $) {
+var TOTAL_BETS = TOTAL_BETS || {};
+TOTAL_BETS.PARLAY = (function ($this, $) {
     var gridOptions = {
         columns: [
-                { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
-                { HeaderText: language.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: language.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-                { HeaderText: language.getString("Choice"), Width: 335, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
-                { HeaderText: language.getString("AgentPT"), Width: 75, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
-                { HeaderText: language.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
-            ],
+            { HeaderText: "#", Width: 25, Name: "Index", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Member"), Width: 95, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
+            { HeaderText: LANGUAGE.getString("TransTime"), Width: 90, Name: "TransTime", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Choice"), Width: 335, Name: "Choice", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Odds"), Width: 60, Name: "Odds", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Stake"), Width: 118, Name: "Stake", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("WinLoss"), Width: 125, Name: "WinLoss", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Status"), Width: 90, Name: "Status", HeaderAlign: "center", CellAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentPT"), Width: 75, Name: "AgentPT", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("AgentComm"), Width: 75, Name: "AgentComm", HeaderAlign: "center", CellAlign: "right", CanResize: false },
+            { HeaderText: LANGUAGE.getString("Feature"), Width: 55, Name: "Feature", HeaderAlign: "center", CellAlign: "center", CanResize: false }
+        ],
         pagerOption: {
-            itemsPerPage: core.pageSizes[2],
+            itemsPerPage: GRID.PageSizes[2],
             currentPage: 0,
-            itemsPerPageArray: core.pageSizes
+            itemsPerPageArray: GRID.PageSizes
         },
         showPager: true,
         enableHiddenColumns: false,
@@ -31,11 +31,11 @@ totalBets.parlay = (function ($this, $) {
         var params = {
             BetType: betType
         };
-        core.ajaxJSON({
-            url: core.resolveUrl('~/BetList/Parlay'),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl('~/BetList/Parlay'),
             data: params
         }, function (data) {
-            fanex.betlist.core.reRenderAfterPagedSuccessfully(gridOptions, data);
+            BET_LIST.reRenderAfterPagedSuccessfully(gridOptions, data);
         });
     };
 
@@ -60,4 +60,4 @@ totalBets.parlay = (function ($this, $) {
     };
 
     return $this;
-} (totalBets.parlay || {}, jQuery));
+} (TOTAL_BETS.PARLAY || {}, jQuery));

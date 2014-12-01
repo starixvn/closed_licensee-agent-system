@@ -103,7 +103,7 @@
                 MoveBetsDay = balanceUp.MoveBetsDay,
                 BalanceUpDay = balanceUp.BalanceUpDay
             };
-            var betListResult = _betlistService.GetBetList(criteria);
+            var betListResult = _betlistService.GetByMember(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = betListResult,
@@ -137,7 +137,7 @@
                 MatchId = model.MatchId,
                 ShowLiveTicket = model.ShowLiveTicket
             };
-            var ticketResult = _betlistService.GetBetList(criteria);
+            var ticketResult = _betlistService.GetTotalBets(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResult,
@@ -173,7 +173,7 @@
                 AgentId = CurrentSession.AgentInfo.AgentId,
                 BetType = model.BetType
             };
-            var ticketResult = _betlistService.GetParlayList(criteria);
+            var ticketResult = _betlistService.GetParlay(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = ticketResult,
@@ -326,7 +326,7 @@
                 SportType = model.SportType,
                 BetType = model.BetType
             };
-            model.TicketDetails = _betlistService.GetBetListDetails(criteria);
+            model.TicketDetails = _betlistService.GetDetails(criteria);
             model.IsDeposit = CurrentSession.AgentInfo.IsDeposit;
             return View(model);
         }
@@ -447,7 +447,7 @@
                 CustId = model.CustId
             };
 
-            var betListResult = _betlistService.GetBetList(criteria);
+            var betListResult = _betlistService.GetOutstanding(criteria);
             var ticketBuilderParameters = new TicketBuilderParameters
             {
                 TicketResult = betListResult,
@@ -460,6 +460,31 @@
         }
 
         #endregion Outstanding
+
+        #region Outright
+
+        /// <summary>
+        /// Gets outright bet list result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Returns JSON object.</returns>
+        [HttpPost]
+        public JsonResult Outright(OutrightCriteria criteria)
+        {
+            criteria.AgentId = CurrentSession.AgentInfo.AgentId;
+            var betListResult = _betlistService.GetOutright(criteria);
+            var ticketBuilderParameters = new TicketBuilderParameters
+            {
+                TicketResult = betListResult,
+                IsAdmin = CurrentSession.IsAdmin,
+                IsViewPlayerCommission = CurrentSession.IsViewPlayerCommission()
+            };
+
+            var ticketBuilder = new TotalBetsTicketBuilder(ticketBuilderParameters);
+            return BetListJsonResult(ticketBuilder, betListResult);
+        }
+
+        #endregion Outright
 
         #region Common
 

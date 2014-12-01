@@ -31,7 +31,7 @@
     <SportType Id="186" IsLive="false" BetTypeIds="1220" />
   </Product>
   <!--Keno-->
-  <Product Id="8">
+  <!--<Product Id="8">
     <SportType Id="202" IsLive="false" BetTypeIds="1501" />
     <SportType Id="202" IsLive="false" BetTypeIds="1503" />
     <SportType Id="202" IsLive="false" BetTypeIds="1504" />
@@ -41,5 +41,5 @@
     <SportType Id="202" IsLive="false" BetTypeIds="1509" />
     <SportType Id="202" IsLive="false" BetTypeIds="1511" />
     <SportType Id="202" IsLive="false" BetTypeIds="1513" />
-  </Product>
+  </Product>-->
 </PtSettings>

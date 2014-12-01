@@ -29,7 +29,7 @@
         {
             ShowOdds = false;
             IsShowMember = false;
-            ClickFunction = "onclick=\"javascript: fanex.betlist.core.showDetails({0}, '{1}', {2}, {3})\"";
+            ClickFunction = "onclick=\"javascript: BET_LIST.showDetails({0}, '{1}', {2}, {3})\"";
             _betListBuilder = betListBuilder ?? new BetListHTMLBuilder();
             _ticketHelper = ticketHelper ?? new TicketHelper();
         }
@@ -101,7 +101,7 @@
                 Stake = LasBetListHtmlBuilder.BuildStake(ticket),
                 AgentPT = LasBetListHtmlBuilder.BuildAgentPT(ticket, TicketResult.TicketDataList),
                 AgentComm = LasBetListHtmlBuilder.BuildAgentComm(ticket, TicketResult.TicketDataList, Parameters.IsAdmin),
-                WinLoss = LasBetListHtmlBuilder.BuildWinloss(ticket, Parameters)
+                WinLoss = LasBetListHtmlBuilder.BuildWinLoss(ticket, Parameters)
             };
 
             if (IsShowMember)

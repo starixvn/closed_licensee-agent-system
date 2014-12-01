@@ -39,14 +39,12 @@
                 "~/scripts/mutate/mutate.js",
                 "~/scripts/nicescroll/jquery.nicescroll.js",
                 "~/scripts/core.js",
-                "~/scripts/core-components.js",
-                "~/scripts/core-breadcrumb.js",
-                "~/scripts/core-common.js",
-                "~/scripts/core-enums.js",
-                "~/scripts/core-ibc.js",
-                "~/scripts/utility.js",
+                "~/scripts/breadcrumb.js",
+                "~/scripts/page.js",
+                "~/scripts/enums.js",
+                "~/scripts/grid.js",
                 "~/scripts/popup.js",
-                "~/scripts/report.js"));
+                "~/scripts/component.js"));
             bundles.Add(new LessBundle("~/css/core").Include(
                 "~/content/sprite.less",
                 "~/content/core.less",
@@ -66,11 +64,6 @@
                 "~/scripts/ResourcesJs/BetType.en-US.js",
                 "~/scripts/ResourcesJs/BetType.zh-CN.js",
                 "~/scripts/ResourcesJs/BetType.zh-TW.js"));
-
-            bundles.Add(new ScriptBundle("~/js/report/betlist").Include(
-                "~/scripts/report.js",
-                "~/scripts/report-betlist.js",
-                "~/Views/BetList/Scripts/betlist-core.js"));
         }
 
         #endregion Core
@@ -185,9 +178,9 @@
         private static void RegisterErrorPage(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/error/under-maintenance").Include(
-                "~/views/error/resources/under-maintenance-error.js"));
+                "~/views/error/scripts/under-maintenance-page.js"));
             bundles.Add(new LessBundle("~/css/error").Include(
-                "~/views/error/resources/Index.less"));
+                "~/views/error/content/error-page.less"));
         }
 
         /// <summary>
@@ -201,17 +194,10 @@
                 "~/scripts/dotdotdot/jquery.dotdotdot.js",
                 "~/scripts/cookie/jquery.cookie.js",
                 "~/scripts/marquee/jquery.marquee.js",
-                "~/views/home/resources/home-menu.js",
-                "~/views/home/resources/home-header.js"));
-
-            bundles.Add(new ScriptBundle("~/js/home/accountinfo").Include(
-                "~/views/accountinformation/resources/account-information.js"));
-
+                "~/views/home/scripts/home-menu.js",
+                "~/views/home/scripts/home-header.js"));
             bundles.Add(new LessBundle("~/css/home").Include(
-                "~/views/home/resources/home.less"));
-
-            bundles.Add(new LessBundle("~/css/home/accountinfo").Include(
-                "~/views/accountinformation/resources/account-information.less"));
+                "~/views/home/content/home.less"));
         }
 
         /// <summary>
@@ -232,15 +218,12 @@
                 "~/Views/BetList/Content/betlist.css",
                 "~/Views/BetList/Content/system-parlay-detail.css",
                 "~/Content/Fanex.Result/fanex.result.less"));
-            bundles.Add(new ScriptBundle("~/js/betlist").Include(
-                "~/Views/BetList/Scripts/betlist-core.js",
-                "~/Views/BetList/Scripts/betlist-manager.js"));
-            bundles.Add(new ScriptBundle("~/js/totalbets/parlay").Include(
-                "~/Views/BetList/Scripts/betlist-core.js",
-                "~/Views/BetList/Scripts/totalbets-parlay.js"));
-            bundles.Add(new ScriptBundle("~/js/betlistwinlost").Include(
-                "~/Views/BetList/Scripts/betlist-core.js",
-                "~/Views/BetList/Scripts/betlist-winlost.js"));
+            bundles.Add(new ScriptBundle("~/js/betlist/member").Include(
+                "~/Views/BetList/Scripts/core.js",
+                "~/Views/BetList/Scripts/member.js"));
+            bundles.Add(new ScriptBundle("~/js/betlist/winloss").Include(
+                "~/Views/BetList/Scripts/core.js",
+                "~/Views/BetList/Scripts/winlost.js"));
         }
 
         /// <summary>
@@ -260,29 +243,24 @@
 
         private static void RegisterTransferPage(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/transfer-list").Include(
-                "~/views/transfer/resources/transfer-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/transfer-popup").Include(
-                "~/views/transfer/resources/transfer-popup.js"));
+            bundles.Add(new ScriptBundle("~/js/transfer").Include(
+                "~/views/transfer/scripts/transfer-list.js",
+                "~/views/transfer/scripts/transfer-popup.js"));
         }
 
         private static void RegisterCreditBalancePage(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/creditbalance-list").Include(
-                "~/views/creditbalance/resources/creditbalance-list.js"));
-
-            bundles.Add(new ScriptBundle("~/js/creditbalance-popup").Include(
-                "~/views/creditbalance/resources/creditbalance-popup.js"));
+            bundles.Add(new ScriptBundle("~/js/credit-balance").Include(
+                "~/views/creditbalance/scripts/creditbalance-list.js",
+                "~/views/creditbalance/scripts/creditbalance-popup.js"));
         }
 
         private static void RegisterMessagePage(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/message").Include(
-                "~/views/message/resources/message.less"));
-
+                "~/views/message/content/message.less"));
             bundles.Add(new ScriptBundle("~/js/message").Include(
-                "~/views/message/resources/message.js"));
+                "~/views/message/scripts/message.js"));
         }
 
         #endregion Pages

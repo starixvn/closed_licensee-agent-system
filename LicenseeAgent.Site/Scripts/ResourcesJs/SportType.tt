@@ -14,9 +14,9 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Windows.Forms" #>
 <#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
-/*global language*/
+/*global LANGUAGE*/
 
-language.SportType = {};
+LANGUAGE.SportType = {};
 
 <#
     var connectionString = "Persist Security Info=False;User ID=affteam;Password=@warrior#;Initial Catalog=bodb02;Data Source=10.18.200.231";
@@ -30,8 +30,8 @@ language.SportType = {};
     var languageCodes = new []{"en-US", "zh-CN", "zh-TW"};
     foreach(var code in languageCodes)
     {
-        var stringBuilder = new StringBuilder("/*global language*/");
-        stringBuilder.AppendFormat("\r\n\r\nlanguage.SportType['{0}'] = {{", code);
+        var stringBuilder = new StringBuilder("/*global LANGUAGE*/");
+        stringBuilder.AppendFormat("\r\n\r\nLANGUAGE.SportType['{0}'] = {{", code);
         languages.Add(code, stringBuilder);
     }
     while (loop)

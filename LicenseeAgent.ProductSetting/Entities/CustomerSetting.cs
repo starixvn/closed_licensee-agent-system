@@ -107,7 +107,7 @@
 
             if (CommissionSetting != null && CommissionSetting.CommissionItems != null)
             {
-                var productSettings = SettingConfiguration.GetProductPtSettings(settingContext.ProductId);
+                var productSettings = SettingConfiguration.GetProductPtSettings(productCode);
                 foreach (var item in CommissionSetting.CommissionItems)
                 {
                     if (!productSettings.SportType.Where(x => x.Id == item.SportId && x.BetTypeIds.Contains(item.BetTypeId.ToString())).Any())

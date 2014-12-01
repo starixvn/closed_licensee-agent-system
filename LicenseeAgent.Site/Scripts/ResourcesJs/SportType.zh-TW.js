@@ -1,6 +1,6 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 
-language.SportType['zh-TW'] = {
+LANGUAGE.SportType['zh-TW'] = {
 	'1' : '足球',
 	'2' : '篮球',
 	'3' : '美式足球',
@@ -60,9 +60,11 @@ language.SportType['zh-TW'] = {
 	'186' : '虚拟网球',
 	'201' : '金融',
 	'202' : '快乐彩',
+	'249' : '',
 	'250' : 'AG娱乐城',
 	'251' : '娱乐城',
 	'252' : '宾果',
 	'253' : '游戏',
-	'254' : 'Playtech娱乐城'
+	'254' : 'Playtech娱乐城',
+	'255' : 'GD真人娱乐场平台'
 };

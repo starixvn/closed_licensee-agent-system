@@ -1,6 +1,6 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 
-language.SportType['zh-CN'] = {
+LANGUAGE.SportType['zh-CN'] = {
 	'1' : '足球',
 	'2' : '籃球',
 	'3' : '美式足球',
@@ -60,9 +60,11 @@ language.SportType['zh-CN'] = {
 	'186' : '虛擬網球',
 	'201' : '金融',
 	'202' : '快樂彩',
+	'249' : 'Voidbridge',
 	'250' : 'AG娛樂城',
 	'251' : '娛樂城',
 	'252' : '賓果',
 	'253' : '遊戲',
-	'254' : 'Playtech娛樂城'
+	'254' : 'Playtech娛樂城',
+	'255' : 'GD真人娛樂場平台'
 };

@@ -38,10 +38,8 @@
             int currencyId,
             string currencyName)
         {
-            const string StatusTemp = "<div class='status'>{0}</div>";
             var statusText = GetStatusText(ticket);
-            var statusNormalText = string.Format(StatusTemp, statusText);
-
+            var statusNormalText = string.Format("<div class='status'>{0}</div>", statusText);
             switch (ticket.BetTypeId)
             {
                 case (int)BetType.BetType_71:
@@ -77,10 +75,8 @@
             ITicketHelper ticketHelper,
             IList<ITicketData> ticketData)
         {
-            const string StatusTemp = "<div class='status'>{0}</div>";
             var statusText = GetStatusText(ticket);
-            var statusNormalText = string.Format(StatusTemp, statusText);
-
+            var statusNormalText = string.Format("<div class='status'>{0}</div>", statusText);
             switch (ticket.BetTypeId)
             {
                 case (int)BetType.BetType_71:
@@ -100,7 +96,7 @@
         /// <returns>Ticket Stake text.</returns>
         public static string BuildStake(Ticket ticket)
         {
-            return "<div class=\"stake\">" + string.Format("{0:#,##0.00}", ticket.Stake) + "</div>";
+            return string.Format("<div class='stake'>{0:#,##0.00}</div>", ticket.Stake);
         }
 
         /// <summary>
@@ -111,7 +107,7 @@
         /// <returns>
         /// Ticket win loss text.
         /// </returns>
-        public static string BuildWinloss(Ticket ticket, TicketBuilderParameters parameters)
+        public static string BuildWinLoss(Ticket ticket, TicketBuilderParameters parameters)
         {
             if (ticket.Status == BetStatus.Running || ticket.Status == BetStatus.Waiting)
             {
@@ -120,7 +116,7 @@
 
             var winLostText = ticket.Winlost >= 0
                 ? string.Format("{0:#,##0.00}", ticket.Winlost) + "<br />"
-                : "<div class=\"red-text\">" + string.Format("{0:#,##0.00}", ticket.Winlost) + "</div>";
+                : string.Format("<div class='red-text'>{0:#,##0.00}</div>", ticket.Winlost);
 
             if (!parameters.IsViewPlayerCommission)
             {
@@ -241,22 +237,11 @@
         /// <returns>The html string of Transaction Time.</returns>
         public static string BuildTrans(ITicket ticket)
         {
-            ITrans transBuilder = CreateTransBuilder(ticket.BetTypeId);
-            string trans = transBuilder.Render(ticket);
-            return trans;
-        }
-
-        /// <summary>
-        /// Creates the Transaction Time builder.
-        /// </summary>
-        /// <param name="bettype">The BETTYPE.</param>
-        /// <returns>The html string of Transaction Time.</returns>
-        private static ITrans CreateTransBuilder(int bettype)
-        {
-            var typeName = string.Format("Fanex.BetList.Core.Builder.TransBuilder.Trans{0}", bettype.ToString());
+            var betType = ticket.BetTypeId;
+            var typeName = string.Format("Fanex.BetList.Core.Builder.TransBuilder.Trans{0}", betType.ToString());
             var type = Type.GetType(typeName);
-
-            return type == null ? new LasTrans() : Activator.CreateInstance(type) as ITrans;
+            ITrans transBuilder = type == null ? new LasTrans() : Activator.CreateInstance(type) as ITrans;
+            return transBuilder.Render(ticket);
         }
 
         /// <summary>
@@ -269,8 +254,7 @@
         /// <returns>Parameter for Casino Hand History.</returns>
         private static string GetCasinoHandHistoryParam(LasTicket ticket, BetListCriteriaBase criteria, int currencyID, string currencyName)
         {
-            var param = string.Empty;
-            param += "?RefNo=" + ticket.RefNo;
+            var param = "?RefNo=" + ticket.RefNo;
             param += "&FromDate=" + criteria.FromDate;
             param += "&ToDate=" + criteria.ToDate;
             param += "&SystemId=" + (string.IsNullOrEmpty(ticket.UserName) ? string.Empty : ticket.UserName);

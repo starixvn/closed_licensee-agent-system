@@ -11,7 +11,13 @@
     [AllowAnonymous]
     public class NotifyController : Controller
     {
+        #region Variables
+
         private readonly IUnderMaintenanceService _maintenanceService;
+
+        #endregion Variables
+
+        #region Constructors
 
         public NotifyController()
             : this(null)
@@ -22,6 +28,10 @@
         {
             _maintenanceService = maintenanceService ?? new UnderMaintenanceService();
         }
+
+        #endregion Constructors
+
+        #region Under maintenance
 
         /// <summary>
         /// Under Maintenance.
@@ -38,5 +48,7 @@
                 Status = maintenanceInfo.Status
             });
         }
+
+        #endregion Under maintenance
     }
 }

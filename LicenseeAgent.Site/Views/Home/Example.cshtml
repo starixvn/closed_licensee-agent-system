@@ -204,7 +204,7 @@
             $("a[data-href]").click(function () {
                 var $this = $(this);
                 var url = $(this).attr("data-href");
-                popup.openFrame(url, {
+                POPUP.openFrame(url, {
                     width: 800,
                     height: 680
                 });
@@ -212,9 +212,9 @@
 
             $("#blockui").click(function () {
                 //$.blockUI({ message: 'Unblock after 2 seconds.' });
-                core.blockUI();
+                CORE.blockUI();
                 setTimeout(function () {
-                    core.unblockUI();
+                    CORE.unblockUI();
                 }, 2000);
             });
         });

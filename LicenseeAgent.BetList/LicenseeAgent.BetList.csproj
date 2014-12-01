@@ -129,6 +129,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Controllers\BetListController.cs" />
+    <Compile Include="Criteria\OutrightCriteria.cs" />
     <Compile Include="Criteria\MemberOutstandingCriteria.cs" />
     <Compile Include="Criteria\TotalBetsCriteria.cs" />
     <Compile Include="Criteria\TicketDetailsCriteria.cs" />

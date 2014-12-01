@@ -42,6 +42,11 @@
             return string.Format(EnglishCultureInfo.NumberFormat, "{0:MM/dd/yyyy}", value);
         }
 
+        public static string FormatMonth(object value)
+        {
+            return string.Format(EnglishCultureInfo.NumberFormat, "{0:MMM yyyy}", value);
+        }
+
         public static string FormatDateTime(object value)
         {
             return string.Format(EnglishCultureInfo.NumberFormat, "{0:MM/dd/yyyy h:mm:ss tt}", value);

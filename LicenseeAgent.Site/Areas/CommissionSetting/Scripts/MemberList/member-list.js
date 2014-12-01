@@ -1,19 +1,19 @@
-﻿/*global core, popup, language, numeral */
+﻿/*global CORE, LANGUAGE, POPUP, GRID, numeral */
 'use strict';
 
-var commissionSetting = commissionSetting || {};
-commissionSetting.memberList = (function ($this, $) {
+var COMMISSION_SETTING = COMMISSION_SETTING || {};
+COMMISSION_SETTING.MEMBER_LIST = (function ($this, $) {
     /* jshint -W101 */
     var baseGridOptions = {
         customizeHeader: true,
         groupHeaderRows: [
             {
                 Columns: [
-                    { HeaderText: '<i class="icon-uncheck-all" onclick="commissionSetting.memberList.checkAllItem(this);"></i>', Name: "CustId", MergeRowNumber: 2 },
+                    { HeaderText: '<i class="icon-uncheck-all" onclick="COMMISSION_SETTING.MEMBER_LIST.checkAllItem(this);"></i>', Name: "CustId", MergeRowNumber: 2 },
                     { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
-                    { HeaderText: language.getString('SystemId'), Name: "SystemId", MergeRowNumber: 2 },
-                    { HeaderText: language.getString('Username'), Name: "UserName", MergeRowNumber: 2 },
-                    { HeaderText: language.getString('Group'), Name: "GroupName", MergeRowNumber: 2 }
+                    { HeaderText: LANGUAGE.getString('SystemId'), Name: "SystemId", MergeRowNumber: 2 },
+                    { HeaderText: LANGUAGE.getString('Username'), Name: "UserName", MergeRowNumber: 2 },
+                    { HeaderText: LANGUAGE.getString('Group'), Name: "GroupName", MergeRowNumber: 2 }
                 ]
             }
         ],
@@ -21,26 +21,25 @@ commissionSetting.memberList = (function ($this, $) {
             {
                 Width: 30, Name: "CustId", CellAlign: "center", MergeColNumber: 2, CanResize: false,
                 Formatter: function (rowIndex, rowData, cell) {
-                    return '<span class="cell-select icon icon-uncheck" onclick="commissionSetting.memberList.selectClick(this);" data-cust-id="' + cell.Value + '"></span>';
+                    return '<span class="cell-select icon icon-uncheck" onclick="COMMISSION_SETTING.MEMBER_LIST.selectClick(this);" data-cust-id="' + cell.Value + '"></span>';
                 }
             },
             { HeaderText: "#", Name: "No", Width: 60, HeaderAlign: "center", CellAlign: "center", CanResize: false },
-            { HeaderText: language.getString('SystemId'), Width: 150, Name: "SystemId", HeaderAlign: "center", CanResize: false },
-            { HeaderText: language.getString('Username'), Width: 150, Name: "UserName", HeaderAlign: "center" },
-            { HeaderText: language.getString('Group'), Width: 100, Name: "GroupName", HeaderAlign: "center",
+            { HeaderText: LANGUAGE.getString('SystemId'), Width: 150, Name: "SystemId", HeaderAlign: "center", CanResize: false },
+            { HeaderText: LANGUAGE.getString('Username'), Width: 150, Name: "UserName", HeaderAlign: "center" },
+            { HeaderText: LANGUAGE.getString('Group'), Width: 100, Name: "GroupName", HeaderAlign: "center",
                 Formatter: function (rowIndex, rowData, cell) {
                     return '<span class="group-comm">' + cell.Value + '</span>';
                 }
             }
         ],
         pagerOption: {
-            itemsPerPage: core.pageSizes[2],
+            itemsPerPage: GRID.PageSizes[2],
             currentPage: 0,
-            itemsPerPageArray: core.pageSizes
+            itemsPerPageArray: GRID.PageSizes
         },
         showPager: true,
         indexNumberColumn: 1,
-        bodyRowHeight: 29,
         autoResizeColumn: true
     };
 
@@ -49,7 +48,7 @@ commissionSetting.memberList = (function ($this, $) {
     };
 
     var generateGridColumn = function (productColumn) {
-        return { HeaderText: language.getString(productColumn.HeaderResource), Width: 50, Name: productColumn.ColumnName, FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
+        return { HeaderText: LANGUAGE.getString(productColumn.HeaderResource), Width: 50, Name: productColumn.ColumnName, FormatNumber: "0,0.00", HeaderAlign: "center", CellAlign: "center",
             Formatter: function (rowIndex, rowData, cell) {
                 return '<span data-column-name="{0}" class="commission-cell">{1}</span>'.format(productColumn.ColumnName, formatNumber(cell.Value));
             }
@@ -59,7 +58,7 @@ commissionSetting.memberList = (function ($this, $) {
     var generateGridOptions = function (productColumns) {
         var gridOptions = $.extend(true, {}, baseGridOptions);
         gridOptions.groupHeaderRows[0].Columns.push({
-            HeaderText: language.getString('CommissionHeader'),
+            HeaderText: LANGUAGE.getString('CommissionHeader'),
             Name: productColumns[0].ColumnName,
             MergeColNumber: productColumns.length
         });
@@ -116,7 +115,7 @@ commissionSetting.memberList = (function ($this, $) {
 
         // search
         $('#search-form').submit(function (e) {
-            $this.reRenderAfterPaged(0, core.pageSizes[2]);
+            $this.reRenderAfterPaged(0, GRID.PageSizes[2]);
             e.preventDefault();
         });
 
@@ -124,11 +123,11 @@ commissionSetting.memberList = (function ($this, $) {
         $('#moveToGroup').click(function () {
             var custIds = getSelectedMembers();
             if (custIds !== '') {
-                var url = core.resolveUrl('~/CommissionSetting/MemberList/MoveToGroup', {
+                var url = CORE.resolveUrl('~/CommissionSetting/MemberList/MoveToGroup', {
                     custIds: custIds
                 });
-                popup.openFrame(url);
-                popup.on('move-to-commission-group', function (data) {
+                POPUP.openFrame(url);
+                POPUP.on('move-to-commission-group', function (data) {
                     updateMemberCommissions(data);
                 });
             }
@@ -138,11 +137,11 @@ commissionSetting.memberList = (function ($this, $) {
         $('#removeFromGroup').click(function () {
             var custIds = getSelectedMembers();
             if (custIds !== '') {
-                var url = core.resolveUrl('~/CommissionSetting/MemberList/RemoveFromGroup', {
+                var url = CORE.resolveUrl('~/CommissionSetting/MemberList/RemoveFromGroup', {
                     custIds: custIds
                 });
-                popup.openFrame(url);
-                popup.on('remove-from-commission-group', function (data) {
+                POPUP.openFrame(url);
+                POPUP.on('remove-from-commission-group', function (data) {
                     updateMemberCommissions(data);
                 });
             }
@@ -152,12 +151,12 @@ commissionSetting.memberList = (function ($this, $) {
         $('#updateCommission').click(function () {
             var custIds = getSelectedMembers();
             if (custIds !== '') {
-                var url = core.resolveUrl('~/CommissionSetting/MemberList/UpdateMemberCommission', {
+                var url = CORE.resolveUrl('~/CommissionSetting/MemberList/UpdateMemberCommission', {
                     custIds: custIds
                 });
 
-                popup.openFrame(url);
-                popup.on('update-member-commission', function (data) {
+                POPUP.openFrame(url);
+                POPUP.on('update-member-commission', function (data) {
                     updateMemberCommissions(data);
                 });
             }
@@ -170,7 +169,7 @@ commissionSetting.memberList = (function ($this, $) {
         var params = $('#search-form').serializeObject();
         params.pageIndex = currentPage;
         params.pageSize = itemsPerPage;
-        core.ajaxJSON({
+        CORE.ajaxJSON({
             url: $('#search-form').attr('action'),
             data: params
         }, function (data) {
@@ -178,7 +177,7 @@ commissionSetting.memberList = (function ($this, $) {
             gridOptions.pagerOption = $.extend({}, gridOptions.pagerOption, {
                 pagerSelectCallBack: $this.reRenderAfterPaged
             });
-            gridOptions.bodyRows = core.genGridRows(data.List, gridOptions);
+            gridOptions.bodyRows = GRID.generateBodyRows(data.List, gridOptions);
             $('#grid').show().fanexGrid(gridOptions);
             changeButtonState();
         });
@@ -212,4 +211,4 @@ commissionSetting.memberList = (function ($this, $) {
     };
 
     return $this;
-} (commissionSetting.memberList || {}, jQuery));
+} (COMMISSION_SETTING.MEMBER_LIST || {}, jQuery));

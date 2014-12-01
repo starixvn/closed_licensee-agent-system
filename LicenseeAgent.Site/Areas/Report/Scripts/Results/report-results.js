@@ -1,8 +1,8 @@
-﻿/*global core */
+﻿/*global CORE */
 "use strict";
 
-var report = report || {};
-report.results = (function ($this, $) {
+var REPORT = REPORT || {};
+REPORT.RESULTS = (function ($this, $) {
     var generateSelect = function (element, array, valueField, textField) {
         $(element).html('');
         $.each(array, function () {
@@ -17,7 +17,7 @@ report.results = (function ($this, $) {
     var submitForm = function (form) {
         var sportSelect = $(form).find('#Sport');
         var leagueSelect = $(form).find('#League');
-        core.ajaxJSON({
+        CORE.ajaxJSON({
             url: $(form).attr('action'),
             data: $(form).serializeObject()
         }, function (response) {
@@ -85,4 +85,4 @@ report.results = (function ($this, $) {
     };
 
     return $this;
-} (report.results || {}, jQuery));
+} (REPORT.RESULTS || {}, jQuery));

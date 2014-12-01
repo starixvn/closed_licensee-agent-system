@@ -14,15 +14,14 @@
     @Scripts.Render("~/js/admin/maintenance")
     <script type="text/javascript">
         $(function () {
-            admin.maintenance.syncmonitoring.init();
+            ADMIN.MAINTENANCE.SYNC_MONITORING.init();
         });
     </script>
 }
 <div class="legend">
     @ViewBag.Title
 </div>
-@using (Html.BeginForm(null, null, FormMethod.Post,
-    new { @class = "form-filter form-inline", id = "search-form" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-filter form-inline" }))
 {
     <div class="controls-row">
         <label for="action">

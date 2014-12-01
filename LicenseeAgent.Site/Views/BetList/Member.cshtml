@@ -15,7 +15,12 @@
     @Scripts.Render("~/js/fanexgrid")
     @Scripts.Render("~/js/moment")
     @Scripts.Render("~/js/monthpicker")
-    @Scripts.Render("~/js/betlist")
+    @Scripts.Render("~/js/betlist/member")
+    <script type="text/javascript">
+        $(function () {
+            BET_LIST.MEMBER.init();
+        });
+    </script>
 }
 <div class="legend">
     @ViewBag.Title

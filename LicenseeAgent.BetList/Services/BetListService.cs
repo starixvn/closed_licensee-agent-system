@@ -16,14 +16,14 @@
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
-        /// <summary>
-        /// Define Account DataAccess.
-        /// </summary>
+        #region Variables
+
         private readonly IBetListDataAccess _betlistDataAccess;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BetListService" /> class.
-        /// </summary>
+        #endregion Variables
+
+        #region Constructors
+
         public BetListService()
             : this(null)
         {
@@ -38,49 +38,54 @@
             _betlistDataAccess = betlistDataAccess ?? new BetListDataAccess();
         }
 
-        /// <summary>
-        /// Get Bet List.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public BetListResult GetBetList(ICriteria criteria)
-        {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
+        #endregion Constructors
 
-                return _betlistDataAccess.GetBetList(criteria);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+        #region Member
+
+        public BetListResult GetByMember(SelectByMemberCriteria criteria)
+        {
+            return GetBetList(criteria);
         }
 
-        /// <summary>
-        /// Get Bet List Parlay.
-        /// </summary>
-        /// <param name="criteria">Mix Parlay Details Criteria.</param>
-        /// <returns>Ticket results.</returns>
+        #endregion Member
+
+        #region Total Bets
+
+        public BetListResult GetTotalBets(TotalBetsCriteria criteria)
+        {
+            return GetBetList(criteria);
+        }
+
+        #endregion Total Bets
+
+        #region Outstanding
+
+        public BetListResult GetOutstanding(MemberOutstandingCriteria criteria)
+        {
+            return GetBetList(criteria);
+        }
+
+        #endregion Outstanding
+
+        #region Outright
+
+        public BetListResult GetOutright(OutrightCriteria criteria)
+        {
+            return GetBetList(criteria);
+        }
+
+        #endregion Outright
+
+        #region Mix Parlay Details
+
         public BetListResult GetMixParlayDetails(MixParlayDetailsCriteria criteria)
         {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                return _betlistDataAccess.GetMixParlayDetails(criteria);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
+            return GetBetList(criteria);
         }
+
+        #endregion Mix Parlay Details
+
+        #region System Parlay Details
 
         /// <summary>
         /// Get system parlay result data.
@@ -104,37 +109,9 @@
             }
         }
 
-        /// <summary>
-        /// Get Bet List Details.
-        /// </summary>
-        /// <param name="criteria">Bet List Details Criteria.</param>
-        /// <returns>A list of bet list details.</returns>
-        public IList<TicketDetail> GetBetListDetails(TicketDetailsCriteria criteria)
-        {
-            return GetEntites<TicketDetail>(criteria);
-        }
+        #endregion System Parlay Details
 
-        /// <summary>
-        /// Get Parlay List.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Ticket results.</returns>
-        public BetListResult GetParlayList(ICriteria criteria)
-        {
-            try
-            {
-                if (!criteria.IsValid())
-                {
-                    throw new InvalidOperationException("Invalid criteria");
-                }
-
-                return _betlistDataAccess.GetParlayList(criteria);
-            }
-            catch (Exception exception)
-            {
-                throw new CriteriaException(criteria, exception.Message);
-            }
-        }
+        #region Results
 
         /// <summary>
         /// Get Sports book Results.
@@ -192,15 +169,56 @@
             return ResultBinder.BindingSportsBook(dataTable);
         }
 
-        /// <summary>
-        /// Get Parlay Results.
-        /// </summary>
-        /// <param name="criteria">Bet List Results Parlay Criteria.</param>
-        /// <returns>The parlay list.</returns>
+        #endregion Results
+
+        #region Details
+
+        public IList<TicketDetail> GetDetails(TicketDetailsCriteria criteria)
+        {
+            return GetEntites<TicketDetail>(criteria);
+        }
+
+        #endregion Details
+
+        #region Parlay
+
+        public BetListResult GetParlay(TotalBetsParlayCriteria criteria)
+        {
+            return GetBetList(criteria);
+        }
+
         public IList<Parlay> GetParlayResults(ResultsParlayCriteria criteria)
         {
             var dataTable = ExecuteDataTable(criteria);
             return ResultBinder.BindingParlay(dataTable, criteria.RefNo);
         }
+
+        #endregion Parlay
+
+        #region Utility
+
+        /// <summary>
+        /// Get Bet List.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Ticket results.</returns>
+        protected BetListResult GetBetList(ICriteria criteria)
+        {
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    throw new InvalidOperationException("Invalid criteria");
+                }
+
+                return _betlistDataAccess.GetBetList(criteria);
+            }
+            catch (Exception exception)
+            {
+                throw new CriteriaException(criteria, exception.Message);
+            }
+        }
+
+        #endregion Utility
     }
 }

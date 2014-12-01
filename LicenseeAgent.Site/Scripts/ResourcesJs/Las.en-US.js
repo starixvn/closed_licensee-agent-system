@@ -1,7 +1,7 @@
-﻿/*global language*/
+﻿/*global LANGUAGE*/
 /*jshint -W101,-W106,-W044,-W098*/
 
-language.Las['en-US'] = {
+LANGUAGE.Las['en-US'] = {
 	AccessDeniedMsg : "You do not have permission to access this page.",
 	AccountInfo : "Account Info",
 	AccountStatus : "Account status",

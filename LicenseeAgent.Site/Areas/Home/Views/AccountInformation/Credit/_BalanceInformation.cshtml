@@ -39,7 +39,7 @@
                 @if (pageContext.IsDirectDownLine)
                 {
                     <td>
-                        <a href="javascript:home.accountInformation.result.editMemberCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a>
+                        <a href="javascript:HOME.ACCOUNT_INFORMATION.RESULT.editMemberCredit(@customer.CustId, '@customer.UserName', @balance.GivenCredit);">@RazorHelper.FormatNegative(balance.GivenCredit)</a>
                     </td>
                 }
                 else
@@ -115,7 +115,7 @@
                 @if (pageContext.IsDirectDownLine)
                 {
                     <td>
-                        <a href="javascript:home.accountInformation.editAgentCredit(@customer.CustId, '@customer.UserName', @customer.Level, @balance.GivenCredit);">@RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))</a>
+                        <a href="javascript:HOME.ACCOUNT_INFORMATION.RESULT.editAgentCredit(@customer.CustId, '@customer.UserName', @customer.Level, @balance.GivenCredit);">@RazorHelper.FormatNegative(Convert.ToInt64(balance.GivenCredit))</a>
                     </td>
                 }
                 else

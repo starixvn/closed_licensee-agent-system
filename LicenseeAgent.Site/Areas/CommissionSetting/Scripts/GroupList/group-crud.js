@@ -1,30 +1,30 @@
-﻿/*global language, core, popup*/
+﻿/*global CORE, LANGUAGE, POPUP*/
 'use strict';
 
-var commissionSetting = commissionSetting || {};
-commissionSetting.groupCrud = (function ($this, $) {
+var COMMISSION_SETTING = COMMISSION_SETTING || {};
+COMMISSION_SETTING.GROUP_CRUD = (function ($this, $) {
     var isConfirmed = false;
 
     var confirmDefaultGroup = function () {
         var buttons = [{
-            label: language.getString('Yes'),
+            label: LANGUAGE.getString('Yes'),
             action: function () {
-                popup.close();
+                POPUP.close();
                 isConfirmed = true;
                 $('button[type=submit]').click();
             }
         },
         {
-            label: language.getString('No'),
+            label: LANGUAGE.getString('No'),
             action: function () {
-                popup.close();
+                POPUP.close();
             }
         }
         ];
 
-        popup.confirm({
-            title: language.getString('Confirmation'),
-            message: language.getString('ConfirmDefaultGroup'),
+        POPUP.confirm({
+            title: LANGUAGE.getString('Confirmation'),
+            message: LANGUAGE.getString('ConfirmDefaultGroup'),
             buttons: buttons
         });
     };
@@ -51,32 +51,32 @@ commissionSetting.groupCrud = (function ($this, $) {
             }
         });
 
-        commissionSetting.initProductCommissionSelect();
+        COMMISSION_SETTING.initProductCommissionSelect();
     };
 
     $this.checkAvailability = function () {
         var validator = { errorList: [] };
         if (!$.trim($('#GroupName').val())) {
-            validator.errorList.push({ message: language.getString('GroupNameIsEmpty') });
+            validator.errorList.push({ message: LANGUAGE.getString('GroupNameIsEmpty') });
         }
         if (validator.errorList.length > 0) {
             $('#iconCheck').removeClass('icon-input-valid').addClass('icon-input-invalid');
-            core.showErrors(validator);
+            CORE.showErrors(validator);
             return;
         }
 
-        core.ajaxJSON({
-            url: core.resolveUrl("~/CommissionSetting/GroupList/CheckGroupAvailability"),
+        CORE.ajaxJSON({
+            url: CORE.resolveUrl("~/CommissionSetting/GroupList/CheckGroupAvailability"),
             data: {
                 groupName: $('#GroupName').val()
             }
         }, function () {
             $('#iconCheck').removeClass('icon-input-invalid').addClass('icon-input-valid');
-            core.hideErrors();
+            CORE.hideErrors();
         }, function (data) {
-            core.showErrorMsg(data.ErrMsg);
+            CORE.showErrorMsg(data.ErrMsg);
         });
     };
 
     return $this;
-} (commissionSetting.groupCrud || {}, jQuery));
+} (COMMISSION_SETTING.GROUP_CRUD || {}, jQuery));

@@ -3,7 +3,7 @@
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// LasTicketData class.
     /// </summary>
     public class LasTicketData : TicketData
     {

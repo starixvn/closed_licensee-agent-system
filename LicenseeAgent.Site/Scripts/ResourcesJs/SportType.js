@@ -1,7 +1,7 @@
 ﻿
-/*global language*/
+/*global LANGUAGE*/
 
-language.SportType = {};
+LANGUAGE.SportType = {};
 
 // Generated helper templates
 // Generated items

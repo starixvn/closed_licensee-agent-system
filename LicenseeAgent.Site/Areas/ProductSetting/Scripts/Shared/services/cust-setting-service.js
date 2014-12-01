@@ -1,4 +1,4 @@
-﻿/*global core, settingContext */
+﻿/*global CORE, settingContext */
 
 if (fanex.customerSetting) {
     fanex.customerSetting.service('CustomerSettingService', ['$http', function ($http) {
@@ -6,7 +6,7 @@ if (fanex.customerSetting) {
         this.updateSettingModel = function () {
             $http({
                 method: 'POST',
-                url: core.resolveUrl($('#custSetting').data('updated-href')),
+                url: CORE.resolveUrl($('#custSetting').data('updated-href')),
                 headers: { 'Content-Type': 'application/json' },
                 data: {
                     ProductId: $('#custSetting').data('product'),
@@ -18,7 +18,7 @@ if (fanex.customerSetting) {
                 }
             }).
             success(function (data) {
-                core.unblockUI();
+                CORE.unblockUI();
 
                 var customerSettingScope,
                     commissionSettingScope,
@@ -47,7 +47,7 @@ if (fanex.customerSetting) {
                 }
             }).
             error(function (data) {
-                core.unblockUI();
+                CORE.unblockUI();
                 alert(data.ErrMsg);
             });
         };
